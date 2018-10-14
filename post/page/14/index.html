@@ -169,7 +169,7 @@
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on January 11, 2013
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on January 21, 2013
   
   
   &nbsp;|&nbsp;
@@ -194,6 +194,106 @@
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
         <div class="posts-list">
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2013/01/21/%E7%A4%BE%E5%B7%A5%E5%AD%97%E5%85%B8%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7/">
+                <h2 class="post-title">社工字典生成工具</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on January 21, 2013
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (58 words)
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  <p>在家无聊写了这个工具，主要是为了防止自己这一直写随笔把本行忘了。。也熟悉一下代码。。暂时不放源代码了。以后改的好一点再发吧。</p>
+
+<p>作者：bystander</p>
+
+<p>博客：<a href="http://leaver.me">http://leaver.me</a></p>
+
+<p>转载请注明出处！</p>
+
+<p><a href="http://leaverimage.b0.upaiyun.com/31971_o.png"><img src="/images/a46e1099507677947d020ad1fc0251a2fe9fca27.png" alt="" /></a></p>
+
+<p>&nbsp;</p>
+
+<p><a href="http://leaverimage.b0.upaiyun.com/31972_o.png"><img src="/images/674f4d21632e17d90688202f0e06717fbeba54c8.png" alt="" /></a></p>
+
+<p>涉及到的东西有：</p>
+
+<p>1.C#隐藏TabControl的header部分，前面的文章有介绍</p>
+
+<p>2.获取窗体全部的某一类控件（这个无聊的话抽象出一个通用的方法出来，以后就可以直接用了）
+<pre class="lang:default decode:true">  /// &lt;summary&gt;
+        /// 获取所有的文本框控件
+        /// &lt;/summary&gt;
+        /// &lt;param name=&ldquo;control&rdquo;&gt;&lt;/param&gt;
+        /// &lt;returns&gt;&lt;/returns&gt;
+        private List&lt;TextBox&gt; GetAllControls(Control control)
+        {
+            foreach (Control con in control.Controls)
+            {
+                if (con.Controls.Count &gt; 0)
+                {
+                    GetAllControls(con);
+                }
+                else if (con is TextBox)
+                {
+                    tBoxList.Add(con as TextBox);
+                }
+            }
+            return tBoxList;
+        }</pre>
+&nbsp;</p>
+
+<p>3.文件操作</p>
+
+<p>4.字符串操作</p>
+
+<p>反正很简单，主要就是写的时候思路要清晰。知道大部分使用密码的规则。处理一下生日格式。否则后面很麻烦。。相应的验证也比较少。界面依然毫无美感。。</p>
+
+<p>总结：</p>
+
+<p>现在发现在控件命名上越来越顺利了。自我感觉良好。后面慢慢的要开始尝试使用学到的一些新的技术点。。</p>
+
+<p>下载：<a href="http://pan.baidu.com/share/link?shareid=244748&amp;amp;uk=1493685990">社工字典生成工具</a></p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%AE%BE%E8%AE%A1/">设计</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2013/01/11/c#%E9%9A%90%E8%97%8Ftabcontrol%E6%A0%87%E7%AD%BE%E6%A0%8F/">
@@ -687,75 +787,6 @@ for(var i = 0; i &lt; buttons.Length; i++) { var button = new Button(); button.T
                     <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/12/18/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86/">
-                <h2 class="post-title">Lambda高手之路第一部分</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on December 18, 2012
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 2 minutes (329 words)
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  好长时间没发技术文章了，恰好看到一篇非常详细的Lambda文章。一边翻译一边学习。题目好像有点霸气。。
-介绍 Lambda表达式是使代码更加动态，易于扩展并且更加快速（看完本文你就知道原因了）的强有力的工具。也可以用来降低潜在的错误。同时可以利用静态输入和智能提示，就像VS里一样。
-&nbsp;
-Lambda表达式在.net framework 3.5中提出来。并且在LINQ和ASP.NET MVC内部的一些技术中扮演了相当重要的角色。如果你考虑一下ASP.NET MVC中各类控件的实现。你就发现。奥妙就是他们大多使用了Lambda表达式。和Lambda表达式一起，使用Html扩展方法将会使得在后台创建模型成为可能。
-本文会讲到如下的知识。
-1.简短的介绍-Lambda表达式是什么，以及为什么和匿名方法不同（之前我们使用的） 2.走近Lambda表达式的性能-在哪些情况下比起标准方法，Lambda会提高/损失性能 3.深入-Lambda表达式在MSIL代码中是什么样 4.一些来自JS世界的模式映射到C#中 5.那些能够提高性能，并且代码看起来相当舒服的使用Lambda的情况。 6.一些我提出的新模式-当然有可能别人也提出来了。但这是我的思考结果。
-&nbsp;
-如果你期望本文是一篇入门教程我可能要让你失望了，除非你真的很优秀并且很聪明，当然我不是这种人，所以我也想提前声明一下：为了读懂这篇文章你可能需要C#的一些高级知识，并且对C#比较了解。
-&nbsp;
-你应该期望本文试着解释一些事情给你，也会解释一些有趣的问题，至少对我来说是这样的。最后我会展示一些实际的例子和模式，如我所说，Lambda表达式简化了很多情况。因此写显式的模式很有用。
-背景知识-什么是Lambda表达式 在C#1.0中，委托被提出了，它使得传递函数成为可能，一句话就是委托就是强类型的函数指针，但委托比指针更强大。一般传递一个函数需要如下几步。 1. 写一个委托（就像一个类）包含返回类型和参数类型 2. 使用委托作为某一个函数的参数类型，这样，该函数就可以接受和委托描述的有着相同签名的函数了 3. 将一个委托类型的函数传递给委托，创建一个委托实例。
-&nbsp;
-如果听起来很复杂，确实本来很复杂，但这是必需的。（虽然不是造火箭，但是比你认为的要更多的代码），然而步骤三不是必需的，编译器会为你做他，但是步骤1和2却是必不可少的。
-&nbsp;
-幸运的是C#2.0出现了泛型，现在我们也可以写泛型类，方法，更重要的是，泛型委托，然而，直到.net framework 3.5的时候。微软意识到实际上只有两种泛型委托（当然有一些不同的重载），会覆盖99%的使用情况：
-1.Action 没有任何输入参数，也没有输出参数。 2.Action&lt;t1,…t16&gt; 需要1-16个参数，没有输出参数。 3.Func&lt;t1….t16,tout&gt;需要0-16个参数，一个输出参数
-&nbsp;
-Action和其对应的泛型版本（仅仅是一个动作，执行一些事情）返回void的时候。Func则可以返回最后一个参数指定的类型，通过这两个委托类型，我们事实上，大部分情况下。前面提到的三步中的第一部就不用写的。而第二步仍然需要。
-&nbsp;
-那么如果我们想要运行代码的时候怎么做呢。在C#2.0中问题已经可以解决了。在这个版本里。我们可以创建委托方法，也就是一个匿名方法，然后这个语法一直未能流行起来，一个相当简化的匿名方法的版本类似这样： Func&lt;double, double&gt; square = delegate (double x) { return x * x; } 为了提高这种语法，欢迎来到Lambda表达式的国度。首先，这个Lambda名字怎么来的？事实上。来自于数学上的λ演算，更准确的说他是数学中一个正式的系统。用于通过变量绑定和替换来进行表达式计算，所以我们有0-N个输入参数和一个返回值，而在编程中，也可以没有返回值
-我们看一下Lambda表达式的一些例子 //编译器可以识别，然后就可以通过dummyLambda();来调用了 var dummyLambda = () =&gt; { Console.WriteLine(&ldquo;Hallo World from a Lambda expression!
-                  <a href="https://leizhiyuan.github.io/2012/12/18/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
                   

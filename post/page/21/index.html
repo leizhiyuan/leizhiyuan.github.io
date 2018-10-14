@@ -169,7 +169,7 @@
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 5, 2012
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 6, 2012
   
   
   &nbsp;|&nbsp;
@@ -194,6 +194,89 @@
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
         <div class="posts-list">
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/09/06/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B02/">
+                <h2 class="post-title">WCF读书笔记(2)</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 6, 2012
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (27 words)
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  <p><strong>信道形状（Channel Shape）</strong></p>
+
+<p>　　用来表述不同的消息交换模式对消息交换双方信道（信息交换的管道）的不同要求，有什么IOutputChannel IReplyChannel IDuplexChannel之类的。。</p>
+
+<p>　　对于IReplyChannel，服务器返回一个RequestContext类型，作为请求和回复之间的一道桥梁，可以获取也可以返回消息。</p>
+
+<p><strong>会话信道（Session Channel）</strong></p>
+
+<p>　　从状态保持的角度，信道可以分为两种类型，Datagram Channel和Session Channel，前者不和客户端绑定，后者可以识别客户端。</p>
+
+<p>　　对于WCF的信道层来说，信道管理器在客户端和服务端扮演不同的角色。服务端的信道管理器用于监听来自客户端的请求，而客户端的信道仅仅是单纯创建用于请求发送和回复接收的信道，因此服务端的消息管理器又称为信道监听器（Channel Listener），客户端的信道管理器则称之为信道工厂（Channel Factory）</p>
+
+<p><strong>绑定元素（Binding Element）</strong></p>
+
+<p>　　构成一个绑定对象的元素，绑定实现了通信的所有细节，通过创建信道栈实现对消息的交换，系统绑定是指服务于某种类型场景的绑定元素的有序集合。 包括什么BaseHttpBinding之类的。</p>
+
+<p>　　<strong>一个程序集</strong>包括元数据，中间语言代码，和资源。程序集已经加载，将一直保存在内存中，直到应用程序域卸载。最好摒弃添加服务引用的服务调用方式，而是直接将包含服务契约的程序集部署到客户端。客户端以直接创建代理的方式进行调用。</p>
+
+<p>　　WCF可以看成是适配器，是CLR类型和XML两个不同世界的纽带。</p>
+
+<p>　　<strong>依赖倒置原则</strong>：即抽象不应该依赖细节，细节应该依赖于抽象；即要针对接口编程，不要对实现编程。高层模块不应该依赖低层模块。两个都应该依赖抽象。</p>
+
+<p>　　契约关心的是我能做到。而不在于我如何做到。</p>
+
+<p><strong>封送（Marshaling）</strong></p>
+
+<p>　　解决跨应用程序域对象访问的问题，需要采用一种特别的机制，那就是封送。分为按值封送和按引用封送</p>
+
+<p>　　按值封送实现了跨应用程序域的数据共享</p>
+
+<p>　　按引用封送则实现了跨应用程序域的远程调用。</p>
+
+<p>　　如果一个程序员频繁的使用复制粘贴编程。那就意味着设计需要重构</p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/wcf/">WCF</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%94%B6%E8%97%8F/">收藏</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/09/05/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B01/">
@@ -767,54 +850,6 @@ matlab.Quit();</pre>
                     <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E4%BD%9C/">工作</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/08/05/%E5%8C%97%E5%A4%96%E8%8B%B1%E8%AF%AD%E4%B8%93%E4%B8%9A%E8%B6%85%E5%85%A8%E9%9D%A2%E7%BF%BB%E8%AF%91%E7%AC%94%E8%AE%B0pdf%E4%B8%8B%E8%BD%BD/">
-                <h2 class="post-title">北外英语专业超全面翻译笔记PDF下载</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on August 5, 2012
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (3 words)
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  <p>今天在网上看到的。就自己制作了一下pdf版本。方便大家。现在比较纠结的是没有一个好网盘。115竟然需要登录才能下载了。。刚才试了下。。更可怕的是，，只有绑定了手机才能分享。霖枫叔疯了么。。
-<a href="http://leaverimage.b0.upaiyun.com/25577_o.jpg"><img src="/images/" alt="" title="pdf" /></a></p>
-
-<p>那还是将就着用华为的吧。其实我也不喜欢华为的。。</p>
-
-<p>下载地址：<a href="http://dl.dbank.com/c09mm555k4">北外英语专业超全面翻译笔记</a></p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%9D%82%E6%96%87/">杂文</a>&nbsp;
                   
                 </div>
               

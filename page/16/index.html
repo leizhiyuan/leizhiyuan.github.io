@@ -190,6 +190,56 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/11/21/%E4%BE%9D%E8%B5%96%E5%80%92%E7%BD%AE%E5%8E%9F%E5%88%99%E5%92%8C%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E6%A8%A1%E5%BC%8F/">
+                <h2 class="post-title">依赖倒置原则和依赖注入模式</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on November 21, 2012
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (213 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  昨天读完了程杰的《大话设计模式》。。收获颇丰。深刻感到了设计模式的伟大。。对面向接口的编程也理解了不少。刚好看到codeproject上一篇将依赖倒置的。讲到了依赖注入的方式。仔细读了一下。翻译一遍加深认识。
+高耦合的代码随着项目复杂性的不断增加，最终会变成一碗碗的意大利面条啦。。二者通常是软件设计上的问题，如果一个类对另一个类的实现了解太多。当该类改变的时候会引起更多的改变。这违反了依赖倒置原则
+而松耦合的代码设计优良。随着时间流逝，代码复杂两增大，松耦合的好处会变得更加清晰，依赖注入模式是实现松耦合的一个好的办法，本文介绍在没有依赖注入容器的情况下实现依赖注入
+GoF说了，依赖倒置的原则：
+ 高层模块不应依赖于低层模块，他们都应该依赖于抽象 抽象不依赖细节，细节依赖抽象
+ 刚开始写依赖倒置比较难，随着经验增长会有所改善，通过使高层模块依赖于抽象，依赖倒置成功解耦，依赖注入模式是该原则的一个实现。
+通常我们写出如下的代码：
+public class Email { public void SendEmail() { // code } } public class Notification { private Email _email; public Notification() { _email = new Email(); } public void PromotionalNotification() { _email.SendEmail(); } }  Notification类依赖Email类，这违反了DIP，而且当我们要发送短信/保存到数据库的时候，我们还要改变Notification类。 我们使用抽象类/接口解耦
+public interface IMessageService { void SendMessage(); } public class Email : IMessageService { public void SendMessage() { // code } } public class Notification { private IMessageService _iMessageService; public Notification() { _iMessageService = new Email(); } public void PromotionalNotification() { _iMessageService.
+                  <a href="https://leizhiyuan.github.io/2012/11/21/%E4%BE%9D%E8%B5%96%E5%80%92%E7%BD%AE%E5%8E%9F%E5%88%99%E5%92%8C%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E6%A8%A1%E5%BC%8F/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%AE%BE%E8%AE%A1/">设计</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/11/18/c#%E4%B8%AD%E7%9A%84throw/">
                 <h2 class="post-title">C#中的throw</h2>
                 
@@ -710,61 +760,6 @@ foreach (string s in listOfStrings) { Console.WriteLine(s); } &nbsp;
                     <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E4%BD%9C/">工作</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E7%94%B5%E5%AD%90%E4%B9%A6/">电子书</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/10/17/%E6%A8%A1%E6%8B%9Foffice2010%E6%96%87%E4%BB%B6%E8%8F%9C%E5%8D%95%E7%9A%84tabcontrol%E6%A8%A1%E6%9D%BF/">
-                <h2 class="post-title">模拟Office2010文件菜单的TabControl模板</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on October 17, 2012
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 2 minutes (321 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  这是Office2010中的文件菜单点开后的效果。本文我将以强大的WPF来实现类似的效果。希望你能有所收获。而不是只拷贝/粘贴代码而已。
-&nbsp;
-开始之前。先把TabControl找个地方放着。 &lt;Window x:Class=&ldquo;TestClient.MainWindow&rdquo;
-xmlns=&#34;http://schemas.microsoft.com/winfx/2006/xaml/presentation&#34; xmlns:x=&#34;http://schemas.microsoft.com/winfx/2006/xaml&#34; Title=&#34;MainWindow&#34; Height=&#34;350&#34; Width=&#34;525&#34;&amp;gt; &amp;lt;TabControl Name=&#34;tabSteps&#34;&amp;gt; &amp;lt;TabItem Header=&#34;Info&#34; IsSelected=&#34;True&#34;&amp;gt; &amp;lt;TextBlock&amp;gt;Info content&amp;lt;/TextBlock&amp;gt; &amp;lt;/TabItem&amp;gt; &amp;lt;TabItem Header=&#34;Recent&#34;&amp;gt; &amp;lt;TextBlock&amp;gt;Recent content tab&amp;lt;/TextBlock&amp;gt; &amp;lt;/TabItem&amp;gt; &amp;lt;TabItem Header=&#34;New&#34;&amp;gt; &amp;lt;TextBlock&amp;gt;New content tab&amp;lt;/TextBlock&amp;gt; &amp;lt;/TabItem&amp;gt; &amp;lt;TabItem Header=&#34;Print&#34;&amp;gt; &amp;lt;TextBlock&amp;gt;Print content tab&amp;lt;/TextBlock&amp;gt; &amp;lt;/TabItem&amp;gt; &amp;lt;TabItem Header=&#34;Save &amp;amp;amp; Send&#34;&amp;gt; &amp;lt;TextBlock&amp;gt;Save &amp;amp;amp; send content tab&amp;lt;/TextBlock&amp;gt; &amp;lt;/TabItem&amp;gt; &amp;lt;TabItem Header=&#34;Help&#34;&amp;gt; &amp;lt;TextBlock&amp;gt;Help tab&amp;lt;/TextBlock&amp;gt; &amp;lt;/TabItem&amp;gt; &amp;lt;/TabControl&amp;gt; &lt;/Window&gt; &nbsp;
-然后会大概是这个效果
-
-为了改变TabControl的显示效果。我们使用模板机制，我们把模板写进一个资源字典里。这样就可以重用了。添加一个资源字典的步骤如下
-右键点击工程-添加-资源字典
-然后在资源字典里添加一些代码。 &lt;ControlTemplate x:Key=&ldquo;OfficeTabControl&rdquo; TargetType=&ldquo;{x:Type TabControl}&rdquo;&gt;
-&amp;lt;Grid&amp;gt; &amp;lt;Grid.ColumnDefinitions&amp;gt; &amp;lt;ColumnDefinition Width=&#34;160&#34; /&amp;gt; &amp;lt;ColumnDefinition/&amp;gt; &amp;lt;/Grid.
-                  <a href="https://leizhiyuan.github.io/2012/10/17/%E6%A8%A1%E6%8B%9Foffice2010%E6%96%87%E4%BB%B6%E8%8F%9C%E5%8D%95%E7%9A%84tabcontrol%E6%A8%A1%E6%9D%BF/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/wpf/">WPF</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
                   
                 </div>
               

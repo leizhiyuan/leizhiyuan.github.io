@@ -190,6 +190,54 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/06/15/gif%E5%8F%8D%E8%BD%AC%E5%B7%A5%E5%85%B7/">
+                <h2 class="post-title">gif反转工具</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on June 15, 2012
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (122 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  首先看下效果图：  然后是两张gif的对比  //原本图是正着走的  //处理后是倒着走的
+gif是动态的嘛。然后我昨天和一个朋友聊天的时候发了一串相同的gif图，然后看着千篇一律的东西。我想能不能写个程序实现gif的初始状态不同呢。什么意思呢。我们知道，gif是由帧构成的，我想实现的功能是比如一个gif共有十帧，那么我写出来的程序能够生成10个gif文件，分别对应不同的初始状态来进行循环。后来一想，gif帧太多的话，比较慢，而且也不实用，于是决定简化一下，只做一个反转工具，比如一个gif是从左到右播放的，通过这个成功可以生成一个相同的gif图，不过是倒着播放的。
+思路很简单，就是先把gif分解成很多帧，然后对帧进行合并，合并帧之前把帧的位置反转一下就可以了。因为我自己对图像处理的知识不懂，只想到了思路，所以这些功能都要找些资料，然后修改，测试。
+分割帧的代码如下 //解码gif图片 public List&lt;string&gt; GetFrames(string pPath, string pSavedPath) { Image gif = Image.FromFile(pPath); FrameDimension fd = new FrameDimension(gif.FrameDimensionsList[0]);
+//获取帧数(gif图片可能包含多帧，其它格式图片一般仅一帧) int count = gif.GetFrameCount(fd); List&amp;lt;string&amp;gt; gifList=new List&amp;lt;string&amp;gt;(); //以Jpeg格式保存各帧 for (int i = 0; i &amp;lt; count; i++) { gif.SelectActiveFrame(fd, i); gif.Save(pSavedPath + &#34;\\frame_&#34; + i + &#34;.png&#34;, ImageFormat.Png); gifList.Add(pSavedPath + &#34;\\frame_&#34; + i + &#34;.png&#34;); } return gifList; }&lt;/pre&gt; 可以看到，返回了一个包含所有生成的帧地址的list列表。然后就是使用gifList作为参数来合并了。 //获取系统临时目录存放解码后的png图片 string temppath = System.
+                  <a href="https://leizhiyuan.github.io/2012/06/15/gif%E5%8F%8D%E8%BD%AC%E5%B7%A5%E5%85%B7/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%8E%9F%E5%88%9B/">原创</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/06/10/mysql-error-1005-cant-create-table--errno-150%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/">
                 <h2 class="post-title">MySQL ERROR 1005: Can&#39;t create table  (errno: 150)解决办法</h2>
                 
@@ -759,48 +807,6 @@ on update cascade
                 <div class="blog-tags">
                   
                     <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/05/29/uar%E6%8A%A5%E5%91%8A%E7%9A%84%E7%AE%80%E5%8D%95%E8%AF%B4%E6%98%8E/">
-                <h2 class="post-title">UAR报告的简单说明</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on May 29, 2012
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 3 minutes (489 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  UAR报告由以下几个部分构成。就这个例子简单说一下。 Example UAR — Time Zone ListBox Is Not Good //标题  #### **UAR Identifier //问题编号，从1开始，每个问题都这样的格式来说明，就构成了UAR报告** HE18—Problem //后面这个problem表示有问题，也可以是Good，表示这部分很好。没问题。 #### **Succinct description: //简短的描述** Time Zone pull-down ListBox provides too much irrelevant information. #### **Evidence for the aspect: //违反了哪条规则，共有十条规则。** Heuristic: Aesthetics and minimalist design **Interface aspect: ** The pull-down ListBox has 50 lines of information—in very small font. There are many competing items of information to visually search, the vast majority of which are irrelevant to any one user's particular task of finding a single desired time zone &nbsp; [!
-                  <a href="https://leizhiyuan.github.io/2012/05/29/uar%E6%8A%A5%E5%91%8A%E7%9A%84%E7%AE%80%E5%8D%95%E8%AF%B4%E6%98%8E/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
                   
