@@ -6,19 +6,10 @@
     <description>Recent content on bystander&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 14 Oct 2018 15:50:52 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 14 Oct 2018 11:37:47 +0800</lastBuildDate>
     
 	<atom:link href="https://leizhiyuan.github.io/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>友情链接</title>
-      <link>https://leizhiyuan.github.io/2018/10/14/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/</link>
-      <pubDate>Sun, 14 Oct 2018 15:50:52 +0800</pubDate>
-      
-      <guid>https://leizhiyuan.github.io/2018/10/14/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/</guid>
-      <description>-C++爱好者博客</description>
-    </item>
     
     <item>
       <title>About</title>
@@ -324,6 +315,15 @@ cat /etc/ansible/hosts[servergroup1] 192.168.1.1 ansible_ssh_user=root ansible_s
 然后就是执行命令了
 ansible常见用法为ansible host-pattern -m 模块 -a 命令，host-pattern类似于简化的正则表达式，而模块可以通过ansible-doc -l命令来查询。下面是一些常用模块的使用方法：
 安装软件：ansible servergroup1 -m apt -a &#39;name=gcc state=present&#39; 或者ansible local -m yum -a &amp;quot;name=nmap state=installed&amp;quot;</description>
+    </item>
+    
+    <item>
+      <title>links</title>
+      <link>https://leizhiyuan.github.io/2016/01/01/links/</link>
+      <pubDate>Fri, 01 Jan 2016 15:50:52 +0800</pubDate>
+      
+      <guid>https://leizhiyuan.github.io/2016/01/01/links/</guid>
+      <description>C++爱好者博客:https://www.cppfans.org/</description>
     </item>
     
     <item>
