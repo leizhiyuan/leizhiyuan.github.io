@@ -190,6 +190,47 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%80%E7%AF%87--%E5%90%91%E6%96%87%E4%BB%B6%E4%B8%AD%E5%A2%9E%E5%8A%A0%E4%B8%80%E8%A1%8C/">
+                <h2 class="post-title">[译]Unix sed实用教程第一篇--向文件中增加一行</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on August 9, 2013
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (170 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  Unix sed实用教程第一讲，本系列第一篇，有任何问题欢迎留言讨论。
+sed 是unix中最重要的编辑器之一，注意，有之一..支持多种编辑任务，本文将实现题目的功能实例
+假定我们有一额文本文件，叫做empFile，包含了员工名字和员工id，如下： Hilesh, 1001 Bharti, 1002 Aparna, 1003 Harshal, 1004 Keyur, 1005 1.如何通过sed给文件添加标题行-“Employee, EmpId” $ sed &lsquo;1i Employee, EmpId&rsquo; empFile Employee, EmpId Hilesh, 1001 Bharti, 1002 Aparna, 1003 Harshal, 1004 Keyur, 1005 解释：数字1，是说只对第一行执行操作，i代表在insert（熟悉vim的同学应该知道，i会在当前字符的前面插入，a是在后面插入），因此，1i就表示在将Employee, EmpId插入到第一行之前，
+然后，有了标题行的文件仅仅会输出到标准输出，源文件内容并不会改变，如果需要更新源文件，可以使用重定向输出到一个临时文件，然后移动到原始文件。如果Unix系统的sed是GUN版本的，sed会有一个-i选项，可以直接实现更新源文件，（如何查看版本，终端下输入sed &ndash;version即可看到）下面先执行，再查看文件，发现已经多了标题行了 $ sed -i &lsquo;1i Employee, EmpId&rsquo; empFile $ cat empFile Employee, EmpId Hilesh, 1001 Bharti, 1002 Aparna, 1003 Harshal, 1004 Keyur, 1005 2.如何在标题行之后，也就是原始第一行之前添加一行横线&ndash;“&mdash;&ndash;” $ sed -i &lsquo;1a &mdash;&mdash;&mdash;&mdash;&mdash;&rsquo; empFile $ cat empFile
+                  <a href="https://leizhiyuan.github.io/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%80%E7%AF%87--%E5%90%91%E6%96%87%E4%BB%B6%E4%B8%AD%E5%A2%9E%E5%8A%A0%E4%B8%80%E8%A1%8C/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/linux/">linux</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/shell/">shell</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2013/08/09/unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E5%BC%80%E7%AF%87/">
                 <h2 class="post-title">Unix sed实用教程开篇</h2>
                 
@@ -725,57 +766,6 @@ int _tmain(int argc, _TCHAR* argv[]) { cout&lt;&lt;&ldquo;请输入N:&ldquo;; in
                     <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/05/27/%E8%AF%91%E5%8F%8D%E5%B0%84reflection%E5%92%8C%E5%8A%A8%E6%80%81dynamic/">
-                <h2 class="post-title">[译]反射(Reflection)和动态(dynamic)</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on May 27, 2013
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (140 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  反射 &nbsp; 当我们需要检查，调用一个程序集的内容的时候，用反射，比如，当VS给智能提示的时候，就应用了反射。  
-简单用法实例： &nbsp;  var myAssembly = Assembly.LoadFile(@&ldquo;C:\ClassLibrary1.dll&rdquo;); var myType = myAssembly.GetType(&ldquo;ClassLibrary1.Class1&rdquo;); dynamic objMyClass = Activator.CreateInstance(myType); // 获取类的类型信息 Type parameterType = objMyClass.GetType();
-// 浏览方法 foreach (MemberInfo objMemberInfo in parameterType.GetMembers()) {Console.WriteLine(objMemberInfo.Name);}
-// 浏览属性. foreach (PropertyInfo objPropertyInfo in parameterType.GetProperties()) {Console.WriteLine(objPropertyInfo.Name);}
-//开始调用 parameterType.InvokeMember(&ldquo;Display&rdquo;,BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.InvokeMethod | BindingFlags.Instance,null, objMyClass, null);   
-实际一点的用处呢： &nbsp; 1.当你也要开发一个类似VS的编辑器的时候，要提供智能提示就需要反射 2.当创建单元测试框架的时候，为了测试需要动态调用方法和属性的时候 3.有时候我们想把类型的属性，方法等全部导出的时候  
-动态dynamic &nbsp; 编程语言分为强/弱类型，dynamic是弱类型，此关键字会让编译器不做编译时的类型检查，只做运行时的检查。  
-简单用法示例： &nbsp;  dynamic x = &ldquo;c#&rdquo;; x++;  所以上面这行代码可以编译通过，但会产生运行时一场。
-                  <a href="https://leizhiyuan.github.io/2013/05/27/%E8%AF%91%E5%8F%8D%E5%B0%84reflection%E5%92%8C%E5%8A%A8%E6%80%81dynamic/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
                   
                 </div>
               

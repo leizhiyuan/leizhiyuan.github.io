@@ -190,6 +190,68 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/09/07/wcf%E5%8F%8C%E5%B7%A5%E9%80%9A%E4%BF%A1%E7%A4%BA%E4%BE%8B/">
+                <h2 class="post-title">WCF双工通信示例</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 7, 2012
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (8 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  <p>这两天在看WCF的书籍。就参考书上的代码写了这个例子。不得不说。书上有些错误的地方。。运行明显报错。改了一下。顺利通过。</p>
+
+<p>　　先运行Hosting。然后运行Client。可以看到效果。不过不知道为什么会有如下的一个提示：</p>
+
+<p>　　目标程序集不包含服务类型。可能需要调整此程序集的代码访问安全策略。</p>
+
+<p>　　点击确定后并不影响程序运行。。但是也是个问题。。找了一下解决方法。都没有解决。。可能是我新建契约服务的时候，删掉了默认的IService配置。</p>
+
+<p>//update:此问题解决了。是因为默认的app.config太多。对于典型的四层结构。需要删除契约和服务中的app.config。。</p>
+
+<p>　　暂时先放着吧。</p>
+
+<p>　　运行截图：</p>
+
+<p>　　<a href="http://leaverimage.b0.upaiyun.com/26775_o.jpg"><img src="/images/35cc6b919f9d513bf612503ffcac5b3448f20f37.jpg" alt="" title="wcfExample" /></a></p>
+
+<p>　　示例代码下载：<a href="http://dl.vmall.com/c0c44hq61p">Lazy.Duplex</a></p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/wcf/">WCF</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/09/06/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B02/">
                 <h2 class="post-title">WCF读书笔记(2)</h2>
                 
@@ -745,76 +807,6 @@
                     <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E8%AE%BE%E8%AE%A1/">设计</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/08/09/c#%E8%B0%83%E7%94%A8matlab%E5%BC%95%E6%93%8E/">
-                <h2 class="post-title">C#调用Matlab引擎</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on August 9, 2012
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (47 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  <p>最近在使用matlab的时候。求多元函数取得最小值的时候。变量的值。于是就用到了sym符号。结果在C#中调用时总是出错。后来Google了N久发现是符号工具箱是无法编译的。。后来找到了替代方法。就是调用matlab 引擎。当然要稍微麻烦一点。因为调用引擎这种方法参数传递比较麻烦。我只想到了通过C#把需要计算的值保存到文本中。然后matlab中load进来。计算完成后 save出去。。</p>
-
-<p>　　调用matlab引擎类似于在C#中新开了一个进程。然后执行一些命令。之前需要引用Matlab Application Type Library。这是个com组件</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/25657_o.jpg"><img src="/images/b938768405ede59db17f36bdc27e700bf3cbf1dc.jpg" alt="" title="type" /></a>
-然后在程序里使用 using语句</p>
-
-<pre class="lang:c# decode:true " >using MLApp;</pre> 
-然后就可以正常使用了。使用我试过的有两种方法
-
-<pre class="lang:default decode:true " >MLApp.MLAppClass matlab = new MLApp.MLAppClass();  
-matlab.Visible = 1;  
-string command="figure(1)";
-matlab.Execute(command);  
-matlab.Quit();</pre> 
-
-<p>很简单。Visible设置可见性。。command表示要执行的命令。</p>
-
-<p>另一种是</p>
-
-<pre class="lang:c# decode:true " >MLApp.DIMLApp matlab = null;  
-Type matlabAppType = System.Type.GetTypeFromProgID("Matlab.Application");  
-matlab = System.Activator.CreateInstance(matlabAppType) as MLApp.DIMLApp;  
-matlab.Visible = 1;  
-string command="figure(2)";
-matlab.Execute(command);  
-matlab.Quit();</pre> 
-
-<p>不知什么原因，第一种方法我没有调用成功。第二种调用成功。欢迎讨论。</p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E4%BD%9C/">工作</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
                   
                 </div>
               

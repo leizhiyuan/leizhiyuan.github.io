@@ -190,6 +190,60 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/10/07/%E6%8E%A5%E5%8F%A3vs-%E5%A7%94%E6%89%98/">
+                <h2 class="post-title">接口VS 委托</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on October 7, 2012
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 2 minutes (318 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  背景 对于指定的任务有不同的方案可供选择，通常是很好的。因为可能某一种方案会更加适合该任务，但是有时候做决定会很难。因为这些不同的方案有其各自的优缺点。
+我经常会停下来好好想想，是不是接口比委托更适合或者是更不适合某个任务。有时候我甚至会回去看我写的代码，这些代码刚开始使用委托来实现，我后来用接口替换掉。因此，是时候写篇文章来阐述一下这两种技术的优缺点了。
+&nbsp;
+性能 我经常看到有人问接口是不是比委托更快啊。或者是不是相反。通常。别人给的答案会是：
+ 接口更快。委托相当慢 委托更快，因为他们是指向方法的指针，接口则需要一个v-table(虚函数解析表)，然后找到委托 他们一样快，但委托更容易使用 &nbsp;  好吧。那些都是错的。也许在.Net 1中。委托真的很慢。但是事实是：
+ 委托执行（execute）的时候更快 接口获得（get）的时候更快 在下面这段代码中：  &nbsp; Action action = SomeMethod; 我们将得到一个Action(委托类型)来调用SomeMethod。问题是：委托是包含被调用方法的实例和指针的引用类型。而不仅仅只是一个指向方法的指针，通过引用类型，委托需要分配内存，因此，每一次你把一个方法变换成一个委托的时候。都会分配一个新的对象。
+如果委托是一个值类型。会有些不一样。但是他们不是。。
+另一方面，如果我们这样写代码： IRunnable runnable = this; &nbsp;
+如果实现了IRunnable接口的对象。我们简单通过一个转换得到同样的引用。没有涉及内存分配。我们将可以通过下面的代码来进行速度比较：
+对于委托： Stopwatch stopwatch = new Stopwatch(); stopwatch.Start(); for(int i=0; i&lt;COUNT; i++) { Action action = SomeMethod; action(); } stopwatch.Stop(); Console.WriteLine(stopwatch.Elapsed); &nbsp;
+对于接口 Stopwatch stopwatch = new Stopwatch(); stopwatch.Start(); for(int i=0; i&lt;COUNT; i++) { IRunnable runnable = this; runnable.
+                  <a href="https://leizhiyuan.github.io/2012/10/07/%E6%8E%A5%E5%8F%A3vs-%E5%A7%94%E6%89%98/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/10/05/yaxlib-----xml%E5%BA%8F%E5%88%97%E5%8C%96%E7%A5%9E%E5%99%A8/">
                 <h2 class="post-title">YAXLib---- XML序列化神器</h2>
                 
@@ -830,54 +884,6 @@ XAML中ListView/GridView布局 固定列 下面的例子展示了通过XAML使�
                     <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E8%AF%91/">编译</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/09/27/c#%E4%BD%BF%E7%94%A8graphics%E5%88%9B%E5%BB%BA%E9%A5%BC%E5%9B%BE/">
-                <h2 class="post-title">C#使用Graphics创建饼图</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 27, 2012
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (193 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  介绍 这个程序是使用C#中的Graphics来创建一个饼图的，我已经尽我所能写的很好了。如果你有任何建议可以分享给我，这样我也能从中学习。
-使用代码 最近我迷上了Graphics类。我仅仅体验了一下Graphics的DrawPie() 和FillPie() 方法。
-最为一个简单的Demo，我创建一个有着五个文本框的窗体，一个按钮，一个图片框。一会我就把饼图画在图片框里
- 在创建一个饼图之前，我们头脑里要有这个意识。我们不能创建一个不符合常规的圆，创建圆我们需要度数信息。
-为了转换度数。我们首先把给定的值做个求和。然后得出文本框里所有值的和。然后呢。用每个值除以总值再乘以360度。 代码如下： int i1 = Int32.Parse(textBox1.Text); int i2 = Int32.Parse(textBox2.Text); int i3 = Int32.Parse(textBox3.Text); int i4 = Int32.Parse(textBox4.Text); int i5 = Int32.Parse(textBox5.Text);
-float total = i1 + i2 + i3 + i4 + i5 ;
-float deg1 = (i1 / total) * 360; float deg2 = (i2 / total) * 360; float deg3 = (i3 / total) * 360; float deg4 = (i4 / total) * 360; float deg5 = (i5 / total) * 360; 值转换完毕后。我们可以创建Graphics类的实例了。
-                  <a href="https://leizhiyuan.github.io/2012/09/27/c#%E4%BD%BF%E7%94%A8graphics%E5%88%9B%E5%BB%BA%E9%A5%BC%E5%9B%BE/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
                   
                 </div>
               

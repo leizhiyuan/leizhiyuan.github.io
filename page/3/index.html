@@ -190,6 +190,56 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2015/11/25/json-lib%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%B2%BE%E5%BA%A6%E4%B8%A2%E5%A4%B1%E9%97%AE%E9%A2%98/">
+                <h2 class="post-title">json-lib反序列化精度丢失问题</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on November 25, 2015
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 2 minutes (260 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  最近在工作中,遇到一个问题,项目中某处使用了json-lib的2.4-jdk15版本.问题最终简化为
+double amount = 6264583.33; String jsonString = &#34;{\&#34;pi\&#34;:&#34; + amount + &#34;}&#34;; JSONObject jsonObject = JSONObject.fromObject(jsonString); System.out.println(&#34;转换前:&#34; + jsonString); System.out.println(&#34;转换后:&#34; + jsonObject); 这个值输出的将会是6264583.5 这个值.这个问题.先google一下,很快赵到了 http://sourceforge.net/p/json-lib/bugs/116/ 于是,大概问题知道了.是json-lib的一个bug,但是这个bug怎么来的呢.结合这个bug下面的评论和debug代码,先以pi这个例子,很快走到了.
+可以看到json-lib走到了apache common-lang(2.5这个版本) 的NumberUtils.createNumber处,此时String的还是对的. 继续单步,来到这个方法里面
+可以看到这里小数部分,整数部分也都还是对的.继续向下走.我擦.画风不太对.居然采用了先尝试float,发现没问题.然后就继续尝试double,我擦.直接数据就丢失了呀..
+好吧..那么现在问题就便成了更简单的一个问题.
+使用NumberUtils.createNumber 的bug.在bug issue里,有人提到.这个bug,apache官方已知.好的. https://issues.apache.org/jira/browse/LANG-693 然后在这里有官方的一次修复,修复记录在这里.3.2版本已经修复. http://svn.apache.org/viewvc?view=revision&amp;revision=1484263 可以看到是对小数部分的长度进行了判断.如果小于7位,就用float转换,如果大于7,小于16,就用double,如果还大,就用BigDecimal.
+n = org.apache.commons.lang3.math.NumberUtils.createNumber(&#34;3.14159265358&#34;); System.out.println(&#34;lang3_createNumber_3.14159265358----&gt;&#34; + n + &#34;-&gt;精度正常&#34;); 于是我继续debug,看common-lang3的修复情况,好像确实是修复了.但是对于我出现的问题1.6264583.33 这个数字,还是出现了精度丢失,因为这里小数部分小于7位,所以尝试使用float转换,直接丢失精度
+修复不完善..
+于是提个bug :https://issues.apache.org/jira/browse/LANG-1187 等回复.
+继续.公司内部一般使用fastjson,那么如果我使用fastjson,有问题吗? 发现没有问题.
+Object o = com.alibaba.fastjson.JSONObject.parse(&#34;3.14159265358&#34;); System.out.println(&#34;fastjson_createNumber_3.14159265358----&gt;&#34; + o + &#34;-&gt;精度正常&#34;); o = com.alibaba.fastjson.JSONObject.parse(&#34;6264583.33&#34;); System.out.println(&#34;fastjson_createNumber_6264583.33----&gt;&#34; + o + &#34;-&gt;精度正常&#34;); 可以看到,这里做转换的时候传递了一个是否是bigdecimal的标识.
+                  <a href="https://leizhiyuan.github.io/2015/11/25/json-lib%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%B2%BE%E5%BA%A6%E4%B8%A2%E5%A4%B1%E9%97%AE%E9%A2%98/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%BA%8F%E5%88%97%E5%8C%96/">序列化</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2015/11/22/zookeeper%E4%BC%AA%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/">
                 <h2 class="post-title">zookeeper伪集群部署</h2>
                 
@@ -723,84 +773,6 @@ Kafka将消息种子分门别类， 每一类的消息称之为一个主题(Topi
                 <div class="blog-tags">
                   
                     <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2015/08/07/%E5%85%8D%E8%B4%B9%E7%9A%84%E6%B0%B8%E8%BF%9C%E6%98%AF%E6%9C%80%E8%B4%B5%E7%9A%84/">
-                <h2 class="post-title">免费的永远是最贵的</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on August 7, 2015
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (33 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  
-
-<p>这周为啥想说这个话题呢,因为我常用的一个专门用来存储照片的<a href="https://kanbox.com/news/201508032254">酷盘要关闭了</a>,这直接导致的结果就是几十G的照片文件需要自己再下载下来,然后转到另一个地方.之后我会从以下几个方便说起.
-1. 我使用过的已经被关闭的服务
-2. 我使用过的仍然健在的服务
-3. 为什么说免费的就是最贵的
-4. 我们应该怎么做</p>
-
-<h2 id="1-我使用过的已经被关闭的服务">1. 我使用过的已经被关闭的服务</h2>
-
-<p>这个先从百度空间说起,在很久很久以前,大概是我高中的时候,很多同学开始在百度空间写文章,我当时对各种各样的小软件比较感兴趣,于是开了个百度空间,专门用来写这个东东.分享各种各样的软件.后来百度空间被个产品经理搞坏,然后<a href="http://hi.baidu.com/index.html">被关闭了.</a>  <img src="/images/baiduzone_is_down.jpg" alt="百度关闭截图" /></p>
-
-<p>由于分享各种各样的软件.需要有一个提供下载的地方,于是选择了当时很火的<a href="http://www.qiannao.com/desktop/into.html">千脑网盘</a>这个网盘当时和很多其他网盘一样,下载有收入.刚才去登陆了一下.居然还有点钱.这个网盘现在处于半死不活的状态.印象中好几年没更新了,当时推行的webOS的概念,只能说太超前,技术又不行.搞成现在这样.基本上就是个高级web页面..后来我就清掉了所有数据
-  <img src="/images/qiannao_withdraw.jpg" alt="千脑截图" /></p>
-
-<p>当时个人需要保留一些小的精美的软件,于是当时我大联想推出了一个联想网盘,当时大概是500M的额度,承诺免费永久使用,结果内测期结束没过多久,先是暂停上传,然后取消了个人服务.嗯嗯.从此联想一生黑</p>
-
-<p>什么坚果云之类的我就更不说了.</p>
-
-<p>然后使用了酷盘.原因不多解释,目前他就是那个样子了.说个细节.酷盘在第一次关闭的时候没有声明中的FAQ,只有道歉,没有后续解决方案,相当差劲.后来才加上的FAQ.一旦道歉,说明对方对不起你,要坑你,这句话谁说的来着,大体是对的.</p>
-
-<p>Google Reader.这个不多说.还有云诺,这个厂商更是垃圾,我记得没用几天,就关闭了.然后CEO出来哭,说是大家要理解.
-  不要在宣传的时候说的天花乱坠,永远免费,绝不关闭,而在关闭的时候说的文艺,煽情,多么不舍,最长久的是默默的陪伴.你说的这么煽情,这么文艺不就是为了坑么.</p>
-
-<h2 id="2-我使用过的仍然健在的服务">2. 我使用过的仍然健在的服务</h2>
-
-<p>Dropbox,dropbox由于国内访问不畅,已经基本不使用了,但是,Dropbox服务非常长久稳定.空间不大,但是绝对良心.好用.</p>
-
-<p>Google相册,好用.智能,空间不大.前段时间无意在Google相册里发现7年前的一张照片.当时的感觉就是还是Google靠谱.好吧,其实Google也不靠谱.Google Reader的关闭就是个坑.</p>
-
-<p>印象笔记,这小伙貌似最近也顶不住的样子,国内弹购买方案的频率现在极其高.可是免费的我真的够用了..如果哪天超过了免费额度,就买收费额度.</p>
-
-<h2 id="3-为什么说免费的就是最贵的">3. 为什么说免费的就是最贵的</h2>
-
-<p>免费的产品.那么使用者就是真正的产品.通过这些免费的反馈途径,免费的bug提供者,由于是免费,出现损失可以不赔偿,丢了自负,一旦关闭,使用者需要承受迁移的成本,数据丢失的风险.这个体会最深的就是科学上网了.之前一直找各种工具,各种方法,结果大部分时间耗费上找所谓稳定的那啥,想来花费的时间多看点书,写点代码,也值回来了.最后花点钱买个稳定的,有啥问题,卖方也有责任解决,大家干好自己的事情就好了.非常方便.</p>
-
-<h2 id="4-我们应该怎么做">4. 我们应该怎么做</h2>
-
-<p>买,买,买,任何东西,只有付费,才能享受更好的服务.才能有更稳定的服务,才能有售后支持,和赔偿,不论是科学上网,还是云端存储,还是其他任何东西.有钱的捧个钱厂,没钱的捧个小钱厂.</p>
-
-<p>在服务选择上,国外收费&gt;国外免费&gt;国内收费&gt;国内免费.</p>
-
-<p>目前计划先迁移到百度云上,同时同步到Google相册,然后看条件是不是买个主机,搞个私有云.</p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%96%87%E7%AB%A0/">文章</a>&nbsp;
                   
                 </div>
               

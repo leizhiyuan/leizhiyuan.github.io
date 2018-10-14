@@ -169,7 +169,7 @@
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on December 18, 2012
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on December 19, 2012
   
   
   &nbsp;|&nbsp;
@@ -194,6 +194,53 @@
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
         <div class="posts-list">
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/12/19/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86/">
+                <h2 class="post-title">Lambda高手之路第二部分</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on December 19, 2012
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 2 minutes (346 words)
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  闭包的影响 为了展示闭包的影响，我们看下面这个例子。 var buttons = new Button[10];
+for(var i = 0; i &lt; buttons.Length; i++) { var button = new Button(); button.Text = (i + 1) + &ldquo;. Button - Click for Index!&rdquo;; button.OnClick += (s, e) =&gt; { Messagebox.Show(i.ToString()); }; buttons[i] = button; } //如果我们点击按钮会发生什么 这个问题很怪，我在我的JavaScript课程上经常问我的学生。95%的学生会说。显然按钮0显示0，按钮1显示1，等等。而不足5%的学生学习了闭包之后会明白。所有的按钮都会显示10.
+局部变量i的值改变了。并且等于buttons.Length。也就是10了。想要避免这个诡异的情况也很简单。如下就行了。 var button = new Button(); var index = i; button.Text = (i + 1) + &ldquo;. Button - Click for Index!&rdquo;; button.
+                  <a href="https://leizhiyuan.github.io/2012/12/19/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/12/18/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86/">
@@ -728,65 +775,6 @@ textBox1.Text = sb.ToString(); 对比一下坊间的几种不足： 总的来说
                     <a href="https://leizhiyuan.github.io//tags/%E8%AE%BE%E8%AE%A1/">设计</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/11/21/%E8%A7%A3%E5%86%B3win8%E6%97%A0%E6%B3%95%E4%B8%8A%E7%BD%91%E7%9A%84%E9%97%AE%E9%A2%98/">
-                <h2 class="post-title">解决win8无法上网的问题</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on November 21, 2012
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (14 words)
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  <p>昨天晚上@虎振兴同学装了win8.。结果悲剧了。症状为连接宽带可以连接上。上qq也正常。但是。只要打开网页。就会自动断网。再连接就会提示651错误了。网上大多说是驱动不兼容。但是解决的方法大部分是不对的。下面结合网上的给大家说一说。。</p>
-
-<p>网卡驱动目测是都是美满公司，也就是Marvell 的Yukon系列网卡驱动的问题。首先下载一个旧版本的驱动（<a href="http://pan.baidu.com/share/link?shareid=157758&amp;uk=1493685990">32位下载</a>/<a href="http://pan.baidu.com/share/link?shareid=157761&amp;uk=1493685990">64位下载</a>）
-然后按下图操作，第一步是打开计算机-管理。。各种姿势只要打开了计算机管理就可以了。
-<a href="http://leaverimage.b0.upaiyun.com/29531_o.jpg"><img src="/images/64492d91b55bcb36bfca307f79e7085701e4d385.jpg" alt="" title="1" /></a>
-在这里稍微记一下这个名字。Marvell Yukon  88exxxxx  PCI-E Fast Ethernet..
-<a href="http://leaverimage.b0.upaiyun.com/29542_o.jpg"><img src="/images/f62bc3bc8f6c801bb02b7ac3b5828cd8b8949409.jpg" alt="" title="2" /></a>
-找到网络适配器，右键更新驱动程序。
-<a href="http://leaverimage.b0.upaiyun.com/29532_o.jpg"><img src="/images/de07155b61319d7d4bcd6850502b67cf08e010e7.jpg" alt="" title="3" /></a>
-<a href="http://leaverimage.b0.upaiyun.com/29534_o.jpg"><img src="/images/31566293ba5a32fff3f1654f50247e65824c1def.jpg" alt="" title="4" /></a>
-<a href="http://leaverimage.b0.upaiyun.com/29535_o.jpg"><img src="/images/b77e3594df179d35a82777375611b20549290884.jpg" alt="" title="5" /></a>
-注意记下兼容的网卡。名字和第二步的差不多的那个，点击从磁盘安装，选择下载后驱动的解压的安装文件，如图
-<a href="http://leaverimage.b0.upaiyun.com/29536_o.jpg"><img src="/images/925d77e1da47d263c1e41785765b5af2b6152818.jpg" alt="" title="6" /></a>
-到这一步以后，点击打开，可能会出现一个驱动列表。这是时候选择一个和兼容列表名字一样的。88e这部分不一样。如果找不到，也可以找类似的，比如途中给出的后两位是39.我装的是40也没问题。这个是驱动的历史版本。然后就可以了
-<a href="http://leaverimage.b0.upaiyun.com/29538_o.jpg"><img src="/images/02f918179789c33bccb038983bae0125c0d0d988.jpg" alt="" title="9" /></a></p>
-
-<p>最后。提醒各位童鞋。win8整体还是很不错的。不过呢。对于我来说。metro界面和正常的界面的傻傻分不清楚的模式。令我很是蛋疼。。所以暂时没有考虑换到win8.。。</p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E4%BA%92%E8%81%94%E7%BD%91/">互联网</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
                   
                 </div>
               

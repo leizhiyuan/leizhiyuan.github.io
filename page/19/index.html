@@ -190,6 +190,54 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/09/27/c#%E4%BD%BF%E7%94%A8graphics%E5%88%9B%E5%BB%BA%E9%A5%BC%E5%9B%BE/">
+                <h2 class="post-title">C#使用Graphics创建饼图</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 27, 2012
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (193 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  介绍 这个程序是使用C#中的Graphics来创建一个饼图的，我已经尽我所能写的很好了。如果你有任何建议可以分享给我，这样我也能从中学习。
+使用代码 最近我迷上了Graphics类。我仅仅体验了一下Graphics的DrawPie() 和FillPie() 方法。
+最为一个简单的Demo，我创建一个有着五个文本框的窗体，一个按钮，一个图片框。一会我就把饼图画在图片框里
+ 在创建一个饼图之前，我们头脑里要有这个意识。我们不能创建一个不符合常规的圆，创建圆我们需要度数信息。
+为了转换度数。我们首先把给定的值做个求和。然后得出文本框里所有值的和。然后呢。用每个值除以总值再乘以360度。 代码如下： int i1 = Int32.Parse(textBox1.Text); int i2 = Int32.Parse(textBox2.Text); int i3 = Int32.Parse(textBox3.Text); int i4 = Int32.Parse(textBox4.Text); int i5 = Int32.Parse(textBox5.Text);
+float total = i1 + i2 + i3 + i4 + i5 ;
+float deg1 = (i1 / total) * 360; float deg2 = (i2 / total) * 360; float deg3 = (i3 / total) * 360; float deg4 = (i4 / total) * 360; float deg5 = (i5 / total) * 360; 值转换完毕后。我们可以创建Graphics类的实例了。
+                  <a href="https://leizhiyuan.github.io/2012/09/27/c#%E4%BD%BF%E7%94%A8graphics%E5%88%9B%E5%BB%BA%E9%A5%BC%E5%9B%BE/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/09/26/avalondock-2.0%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86/">
                 <h2 class="post-title">AvalonDock 2.0入门指南第一部分</h2>
                 
@@ -722,54 +770,6 @@ Messagbox消息框 通过调用重写的静态Show方法。TaskDialog就会表�
                     <a href="https://leizhiyuan.github.io//tags/%E6%94%B6%E8%97%8F/">收藏</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E6%B1%87%E7%BC%96/">汇编</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/09/22/html%E8%A7%A3%E6%9E%90%E5%B7%A5%E5%85%B7-htmlagilitypack/">
-                <h2 class="post-title">Html解析工具-HtmlAgilityPack</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 22, 2012
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (114 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  这个工具是在暑假的时候发现的。但是最后没用这个工具。不过，这个工具可是非常强悍的。。
-HtmlAgilityPack主要就是解析DOM的。常用的基础类其实不多，对解析DOM来说，就只有HtmlDocument和HtmlNode这两个常用的类，还有一个 HtmlNodeCollection集合类。我给出一个抓取我博客首页文章的例子。看代码可能更清楚一点。你可以去看看压缩包里提供的文档。
-xpath如果自己写表达式比较麻烦。所以我还找到了这个HtmlAgilityPack提供了的一个xpath辅助工具-HAPExplorer。都给出了地址。
-首先看我的例子，抓取我博客的首页文章：
-using System; using System.Collections.Generic; using System.Text; using System.Threading; using System.Diagnostics; using System.Threading.Tasks; using System.IO; using System.Data; using System.Data.SqlClient; using HtmlAgilityPack; namespace leaver { class Program { static void Main(string[] args) { HtmlWeb web = new HtmlWeb(); HtmlDocument doc = web.Load("http://leaver.me/"); HtmlNode node = doc.GetElementbyId("content"); StreamWriter sw = File.CreateText("leaver.txt"); //从根节点选中class=hfeed的节点 string cfeed = node.SelectSingleNode("/html[1]/body[1]/div[1]/div[1]/div[2]/div[1]/div[1]").OuterHtml; HtmlNode hfeed = HtmlNode.CreateNode(cfeed); foreach (HtmlNode child in hfeed.ChildNodes) { if (child.Attributes["id"] == null || child.
-                  <a href="https://leizhiyuan.github.io/2012/09/22/html%E8%A7%A3%E6%9E%90%E5%B7%A5%E5%85%B7-htmlagilitypack/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%8E%9F%E5%88%9B/">原创</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
                   

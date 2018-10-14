@@ -190,6 +190,51 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2013/11/24/java%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E5%AE%9E%E4%BE%8B/">
+                <h2 class="post-title">Java动态代理实例</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on November 24, 2013
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (122 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  首先什么是代理？ 所谓代理呢也就是在调用实现类的方法时，可以在方法执行前后做额外的工作，这个就是代理。  那动态代理呢，官方解释是：  Java 动态代理机制的出现，使得 Java 开发人员不用手工编写代理类，只要简单地指定一组接口及委托类对象，便能动态地获得代理类。代理类会负责将所有的方法调用分派到委托对象上反射执行，在分派执行的过程中，开发人员还可以按需调整委托类对象及其功能，这是一套非常灵活有弹性的代理框架。 老湿，你说的是个毛啊，完全没看懂啊！
+我更喜欢另一种通俗的解释，官方的解释总是高度抽象的，等用了一段时间才能理解体会  动态代理实现了日志和业务的分开，也就是某个类只是要提供了某些业务，比如银行取款业务。这个类实现了取款业务的同时也需要实现日志功能，如果不用动态代理的话，那么由此一来该类代码里面已经额外地添加了自己不该添加的日志功能能代码。所以我们就得使用动态代理把它的业务代码和日志功能代码分开。所以用到了动态代理概念，spring里面的AOP就是一个很好的例子。  不直观啊，老湿，能再给力一点不？ 额，这样的话，我们来看一个例子，要用到的两个类 实现java.lang.reflect.InvocationHandler接口提供一个执行处理器，也就是真正做事的，然后通过java.lang.reflect.Proxy得到一个代理对象，通过这个代理对象来执行业务方法,在业务方法被调用的同时，执行处理器会被自动调用。 记住，动态代理只能对接口 首先业务接口：  public interface HelloWorld { public void sayHelloWorld(); } 然后我们是这样写的实现 public class HelloWorldImpl implements HelloWorld { public void sayHelloWorld() { System.out.println(&ldquo;Hello World!&rdquo;); } } 后来我们觉得执行这个方法前能不能做点其他啥事呢，比如写个日志？见个妹子？啥，这段代码不让改了，改了的话，业务方法和日志混合的一塌糊涂啊，以后想改个日志格式你来写啊
+那我们就得定义一个拦截器/执行处理器了。 public class HelloWorldHandler implements InvocationHandler { //目标对象 private Object targetObject;
+public HelloWorldHandler(Object targetObject){ this.targetObject = targetObject; } public Object invoke(Object proxy, Method method, Object[] args) throws Throwable { System.
+                  <a href="https://leizhiyuan.github.io/2013/11/24/java%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E5%AE%9E%E4%BE%8B/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E4%B8%8A%E6%B5%B7/">上海</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E4%BD%9C/">工作</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2013/11/16/%E8%97%8F%E5%9B%BE%E6%96%87%E5%B9%B6%E8%8C%82%E8%AF%A6%E8%A7%A3eclipse%E6%96%AD%E7%82%B9/">
                 <h2 class="post-title">[藏]图文并茂详解Eclipse断点</h2>
                 
@@ -700,50 +745,6 @@ Maven已经成功的安装配置了。</p>
                     <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/09/19/maven%E6%8F%90%E7%A4%BA%E7%BC%BA%E5%B0%91tools.jar/">
-                <h2 class="post-title">Maven提示缺少tools.jar</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 19, 2013
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (4 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  <p>记录一下。</p>
-
-<p>这两天在熟悉Maven，长见识了.后续可能的话会写上一两篇，今天配置的时候提示tools.jar文件。于是使用everything搜了一下，本机的jdk目录还真没有，最后搜了一下，发现是安装jdk时候的问题，具体就是因为安装jdk的时候，后面被让继续安装jre，这个时候，我为了方便，将jre安装在了jdk的目录里，结果导致jre会覆盖到jdk的这两个文件。同时还会覆盖dt.jar这个包，于是，就没了。。这个问题略隐晦了..</p>
-
-<p>&nbsp;</p>
-
-<p>重新安装了jdk，将jdk和jre分开目录，然后设置一下jdk的lib目录到classpath就可以了，问题解决。</p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%AC%94%E8%AE%B0/">笔记</a>&nbsp;
                   
                 </div>
               

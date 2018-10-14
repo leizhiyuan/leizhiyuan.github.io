@@ -169,7 +169,7 @@
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on May 24, 2013
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on May 27, 2013
   
   
   &nbsp;|&nbsp;
@@ -194,6 +194,60 @@
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
         <div class="posts-list">
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2013/05/27/%E8%AF%91%E5%8F%8D%E5%B0%84reflection%E5%92%8C%E5%8A%A8%E6%80%81dynamic/">
+                <h2 class="post-title">[译]反射(Reflection)和动态(dynamic)</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on May 27, 2013
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (140 words)
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  反射 &nbsp; 当我们需要检查，调用一个程序集的内容的时候，用反射，比如，当VS给智能提示的时候，就应用了反射。  
+简单用法实例： &nbsp;  var myAssembly = Assembly.LoadFile(@&ldquo;C:\ClassLibrary1.dll&rdquo;); var myType = myAssembly.GetType(&ldquo;ClassLibrary1.Class1&rdquo;); dynamic objMyClass = Activator.CreateInstance(myType); // 获取类的类型信息 Type parameterType = objMyClass.GetType();
+// 浏览方法 foreach (MemberInfo objMemberInfo in parameterType.GetMembers()) {Console.WriteLine(objMemberInfo.Name);}
+// 浏览属性. foreach (PropertyInfo objPropertyInfo in parameterType.GetProperties()) {Console.WriteLine(objPropertyInfo.Name);}
+//开始调用 parameterType.InvokeMember(&ldquo;Display&rdquo;,BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.InvokeMethod | BindingFlags.Instance,null, objMyClass, null);   
+实际一点的用处呢： &nbsp; 1.当你也要开发一个类似VS的编辑器的时候，要提供智能提示就需要反射 2.当创建单元测试框架的时候，为了测试需要动态调用方法和属性的时候 3.有时候我们想把类型的属性，方法等全部导出的时候  
+动态dynamic &nbsp; 编程语言分为强/弱类型，dynamic是弱类型，此关键字会让编译器不做编译时的类型检查，只做运行时的检查。  
+简单用法示例： &nbsp;  dynamic x = &ldquo;c#&rdquo;; x++;  所以上面这行代码可以编译通过，但会产生运行时一场。
+                  <a href="https://leizhiyuan.github.io/2013/05/27/%E8%AF%91%E5%8F%8D%E5%B0%84reflection%E5%92%8C%E5%8A%A8%E6%80%81dynamic/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2013/05/24/%E6%AD%A6%E6%B1%89%E5%A4%A7%E5%AD%A6%E8%AE%BA%E6%96%87%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%E6%A0%BC%E5%BC%8F%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7c/">
@@ -724,98 +778,6 @@ QuickUnion::QuickUnion(int N) { size=N; id=new int[N]; for(int i=0;i&lt;N;i++) {
                     <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/04/05/%E5%92%8C%E6%B5%85%E6%9E%90/">
-                <h2 class="post-title">和
-浅析</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on April 5, 2013
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (63 words)
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  <p>这两个转义字符最初学习C++的时候看到了,当时没多想，后来某一天突然想起来，回车不就是换行吗？这不是多此一举吗？今天又看到，索性查了下相关资料，整理一下，留作记录.</p>
-
-<p>关于“回车”（carriage return）和“换行”（line feed）这两个概念的来历和区别。</p>
-
-<p>在计算机还没有出现之前，有一种叫做电传打字机（Teletype Model 33）的玩意，每秒钟可以打10个字符。但是它有一个问题，就是打完一行换行的时候，要用去0.2秒，正好可以打两个字符。要是在这0.2秒里面，又有新的字符传过来，那么这个字符将丢失。</p>
-
-<p>于是，研制人员想了个办法解决这个问题，就是在每行后面加两个表示结束的字符。一个叫做“回车”，告诉打字机把打印头定位在左边界；另一个叫做“换行”，告诉打字机把纸向下移一行（这句的意思是把纸向上拉，然后打印头就定位到了下一行），可以想象一下，这个打印头只能在一个固定的水平线上左右移动，而不能上下移动，我们通过移动纸来完成打印下一行。</p>
-
-<p>不明白的我在youtube上找到一个这种打字机的演示视频，为了方便读者观看，我提供一个<a href="http://pan.baidu.com/share/link?shareid=428006&amp;amp;uk=1493685990">下载地址</a>。</p>
-
-<p>后来，计算机发明了，这两个概念也就被般到了计算机上。那时，存储器很贵，一些科学家认为在每行结尾加两个字符太浪费了，加一个就可以。于是，就出现了分歧。</p>
-
-<p>Unix系统里，每行结尾只有&rdquo;&lt;换行&gt;&ldquo;，即&rdquo;\n&rdquo;；</p>
-
-<p>Windows系统里面，每行结尾是&rdquo;&lt;换行&gt;&lt;回车&gt;&ldquo;，即&rdquo;\n\r&rdquo;；</p>
-
-<p>Mac系统里，每行结尾是&rdquo;&lt;回车&gt;&ldquo;，不过mac基于unix，所以换行也应该是可以的。</p>
-
-<p>一个直接后果是，Unix/Mac系统下的文件在Windows里打开的话，所有文字会变成一行；而Windows里的文件在Unix/Mac下打开的话，在每行的结尾可能会多出一个^M符号。这个如果你在windows下使用vim也会发现这个情况</p>
-
-<p>用C++来说明</p>
-
-<p>如：
-<pre class="lang:default decode:true">int main()
-{
-   cout &lt;&lt; &ldquo;leaver.me&rdquo; &lt;&lt; &ldquo;\r&rdquo; &lt;&lt; &ldquo;bystander&rdquo; ;
-   return 0;
-}</pre>
-&nbsp;</p>
-
-<p>最后只显示 bystander 而 leaver.me 背覆盖了</p>
-
-<p>\n 是换行，系统会将其替换成回车＋换行 把光标 先移到 行首 然后换到下一行 也就是 下一行的行首拉
-<pre class="lang:default decode:true">int main()
-{
-   cout &lt;&lt; &ldquo;leaver.me&rdquo; &lt;&lt; &ldquo;\n&rdquo; &lt;&lt; &ldquo;bystander&rdquo; ;
-   return 0;
-}</pre>
-则 显示</p>
-
-<p>leaver.me</p>
-
-<p>bystander</p>
-
-<p>一句话，这看起来是一个历史遗留问题&hellip;&hellip;</p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c&#43;&#43;/">C&#43;&#43;</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/linux/">linux</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
                   
                 </div>
               
