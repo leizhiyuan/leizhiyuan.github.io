@@ -196,6 +196,66 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/10/19/%E5%AE%9E%E7%8E%B0ienumerable%E6%8E%A5%E5%8F%A3%E7%90%86%E8%A7%A3yield%E5%85%B3%E9%94%AE%E5%AD%97/">
+                <h2 class="post-title">实现IEnumerable接口&amp;理解yield关键字</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on October 19, 2012
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 2 minutes (337 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  本文讨论题目的内容。然后讨论IEnumerable接口如何使得foreach语句可以使用。之后会展示如果实现自定义的集合类，该集合类实现了IEnumerable接口。Yield关键字和遍历集合后面也讨论。
+背景
+一使用集合。就发现遍历集合就跟着来了。遍历集合最好的方式是实现迭代器模式-Understanding and Implementing the Iterator Pattern in C# and C++(这篇文章我过几天翻译一下) ，C#提供foreach来以一种优雅的方式遍历
+只要集合实现了IEnumerable 接口就可以用foreach来遍历。
+使用代码
+首先先看一下内置的集合类如何使用foreach来遍历的。ArrayList实现了IEnumerable 接口。我们看一下 // 看一下实现了IEnumerable 接口的集合如何遍历 ArrayList list = new ArrayList();
+list.Add(&ldquo;1&rdquo;); list.Add(2); list.Add(&ldquo;3&rdquo;); list.Add(&lsquo;4&rsquo;);
+foreach (object s in list) { Console.WriteLine(s); } &nbsp;
+遍历泛型集合类
+Arraylist 是一个通用集合类，遍历泛型集合类也可以。因为这些泛型集合类实现了IEnumerable&lt;T&gt;接口，看一下吧。 // 遍历实现了IEnumerable&lt;T&gt;接口的泛型类 List&lt;string&gt; listOfStrings = new List&lt;string&gt;();
+listOfStrings.Add(&ldquo;one&rdquo;); listOfStrings.Add(&ldquo;two&rdquo;); listOfStrings.Add(&ldquo;three&rdquo;); listOfStrings.Add(&ldquo;four&rdquo;);
+foreach (string s in listOfStrings) { Console.WriteLine(s); } &nbsp;
+发现了吧。我们自定义的集合类或是泛型集合类应该实现IEnumerable和IEnumerable&lt;T&gt;接口。这样就可以遍历了。
+&nbsp;
+理解yield关键字
+在写个实现接口的例子之前，先理解一下yield关键字，yield会记录集合位置。当从一个函数返回一个值的时候，yield可以用。
+如下的普通的方法。不论调用多少次，都只会返回一个return static int SimpleReturn() { return 1; return 2; return 3; }
+                  <a href="https://leizhiyuan.github.io/2012/10/19/%E5%AE%9E%E7%8E%B0ienumerable%E6%8E%A5%E5%8F%A3%E7%90%86%E8%A7%A3yield%E5%85%B3%E9%94%AE%E5%AD%97/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/10/18/%E5%88%86%E4%BA%AB%E5%87%A0%E4%B8%AA%E7%94%B5%E5%AD%90%E4%B9%A6%E8%B5%84%E6%BA%90%E7%AB%99%E7%82%B9/">
                 <h2 class="post-title">分享几个电子书资源站点</h2>
                 
@@ -728,80 +788,6 @@ TreeView.Nodes.Add(nodeD); &nbsp;
                     <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/10/08/%E7%90%86%E8%A7%A3%E5%B9%B6%E5%AE%9E%E7%8E%B0%E7%94%9F%E6%88%90%E5%99%A8%E6%A8%A1%E5%BC%8F/">
-                <h2 class="post-title">理解并实现生成器模式</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on October 8, 2012
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 3 minutes (465 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  介绍 本文讨论生成器设计模式，讨论该模式什么情况下使用，怎么实现。并且。最后会有一个简单的生成器模式的实现。
-&nbsp;
-背景 当我们的程序需要创建一个对象。而这个对象必须由很多不同的对象来构造的时候。为了构造最后的对象。我们不得不组合那些部分对象。最后我们会发现我们的代码被各种各样的部分对象的细节所弄的难以理解
-&nbsp;
-为了说明上面的情况。我们做一个手机生产制造系统的例子。假定我们我们有一个已经安装在手机供应商那块的一个系统。现在供应商系那个要根据一些参数来创造一个新手机。比如触屏，操作系统，电池等。如果我们已经有了这些部分的对象，那么上述部分的任意组合将会导致客户端代码复杂难以管理。比如决定生产哪种手机的模块。
-&nbsp;
-生成器模式目的就是解决上述问题的。GoF定义生成器模式如下：
-Separate the construction of a complex object from its representation so that the same construction process can create different representations.
-将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。
-&nbsp;
-&nbsp;
-这个定义意味着我们不得不设计这个系统。通过一种客户端仅仅定义参数，而生成器则接管创建复杂对象 的方式。我们看一下生成器模式的类图。
-
-然后看看上图中的每一个类都表示什么
-ConcreteBuilder: 创建复杂产品的具体类.将会知道他已经创建的Product（产品），也就是他已经装配了的Product， 客户端通过该类得到Product对象.
-Builder: 创建Product的接口
-Director: 客户端代码，定义了哪些部分应该被组合在一起来创建具体的Product
-Product: 这是通过组合很多部分创建的对象
-&nbsp;
-使用代码 我们现在跟随上述的定义，然后试着去实现一个基本的生成器模式
-&nbsp;
-我们先在合适的地方定义Product的不同部分，我们简单的定义一些枚举类型，那么我们就可以通过组合不同的部分创建Product了。
-&nbsp; // 一些helper枚举定义各种零件
-public enum ScreenType
-{
-ScreenType_TOUCH_CAPACITIVE, ScreenType_TOUCH_RESISTIVE, ScreenType_NON_TOUCH };
-public enum Battery
-{
-MAH_1000, MAH_1500, MAH_2000 };
-                  <a href="https://leizhiyuan.github.io/2012/10/08/%E7%90%86%E8%A7%A3%E5%B9%B6%E5%AE%9E%E7%8E%B0%E7%94%9F%E6%88%90%E5%99%A8%E6%A8%A1%E5%BC%8F/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
                   

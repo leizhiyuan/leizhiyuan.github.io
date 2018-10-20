@@ -202,6 +202,58 @@
         <div class="posts-list">
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2013/09/19/maven%E5%AE%9E%E4%BE%8B%E5%85%A5%E9%97%A8-%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90/">
+                <h2 class="post-title">Maven实例入门-随机数生成</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 19, 2013
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 2 minutes (425 words)
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  看了很多个例子，发现这个最好，译文中会带有我的一些了理解，有问题欢迎指出。
+0.Maven是什么？ Apache Maven，是一个软件（特别是Java软件）项目管理及自动构建工具，由Apache软件基金会所提供。基于项目对象模型（缩写：POM）概念，Maven利用一个中央信息片断能管理一个项目的构建、报告和文档等步骤。
+可以看到，核心就是项目管理和自动构建了，从例子中将会体会更深。本例创建一个随机数生成程序。
+1.从Maven模板创建项目 Maven的环境变量配置和java类似，直接添加系统变量MAVEN_HOME指向你下载的maven目录，然后将bin目录添加到path环境变量里。
+在命令行下，进入到你想存储项目的位置，比如，我自己有个叫work的目录，那么我就cd到work目录，然后按下面的格式输入命令 mvn archetype:generate -DgroupId={project-packaging} -DartifactId={project-name} -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false 这是告诉Maven从**maven-archetype-quickstart **创建一个java项目，如果你这个参数不填，那么会列出一个列表，让你选择你想创建什么类型，比如web项目啊，啥的。
+友情提示：是不是太难记了..好吧，直接输入 mvn archetype:generate 根据向导来创建把。。
+比如 &gt;mvn archetype:generate -DgroupId=com.mkyong -DartifactId=NumberGenerator -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false [INFO] Scanning for projects&hellip; [INFO]
+[INFO] &ndash; omitted for readability [INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;- [INFO] Using following parameters for creating project from Old (1.x) Archetype: maven-archetype-quickstart:1.0 [INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;- [INFO] Parameter: groupId, Value: com.mkyong [INFO] Parameter: packageName, Value: com.mkyong [INFO] Parameter: package, Value: com.mkyong [INFO] Parameter: artifactId, Value: NumberGenerator [INFO] Parameter: basedir, Value: /Users/mkyong/Documents/workspace [INFO] Parameter: version, Value: 1.
+                  <a href="https://leizhiyuan.github.io/2013/09/19/maven%E5%AE%9E%E4%BE%8B%E5%85%A5%E9%97%A8-%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2013/09/19/maven%E6%8F%90%E7%A4%BA%E7%BC%BA%E5%B0%91tools.jar/">
                 <h2 class="post-title">Maven提示缺少tools.jar</h2>
 
@@ -618,53 +670,6 @@ n命令是输出当前行，然后读入下一行到pattern space的意思，这
 3.当file1某行匹配了模式之后，读入file2 $ sed &lsquo;/banana/r file2&rsquo; file1 1apple 1banana 2orange 2strawberry 1mango sed逐行读入file1，然后判断该行是否匹配banana，如果匹配，就读入file2
 4.当file1读取完成后读入file2，其实就是合并两个文件 $ sed &lsquo;$r file2&rsquo; file1 1apple 1banana 1mango 2orange 2strawberry 这里只是演示一下，其实cat file1 file2就可以完成合并
                   <a href="https://leizhiyuan.github.io/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%89%E7%AF%87%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/linux/">linux</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/shell/">shell</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%BA%8C%E7%AF%87%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/">
-                <h2 class="post-title">[译]Unix sed实用教程第二篇–替换文件内容</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on August 9, 2013
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (165 words)
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  上一节中-Unix sed实用教程第一篇–向文件中增加一行 学习了添加文件，本节讲解数据内容替换.
-本节将使用sample1.txt文件作为示例，文件内容如下，都是些水果..： apple orange banana pappaya 1.向每一行的开头添加内容，这里我们添加“Fruit：” $ sed &rsquo;s/^/Fruit: /&rsquo; sample1.txt Fruit: apple Fruit: orange Fruit: banana Fruit: pappaya 解析：s代表substitution，也就是替换，s之后是要替换/匹配的内容，斜线/用来分隔s以及要替换的原始内容还有要替换的最终内容，而&rsquo;^&lsquo;符号是说一个正则，用来匹配每一行的开头，匹配成功后在开头加上&rsquo;Fruit:&lsquo;。
-2.向每一行的行尾添加内容 $ sed &rsquo;s/$/ Fruit/&rsquo; sample1.txt apple Fruit orange Fruit banana Fruit pappaya Fruit 注意，这里的$和上一节的$符号表示的意义不同，这里则是表示行尾.
-3.如何替换指定的字符，这里将小写a替换成大写A $ sed &rsquo;s/a/A/&rsquo; sample1.txt Apple orAnge bAnana pAppaya 注意，仅仅将每一行的第一个a替换了，不是所有，本例表示替换单个字符，你可以替换一个单词都是可以的.
-4.如何替换行内所有的字符，用A替换a $ sed &rsquo;s/a/A/g&rsquo; sample1.txt Apple orAnge bAnAnA pAppAyA 注意，只是加了一个g选项，g为global的简写，就是全局，全部的意思。
-5.如何替换第二次出现的a? $ sed &rsquo;s/a/A/2&rsquo; sample1.txt apple orange banAna pappAya 不使用g，而是使用数字来表示行内第几次出现的a，结果如上
-6.如何替换第二次之后的所有a呢？ $ sed &rsquo;s/a/A/2g&rsquo; sample1.
-                  <a href="https://leizhiyuan.github.io/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%BA%8C%E7%AF%87%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/" class="post-read-more">[Read More]</a>
                 
               </div>
 

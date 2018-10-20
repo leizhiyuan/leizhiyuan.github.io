@@ -196,6 +196,112 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/07/10/c#%E4%B8%AD%E7%9A%84%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3/">
+                <h2 class="post-title">C#中的抽象类和接口</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on July 10, 2012
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (40 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  
+
+<p>本文同样是笔记整理，手动输入一遍和看书的感觉还是很不一样的。文章非常好，讲的很清楚。</p>
+
+<h3 id="什么是接口">什么是接口？</h3>
+
+<p>　　　接口是包含一组虚方法的抽象类型，其中每一种方法都有其名称、参数和返回值。接口方法不能包含任何实现，CLR允许接口可以包含事件、属性、索引器、静态方法、静态字段、静态构造函数以及常数。但是注意：<strong>C#中不能包含任何静态成员</strong>。一个类可以实现多个接口，当一个类继承某个接口时，它不仅要实现该接口定义的所有方法，还要实现该接口从其他接口中继承的<strong>所有</strong>方法。</p>
+
+<h3 id="什么是抽象类">什么是抽象类？</h3>
+
+<p>　　　抽象类提供多个派生类共享基类的公共定义，它既可以提供抽象方法，也可以提供非抽象方法。抽象类不能实例化，必须通过继承由派生类实现其抽象方法，因此对抽象类不能使用new关键字，也不能被密封。如果派生类没有实现所有的抽象方法，则该派生类也必须声明为抽象类。另外，实现抽象方法由override方法来实现。</p>
+
+<h3 id="比较">比较</h3>
+
+<blockquote>
+<h3 id="相同点">相同点</h3>
+
+<blockquote>
+<ul>
+<li>都不能被直接实例化，都可以通过继承实现其抽象方法。</li>
+<li>都是面向抽象编程的技术基础，实现了诸多的设计模式。</li>
+</ul>
+</blockquote>
+
+<h3 id="不同点">不同点</h3>
+
+<blockquote>
+<ul>
+<li>接口<strong>支持</strong>多继承；抽象类不能实现多继承。</li>
+<li>接口只能定义抽象规则；抽象类既可以定义规则，还可能提供已实现的成员。</li>
+<li>接口是一组行为规范；抽象类是一个不完全的类，着重族的概念。</li>
+<li>接口可以用于支持回调；抽象类不能实现回调，因为继承不支持。</li>
+<li>接口只包含方法、属性、索引器、事件的签名，但不能定义字段和包含实现的方法；抽象类可以定义字段、属性、包含有实现的方法。</li>
+<li>接口可以作用于值类型和引用类型；抽象类只能作用于引用类型。例如，Struct就可以继承接口，而不能继承类。</li>
+</ul>
+</blockquote>
+
+<h3 id="规则与场合">规则与场合</h3>
+
+<blockquote>
+<ol>
+<li>请记住，面向对象思想的一个最重要的原则就是：<strong>面向接口编程</strong>。</li>
+<li>借助接口和抽象类，23个设计模式中的很多思想被巧妙的实现了，精髓就是面向抽象编程，通过封装变化来实现实体之间的关系。</li>
+<li>抽象类应主要用于关系密切的对象，而接口最适合为不相关的类提供通用功能。</li>
+<li>接口着重于CAN-DO关系类型，而抽象类则偏重于IS-A式的关系；</li>
+<li>接口多定义对象的行为；抽象类多定义对象的属性；</li>
+<li>接口定义可以使用public、protected、internal 和private修饰符，但是几乎所有的接口都定义为public，另外方法的访问级别不能低于接口的访问级别，否则可能导致编译错误。</li>
+<li>“接口不变”，是应该考虑的重要因素。所以，在由接口增加扩展时，应该增加新的接口，而不能更改现有接口。</li>
+<li>尽量将接口设计成功能单一的功能块，以.NET Framework为例，IDisposable、IDisposable、IComparable、IEquatable、IEnumerable等都只包含一个公共方法。</li>
+<li>接口名称前面的大写字母“I”是一个约定，正如字段名以下划线开头一样，请坚持这些原则。</li>
+<li>在接口中，所有的方法都默认为public。</li>
+<li>如果预计会出现版本问题，可以创建“抽象类”。而向接口中添加新成员则会强制要求修改所有派生类，并重新编译，所以版本式的问题最好以抽象类来实现。</li>
+<li>从抽象类派生的非抽象类必须包括继承的所有抽象方法和抽象访问器的实实现。</li>
+<li>对抽象类不能使用new关键字，也不能被密封，原因是抽象类不能被实例化。</li>
+<li>在抽象方法声明中不能使用 static 或 virtual 修饰符。
+最后还是要勤于键盘，才能深入理解啊。</li>
+</ol>
+</blockquote>
+</blockquote>
+
+<p>参考：<a href="http://www.cnblogs.com/anytao/archive/2007/04/12/must_net_02.html">对抽象编程：接口和抽象类</a></p>
+
+<p>&nbsp;</p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%AE%BE%E8%AE%A1/">设计</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/07/08/c#%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%A9%BB%E7%95%99/">
                 <h2 class="post-title">C#中的字符串驻留</h2>
                 
@@ -744,106 +850,6 @@ MCR简介 　MCR的全称是MATLAB Compiler Runtime，即MATLAB编译器运行�
                     <a href="https://leizhiyuan.github.io//tags/%E7%AC%94%E8%AE%B0/">笔记</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E8%AE%BE%E8%AE%A1/">设计</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/07/01/c%E4%B8%AD%E7%9A%84is%E5%92%8Cas/">
-                <h2 class="post-title">C＃中的is和as</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on July 1, 2012
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (48 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  
-
-<p>is和as都是用作类型转换的，类型转换包括显示转换和隐式转换，在.NET中类型转换的基本规则如下：</p>
-
-<h3 id="基本规则">基本规则</h3>
-
-<blockquote>
-<ul>
-<li>任何类型都可以安全的转换为其基类类型，可以由隐式转换来完成；</li>
-<li>任何类型转换为其派生类型时，必须进行显示转换，转换的规则是：（类型名）对象名；</li>
-<li>使用GetType可以取得任何对象的精确类型；</li>
-<li>基本类型可以使用Covert类实现类型转换；</li>
-<li>除了string以外的其他类型都有Parse方法，用于将字符串类型转换为对应的基本类型；</li>
-<li>值类型和引用类型的转换机制称为装箱（boxing）和拆箱（unboxing）。
-is和as操作符，是C#中用于类型转换的，提供了对类型兼容性的判断，从而使得类型转换控制在安全的范畴，提供了灵活的类型转换控制。</li>
-</ul>
-</blockquote>
-
-<h3 id="is的模式如下">is的模式如下：</h3>
-
-<blockquote>
-<ul>
-<li>检查对象类型的兼容性，并返回结果，true或者false；</li>
-<li>不会抛出异常；</li>
-<li>如果对象为null，则返回值永远为false。
-使用很简单，用于条件判断中.</li>
-</ul>
-</blockquote>
-
-<p>举例：
-<pre class="lang:c# decode:true">object o=new object();
-if(o is ISSsample)
- {
-    //转换
-    ISSample a =(ISSample)o;
- }</pre>
-&nbsp;</p>
-
-<h3 id="as的模式如下">as的模式如下：</h3>
-
-<blockquote>
-<ul>
-<li>检查对象类型的兼容性，并返回转换结果，如果不兼容就返回null；</li>
-<li>不会抛出异常；</li>
-<li>如果结果判断为空，则强制执行类型转换将抛出NullReferenceException异常。</li>
-<li>as必须和引用类型一起使用</li>
-</ul>
-</blockquote>
-
-<p>举例：
-<pre class="lang:c# decode:true">object o =new object();
-ASSample a=o as ASSample;
-if(a!=null)
- //do some work</pre>
-&nbsp;</p>
-
-<p>参考：<a href="http://www.cnblogs.com/anytao/archive/2007/04/07/must_net_01.html">http://www.cnblogs.com/anytao/archive/2007/04/07/must_net_01.html</a></p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%AC%94%E8%AE%B0/">笔记</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
                   

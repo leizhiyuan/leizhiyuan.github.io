@@ -175,7 +175,7 @@
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on April 5, 2013
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on April 11, 2013
   
   
   &nbsp;|&nbsp;
@@ -200,6 +200,60 @@
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
         <div class="posts-list">
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2013/04/11/%E5%B9%B6%E6%9F%A5%E9%9B%86c--%E5%AE%9E%E7%8E%B0/">
+                <h2 class="post-title">并查集(C&#43;&#43;实现)</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on April 11, 2013
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (115 words)
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  并查集这个很有意思，并查集是一种树型的数据结构，用于处理一些不相交集合（Disjoint Sets）的合并及查询问题。昨天看书看到了，然后用C++简单实现了下。在Dijkstra算法中，用来判断两个顶点是否在同一个集合里。
+里面定义了两个类，都是并查集，一个是QuickFind，查找很快，一个是QuickUnion，合并较快。写了一些注释，有一些优化的提示.看代码吧，有什么问题指出来吧。
+QuickFind的实现 #include &ldquo;QuickFind.h&rdquo;
+QuickFind::QuickFind(int N) { size=N; id=new int[N]; for(int i=0;i&lt;N;i++) { id[i]=i; } }
+bool QuickFind::Find(int p,int q) { return id[p]==id[q]; }
+void QuickFind::Unite(int p,int q) { int pid=id[p]; for(int i=0;i&lt;size;i++) if(id[i]==pid) id[i]=id[q];
+} QuickFind::~QuickFind(void) { delete []id; } QuickUnion的实现 #include &ldquo;QuickUnion.h&rdquo;
+QuickUnion::QuickUnion(int N) { size=N; id=new int[N]; for(int i=0;i&lt;N;i++) { id[i]=i; } } int QuickUnion::root(int i) { while (i!=id[i]) { //id[i]=id[id[i]]; 若添加这句话则为压缩路径 i=id[i]; } return i; } bool QuickUnion::Find(int p,int q) { return root(p)==root(q); }
+                  <a href="https://leizhiyuan.github.io/2013/04/11/%E5%B9%B6%E6%9F%A5%E9%9B%86c--%E5%AE%9E%E7%8E%B0/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c&#43;&#43;/">C&#43;&#43;</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2013/04/05/%E5%92%8C%E6%B5%85%E6%9E%90/">
@@ -818,79 +872,6 @@ f4ck.net/index.php?id=1 and(select 1 from(select count(*),concat((select (select
                     <a href="https://leizhiyuan.github.io//tags/%E5%AE%89%E5%85%A8/">安全</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/02/21/%E4%BD%A0%E6%98%AF%E6%83%B3%E8%AF%BB%E4%B9%A6%E8%BF%98%E6%98%AF%E6%83%B3%E8%AF%BB%E5%AE%8C%E4%B9%A6/">
-                <h2 class="post-title">你是想读书，还是想读完书？</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on February 21, 2013
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (17 words)
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  <p>本文来自<a href="http://www.zhihu.com/question/20244284">知乎</a>，我的看法呢，同意作者的。但不完全是这样。每个人都会建议你把好书读千百遍。改变自己什么的。其一，别人认为的好书不一定能启发你。因此，需要多读书来遇到那本如来神掌，其二。对于非技术书来说，作者的观点是正确的。人文，心理这类书绝对不在多。在于书为了自己的一部分。改变了自己。而技术书无此功能。多读多做才能进步。</p>
-
-<p>本科时，一位很有才华的心理学老师说过的一句话，让我终身难忘：
-&gt; 很多同学喜欢说自己一天能读多少页的书，有些人一天能读50页，有些人能读100页。可是一旦你用“页数”为单位来度量读书这种行为时，从一开始你就错了。
-同理，我想对题主说，你用读了多少本书来形容你的读书经历，这种思路，从一开始就错了。</p>
-
-<p>如果你认真读到了书里去，是不会care、甚至会完全忽略掉今天读了多少页，今年读了多少本的；当你沉迷于书中绚烂多彩的世界，当你的观念被翻天覆地地革新，是不会care、甚至会完全忽略掉今天读了多少页，今年读了多少本的。</p>
-
-<p>当我们看手表的时候，常是快等不及了；当我们数书页的时候，常是快看不下去了；当我们念叨看了几本书的时候，常是连书名都记不全了。所以，数多少页、多少本这行为本身，就说明你已经败了。</p>
-
-<p>很多时候，一个人对待知识和思想的态度，就体现在用什么东西去丈量它。</p>
-
-<p>如果有人问一位读书而有大成之人：你因何而脱胎换骨？你因何而涅磐重生？这些问题，他该如何作答？他说：”我因200本书而脱胎换骨，我因1000本书而涅磐重生“，如何？</p>
-
-<p>学而悟道，有时候一本书就够了，有时候一万本都不够。这取决于，你读了什么书，更重要的是，你是如何读的：你有没有读进去把自己活埋在里面，又有没有读出来敲打出一个新的自己。</p>
-
-<p>有些书，是一代宗师级的人物，把他们毕生的智慧熔铸在一本书里面；有些书，是一个领域的开疆拓土之作，从一片混沌中劈出一个新世界；有些书，是一个领域的集大成之作，观点纷繁，气象万千；有些书，如盗梦空间一般有几层境界，你多读一遍就多梦到一层。对这些书，你若只是都当成那两百分之一，花上一个星期匆匆读完，读后即扔，只摘下几条金句供日后泡妞之用，难道这就算读过了吗？</p>
-
-<p>有些书，要用心血去读；有些书，要用足够的经历去读；有些书，是要绞尽最后一粒脑细胞去读；有些书，是一辈子都读不完读不透……</p>
-
-<p>看书的方法，不仅要看作者写了什么（一层），还要琢磨文字背后的意蕴，那些弦外之音（二层），还要去思考作者为什么要写这些、要这样写（三层），还要去想想看作者用了什么样的框架和策略在组织这本书，以及在各种细微处又用了什么样的方法和技巧（四层），当然更重要的是，以上的这些分析对你自己的现实和精神世界能带来什么样的帮助，是否能启发你、引导你、改变你……（五层）</p>
-
-<p>于是，一本值得都烂读透的书，就需要你去读五遍、十遍去读烂读透它。</p>
-
-<p>于是乎，和很多人的答案相反：所谓200本，你不是读少了，而是读多了、读水了、读浅了！</p>
-
-<p>其实你的状态一点都不特殊，你和许多人一样，以为自己在读书，其实是在集邮。</p>
-
-<p>最后，建议你重新拿起一本你最崇敬的书，换一种方式，再读一遍、两遍、三遍……</p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%9D%82%E6%96%87/">杂文</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%94%9F%E6%B4%BB/">生活</a>&nbsp;
                   
                 </div>
               

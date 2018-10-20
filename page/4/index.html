@@ -196,6 +196,68 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2015/08/08/angularjs-%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/">
+                <h2 class="post-title">AngularJS 学习资源</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on August 8, 2015
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (57 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  <p>一直对AngularJS很好奇,之前看过国内某在线网站的一套AngularJS教程,可惜没看懂.也没理解为了解决什么问题,只是知道是个前端JS框架.这周看到个Udemy - Learn and Understand AngularJS 这个教程.去看了一下,是收费的.强烈推荐看.无字幕,但是不难,已经看完了.讲的非常非常好.网上有别人分享的.我给个<a href="magnet:?xt=urn:btih:900a5d5f6535bcf956cba5248ffce416d150a7fc">磁力链接</a>吧.</p>
+
+<p>01 Getting Started</p>
+
+<p>02 Model, View, Whatever___</p>
+
+<p>03 Services and Dependency Injection</p>
+
+<p>04 Data Binding and Directives</p>
+
+<p>05 Single Page Applications</p>
+
+<p>06 Custom Services</p>
+
+<p>07 Custom Directives</p>
+
+<p>08 Lets Build an App in record time</p>
+
+<p>09 BONUS Lectures</p>
+
+<p>10 Getting Ready for AngularJS 2.0 in 2016</p>
+
+<p>11 Conclusion</p>
+
+<p>非常的介绍.看完之后,你会理解AngularJS解决了什么问题,他的数据绑定怎么使用,模块怎么弄,怎么写服务,怎么定义指令等等.强烈推荐.</p>
+
+<p>最好有一点js和css的基础会比较好理解.如果懂后端开发的就更好了.依赖注入这些有点基础会比较好理解.</p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2015/08/07/%E5%85%8D%E8%B4%B9%E7%9A%84%E6%B0%B8%E8%BF%9C%E6%98%AF%E6%9C%80%E8%B4%B5%E7%9A%84/">
                 <h2 class="post-title">免费的永远是最贵的</h2>
                 
@@ -676,47 +738,6 @@ deploy: type: git repo: github: git@github.com:yourname/yourname.github.io.git,m
                 <div class="blog-tags">
                   
                     <a href="https://leizhiyuan.github.io//tags/wordpress/">wordpress</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2014/11/07/%E4%B8%80%E9%94%AE%E5%88%87%E6%8D%A2jdk%E7%89%88%E6%9C%AC/">
-                <h2 class="post-title">一键切换jdk版本</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on November 7, 2014
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (93 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  工作中有时候会切换jdk版本.有时候需要用个64位的.有时候需要用32位的.频繁手动很不方便,参考了一下,写了一个bat脚本,保存为bat,运行即可切换.同理可以改改,运来切换1.7,1.8这样的版本.
-@echo off :init set JAVA_HOME_32=D:\5.Program\Jdk32Home set JAVA_HOME_64=D:\Software\JdkHome :start echo. echo ============================================= echo jdk版本列表 echo 32 (%JAVA_HOME_32%) echo 64 (%JAVA_HOME_64%) echo ============================================= :select set /p opt=请选择jdk版本： if %opt%==32 ( start /I /WAIT /B wmic ENVIRONMENT where name=&#39;JAVA_HOME&#39; set VariableValue=&#34;%JAVA_HOME_32%&#34; &amp;gt;nul rem reg add &#34;HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment&#34; /v JAVA_HOME /t reg_sz /d &#34;%JAVA_HOME_32%&#34; /f goto success ) if %opt%==64 ( start /I /WAIT /B wmic ENVIRONMENT where name=&#39;JAVA_HOME&#39; set VariableValue=&#34;%JAVA_HOME_64%&#34; &amp;gt;nul rem reg add &#34;HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment&#34; /v JAVA_HOME /t reg_sz /d &#34;%JAVA_HOME_64%&#34; /f goto success ) echo 选择的版本错误,请重新选择！ PAUSE goto start :success echo.
-                  <a href="https://leizhiyuan.github.io/2014/11/07/%E4%B8%80%E9%94%AE%E5%88%87%E6%8D%A2jdk%E7%89%88%E6%9C%AC/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E4%BD%9C/">工作</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
                   
                 </div>
               
