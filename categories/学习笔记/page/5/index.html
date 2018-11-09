@@ -190,6 +190,54 @@
         <div class="posts-list">
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2014/07/13/spring%E6%8F%AD%E7%A7%98-23%E7%AB%A0spring-mvc%E5%88%9D%E4%BD%93%E9%AA%8C/">
+                <h2 class="post-title">Spring揭秘-23章，Spring MVC初体验</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on July 13, 2014
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (8 words)
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  <p>&nbsp;鸟瞰Spring MVC<div>与其他请求驱动的Web框架思路类似。org.springframework.web.servlet.DispatcherServlet就是Spring mvC中的Front Controller。负责处理请求，但是不针对具体的处理逻辑。而是委派给下一级的控制器，也就是<span style="font-size: 10.5pt; line-height: 1.5;">org.springframework.web.servlet.mvc.Controller</span><span style="font-size: 10.5pt; line-height: 1.5;">去执行。</span></div><div><span style="font-size: 10.5pt; line-height: 1.5;">
+</span></div><div>DispatcherServlet的处理流程如下：</div><div>1.HandlerMapping</div><div>DispathcherServlet是FrontController，所以他服务于一组Web请求，需要在web.xml中配置。</div><div>DispathcherServlet需要自己处理请求和处理之前的对应关系，比如根据参数对应到不同的Controller上。为了更加方便的处理映射的匹配，引入<span style="font-size: 10.5pt; line-height: 1.5;">HandlerMapping用来获取需要处理请求的对应的Controller类。</span>
+</div><div><span style="font-size: 10.5pt; line-height: 1.5;">2.Controller</span></div><div>对应于<span style="font-size: 10.5pt; line-height: 1.5;">DispathcherServlet的次级控制器，本身实现了对应某个具体Web请求的处理逻辑，当</span><span style="font-size: 10.5pt; line-height: 1.5;">HandlerMapping查到了Controller之后，</span><span style="font-size: 10.5pt; line-height: 1.5;">DispathcherServlet获得了</span><span style="font-size: 10.5pt; line-height: 1.5;">HandlerMapping的返回结果。然后调用Controller处理请求，处理完成后，返回一个ModelAndView实例，里面包含两部分内容</span></div><div>视图的逻辑名称，<span style="font-size: 10.5pt; line-height: 1.5;">DispathcherServlet根据名称决定显示哪个视图</span></div><div>模型数据，渲染过程中需要将这些模型数据并入视图的显示中</div><div>
+</div><div>ViewResolver和View</div><div>我们已经来到了最后一步，要转成最终的JSP视图文件。由于模板引擎很多，Spring提供了一套基于ViewResolver和View的抽象层。</div><div>
+</div><div><img src="/images/fc45dedeba68b31c39383776fc7a7a35eba30a5a.jpg" alt="" />
+</div></p>
+
+<div>[来自为知笔记(Wiz)](http://www.wiz.cn/i/e0140d75 "来自为知笔记(Wiz)")</div>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/spring/">spring</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2014/07/13/spring%E6%8F%AD%E7%A7%98-22%E7%AB%A0%E8%BF%88%E5%90%91spring-mvc%E7%9A%84%E6%97%85%E7%A8%8B/">
                 <h2 class="post-title">Spring揭秘-22章，迈向Spring MVC的旅程</h2>
 
@@ -690,78 +738,6 @@ try { //新建jdbc配置类。 XmlConfigReader xcr=new XmlConfigReader(); JdbcCo
                     <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E4%BD%9C/">工作</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2014/03/29/google%E8%BE%93%E5%85%A5%E6%B3%95%E5%92%8Cjava%E4%B8%8D%E5%85%BC%E5%AE%B9/">
-                <h2 class="post-title">Google输入法和Java不兼容</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on March 29, 2014
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (67 words)
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  
-
-<p>一直发现自己写的Swing界面无法关闭，症状是点击了界面的关闭按钮后程序会卡住，然后点击无响应最后就挂掉了。</p>
-
-<p>最开始以为是自己的资源没释放，但是没理由呀，应该在关闭的时候会自动释放，而且改了代码也没用。</p>
-
-<p>今天再执行另一个Swing的时候，eclipse报错了
-<pre class="lang:default decode:true">#</p>
-
-<h1 id="a-fatal-error-has-been-detected-by-the-java-runtime-environment">A fatal error has been detected by the Java Runtime Environment:</h1>
-
-<p>#</p>
-
-<h1 id="exception-access-violation-0xc0000005-at-pc-0x6d986cc3-pid-700-tid-2280">EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x6d986cc3, pid=700, tid=2280</h1>
-
-<p>#</p>
-
-<h1 id="jre-version-java-tm-se-runtime-environment-7-0-45-b18-build-1-7-0-45-b18">JRE version: Java&trade; SE Runtime Environment (7.0_45-b18) (build 1.7.0_45-b18)</h1>
-
-<h1 id="java-vm-java-hotspot-tm-client-vm-24-45-b08-mixed-mode-sharing-windows-x86">Java VM: Java HotSpot&trade; Client VM (24.45-b08 mixed mode, sharing windows-x86 )</h1>
-
-<h1 id="problematic-frame">Problematic frame:</h1>
-
-<h1 id="c-googlepinyin2-ime-0x96cc3">C  [GOOGLEPINYIN2.IME+0x96cc3]</h1>
-
-<p>#</p>
-
-<h1 id="failed-to-write-core-dump-minidumps-are-not-enabled-by-default-on-client-versions-of-windows-pre">Failed to write core dump. Minidumps are not enabled by default on client versions of Windows</pre></h1>
-
-<p>看问题说是Google拼音输入法冲突，导致访问禁止，在PChunder里卸载掉javaw的Google拼音模块，javaw马上就关闭了，于是修改系统的默认输入法为其他输入法问题解决。</p>
-
-<p>我了个去，纠结了我好长时间。我说为啥公司电脑和我的电脑都会关不了呢&hellip;</p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E4%BD%9C/">工作</a>&nbsp;
                   
                 </div>
               

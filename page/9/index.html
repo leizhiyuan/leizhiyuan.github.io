@@ -196,6 +196,99 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2013/09/19/maven%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">
+                <h2 class="post-title">Maven安装教程</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 19, 2013
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (55 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  
+
+<p>Maven不需要作为服务组件安装到windows上，仅仅需要下载，解压，然后配置一下环境变量就行了</p>
+
+<h2 id="1-jdk和java-home">1.JDK和JAVA_HOME</h2>
+
+<p>确保JDK已经安装，同时JAVA_HOME变量已经添加到了windows环境变量里，指向jdk目录</p>
+
+<p><a href="http://leaverimage.b0.upaiyun.com/2013/09/maven-java-home.png"><img src="/images/3161766919fb6fd118699cc45753f0740be3a6b4.png" alt="maven-java-home" /></a></p>
+
+<p>&nbsp;</p>
+
+<h2 id="2-下载maven">2.下载Maven</h2>
+
+<p>去<a href="http://maven.apache.org/download.html">Maven主页</a>,选个版本，点击下载</p>
+
+<h2 id="3-解压">3.解压</h2>
+
+<p>解压下载的zip文件，重命名，比如我放到D盘的Maven目录</p>
+
+<h2 id="4-添加maven-home环境变量">4.添加MAVEN_HOME环境变量</h2>
+
+<p>添加一个新的环境变量MAVEN_HOME到环境变量，指向Maven目录</p>
+
+<p><a href="http://leaverimage.b0.upaiyun.com/2013/09/maven-maven-home.png"><img src="/images/5a2878c27f389f27afa72040040a0cc54312b388.png" alt="maven-maven-home" /></a></p>
+
+<p>&nbsp;</p>
+
+<h2 id="5-添加path变量">5.添加path变量</h2>
+
+<p>更新Path变量，把Maven的bin目录添加进去，这样就可以在任何地方执行mvn命令了</p>
+
+<p><a href="http://leaverimage.b0.upaiyun.com/2013/09/Maven-Path.png"><img src="/images/ec2bd24fcc118b64cb10405acb807c59490c10d6.png" alt="Maven-Path" /></a></p>
+
+<p>&nbsp;</p>
+
+<h2 id="6-验证">6.验证</h2>
+
+<p>打开命令行，输入
+<pre class="lang:default decode:true">mvn -version</pre>
+如果看到类似下面的
+<pre class="lang:default decode:true">C:\Documents and Settings\mkyong&gt;mvn -version
+Apache Maven 2.2.1 (r801777; 2009-08-07 03:16:01+0800)
+Java version: 1.6.0_13
+Java home: C:\Program Files\Java\jdk1.6.0_13\jre
+Default locale: en_US, platform encoding: Cp1252
+OS name: &ldquo;windows xp&rdquo; version: &ldquo;5.1&rdquo; arch: &ldquo;x86&rdquo; Family: &ldquo;windows&rdquo;</pre>
+Maven已经成功的安装配置了。</p>
+
+<p>老外写的太详细了。。。</p>
+
+<p>&nbsp;</p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/maven/">maven</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2013/09/19/maven%E5%AE%9E%E4%BE%8B%E5%85%A5%E9%97%A8-%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90/">
                 <h2 class="post-title">Maven实例入门-随机数生成</h2>
                 
@@ -591,50 +684,6 @@ n命令是输出当前行，然后读入下一行到pattern space的意思，这
 3.删除包含Gmail的那一行。（grep -v也有同样的效果） $ sed &rsquo;/Gmail/d&rsquo; file Yahoo 20 Redif 18 d就是delete的意思，不多解释，
 同样，要想删除某一指定的行 $ sed &lsquo;1d&rsquo; file Yahoo 20 Redif 18 4.打印直到模式匹配，这里我们从头一直打印到Yahoo $ sed &rsquo;/Yahoo/q&rsquo; file Gmail 10 Yahoo 20 q就是quit的意思，这条命令就是对于前面的行都没啥可解析的，执行默认的打印即可，一到碰到Yahoo这一行，打印完成，就停止，退出，因此，就是上面的了
                   <a href="https://leizhiyuan.github.io/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%9B%9B%E7%AF%87%E9%80%89%E6%8B%A9%E6%80%A7%E6%89%93%E5%8D%B0/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/linux/">linux</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/shell/">shell</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%89%E7%AF%87%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/">
-                <h2 class="post-title">[译]Unix sed实用教程第三篇–读写文件</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on August 9, 2013
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (133 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  本文将展示如何将文件内容读入到sed输出，同时包含如何将一个文件的部分内容写入到另一文件
-一.文件读取
-假定有两个文件，file1和file2，内容分别如下： $ cat file1 1apple 1banana 1mango $ cat file2 2orange 2strawberry sed有两个选项用来读写文件 r filename : 读取filename指定的文件内容 w filename : 将内容写入filename指定的文件 看例子：
-1.在file1的每一行读完之后读取file2的内容 $ sed &lsquo;r file2&rsquo; file1 1apple 2orange 2strawberry 1banana 2orange 2strawberry 1mango 2orange 2strawberry r file2读取file2的所有内容，因此r之前没有知道那个行号或匹配，因此有了上面的输出，记住，sed的工作机制，每次读file1的一行，然后执行命令
-2.如何在读取了file1的第一行之后将file2读入 $ sed &lsquo;1r file2&rsquo; file1 1apple 2orange 2strawberry 1banana 1mango r前面加个1就行了
-3.当file1某行匹配了模式之后，读入file2 $ sed &lsquo;/banana/r file2&rsquo; file1 1apple 1banana 2orange 2strawberry 1mango sed逐行读入file1，然后判断该行是否匹配banana，如果匹配，就读入file2
-4.当file1读取完成后读入file2，其实就是合并两个文件 $ sed &lsquo;$r file2&rsquo; file1 1apple 1banana 1mango 2orange 2strawberry 这里只是演示一下，其实cat file1 file2就可以完成合并
-                  <a href="https://leizhiyuan.github.io/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%89%E7%AF%87%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/" class="post-read-more">[Read More]</a>
                 
               </div>
 

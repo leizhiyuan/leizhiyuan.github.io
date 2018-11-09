@@ -196,6 +196,131 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/07/02/c#%E4%B8%AD%E7%9A%84%E9%9D%99%E6%80%81%E4%B8%8E%E9%9D%9E%E9%9D%99%E6%80%81/">
+                <h2 class="post-title">C#中的静态与非静态</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on July 2, 2012
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (42 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  
+
+<h3 id="为什么要分静态和非静态">为什么要分静态和非静态</h3>
+
+<p>在面向对象的世界里，大部分的情况都是实例特征主宰天下，类相当于一个类型模板，而对象则是类特征的拷贝，并且独立于其他对象来操作这些特征，但是在某些情况下，需要某些特征被所有的对象共公有，因此有必要实现一种基于类的特征，而不是基于实例对象的特征机制，这就是静态特征。</p>
+
+<h3 id="1-静态类和非静态类">1.静态类和非静态类</h3>
+
+<blockquote>
+<p>一个类如果包含静态成员和静态方法，那么该类就可以定义为静态类，定义方法是在类定义前加上static，比如</p>
+
+<pre class="lang:c# decode:true " >static class MyClass
+{
+//define the class
+}</pre> 
+
+<h3 id="比较">比较：</h3>
+
+<blockquote>
+<ol>
+<li>静态类只能包含静态成员和静态方法，否则会抛出编译错误，而非静态类既可以包含非静态成员和非静态方法，还可以包含静态成员和静态方法。但不能作用于静态只读字段。</li>
+<li>静态类不可实例化，非静态类可以实例化，不管是静态类还是非静态类，对静态成员和静态方法的调用都必须通过类来实现访问。</li>
+<li>相对于非静态类来说，静态类有一些特点值得应用，比如System.Console这个典型的静态类。</li>
+<li>如果一个类只包含静态成员和静态方法，就应该将该类标记为static，并提供私有的构造函数来避免用户实例创建对象，这也是MonoState模式的体现。</li>
+</ol>
+</blockquote>
+</blockquote>
+
+<h3 id="2-静态构造函数和实例构造函数">2.静态构造函数和实例构造函数</h3>
+
+<blockquote>
+<p>静态构造函数，<strong>只能</strong>用于初始化类中的静态成员，包括静态字段和静态属性，静态构造函数不能带参数，不能有访问修饰符也不能被手工调用，通过是在.net运行库第一次调用类成员之前执行。其中，实例构造函数中也是可以初始化静态成员的。</p>
+
+<h3 id="比较-1">比较</h3>
+
+<blockquote>
+<ol>
+<li>静态构造函数，可以和无参的构造函数共存。虽然参数列表相同，但是二者的执行顺序不同，静态构造函数在运行库加载类时执行，而实例构造函数在实例创建时执行。</li>
+<li>静态构造函数，只能对静态成员进行初始化操作，不能作用于非静态成员，而实例构造函数二者都可以，当然如前面所说，对静态只读字段就不可以了。</li>
+<li>静态构造函数只被执行一次，而且.net运行库也不知道什么时候会被执行，而实例构造函数可以在多次实例创建时被执行多次。</li>
+<li>一个类只能有一个静态构造函数，但是可以有多个实例构造函数。</li>
+<li>一般来说，简单的静态成员可以在声明时就进行初始化，而复杂的静态成员则选择在静态构造函数中进行初始化较佳。</li>
+</ol>
+</blockquote>
+</blockquote>
+
+<h3 id="3-静态成员和实例成员">3.静态成员和实例成员</h3>
+
+<blockquote>
+<p>静态成员主要包括静态字段和静态属性，静态成员可以实现在类中能够被所有实例对象共享的数据。例如一个缴费登记系统中，消费总额作为所以消费的综合，静态成员来实现就有很好。没有不必要的数据冗余。</p>
+
+<h3 id="比较-2">比较</h3>
+
+<blockquote>
+<ol>
+<li>静态成员包括静态字段和静态属性，静态字段一般实现为private，而静态属性一般为public，以体现类的封装原则。</li>
+<li>静态成员和类关联，不依赖对象存在，只能由类访问，而不能由对象访问，实例成员和具体的对象关联，只能由对象访问，不能由类访问。</li>
+<li>静态成员属于类所有，不论创建多少个实例对象，静态成员在内存中只有一份，实例成员属于对象实例所有，每个都有其对应的内存区域。</li>
+</ol>
+</blockquote>
+</blockquote>
+
+<h3 id="4-静态方法和实例方法">4.静态方法和实例方法</h3>
+
+<blockquote>
+<p>类似于静态成员共享数据段，静态方法共享代码段，静态方法以static标识。</p>
+
+<h3 id="比较-3">比较</h3>
+
+<blockquote>
+<ol>
+<li>性能上，静态方法和实例方法差别不大，所有方法，不管是静态的还是非静态的，都是在JIT加载类时分配内存，不同的是静态方法以类名引用，而静态方法以对象引用，创建实例时，不会再为类的方法分配内存，所有的实例对象公用一个类的方法代码，因此，静态方法和实例方法的调用，区别仅在于实例方法需要当前对象指针指向该方法，而静态方法可以直接调用，性能上差异微乎其微。</li>
+<li>静态方法只能访问静态成员和静态方法，可以间接通过创建实例对象来访问实例成员和实例方法，而实例方法可以直接全部。。</li>
+<li>静态方法只能由类来访问，实例方法只能由对象来访问。</li>
+<li>静态方法中不能使用this关键字，否则编译错误，而实例方法中可以引用。</li>
+<li>静态方法不能被标记为virtual，abstract或是override，静态方法可以被派生类访问，但是不能被覆写。</li>
+<li>Main方法是静态的，因此Main方法不能直接访问Main所在类的实例方法和成员。</li>
+<li>鉴于线程处理的安全性，应该避免提供改变静态状态的静态方法，因为，如果多线程同时访问该段代码，可能造成线程处理错误，因此，静态状态必须是线程安全的。</li>
+<li>静态方法适合系统中边缘性的非业务需要，例如通用的工具类。</li>
+</ol>
+</blockquote>
+</blockquote>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%AC%94%E8%AE%B0/">笔记</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%AE%BE%E8%AE%A1/">设计</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/07/01/c%E4%B8%AD%E7%9A%84is%E5%92%8Cas/">
                 <h2 class="post-title">C＃中的is和as</h2>
                 
@@ -898,126 +1023,6 @@ private void Form1_MouseDown(object sender, MouseEventArgs e) { if (e.Button == 
                     <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E7%AC%94%E8%AE%B0/">笔记</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/06/19/get%E5%92%8Cpost%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%E5%8F%8A%E4%B8%BA%E4%BB%80%E4%B9%88%E7%BD%91%E4%B8%8A%E7%9A%84%E5%A4%9A%E6%95%B0%E7%AD%94%E6%A1%88%E9%83%BD%E6%98%AF%E9%94%99%E7%9A%84/">
-                <h2 class="post-title">GET和POST有什么区别？及为什么网上的多数答案都是错的。</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on June 19, 2012
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (50 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  
-
-<p>今天突然看到很多好的技术文章，转载收藏备用分享。</p>
-
-<p>如果有人问你，<strong>GET</strong><strong>和POST</strong><strong>，有什么区别？你会如何回答？</strong></p>
-
-<h2 id="我的经历">我的经历</h2>
-
-<p>前几天有人问我这个问题。我说GET是用于获取数据的，POST，一般用于将数据发给服务器之用。</p>
-
-<p>这个答案好像并不是他想要的。于是他继续追问有没有别的区别？我说这就是个名字而已，如果服务器支持，他完全可以把GET改个名字叫GET2。他反问道，那就是单纯的名字上的区别喽？我想了想，我觉得如果说再具体的区别，只能去看RFC文档了，还<strong>要取决于服务器（指</strong><strong>Apache</strong><strong>，IIS</strong><strong>）的具体实现</strong>。但我不得不承认，我的确没有仔细看过HTTP的RFC文档。于是我说，我对HTTP协议不太熟悉。这个问题也就结束了。</p>
-
-<h2 id="最普遍的答案">最普遍的答案</h2>
-
-<p>回来之后寻思了很久，他到底是想问我什么？我一直就觉得GET和POST没有什么除了语义之外的区别，自打我开始学习Web编程开始就是这么理解的。</p>
-
-<p>可能很多人都已经猜到了，他要的答案是：</p>
-
-<p>1. GET使用URL或Cookie传参。而POST将数据放在BODY中。</p>
-
-<p>2. GET的URL会有长度上的限制，则POST的数据则可以非常大。</p>
-
-<p>3. POST比GET安全，因为数据在地址栏上不可见。</p>
-
-<p>但是很不幸，<strong>这些区别全是错误的，</strong>更不幸的是，<a href="https://www.google.com/search?q=get%E5%92%8Cpost%E7%9A%84%E5%8C%BA%E5%88%AB&amp;amp;ie=utf-8&amp;amp;oe=utf-8&amp;amp;aq=t&amp;amp;rls=org.mozilla:zh-CN:official&amp;amp;client=firefox-a&amp;amp;channel=fflb">这个答案还是Google搜索的头版头条</a>，然而我根本没想着这些是答案，因为在我看来他们都是错的。我来一一解释一下。</p>
-
-<h3 id="get和post与数据如何传递没有关系">GET和POST与数据如何传递没有关系</h3>
-
-<p>GET和POST是由<a href="http://www.w3.org/Protocols/rfc2616/rfc2616.html">HTTP协议定义</a>的。在HTTP协议中，Method和Data（URL， Body， Header）是正交的两个概念，也就是说，<strong>使用哪个Method与应用层的数据如何传输是没有相互关系的</strong>。</p>
-
-<p>HTTP没有要求，如果Method是POST数据就要放在BODY中。也没有要求，如果Method是GET，数据（参数）就一定要放在URL中而不能放在BODY中。</p>
-
-<p>那么，网上流传甚广的这个说法是从何而来的呢？我<a href="http://www.w3.org/TR/REC-html40/interact/forms.html#h-17.13.1">在HTML标准中，找到了相似的描述</a>。这和网上流传的说法一致。但是这只是HTML标准对HTTP协议的用法的约定。怎么能当成GET和POST的区别呢？</p>
-
-<p>而且，现代的Web Server都是支持GET中包含BODY这样的请求。虽然这种请求不可能从浏览器发出，但是现在的Web Server又不是只给浏览器用，已经完全地超出了HTML服务器的范畴了。</p>
-
-<p>知道这个有什么用？我不想解释了，有时候就得自己痛一次才记得住。</p>
-
-<h3 id="http协议对get和post都没有对长度的限制">HTTP协议对GET和POST都没有对长度的限制</h3>
-
-<p>HTTP协议明确地指出了，HTTP头和Body都没有长度的要求。而对于URL长度上的限制，有两方面的原因造成：</p>
-
-<p>1. 浏览器。据说早期的浏览器会对URL长度做限制。据说IE对URL长度会限制在2048个字符内（流传很广，而且无数同事都表示认同）。但我自己试了一下，我构造了90K的URL通过IE9访问live.com，是正常的。网上的东西，哪怕是Wikipedia上的，也不能信。</p>
-
-<p>2. 服务器。URL长了，对服务器处理也是一种负担。原本一个会话就没有多少数据，现在如果有人恶意地构造几个几M大小的URL，并不停地访问你的服务器。服务器的最大并发数显然会下降。另一种攻击方式是，把告诉服务器Content-Length是一个很大的数，然后只给服务器发一点儿数据，嘿嘿，服务器你就傻等着去吧。哪怕你有超时设置，这种故意的次次访问超时也能让服务器吃不了兜着走。有鉴于此，多数服务器出于安全啦、稳定啦方面的考虑，会给URL长度加限制。但是这个限制是针对所有HTTP请求的，与GET、POST没有关系。</p>
-
-<h3 id="安全不安全和get-post没有关系">安全不安全和GET、POST没有关系</h3>
-
-<p>我觉得这真是中国特色。我讲个小段子，大家应该可以体会出这个说法多么的可笑。</p>
-
-<p>觉得POST数据比GET数据安全的人会说</p>
-
-<p><em>    “防君子不防小人；中国小白多，能防小白用户就行了。”</em></p>
-
-<p>_    “哼，”_我不以为然，_“那你怎么不说，<strong>URL</strong>参数都Encode<strong>过了，或是Base64</strong>一下，小白也看不懂啊。”_</p>
-
-<p>那人反驳道，_“<strong>Encode</strong>太简单了，聪明点儿的小白很容易就可以Decode_<em>并修改掉。”</em></p>
-
-<p>我笑道，_“五十步笑百步耳，再聪明点儿的小白还会截包并重发呢，<strong>Opera</strong>就有这功能。”_</p>
-
-<p>那人阴险地祭出<strong>神器——最终解释权</strong>，说，<strong><em>“这个不算小白。”</em></strong></p>
-
-<p>我日啊。</p>
-
-<h2 id="最后一点儿感想">最后一点儿感想</h2>
-
-<p>我之前一直做Windows桌面应用，对Web开发无甚了解，直到一年多前转做服务器端开发，才开始接触到HTTP。（注意，我说的是HTTP，不是HTML。服务器开放接口是基于REST理念设计的，使用的协议是HTTP，但是传输的内容不是HTML。这不是Web Server，而是一个Web Service）</p>
-
-<p>所以我对于GET和POST的理解，是纯粹地来源于HTTP协议。他们只有<strong>一点</strong>根本区别，简单点儿说，一个用于获取数据，一个用于修改数据。具体的请参考RFC文档。</p>
-
-<p>如果一个人一开始就做Web开发，很可能把HTML对HTTP协议的使用方式，当成HTTP协议的唯一的合理使用方式。从而犯了以偏概全的错误。</p>
-
-<p>可能有人会觉得我钻牛角尖。我只是不喜欢模棱两可，不喜欢边界不清、概念不明，不喜欢“拿来主义”，也不喜欢被其它喜欢钻牛角尖的人奚落得无地自容。</p>
-
-<p>“知之为知之，不知为不知，是知也。”</p>
-
-<p>原文链接：<a href="http://www.cnblogs.com/nankezhishi/archive/2012/06/09/2542968.html">http://www.cnblogs.com/nankezhishi/archive/2012/06/09/2542968.html</a></p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%94%B6%E8%97%8F/">收藏</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
                   

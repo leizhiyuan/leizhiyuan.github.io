@@ -190,6 +190,69 @@
         <div class="posts-list">
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2013/08/09/unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E5%BC%80%E7%AF%87/">
+                <h2 class="post-title">Unix sed实用教程开篇</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on August 9, 2013
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (42 words)
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  <p>已经看了一段时间的Linux Shell编程了,也能完成一些基本的使用，为了加深理解，恰好看到了The Unix School的一个sed&amp;awk教程，不是简单的命令参数堆积，而是一个相当实用的系列，因此，希望能在几天内完成翻译.翻译过程不会逐字翻译，会穿插一些注释，包括自己的一些理解和其他的一些引用，作为开篇，简单说一下sed的工作机制，对后面的理解会有很大帮助。</p>
+
+<p><span style="color: #3366ff;">sed是什么：</span>
+&gt; sed是一个非交互式的流编辑器（stream editor）。所谓非交互式，是指使用sed只能在命令行下输入编辑命令来编辑文本，然后在屏幕上查看输出；而所谓流编辑器，是指sed每次只从文件（或输入）读入一行，然后对该行进行指定的处理，并将结果输出到屏幕（除非取消了屏幕输出又没有显式地使用打印命令），接着读入下一行。整个文件像流水一样被逐行处理然后逐行输出。(via <a href="http://www.sealinger.com/archives/297/">Walk in Mindfields</a>  )
+<span style="color: #3366ff;">sed工作机制：</span></p>
+
+<p>sed维护两个缓冲区，pattern space和hold space，命令开始执行之前都为空。</p>
+
+<p>pattern space缓冲区用于临时保存每次读取的一行的内容，大部分的匹配和替换等等操作都是针对pattern space中的内容进行的，因此不会对输入文件有任何影响,而hold space则作为后备缓冲区使用,<strong>除非指定了一些特殊的命令(例如D删除命令)，否则pattern space中的内容会在处理完一行之后清空，但hold space中的内容在处理完每一行时不会被删除。</strong></p>
+
+<p><strong>也就是说pattern space相当于我们的内存，hold space相当于硬盘.处理的时候在内存里，处理过的就放回硬盘.</strong>(这是我的理解，有一点点不恰当，但是因此一些概念会比较好理解.)</p>
+
+<p>具体来说，可以大致分为以下几步：
+&gt; 1.首先，从标准输入流读取一行，移除换行符，然后存入pattern space中
+&gt;
+&gt; 2.执行指定的命令,(每个命令都有一个可选的地址(可以是行号，也可能是一个正则表达式匹配)，这个地址作为一个执行命令前的测试，指定了需要对那些行进行操作。当前行只有匹配的情况下才会执行命令。）
+&gt;
+&gt; 3.当指定所有的命令都执行完了之后，pattern space内容就被处理过了，sed默认会将pattern space中的内容打印到标准输出中，移除的换行符也会打印出来。本行操作完成。
+&gt;
+&gt; 4.然后sed会读取下一行的内容，再次执行相同的操作。直到行尾。
+&nbsp;</p>
+
+<p>基本上最基础的理论就差不多了.主要是这个工作机制比较重要.后面从示例中慢慢加深理解.</p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/linux/">linux</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/shell/">shell</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2013/07/26/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E4%B8%80%E7%82%B9%E7%AC%94%E8%AE%B0/">
                 <h2 class="post-title">《软件测试》一点笔记</h2>
 
@@ -751,55 +814,6 @@ int _tmain(int argc, _TCHAR* argv[]) { cout&lt;&lt;&ldquo;请输入N:&ldquo;; in
                     <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/05/22/%E5%BC%95%E7%94%A8%E5%92%8C%E6%8C%87%E9%92%88c--/">
-                <h2 class="post-title">引用和指针(C&#43;&#43;)</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on May 22, 2013
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 2 minutes (214 words)
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  今天在整理收藏夹的时候，又看到了这两篇非常不错的文章，关于指针和引用的，我就不翻译了，文章很简单，不过把其中我觉得很有意思的两部分结合我的理解希望说的更清楚,假定你读这篇文章之前已经知道指针，但是不是很清楚其中的部分。
-首先是关于指针的一个直观的一个认识. #include &lt;iostream&gt;
-int main() { using namespace std;
-// 声明并初始化指针. unsigned short int * pPointer = 0; // 定义一个unsigned short int 变量 值为35698 unsigned short int twoInt = 35698; // 定义一个unsigned short int 变量 值为 77 unsigned short int oneInt = 77; // 使用&amp;操作符将twoInt的地址赋给指针 pPointer = &amp;twoInt; // pPointer 现在的值就是twoInt的地址了
-// 打印 cout &lt;&lt; &ldquo;pPointer的内存地址:\t\t&rdquo; &lt;&lt; &amp;pPointer &lt;&lt; endl; cout &lt;&lt; &ldquo;oneInt的内存地址:\t&rdquo; &lt;&lt; &amp;oneInt &lt;&lt; &ldquo;\t整数值:\t&rdquo; &lt;&lt; oneInt &lt;&lt; endl; cout &lt;&lt; &ldquo;twoInt的内存地址:\t&rdquo; &lt;&lt; &amp;twoInt &lt;&lt; &ldquo;\t整数值:\t&rdquo; &lt;&lt; twoInt &lt;&lt; endl; cout &lt;&lt; &ldquo;pPointer所指向的地址(也就是pPoint的值):\t&rdquo; &lt;&lt; pPointer &lt;&lt; &ldquo;\t整数值:\t&rdquo; &lt;&lt; *pPointer &lt;&lt; endl;
-                  <a href="https://leizhiyuan.github.io/2013/05/22/%E5%BC%95%E7%94%A8%E5%92%8C%E6%8C%87%E9%92%88c--/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c&#43;&#43;/">C&#43;&#43;</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
                   

@@ -196,6 +196,89 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/09/09/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B04/">
+                <h2 class="post-title">WCF读书笔记(4)</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 9, 2012
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (47 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  <p><strong>三种供客户端和服务端控制通信的契约介绍：</strong>
+1.服务契约描述了由特定服务端点所公开的操作，每一种操作，通过参数和返回值定义请求和响应消息的格式。
+2.数据契约描述了复杂类型如何被串行化为消息的一部分，数据契约是服务契约中优先用来包含复杂类型的方式。
+3.消息契约提供对某个soap消息格式的控制，包括支持定制消息标题和数据契约所描述的单个消息体元素。</p>
+
+<p><strong>消息参数（Message Parameter）</strong>
+对于</p>
+
+<pre class="lang:c# decode:true " >[OperationContract]
+string MyOp(string s);
+</pre> 
+若客户端传入的参数为“Hello”，则生成的请求消息体中标记为<s> Hello</s>,而响应返回的消息体则被标记为<NewOpResult>返回内容</NewOpResult>,可以通过
+
+<pre class="lang:default decode:true " >[OperationContract]
+[return:MessageParameter(Name="ResponseString"]
+string MyOp([MessageParameter(Name="RequestString")] string s);</pre> 
+来定制消息中的标签。
+
+**绑定元素**
+实际上，每个绑定元素都会被映射到一个信道上，这样，绑定元素和信道在这个意义上可以互换。
+
+**执行上下文（OperationContext）**
+是System.ServiceModel命名空间的一种类型，他为服务请求提供了对执行上下文的访问，OperationContext.Current为请求在生命周期期间提供了对上下文的访问。
+
+**WCF的实例化模式**
+实例化控制模式服务对象被分配给请求的方式，一旦服务主机已经建立而且为每个端点创建了信道监听器，对各终端的请求已经由适当的服务对象所执行，则这些对象是基于服务类型的实例化模式的。他们是InstanceContextMode的一个枚举。
+1.PerCall 服务对象为每一个对服务的调用所创建。
+2.PerSession 对每一个客户端创建一个。默认是这样
+3.Single 创建单一的服务对象。并由所有客户端的调用使用。
+尽可能使用PerCall，大规模的部署避免PerSession并发。
+
+**WCF的四种会话**
+应用会话，传输会话，可靠会话，安全会话。
+
+**信道发生器取得SessionId**
+
+<pre class="lang:c# decode:true " >ChannelFactory&lt;IService&gt; factory=new ChannelFactory&lt;IService&gt;("Service");
+IService proxy=factory.CreateChannel();
+IContextChannel obj=proxy as IContextChannel;
+string s=obj.SessionId;</pre> 
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/wcf/">WCF</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%AD%A6%E6%B1%89/">武汉</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/09/08/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B03/">
                 <h2 class="post-title">WCF读书笔记(3)</h2>
                 
@@ -788,58 +871,6 @@
                     <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/08/19/%E6%B4%BB%E5%87%BA%E7%88%B1-%E5%8F%B2%E9%93%81%E7%94%9F/">
-                <h2 class="post-title">活出爱-史铁生</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on August 19, 2012
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (12 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  <p>我曾经写过：人与猪的自然差别是一个定数，人与人的心理差别却无穷大。所以，人与人的交往多半肤浅。或者说，只有在比较肤浅的层面上，交往是容易的。一旦走向复杂，人与人就是相互的迷宫。这大概又是人的根本处境。</p>
-
-<p>　　我常常感到这样的矛盾：睁开白天的眼睛，看很多人很多事都可憎恶；睁开夜的眼睛，才发现其实人人都在苦弱地挣扎，惟当互爱。当然，白天的眼睛并非多余，我是说，夜的眼睛是多么重要。</p>
-
-<p>　　人们就象在呆板的实际生活中渴望虚构的艺术那样，在这无奈的现实中梦想一片净土、一段完美的时间。这就是宗教精神吧。在这样的境界中，在沉思默想着向着神皈 依的时间里，尘世的一切标准才被扫荡，于是看见众生都是苦弱的，歧视与隔离惟使这苦弱加重。那一刻，人摆脱了尘世附加的一切高低贵贱，重新成为赤裸的亚当、夏娃。生命中必须有这样一段时间、一块净土，尽管它常会被嘲笑为“不现实”。但“不现实”未必不是一种好品质。比如艺术，我想应该是脱离实际的。模仿 实际不会有好艺术，好的艺术都难免是实际之外的追寻。</p>
-
-<p>　　当然，在强大的现实面前，这理想只能是一出非现实的戏剧，不管人们多么渴望它，为它感动，为它流泪，为它呼唤，人们仍要回到现实中去，并且不可能消灭这惩罚之地的规则。</p>
-
-<p>　　我可能是幸运的。我知道满意的爱情并不很多，需要种种机遇。我只是想，不应该因为现实的不满意就迁怒于那的梦想，说它本来没有。人若无梦，夜的眼睛就要瞎 了。说“没有爱情”，是因为必求其现实，而不大看重爱情更是需要信奉的。不单爱情如此，一切需要信奉的东西都是这样，美满了还有什么好说的？不美满，才是 需要智慧和信念的时候。</p>
-
-<p>　　上帝把一个危险性最小的机会给了恋人，期待他们“打开窗户”。上帝大约是在暗示：如果这样你们还不能相互敞开心扉，你们就毫无希望了；如果这样你们还相互隔离或防范，你们就只配受永恒的惩罚。所以爱情本身也具有理想意义。艺术又何尝不是 如此？它不因现实的强大而放弃热情，相反却乐此不疲地点燃梦想。</p>
-
-<p>　　我越来越相信，人生是苦海，是惩罚，是原罪。对惩罚之地的最恰当的态度，是把它看成锤炼之地。既是锤炼之地，便有一种猜想——灵魂曾经不在这里，灵魂也不止于这里，我们是途径这里！宇宙的信息被分割进肉体，成为一个个有限或残缺，从而体会爱的必要。</p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%88%B1%E6%83%85/">爱情</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%94%9F%E6%B4%BB/">生活</a>&nbsp;
                   
                 </div>
               

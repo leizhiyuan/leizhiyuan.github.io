@@ -190,6 +190,60 @@
         <div class="posts-list">
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2018/05/13/skywalking%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">
+                <h2 class="post-title">skywalking插件开发的注意事项</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on May 13, 2018
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (53 words)
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  <p>最近蚂蚁金服中间件开源了 sofa 相关的部分组件,比如 <a href="https://github.com/alipay/sofa-rpc">rpc</a>,欢迎大家参与讨论贡献,为 rpc 做链路适配的时候,skywalking 现在快到5.0版本了. 已经不支持 h2暂时,开发过程中了,环境的搭建.以下部分字段不能少.否则外面无法连接 es.</p>
+<div class="highlight"><pre class="chroma">docker run -d -p 9200:9200 -p 9300:9300 -e &#34;network.host=0.0.0.0&#34; -e &#34;transport.host=0.0.0.0&#34;  -e &#34;network.publish_host=0.0.0.0&#34;  -e &#34;xpack.security.enabled=false&#34; -e &#34;network.bind_host=0.0.0.0&#34; -e &#34;discovery.type=single-node&#34; docker.elastic.co/elasticsearch/elasticsearch:5.5.0</pre></div>
+<p>这条命令会搞定.</p>
+
+<p>同时 application.yml 文件中</p>
+<div class="highlight"><pre class="chroma">storage:
+  elasticsearch:
+    cluster_name: docker-cluster
+    cluster_transport_sniffer: false
+    cluster_nodes: localhost:9300
+    index_shards_number: 2
+    index_replicas_number: 0
+    ttl: 70</pre></div>
+<p>这一段改一下.</p>
+
+<p>其他的一些网上已有的文档,可以看看.<a href="http://www.iocoder.cn/SkyWalking/build-debugging-environment/">SkyWalking 源码分析 —— 调试环境搭建</a></p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2017/04/08/%E5%88%86%E6%9E%90%E4%BB%A3%E7%A0%81%E8%B0%83%E7%94%A8%E5%85%B3%E7%B3%BB%E7%9A%84%E5%88%A9%E5%99%A8-flow/">
                 <h2 class="post-title">分析代码调用关系的利器-Flow</h2>
 
@@ -675,60 +729,6 @@ git remote set-url origin git://mirrors.ustc.edu.cn/brew.git</pre></div>
 <p>2.替换homebrew bottles默认源</p>
 <div class="highlight"><pre class="chroma">echo &#39;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles&#39; &gt;&gt; ~/.bashrc</pre></div>
 <p>这里的.bashrc根据自己的情况替换.我是 zsh,就写到.zshrc 文件.</p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E5%85%B7/">工具</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%AE%B0%E5%BD%95/">记录</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2016/08/07/mac%E4%BD%BF%E7%94%A8%E5%85%A8%E5%B1%80%E4%BB%A3%E7%90%86/">
-                <h2 class="post-title">mac使用全局代理</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on August 7, 2016
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (37 words)
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  <p>自从入了 hexo 的坑.这玩意折腾的我不要不要的.各种诡异的问题,不过也顺便搞了搞其他的东西.看了很多相关的代理设置方案.最终沿用 windows 下的策略.最简单高效.</p>
-
-<p>mac 下的 ss 代理是只能设置浏览器代理的.对于一些不走 http 代理的.比如终端.或者其他软件.那么就需要将 ss 代理指定给其他软件或者终端使用.</p>
-
-<p>1.有一个 ss 代理
-2.安装proxifier,直接 <code>brew cask install proxifier</code>
-3.安装好之后,添加Proxies 里面,把 ssh 的信息添加进入
-4.添加 Rules, 我为了简单..直接将default 设置成走代理.这样,就啥也不用管了.等 hexo deploy 结束.再关闭proxifier 就行了.</p>
-
-<p>实际使用中.可以先开全局代理.然后知道哪个程序走了代理.需要走代理.然后单独设置即可.软件很好使用.</p>
-
-<p>不得不说, wall 越来越令人难受与不安.</p>
 
                 
               </div>

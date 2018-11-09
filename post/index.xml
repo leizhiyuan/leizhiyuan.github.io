@@ -23,6 +23,19 @@
     </item>
     
     <item>
+      <title>skywalking插件开发的注意事项</title>
+      <link>https://leizhiyuan.github.io/2018/05/13/skywalking%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</link>
+      <pubDate>Sun, 13 May 2018 12:34:32 +0000</pubDate>
+      
+      <guid>https://leizhiyuan.github.io/2018/05/13/skywalking%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</guid>
+      <description>最近蚂蚁金服中间件开源了 sofa 相关的部分组件,比如 rpc,欢迎大家参与讨论贡献,为 rpc 做链路适配的时候,skywalking 现在快到5.0版本了. 已经不支持 h2暂时,开发过程中了,环境的搭建.以下部分字段不能少.否则外面无法连接 es.
+docker run -d -p 9200:9200 -p 9300:9300 -e &amp;#34;network.host=0.0.0.0&amp;#34; -e &amp;#34;transport.host=0.0.0.0&amp;#34; -e &amp;#34;network.publish_host=0.0.0.0&amp;#34; -e &amp;#34;xpack.security.enabled=false&amp;#34; -e &amp;#34;network.bind_host=0.0.0.0&amp;#34; -e &amp;#34;discovery.type=single-node&amp;#34; docker.elastic.co/elasticsearch/elasticsearch:5.5.0 这条命令会搞定.
+同时 application.yml 文件中
+storage: elasticsearch: cluster_name: docker-cluster cluster_transport_sniffer: false cluster_nodes: localhost:9300 index_shards_number: 2 index_replicas_number: 0 ttl: 70 这一段改一下.
+其他的一些网上已有的文档,可以看看.SkyWalking 源码分析 —— 调试环境搭建</description>
+    </item>
+    
+    <item>
       <title>最近的一些变动</title>
       <link>https://leizhiyuan.github.io/2017/08/23/%E6%9C%80%E8%BF%91%E7%9A%84%E4%B8%80%E4%BA%9B%E5%8F%98%E5%8A%A8/</link>
       <pubDate>Wed, 23 Aug 2017 00:43:38 +0000</pubDate>
@@ -5425,20 +5438,6 @@ import android.widget.ViewFlipper;&lt;/p&gt;</description>
 &lt;div&gt;&lt;/div&gt;
 &lt;div&gt;名字长短应与其作用域大小相对应，单字母名称仅用于短方法中的本地变量。&lt;/div&gt;
 &lt;div&gt;</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://leizhiyuan.github.io/1/01/01/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://leizhiyuan.github.io/1/01/01/</guid>
-      <description>title: skywalking插件开发的注意事项 date: 2018-05-13 12:34:32 tags: - 开发 categories:
-- 学习笔记 最近蚂蚁金服中间件开源了 sofa 相关的部分组件,比如 rpc,欢迎大家参与讨论贡献,为 rpc 做链路适配的时候,skywalking 现在快到5.0版本了. 已经不支持 h2暂时,开发过程中了,环境的搭建.以下部分字段不能少.否则外面无法连接 es.
-docker run -d -p 9200:9200 -p 9300:9300 -e &amp;#34;network.host=0.0.0.0&amp;#34; -e &amp;#34;transport.host=0.0.0.0&amp;#34; -e &amp;#34;network.publish_host=0.0.0.0&amp;#34; -e &amp;#34;xpack.security.enabled=false&amp;#34; -e &amp;#34;network.bind_host=0.0.0.0&amp;#34; -e &amp;#34;discovery.type=single-node&amp;#34; docker.elastic.co/elasticsearch/elasticsearch:5.5.0 这条命令会搞定.
-同时 application.yml 文件中
-storage: elasticsearch: cluster_name: docker-cluster cluster_transport_sniffer: false cluster_nodes: localhost:9300 index_shards_number: 2 index_replicas_number: 0 ttl: 70 这一段改一下.
-其他的一些网上已有的文档,可以看看.SkyWalking 源码分析 —— 调试环境搭建</description>
     </item>
     
   </channel>
