@@ -175,7 +175,7 @@
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on December 24, 2012
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on December 27, 2012
   
   
   &nbsp;|&nbsp;
@@ -200,6 +200,60 @@
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
         <div class="posts-list">
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/12/27/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E4%BA%94%E9%83%A8%E5%88%86/">
+                <h2 class="post-title">Lambda高手之路第五部分</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on December 27, 2012
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (136 words)
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  武汉下雪了。。今天介绍Lambda表达式非常有用的情况。。ps:这个高手之路已经翻译了10000多字了。。疼啊。。
+一些模式比另一些模式有时候更加合适，真正有用的模式是自定义方法表达式，用爱促使话一些对象的部分，我们考虑下面这种情况。
+我们想要创建一个可以处理多种延迟加载的对象，这意味着即时对象已经被实例化了，我们还没有加载所有请求的资源，一个理由就是防止大量的IO操作。（比如通过网络传输），当我们开始使用数据的时候，我们想要确定数据足够新鲜，现在有一些确定的方法可以做这个。并且最有效的显然是实体框架已经用LINQ解决了延迟加载的问题，Iqueryable仅存储了查询，而没有任何无关的数据。一旦我们请求一个结果。不仅仅构造的查询被执行，同时也被以更高效的方式执行，比如一个在远程数据服务器上的SQL查询。
+在这里，我们仅仅想要看看两种情况的不同点，首先，我们查询，一切就绪，查询应该在已经加载了的数据上进行。
+class LazyLoad { public LazyLoad() { Search = query =&gt; { var source = Database.SearchQuery(query); Search = subquery =&gt; { var filtered = source.Filter(subquery); foreach(var result in filtered) yield return result; }; foreach(var result in source) yield return result; }; } public Func&lt;string, IEnumerable&lt;ResultObject&gt;&gt; Search { get; private set; } }  简单来看，这里我们有两种不他哦你的方法，地一个是我们把数据从数据库里提取出来（也就是Database静态类所做的），然后第二个方法将会过滤从数据库里提取出来的数据。一旦我们将会从我们的第一次查询取得结果，当然我们也可以构造内置的其他方法来重置类的行为，对于工业级的代码，其他的方法也许更加有用。
+另一个例子是初始时间分支，假设我们有一个对象，该对象有个方法叫做Perform(),这个方法可以用来调用一些代码，包含这个方法的对象可以被初始化，初始化有三种方式。 1. 通过传递方法来调用 2. 通过传递一些包含这个方法的对象来调用 3. 或者通过传递第一种情况下的序列化以后的信息来调用。
+现在我们可以保留所有的三种方式做全局变量。而Perform方法将不得不查看当前的状态（或者是保存在枚举变量里，或者和null进行比较）然后检测被调用的正确的方式，最后调用开始。
+更好的一种方法是吧Perform()方法写成一个属性，这个属性仅仅允许在类里面进行set，它是一个委托类型，现在我们可以在对应的构造方法里面直接设置这个属性，因此，我们可以不用全局变量，也不用担心这个对象是如何实例化的，这种方法更好。
+看一小段简单的代码。
+class Example { public Action&lt;object&gt; Perform { get; private set; } public Example(Action&lt;object&gt; methodToBeInvoked) { Perform = methodToBeInvoked; } //接口 public Example(IHaveThatFunction mother) { //传递的对象必须有我们要用的方法 Perform = mother.
+                  <a href="https://leizhiyuan.github.io/2012/12/27/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E4%BA%94%E9%83%A8%E5%88%86/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/12/24/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E5%9B%9B%E9%83%A8%E5%88%86/">
@@ -742,56 +796,6 @@ SOAP是Web Service应用的基础协议。他是一种轻量的简单的。基�
                     <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/11/25/c#%E6%A8%A1%E6%8B%9F%E6%89%8B%E5%B7%A5%E6%B4%97%E7%89%8C%E9%99%84%E6%B5%8B%E8%AF%95/">
-                <h2 class="post-title">C#模拟手工洗牌(附测试)</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on November 25, 2012
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 2 minutes (240 words)
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  洗牌大家都知道，代码实现最广泛的一种就是产生两个随机数，然后交换这两个随机数为下标的牌，但是这种的洗牌并不能保证同概率，你可以参考本文做一些测试，本文代码没啥可说的。我写出了非常详细的注释
-ps:刚开始写那个随机数的时候，我随便给了个种子2012.。结果你懂的。。意外意外。这个全局的result数组让我很疼，代码有什么可以改进的，欢迎留言指出。不胜感激。 /*Author:Bystander *Blog:http://leaver.me Date:2012/11/24/ using System;
-class Program { static int[,] result; static void Main() { //初始牌的顺序，我只测试10张牌的情况 char[] _arr = { &lsquo;A&rsquo;, &lsquo;B&rsquo;, &lsquo;C&rsquo;, &rsquo;D&rsquo;, &lsquo;E&rsquo;, &lsquo;F&rsquo;, &lsquo;G&rsquo;, &lsquo;H&rsquo;, &lsquo;I&rsquo;, &lsquo;J&rsquo; }; result = new int[_arr.Length, _arr.Length]; //进行1000次，来统计结果的数字.
-for (int i = 0; i &amp;lt; 10000; i++) { ShuffleArray_Manual(_arr); SumCount(_arr); } int j = 0; foreach (int i in result) { if (j % result.GetLength(1) == 0) { Console.WriteLine(); } Console.
-                  <a href="https://leizhiyuan.github.io/2012/11/25/c#%E6%A8%A1%E6%8B%9F%E6%89%8B%E5%B7%A5%E6%B4%97%E7%89%8C%E9%99%84%E6%B5%8B%E8%AF%95/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%AE%BE%E8%AE%A1/">设计</a>&nbsp;
                   
                 </div>
               

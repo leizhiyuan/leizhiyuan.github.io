@@ -196,6 +196,118 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/05/19/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">
+                <h2 class="post-title">快速排序算法</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on May 19, 2012
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (103 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  <pre lang="c">
+#include <iostream>
+using namespace std;
+
+//化分区间,找到最后元素的排序位置。并返回分隔的点（即最后一数据排序的位置）。
+//划分的区间是[nBegin, nEnd). pData是保存数据的指针
+int Partition(int* pData, int nBeging, int nEnd)
+{
+                int i = nBeging - 1;    //分隔符号，最后nD保存在这里
+                --nEnd;
+                int nD = pData[nEnd]; //比较的数据。
+                int nTemp; // 交换用的临时数据
+
+                //遍历数据比较，找到nD的位置，这里注意，比较结果是,
+                //i的左边是小于等于nD的，i的右边是大于nD的
+                for (int j = nBeging; j < nEnd; ++j)
+                {
+                                if (pData[j] <= nD)        //如果数据比要比较的小，则在该数据的左边，与i+1交换
+                                {
+                                                ++i;                //小于nD的数据多一个，所以要加1，i的左边数据都比nD小
+                                                nTemp = pData[i];    //交换数据
+                                                pData[i] = pData[j];
+                                                pData[j] = nTemp;
+                                }
+                }
+
+                //最后不要忘了吧nD和i+1交换，因为这里就是nD的位置咯。
+                ++i;
+                pData[nEnd] = pData[i];
+                pData[i] = nD;
+
+                return i;   //返回nD的位置，就是分割的位置。
+}
+
+//排序的递归调用。
+int QuickSortRecursion(int* pData, int nBeging, int nEnd)
+{
+                if (nBeging >= nEnd -1)        //如果区域不存在或只有一个数据则不递归排序
+                {
+                                return 1;
+                }
+
+                //这里因为分割的时候，分割点处的数据就是排序中他的位置。
+                //也就是说他的左边的数据都小于等于他，他右边的数据都大于他。
+                //所以他不在递归调用的数据中。
+                int i = Partition(pData, nBeging, nEnd);        //找到分割点
+                QuickSortRecursion(pData, nBeging, i);            //递归左边的排序
+                QuickSortRecursion(pData, i + 1, nEnd);            //递归右边的排序
+                return 1;
+}
+
+//快速排序
+int QuickSort(int* pData, int nLen)
+{
+                //递归调用，快速排序。
+                QuickSortRecursion(pData, 0, nLen);
+                return 1;
+}
+int main()
+{
+                int nData[10] = {5,9,3,2,1,6,20,45,88,75};        //测试数据
+                QuickSort(nData, 10);            //调用快速排序
+                for (int i = 0; i < 10; ++i)        //输出结果
+                {
+                                cout<<nData[i]<<" ";
+                }
+                cout<<endl;
+
+                return 0;
+}
+</pre>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c&#43;&#43;/">C&#43;&#43;</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/05/18/%E5%AF%B9%E8%B1%A1%E6%95%B0%E7%BB%84%E7%9A%84xml%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">
                 <h2 class="post-title">对象数组的Xml序列化和反序列化</h2>
                 
@@ -821,71 +933,6 @@ using System; using System.Collections.Generic; using System.Linq; using System.
                     <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E6%9D%82%E6%96%87/">杂文</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/05/09/c--%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/">
-                <h2 class="post-title">C&#43;&#43;回调函数</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on May 9, 2012
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (87 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  回调函数就是一个通过函数指针调用的函数。如果你把函数的指针(地址)作为参数传递给另一个函数，当这个指针被用为调用它所指向的函数时，我们就说这是回调函数。
-　也就是说，回调函数它首先是一个函数，然后有一个指针指向它（该指针称为函数指针），在别的代码块中，通过这个函数指针调用了这个函数，仅此而已。
-　下面给出一个例子，我写出了比较详细的注释。希望足够清晰。这个例子说明了，回调函数可以把调用者和被调用者分开，对于调用者来说，只需要知道自己要调用一个函数，该函数有一个string类型的参数，至于具体调用哪个，被调用的函数到底怎么执行，怎么解释该参数，是完全不用关心的。 #include 
-#include 
-using namespace std;
-typedef void (*PF)(string s); //定义一个名为PF的函数指针，该指针指向一类函数，该类函数有一个string类型的参数，返回值为void。
-void funcOne(string s) //回调函数1
-{
-cout &lt;&lt; s+&rdquo; One&rdquo;&lt;&lt; endl;
-}
-void funcTwo(string s) //回调函数2 {
-cout &lt;&lt; s+&rdquo; Two&rdquo;&lt;&lt; endl;
-}
-void caller( PF pf, string s) //调用函数
-{
-cout &lt;&lt; &ldquo;I am Caller Function&rdquo; &lt;&lt; endl;
-pf(s);
-}
-int main()
-{
-string str = &ldquo;Test CallBack Function&rdquo;;
-PF pf1 = funcOne; //实例化一个函数指针，指向func函数
-                  <a href="https://leizhiyuan.github.io/2012/05/09/c--%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c&#43;&#43;/">C&#43;&#43;</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%8E%9F%E5%88%9B/">原创</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
                   
                 </div>
               

@@ -202,6 +202,58 @@
         <div class="posts-list">
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/07/02/c#%E8%B0%83%E7%94%A8matlab%E5%AE%9E%E7%8E%B0n%E9%98%B6%E5%B9%BB%E6%96%B9/">
+                <h2 class="post-title">C#调用MatLab实现N阶幻方</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on July 2, 2012
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (145 words)
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  MatLab的计算能力太强大了。最近需要通过C#来调用MatLab来进行一些计算，可是MatLab没用过。安装文件在我硬盘里躺了整整一年。
+　我们希望的是由外部程序调用MatLab函数。所以。希望可以完全脱离MATLAB环境，实现软件的快速开发。为此需要先介绍一下MCR。
+MCR简介 　MCR的全称是MATLAB Compiler Runtime，即MATLAB编译器运行时。是一个由MATLAB共享类库构成的执行引擎，他能够使MATLAB文件在没有MATLAB的机器上运行。这一点和.NET Framework相对于.NET程序一样，即为程序的运行提供了底层支持。当发布程序的时候，需要将MCR也打包进来，这样没有MATLAB的机器上也能执行，MCR随MATLAB软件一同发布，可以在MATLAB中输入命令“mcr”或者“mcrinstaller”获取其保存路径：
+&gt;&gt; mcr The WIN32 MCR Installer, version 7.15, is: D:\Program Files\MATLAB\R2011a\toolbox\compiler\deploy\win32\MCRInstaller.exe MCR installers for other platforms are located in: D:\Program Files\MATLAB\R2011a\toolbox\compiler\deploy\&lt;ARCH&gt; &lt;ARCH&gt; is the value of COMPUTER('arch') on the target machine. Full list of available MCR installers: D:\Program Files\MATLAB\R2011a\toolbox\compiler\deploy\win32\MCRInstaller.exe For more information, read your local MCR Installer help. Or see the online documentation at MathWorks' web site. (Page may load slowly.
+                  <a href="https://leizhiyuan.github.io/2012/07/02/c#%E8%B0%83%E7%94%A8matlab%E5%AE%9E%E7%8E%B0n%E9%98%B6%E5%B9%BB%E6%96%B9/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/matlab/">matlab</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/07/02/c#%E4%B8%AD%E7%9A%84%E9%9D%99%E6%80%81%E4%B8%8E%E9%9D%9E%E9%9D%99%E6%80%81/">
                 <h2 class="post-title">C#中的静态与非静态</h2>
 
@@ -1000,66 +1052,6 @@ MouseDown=&ldquo;Window_MouseDown&rdquo;&gt;</pre>
                     <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E7%A7%91%E6%8A%80/">科技</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/06/21/c#winform%E5%AE%9E%E7%8E%B0%E4%B8%8D%E8%A7%84%E5%88%99%E7%AA%97%E4%BD%93/">
-                <h2 class="post-title">C#WinForm实现不规则窗体</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on June 21, 2012
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (130 words)
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  这个纯属娱乐，因为其实用的不是太多，因为非主流，非标准的界面不符合用户的体验，不符合可用性功能的某一条HE规则。
-为了完成这个效果，首先需要自己动手画个你需要的界面出来，界面边缘需要是一种可以很好区别的颜色，比如纯蓝色，因为实现不规则窗体是让C#使边缘颜色透明化来实现的，所以需要唯一识别。因为我用的图是一张灰色的图，我然后圈了一个蓝色的边缘。
-刚开始的图；
-
-然后新建windows应用程序。创建windows窗体并设置窗体基本属性。 （1）将 FormBorderStyle 属性设置为 None。 （2）将窗体的 BackgroundImage 属性设置为先前创建的位图文件。不必将文件添加到项目系统中；这将在指定该文件作为背景图像时自动完成。 （3）将 TransparencyKey 属性设置为位图文件的背景色，本例中为蓝色。（此属性告诉应用程序窗体中的哪些部分需要设置为透明。 ） 上面两个步骤已经完成了不规则窗体自身显示效果的制作。
-有人说在24位色以下的环境中可以显示正常，但在24位色以上时黄色背景不能消失，所以上述不能胜任24位色以上环境。但我看到了一种解决方法，那就是先将背景图片添加到资源文件，然后在窗体构造时为窗体设置背景图片：
-&nbsp; private void Form1_Load(object sender, EventArgs e){
-Bitmap bmp = Properties.Resources.form2; bmp.MakeTransparent(Color.Blue); // bmp.MakeTransparent(Color.FromArgb(2,2,2));如果rgb则是这样用 this.BackColor = Color.Blue; this.BackgroundImage = bmp; this.TransparencyKey = Color.Blue;
-} &nbsp;
-实测是可以的。
-然后就是为窗体添加移动、关闭、最大最小化的事件。代码直接给出 private bool isMouseDown = false; //记录鼠标是否被按下 private Point position; //记录鼠标位置
-private void Form1_MouseDown(object sender, MouseEventArgs e) { if (e.Button == MouseButtons.Left) { int x = -e.
-                  <a href="https://leizhiyuan.github.io/2012/06/21/c#winform%E5%AE%9E%E7%8E%B0%E4%B8%8D%E8%A7%84%E5%88%99%E7%AA%97%E4%BD%93/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%8E%9F%E5%88%9B/">原创</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%AC%94%E8%AE%B0/">笔记</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
                   
                 </div>
               

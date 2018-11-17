@@ -196,6 +196,44 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2014/07/13/spring%E6%8F%AD%E7%A7%98-%E7%AC%AC%E5%9B%9B%E7%AB%A0beanfactory%E7%AC%94%E8%AE%B0/">
+                <h2 class="post-title">Spring揭秘-第四章BeanFactory笔记</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on July 13, 2014
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (100 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  之前说了，IoC容器就是一个IoC Service Provider，但是容器是个啥意思？![](/images/d4d1615a6c1a06895088631c37e3fca7692f0b8a.png) 可以看到IoC容器提供了更多的内容， Spring的IoC容器又分成两种， 1.BeanFactory 。基础类型IoC容器，提供完整的IoC服务支持。如果没有特殊指定，默认采用延 迟初始化策略（lazy-load）。只有当客户端对象需要访问容器中的某个受管对象的时候，才对 该受管对象进行初始化以及依赖注入操作。所以，相对来说，容器启动初期速度较快，所需 要的资源有限。对于资源有限，并且功能要求不是很严格的场景，BeanFactory是比较合适的 IoC容器选择。  2.ApplicationContext。ApplicationContext在BeanFactory的基础上构建，是相对比较高 级的容器实现，除了拥有BeanFactory的所有支持，ApplicationContext还提供了其他高级特性，比如事件发布、国际化信息支持等，这些会在后面详述。ApplicationContext所管理 的对象，在该类型容器启动之后，默认全部初始化并绑定完成。所以，相对于BeanFactory来 说，ApplicationContext要求更多的系统资源，同时，因为在启动时就完成所有初始化，容 器启动时间较之BeanFactory也会长一些。在那些系统资源充足，并且要求更多功能的场景中， ApplicationContext类型的容器是比较合适的选择。   通过 图4-2，我们可以对BeanFactory和ApplicationContext之间的关系有一个更清晰的认识。      ![](/images/f531ea3e11bb391453eb5f763283398c938634b2.png)     Bean工长，就是生成Bean的嘛，每个业务对象被看成Javabean,我们与工厂打交道就简单得多，我们只要告诉他我要什么对象，至于怎么组装，那是他的事情。   工厂提供了一些对外的接口，比如获取Bean，渠道Bean的状态等等。 以xml为例    &lt;?xml version="1.0" encoding="UTF-8"?&gt; &lt;!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd"&gt; &lt;beans&gt; &lt;bean id="djNewsProvider" class="..FXNewsProvider"&gt; &lt;constructor-arg index="0"&gt; &lt;ref bean="djNewsListener"/&gt; &lt;/constructor-arg&gt; &lt;constructor-arg index="1"&gt; &lt;ref bean="djNewsPersister"/&gt; &lt;/constructor-arg&gt; &lt;/bean&gt; &lt;bean id="djNewsListener" class="..impl.DowJonesNewsListener"&gt; &lt;/bean&gt; &lt;bean id="
+                  <a href="https://leizhiyuan.github.io/2014/07/13/spring%E6%8F%AD%E7%A7%98-%E7%AC%AC%E5%9B%9B%E7%AB%A0beanfactory%E7%AC%94%E8%AE%B0/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/spring/">spring</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2014/07/13/spring%E6%8F%AD%E7%A7%98-%E7%AC%AC%E4%B8%89%E7%AB%A0ioc-service-provider%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
                 <h2 class="post-title">Spring揭秘-第三章IoC Service Provider读书笔记</h2>
                 
@@ -744,58 +782,6 @@ JavaScript中函数的重要性毋庸置疑。在理解了JavaScript中的函数
                 <div class="blog-tags">
                   
                     <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E4%BD%9C/">工作</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2014/03/29/linux%E7%BC%96%E5%86%99%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/">
-                <h2 class="post-title">linux编写定时任务</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on March 29, 2014
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (99 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  linux中定时任务用来执行一些周期性的自动化的任务，比如有些人可能用来定期备份，也可能是定期检查一下特殊文件的签名，如果不一致，就报警，检测入侵。
-cron是linux下的定时执行工具
-这个工具的几个命令是这样的 /sbin/service crond start //启动服务
-/sbin/service crond stop //关闭服务
-/sbin/service crond restart //重启服务
-/sbin/service crond reload //重新载入配置 注意，这几个服务都是要以root权限才能运行的，很多时候，只要我们可能只是一个低权限的用户，那么我们要执行一些定时任务的时候，可以这样做
-直接通过这个命令来编辑，无需root用户 crontab 首先添加定时任务 crontab -e 打开之后按如下的格式编写 */1 * * * * ls &gt;&gt; /tmp/ls.txt 从左到右一次表示
-分钟 一小时的第几分 0-59 小时 一天的第几小时 0-23 日期 一个月的的第几天 1-31 月份 一年的第几个月 1-12 周几 一周的第几天 0-6
-/1表示每一天 /2表示每两天，直接*的话就表示每天/每小时这样
-写完之后，wq保存退出
-然后 crontab -l //列出当前的所有调度任务 可以看到自己的定时任务了，然后就不要做什么操作了，操作系统定时会读取配置的，编辑完成之后，我们的定时任务过一会就会生效了。
-有时候，可能还要把结果信息和一些错误信息也写入 30 5 * * * ls &gt;&gt;/result/test 2&gt;&amp;1
-注：2&gt;&amp;1 表示执行结果及错误信息。 这里就是说明天的5点50执行一次ls命令，并把结果追加到文件
-                  <a href="https://leizhiyuan.github.io/2014/03/29/linux%E7%BC%96%E5%86%99%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/linux/">linux</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/shell/">shell</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E4%BD%9C/">工作</a>&nbsp;
                   

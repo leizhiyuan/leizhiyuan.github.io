@@ -196,6 +196,99 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2015/09/04/kafka%E4%B8%AD%E7%9A%84partition%E5%92%8Coffset/">
+                <h2 class="post-title">kafka中的partition和offset</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 4, 2015
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (44 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  
+
+<p>在<a href="http://leaver.me/2015/09/03/kafka%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/">kafka快速上手</a>中,留下的问题是关于partition和offset,这篇文章主要解释这个.</p>
+
+<h2 id="log机制">Log机制</h2>
+
+<p>说到分区,就要说kafka对消息的存储.在<a href="http://kafka.apache.org/documentation.html#replication">官方文档</a>中.
+<img src="/images/kafka_partition_log.jpg" alt="分区读写日志图" />
+首先,kafka是通过log(日志)来记录消息发布的.每当产生一个消息,kafka会记录到本地的log文件中,这个log和我们平时的log有一定的区别.这里可以参考一下<a href="http://www.cnblogs.com/foreach-break/p/notes_about_distributed_system_and_The_log.html">The Log</a>,不多解释.</p>
+
+<p>这个log文件默认的位置在config/server.properties中指定的.默认的位置是log.dirs=/tmp/kafka-logs,linux不用说,windows的话就在你对应磁盘的根目录下.我这里是D盘.</p>
+
+<p>#分区partition#
+kafka是为分布式环境设计的,因此如果日志文件,其实也可以理解成消息数据库,放在同一个地方,那么必然会带来可用性的下降,一挂全挂,如果全量拷贝到所有的机器上,那么数据又存在过多的冗余,而且由于每台机器的磁盘大小是有限的,所以即使有再多的机器,可处理的消息还是被磁盘所限制,无法超越当前磁盘大小.因此有了partition的概念.</p>
+
+<p>kafka对消息进行一定的计算,通过hash来进行分区.这样,就把一份log文件分成了多份.如上面的分区读写日志图,分成多份以后,在单台broker上,比如快速上手中,如果新建topic的时候,我们选择了<code>--replication-factor 1 --partitions 2</code>,那么在log目录里,我们会看到
+test-0目录和test-1目录.就是两个分区了.</p>
+
+<p>你可能会想,这特么没啥区别呀.注意,当有了多个broker之后,这个意义就存在了.这里上一张图,原文在参考链接里有
+<img src="/images/kafka_partition_storage.jpg" alt="kafka分布式分区存储" />
+这是一个topic包含4个Partition，2 Replication(拷贝),也就是说全部的消息被放在了4个分区存储,为了高可用,将4个分区做了2份冗余,然后根据<a href="http://blog.csdn.net/lizhitao/article/details/41778193">分配算法</a>.将总共8份数据,分配到broker集群上.</p>
+
+<p>结果就是每个broker上存储的数据比全量数据要少,但每份数据都有冗余,这样,一旦一台机器宕机,并不影响使用.比如图中的Broker1,宕机了.那么剩下的三台broker依然保留了全量的分区数据.所以还能使用,如果再宕机一台,那么数据不完整了.当然你可以设置更多的冗余,比如设置了冗余是4,那么每台机器就有了0123完整的数据,宕机几台都行.需要在存储占用和高可用之间做衡量.
+至于宕机后,zookeeper会选出新的partition leader.来提供服务.这个等下篇文章</p>
+
+<p>#偏移offset#</p>
+
+<p>上一段说了分区,分区就是一个有序的,不可变的消息队列.新来的commit log持续往后面加数据.这些消息被分配了一个下标(或者偏移),就是offset,用来定位这一条消息.</p>
+
+<p>消费者消费到了哪条消息,是保持在消费者这一端的.消息者也可以控制,消费者可以在本地保存最后消息的offset,并间歇性的向zookeeper注册offset.也可以重置offset</p>
+
+<p>#如何通过offset算出分区#</p>
+
+<p>其实partition存储的时候,又分成了多个segment(段),然后通过一个index,索引,来标识第几段.这里先可以去看一下本地log目录的分区文件夹.
+在我这里,test-0,这个分区里面,会有一个index文件和一个log文件,
+<img src="/images/kafka_index_log.jpg" alt="index和log" /></p>
+
+<p>对于某个指定的分区,假设每5个消息,作为一个段大小,当产生了10条消息的情况想,目前有会得到(只是解释)
+0.index (表示这里index是对0-4做的索引)
+5.index (表示这里index是对5-9做的索引)
+10.index (表示这里index是对10-15做的索引,目前还没满)
+和
+0.log
+5.log
+10.log
+,当消费者需要读取offset=8的时候,首先kafka对index文件列表进行二分查找,可以算出.应该是在5.index对应的log文件中,然后对对应的5.log文件,进行顺序查找,5-&gt;6-&gt;7-&gt;8,直到顺序找到8就好了.</p>
+
+<p>具体的算法参看<a href="http://tech.meituan.com/kafka-fs-design-theory.html">美团的文章</a>好了</p>
+
+<h2 id="更多文档">更多文档</h2>
+
+<ol>
+<li><a href="http://kafka.apache.org/documentation.html">官方文档</a></li>
+<li><a href="http://tech.meituan.com/kafka-fs-design-theory.html">Kafka文件存储机制那些事</a></li>
+<li><a href="http://blog.csdn.net/lizhitao/article/details/41778193">Kafka集群partition replication自动分配分析</a></li>
+</ol>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2015/09/03/kafka%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/">
                 <h2 class="post-title">kafka快速上手</h2>
                 
@@ -755,50 +848,6 @@ A: When you login, it hangs or takes more than a minute to get the response. If 
                     <a href="https://leizhiyuan.github.io//tags/%E8%81%8C%E4%B8%9A/">职业</a>&nbsp;
                   
                 </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2015/02/21/2014%E5%B9%B4%E8%BF%87%E5%8E%BB%E4%BA%86/">
-                <h2 class="post-title">2014年过去了</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on February 21, 2015
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (8 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  <p>##2014年##</p>
-
-<p>在这一年里,入职支付宝,成长许多,也遇到了一些问题,对于复杂问题的理解力稍微变强了一点.技术上也有了一定的长进.但不够让我自己满意.博客也更新缓慢,很多总结性的东西只是记录在了evernote中,不够完整.</p>
-
-<p>和文哥也经历了很多事情.有一些问题,也多数都解决了,这一年项目紧急,加班较多,希望能够圆满的结束这个项目,未来总是充满了很多的变数.珍惜眼前人,眼前事,工作生活都是如此.</p>
-
-<p>感谢文哥,家人,师傅,同事和阿里.谢谢大家在2014年的照顾和合作.总而言之,和大家在一起很开心.</p>
-
-<p>##2015年##</p>
-
-<p>新的一年里,希望在技术上有更多的长进.实实在在可以看的见的作品或产出.坚持写博客,能够打上个人更多的标签,而不仅仅是在支付宝或者阿里工作.</p>
-
-<p>和文哥的相处上可以更加理解和体谅,希望文哥在自己喜欢的领域做出自己的事业.有梦想就要去行动.有目标才会实现.</p>
-
-<p>2015年不会比2014年更加好过或者是难过,相信明年的这个时候.还能笑谈今日的一切.</p>
-
-                
-              </div>
-
               
             </article>
           

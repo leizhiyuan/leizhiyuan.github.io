@@ -202,6 +202,59 @@
         <div class="posts-list">
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/09/24/.net%E6%98%BE%E7%A4%BA%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E7%8A%B6%E6%80%81%E5%9B%BE%E6%A0%87/">
+                <h2 class="post-title">.net显示网络连接状态图标</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 24, 2012
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 2 minutes (292 words)
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  效果图： 
+介绍 　越来越多的软件要通过连接互联网来执行一些业务层的业务操作，比如调用web services服务，获取数据等等。 通常你可能希望知道当前你的网络连接是不是真的连上了，当然有很多种方法可以做到，比如，你可以查看System.Net 命名空间中的NetworkInterface 的状态，但是有这以太网连接并不表示你的连接真的可以用。 本文将会展示一种方法，该方法在程序的状态栏StatusStrip 显示一个简单的图标来指示是不是真的连接到了互联网。
+使用代码 　最简单的我们会想到使用一个Timer来进行http-get请求来判断一个特定的网页是否可用。
+　当然这种方法下，我们最应该考虑的就是请求不能阻塞UI线程，因此，我将使用一个BackgroundWorker 对象来进行get请求，BackgroundWorker 对象声明了DoWork方法。该方法定义了一个事件句柄，该句柄传递一个DoWorkEventArgs 类来将事件的处理结果返回到UI线程，因此，你不必与任何的UI元素进行交互，因为它运行在一个独立的线程里。
+private void InitializeComponent() { // Background Worker this._worker = new BackgroundWorker(); this._worker.WorkerReportsProgress = false; this._worker.WorkerSupportsCancellation = false; this._worker.DoWork += new DoWorkEventHandler(this.BackgroundWorker_DoWork); this._worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(this.BackgroundWorker_RunWorkerCompleted); // Timer this._updateTimer = new Timer(); this._updateTimer.Enabled = !this.DesignMode; // Enabled when not in design mode this._updateTimer.Tick += delegate { this.OnTick(); }; } private void OnTick() { if (this.
+                  <a href="https://leizhiyuan.github.io/2012/09/24/.net%E6%98%BE%E7%A4%BA%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E7%8A%B6%E6%80%81%E5%9B%BE%E6%A0%87/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%8E%9F%E5%88%9B/">原创</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/09/24/%E4%B8%80%E4%B8%AA%E5%8F%AF%E5%AE%9A%E5%88%B6%E7%9A%84wpf%E4%BB%BB%E5%8A%A1%E5%AF%B9%E8%AF%9D%E6%A1%86/">
                 <h2 class="post-title">一个可定制的WPF任务对话框</h2>
 
@@ -754,56 +807,6 @@ public class DelegateSource { public void TestDelegate() { Operator op = new Ope
                     <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E6%94%B6%E8%97%8F/">收藏</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/09/09/%E9%80%9A%E8%BF%87windows%E5%BA%94%E7%94%A8%E8%BF%9B%E8%A1%8C%E6%9C%8D%E5%8A%A1%E5%AF%84%E5%AE%BF%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81/">
-                <h2 class="post-title">通过Windows应用进行服务寄宿示例代码</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 9, 2012
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (3 words)
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  <p>此程序部分源码来自《WCF技术剖析》。。但是。这本书上讲的非常不清楚。有些很小的地方没讲。。导致出现很多问题。。。比如ListView需要先添加列。默认的config需要删除。等等。。</p>
-
-<p>最终是成功了。
-<a href="http://leaverimage.b0.upaiyun.com/26808_o.jpg"><img src="/images/7390df89e6e155098b41900c68b850b956f79a4d.jpg" alt="" title="wCf" /></a></p>
-
-<p>源码下载：<a href="http://dl.vmall.com/c0d8askuak">Lazy.FormDemo</a></p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/wcf/">WCF</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
                   
                 </div>
               

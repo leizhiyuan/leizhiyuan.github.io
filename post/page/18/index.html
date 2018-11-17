@@ -175,7 +175,7 @@
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on October 9, 2012
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on October 10, 2012
   
   
   &nbsp;|&nbsp;
@@ -200,6 +200,62 @@
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
         <div class="posts-list">
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/10/10/c#%E5%88%B6%E4%BD%9C%E8%BF%9B%E5%BA%A6%E7%AA%97%E4%BD%93/">
+                <h2 class="post-title">C#制作进度窗体</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on October 10, 2012
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 4 minutes (729 words)
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  介绍
+这是我在CodeProject上的第一篇文章。我希望对你有用
+当我开发软件的时候。我通常因为一个很耗时是任务需要完成。而请求让用户等待，并且通过也允许用户取消。不论我做何种操作（比如下载文件。保存大文件等等）。我都需要做下面几件事：
+ 通过一个模态对话框来让用户等待操作完成 能让用户看到进度。 能让用户随时取消。 我搜了好久也没找到拿来就能用的窗体控件，也许是我没找到。于是我自己写。。 图1  背景
+BackgroundWorker 类包含了我需要完成任务的所有东西。我只需要给他提供一个对话框。
+使用代码
+ProgressForm 包含了一个BackgroundWorker ，你要做的仅仅就是提供了一个完成工作的方法。 ProgressForm form = new ProgressForm(); form.DoWork += new ProgressForm.DoWorkEventHandler(form_DoWork); //如果想为后台任务提供参数的话 form.Argument = something; 为了开始BackgroundWorker，只需要调用ShowDialog 方法。返回值则取决于任务是怎么完成的。 DialogResult result = form.ShowDialog(); if (result == DialogResult.Cancel) { //用户点击了取消 } else if (result == DialogResult.Abort) { /未处理的异常抛出 //你可以得到异常信息 MessageBox.Show(form.Result.Error.Message); } else if (result == DialogResult.OK) { //正常完成 //结果存储在 form.Result里 } &nbsp;
+最后。任务方法看起来是这样的。 void form_DoWork(ProgressForm sender, DoWorkEventArgs e) { //得到参数 object myArgument = e.
+                  <a href="https://leizhiyuan.github.io/2012/10/10/c#%E5%88%B6%E4%BD%9C%E8%BF%9B%E5%BA%A6%E7%AA%97%E4%BD%93/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%AE%BE%E8%AE%A1/">设计</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/10/09/c#%E7%BC%96%E5%86%99ftp%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%BD%AF%E4%BB%B6/">
@@ -911,67 +967,6 @@ public DataSet LoadCSV(int numberOfRows) { DataSet ds = new DataSet(); try { // 
                     <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/09/29/listview%E5%B8%83%E5%B1%80%E7%AE%A1%E7%90%86%E5%99%A8/">
-                <h2 class="post-title">ListView布局管理器</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 29, 2012
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 3 minutes (516 words)
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  介绍 使用ListViewLayoutManager 可以控制ListView/GridView列的布局 1. 固定列宽：有着固定列宽的列 2. 范围列宽：有着最小最大宽度的列 3. 比例列宽：成比例的列宽
-范围列宽可以限制列的宽度，也包括填充列的剩余可视区域。
-据我们了解的Html中的表格和Grid空间。比例列以一个百分比来定义列宽，以下几个因素共同确定了比例列的宽度。
- 垂直ListView滚动条的可视与否 ListView控件宽度的改变 非比例列宽度的改变  本程序支持通过XAML或是后台代码来控制ListView。如果通过XAML来控制。则允许ListViewLayoutManager 被附加到一个存在的ListView控件上。
-ConverterGridColumn 类通过接口IValueConverter 提供了对象绑定。使用ImageGridViewColumn 类则允许通过DataTemplate（数据模板）将列显示成图片等。
-在 User Setting Applied中，我展示了如何固定ListViewlieder顺序和大小
-XAML中ListView/GridView布局 固定列 下面的例子展示了通过XAML使用固定列宽控制列
-&lt;ListView Name="MyListView" ctrl:ListViewLayoutManager.Enabled="true"&gt; &lt;ListView.View&gt; &lt;GridView&gt; &lt;GridViewColumn DisplayMemberBinding="{Binding Path=Name}" ctrl:FixedColumn.Width="100" Header="Name" /&gt; &lt;GridViewColumn DisplayMemberBinding="{Binding Path=City}" ctrl:FixedColumn.Width="300" Header="City" /&gt; &lt;/GridView&gt; &lt;/ListView.View&gt; &lt;/ListView&gt;  设置附加到ListView控件上的ListViewLayoutManager 的Enabled属性为True。然后FixedColumn.Width 就会阻止鼠标拖动改变列的宽度。
-比例列
-下面的例子展示了使用XAML通过比例来控制列 
-&lt;GridView&gt; &lt;GridViewColumn DisplayMemberBinding=&#34;{Binding Path=Name}&#34; ctrl:ProportionalColumn.Width=&#34;1&#34; Header=&#34;Name&#34; /&gt; &lt;GridViewColumn DisplayMemberBinding=&#34;{Binding Path=City}&#34; ctrl:ProportionalColumn.Width=&#34;3&#34; Header=&#34;City&#34; /&gt; &lt;/GridView&gt; &lt;/ListView.
-                  <a href="https://leizhiyuan.github.io/2012/09/29/listview%E5%B8%83%E5%B1%80%E7%AE%A1%E7%90%86%E5%99%A8/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/wpf/">WPF</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
                   
