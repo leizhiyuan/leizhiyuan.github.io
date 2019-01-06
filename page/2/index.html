@@ -196,6 +196,53 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2016/10/30/graylog%E4%B8%AD%E7%9A%84%E5%AD%97%E6%AE%B5%E8%A7%A3%E6%9E%90/">
+                <h2 class="post-title">graylog中的字段解析</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on October 30, 2016
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (27 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  
+
+<h2 id="关于字段解析">关于字段解析</h2>
+
+<p>一旦 graylog 用在了一个分布式系统上,那么采集的日志格式多种多样,涉及到通过 rules.drl来解析具体的字段.之前的同学的方案是用<a href="http://www.jboss.org/drools">drools</a> 来完成的.通过一个统一的界面,来给用户生成一些正则规则这种.然后自己写了个转换器转成 Drools 的文件.更新到 graylog 的服务器上.然后重启gralog 应用完成.</p>
+
+<p>实际上, graylog 2之后的版本提供了rules和 pipeline ,这种不需要重启应用,完成这个解析的动作.但是.注意.这个不完善.所以只支持一些简单的语法,无法实现原有的完全转换.所以放弃.</p>
+
+<p>在此过程中.这个rules 有一个比较强大的功能,自动解析 key value 对.需要添加,但是,需要你的日志文件格式里的 key value有空格,
+也就是要求必须是 key=value 这样,不能紧挨着逗号这样的..比如你的打印日志是 key=value,key2=value2.那么久无法解析了..这个暂时没看到比较好的办法.估计要改代码.如果你恰好符合.那最好了.</p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E4%BD%9C/">工作</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2016/10/05/mac%E6%97%A5%E5%BF%97%E6%89%B9%E9%87%8F%E6%9F%A5%E8%AF%A2%E9%85%8D%E7%BD%AE/">
                 <h2 class="post-title">mac日志批量查询配置</h2>
                 
@@ -696,53 +743,6 @@ sudo ln -s /Library/Developer/CommandLineTools/Library/Perl/5.18/darwin-thread-m
                 <div class="blog-tags">
                   
                     <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%AC%94%E8%AE%B0/">笔记</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2016/05/21/eclipse%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91-tycho%E4%BD%BF%E7%94%A8/">
-                <h2 class="post-title">eclipse插件开发-tycho使用</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on May 21, 2016
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (112 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  不说废话，直接上。本文主要包括tycho的使用，版本号的自动更新。
-eclipse插件开发中，依赖的管理是个问题。如果采用常规的搞个lib目录，然后加到MF文件中。一旦依赖越来越多。或者要更换版本号就变得非常麻烦。所以要用到tycho
-首先说明一下目录结构。一个parent的maven工程，一个plugin工程，。两个features。一个是deps的。一个是plugin的，这个依赖deps是独立的mvn项目。可以先不用管。一个deps依赖工程（这个依赖工程独立）。 在主pom下。
-步骤如下。
-关于依赖部分
- 新建一个普通的mvn工程,比如deps。打包类型写成&lt;packaging&gt;bundle&lt;/packaging&gt;,同时在pom.xml中添加build部分  &lt;build&gt; &lt;plugins&gt; &lt;plugin&gt; &lt;groupId&gt;org.apache.felix&lt;/groupId&gt; &lt;artifactId&gt;maven-bundle-plugin&lt;/artifactId&gt; &lt;version&gt;3.0.1&lt;/version&gt; &lt;extensions&gt;true&lt;/extensions&gt; &lt;configuration&gt; &lt;niceManifest&gt;true&lt;/niceManifest&gt; &lt;manifestLocation&gt;META-INF&lt;/manifestLocation&gt; &lt;instructions&gt; &lt;Bundle-SymbolicName&gt;${project.artifactId}&lt;/Bundle-SymbolicName&gt; &lt;Embed-Dependency&gt;*&lt;/Embed-Dependency&gt; &lt;Embed-Transitive&gt;true&lt;/Embed-Transitive&gt; &lt;Embed-Directory&gt;lib&lt;/Embed-Directory&gt; &lt;Bundle-ClassPath&gt;{maven-dependencies}&lt;/Bundle-ClassPath&gt; &lt;_exportcontents&gt;*&lt;/_exportcontents&gt; &lt;_failok&gt;true&lt;/_failok&gt; &lt;_nouses&gt;true&lt;/_nouses&gt; &lt;Import-Package&gt;&lt;/Import-Package&gt; &lt;/instructions&gt; &lt;/configuration&gt; &lt;/plugin&gt; &lt;/plugins&gt; &lt;/build&gt; 然后正常添加一些依赖到这个工程中。然后执行一下mvn clean install ，你就会发现本地mvn仓库生成了一个jar包，这个jar里直接打包了所有的jar
-关于插件部分
- 新建一个类型为pom的parent工程。用来包含下面的子工程，通过  &lt;modules&gt; &lt;module&gt;xxx.plugin.1&lt;/module&gt; &lt;module&gt;xxx.plugin.2&lt;/module&gt; &lt;/modules&gt;  来管理。同时 添加如下的插件  &lt;properties&gt; &lt;tycho.version&gt;0.24.0&lt;/tycho.version&gt; &lt;/properties&gt; &lt;build&gt; &lt;plugins&gt; &lt;plugin&gt; &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt; &lt;artifactId&gt;maven-source-plugin&lt;/artifactId&gt; &lt;executions&gt; &lt;execution&gt; &lt;id&gt;attach-sources&lt;/id&gt; &lt;phase&gt;none&lt;/phase&gt; &lt;/execution&gt; &lt;/executions&gt; &lt;version&gt;2.4&lt;/version&gt; &lt;/plugin&gt; &lt;plugin&gt; &lt;groupId&gt;org.eclipse.tycho&lt;/groupId&gt; &lt;artifactId&gt;tycho-maven-plugin&lt;/artifactId&gt; &lt;version&gt;${tycho.version}&lt;/version&gt; &lt;extensions&gt;true&lt;/extensions&gt; &lt;/plugin&gt; &lt;plugin&gt; &lt;groupId&gt;org.
-                  <a href="https://leizhiyuan.github.io/2016/05/21/eclipse%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91-tycho%E4%BD%BF%E7%94%A8/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%8F%92%E4%BB%B6/">插件</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%8A%80%E6%9C%AF/">技术</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E7%AC%94%E8%AE%B0/">笔记</a>&nbsp;
                   

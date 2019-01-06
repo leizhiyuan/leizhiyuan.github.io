@@ -196,6 +196,53 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2016/05/21/eclipse%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91-tycho%E4%BD%BF%E7%94%A8/">
+                <h2 class="post-title">eclipse插件开发-tycho使用</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on May 21, 2016
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (112 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  不说废话，直接上。本文主要包括tycho的使用，版本号的自动更新。
+eclipse插件开发中，依赖的管理是个问题。如果采用常规的搞个lib目录，然后加到MF文件中。一旦依赖越来越多。或者要更换版本号就变得非常麻烦。所以要用到tycho
+首先说明一下目录结构。一个parent的maven工程，一个plugin工程，。两个features。一个是deps的。一个是plugin的，这个依赖deps是独立的mvn项目。可以先不用管。一个deps依赖工程（这个依赖工程独立）。 在主pom下。
+步骤如下。
+关于依赖部分
+ 新建一个普通的mvn工程,比如deps。打包类型写成&lt;packaging&gt;bundle&lt;/packaging&gt;,同时在pom.xml中添加build部分  &lt;build&gt; &lt;plugins&gt; &lt;plugin&gt; &lt;groupId&gt;org.apache.felix&lt;/groupId&gt; &lt;artifactId&gt;maven-bundle-plugin&lt;/artifactId&gt; &lt;version&gt;3.0.1&lt;/version&gt; &lt;extensions&gt;true&lt;/extensions&gt; &lt;configuration&gt; &lt;niceManifest&gt;true&lt;/niceManifest&gt; &lt;manifestLocation&gt;META-INF&lt;/manifestLocation&gt; &lt;instructions&gt; &lt;Bundle-SymbolicName&gt;${project.artifactId}&lt;/Bundle-SymbolicName&gt; &lt;Embed-Dependency&gt;*&lt;/Embed-Dependency&gt; &lt;Embed-Transitive&gt;true&lt;/Embed-Transitive&gt; &lt;Embed-Directory&gt;lib&lt;/Embed-Directory&gt; &lt;Bundle-ClassPath&gt;{maven-dependencies}&lt;/Bundle-ClassPath&gt; &lt;_exportcontents&gt;*&lt;/_exportcontents&gt; &lt;_failok&gt;true&lt;/_failok&gt; &lt;_nouses&gt;true&lt;/_nouses&gt; &lt;Import-Package&gt;&lt;/Import-Package&gt; &lt;/instructions&gt; &lt;/configuration&gt; &lt;/plugin&gt; &lt;/plugins&gt; &lt;/build&gt; 然后正常添加一些依赖到这个工程中。然后执行一下mvn clean install ，你就会发现本地mvn仓库生成了一个jar包，这个jar里直接打包了所有的jar
+关于插件部分
+ 新建一个类型为pom的parent工程。用来包含下面的子工程，通过  &lt;modules&gt; &lt;module&gt;xxx.plugin.1&lt;/module&gt; &lt;module&gt;xxx.plugin.2&lt;/module&gt; &lt;/modules&gt;  来管理。同时 添加如下的插件  &lt;properties&gt; &lt;tycho.version&gt;0.24.0&lt;/tycho.version&gt; &lt;/properties&gt; &lt;build&gt; &lt;plugins&gt; &lt;plugin&gt; &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt; &lt;artifactId&gt;maven-source-plugin&lt;/artifactId&gt; &lt;executions&gt; &lt;execution&gt; &lt;id&gt;attach-sources&lt;/id&gt; &lt;phase&gt;none&lt;/phase&gt; &lt;/execution&gt; &lt;/executions&gt; &lt;version&gt;2.4&lt;/version&gt; &lt;/plugin&gt; &lt;plugin&gt; &lt;groupId&gt;org.eclipse.tycho&lt;/groupId&gt; &lt;artifactId&gt;tycho-maven-plugin&lt;/artifactId&gt; &lt;version&gt;${tycho.version}&lt;/version&gt; &lt;extensions&gt;true&lt;/extensions&gt; &lt;/plugin&gt; &lt;plugin&gt; &lt;groupId&gt;org.
+                  <a href="https://leizhiyuan.github.io/2016/05/21/eclipse%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91-tycho%E4%BD%BF%E7%94%A8/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%8F%92%E4%BB%B6/">插件</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%8A%80%E6%9C%AF/">技术</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%AC%94%E8%AE%B0/">笔记</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2016/03/25/ansible%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/">
                 <h2 class="post-title">ansible简单使用</h2>
                 
@@ -590,53 +637,6 @@ public class KafkaProducer extends Thread { private Producer&lt;Integer, String&
 <li><a href="http://www.infoq.com/cn/articles/kafka-analysis-part-4">Kafka设计解析（四）：Kafka Consumer解析</a></li>
 </ol>
 
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2015/09/05/kafka%E5%88%86%E5%B8%83%E5%BC%8F%E9%83%A8%E7%BD%B2%E4%B8%8E%E9%AA%8C%E8%AF%81/">
-                <h2 class="post-title">kafka分布式部署与验证</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 5, 2015
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (83 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  在kafka快速上手,和kafka中的partition和offset中,已经解释了kafka的一些原理,和完成了一个简单的生产消费的实践,如第一篇所说,kafka是一个分布式环境下的消息组件,那么,按照我们前面的简单上手,如果kafka的应用进程被杀或者kafka的机器宕机,那么kafka消息组件就无法使用了,或者zookeeper宕机了,那么kafka也无法使用了.
-kafka集群(cluster) 一台机器不够,那就多搞几台,首先,启动zookeeper这个就不多说了.可以参看前文,在启动kafka的时候,我们在单机模拟启动多个kafka应用. 首先在config目录,copy两个server.properties 文件,这里我复制三份,分别起名server1.properties ,server2.properties server3.properties 然后修改这三个配置文件,主要修改broker.id=2,port=9094,log.dir=/tmp/kafka-logs-2这三个值,broker.id是用来标记分布式环境中的broker的,要求唯一,port和log.dir一个端口,一个log目录,如果在真实的分布式环境中是不需要修改.这里单机模拟防止端口冲突.
-分别把broker.id改为1,2,3,log.dir则分别改成kafka-logs-1,kafka-logs-2,kafka-logs-3,然后依次启动 kafka-server-start.bat ../../config/server1.properties kafka-server-start.bat ../../config/server2.properties kafka-server-start.bat ../../config/server3.properties
-如果你启动有报错,一个就是之前说的那个vm参数太大,另一个可能是你的端口没改好.具体错误看下报错就好了.
-然后我们注册一个topic,叫做replicationtest kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 3 --partitions 1 --topic replicationtest 这里冗余是3,分区是1,那么最终各个broker都会保留一份,最多允许N-1,也就是2台broker宕机,服务照样运行. 注册之后,这时候 kafka-topics.bat--describe --zookeeper localhost:2181 --topic replicationtest 执行描述命令,看下集群情况 第一行给出了分区的汇总信息。每个分区行给出分区信息。
-&ldquo;Leader&rdquo; 节点是2. &ldquo;Replicas&rdquo; 信息，在节点2,3,1上,所有的节点信息. &ldquo;Isr&rdquo; 工作中的复制节点的集合. 也就是活的节点的集合.
-其他的就不用解释了.这里选出了2是leader,也就是说2这个节点会给消费者提供服务.
-然后我们测试一条信息. kafka-console-producer.bat --broker-list localhost:7777,localhost:8888,localhost:9999 --topic replicationtest 上面的7777是server1.properties 中设置的.根据个人情况.改改.然后在控制台发发消息.
-然后消费一下. kafka-console-consumer.bat --zookeeper localhost:2181 --topic replicationtest 这里的2181是zookeeper的端口,不用改. 然后.我们开始关掉一个broker,在3的控制台里CTRL,C.然后是否终止操作,输入Y. 再发一条消息 一切正常.我们看一下集群信息 发现Isr中存活的机器少了3.因为3挂了. 然后我们关掉broker2.这时候,会触发新的leader选举.期望值1变成leader,再发一条消息 可以看到生产者发消息过程中,产生了异常,因为和2的连接断开了.但是注意,消息并没有丢,因为触发了新的选举.可以看到,消费者还是接到了正常的消息.集群情况如下 至此,kafka的broker集群测试完毕,那么剩下的问题来了.消费者启动的时候连接的是zookeeper的地址,如果这台zookeeper挂了呢. 那么我们需要zookeeper集群部署.
-zookeeper集群 这就包括两部分. 1.
-                  <a href="https://leizhiyuan.github.io/2015/09/05/kafka%E5%88%86%E5%B8%83%E5%BC%8F%E9%83%A8%E7%BD%B2%E4%B8%8E%E9%AA%8C%E8%AF%81/" class="post-read-more">[Read More]</a>
                 
               </div>
 

@@ -196,6 +196,53 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2015/09/05/kafka%E5%88%86%E5%B8%83%E5%BC%8F%E9%83%A8%E7%BD%B2%E4%B8%8E%E9%AA%8C%E8%AF%81/">
+                <h2 class="post-title">kafka分布式部署与验证</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 5, 2015
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (83 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  在kafka快速上手,和kafka中的partition和offset中,已经解释了kafka的一些原理,和完成了一个简单的生产消费的实践,如第一篇所说,kafka是一个分布式环境下的消息组件,那么,按照我们前面的简单上手,如果kafka的应用进程被杀或者kafka的机器宕机,那么kafka消息组件就无法使用了,或者zookeeper宕机了,那么kafka也无法使用了.
+kafka集群(cluster) 一台机器不够,那就多搞几台,首先,启动zookeeper这个就不多说了.可以参看前文,在启动kafka的时候,我们在单机模拟启动多个kafka应用. 首先在config目录,copy两个server.properties 文件,这里我复制三份,分别起名server1.properties ,server2.properties server3.properties 然后修改这三个配置文件,主要修改broker.id=2,port=9094,log.dir=/tmp/kafka-logs-2这三个值,broker.id是用来标记分布式环境中的broker的,要求唯一,port和log.dir一个端口,一个log目录,如果在真实的分布式环境中是不需要修改.这里单机模拟防止端口冲突.
+分别把broker.id改为1,2,3,log.dir则分别改成kafka-logs-1,kafka-logs-2,kafka-logs-3,然后依次启动 kafka-server-start.bat ../../config/server1.properties kafka-server-start.bat ../../config/server2.properties kafka-server-start.bat ../../config/server3.properties
+如果你启动有报错,一个就是之前说的那个vm参数太大,另一个可能是你的端口没改好.具体错误看下报错就好了.
+然后我们注册一个topic,叫做replicationtest kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 3 --partitions 1 --topic replicationtest 这里冗余是3,分区是1,那么最终各个broker都会保留一份,最多允许N-1,也就是2台broker宕机,服务照样运行. 注册之后,这时候 kafka-topics.bat--describe --zookeeper localhost:2181 --topic replicationtest 执行描述命令,看下集群情况 第一行给出了分区的汇总信息。每个分区行给出分区信息。
+&ldquo;Leader&rdquo; 节点是2. &ldquo;Replicas&rdquo; 信息，在节点2,3,1上,所有的节点信息. &ldquo;Isr&rdquo; 工作中的复制节点的集合. 也就是活的节点的集合.
+其他的就不用解释了.这里选出了2是leader,也就是说2这个节点会给消费者提供服务.
+然后我们测试一条信息. kafka-console-producer.bat --broker-list localhost:7777,localhost:8888,localhost:9999 --topic replicationtest 上面的7777是server1.properties 中设置的.根据个人情况.改改.然后在控制台发发消息.
+然后消费一下. kafka-console-consumer.bat --zookeeper localhost:2181 --topic replicationtest 这里的2181是zookeeper的端口,不用改. 然后.我们开始关掉一个broker,在3的控制台里CTRL,C.然后是否终止操作,输入Y. 再发一条消息 一切正常.我们看一下集群信息 发现Isr中存活的机器少了3.因为3挂了. 然后我们关掉broker2.这时候,会触发新的leader选举.期望值1变成leader,再发一条消息 可以看到生产者发消息过程中,产生了异常,因为和2的连接断开了.但是注意,消息并没有丢,因为触发了新的选举.可以看到,消费者还是接到了正常的消息.集群情况如下 至此,kafka的broker集群测试完毕,那么剩下的问题来了.消费者启动的时候连接的是zookeeper的地址,如果这台zookeeper挂了呢. 那么我们需要zookeeper集群部署.
+zookeeper集群 这就包括两部分. 1.
+                  <a href="https://leizhiyuan.github.io/2015/09/05/kafka%E5%88%86%E5%B8%83%E5%BC%8F%E9%83%A8%E7%BD%B2%E4%B8%8E%E9%AA%8C%E8%AF%81/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2015/09/04/kafka%E4%B8%AD%E7%9A%84partition%E5%92%8Coffset/">
                 <h2 class="post-title">kafka中的partition和offset</h2>
                 
@@ -781,71 +828,6 @@ A: When you login, it hangs or takes more than a minute to get the response. If 
                     <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2015/05/10/%E5%85%B3%E4%BA%8E%E5%9B%BD%E4%BA%A7%E7%9A%84%E4%B8%80%E4%BA%9B%E6%83%B3%E6%B3%95/">
-                <h2 class="post-title">关于国产的一些想法</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on May 10, 2015
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (33 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  <p>最近也没啥特殊的事情,恰好昨晚魅族云服务当机,导致本地所以联系人丢失,路上想给家里打个电话,没法打,最近又入手了国产入门机械键盘雷柏v500,写点啥呢.
-##魅族##</p>
-
-<p>魅族mx4是我去年11月份入手的.且不说魅族搞饥饿营销.先说说我手机从去年到现在遇到的问题.
- 1. 屏幕黄边,刚入手没多久,屏幕左侧出现明显黄边,当时很无语.这质量..不过拿去直接给换了个屏幕,同事的另一台也是,入手后直接屏幕大面积坏点.
- 2. 通话质量,我买手机主要就是为了打电话,可是魅族这通话质量,打着打着就没声音了,电流声声音很大.尤其微信的时候.
- 3.  固件更新质量,有问题通过更新是好事,但是魅族的工程师每周编出那么多更新log也是蛮拼的.实际上一点问题没解决.老是改计算器,闹钟,比较著名的就是之前有人提到的滑动变点击,用了好几个月最后悄悄修复了.
- 4. 安全,之前对魅族的质量还算放心,结果上上周,直接整个出应用中心故障,导致很多用户手机莫名秒开始自动下载软件,自动安装,卸载完成又出现,我当时怀疑是我开了wifi下自动更新,于是关掉了.结果还真是.最后给出个这么说法.
-  &gt; 亲爱的魅友们： Flyme应用中心于4月28日晚间服务器发生故障，部分用户出现应用名称与图标混乱，自动更新安装其他应用等情况。在发现故障之后，2个小时之内已经解决，给大家造成不便我们深表歉意。</p>
-
-<p>你特么在逗我.你确定是两小时?
- 5. 云服务,同上,之前很放心的把手机通讯录,联系人之类的都同步到了魅族的云服务上.结果已经出现好几次没法同步,数据本地丢失,找客服说让我再试试.服务器报错你让我再试试..
- 6. 诚信,我司的价值观之一诚信,现在看来真的很重要,魅族公司品质极差,之前其总设计师杨颜放狠话,说5月份公测flyme4.5 ,其官微更是转发,说不发发手机,结果,所有人等到5月份,前一天先把公告删了.然后重新发了一封,说不公测.品质极其差.</p>
-
-<p>综上,对魅族手机已经彻底失望.一分钱一分货,就别老是贬低别的厂商,一句话评价就是中看不中用.</p>
-
-<p>##雷柏v500##</p>
-
-<p>雷柏v500是我的第一个机械键盘,我是很喜欢80%这种键位的.不喜欢小键盘区域,有了小键盘区域,键盘太大了.于是当时是看好了filco 87圣手,poker2,race2的.最后由于前一个太贵,后两个没有F1,F2这些而告终,毕竟我是要调试程序,写代码的.没有这几个直接的键位那跟咸鱼有什么区别.用了几周下来.简单汇总下
-1. 便宜,219买的.这价格是真的便宜.而且是80%的键位,雷柏也还是比较出名,之前也买过个鼠标我记得.
-2. 手感,和普通薄膜键盘手感差异很大.手感不错,打字的确有快感.但是你说让爱上打字这个还是有难度的.毕竟.班上多了心情不好.
-3. 不方便,由于是80%,所以键盘小,但是,相当重,好像是有个钢板.非常重,比我的x1笔记本都重,整个人都不好了.自从带去公司,再也不想带回来了.</p>
-
-<p>综上,整体还是不错的,一分钱一分货,不要夸自己和cherry,flico的距离,差距肯定大大的.但是性价比高.</p>
-
-<p>##总结##</p>
-
-<p>总结就是魅族是个坑爹的公司,雷柏键盘还行吧.</p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E4%BD%9C/">工作</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%81%8C%E4%B8%9A/">职业</a>&nbsp;
                   
                 </div>
               

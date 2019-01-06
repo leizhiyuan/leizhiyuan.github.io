@@ -175,7 +175,7 @@
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 9, 2012
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 16, 2012
   
   
   &nbsp;|&nbsp;
@@ -200,6 +200,59 @@
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
         <div class="posts-list">
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/09/16/c#-%E5%A7%94%E6%89%98%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/">
+                <h2 class="post-title">C# 委托知识总结</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 16, 2012
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 4 minutes (705 words)
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  如果你足够强大，你就不会把幸福押在别人身上，你会自己创造幸福或者给别人带来幸福。而变得强大的途径就是学习，就是读书，学一切东西，读任何想读的书。 爱你让我变得更强。。 继续读一些专业文章了。不保证都是原创，但是保证每篇技术文章的质量。也会注明来源，标准就是浅显易懂。但不简单。
+原文来自：贺臣感谢原作者的好文章。 1.什么是委托，为什么要使用委托
+我正在埋头苦写程序，突然想喝水，但是又不想自己去掉杯水而打断自己的思路，于是我就想让女朋友去给我倒水。她去给我倒水，首先我得让她知道我想让她干什么，通知她之后我可以继续写自己的程序，而倒水的工作就交给了她。这样的过程就相当于一个委托。
+在程序过程中，当程序正在处理某个事件的时候，我需要另外的程序代码去辅助处理一些事情，于是委托另一个程序模块去处理，而委托就可以达到这种目的，我可以利用委托通知另外的程序模块，该去调用哪个函数方法。委托其实就起到了这样一个作用，将函数签名传递到了另一个函数中。或许这样讲还是有些模糊，看看后面的具体实例。
+2.委托的定义 delegate int Add(int num1,int num2);
+delegate void ConvertNum(string result);  上面是定义两个委托的例子，其实很简单。声明一个委托使用delegate关键字，上面分别是定义的带返回值的委托和不带返回值的委托，
+两个委托都有传递参数，当然也可以不传递参数。其实委托也是一个类，委托派生为System.MulticastDelegate,而System.MulticastDelegate
+又继承System.Delegate,如果你知道这个也就明白委托其实是一个特殊的类。 委托的简单实用例子 public delegate string TeaDelegate(string spText);
+public class DelegateSource { public void TestDelegate() { Operator op = new Operator(); TeaDelegate tea = new TeaDelegate(op.GetTea); Console.WriteLine(&#34;去给我倒杯水&#34;); Console.WriteLine(); string result=tea(&#34;去给我倒杯水&#34;); Thread.Sleep(5000); Console.WriteLine(result); Console.WriteLine(); } } public class Operator { /// &lt;summary&gt; /// 确定是否还有水 /// &lt;/summary&gt; private bool flag = true; public string GetTea(string spText) { if (spText == &#34;去给我倒杯水&#34;) { if (flag) { return &#34;老公,茶来了&#34;; } else { return &#34;老公,没有水了&#34;; } } return &#34;等待.
+                  <a href="https://leizhiyuan.github.io/2012/09/16/c#-%E5%A7%94%E6%89%98%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%94%B6%E8%97%8F/">收藏</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/09/09/%E9%80%9A%E8%BF%87windows%E5%BA%94%E7%94%A8%E8%BF%9B%E8%A1%8C%E6%9C%8D%E5%8A%A1%E5%AF%84%E5%AE%BF%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81/">
@@ -844,65 +897,6 @@ string s=obj.SessionId;</pre>
                     <a href="https://leizhiyuan.github.io//tags/%E6%9D%82%E6%96%87/">杂文</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E7%94%9F%E6%B4%BB/">生活</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/08/20/sqlserver-2008%E5%BC%80%E5%90%AF%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/">
-                <h2 class="post-title">SqlServer 2008开启远程连接</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on August 20, 2012
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (18 words)
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  <p>对于需要外部访问数据库的操作，需要开启sql server的远程连接。没经验的我等Google之。。大部分操作按照<a href="http://jingyan.baidu.com/article/6c67b1d6ca06f02787bb1ed1.html/">SQL Server 2008 R2如何开启数据库的远程连接</a>来操作</p>
-
-<p>　　但是。有一些很小的细节需要注意。我的数据库是Sql Server 2008 Express版。这个是VS自带的。为了管理方便，可以安装<a href="http://www.microsoft.com/zh-cn/download/details.aspx?id=7593">SQL Server® 2008 Management Studio Express</a> 安装过程不多说。安装完成后，直接打开</p>
-
-<p>　　<a href="http://leaverimage.b0.upaiyun.com/26088_o.jpg"><img src="/images/e03ce8654db7fcc6eb18d317acd95e7e78f974e8.jpg" alt="" title="login" /></a></p>
-
-<p>　　服务器名称默认是空的。。“.”好像是不行的，这时候点击右边箭头。更多，本地和远程服务器。在远程服务器里可以找到。点击就可以了。</p>
-
-<p>　　我按照文章改完。sa还是登不上。。然后又试了一些</p>
-
-<p>　　<a href="http://leaverimage.b0.upaiyun.com/26089_o.jpg"><img src="/images/245e1caa369d6d4473c100bb48e6bcb069793727.jpg" alt="" title="role" /></a></p>
-
-<p>　　如上图右键sa，属性，常规里设置sa密码。不要太简单。状态里的登录选项设为启用。ok。。我碰上的问题就这几个。</p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
                   
                 </div>
               

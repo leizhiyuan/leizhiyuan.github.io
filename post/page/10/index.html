@@ -202,6 +202,52 @@
         <div class="posts-list">
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%BA%94%E7%AF%87%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E7%BB%AD/">
+                <h2 class="post-title">[译]Unix sed实用教程第五篇–替换文件内容续</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on August 10, 2013
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (185 words)
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  前面已经学习过替换文件内容了，本文我们学习一些更频繁使用的搜索替换操作.
+示例文件使用： $ cat file RE01:EMP1:25:2500 RE02:EMP2:26:2650 RE03:EMP3:24:3500 RE04:EMP4:27:2900 1.替换每行开始的两个字母，这里用XX来替换 $ sed &rsquo;s/^../XX/&rsquo; file XX01:EMP1:25:2500 XX02:EMP2:26:2650 XX03:EMP3:24:3500 XX04:EMP4:27:2900 s代表substitute，前面说过了，^用来匹配行开头，.表示任意一个字符，两个..就是你懂的，
+其实，不要^符号也是可以的，因为默认就是从开头开始匹配，如下也可以实现 sed &rsquo;s/../XX/&rsquo; file 2.删除每行开头的两个字符 $ sed &rsquo;s/^..//&rsquo; file 01:EMP1:25:2500 02:EMP2:26:2650 03:EMP3:24:3500 04:EMP4:27:2900 看到没有，后两个斜线之间没有内容，也就是用空字符来替换开头的两个字符，就实现了删除
+3.要是想删除每行最后的两个字符呢 $ sed &rsquo;s/..$//&rsquo; file RE01:EMP1:25:25 RE02:EMP2:26:26 RE03:EMP3:24:35 RE04:EMP4:27:29 再次强调，$在不同的情况下表示不同的意思，这里匹配行尾，有时候也匹配文件尾部
+4.向每行末尾添加内容 $ sed &rsquo;s/$/.Rs/&rsquo; file RE01:EMP1:25:2500.Rs RE02:EMP2:26:2650.Rs RE03:EMP3:24:3500.Rs RE04:EMP4:27:2900.Rs 这里，先匹配行尾，然后把&rdquo;.Rs&rdquo;添加到行尾
+5.在每行开头添加空格 $ sed &rsquo;s/^/ /&rsquo; file RE01:EMP1:25:Rs.2500 RE02:EMP2:26:Rs.2650 RE03:EMP3:24:Rs.3500 RE04:EMP4:27:Rs.2900 还记得前面说过的么，sed默认不影响原始文件，要是想更新原始文件，请加-i参数 $ sed -i &rsquo;s/^/ /&rsquo; file $ cat file RE01:EMP1:25:Rs.
+                  <a href="https://leizhiyuan.github.io/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%BA%94%E7%AF%87%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E7%BB%AD/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/linux/">linux</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/shell/">shell</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%9B%9B%E7%AF%87%E9%80%89%E6%8B%A9%E6%80%A7%E6%89%93%E5%8D%B0/">
                 <h2 class="post-title">[译]Unix sed实用教程第四篇–选择性打印</h2>
 
@@ -723,66 +769,6 @@ public class Boss { //表示工作时间 private int virTime; //下班时老板�
                     <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/06/11/dmp%E7%89%88%E6%9C%AC%E4%BF%AE%E6%94%B9%E5%B7%A5%E5%85%B7c/">
-                <h2 class="post-title">DMP版本修改工具(C#)</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on June 11, 2013
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (10 words)
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  <p>最近在使用oracle导入一个dmp文件的时候，由于不知道dmp文件是如何导出的，是使用exp还是expdp导出的，所以纠结了比较长的时间，最后想到是否可以查看dmp文件的一些辅助信息呢，于是有了这个工具。</p>
-
-<p>在使用dmp导入的时候报如下错误
-<pre class="lang:default decode:true">IMP-00010: 不是有效的导出文件，标题验证失败
-IMP-00000: 未成功终止导入</pre>
-据说有两个可能，1个是文件本身损坏，另一个是版本问题，多出现在高版本导出的数据向低版本导入。解决方法就是修改一下dmp文件就行了。dmp文件头部大概9个字节处标识了版本号用来头部验证。对于非常大的dmp我们不能直接用文本编辑器打开，因此找找资料，写个工具。本机一个12GB的文件已测试。</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/37341_o.png"><img src="/images/71a2a354a4dd2867eb60f08548a9da16870e4949.png" alt="" /></a></p>
-
-<p>工具使用很简单，选择文件，识别出来版本，按格式改成导入端oracle的版本值，然后即可正常导入11G-10G测试成功。</p>
-
-<p>下载地址：<a href="http://pan.baidu.com/share/link?shareid=2717736101&amp;amp;uk=1493685990">DMP版本修改工具</a></p>
-
-<p>&nbsp;</p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
                   

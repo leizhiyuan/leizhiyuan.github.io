@@ -202,6 +202,68 @@
         <div class="posts-list">
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2013/09/19/maven%E5%BA%93%E4%BE%9D%E8%B5%96%E6%9C%BA%E5%88%B6%E5%8F%8A%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BA%93/">
+                <h2 class="post-title">Maven库依赖机制及添加自定义库</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 19, 2013
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (118 words)
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  一.Maven库依赖机制 Maven的库依赖机制可以帮助我们自动下载依赖的库文件，并且还能更新版本。。
+考虑一个情境来理解机制的工作原理，假设我们要使用Log4J库作为项目的日志记录。以下是我们要做的
+1.传统的方式 1）访问Log4J网站http://logging.apache.org/log4j/2.x/
+2）下载Log4J的jar包
+3）复制进项目的classpath里
+4）手工包含到项目的依赖里
+看到没，你要从头做到尾，如果Log4J更新了，你得再来一遍。。
+2.Maven的方式 1）需要知道Log4J的Maven坐标(coordinates,这个暂时没想到好名字)，就是这样的东西 &lt;groupId&gt;log4j&lt;/groupId&gt; &lt;artifactId&gt;log4j&lt;/artifactId&gt; &lt;version&gt;1.2.14&lt;/version&gt; 然后Maven就会自动下载1.2.14版本的Log4J了。如果version这个元素没有，那么如果有了新版本，Maven会自动下载新版本的。
+2）在pom.xml里声明这个Maven坐标 &lt;dependencies&gt; &lt;dependency&gt; &lt;groupId&gt;log4j&lt;/groupId&gt; &lt;artifactId&gt;log4j&lt;/artifactId&gt; &lt;version&gt;1.2.14&lt;/version&gt; &lt;/dependency&gt; &lt;/dependencies&gt; 3）当Maven编译或者build的时候，Log4J会自动下载，放入本地仓库里
+4）Maven全部接管
+3.解释 搜索顺序前面说过了。本地-》中央-》远程仓库
+Maven坐标咋来的，当然去中央仓库搜索之了，搜索结果清晰的令人发指
+二.添加自定义库到本地仓库 有两个情况，需要我们包含自定义的库到本地仓库里
+1是你想使用的jar文件不再中央仓库
+2是你创建了一个自定义的jar包，需要另一个项目使用这个jar
+比如，kaptche，一个第三方的java库，生成验证码，现在中央仓库没有了。
+我们想要加到本地仓库里
+1.mvn安装 下载kaptche，解压并且拷贝kaptcha-version.jar到其他任何你喜欢的地方，比如c盘，然后输入如下格式的命令 mvn install:install-file -Dfile=c:\kaptcha-{version}.jar -DgroupId=com.google.code -DartifactId=kaptcha -Dversion={version} -Dpackaging=jar 这里我这样输入 D:&amp;gt;mvn install:install-file -Dfile=c:\kaptcha-2.3.jar -DgroupId=com.google.code -DartifactId=kaptcha -Dversion=2.3 -Dpackaging=jar [INFO] Scanning for projects&hellip; [INFO] Searching repository for plugin with prefix: &lsquo;install&rsquo;. [INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash; [INFO] Building Maven Default Project [INFO] task-segment: install:install-file [INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash; [INFO] [install:install-file] [INFO] Installing c:\kaptcha-2.
+                  <a href="https://leizhiyuan.github.io/2013/09/19/maven%E5%BA%93%E4%BE%9D%E8%B5%96%E6%9C%BA%E5%88%B6%E5%8F%8A%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BA%93/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/maven/">maven</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2013/09/19/maven%E4%BB%93%E5%BA%93%E8%AF%A6%E8%A7%A3/">
                 <h2 class="post-title">Maven仓库详解</h2>
 
@@ -691,52 +753,6 @@ n命令是输出当前行，然后读入下一行到pattern space的意思，这
 6.删除第一行和最后一行 $ sed &lsquo;1d;$d&rsquo; file Unix Linux Solaris 分号隔开两个命令，你懂的，也可以删除第二行和第三行等等. &rsquo;2d;3d&rsquo;
 7.删除以指定字符开头的行 $ sed &lsquo;/^L/d&rsquo; file Cygwin Unix Solaris AIX 这里就把以L开头的Linux这一行删除了
                   <a href="https://leizhiyuan.github.io/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AD%E7%AF%87%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/linux/">linux</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/shell/">shell</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%BA%94%E7%AF%87%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E7%BB%AD/">
-                <h2 class="post-title">[译]Unix sed实用教程第五篇–替换文件内容续</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on August 10, 2013
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (185 words)
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  前面已经学习过替换文件内容了，本文我们学习一些更频繁使用的搜索替换操作.
-示例文件使用： $ cat file RE01:EMP1:25:2500 RE02:EMP2:26:2650 RE03:EMP3:24:3500 RE04:EMP4:27:2900 1.替换每行开始的两个字母，这里用XX来替换 $ sed &rsquo;s/^../XX/&rsquo; file XX01:EMP1:25:2500 XX02:EMP2:26:2650 XX03:EMP3:24:3500 XX04:EMP4:27:2900 s代表substitute，前面说过了，^用来匹配行开头，.表示任意一个字符，两个..就是你懂的，
-其实，不要^符号也是可以的，因为默认就是从开头开始匹配，如下也可以实现 sed &rsquo;s/../XX/&rsquo; file 2.删除每行开头的两个字符 $ sed &rsquo;s/^..//&rsquo; file 01:EMP1:25:2500 02:EMP2:26:2650 03:EMP3:24:3500 04:EMP4:27:2900 看到没有，后两个斜线之间没有内容，也就是用空字符来替换开头的两个字符，就实现了删除
-3.要是想删除每行最后的两个字符呢 $ sed &rsquo;s/..$//&rsquo; file RE01:EMP1:25:25 RE02:EMP2:26:26 RE03:EMP3:24:35 RE04:EMP4:27:29 再次强调，$在不同的情况下表示不同的意思，这里匹配行尾，有时候也匹配文件尾部
-4.向每行末尾添加内容 $ sed &rsquo;s/$/.Rs/&rsquo; file RE01:EMP1:25:2500.Rs RE02:EMP2:26:2650.Rs RE03:EMP3:24:3500.Rs RE04:EMP4:27:2900.Rs 这里，先匹配行尾，然后把&rdquo;.Rs&rdquo;添加到行尾
-5.在每行开头添加空格 $ sed &rsquo;s/^/ /&rsquo; file RE01:EMP1:25:Rs.2500 RE02:EMP2:26:Rs.2650 RE03:EMP3:24:Rs.3500 RE04:EMP4:27:Rs.2900 还记得前面说过的么，sed默认不影响原始文件，要是想更新原始文件，请加-i参数 $ sed -i &rsquo;s/^/ /&rsquo; file $ cat file RE01:EMP1:25:Rs.
-                  <a href="https://leizhiyuan.github.io/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%BA%94%E7%AF%87%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E7%BB%AD/" class="post-read-more">[Read More]</a>
                 
               </div>
 

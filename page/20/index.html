@@ -196,6 +196,72 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/09/24/wpf%E6%AF%9B%E7%8E%BB%E7%92%83%E6%95%88%E6%9E%9Cdemo%E5%92%8C%E4%B8%80%E4%B8%AA%E9%97%AE%E9%A2%98/">
+                <h2 class="post-title">WPF毛玻璃效果Demo和一个问题</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 24, 2012
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (39 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  <p>那天看到WPF书上讲的毛玻璃效果，就去找了下效果。。忘了例子是从哪发现得了。。先看下效果，</p>
+
+<p><a href="http://leaverimage.b0.upaiyun.com/27420_o.jpg"><img src="/images/638a69761205e3d5c16a5bd34a2f775de190d137.jpg" alt="" title="glass" /></a>
+　　但是这不是重点，作者给出的代码有一个设计时错误。。错误提示为：
+无法将类型为“Microsoft.Expression.Platform.WPF.InstanceBuilders.WindowInstance”的对象强制转换为类型“System.Windows.Window”，，</p>
+
+<p>　　中文搜了一下。没有发现有人解决过。目测。。。然后又拿英文搜了下。几经辗转。。终于是解决了。。原文在<a href="http://social.msdn.microsoft.com/Forums/is/wpf/thread/931e75a8-cab6-492d-89cd-b7ca291fa273">Unable to cast XAML error</a>。其实就是将原作者这个函数修改如下的</p>
+
+<p><pre class="lang:c# decode:true " >public static void OnIsEnabledChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
+        {</p>
+<div class="highlight"><pre class="chroma">        if ((bool)args.NewValue == true)
+        {
+            Window wnd = obj as Window;
+            if (wnd != null) wnd.Loaded += new RoutedEventHandler(wnd_Loaded);
+        }
+    }&lt;/pre&gt; </pre></div>
+<p>　　也就是验证了一下转换是否成功。</p>
+
+<p>下载：<a href="http://pan.baidu.com/share/link?shareid=61615&amp;uk=1493685990">修改后的RGSamples</a></p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/wpf/">WPF</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%8E%9F%E5%88%9B/">原创</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%94%B6%E8%97%8F/">收藏</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/09/24/.net%E6%98%BE%E7%A4%BA%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E7%8A%B6%E6%80%81%E5%9B%BE%E6%A0%87/">
                 <h2 class="post-title">.net显示网络连接状态图标</h2>
                 
@@ -722,56 +788,6 @@ update：感谢<a href="http://luacloud.com/">月亮云</a>的提醒，官网是
                     <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E8%AF%91/">编译</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/09/16/c#-%E5%A7%94%E6%89%98%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/">
-                <h2 class="post-title">C# 委托知识总结</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 16, 2012
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 4 minutes (705 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  如果你足够强大，你就不会把幸福押在别人身上，你会自己创造幸福或者给别人带来幸福。而变得强大的途径就是学习，就是读书，学一切东西，读任何想读的书。 爱你让我变得更强。。 继续读一些专业文章了。不保证都是原创，但是保证每篇技术文章的质量。也会注明来源，标准就是浅显易懂。但不简单。
-原文来自：贺臣感谢原作者的好文章。 1.什么是委托，为什么要使用委托
-我正在埋头苦写程序，突然想喝水，但是又不想自己去掉杯水而打断自己的思路，于是我就想让女朋友去给我倒水。她去给我倒水，首先我得让她知道我想让她干什么，通知她之后我可以继续写自己的程序，而倒水的工作就交给了她。这样的过程就相当于一个委托。
-在程序过程中，当程序正在处理某个事件的时候，我需要另外的程序代码去辅助处理一些事情，于是委托另一个程序模块去处理，而委托就可以达到这种目的，我可以利用委托通知另外的程序模块，该去调用哪个函数方法。委托其实就起到了这样一个作用，将函数签名传递到了另一个函数中。或许这样讲还是有些模糊，看看后面的具体实例。
-2.委托的定义 delegate int Add(int num1,int num2);
-delegate void ConvertNum(string result);  上面是定义两个委托的例子，其实很简单。声明一个委托使用delegate关键字，上面分别是定义的带返回值的委托和不带返回值的委托，
-两个委托都有传递参数，当然也可以不传递参数。其实委托也是一个类，委托派生为System.MulticastDelegate,而System.MulticastDelegate
-又继承System.Delegate,如果你知道这个也就明白委托其实是一个特殊的类。 委托的简单实用例子 public delegate string TeaDelegate(string spText);
-public class DelegateSource { public void TestDelegate() { Operator op = new Operator(); TeaDelegate tea = new TeaDelegate(op.GetTea); Console.WriteLine(&#34;去给我倒杯水&#34;); Console.WriteLine(); string result=tea(&#34;去给我倒杯水&#34;); Thread.Sleep(5000); Console.WriteLine(result); Console.WriteLine(); } } public class Operator { /// &lt;summary&gt; /// 确定是否还有水 /// &lt;/summary&gt; private bool flag = true; public string GetTea(string spText) { if (spText == &#34;去给我倒杯水&#34;) { if (flag) { return &#34;老公,茶来了&#34;; } else { return &#34;老公,没有水了&#34;; } } return &#34;等待.
-                  <a href="https://leizhiyuan.github.io/2012/09/16/c#-%E5%A7%94%E6%89%98%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%94%B6%E8%97%8F/">收藏</a>&nbsp;
                   
                 </div>
               
