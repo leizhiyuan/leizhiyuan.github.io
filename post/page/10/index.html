@@ -202,6 +202,49 @@
         <div class="posts-list">
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AD%E7%AF%87%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/">
+                <h2 class="post-title">[译]Unix sed实用教程第六篇–删除文件内容</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on August 10, 2013
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 2 minutes (284 words)
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  其实，删除和替换是由一些相同的，不过，这里我们单独列出来，通过25个例子穿插讲解sed删除文件的一些方法，使用的示例文件如下： $ cat file Cygwin Unix Linux Solaris AIX 1.删除第一行 $ sed &lsquo;1d&rsquo; file Unix Linux Solaris AIX d就是删除，1就是指第1行，记得哦，这不会影响到源文件，一般，做删除的时候一般要加-i参数，前面说过了 sed -i &lsquo;1d&rsquo; file 2.删除指定行，这里删除第3行 $ sed &lsquo;3d&rsquo; file Cygwin Unix Solaris AIX 3.删除最后一行 $ sed &lsquo;$d&rsquo; file Cygwin Unix Linux Solaris 4.删除范围行，这里删除2-4行 $ sed &lsquo;2,4d&rsquo; file Cygwin AIX 5.保留指定的行，这里保留2-4行 $ sed &lsquo;2,4!d&rsquo; file Unix Linux Solaris ！这个是对前面的2,4来操作，是非的意思，也就是不是2-4行的行，这样除去2-4行，其他的都删除了
+6.删除第一行和最后一行 $ sed &lsquo;1d;$d&rsquo; file Unix Linux Solaris 分号隔开两个命令，你懂的，也可以删除第二行和第三行等等. &rsquo;2d;3d&rsquo;
+7.删除以指定字符开头的行 $ sed &lsquo;/^L/d&rsquo; file Cygwin Unix Solaris AIX 这里就把以L开头的Linux这一行删除了
+                  <a href="https://leizhiyuan.github.io/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AD%E7%AF%87%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/linux/">linux</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/shell/">shell</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%BA%94%E7%AF%87%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E7%BB%AD/">
                 <h2 class="post-title">[译]Unix sed实用教程第五篇–替换文件内容续</h2>
 
@@ -719,58 +762,6 @@ font-size:40px;
                     <a href="https://leizhiyuan.github.io//tags/%E7%A4%BE%E4%BC%9A/">社会</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/06/25/%E5%A7%94%E6%89%98%E5%92%8C%E4%BA%8B%E4%BB%B6%E7%A4%BA%E4%BE%8B/">
-                <h2 class="post-title">委托和事件示例</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on June 25, 2013
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (197 words)
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  C#中委托和事件的例子比较多，讲得好的非常好，就不瞎凑热闹了，推荐博客园大牛的一篇：
-C# 中的委托和事件 ，如果你已经有了相应的基础，但没写过相关的例子，那我这里提供一个，首先看一下规范
-.Net Framework的编码规范：
- 委托类型的名称都应该以EventHandler结束。 委托的原型定义：有一个void返回值，并接受两个输入参数：一个Object 类型，一个 EventArgs类型(或继承自EventArgs)。 事件的命名为 委托去掉 EventHandler之后剩余的部分。 继承自EventArgs的类型应该以EventArgs结尾。 然后描述一下流程：  老板监视时间变动（ComputerOffWorkTime方法），当工作时间满50后，通知员工时间到（OnNotifyOffWork方法，并传递OffWorkEventArgs参数），可以下班了，（OnNotifyOffWork方法内部调用事件NotifyOffWork），正式员工收到通知后，则下班，其他员工则清扫一下办公室
-&nbsp;
-然后给出例子： using System; using System.Collections.Generic; using System.IO; using System.Linq; using System.Security.Cryptography; using System.Text;
-namespace DelegateAndEvent {
-public class Boss { //表示工作时间 private int virTime; //下班时老板说的话 public String SaidWords { get { return &#34;Boss:时间到，下班了&#34;; } } //委托定义 public delegate void NotifyOffWorkEventHandler(Object sender, OffWorkEventArgs e); //事件 public event NotifyOffWorkEventHandler NotifyOffWork; //事件参数 public class OffWorkEventArgs:EventArgs { public readonly int virTime; public OffWorkEventArgs(int virTime) { this.
-                  <a href="https://leizhiyuan.github.io/2013/06/25/%E5%A7%94%E6%89%98%E5%92%8C%E4%BA%8B%E4%BB%B6%E7%A4%BA%E4%BE%8B/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
                   
                 </div>
               

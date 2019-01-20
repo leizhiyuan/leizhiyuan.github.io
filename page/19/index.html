@@ -196,6 +196,63 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/10/01/c#%E7%BC%96%E5%86%99%E6%96%87%E4%BB%B6%E6%90%9C%E7%B4%A2%E5%99%A8/">
+                <h2 class="post-title">C#编写文件搜索器</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on October 1, 2012
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (192 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  介绍 在装有Vista的机器上。我想通过一个给定的字符串来搜索我硬盘上的一个文件，该文件内容包含这个字符串序列，资源管理器是做不到的。因此，我就决定自己写吧。然后就写成这样了。。
+我做了什么
+你必须输入一个选择一个搜索目录，这样程序才知道在哪搜索文件/目录，如果你选上了“包含子目录”复选框，程序就会递归地搜索指定目录的子目录，指定的文件名可以是像 &ldquo;.wav;.mp3;Christma??ree.*&rdquo; 这样的字符串，程序将会列出所有的文件/目录匹配这些文件名
+你也可以使用一些限制条件来限制找到的项目，每一个限制条件可以通过选上复选框来激活，限制条件的参数可以在右边选中就行了。
+1. “Files newer than”将会列出LastWriteTime（上次修改时间）晚于指定时间的文件 2. “Files newer than”将会列出LastWriteTime（上次修改时间）早于指定时间的文件 3. &ldquo;Files containing the string&rdquo;仅仅列出包含字符串参数的文件。
+程序将会把字符串转换成字节序列，可以使用ASCII或者Unicode编码，取决于你的选择，然后搜索每一个出现这个字节序列的文件。
+点击Start（开始）按钮就开始搜索了。找到的项目会列在下面，如果搜索时间太长了。你可以点击Stop（停止）来停止搜索。
+如果你双击下面的一个文件。不是文件夹哦，程序将会根据关联程序打开该文件 如果你邮件一个项目，然后选择“Open Containing Folder”（打开包含文件夹）将会在资源管理器里打开包含该项目的文件夹
+如果你想要把搜索结果保存到一个文本文件。输入个分隔符分隔项目，然后点击“Write results to text file…”（保存结果到文本…）
+使用代码 1. MainWindow处理所有的界面事务 2. Searcher类提供了业务逻辑，用来搜索FileSystemInfo对象
+当用户点击Start（开始）按钮，Searcher.Start 方法就会执行，该方法开启了一个名为SearchThread 的新线程，这个线程搜索文件/目录，匹配用户输入的参数，如果找到了一个匹配的FileSystemInfo对象，它就出发一个异步的FoundInfo 事件，然后MainWindow就可以从FoundInfoEventArgs中解出FileSystemInfo对象，然后更新结果列表，当线程结束的时候，将m_thread成员对象设置为null，每一次Searcher.Start 执行的时候都会检测m_thread是否为null，因此同时不会有两个线程在运行。
+当用户点击Stop(停止)按钮的时候Searcher.Stop 方法被执行，然后设置m_stop 成员为true， Searchthread会注意到这个改变。注意本操作是线程安全的。因为布尔变量只需要一步就操作完成了
+重要：在Searcher_FoundInfo 事件处理中，MainWindow使用Invoke方法通过代理来调用this_FoundInfo 方法。通过这个方法，MainWindow是的更新结果列表的代码在MainWindow的线程里执行，而不是在Searcher的线程里，直接调用this_FoundInfo 方法会引发程序崩溃，因为Searcher_FoundInfo 事件处理和图形界面控件不同步。
+private delegate void FoundInfoSyncHandler(FoundInfoEventArgs e); private FoundInfoSyncHandler FoundInfo; ... private void MainWindow_Load(object sender, EventArgs e) { ... this.FoundInfo += new FoundInfoSyncHandler(this_FoundInfo); .
+                  <a href="https://leizhiyuan.github.io/2012/10/01/c#%E7%BC%96%E5%86%99%E6%96%87%E4%BB%B6%E6%90%9C%E7%B4%A2%E5%99%A8/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/wpf/">WPF</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/09/30/csv%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E5%B7%A5%E5%85%B7/">
                 <h2 class="post-title">CSV导入导出工具</h2>
                 
@@ -695,84 +752,6 @@ namespace leaver
                     <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/09/24/vs%E6%89%A9%E5%B1%95%E6%95%85%E9%9A%9C%E9%94%99%E8%AF%AF%E7%A0%8180131515/">
-                <h2 class="post-title">VS扩展故障,错误码:80131515</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 24, 2012
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (29 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  
-
-<h3 id="介绍">介绍</h3>
-
-<p>如果你给VS安装了<a href="http://www.codeproject.com/Articles/446955/Web-Search-Visual-Studio-Add-in-Search-Google-Yaho">Web Search</a>扩展，如果第一次运行就出现了错误代码是80131515的问题。那么本文对你是有用的。。
-<a href="http://leaverimage.b0.upaiyun.com/27488_o.png"><img src="/images/31f5dde58ae04aa01469671b23b71a15d328c51c.png" alt="" title="question" /></a></p>
-
-<h3 id="背景">背景</h3>
-
-<p>当我远程试图运行<a href="http://www.codeproject.com/Articles/446955/Web-Search-Visual-Studio-Add-in-Search-Google-Yaho">Web Search</a>的时候出现了这个错误。我用本文第一种方法解决了。。</p>
-
-<h3 id="解决方法">解决方法</h3>
-
-<p>这个错误发生在当我远程以dll的方式调用的时候提示我说权限不够。。
-为了解决这个问题，我们需要给devenv.exe.config文件添加loadFromRemoteSources 元素
-首先使用管理员权限从下面的路径打开devenv.exe.config文件。
-具体路径：你的VS安装目录\Common7\IDE\devenv.exe.config
-并且添加loadFromRemoteSources 元素，并设为true。如下：</p>
-
-<pre class="lang:xhtml decode:true " >&lt;configuration&gt;
-   &lt;runtime&gt;
-      &lt;loadFromRemoteSources enabled="true"/&gt;
-   &lt;/runtime&gt;
-&lt;/configuration&gt; </pre> 
-
-<p>有时候windows会把下载的文件标记为“此文件来自一个不同的位置” ，然后对这些文件进行了很多的限制，这部分就是解锁下载的zip或是dll文件</p>
-
-<p>为了解锁这些文件，只要右键点击这些文件，属性，选择常规，然后点击解锁按钮。如下图：
-<a href="http://leaverimage.b0.upaiyun.com/27489_o.png"><img src="/images/c889da920a47f1e60ef6d7140d69f20c61374388.png" alt="" title="answer" /></a>
-如果你还有其他的解决方法请告诉我哦。</p>
-
-<h3 id="许可">许可</h3>
-
-<p>本文，包括源代码和文件，在CPOL下授权。</p>
-
-<p>原文地址：<a href="http://www.codeproject.com/Tips/463777/Visual-Studio-Add-in-Troubleshooting-Error-Number">Visual-Studio-Add-in-Troubleshooting-Error-Number</a>
-著作权声明：本文由<a href="http://leaver.me">http://leaver.me</a> 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%AD%A6%E6%B1%89/">武汉</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
                   
                 </div>
               

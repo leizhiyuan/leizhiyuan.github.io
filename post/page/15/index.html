@@ -175,7 +175,7 @@
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on December 28, 2012
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on January 4, 2013
   
   
   &nbsp;|&nbsp;
@@ -200,6 +200,59 @@
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
         <div class="posts-list">
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2013/01/04/%E8%BF%9C%E7%A8%8B%E7%AE%A1%E7%90%86democ/">
+                <h2 class="post-title">远程管理Demo(C#)</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on January 4, 2013
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (86 words)
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  一个C#的通信的例子
+
+1.服务端，服务端通过ip和端口生成客户端之后，点击开始监听后，便开启监听线程持续监听，同时注册断开连接和收到信息的事件。收到来自TcpClient 流中的信息后，解析之，如果是连接信息，就添加到连接列表，这样服务端就可以显示多个客户端了。如果是断开信息，就删掉。如果服务端想要给客户端发消息，就选中该客户，然后填写信息，就会调用连接类的发送方法。
+&nbsp;
+2.客户端，也就是被控端，被控端通过tcp连接到远端ip，然后发送连接成功状态，随后异步读取。读取到信息后调用解析方式。然后处理。。
+3.服务端如何生成客户端。其实也比较简单。就是写好客户端以后，保存为文本。然后通过CodeDomProvider的相关方法来编译即可。代码如下： public static bool Compile(string EXE_Name, string Source) { CodeDomProvider Compiler = CodeDomProvider.CreateProvider(&ldquo;CSharp&rdquo;); CompilerParameters Parameters = new CompilerParameters(); CompilerResults cResults = default(CompilerResults);
+Parameters.GenerateExecutable = true; Parameters.OutputAssembly = EXE_Name; Parameters.ReferencedAssemblies.Add(&#34;System.dll&#34;); Parameters.CompilerOptions = &#34; /target:winexe&#34;; Parameters.TreatWarningsAsErrors = false; cResults = Compiler.CompileAssemblyFromSource(Parameters, Source); if (cResults.Errors.Count &amp;gt; 0) { foreach (CompilerError CompilerError_loopVariable in cResults.Errors) { CompilerError error = CompilerError_loopVariable; MessageBox.Show(&#34;Error: &#34; + error.ErrorText, &#34;&#34;, MessageBoxButtons.OK, MessageBoxIcon.Error); } return false; } else if (cResults.
+                  <a href="https://leizhiyuan.github.io/2013/01/04/%E8%BF%9C%E7%A8%8B%E7%AE%A1%E7%90%86democ/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%AE%BE%E8%AE%A1/">设计</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/12/28/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E5%85%AD%E9%83%A8%E5%88%86/">
@@ -730,60 +783,6 @@ ok.基本的Lambda表达式就是这样了。</p>
                     <a href="https://leizhiyuan.github.io//tags/%E6%94%B6%E8%97%8F/">收藏</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E6%9D%82%E6%96%87/">杂文</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/12/03/%E6%BA%90%E7%A0%81%E6%89%93%E5%8C%85%E4%B8%8B%E8%BD%BD%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%BC%94%E7%A4%BA%E5%8A%A8%E7%94%BB/">
-                <h2 class="post-title">[源码]打包下载算法与数据结构演示动画</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on December 3, 2012
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 2 minutes (214 words)
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  很早的时候，学习数据结构的时候。收集了一下演示的动画。帮助理解。但是不全。今天在看KMP算法的时候。看到了福州大学的一个精品课程。。81个演示动画呢。。想打包下载收藏。话说福州大学这才是好样的。踏踏实实搞学术。
-第一种方法就是手工了。。嘎嘎。你敢么。一个个下载。。。一个个改名。。
-第二种就是用整站下载的软件了。。但是我看了一下swf的命名。我就知道下载下来意义不大。因为名字不好理解。
-第三种就是自己写个程序吧。。
-&nbsp;
-整体思路，首先访问课程页面，解析得到每一章的标题和内容，然后创立章节文件夹，得到每个动画对应的html页面，然后对html页面解析，提取swf地址。然后下载就行了。
-比较疼的地方是那个页面用的是gb2312编码。而解析神器HtmlAgilityPack，不能指定编码。只能想办法绕过了。 WebClient client = new WebClient(); MemoryStream ms = new MemoryStream(client.DownloadData(url)); HtmlDocument doc = new HtmlDocument(); doc.Load(ms, Encoding.GetEncoding(&ldquo;gb2312&rdquo;)); 绕过方法就是先使用内置类得到内存流。然后从内存中加载。
-然后呢。涉及的技术就是xpath了。参考着xpath的文档。搞定了不少。中间还有一个地方就是我没注意看。这个页面有两个文件是一样名字。。调试了几次才发现。。 using System; using System.Collections.Generic; using System.Linq; using System.Text; using HtmlAgilityPack; using System.IO; using System.Threading; using System.Net;
-namespace FzuSwf { class Program { static void Main(string[] args) { DoWork(); }
-//执行任务 static void DoWork() { HtmlWeb web = new HtmlWeb(); HtmlDocument doc = web.Load(&#34;http://ds.fzu.edu.cn/fine/resources/&#34;); HtmlNode divResource = doc.
-                  <a href="https://leizhiyuan.github.io/2012/12/03/%E6%BA%90%E7%A0%81%E6%89%93%E5%8C%85%E4%B8%8B%E8%BD%BD%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%BC%94%E7%A4%BA%E5%8A%A8%E7%94%BB/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">数据挖掘</a>&nbsp;
                   
                 </div>
               

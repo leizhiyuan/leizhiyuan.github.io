@@ -196,6 +196,57 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2016/11/06/graylog%E4%B8%AD%E7%9A%84mongodb%E9%85%8D%E7%BD%AE/">
+                <h2 class="post-title">graylog中的mongodb配置</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on November 6, 2016
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (64 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  接手的一个工具平台,发现 graylog 集群使用了单个的 mongodb 作为数据库,于是需要配置一下集群,来防止数据丢失,毕竟很多配置都在里面.
+为了以防万一,先备份一下 graylog 的配置. mongodump -h dbhost -d dbname -o dbdirectory
+防止分布式部署的使用搞坏了.之后的恢复可以使用
+mongorestore -h dbhost -d dbname --directoryperdb dbdirectory
+来恢复.相关说明可以参考这里
+之后就可以正式开始了
+ 修改集群名字  在/etc/mongod.conf 中,修改这个值.设置集群使用的集群名称是 graylog,几个机器都配置一下.都先不要启动
+replication: replSetName: graylog
+ 然后添加集群配置  启动其中一台,然后通过mongo 命令连接上数据库,依次执行下面的命令.注意,这里有个坑.添加本机的时候,一定要写对外的域名或者 ip.否则会导致无法选主.
+rs.initiate() rs.add(&#34;&lt;hostname&gt;:27017&#34;) rs.add(&#34;&lt;hostname&gt;:27017&#34;) rs.add(&#34;&lt;hostname&gt;:27017&#34;) rs.conf()  开始启动
+这里启动就不用说了. service mongod start 启动就好了.
+ 配置 graylog 集群连接地址
+在/etc/graylog/server/server.conf 中配置.mongodb_uri = mongodb://host1,host2,host3/graylog
+  后面这个 graylog 就是给 graylog 使用的库名,你可以先创建.
+之后mongodb 就开始自行同步了.
+[参考]
+                  <a href="https://leizhiyuan.github.io/2016/11/06/graylog%E4%B8%AD%E7%9A%84mongodb%E9%85%8D%E7%BD%AE/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2016/10/30/graylog%E4%B8%AD%E7%9A%84%E5%AD%97%E6%AE%B5%E8%A7%A3%E6%9E%90/">
                 <h2 class="post-title">graylog中的字段解析</h2>
                 
@@ -701,50 +752,6 @@ sudo ln -s /Library/Developer/CommandLineTools/Library/Perl/5.18/darwin-thread-m
                     <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2016/05/29/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E7%B3%BB%E5%88%97%E7%9B%AE%E5%BD%95/">
-                <h2 class="post-title">motan源码阅读系列目录</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on May 29, 2016
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (4 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  <p>本系列希望可以吧motan的源码通读一遍.</p>
-
-<p><a href="/2016/05/29/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E5%85%A5%E9%97%A8%E5%92%8C%E8%BF%90%E8%A1%8Cdemo/">motan源码阅读-入门和运行demo</a></p>
-
-<p><a href="/2016/05/30/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%8F%91%E5%B8%83/">motan源码阅读-服务的发布</a></p>
-
-<p><a href="/2016/05/31/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%BC%95%E7%94%A8/">motan源码阅读-客户端服务引用</a></p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%AC%94%E8%AE%B0/">笔记</a>&nbsp;
                   
                 </div>
               

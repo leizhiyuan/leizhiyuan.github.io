@@ -175,7 +175,7 @@
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on October 21, 2012
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on October 22, 2012
   
   
   &nbsp;|&nbsp;
@@ -200,6 +200,59 @@
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
         <div class="posts-list">
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/10/22/%E7%90%86%E8%A7%A3%E5%B9%B6%E5%AE%9E%E7%8E%B0%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F/">
+                <h2 class="post-title">理解并实现装饰器模式</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on October 22, 2012
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 2 minutes (388 words)
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  背景 本文讨论装饰器模式,这个模式是因为很多情况下需要动态的给对象添加功能.比如我们创建了一个Stream类.后来需要对这个数据流类动态的添加一个加密功能.有人可能说把加密方法写到流类里面啊.然后使用一个bool变量来控制开关就行了.但是这样.这个加密方法只能写一种..如果用派生类来实现.那么..对于不同的加密方法.,都要创建一个子类,举个例子.比如有时候是一些函数的组合.我们最终的派生类的数目基本上就和排列组合的数目一样了.
+我们使用装饰器模式来解决这个问题.GoF描述为 &ldquo;Attach additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing for extending functionality.&rdquo;
+首先看一下图.理解一下这个模式中每一个类的作用
+ • Component:定义了可以动态添加功能的具体类ConcreteComponents的接口. • ConcreteComponent: 可以动态添加功能的具体类 • Decorator: 定义了动态添加到ConcreteComponent类中的功能的接口 • ConcreteDecorator: 可以添加到 ConcreteComponent.中的具体功能类.
+使用代码
+我们开一个面包店的例子.面包店卖蛋糕和甜点.客户可以买蛋糕和甜点,同时添加一些额外的东西.额外的东西包括奶油(Cream),樱桃(Cherry),香料(Scent)和会员(Name Card)
+如果我们用派生类来实现..那么我们会有如下的类 • CakeOnly • CakeWithCreamAndCherry • CakeWithCreamAndCherryAndScent • CakeWithCreamAndCherryAndScentAndNameCard • CakeWithCherryOnly • PastryOnly • PastryWithCreamAndCherry • PastryWithCreamAndCherryAndScent • PastryWithCreamAndCherryAndScentAndNameCard • PastryWithCherryOnly • 等等等等
+这简直就是噩梦..我们用装饰器模式来实现把. 首先定义Component 接口
+public abstract class BakeryComponent { public abstract string GetName(); public abstract double GetPrice(); }  前面说过了.
+                  <a href="https://leizhiyuan.github.io/2012/10/22/%E7%90%86%E8%A7%A3%E5%B9%B6%E5%AE%9E%E7%8E%B0%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%AE%BE%E8%AE%A1/">设计</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/10/21/android%E5%BC%80%E5%8F%91%E8%8E%B7%E5%8F%96map-api-key/">
@@ -763,71 +816,6 @@ XAML方式 &lt;Canvas&gt; &lt;CustomRoundedCornersPolygon:RoundedCornersPolygon 
                     <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/10/12/%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%95%99%E4%BD%A0%E5%88%B6%E4%BD%9Cwpf%E5%9C%86%E5%BD%A2%E7%8E%BB%E7%92%83%E6%8C%89%E9%92%AE/">
-                <h2 class="post-title">一步步教你制作WPF圆形玻璃按钮</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on October 12, 2012
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 2 minutes (327 words)
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  1.介绍
-从我开始使用vista的时候，我就非常喜欢它的圆形玻璃按钮。WPF最好的一个方面就是允许自定义任何控件的样式。用了一段时间的Microsoft Expression Blend后。我做出了这个样式。我觉得做的还行。因为。我决定分享。如我所说。我使用Microsoft Expression Blend来做。但是。我也是用XAML编辑器&ndash;Kaxaml。
-2.概述
-玻璃按钮样式包含了三层。组织了玻璃效果（Glass Effect）和一个ContentPresenter 来存储按钮的内容。所有的这些层都在一个最外层的Grid里。当鼠标放到按钮上，按下去的时候也定义了一些触发器（Triggers），来增加一些交互。
-我把这个样式做成了资源文件。但是这个Key可以删除，来使得所有的按钮都是这个效果。
-好我们来看一下这些层次。这些被广泛应用在微软产品中的按钮。
-**3.按钮层次 **
-3.1背景层
-第一层是一个椭圆。其实是一个canvas，一会在上面画反射和折射层，填充的颜色和按钮的背景（Background）关联。
-下面是Blend中的截图
-图2  &lt;!&ndash; Background Layer &ndash;&gt; &lt;Ellipse Fill=&ldquo;{TemplateBinding Background}&rdquo;/&gt; 3.1.1折射层
-第二层模拟了光从上到下的折射。被放在反射层之前是因为，要达到反光玻璃的效果，反射层必须在按钮的中间某处有一个硬边缘。这一层实际上是另一个椭圆。但是这次。我们使用一个径向渐变（白色-透明）的填充。来模拟光的折射。渐变开始于第一层底部的中央。结束于上面的中间。然而。为了降低折射光的强度。渐变还是开始于椭圆的底部再下一点为好。可以从图上和代码里清晰的看到。  &lt;!&ndash; Refraction Layer &ndash;&gt; &lt;Ellipse x:Name=&ldquo;RefractionLayer&rdquo;&gt; &lt;Ellipse.Fill&gt; &lt;RadialGradientBrush GradientOrigin=&ldquo;0.496,1.052&rdquo;&gt; &lt;RadialGradientBrush.RelativeTransform&gt; &lt;TransformGroup&gt; &lt;ScaleTransform CenterX=&ldquo;0.5&rdquo; CenterY=&ldquo;0.5&rdquo; ScaleX=&ldquo;1.5&rdquo; ScaleY=&ldquo;1.5&rdquo;/&gt; &lt;TranslateTransform X=&ldquo;0.02&rdquo; Y=&ldquo;0.3&rdquo;/&gt; &lt;/TransformGroup&gt; &lt;/RadialGradientBrush.RelativeTransform&gt; &lt;GradientStop Offset=&ldquo;1&rdquo; Color=&ldquo;#00000000&rdquo;/&gt; &lt;GradientStop Offset=&ldquo;0.4&rdquo; Color=&ldquo;#FFFFFFFF&rdquo;/&gt; &lt;/RadialGradientBrush&gt; &lt;/Ellipse.Fill&gt; &lt;/Ellipse&gt; &nbsp;
-3.1.2反射层
-第三层是光的反射层。是最难的部分。问题是反射效果不能使用任何标准的形状来画。因此。使用路径（Path）来画反射区域。当时。手工画也是可以的。但老实说。手工画图实在没什么可享受的（除非你是一个艺术家，或者有一个数位板），无论如何。我现在MS Blend中华好一个椭圆并转换成一个路径，然后我使用贝塞尔曲线点调整得到平滑的路径，你可以添加渐变到一个复杂的Path对象上。就像你对其他与定义的图形，比如椭圆，矩形所做的一样。为了得到光泽反射。我额每年需要一个透明-白色的径向渐变填充，从路径的底部开始（也就是按钮的中间某处），结束在顶部。我想如果我是一个艺术家。我会让渐变更准一点。可是我不是。因此。就这样。因为我们要把我们的按钮放在一个Grid里。所有我们设置VerticalAlignment=&ldquo;Top&rdquo; 这样反射区域在按钮的中间的结束了。
-图三  &lt;!&ndash; Reflection Layer &ndash;&gt; &lt;Path x:Name=&ldquo;ReflectionLayer&rdquo; VerticalAlignment=&ldquo;Top&rdquo; Stretch=&ldquo;Fill&rdquo;&gt; &lt;Path.
-                  <a href="https://leizhiyuan.github.io/2012/10/12/%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%95%99%E4%BD%A0%E5%88%B6%E4%BD%9Cwpf%E5%9C%86%E5%BD%A2%E7%8E%BB%E7%92%83%E6%8C%89%E9%92%AE/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/wpf/">WPF</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%AE%BE%E8%AE%A1/">设计</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
                   

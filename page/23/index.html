@@ -196,6 +196,64 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/07/13/sqlserver%E8%B6%85%E6%97%B6%E6%97%B6%E9%97%B4%E5%B7%B2%E5%88%B0%E8%A7%A3%E5%86%B3%E5%92%8C%E4%B8%80%E5%A5%97%E6%8E%A7%E4%BB%B6%E5%BA%93/">
+                <h2 class="post-title">SQLServer超时时间已到解决和一套控件库</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on July 13, 2012
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (17 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  <p>在最近的一个程序中，因为频繁的操作数据库，莫名的出现了如下的错误：</p>
+
+<p>　　超时时间已到。超时时间已到，但是尚未从池中获取连接。出现这种情况可能是因为所有池连接均在使用，并且达到了最大池大小。</p>
+
+<p>　　说明: 执行当前 Web 请求期间，出现未处理的异常。请检查堆栈跟踪信息，以了解有关该错误以及代码中导致错误的出处的详细信息。</p>
+
+<p>　　异常详细信息: System.InvalidOperationException: 超时时间已到。超时时间已到，但是尚未从池中获取连接。出现这种情况可能是因为所有池连接均在使用，并且达到了最大池大小。</p>
+
+<p>　　按理说这应该是没有关闭数据库连接或者dataset，可是查了一下。发现都关了啊。遂可以表述为原因不明，但是通过在数据库连接字符串中添加max pool size=512  这个数字可以自己设。就可以了</p>
+
+<p>　　这篇文章短是短了点。。好吧。那顺带分享一套非常精美的C#控件。
+<a href="http://115.com/file/dptqnr63#RadControls-WinForms-2012-2-608-Dev.msi">RadControls-For-WinForms 控件2012</a>
+<a href="http://leaverimage.b0.upaiyun.com/24794_o.jpg"><img src="/images/35b3a6023ad34c4bab5564678dffabbcdd53a5da.jpg" alt="" title="wpf" /></a>
+<a href="http://115.com/file/e79q6pju#RadControls-for-WPF-2012-2-0607-Dev.msi">RadControls-for-WPF控件2012</a>
+<a href="http://leaverimage.b0.upaiyun.com/24793_o.jpg"><img src="/images/c3f1eeb8b01e38643d7ce0d2e2716bba20285943.jpg" alt="" title="winform" /></a></p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E4%BD%9C/">工作</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E8%AF%91/">编译</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%AE%BE%E8%AE%A1/">设计</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/07/11/sqlserver%E5%90%AF%E7%94%A8xp_cmdshell/">
                 <h2 class="post-title">SQLServer启用xp_cmdshell</h2>
                 
@@ -806,53 +864,6 @@ void GetBat(string InputPath,string OutFile) { DirectoryInfo di = new DirectoryI
                     <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/07/05/effective-c#item-9%E5%8C%BA%E5%88%AB%E5%92%8C%E8%AE%A4%E8%AF%86%E5%9B%9B%E4%B8%AA%E5%88%A4%E7%AD%89%E5%87%BD%E6%95%B0/">
-                <h2 class="post-title">《Effective C#》Item 9：区别和认识四个判等函数</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on July 5, 2012
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 2 minutes (323 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  .Net有四个判等函数？不少人看到这个标题，会对此感到怀疑。事实上确是如此，.Net提供了ReferenceEquals、静态Equals，具体类型的Equals以及==操作符这四个判等函数。但是这四个函数之间有细微的关系，改变其中一个函数的实现会影响到其他函数的操作结果。
-　首先要说的是Object.ReferenceEquals和Object.Equals这两个静态函数，对于它们俩来说，是不需要进行重写的，因为它们已经完成它们所要得做的操作。
-对于Object.ReferenceEquals这个静态函数，函数形式如下： public static bool ReferenceEquals( object left, object right ); 这个函数就是判断两个引用类型对象是否指向同一个地址。有此说明后，就确定了它的使用范围，即只能对于引用类型操作。那么对于任何值类型数据操作，即使是与自身的判别，都会返回false。这主要因为在调用此函数的时候，值类型数据要进行装箱操作，也就是对于如下的形式来说。 int n = 10; Object.ReferenceEquals( n, n ); 这是因为对于n这个数据装箱两次，而每次装箱后的地址有不同，而造成Object.ReferenceEquals( n, n )的结果永远为false。
-对于第一个判等函数来说，没有什么好扩展的，因为本身已经很好地完成了它所要做的。
-对于第二个Object.Equals这个静态函数，其形式如下： public static bool Equals( object left, object right ); 按照书中对它的分析，其大致函数代码如下： public static void Equals( object left, object right ) { // Check object identity if( left == right ) return true;
-// both null references handled above if( ( left == null ) || ( right == null ) ) return false; return left.
-                  <a href="https://leizhiyuan.github.io/2012/07/05/effective-c#item-9%E5%8C%BA%E5%88%AB%E5%92%8C%E8%AE%A4%E8%AF%86%E5%9B%9B%E4%B8%AA%E5%88%A4%E7%AD%89%E5%87%BD%E6%95%B0/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%94%B6%E8%97%8F/">收藏</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%AE%BE%E8%AE%A1/">设计</a>&nbsp;
                   
                 </div>
               

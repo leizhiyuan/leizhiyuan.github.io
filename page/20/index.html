@@ -196,6 +196,84 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/09/24/vs%E6%89%A9%E5%B1%95%E6%95%85%E9%9A%9C%E9%94%99%E8%AF%AF%E7%A0%8180131515/">
+                <h2 class="post-title">VS扩展故障,错误码:80131515</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 24, 2012
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (29 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  
+
+<h3 id="介绍">介绍</h3>
+
+<p>如果你给VS安装了<a href="http://www.codeproject.com/Articles/446955/Web-Search-Visual-Studio-Add-in-Search-Google-Yaho">Web Search</a>扩展，如果第一次运行就出现了错误代码是80131515的问题。那么本文对你是有用的。。
+<a href="http://leaverimage.b0.upaiyun.com/27488_o.png"><img src="/images/31f5dde58ae04aa01469671b23b71a15d328c51c.png" alt="" title="question" /></a></p>
+
+<h3 id="背景">背景</h3>
+
+<p>当我远程试图运行<a href="http://www.codeproject.com/Articles/446955/Web-Search-Visual-Studio-Add-in-Search-Google-Yaho">Web Search</a>的时候出现了这个错误。我用本文第一种方法解决了。。</p>
+
+<h3 id="解决方法">解决方法</h3>
+
+<p>这个错误发生在当我远程以dll的方式调用的时候提示我说权限不够。。
+为了解决这个问题，我们需要给devenv.exe.config文件添加loadFromRemoteSources 元素
+首先使用管理员权限从下面的路径打开devenv.exe.config文件。
+具体路径：你的VS安装目录\Common7\IDE\devenv.exe.config
+并且添加loadFromRemoteSources 元素，并设为true。如下：</p>
+
+<pre class="lang:xhtml decode:true " >&lt;configuration&gt;
+   &lt;runtime&gt;
+      &lt;loadFromRemoteSources enabled="true"/&gt;
+   &lt;/runtime&gt;
+&lt;/configuration&gt; </pre> 
+
+<p>有时候windows会把下载的文件标记为“此文件来自一个不同的位置” ，然后对这些文件进行了很多的限制，这部分就是解锁下载的zip或是dll文件</p>
+
+<p>为了解锁这些文件，只要右键点击这些文件，属性，选择常规，然后点击解锁按钮。如下图：
+<a href="http://leaverimage.b0.upaiyun.com/27489_o.png"><img src="/images/c889da920a47f1e60ef6d7140d69f20c61374388.png" alt="" title="answer" /></a>
+如果你还有其他的解决方法请告诉我哦。</p>
+
+<h3 id="许可">许可</h3>
+
+<p>本文，包括源代码和文件，在CPOL下授权。</p>
+
+<p>原文地址：<a href="http://www.codeproject.com/Tips/463777/Visual-Studio-Add-in-Troubleshooting-Error-Number">Visual-Studio-Add-in-Troubleshooting-Error-Number</a>
+著作权声明：本文由<a href="http://leaver.me">http://leaver.me</a> 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%AD%A6%E6%B1%89/">武汉</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/09/24/wpf%E6%AF%9B%E7%8E%BB%E7%92%83%E6%95%88%E6%9E%9Cdemo%E5%92%8C%E4%B8%80%E4%B8%AA%E9%97%AE%E9%A2%98/">
                 <h2 class="post-title">WPF毛玻璃效果Demo和一个问题</h2>
                 
@@ -728,66 +806,6 @@ update：感谢<a href="http://luacloud.com/">月亮云</a>的提醒，官网是
                     <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E6%94%B6%E8%97%8F/">收藏</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/09/17/eclipse%E5%AE%89%E8%A3%85javacc/">
-                <h2 class="post-title">Eclipse安装JavaCC</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 17, 2012
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (21 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  <p>今年的编译原理课程上机实践是讲这个的。。要求用JavaCC来做一个简单的解释器。今天总算是有点时间找找文档先把这个安装了。安装过程很简单。。</p>
-
-<p>　　1.希望你已经安装了Eclipse。。。</p>
-
-<p>　　2.去<a href="http://sourceforge.net/projects/eclipse-javacc/">sourceforge</a>该项目主页下载javaCC压缩包</p>
-
-<p>　　3.下载完成后解压到你的Eclipse根目录。会提示覆盖plugins和features。直接覆盖即可。</p>
-
-<p>　　4.测试一下是否成功。具体步骤就是，打开eclipse，新建一个空java项目。然后对着项目点击右键new-&gt;other-&gt;javaCC-&gt;javaCC template file。然后选择命名空间。包名。和文件名就可以了。这个地方的什么的是由你建立的java项目决定的。所以你可以先把java项目设置好，然后直接选就可以了。。</p>
-
-<p>　　5.点击运行。选择java application。控制台输出　　
-　　<pre class="lang:java decode:true " >Reading from standard input&hellip;　　
-　　Enter an expression like &ldquo;1+(2+3)*4;&rdquo;:</pre></p>
-
-<p>　　完成。。。</p>
-
-<p>Update:其实吧。这里安装的是JavaCC的插件。但是已经可以进行开发了。可能你需要一个例子来开始。或者你不喜欢eclipse。那么去<a href="http://javacc.java.net">JavaCC</a>的项目下载你喜欢的即可。我下的是javacc-5.0.zip 里面有例子。可以参考。</p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E8%AF%91/">编译</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
                   
                 </div>
               
