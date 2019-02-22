@@ -34,10 +34,10 @@ int _tmain(int argc, _TCHAR* argv[]) { while(true) { double total = 0; double mi
     
     <item>
       <title>邻接表实现无向图(C&#43;&#43;)</title>
-      <link>https://leizhiyuan.github.io/2013/05/31/%E9%82%BB%E6%8E%A5%E8%A1%A8%E5%AE%9E%E7%8E%B0%E6%97%A0%E5%90%91%E5%9B%BEc--/</link>
+      <link>https://leizhiyuan.github.io/2013/05/31/%E9%82%BB%E6%8E%A5%E8%A1%A8%E5%AE%9E%E7%8E%B0%E6%97%A0%E5%90%91%E5%9B%BEc-/</link>
       <pubDate>Fri, 31 May 2013 15:05:29 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/05/31/%E9%82%BB%E6%8E%A5%E8%A1%A8%E5%AE%9E%E7%8E%B0%E6%97%A0%E5%90%91%E5%9B%BEc--/</guid>
+      <guid>https://leizhiyuan.github.io/2013/05/31/%E9%82%BB%E6%8E%A5%E8%A1%A8%E5%AE%9E%E7%8E%B0%E6%97%A0%E5%90%91%E5%9B%BEc-/</guid>
       <description>很早以前写的代码了，贴出来做个备份吧。用向量来存储一条邻接链表，存储可连通值。实现了判断是否连通，添加边，添加顶点的功能。
 UnDirectGraph.h #pragma once
 #include &amp;ldquo;stdafx.h&amp;rdquo; #include &amp;lt;vector&amp;gt; using namespace std; class UnDirectGraph { private: int vCount; vector&amp;lt;int&amp;gt; *adj; public: int GetVCount(); UnDirectGraph(int vCount); void AddEdge(int v,int w); vector&amp;lt;int&amp;gt; &amp;amp;Vadj(int v); bool IsConnected(int v,int w); }; UnDirectGraph.cpp #pragma once
@@ -64,10 +64,10 @@ int _tmain(int argc, _TCHAR* argv[]) { cout&amp;lt;&amp;lt;&amp;ldquo;请输入N
     
     <item>
       <title>引用和指针(C&#43;&#43;)</title>
-      <link>https://leizhiyuan.github.io/2013/05/22/%E5%BC%95%E7%94%A8%E5%92%8C%E6%8C%87%E9%92%88c--/</link>
+      <link>https://leizhiyuan.github.io/2013/05/22/%E5%BC%95%E7%94%A8%E5%92%8C%E6%8C%87%E9%92%88c-/</link>
       <pubDate>Wed, 22 May 2013 16:16:24 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/05/22/%E5%BC%95%E7%94%A8%E5%92%8C%E6%8C%87%E9%92%88c--/</guid>
+      <guid>https://leizhiyuan.github.io/2013/05/22/%E5%BC%95%E7%94%A8%E5%92%8C%E6%8C%87%E9%92%88c-/</guid>
       <description>今天在整理收藏夹的时候，又看到了这两篇非常不错的文章，关于指针和引用的，我就不翻译了，文章很简单，不过把其中我觉得很有意思的两部分结合我的理解希望说的更清楚,假定你读这篇文章之前已经知道指针，但是不是很清楚其中的部分。
 首先是关于指针的一个直观的一个认识. #include &amp;lt;iostream&amp;gt;
 int main() { using namespace std;
@@ -77,10 +77,10 @@ int main() { using namespace std;
     
     <item>
       <title>倒水问题求解(C&#43;&#43;)</title>
-      <link>https://leizhiyuan.github.io/2013/05/15/%E5%80%92%E6%B0%B4%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3c--/</link>
+      <link>https://leizhiyuan.github.io/2013/05/15/%E5%80%92%E6%B0%B4%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3c-/</link>
       <pubDate>Wed, 15 May 2013 18:37:24 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/05/15/%E5%80%92%E6%B0%B4%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3c--/</guid>
+      <guid>https://leizhiyuan.github.io/2013/05/15/%E5%80%92%E6%B0%B4%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3c-/</guid>
       <description>明天要去参加微软面试，不求顺利，但求体验。
 这个题目答题的意思是:
 给你一个容量为A升的桶和一个容量为B升的桶，水不限使用，要求精确得到Q升水.请说明步骤
@@ -114,10 +114,10 @@ A B ##### 0 0 0 3 3 0 3 3 4 2 &amp;lt;- B中也得到了2 但是注意,从 B-&am
     
     <item>
       <title>模板优先级队列及堆排序(C&#43;&#43;实现)</title>
-      <link>https://leizhiyuan.github.io/2013/04/16/%E6%A8%A1%E6%9D%BF%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97%E5%8F%8A%E5%A0%86%E6%8E%92%E5%BA%8Fc--%E5%AE%9E%E7%8E%B0/</link>
+      <link>https://leizhiyuan.github.io/2013/04/16/%E6%A8%A1%E6%9D%BF%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97%E5%8F%8A%E5%A0%86%E6%8E%92%E5%BA%8Fc-%E5%AE%9E%E7%8E%B0/</link>
       <pubDate>Tue, 16 Apr 2013 08:42:58 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/04/16/%E6%A8%A1%E6%9D%BF%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97%E5%8F%8A%E5%A0%86%E6%8E%92%E5%BA%8Fc--%E5%AE%9E%E7%8E%B0/</guid>
+      <guid>https://leizhiyuan.github.io/2013/04/16/%E6%A8%A1%E6%9D%BF%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97%E5%8F%8A%E5%A0%86%E6%8E%92%E5%BA%8Fc-%E5%AE%9E%E7%8E%B0/</guid>
       <description>模板优先级队列，数组实现，再熟悉一下常用算法，同时简单的堆排序应用
 写了一个是队列自增长，另一个为了演示我还添加了一个叫做FillPq的方法，这个方法可以使用一个数组直接填充到优先级队列里，此时，优先级队列并不优先，然后进行下滤调整，之后建堆完成，输出即可 #include &amp;ldquo;stdafx.h&amp;rdquo;
 template&amp;lt; class T&amp;gt; class PriorityQueue { private: T *pq; int N; int capacity; public: PriorityQueue(void); ~PriorityQueue(void); void Insert(T x); T DelTop(); void Swim(int k); void Sink(int k); bool Less(int i,int j); void Swap(int i,int j); bool Resize(); void FillPq(T arr[],int size); };
@@ -127,10 +127,10 @@ template&amp;lt; class T&amp;gt; PriorityQueue&amp;lt;T&amp;gt;::PriorityQueue(v
     
     <item>
       <title>模板栈以及中缀表达式求值(C&#43;&#43;实现)</title>
-      <link>https://leizhiyuan.github.io/2013/04/11/%E6%A8%A1%E6%9D%BF%E6%A0%88%E4%BB%A5%E5%8F%8A%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BCc--%E5%AE%9E%E7%8E%B0/</link>
+      <link>https://leizhiyuan.github.io/2013/04/11/%E6%A8%A1%E6%9D%BF%E6%A0%88%E4%BB%A5%E5%8F%8A%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BCc-%E5%AE%9E%E7%8E%B0/</link>
       <pubDate>Thu, 11 Apr 2013 18:50:25 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/04/11/%E6%A8%A1%E6%9D%BF%E6%A0%88%E4%BB%A5%E5%8F%8A%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BCc--%E5%AE%9E%E7%8E%B0/</guid>
+      <guid>https://leizhiyuan.github.io/2013/04/11/%E6%A8%A1%E6%9D%BF%E6%A0%88%E4%BB%A5%E5%8F%8A%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BCc-%E5%AE%9E%E7%8E%B0/</guid>
       <description>栈直接用链表实现，这个比较简单，不多说，不过C++写程序，IDE的错误检测不是很给力。
 至于给定一个中缀表达式，如何不转换成后缀表达式，直接求值，方法就是使用两个栈，一个操作符栈，一个操作数栈，然后从左到右扫描表达式，我这里中缀表达式计算实现的很简单，不完整，大家可以扩展。栈的实现是我想写的，思路如下：
 1.如何是操作数，压入操作数栈
@@ -151,10 +151,10 @@ private: Node&amp;lt;T&amp;gt; *m_pTopNode; int m_nNodeCount; public: Stack(); ~
     
     <item>
       <title>并查集(C&#43;&#43;实现)</title>
-      <link>https://leizhiyuan.github.io/2013/04/11/%E5%B9%B6%E6%9F%A5%E9%9B%86c--%E5%AE%9E%E7%8E%B0/</link>
+      <link>https://leizhiyuan.github.io/2013/04/11/%E5%B9%B6%E6%9F%A5%E9%9B%86c-%E5%AE%9E%E7%8E%B0/</link>
       <pubDate>Thu, 11 Apr 2013 08:45:38 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/04/11/%E5%B9%B6%E6%9F%A5%E9%9B%86c--%E5%AE%9E%E7%8E%B0/</guid>
+      <guid>https://leizhiyuan.github.io/2013/04/11/%E5%B9%B6%E6%9F%A5%E9%9B%86c-%E5%AE%9E%E7%8E%B0/</guid>
       <description>并查集这个很有意思，并查集是一种树型的数据结构，用于处理一些不相交集合（Disjoint Sets）的合并及查询问题。昨天看书看到了，然后用C++简单实现了下。在Dijkstra算法中，用来判断两个顶点是否在同一个集合里。
 里面定义了两个类，都是并查集，一个是QuickFind，查找很快，一个是QuickUnion，合并较快。写了一些注释，有一些优化的提示.看代码吧，有什么问题指出来吧。
 QuickFind的实现 #include &amp;ldquo;QuickFind.h&amp;rdquo;
@@ -168,10 +168,10 @@ QuickUnion::QuickUnion(int N) { size=N; id=new int[N]; for(int i=0;i&amp;lt;N;i+
     <item>
       <title>和
 浅析</title>
-      <link>https://leizhiyuan.github.io/2013/04/05/%E5%92%8C%E6%B5%85%E6%9E%90/</link>
+      <link>https://leizhiyuan.github.io/2013/04/05/%E5%92%8C-%E6%B5%85%E6%9E%90/</link>
       <pubDate>Fri, 05 Apr 2013 13:29:04 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/04/05/%E5%92%8C%E6%B5%85%E6%9E%90/</guid>
+      <guid>https://leizhiyuan.github.io/2013/04/05/%E5%92%8C-%E6%B5%85%E6%9E%90/</guid>
       <description>这两个转义字符最初学习C++的时候看到了,当时没多想，后来某一天突然想起来，回车不就是换行吗？这不是多此一举吗？今天又看到，索性查了下相关资料，整理一下，留作记录.
 关于“回车”（carriage return）和“换行”（line feed）这两个概念的来历和区别。
 在计算机还没有出现之前，有一种叫做电传打字机（Teletype Model 33）的玩意，每秒钟可以打10个字符。但是它有一个问题，就是打完一行换行的时候，要用去0.2秒，正好可以打两个字符。要是在这0.2秒里面，又有新的字符传过来，那么这个字符将丢失。
@@ -274,10 +274,10 @@ MSVC configuration Configure msvc (default version, searched for in standard loc
     
     <item>
       <title>C&#43;&#43;回调函数</title>
-      <link>https://leizhiyuan.github.io/2012/05/09/c--%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/</link>
+      <link>https://leizhiyuan.github.io/2012/05/09/c-%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/</link>
       <pubDate>Wed, 09 May 2012 21:04:37 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/05/09/c--%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/</guid>
+      <guid>https://leizhiyuan.github.io/2012/05/09/c-%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/</guid>
       <description>回调函数就是一个通过函数指针调用的函数。如果你把函数的指针(地址)作为参数传递给另一个函数，当这个指针被用为调用它所指向的函数时，我们就说这是回调函数。
 　也就是说，回调函数它首先是一个函数，然后有一个指针指向它（该指针称为函数指针），在别的代码块中，通过这个函数指针调用了这个函数，仅此而已。
 　下面给出一个例子，我写出了比较详细的注释。希望足够清晰。这个例子说明了，回调函数可以把调用者和被调用者分开，对于调用者来说，只需要知道自己要调用一个函数，该函数有一个string类型的参数，至于具体调用哪个，被调用的函数到底怎么执行，怎么解释该参数，是完全不用关心的。 #include 

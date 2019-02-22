@@ -17,7 +17,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.49.2" />
+  <meta name="generator" content="Hugo 0.54.0" />
   <link rel="canonical" href="https://leizhiyuan.github.io/tags/%E5%A4%A7%E5%AD%A6/" />
   <link rel="alternate" href="https://leizhiyuan.github.io/tags/%E5%A4%A7%E5%AD%A6/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
@@ -383,7 +383,7 @@
             </article>
           
             <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/04/16/%E6%A8%A1%E6%9D%BF%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97%E5%8F%8A%E5%A0%86%E6%8E%92%E5%BA%8Fc--%E5%AE%9E%E7%8E%B0/">
+              <a href="https://leizhiyuan.github.io/2013/04/16/%E6%A8%A1%E6%9D%BF%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97%E5%8F%8A%E5%A0%86%E6%8E%92%E5%BA%8Fc-%E5%AE%9E%E7%8E%B0/">
                 <h2 class="post-title">模板优先级队列及堆排序(C&#43;&#43;实现)</h2>
 
                 
@@ -411,7 +411,7 @@
 template&lt; class T&gt; class PriorityQueue { private: T *pq; int N; int capacity; public: PriorityQueue(void); ~PriorityQueue(void); void Insert(T x); T DelTop(); void Swim(int k); void Sink(int k); bool Less(int i,int j); void Swap(int i,int j); bool Resize(); void FillPq(T arr[],int size); };
 template&lt; class T&gt; void PriorityQueue&lt;T&gt;::FillPq( T arr[],int size ) { N=size; capacity=2*size; for (int i=0;i&lt;size;i++) { pq[i+1]=arr[i]; } }
 template&lt; class T&gt; PriorityQueue&lt;T&gt;::PriorityQueue(void) { pq=new T[10]; N=0; capacity=10; }
-                  <a href="https://leizhiyuan.github.io/2013/04/16/%E6%A8%A1%E6%9D%BF%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97%E5%8F%8A%E5%A0%86%E6%8E%92%E5%BA%8Fc--%E5%AE%9E%E7%8E%B0/" class="post-read-more">[Read More]</a>
+                  <a href="https://leizhiyuan.github.io/2013/04/16/%E6%A8%A1%E6%9D%BF%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97%E5%8F%8A%E5%A0%86%E6%8E%92%E5%BA%8Fc-%E5%AE%9E%E7%8E%B0/" class="post-read-more">[Read More]</a>
                 
               </div>
 
@@ -434,7 +434,7 @@ template&lt; class T&gt; PriorityQueue&lt;T&gt;::PriorityQueue(void) { pq=new T[
             </article>
           
             <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/04/11/%E6%A8%A1%E6%9D%BF%E6%A0%88%E4%BB%A5%E5%8F%8A%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BCc--%E5%AE%9E%E7%8E%B0/">
+              <a href="https://leizhiyuan.github.io/2013/04/11/%E6%A8%A1%E6%9D%BF%E6%A0%88%E4%BB%A5%E5%8F%8A%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BCc-%E5%AE%9E%E7%8E%B0/">
                 <h2 class="post-title">模板栈以及中缀表达式求值(C&#43;&#43;实现)</h2>
 
                 
@@ -473,7 +473,7 @@ template &lt;class T&gt; Node&lt;T&gt;::Node() { m_data=default(T); pNextNode=NU
 #pragma region Stack定义
 template &lt;class T&gt; class Stack {
 private: Node&lt;T&gt; *m_pTopNode; int m_nNodeCount; public: Stack(); ~Stack(); bool IsEmpty(); bool Push(T e); T Pop(); int Size(); };
-                  <a href="https://leizhiyuan.github.io/2013/04/11/%E6%A8%A1%E6%9D%BF%E6%A0%88%E4%BB%A5%E5%8F%8A%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BCc--%E5%AE%9E%E7%8E%B0/" class="post-read-more">[Read More]</a>
+                  <a href="https://leizhiyuan.github.io/2013/04/11/%E6%A8%A1%E6%9D%BF%E6%A0%88%E4%BB%A5%E5%8F%8A%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BCc-%E5%AE%9E%E7%8E%B0/" class="post-read-more">[Read More]</a>
                 
               </div>
 
@@ -498,7 +498,7 @@ private: Node&lt;T&gt; *m_pTopNode; int m_nNodeCount; public: Stack(); ~Stack();
             </article>
           
             <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/04/11/%E5%B9%B6%E6%9F%A5%E9%9B%86c--%E5%AE%9E%E7%8E%B0/">
+              <a href="https://leizhiyuan.github.io/2013/04/11/%E5%B9%B6%E6%9F%A5%E9%9B%86c-%E5%AE%9E%E7%8E%B0/">
                 <h2 class="post-title">并查集(C&#43;&#43;实现)</h2>
 
                 
@@ -529,7 +529,7 @@ bool QuickFind::Find(int p,int q) { return id[p]==id[q]; }
 void QuickFind::Unite(int p,int q) { int pid=id[p]; for(int i=0;i&lt;size;i++) if(id[i]==pid) id[i]=id[q];
 } QuickFind::~QuickFind(void) { delete []id; } QuickUnion的实现 #include &ldquo;QuickUnion.h&rdquo;
 QuickUnion::QuickUnion(int N) { size=N; id=new int[N]; for(int i=0;i&lt;N;i++) { id[i]=i; } } int QuickUnion::root(int i) { while (i!=id[i]) { //id[i]=id[id[i]]; 若添加这句话则为压缩路径 i=id[i]; } return i; } bool QuickUnion::Find(int p,int q) { return root(p)==root(q); }
-                  <a href="https://leizhiyuan.github.io/2013/04/11/%E5%B9%B6%E6%9F%A5%E9%9B%86c--%E5%AE%9E%E7%8E%B0/" class="post-read-more">[Read More]</a>
+                  <a href="https://leizhiyuan.github.io/2013/04/11/%E5%B9%B6%E6%9F%A5%E9%9B%86c-%E5%AE%9E%E7%8E%B0/" class="post-read-more">[Read More]</a>
                 
               </div>
 
@@ -552,7 +552,7 @@ QuickUnion::QuickUnion(int N) { size=N; id=new int[N]; for(int i=0;i&lt;N;i++) {
             </article>
           
             <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/04/05/%E5%92%8C%E6%B5%85%E6%9E%90/">
+              <a href="https://leizhiyuan.github.io/2013/04/05/%E5%92%8C-%E6%B5%85%E6%9E%90/">
                 <h2 class="post-title">和
 浅析</h2>
 
@@ -806,7 +806,7 @@ QuickUnion::QuickUnion(int N) { size=N; id=new int[N]; for(int i=0;i&lt;N;i++) {
               </p>
               <div class="post-entry">
                 
-                  <p>今天一直在自习。。中午遇到了初中同桌。。5年没见了吧。聊了一会。被各种叮嘱“一定不要找太娇生惯养的，太粘人的，太无理取闹的。要听我的话，不然受苦的可是你。”哈哈。当时笑喷了。谢谢同桌。好好工作吧。</p>
+                  <p>　　今天一直在自习。。中午遇到了初中同桌。。5年没见了吧。聊了一会。被各种叮嘱“一定不要找太娇生惯养的，太粘人的，太无理取闹的。要听我的话，不然受苦的可是你。”哈哈。当时笑喷了。谢谢同桌。好好工作吧。</p>
 
 <p>　　这本书是寒假在家看的一本书。一点点笔记。</p>
 
@@ -906,7 +906,7 @@ QuickUnion::QuickUnion(int N) { size=N; id=new int[N]; for(int i=0;i&lt;N;i++) {
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.49.2</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.54.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

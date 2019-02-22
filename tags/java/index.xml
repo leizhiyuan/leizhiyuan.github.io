@@ -94,7 +94,7 @@ Exec if $raw_event $raw_event = substr($raw_event, 0, 1040000); 执行类似的�
 brew install pssh brew install homebrew/dupes/expect brew install ssh-copy-id 另外安装luit的安装参考这里luit安装
 1. 生成ssh key ,并批量copy 生成ssh key比较简单.ssh-keygen -t rsa -C &amp;quot;your_email@example.com&amp;quot;,直接使用git的ssh key也是可以的.然后保存下面这个脚本为pscopy.sh,
 #!/bin/bash FILE=`cat ~/host.txt` for ip in $FILE;do expect -c &amp;#34; spawn ssh-copy-id $ipexpect { \&amp;#34;*yes/no*\&amp;#34; {send \&amp;#34;yes\r\&amp;#34;;exp_continue} \&amp;#34;*password*\&amp;#34; {send \&amp;#34;pass\r\&amp;#34;;exp_continue} \&amp;#34;*password*\&amp;#34; {send \&amp;#34;pass\r\&amp;#34;;} } &amp;#34; done 然后执行一下sh pscopy.sh,注意,host.txt要保证存在.格式是user@address.一行一个,中间的paas要改成user的密码,这样就会使用指定的用户密码,自动copy ssh key了. 完成上面的步骤之后,ssh user@address 就可以免登了.
-2. 写一个简单的pssh脚本 #!/bin/bash  encoding= key= command= file= usage() { echo &amp;#34;Usage: `basename $0` [-f filename] [-c encoding] [-k keyword]&amp;#34; exit 1 } while getopts :f:c:k: opt do case $opt in c) encoding=$OPTARG ;; :) echo &amp;#34;-$OPTARGneeds an argument&amp;#34; ;; k) key=$OPTARG ;; f) file=$OPTARG ;; *) echo &amp;#34;-$optnot recognized&amp;#34; usage ;; esac done if [ -z &amp;#34;$encoding&amp;#34; ]; then #该脚本必须提供-d选项  encoding=&amp;#34;gbk&amp;#34; fi if [ -z &amp;#34;$file&amp;#34; ]; then #该脚本必须提供-d选项  file=&amp;#34;~/hosts.</description>
+2. 写一个简单的pssh脚本 #!/bin/bash  encoding= key= command= file= usage() { echo &amp;#34;Usage: `basename $0` [-f filename] [-c encoding] [-k keyword]&amp;#34; exit 1 } while getopts :f:c:k: opt do case $opt in c) encoding=$OPTARG ;; :) echo &amp;#34;-$OPTARGneeds an argument&amp;#34; ;; k) key=$OPTARG ;; f) file=$OPTARG ;; *) echo &amp;#34;-$optnot recognized&amp;#34; usage ;; esac done if [ -z &amp;#34;$encoding&amp;#34; ]; then #该脚本必须提供-d选项 encoding=&amp;#34;gbk&amp;#34; fi if [ -z &amp;#34;$file&amp;#34; ]; then #该脚本必须提供-d选项 file=&amp;#34;~/hosts.</description>
     </item>
     
     <item>
@@ -758,7 +758,13 @@ import android.view.View;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.ViewFlipper;&lt;/p&gt;</description>
+import android.widget.ViewFlipper;&lt;/p&gt;
+
+&lt;p&gt;/**
+ * Android实现左右滑动效果
+ * @author byStander
+ *
+ */&lt;/pre&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

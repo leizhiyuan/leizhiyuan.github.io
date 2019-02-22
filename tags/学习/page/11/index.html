@@ -17,7 +17,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.49.2" />
+  <meta name="generator" content="Hugo 0.54.0" />
   <link rel="canonical" href="https://leizhiyuan.github.io/tags/%E5%AD%A6%E4%B9%A0/" />
   <link rel="alternate" href="https://leizhiyuan.github.io/tags/%E5%AD%A6%E4%B9%A0/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
@@ -309,7 +309,7 @@ gif是动态的嘛。然后我昨天和一个朋友聊天的时候发了一串�
               </p>
               <div class="post-entry">
                 
-                  <p>我们知道，许多编译程序采用属性文法和语法制导翻译方法对语义处理工作进行比较规范和抽象的描述。</p>
+                  <p>　　我们知道，许多编译程序采用属性文法和语法制导翻译方法对语义处理工作进行比较规范和抽象的描述。</p>
 
 <p>　　而一个属性文法包含一个上下文无关文法和一系列文法规则，语义规则是指：对于文法的每个产生式都配备了一组属性的计算规则</p>
 
@@ -422,7 +422,6 @@ gif是动态的嘛。然后我昨天和一个朋友聊天的时候发了一串�
 　{　S′→·S,#　S→·aAd,#　S→·bAc,#　S→·aec,#　S→·bed,#　}
 　然后使用GO函数来构造I1，从J={任何形如[A→αX·β,a]的项目 | [A→α·Xβ,a]∈I}我们可以知道I1的核（最初的产生式）就是这里的J，然后呢。X是I（也就是我们的I0）中的·后面的符号，也就是输入符。。可以看到在I0中，X可以为S，a，b，我们先以I1=GO(I0,S)=CLOSURE( S′→S·,# )，注意，·号已经前进了。因为J是I输入进一的项目，求I1，发现·后面没符号了，所以闭包就是他自己了。最终求得的I1的项目集为：
 　{S′→S·,# }
-　我们上一步是用的I1=GO(I0,S)来求得，我们求I2的时候使用GO（I0，a）来求，此时X就是a了。然后我们吧I0中符合的项目中的·后移一位得到J然后对J求闭包，就是I2了。此处J=S→a·Ad,# 和S→a·ec,#
                   <a href="https://leizhiyuan.github.io/2012/06/02/lr1%E9%A1%B9%E7%9B%AE%E9%9B%86%E8%A7%84%E8%8C%83%E7%B0%87%E7%9A%84%E6%9E%84%E9%80%A0/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -633,7 +632,7 @@ The system should speak the users&rsquo; language, with words, phrases and conce
               </p>
               <div class="post-entry">
                 
-                  <p>作为一个完全不能容忍windows默认程序都往C:\Program Files\目录里安装的人。每次安装软件的时候，都得手动一个个改到D:\Program Files里。安装软件多了。就hold不住了。</p>
+                  <p>　　作为一个完全不能容忍windows默认程序都往C:\Program Files\目录里安装的人。每次安装软件的时候，都得手动一个个改到D:\Program Files里。安装软件多了。就hold不住了。</p>
 
 <p>　　其实可以通过注册表使得所有安装程序默认安装到其他盘的。将下列内容保存到一个文本文件里，命名为Mo.reg。然后运行即可。以后安装的程序就会默认安装到D盘的Program Files目录了。你也可以根据需要自行修改</p>
 
@@ -870,7 +869,7 @@ The system should speak the users&rsquo; language, with words, phrases and conce
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.49.2</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.54.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

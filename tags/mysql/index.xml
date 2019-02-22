@@ -38,10 +38,10 @@ SELECT CONCAT((SELECT database()), FLOOR(RAND()*2)); 不要怕。先看最里面
     
     <item>
       <title>MySQL ERROR 1005: Can&#39;t create table  (errno: 150)解决办法</title>
-      <link>https://leizhiyuan.github.io/2012/06/10/mysql-error-1005-cant-create-table--errno-150%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</link>
+      <link>https://leizhiyuan.github.io/2012/06/10/mysql-error-1005-cant-create-table-errno-150%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</link>
       <pubDate>Sun, 10 Jun 2012 20:02:31 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/06/10/mysql-error-1005-cant-create-table--errno-150%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</guid>
+      <guid>https://leizhiyuan.github.io/2012/06/10/mysql-error-1005-cant-create-table-errno-150%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</guid>
       <description>最近在做数据库大作业，采用mysql建立数据库的时候出现了这个情况，查了一下，解决了。
 出现问题的大致可能情况
 1、外键的引用类型不一样，如主键是int外键是char

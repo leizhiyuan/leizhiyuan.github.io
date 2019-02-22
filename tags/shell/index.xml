@@ -144,10 +144,10 @@ n命令是输出当前行，然后读入下一行到pattern space的意思，这
     
     <item>
       <title>[译]Unix sed实用教程第一篇--向文件中增加一行</title>
-      <link>https://leizhiyuan.github.io/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%80%E7%AF%87--%E5%90%91%E6%96%87%E4%BB%B6%E4%B8%AD%E5%A2%9E%E5%8A%A0%E4%B8%80%E8%A1%8C/</link>
+      <link>https://leizhiyuan.github.io/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%80%E7%AF%87-%E5%90%91%E6%96%87%E4%BB%B6%E4%B8%AD%E5%A2%9E%E5%8A%A0%E4%B8%80%E8%A1%8C/</link>
       <pubDate>Fri, 09 Aug 2013 14:56:29 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%80%E7%AF%87--%E5%90%91%E6%96%87%E4%BB%B6%E4%B8%AD%E5%A2%9E%E5%8A%A0%E4%B8%80%E8%A1%8C/</guid>
+      <guid>https://leizhiyuan.github.io/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%80%E7%AF%87-%E5%90%91%E6%96%87%E4%BB%B6%E4%B8%AD%E5%A2%9E%E5%8A%A0%E4%B8%80%E8%A1%8C/</guid>
       <description>Unix sed实用教程第一讲，本系列第一篇，有任何问题欢迎留言讨论。
 sed 是unix中最重要的编辑器之一，注意，有之一..支持多种编辑任务，本文将实现题目的功能实例
 假定我们有一额文本文件，叫做empFile，包含了员工名字和员工id，如下： Hilesh, 1001 Bharti, 1002 Aparna, 1003 Harshal, 1004 Keyur, 1005 1.如何通过sed给文件添加标题行-“Employee, EmpId” $ sed &amp;lsquo;1i Employee, EmpId&amp;rsquo; empFile Employee, EmpId Hilesh, 1001 Bharti, 1002 Aparna, 1003 Harshal, 1004 Keyur, 1005 解释：数字1，是说只对第一行执行操作，i代表在insert（熟悉vim的同学应该知道，i会在当前字符的前面插入，a是在后面插入），因此，1i就表示在将Employee, EmpId插入到第一行之前，

@@ -160,10 +160,10 @@ int _tmain(int argc, _TCHAR* argv[]) { cout&amp;lt;&amp;lt;&amp;ldquo;请输入N
     
     <item>
       <title>倒水问题求解(C&#43;&#43;)</title>
-      <link>https://leizhiyuan.github.io/2013/05/15/%E5%80%92%E6%B0%B4%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3c--/</link>
+      <link>https://leizhiyuan.github.io/2013/05/15/%E5%80%92%E6%B0%B4%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3c-/</link>
       <pubDate>Wed, 15 May 2013 18:37:24 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/05/15/%E5%80%92%E6%B0%B4%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3c--/</guid>
+      <guid>https://leizhiyuan.github.io/2013/05/15/%E5%80%92%E6%B0%B4%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3c-/</guid>
       <description>明天要去参加微软面试，不求顺利，但求体验。
 这个题目答题的意思是:
 给你一个容量为A升的桶和一个容量为B升的桶，水不限使用，要求精确得到Q升水.请说明步骤
@@ -232,10 +232,10 @@ bystander:本文回答了你刷社交网络的内在因素.希望读到的人不
     
     <item>
       <title>模板优先级队列及堆排序(C&#43;&#43;实现)</title>
-      <link>https://leizhiyuan.github.io/2013/04/16/%E6%A8%A1%E6%9D%BF%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97%E5%8F%8A%E5%A0%86%E6%8E%92%E5%BA%8Fc--%E5%AE%9E%E7%8E%B0/</link>
+      <link>https://leizhiyuan.github.io/2013/04/16/%E6%A8%A1%E6%9D%BF%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97%E5%8F%8A%E5%A0%86%E6%8E%92%E5%BA%8Fc-%E5%AE%9E%E7%8E%B0/</link>
       <pubDate>Tue, 16 Apr 2013 08:42:58 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/04/16/%E6%A8%A1%E6%9D%BF%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97%E5%8F%8A%E5%A0%86%E6%8E%92%E5%BA%8Fc--%E5%AE%9E%E7%8E%B0/</guid>
+      <guid>https://leizhiyuan.github.io/2013/04/16/%E6%A8%A1%E6%9D%BF%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97%E5%8F%8A%E5%A0%86%E6%8E%92%E5%BA%8Fc-%E5%AE%9E%E7%8E%B0/</guid>
       <description>模板优先级队列，数组实现，再熟悉一下常用算法，同时简单的堆排序应用
 写了一个是队列自增长，另一个为了演示我还添加了一个叫做FillPq的方法，这个方法可以使用一个数组直接填充到优先级队列里，此时，优先级队列并不优先，然后进行下滤调整，之后建堆完成，输出即可 #include &amp;ldquo;stdafx.h&amp;rdquo;
 template&amp;lt; class T&amp;gt; class PriorityQueue { private: T *pq; int N; int capacity; public: PriorityQueue(void); ~PriorityQueue(void); void Insert(T x); T DelTop(); void Swim(int k); void Sink(int k); bool Less(int i,int j); void Swap(int i,int j); bool Resize(); void FillPq(T arr[],int size); };
@@ -245,10 +245,10 @@ template&amp;lt; class T&amp;gt; PriorityQueue&amp;lt;T&amp;gt;::PriorityQueue(v
     
     <item>
       <title>模板栈以及中缀表达式求值(C&#43;&#43;实现)</title>
-      <link>https://leizhiyuan.github.io/2013/04/11/%E6%A8%A1%E6%9D%BF%E6%A0%88%E4%BB%A5%E5%8F%8A%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BCc--%E5%AE%9E%E7%8E%B0/</link>
+      <link>https://leizhiyuan.github.io/2013/04/11/%E6%A8%A1%E6%9D%BF%E6%A0%88%E4%BB%A5%E5%8F%8A%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BCc-%E5%AE%9E%E7%8E%B0/</link>
       <pubDate>Thu, 11 Apr 2013 18:50:25 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/04/11/%E6%A8%A1%E6%9D%BF%E6%A0%88%E4%BB%A5%E5%8F%8A%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BCc--%E5%AE%9E%E7%8E%B0/</guid>
+      <guid>https://leizhiyuan.github.io/2013/04/11/%E6%A8%A1%E6%9D%BF%E6%A0%88%E4%BB%A5%E5%8F%8A%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BCc-%E5%AE%9E%E7%8E%B0/</guid>
       <description>栈直接用链表实现，这个比较简单，不多说，不过C++写程序，IDE的错误检测不是很给力。
 至于给定一个中缀表达式，如何不转换成后缀表达式，直接求值，方法就是使用两个栈，一个操作符栈，一个操作数栈，然后从左到右扫描表达式，我这里中缀表达式计算实现的很简单，不完整，大家可以扩展。栈的实现是我想写的，思路如下：
 1.如何是操作数，压入操作数栈
@@ -269,10 +269,10 @@ private: Node&amp;lt;T&amp;gt; *m_pTopNode; int m_nNodeCount; public: Stack(); ~
     
     <item>
       <title>并查集(C&#43;&#43;实现)</title>
-      <link>https://leizhiyuan.github.io/2013/04/11/%E5%B9%B6%E6%9F%A5%E9%9B%86c--%E5%AE%9E%E7%8E%B0/</link>
+      <link>https://leizhiyuan.github.io/2013/04/11/%E5%B9%B6%E6%9F%A5%E9%9B%86c-%E5%AE%9E%E7%8E%B0/</link>
       <pubDate>Thu, 11 Apr 2013 08:45:38 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/04/11/%E5%B9%B6%E6%9F%A5%E9%9B%86c--%E5%AE%9E%E7%8E%B0/</guid>
+      <guid>https://leizhiyuan.github.io/2013/04/11/%E5%B9%B6%E6%9F%A5%E9%9B%86c-%E5%AE%9E%E7%8E%B0/</guid>
       <description>并查集这个很有意思，并查集是一种树型的数据结构，用于处理一些不相交集合（Disjoint Sets）的合并及查询问题。昨天看书看到了，然后用C++简单实现了下。在Dijkstra算法中，用来判断两个顶点是否在同一个集合里。
 里面定义了两个类，都是并查集，一个是QuickFind，查找很快，一个是QuickUnion，合并较快。写了一些注释，有一些优化的提示.看代码吧，有什么问题指出来吧。
 QuickFind的实现 #include &amp;ldquo;QuickFind.h&amp;rdquo;
@@ -286,10 +286,10 @@ QuickUnion::QuickUnion(int N) { size=N; id=new int[N]; for(int i=0;i&amp;lt;N;i+
     <item>
       <title>和
 浅析</title>
-      <link>https://leizhiyuan.github.io/2013/04/05/%E5%92%8C%E6%B5%85%E6%9E%90/</link>
+      <link>https://leizhiyuan.github.io/2013/04/05/%E5%92%8C-%E6%B5%85%E6%9E%90/</link>
       <pubDate>Fri, 05 Apr 2013 13:29:04 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/04/05/%E5%92%8C%E6%B5%85%E6%9E%90/</guid>
+      <guid>https://leizhiyuan.github.io/2013/04/05/%E5%92%8C-%E6%B5%85%E6%9E%90/</guid>
       <description>这两个转义字符最初学习C++的时候看到了,当时没多想，后来某一天突然想起来，回车不就是换行吗？这不是多此一举吗？今天又看到，索性查了下相关资料，整理一下，留作记录.
 关于“回车”（carriage return）和“换行”（line feed）这两个概念的来历和区别。
 在计算机还没有出现之前，有一种叫做电传打字机（Teletype Model 33）的玩意，每秒钟可以打10个字符。但是它有一个问题，就是打完一行换行的时候，要用去0.2秒，正好可以打两个字符。要是在这0.2秒里面，又有新的字符传过来，那么这个字符将丢失。
@@ -1025,10 +1025,10 @@ MAH_1000, MAH_1500, MAH_2000 };</description>
     
     <item>
       <title>YAXLib---- XML序列化神器</title>
-      <link>https://leizhiyuan.github.io/2012/10/05/yaxlib-----xml%E5%BA%8F%E5%88%97%E5%8C%96%E7%A5%9E%E5%99%A8/</link>
+      <link>https://leizhiyuan.github.io/2012/10/05/yaxlib-xml%E5%BA%8F%E5%88%97%E5%8C%96%E7%A5%9E%E5%99%A8/</link>
       <pubDate>Fri, 05 Oct 2012 16:24:31 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/10/05/yaxlib-----xml%E5%BA%8F%E5%88%97%E5%8C%96%E7%A5%9E%E5%99%A8/</guid>
+      <guid>https://leizhiyuan.github.io/2012/10/05/yaxlib-xml%E5%BA%8F%E5%88%97%E5%8C%96%E7%A5%9E%E5%99%A8/</guid>
       <description>今天早上翻译了Yet-Another-XML-Serialization-Library-for-the-NET，刚开始以为很短。翻译着发现不对。。然后你不逼你自己。怎么知道自己做不到。于是。将近4个小时把30页的文档翻译完了。因为文章很长。所以本文只列出前两部分。我把翻译好的做成了pdf，
 文档下载：XML序列化神器
 1 介绍 在本文中，会把要提到的XML序列化库叫做YAXLib，我们知道。.Net 还是提供了一些序列化功能的，尤其是XmlSerializer，该类被程序员广泛使用用来序列化对象成XML，当然，反序列化也是可以的。我认为XmlSerializer类的问题有几下几点
@@ -1832,7 +1832,7 @@ private void Form1_MouseDown(object sender, MouseEventArgs e) { if (e.Button == 
       <pubDate>Fri, 08 Jun 2012 21:31:13 +0000</pubDate>
       
       <guid>https://leizhiyuan.github.io/2012/06/08/%E5%B1%9E%E6%80%A7%E6%96%87%E6%B3%95/</guid>
-      <description>我们知道，许多编译程序采用属性文法和语法制导翻译方法对语义处理工作进行比较规范和抽象的描述。
+      <description>　我们知道，许多编译程序采用属性文法和语法制导翻译方法对语义处理工作进行比较规范和抽象的描述。
 　而一个属性文法包含一个上下文无关文法和一系列文法规则，语义规则是指：对于文法的每个产生式都配备了一组属性的计算规则
 　语义规则附在文法的每个产生式上，而语法制导翻译是指在语法分析过程中，完成附加在所使用的产生式上的语义规则描述的动作。
 　·语法制导：基于语法分析中用到的文法产生式
@@ -1880,8 +1880,7 @@ private void Form1_MouseDown(object sender, MouseEventArgs e) { if (e.Button == 
 　以I0=CLOSURE（S′→·S，#）开始。运算。若有项目[A→α·Bβ,a ]属于CLOSURE(I)，B→γ是文法中的产生式，β∈V*，b∈FIRST(βa)， 则[B→·γ,b]也属于CLOSURE(I)中。此时，我们可以把S看成B，#看成a，然后需要求FIRST集合，此时没有β，a为#，所以FIRST（#）中只有一个b=#，而S有四个产生式。所有四个产生式加上#都是在I0中，最终求得的I0项目集为
 　{　S′→·S,#　S→·aAd,#　S→·bAc,#　S→·aec,#　S→·bed,#　}
 　然后使用GO函数来构造I1，从J={任何形如[A→αX·β,a]的项目 | [A→α·Xβ,a]∈I}我们可以知道I1的核（最初的产生式）就是这里的J，然后呢。X是I（也就是我们的I0）中的·后面的符号，也就是输入符。。可以看到在I0中，X可以为S，a，b，我们先以I1=GO(I0,S)=CLOSURE( S′→S·,# )，注意，·号已经前进了。因为J是I输入进一的项目，求I1，发现·后面没符号了，所以闭包就是他自己了。最终求得的I1的项目集为：
-　{S′→S·,# }
-　我们上一步是用的I1=GO(I0,S)来求得，我们求I2的时候使用GO（I0，a）来求，此时X就是a了。然后我们吧I0中符合的项目中的·后移一位得到J然后对J求闭包，就是I2了。此处J=S→a·Ad,# 和S→a·ec,#</description>
+　{S′→S·,# }</description>
     </item>
     
     <item>

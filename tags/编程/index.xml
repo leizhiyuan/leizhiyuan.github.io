@@ -78,10 +78,10 @@ rs.initiate() rs.add(&amp;#34;&amp;lt;hostname&amp;gt;:27017&amp;#34;) rs.add(&a
     
     <item>
       <title>引用和指针(C&#43;&#43;)</title>
-      <link>https://leizhiyuan.github.io/2013/05/22/%E5%BC%95%E7%94%A8%E5%92%8C%E6%8C%87%E9%92%88c--/</link>
+      <link>https://leizhiyuan.github.io/2013/05/22/%E5%BC%95%E7%94%A8%E5%92%8C%E6%8C%87%E9%92%88c-/</link>
       <pubDate>Wed, 22 May 2013 16:16:24 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/05/22/%E5%BC%95%E7%94%A8%E5%92%8C%E6%8C%87%E9%92%88c--/</guid>
+      <guid>https://leizhiyuan.github.io/2013/05/22/%E5%BC%95%E7%94%A8%E5%92%8C%E6%8C%87%E9%92%88c-/</guid>
       <description>今天在整理收藏夹的时候，又看到了这两篇非常不错的文章，关于指针和引用的，我就不翻译了，文章很简单，不过把其中我觉得很有意思的两部分结合我的理解希望说的更清楚,假定你读这篇文章之前已经知道指针，但是不是很清楚其中的部分。
 首先是关于指针的一个直观的一个认识. #include &amp;lt;iostream&amp;gt;
 int main() { using namespace std;
@@ -91,10 +91,10 @@ int main() { using namespace std;
     
     <item>
       <title>倒水问题求解(C&#43;&#43;)</title>
-      <link>https://leizhiyuan.github.io/2013/05/15/%E5%80%92%E6%B0%B4%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3c--/</link>
+      <link>https://leizhiyuan.github.io/2013/05/15/%E5%80%92%E6%B0%B4%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3c-/</link>
       <pubDate>Wed, 15 May 2013 18:37:24 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/05/15/%E5%80%92%E6%B0%B4%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3c--/</guid>
+      <guid>https://leizhiyuan.github.io/2013/05/15/%E5%80%92%E6%B0%B4%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3c-/</guid>
       <description>明天要去参加微软面试，不求顺利，但求体验。
 这个题目答题的意思是:
 给你一个容量为A升的桶和一个容量为B升的桶，水不限使用，要求精确得到Q升水.请说明步骤
@@ -112,10 +112,10 @@ A B ##### 0 0 0 3 3 0 3 3 4 2 &amp;lt;- B中也得到了2 但是注意,从 B-&am
     
     <item>
       <title>模板优先级队列及堆排序(C&#43;&#43;实现)</title>
-      <link>https://leizhiyuan.github.io/2013/04/16/%E6%A8%A1%E6%9D%BF%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97%E5%8F%8A%E5%A0%86%E6%8E%92%E5%BA%8Fc--%E5%AE%9E%E7%8E%B0/</link>
+      <link>https://leizhiyuan.github.io/2013/04/16/%E6%A8%A1%E6%9D%BF%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97%E5%8F%8A%E5%A0%86%E6%8E%92%E5%BA%8Fc-%E5%AE%9E%E7%8E%B0/</link>
       <pubDate>Tue, 16 Apr 2013 08:42:58 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/04/16/%E6%A8%A1%E6%9D%BF%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97%E5%8F%8A%E5%A0%86%E6%8E%92%E5%BA%8Fc--%E5%AE%9E%E7%8E%B0/</guid>
+      <guid>https://leizhiyuan.github.io/2013/04/16/%E6%A8%A1%E6%9D%BF%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97%E5%8F%8A%E5%A0%86%E6%8E%92%E5%BA%8Fc-%E5%AE%9E%E7%8E%B0/</guid>
       <description>模板优先级队列，数组实现，再熟悉一下常用算法，同时简单的堆排序应用
 写了一个是队列自增长，另一个为了演示我还添加了一个叫做FillPq的方法，这个方法可以使用一个数组直接填充到优先级队列里，此时，优先级队列并不优先，然后进行下滤调整，之后建堆完成，输出即可 #include &amp;ldquo;stdafx.h&amp;rdquo;
 template&amp;lt; class T&amp;gt; class PriorityQueue { private: T *pq; int N; int capacity; public: PriorityQueue(void); ~PriorityQueue(void); void Insert(T x); T DelTop(); void Swim(int k); void Sink(int k); bool Less(int i,int j); void Swap(int i,int j); bool Resize(); void FillPq(T arr[],int size); };
@@ -125,10 +125,10 @@ template&amp;lt; class T&amp;gt; PriorityQueue&amp;lt;T&amp;gt;::PriorityQueue(v
     
     <item>
       <title>模板栈以及中缀表达式求值(C&#43;&#43;实现)</title>
-      <link>https://leizhiyuan.github.io/2013/04/11/%E6%A8%A1%E6%9D%BF%E6%A0%88%E4%BB%A5%E5%8F%8A%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BCc--%E5%AE%9E%E7%8E%B0/</link>
+      <link>https://leizhiyuan.github.io/2013/04/11/%E6%A8%A1%E6%9D%BF%E6%A0%88%E4%BB%A5%E5%8F%8A%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BCc-%E5%AE%9E%E7%8E%B0/</link>
       <pubDate>Thu, 11 Apr 2013 18:50:25 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/04/11/%E6%A8%A1%E6%9D%BF%E6%A0%88%E4%BB%A5%E5%8F%8A%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BCc--%E5%AE%9E%E7%8E%B0/</guid>
+      <guid>https://leizhiyuan.github.io/2013/04/11/%E6%A8%A1%E6%9D%BF%E6%A0%88%E4%BB%A5%E5%8F%8A%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BCc-%E5%AE%9E%E7%8E%B0/</guid>
       <description>栈直接用链表实现，这个比较简单，不多说，不过C++写程序，IDE的错误检测不是很给力。
 至于给定一个中缀表达式，如何不转换成后缀表达式，直接求值，方法就是使用两个栈，一个操作符栈，一个操作数栈，然后从左到右扫描表达式，我这里中缀表达式计算实现的很简单，不完整，大家可以扩展。栈的实现是我想写的，思路如下：
 1.如何是操作数，压入操作数栈
@@ -149,10 +149,10 @@ private: Node&amp;lt;T&amp;gt; *m_pTopNode; int m_nNodeCount; public: Stack(); ~
     
     <item>
       <title>并查集(C&#43;&#43;实现)</title>
-      <link>https://leizhiyuan.github.io/2013/04/11/%E5%B9%B6%E6%9F%A5%E9%9B%86c--%E5%AE%9E%E7%8E%B0/</link>
+      <link>https://leizhiyuan.github.io/2013/04/11/%E5%B9%B6%E6%9F%A5%E9%9B%86c-%E5%AE%9E%E7%8E%B0/</link>
       <pubDate>Thu, 11 Apr 2013 08:45:38 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/04/11/%E5%B9%B6%E6%9F%A5%E9%9B%86c--%E5%AE%9E%E7%8E%B0/</guid>
+      <guid>https://leizhiyuan.github.io/2013/04/11/%E5%B9%B6%E6%9F%A5%E9%9B%86c-%E5%AE%9E%E7%8E%B0/</guid>
       <description>并查集这个很有意思，并查集是一种树型的数据结构，用于处理一些不相交集合（Disjoint Sets）的合并及查询问题。昨天看书看到了，然后用C++简单实现了下。在Dijkstra算法中，用来判断两个顶点是否在同一个集合里。
 里面定义了两个类，都是并查集，一个是QuickFind，查找很快，一个是QuickUnion，合并较快。写了一些注释，有一些优化的提示.看代码吧，有什么问题指出来吧。
 QuickFind的实现 #include &amp;ldquo;QuickFind.h&amp;rdquo;
@@ -378,10 +378,10 @@ MAH_1000, MAH_1500, MAH_2000 };</description>
     
     <item>
       <title>YAXLib---- XML序列化神器</title>
-      <link>https://leizhiyuan.github.io/2012/10/05/yaxlib-----xml%E5%BA%8F%E5%88%97%E5%8C%96%E7%A5%9E%E5%99%A8/</link>
+      <link>https://leizhiyuan.github.io/2012/10/05/yaxlib-xml%E5%BA%8F%E5%88%97%E5%8C%96%E7%A5%9E%E5%99%A8/</link>
       <pubDate>Fri, 05 Oct 2012 16:24:31 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/10/05/yaxlib-----xml%E5%BA%8F%E5%88%97%E5%8C%96%E7%A5%9E%E5%99%A8/</guid>
+      <guid>https://leizhiyuan.github.io/2012/10/05/yaxlib-xml%E5%BA%8F%E5%88%97%E5%8C%96%E7%A5%9E%E5%99%A8/</guid>
       <description>今天早上翻译了Yet-Another-XML-Serialization-Library-for-the-NET，刚开始以为很短。翻译着发现不对。。然后你不逼你自己。怎么知道自己做不到。于是。将近4个小时把30页的文档翻译完了。因为文章很长。所以本文只列出前两部分。我把翻译好的做成了pdf，
 文档下载：XML序列化神器
 1 介绍 在本文中，会把要提到的XML序列化库叫做YAXLib，我们知道。.Net 还是提供了一些序列化功能的，尤其是XmlSerializer，该类被程序员广泛使用用来序列化对象成XML，当然，反序列化也是可以的。我认为XmlSerializer类的问题有几下几点
@@ -627,7 +627,7 @@ private void label1_MouseDown(object sender, MouseButtonEventArgs e) { Label lbl
       <description>最近的一个事就是那个诡异的CSV导入，后来决定用最笨的方法。就是readline，然后确实是可以正常识别了。思路就是一行行读入，然后构造sql语句，保存为sql文件，然后去批量执行sql文件。其实在codeproject找到了一些类似的工具，都有不如意的地方，但是时间关系还没能自己去定制，这件事完成后，就去完善一下大牛们的工具。
 　因为是多个csv文件，每个文件对应于我们想建的一个表，实际是大约2000个csv文件，每个文件大约4000行数据，构造成对应的sql语句比较简单，需要注意的就是如果sql server表中的字段和关键字重名，那么需要加[]，比如我们有个字段是open，那么实际sql语句中使用的时候，比如
 CREATE TABLE ( [open] decimal not null, ) 　简单的读写以后我们构造了2000个sql文件，然后我们需要执行这些sql文件。。必然需要写个代码来批量执行了。。为此，我先用C#生成一个批处理文件，然后来执行
-void GetBat(string InputPath,string OutFile) { DirectoryInfo di = new DirectoryInfo(InputPath); FileInfo[] fi = di.GetFiles(); // Create an array representing the files in the current directory StringBuilder strtemp = new StringBuilder(); foreach (FileInfo fiTemp in fi) { string temp = &#34;osql -S \&#34;127.0.0.1\&#34; -U \&#34;sa\&#34; -P \&#34;broker\&#34; -d \&#34;test_money\&#34; -i \&#34;&#34;; temp += fiTemp.FullName.ToString() + &#34;\&#34;\n&#34;; strtemp.Append(temp); } FileStream fs = new FileStream(OutFile, FileMode.</description>
+void GetBat(string InputPath,string OutFile) { DirectoryInfo di = new DirectoryInfo(InputPath); FileInfo[] fi = di.GetFiles(); // Create an array representing the files in the current directory StringBuilder strtemp = new StringBuilder(); foreach (FileInfo fiTemp in fi) { string temp = &#34;osql -S \&#34;127.0.0.1\&#34; -U \&#34;sa\&#34; -P \&#34;broker\&#34; -d \&#34;test_money\&#34; -i \&#34;&#34;; temp += fiTemp.FullName.ToString() + &#34;\&#34;\n&#34;; strtemp.</description>
     </item>
     
     <item>
@@ -801,20 +801,20 @@ MSVC configuration Configure msvc (default version, searched for in standard loc
     
     <item>
       <title>C&#43;&#43; 独立引用，为什么？</title>
-      <link>https://leizhiyuan.github.io/2012/05/23/c---%E7%8B%AC%E7%AB%8B%E5%BC%95%E7%94%A8%E4%B8%BA%E4%BB%80%E4%B9%88/</link>
+      <link>https://leizhiyuan.github.io/2012/05/23/c-%E7%8B%AC%E7%AB%8B%E5%BC%95%E7%94%A8%E4%B8%BA%E4%BB%80%E4%B9%88/</link>
       <pubDate>Wed, 23 May 2012 07:25:04 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/05/23/c---%E7%8B%AC%E7%AB%8B%E5%BC%95%E7%94%A8%E4%B8%BA%E4%BB%80%E4%B9%88/</guid>
+      <guid>https://leizhiyuan.github.io/2012/05/23/c-%E7%8B%AC%E7%AB%8B%E5%BC%95%E7%94%A8%E4%B8%BA%E4%BB%80%E4%B9%88/</guid>
       <description>问题：
 I read in some good C++ tutorial that independent references do exist, and act like aliasing. 我读了一些好的C++文章，发现独立引用确实存在，并且很像别名。 But&amp;hellip; I wonder what it is made for. 但是，，，我想知道他适用于什么情况。 Why should one want to use aliasing.Besides, some piece of code that is not clear to me: 为什么有人想使用别名呢，另外，下面这段代码我不太清楚。 int a; int &amp;amp;ref = a; // independent reference int b = 19; ref = b; cout &amp;lt;&amp;lt; a &amp;lt;&amp;lt; &amp;ldquo; &amp;rdquo; &amp;lt;&amp;lt; ref &amp;lt;&amp;lt; &amp;ldquo;\n&amp;rdquo;; ref&amp;ndash;; cout &amp;lt;&amp;lt; a &amp;lt;&amp;lt; &amp;ldquo; &amp;rdquo; &amp;lt;&amp;lt; ref &amp;lt;&amp;lt; &amp;ldquo;\n&amp;rdquo;;</description>
     </item>
     
     <item>
       <title>c &amp; c&#43;&#43;中sizeof返回值不同?</title>
-      <link>https://leizhiyuan.github.io/2012/05/22/c--c--%E4%B8%ADsizeof%E8%BF%94%E5%9B%9E%E5%80%BC%E4%B8%8D%E5%90%8C/</link>
+      <link>https://leizhiyuan.github.io/2012/05/22/c-c-%E4%B8%ADsizeof%E8%BF%94%E5%9B%9E%E5%80%BC%E4%B8%8D%E5%90%8C/</link>
       <pubDate>Tue, 22 May 2012 11:28:27 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/05/22/c--c--%E4%B8%ADsizeof%E8%BF%94%E5%9B%9E%E5%80%BC%E4%B8%8D%E5%90%8C/</guid>
+      <guid>https://leizhiyuan.github.io/2012/05/22/c-c-%E4%B8%ADsizeof%E8%BF%94%E5%9B%9E%E5%80%BC%E4%B8%8D%E5%90%8C/</guid>
       <description>问题: A character array is defined globally and a structure with same name is defined within a function. 一个字符数组被定义为全局变量，一个相同名字的结构体被定义在一个函数内部。
 Why sizeof operator returns different values for c &amp;amp; c++ ? 为什么sizeof操作符对于C和C++返回了不同的值呢？ char S[13]; void fun() { struct S { int v; }; int v1 = sizeof(S); } // returns 4 in C++ and 13 in C 答案： Because in C++, the struct you defined is named S, while in C, 因为在C++中，你定义的结构体的名称是S，而在C中，</description>
     </item>
@@ -1019,7 +1019,13 @@ import android.view.View;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.ViewFlipper;&lt;/p&gt;</description>
+import android.widget.ViewFlipper;&lt;/p&gt;
+
+&lt;p&gt;/**
+ * Android实现左右滑动效果
+ * @author byStander
+ *
+ */&lt;/pre&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

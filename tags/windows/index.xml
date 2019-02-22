@@ -25,10 +25,10 @@ BoxLayout 介绍 如前所述，BoxLayout 可以把控件依次进行水平或�
     
     <item>
       <title>邻接表实现无向图(C&#43;&#43;)</title>
-      <link>https://leizhiyuan.github.io/2013/05/31/%E9%82%BB%E6%8E%A5%E8%A1%A8%E5%AE%9E%E7%8E%B0%E6%97%A0%E5%90%91%E5%9B%BEc--/</link>
+      <link>https://leizhiyuan.github.io/2013/05/31/%E9%82%BB%E6%8E%A5%E8%A1%A8%E5%AE%9E%E7%8E%B0%E6%97%A0%E5%90%91%E5%9B%BEc-/</link>
       <pubDate>Fri, 31 May 2013 15:05:29 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/05/31/%E9%82%BB%E6%8E%A5%E8%A1%A8%E5%AE%9E%E7%8E%B0%E6%97%A0%E5%90%91%E5%9B%BEc--/</guid>
+      <guid>https://leizhiyuan.github.io/2013/05/31/%E9%82%BB%E6%8E%A5%E8%A1%A8%E5%AE%9E%E7%8E%B0%E6%97%A0%E5%90%91%E5%9B%BEc-/</guid>
       <description>很早以前写的代码了，贴出来做个备份吧。用向量来存储一条邻接链表，存储可连通值。实现了判断是否连通，添加边，添加顶点的功能。
 UnDirectGraph.h #pragma once
 #include &amp;ldquo;stdafx.h&amp;rdquo; #include &amp;lt;vector&amp;gt; using namespace std; class UnDirectGraph { private: int vCount; vector&amp;lt;int&amp;gt; *adj; public: int GetVCount(); UnDirectGraph(int vCount); void AddEdge(int v,int w); vector&amp;lt;int&amp;gt; &amp;amp;Vadj(int v); bool IsConnected(int v,int w); }; UnDirectGraph.cpp #pragma once
@@ -55,10 +55,10 @@ int _tmain(int argc, _TCHAR* argv[]) { cout&amp;lt;&amp;lt;&amp;ldquo;请输入N
     
     <item>
       <title>并查集(C&#43;&#43;实现)</title>
-      <link>https://leizhiyuan.github.io/2013/04/11/%E5%B9%B6%E6%9F%A5%E9%9B%86c--%E5%AE%9E%E7%8E%B0/</link>
+      <link>https://leizhiyuan.github.io/2013/04/11/%E5%B9%B6%E6%9F%A5%E9%9B%86c-%E5%AE%9E%E7%8E%B0/</link>
       <pubDate>Thu, 11 Apr 2013 08:45:38 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/04/11/%E5%B9%B6%E6%9F%A5%E9%9B%86c--%E5%AE%9E%E7%8E%B0/</guid>
+      <guid>https://leizhiyuan.github.io/2013/04/11/%E5%B9%B6%E6%9F%A5%E9%9B%86c-%E5%AE%9E%E7%8E%B0/</guid>
       <description>并查集这个很有意思，并查集是一种树型的数据结构，用于处理一些不相交集合（Disjoint Sets）的合并及查询问题。昨天看书看到了，然后用C++简单实现了下。在Dijkstra算法中，用来判断两个顶点是否在同一个集合里。
 里面定义了两个类，都是并查集，一个是QuickFind，查找很快，一个是QuickUnion，合并较快。写了一些注释，有一些优化的提示.看代码吧，有什么问题指出来吧。
 QuickFind的实现 #include &amp;ldquo;QuickFind.h&amp;rdquo;
@@ -72,10 +72,10 @@ QuickUnion::QuickUnion(int N) { size=N; id=new int[N]; for(int i=0;i&amp;lt;N;i+
     <item>
       <title>和
 浅析</title>
-      <link>https://leizhiyuan.github.io/2013/04/05/%E5%92%8C%E6%B5%85%E6%9E%90/</link>
+      <link>https://leizhiyuan.github.io/2013/04/05/%E5%92%8C-%E6%B5%85%E6%9E%90/</link>
       <pubDate>Fri, 05 Apr 2013 13:29:04 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/04/05/%E5%92%8C%E6%B5%85%E6%9E%90/</guid>
+      <guid>https://leizhiyuan.github.io/2013/04/05/%E5%92%8C-%E6%B5%85%E6%9E%90/</guid>
       <description>这两个转义字符最初学习C++的时候看到了,当时没多想，后来某一天突然想起来，回车不就是换行吗？这不是多此一举吗？今天又看到，索性查了下相关资料，整理一下，留作记录.
 关于“回车”（carriage return）和“换行”（line feed）这两个概念的来历和区别。
 在计算机还没有出现之前，有一种叫做电传打字机（Teletype Model 33）的玩意，每秒钟可以打10个字符。但是它有一个问题，就是打完一行换行的时候，要用去0.2秒，正好可以打两个字符。要是在这0.2秒里面，又有新的字符传过来，那么这个字符将丢失。

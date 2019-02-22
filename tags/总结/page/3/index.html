@@ -17,7 +17,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.49.2" />
+  <meta name="generator" content="Hugo 0.54.0" />
   <link rel="canonical" href="https://leizhiyuan.github.io/tags/%E6%80%BB%E7%BB%93/" />
   <link rel="alternate" href="https://leizhiyuan.github.io/tags/%E6%80%BB%E7%BB%93/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
@@ -388,7 +388,7 @@
               </p>
               <div class="post-entry">
                 
-                  <p>前段时间数据库的时候，出现这个问题。一般是读到20多万条的时候。会出现这个问题。</p>
+                  <p>　　前段时间数据库的时候，出现这个问题。一般是读到20多万条的时候。会出现这个问题。</p>
 
 <p>　　找了一下。主要是这两个问题：</p>
 
@@ -453,7 +453,7 @@
               </p>
               <div class="post-entry">
                 
-                  <p>对于需要外部访问数据库的操作，需要开启sql server的远程连接。没经验的我等Google之。。大部分操作按照<a href="http://jingyan.baidu.com/article/6c67b1d6ca06f02787bb1ed1.html/">SQL Server 2008 R2如何开启数据库的远程连接</a>来操作</p>
+                  <p>　　对于需要外部访问数据库的操作，需要开启sql server的远程连接。没经验的我等Google之。。大部分操作按照<a href="http://jingyan.baidu.com/article/6c67b1d6ca06f02787bb1ed1.html/">SQL Server 2008 R2如何开启数据库的远程连接</a>来操作</p>
 
 <p>　　但是。有一些很小的细节需要注意。我的数据库是Sql Server 2008 Express版。这个是VS自带的。为了管理方便，可以安装<a href="http://www.microsoft.com/zh-cn/download/details.aspx?id=7593">SQL Server® 2008 Management Studio Express</a> 安装过程不多说。安装完成后，直接打开</p>
 
@@ -512,7 +512,7 @@
               </p>
               <div class="post-entry">
                 
-                  <p>今天在用WCF写服务的时候，服务一直连不上，直接查看svc文件，发现如下错误
+                  <p>　　今天在用WCF写服务的时候，服务一直连不上，直接查看svc文件，发现如下错误
 未能加载文件或程序集“&rsquo;App<em>Web</em>*<strong><em>, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null&rdquo;,</em></strong>*是一个随机字符串。</p>
 
 <p>解决方法中：</p>
@@ -747,7 +747,7 @@ tip：List泛型类对应于ArrayList。</li>
                   最近的一个事就是那个诡异的CSV导入，后来决定用最笨的方法。就是readline，然后确实是可以正常识别了。思路就是一行行读入，然后构造sql语句，保存为sql文件，然后去批量执行sql文件。其实在codeproject找到了一些类似的工具，都有不如意的地方，但是时间关系还没能自己去定制，这件事完成后，就去完善一下大牛们的工具。
 　因为是多个csv文件，每个文件对应于我们想建的一个表，实际是大约2000个csv文件，每个文件大约4000行数据，构造成对应的sql语句比较简单，需要注意的就是如果sql server表中的字段和关键字重名，那么需要加[]，比如我们有个字段是open，那么实际sql语句中使用的时候，比如
 CREATE TABLE ( [open] decimal not null, ) 　简单的读写以后我们构造了2000个sql文件，然后我们需要执行这些sql文件。。必然需要写个代码来批量执行了。。为此，我先用C#生成一个批处理文件，然后来执行
-void GetBat(string InputPath,string OutFile) { DirectoryInfo di = new DirectoryInfo(InputPath); FileInfo[] fi = di.GetFiles(); // Create an array representing the files in the current directory StringBuilder strtemp = new StringBuilder(); foreach (FileInfo fiTemp in fi) { string temp = "osql -S \"127.0.0.1\" -U \"sa\" -P \"broker\" -d \"test_money\" -i \""; temp += fiTemp.FullName.ToString() + "\"\n"; strtemp.Append(temp); } FileStream fs = new FileStream(OutFile, FileMode.
+void GetBat(string InputPath,string OutFile) { DirectoryInfo di = new DirectoryInfo(InputPath); FileInfo[] fi = di.GetFiles(); // Create an array representing the files in the current directory StringBuilder strtemp = new StringBuilder(); foreach (FileInfo fiTemp in fi) { string temp = "osql -S \"127.0.0.1\" -U \"sa\" -P \"broker\" -d \"test_money\" -i \""; temp += fiTemp.FullName.ToString() + "\"\n"; strtemp.
                   <a href="https://leizhiyuan.github.io/2012/07/06/csv%E6%89%B9%E9%87%8F%E5%AF%BC%E5%85%A5%E8%A7%A3%E5%86%B3/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -883,7 +883,7 @@ MCR简介 　MCR的全称是MATLAB Compiler Runtime，即MATLAB编译器运行�
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.49.2</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.54.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

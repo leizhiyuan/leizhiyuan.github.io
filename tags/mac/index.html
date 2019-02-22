@@ -17,7 +17,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.49.2" />
+  <meta name="generator" content="Hugo 0.54.0" />
   <link rel="canonical" href="https://leizhiyuan.github.io/tags/mac/" />
   <link rel="alternate" href="https://leizhiyuan.github.io/tags/mac/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
@@ -218,7 +218,7 @@
 brew install pssh brew install homebrew/dupes/expect brew install ssh-copy-id 另外安装luit的安装参考这里luit安装
 1. 生成ssh key ,并批量copy 生成ssh key比较简单.ssh-keygen -t rsa -C &quot;your_email@example.com&quot;,直接使用git的ssh key也是可以的.然后保存下面这个脚本为pscopy.sh,
 #!/bin/bash FILE=`cat ~/host.txt` for ip in $FILE;do expect -c &#34; spawn ssh-copy-id $ipexpect { \&#34;*yes/no*\&#34; {send \&#34;yes\r\&#34;;exp_continue} \&#34;*password*\&#34; {send \&#34;pass\r\&#34;;exp_continue} \&#34;*password*\&#34; {send \&#34;pass\r\&#34;;} } &#34; done 然后执行一下sh pscopy.sh,注意,host.txt要保证存在.格式是user@address.一行一个,中间的paas要改成user的密码,这样就会使用指定的用户密码,自动copy ssh key了. 完成上面的步骤之后,ssh user@address 就可以免登了.
-2. 写一个简单的pssh脚本 #!/bin/bash  encoding= key= command= file= usage() { echo &#34;Usage: `basename $0` [-f filename] [-c encoding] [-k keyword]&#34; exit 1 } while getopts :f:c:k: opt do case $opt in c) encoding=$OPTARG ;; :) echo &#34;-$OPTARGneeds an argument&#34; ;; k) key=$OPTARG ;; f) file=$OPTARG ;; *) echo &#34;-$optnot recognized&#34; usage ;; esac done if [ -z &#34;$encoding&#34; ]; then #该脚本必须提供-d选项  encoding=&#34;gbk&#34; fi if [ -z &#34;$file&#34; ]; then #该脚本必须提供-d选项  file=&#34;~/hosts.
+2. 写一个简单的pssh脚本 #!/bin/bash  encoding= key= command= file= usage() { echo &#34;Usage: `basename $0` [-f filename] [-c encoding] [-k keyword]&#34; exit 1 } while getopts :f:c:k: opt do case $opt in c) encoding=$OPTARG ;; :) echo &#34;-$OPTARGneeds an argument&#34; ;; k) key=$OPTARG ;; f) file=$OPTARG ;; *) echo &#34;-$optnot recognized&#34; usage ;; esac done if [ -z &#34;$encoding&#34; ]; then #该脚本必须提供-d选项 encoding=&#34;gbk&#34; fi if [ -z &#34;$file&#34; ]; then #该脚本必须提供-d选项 file=&#34;~/hosts.
                   <a href="https://leizhiyuan.github.io/2016/10/05/mac%E6%97%A5%E5%BF%97%E6%89%B9%E9%87%8F%E6%9F%A5%E8%AF%A2%E9%85%8D%E7%BD%AE/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -287,7 +287,7 @@ brew install pssh brew install homebrew/dupes/expect brew install ssh-copy-id �
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.49.2</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.54.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

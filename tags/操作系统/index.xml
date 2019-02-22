@@ -13,10 +13,10 @@
     
     <item>
       <title>引用和指针(C&#43;&#43;)</title>
-      <link>https://leizhiyuan.github.io/2013/05/22/%E5%BC%95%E7%94%A8%E5%92%8C%E6%8C%87%E9%92%88c--/</link>
+      <link>https://leizhiyuan.github.io/2013/05/22/%E5%BC%95%E7%94%A8%E5%92%8C%E6%8C%87%E9%92%88c-/</link>
       <pubDate>Wed, 22 May 2013 16:16:24 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/05/22/%E5%BC%95%E7%94%A8%E5%92%8C%E6%8C%87%E9%92%88c--/</guid>
+      <guid>https://leizhiyuan.github.io/2013/05/22/%E5%BC%95%E7%94%A8%E5%92%8C%E6%8C%87%E9%92%88c-/</guid>
       <description>今天在整理收藏夹的时候，又看到了这两篇非常不错的文章，关于指针和引用的，我就不翻译了，文章很简单，不过把其中我觉得很有意思的两部分结合我的理解希望说的更清楚,假定你读这篇文章之前已经知道指针，但是不是很清楚其中的部分。
 首先是关于指针的一个直观的一个认识. #include &amp;lt;iostream&amp;gt;
 int main() { using namespace std;

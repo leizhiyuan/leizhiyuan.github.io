@@ -286,10 +286,10 @@ int _tmain(int argc, _TCHAR* argv[]) { while(true) { double total = 0; double mi
     
     <item>
       <title>引用和指针(C&#43;&#43;)</title>
-      <link>https://leizhiyuan.github.io/2013/05/22/%E5%BC%95%E7%94%A8%E5%92%8C%E6%8C%87%E9%92%88c--/</link>
+      <link>https://leizhiyuan.github.io/2013/05/22/%E5%BC%95%E7%94%A8%E5%92%8C%E6%8C%87%E9%92%88c-/</link>
       <pubDate>Wed, 22 May 2013 16:16:24 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/05/22/%E5%BC%95%E7%94%A8%E5%92%8C%E6%8C%87%E9%92%88c--/</guid>
+      <guid>https://leizhiyuan.github.io/2013/05/22/%E5%BC%95%E7%94%A8%E5%92%8C%E6%8C%87%E9%92%88c-/</guid>
       <description>今天在整理收藏夹的时候，又看到了这两篇非常不错的文章，关于指针和引用的，我就不翻译了，文章很简单，不过把其中我觉得很有意思的两部分结合我的理解希望说的更清楚,假定你读这篇文章之前已经知道指针，但是不是很清楚其中的部分。
 首先是关于指针的一个直观的一个认识. #include &amp;lt;iostream&amp;gt;
 int main() { using namespace std;
@@ -315,10 +315,10 @@ int main() { using namespace std;
     
     <item>
       <title>模板栈以及中缀表达式求值(C&#43;&#43;实现)</title>
-      <link>https://leizhiyuan.github.io/2013/04/11/%E6%A8%A1%E6%9D%BF%E6%A0%88%E4%BB%A5%E5%8F%8A%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BCc--%E5%AE%9E%E7%8E%B0/</link>
+      <link>https://leizhiyuan.github.io/2013/04/11/%E6%A8%A1%E6%9D%BF%E6%A0%88%E4%BB%A5%E5%8F%8A%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BCc-%E5%AE%9E%E7%8E%B0/</link>
       <pubDate>Thu, 11 Apr 2013 18:50:25 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/04/11/%E6%A8%A1%E6%9D%BF%E6%A0%88%E4%BB%A5%E5%8F%8A%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BCc--%E5%AE%9E%E7%8E%B0/</guid>
+      <guid>https://leizhiyuan.github.io/2013/04/11/%E6%A8%A1%E6%9D%BF%E6%A0%88%E4%BB%A5%E5%8F%8A%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BCc-%E5%AE%9E%E7%8E%B0/</guid>
       <description>栈直接用链表实现，这个比较简单，不多说，不过C++写程序，IDE的错误检测不是很给力。
 至于给定一个中缀表达式，如何不转换成后缀表达式，直接求值，方法就是使用两个栈，一个操作符栈，一个操作数栈，然后从左到右扫描表达式，我这里中缀表达式计算实现的很简单，不完整，大家可以扩展。栈的实现是我想写的，思路如下：
 1.如何是操作数，压入操作数栈
@@ -859,10 +859,10 @@ MAH_1000, MAH_1500, MAH_2000 };</description>
     
     <item>
       <title>YAXLib---- XML序列化神器</title>
-      <link>https://leizhiyuan.github.io/2012/10/05/yaxlib-----xml%E5%BA%8F%E5%88%97%E5%8C%96%E7%A5%9E%E5%99%A8/</link>
+      <link>https://leizhiyuan.github.io/2012/10/05/yaxlib-xml%E5%BA%8F%E5%88%97%E5%8C%96%E7%A5%9E%E5%99%A8/</link>
       <pubDate>Fri, 05 Oct 2012 16:24:31 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/10/05/yaxlib-----xml%E5%BA%8F%E5%88%97%E5%8C%96%E7%A5%9E%E5%99%A8/</guid>
+      <guid>https://leizhiyuan.github.io/2012/10/05/yaxlib-xml%E5%BA%8F%E5%88%97%E5%8C%96%E7%A5%9E%E5%99%A8/</guid>
       <description>今天早上翻译了Yet-Another-XML-Serialization-Library-for-the-NET，刚开始以为很短。翻译着发现不对。。然后你不逼你自己。怎么知道自己做不到。于是。将近4个小时把30页的文档翻译完了。因为文章很长。所以本文只列出前两部分。我把翻译好的做成了pdf，
 文档下载：XML序列化神器
 1 介绍 在本文中，会把要提到的XML序列化库叫做YAXLib，我们知道。.Net 还是提供了一些序列化功能的，尤其是XmlSerializer，该类被程序员广泛使用用来序列化对象成XML，当然，反序列化也是可以的。我认为XmlSerializer类的问题有几下几点
@@ -1198,8 +1198,7 @@ private void label1_MouseDown(object sender, MouseButtonEventArgs e) { Label lbl
 　这个项目虽然是传统行业，但是我们基本上是按照互联网产品的思路去做的，除了拍摄需要来店里以外，其他一切，包括营销、预约、客服、后期、选片、取片、客户关系等，所有环节都放在网络上，尤其是微博（@tuciababy官网）。当然，最重要的是，作为一个脑残的果粉，我按照iPhone的做工和品质去要求每一张作品，必须达到我们能力可以做到的最好水准，不计成本的最好水准，才允许送给客户。正式接客不到两个月时间，虽然还远未达到成功，但目前已做到每天都有客户订单，财务上已实现盈利，未来相信一定会比大部分app开发者更光明。（ps:我们没有请工商、税务、城管去吃饭喝酒泡桑拿，也没有塞钱给任何政府机关。
  当你的产品真的用心做到很好的时候，其实你不需要讨好任何人的。
  ）
-　这个项目让我沉思了很久：07年我曾把一个纯纯的web2.0网站做到了alexa中国区前1000名（如有质疑，请查询2010年附近的tucia.com排名），结果一路亏损，到最后只剩下一个员工；11年我把那个纯纯的app做到苹果官方推荐区免费榜的第一位（点此看截图），那段时间每天四五千iPhone安装量，结果一路烧钱，到最后濒临关闭；而如今，我只需把自己从纯纯的互联网降级下来，做一些看起来有些“低级”的项目，居然就能立即实现收支平衡。
-　除此以外，我还发现一个现象，</description>
+　这个项目让我沉思了很久：07年我曾把一个纯纯的web2.0网站做到了alexa中国区前1000名（如有质疑，请查询2010年附近的tucia.com排名），结果一路亏损，到最后只剩下一个员工；11年我把那个纯纯的app做到苹果官方推荐区免费榜的第一位（点此看截图），那段时间每天四五千iPhone安装量，结果一路烧钱，到最后濒临关闭；而如今，我只需把自己从纯纯的互联网降级下来，做一些看起来有些“低级”的项目，居然就能立即实现收支平衡。</description>
     </item>
     
     <item>
@@ -1391,10 +1390,10 @@ gif是动态的嘛。然后我昨天和一个朋友聊天的时候发了一串�
     
     <item>
       <title>MySQL ERROR 1005: Can&#39;t create table  (errno: 150)解决办法</title>
-      <link>https://leizhiyuan.github.io/2012/06/10/mysql-error-1005-cant-create-table--errno-150%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</link>
+      <link>https://leizhiyuan.github.io/2012/06/10/mysql-error-1005-cant-create-table-errno-150%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</link>
       <pubDate>Sun, 10 Jun 2012 20:02:31 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/06/10/mysql-error-1005-cant-create-table--errno-150%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</guid>
+      <guid>https://leizhiyuan.github.io/2012/06/10/mysql-error-1005-cant-create-table-errno-150%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</guid>
       <description>最近在做数据库大作业，采用mysql建立数据库的时候出现了这个情况，查了一下，解决了。
 出现问题的大致可能情况
 1、外键的引用类型不一样，如主键是int外键是char
@@ -1501,10 +1500,10 @@ update:已知后遗症，我在这样实践了以后，发现vs2010的.net frame
     
     <item>
       <title>C&#43;&#43;回调函数</title>
-      <link>https://leizhiyuan.github.io/2012/05/09/c--%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/</link>
+      <link>https://leizhiyuan.github.io/2012/05/09/c-%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/</link>
       <pubDate>Wed, 09 May 2012 21:04:37 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/05/09/c--%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/</guid>
+      <guid>https://leizhiyuan.github.io/2012/05/09/c-%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/</guid>
       <description>回调函数就是一个通过函数指针调用的函数。如果你把函数的指针(地址)作为参数传递给另一个函数，当这个指针被用为调用它所指向的函数时，我们就说这是回调函数。
 　也就是说，回调函数它首先是一个函数，然后有一个指针指向它（该指针称为函数指针），在别的代码块中，通过这个函数指针调用了这个函数，仅此而已。
 　下面给出一个例子，我写出了比较详细的注释。希望足够清晰。这个例子说明了，回调函数可以把调用者和被调用者分开，对于调用者来说，只需要知道自己要调用一个函数，该函数有一个string类型的参数，至于具体调用哪个，被调用的函数到底怎么执行，怎么解释该参数，是完全不用关心的。 #include 
@@ -1583,9 +1582,7 @@ PF pf1 = funcOne; //实例化一个函数指针，指向func函数</description>
 
 &lt;p&gt;01. 自己的户口档案、养老保险、医疗保险、住房公积金一定要保管好。
  由于程序员行业每年跳槽一次，我不隐瞒大家，我至少换过5个以上的单位，这期间跳来跳去，甚至是城市都换过3个。还好户口没丢掉，其他都已经是乱了，好几个城市里，都有交过三金，甚至是一个程序的2个区里交的都有，那些东西，10年后，会变得很重要。你买房子若有公积金，可以取出来，贷款利率也会比较低一些，有孩子了，还需要上学，生病了还需要医疗保险。
- 特别是买房子时，你要商业贷款与公积金贷款的利率差别还是很大，有可能会有10万的差距。你平时都注意这些，会给你带来的损失会最小，例如每个月缴纳300元的公积金，公司也缴纳300元，&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+ 特别是买房子时，你要商业贷款与公积金贷款的利率差别还是很大，有可能会有10万的差距。你平时都注意这些，会给你带来的损失会最小，例如每个月缴纳300元的公积金，公司也缴纳300元，&lt;/p&gt;</description>
     </item>
     
     <item>

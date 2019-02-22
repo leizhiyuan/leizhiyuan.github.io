@@ -20,8 +20,7 @@
 　以I0=CLOSURE（S′→·S，#）开始。运算。若有项目[A→α·Bβ,a ]属于CLOSURE(I)，B→γ是文法中的产生式，β∈V*，b∈FIRST(βa)， 则[B→·γ,b]也属于CLOSURE(I)中。此时，我们可以把S看成B，#看成a，然后需要求FIRST集合，此时没有β，a为#，所以FIRST（#）中只有一个b=#，而S有四个产生式。所有四个产生式加上#都是在I0中，最终求得的I0项目集为
 　{　S′→·S,#　S→·aAd,#　S→·bAc,#　S→·aec,#　S→·bed,#　}
 　然后使用GO函数来构造I1，从J={任何形如[A→αX·β,a]的项目 | [A→α·Xβ,a]∈I}我们可以知道I1的核（最初的产生式）就是这里的J，然后呢。X是I（也就是我们的I0）中的·后面的符号，也就是输入符。。可以看到在I0中，X可以为S，a，b，我们先以I1=GO(I0,S)=CLOSURE( S′→S·,# )，注意，·号已经前进了。因为J是I输入进一的项目，求I1，发现·后面没符号了，所以闭包就是他自己了。最终求得的I1的项目集为：
-　{S′→S·,# }
-　我们上一步是用的I1=GO(I0,S)来求得，我们求I2的时候使用GO（I0，a）来求，此时X就是a了。然后我们吧I0中符合的项目中的·后移一位得到J然后对J求闭包，就是I2了。此处J=S→a·Ad,# 和S→a·ec,#">
+　{S′→S·,# }">
   <meta property="og:description" content="首先我们知道LR(0)的项目的形式是[A→α·β ]这样的.而在LR(1)中的项目形式是[A→α·β ，a ]，其中A→α·β 为LR(0)项目，称为心，a为终结符或#，称为向前搜索符。对归约项目[A→α·,a]，仅当前输入符号是a时，才能用A→α进行归约。一会将会看到具体的例子。
 　课本上给出的规则是：我将要对照着规则来说明，这里要强调一下，&rdquo;,&lsquo;在这里是分隔符。不是终结符。他是一个标志，
 　以S′→·S，#属于初始项目集中，把&rsquo;#&lsquo;号作为向前搜索符，表示活前缀为γ(若γ是有关S产生式的某一右部)要归约成S时，必须面临输入符为&rsquo;#&lsquo;号才行。因此对初始项目S′→·S，# 求闭包后再用转换函数逐步求出整个文法的LR(1)项目集族。具体构造步骤如下：
@@ -34,8 +33,7 @@
 　以I0=CLOSURE（S′→·S，#）开始。运算。若有项目[A→α·Bβ,a ]属于CLOSURE(I)，B→γ是文法中的产生式，β∈V*，b∈FIRST(βa)， 则[B→·γ,b]也属于CLOSURE(I)中。此时，我们可以把S看成B，#看成a，然后需要求FIRST集合，此时没有β，a为#，所以FIRST（#）中只有一个b=#，而S有四个产生式。所有四个产生式加上#都是在I0中，最终求得的I0项目集为
 　{　S′→·S,#　S→·aAd,#　S→·bAc,#　S→·aec,#　S→·bed,#　}
 　然后使用GO函数来构造I1，从J={任何形如[A→αX·β,a]的项目 | [A→α·Xβ,a]∈I}我们可以知道I1的核（最初的产生式）就是这里的J，然后呢。X是I（也就是我们的I0）中的·后面的符号，也就是输入符。。可以看到在I0中，X可以为S，a，b，我们先以I1=GO(I0,S)=CLOSURE( S′→S·,# )，注意，·号已经前进了。因为J是I输入进一的项目，求I1，发现·后面没符号了，所以闭包就是他自己了。最终求得的I1的项目集为：
-　{S′→S·,# }
-　我们上一步是用的I1=GO(I0,S)来求得，我们求I2的时候使用GO（I0，a）来求，此时X就是a了。然后我们吧I0中符合的项目中的·后移一位得到J然后对J求闭包，就是I2了。此处J=S→a·Ad,# 和S→a·ec,#">
+　{S′→S·,# }">
   <meta name="twitter:description" content="首先我们知道LR(0)的项目的形式是[A→α·β ]这样的.而在LR(1)中的项目形式是[A→α·β ，a ]，其中A→α·β 为LR(0)项目，称为心，a为终结符或#，称为向前搜索符。对归约项目[A→α·,a]，仅当前输入符号是a时，才能用A→α进行归约。一会将会看到具体的例子。
 　课本上给出的规则是：我将要对照着规则来说明，这里要强调一下，&rdquo;,&lsquo;在这里是分隔符。不是终结 …">
   <meta name="author" content="bystander"/>
@@ -47,7 +45,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.49.2" />
+  <meta name="generator" content="Hugo 0.54.0" />
   <link rel="canonical" href="https://leizhiyuan.github.io/2012/06/02/lr1%E9%A1%B9%E7%9B%AE%E9%9B%86%E8%A7%84%E8%8C%83%E7%B0%87%E7%9A%84%E6%9E%84%E9%80%A0/" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
@@ -229,7 +227,7 @@
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <p>首先我们知道LR(0)的项目的形式是[A→α·β ]这样的.而在LR(1)中的项目形式是[A→α·β ，a ]，其中A→α·β 为LR(0)项目，称为心，a为终结符或#，称为向前搜索符。对归约项目[A→α·,a]，仅当前输入符号是a时，才能用A→α进行归约。一会将会看到具体的例子。</p>
+        <p>　　首先我们知道LR(0)的项目的形式是[A→α·β ]这样的.而在LR(1)中的项目形式是[A→α·β ，a ]，其中A→α·β 为LR(0)项目，称为心，a为终结符或#，称为向前搜索符。对归约项目[A→α·,a]，仅当前输入符号是a时，才能用A→α进行归约。一会将会看到具体的例子。</p>
 
 <p>　　课本上给出的规则是：我将要对照着规则来说明，这里要强调一下，&rdquo;,&lsquo;在这里是分隔符。不是终结符。他是一个标志，</p>
 
@@ -423,7 +421,7 @@
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.49.2</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.54.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

@@ -209,7 +209,7 @@ rs.initiate() rs.add(&amp;#34;&amp;lt;hostname&amp;gt;:27017&amp;#34;) rs.add(&a
 brew install pssh brew install homebrew/dupes/expect brew install ssh-copy-id 另外安装luit的安装参考这里luit安装
 1. 生成ssh key ,并批量copy 生成ssh key比较简单.ssh-keygen -t rsa -C &amp;quot;your_email@example.com&amp;quot;,直接使用git的ssh key也是可以的.然后保存下面这个脚本为pscopy.sh,
 #!/bin/bash FILE=`cat ~/host.txt` for ip in $FILE;do expect -c &amp;#34; spawn ssh-copy-id $ipexpect { \&amp;#34;*yes/no*\&amp;#34; {send \&amp;#34;yes\r\&amp;#34;;exp_continue} \&amp;#34;*password*\&amp;#34; {send \&amp;#34;pass\r\&amp;#34;;exp_continue} \&amp;#34;*password*\&amp;#34; {send \&amp;#34;pass\r\&amp;#34;;} } &amp;#34; done 然后执行一下sh pscopy.sh,注意,host.txt要保证存在.格式是user@address.一行一个,中间的paas要改成user的密码,这样就会使用指定的用户密码,自动copy ssh key了. 完成上面的步骤之后,ssh user@address 就可以免登了.
-2. 写一个简单的pssh脚本 #!/bin/bash  encoding= key= command= file= usage() { echo &amp;#34;Usage: `basename $0` [-f filename] [-c encoding] [-k keyword]&amp;#34; exit 1 } while getopts :f:c:k: opt do case $opt in c) encoding=$OPTARG ;; :) echo &amp;#34;-$OPTARGneeds an argument&amp;#34; ;; k) key=$OPTARG ;; f) file=$OPTARG ;; *) echo &amp;#34;-$optnot recognized&amp;#34; usage ;; esac done if [ -z &amp;#34;$encoding&amp;#34; ]; then #该脚本必须提供-d选项  encoding=&amp;#34;gbk&amp;#34; fi if [ -z &amp;#34;$file&amp;#34; ]; then #该脚本必须提供-d选项  file=&amp;#34;~/hosts.</description>
+2. 写一个简单的pssh脚本 #!/bin/bash  encoding= key= command= file= usage() { echo &amp;#34;Usage: `basename $0` [-f filename] [-c encoding] [-k keyword]&amp;#34; exit 1 } while getopts :f:c:k: opt do case $opt in c) encoding=$OPTARG ;; :) echo &amp;#34;-$OPTARGneeds an argument&amp;#34; ;; k) key=$OPTARG ;; f) file=$OPTARG ;; *) echo &amp;#34;-$optnot recognized&amp;#34; usage ;; esac done if [ -z &amp;#34;$encoding&amp;#34; ]; then #该脚本必须提供-d选项 encoding=&amp;#34;gbk&amp;#34; fi if [ -z &amp;#34;$file&amp;#34; ]; then #该脚本必须提供-d选项 file=&amp;#34;~/hosts.</description>
     </item>
     
     <item>
@@ -386,7 +386,7 @@ ansible常见用法为ansible host-pattern -m 模块 -a 命令，host-pattern类
       <pubDate>Fri, 01 Jan 2016 15:50:52 +0800</pubDate>
       
       <guid>https://leizhiyuan.github.io/2016/01/01/links/</guid>
-      <description>C++爱好者博客:https://www.cppfans.org/</description>
+      <description>C++爱好者博客:https://www.cppfans.org/ KL，每天进步一点点:http://www.kailing.pub</description>
     </item>
     
     <item>
@@ -1621,10 +1621,10 @@ n命令是输出当前行，然后读入下一行到pattern space的意思，这
     
     <item>
       <title>[译]Unix sed实用教程第一篇--向文件中增加一行</title>
-      <link>https://leizhiyuan.github.io/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%80%E7%AF%87--%E5%90%91%E6%96%87%E4%BB%B6%E4%B8%AD%E5%A2%9E%E5%8A%A0%E4%B8%80%E8%A1%8C/</link>
+      <link>https://leizhiyuan.github.io/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%80%E7%AF%87-%E5%90%91%E6%96%87%E4%BB%B6%E4%B8%AD%E5%A2%9E%E5%8A%A0%E4%B8%80%E8%A1%8C/</link>
       <pubDate>Fri, 09 Aug 2013 14:56:29 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%80%E7%AF%87--%E5%90%91%E6%96%87%E4%BB%B6%E4%B8%AD%E5%A2%9E%E5%8A%A0%E4%B8%80%E8%A1%8C/</guid>
+      <guid>https://leizhiyuan.github.io/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%80%E7%AF%87-%E5%90%91%E6%96%87%E4%BB%B6%E4%B8%AD%E5%A2%9E%E5%8A%A0%E4%B8%80%E8%A1%8C/</guid>
       <description>Unix sed实用教程第一讲，本系列第一篇，有任何问题欢迎留言讨论。
 sed 是unix中最重要的编辑器之一，注意，有之一..支持多种编辑任务，本文将实现题目的功能实例
 假定我们有一额文本文件，叫做empFile，包含了员工名字和员工id，如下： Hilesh, 1001 Bharti, 1002 Aparna, 1003 Harshal, 1004 Keyur, 1005 1.如何通过sed给文件添加标题行-“Employee, EmpId” $ sed &amp;lsquo;1i Employee, EmpId&amp;rsquo; empFile Employee, EmpId Hilesh, 1001 Bharti, 1002 Aparna, 1003 Harshal, 1004 Keyur, 1005 解释：数字1，是说只对第一行执行操作，i代表在insert（熟悉vim的同学应该知道，i会在当前字符的前面插入，a是在后面插入），因此，1i就表示在将Employee, EmpId插入到第一行之前，
@@ -1745,10 +1745,10 @@ int _tmain(int argc, _TCHAR* argv[]) { while(true) { double total = 0; double mi
     
     <item>
       <title>邻接表实现无向图(C&#43;&#43;)</title>
-      <link>https://leizhiyuan.github.io/2013/05/31/%E9%82%BB%E6%8E%A5%E8%A1%A8%E5%AE%9E%E7%8E%B0%E6%97%A0%E5%90%91%E5%9B%BEc--/</link>
+      <link>https://leizhiyuan.github.io/2013/05/31/%E9%82%BB%E6%8E%A5%E8%A1%A8%E5%AE%9E%E7%8E%B0%E6%97%A0%E5%90%91%E5%9B%BEc-/</link>
       <pubDate>Fri, 31 May 2013 15:05:29 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/05/31/%E9%82%BB%E6%8E%A5%E8%A1%A8%E5%AE%9E%E7%8E%B0%E6%97%A0%E5%90%91%E5%9B%BEc--/</guid>
+      <guid>https://leizhiyuan.github.io/2013/05/31/%E9%82%BB%E6%8E%A5%E8%A1%A8%E5%AE%9E%E7%8E%B0%E6%97%A0%E5%90%91%E5%9B%BEc-/</guid>
       <description>很早以前写的代码了，贴出来做个备份吧。用向量来存储一条邻接链表，存储可连通值。实现了判断是否连通，添加边，添加顶点的功能。
 UnDirectGraph.h #pragma once
 #include &amp;ldquo;stdafx.h&amp;rdquo; #include &amp;lt;vector&amp;gt; using namespace std; class UnDirectGraph { private: int vCount; vector&amp;lt;int&amp;gt; *adj; public: int GetVCount(); UnDirectGraph(int vCount); void AddEdge(int v,int w); vector&amp;lt;int&amp;gt; &amp;amp;Vadj(int v); bool IsConnected(int v,int w); }; UnDirectGraph.cpp #pragma once
@@ -1809,10 +1809,10 @@ int _tmain(int argc, _TCHAR* argv[]) { cout&amp;lt;&amp;lt;&amp;ldquo;请输入N
     
     <item>
       <title>引用和指针(C&#43;&#43;)</title>
-      <link>https://leizhiyuan.github.io/2013/05/22/%E5%BC%95%E7%94%A8%E5%92%8C%E6%8C%87%E9%92%88c--/</link>
+      <link>https://leizhiyuan.github.io/2013/05/22/%E5%BC%95%E7%94%A8%E5%92%8C%E6%8C%87%E9%92%88c-/</link>
       <pubDate>Wed, 22 May 2013 16:16:24 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/05/22/%E5%BC%95%E7%94%A8%E5%92%8C%E6%8C%87%E9%92%88c--/</guid>
+      <guid>https://leizhiyuan.github.io/2013/05/22/%E5%BC%95%E7%94%A8%E5%92%8C%E6%8C%87%E9%92%88c-/</guid>
       <description>今天在整理收藏夹的时候，又看到了这两篇非常不错的文章，关于指针和引用的，我就不翻译了，文章很简单，不过把其中我觉得很有意思的两部分结合我的理解希望说的更清楚,假定你读这篇文章之前已经知道指针，但是不是很清楚其中的部分。
 首先是关于指针的一个直观的一个认识. #include &amp;lt;iostream&amp;gt;
 int main() { using namespace std;
@@ -1822,10 +1822,10 @@ int main() { using namespace std;
     
     <item>
       <title>倒水问题求解(C&#43;&#43;)</title>
-      <link>https://leizhiyuan.github.io/2013/05/15/%E5%80%92%E6%B0%B4%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3c--/</link>
+      <link>https://leizhiyuan.github.io/2013/05/15/%E5%80%92%E6%B0%B4%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3c-/</link>
       <pubDate>Wed, 15 May 2013 18:37:24 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/05/15/%E5%80%92%E6%B0%B4%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3c--/</guid>
+      <guid>https://leizhiyuan.github.io/2013/05/15/%E5%80%92%E6%B0%B4%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3c-/</guid>
       <description>明天要去参加微软面试，不求顺利，但求体验。
 这个题目答题的意思是:
 给你一个容量为A升的桶和一个容量为B升的桶，水不限使用，要求精确得到Q升水.请说明步骤
@@ -1894,10 +1894,10 @@ bystander:本文回答了你刷社交网络的内在因素.希望读到的人不
     
     <item>
       <title>模板优先级队列及堆排序(C&#43;&#43;实现)</title>
-      <link>https://leizhiyuan.github.io/2013/04/16/%E6%A8%A1%E6%9D%BF%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97%E5%8F%8A%E5%A0%86%E6%8E%92%E5%BA%8Fc--%E5%AE%9E%E7%8E%B0/</link>
+      <link>https://leizhiyuan.github.io/2013/04/16/%E6%A8%A1%E6%9D%BF%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97%E5%8F%8A%E5%A0%86%E6%8E%92%E5%BA%8Fc-%E5%AE%9E%E7%8E%B0/</link>
       <pubDate>Tue, 16 Apr 2013 08:42:58 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/04/16/%E6%A8%A1%E6%9D%BF%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97%E5%8F%8A%E5%A0%86%E6%8E%92%E5%BA%8Fc--%E5%AE%9E%E7%8E%B0/</guid>
+      <guid>https://leizhiyuan.github.io/2013/04/16/%E6%A8%A1%E6%9D%BF%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97%E5%8F%8A%E5%A0%86%E6%8E%92%E5%BA%8Fc-%E5%AE%9E%E7%8E%B0/</guid>
       <description>模板优先级队列，数组实现，再熟悉一下常用算法，同时简单的堆排序应用
 写了一个是队列自增长，另一个为了演示我还添加了一个叫做FillPq的方法，这个方法可以使用一个数组直接填充到优先级队列里，此时，优先级队列并不优先，然后进行下滤调整，之后建堆完成，输出即可 #include &amp;ldquo;stdafx.h&amp;rdquo;
 template&amp;lt; class T&amp;gt; class PriorityQueue { private: T *pq; int N; int capacity; public: PriorityQueue(void); ~PriorityQueue(void); void Insert(T x); T DelTop(); void Swim(int k); void Sink(int k); bool Less(int i,int j); void Swap(int i,int j); bool Resize(); void FillPq(T arr[],int size); };
@@ -1907,10 +1907,10 @@ template&amp;lt; class T&amp;gt; PriorityQueue&amp;lt;T&amp;gt;::PriorityQueue(v
     
     <item>
       <title>模板栈以及中缀表达式求值(C&#43;&#43;实现)</title>
-      <link>https://leizhiyuan.github.io/2013/04/11/%E6%A8%A1%E6%9D%BF%E6%A0%88%E4%BB%A5%E5%8F%8A%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BCc--%E5%AE%9E%E7%8E%B0/</link>
+      <link>https://leizhiyuan.github.io/2013/04/11/%E6%A8%A1%E6%9D%BF%E6%A0%88%E4%BB%A5%E5%8F%8A%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BCc-%E5%AE%9E%E7%8E%B0/</link>
       <pubDate>Thu, 11 Apr 2013 18:50:25 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/04/11/%E6%A8%A1%E6%9D%BF%E6%A0%88%E4%BB%A5%E5%8F%8A%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BCc--%E5%AE%9E%E7%8E%B0/</guid>
+      <guid>https://leizhiyuan.github.io/2013/04/11/%E6%A8%A1%E6%9D%BF%E6%A0%88%E4%BB%A5%E5%8F%8A%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BCc-%E5%AE%9E%E7%8E%B0/</guid>
       <description>栈直接用链表实现，这个比较简单，不多说，不过C++写程序，IDE的错误检测不是很给力。
 至于给定一个中缀表达式，如何不转换成后缀表达式，直接求值，方法就是使用两个栈，一个操作符栈，一个操作数栈，然后从左到右扫描表达式，我这里中缀表达式计算实现的很简单，不完整，大家可以扩展。栈的实现是我想写的，思路如下：
 1.如何是操作数，压入操作数栈
@@ -1931,10 +1931,10 @@ private: Node&amp;lt;T&amp;gt; *m_pTopNode; int m_nNodeCount; public: Stack(); ~
     
     <item>
       <title>并查集(C&#43;&#43;实现)</title>
-      <link>https://leizhiyuan.github.io/2013/04/11/%E5%B9%B6%E6%9F%A5%E9%9B%86c--%E5%AE%9E%E7%8E%B0/</link>
+      <link>https://leizhiyuan.github.io/2013/04/11/%E5%B9%B6%E6%9F%A5%E9%9B%86c-%E5%AE%9E%E7%8E%B0/</link>
       <pubDate>Thu, 11 Apr 2013 08:45:38 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/04/11/%E5%B9%B6%E6%9F%A5%E9%9B%86c--%E5%AE%9E%E7%8E%B0/</guid>
+      <guid>https://leizhiyuan.github.io/2013/04/11/%E5%B9%B6%E6%9F%A5%E9%9B%86c-%E5%AE%9E%E7%8E%B0/</guid>
       <description>并查集这个很有意思，并查集是一种树型的数据结构，用于处理一些不相交集合（Disjoint Sets）的合并及查询问题。昨天看书看到了，然后用C++简单实现了下。在Dijkstra算法中，用来判断两个顶点是否在同一个集合里。
 里面定义了两个类，都是并查集，一个是QuickFind，查找很快，一个是QuickUnion，合并较快。写了一些注释，有一些优化的提示.看代码吧，有什么问题指出来吧。
 QuickFind的实现 #include &amp;ldquo;QuickFind.h&amp;rdquo;
@@ -1948,10 +1948,10 @@ QuickUnion::QuickUnion(int N) { size=N; id=new int[N]; for(int i=0;i&amp;lt;N;i+
     <item>
       <title>和
 浅析</title>
-      <link>https://leizhiyuan.github.io/2013/04/05/%E5%92%8C%E6%B5%85%E6%9E%90/</link>
+      <link>https://leizhiyuan.github.io/2013/04/05/%E5%92%8C-%E6%B5%85%E6%9E%90/</link>
       <pubDate>Fri, 05 Apr 2013 13:29:04 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/04/05/%E5%92%8C%E6%B5%85%E6%9E%90/</guid>
+      <guid>https://leizhiyuan.github.io/2013/04/05/%E5%92%8C-%E6%B5%85%E6%9E%90/</guid>
       <description>这两个转义字符最初学习C++的时候看到了,当时没多想，后来某一天突然想起来，回车不就是换行吗？这不是多此一举吗？今天又看到，索性查了下相关资料，整理一下，留作记录.
 关于“回车”（carriage return）和“换行”（line feed）这两个概念的来历和区别。
 在计算机还没有出现之前，有一种叫做电传打字机（Teletype Model 33）的玩意，每秒钟可以打10个字符。但是它有一个问题，就是打完一行换行的时候，要用去0.2秒，正好可以打两个字符。要是在这0.2秒里面，又有新的字符传过来，那么这个字符将丢失。
@@ -2108,8 +2108,7 @@ Debug.Assert(value != -1, &#34;Value must never be -1.&#34;); 如果表达式为
 　你为民主民权民生摇旗呐喊，早年带老婆到天安门广场拍露逼照，直接则对城楼上的人像竖中指，好像很厉害的样子，可惜被查过一次账后就痿了，回来后一副受尽人间辛酸的萌样，像闰土一样四处找粉丝借钱，谁看谁心疼。
 　你老了，头发胡子花白，你归隐田园，深藏功与名。你心情不好就打个飞的去伦敦喂鸽子，去尼泊尔爬珠穆朗玛峰，心情好的时候就给干女儿做一盘难看但好吃的红烧肉。
 　你会当凌绝顶，一览众逼小。你再也不需要装逼，因为，你就是逼。
-　你安然地度过了一生，死后安葬在宁静的故乡，野花轻轻覆盖你的墓碑，上面镌刻的六个大字清晰可辨：
-　“活过，爱过，装过。”</description>
+　你安然地度过了一生，死后安葬在宁静的故乡，野花轻轻覆盖你的墓碑，上面镌刻的六个大字清晰可辨：</description>
     </item>
     
     <item>
@@ -3134,10 +3133,10 @@ MAH_1000, MAH_1500, MAH_2000 };</description>
     
     <item>
       <title>YAXLib---- XML序列化神器</title>
-      <link>https://leizhiyuan.github.io/2012/10/05/yaxlib-----xml%E5%BA%8F%E5%88%97%E5%8C%96%E7%A5%9E%E5%99%A8/</link>
+      <link>https://leizhiyuan.github.io/2012/10/05/yaxlib-xml%E5%BA%8F%E5%88%97%E5%8C%96%E7%A5%9E%E5%99%A8/</link>
       <pubDate>Fri, 05 Oct 2012 16:24:31 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/10/05/yaxlib-----xml%E5%BA%8F%E5%88%97%E5%8C%96%E7%A5%9E%E5%99%A8/</guid>
+      <guid>https://leizhiyuan.github.io/2012/10/05/yaxlib-xml%E5%BA%8F%E5%88%97%E5%8C%96%E7%A5%9E%E5%99%A8/</guid>
       <description>今天早上翻译了Yet-Another-XML-Serialization-Library-for-the-NET，刚开始以为很短。翻译着发现不对。。然后你不逼你自己。怎么知道自己做不到。于是。将近4个小时把30页的文档翻译完了。因为文章很长。所以本文只列出前两部分。我把翻译好的做成了pdf，
 文档下载：XML序列化神器
 1 介绍 在本文中，会把要提到的XML序列化库叫做YAXLib，我们知道。.Net 还是提供了一些序列化功能的，尤其是XmlSerializer，该类被程序员广泛使用用来序列化对象成XML，当然，反序列化也是可以的。我认为XmlSerializer类的问题有几下几点
@@ -4021,8 +4020,7 @@ private void label1_MouseDown(object sender, MouseButtonEventArgs e) { Label lbl
 　这个项目虽然是传统行业，但是我们基本上是按照互联网产品的思路去做的，除了拍摄需要来店里以外，其他一切，包括营销、预约、客服、后期、选片、取片、客户关系等，所有环节都放在网络上，尤其是微博（@tuciababy官网）。当然，最重要的是，作为一个脑残的果粉，我按照iPhone的做工和品质去要求每一张作品，必须达到我们能力可以做到的最好水准，不计成本的最好水准，才允许送给客户。正式接客不到两个月时间，虽然还远未达到成功，但目前已做到每天都有客户订单，财务上已实现盈利，未来相信一定会比大部分app开发者更光明。（ps:我们没有请工商、税务、城管去吃饭喝酒泡桑拿，也没有塞钱给任何政府机关。
  当你的产品真的用心做到很好的时候，其实你不需要讨好任何人的。
  ）
-　这个项目让我沉思了很久：07年我曾把一个纯纯的web2.0网站做到了alexa中国区前1000名（如有质疑，请查询2010年附近的tucia.com排名），结果一路亏损，到最后只剩下一个员工；11年我把那个纯纯的app做到苹果官方推荐区免费榜的第一位（点此看截图），那段时间每天四五千iPhone安装量，结果一路烧钱，到最后濒临关闭；而如今，我只需把自己从纯纯的互联网降级下来，做一些看起来有些“低级”的项目，居然就能立即实现收支平衡。
-　除此以外，我还发现一个现象，</description>
+　这个项目让我沉思了很久：07年我曾把一个纯纯的web2.0网站做到了alexa中国区前1000名（如有质疑，请查询2010年附近的tucia.com排名），结果一路亏损，到最后只剩下一个员工；11年我把那个纯纯的app做到苹果官方推荐区免费榜的第一位（点此看截图），那段时间每天四五千iPhone安装量，结果一路烧钱，到最后濒临关闭；而如今，我只需把自己从纯纯的互联网降级下来，做一些看起来有些“低级”的项目，居然就能立即实现收支平衡。</description>
     </item>
     
     <item>
@@ -4056,7 +4054,7 @@ private void label1_MouseDown(object sender, MouseButtonEventArgs e) { Label lbl
       <description>最近的一个事就是那个诡异的CSV导入，后来决定用最笨的方法。就是readline，然后确实是可以正常识别了。思路就是一行行读入，然后构造sql语句，保存为sql文件，然后去批量执行sql文件。其实在codeproject找到了一些类似的工具，都有不如意的地方，但是时间关系还没能自己去定制，这件事完成后，就去完善一下大牛们的工具。
 　因为是多个csv文件，每个文件对应于我们想建的一个表，实际是大约2000个csv文件，每个文件大约4000行数据，构造成对应的sql语句比较简单，需要注意的就是如果sql server表中的字段和关键字重名，那么需要加[]，比如我们有个字段是open，那么实际sql语句中使用的时候，比如
 CREATE TABLE ( [open] decimal not null, ) 　简单的读写以后我们构造了2000个sql文件，然后我们需要执行这些sql文件。。必然需要写个代码来批量执行了。。为此，我先用C#生成一个批处理文件，然后来执行
-void GetBat(string InputPath,string OutFile) { DirectoryInfo di = new DirectoryInfo(InputPath); FileInfo[] fi = di.GetFiles(); // Create an array representing the files in the current directory StringBuilder strtemp = new StringBuilder(); foreach (FileInfo fiTemp in fi) { string temp = &#34;osql -S \&#34;127.0.0.1\&#34; -U \&#34;sa\&#34; -P \&#34;broker\&#34; -d \&#34;test_money\&#34; -i \&#34;&#34;; temp += fiTemp.FullName.ToString() + &#34;\&#34;\n&#34;; strtemp.Append(temp); } FileStream fs = new FileStream(OutFile, FileMode.</description>
+void GetBat(string InputPath,string OutFile) { DirectoryInfo di = new DirectoryInfo(InputPath); FileInfo[] fi = di.GetFiles(); // Create an array representing the files in the current directory StringBuilder strtemp = new StringBuilder(); foreach (FileInfo fiTemp in fi) { string temp = &#34;osql -S \&#34;127.0.0.1\&#34; -U \&#34;sa\&#34; -P \&#34;broker\&#34; -d \&#34;test_money\&#34; -i \&#34;&#34;; temp += fiTemp.FullName.ToString() + &#34;\&#34;\n&#34;; strtemp.</description>
     </item>
     
     <item>
@@ -4363,10 +4361,10 @@ gif是动态的嘛。然后我昨天和一个朋友聊天的时候发了一串�
     
     <item>
       <title>MySQL ERROR 1005: Can&#39;t create table  (errno: 150)解决办法</title>
-      <link>https://leizhiyuan.github.io/2012/06/10/mysql-error-1005-cant-create-table--errno-150%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</link>
+      <link>https://leizhiyuan.github.io/2012/06/10/mysql-error-1005-cant-create-table-errno-150%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</link>
       <pubDate>Sun, 10 Jun 2012 20:02:31 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/06/10/mysql-error-1005-cant-create-table--errno-150%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</guid>
+      <guid>https://leizhiyuan.github.io/2012/06/10/mysql-error-1005-cant-create-table-errno-150%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</guid>
       <description>最近在做数据库大作业，采用mysql建立数据库的时候出现了这个情况，查了一下，解决了。
 出现问题的大致可能情况
 1、外键的引用类型不一样，如主键是int外键是char
@@ -4382,7 +4380,7 @@ gif是动态的嘛。然后我昨天和一个朋友聊天的时候发了一串�
       <pubDate>Fri, 08 Jun 2012 21:31:13 +0000</pubDate>
       
       <guid>https://leizhiyuan.github.io/2012/06/08/%E5%B1%9E%E6%80%A7%E6%96%87%E6%B3%95/</guid>
-      <description>我们知道，许多编译程序采用属性文法和语法制导翻译方法对语义处理工作进行比较规范和抽象的描述。
+      <description>　我们知道，许多编译程序采用属性文法和语法制导翻译方法对语义处理工作进行比较规范和抽象的描述。
 　而一个属性文法包含一个上下文无关文法和一系列文法规则，语义规则是指：对于文法的每个产生式都配备了一组属性的计算规则
 　语义规则附在文法的每个产生式上，而语法制导翻译是指在语法分析过程中，完成附加在所使用的产生式上的语义规则描述的动作。
 　·语法制导：基于语法分析中用到的文法产生式
@@ -4472,8 +4470,7 @@ gif是动态的嘛。然后我昨天和一个朋友聊天的时候发了一串�
 　以I0=CLOSURE（S′→·S，#）开始。运算。若有项目[A→α·Bβ,a ]属于CLOSURE(I)，B→γ是文法中的产生式，β∈V*，b∈FIRST(βa)， 则[B→·γ,b]也属于CLOSURE(I)中。此时，我们可以把S看成B，#看成a，然后需要求FIRST集合，此时没有β，a为#，所以FIRST（#）中只有一个b=#，而S有四个产生式。所有四个产生式加上#都是在I0中，最终求得的I0项目集为
 　{　S′→·S,#　S→·aAd,#　S→·bAc,#　S→·aec,#　S→·bed,#　}
 　然后使用GO函数来构造I1，从J={任何形如[A→αX·β,a]的项目 | [A→α·Xβ,a]∈I}我们可以知道I1的核（最初的产生式）就是这里的J，然后呢。X是I（也就是我们的I0）中的·后面的符号，也就是输入符。。可以看到在I0中，X可以为S，a，b，我们先以I1=GO(I0,S)=CLOSURE( S′→S·,# )，注意，·号已经前进了。因为J是I输入进一的项目，求I1，发现·后面没符号了，所以闭包就是他自己了。最终求得的I1的项目集为：
-　{S′→S·,# }
-　我们上一步是用的I1=GO(I0,S)来求得，我们求I2的时候使用GO（I0，a）来求，此时X就是a了。然后我们吧I0中符合的项目中的·后移一位得到J然后对J求闭包，就是I2了。此处J=S→a·Ad,# 和S→a·ec,#</description>
+　{S′→S·,# }</description>
     </item>
     
     <item>
@@ -4587,20 +4584,20 @@ MSVC configuration Configure msvc (default version, searched for in standard loc
     
     <item>
       <title>C&#43;&#43; 独立引用，为什么？</title>
-      <link>https://leizhiyuan.github.io/2012/05/23/c---%E7%8B%AC%E7%AB%8B%E5%BC%95%E7%94%A8%E4%B8%BA%E4%BB%80%E4%B9%88/</link>
+      <link>https://leizhiyuan.github.io/2012/05/23/c-%E7%8B%AC%E7%AB%8B%E5%BC%95%E7%94%A8%E4%B8%BA%E4%BB%80%E4%B9%88/</link>
       <pubDate>Wed, 23 May 2012 07:25:04 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/05/23/c---%E7%8B%AC%E7%AB%8B%E5%BC%95%E7%94%A8%E4%B8%BA%E4%BB%80%E4%B9%88/</guid>
+      <guid>https://leizhiyuan.github.io/2012/05/23/c-%E7%8B%AC%E7%AB%8B%E5%BC%95%E7%94%A8%E4%B8%BA%E4%BB%80%E4%B9%88/</guid>
       <description>问题：
 I read in some good C++ tutorial that independent references do exist, and act like aliasing. 我读了一些好的C++文章，发现独立引用确实存在，并且很像别名。 But&amp;hellip; I wonder what it is made for. 但是，，，我想知道他适用于什么情况。 Why should one want to use aliasing.Besides, some piece of code that is not clear to me: 为什么有人想使用别名呢，另外，下面这段代码我不太清楚。 int a; int &amp;amp;ref = a; // independent reference int b = 19; ref = b; cout &amp;lt;&amp;lt; a &amp;lt;&amp;lt; &amp;ldquo; &amp;rdquo; &amp;lt;&amp;lt; ref &amp;lt;&amp;lt; &amp;ldquo;\n&amp;rdquo;; ref&amp;ndash;; cout &amp;lt;&amp;lt; a &amp;lt;&amp;lt; &amp;ldquo; &amp;rdquo; &amp;lt;&amp;lt; ref &amp;lt;&amp;lt; &amp;ldquo;\n&amp;rdquo;;</description>
     </item>
     
     <item>
       <title>c &amp; c&#43;&#43;中sizeof返回值不同?</title>
-      <link>https://leizhiyuan.github.io/2012/05/22/c--c--%E4%B8%ADsizeof%E8%BF%94%E5%9B%9E%E5%80%BC%E4%B8%8D%E5%90%8C/</link>
+      <link>https://leizhiyuan.github.io/2012/05/22/c-c-%E4%B8%ADsizeof%E8%BF%94%E5%9B%9E%E5%80%BC%E4%B8%8D%E5%90%8C/</link>
       <pubDate>Tue, 22 May 2012 11:28:27 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/05/22/c--c--%E4%B8%ADsizeof%E8%BF%94%E5%9B%9E%E5%80%BC%E4%B8%8D%E5%90%8C/</guid>
+      <guid>https://leizhiyuan.github.io/2012/05/22/c-c-%E4%B8%ADsizeof%E8%BF%94%E5%9B%9E%E5%80%BC%E4%B8%8D%E5%90%8C/</guid>
       <description>问题: A character array is defined globally and a structure with same name is defined within a function. 一个字符数组被定义为全局变量，一个相同名字的结构体被定义在一个函数内部。
 Why sizeof operator returns different values for c &amp;amp; c++ ? 为什么sizeof操作符对于C和C++返回了不同的值呢？ char S[13]; void fun() { struct S { int v; }; int v1 = sizeof(S); } // returns 4 in C++ and 13 in C 答案： Because in C++, the struct you defined is named S, while in C, 因为在C++中，你定义的结构体的名称是S，而在C中，</description>
     </item>
@@ -4660,7 +4657,7 @@ update:已知后遗症，我在这样实践了以后，发现vs2010的.net frame
       <pubDate>Wed, 16 May 2012 07:12:46 +0000</pubDate>
       
       <guid>https://leizhiyuan.github.io/2012/05/16/%E4%BA%B2%E5%AF%86%E8%A1%8C%E4%B8%BA%E4%B9%A6%E8%AF%84/</guid>
-      <description>首先说说感受。本书是《裸猿》三部曲之一，因为貌似是属于人类学和社会学的部分，更多的讨论了人类亲密行为的原因，基本上归结在动物性上。认为很多亲密行为其实是婴儿时期对母亲的感受形成的。而作者德斯蒙德的确是一位非常伟大的生物学家和作家。强大的生物学就在轻松的仿似“洽谈”的文字间给予人一种神秘的力量。我们的祖先留给我们的生物本能被他很强大的讨论了。但是。。如果你对人类这生物什么的完全没兴趣。比如像我。那么这本书就不用看了。纯粹是浪费时间。如果你是初为人母或是初为人父，那么前几章都可以看，了解一下婴儿的行为，可以更好的育儿。。观点如有偏颇。请海涵。
+      <description>　首先说说感受。本书是《裸猿》三部曲之一，因为貌似是属于人类学和社会学的部分，更多的讨论了人类亲密行为的原因，基本上归结在动物性上。认为很多亲密行为其实是婴儿时期对母亲的感受形成的。而作者德斯蒙德的确是一位非常伟大的生物学家和作家。强大的生物学就在轻松的仿似“洽谈”的文字间给予人一种神秘的力量。我们的祖先留给我们的生物本能被他很强大的讨论了。但是。。如果你对人类这生物什么的完全没兴趣。比如像我。那么这本书就不用看了。纯粹是浪费时间。如果你是初为人母或是初为人父，那么前几章都可以看，了解一下婴儿的行为，可以更好的育儿。。观点如有偏颇。请海涵。
 　然后给出一些摘抄吧，
 　摇动婴儿以每分钟60-70下的速度可以减少婴儿的啼哭。
 　教育孩子早期应该亲密，爱护，稍微大一点就可以放开一些。而不是想法。到了孩子大了的时候反而溺爱，即先爱后自由。
@@ -4860,16 +4857,15 @@ update:已知后遗症，我在这样实践了以后，发现vs2010的.net frame
 　教育既不会使人变得更加道德，也不会使人更幸福，他既不能改变他的本能，也不能改变他的热情。。。害处远大于好处。
 　掌握一些派不上用场的知识，是让人造反的不二法门
 　生活中取得成功的条件是判断力，经验，开拓精神，和个性。非课本能带来。
-　大学毕业，一个充分发展的人诞生，但筋疲力尽，成家立业，落入生活的俗套，只要落入这种俗套，他就会把自己封闭在狭隘的职业中，工作还算本分，但仅此而已，这就是平庸的生活。
-　因为各种词语和套话的力量而死去的人，只要用他们的尸骨，就能建造一座比古老的齐奥普斯更高的金字塔。</description>
+　大学毕业，一个充分发展的人诞生，但筋疲力尽，成家立业，落入生活的俗套，只要落入这种俗套，他就会把自己封闭在狭隘的职业中，工作还算本分，但仅此而已，这就是平庸的生活。</description>
     </item>
     
     <item>
       <title>C&#43;&#43;回调函数</title>
-      <link>https://leizhiyuan.github.io/2012/05/09/c--%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/</link>
+      <link>https://leizhiyuan.github.io/2012/05/09/c-%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/</link>
       <pubDate>Wed, 09 May 2012 21:04:37 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/05/09/c--%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/</guid>
+      <guid>https://leizhiyuan.github.io/2012/05/09/c-%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/</guid>
       <description>回调函数就是一个通过函数指针调用的函数。如果你把函数的指针(地址)作为参数传递给另一个函数，当这个指针被用为调用它所指向的函数时，我们就说这是回调函数。
 　也就是说，回调函数它首先是一个函数，然后有一个指针指向它（该指针称为函数指针），在别的代码块中，通过这个函数指针调用了这个函数，仅此而已。
 　下面给出一个例子，我写出了比较详细的注释。希望足够清晰。这个例子说明了，回调函数可以把调用者和被调用者分开，对于调用者来说，只需要知道自己要调用一个函数，该函数有一个string类型的参数，至于具体调用哪个，被调用的函数到底怎么执行，怎么解释该参数，是完全不用关心的。 #include 
@@ -5066,7 +5062,7 @@ GB2312是基于区位码设计的，在区位码的区号和位号上分别加�
       <pubDate>Sat, 28 Apr 2012 14:13:26 +0000</pubDate>
       
       <guid>https://leizhiyuan.github.io/2012/04/28/c#-%E6%B8%A9%E6%95%85%E8%80%8C%E7%9F%A5%E6%96%B0stream%E7%AF%87/</guid>
-      <description>如果你在学习C#，那么对流的操作是非常基础重要的一步，而JimmyZheng的Stream系列文章估计是流操作最好的文章了。直接转过来，做一个收藏。也希望能够对学习的朋友有所帮助，本文可能会持续更新。
+      <description>　如果你在学习C#，那么对流的操作是非常基础重要的一步，而JimmyZheng的Stream系列文章估计是流操作最好的文章了。直接转过来，做一个收藏。也希望能够对学习的朋友有所帮助，本文可能会持续更新。
  C# 温故而知新：Stream篇（—）Stream简单介绍 C# 温故而知新：Stream篇（二）TextReader 和StreamReader C# 温故而知新：Stream篇（三）TextWriter 和 StreamWriter C# 温故而知新：Stream篇（四）FileStream C# 温故而知新：Stream篇（五）MemoryStream C# 温故而知新：Stream篇（六）BufferedStream C# 温故而知新：Stream篇（七）NetworkStream  </description>
     </item>
     
@@ -5116,7 +5112,7 @@ http://spark10000.blog.51cto.com/955100/547211
       <pubDate>Thu, 26 Apr 2012 15:28:46 +0000</pubDate>
       
       <guid>https://leizhiyuan.github.io/2012/04/26/%E6%96%87%E6%AF%94%E4%B8%89%E5%AE%B6-%E6%9C%89%E5%85%B3%E5%A5%8B%E6%96%97/</guid>
-      <description>看到有关奋斗的文章，放在一起别有一种感觉，我还是很认同第三种的，第二种太理想化了。当然你会有自己的看法的，有需要的直接前往原文观看。 第一篇很出名，叫做《你必须非常努力，才能看起来毫不费力》
+      <description>　看到有关奋斗的文章，放在一起别有一种感觉，我还是很认同第三种的，第二种太理想化了。当然你会有自己的看法的，有需要的直接前往原文观看。 第一篇很出名，叫做《你必须非常努力，才能看起来毫不费力》
  有一群人，他们积极自律，每天按计划行事，有条不紊；他们不张扬，把自己当成最卑微的小草，等待着人生开出花朵的那天。他们早晨5点多起来健身，你在睡觉；7点开始享受丰盛的早餐，蛋白质维生素淀粉粗纤维样样俱全，为新的一天起了一个好头，当他们收拾妥当准备开始一整天的工作时，你还在睡觉。
  第二篇针锋相对，是《我始终不信努力奋斗的意义》
  “奋斗”这个词的英文表示更能彰显其本来面目，叫做“struggle for”，奋力斗争。Struggle的含义是，你之所以奋力斗争，正是为摆脱你目前所处的状态——你不是想着追求，而是想着逃离。你之所以现在做你讨厌的事情，为的是以后再也不做这种事情。那么，为什么不在此刻停下来呢？ 子曰：富而可求也，虽执鞭之士，吾亦为之。如不可求，从吾所好。
@@ -5223,10 +5219,10 @@ http://metc.gdut.edu.cn/compile/cmpl3/3-3.htm</description>
     
     <item>
       <title>WWWScan GUI版--WebScan</title>
-      <link>https://leizhiyuan.github.io/2012/04/18/wwwscan-gui%E7%89%88--webscan/</link>
+      <link>https://leizhiyuan.github.io/2012/04/18/wwwscan-gui%E7%89%88-webscan/</link>
       <pubDate>Wed, 18 Apr 2012 21:56:11 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/04/18/wwwscan-gui%E7%89%88--webscan/</guid>
+      <guid>https://leizhiyuan.github.io/2012/04/18/wwwscan-gui%E7%89%88-webscan/</guid>
       <description>网上一直有个版本是Wscan Gui Beta6，首先感谢作者的无私奉献，写代码不容易啊。但是这个我不知道为什么在我的电脑上总是有一些错误。很多功能虽然加上了，但是其实对我有点多余。毕竟，我只是用这个扫描一下。于是，决定自己用C#做个GUI版，模仿实现一下。
 　然后我看了一下目录结构。如下图所知  貌似作者只是简单写了。然后对应着调用扫描器。我想了下，可以通过修改文件名来实现，因为wwwscan默认只能识别cgi.list，那么我想的是当我选中一种扫描类型后。将对应的字典，比如asp.list改成cgi.list。当然为了保护原文件，复制。。然后调用。这样就不用有这么多exe了。。
 　第二个我想实现作者的检测网站的脚本类型的功能，想到了两种方法。一种是循环访问index.xxx文件，xxx对asp jsp等，然后判断http状态码，200的话就可以对应判断出来网站脚本了。但是这样测试了一会没成功，还是算了，，然后想了一种猥琐流的方法，就是直接访问首页。然后把源码下载下来，然后搜索&amp;rdquo;.xxx&amp;rdquo;字符串，找到就行了，，当然这两种方法都是不完善的。。我也没想到什么完美的。。希望有人知道的话留言指教。
@@ -5414,7 +5410,13 @@ import android.view.View;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.ViewFlipper;&lt;/p&gt;</description>
+import android.widget.ViewFlipper;&lt;/p&gt;
+
+&lt;p&gt;/**
+ * Android实现左右滑动效果
+ * @author byStander
+ *
+ */&lt;/pre&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -5459,9 +5461,7 @@ import android.widget.ViewFlipper;&lt;/p&gt;</description>
 
 &lt;p&gt;01. 自己的户口档案、养老保险、医疗保险、住房公积金一定要保管好。
  由于程序员行业每年跳槽一次，我不隐瞒大家，我至少换过5个以上的单位，这期间跳来跳去，甚至是城市都换过3个。还好户口没丢掉，其他都已经是乱了，好几个城市里，都有交过三金，甚至是一个程序的2个区里交的都有，那些东西，10年后，会变得很重要。你买房子若有公积金，可以取出来，贷款利率也会比较低一些，有孩子了，还需要上学，生病了还需要医疗保险。
- 特别是买房子时，你要商业贷款与公积金贷款的利率差别还是很大，有可能会有10万的差距。你平时都注意这些，会给你带来的损失会最小，例如每个月缴纳300元的公积金，公司也缴纳300元，&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+ 特别是买房子时，你要商业贷款与公积金贷款的利率差别还是很大，有可能会有10万的差距。你平时都注意这些，会给你带来的损失会最小，例如每个月缴纳300元的公积金，公司也缴纳300元，&lt;/p&gt;</description>
     </item>
     
     <item>
