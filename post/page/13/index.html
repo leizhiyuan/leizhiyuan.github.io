@@ -175,7 +175,7 @@
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on March 1, 2013
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on March 3, 2013
   
   
   &nbsp;|&nbsp;
@@ -200,6 +200,67 @@
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
         <div class="posts-list">
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2013/03/03/%E8%AF%A6%E7%BB%86%E8%AE%B2%E8%A7%A3%E5%8F%8C%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5/">
+                <h2 class="post-title">详细讲解双查询注入</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on March 3, 2013
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (184 words)
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  上一篇文章中，http://leaver.me/archives/2726.html
+我说双查询很难讲清楚，这次就试着讲一下。读了一些原理性的东西。然后尽量通俗的给大家讲清楚。。
+在此之前，我们理解一下子查询，查询的关键字是select，这个大家都知道。子查询可以简单的理解在一个select语句里还有一个select。里面的这个select语句就是子查询。
+看一个简单的例子：
+Select concat((select database())); 真正执行的时候，先从子查询进行。因此执行select database() 这个语句就会把当前的数据库查出来，然后把结果传入到concat函数。这个函数是用来连接的。比如 concat(‘a’,’b’)那结果就是ab了。
+原理：
+双注入查询需要理解四个函数/语句 1. Rand() //随机函数 2. Floor() //取整函数 3. Count() //汇总函数 4. Group by clause //分组语句
+简单的一句话原理就是有研究人员发现，当在一个聚合函数，比如count函数后面如果使用分组语句就会把查询的一部分以错误的形式显示出来。
+以本地一个名为Security的数据库为例 首先在bt5下的命令行下输入
+mysql -u root –p toor 就会连接上数据库了。 然后通过use security； 就可以切换到security数据库了。因为一个服务器上可能有多个数据库嘛。 
+然后我们执行一下前面那个简单的子查询的例子
+SELECT concat((select database())); 就能显示security，也就是显示了当前数据库的名字了。 然后我们测试一下concat的用法。输入
+SELECT concat('string1','string2'); 显然结果就是string1string2了
+ 然后我们测试一下rand()这个随机函数是干嘛的
+Select rand(); 我们多执行几次  可以看到，这个函数就是返回大于0，小于1之间的数 然后看看取整函数
+Select floor(1.1123456); [![](/images/4477acaba79cf1464c028cab96e32534d81af2e5.png)](http://leaverimage.b0.upaiyun.com/33520_o.png) 这个函数就是返回小于等于你输入的数的整数。 然后我们看看双注入查询中的一个简单组合。大家从我的上一篇文章中应该也看到了有一个子查询是 SELECT floor(rand()*2); 我们从里向外看。rand() 返回大于0小于1的小数，乘以2之后就成了小于0小于2了。然后对结果进行取证。就只能是0或1了。也就是这个查询的结果不是1，就是0 我们稍微加大一点难度。看这个查询
+SELECT CONCAT((SELECT database()), FLOOR(RAND()*2)); 不要怕。先看最里面的SELECT database() 这个就返回数据库名，这里就是security了。然后FLOOR(RAND()*2)这个上面说过了。不是0，就是1.
+                  <a href="https://leizhiyuan.github.io/2013/03/03/%E8%AF%A6%E7%BB%86%E8%AE%B2%E8%A7%A3%E5%8F%8C%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/mysql/">mysql</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E4%BA%92%E8%81%94%E7%BD%91/">互联网</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AE%89%E5%85%A8/">安全</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2013/03/01/c#%E4%B8%AD%E7%9A%84debug%E7%B1%BB/">
@@ -790,112 +851,6 @@ f4ck.net/index.php?id=1 and(select 1 from(select count(*),concat((select (select
                     <a href="https://leizhiyuan.github.io//tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E7%AC%94%E8%AE%B0/">笔记</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/02/02/recon-ng%E5%BC%80%E6%BA%90%E4%BF%A1%E6%81%AF%E6%8E%A2%E6%B5%8B%E6%A1%86%E6%9E%B6/">
-                <h2 class="post-title">recon-ng开源信息探测框架</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on February 2, 2013
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (61 words)
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  <p>作者：bystander
-博客：<a href="http://leaver.me">http://leaver.me</a>
-微博：<a href="http://t.qq.com/lazystander">http://t.qq.com/lazystander</a>
-论坛：法客论坛</p>
-
-<p>首发。转载什么的请注明出处。起码给我留个链接啥的嘛。</p>
-
-<p>首先介绍一下。这个工具是国外刚刚发布的。主要用来渗透前的信息探测。使用类似Metasploit
-主要有
-Auxiliary：
-这个模块查询主机信息泄漏页。进行hash反查，模糊名称精确，检查某个email是否密码泄漏，域名解析ip等
-Contacts：
-这个模块探测和某一公司有关的人员的信息，主要包括 LinkedIn 和Jigsaw 这两个模块。得到的信息可以被Auxiliary模块使用，如果和Social Engineer Toolkit(社会工程学工具集，这个工具已经发布了。是开源的。大家可以看看)，一起。效果强大。</p>
-
-<p>Hosts：
-这个用来获取站点子域名。。包括使用baidu。Google bing等。。效果相当强大。
-Output：
-这个模块用来创建输出报表
-Pwnedlist：
-这个模块不是得shell的。他可通过 Pwnedlist.com 提供的api，如果这个网站被入侵过。那么可以直接获得其他黑客泄漏的帐号密码。。（需要去 Pwnedlist.com 注册）</p>
-
-<p>安装方法：
-bt下直接
-<pre class="lang:default decode:true">git clone <a href="https://LaNMaSteR53@bitbucket.org/LaNMaSteR53/recon-ng.git">https://LaNMaSteR53@bitbucket.org/LaNMaSteR53/recon-ng.git</a></pre>
-然后有可能提示输入密码，好象是随便输一个用来保护版本控制。。我输的是toor。。
-然后就安装好了。输入
-<pre class="lang:default decode:true">cd recon-ng</pre>
-然后
-<pre class="lang:default decode:true">./recon-ng.py</pre>
-首先查看有哪些模块。输入
-<pre class="lang:default decode:true">modules</pre>
-图一</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/32339_o.jpg"><img src="/images/88f2dd5c24ad567a09c5b6162cd60d70b3fb781d.jpg" alt="" /></a></p>
-
-<p>我以获取子域名为例，通过我前面的介绍你已经知道了hosts模块里的所有模块基本都是干这事的。我用里面的baidu模块来说明。你也可以使用bing等，，</p>
-
-<p>输入命令
-<pre class="lang:default decode:true">load hosts::baidu</pre>
-图二</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/32340_o.jpg"><img src="/images/f818e08de804ba8875667692fbdd580ad8114667.jpg" alt="" /></a></p>
-
-<p>刚开始你可能不清楚这个模块的说明。那么继续输入info即可查看模块的详细说明
-要开始使用。我们输入
-<pre class="lang:default decode:true">options</pre>
-和Metasploit很像把。可以查看要使用需要的配置。</p>
-
-<p>图三</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/32341_o.jpg"><img src="/images/7848e773ab3e4e3ad03f59ba7b5ac6704d333ce6.jpg" alt="" /></a></p>
-
-<p>看表，会发现有三行。第一行是标题，第二行是域名设置，第三行是输出。这个current value也就是当前值已经为true。所以不用设置。req的意思是是否必须设置。我们输入
-baidu.com就是你的目标了。
-<pre class="lang:default decode:true">set domain baidu.com</pre>
-就会从百度的结果里提取百度的子域名信息了。要开始。我们输入
-<pre class="lang:default decode:true">run</pre>
-图四</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/32342_o.jpg"><img src="/images/125a841869478ff39dd63113e2e9427c3ae1cf81.jpg" alt="" /></a></p>
-
-<p>更多希望大家发掘吧。我抛砖。求引玉。</p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E4%BA%92%E8%81%94%E7%BD%91/">互联网</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AE%89%E5%85%A8/">安全</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%94%B6%E8%97%8F/">收藏</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
                   
                 </div>
               

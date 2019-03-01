@@ -175,7 +175,7 @@
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on February 1, 2013
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on February 2, 2013
   
   
   &nbsp;|&nbsp;
@@ -200,6 +200,112 @@
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
         <div class="posts-list">
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2013/02/02/recon-ng%E5%BC%80%E6%BA%90%E4%BF%A1%E6%81%AF%E6%8E%A2%E6%B5%8B%E6%A1%86%E6%9E%B6/">
+                <h2 class="post-title">recon-ng开源信息探测框架</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on February 2, 2013
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (61 words)
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  <p>作者：bystander
+博客：<a href="http://leaver.me">http://leaver.me</a>
+微博：<a href="http://t.qq.com/lazystander">http://t.qq.com/lazystander</a>
+论坛：法客论坛</p>
+
+<p>首发。转载什么的请注明出处。起码给我留个链接啥的嘛。</p>
+
+<p>首先介绍一下。这个工具是国外刚刚发布的。主要用来渗透前的信息探测。使用类似Metasploit
+主要有
+Auxiliary：
+这个模块查询主机信息泄漏页。进行hash反查，模糊名称精确，检查某个email是否密码泄漏，域名解析ip等
+Contacts：
+这个模块探测和某一公司有关的人员的信息，主要包括 LinkedIn 和Jigsaw 这两个模块。得到的信息可以被Auxiliary模块使用，如果和Social Engineer Toolkit(社会工程学工具集，这个工具已经发布了。是开源的。大家可以看看)，一起。效果强大。</p>
+
+<p>Hosts：
+这个用来获取站点子域名。。包括使用baidu。Google bing等。。效果相当强大。
+Output：
+这个模块用来创建输出报表
+Pwnedlist：
+这个模块不是得shell的。他可通过 Pwnedlist.com 提供的api，如果这个网站被入侵过。那么可以直接获得其他黑客泄漏的帐号密码。。（需要去 Pwnedlist.com 注册）</p>
+
+<p>安装方法：
+bt下直接
+<pre class="lang:default decode:true">git clone <a href="https://LaNMaSteR53@bitbucket.org/LaNMaSteR53/recon-ng.git">https://LaNMaSteR53@bitbucket.org/LaNMaSteR53/recon-ng.git</a></pre>
+然后有可能提示输入密码，好象是随便输一个用来保护版本控制。。我输的是toor。。
+然后就安装好了。输入
+<pre class="lang:default decode:true">cd recon-ng</pre>
+然后
+<pre class="lang:default decode:true">./recon-ng.py</pre>
+首先查看有哪些模块。输入
+<pre class="lang:default decode:true">modules</pre>
+图一</p>
+
+<p><a href="http://leaverimage.b0.upaiyun.com/32339_o.jpg"><img src="/images/88f2dd5c24ad567a09c5b6162cd60d70b3fb781d.jpg" alt="" /></a></p>
+
+<p>我以获取子域名为例，通过我前面的介绍你已经知道了hosts模块里的所有模块基本都是干这事的。我用里面的baidu模块来说明。你也可以使用bing等，，</p>
+
+<p>输入命令
+<pre class="lang:default decode:true">load hosts::baidu</pre>
+图二</p>
+
+<p><a href="http://leaverimage.b0.upaiyun.com/32340_o.jpg"><img src="/images/f818e08de804ba8875667692fbdd580ad8114667.jpg" alt="" /></a></p>
+
+<p>刚开始你可能不清楚这个模块的说明。那么继续输入info即可查看模块的详细说明
+要开始使用。我们输入
+<pre class="lang:default decode:true">options</pre>
+和Metasploit很像把。可以查看要使用需要的配置。</p>
+
+<p>图三</p>
+
+<p><a href="http://leaverimage.b0.upaiyun.com/32341_o.jpg"><img src="/images/7848e773ab3e4e3ad03f59ba7b5ac6704d333ce6.jpg" alt="" /></a></p>
+
+<p>看表，会发现有三行。第一行是标题，第二行是域名设置，第三行是输出。这个current value也就是当前值已经为true。所以不用设置。req的意思是是否必须设置。我们输入
+baidu.com就是你的目标了。
+<pre class="lang:default decode:true">set domain baidu.com</pre>
+就会从百度的结果里提取百度的子域名信息了。要开始。我们输入
+<pre class="lang:default decode:true">run</pre>
+图四</p>
+
+<p><a href="http://leaverimage.b0.upaiyun.com/32342_o.jpg"><img src="/images/125a841869478ff39dd63113e2e9427c3ae1cf81.jpg" alt="" /></a></p>
+
+<p>更多希望大家发掘吧。我抛砖。求引玉。</p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E4%BA%92%E8%81%94%E7%BD%91/">互联网</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AE%89%E5%85%A8/">安全</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%94%B6%E8%97%8F/">收藏</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2013/02/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/">
@@ -914,66 +1020,6 @@ using System.Windows.Forms;</p>
                     <a href="https://leizhiyuan.github.io//tags/%E6%94%B6%E8%97%8F/">收藏</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E8%AE%BE%E8%AE%A1/">设计</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/01/06/sql%E6%B3%A8%E5%85%A5%E4%B8%AD%E7%9A%84waf%E7%BB%95%E8%BF%87%E6%8A%80%E6%9C%AF/">
-                <h2 class="post-title">SQL注入中的WAF绕过技术</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on January 6, 2013
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (203 words)
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  作者：bystander 博客：http://leaver.me 论坛：法克论坛
-目录
-1.大小写绕过
-2.简单编码绕过
-3.注释绕过
-4.分隔重写绕过
-5.Http参数污染(HPP)
-6.使用逻辑运算符 or /and绕过
-7.比较操作符替换
-8.同功能函数替换
-9.盲注无需or和and
-10.加括号
-11.缓冲区溢出绕过
-1. 大小写绕过 这个大家都很熟悉，对于一些太垃圾的WAF效果显著，比如拦截了union,那就使用Union UnIoN等等。绕过
-2. 简单编码绕过 比如WAF检测关键字，那么我们让他检测不到就可以了。比如检测union,那么我们就用%55 也就是U的16进制编码来代替U, union写成 %55nION，结合大小写也可以绕过一些WAF，你可以随意替换一个或几个都可以。。
-也还有大家在Mysql注入中比如表名或是load文件的时候，会把文件名或是表明用16进制编码来绕过WAF都是属于这类。
-3. 注释绕过 这种情况比较少，适用于WAF只是过滤了一次危险的语句，而没有阻断我们的整个查询  &gt; /?id=1+union+select+1,2,3/*  比如对于上面这条查询，WAF过滤了一次union和select，那么我们在之前在写一个注释的语句，让他把注释里面的过滤掉，，并不影响我们的查询。。 所以绕过语句就是：  &gt; /?id=1/union/union/select/select+1,2,3/*  还有一种和注释有关的绕过： 比如  &gt; index.php?page_id=-15 /!UNION/ /!SELECT/ 1,2,3,4….  可以看到，只要我们把敏感词放到注释里面，注意，前面要加一个！
-4. 分隔重写绕过 还是上面的例子，适用于那种WAF采用了正则表达式的情况，会检测所有的敏感字，而不在乎你写在哪里，有几个就过滤几个。。 我们可以通过注释分开敏感字,这样WAF的正则不起作用了，而带入查询的时候并不影响我们的结果  &gt; /?id=1+un//ion+sel//ect+1,2,3&ndash;  至于重写绕过，适用于WAF过滤了一次的情况，和我们上传aaspsp马的原理一样，我们可以写出类似Ununionion这样的。过滤一次union后就会执行我们的查询了  &gt; ?id=1 ununionion select 1,2,3&ndash;  5. Http参数污染(HPP) 比如我们有这样的语句：  &gt; /?
-                  <a href="https://leizhiyuan.github.io/2013/01/06/sql%E6%B3%A8%E5%85%A5%E4%B8%AD%E7%9A%84waf%E7%BB%95%E8%BF%87%E6%8A%80%E6%9C%AF/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/php/">php</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AE%89%E5%85%A8/">安全</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
                   

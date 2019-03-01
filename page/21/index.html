@@ -196,6 +196,58 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/09/18/wpf%E4%B8%BB%E9%A2%98%E5%88%86%E4%BA%AB%E5%8F%8A%E4%BD%BF%E7%94%A8/">
+                <h2 class="post-title">WPF主题分享及使用</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 18, 2012
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (8 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  <p>首先是一个很流行的WPF20多种xaml主题合集源码。这个主题系列是非常漂亮的。我找到了源码。但是没有找到官网。
+update：感谢<a href="http://luacloud.com/">月亮云</a>的提醒，官网是：<a href="http://wpfthemes.codeplex.com">http://wpfthemes.codeplex.com</a>
+截两幅图如下：
+<a href="http://leaverimage.b0.upaiyun.com/27351_o.png"><img src="/images/58b8894bc549351c298072c998486b597d88cf6c.png" alt="" title="theme1" /></a>
+<a href="http://leaverimage.b0.upaiyun.com/27352_o.jpg"><img src="/images/b0597e4db9818945c1cf69a8be46725f1c45213f.jpg" alt="" title="theme2" /></a></p>
+
+<p>使用很简单。一种是将WPF.Theme.dll导入。像demo展示的那样。使用其提供的主题管理类来使用。可以实现任意切换效果。另一种就是直接把源文件的各种theme.xaml提取出来，添加到资源字典就行了。当然还有一些不重要的小细节。相信你对wpf比较了解的话可以搞得定的。。还可以自己学习一下。。</p>
+
+<p>昨天还看到一个主题，也比较漂亮。<a href="http://amazingwpfcontrols.codeplex.com/">Amazing WPF Controls</a>分享一下。如果有什么疑问。欢迎留言讨论。</p>
+
+<p>下载：<a href="http://pan.baidu.com/share/link?shareid=55959&amp;uk=1493685990">WPF20多种xaml主题合集源码</a></p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/wpf/">WPF</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%94%B6%E8%97%8F/">收藏</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/09/17/eclipse%E5%AE%89%E8%A3%85javacc/">
                 <h2 class="post-title">Eclipse安装JavaCC</h2>
                 
@@ -801,68 +853,6 @@ string s=obj.SessionId;</pre>
                     <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/09/03/%E8%B6%85%E6%97%B6%E6%97%B6%E9%97%B4%E5%B7%B2%E5%88%B0%E4%BD%86%E6%98%AF%E5%B0%9A%E6%9C%AA%E4%BB%8E%E6%B1%A0%E4%B8%AD%E8%8E%B7%E5%8F%96%E8%BF%9E%E6%8E%A5/">
-                <h2 class="post-title">超时时间已到，但是尚未从池中获取连接</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 3, 2012
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (18 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  <p>　　前段时间数据库的时候，出现这个问题。一般是读到20多万条的时候。会出现这个问题。</p>
-
-<p>　　找了一下。主要是这两个问题：</p>
-
-<p>　　一、看所有open的连接是否都close了。</p>
-
-<p>　　二、如果访问量很大，加上Max   Pool   Size=512这一句，当然这是要以损失系统性能为代价的！</p>
-
-<p>　　我查了一下。数据库连接所有的open都关闭了。 max pool size也确实加上了。但是。问题依旧。。</p>
-
-<p>　　哦，还有的说在数据库连接字串中添加Connect Timeout=500，也就是设置连接超时更长一些。问题依旧。。</p>
-
-<p>　　后来看到一篇文章中说：</p>
-
-<p>　　DataReader是独占连接 的，每个DataReader都要占用一个连接。当然这个情况是偶尔出现的，所以会很长时间出现一次，因为只有同时有超过连接池最大连接数量的并发操作才 会发生。而且你加大并发数量只能暂时缓解问题。</p>
-
-<p>　　文中建议用使用dataset来读取。然后我就把读取数据中使用DataReader的地方全部用DataAdapter和DataSet来获取数据库数据，因为DataSet非独占。会将数据保存在内存中，一次连接后释放，问题解决。</p>
-
-<p>　　记录一下。</p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%AD%A6%E6%B1%89/">武汉</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
                   
                 </div>
               

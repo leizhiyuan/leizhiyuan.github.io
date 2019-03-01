@@ -196,6 +196,52 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%83%E7%AF%87%E8%BE%93%E5%87%BA%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B910-demo/">
+                <h2 class="post-title">[译]Unix sed实用教程第七篇–输出文件内容(10 Demo)</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on August 11, 2013
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (117 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  之前已经学习过选择性打印输出了，本文将通过10个例子全面讲解文件输出的一些方法，主打p命令
+首先看一下将使用的示例文件 $ cat file AIX Solaris Unix Linux HPUX 1.打印文件首行 $ sed -n &lsquo;1p&rsquo; file AIX 之前讲过了，-n取消默认的全部打印，p表示print，1就是行号了
+2.输出最后一行 $ sed -n &lsquo;$p&rsquo; file HPUX 3.输出不匹配X的那些行 $ sed -n &lsquo;/X/!p&rsquo; file Solaris Unix Linux 也好理解，！表示非，就是说包含X匹配的不打印输出
+4.输出包含u/x的那些行 $ sed -n &lsquo;/[ux]/p&rsquo; file Unix Linux 正则是强大的，这样就匹配了u/x
+5.输出以x/X结尾的那些行 $ sed -n &lsquo;/[xX]$/p&rsquo; file AIX Unix Linux HPUX 这里$符号不再是匹配文件尾部，而是行尾，这是正则的规则
+6.输出以A/L开头的行 $ sed -n &lsquo;/^A|^L/p&rsquo; file AIX Linux 前面也说过，^匹配了行首，A表示A匹配，然而|则是或者的意思，为什么要加\转义，是为了避免被解析成pipe管道，后面的就不解释了
+7.隔行打印
+n命令是输出当前行，然后读入下一行到pattern space的意思，这句命令是这么执行的，首先读入一行，然后通过n命令输出，然后通过n命令再读一行，然后把这行删除，就出现了隔行输出的效果
+8.如何两行输出，隔两行再输出 $ sed &rsquo;n;n;N;d&rsquo; file AIX Solaris HPUX n;n; 命令呢输出了前两行，然后读入第三行到pattern space，N命令则对如下一行并与第三行合并，然后d命令删除pattern space中的内容，于是三四行被清空，然后读入56行，继续重复。就这样。作者这里给出的例子不直观，我举个例子，我的文件内容是 $ cat test.
+                  <a href="https://leizhiyuan.github.io/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%83%E7%AF%87%E8%BE%93%E5%87%BA%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B910-demo/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/linux/">linux</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/shell/">shell</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AD%E7%AF%87%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/">
                 <h2 class="post-title">[译]Unix sed实用教程第六篇–删除文件内容</h2>
                 
@@ -667,66 +713,6 @@ font-size:40px;
                     <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E8%AE%BE%E8%AE%A1/">设计</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/06/29/%E7%AD%89%E7%89%A9%E4%BD%93%E5%A1%AB%E5%85%85%E9%97%AE%E9%A2%98/">
-                <h2 class="post-title">等物体填充问题</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on June 29, 2013
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (14 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  <p>那天在群里，rich大牛提了一个问题，一个直径为10cm的球内最多能够填充直径为1cm的球多少个.</p>
-
-<p>之前看到过一个类似的简单说明，就像是在一个盒子里装乒乓球，如果装满了，想继续装，如何办？经验告诉我们，摇一摇盒子。。这个问题看上去简单，其实是个NP难问题&hellip;于是，查找了一些资料，比较有意思，分享一下。</p>
-
-<p>&nbsp;</p>
-
-<p>首先是stetson大学efriedma教授的网页，收集了各类填充（英文是packing）问题的图示，欢迎移步：<a href="http://www2.stetson.edu/~efriedma/packing.html">packing center</a> ，不过这里面恰好没有球体填充（SpherePacking）的问题，然后继续查找，进入了一个可以演示球体填充问题的页面：<a href="http://www.randomwalk.de/sphere/insphr/ylspheresinsphr.html">sphere packing demo</a> 感谢网站作者<a href="http://www.pfoertner.org/">Hugo Pfoertner</a>，这里作者解出了1-72个球的问题，但是，作者说对于n&gt;10的情况无法证明最优化.不过这个页面的演示太帅了，推荐看看。</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/37791_o.png"><img src="/images/b6b2a692820197a3aab3f59f8e9b8e6821acf744.png" alt="" /></a></p>
-
-<p>&nbsp;</p>
-
-<p>可以鼠标拖动旋转3D视角。</p>
-
-<p>然后在数学世界看到了一球体填充问题的证明结果，见：<a href="http://mathworld.wolfram.com/SpherePacking.html">SpherePacking</a>，当然，下面一大堆引用我都没看..看文章里的意思是说这个填充问题填充率已经被证明最大是77.9%，但是这个上限可能还能提高，因为貌似根据这个情况，rich大牛提出的这个问题应该数量在779左右..</p>
-
-<p>&nbsp;</p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%95%B0%E5%AD%A6/">数学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%A4%BE%E4%BC%9A/">社会</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
                   
                 </div>
               

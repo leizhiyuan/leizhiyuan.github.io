@@ -175,7 +175,7 @@
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on April 18, 2012
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on April 20, 2012
   
   
   &nbsp;|&nbsp;
@@ -200,6 +200,49 @@
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
         <div class="posts-list">
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/04/20/%E4%BA%8C%E7%BA%A7%E5%9F%9F%E5%90%8D%E6%9F%A5%E6%89%BE-%E5%AE%9E%E7%8E%B0%E6%BC%94%E7%A4%BAgapi-json-c/">
+                <h2 class="post-title">二级域名查找 实现演示（GAPI&#43;Json&#43;C#）</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on April 20, 2012
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (91 words)
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  昨天看到了李劼杰的检索一个域名下属所有子域名的两种方法很受启发。想用C#实现一些东西，本来是打算做的相对完整一点的，结果发现Google 开放的api貌似是有限制，段时间内不同提交太多。所以就简单实现一下，有需要的朋友自己扩展
+　刚开始的思路是想Google应该是有开放的api吧。。于是先Google C# 收集 Google搜索结果。翻了一会，看到了 此文 ，一看我去，返回的竟然是json格式。。只听过，从来没有接触过。。。不做总是不会的，试试。
+思路；访问该页面，得到字符串-》去掉多余部分-》解析成对象-》提取对象的字段 1.访问该http://ajax.googleapis.com/ajax/services/search/web?v=1.0&amp;q=hello，其实hello部分就是需要查找的字串，对于查找二级域名这种事，应用到Google的一个语法就是site:leaver.me。类似这样的，可以获取到所有leaver.me上的子站和内容。。 然后分析json数据。直接访问会发现格式很乱。使用http://jsonformatter.curiousconcept.com/这个工具进行格式化。最终结果如图  可以很清楚的看出json的结构，results是结果集，我需要的是需要的是[]之间的部分，包括[]，我理解的是这样。默认给出4个结果。
+　2.要去掉多余部分，得用正则表达式了， json = &ldquo;[&rdquo; + Regex.Match(json, @&ldquo;(?&lt;=[).+?(?=])&ldquo;, RegexOptions.IgnoreCase).Value + &ldquo;]&rdquo;; //得到一个数组[]中间的部分 json解析我在外国找到了json.net这个解析器，导入什么的就不说了，至于用法我是看的他的文档
+　3.List results = JsonConvert.DeserializeObject&gt;(json); //list 存放解析的结果，result为对应自写类 就是将一个json格式的字符串解析成一个list组，组内元素为一个对应的类，就是先分析json的格式。发现每个结果都有如下的格式 public string GsearchResultClass{ get; set; } public string unescapedUrl{ get; set; } public string url{ get; set; } public string visibleUrl{ get; set; } public string cacheUrl { get; set; } public string title: { get; set; } public string titleNoFormatting { get; set; } public string content { get; set; } 所以写一个类，来用于json数据的反序列号，其实就是解析啦。。这样通过对解析器的调用就能对应着吧json里面的值赋值给类对象了。
+                  <a href="https://leizhiyuan.github.io/2012/04/20/%E4%BA%8C%E7%BA%A7%E5%9F%9F%E5%90%8D%E6%9F%A5%E6%89%BE-%E5%AE%9E%E7%8E%B0%E6%BC%94%E7%A4%BAgapi-json-c/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/04/18/wwwscan-gui%E7%89%88-webscan/">
@@ -784,64 +827,6 @@ apt-get install apache2 mysql-server mysql-client php5 php5-gd php5-mysql 　回
                 <div class="blog-tags">
                   
                     <a href="https://leizhiyuan.github.io//tags/wordpress/">wordpress</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/04/12/andorid-%E5%AE%9E%E7%8E%B0%E6%8B%96%E5%8A%A8%E6%BB%91%E5%8A%A8%E6%95%88%E6%9E%9C/">
-                <h2 class="post-title">andorid 实现拖动滑动效果</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on April 12, 2012
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 2 minutes (234 words)
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  <p>这个大家都有过体会，就是当你左右拖动的时候，能够做到向左向右翻页。代码我写了很详细的注释。包括xml的注释，所以就不怎么解释了。先测试下代码高亮能用不.我当前用的是<strong>WP-Syntax</strong>插件。将就着还行吧。如果你知道更好的话。不妨给我推荐一下。
-<pre lang="java">package com.android.flip;</p>
-
-<p>import android.app.Activity;
-import android.os.Bundle;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.GestureDetector.OnGestureListener;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
-import android.widget.ViewFlipper;</p>
-
-<p>/**
- * Android实现左右滑动效果
- * @author byStander
- *
- */</pre></p>
-                  <a href="https://leizhiyuan.github.io/2012/04/12/andorid-%E5%AE%9E%E7%8E%B0%E6%8B%96%E5%8A%A8%E6%BB%91%E5%8A%A8%E6%95%88%E6%9E%9C/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
                   
                 </div>
               

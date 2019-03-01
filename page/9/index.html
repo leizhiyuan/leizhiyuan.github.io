@@ -196,6 +196,54 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2013/09/20/spring3%E5%AE%9E%E4%BE%8B%E5%85%A5%E9%97%A8-hello-world/">
+                <h2 class="post-title">Spring3实例入门-Hello World</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 20, 2013
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (152 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  每次看到hello world,都有一种说不出的赶脚，想起了一个程序员，退休后写毛笔字，取笔研磨铺纸，大笔一挥，写下了“hello world”。
+1.使用Maven生成项目结构 mvn archetype:generate -DgroupId=com.mkyong.core -DartifactId=Spring3Example -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false 2.转换成Eclipse项目 mvn eclipse:eclipse 3.添加Spring3.0 依赖 在pom.xml文件里添加Spring 3.0 依赖，然后依赖会从Maven中央仓库自动下载 &lt;project xmlns=&ldquo;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&ldquo;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&ldquo;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd&quot;&gt; &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt; &lt;groupId&gt;com.mkyong.core&lt;/groupId&gt; &lt;artifactId&gt;Spring3Example&lt;/artifactId&gt; &lt;packaging&gt;jar&lt;/packaging&gt; &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt; &lt;name&gt;Spring3Example&lt;/name&gt; &lt;url&gt;http://maven.apache.org&lt;/url&gt;
+&amp;lt;properties&amp;gt; &amp;lt;spring.version&amp;gt;3.0.5.RELEASE&amp;lt;/spring.version&amp;gt; &amp;lt;/properties&amp;gt; &amp;lt;dependencies&amp;gt; &amp;lt;!-- Spring 3 dependencies --&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-core&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${spring.version}&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-context&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${spring.version}&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;/dependencies&amp;gt; &lt;/project&gt;
+4.Spring bean 写个简单的bean package com.mkyong.core;
+/** * Spring bean * */ public class HelloWorld { private String name;
+                  <a href="https://leizhiyuan.github.io/2013/09/20/spring3%E5%AE%9E%E4%BE%8B%E5%85%A5%E9%97%A8-hello-world/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/maven/">maven</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/spring/">spring</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2013/09/20/%E4%BD%BF%E7%94%A8maven%E5%88%9B%E5%BB%BAweb%E9%A1%B9%E7%9B%AE/">
                 <h2 class="post-title">使用Maven创建Web项目</h2>
                 
@@ -678,52 +726,6 @@ class Worker implements Runnable { private final CountDownLatch startSignal; pri
 5.输出第二列 $ sed &rsquo;s/[^,],([^,])./\1/&rsquo; file 25 31 21 45 12 我们可以分析前两个斜线之间的内容 [^,],([^,]). 两个右斜线转移了括号，所以括号不是简单的符号，而是正则里的组的意义，圆括号的作用是对字符进行分组，并保存匹配的文本。这里先匹配非逗号的多个字符，然后一个逗号，然后再匹配第二列，并且第二列的匹配用括号括起来，然后匹配其他列，然后里面用\1来引用这个括号的内容，如果前面有两个括号，就可以使用\1或\2这样，分别表示第一个括号或第二个括号的匹配
 6.输出最后一列是一位数字的行 $ sed -n &lsquo;/.
                   <a href="https://leizhiyuan.github.io/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AB%E7%AF%87csv%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/linux/">linux</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/shell/">shell</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%83%E7%AF%87%E8%BE%93%E5%87%BA%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B910-demo/">
-                <h2 class="post-title">[译]Unix sed实用教程第七篇–输出文件内容(10 Demo)</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on August 11, 2013
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (117 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  之前已经学习过选择性打印输出了，本文将通过10个例子全面讲解文件输出的一些方法，主打p命令
-首先看一下将使用的示例文件 $ cat file AIX Solaris Unix Linux HPUX 1.打印文件首行 $ sed -n &lsquo;1p&rsquo; file AIX 之前讲过了，-n取消默认的全部打印，p表示print，1就是行号了
-2.输出最后一行 $ sed -n &lsquo;$p&rsquo; file HPUX 3.输出不匹配X的那些行 $ sed -n &lsquo;/X/!p&rsquo; file Solaris Unix Linux 也好理解，！表示非，就是说包含X匹配的不打印输出
-4.输出包含u/x的那些行 $ sed -n &lsquo;/[ux]/p&rsquo; file Unix Linux 正则是强大的，这样就匹配了u/x
-5.输出以x/X结尾的那些行 $ sed -n &lsquo;/[xX]$/p&rsquo; file AIX Unix Linux HPUX 这里$符号不再是匹配文件尾部，而是行尾，这是正则的规则
-6.输出以A/L开头的行 $ sed -n &lsquo;/^A|^L/p&rsquo; file AIX Linux 前面也说过，^匹配了行首，A表示A匹配，然而|则是或者的意思，为什么要加\转义，是为了避免被解析成pipe管道，后面的就不解释了
-7.隔行打印
-n命令是输出当前行，然后读入下一行到pattern space的意思，这句命令是这么执行的，首先读入一行，然后通过n命令输出，然后通过n命令再读一行，然后把这行删除，就出现了隔行输出的效果
-8.如何两行输出，隔两行再输出 $ sed &rsquo;n;n;N;d&rsquo; file AIX Solaris HPUX n;n; 命令呢输出了前两行，然后读入第三行到pattern space，N命令则对如下一行并与第三行合并，然后d命令删除pattern space中的内容，于是三四行被清空，然后读入56行，继续重复。就这样。作者这里给出的例子不直观，我举个例子，我的文件内容是 $ cat test.
-                  <a href="https://leizhiyuan.github.io/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%83%E7%AF%87%E8%BE%93%E5%87%BA%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B910-demo/" class="post-read-more">[Read More]</a>
                 
               </div>
 
