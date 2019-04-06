@@ -175,7 +175,7 @@
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on February 9, 2014
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on February 11, 2014
   
   
   &nbsp;|&nbsp;
@@ -200,6 +200,79 @@
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
         <div class="posts-list">
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2014/02/11/%E5%B0%9D%E8%AF%95javafx%E5%BC%80%E5%8F%91/">
+                <h2 class="post-title">尝试JavaFX开发</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on February 11, 2014
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (29 words)
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  <p>曾经有报道说JavaFX将使java在桌面开发上大有作为，感觉好像是很高端的样子，今天尝试了一下，界面对于自用的工具来说，本来也不多重要，只是一个简单的尝试</p>
+
+<p>简单说下大致的步骤和一些思路，可能有错误。</p>
+
+<p>javafx需要sdk支持，java7之后的都有的。设计思路是数据和代码分离，界面通过xml或json数据来描述，这样就把业务逻辑代码和界面实现代码分开了</p>
+
+<p>一个简单的开发过程应该是这样的</p>
+
+<p>1.使用JavaFX Scene Builder来绘制界面，保存为xml/json格式</p>
+
+<p>画的话没啥要说的，了解一下基本的整体概念就行。</p>
+
+<p>2.在eclipse里新建工程，可以是普通工程，将1中的文件放到资源目录，在代码里加载，然后界面就加载成功了。
+<pre class="lang:default decode:true">Node topNode = FXMLLoader.load(AFI.class.getResource(&ldquo;/afimain.fxml&rdquo;));</pre>
+逻辑代码，比如一个简单的按钮事件可以通过
+<pre>Node node = topNode.lookup(&ldquo;#paneRightBottom&rdquo;);</pre>
+来查找到id为paneRightBottom的元素，然后就可以通过对node添加事件监听器来完成一些功能了</p>
+
+<p><em><strong>主要想说的是：</strong></em></p>
+
+<p>JavaFX和WPF其实思路是一模一样的，恰好WPF我也用过，感觉两个都没搞起来，虽然界面炫，然后我去维基看了下：
+&gt; 该产品于2007年5月在JavaOne大会上首次对外公布。JavaFX技术主要应用于创建Rich Internet application（<a href="http://zh.wikipedia.org/wiki/RIA" title="RIA">RIAs</a>）。JavaFX期望能够在桌面应用的开发领域与Adobe公司的AIR、<a href="http://zh.wikipedia.org/w/index.php?title=OpenLaszlo&amp;amp;action=edit&amp;amp;redlink=1" title="OpenLaszlo（页面不存在）">OpenLaszlo</a>以及<a href="http://zh.wikipedia.org/wiki/%E5%BE%AE%E8%BD%AF" title="微软">微软</a>公司的<a href="http://zh.wikipedia.org/wiki/Silverlight" title="Silverlight">Silverlight</a>相竞争
+已经7年了，用户数应该是非常少的，<strong>成熟的商业型产品也没几个</strong>，在尝试的过程中，我在stackoverflow，以及一些很不错的java博客上，大量查找基本也没有太多的信息，都是一些很浅的应用，包括stackoverflow上的回答数，基本还是能反映出来的，主要应用于RIA，而当前RIA已经出html5的天下了。SL早都不更新了，这种坑爹的所谓新技术。</p>
+
+<p>&nbsp;</p>
+
+<p>Oracle还是好好把Swing搞好吧。。不建议尝试。</p>
+
+<p>&nbsp;</p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E4%B8%8A%E6%B5%B7/">上海</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E4%BD%9C/">工作</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2014/02/09/%E8%97%8F%E9%9A%90%E8%97%8F%E5%9C%A8png%E5%9B%BE%E5%83%8F%E5%85%83%E6%95%B0%E6%8D%AE%E4%B8%AD%E7%9A%84%E6%96%B0iframe%E6%B3%A8%E5%85%A5%E6%94%BB%E5%87%BB/">
@@ -788,60 +861,6 @@ OutputHelper(IOutputGenerator outputGenerator){ this.outputGenerator = outputGen
                     <a href="https://leizhiyuan.github.io//tags/spring/">spring</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E7%AC%94%E8%AE%B0/">笔记</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/09/20/spring%E6%9D%BE%E8%80%A6%E5%90%88%E7%A4%BA%E4%BE%8B/">
-                <h2 class="post-title">Spring松耦合示例</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 20, 2013
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 2 minutes (227 words)
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  面向对象设计的理念是把整个系统分成一组可重用的组件，然而，当系统变得越大的时候，尤其是在java中，这最大的对象依赖将会紧紧耦合，以至于非常难以管理和修改，而现在，你可以使用Spring框架扮演一个中间模块的角色，方便高效地管理其他组件依赖
-输出生成的例子 看个例子，假设你的项目有一个方法可以输出内容到csv或者json格式，你可能写出这样的代码 package com.mkyong.output;
-public interface IOutputGenerator { public void generateOutput(); } ，然后是实现接口的类 package com.mkyong.output.impl;
-import com.mkyong.output.IOutputGenerator;
-public class CsvOutputGenerator implements IOutputGenerator { public void generateOutput(){ System.out.println(&ldquo;Csv Output Generator&rdquo;); } } 再写个Json生成的类 package com.mkyong.output.impl;
-import com.mkyong.output.IOutputGenerator;
-public class JsonOutputGenerator implements IOutputGenerator { public void generateOutput(){ System.out.println(&ldquo;Json Output Generator&rdquo;); } } 有好几种方法来调用IOutputGenerator接口，以及我们如何使用Spring来避免对象的过度耦合。
-方法1-直接调用 package com.mkyong.common;
-import com.mkyong.output.IOutputGenerator; import com.mkyong.output.impl.CsvOutputGenerator;
-public class App { public static void main( String[] args ) { IOutputGenerator output = new CsvOutputGenerator(); output.
-                  <a href="https://leizhiyuan.github.io/2013/09/20/spring%E6%9D%BE%E8%80%A6%E5%90%88%E7%A4%BA%E4%BE%8B/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/spring/">spring</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
                   

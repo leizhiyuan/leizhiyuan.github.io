@@ -196,6 +196,49 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2017/02/03/oom%E4%BB%8B%E7%BB%8D/">
+                <h2 class="post-title">oom介绍</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on February 3, 2017
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 2 minutes (244 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  oom 之前知道, 但是并不是很了解,最近遇到了由 oom 引发的问题,所以学习记录一下.
+OOM-killer：Out-of-Memory (OOM) Killer是一种保护机制，用于当内存严重不足时，为了系统的继续运转，内核迫不得已挑选一个进程，将其杀死，以释放内存，缓解内存不足的问题。 可以看出这种方式对进程的保护是有限的，不能完全的保护进程的运行。
+如何知道是否发生了 oom 两种方法,第一种,查看 /var/log/messages,会有类似
+Out of memory: Kill process 9682 (mysqld) score 9 or sacrifice child Killed process 9682, UID 27, (mysqld) total-vm:47388kB, anon-rss:3744kB, file-rss:80kB httpd invoked oom-killer: gfp_mask=0x201da, order=0, oom_adj=0, oom_score_adj=0 httpd cpuset=/ mems_allowed=0 Pid: 8911, comm: httpd Not tainted 2.6.32-279.1.1.el6.i686 #1 这样的标识,说明发生了 oom,关键就是 kill process, 所以可以这样
+sudo cat /var/log/messages | grep -i&quot;killed process&quot;
+另一种是通过dmesg来查看 dmesg | egrep -i 'killed process' 这个命令查看的 oom 的时间里是时间戳的形式,如果你的 dmesg 没有-T这个时间的选项,那么就需要通过
+                  <a href="https://leizhiyuan.github.io/2017/02/03/oom%E4%BB%8B%E7%BB%8D/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E4%BD%9C/">工作</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2016/12/10/graylog%E6%97%A5%E8%AE%B0%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/">
                 <h2 class="post-title">graylog日记管理平台使用的那些坑</h2>
                 
@@ -646,81 +689,6 @@ sudo ln -s /Library/Developer/CommandLineTools/Library/Perl/5.18/darwin-thread-m
 <p>2.如果是真正的远程服务,这时候就进入nettyClient部分了</p>
 
 <p>把请求向netty的Channel中写就行了.服务端会从Channel中取进行处理,然后放回来.这样客户端就拿到结果了</p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%8A%80%E6%9C%AF/">技术</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2016/05/30/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%8F%91%E5%B8%83/">
-                <h2 class="post-title">motan源码阅读-服务的发布</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on May 30, 2016
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (32 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  <p>这一篇继续从这个demo开始,分析一下这个服务是怎么发布出去的.关键的代码从<code>motanDemoService.export();</code>开始.</p>
-
-<p>一图胜千言.</p>
-
-<p><a href="/images/serviceConfig_export.png">点击看大图</a></p>
-
-<p><img src="/images/serviceConfig_export.png" alt="服务发布" /></p>
-
-<p>服务发布ServiceConfig.export()</p>
-
-<p>1.加载有的配置中心url列表/新建</p>
-
-<p>2.doExport(ProtocolConfig,port,registryURLs) //配置中心地址列表</p>
-
-<p>2.1导出的时候,会先判断是否存在.其实就是根据协议名,ip,接口,参数来生成一个唯一key.</p>
-
-<p>2.2ConfigHandler.export(Class<T> interfaceClass, T ref, List<URL> registryUrls) //接口.实现.配置中心url列表</p>
-
-<p>2.2.1.根据协议名创建协议,这里ProtocolFilterDecorator</p>
-
-<p>2.2.2.根据接口,实现类,serviceUrl,构造一个Provider,用来提供服务</p>
-
-<p>2.2.3.使用协议进行导出Provider,  export(Provider<T> provider, URL url)</p>
-
-<p>2.2.3.1创建一个Exporter</p>
-
-<p>2.2.3.1.1.创建的时候会将服务提供方Provider和url有个映射关系,这样当一个url请求过来的时候,就知道改调用谁了.ProviderMessageRouter,讲一个请求路由注册到server上,同时包装了一个心跳包</p>
-
-<p>2.2.3.2进行导出 导出就是一个服务器打开的过程/server.open();</p>
-
-<p>2.2.3.2.1进入nettyServer初始化,主要就是添加handler,编码解码.和一个rpc处理的
-相当于一个请求过来的时候,先进行解码,然后调用业务处理handler进行处理,处理完成后,进行编码,然后返回给客户端</p>
-
-<p>服务器启动后,相当于这个服务就发布了</p>
-
-<p>2.2.4.注册register(registryUrls, serviceUrl) //这一步就是将serviceUrl,向对应的jvm/rpc服务中心注册url,本地注册就是LocalRegistryService类里一个map..zk的.就是向zk写node.等等</p>
 
                 
               </div>

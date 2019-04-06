@@ -202,6 +202,60 @@
         <div class="posts-list">
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2013/09/20/spring%E6%9D%BE%E8%80%A6%E5%90%88%E7%A4%BA%E4%BE%8B/">
+                <h2 class="post-title">Spring松耦合示例</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 20, 2013
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 2 minutes (227 words)
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  面向对象设计的理念是把整个系统分成一组可重用的组件，然而，当系统变得越大的时候，尤其是在java中，这最大的对象依赖将会紧紧耦合，以至于非常难以管理和修改，而现在，你可以使用Spring框架扮演一个中间模块的角色，方便高效地管理其他组件依赖
+输出生成的例子 看个例子，假设你的项目有一个方法可以输出内容到csv或者json格式，你可能写出这样的代码 package com.mkyong.output;
+public interface IOutputGenerator { public void generateOutput(); } ，然后是实现接口的类 package com.mkyong.output.impl;
+import com.mkyong.output.IOutputGenerator;
+public class CsvOutputGenerator implements IOutputGenerator { public void generateOutput(){ System.out.println(&ldquo;Csv Output Generator&rdquo;); } } 再写个Json生成的类 package com.mkyong.output.impl;
+import com.mkyong.output.IOutputGenerator;
+public class JsonOutputGenerator implements IOutputGenerator { public void generateOutput(){ System.out.println(&ldquo;Json Output Generator&rdquo;); } } 有好几种方法来调用IOutputGenerator接口，以及我们如何使用Spring来避免对象的过度耦合。
+方法1-直接调用 package com.mkyong.common;
+import com.mkyong.output.IOutputGenerator; import com.mkyong.output.impl.CsvOutputGenerator;
+public class App { public static void main( String[] args ) { IOutputGenerator output = new CsvOutputGenerator(); output.
+                  <a href="https://leizhiyuan.github.io/2013/09/20/spring%E6%9D%BE%E8%80%A6%E5%90%88%E7%A4%BA%E4%BE%8B/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/spring/">spring</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2013/09/20/spring3%E5%AE%9E%E4%BE%8B%E5%85%A5%E9%97%A8-hello-world/">
                 <h2 class="post-title">Spring3实例入门-Hello World</h2>
 
@@ -723,53 +777,6 @@ class Worker implements Runnable { private final CountDownLatch startSignal; pri
                     <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E6%AD%A6%E6%B1%89/">武汉</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AB%E7%AF%87csv%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/">
-                <h2 class="post-title">[译]Unix sed实用教程第八篇–CSV文件操作</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on August 11, 2013
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (175 words)
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  本文作为sed使用教程的最后一篇，将比较全面的讲解如何操作csv文件，csv文件通过逗号分隔
-示例文件如下： cat file Solaris,25,11 Ubuntu,31,2 Fedora,21,3 LinuxMint,45,4 RedHat,12,5 1.删除第一列 $ sed &rsquo;s/[^,]*,//&rsquo; file 25,11 31,2 21,3 45,4 12,5 s开启替换模式，当^符号在中括号里的时候，就是非的意思，也就是说[^,]匹配了所有不是逗号的一个字符，然后后面的星号表示0个或多个，然后是一个逗号，也就是匹配&rdquo;xxxx,&ldquo;替换为空
-2.删除除过最后一列的其他所有 $ sed &rsquo;s/.*,//&rsquo; file 11 2 3 4 5 sed先匹配任意多个字符，然后匹配最后一个“,”这就直接把前面的都匹配完了。替换为空即可。
-3.输出第一列 $ sed &rsquo;s/,.*//&rsquo; file Solaris Ubuntu Fedora LinuxMint RedHat 好理解把，先匹配第一列之后的逗号，然后是多个字符，然后替换为空
-4.删除第二列 $ sed &rsquo;s/,[^,]*,/,/&rsquo; file Solaris,11 Ubuntu,2 Fedora,3 LinuxMint,4 RedHat,5 先匹配第一列之后的逗号，然后匹配一个或多个非逗号字符，这样就匹配了第二列的内容，然后再匹配一个逗号，我简化一下，比如该列是1，2，3，4，那么这一个匹配就是&rdquo;,2,&ldquo;，替换成一个逗号，就是1，3，4了
-5.输出第二列 $ sed &rsquo;s/[^,],([^,])./\1/&rsquo; file 25 31 21 45 12 我们可以分析前两个斜线之间的内容 [^,],([^,]). 两个右斜线转移了括号，所以括号不是简单的符号，而是正则里的组的意义，圆括号的作用是对字符进行分组，并保存匹配的文本。这里先匹配非逗号的多个字符，然后一个逗号，然后再匹配第二列，并且第二列的匹配用括号括起来，然后匹配其他列，然后里面用\1来引用这个括号的内容，如果前面有两个括号，就可以使用\1或\2这样，分别表示第一个括号或第二个括号的匹配
-6.输出最后一列是一位数字的行 $ sed -n &lsquo;/.
-                  <a href="https://leizhiyuan.github.io/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AB%E7%AF%87csv%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/linux/">linux</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/shell/">shell</a>&nbsp;
                   
                 </div>
               

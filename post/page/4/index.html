@@ -175,7 +175,7 @@
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 8, 2015
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 12, 2015
   
   
   &nbsp;|&nbsp;
@@ -200,6 +200,61 @@
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
         <div class="posts-list">
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2015/09/12/%E4%BA%8B%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                <h2 class="post-title">事务学习笔记</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 12, 2015
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (96 words)
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  最近有个感受,在实践中学习固然重要,但是实践遇到的问题常常并没有想象的那么多,而且并不能覆盖所有的情况,所以还是需要对理论有一些深入的理解
+什么是事务 事务指的是逻辑上的一组操作,这组操作要么全部成功,要么全部失败,不允许出现部分成功的情况.
+事务的特性 定义了事务之后,事务四个特性 1. 原子性 事务是不可分割的单位,事务中的这组操作要么都发生,要么都不发生. 2. 一致性 一致性说是事务执行前后必须要保持一致,不能出现凭空消失的情况,典型的如银行转账的操作,A给B转账,如果刚开始两人总共有100元,转账完成后两人总共还要有100元. 3. 隔离性 多个用户并发访问数据库的时候,一个用户的事务不能被其他的用户的事务所干扰.多个并发事务之间数据要相互隔离.比如事务1,C给A转帐,此时事务2,A给B转账.那么两个事务都要修改A账户的余额,一个增加,一个减少,如何保证他们改完之后数据是对的.这是隔离性的要求. 4. 持久性 一旦事务被提交,对数据库的改变就是持久性的.即使数据库发生故障也不应该有任何影响.
+事务的隔离级别 为什么要有隔离级别呢,因为如果没有隔离级别,当两个事务同时对某条记录进行操作的时候,可能会出现如下几种大家常常听到的情况.
+1 脏读 脏读就是指当一个事务正在访问数据，并且对数据进行了修改，而这种修改还没有提交到数据库中，这时，另外一个事务也访问这个数据，然后使用了这个数据。
+事务1：更新一条数据 -------&gt;事务2：读取事务1更新的记录 事务1：调用commit进行提交 由于事务2使用了事务1还没有提交的记录,如果事务1最后正常提交了还好,但是如果事务1没有提交,而是回滚了.那么事务2的操作就有问题,因为他用的数据是错的.这就是脏读
+2 不可重复读 在同一事务中，两次读取同一数据，得到内容不同
+事务1：查询一条记录 ————–&gt;事务2：更新事务1查询的记录 ————–&gt;事务2：调用commit进行提交 事务1：再次查询上次的记录 事务1要进行两次查询来做一些比如展示或者使用的操作,但是在两次查询事件被事务2更新掉了记录,所以事务1就出现了不可重复读的问题.
+3 幻读 同一事务中，用同样的操作读取两次，得到的记录数不相同
+事务1：查询表中所有记录 ————–&gt;事务2：插入一条记录 ————–&gt;事务2：调用commit进行提交 事务1：再次查询表中所有记录 此时事务1两次查询到的记录是不一样的，称为幻读
+幻读的重点是新增或者删除,由于另一个事务对表中进行了新增或者删除,到时当前事务每次看到的都条数不一样,就像发生了幻觉一样,查一次多了一条,再查一次,发现又没了.
+为此,对事务引入了隔离级别这个概念,由数据库保证 DEFAULT 使用数据库设置的隔离级别 ( 默认 ) ，由 DBA 默认的设置来决定隔离级别 . READ_UNCOMMITTED 会出现脏读、不可重复读、幻读 ( 隔离级别最低，并发性能高 ) READ_COMMITTED 会出现不可重复读、幻读问题（锁定正在读取的行） REPEATABLE_READ 会出幻读（锁定所读取的所有行） SERIALIZABLE 保证所有的情况不会发生（锁表） 可以看到,这四种从上到下性能越来越差,保障性越来越高.
+以解决幻读问题为例,SERIALIZABLE直接进行了锁表,那么印发幻读的对该表的插入和删除都无法操作,只能查询.所以不会有问题了..
+事务的传播行为 事务的传播行为主要是为了解决事务嵌套调用的问题,比如A方法里面使用了事务操作,B方法里面也使用了事务操作,当A调用B的时候.这个情况是如何处理的呢
+1 REQUIRED 业务方法需要在一个事务中运行,如果方法运行时,已处在一个事务中,那么就加入该事务,否则自己创建一个新的事务.
+                  <a href="https://leizhiyuan.github.io/2015/09/12/%E4%BA%8B%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2015/09/08/kafka%E5%BF%AB%E9%80%9F%E5%BC%80%E5%8F%91demo/">
@@ -793,63 +848,6 @@ Kafka将消息种子分门别类， 每一类的消息称之为一个主题(Topi
 安装 安装非常简单,从这里下载,其实完成之后就是一个jar包.非常简单,不用配置啥的.
 简单使用 使用方法就是从先附加到一个java进程上,在linux,上我直接执行 ps aux|grep java 就能看到了.不废话,得到java进程的pid之后,运行 java -jar javosize-1.0.9.jar pid pid就是pid的号了. 然后会看到如下图的界面,表示已经附加成功了.先看看都有啥.执行ls.看到有这么几个命令.我比较单纯,刚开始以为是可执行文件.结果丢人了.看了下官方文档,才知道是目录.进入对应的目录.然后执行ls就能看到对应的信息了.ls简直不能再万能..改目录支持的所有命令通过在对应的目录执行help来查看.个人尝试觉得好的功能有.  动态修改类 进入CLASSES目录,然后通过执行 ls|grep xxx 来找到需要修改的类,然后通过vi 就可以直接编辑.编辑完成后,直接保存就会动态替换.文档里说是支持jdk1.7以上,对1.6的支持估计是不行的.没有测试.  无须重启开启jmx 直接挂载之后,执行cd REPOSITORY 然后执行就好了. exec START_JMX_SERVER 6666 拦截任意代码 可以动态添加类似Spring中的aop方法.用于打印一些调用日志,排查线上问题.进入INTERCEPTOR目录.然后通过如下的方法给某个类的某个方法添加拦截器. create TickServlet begin mypackage.Hello doGet System.out.println(&quot;Servlet invoked&quot;); 检测内存泄漏 进入 REPOSITORY 目录,执行 exec TOP_FAT_STATIC_VARIABLES 5 com.apache.*会取出某个包下面占用大小最大的5个类.会很方便找到. 自动检测性能问题 PROBLEMS 目录专业解决这种问题.进入目录后.执行ls命令.会看到这样的场景 &gt;* Concurrency &gt; Deadlocked: false &gt;* Memory &gt; High GC (&gt;2%): false
                   <a href="https://leizhiyuan.github.io/2015/07/04/javosize%E6%96%B0%E4%B8%80%E4%BB%A3java%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E4%BD%9C/">工作</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2015/07/02/%E4%BC%91%E5%81%87%E5%81%9C%E4%B8%8B%E6%9D%A5%E5%8F%8D%E6%80%9D/">
-                <h2 class="post-title">休假停下来反思</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on July 2, 2015
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (19 words)
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  <p>项目经过一年终于告一段落.于是有了一个短暂的休假.</p>
-
-<p>早上照例没能睡好觉.很早就醒了.然后又躺了一会,醒来看了会订阅.然后听了一集&lt;&lt; Mr.Robot &gt;&gt;,感觉还行,再对着字幕看了一遍,以后还是有一些地方理解的有问题.以后还是要多对着无字幕版的美剧去看,才能慢慢听懂更多的,比如今天听到个<code>society</code>,讲社交焦虑,听到很熟悉,就是没反应过来.学而不用则殆.</p>
-
-<p>中午给文哥寄了个快递,顺便点个饭.之前的&rdquo;手艺&rdquo;应该也已经忘得差不多了.到杭州之后很少做饭,工作太忙.没办法.当然这只是借口.主要还是我懒吧.</p>
-
-<p>下午按计划好的去浙江图书馆,从大学出来后,虽然书还是看了一些的.但是也再也没有走入图书馆.之前一直想去上海图书馆,结果一直耽搁,今天去浙江图书馆办了个证,借了几本书,看着里面的人自习的自习,借阅的借阅,想想还是有点熟悉的.遗憾的是书相同的份数有点少.想借的几本书都被人借走了,最终借了个<strong>&lt;&lt; 七周七语言 &gt;&gt;</strong>,希望能给自己的编程带来不一样的思考角度.读完后争取写个书评和总结,还借了一本摄影相关的,毕竟拍照是服务妹子的技能.还有个<strong>&lt;&lt; netty权威指南 &gt;&gt;</strong> ,虽然这本书评价好像不高,但是拿来看看还是可以的.</p>
-
-<p>下午回家.杭州的下午还挺美的.天气凉爽.只是作为工作狗,没有下午出来的机会吧.</p>
-
-<p>工作忙,不过在一切自动化的指导下,(马克思没有找我),对linux 的shell操作熟悉度急剧上升,希望能写的更好,让更多的过程自动化,也希望有时间停下来想一想.当时为什么选择写代码,为什么选择当前的职业,知道自己做了什么,知道自己是否进步,想起之前看到的一个话,不知真假,</p>
-
-<blockquote>
-<p>只是因为三轮车好学，你就要一辈子骑三轮车吗？ – Douglas Englebart</p>
-</blockquote>
-
-<p>在职业之外,除了高效做好自己的工作外,也要学习更多的技能,英语,锻炼身体,其他编程相关的.不要安于现状.不要重复自己.还是那句话,不要让你的身份限制你的能力.</p>
-
                 
               </div>
 

@@ -196,6 +196,60 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/10/25/%E7%90%86%E8%A7%A3%E5%B9%B6%E5%AE%9E%E7%8E%B0%E6%A8%A1%E6%9D%BF%E6%A8%A1%E5%BC%8F/">
+                <h2 class="post-title">理解并实现模板模式</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on October 25, 2012
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (167 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  介绍 本文实现模板模式
+背景 有时候我们需要做很多任务，而做这些任务的算法可能不同，这样可以设计成策略模式，这样。执行该任务的基本的一些代码就是一样的。但程序可可以动态的切换来执行任务的不同部分了。
+现在，真实的情况是有些算法，从实现层面山看，有可能有一些步骤是不一样的，这种情况下。我们可以使用继承来完成。
+当有个算法，而这个算法的一部分却多样的时候。使用模板模式就很好。GoF定义模板模式为：
+ &ldquo;Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm&rsquo;s structure.&rdquo;.
+ 定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。模板模式使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。
+ 在上面的类图中： AbstractClass：包含两种方法。第一种就是算法的每一步。另一种就是模板方法。模板方法就是那些可以被用在所有独立方法中。并且提供了算法执行的一个骨架 ConcreteClass：这个类重写了抽象类中每一步的方法，包含对这些步骤的个性化实现。
+使用代码 看一个简单的例子。假想我们有一个类用来读取数据。并且能够为信息管理系统到处数据。
+abstract class DataExporter { // 这个方法都是一致的 public void ReadData() { Console.WriteLine("Reading the data from SqlServer"); } // 当报表格式顶的时候这个也是定的。 public void FormatData() { Console.WriteLine("Formating the data as per requriements.
+                  <a href="https://leizhiyuan.github.io/2012/10/25/%E7%90%86%E8%A7%A3%E5%B9%B6%E5%AE%9E%E7%8E%B0%E6%A8%A1%E6%9D%BF%E6%A8%A1%E5%BC%8F/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%AD%A6%E6%B1%89/">武汉</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%AE%BE%E8%AE%A1/">设计</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/10/23/%E7%90%86%E8%A7%A3%E5%B9%B6%E5%AE%9E%E7%8E%B0%E5%A4%96%E8%A7%82%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
                 <h2 class="post-title">理解并实现外观设计模式</h2>
                 
@@ -725,59 +779,6 @@ public T Get&amp;lt;T&amp;gt;(BlackboardProperty&amp;lt;T&amp;gt; property) { if
                     <a href="https://leizhiyuan.github.io//tags/%E6%AD%A6%E6%B1%89/">武汉</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E8%AE%BE%E8%AE%A1/">设计</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/10/14/%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BAwpf%E7%94%A8%E6%88%B7%E6%8E%A7%E4%BB%B6%E5%9C%A8wpf%E9%A1%B9%E7%9B%AE%E4%B8%AD%E4%BD%BF%E7%94%A8/">
-                <h2 class="post-title">如何创建WPF用户控件&amp;在WPF项目中使用</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on October 14, 2012
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 3 minutes (448 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  作者给的Demo我合并了下。VS2010直接打开解决方案。二者都有。
-
-介绍 本文展示在WPF中如何创建用户控件并且如果在WPF项目中使用。我将使用VS2008和C#来展示如何创建一个自定义的ToolTip
-背景
-这篇由Sacha Barber.写的和我的有点像。
-使用代码
-开始。首先，我们创建一个用户控件。因此，我们选择新建WPF用户控件类库（WPF User Control Library）。
-
-现在。我们可以创建或者编辑XAML代码来创建自定义的用户控件了。我使用XAML来创建自定义的ToolTip。你想做什么随你。 &lt;UserControl Name=&ldquo;UserControlToolTip&rdquo; x:Class=&ldquo;CustomToolTip.UserControl1&rdquo; xmlns=&ldquo;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot; xmlns:x=&ldquo;http://schemas.microsoft.com/winfx/2006/xaml&quot; xmlns:d=&ldquo;http://schemas.microsoft.com/expression/blend/2008&quot; xmlns:mc=&ldquo;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; mc:Ignorable=&ldquo;d&rdquo; RenderTransformOrigin=&ldquo;0,0&rdquo; HorizontalAlignment=&ldquo;Left&rdquo; VerticalAlignment=&ldquo;Top&rdquo; &gt;
-&amp;lt;UserControl.RenderTransform&amp;gt; &amp;lt;TransformGroup&amp;gt; &amp;lt;ScaleTransform ScaleX=&#34;1&#34; ScaleY=&#34;1&#34;/&amp;gt; &amp;lt;SkewTransform AngleX=&#34;0&#34; AngleY=&#34;0&#34;/&amp;gt; &amp;lt;RotateTransform Angle=&#34;0&#34;/&amp;gt; &amp;lt;TranslateTransform x:Name=&#34;UserControlToolTipXY&#34; X=&#34;0&#34; Y=&#34;0&#34;/&amp;gt; &amp;lt;/TransformGroup&amp;gt; &amp;lt;/UserControl.RenderTransform&amp;gt; &amp;lt;Grid HorizontalAlignment=&#34;Center&#34; VerticalAlignment=&#34;Center&#34; MinWidth=&#34;200&#34; MinHeight=&#34;120&#34;&amp;gt; &amp;lt;Grid.RowDefinitions&amp;gt; &amp;lt;RowDefinition Height=&#34;0.333*&#34;/&amp;gt; &amp;lt;RowDefinition Height=&#34;0.667*&#34;/&amp;gt; &amp;lt;/Grid.RowDefinitions&amp;gt; &amp;lt;Rectangle Fill=&#34;#FFFBFBFB&#34; Stroke=&#34;#FF000000&#34; RadiusX=&#34;10&#34; RadiusY=&#34;10&#34; RenderTransformOrigin=&#34;0.139,0.012&#34; StrokeThickness=&#34;1&#34; Grid.RowSpan=&#34;2&#34;&amp;gt; &amp;lt;Rectangle.BitmapEffect&amp;gt; &amp;lt;DropShadowBitmapEffect Opacity=&#34;0.8&#34;/&amp;gt; &amp;lt;/Rectangle.BitmapEffect&amp;gt; &amp;lt;/Rectangle&amp;gt; &amp;lt;Rectangle RadiusX=&#34;10&#34; RadiusY=&#34;10&#34; RenderTransformOrigin=&#34;0.139,0.012&#34; StrokeThickness=&#34;10&#34; Stroke=&#34;{x:Null}&#34; Margin=&#34;1,1,1,1&#34; Grid.
-                  <a href="https://leizhiyuan.github.io/2012/10/14/%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BAwpf%E7%94%A8%E6%88%B7%E6%8E%A7%E4%BB%B6%E5%9C%A8wpf%E9%A1%B9%E7%9B%AE%E4%B8%AD%E4%BD%BF%E7%94%A8/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/wpf/">WPF</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
                   
                 </div>
               

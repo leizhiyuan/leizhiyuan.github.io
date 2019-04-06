@@ -196,6 +196,62 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2013/05/15/%E5%80%92%E6%B0%B4%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3c-/">
+                <h2 class="post-title">倒水问题求解(C&#43;&#43;)</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on May 15, 2013
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 2 minutes (313 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  明天要去参加微软面试，不求顺利，但求体验。
+这个题目答题的意思是:
+给你一个容量为A升的桶和一个容量为B升的桶，水不限使用，要求精确得到Q升水.请说明步骤
+当数字比较小的时候,我们可以通过大脑穷举来得到结果,但这里有两个问题,当数字很大的时候怎么解?题目给定的数据是否有解?
+首先判断是否有解?
+题目可以理解为,x为用A的次数,y为用B的次数,Q为目标值
+Q = A * x + B * y Q =目标值.
+Q必须是 Gcd(A,B)(也就是A,B的最大公约数)的倍数,否则无解,如果 Gcd(A,B) == 1, 任何Q都是可解的
+最简单的方法就是把A的水不断的向B中倒(B向A中倒也行),知道得到最终结果,如果桶满了,就清空该桶.举个例子
+A = 3, B = 4 并且 Q = 2 重复得从 A-&gt;B
+A B ###### 0 0 4 0 1 3 1 0 0 1 4 1 2 3 &lt;-A桶中得到2了
+试试从 B-&gt;A
+A B ##### 0 0 0 3 3 0 3 3 4 2 &lt;- B中也得到了2 但是注意,从 B-&gt;A 比从 A-&gt;B快哦
+                  <a href="https://leizhiyuan.github.io/2013/05/15/%E5%80%92%E6%B0%B4%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3c-/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c&#43;&#43;/">C&#43;&#43;</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2013/05/13/%E8%97%8F%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E7%94%B5%E5%AD%90%E6%97%B6%E4%BB%A3%E7%9A%84%E4%BA%BA%E7%94%9F%E7%BB%91%E6%9E%B6%E8%80%85/">
                 <h2 class="post-title">[藏]社交网络，电子时代的人生绑架者</h2>
                 
@@ -735,60 +791,6 @@ QuickUnion::QuickUnion(int N) { size=N; id=new int[N]; for(int i=0;i&lt;N;i++) {
                     <a href="https://leizhiyuan.github.io//tags/%E7%88%B1%E6%83%85/">爱情</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E7%A4%BE%E4%BC%9A/">社会</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/03/06/e.net-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%8C%87%E5%8D%97/">
-                <h2 class="post-title">[E].Net 多线程指南</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on March 6, 2013
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (27 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  <p>这是codeproject上的一个系列。我看完了。收获匪浅。可惜作者之后未能更新预想中的总结贴，多少有些可惜，不过。此系列非常非常不错。建议想学习.net多线程的看看。</p>
-
-<p>1.net 多线程介绍 <a href="http://www.codeproject.com/KB/threads/ThreadingDotNet.aspx">Introduction into threading in .NET</a></p>
-
-<p>2.线程周期/线程优势/陷阱 <a href="http://www.codeproject.com/KB/threads/ThreadingDotNet2.aspx">Lifecycle of threads/Threading opportunities/Traps </a></p>
-
-<p>3.线程同步 <a href="http://www.codeproject.com/KB/threads/ThreadingDotNet3.aspx">Synchronization</a></p>
-
-<p>4.线程池 <a href="http://www.codeproject.com/KB/threads/ThreadingDotNet4.aspx">Thread Pools</a></p>
-
-<p>5.UI中的线程应用 <a href="http://www.codeproject.com/KB/threads/ThreadingDotNet5.aspx">Threading in UIs (WinForms / WPF / Silverlight)</a></p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%94%B6%E8%97%8F/">收藏</a>&nbsp;
                   
                 </div>
               

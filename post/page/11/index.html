@@ -175,7 +175,7 @@
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on June 29, 2013
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on July 17, 2013
   
   
   &nbsp;|&nbsp;
@@ -200,6 +200,93 @@
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
         <div class="posts-list">
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2013/07/17/%E4%BD%BF%E7%94%A8css3%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AD%97%E4%BD%93%E7%BE%8E%E5%8C%96%E6%96%87%E5%AD%97/">
+                <h2 class="post-title">使用CSS3的自定义字体美化文字</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on July 17, 2013
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (31 words)
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  <p>之前看到一些设计师的主题的字体很美，下载下来发现使用了css3的自定义字体，可以用来显示服务器上的字体，非常方便，学习了一下</p>
+
+<p>1.首先得到字体</p>
+
+<p>这个方法很多，本机的字体，一些国外的免费网站，比如这个：<a href="http://www.dafont.com/">http://www.dafont.com</a>，下载后的字体一般为ttf格式，ttf字体被很多浏览器支持，但是，IE不支持，为了兼容性，需要为IE单独设置字体文件，格式必须为eot，所以我们需要转换字体，使用在线工具，比如<a href="http://www.kirsle.net/wizards/ttf2eot.cgi">http://www.kirsle.net/wizards/ttf2eot.cgi</a>，当然类似的网站有很多，根据个人爱好，随意。</p>
+
+<p>&nbsp;</p>
+
+<p>2.添加内容</p>
+
+<p>这里，我写一个简单的html文件，内容为
+<pre class="lang:default decode:true">&lt;body&gt;
+&lt;p class=&ldquo;test&rdquo;&gt;bystander&lt;/p&gt;
+&lt;/body&gt;</pre>
+在没有设置customFont这个类的css之前，字体就是默认的字体了。</p>
+
+<p>&nbsp;</p>
+
+<p>3.设置css样式
+<pre class="lang:default decode:true">@font-face
+{
+font-family:myFont;/<em>主流浏览器可用</em>/
+src:url(&ldquo;PONCTUATION.ttf&rdquo;);
+}
+@font-face
+{
+font-family:myFont;/<em>兼容IE</em>/
+src:url(&ldquo;PONCTUATION.eot&rdquo;);
+}
+.test
+{
+font-family:myFont;
+font-size:40px;
+}</pre>
+显示效果就是这样的了&hellip;只是用来演示的一个字体。</p>
+
+<p><a href="http://leaverimage.b0.upaiyun.com/38421_o.png"><img src="/images/0aa0db5ed4bc986d61cfbb9e1e421a2226c94f9b.png" alt="" /></a></p>
+
+<p>&nbsp;</p>
+
+<p>因为浏览器是要自动下载这个字体文件的，所以对于英文字体没啥问题，英文字体一般这个字体文件在100k左右，和一张图片比起来，基本算不是问题，但是对于中文字体，包一般在10M-20M左右，这样是不现实的，我的想法是，可以自己制作字体包，这样只需要满足常用的一些汉字就行了，大大减少包的大小，然后去找了一下，发现了<a href="http://www.high-logic.com/font-editor/fontcreator.html">http://www.high-logic.com/font-editor/fontcreator.html</a>这个软件，是可以直接编辑字体包的，也可以创建字体包，有空了用来试试.</p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%AE%BE%E8%AE%A1/">设计</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2013/06/29/%E7%AD%89%E7%89%A9%E4%BD%93%E5%A1%AB%E5%85%85%E9%97%AE%E9%A2%98/">
@@ -699,65 +786,6 @@ int main() { using namespace std;
                     <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/05/15/%E5%80%92%E6%B0%B4%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3c-/">
-                <h2 class="post-title">倒水问题求解(C&#43;&#43;)</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on May 15, 2013
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 2 minutes (313 words)
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  明天要去参加微软面试，不求顺利，但求体验。
-这个题目答题的意思是:
-给你一个容量为A升的桶和一个容量为B升的桶，水不限使用，要求精确得到Q升水.请说明步骤
-当数字比较小的时候,我们可以通过大脑穷举来得到结果,但这里有两个问题,当数字很大的时候怎么解?题目给定的数据是否有解?
-首先判断是否有解?
-题目可以理解为,x为用A的次数,y为用B的次数,Q为目标值
-Q = A * x + B * y Q =目标值.
-Q必须是 Gcd(A,B)(也就是A,B的最大公约数)的倍数,否则无解,如果 Gcd(A,B) == 1, 任何Q都是可解的
-最简单的方法就是把A的水不断的向B中倒(B向A中倒也行),知道得到最终结果,如果桶满了,就清空该桶.举个例子
-A = 3, B = 4 并且 Q = 2 重复得从 A-&gt;B
-A B ###### 0 0 4 0 1 3 1 0 0 1 4 1 2 3 &lt;-A桶中得到2了
-试试从 B-&gt;A
-A B ##### 0 0 0 3 3 0 3 3 4 2 &lt;- B中也得到了2 但是注意,从 B-&gt;A 比从 A-&gt;B快哦
-                  <a href="https://leizhiyuan.github.io/2013/05/15/%E5%80%92%E6%B0%B4%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3c-/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c&#43;&#43;/">C&#43;&#43;</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
                   
                 </div>
               

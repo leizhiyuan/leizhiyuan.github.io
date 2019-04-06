@@ -202,6 +202,53 @@
         <div class="posts-list">
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AB%E7%AF%87csv%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/">
+                <h2 class="post-title">[译]Unix sed实用教程第八篇–CSV文件操作</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on August 11, 2013
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (175 words)
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  本文作为sed使用教程的最后一篇，将比较全面的讲解如何操作csv文件，csv文件通过逗号分隔
+示例文件如下： cat file Solaris,25,11 Ubuntu,31,2 Fedora,21,3 LinuxMint,45,4 RedHat,12,5 1.删除第一列 $ sed &rsquo;s/[^,]*,//&rsquo; file 25,11 31,2 21,3 45,4 12,5 s开启替换模式，当^符号在中括号里的时候，就是非的意思，也就是说[^,]匹配了所有不是逗号的一个字符，然后后面的星号表示0个或多个，然后是一个逗号，也就是匹配&rdquo;xxxx,&ldquo;替换为空
+2.删除除过最后一列的其他所有 $ sed &rsquo;s/.*,//&rsquo; file 11 2 3 4 5 sed先匹配任意多个字符，然后匹配最后一个“,”这就直接把前面的都匹配完了。替换为空即可。
+3.输出第一列 $ sed &rsquo;s/,.*//&rsquo; file Solaris Ubuntu Fedora LinuxMint RedHat 好理解把，先匹配第一列之后的逗号，然后是多个字符，然后替换为空
+4.删除第二列 $ sed &rsquo;s/,[^,]*,/,/&rsquo; file Solaris,11 Ubuntu,2 Fedora,3 LinuxMint,4 RedHat,5 先匹配第一列之后的逗号，然后匹配一个或多个非逗号字符，这样就匹配了第二列的内容，然后再匹配一个逗号，我简化一下，比如该列是1，2，3，4，那么这一个匹配就是&rdquo;,2,&ldquo;，替换成一个逗号，就是1，3，4了
+5.输出第二列 $ sed &rsquo;s/[^,],([^,])./\1/&rsquo; file 25 31 21 45 12 我们可以分析前两个斜线之间的内容 [^,],([^,]). 两个右斜线转移了括号，所以括号不是简单的符号，而是正则里的组的意义，圆括号的作用是对字符进行分组，并保存匹配的文本。这里先匹配非逗号的多个字符，然后一个逗号，然后再匹配第二列，并且第二列的匹配用括号括起来，然后匹配其他列，然后里面用\1来引用这个括号的内容，如果前面有两个括号，就可以使用\1或\2这样，分别表示第一个括号或第二个括号的匹配
+6.输出最后一列是一位数字的行 $ sed -n &lsquo;/.
+                  <a href="https://leizhiyuan.github.io/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AB%E7%AF%87csv%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/linux/">linux</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/shell/">shell</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%83%E7%AF%87%E8%BE%93%E5%87%BA%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B910-demo/">
                 <h2 class="post-title">[译]Unix sed实用教程第七篇–输出文件内容(10 Demo)</h2>
 
@@ -661,93 +708,6 @@ sed 是unix中最重要的编辑器之一，注意，有之一..支持多种编�
                     <a href="https://leizhiyuan.github.io//tags/%E7%AC%94%E8%AE%B0/">笔记</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/07/17/%E4%BD%BF%E7%94%A8css3%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AD%97%E4%BD%93%E7%BE%8E%E5%8C%96%E6%96%87%E5%AD%97/">
-                <h2 class="post-title">使用CSS3的自定义字体美化文字</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on July 17, 2013
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (31 words)
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  <p>之前看到一些设计师的主题的字体很美，下载下来发现使用了css3的自定义字体，可以用来显示服务器上的字体，非常方便，学习了一下</p>
-
-<p>1.首先得到字体</p>
-
-<p>这个方法很多，本机的字体，一些国外的免费网站，比如这个：<a href="http://www.dafont.com/">http://www.dafont.com</a>，下载后的字体一般为ttf格式，ttf字体被很多浏览器支持，但是，IE不支持，为了兼容性，需要为IE单独设置字体文件，格式必须为eot，所以我们需要转换字体，使用在线工具，比如<a href="http://www.kirsle.net/wizards/ttf2eot.cgi">http://www.kirsle.net/wizards/ttf2eot.cgi</a>，当然类似的网站有很多，根据个人爱好，随意。</p>
-
-<p>&nbsp;</p>
-
-<p>2.添加内容</p>
-
-<p>这里，我写一个简单的html文件，内容为
-<pre class="lang:default decode:true">&lt;body&gt;
-&lt;p class=&ldquo;test&rdquo;&gt;bystander&lt;/p&gt;
-&lt;/body&gt;</pre>
-在没有设置customFont这个类的css之前，字体就是默认的字体了。</p>
-
-<p>&nbsp;</p>
-
-<p>3.设置css样式
-<pre class="lang:default decode:true">@font-face
-{
-font-family:myFont;/<em>主流浏览器可用</em>/
-src:url(&ldquo;PONCTUATION.ttf&rdquo;);
-}
-@font-face
-{
-font-family:myFont;/<em>兼容IE</em>/
-src:url(&ldquo;PONCTUATION.eot&rdquo;);
-}
-.test
-{
-font-family:myFont;
-font-size:40px;
-}</pre>
-显示效果就是这样的了&hellip;只是用来演示的一个字体。</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/38421_o.png"><img src="/images/0aa0db5ed4bc986d61cfbb9e1e421a2226c94f9b.png" alt="" /></a></p>
-
-<p>&nbsp;</p>
-
-<p>因为浏览器是要自动下载这个字体文件的，所以对于英文字体没啥问题，英文字体一般这个字体文件在100k左右，和一张图片比起来，基本算不是问题，但是对于中文字体，包一般在10M-20M左右，这样是不现实的，我的想法是，可以自己制作字体包，这样只需要满足常用的一些汉字就行了，大大减少包的大小，然后去找了一下，发现了<a href="http://www.high-logic.com/font-editor/fontcreator.html">http://www.high-logic.com/font-editor/fontcreator.html</a>这个软件，是可以直接编辑字体包的，也可以创建字体包，有空了用来试试.</p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%AE%BE%E8%AE%A1/">设计</a>&nbsp;
                   
                 </div>
               

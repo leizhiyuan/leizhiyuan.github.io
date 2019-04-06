@@ -196,6 +196,82 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2013/02/02/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%AD%BB%E9%94%81%E5%92%8C%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">
+                <h2 class="post-title">操作系统的死锁和内存管理</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on February 2, 2013
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (23 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  <p>这部分是最后一部分笔记。《现代操作系统》第三版的笔记就这样了。
+<strong>死锁；</strong>
+把需要排他性使用的对象称为资源，资源分为可抢占的和不可抢占的。可抢占资源可以从拥有它的进程中抢占而不会具有任何副作用。存储器就是可抢占的。不可抢占资源是指在不引起相关的计算失败的情况下，无法把它从占有她的进程处抢占过来。比如CD刻录机，如果一个进程开始刻盘，突然分配给CD刻录机到另一进程，就会划坏CD盘。死锁会发生在不可抢占资源中
+<strong>死锁的规范定义</strong>：如果一个进程集合中的每个进程都在等待只能由该进程集合中的其他进程才能引发的事件，那么，该进程集合就是死锁的。</p>
+
+<p><strong>死锁的四个必要条件</strong>
+1.互斥条件。每个资源要么已经分配给一个进程，要么就是可用的。
+2.占有和等待条件，已经得到了某个资源的进程可以再请求新的资源。
+3.不可抢占条件，已经分配给一个进程的资源不可强制性的被抢占，他只能由占有她的进程显式的释放。
+4.环路等待条件。死锁发生时，系统中一定有友两个/多个进程组成的一条回路，该环路中的每个进程都在等待着下一个进程所占有的资源。</p>
+
+<p><strong>死锁处理的四种策略</strong>
+1.忽略该问题，如果可以忽略。则忽略
+2.检测死锁并恢复，让死锁发生，检测他们是否发生，一旦发生。采取行动。
+3.仔细对资源进行分配。动态的避免死锁。
+4.通过破坏引起的四个必要条件之一。防止死锁发生。</p>
+
+<p><strong>银行家算法</strong>就是对每个请求进行检查。检查如果满足这一请求是否会达到安全状态，或是，那么满足这请求，若否。就推迟这一请求的满足。为了看状态是否安全。类似于银行家投资。看自己是否有足够的资源满足客户。如果可以。就认为投资是可以收回的。接着检查最接近最大限额的一个客户。如果所有投资最终都被收回。则该状态安全。</p>
+
+<p><strong>通信死锁</strong>：两个/以上的进程发送消息通信。A向B发送请求信息，然后阻塞直到B回复。假设请求信息丢失，A将阻塞等待回复。B则阻塞等待一个向其发送命令的请求。则发生死锁。他不能通过对资源排序/安排调度来避免，因此。采用了超时来中断通信死锁。</p>
+
+<p><strong>活锁</strong>：两个进程A和B，A获得1.B获得2.轮询请求对方的。没有进程被阻塞。看起来像是死锁发生了。就叫做活锁。</p>
+
+<p><strong>内存管理</strong>
+每个linux进程都有一个地址空间，逻辑上有三段组成：代码。数据和堆栈段。代码段包含了形成程序可执行代码的机器指令。通常是只读的。是由编译器把源码转换成机器码形成的。
+数据段包含了所有程序变量。字符串。数字和其他数据的存储。由两部分，初始化数据和未初始化数据。后者即为BSS，符号起始块。加载后被初始化为0.数据段可以修改。可以增加数据段的大小。
+第三段是栈段。大多数机器里。从虚拟地址空间的顶部/附近开始。并且向下生长。</p>
+
+<p>linux内存由三部分组成。前两部分是内核和内存映射，被钉在内存中。页面从不换粗。内存的其他部分，被划分为页框。每个页框都可以包含一个代码。数据或栈页面。</p>
+
+<p>window如何知道系统配置的细节呢。答案就是windows会挂载一种特殊的文件系统，其为小文件做了优化，到名字空间，也就是注册表。注册表被阻止成了不同的卷，称作储巢。hive。一个叫做system的储巢会在系统启动时。装入内存。这里面包含了驱动什么设备工作。什么软件要初始化。那些变量等等。</p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/linux/">linux</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%AC%94%E8%AE%B0/">笔记</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2013/02/02/recon-ng%E5%BC%80%E6%BA%90%E4%BF%A1%E6%81%AF%E6%8E%A2%E6%B5%8B%E6%A1%86%E6%9E%B6/">
                 <h2 class="post-title">recon-ng开源信息探测框架</h2>
                 
@@ -928,63 +1004,6 @@ using System.Windows.Forms;</p>
                     <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/01/06/%E5%9B%BE%E7%9A%84%E9%81%8D%E5%8E%86c/">
-                <h2 class="post-title">图的遍历(C#)</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on January 6, 2013
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 4 minutes (718 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  讲的非常好的一篇文章。感谢abatei，直接收藏分享之。
-图的存储结构 图的存储结构除了要存储图中各个顶点的本身的信息外，同时还要存储顶点与顶点之间的所有关系（边的信息），因此，图的结构比较复杂，很难以数据元素在存储区中的物理位置来表示元素之间的关系，但也正是由于其任意的特性，故物理表示方法很多。常用的图的存储结构有邻接矩阵、邻接表、十字链表和邻接多重表。
-8.2.1 邻接矩阵表示法 对于一个具有n个顶点的图，可以使用n*n的矩阵（二维数组）来表示它们间的邻接关系。图8.10和图8.11中，矩阵A(i，j)=1表示图中存在一条边(Vi，Vj)，而A(i，j)=0表示图中不存在边(Vi，Vj)。实际编程时，当图为不带权图时，可以在二维数组中存放bool值，A(i，j)=true表示存在边(Vi，Vj)，A(i，j)=false表示不存在边(Vi，Vj)；当图带权值时，则可以直接在二维数组中存放权值，A(i，j)=null表示不存在边(Vi，Vj)。
- 图8.10所示的是无向图的邻接矩阵表示法，可以观察到，矩阵延对角线对称，即A(i，j)= A(j，i)。无向图邻接矩阵的第i行或第i列非零元素的个数其实就是第i个顶点的度。这表示无向图邻接矩阵存在一定的数据冗余。
-图8.11所示的是有向图邻接矩阵表示法，矩阵并不延对角线对称，A(i，j)=1表示顶点Vi邻接到顶点Vj；A(j，i)=1则表示顶点Vi邻接自顶点Vj。两者并不象无向图邻接矩阵那样表示相同的意思。有向图邻接矩阵的第i行非零元素的个数其实就是第i个顶点的出度，而第i列非零元素的个数是第i个顶点的入度，即第i个顶点的度是第i行和第i列非零元素个数之和。
-由于存在n个顶点的图需要n2个数组元素进行存储，当图为稀疏图时，使用邻接矩阵存储方法将出现大量零元素，照成极大地空间浪费，这时应该使用邻接表表示法存储图中的数据。
-8.2.2 邻接表表示法 图的邻接矩阵存储方法跟树的孩子链表示法相类似，是一种顺序分配和链式分配相结合的存储结构。邻接表由表头结点和表结点两部分组成，其中图中每个顶点均对应一个存储在数组中的表头结点。如这个表头结点所对应的顶点存在相邻顶点，则把相邻顶点依次存放于表头结点所指向的单向链表中。如图8.12所示，表结点存放的是邻接顶点在数组中的索引。对于无向图来说，使用邻接表进行存储也会出现数据冗余，表头结点A所指链表中存在一个指向C的表结点的同时，表头结点C所指链表也会存在一个指向A的表结点。  有向图的邻接表有出边表和入边表（又称逆邻接表）之分。出边表的表结点存放的是从表头结点出发的有向边所指的尾顶点；入边表的表结点存放的则是指向表头结点的某个头顶点。如图8.13所示，图(b)和&copy;分别为有向图(a)的出边表和入边表。  以上所讨论的邻接表所表示的都是不带权的图，如果要表示带权图，可以在表结点中增加一个存放权的字段，其效果如图8.14所示。
-
-【注意】：观察图8.14可以发现，当删除存储表头结点的数组中的某一元素，有可能使部分表头结点索引号的改变，从而导致大面积修改表结点的情况发生。可以在表结点中直接存放指向表头结点的指针以解决这个问题（在链表中存放类实例即是存放指针，但必须要保证表头结点是类而不是结构体）。在实际创建邻接表时，甚至可以使用链表代替数组存放表头结点或使用顺序表存代替链表存放表结点。对所学的数据结构知识应当根据实际情况及所使用语言的特点灵活应用，切不可生搬硬套。
-【例8-1 AdjacencyList.cs】图的邻接表存储结构  using System; using System.Collections.Generic; public class AdjacencyList&lt;T&gt; { List&lt;Vertex&lt;T&gt;&gt; items; //图的顶点集合 public AdjacencyList() : this(10) { } //构造方法 public AdjacencyList(int capacity) //指定容量的构造方法 { items = new List&lt;Vertex&lt;T&gt;&gt;(capacity); } public void AddVertex(T item) //添加一个顶点 { //不允许插入重复值 if (Contains(item)) { throw new ArgumentException(&ldquo;插入了重复顶点！&rdquo;); } items.Add(new Vertex&lt;T&gt;(item)); } public void AddEdge(T from, T to) //添加无向边 { Vertex&lt;T&gt; fromVer = Find(from); //找到起始顶点 if (fromVer == null) { throw new ArgumentException(&ldquo;头顶点并不存在！&rdquo;); } Vertex&lt;T&gt; toVer = Find(to); //找到结束顶点 if (toVer == null) { throw new ArgumentException(&ldquo;尾顶点并不存在！&rdquo;); } //无向边的两个顶点都需记录边信息 AddDirectedEdge(fromVer, toVer); AddDirectedEdge(toVer, fromVer); } public bool Contains(T item) //查找图中是否包含某项 { foreach (Vertex&lt;T&gt; v in items) { if (v.
-                  <a href="https://leizhiyuan.github.io/2013/01/06/%E5%9B%BE%E7%9A%84%E9%81%8D%E5%8E%86c/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%94%B6%E8%97%8F/">收藏</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%AE%BE%E8%AE%A1/">设计</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
                   

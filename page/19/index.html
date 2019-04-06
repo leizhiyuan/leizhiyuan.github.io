@@ -196,6 +196,60 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/10/04/%E7%AE%80%E5%8D%95%E6%89%A9%E5%B1%95%E6%96%B9%E6%B3%95%E5%A2%9E%E5%BC%BA%E4%BB%A3%E7%A0%81%E5%8F%AF%E8%AF%BB%E6%80%A7/">
+                <h2 class="post-title">简单扩展方法增强代码可读性</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on October 4, 2012
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (122 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  本文技术含量不高，但是思路可以借鉴。。
+介绍
+当你处理计时器，时间间隔，或是其他关于日期的计算的时候。你必然会使用TimeSpan类。
+我觉得写出下面的代码可读性并不好。。 // 1个表示5小时的时间间隔 var theTimespan = new TimeSpan(0, 5, 0, 0, 0); 而下面的代码就要好一些 //一个表示5小时的时间间隔 var theTimespan = 5.Hours();  扩展方法
+使用这些扩展了int类的方法。可以使得创建TimeSpan可读性更好 public static TimeSpan Days(this int value) { return new TimeSpan(value, 0, 0, 0, 0); }
+public static TimeSpan Years(this int value) { var dt = DateTime.Now.AddYears(value); return (dt - DateTime.Now).Duration(); }
+public static TimeSpan Hours(this int value) { return new TimeSpan(0, value, 0, 0, 0); }
+                  <a href="https://leizhiyuan.github.io/2012/10/04/%E7%AE%80%E5%8D%95%E6%89%A9%E5%B1%95%E6%96%B9%E6%B3%95%E5%A2%9E%E5%BC%BA%E4%BB%A3%E7%A0%81%E5%8F%AF%E8%AF%BB%E6%80%A7/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c&#43;&#43;/">C&#43;&#43;</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/10/03/11%E4%B8%AA%E9%AB%98%E6%95%88%E7%9A%84vs%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/">
                 <h2 class="post-title">11个高效的VS调试技巧</h2>
                 
@@ -745,52 +799,6 @@ LayoutContent 是LayoutAnchorable 和LayoutAnchorable类的父类。提供了共
                     <a href="https://leizhiyuan.github.io//tags/%E6%94%B6%E8%97%8F/">收藏</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/09/25/c#%E7%BC%96%E5%86%99youtube%E4%B8%8B%E8%BD%BD%E5%99%A8/">
-                <h2 class="post-title">C#编写youtube下载器</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 25, 2012
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 2 minutes (372 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  介绍 本文将会暂时如何仅仅使用C#来下载youtub视频，代码简单也容易理解，每个人都可以把它整合到自己的工程项目里。
-我没有使用任何第三方的库来完成这段代码，你所要做的仅仅是把两个.cs文件整合进你的项目里。
-使用代码 这个工程里有两个主要的类
-YouTubeVideoQuality Class（youtube视频质量类）
-public class YouTubeVideoQuality { /// &lt;summary&gt; /// Gets or Sets 文件名 /// &lt;/summary&gt; public string Videotitle: { get; set; } /// &lt;summary&gt; /// Gets or Sets 文件扩展 /// &lt;/summary&gt; public string Extention { get; set; } /// &lt;summary&gt; /// Gets or Sets 文件地址 /// &lt;/summary&gt; public string DownloadUrl { get; set; } /// &lt;summary&gt; /// Gets or Sets 视频地址 /// &lt;/summary&gt; public string VideoUrl { get; set; } /// &lt;summary&gt; /// Gets or Sets 文件大小 /// &lt;/summary&gt; public Size Dimension { get; set; } public override string ToString() { return Extention + "
-                  <a href="https://leizhiyuan.github.io/2012/09/25/c#%E7%BC%96%E5%86%99youtube%E4%B8%8B%E8%BD%BD%E5%99%A8/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
                   
                 </div>
               

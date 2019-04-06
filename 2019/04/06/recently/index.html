@@ -5,41 +5,35 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>Mac迁移导致Golang无法debug的问题修复</title>
-  <meta property="og:title" content="Mac迁移导致Golang无法debug的问题修复" />
-  <meta name="twitter:title" content="Mac迁移导致Golang无法debug的问题修复" />
-  <meta name="description" content="最近，使用Mac的迁移助手之后，突然出现一个奇怪的问题。我的golang 用goland 或者vscode都会出现间歇性的无法debug，表现为第一次debug，断点可以停下来。再调试一遍就会直接走过
-而如果你直接在项目中执行
-dlv debug  会看到如下的报错
-Unexpected header files xxxx uint64_t 之类的 网上搜了一下都没有解决。。
-并给出了具体的文件目录。这个看着是c库的一些文件，当时我记得迁移完成后，brew提示有一些库有问题。
-执行
-brew doctor 会看到
-Warning: Unbrewed header files were found in /usr/local/include. If you didn&#39;t put them there on purpose they could cause problems when building Homebrew formulae, and may need to be deleted. Unexpected header files: /usr/local/include/node/openssl/archs/BSD-x86_64/asm/crypto/include/internal/bn_conf.h /usr/local/include/node/openssl/archs/BSD-x86_64/asm/crypto/include/internal/dso_conf.h /usr/local/include/node/openssl/archs/BSD-x86_64/asm/include/openssl/opensslconf.h /usr/local/include/node/openssl/archs/BSD-x86_64/no-asm/crypto/buildinf.h /usr/local/include/node/openssl/archs/BSD-x86_64/no-asm/crypto/include/internal/bn_conf 于是，拷贝下来，一个for循环，将这些文件全部删除。之后再执行dlv debug 就好了。。">
-  <meta property="og:description" content="最近，使用Mac的迁移助手之后，突然出现一个奇怪的问题。我的golang 用goland 或者vscode都会出现间歇性的无法debug，表现为第一次debug，断点可以停下来。再调试一遍就会直接走过
-而如果你直接在项目中执行
-dlv debug  会看到如下的报错
-Unexpected header files xxxx uint64_t 之类的 网上搜了一下都没有解决。。
-并给出了具体的文件目录。这个看着是c库的一些文件，当时我记得迁移完成后，brew提示有一些库有问题。
-执行
-brew doctor 会看到
-Warning: Unbrewed header files were found in /usr/local/include. If you didn&#39;t put them there on purpose they could cause problems when building Homebrew formulae, and may need to be deleted. Unexpected header files: /usr/local/include/node/openssl/archs/BSD-x86_64/asm/crypto/include/internal/bn_conf.h /usr/local/include/node/openssl/archs/BSD-x86_64/asm/crypto/include/internal/dso_conf.h /usr/local/include/node/openssl/archs/BSD-x86_64/asm/include/openssl/opensslconf.h /usr/local/include/node/openssl/archs/BSD-x86_64/no-asm/crypto/buildinf.h /usr/local/include/node/openssl/archs/BSD-x86_64/no-asm/crypto/include/internal/bn_conf 于是，拷贝下来，一个for循环，将这些文件全部删除。之后再执行dlv debug 就好了。。">
-  <meta name="twitter:description" content="最近，使用Mac的迁移助手之后，突然出现一个奇怪的问题。我的golang 用goland 或者vscode都会出现间歇性的无法debug，表现为第一次debug，断点可以停下来。再调试一遍就会直接走过
-而如果你直接在项目中执行
-dlv debug  会看到如下的报错
-Unexpected header files xxxx uint64_t 之类的 网上搜了一下都没有解决。。
-并给出了具体的文件目 …">
+  <title>Recently</title>
+  <meta property="og:title" content="Recently" />
+  <meta name="twitter:title" content="Recently" />
+  <meta name="description" content="最近有点烦，焦虑，感情，工作，生活，都不是很顺利。难以排解。
+生活上，发生了太意外的事情，毫无准备，却也无能为力。
+感情上，突然进入了一个难以处理的境地。那些曾经不是问题的现在都变成了问题，难以逾越。
+工作上，焦虑，对现状和未来有不少担忧，希望未来几个月能想清楚吧。
+总之，年龄大了，有时候想的太多，反倒让自己快乐还是很难的。算了，先换个头像吧。">
+  <meta property="og:description" content="最近有点烦，焦虑，感情，工作，生活，都不是很顺利。难以排解。
+生活上，发生了太意外的事情，毫无准备，却也无能为力。
+感情上，突然进入了一个难以处理的境地。那些曾经不是问题的现在都变成了问题，难以逾越。
+工作上，焦虑，对现状和未来有不少担忧，希望未来几个月能想清楚吧。
+总之，年龄大了，有时候想的太多，反倒让自己快乐还是很难的。算了，先换个头像吧。">
+  <meta name="twitter:description" content="最近有点烦，焦虑，感情，工作，生活，都不是很顺利。难以排解。
+生活上，发生了太意外的事情，毫无准备，却也无能为力。
+感情上，突然进入了一个难以处理的境地。那些曾经不是问题的现在都变成了问题，难以逾越。
+工作上，焦虑，对现状和未来有不少担忧，希望未来几个月能想清楚吧。
+总之，年龄大了，有时候想的太多，反倒让自己快乐还是很难的。算了，先换个头像吧。">
   <meta name="author" content="bystander"/>
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:card" content="summary" />
-  <meta property="og:url" content="https://leizhiyuan.github.io/2019/03/01/mac%E8%BF%81%E7%A7%BB%E5%AF%BC%E8%87%B4golang%E6%97%A0%E6%B3%95debug%E7%9A%84%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D/" />
+  <meta property="og:url" content="https://leizhiyuan.github.io/2019/04/06/recently/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
   <meta name="generator" content="Hugo 0.54.0" />
-  <link rel="canonical" href="https://leizhiyuan.github.io/2019/03/01/mac%E8%BF%81%E7%A7%BB%E5%AF%BC%E8%87%B4golang%E6%97%A0%E6%B3%95debug%E7%9A%84%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D/" />
+  <link rel="canonical" href="https://leizhiyuan.github.io/2019/04/06/recently/" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -188,7 +182,7 @@ Unexpected header files xxxx uint64_t 之类的 网上搜了一下都没有解�
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="post-heading">
               
-                <h1>Mac迁移导致Golang无法debug的问题修复</h1>
+                <h1>Recently</h1>
               
               
               
@@ -196,11 +190,11 @@ Unexpected header files xxxx uint64_t 之类的 网上搜了一下都没有解�
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on March 1, 2019
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on April 6, 2019
   
   
   &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (60 words)
+  <i class="fa fa-clock-o"></i> 1 minutes (5 words)
   
   
 </span>
@@ -220,30 +214,15 @@ Unexpected header files xxxx uint64_t 之类的 网上搜了一下都没有解�
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <p>最近，使用Mac的迁移助手之后，突然出现一个奇怪的问题。我的golang 用goland 或者vscode都会出现间歇性的无法debug，表现为第一次debug，断点可以停下来。再调试一遍就会直接走过</p>
+        <p>最近有点烦，焦虑，感情，工作，生活，都不是很顺利。难以排解。</p>
 
-<p>而如果你直接在项目中执行</p>
-<div class="highlight"><pre class="chroma">dlv debug </pre></div>
-<p>会看到如下的报错</p>
-<div class="highlight"><pre class="chroma">Unexpected header files xxxx uint64_t 之类的</pre></div>
-<p>网上搜了一下都没有解决。。</p>
+<p>生活上，发生了太意外的事情，毫无准备，却也无能为力。</p>
 
-<p>并给出了具体的文件目录。这个看着是c库的一些文件，当时我记得迁移完成后，brew提示有一些库有问题。</p>
+<p>感情上，突然进入了一个难以处理的境地。那些曾经不是问题的现在都变成了问题，难以逾越。</p>
 
-<p>执行</p>
-<div class="highlight"><pre class="chroma">brew doctor</pre></div>
-<p>会看到</p>
-<div class="highlight"><pre class="chroma">Warning: Unbrewed header files were found in /usr/local/include.
-If you didn&#39;t put them there on purpose they could cause problems when
-building Homebrew formulae, and may need to be deleted.
+<p>工作上，焦虑，对现状和未来有不少担忧，希望未来几个月能想清楚吧。</p>
 
-Unexpected header files:
-  /usr/local/include/node/openssl/archs/BSD-x86_64/asm/crypto/include/internal/bn_conf.h
-  /usr/local/include/node/openssl/archs/BSD-x86_64/asm/crypto/include/internal/dso_conf.h
-  /usr/local/include/node/openssl/archs/BSD-x86_64/asm/include/openssl/opensslconf.h
-  /usr/local/include/node/openssl/archs/BSD-x86_64/no-asm/crypto/buildinf.h
-  /usr/local/include/node/openssl/archs/BSD-x86_64/no-asm/crypto/include/internal/bn_conf</pre></div>
-<p>于是，拷贝下来，一个for循环，将这些文件全部删除。之后再执行dlv debug 就好了。。</p>
+<p>总之，年龄大了，有时候想的太多，反倒让自己快乐还是很难的。算了，先换个头像吧。</p>
 
 
         
@@ -255,13 +234,9 @@ Unexpected header files:
         <ul class="pager blog-pager">
           
             <li class="previous">
-              <a href="https://leizhiyuan.github.io/2019/01/20/social-network-break/" data-toggle="tooltip" data-placement="top" title="Social Network Break">&larr; Previous Post</a>
+              <a href="https://leizhiyuan.github.io/2019/03/01/mac%E8%BF%81%E7%A7%BB%E5%AF%BC%E8%87%B4golang%E6%97%A0%E6%B3%95debug%E7%9A%84%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D/" data-toggle="tooltip" data-placement="top" title="Mac迁移导致Golang无法debug的问题修复">&larr; Previous Post</a>
             </li>
           
-          
-            <li class="next">
-              <a href="https://leizhiyuan.github.io/2019/04/06/recently/" data-toggle="tooltip" data-placement="top" title="Recently">Next Post &rarr;</a>
-            </li>
           
         </ul>
       

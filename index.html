@@ -196,6 +196,44 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2019/04/06/recently/">
+                <h2 class="post-title">Recently</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on April 6, 2019
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (5 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  <p>最近有点烦，焦虑，感情，工作，生活，都不是很顺利。难以排解。</p>
+
+<p>生活上，发生了太意外的事情，毫无准备，却也无能为力。</p>
+
+<p>感情上，突然进入了一个难以处理的境地。那些曾经不是问题的现在都变成了问题，难以逾越。</p>
+
+<p>工作上，焦虑，对现状和未来有不少担忧，希望未来几个月能想清楚吧。</p>
+
+<p>总之，年龄大了，有时候想的太多，反倒让自己快乐还是很难的。算了，先换个头像吧。</p>
+
+                
+              </div>
+
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2019/03/01/mac%E8%BF%81%E7%A7%BB%E5%AF%BC%E8%87%B4golang%E6%97%A0%E6%B3%95debug%E7%9A%84%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D/">
                 <h2 class="post-title">Mac迁移导致Golang无法debug的问题修复</h2>
                 
@@ -653,49 +691,6 @@ Interfaces need to be present when compiling against their implementations</p>
 
 <p>好了.也就是说还是乖乖加依赖.但是清楚了原因了</p>
 
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E4%BD%9C/">工作</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2017/02/03/oom%E4%BB%8B%E7%BB%8D/">
-                <h2 class="post-title">oom介绍</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on February 3, 2017
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 2 minutes (244 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  oom 之前知道, 但是并不是很了解,最近遇到了由 oom 引发的问题,所以学习记录一下.
-OOM-killer：Out-of-Memory (OOM) Killer是一种保护机制，用于当内存严重不足时，为了系统的继续运转，内核迫不得已挑选一个进程，将其杀死，以释放内存，缓解内存不足的问题。 可以看出这种方式对进程的保护是有限的，不能完全的保护进程的运行。
-如何知道是否发生了 oom 两种方法,第一种,查看 /var/log/messages,会有类似
-Out of memory: Kill process 9682 (mysqld) score 9 or sacrifice child Killed process 9682, UID 27, (mysqld) total-vm:47388kB, anon-rss:3744kB, file-rss:80kB httpd invoked oom-killer: gfp_mask=0x201da, order=0, oom_adj=0, oom_score_adj=0 httpd cpuset=/ mems_allowed=0 Pid: 8911, comm: httpd Not tainted 2.6.32-279.1.1.el6.i686 #1 这样的标识,说明发生了 oom,关键就是 kill process, 所以可以这样
-sudo cat /var/log/messages | grep -i&quot;killed process&quot;
-另一种是通过dmesg来查看 dmesg | egrep -i 'killed process' 这个命令查看的 oom 的时间里是时间戳的形式,如果你的 dmesg 没有-T这个时间的选项,那么就需要通过
-                  <a href="https://leizhiyuan.github.io/2017/02/03/oom%E4%BB%8B%E7%BB%8D/" class="post-read-more">[Read More]</a>
                 
               </div>
 

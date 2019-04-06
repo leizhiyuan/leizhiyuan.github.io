@@ -175,7 +175,7 @@
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on May 3, 2012
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on May 4, 2012
   
   
   &nbsp;|&nbsp;
@@ -200,6 +200,71 @@
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
         <div class="posts-list">
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/05/04/%E5%9B%BE%E7%89%87%E5%8E%8B%E7%BC%A9%E5%B7%A5%E5%85%B7%E6%BA%90%E7%A0%81c/">
+                <h2 class="post-title">图片压缩工具源码（C#）</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on May 4, 2012
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (42 words)
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  <p>以前在用一个破解版的图片压缩工具。今天早上想想自己也试着做一个吧。查了一些资料。参考了一些代码。总算是写出来了。其实关键代码很简单。主要还是画界面，处理边界。。
+看下效果图
+<a href="http://leaverimage.b0.upaiyun.com/21131_o.jpg"><img src="/images/00f5221099dd3a813d09fbb95fe9a36e5268d652.jpg" alt="" /></a>
+处理图像的关键代码是这样的：
+<pre lang="java">
+    bmp = new Bitmap(width, height);  //创建一张空白画布
+    grap = Graphics.FromImage(bmp);  //以该画布创建一个绘图对象
+ //平滑的高品质，抗锯齿
+    grap.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+ //HighQualityBicubic 是质量最好的绘图模式
+    grap.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+    grap.DrawImage(img, new Rectangle(0, 0, width, height)); //用选中的原图在画布上绘图
+    bmp.Save(topath, System.Drawing.Imaging.ImageFormat.Jpeg);  //对图像压缩后保存
+</pre></p>
+
+<p>另外一个就是空间的tip功能，vs2010中貌似已经不支持直接使用属性来设置tip了。所以用到了ToolTip类，使用方法如下，你也可以先导入库，然后简写，ToolTip对象可以给窗体的控件设置提示。主要是第二句话，第一个参数是控件名，第二个参数是提示文本，最好将这两句放入窗体的Load方法中
+<pre lang="java">
+ToolTip toolTip = new System.Windows.Forms.ToolTip();
+toolTip.SetToolTip(this.lboxPicPath, &ldquo;双击可删除不需要的图片&rdquo;);
+</pre>
+<a href="http://leaverimage.b0.upaiyun.com/21132_o.jpg"><img src="/images/516b951c5df12c7569b3cfefd817a894d380c063.jpg" alt="" /></a></p>
+
+<p>还有一些边界，比如只接受数字数字之类的，我在代码里给出了详细的说明。实用工具的效果自行测试。对大图片效果最好。</p>
+
+<p>源码下载：<a href="http://pan.baidu.com/share/link?shareid=62101&amp;uk=1493685990">图片压缩工具源码</a></p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/05/03/%E8%AF%B4%E8%AF%B4%E9%82%AE%E4%BB%B6%E4%B8%AD%E7%9A%84%E6%8A%84%E9%80%81%E5%92%8C%E5%AF%86%E9%80%81/">
@@ -809,56 +874,6 @@ sudo apt-get install phpmyadmin
 <p>建立一个软连接，不喜欢的话，你也把phpmyadmin直接复制到 /var/www/的文件夹下面也可以。</p>
 
 <p>在Ubuntu下面就可以通过<a href="http://localhost/phpmyadmin正常使用phpmyadmin了。">http://localhost/phpmyadmin正常使用phpmyadmin了。</a></p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/mysql/">mysql</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/04/21/mysql-error-1064-42000-%E9%97%AE%E9%A2%98/">
-                <h2 class="post-title">Mysql ERROR 1064 (42000) 问题</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on April 21, 2012
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (25 words)
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  <p>昨天在lamp环境下写sql语句的时候，其中有一条语句是这样的，看着没什么错啊。。然后执行会报ERROR 1064这个错误。
-<pre lang="php">create table book
-(id unsigned primary key  auto_increment);
-</pre>
-后来解决了原来是是类型不全。必须写成
-<pre lang="php">
-create table book
-(id int unsigned primary key auto_increment);</pre></p>
-
-<p>很诡异。。因为理论上unsigned应该是被识别成int unsigned。。还有其他一些情况，反正就是只要报1064.可能语法错误。可能是拼写。或者是分号，mysql的错误提示是很差的。如果把 auto_increment 自增属性加到非主键上。也会报1064的诡异错误。。</p>
-
-<p>参考：<a href="http://stackoverflow.com/questions/2758649/unable-create-a-table-error-1064-42000-you-have-an-error-in-your-sql-syntax">stackoverflow</a></p>
 
                 
               </div>

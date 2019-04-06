@@ -196,6 +196,55 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/05/24/vs2010-%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85boost%E5%BA%93/">
+                <h2 class="post-title">VS2010 编译安装boost库</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on May 24, 2012
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (140 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  实践是最好的办法。。学习C++，想试试线程，然后打算用boost库，结果boost库编译差点吓到我。。没看到比较完整的安装教程。。一直耽搁。今天动手。完成了。方法记录如下： 1.下载boost 从boost官网( http://www.boost.org )上下载最新的boost版本，现在最新是1.49版本，解压到自定义目录(我解压到了D:/program files,最终的目录结构是D:\Program Files\boost_1_49_0)
+2.编译安装
+在D:\Program Files\boost_1_49_0的目录下，有一个bootstrap.bat文件，直接双击运行。就会在同目录生成b2.exe；bjam.exe两个文件。
+3.设定编译环境 修改user-config.jam (D:\Program Files\boost_1_49_0\tools\build\v2\user-config.jam) 的MSVC configuration
+MSVC configuration Configure msvc (default version, searched for in standard locations and PATH). using msvc ; 在上面这段的下面直接添加如下的文字。 using msvc : 10.0 : :/wd4819/D_CRT_SECURE_NO_DEPRECATE/D_SCL_SECURE_NO_DEPRECATE/D_SECURE_SCL=0 ; 保存关闭。
+4.开始编译 点击开始-&gt;所有程序-&gt;“Microsoft Visual Studio 2010”，指向“Visual Studio tools(工具)”，然后单击“Visual Studio 2010 command prompt（命令提示）” 使用cd切换到D:\Program Files\boost_1_49_0目录。这个就不说了 然后输入如下的代码： b2 toolset=msvc-10.0 architecture=x86 instruction-set=i686 address-model=32 link=static variant=debug,release threading=multi runtime-link=shared &ndash;without-python &ndash;without-mpi &ndash;without-wave &ndash;without-graph &ndash;without-math &ndash;without-serialization stage &nbsp;
+                  <a href="https://leizhiyuan.github.io/2012/05/24/vs2010-%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85boost%E5%BA%93/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c&#43;&#43;/">C&#43;&#43;</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%8E%9F%E5%88%9B/">原创</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E8%AF%91/">编译</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/05/23/c-%E7%8B%AC%E7%AB%8B%E5%BC%95%E7%94%A8%E4%B8%BA%E4%BB%80%E4%B9%88/">
                 <h2 class="post-title">C&#43;&#43; 独立引用，为什么？</h2>
                 
@@ -708,66 +757,6 @@ using System; using System.Collections.Generic; using System.Linq; using System.
                     <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E8%AF%91/">编译</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/05/13/lr0%E5%92%8Cslr%E5%88%86%E6%9E%90%E8%A1%A8%E7%9A%84%E6%9E%84%E9%80%A0/">
-                <h2 class="post-title">LR(0)和SLR分析表的构造</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on May 13, 2012
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (79 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  上篇文章中，我已经说到了，LR(0)分析表是LR(0)分析器的重要组成部分，它是总控程序分析动作的依据，他是由LR(0)项目集规范族来进行构造的。他的结构主要有两个部分ACTION 和GOTO
-　先看看指导原则，可以直接跳过，看例题的时候可以返回来对照参考。
-　假设已构造出LR(0)项目集规范族为：C={I0,I1, … , In}，其中Ik为项目集的名字，k为状态名，令包含S′→·S项目的集合Ik的下标k为分析器的初始状态。那么分析表的ACTION表和GOTO表构造步骤为：
-　① 若项目A→α·aβ属于Ik且转换函数GO(Ik,a)= Ij，当a为终结符时则置ACTION[k,a]为Sj。　② 若项目A→α· 属于Ik，则对任何终结符a 和&rsquo;#&lsquo;号置ACTION[k,a]和ACTION[k,#]为&rdquo;rj&rdquo;，j为在文法G′中某产生式A→α的序号。 ③ 若GO(Ik,A)＝Ij，则置GOTO[k,A]为&rdquo;j&rdquo;，其中A为非终结符。　④ 若项目S′→S·属于Ik，则置ACTION[k,#]为&rdquo;acc&rdquo;，表示接受。 ⑤ 凡不能用上述方法填入的分析表的元素，均应填上&rdquo;报错标志&rdquo;。为了表的清晰我们仅用空白表示错误标志。
-　上篇文章的例题是这样的：LR（0）项目集规范簇也已经算出来了，共有6个I，从I0-I5，最终构造的LR(0)的分析表共7行，包括标题行，也就是ACTION和GOTO，然后是状态行，状态行和ACTION的交处分割成三列，分别是终结符号，和#终结符。也就是分割多少列取决于终结符的数目，GOTO列是非终结符，分割多少列也取决于非终结符的数目。，然后就是具体的6个状态了，画出表的结构后，如下，先不用管表的内容怎么写。
-　
-　然后对照构造原则来填写表，这时你会发现要一个个从那么多的GO函数和I项目组中找对应的式子实在太难了，看不清楚，这时候，我们用GO函数把LR(0)项目集规范族连成一个识别该文法所产生的活前缀的DFA，有点像流程图了，首先把各个I项目画出来，然后需要把他们的关系表示出来，关系由GO函数确定，比如I5=GO(I2, S)，则在I2和I5之间画一个箭头，由I2指向I5，线上写上S，由括号里的第二个值确定，此题构造的DFA如下图，很简单吧。
-　
-　然后我们正式开始吧。第一条指导规则说到， 若项目A→α·aβ属于Ik且转换函数GO(Ik,a)= Ij，当a为终结符时则置ACTION[k,a]为Sj，我们先考察对于I0，发现S-&gt;·aS属于I0，且GO(I0,a)=I1,所有我们ACTION[0,a]置为S1.同理S-&gt;·bS属于I0，GO(I0,b)=I2，所以ACTION[0,b]置为S2。
-　再来看第二条规则，若项目A→α· 属于Ik，则对任何终结符a 和&rsquo;#&lsquo;号置ACTION[k,a]和ACTION[k,#]为&rdquo;rj&rdquo;，j为在文法G′中某产生式A→α的序号，也就是说这里的j可不是I项目的标号，而是增广文法
-　(0)S’→S　(1)S→aS　(2)S→bS (3)S→a
-　的标号，从0-3啦。我们考察I1，发现S→·aS属于I1，且GO(I1,a)=I1，所以应该置1和a的交的格子为S1，但是此时运用第二条规则会发现S-&gt;a·也属于I1，则又应该置ACTION[1,a]为=r3，ACTION[1,#]为r3，这样就发生了冲突。这是因为大多数文法不能满足LR(0)文法的条件，对于此冲突，我们不能确定看到S-&gt;a的时候是规约还是移进，有些文法是可以直接构造的，为此，此处不能够早LR(0)分析表了，我们构造经过改进后得到了一种新的SLR(1)文法，并没有什么太大差别，主要就是解决冲突。
-　解决冲突的指导原则如下：
-　* 假设一个LR（0）项目集规范族中有如下项目集合：
-　{X → α.bβ，A → γ.，B → δ.}
-　即存在移进-归约冲突和归约-归约冲突
-　* 如果FOLLOW（A）∩ FOLLOW（B）∩ {b} =ф，则可以如下来解决冲突（假设当前符号是 a ）：　1、若 a = b，则移进 2、若 a∈ FOLLOW（A），则用产生式 A → γ归约　3、若 a∈ FOLLOW（B），则用产生式 B → δ归约　4、否则，报错
-                  <a href="https://leizhiyuan.github.io/2012/05/13/lr0%E5%92%8Cslr%E5%88%86%E6%9E%90%E8%A1%A8%E7%9A%84%E6%9E%84%E9%80%A0/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%94%9F%E6%B4%BB/">生活</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
                   
