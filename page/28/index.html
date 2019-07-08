@@ -17,7 +17,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.54.0" />
+  <meta name="generator" content="Hugo 0.55.6" />
   <link rel="canonical" href="https://leizhiyuan.github.io/" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
@@ -194,6 +194,58 @@
 
         <div class="posts-list">
           
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/05/14/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E5%AE%9E%E4%BE%8B%E7%9A%84lr%E5%88%86%E6%9E%90%E8%BF%87%E7%A8%8B/">
+                <h2 class="post-title">一个简单实例的LR分析过程</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on May 14, 2012
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (74 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  经过前面两篇文章。已经讲清楚了LR语法分析中最重要的分析表的构造过程。先补充一个小问题，就是LR(0)项目的分类
+　根据圆点所在的位置和圆点后是终结符还是非终结符或为空把项目分为以下几种：
+　移进项目： 形如 A→α .a β ，a是终结符, a ,b∈V* 以下同 待约项目：A→α .B β , 其中B是非终结符　归约项目：A→α . 表明产生式已分析完成。　接受项目：形如 S’→S .　特别的。A→ε的LR(0)项目只有A→ • 是归约项目
+　因为LR分析表的构造前面两篇文章已经讲的很清楚了，所以这个题目重要是解释一下如何使用分析表来构造，分析表的构造也许你得自己参考前面两篇文章来构造了。题目来自网络。
+　好，下面看题目，已知文法G[S]：
+　(1) S → aAcBe (2) A → b　(3) A → Ab　(4) B → d
+　写出对输入串 abbcde#的LR分析 过程。
+　在分析的时候，因为我们的手工分析，所以还需要一个表来记录我们的步骤。否则记不住啊。该表共需7列。行数不定。做到哪是哪。
+　步骤 符号栈 输入符号栈 动作 状态栈 ACTION GOTO 
+　其中，步骤就是从1向下递增。符号栈用来保存运算中的结果，初始为#，输入符号栈保存输入串，初始值为给定的。动作里面就是用来注释是进行移进，还是规约。状态栈就是保持LR分析表的那个状态了。Action 和Goto同理
+　通过前两篇文章的步骤，此题可以构造出如下的一张LR分析表
+                  <a href="https://leizhiyuan.github.io/2012/05/14/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E5%AE%9E%E4%BE%8B%E7%9A%84lr%E5%88%86%E6%9E%90%E8%BF%87%E7%A8%8B/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E8%AF%91/">编译</a>&nbsp;
+                  
+                </div>
+              
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/05/13/lr0%E5%92%8Cslr%E5%88%86%E6%9E%90%E8%A1%A8%E7%9A%84%E6%9E%84%E9%80%A0/">
@@ -767,75 +819,6 @@ PF pf1 = funcOne; //实例化一个函数指针，指向func函数
               
             </article>
           
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/05/05/%E4%BD%A0%E4%BC%9A%E7%94%A8%E8%AE%A1%E7%AE%97%E5%99%A8%E5%90%97/">
-                <h2 class="post-title">你会用计算器吗？</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on May 5, 2012
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (46 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  <p>　　今天早上在用windows自带的计算器转换进制的时候，看到了下图所示的按钮。MS MR之类的。
-<a href="http://leaverimage.b0.upaiyun.com/21157_o.jpg"><img src="/images/94b98df6f3d241859ae7ea4e2f869ede69eca33a.jpg" alt="" /></a></p>
-
-<p>　　这些个按钮在简单的计算器上也有。我从小时候到现在都没搞清楚。当然也没搞过。。不学总是不会的。于是，找找资料。学会了也分享一下，英文是我猜的。。不过估计差不多</p>
-
-<p>　　首先明确的一点是这类计算器内部有一个小的记忆芯片，可以用来存储一个数，类似于内存吧。所以M的意思就是Memory，下面先给出这几个的总体说明</p>
-
-<p>　　“MS”，英文 Memory Store，用来存储输入栏显示的数字。</p>
-
-<p>　　“MR”，英文 Memory Read， 再次显示调用存储的数字。</p>
-
-<p>　　“M+”，英文 Memory Plus， 存储器里的值加上输入栏的值，结果又存入存储器</p>
-
-<p>　　“M+”，英文 Memory Minus， 存储器里的值减去输入栏的值，结果又存入存储器</p>
-
-<p>　　“MC”，英文 Memory Clear，用于清除存储器中的数值，默认为0</p>
-
-<p>　　“C”， 英文 Cancel，就是全部撤销；</p>
-
-<p>　　“CE”，  英文 Cancel Error，也就是撤销错误输入。</p>
-
-<p>　　现在来说个例子，比如我要计算100*2+11*3因为一些计算器不支持整个式子输入。也是为了演示这些功能。我们可以这样输入，</p>
-
-<p>　　先输入100，然后 * ，然后 2 ，按下等号，这时候输入栏变成了200，我们按下MS 或者M+，按下MS的话把200存到了存储器，而按下M+呢，因为存储器默认是0，所以就相当于0+200，存储器里就是200了。然后我们继续输入11 ，输入 +，输入3 ，按下等号，输入栏变成了33.我们按下M+，这时候输入栏并没有改变。因为M+将存储器里的200加上了33.则存储器里变成了233.我们按下MR就是读取存储器的值，这样输入栏就可以看到233了。我们就可以继续用233来运算了。MC就是清除233.恢复为0.</p>
-
-<p>　　例如：想要9*6，如果按6按错按成5了， 按C就是从头来过， 这时就要重新按9了， 但是如果你按CE的话， 就只要输入6就行了， 不必输入前面的了。</p>
-
-<p>　　我个人感觉M存储器就相当于一个草稿。吧计算中的一些临时值存储起来，就不用手记了。我记得我那时候有时候算值还得先把一些临时值写在纸上，后面重新输入。没文化真可怕。</p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%8E%9F%E5%88%9B/">原创</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%AC%94%E8%AE%B0/">笔记</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
         </div>
 
         
@@ -900,7 +883,7 @@ PF pf1 = funcOne; //实例化一个函数指针，指向func函数
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.54.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

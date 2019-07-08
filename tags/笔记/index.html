@@ -17,7 +17,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.54.0" />
+  <meta name="generator" content="Hugo 0.55.6" />
   <link rel="canonical" href="https://leizhiyuan.github.io/tags/%E7%AC%94%E8%AE%B0/" />
   <link rel="alternate" href="https://leizhiyuan.github.io/tags/%E7%AC%94%E8%AE%B0/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
@@ -265,9 +265,12 @@ eclipse插件开发中，依赖的管理是个问题。如果采用常规的搞�
 首先说明一下目录结构。一个parent的maven工程，一个plugin工程，。两个features。一个是deps的。一个是plugin的，这个依赖deps是独立的mvn项目。可以先不用管。一个deps依赖工程（这个依赖工程独立）。 在主pom下。
 步骤如下。
 关于依赖部分
- 新建一个普通的mvn工程,比如deps。打包类型写成&lt;packaging&gt;bundle&lt;/packaging&gt;,同时在pom.xml中添加build部分  &lt;build&gt; &lt;plugins&gt; &lt;plugin&gt; &lt;groupId&gt;org.apache.felix&lt;/groupId&gt; &lt;artifactId&gt;maven-bundle-plugin&lt;/artifactId&gt; &lt;version&gt;3.0.1&lt;/version&gt; &lt;extensions&gt;true&lt;/extensions&gt; &lt;configuration&gt; &lt;niceManifest&gt;true&lt;/niceManifest&gt; &lt;manifestLocation&gt;META-INF&lt;/manifestLocation&gt; &lt;instructions&gt; &lt;Bundle-SymbolicName&gt;${project.artifactId}&lt;/Bundle-SymbolicName&gt; &lt;Embed-Dependency&gt;*&lt;/Embed-Dependency&gt; &lt;Embed-Transitive&gt;true&lt;/Embed-Transitive&gt; &lt;Embed-Directory&gt;lib&lt;/Embed-Directory&gt; &lt;Bundle-ClassPath&gt;{maven-dependencies}&lt;/Bundle-ClassPath&gt; &lt;_exportcontents&gt;*&lt;/_exportcontents&gt; &lt;_failok&gt;true&lt;/_failok&gt; &lt;_nouses&gt;true&lt;/_nouses&gt; &lt;Import-Package&gt;&lt;/Import-Package&gt; &lt;/instructions&gt; &lt;/configuration&gt; &lt;/plugin&gt; &lt;/plugins&gt; &lt;/build&gt; 然后正常添加一些依赖到这个工程中。然后执行一下mvn clean install ，你就会发现本地mvn仓库生成了一个jar包，这个jar里直接打包了所有的jar
+ 新建一个普通的mvn工程,比如deps。打包类型写成&lt;packaging&gt;bundle&lt;/packaging&gt;,同时在pom.xml中添加build部分
+&lt;build&gt; &lt;plugins&gt; &lt;plugin&gt; &lt;groupId&gt;org.apache.felix&lt;/groupId&gt; &lt;artifactId&gt;maven-bundle-plugin&lt;/artifactId&gt; &lt;version&gt;3.0.1&lt;/version&gt; &lt;extensions&gt;true&lt;/extensions&gt; &lt;configuration&gt; &lt;niceManifest&gt;true&lt;/niceManifest&gt; &lt;manifestLocation&gt;META-INF&lt;/manifestLocation&gt; &lt;instructions&gt; &lt;Bundle-SymbolicName&gt;${project.artifactId}&lt;/Bundle-SymbolicName&gt; &lt;Embed-Dependency&gt;*&lt;/Embed-Dependency&gt; &lt;Embed-Transitive&gt;true&lt;/Embed-Transitive&gt; &lt;Embed-Directory&gt;lib&lt;/Embed-Directory&gt; &lt;Bundle-ClassPath&gt;{maven-dependencies}&lt;/Bundle-ClassPath&gt; &lt;_exportcontents&gt;*&lt;/_exportcontents&gt; &lt;_failok&gt;true&lt;/_failok&gt; &lt;_nouses&gt;true&lt;/_nouses&gt; &lt;Import-Package&gt;&lt;/Import-Package&gt; &lt;/instructions&gt; &lt;/configuration&gt; &lt;/plugin&gt; &lt;/plugins&gt; &lt;/build&gt;  然后正常添加一些依赖到这个工程中。然后执行一下mvn clean install ，你就会发现本地mvn仓库生成了一个jar包，这个jar里直接打包了所有的jar
 关于插件部分
- 新建一个类型为pom的parent工程。用来包含下面的子工程，通过  &lt;modules&gt; &lt;module&gt;xxx.plugin.1&lt;/module&gt; &lt;module&gt;xxx.plugin.2&lt;/module&gt; &lt;/modules&gt;  来管理。同时 添加如下的插件  &lt;properties&gt; &lt;tycho.version&gt;0.24.0&lt;/tycho.version&gt; &lt;/properties&gt; &lt;build&gt; &lt;plugins&gt; &lt;plugin&gt; &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt; &lt;artifactId&gt;maven-source-plugin&lt;/artifactId&gt; &lt;executions&gt; &lt;execution&gt; &lt;id&gt;attach-sources&lt;/id&gt; &lt;phase&gt;none&lt;/phase&gt; &lt;/execution&gt; &lt;/executions&gt; &lt;version&gt;2.4&lt;/version&gt; &lt;/plugin&gt; &lt;plugin&gt; &lt;groupId&gt;org.eclipse.tycho&lt;/groupId&gt; &lt;artifactId&gt;tycho-maven-plugin&lt;/artifactId&gt; &lt;version&gt;${tycho.version}&lt;/version&gt; &lt;extensions&gt;true&lt;/extensions&gt; &lt;/plugin&gt; &lt;plugin&gt; &lt;groupId&gt;org.
+ 新建一个类型为pom的parent工程。用来包含下面的子工程，通过
+&lt;modules&gt; &lt;module&gt;xxx.plugin.1&lt;/module&gt; &lt;module&gt;xxx.plugin.2&lt;/module&gt; &lt;/modules&gt; 来管理。同时 添加如下的插件
+&lt;properties&gt; &lt;tycho.version&gt;0.24.0&lt;/tycho.version&gt; &lt;/properties&gt; &lt;build&gt; &lt;plugins&gt; &lt;plugin&gt; &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt; &lt;artifactId&gt;maven-source-plugin&lt;/artifactId&gt; &lt;executions&gt; &lt;execution&gt; &lt;id&gt;attach-sources&lt;/id&gt; &lt;phase&gt;none&lt;/phase&gt; &lt;/execution&gt; &lt;/executions&gt; &lt;version&gt;2.4&lt;/version&gt; &lt;/plugin&gt; &lt;plugin&gt; &lt;groupId&gt;org.eclipse.tycho&lt;/groupId&gt; &lt;artifactId&gt;tycho-maven-plugin&lt;/artifactId&gt; &lt;version&gt;${tycho.version}&lt;/version&gt; &lt;extensions&gt;true&lt;/extensions&gt; &lt;/plugin&gt; &lt;plugin&gt; &lt;groupId&gt;org.
                   <a href="https://leizhiyuan.github.io/2016/05/21/eclipse%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91-tycho%E4%BD%BF%E7%94%A8/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -915,7 +918,7 @@ OutputHelper(IOutputGenerator outputGenerator){ this.outputGenerator = outputGen
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.54.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

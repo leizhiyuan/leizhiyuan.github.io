@@ -17,7 +17,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.54.0" />
+  <meta name="generator" content="Hugo 0.55.6" />
   <link rel="canonical" href="https://leizhiyuan.github.io/" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
@@ -194,6 +194,64 @@
 
         <div class="posts-list">
           
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2013/09/20/spring%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/">
+                <h2 class="post-title">Spring依赖注入</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 20, 2013
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (99 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  在Spring框架中，依赖注入设计模式主要用来定义对象之间的依赖，存在两种主要类型
+1)setter注入(设置器)
+2)constructor注入(构造器)
+1.Setter注入 是最流行最简单的DI方法，通过一个setter方法来完成依赖。
+例子：
+一个有一个setter方法的Helper类 package com.mkyong.output;
+import com.mkyong.output.IOutputGenerator;
+public class OutputHelper { IOutputGenerator outputGenerator;
+public void setOutputGenerator(IOutputGenerator outputGenerator){ this.outputGenerator = outputGenerator; } } 再写一个bean配合iwenjianshengming这些bean，并且通过property(属性)标签来设置依赖 &lt;beans xmlns=&ldquo;http://www.springframework.org/schema/beans&quot; xmlns:xsi=&ldquo;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&ldquo;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd&quot;&gt;
+&amp;lt;bean id=&#34;OutputHelper&#34; class=&#34;com.mkyong.output.OutputHelper&#34;&amp;gt; &amp;lt;property name=&#34;outputGenerator&#34;&amp;gt; &amp;lt;ref bean=&#34;CsvOutputGenerator&#34; /&amp;gt; &amp;lt;/property&amp;gt; &amp;lt;/bean&amp;gt; &lt;bean id=&ldquo;CsvOutputGenerator&rdquo; class=&ldquo;com.mkyong.output.impl.CsvOutputGenerator&rdquo; /&gt; &lt;bean id=&ldquo;JsonOutputGenerator&rdquo; class=&ldquo;com.mkyong.output.impl.JsonOutputGenerator&rdquo; /&gt;
+&lt;/beans&gt; 看到了把。我们只需要一个setter方法把CsvOutputGenerator注入进去就行了
+2.Constructor注入 这种方式是通过一个构造函数来完成依赖设置的
+例子：
+一个有着一个构造函数的Helper类 package com.mkyong.output;
+import com.mkyong.output.IOutputGenerator;
+public class OutputHelper { IOutputGenerator outputGenerator;
+OutputHelper(IOutputGenerator outputGenerator){ this.outputGenerator = outputGenerator; } } 然后当然是一个bean配置文件了。通过constructor-arg标签来写依赖 &lt;beans xmlns=&ldquo;http://www.
+                  <a href="https://leizhiyuan.github.io/2013/09/20/spring%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/spring/">spring</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%AC%94%E8%AE%B0/">笔记</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
+                  
+                </div>
+              
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2013/09/20/spring%E6%9D%BE%E8%80%A6%E5%90%88%E7%A4%BA%E4%BE%8B/">
@@ -693,60 +751,6 @@ class Worker implements Runnable { private final CountDownLatch startSignal; pri
               
             </article>
           
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/08/11/unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%B3%BB%E5%88%97%E7%9B%AE%E5%BD%95/">
-                <h2 class="post-title">Unix sed实用教程系列目录</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on August 11, 2013
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (20 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  <p>本系列文章已经译完了，译自<a href="http://www.theunixschool.com/p/awk-sed.html">awk-sed@theunixschool</a>,收获颇丰，作者没有将明白的我做了补充，并且尝试讲的更清楚，整理成系列索引，方便学习，开篇非译文,是我为了方便后面的理解写的一篇,感谢原作者的分享.有任何问题欢迎留言讨论.</p>
-
-<ul>
-<li><a href="http://leaver.me/archives/3162.html">Unix sed实用教程开篇</a></li>
-<li><a href="http://leaver.me/archives/3169.html">[译]Unix sed实用教程第一篇–向文件中增加一行</a></li>
-<li><a href="http://leaver.me/archives/3174.html">[译]Unix sed实用教程第二篇–替换文件内容</a></li>
-<li><a href="http://leaver.me/archives/3176.html">[译]Unix sed实用教程第三篇–读写文件</a></li>
-<li><a href="http://leaver.me/archives/3179.html">[译]Unix sed实用教程第四篇–选择性打印</a></li>
-<li><a href="http://leaver.me/archives/3183.html">[译]Unix sed实用教程第五篇–替换文件内容续</a></li>
-<li><a href="http://leaver.me/archives/3186.html">[译]Unix sed实用教程第六篇–删除文件内容</a></li>
-<li><a href="http://leaver.me/archives/3191.html">[译]Unix sed实用教程第七篇–输出文件内容(10 Demo)</a></li>
-<li><a href="http://leaver.me/archives/3194.html">[译]Unix sed实用教程第八篇–CSV文件操作</a></li>
-</ul>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/linux/">linux</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/shell/">shell</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%AD%A6%E6%B1%89/">武汉</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
         </div>
 
         
@@ -811,7 +815,7 @@ class Worker implements Runnable { private final CountDownLatch startSignal; pri
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.54.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

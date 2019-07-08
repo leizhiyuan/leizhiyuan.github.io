@@ -17,7 +17,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.54.0" />
+  <meta name="generator" content="Hugo 0.55.6" />
   <link rel="canonical" href="https://leizhiyuan.github.io/" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
@@ -194,6 +194,51 @@
 
         <div class="posts-list">
           
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/11/18/c#%E4%B8%AD%E7%9A%84throw/">
+                <h2 class="post-title">C#中的throw</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on November 18, 2012
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (199 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  Throw会抛出/传递异常,通过在catch块里使用throw语句.可以改变产生的异常,比如我们可以抛出一个新的异常,throw语句有各种各样的,并且很有必要.
+例子 我们首先看一下三个方法,分别叫做A,B,C，他们使用不同的throw语句。方法A使用了无参的throw语句。这可以被看作是rethrow(继续抛出)—他会抛出已经出现的同样的异常
+继续，方法B throw一个命名的异常变量。这就不是一个完全的rethrow了—因为他虽然抛出了同样的异常。但是改变了StackTrace（堆栈轨迹），如果有必要的话，我们可以收集一些异常信息，而方法C则创建了一个新的异常。 提示:你可以通过这种方法实现自定义的的错误处理 使用throw语句的例子 using System; class Program { static void Main() { try { A(); B(); C(null); } catch (Exception ex) { Console.WriteLine(ex); } }
+static void A() { // Rethrow 语法. try { int value = 1 / int.Parse(&#34;0&#34;); } catch { throw; } } static void B() { // 过滤异常类型. try { int value = 1 / int.Parse(&#34;0&#34;); } catch (DivideByZeroException ex) { throw ex; } } static void C(string value) { // 创建新的异常.
+                  <a href="https://leizhiyuan.github.io/2012/11/18/c#%E4%B8%AD%E7%9A%84throw/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
+                  
+                </div>
+              
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/10/25/%E7%90%86%E8%A7%A3%E5%B9%B6%E5%AE%9E%E7%8E%B0%E6%A8%A1%E6%9D%BF%E6%A8%A1%E5%BC%8F/">
@@ -731,59 +776,6 @@ xmlns=&#34;http://schemas.microsoft.com/winfx/2006/xaml/presentation&#34; xmlns:
               
             </article>
           
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/10/16/%E7%B1%BB%E5%9E%8B%E5%AE%89%E5%85%A8%E7%9A%84%E9%BB%91%E6%9D%BF%E6%A8%A1%E5%BC%8F%E5%B1%9E%E6%80%A7%E5%8C%85/">
-                <h2 class="post-title">类型安全的黑板模式（属性包）</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on October 16, 2012
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 3 minutes (444 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  有时候对于对象来说。在一个软件中，不直接通过互相引用而做到共享信息是非常有用的。比如像带有插件的软件。可以互相进行通信。假设我们有了很多对象。其中一些包含一些数据。而另一些对象需要消费这些数据 不同的子集，我们不通过对数据生产者和消费者的直接引用来实现，而是通过更低耦合的方式。叫做创建一个“BlackBoard”（黑板）对象。该对象允许其他对象自由对其进行读取/写入数据。这种解耦方式使得消费者不知道也不必知道数据来自哪里。如果想要了解更多关于黑板模式的信息。我们常说的。Google是你最好的朋友。
-一个最简单的黑板对象应该是 Dictionary一些简单的命名值的字典。所有的对象共享同一个字典引用。使得他们可以交换这些命名数据。这种方法有两个问题。一个是名字。一个是类型安全—数据生产者和消费者对每一个数据值都必须共享一个字符串标识。消费者也没有对字典中的值进行编译时的类型检查，比如，可能期望一个小数，结果运行时读到了字符串。本文对这两个问题演示了一种解决方案。
-背景
-最近我在开发一个通用任务的异步执行的引擎。我的通用任务通常有Do/Undo方法。原则上是相互独立的，但是有一些任务需要从已经执行的任务重请求数据。比如。一个任务可以 为一个硬件设备建立一个API，随后的任务就可以使用创建好的API来操作硬件设备。但是。我不想我的执行引擎知道关于这个执行任务的任何信息。而且。我也不想直接手工的就在一个任务里引用另一个任务。
-黑板类
-黑板类本质上是一个Dictionary的包装类，对外暴露Get和Set方法。黑板类允许其他对象存储并且取回数据。但是要求这些数据使用一个 BlackboardProperty 类型的标识符来表示这些数据是可存取的。BlackboardProperty 对象应该在那些准备读写黑板类的对象之间共享，因此，他应该在那些类中作为一个静态成员。（很像WPF的依赖属性。是他们所属控件的静态成员）
-注意：命名安全应该可以通过同样的方式实现。但是但是依然没有解决类型安全的问题。那么。到了主要的部分了。那就是黑板类的代码了 public class Blackboard : INotifyPropertyChanged, INotifyPropertyChanging { Dictionary&lt;string, object&gt; _dict = new Dictionary&lt;string, object&gt;();
-public T Get&amp;lt;T&amp;gt;(BlackboardProperty&amp;lt;T&amp;gt; property) { if (!_dict.ContainsKey(property.Name)) _dict[property.Name] = property.GetDefault(); return (T)_dict[property.Name]; } public void Set&amp;lt;T&amp;gt;(BlackboardProperty&amp;lt;T&amp;gt; property, T value) { OnPropertyChanging(property.Name); _dict[property.Name] = value; OnPropertyChanged(property.Name); } #region property change notification public event PropertyChangingEventHandler PropertyChanging; public event PropertyChangedEventHandler PropertyChanged; protected virtual void OnPropertyChanging(string propertyName) { if (PropertyChanging !
-                  <a href="https://leizhiyuan.github.io/2012/10/16/%E7%B1%BB%E5%9E%8B%E5%AE%89%E5%85%A8%E7%9A%84%E9%BB%91%E6%9D%BF%E6%A8%A1%E5%BC%8F%E5%B1%9E%E6%80%A7%E5%8C%85/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%AD%A6%E6%B1%89/">武汉</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%AE%BE%E8%AE%A1/">设计</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
         </div>
 
         
@@ -848,7 +840,7 @@ public T Get&amp;lt;T&amp;gt;(BlackboardProperty&amp;lt;T&amp;gt; property) { if
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.54.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

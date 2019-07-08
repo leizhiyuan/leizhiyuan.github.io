@@ -11,13 +11,11 @@
   <meta name="description" content="最近由于一些需求,要搞一下python,于是周末搞了搞.要连接服务器,进行一些服务器的操作,于是安装这个Paramiko包,
 直接pip install paramiko 结果.报错,最关键的一句是:
 error: Unable to find vcvarsall.bat google一圈.最终找到一种最简单地方法.其他的安装vs.安装MinGW都太复杂了.
- 安装PyCrypto 第三方版 因为paramiko依赖PyCrypto,上面那个错就是他报错出来的.安装PyCrypto第三方版 java pip install --use-wheel --no-index --find-links=https://github.com/sfbahr/PyCrypto-Wheels/raw/master/pycrypto-2.6.1-cp35-none-win_amd64.whl pycrypto ` 安装完成后,再次安装paramiko即可. 2.修改nt.py  安装完上面的步骤,写一个简单的程序测试下
-#-*- coding: utf-8 -*- #!/usr/bin/python import paramiko import threading def ssh2(ip,username,passwd,cmd):try: ssh = paramiko.SSHClient() ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy()) ssh.connect(ip,22,username,passwd,timeout=5) for m in cmd: stdin, stdout, stderr = ssh.exec_command(m) out = stdout.readlines() #屏幕输出 for o in out: print(o) print(&#39;%s\tOK\n&#39;%(ip)) ssh.close() except : print(&#39;%s\tError\n&#39;%(ip)) if __name__==&#39;__main__&#39;: cmd = [&#39;find /home/admin/logs/ -mtime &#43;3 -name \&#39;*.">
+ 安装PyCrypto 第三方版 因为paramiko依赖PyCrypto,上面那个错就是他报错出来的.安装PyCrypto第三方版 java pip install --use-wheel --no-index --find-links=https://github.com/sfbahr/PyCrypto-Wheels/raw/master/pycrypto-2.6.1-cp35-none-win_amd64.whl pycrypto  安装完成后,再次安装paramiko即可. 2.修改nt.py 安装完上面的步骤,写一个简单的程序测试下 java #-*- coding: utf-8 -*- #!/usr/bin/python import paramiko import threading def ssh2(ip,username,passwd,cmd): try: ssh = paramiko.SSHClient() ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy()) ssh.connect(ip,22,username,passwd,timeout=5) for m in cmd: stdin, stdout, stderr = ssh.exec_command(m) out = stdout.readlines() #屏幕输出 for o in out: print(o) print(&#39;%s\tOK\n&#39;%(ip)) ssh.close() except : print(&#39;%s\tError\n&#39;%(ip)) if __name__==&#39;__main__&#39;: cmd = [&#39;find /home/admin/logs/ -mtime &#43;3 -name \&#39;*.">
   <meta property="og:description" content="最近由于一些需求,要搞一下python,于是周末搞了搞.要连接服务器,进行一些服务器的操作,于是安装这个Paramiko包,
 直接pip install paramiko 结果.报错,最关键的一句是:
 error: Unable to find vcvarsall.bat google一圈.最终找到一种最简单地方法.其他的安装vs.安装MinGW都太复杂了.
- 安装PyCrypto 第三方版 因为paramiko依赖PyCrypto,上面那个错就是他报错出来的.安装PyCrypto第三方版 java pip install --use-wheel --no-index --find-links=https://github.com/sfbahr/PyCrypto-Wheels/raw/master/pycrypto-2.6.1-cp35-none-win_amd64.whl pycrypto ` 安装完成后,再次安装paramiko即可. 2.修改nt.py  安装完上面的步骤,写一个简单的程序测试下
-#-*- coding: utf-8 -*- #!/usr/bin/python import paramiko import threading def ssh2(ip,username,passwd,cmd):try: ssh = paramiko.SSHClient() ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy()) ssh.connect(ip,22,username,passwd,timeout=5) for m in cmd: stdin, stdout, stderr = ssh.exec_command(m) out = stdout.readlines() #屏幕输出 for o in out: print(o) print(&#39;%s\tOK\n&#39;%(ip)) ssh.close() except : print(&#39;%s\tError\n&#39;%(ip)) if __name__==&#39;__main__&#39;: cmd = [&#39;find /home/admin/logs/ -mtime &#43;3 -name \&#39;*.">
+ 安装PyCrypto 第三方版 因为paramiko依赖PyCrypto,上面那个错就是他报错出来的.安装PyCrypto第三方版 java pip install --use-wheel --no-index --find-links=https://github.com/sfbahr/PyCrypto-Wheels/raw/master/pycrypto-2.6.1-cp35-none-win_amd64.whl pycrypto  安装完成后,再次安装paramiko即可. 2.修改nt.py 安装完上面的步骤,写一个简单的程序测试下 java #-*- coding: utf-8 -*- #!/usr/bin/python import paramiko import threading def ssh2(ip,username,passwd,cmd): try: ssh = paramiko.SSHClient() ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy()) ssh.connect(ip,22,username,passwd,timeout=5) for m in cmd: stdin, stdout, stderr = ssh.exec_command(m) out = stdout.readlines() #屏幕输出 for o in out: print(o) print(&#39;%s\tOK\n&#39;%(ip)) ssh.close() except : print(&#39;%s\tError\n&#39;%(ip)) if __name__==&#39;__main__&#39;: cmd = [&#39;find /home/admin/logs/ -mtime &#43;3 -name \&#39;*.">
   <meta name="twitter:description" content="最近由于一些需求,要搞一下python,于是周末搞了搞.要连接服务器,进行一些服务器的操作,于是安装这个Paramiko包,
 直接pip install paramiko 结果.报错,最关键的一句是:
 error: Unable to find vcvarsall.bat google一圈.最终找到一种最简单地方法.其他的安装vs.安装MinGW都太复杂了.
@@ -31,7 +29,7 @@ error: Unable to find vcvarsall.bat google一圈.最终找到一种最简单地�
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.54.0" />
+  <meta name="generator" content="Hugo 0.55.6" />
   <link rel="canonical" href="https://leizhiyuan.github.io/2015/12/28/python3.5-%E5%AE%89%E8%A3%85-paramiko/" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
@@ -193,7 +191,7 @@ error: Unable to find vcvarsall.bat google一圈.最终找到一种最简单地�
   
   
   &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (116 words)
+  <i class="fa fa-clock-o"></i> 1 minutes (120 words)
   
   
 </span>
@@ -224,56 +222,69 @@ error: Unable to find vcvarsall.bat google一圈.最终找到一种最简单地�
 因为paramiko依赖PyCrypto,上面那个错就是他报错出来的.安装<a href="https://github.com/sfbahr/PyCrypto-Wheels">PyCrypto第三方版</a>
 <code>java
 pip install --use-wheel --no-index --find-links=https://github.com/sfbahr/PyCrypto-Wheels/raw/master/pycrypto-2.6.1-cp35-none-win_amd64.whl pycrypto
-</code>`
+</code><code>
 安装完成后,再次安装paramiko即可.
-2.修改nt.py</li>
+2.修改nt.py
+
+安装完上面的步骤,写一个简单的程序测试下
+
+</code><code>java
+#-*- coding: utf-8 -*-
+#!/usr/bin/python 
+import paramiko
+import threading
+
+def ssh2(ip,username,passwd,cmd):
+try:
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    ssh.connect(ip,22,username,passwd,timeout=5)
+    for m in cmd:
+        stdin, stdout, stderr = ssh.exec_command(m)
+        out = stdout.readlines()
+        #屏幕输出
+        for o in out:
+            print(o)
+    print('%s\tOK\n'%(ip))
+    ssh.close()
+except :
+    print('%s\tError\n'%(ip))
+
+
+if __name__=='__main__':
+cmd = ['find /home/admin/logs/ -mtime +3 -name \'*.log.*\' -exec rm -rf {} \;']#你要执行的命令列表
+username = &quot;admin&quot;  #用户名
+passwd = &quot;password&quot;    #密码
+threads = []   #多线程
+ip = &quot;127.0.0.1&quot;
+print(&quot;Begin......&quot;)
+a=threading.Thread(target=ssh2,args=(ip,username,passwd,cmd))
+a.start() 
+input()
+
+</code><code>
+
+运行报错.
+</code>ImportError: No module named &lsquo;winrandom&rsquo;<code>
+
+so一下..找到一个办法
+[http://stackoverflow.com/questions/24804829/another-one-about-pycrypto-and-paramiko](http://stackoverflow.com/questions/24804829/another-one-about-pycrypto-and-paramiko)
+
+找到python3.5的安装目录的
+</code>Lib\site-packages\Crypto\Random\OSRNG<code>的nt.py文件将
+
+</code><code>java
+import winrandom
+</code><code>
+
+改成
+</code><code>java
+from . import winrandom
+
+</code>`
+
+再次运行ok.非常简单</li>
 </ol>
-
-<p>安装完上面的步骤,写一个简单的程序测试下</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="err">#</span><span class="o">-*-</span> <span class="nl">coding:</span> <span class="n">utf</span><span class="o">-</span><span class="n">8</span> <span class="o">-*-</span>
-<span class="err">#</span><span class="o">!/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">python</span> 
-<span class="kn">import</span> <span class="nn">paramiko</span>
-<span class="kn">import</span> <span class="nn">threading</span>
-
-<span class="n">def</span> <span class="nf">ssh2</span><span class="o">(</span><span class="n">ip</span><span class="o">,</span><span class="n">username</span><span class="o">,</span><span class="n">passwd</span><span class="o">,</span><span class="n">cmd</span><span class="o">):</span><span class="nl">
-</span><span class="nl">    try:</span>
-        <span class="n">ssh</span> <span class="o">=</span> <span class="n">paramiko</span><span class="o">.</span><span class="na">SSHClient</span><span class="o">()</span>
-        <span class="n">ssh</span><span class="o">.</span><span class="na">set_missing_host_key_policy</span><span class="o">(</span><span class="n">paramiko</span><span class="o">.</span><span class="na">AutoAddPolicy</span><span class="o">())</span>
-        <span class="n">ssh</span><span class="o">.</span><span class="na">connect</span><span class="o">(</span><span class="n">ip</span><span class="o">,</span><span class="n">22</span><span class="o">,</span><span class="n">username</span><span class="o">,</span><span class="n">passwd</span><span class="o">,</span><span class="n">timeout</span><span class="o">=</span><span class="n">5</span><span class="o">)</span>
-        <span class="k">for</span> <span class="n">m</span> <span class="n">in</span> <span class="nl">cmd:</span>
-            <span class="n">stdin</span><span class="o">,</span> <span class="n">stdout</span><span class="o">,</span> <span class="n">stderr</span> <span class="o">=</span> <span class="n">ssh</span><span class="o">.</span><span class="na">exec_command</span><span class="o">(</span><span class="n">m</span><span class="o">)</span>
-            <span class="n">out</span> <span class="o">=</span> <span class="n">stdout</span><span class="o">.</span><span class="na">readlines</span><span class="o">()</span>
-            <span class="err">#</span><span class="n">屏幕输出</span>
-            <span class="k">for</span> <span class="n">o</span> <span class="n">in</span> <span class="nl">out:</span>
-                <span class="n">print</span><span class="o">(</span><span class="n">o</span><span class="o">)</span>
-        <span class="n">print</span><span class="o">(</span><span class="err">&#39;</span><span class="o">%</span><span class="n">s</span><span class="err">\</span><span class="n">tOK</span><span class="err">\</span><span class="n">n</span><span class="err">&#39;</span><span class="o">%(</span><span class="n">ip</span><span class="o">))</span>
-        <span class="n">ssh</span><span class="o">.</span><span class="na">close</span><span class="o">()</span>
-    <span class="n">except</span> <span class="o">:</span>
-        <span class="n">print</span><span class="o">(</span><span class="err">&#39;</span><span class="o">%</span><span class="n">s</span><span class="err">\</span><span class="n">tError</span><span class="err">\</span><span class="n">n</span><span class="err">&#39;</span><span class="o">%(</span><span class="n">ip</span><span class="o">))</span>
-
-
-<span class="k">if</span> <span class="n">__name__</span><span class="o">==</span><span class="err">&#39;</span><span class="n">__main__</span><span class="err">&#39;</span><span class="o">:</span>
-    <span class="n">cmd</span> <span class="o">=</span> <span class="o">[</span><span class="err">&#39;</span><span class="n">find</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">admin</span><span class="o">/</span><span class="n">logs</span><span class="o">/</span> <span class="o">-</span><span class="n">mtime</span> <span class="o">+</span><span class="n">3</span> <span class="o">-</span><span class="n">name</span> <span class="err">\&#39;</span><span class="o">*.</span><span class="na">log</span><span class="o">.*</span><span class="err">\&#39;</span> <span class="o">-</span><span class="n">exec</span> <span class="n">rm</span> <span class="o">-</span><span class="n">rf</span> <span class="o">{}</span> <span class="err">\</span><span class="o">;</span><span class="err">&#39;</span><span class="o">]</span><span class="err">#</span><span class="n">你要执行的命令列表</span>
-    <span class="n">username</span> <span class="o">=</span> <span class="s">&#34;admin&#34;</span>  <span class="err">#</span><span class="n">用户名</span>
-    <span class="n">passwd</span> <span class="o">=</span> <span class="s">&#34;password&#34;</span>    <span class="err">#</span><span class="n">密码</span>
-    <span class="n">threads</span> <span class="o">=</span> <span class="o">[]</span>   <span class="err">#</span><span class="n">多线程</span>
-    <span class="n">ip</span> <span class="o">=</span> <span class="s">&#34;127.0.0.1&#34;</span>
-    <span class="n">print</span><span class="o">(</span><span class="s">&#34;Begin......&#34;</span><span class="o">)</span>
-    <span class="n">a</span><span class="o">=</span><span class="n">threading</span><span class="o">.</span><span class="na">Thread</span><span class="o">(</span><span class="n">target</span><span class="o">=</span><span class="n">ssh2</span><span class="o">,</span><span class="n">args</span><span class="o">=(</span><span class="n">ip</span><span class="o">,</span><span class="n">username</span><span class="o">,</span><span class="n">passwd</span><span class="o">,</span><span class="n">cmd</span><span class="o">))</span>
-    <span class="n">a</span><span class="o">.</span><span class="na">start</span><span class="o">()</span> 
-    <span class="n">input</span><span class="o">()</span></code></pre></div>
-<p>运行报错.
-<code>ImportError: No module named 'winrandom'</code></p>
-
-<p>so一下..找到一个办法
-<a href="http://stackoverflow.com/questions/24804829/another-one-about-pycrypto-and-paramiko">http://stackoverflow.com/questions/24804829/another-one-about-pycrypto-and-paramiko</a></p>
-
-<p>找到python3.5的安装目录的
-<code>Lib\site-packages\Crypto\Random\OSRNG</code>的nt.py文件将</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">winrandom</span></code></pre></div>
-<p>改成</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">from</span> <span class="o">.</span> <span class="kn">import</span> <span class="nn">winrandom</span></code></pre></div>
-<p>再次运行ok.非常简单</p>
 
 
         
@@ -383,7 +394,7 @@ pip install --use-wheel --no-index --find-links=https://github.com/sfbahr/PyCryp
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.54.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

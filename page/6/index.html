@@ -17,7 +17,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.54.0" />
+  <meta name="generator" content="Hugo 0.55.6" />
   <link rel="canonical" href="https://leizhiyuan.github.io/" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
@@ -194,6 +194,60 @@
 
         <div class="posts-list">
           
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2014/08/21/%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%BB%99spring-framework%E8%B4%A1%E7%8C%AE%E4%BB%A3%E7%A0%81/">
+                <h2 class="post-title">第一次给Spring-Framework贡献代码</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on August 21, 2014
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (34 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  <p>鲁肃说建议去看Spring框架的代码,之前其实我想看来着,不过一看到还要gradlew,换jdk就好麻烦.这次各种折腾把代码fork下来,然后安装<code>gradlew</code>,然后转换成eclipse支持的,期间升级了eclipse版本和jdk版本到8.否则会有个方法不支持,</p>
+
+<p>流程很简单,先fork一下代码,然后自己改好提交上去,再去Spring框架的pull request请求一下.等大牛合并就行了.</p>
+
+<p>刚开始看测试用例,我当时看到这个方法调用了一个下线的方法.于是改了一下.提交上去之后,**<a href="https://github.com/sbrannen">sbrannen</a> ** 回复说:
+&gt; while you&rsquo;re at it, why don&rsquo;t you go ahead fix the related deprecated issues in all of the test classes in <code>spring-jdbc</code>
+于是我把spring-jbdc包下面的几个方法调用都改掉了.记得谁说过,任何事情都不是别人的事情,你发现了你就要去做,不要等着别人去做,不会就去学.于是再次修改提交,sbrannen 问我有没有签<a href="https://support.springsource.com/spring_committer_signup.">CLA</a>,这个坑爹的网站挂了.等了几天,昨天终于ok了.今天代码已经合并.</p>
+
+<p>截图留念:</p>
+
+<p><a href="http://leaverimage.b0.upaiyun.com/2014/08/spring.png"><img src="/images/56d25e223f79e6ffdb3162ac7658124363f1d82e.png" alt="spring" /></a></p>
+
+<p><a href="https://github.com/spring-projects/spring-framework/commits?author=leizhiyuan">https://github.com/spring-projects/spring-framework/commits?author=leizhiyuan</a></p>
+
+<p>今天要吃两个煎饼果子.</p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/spring/">spring</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E4%BD%9C/">工作</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
+                  
+                </div>
+              
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2014/07/26/python%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/">
@@ -655,74 +709,6 @@ newPersistener = new DowJonesNewsPersister();
               
             </article>
           
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2014/06/27/8583%E6%8A%A5%E6%96%87%E7%9B%B8%E5%85%B3/">
-                <h2 class="post-title">8583报文相关</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on June 27, 2014
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (14 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  
-
-<p>以下是我在学习的时候发现的好的资料，都是非常有帮助的。</p>
-
-<p>如果你想知道原理，看完下面这篇就会了</p>
-
-<h2 id="藏-轻松掌握iso8583报文协议原理-http-leaver-me-archives-3663-html"><a href="http://leaver.me/archives/3663.html">[藏]轻松掌握ISO8583报文协议原理</a></h2>
-
-<p>看了原理之后还想知道怎么来的。手工联系一下</p>
-
-<h2 id="谈谈8583报文的使用及测试-http-blog-sina-com-cn-s-blog-4c925dca010178pt-html"><a href="http://blog.sina.com.cn/s/blog_4c925dca010178pt.html">谈谈8583报文的使用及测试</a></h2>
-
-<p>这篇文章不错</p>
-
-<p>看完了想写代码了，可以看看这篇文章，基本上不能直接拿来用，但是可以参考实现</p>
-
-<h2 id="span-class-link-title-iso8583报文工具类-组装和解析报文-http-blog-csdn-net-lushuaiyin-article-details-14390725-span"><span class="link_title"><a href="http://blog.csdn.net/lushuaiyin/article/details/14390725"> ISO8583报文工具类（组装和解析报文） </a></span></h2>
-
-<p>看完之后这里还有一些补充</p>
-
-<h2 id="iso-8583协议的简要说明-http-blog-sina-com-cn-s-blog-6182547f01014p02-html"><a href="http://blog.sina.com.cn/s/blog_6182547f01014p02.html">ISO-8583协议的简要说明</a></h2>
-
-<p>&nbsp;</p>
-
-<p>最后，<a href="http://www.jpos.org/这个库基本可以用来做这个事情。">http://www.jpos.org/这个库基本可以用来做这个事情。</a></p>
-
-<p>Jimmy写了一个例子非常好，<a href="http://jimmod.com/blog/2011/07/jimmys-blog-iso-8583-tutorial-build-and-parse-iso-message-using-jpos-library/">iso-8583-tutorial-build-and-parse-iso-message-using-jpos-library</a>，至于银联的那个规范搜一下。</p>
-
-<p>&nbsp;</p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E4%BD%9C/">工作</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E9%87%91%E8%9E%8D/">金融</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
         </div>
 
         
@@ -787,7 +773,7 @@ newPersistener = new DowJonesNewsPersister();
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.54.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

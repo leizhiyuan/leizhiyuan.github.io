@@ -17,7 +17,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.54.0" />
+  <meta name="generator" content="Hugo 0.55.6" />
   <link rel="canonical" href="https://leizhiyuan.github.io/post/" />
   <link rel="alternate" href="https://leizhiyuan.github.io/post/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
@@ -175,7 +175,7 @@
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on October 4, 2012
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on July 9, 2019
   
   
   &nbsp;|&nbsp;
@@ -200,6 +200,131 @@
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
         <div class="posts-list">
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/10/04/%E5%85%B3%E4%BA%8E%E6%BA%90%E4%BB%A3%E7%A0%81%E6%8E%A7%E5%88%B6%E7%9A%84%E4%BA%94%E4%B8%AA%E8%AF%AF%E5%8C%BA/">
+                <h2 class="post-title">关于源代码控制的五个误区</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on October 4, 2012
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (56 words)
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  <p>上周，在Red Gate好朋友的帮助下。我发起了一个名为小竞赛赢得优秀的SQL  Source Control 5份授权的活动。参加的方式很简单-分享你使用源代码控制过程中，本可以避免的最痛苦的经历</p>
+
+<p>许多痛苦的故事都出现了。但是我认为这五个获奖者的故事值得分享，并且我都做了评论，因为我觉得随着时间的流逝，这些故事依然对我们有所启发。那么，开始享受这些故事吧，我希望这些知识中的闪光点能够帮助你以后不会掉进相同的陷阱里。</p>
+
+<p>给获奖者：希望那些授权可以帮助抚慰你们关于那些已经过去的痛苦记忆。不久我会联系你们关于奖项颁发的相关事宜。</p>
+
+<p>&nbsp;</p>
+
+<p>1.通过Ctrl-Z来进行源代码控制</p>
+
+<p>第一个故事来自 <a href="http://www.troyhunt.com/2012/09/life-without-source-control-share-your.html#comment-661870477">courtesy of MyChickenNinja</a> ，仅仅文字就看得我头疼。在这个特殊的故事里。应用程序被前员工破坏了。。这非常头疼。但是至少还是有很多方法可以恢复代码的。如果不要求数据的话。。</p>
+
+<p>第一个问题是备份，最近的备份已经是3周前的。这绝对是一个教训—你的环境真的备份了吗？一会我会在另一个故事里简单的再说到这个问题。故事的核心部分是通过Ctrl-Z来进行伪源代码控制</p>
+
+<p>他们运行他们的代码，并且不断地更新，也包括开发环境，并且使用Ctrl-Z来撤销坏的改变</p>
+
+<p>好吧。这实在令人难以置信-如果你的应用程序已经做了一些编辑。然后被关闭了。怎么办？或者PC关机了？等等—他还说他们在哪写代码，哪儿就是开发环境？记住！撤销不是源代码控制！</p>
+
+<p>&nbsp;</p>
+
+<p>2。多个数据库和集成问题</p>
+
+<p>第二个故事来自<a href="http://www.troyhunt.com/2012/09/life-without-source-control-share-your.html#comment-661017718">Brandon Thompson</a>，他极度不开心，因为他工作在一个有着很多数据库源的环境里，并且，这些数据库都在正在进行的开发项目下面，数据库集成非常困难，这就意味着处理多个数据库备份可能还有个在海外。。</p>
+
+<p>我们的开发团队在海外，因为他们有他们自己的数据库集，这些数据库我从没看到过。但是他们会把改变的文件发给我们来适应我们的开发环境</p>
+
+<p>我发现最痛苦的是简单重复的手工劳动仅仅是使得大家能够协同的更好。这是没有一点创新并且没有任何增值的行为，比如增加新的特性，这就导致除了干这些。没什么时间真正在写代码了。</p>
+
+<p>源代码控制是为了能够保证团队之间平稳尽量无摩擦的一起工作。它是项目的一个润滑剂，和持续集成开发还有自动部署都属于同一类。这些都是软件开发中的“面包和黄油”，是任何成功团队编写代码的基础。</p>
+
+<p>&nbsp;</p>
+
+<p>3. 依赖未测试的备份</p>
+
+<p>下一个是<a href="http://www.troyhunt.com/2012/09/life-without-source-control-share-your.html#comment-660761685">Barry Anderson</a>，他写了一个我们都曾经经历过的痛苦：不能从备份恢复了！事实上在Barry的故事里。几个月都没备份了。之前备份本身还是坏的。这太糟糕了。但是，对于那些依赖备份的人来说这是一个严重的疏忽。</p>
+
+<p>当然对于这个疏忽也有自己的借口。Barry解释道：</p>
+
+<p>我们的经理（不是存储团队的）后来告诉我们既没时间也没空间来测试备份了。。。</p>
+
+<p>备份是一件很重要的事情。但从备份可以恢复也是同等重要，我最近在配置大量的新环境的时候，备份本应该发生的但是就是没有发生。只有当我坚持要进行恢复测试的时候，问题才浮出水面，对于很多人来说。只有当他们真的需要从一系列的数据丢失中恢复数据的时候，才发现不能恢复了。。测试你的备份，恢复他们，不要相信任何人的说辞.</p>
+
+<p>&nbsp;</p>
+
+<p>4.人工合并工具</p>
+
+<p>来自<a href="http://www.troyhunt.com/2012/09/life-without-source-control-share-your.html#comment-660732156">Graham Sutherland</a>的故事讲了一个人来做机器工作的故事</p>
+
+<p>我们有一些开发人员，每一个在他们的硬盘上的都有整个项目的一个副本，每一次一个改变发生的时候，我们就会下载技术老大改变的源代码，然后使用diff工具来查看改变。然后手工更新他们。一行一行。。全靠双手。。</p>
+
+<p>这个故事比听起来还要不可思议，在源代码控制工具出现以前这确实是存在的。一个海外开发团队成员就是这样干的。随后他们这样解释：带头的开发者需要在提交前检查其他开发人员的工作进度。</p>
+
+<p>这确实是类似于之前的观点,在有多个数据库集成的情况下;我们有技术来解决这些问题!每当一个人在软件开发中从事任何劳动密集型,重复的过程,你真的不得不停下来问:“有没有更好的方法?”通常是有的。</p>
+
+<p>&nbsp;</p>
+
+<p>5.剪切和粘贴版本控制</p>
+
+<p><a href="http://www.troyhunt.com/2012/09/life-without-source-control-share-your.html#comment-660687452">Robin Vessey</a> 让我产生了共鸣，因为它真的是伪VCS（Version Control System）最普遍的方式。剪切或者复制，然后粘贴到新的位置，通过这种方式会包含重复的目录或者文件。因此一般这些文件会被以日期或者其他标识符来标识时间帧。</p>
+
+<p>在Robin的故事里，他打算通过网络移动一个目录结构。</p>
+
+<p>他很简单但高效，我剪贴然后粘贴了一个完整的目录树，任何东西，通过网络发送。但这些文件留在了我这一边。却没有到达另一边。我仍然不知道为什么。</p>
+
+<p>我必须承认,我对任何剪切和粘贴文件的操作的态度是非常谨慎的,因为我看到这种情况在一个本地文件系统中发生了很多次，更不用说通过网络了，在上面的的Robin的故事,就是没有备份被恢复,因为他们一段时间后会停止备份，“因为我们没有更多的空间”。是不是感觉好像和前面某一方法很像。。</p>
+
+<p>&nbsp;</p>
+
+<p>总结</p>
+
+<p>工作在一个没有源代码控制的环境下是很可怕的。现在就停止吧。伙计们，我们是很优秀，但在在源代码控制下工作是很专业的。并且现在有很多的VCS产品。托管服务，集成工具，真心是没有任何理由不把代码-包括数据库，部署在源代码控制下。</p>
+
+<p>&nbsp;</p>
+
+<p>原文地址:<a href="http://www.troyhunt.com/2012/10/5-ways-to-do-source-control-really.html">5-ways-to-do-source-control-really</a></p>
+
+<p>著作权声明：本文由<a href="http://leaver.me/">http://leaver.me</a> 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%AD%A6%E6%B1%89/">武汉</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%AC%94%E8%AE%B0/">笔记</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/10/04/%E7%AE%80%E5%8D%95%E6%89%A9%E5%B1%95%E6%96%B9%E6%B3%95%E5%A2%9E%E5%BC%BA%E4%BB%A3%E7%A0%81%E5%8F%AF%E8%AF%BB%E6%80%A7/">
@@ -782,64 +907,6 @@ LayoutContent 是LayoutAnchorable 和LayoutAnchorable类的父类。提供了共
 
             </article>
           
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/09/25/c#-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E7%B3%BB%E5%88%97/">
-                <h2 class="post-title">C# 网络编程系列</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 25, 2012
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (12 words)
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  <p>本系列来自博客园的<a href="http://www.cnblogs.com/zhili/">Learning hard</a>园友。每个博主都不容易，我这里只是给出一个索引，希望更多热爱技术的人能够看到。给分享者更多的鼓励和支持。</p>
-
-<p><a href="http://www.cnblogs.com/zhili/archive/2012/08/11/NetWorkProgramming.html">专题一：网络协议简介</a>
-<a href="http://www.cnblogs.com/zhili/archive/2012/08/18/HTTP.html">专题二：HTTP协议详解</a>
-<a href="http://www.cnblogs.com/zhili/archive/2012/08/23/WebServer.html">专题三：自定义Web服务器</a>
-<a href="http://www.cnblogs.com/zhili/archive/2012/08/24/WebBrowser.html">专题四：自定义Web浏览器</a>
-<a href="http://www.cnblogs.com/zhili/archive/2012/08/25/TCP.html">专题五：TCP编程</a>
-<a href="http://www.cnblogs.com/zhili/archive/2012/09/01/UDP_Multicast.html">专题六：UDP编程</a>
-<a href="http://www.cnblogs.com/zhili/archive/2012/09/03/UDPBroadcas.html">专题七：UDP编程补充——UDP广播程序的实现</a>
-<a href="http://www.cnblogs.com/zhili/archive/2012/09/14/P2P_PNPR.html">专题八：P2P编程</a>
-<a href="http://www.cnblogs.com/zhili/archive/2012/09/23/QQ_P2P.html">专题九：实现类似QQ的即时通信程序</a>
-<a href="http://www.cnblogs.com/zhili/archive/2012/09/24/MailSend_POP3_SMTP.html">专题十：实现简单的邮件收发器</a></p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E4%BA%92%E8%81%94%E7%BD%91/">互联网</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%94%B6%E8%97%8F/">收藏</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
         </div>
         
           <ul class="pager main-pager">
@@ -903,7 +970,7 @@ LayoutContent 是LayoutAnchorable 和LayoutAnchorable类的父类。提供了共
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.54.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

@@ -17,7 +17,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.54.0" />
+  <meta name="generator" content="Hugo 0.55.6" />
   <link rel="canonical" href="https://leizhiyuan.github.io/post/" />
   <link rel="alternate" href="https://leizhiyuan.github.io/post/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
@@ -175,7 +175,7 @@
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 12, 2015
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on July 9, 2019
   
   
   &nbsp;|&nbsp;
@@ -200,6 +200,55 @@
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
         <div class="posts-list">
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2015/11/20/java%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                <h2 class="post-title">Java可重入锁学习笔记</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on November 20, 2015
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 2 minutes (242 words)
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  前几天被前辈问到这个可重入锁,结果忘掉了.于是抽空整个了解一下
+目录  什么是可重入锁 为什么要可重入 如何实现可重入锁 有不可重入锁吗 demo代码展示 参考文章  1 . 什么是可重入锁 锁的概念就不用多解释了,当某个线程A已经持有了一个锁,当线程B尝试进入被这个锁保护的代码段的时候.就会被阻塞.而锁的操作粒度是&rdquo;线程&rdquo;,而不是调用(至于为什么要这样,下面解释).同一个线程再次进入同步代码的时候.可以使用自己已经获取到的锁,这就是可重入锁 java里面内置锁(synchronize)和Lock(ReentrantLock)都是可重入的
+2 . 为什么要可重入 如果线程A继续再次获得这个锁呢?比如一个方法是synchronized,递归调用自己,那么第一次已经获得了锁,第二次调用的时候还能进入吗? 直观上当然需要能进入.这就要求必须是可重入的.可重入锁又叫做递归锁,再举个例子.
+public class Widget { public synchronized void doSomething() { ... } } public class LoggingWidget extends Widget { public synchronized void doSomething() { System.out.println(toString() + &#34;: calling doSomething&#34;); super.doSomething();//若内置锁是不可重入的，则发生死锁 } } 这个例子是java并发编程实战中的例 子.synchronized 是父类Widget的内置锁,当执行子 类的方法的时候,先获取了一次Widget的锁,然后在执行super的时候,就要获取一次,如果不可重入,那么就跪了.
+3 . 如何实现可重入锁 为每个锁关联一个获取计数器和一个所有者线程,当计数值为0的时候,这个所就没有被任何线程只有.当线程请求一个未被持有的锁时,JVM将记下锁的持有者,并且将获取计数值置为1,如果同一个线程再次获取这个锁,技术值将递增,退出一次同步代码块,计算值递减,当计数值为0时,这个锁就被释放. ReentrantLock里面有实现
+4 . 有不可重入锁吗 这个还真有.Linux下的pthread_mutex_t锁是默认是非递归的。可以通过设置PTHREAD_MUTEX_RECURSIVE属性，将pthread_mutex_t锁设置为递归锁。如果要自己实现不可重入锁,同可重入锁,这个计数器只能为1.或者0,再次进入的时候,发现已经是1了,就进行阻塞.jdk里面没有默认的实现类.
+5 . demo代码展示 5.1 内置锁的可重入
+                  <a href="https://leizhiyuan.github.io/2015/11/20/java%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%B9%B6%E5%8F%91/">并发</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2015/09/12/%E4%BA%8B%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
@@ -820,49 +869,6 @@ Kafka将消息种子分门别类， 每一类的消息称之为一个主题(Topi
 
             </article>
           
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2015/07/04/javosize%E6%96%B0%E4%B8%80%E4%BB%A3java%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/">
-                <h2 class="post-title">javOSize:新一代java分析工具</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on July 4, 2015
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (78 words)
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  介绍 最近看到这么个工具-javOSize .官网地址,去官网看了下.发现介绍很有意思,叫做 the missing sugar for your Java cup.(你的咖啡杯中缺少的那颗糖).于是感受一下这颗糖到底甜不甜
-安装 安装非常简单,从这里下载,其实完成之后就是一个jar包.非常简单,不用配置啥的.
-简单使用 使用方法就是从先附加到一个java进程上,在linux,上我直接执行 ps aux|grep java 就能看到了.不废话,得到java进程的pid之后,运行 java -jar javosize-1.0.9.jar pid pid就是pid的号了. 然后会看到如下图的界面,表示已经附加成功了.先看看都有啥.执行ls.看到有这么几个命令.我比较单纯,刚开始以为是可执行文件.结果丢人了.看了下官方文档,才知道是目录.进入对应的目录.然后执行ls就能看到对应的信息了.ls简直不能再万能..改目录支持的所有命令通过在对应的目录执行help来查看.个人尝试觉得好的功能有.  动态修改类 进入CLASSES目录,然后通过执行 ls|grep xxx 来找到需要修改的类,然后通过vi 就可以直接编辑.编辑完成后,直接保存就会动态替换.文档里说是支持jdk1.7以上,对1.6的支持估计是不行的.没有测试.  无须重启开启jmx 直接挂载之后,执行cd REPOSITORY 然后执行就好了. exec START_JMX_SERVER 6666 拦截任意代码 可以动态添加类似Spring中的aop方法.用于打印一些调用日志,排查线上问题.进入INTERCEPTOR目录.然后通过如下的方法给某个类的某个方法添加拦截器. create TickServlet begin mypackage.Hello doGet System.out.println(&quot;Servlet invoked&quot;); 检测内存泄漏 进入 REPOSITORY 目录,执行 exec TOP_FAT_STATIC_VARIABLES 5 com.apache.*会取出某个包下面占用大小最大的5个类.会很方便找到. 自动检测性能问题 PROBLEMS 目录专业解决这种问题.进入目录后.执行ls命令.会看到这样的场景 &gt;* Concurrency &gt; Deadlocked: false &gt;* Memory &gt; High GC (&gt;2%): false
-                  <a href="https://leizhiyuan.github.io/2015/07/04/javosize%E6%96%B0%E4%B8%80%E4%BB%A3java%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E4%BD%9C/">工作</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
         </div>
         
           <ul class="pager main-pager">
@@ -926,7 +932,7 @@ Kafka将消息种子分门别类， 每一类的消息称之为一个主题(Topi
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.54.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

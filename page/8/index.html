@@ -17,7 +17,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.54.0" />
+  <meta name="generator" content="Hugo 0.55.6" />
   <link rel="canonical" href="https://leizhiyuan.github.io/" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
@@ -194,6 +194,56 @@
 
         <div class="posts-list">
           
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2014/03/01/%E8%AF%91%E4%BD%BF%E7%94%A8mockito%E7%AE%80%E5%8D%95mock%E5%85%A5%E9%97%A8/">
+                <h2 class="post-title">[译]使用Mockito简单mock入门</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on March 1, 2014
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 3 minutes (628 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  我们在写单元测试的时候，面临的一个挑战就是要测试的内容总是依赖于其他组件，要是我们还得先配置好其他组件，未免有点不如意，那么我们可以使用Mocks来代替那些依赖的组件
+本文问了展示这个过程，我会创建一个DAL，数据访问层，这是一个类，提供了一个通用的api来访问和修改数据仓库的数据，然后，我们要测试这个api，而不用配置连接某个本地的数据库，，或者一个远程的数据库，或者是一个文件系统，反正就是任何放数据的东西，DAL层的好处就是隔离开了数据访问和应用程序代码
+首先使用maven来创建一个工程 mvn archetype:generate -DgroupId=info.sanaulla -DartifactId=MockitoDemo -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false 执行之后，本地生成MockitoDemo 文件夹，然后整个工程的目录结构与生成好了。
+然后，我们写这样一个model类，表示book类型 package info.sanaulla.models;
+import java.util.List;
+/** * Model class for the book details. */ public class Book {
+private String isbn; private String title; private List&lt;String&gt; authors; private String publication; private Integer yearOfPublication; private Integer numberOfPages; private String image;
+public Book(String isbn, String title, List&lt;String&gt; authors, String publication, Integer yearOfPublication, Integer numberOfPages, String image){
+this.isbn = isbn; this.title: = title; this.
+                  <a href="https://leizhiyuan.github.io/2014/03/01/%E8%AF%91%E4%BD%BF%E7%94%A8mockito%E7%AE%80%E5%8D%95mock%E5%85%A5%E9%97%A8/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E4%BD%9C/">工作</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%AE%BE%E8%AE%A1/">设计</a>&nbsp;
+                  
+                </div>
+              
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2014/02/11/%E5%B0%9D%E8%AF%95javafx%E5%BC%80%E5%8F%91/">
@@ -775,64 +825,6 @@ public HelloWorldHandler(Object targetObject){ this.targetObject = targetObject;
               
             </article>
           
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/09/20/spring%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/">
-                <h2 class="post-title">Spring依赖注入</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 20, 2013
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (99 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  在Spring框架中，依赖注入设计模式主要用来定义对象之间的依赖，存在两种主要类型
-1)setter注入(设置器)
-2)constructor注入(构造器)
-1.Setter注入 是最流行最简单的DI方法，通过一个setter方法来完成依赖。
-例子：
-一个有一个setter方法的Helper类 package com.mkyong.output;
-import com.mkyong.output.IOutputGenerator;
-public class OutputHelper { IOutputGenerator outputGenerator;
-public void setOutputGenerator(IOutputGenerator outputGenerator){ this.outputGenerator = outputGenerator; } } 再写一个bean配合iwenjianshengming这些bean，并且通过property(属性)标签来设置依赖 &lt;beans xmlns=&ldquo;http://www.springframework.org/schema/beans&quot; xmlns:xsi=&ldquo;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&ldquo;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd&quot;&gt;
-&amp;lt;bean id=&#34;OutputHelper&#34; class=&#34;com.mkyong.output.OutputHelper&#34;&amp;gt; &amp;lt;property name=&#34;outputGenerator&#34;&amp;gt; &amp;lt;ref bean=&#34;CsvOutputGenerator&#34; /&amp;gt; &amp;lt;/property&amp;gt; &amp;lt;/bean&amp;gt; &lt;bean id=&ldquo;CsvOutputGenerator&rdquo; class=&ldquo;com.mkyong.output.impl.CsvOutputGenerator&rdquo; /&gt; &lt;bean id=&ldquo;JsonOutputGenerator&rdquo; class=&ldquo;com.mkyong.output.impl.JsonOutputGenerator&rdquo; /&gt;
-&lt;/beans&gt; 看到了把。我们只需要一个setter方法把CsvOutputGenerator注入进去就行了
-2.Constructor注入 这种方式是通过一个构造函数来完成依赖设置的
-例子：
-一个有着一个构造函数的Helper类 package com.mkyong.output;
-import com.mkyong.output.IOutputGenerator;
-public class OutputHelper { IOutputGenerator outputGenerator;
-OutputHelper(IOutputGenerator outputGenerator){ this.outputGenerator = outputGenerator; } } 然后当然是一个bean配置文件了。通过constructor-arg标签来写依赖 &lt;beans xmlns=&ldquo;http://www.
-                  <a href="https://leizhiyuan.github.io/2013/09/20/spring%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/spring/">spring</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%AC%94%E8%AE%B0/">笔记</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
         </div>
 
         
@@ -897,7 +889,7 @@ OutputHelper(IOutputGenerator outputGenerator){ this.outputGenerator = outputGen
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.54.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

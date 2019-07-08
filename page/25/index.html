@@ -17,7 +17,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.54.0" />
+  <meta name="generator" content="Hugo 0.55.6" />
   <link rel="canonical" href="https://leizhiyuan.github.io/" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
@@ -194,6 +194,69 @@
 
         <div class="posts-list">
           
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/06/28/c#%E4%B8%AD%E7%9A%84const%E5%92%8Creadonly/">
+                <h2 class="post-title">C#中的const和readonly</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on June 28, 2012
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (20 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  <p>　　本文来自《你必须知道的.NET》这本书，是我看书过程中的笔记整理。</p>
+
+<p>　　不变的量是程序设计中的平衡剂，是系统中恒定不变的量，在.NET中提供哦你了两种方式来实现，const和readonly。其中，const是静态常量，readonly是动态常量。</p>
+
+<ul>
+<li>const，readonly和static readonly定义的常量，一旦初始值指定，（包括在构造函数内指定初始值），将不可更改，可读不可写。</li>
+<li>const必须在声明的时候指定初始值，而readonly和static readonly在在声明时可以指定，也可以不指定初始值，同时也可以在构造函数中指定初始值，如果同时在声明时和构造函数中指定了初始值，以构造函数内指定的值为准。</li>
+<li>const和static readonly定义的常量是静态的，只能由类型来访问，不能和static同时使用，否则可能出现编译错误，而readonly定义的常量是非静态的，只能由实例对象来访问。可以显式使用static定义静态成员</li>
+<li>static readonly常量，如果在构造函数内指定初始值，那么必须是在静态无参构造函数中。不同的构造函数可以为readonly常量实现不同的初始值。</li>
+<li>const可以用于定义局部常量和字段常量，而readonly和static readonly不能定义局部变量，只能定义字段常量，实际上，readonly应该被称之为只读字段，因此局限于定义字段，而const才是常量，可以定义字段和局部量。</li>
+<li>const常量编译后保存在模块的元数据中，无需在托管堆中分配内存，并且const常量只能是百年机器能够识别的基元类型，比如Int32，string等，而readonly需要分配独立的存储空间，并且可以是任意类型。</li>
+<li>const只能应用在值类型和string类型上，其他引用类型常量只能定义为null，否则以new为const引用类型常量赋值，编译器会引发“只能用null对引用类型（字符串除外）的常量进行初始化”错误提示，原因是构造函数初始化是在运行时，而非编译时，readonly只读字段，可以是任意类型，但是对于引用类型字段来说，readonly不能限制对该对象实例成员的访问控制。
+　　总结：尽可能以只读属性来实现对类型读写特性的控制，而不是只读字段，但是在某些情况下，只读字段更简化些。</li>
+</ul>
+
+<p>　　const是编译时常量，readonly是运行时常量，const较高效，readonly更灵活，在应用上，推荐以static readonly代替const，以平衡const在灵活性上的不足，同时克服编译器优化const性能时，所带来的程序集引用不一致问题。</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
+                  
+                </div>
+              
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/06/27/%E5%AF%B9%E4%B8%8D%E8%B5%B7%E6%88%91%E7%AD%89%E4%B8%8D%E4%BA%86%E4%BD%A0%E4%BA%86/">
@@ -820,67 +883,6 @@ gif是动态的嘛。然后我昨天和一个朋友聊天的时候发了一串�
               
             </article>
           
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/06/10/mysql-error-1005-cant-create-table-errno-150%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/">
-                <h2 class="post-title">MySQL ERROR 1005: Can&#39;t create table  (errno: 150)解决办法</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on June 10, 2012
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (35 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  <p>最近在做数据库大作业，采用mysql建立数据库的时候出现了这个情况，查了一下，解决了。</p>
-
-<p>出现问题的大致可能情况</p>
-
-<p>1、外键的引用类型不一样，如主键是int外键是char</p>
-
-<p>2、找不到主表中引用的列</p>
-
-<p>3、主键和外键的字符编码不一致，也可能存储引擎不一样</p>
-
-<p>对于第一个问题，检查一下自己的主外键记录数据类型是否一样，改了就行了，对于第二个问题，同样的道理，确定你主表中有对应的列。对于第三个问题
-<pre class="lang:pgsql decode:true  crayon-selected">create table pw_test(
-uid int unsigned not null,
-primary key (uid),
-foreign key (uid) references pw_other(uid)
-on delete cascade
-on update cascade
-)ENGINE = MYISAM;</pre>
-&nbsp;</p>
-
-<p>括号外面的语句设置了引擎。实战过程中通过。中间的外键设置了delete 和update约束。uid引用了pw_other表中的uid键
-记下语法，出现问题的时候就可以用了。</p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/mysql/">mysql</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
         </div>
 
         
@@ -945,7 +947,7 @@ on update cascade
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.54.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

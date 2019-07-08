@@ -17,7 +17,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.54.0" />
+  <meta name="generator" content="Hugo 0.55.6" />
   <link rel="canonical" href="https://leizhiyuan.github.io/tags/%E5%AD%A6%E4%B9%A0/" />
   <link rel="alternate" href="https://leizhiyuan.github.io/tags/%E5%AD%A6%E4%B9%A0/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
@@ -566,7 +566,7 @@ ansible常见用法为ansible host-pattern -m 模块 -a 命令，host-pattern类
   
   
   &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (116 words)
+  <i class="fa fa-clock-o"></i> 1 minutes (120 words)
   
   
 </span>
@@ -578,8 +578,7 @@ ansible常见用法为ansible host-pattern -m 模块 -a 命令，host-pattern类
                   最近由于一些需求,要搞一下python,于是周末搞了搞.要连接服务器,进行一些服务器的操作,于是安装这个Paramiko包,
 直接pip install paramiko 结果.报错,最关键的一句是:
 error: Unable to find vcvarsall.bat google一圈.最终找到一种最简单地方法.其他的安装vs.安装MinGW都太复杂了.
- 安装PyCrypto 第三方版 因为paramiko依赖PyCrypto,上面那个错就是他报错出来的.安装PyCrypto第三方版 java pip install --use-wheel --no-index --find-links=https://github.com/sfbahr/PyCrypto-Wheels/raw/master/pycrypto-2.6.1-cp35-none-win_amd64.whl pycrypto ` 安装完成后,再次安装paramiko即可. 2.修改nt.py  安装完上面的步骤,写一个简单的程序测试下
-#-*- coding: utf-8 -*- #!/usr/bin/python import paramiko import threading def ssh2(ip,username,passwd,cmd):try: ssh = paramiko.SSHClient() ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy()) ssh.connect(ip,22,username,passwd,timeout=5) for m in cmd: stdin, stdout, stderr = ssh.exec_command(m) out = stdout.readlines() #屏幕输出 for o in out: print(o) print(&#39;%s\tOK\n&#39;%(ip)) ssh.close() except : print(&#39;%s\tError\n&#39;%(ip)) if __name__==&#39;__main__&#39;: cmd = [&#39;find /home/admin/logs/ -mtime +3 -name \&#39;*.
+ 安装PyCrypto 第三方版 因为paramiko依赖PyCrypto,上面那个错就是他报错出来的.安装PyCrypto第三方版 java pip install --use-wheel --no-index --find-links=https://github.com/sfbahr/PyCrypto-Wheels/raw/master/pycrypto-2.6.1-cp35-none-win_amd64.whl pycrypto  安装完成后,再次安装paramiko即可. 2.修改nt.py 安装完上面的步骤,写一个简单的程序测试下 java #-*- coding: utf-8 -*- #!/usr/bin/python import paramiko import threading def ssh2(ip,username,passwd,cmd): try: ssh = paramiko.SSHClient() ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy()) ssh.connect(ip,22,username,passwd,timeout=5) for m in cmd: stdin, stdout, stderr = ssh.exec_command(m) out = stdout.readlines() #屏幕输出 for o in out: print(o) print('%s\tOK\n'%(ip)) ssh.close() except : print('%s\tError\n'%(ip)) if __name__=='__main__': cmd = ['find /home/admin/logs/ -mtime +3 -name \'*.
                   <a href="https://leizhiyuan.github.io/2015/12/28/python3.5-%E5%AE%89%E8%A3%85-paramiko/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -814,7 +813,7 @@ public class Widget { public synchronized void doSomething() { ... } } public cl
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.54.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>
