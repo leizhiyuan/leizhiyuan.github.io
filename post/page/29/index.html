@@ -175,7 +175,7 @@
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on July 9, 2019
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on August 18, 2019
   
   
   &nbsp;|&nbsp;
@@ -200,6 +200,72 @@
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
         <div class="posts-list">
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/05/05/.net%E4%B8%89%E5%B1%82%E6%9E%B6%E6%9E%84/">
+                <h2 class="post-title">.Net三层架构</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on May 5, 2012
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (113 words)
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  本文来源：http://www.cnblogs.com/gaoweipeng/archive/2009/01/18/1377855.html
+老规矩。因为是非常不错的文章。所有有必要收藏下来备用。推荐。
+**三层体系结构的概念
+**
+ 用户界面表示层(USL) 业务逻辑层(BLL) 数据访问层(DAL) BLL将USL与DAL隔开了，并且加入了业务规则    各层的作用 1：数据数据访问层:主要是对原始数据（数据库或者文本文件等存放数据的形式）的操作层，而不是指原始数据，也就是说，是对数据的操作，而不是数据库,具体为业务逻辑层或表示层提供数据服务． 2：业务逻辑层:主要是针对具体的问题的操作，也可以理解成对数据层的操作,对数据业务逻辑处理，如果说数据层是积木，那逻辑层就是对这些积木的搭建。 3：表示层:主要表示WEB方式,也可以表示成WINFORM方式,WEB方式也可以表现成:aspx, 如果逻辑层相当强大和完善,无论表现层如何定义和更改,逻辑层都能完善地提供服务。  具体的区分方法
+1：数据数据访问层:主要看你的数据层里面有没有包含逻辑处理，实际上他的各个函数主要完成各个对数据文件的操作。而不必管其他操作。
+2：业务逻辑层:主要负责对数据层的操作。也就是说把一些数据层的操作进行组合。
+3：表示层:主要对用户的请求接受，以及数据的返回，为客户端提供应用程序的访问。 
+ 三层结构解释
+所谓三层体系结构，是在客户端与数据库之间加入了一个中间层，也叫组件层。这里所说的三层体系，不是指物理上的三层，不是简单地放置三台机器就是三层体系结构，也不仅仅有B/S应用才是三层体系结构，三层是指逻辑上的三层，即使这三个层放置到一台机器上。 三层体系的应用程序将业务规则、数据访问、合法性校验等工作放到了中间层进行处理。通常情况下，客户端不直接与数据库进行交互，而是通过COM/DCOM通讯与中间层建立连接，再经由中间层与数据库进行交换.
+开发人员可以将应用的商业逻辑放在中间层应用服务器上，把应用的业务逻辑与用户界面分开。在保证客户端功能的前提下，为用户提供一个简洁的界面。这意味着如果需要修改应用程序代码，只需要对中间层应用服务器进行修改，而不用修改成千上万的客户端应用程序。从而使开发人员可以专注于应用系统核心业务逻辑的分析、设计和开发，简化了应用系统的开发、更新和升级工作。 
+ 那么为什么要应用“中间业务层”呢？举些例子: 我们假设有一段登录代码，则可以这样处理Web程序，外观层负责接收前台页面的数据，然后传给中间层，中间层对数据进行处理，比如格式化，防SQL注入等等一些，这样的数据再传给数据访问层然后与数据库进行操作，比如与数据库的用户名和密码匹配等等一些代码。**
+  ** * “中间业务层”的用途有很多，例如：验证用户输入数据、缓存从数据库中读取的数据等等……但是，“中间业务层”的实际目的是将“数据访问层”的最基础的存储逻辑组合起来，形成一种业务规则。例如：“在一个购物网站中有这样的一个规则：在该网站第一次购物的用户，系统为其自动注册”。这样的业务逻辑放在中间层最合适： &gt; 在“数据访问层”中，最好不要出现任何“业务逻辑”！也就是说，要保证“数据访问层”的中的函数功能的原子性！即最小性和不可再分。“数据访问层”只管负责存储或读取数据就可以了。 &gt; ** &gt; **
+ ASP.NET中的三层结构说明
+完善的三层结构的要求是:修改表现层而不用修改逻辑层,修改逻辑层而不用修改数据层。否则你的应用是不是多层结构,或者说是层结构的划分和组织上是不是有问题就很难说.不同的应用有不同的理解，这只是一个概念的问题．
+   理解ASP.NET中的三层结构——为什么要分三层？
+我们用三层结构主要是使项目结构更清楚，分工更明确，有利于后期的维护和升级。它未必会提升性能，因为当子程序模块未执行结束时，主程序模块只能处于等待状态。这说明将应用程序划分层次，会带来其执行速度上的一些损失。但从团队开发效率角度上来讲却可以感受到大不相同的效果。
+  需要说明一下，三层结构不是.NET的专利，也不是专门用在数据库上的技术。它是一种更加普适的架构设计理念。  此种架构要在数据库设计上注意表之间的关系，尽力满足主与子的关系。在功能上对用户要有一定的限制，不要表现在对于子表的删除操作一定要慎重，以免造成主表与子表的数据在逻辑上出现的主表的外键在子表中没有相对应的值。
+ 对于表的综合查询方法是： 先对主表查询，调用主表所对应的DL。再根据主表的记录分别对每一个子表进行查询。将自表的查询结果添加的主表后，形成一个大的查询集合。 对于表的操作（增删改）： 此时只对主表进行操作，调用主表对应的DL中的操作方法。 RL层是逻辑判断层，主要是对页面上传入的数据进行逻辑判断。RL层之上就是UI 如何建立一个三层体系结构解决方案
+新建一个空白解决方案。然后： “添加”－“新建项目”－“其他项目”－“企业级模版项目”－“C#生成块”－“数据访问”（数据层，下简称D层） “添加”－“新建项目”－“其他项目”－“企业级模版项目”－“C#生成块”－“业务规则”（业务层，下简称C层） “添加”－“新建项目”－“其他项目”－“企业级模版项目”－“C#生成块”－“Web用户界面”（界面层，下简称U层） 右键点“解决方案”－“项目依赖项”，设置U依赖于D、C，C依赖于D。 对U添加引用D、C，对C添加引用D。 到此为止，一个三层的架子建立起来了。我上面说的很具体很“傻瓜”，知道的人觉得我废话，其实我这段时间很强烈的感觉到非常多的人其实对这个简单的过程完全不了解。虽然不反对建2个“空项目”和1个“Asp net Web应用程序项目”也可以作为3层的框架，而且相当多的人认为其实这些“企业级模板项目”其实就是个空项目，这是一个误区。没错，企业级模板项目你从解决方案资源管理器里看它是个什么也没有的，但是你可以用记事本打开项目文件，看见不同了吧？？有些东西在背后，你是看不见的，不过系统已经做好了。也就是说，如果你在C层里的某个类里“using System Data SqlClineit”，或者使用一个SqlConnection对象，编译时候不会出错，但是会在“任务列表”里生成一些“策略警告”，警告你在C层里不要放应该放在D层的东西（虽然就程序来说没错，但是可读性可维护性就打了折扣）而这种功能，空项目是无法給你的。
+                  <a href="https://leizhiyuan.github.io/2012/05/05/.net%E4%B8%89%E5%B1%82%E6%9E%B6%E6%9E%84/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/05/05/%E4%BD%A0%E4%BC%9A%E7%94%A8%E8%AE%A1%E7%AE%97%E5%99%A8%E5%90%97/">
@@ -855,53 +921,6 @@ Ubuntu缺省安装了openssh-client（用于ubuntu连接其他服务器）,所�
                 <div class="blog-tags">
                   
                     <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E8%AF%91/">编译</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/04/23/win7%E4%B8%8A%E7%BD%91%E6%8F%90%E7%A4%BA711%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3/">
-                <h2 class="post-title">WIN7上网提示711错误解决</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on April 23, 2012
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (148 words)
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  朋友今天上网突然网络连接出现了这个问题，也就是无法加载远程访问连接服务。Google了一下，第一种方法就是查看如下的服务是否启动，如果没有，自行启动。 服务名称:eventlog 显示名称: Windows Event Log 启动类型:自动 服务名称:TapiSrv 显示名称: Telephony 启动类型:手动 服务名称:SstpSvc 显示名称: Secure Socket Tunneling Protocol Service 启动类型:手动 服务名称:Netman 显示名称: Network Connections 启动类型:手动 服务名称:nsi 显示名称: Network Store Inte***ce Service 启动类型: 自动 服务名称:RasMan 显示名称: Remote Access Connection Manager 启动类型:手动
-　启动方法：对着我的电脑点右键-》管理-》服务和应用-》服务 找到对应的服务后，右键属性，启动类型就可以了 但是如上操作有时并不可以，会提示有些服务不能启动，这种情况下，
-　用管理员账号登陆，再打开 c:\windows\system32\logfiles 如果看到 wmi文件夹，在wmi文件夹上点右键，点 获取管理员权限 ,后重启即可修复。 
-　附上Win7下添加右键获取管理员权限的方法：
-在Win7下经常要用到管理员权限,为了方便可以添加一个右键菜单,方法如下: 新建一个“记事本”文件，复制以下内容： Windows Registry Editor Version 5.00 [HKEY_CLASSES_ROOT*\shell\runas] @=&ldquo;获取管理员权限&rdquo; &ldquo;NoWorkingDirectory&rdquo;=&ldquo;&rdquo; [HKEY_CLASSES_ROOT*\shell\runas\command] @=&ldquo;cmd.exe /c takeown /f \&ldquo;%1\&rdquo; &amp;&amp; icacls \&ldquo;%1\&rdquo; /grant administrators:F&rdquo; &ldquo;IsolatedCommand&rdquo;=&ldquo;cmd.
-                  <a href="https://leizhiyuan.github.io/2012/04/23/win7%E4%B8%8A%E7%BD%91%E6%8F%90%E7%A4%BA711%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%AC%94%E8%AE%B0/">笔记</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
                   
                 </div>
               

@@ -196,6 +196,72 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/12/18/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86/">
+                <h2 class="post-title">Lambda高手之路第一部分</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on December 18, 2012
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 2 minutes (329 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  好长时间没发技术文章了，恰好看到一篇非常详细的Lambda文章。一边翻译一边学习。题目好像有点霸气。。
+介绍 Lambda表达式是使代码更加动态，易于扩展并且更加快速（看完本文你就知道原因了）的强有力的工具。也可以用来降低潜在的错误。同时可以利用静态输入和智能提示，就像VS里一样。
+&nbsp;
+Lambda表达式在.net framework 3.5中提出来。并且在LINQ和ASP.NET MVC内部的一些技术中扮演了相当重要的角色。如果你考虑一下ASP.NET MVC中各类控件的实现。你就发现。奥妙就是他们大多使用了Lambda表达式。和Lambda表达式一起，使用Html扩展方法将会使得在后台创建模型成为可能。
+本文会讲到如下的知识。
+1.简短的介绍-Lambda表达式是什么，以及为什么和匿名方法不同（之前我们使用的） 2.走近Lambda表达式的性能-在哪些情况下比起标准方法，Lambda会提高/损失性能 3.深入-Lambda表达式在MSIL代码中是什么样 4.一些来自JS世界的模式映射到C#中 5.那些能够提高性能，并且代码看起来相当舒服的使用Lambda的情况。 6.一些我提出的新模式-当然有可能别人也提出来了。但这是我的思考结果。
+&nbsp;
+如果你期望本文是一篇入门教程我可能要让你失望了，除非你真的很优秀并且很聪明，当然我不是这种人，所以我也想提前声明一下：为了读懂这篇文章你可能需要C#的一些高级知识，并且对C#比较了解。
+&nbsp;
+你应该期望本文试着解释一些事情给你，也会解释一些有趣的问题，至少对我来说是这样的。最后我会展示一些实际的例子和模式，如我所说，Lambda表达式简化了很多情况。因此写显式的模式很有用。
+背景知识-什么是Lambda表达式 在C#1.0中，委托被提出了，它使得传递函数成为可能，一句话就是委托就是强类型的函数指针，但委托比指针更强大。一般传递一个函数需要如下几步。 1. 写一个委托（就像一个类）包含返回类型和参数类型 2. 使用委托作为某一个函数的参数类型，这样，该函数就可以接受和委托描述的有着相同签名的函数了 3. 将一个委托类型的函数传递给委托，创建一个委托实例。
+&nbsp;
+如果听起来很复杂，确实本来很复杂，但这是必需的。（虽然不是造火箭，但是比你认为的要更多的代码），然而步骤三不是必需的，编译器会为你做他，但是步骤1和2却是必不可少的。
+&nbsp;
+幸运的是C#2.0出现了泛型，现在我们也可以写泛型类，方法，更重要的是，泛型委托，然而，直到.net framework 3.5的时候。微软意识到实际上只有两种泛型委托（当然有一些不同的重载），会覆盖99%的使用情况：
+1.Action 没有任何输入参数，也没有输出参数。 2.Action&lt;t1,…t16&gt; 需要1-16个参数，没有输出参数。 3.Func&lt;t1….t16,tout&gt;需要0-16个参数，一个输出参数
+&nbsp;
+Action和其对应的泛型版本（仅仅是一个动作，执行一些事情）返回void的时候。Func则可以返回最后一个参数指定的类型，通过这两个委托类型，我们事实上，大部分情况下。前面提到的三步中的第一部就不用写的。而第二步仍然需要。
+&nbsp;
+那么如果我们想要运行代码的时候怎么做呢。在C#2.0中问题已经可以解决了。在这个版本里。我们可以创建委托方法，也就是一个匿名方法，然后这个语法一直未能流行起来，一个相当简化的匿名方法的版本类似这样： Func&lt;double, double&gt; square = delegate (double x) { return x * x; } 为了提高这种语法，欢迎来到Lambda表达式的国度。首先，这个Lambda名字怎么来的？事实上。来自于数学上的λ演算，更准确的说他是数学中一个正式的系统。用于通过变量绑定和替换来进行表达式计算，所以我们有0-N个输入参数和一个返回值，而在编程中，也可以没有返回值
+我们看一下Lambda表达式的一些例子 //编译器可以识别，然后就可以通过dummyLambda();来调用了 var dummyLambda = () =&gt; { Console.WriteLine(&ldquo;Hallo World from a Lambda expression!
+                  <a href="https://leizhiyuan.github.io/2012/12/18/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/12/10/%E4%BB%8E%E7%9B%B8%E4%BA%B2%E5%BB%B6%E4%BC%B8%E5%87%BA%E7%9A%84%E5%A9%9A%E6%81%8B%E6%84%8F%E4%B9%89/">
                 <h2 class="post-title">从相亲延伸出的婚恋意义</h2>
                 
@@ -692,56 +758,6 @@ textBox1.Text = sb.ToString(); 对比一下坊间的几种不足： 总的来说
                     <a href="https://leizhiyuan.github.io//tags/%E4%BA%92%E8%81%94%E7%BD%91/">互联网</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/11/21/%E4%BE%9D%E8%B5%96%E5%80%92%E7%BD%AE%E5%8E%9F%E5%88%99%E5%92%8C%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E6%A8%A1%E5%BC%8F/">
-                <h2 class="post-title">依赖倒置原则和依赖注入模式</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on November 21, 2012
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (213 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  昨天读完了程杰的《大话设计模式》。。收获颇丰。深刻感到了设计模式的伟大。。对面向接口的编程也理解了不少。刚好看到codeproject上一篇将依赖倒置的。讲到了依赖注入的方式。仔细读了一下。翻译一遍加深认识。
-高耦合的代码随着项目复杂性的不断增加，最终会变成一碗碗的意大利面条啦。。二者通常是软件设计上的问题，如果一个类对另一个类的实现了解太多。当该类改变的时候会引起更多的改变。这违反了依赖倒置原则
-而松耦合的代码设计优良。随着时间流逝，代码复杂两增大，松耦合的好处会变得更加清晰，依赖注入模式是实现松耦合的一个好的办法，本文介绍在没有依赖注入容器的情况下实现依赖注入
-GoF说了，依赖倒置的原则：
- 高层模块不应依赖于低层模块，他们都应该依赖于抽象 抽象不依赖细节，细节依赖抽象
- 刚开始写依赖倒置比较难，随着经验增长会有所改善，通过使高层模块依赖于抽象，依赖倒置成功解耦，依赖注入模式是该原则的一个实现。
-通常我们写出如下的代码：
-public class Email { public void SendEmail() { // code } } public class Notification { private Email _email; public Notification() { _email = new Email(); } public void PromotionalNotification() { _email.SendEmail(); } }  Notification类依赖Email类，这违反了DIP，而且当我们要发送短信/保存到数据库的时候，我们还要改变Notification类。 我们使用抽象类/接口解耦
-public interface IMessageService { void SendMessage(); } public class Email : IMessageService { public void SendMessage() { // code } } public class Notification { private IMessageService _iMessageService; public Notification() { _iMessageService = new Email(); } public void PromotionalNotification() { _iMessageService.
-                  <a href="https://leizhiyuan.github.io/2012/11/21/%E4%BE%9D%E8%B5%96%E5%80%92%E7%BD%AE%E5%8E%9F%E5%88%99%E5%92%8C%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E6%A8%A1%E5%BC%8F/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%AE%BE%E8%AE%A1/">设计</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
                   
                 </div>
               

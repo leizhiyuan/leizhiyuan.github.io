@@ -196,6 +196,87 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/06/29/c#%E4%B8%AD%E7%9A%84class%E5%92%8Cstruct/">
+                <h2 class="post-title">C#中的Class和Struct</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on June 29, 2012
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (33 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  
+
+<p>　　</p>
+
+<h3 id="什么是class">什么是class?</h3>
+
+<p>　　class（类）是面向对象编程的基本概念，是一种自定义数据结构类型，通常包含字段、属性、方法、属性、构造函数、索引器、操作符等。.NET中，所有的类都最终继承自System.Object类，因此是一种引用类型，也就是说，new一个类的实例时，对象保存了该实例实际数据的引用地址，而对象的值保存在托管堆（managed heap）中。</p>
+
+<h3 id="什么是struct">什么是struct?</h3>
+
+<p>　　struct（结构）是一种值类型，用于将一组相关的信息变量组织为一个单一的变量实体 。所有的结构都继承自System.ValueType类，因此是一种值类型，也就是说，struct实例分配在线程的堆栈（stack）上，它本身存储了值，而不包含指向该值的指针。所以在使用struct时，我们可以将其当作int、char这样的基本类型类对待。</p>
+
+<h3 id="比较">比较：</h3>
+
+<p>　　相同点：语法类似。</p>
+
+<p>　　不同点：</p>
+
+<blockquote>
+<ul>
+<li>class是引用类型，继承自System.Object类；struct是值类型，继承自System.ValueType类，因此不具多态性。但是注意，System.ValueType是个引用类型。</li>
+<li>从职能观点来看，class更多表现为行为；而struct常用于存储数据。</li>
+<li>class支持继承，可以继承自类和接口；而struct没有继承性，struct不能从class继承，也不能作为class的基类，但struct支持接口继承</li>
+<li>class可以声明无参构造函数，可以声明析构函数；_而struct只能声明带参数构造函数_，且不能声明析构函数。因此，struct没有自定义的默认无参构造函数，默认无参构造器只是简单地把所有值初始化为它们的0等价值</li>
+<li>实例化时，_class要使用new关键字；而struct可以不使用new关键字_，如果不以new来实例化struct，则其所有的字段将处于未分配状态，直到所有字段完成初始化，否则引用未赋值的字段会导致编译错误。</li>
+<li>class可以是抽象类（abstract），可以声明抽象函数；而struct不能为抽象，也不能声明抽象函数。</li>
+<li>class可以声明protected成员、virtual成员、sealed成员和override成员；而struct不可以，struct可以重载System.Object的3个虚方法，Equals()、ToString()和GetHashTable()。</li>
+<li>class的对象复制分为浅拷贝和深拷贝，必须经过特别的方法来完成复制；而struct创建的对象复制简单，可以直接以等号连接即可。</li>
+<li>class实例由垃圾回收机制来保证内存的回收处理；而struct变量使用完后立即自动解除内存分配。</li>
+<li>作为参数传递时，class变量是以按址方式传递；而struct变量是以按值方式传递的。</li>
+</ul>
+</blockquote>
+
+<p>　　我们可以简单的理解，class是一个可以动的机器，有行为，有多态，有继承；而struct就是个零件箱，组合了不同结构的零件。其实，<strong><em>class和struct最本质的区别就在于class是引用类型</em></strong>，内存分配于托管堆；而struct是值类型，内存分配于线程的堆栈上。由此差异，导致了上述所有的不同点，虽然在某些方面struct有性能方面的优势，但是在面向对象编程里，基本是class横行的天下。</p>
+
+<p>　　那么，既然class几乎可以完全替代struct来实现所有的功能，那么struct还有存在的必要吗？答案是，至少在以下情况下，鉴于性能上的考虑，我们应该考虑使用struct来代替class：　　
+&gt; *   实现一个主要用于存储数据的结构时，可以考虑struct。
+&gt; *   struct变量占有堆栈的空间，因此只适用于数据量相对小的场合。
+&gt; *   结构数组具有更高的效率。
+&gt; *   提供某些和非托管代码通信的兼容性。</p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/06/28/c#%E4%B8%AD%E7%9A%84const%E5%92%8Creadonly/">
                 <h2 class="post-title">C#中的const和readonly</h2>
                 
@@ -828,54 +909,6 @@ private void Form1_MouseDown(object sender, MouseEventArgs e) { if (e.Button == 
                     <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/06/15/gif%E5%8F%8D%E8%BD%AC%E5%B7%A5%E5%85%B7/">
-                <h2 class="post-title">gif反转工具</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on June 15, 2012
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (122 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  首先看下效果图：  然后是两张gif的对比  //原本图是正着走的  //处理后是倒着走的
-gif是动态的嘛。然后我昨天和一个朋友聊天的时候发了一串相同的gif图，然后看着千篇一律的东西。我想能不能写个程序实现gif的初始状态不同呢。什么意思呢。我们知道，gif是由帧构成的，我想实现的功能是比如一个gif共有十帧，那么我写出来的程序能够生成10个gif文件，分别对应不同的初始状态来进行循环。后来一想，gif帧太多的话，比较慢，而且也不实用，于是决定简化一下，只做一个反转工具，比如一个gif是从左到右播放的，通过这个成功可以生成一个相同的gif图，不过是倒着播放的。
-思路很简单，就是先把gif分解成很多帧，然后对帧进行合并，合并帧之前把帧的位置反转一下就可以了。因为我自己对图像处理的知识不懂，只想到了思路，所以这些功能都要找些资料，然后修改，测试。
-分割帧的代码如下 //解码gif图片 public List&lt;string&gt; GetFrames(string pPath, string pSavedPath) { Image gif = Image.FromFile(pPath); FrameDimension fd = new FrameDimension(gif.FrameDimensionsList[0]);
-//获取帧数(gif图片可能包含多帧，其它格式图片一般仅一帧) int count = gif.GetFrameCount(fd); List&amp;lt;string&amp;gt; gifList=new List&amp;lt;string&amp;gt;(); //以Jpeg格式保存各帧 for (int i = 0; i &amp;lt; count; i++) { gif.SelectActiveFrame(fd, i); gif.Save(pSavedPath + &#34;\\frame_&#34; + i + &#34;.png&#34;, ImageFormat.Png); gifList.Add(pSavedPath + &#34;\\frame_&#34; + i + &#34;.png&#34;); } return gifList; }&lt;/pre&gt; 可以看到，返回了一个包含所有生成的帧地址的list列表。然后就是使用gifList作为参数来合并了。 //获取系统临时目录存放解码后的png图片 string temppath = System.
-                  <a href="https://leizhiyuan.github.io/2012/06/15/gif%E5%8F%8D%E8%BD%AC%E5%B7%A5%E5%85%B7/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%8E%9F%E5%88%9B/">原创</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
                   

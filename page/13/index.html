@@ -196,6 +196,58 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2013/04/01/%E8%97%8F%E5%85%B3%E4%BA%8Eb%E6%A0%91%E7%9A%84%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">
+                <h2 class="post-title">[藏]关于B树的一篇文章</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on April 1, 2013
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (22 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  <p>很多人对B树的理解有很多错误，我看的最多的就是有人混淆二叉树（Binary Tree）和B树（B-Tree）,二叉树是不用简称，也就是BT的，而特殊一点的二叉搜索树才会用BST(Binary Search Tree),至于B-树和B树，这两个其实一样的，英文都是(B-Tree)，注意看中间的-号，这个是国内翻译的问题.所以大家不要被误导.</p>
+
+<p>Rudolf Bayer 和 Ed McCreight 于1972年，在Boeing Research Labs 工作时发明了B 树，但是他们没有解释B 代表什么意义（如果有的话）.Douglas Comer 解释说: 两位作者从来都没解释过B树的原始意义。我个人觉得很有可能是他的名字，程序员对其作品的一种情结吧.</p>
+
+<p>这篇文章来自国外,是某大学的CS课程在线的,由于有时候无法访问，我直接提供PDF版,对其构造过程非常清晰.非常非常好的B树教程,图示很多,就不翻译了,强烈推荐阅读！</p>
+
+<p>&nbsp;</p>
+
+<p>下载：<a href="http://pan.baidu.com/share/link?shareid=404077&amp;amp;uk=1493685990">B树讲解</a></p>
+
+<p>&nbsp;</p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c&#43;&#43;/">C&#43;&#43;</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%94%B6%E8%97%8F/">收藏</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2013/03/11/%E8%97%8F%E7%86%AC%E5%B0%B1%E4%B8%80%E4%B8%AA%E5%AD%97/">
                 <h2 class="post-title">[藏]熬就一个字</h2>
                 
@@ -759,57 +811,6 @@ f4ck.net/index.php?id=1 and(select 1 from(select count(*),concat((select (select
                     <a href="https://leizhiyuan.github.io//tags/%E8%AE%BE%E8%AE%A1/">设计</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/02/12/c#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%8F%AD%E7%A7%98/">
-                <h2 class="post-title">C#多线程揭秘</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on February 12, 2013
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 7 minutes (1487 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  文章略长。。。 Demo下载：Demo.Threading.zip 介绍 本文将通过一些例子来展示.net 中如何实现多线程，涉及到以下四部分。 1 .线程概念 2 .如何实现多线程 3 .如何确保线程安全 4 .死锁
-什么是进程 一个进程就是一个可执行文件运行的操作系统上下文环境。它被用来分隔虚拟地址空间，线程，对象句柄（指向类似文件这样的资源的指针），以及环境变量，进程还有一些类似优先级类和最大内存分配的属性。
-也就是说： 1 .一个进程就是一个包含资源的内存块。 2 .操作系统执行的一个单独的任务。 3 .一个正在运行的软件 4 .一个进程拥有一个/多个操作系统线程
-一般的。一个进程最大可以是4GB的内存空间，这块内存是安全，私有，其他进程是无法访问的。
-什么是线程 一个线程就是在一个进程里执行的一条指令流，所有的线程都在一个进程里执行，也就是一个进程可以包含多个线程。线程公用进程的虚拟地址空间。线程是操作系统的调度单元。一个线程的上下文由操作系统进行保存/恢复。 也就是说： 1 .一个线程是进程里的一条指令流。 2 .所有的线程在进程里。一个进程可以有多个线程 3 .一个进程的所有线程使用进程的虚拟地址空间。
-什么是多线程 多线程指的是进程同时有多个线程活动。这可以通过时间片的线程模拟或是多cpu上的超线程来实现。可以提高性能。 多线程-为什么或是为什么不? 为什么多线程 1 .保持UI响应。 2 .提高性能(对于cpu密集型和I/O密集型的进程) 为什么不多线程 1 .过度使用降低性能 2 .代码复杂，增加设计时间，潜在的bug
-线程池 线程池为你的程序提供了一个由操作系统管理的机制。在线程池里的都是后台线程。一个线程池线程在程序的前台线程都退出后，也会推出。每个进程一个线程池。默认情况下。每个处理器会为进程分配25个线程。但是可以通过SetMaxThreads 方法来改变。
-.net 中的线程 在.net 中，线程可以通过下面6个方法来实现。 1 .Thread线程类 2 .Delegates委托 3 .Background Worker 4 .ThreadPool 线程池 5 .Task任务类 6 .Parallel并行类
-下面的几部分里。我将逐一展示实现方法。
-简而言之，多线程就是通过使程序同时运行多个任务来最大化计算机能力，同时能够保持UI响应。下图是一个例子的图示。
-                  <a href="https://leizhiyuan.github.io/2013/02/12/c#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%8F%AD%E7%A7%98/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
                   
                 </div>
               

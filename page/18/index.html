@@ -196,6 +196,61 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/10/17/%E6%A8%A1%E6%8B%9Foffice2010%E6%96%87%E4%BB%B6%E8%8F%9C%E5%8D%95%E7%9A%84tabcontrol%E6%A8%A1%E6%9D%BF/">
+                <h2 class="post-title">模拟Office2010文件菜单的TabControl模板</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on October 17, 2012
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 2 minutes (321 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  这是Office2010中的文件菜单点开后的效果。本文我将以强大的WPF来实现类似的效果。希望你能有所收获。而不是只拷贝/粘贴代码而已。
+&nbsp;
+开始之前。先把TabControl找个地方放着。 &lt;Window x:Class=&ldquo;TestClient.MainWindow&rdquo;
+xmlns=&#34;http://schemas.microsoft.com/winfx/2006/xaml/presentation&#34; xmlns:x=&#34;http://schemas.microsoft.com/winfx/2006/xaml&#34; Title=&#34;MainWindow&#34; Height=&#34;350&#34; Width=&#34;525&#34;&amp;gt; &amp;lt;TabControl Name=&#34;tabSteps&#34;&amp;gt; &amp;lt;TabItem Header=&#34;Info&#34; IsSelected=&#34;True&#34;&amp;gt; &amp;lt;TextBlock&amp;gt;Info content&amp;lt;/TextBlock&amp;gt; &amp;lt;/TabItem&amp;gt; &amp;lt;TabItem Header=&#34;Recent&#34;&amp;gt; &amp;lt;TextBlock&amp;gt;Recent content tab&amp;lt;/TextBlock&amp;gt; &amp;lt;/TabItem&amp;gt; &amp;lt;TabItem Header=&#34;New&#34;&amp;gt; &amp;lt;TextBlock&amp;gt;New content tab&amp;lt;/TextBlock&amp;gt; &amp;lt;/TabItem&amp;gt; &amp;lt;TabItem Header=&#34;Print&#34;&amp;gt; &amp;lt;TextBlock&amp;gt;Print content tab&amp;lt;/TextBlock&amp;gt; &amp;lt;/TabItem&amp;gt; &amp;lt;TabItem Header=&#34;Save &amp;amp;amp; Send&#34;&amp;gt; &amp;lt;TextBlock&amp;gt;Save &amp;amp;amp; send content tab&amp;lt;/TextBlock&amp;gt; &amp;lt;/TabItem&amp;gt; &amp;lt;TabItem Header=&#34;Help&#34;&amp;gt; &amp;lt;TextBlock&amp;gt;Help tab&amp;lt;/TextBlock&amp;gt; &amp;lt;/TabItem&amp;gt; &amp;lt;/TabControl&amp;gt; &lt;/Window&gt; &nbsp;
+然后会大概是这个效果
+
+为了改变TabControl的显示效果。我们使用模板机制，我们把模板写进一个资源字典里。这样就可以重用了。添加一个资源字典的步骤如下
+右键点击工程-添加-资源字典
+然后在资源字典里添加一些代码。 &lt;ControlTemplate x:Key=&ldquo;OfficeTabControl&rdquo; TargetType=&ldquo;{x:Type TabControl}&rdquo;&gt;
+&amp;lt;Grid&amp;gt; &amp;lt;Grid.ColumnDefinitions&amp;gt; &amp;lt;ColumnDefinition Width=&#34;160&#34; /&amp;gt; &amp;lt;ColumnDefinition/&amp;gt; &amp;lt;/Grid.
+                  <a href="https://leizhiyuan.github.io/2012/10/17/%E6%A8%A1%E6%8B%9Foffice2010%E6%96%87%E4%BB%B6%E8%8F%9C%E5%8D%95%E7%9A%84tabcontrol%E6%A8%A1%E6%9D%BF/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/wpf/">WPF</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/10/16/%E7%B1%BB%E5%9E%8B%E5%AE%89%E5%85%A8%E7%9A%84%E9%BB%91%E6%9D%BF%E6%A8%A1%E5%BC%8F%E5%B1%9E%E6%80%A7%E5%8C%85/">
                 <h2 class="post-title">类型安全的黑板模式（属性包）</h2>
                 
@@ -749,85 +804,6 @@ MAH_1000, MAH_1500, MAH_2000 };
                     <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/10/05/yaxlib-xml%E5%BA%8F%E5%88%97%E5%8C%96%E7%A5%9E%E5%99%A8/">
-                <h2 class="post-title">YAXLib---- XML序列化神器</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on October 5, 2012
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (43 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  
-
-<p>今天早上翻译了<a href="http://www.codeproject.com/Articles/34045/Yet-Another-XML-Serialization-Library-for-the-NET">Yet-Another-XML-Serialization-Library-for-the-NET</a>，刚开始以为很短。翻译着发现不对。。然后你不逼你自己。怎么知道自己做不到。于是。将近4个小时把30页的文档翻译完了。因为文章很长。所以本文只列出前两部分。我把翻译好的做成了pdf，</p>
-
-<p>文档下载：<a href="http://pan.baidu.com/share/link?shareid=74284&amp;amp;uk=1493685990">XML序列化神器</a></p>
-
-<h2 id="1-介绍">1 介绍</h2>
-
-<p>在本文中，会把要提到的XML序列化库叫做YAXLib，我们知道。.Net 还是提供了一些序列化功能的，尤其是XmlSerializer，该类被程序员广泛使用用来序列化对象成XML，当然，反序列化也是可以的。我认为XmlSerializer类的问题有几下几点</p>
-
-<ol>
-<li>程序员不能自由的选择生成的xml的结构</li>
-<li>不支持序列化一些集合类，比如Dictionary&lt;,&gt; 或者IEnumerable&lt;&gt;的属性</li>
-<li>当反序列化的时候，如果缺失了一些域，则反序列化失败，这就使得用来存储一ixekeyi被用户编辑的配置文件变得不合适了。
-&nbsp;</li>
-</ol>
-
-<h2 id="2-为什么使用yaxlib">2 为什么使用YAXLib</h2>
-
-<p>YAXLib解决上述问题的特点</p>
-
-<ol>
-<li>程序员可以决定xml文件的结构，一个属性可以是一个子元素，或者是其他属性的属性，或者是一个在类中没有对应属性的元素。</li>
-<li>集合类也可以被序列化成一个逗号分隔（也可以是其他任何分隔符）的数据项列表，而且。为Dictionary&lt;,&gt;对象实现了一些特殊的格式化功能，这样，使得程序员可以完全控制生成的xml文件的结构</li>
-<li>他支持System.Collections.Generic 命名空间中的所有泛型集合类（像<code>Dictionary</code>, <code>HashSet</code>, <code>LinkedList</code>, <code>List</code>, <code>Queue</code>,<code>SortedDictionary</code>, <code>SortedList</code>, 和 <code>Stack</code>） 和在<code>System.Collections</code>  命名空间中的非泛型集合类（ <code>ArrayList</code>, <code>BitArray</code>, <code>Hashtable</code>, <code>Queue</code>, <code>SortedList</code>, 和 <code>Stack</code>）非泛型集合类可以包含多种不同的对象，而且，库还支持序列化和反序列化一维，多维，不规则的数组。</li>
-<li>支持通过对基类/接口的引用，实现对一些对象集合的序列化和反序列化。</li>
-<li>支持多级反序列化</li>
-<li>程序员可以为生成的xml提供注释</li>
-<li>当进行反序列化的时候，程序员可以选择性对于那些与类的属性相关，但没有出现在xml文件中的数据应该如何处理。这种情况下可以看错是一个错误，然后类库抛出一些异常，或者记录错误，或者可以被看成一个警告，然后用程序员预定义的值赋给对应的属性，而且，程序可以可以选择忽略这个问题，相关的异常将既不抛出也不作任何记录。请查看保留空引用标识那一节 看看什么时候可以忽略孤立的数据也许对你有帮助</li>
-<li>程序员可以自己选择错误处理规则，对于数据敏感的应用程序，程序员可以选择在任何异常的情况下，库都应该抛出并且记录异常，对于其他的一些情况（比如要求不那么高的配置文件的存储），程序员可以选择把异常仅仅看成一个警告，仅仅记录一下，让程序的其他部分继续运行。
-文档下载：<a href="http://pan.baidu.com/share/link?shareid=74284&amp;amp;uk=1493685990">XML序列化神器</a></li>
-</ol>
-
-<p>著作权声明：本文由<a href="http://leaver.me/">http://leaver.me</a> 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
                   
                 </div>
               

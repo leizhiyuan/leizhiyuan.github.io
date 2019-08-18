@@ -175,7 +175,7 @@
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on July 9, 2019
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on August 18, 2019
   
   
   &nbsp;|&nbsp;
@@ -200,6 +200,52 @@
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
         <div class="posts-list">
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2014/03/03/%E8%97%8F%E8%BF%90%E7%94%A8-boxlayout-%E8%BF%9B%E8%A1%8C-swing-%E6%8E%A7%E4%BB%B6%E5%B8%83%E5%B1%80/">
+                <h2 class="post-title">[藏]运用 BoxLayout 进行 Swing 控件布局</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on March 3, 2014
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 5 minutes (862 words)
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  写的非常非常好的一个教程，感谢陈 怡平
+引言 在用户使用 Java Swing 进行用户界面开发过程中，会碰到如何对 Java Swing 的控件进行布局的问题。Swing 的控件放置在容器 (Container) 中，容器就是能够容纳控件或者其它容器的类，容器的具体例子有 Frame、Panel 等等。容器需要定义一个布局管理器来对控件进行布局管理，Swing 当中提供的主要的布局管理器有 FlowLayout、BorderLayout、BoxLayout、GridLayout 和 GridBaglayout, 它们的主要特点如表 1 所示：
+表 1. Swing 中的一些主要布局管理器的比较   布局管理器 特点     FlowLayout 把控件按照顺序一个接一个由左向右的水平放置在容器中，一行放不下，就放到下一行   BorderLayout 将整个容器划分成东南西北中五个方位来放置控件，放置控件时需要指定控件放置的方位   BoxLayout 可以指定在容器中是否对控件进行水平或者垂直放置，比 FlowLayout 要更为灵活   GridLayout 将整个容器划分成一定的行和一定的列，可以指定控件放在某行某列上   GridBagLayout 是 Swing 当中最灵活也是最复杂的布局管理器，可对控件在容器中的位置进行比较灵活的调整    本文主要关注在 BoxLayout 布局管理器的使用上。我们首先对 BoxLayout 作一下介绍。
+BoxLayout 介绍 如前所述，BoxLayout 可以把控件依次进行水平或者垂直排列布局，这是通过参数 X_AXIS、Y_AXIS 来决定的。X_AXIS 表示水平排列，而 Y_AXIS 表示垂直排列。BoxLayout 的构造函数有两个参数，一个参数定义使用该 BoxLayout 的容器，另一个参数是指定 BoxLayout 是采用水平还是垂直排列。下面是一个创建 BoxLayout 实例的例子：   JPanel panel=new JPanel(); BoxLayout layout=new BoxLayout(panel, BoxLayout.
+                  <a href="https://leizhiyuan.github.io/2014/03/03/%E8%97%8F%E8%BF%90%E7%94%A8-boxlayout-%E8%BF%9B%E8%A1%8C-swing-%E6%8E%A7%E4%BB%B6%E5%B8%83%E5%B1%80/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%AE%BE%E8%AE%A1/">设计</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2014/03/01/%E8%AF%91%E4%BD%BF%E7%94%A8mockito%E7%AE%80%E5%8D%95mock%E5%85%A5%E9%97%A8/">
@@ -800,61 +846,6 @@ public HelloWorldHandler(Object targetObject){ this.targetObject = targetObject;
                     <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E4%BD%9C/">工作</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/11/16/%E8%97%8F%E5%9B%BE%E6%96%87%E5%B9%B6%E8%8C%82%E8%AF%A6%E8%A7%A3eclipse%E6%96%AD%E7%82%B9/">
-                <h2 class="post-title">[藏]图文并茂详解Eclipse断点</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on November 16, 2013
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (63 words)
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  本文转自：http://my.oschina.net/colorleaf/blog/176569
-这个算说的比较清楚的了，虽然简单但是很有用。收藏一下。
-详解Eclipse断点
-大家肯定都用过Eclipse的调试的功能，在调试的过程中自然也无法避免要使用断点(breakpoint)，但不知是否对Eclipse中各类断点都有所了解。本篇图文并茂地介绍了Eclipse中全部类型的断点，及其设置，希望对大家有所帮助。(2011.11.20)
-1. 示例程序 BreakpointDemo是一个臆造的应用程序，只是为了便于讲解Eclipse中各类断点的使用罢了。其代码如下图所示，  BreakpointDemo主要包含两个方法： [1]setValue，该方法根据指定的次数(count)，对成员变量value进行赋值，值的范围为0-9的随机整数。 [2]printValue，该方法会调用setValue()对value进行赋值，并打印出value的值；但，如果value能被3整除，那么就会抛出IllegalArgumentException异常。
-2. Line Breakpoint Line Breakpoin是最简单的Eclipse断点，只要双击某行代码对应的左侧栏，就对该行设置上断点。此处，对第20行代码设置上Line Breakpoint，如下图所示，  可以为Line Breakpoint设置一个条件，那么当程序运行到该断点时，只有满足设定的条件，才会被中断。右键点击第20行的断点，选择&rdquo;Breakpoint Properties&hellip;&rdquo;  在弹出的属性对话框中，勾选上&rdquo;Conditional&rdquo;，然后在文本框中输入&rdquo;count % 2 == 0&rdquo;。  该条件表示，当程序运行到第20行时，只有当count为偶数时，程序才会被中断。细心地话，你会发现该断点的图标发生了改变，多了一个问号。 
-3. Watchpoint Line Breakpoint关注于程序运行的&rdquo;过程&rdquo;，大家也常把使用这种断点的调试称为单步调试。但有时候，我们对程序的运行过程不太了解，可能也不太关心，不能确定在什么地方设置断点比较合适，而可能比较关注某个关键变量的变化或使用。此时，就可以为该变量设置一种特殊的断点&ndash;Watchpoint。在此示例，我们最关心的就是成员变量value的值，那么就可以为它设置一个Watchpoint，双击第9行代码对应的左侧栏就可以了。  使用在2中所提及的方法，查看该断点的属性，  默认地，当该变量被访问或它的值被修改时，程序都会被中断。但在本示例中，只希望当对value的值进行修改时程序才需要被中断，所以取消对&rdquo;Access&rdquo;的勾选。  这时，我们会发现原来的Watchpoin图标也有变化了。 
-4. Method Breakpoint 与关注对某个变量的访问与修改一样，我们也可以关注程序对某个方法的调用情况，即，可以设置Method Breakpoint。在此处，设置针对方法setValue的Method Breakpoint。同理，双击第11行代码对应的左侧栏即可。  仍然要查看该断点的属性。默认地，只勾选了&rdquo;Entry&rdquo;，而没有勾选&rdquo;Exit&rdquo;。  这表示，当刚进入该方法(调用开始)时，程序会被中断；而，离开该方法(调用结束)时，程序并不会被中断。在本示例中，需要同时勾选上&rdquo;Exit&rdquo;。  点击OK之后，可以看到该断点的图标也有所改变。  根据这里的设置，当程序运行到第20行后会在第12行被中断，尽管这里没有显式的断点，但这就是setValue()方法的入口(Entry)。必须注意地是，程序在运行到第16行时不会被中断，尽管它看起来像是setValue()方法的出口(Exit)。实际上，程序会在第17行被中断，这里才是setValue()调用结束的地方。
-5. Exception Breakpoint 如果，我们期望某个特定异常发生时程序能够被中断，以方便查看当时程序所处的状态。通过设置Exception Breakpoint就能达到这一目标。本示例故意在第23行抛出了IllegalArgumentException异常，我们期望程序运行到此处时会被中断。但我们不直接为此行代码设置Line Breakpoint，而是为IllegalArgumentException设置Exception Breakpoint。设置Exception Breakpoint的方法与其它类型断点都不同，它不能通过双击左侧栏的方式在代码编辑器上直接进行设置。点击Breakpoints视图右上角形如Ji的图标，  会弹出如下所示的对话框，  在其中选中IllegalArgumentException，并点击OK，这时一个Exception Breakpoint就设置好了。  当value为3的倍数时，程序会在第23行被中断，这时我们就能使用调试器来看看value具体是等于0，3或6。 6.
-                  <a href="https://leizhiyuan.github.io/2013/11/16/%E8%97%8F%E5%9B%BE%E6%96%87%E5%B9%B6%E8%8C%82%E8%AF%A6%E8%A7%A3eclipse%E6%96%AD%E7%82%B9/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%94%B6%E8%97%8F/">收藏</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
                   
                 </div>
               

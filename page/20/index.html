@@ -196,6 +196,67 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/09/26/avalondock-2.0%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86/">
+                <h2 class="post-title">AvalonDock 2.0入门指南第一部分</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 26, 2012
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (192 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  AvalonDock 2.0可以用来为WPF创建一个类似Visual Studio的界面，深入理解如何使用AvalonDock进行开发是很重要的。
+在这个入门指南里，我将演示如何开始使用AvalonDock，下面的文章都是基于2.0版本的。并且不能用于早期的版本。
+AvalonDock是一个组合的布局模型，很多的控件都在视图上显示，一个DockingManager 类也显示在停靠区，用于可以拖拽文档和工具。
+从下面这个截图中我们可以理解AvalonDock组件
+ DockingManager 这是AvalonDock中的核心控件，它将包含的窗格排序，处理飞出的窗格，还有浮动的窗口。在上面这个图中，DockingManager 对象包含了所有空间（WPF控件），从顶部的工具栏到底部的状态栏都算。同时。DockingManager 也可以处理保存和恢复布局。
+LayoutPanel 这个面板用来管理在一个方向上的子窗口（通过Orientation属性来选择方向），并且在它们之间添加了一个大小调节控件，在一个Orientation属性是Horizontal（水平）的LayoutPanel 上，排列了三个窗格。一个LayoutAnchorablePane在左，一个LayoutDocumentPane在中间。一个LayoutDockablePane在右边。
+LayoutDockablePane 这个布局元素包含一个LayoutAnchorable对象的集合。通过它用来管理想TabControl这样的控件，在上面的截图中，LayoutDockablePanes是在左边的&rsquo;Strumenti&rsquo; 和 &lsquo;Progetti&rsquo; (工具和项目) 和在右边的&rsquo;Classi&rsquo; 和 &lsquo;Proprieta&rdquo; (类视图和属性视图)的容器，一个LayoutDockablePane可以自动隐藏，就像&rsquo;Errori&rsquo;(错误)和&rsquo;Lista Azioni&rsquo;(操作列表) and &lsquo;Uscita&rsquo;(输出)。并且LayoutDockablePane可以被拖动到DockingManager上，成为一个浮动窗口或者附着到它的父控件DockingManager的边缘上。
+LayoutDocumentPane 通常包含文档（DocumentContent类型）的一种窗格，但是其实也可以包含像上面提到的工具视图和类视图这样的DockableContents。在一个文档里。LayoutDocumentPane 被放置在ResizingPanel（水平方向）里。ResizingPanel则是上卖弄提到的在两个DockablePane中间的区域。注意。文档窗格是不能被移动的。
+LayoutAnchorable 一个停靠内容，是软件控件的容器，总是被包含在一个窗格里（LayoutAnchorablePane或是LayoutDocumentPane），在截图里。LayoutAnchorable是一类对象（包含一个SharpDevelop对象），工具对象，但是错误窗口（它处于自动隐藏状态，被好办在一个自动隐藏窗格里）不是。LayoutAnchorable就像它名字所暗示的那样。可以被从他的容器窗格里拖走。然后重新放置在一个存在的窗格里。或者是放置在父DockingManager的边缘，或者是放置在一个浮动窗口里（LayoutAnchorableFloatingWindow）。
+LayoutDocument 是一个仅可以被寄宿到LayoutDocumentPane的内容。它是一个特殊的内容，因为不能被停靠到边缘。仅能被放置到LayoutDocumentPane里。或者浮动在一个LayoutDocumentFloatingWindow窗口里。在途中，DocumentContent对象是program.cs&rsquo; 或 &lsquo;MainForm.cs&rsquo; 文件视图
+**LayoutFloatingWindow **，是一个包含内容的窗口，当被拖动到一个DockingManager上面的时候，LayoutFloatingWindow（LayoutAnchorableFloatingWindow和LayoutDocumentFloatingWindow继承自他）集成在Window，总是包含一个窗格（LayoutAnchorablePane或是LayoutDocumentPane），窗格包含更多的内容（LayoutAnchorable或LayoutDocument），当用户对一个内容或是DockablePane执行拖拽，或者直接手工使用代码调用LayoutContent.Float()方法 LayoutFloatingWindow就被直接从DockingManager创建出来了。
+LayoutPane 一个基类，LayoutDockablePane和LayoutDocumentPane继承自它。它为他们提供了一些共有的属性和方法。
+LayoutContent 是LayoutAnchorable 和LayoutAnchorable类的父类。提供了共有的属性和方法。
+理解布局元素是一些属于布局模型的类而不是属于视图是很重要的。因为，他们不是继承自FrameworkElement类，取而代之。AvalonDock包含了另一些类来展示这些组件的视图。这些类通常被命名为相关联的类名+Control字串。举个例子，在布局里创建的LayoutAnchorable创建了一个LayoutAnchorableControl（继承自FrameworkElement的类），并且绑定了LayoutAnchorableControl.Model 到这个LayoutAnchorable对象上。
+每一个被创建的视图控件总是有着Model属性的布局元素。因此，重新设计一个相关视图控件的样式是可以的。
+为了开始创建一个新的.net 4/.net 4.5的解决方案。并且添加对AvalonDock.dll的引用（可以直接添加也可以使用NuGet），然后添加AD命名空间到MainWindow.xaml中。
+在根Grid下放置DockingManager组件和一个简单的布局。
+&lt;Window x:Class="MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:avalonDock="http://avalondock.codeplex.com" Title="MainWindow" Height="434" Width="684"&gt; &lt;Grid&gt; &lt;avalonDock:DockingManager x:Name="dockingManager"&gt; &lt;avalonDock:LayoutRoot&gt; &lt;avalonDock:LayoutPanel Orientation="Horizontal"&gt; &lt;avalonDock:LayoutDocumentPane/&gt; &lt;avalonDock:LayoutAnchorablePane DockWidth="150"&gt; &lt;avalonDock:LayoutAnchorable Title="
+                  <a href="https://leizhiyuan.github.io/2012/09/26/avalondock-2.0%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/wpf/">WPF</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/09/25/c#-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E7%B3%BB%E5%88%97/">
                 <h2 class="post-title">C# 网络编程系列</h2>
                 
@@ -717,75 +778,6 @@ using System; using System.Collections.Generic; using System.Text; using System.
                     <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/09/21/%E5%95%86%E5%8A%A1%E6%99%BA%E8%83%BD%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-%E8%B0%A2%E9%82%A6%E6%98%8C%E7%AC%AC%E4%B8%89%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
-                <h2 class="post-title">《商务智能与数据挖掘-谢邦昌》第三章读书笔记</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 21, 2012
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (67 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  3.数据挖掘
-3.1定义
-　数据挖掘是指找寻隐藏在数据中的信息，如趋势。特征及相关性的过程。也就是从数据中发掘信息或知识（Knowledge Discovery in Database）。也有人称之为数据考古学。。记住，它不是一个无所不能的软件或是一种技术，他是一种结合数种专业技术的应用。数据挖掘工具从数据中发掘出个各种假设。但是并不帮你查证。确认这些假设。也不帮你判断这些假设是否有价值。
-3.2数据挖掘的功能
-　1.分类（Classification），按照分析对象的属性进行分门别类加以定义。建立类组（Class）。例如划分银行信用申请者的风险属性，使用的技术有决策树（Decision Tree），记忆基础推理（memory-based reasoning）
-　2.估计（Estimation），根据既有连续性数值的相关属性数据。以获知某一属性未知值。。例如按照信用申请者的教育程度，行为估计其的信用卡缴费量。使用的技术包括相关分析，回归分析及神经网络算法。
-　3.预测（Prediction）根据对象属性的过去观察值来估计该属性未来值。比如根据顾客过去刷卡消费量来预测其未来刷卡消费量。使用的技术包括回归分析，时间序列分析，神经网络。
-　4.关联分组（Affinity Grouping）从所有对象决定哪些相关对象放在一起销售。比如那个啤酒和尿不湿。。在客户营销系统上，此功能用来确定交叉销售。。
-　5.聚类（Clustering)，将异质总体中区分为特征相近的同质类组。目的是将组和组之间的差异辨识出来。并对个别组内相似样本进行挑选。
-3.3数据挖掘的步骤
-　1.理解数据和数据所代表的含义（Data Understanding）
-　2.获取相关知识和技术（Domain Knowledge Acquisition）
-　3.整合和检查数据（Integration and Checking）
-　4.去除错误或不一致的数据（Data Cleaning)
-　5.建模与假设（Model and Hypothesis Development）
-　6.数据挖掘运行（Running)
-　7.测试与验证所挖掘的数据（Testing and Verification）
-　8.解释与使用数据（Interpretation and Use）
-3.4数据挖掘建模的标准CRISP-DM
-　CRISP-DM模型强调完整的数据挖掘过程，不能只针对数据整理、数据呈现、数据分析以及构建模型，还需要对企业的需求问题进行了解，同时，后期对模型进行评价和模型的延伸应用，也是一个完整的数据挖掘过程不可或缺的要素。
-　CRISP-DM分为六个阶段（phase）和四个层次（level），分别简介如下：
-　1. 商业理解（Business Understanding）
-　本阶段主要的工作是要针对企业问题以及企业需求进行了解确认，针对不同的需求做深入的了解，将其转换成数据挖掘的问题，并拟定初步构想。在此阶段中，需要与企业进行讨论，以确定分析者可以对于问题有非常清楚的了解，只有这样才可以正确地针对问题拟定分析过程。
-　2. 数据理解（Data Understanding）
-　这部分包含建立数据库与分析数据。在此阶段必须收集初步数据，然后了解数据的内涵与特性，选择要进行数据挖掘所必须的数据，然后进行数据整理及评估数据的质量，必要时再将分属不同数据库的数据加以合并及整合。数据库建立完成后再进行数据分析，找出影响预测最大的数据。
-　3. 数据预处理（Data Preparation）
-                  <a href="https://leizhiyuan.github.io/2012/09/21/%E5%95%86%E5%8A%A1%E6%99%BA%E8%83%BD%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-%E8%B0%A2%E9%82%A6%E6%98%8C%E7%AC%AC%E4%B8%89%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">数据挖掘</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%AE%BE%E8%AE%A1/">设计</a>&nbsp;
                   
                 </div>
               

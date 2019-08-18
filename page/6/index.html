@@ -196,6 +196,87 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2014/09/14/%E8%93%9D%E7%BB%BF%E5%8F%91%E5%B8%83%E7%9A%84%E6%95%B4%E4%B8%AA%E9%83%A8%E7%BD%B2%E8%BF%87%E7%A8%8B/">
+                <h2 class="post-title">蓝绿发布的整个部署过程</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 14, 2014
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (21 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  
+
+<p><div></p>
+
+<p>一直听说蓝绿发布,不知道是怎么个过程.</p>
+
+<p>thanks to<span class="Apple-converted-space"> </span><a href="http://sunitspace.blogspot.jp/2013/10/blue-green-deployment.html" title="blue green deploy">blue-green-deployment</a></p>
+
+<h2 id="蓝绿发布的意义">蓝绿发布的意义</h2>
+
+<p>整个发布过程，用户没有感受到任何宕机或者服务重启。</p>
+
+<h2 id="蓝绿发布的过程">蓝绿发布的过程</h2>
+
+<p>第0步:部署以前的配置
+<a href="http://leaverimage.b0.upaiyun.com/2014/09/Blue-Green-Deployment-for-Zero-Downtime-8.png"><img src="/images/640798001262d94e7dbb6e2e7c58bf456e447775.png" alt="Blue Green Deployment for Zero Downtime (8)" /></a></p>
+
+<p>第1步: 把绿色集群的状态改为&rsquo;备用&rsquo;. 从负载均衡的池里把这些地址去掉,这样,绿色的集群就不再回接收到来自用户的请求了.转而进入备用负载均衡的池里.
+<a href="http://leaverimage.b0.upaiyun.com/2014/09/Blue-Green-Deployment-for-Zero-Downtime-9.png"><img src="/images/3f51064c7e2863de366d71673e234504f6991048.png" alt="Blue Green Deployment for Zero Downtime (9)" /></a></p>
+
+<p>第2步:在绿色集群里部署新的代码,直到应用启动成功
+<a href="http://leaverimage.b0.upaiyun.com/2014/09/Blue-Green-Deployment-for-Zero-Downtime-3.png"><img src="/images/d4b51b6ce1a44b5cbaa11da5e8c1aa1d5eeea056.png" alt="Blue Green Deployment for Zero Downtime (3)" /></a></p>
+
+<p>第3步:使用备用负载均衡简单测试一下备用集群的部署情况.理想状态下是全自动的.</p>
+
+<p>第4步:把绿色备用集群的状态改成存货,于是进入了存活负载均衡的池里
+<a href="http://leaverimage.b0.upaiyun.com/2014/09/Blue-Green-Deployment-for-Zero-Downtime-4.png"><img src="/images/19b275c22c2540d4cd4c8e6f28f6c90e474fd0ad.png" alt="Blue Green Deployment for Zero Downtime (4)" /></a></p>
+
+<p>看到 蓝色运行v1版本,绿色运行v2版本,都连接的是相同的数据库.这意味着v2版本也要在老的数据模型上运行.如果数据库有变更,要等到所有的集群升级到新的代码上.</p>
+
+<p>第5步: 对蓝色集群也进行同样的操作.
+<a href="http://leaverimage.b0.upaiyun.com/2014/09/Blue-Green-Deployment-for-Zero-Downtime-5.png"><img src="/images/d40415aeafd0197ad5408a7d9bcf17e99b2b8d64.png" alt="Blue Green Deployment for Zero Downtime (5)" /></a>
+<a href="http://leaverimage.b0.upaiyun.com/2014/09/Blue-Green-Deployment-for-Zero-Downtime-6.png"><img src="/images/6d403f2fcd75c1dcacab86ef6447f837018aaf5e.png" alt="Blue Green Deployment for Zero Downtime (6)" /></a>
+最终v2代码完成部署.
+<a href="http://leaverimage.b0.upaiyun.com/2014/09/Blue-Green-Deployment-for-Zero-Downtime-7.png"><img src="/images/6f2592793b9517521e14b4aae09696e30d708ae6.png" alt="Blue Green Deployment for Zero Downtime (7)" /></a></p>
+
+<p>第6步:根据情况.运行数据库迁移</p>
+
+<p></div>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E4%BD%9C/">工作</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2014/08/21/%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%BB%99spring-framework%E8%B4%A1%E7%8C%AE%E4%BB%A3%E7%A0%81/">
                 <h2 class="post-title">第一次给Spring-Framework贡献代码</h2>
                 
@@ -638,72 +719,6 @@ newPersistener = new DowJonesNewsPersister();
                     <a href="https://leizhiyuan.github.io//tags/%E8%AE%BE%E8%AE%A1/">设计</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2014/06/29/burpsuite%E6%8A%93%E5%8C%85https/">
-                <h2 class="post-title">burpsuite抓包https</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on June 29, 2014
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (10 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  <p>最近工作需要，需要burpsuite抓下https的包</p>
-
-<p>burpsuite抓包https的时候，如果是https协议，火狐会不信任证书</p>
-
-<p>&nbsp;</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/2014/06/untrust.jpg"><img src="/images/14c5d2aedaa02e325fe21c03758796234ed83576.jpg" alt="untrust" /></a></p>
-
-<p>这个时候点击我已充分了解可能的风险，然后添加例外，弹出图中的对话框</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/2014/06/step.jpg"><img src="/images/4adf7f8902f07ea98a728a2d71270906208bfea6.jpg" alt="step" /></a></p>
-
-<p>点击查看，进入证书管理企业免，选择图中的PortSwigger CA根证书，选择导出，保存一下这个证书</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/2014/06/export.jpg"><img src="/images/6e81972ac7283935e22a260f92ab4a582780eb73.jpg" alt="export" /></a></p>
-
-<p>然后打开火狐的选项，进入高级-&gt;证书-&gt;查看证书-&gt;证书机构-&gt;导入，选择刚才的证书</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/2014/06/import.jpg"><img src="/images/3e43de2ca0a2c88519035a3d39a60fb8757c4da9.jpg" alt="import" /></a></p>
-
-<p>，最后，记住选中信任此CA证书标识的网站，ok</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/2014/06/finish.jpg"><img src="/images/070d8695abea24e9e8bf11e162f12afccaa5385f.jpg" alt="finish" /></a></p>
-
-<p>现在再抓包，可以看到https也抓到了。</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/2014/06/capture.jpg"><img src="/images/cf1f9324b8934ba12cab8ea0a19a530897e206e3.jpg" alt="capture" /></a></p>
-
-<p>&nbsp;</p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E4%BA%92%E8%81%94%E7%BD%91/">互联网</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AE%89%E5%85%A8/">安全</a>&nbsp;
                   
                 </div>
               
