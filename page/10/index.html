@@ -196,6 +196,50 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2013/09/19/maven%E6%8F%90%E7%A4%BA%E7%BC%BA%E5%B0%91tools.jar/">
+                <h2 class="post-title">Maven提示缺少tools.jar</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 19, 2013
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (4 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  <p>记录一下。</p>
+
+<p>这两天在熟悉Maven，长见识了.后续可能的话会写上一两篇，今天配置的时候提示tools.jar文件。于是使用everything搜了一下，本机的jdk目录还真没有，最后搜了一下，发现是安装jdk时候的问题，具体就是因为安装jdk的时候，后面被让继续安装jre，这个时候，我为了方便，将jre安装在了jdk的目录里，结果导致jre会覆盖到jdk的这两个文件。同时还会覆盖dt.jar这个包，于是，就没了。。这个问题略隐晦了..</p>
+
+<p>&nbsp;</p>
+
+<p>重新安装了jdk，将jdk和jre分开目录，然后设置一下jdk的lib目录到classpath就可以了，问题解决。</p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%AC%94%E8%AE%B0/">笔记</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2013/09/15/%E8%AF%91java%E4%B8%AD%E7%9A%84countdownlatch%E5%92%8Ccyclicbarrier/">
                 <h2 class="post-title">[译]Java中的CountDownLatch和CyclicBarrier</h2>
                 
@@ -586,47 +630,6 @@ n命令是输出当前行，然后读入下一行到pattern space的意思，这
 5.如何替换第二次出现的a? $ sed &rsquo;s/a/A/2&rsquo; sample1.txt apple orange banAna pappAya 不使用g，而是使用数字来表示行内第几次出现的a，结果如上
 6.如何替换第二次之后的所有a呢？ $ sed &rsquo;s/a/A/2g&rsquo; sample1.
                   <a href="https://leizhiyuan.github.io/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%BA%8C%E7%AF%87%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/linux/">linux</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/shell/">shell</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%80%E7%AF%87-%E5%90%91%E6%96%87%E4%BB%B6%E4%B8%AD%E5%A2%9E%E5%8A%A0%E4%B8%80%E8%A1%8C/">
-                <h2 class="post-title">[译]Unix sed实用教程第一篇--向文件中增加一行</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on August 9, 2013
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (170 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  Unix sed实用教程第一讲，本系列第一篇，有任何问题欢迎留言讨论。
-sed 是unix中最重要的编辑器之一，注意，有之一..支持多种编辑任务，本文将实现题目的功能实例
-假定我们有一额文本文件，叫做empFile，包含了员工名字和员工id，如下： Hilesh, 1001 Bharti, 1002 Aparna, 1003 Harshal, 1004 Keyur, 1005 1.如何通过sed给文件添加标题行-“Employee, EmpId” $ sed &lsquo;1i Employee, EmpId&rsquo; empFile Employee, EmpId Hilesh, 1001 Bharti, 1002 Aparna, 1003 Harshal, 1004 Keyur, 1005 解释：数字1，是说只对第一行执行操作，i代表在insert（熟悉vim的同学应该知道，i会在当前字符的前面插入，a是在后面插入），因此，1i就表示在将Employee, EmpId插入到第一行之前，
-然后，有了标题行的文件仅仅会输出到标准输出，源文件内容并不会改变，如果需要更新源文件，可以使用重定向输出到一个临时文件，然后移动到原始文件。如果Unix系统的sed是GUN版本的，sed会有一个-i选项，可以直接实现更新源文件，（如何查看版本，终端下输入sed &ndash;version即可看到）下面先执行，再查看文件，发现已经多了标题行了 $ sed -i &lsquo;1i Employee, EmpId&rsquo; empFile $ cat empFile Employee, EmpId Hilesh, 1001 Bharti, 1002 Aparna, 1003 Harshal, 1004 Keyur, 1005 2.如何在标题行之后，也就是原始第一行之前添加一行横线&ndash;“&mdash;&ndash;” $ sed -i &lsquo;1a &mdash;&mdash;&mdash;&mdash;&mdash;&rsquo; empFile $ cat empFile
-                  <a href="https://leizhiyuan.github.io/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%80%E7%AF%87-%E5%90%91%E6%96%87%E4%BB%B6%E4%B8%AD%E5%A2%9E%E5%8A%A0%E4%B8%80%E8%A1%8C/" class="post-read-more">[Read More]</a>
                 
               </div>
 

@@ -196,6 +196,95 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2013/04/05/%E5%92%8C-%E6%B5%85%E6%9E%90/">
+                <h2 class="post-title">和
+浅析</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on April 5, 2013
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (63 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  <p>这两个转义字符最初学习C++的时候看到了,当时没多想，后来某一天突然想起来，回车不就是换行吗？这不是多此一举吗？今天又看到，索性查了下相关资料，整理一下，留作记录.</p>
+
+<p>关于“回车”（carriage return）和“换行”（line feed）这两个概念的来历和区别。</p>
+
+<p>在计算机还没有出现之前，有一种叫做电传打字机（Teletype Model 33）的玩意，每秒钟可以打10个字符。但是它有一个问题，就是打完一行换行的时候，要用去0.2秒，正好可以打两个字符。要是在这0.2秒里面，又有新的字符传过来，那么这个字符将丢失。</p>
+
+<p>于是，研制人员想了个办法解决这个问题，就是在每行后面加两个表示结束的字符。一个叫做“回车”，告诉打字机把打印头定位在左边界；另一个叫做“换行”，告诉打字机把纸向下移一行（这句的意思是把纸向上拉，然后打印头就定位到了下一行），可以想象一下，这个打印头只能在一个固定的水平线上左右移动，而不能上下移动，我们通过移动纸来完成打印下一行。</p>
+
+<p>不明白的我在youtube上找到一个这种打字机的演示视频，为了方便读者观看，我提供一个<a href="http://pan.baidu.com/share/link?shareid=428006&amp;amp;uk=1493685990">下载地址</a>。</p>
+
+<p>后来，计算机发明了，这两个概念也就被般到了计算机上。那时，存储器很贵，一些科学家认为在每行结尾加两个字符太浪费了，加一个就可以。于是，就出现了分歧。</p>
+
+<p>Unix系统里，每行结尾只有&rdquo;&lt;换行&gt;&ldquo;，即&rdquo;\n&rdquo;；</p>
+
+<p>Windows系统里面，每行结尾是&rdquo;&lt;换行&gt;&lt;回车&gt;&ldquo;，即&rdquo;\n\r&rdquo;；</p>
+
+<p>Mac系统里，每行结尾是&rdquo;&lt;回车&gt;&ldquo;，不过mac基于unix，所以换行也应该是可以的。</p>
+
+<p>一个直接后果是，Unix/Mac系统下的文件在Windows里打开的话，所有文字会变成一行；而Windows里的文件在Unix/Mac下打开的话，在每行的结尾可能会多出一个^M符号。这个如果你在windows下使用vim也会发现这个情况</p>
+
+<p>用C++来说明</p>
+
+<p>如：
+<pre class="lang:default decode:true">int main()
+{
+   cout &lt;&lt; &ldquo;leaver.me&rdquo; &lt;&lt; &ldquo;\r&rdquo; &lt;&lt; &ldquo;bystander&rdquo; ;
+   return 0;
+}</pre>
+&nbsp;</p>
+
+<p>最后只显示 bystander 而 leaver.me 背覆盖了</p>
+
+<p>\n 是换行，系统会将其替换成回车＋换行 把光标 先移到 行首 然后换到下一行 也就是 下一行的行首拉
+<pre class="lang:default decode:true">int main()
+{
+   cout &lt;&lt; &ldquo;leaver.me&rdquo; &lt;&lt; &ldquo;\n&rdquo; &lt;&lt; &ldquo;bystander&rdquo; ;
+   return 0;
+}</pre>
+则 显示</p>
+
+<p>leaver.me</p>
+
+<p>bystander</p>
+
+<p>一句话，这看起来是一个历史遗留问题&hellip;&hellip;</p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c&#43;&#43;/">C&#43;&#43;</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/linux/">linux</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2013/04/01/%E8%97%8F%E5%85%B3%E4%BA%8Eb%E6%A0%91%E7%9A%84%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">
                 <h2 class="post-title">[藏]关于B树的一篇文章</h2>
                 
@@ -738,79 +827,6 @@ f4ck.net/index.php?id=1 and(select 1 from(select count(*),concat((select (select
                     <a href="https://leizhiyuan.github.io//tags/%E6%9D%82%E6%96%87/">杂文</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E7%94%9F%E6%B4%BB/">生活</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/02/21/c#%E5%8F%8D%E5%B0%84%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E6%8F%92%E4%BB%B6%E7%B3%BB%E7%BB%9F/">
-                <h2 class="post-title">C#反射实现简单的插件系统</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on February 21, 2013
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (40 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  <p>如果用过一些优秀的开源或是非开源的应用软件，就会发现这些软件的一个很大的优势就是其开放性，任何有能力的人都可以为其开发不同的插件来增强其的功能。比如著名的foobar2000，Vim和TotalCommander等等。</p>
-
-<p>C#的反射可以用来实现一个简单的插件系统。思路很简单，我们创建一个解决方案，包含三个工程，一个为我们的软件MyApplication，一个为插件接口IPlugin，一个为具体的插件MyPlugin。插件系统的基本思路是我们用一个接口类库,来定义我们软件可以使用的插件必须实现的方法签名。然后我们的软件MyApplication通过引用该IPlugin dll来动态调用，而具体的实现插件MyPlugin则引用该接口来实现具体的方法。这样我们的应用程序就能在不知道具体插件的情况下调用插件了。。</p>
-
-<p>结构图如下：</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/32896_o.jpg"><img src="/images/bf202a9b50d5ce497f88718743c344d8579fadf1.jpg" alt="Myapplication" /></a></p>
-
-<p>关键代码也就是通过对程序集载入。搜索到对应接口的实现类。然后调用即可。
-<pre class="lang:default decode:true">Assembly a = Assembly.LoadFrom(AssemblyName);
-                foreach (Type t in a.GetTypes())
-                {
-                    if (t.GetInterface(&ldquo;IMyFunction&rdquo;) != null)
-                    {
-                        try
-                        {
-                            IMyFunction pluginclass = Activator.CreateInstance(t) as IMyFunction;
-                            pluginclass.doSomething();
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.ToString());
-                        }
-                    }
-                }</pre>
-运行结果：</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/32897_o.jpg"><img src="/images/6c33ac761faef8c7d4beae4a478b4240cdeb7ee3.jpg" alt="QQ截图20130220200408" /></a></p>
-
-<p>源码下载：<a href="http://pan.baidu.com/share/link?shareid=302323&amp;amp;uk=1493685990">PluginSystem.zip</a></p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%8E%9F%E5%88%9B/">原创</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%AE%BE%E8%AE%A1/">设计</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
                   
                 </div>
               

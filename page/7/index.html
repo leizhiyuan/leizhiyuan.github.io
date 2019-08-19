@@ -196,6 +196,67 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2014/06/30/spring%E6%8F%AD%E7%A7%98%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC%E4%B8%80%E7%AB%A0spring%E6%A1%86%E6%9E%B6%E7%9A%84%E7%94%B1%E6%9D%A5/">
+                <h2 class="post-title">《Spring揭秘》读书笔记-第一章Spring框架的由来</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on June 30, 2014
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (23 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  <p>1.框架的由来</p>
+
+<p>倡导J2EE轻量级应用解决方案</p>
+
+<p>框架总结结构</p>
+
+<p><a href="http://leaverimage.b0.upaiyun.com/2014/06/Spring-Framework.jpg"><img src="/images/8775d9e40dbc29240061edd2b9b6f76990f39cad.jpg" alt="Spring Framework" /></a>
+整个Spring架构建立在Core核心模块上，是基础，该模块中，有一个IoC容器的实现，用来以依赖注入的方式管理对象之间的依赖关系。Core中还有一些气筒工具类，比如IO工具类</p>
+
+<p>从图中看到，AOP模块，提供了轻便二强大的AOP框架，一AOP的形式增强POJO的能力，弥补OOP/OOSD的不足，采用Proxy模式，与IoC容器相结合</p>
+
+<p>继续向上看，在Core和AOP之上，提供了完毕的数据访问和事务管理的抽象，其中，对JDBC API的最佳实践简化了API的使用，还未ORM产品提供了统一的支持，</p>
+
+<p>为了简化Java EE的服务，比如JNDI，JMS等等，Spring还提供了这些的集成服务，</p>
+
+<p>最后就是Web模块，提供了一套自己的Web MVC框架，上层模块依赖于下层模块，水平之间的模块彼此基本可以认为独立。</p>
+
+<p>Spring不仅仅是容器，更是开发任何Java应用的框架，</p>
+
+<p>Spring 框架之上衍生的产品包括不限于Spring Web Flow,Spring Web Services,Spring Security,Spring Integration，Spring Rich Client 等等等等</p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/spring/">spring</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%AE%BE%E8%AE%A1/">设计</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2014/06/29/burpsuite%E6%8A%93%E5%8C%85https/">
                 <h2 class="post-title">burpsuite抓包https</h2>
                 
@@ -759,74 +820,6 @@ cron是linux下的定时执行工具
                 <div class="blog-tags">
                   
                     <a href="https://leizhiyuan.github.io//tags/linux/">linux</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E4%B8%8A%E6%B5%B7/">上海</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E4%BD%9C/">工作</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2014/03/08/eclipse%E7%AE%A1%E7%90%86%E5%A4%9A%E4%B8%AAworkplace/">
-                <h2 class="post-title">eclipse管理多个workplace</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on March 8, 2014
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (24 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  <p>由于eclipse用的比较多，管理多个workplace很麻烦，经常需要打开以后再切换，简单介绍个方法。</p>
-
-<p>一</p>
-
-<p>1.进入Eclipse的安装目录，鼠标点击eclipse.exe，右键菜单&ndash;&gt;发送到&ndash;&gt;桌面快捷方式</p>
-
-<p>2.到桌面上找到“eclipse.exe - 快捷方式”，鼠标右键点击查看属性，弹出菜单中选择“快捷方式”标签，然后在“目标”中增加内容：-data e:\workspace，保存后即可</p>
-
-<p>3.双击这个快捷方式，eclipse就会使用e:\workspace作为工作空间启动。</p>
-
-<p>这样你多复制几个，就好了。</p>
-
-<p>二</p>
-
-<p>1.找个目录，新建一个文件夹，名称为workspace_aaa</p>
-
-<p>2.然后在当前目录下新建一个txt文件</p>
-
-<p>3.输入内容为：</p>
-
-<pre class="lang:default decode:true">start E:\eclipse\eclipse.exe -data workspace1</pre>
-
-<p>说明：前面是eclipse的路径，中间加上&rdquo;-data” ，后面为工作空间的路径，start要有，不然打开eclipse之后，命令行窗口不会自动消失的，很是碍眼。</p>
-
-<p>4.将这个txt保存为workspace1.bat</p>
-
-<p>5.双击这个workspace1.bat，eclipse就会使用workspace1.bat 作为工作空间启动。</p>
-
-<p>&nbsp;</p>
-
-<p>对launchy党来说，新建个目录，然后创建好多个bat，以后直接快速启动真是太方便了</p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
                   
                     <a href="https://leizhiyuan.github.io//tags/%E4%B8%8A%E6%B5%B7/">上海</a>&nbsp;
                   

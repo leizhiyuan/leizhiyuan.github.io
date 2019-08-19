@@ -196,6 +196,54 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/09/22/html%E8%A7%A3%E6%9E%90%E5%B7%A5%E5%85%B7-htmlagilitypack/">
+                <h2 class="post-title">Html解析工具-HtmlAgilityPack</h2>
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 22, 2012
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 1 minutes (114 words)
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  这个工具是在暑假的时候发现的。但是最后没用这个工具。不过，这个工具可是非常强悍的。。
+HtmlAgilityPack主要就是解析DOM的。常用的基础类其实不多，对解析DOM来说，就只有HtmlDocument和HtmlNode这两个常用的类，还有一个 HtmlNodeCollection集合类。我给出一个抓取我博客首页文章的例子。看代码可能更清楚一点。你可以去看看压缩包里提供的文档。
+xpath如果自己写表达式比较麻烦。所以我还找到了这个HtmlAgilityPack提供了的一个xpath辅助工具-HAPExplorer。都给出了地址。
+首先看我的例子，抓取我博客的首页文章：
+using System; using System.Collections.Generic; using System.Text; using System.Threading; using System.Diagnostics; using System.Threading.Tasks; using System.IO; using System.Data; using System.Data.SqlClient; using HtmlAgilityPack; namespace leaver { class Program { static void Main(string[] args) { HtmlWeb web = new HtmlWeb(); HtmlDocument doc = web.Load("http://leaver.me/"); HtmlNode node = doc.GetElementbyId("content"); StreamWriter sw = File.CreateText("leaver.txt"); //从根节点选中class=hfeed的节点 string cfeed = node.SelectSingleNode("/html[1]/body[1]/div[1]/div[1]/div[2]/div[1]/div[1]").OuterHtml; HtmlNode hfeed = HtmlNode.CreateNode(cfeed); foreach (HtmlNode child in hfeed.ChildNodes) { if (child.Attributes["id"] == null || child.
+                  <a href="https://leizhiyuan.github.io/2012/09/22/html%E8%A7%A3%E6%9E%90%E5%B7%A5%E5%85%B7-htmlagilitypack/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%8E%9F%E5%88%9B/">原创</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/09/21/%E5%95%86%E5%8A%A1%E6%99%BA%E8%83%BD%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-%E8%B0%A2%E9%82%A6%E6%98%8C%E7%AC%AC%E4%B8%89%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
                 <h2 class="post-title">《商务智能与数据挖掘-谢邦昌》第三章读书笔记</h2>
                 
@@ -771,68 +819,6 @@ string s=obj.SessionId;</pre>
                     <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/09/07/wcf%E5%8F%8C%E5%B7%A5%E9%80%9A%E4%BF%A1%E7%A4%BA%E4%BE%8B/">
-                <h2 class="post-title">WCF双工通信示例</h2>
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 7, 2012
-  
-  
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (8 words)
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  <p>　　这两天在看WCF的书籍。就参考书上的代码写了这个例子。不得不说。书上有些错误的地方。。运行明显报错。改了一下。顺利通过。</p>
-
-<p>　　先运行Hosting。然后运行Client。可以看到效果。不过不知道为什么会有如下的一个提示：</p>
-
-<p>　　目标程序集不包含服务类型。可能需要调整此程序集的代码访问安全策略。</p>
-
-<p>　　点击确定后并不影响程序运行。。但是也是个问题。。找了一下解决方法。都没有解决。。可能是我新建契约服务的时候，删掉了默认的IService配置。</p>
-
-<p>//update:此问题解决了。是因为默认的app.config太多。对于典型的四层结构。需要删除契约和服务中的app.config。。</p>
-
-<p>　　暂时先放着吧。</p>
-
-<p>　　运行截图：</p>
-
-<p>　　<a href="http://leaverimage.b0.upaiyun.com/26775_o.jpg"><img src="/images/35cc6b919f9d513bf612503ffcac5b3448f20f37.jpg" alt="" title="wcfExample" /></a></p>
-
-<p>　　示例代码下载：<a href="http://dl.vmall.com/c0c44hq61p">Lazy.Duplex</a></p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/wcf/">WCF</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
                   
                 </div>
               
