@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
   <head>
+    
+
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>C# 委托知识总结</title>
+  <title>C# 委托知识总结 - bystander&#39;s blog</title>
   <meta property="og:title" content="C# 委托知识总结" />
   <meta name="twitter:title" content="C# 委托知识总结" />
   <meta name="description" content="如果你足够强大，你就不会把幸福押在别人身上，你会自己创造幸福或者给别人带来幸福。而变得强大的途径就是学习，就是读书，学一切东西，读任何想读的书。 爱你让我变得更强。。 继续读一些专业文章了。不保证都是原创，但是保证每篇技术文章的质量。也会注明来源，标准就是浅显易懂。但不简单。
@@ -29,29 +31,115 @@ public class DelegateSource { public void TestDelegate() { Operator op = new Ope
   <meta name="twitter:description" content="如果你足够强大，你就不会把幸福押在别人身上，你会自己创造幸福或者给别人带来幸福。而变得强大的途径就是学习，就是读书，学一切东西，读任何想读的书。 爱你让我变得更强。。 继续读一些专业文章了。不保证都是原创，但是保证每篇技术文章的质量。也会注明来源，标准就是浅显易懂。但不简单。
 原文来自：贺臣感谢原作者的好文章。 1.什么是委托，为什么要使用委托
 我正在埋头苦写程序，突然想喝水，但是又不想自己去掉杯 …">
-  <meta name="author" content="bystander"/>
+  <meta name="author" content="bystander"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "bystander\x27s blog",
+    
+    "url": "https:\/\/leizhiyuan.github.io\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/leizhiyuan.github.io\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/2012\/09\/16\/c#-%E5%A7%94%E6%89%98%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93\/",
+          "name": "C# 委托知识总结"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "bystander"
+  },
+  "headline": "C# 委托知识总结",
+  "description" : "如果你足够强大，你就不会把幸福押在别人身上，你会自己创造幸福或者给别人带来幸福。而变得强大的途径就是学习，就是读书，学一切东西，读任何想读的书。 爱你让我变得更强。。 继续读一些专业文章了。不保证都是原创，但是保证每篇技术文章的质量。也会注明来源，标准就是浅显易懂。但不简单。\n原文来自：贺臣感谢原作者的好文章。 1.什么是委托，为什么要使用委托\n我正在埋头苦写程序，突然想喝水，但是又不想自己去掉杯水而打断自己的思路，于是我就想让女朋友去给我倒水。她去给我倒水，首先我得让她知道我想让她干什么，通知她之后我可以继续写自己的程序，而倒水的工作就交给了她。这样的过程就相当于一个委托。\n在程序过程中，当程序正在处理某个事件的时候，我需要另外的程序代码去辅助处理一些事情，于是委托另一个程序模块去处理，而委托就可以达到这种目的，我可以利用委托通知另外的程序模块，该去调用哪个函数方法。委托其实就起到了这样一个作用，将函数签名传递到了另一个函数中。或许这样讲还是有些模糊，看看后面的具体实例。\n2.委托的定义 delegate int Add(int num1,int num2);\ndelegate void ConvertNum(string result);  上面是定义两个委托的例子，其实很简单。声明一个委托使用delegate关键字，上面分别是定义的带返回值的委托和不带返回值的委托，\n两个委托都有传递参数，当然也可以不传递参数。其实委托也是一个类，委托派生为System.MulticastDelegate,而System.MulticastDelegate\n又继承System.Delegate,如果你知道这个也就明白委托其实是一个特殊的类。 委托的简单实用例子 public delegate string TeaDelegate(string spText);\npublic class DelegateSource { public void TestDelegate() { Operator op = new Operator(); TeaDelegate tea = new TeaDelegate(op.GetTea); Console.WriteLine(\x26#34;去给我倒杯水\x26#34;); Console.WriteLine(); string result=tea(\x26#34;去给我倒杯水\x26#34;); Thread.Sleep(5000); Console.WriteLine(result); Console.WriteLine(); } } public class Operator { \/\/\/ \x26lt;summary\x26gt; \/\/\/ 确定是否还有水 \/\/\/ \x26lt;\/summary\x26gt; private bool flag = true; public string GetTea(string spText) { if (spText == \x26#34;去给我倒杯水\x26#34;) { if (flag) { return \x26#34;老公,茶来了\x26#34;; } else { return \x26#34;老公,没有水了\x26#34;; } } return \x26#34;等待.",
+  "inLanguage" : "en",
+  "wordCount":  705 ,
+  "datePublished" : "2012-09-16T10:52:01",
+  "dateModified" : "2012-09-16T10:52:01",
+  "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+  "keywords" : [ "C＃, 学习, 开发, 收藏" ],
+  "mainEntityOfPage" : "https:\/\/leizhiyuan.github.io\/2012\/09\/16\/c#-%E5%A7%94%E6%89%98%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/leizhiyuan.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="C# 委托知识总结" />
+<meta property="og:description" content="如果你足够强大，你就不会把幸福押在别人身上，你会自己创造幸福或者给别人带来幸福。而变得强大的途径就是学习，就是读书，学一切东西，读任何想读的书。 爱你让我变得更强。。 继续读一些专业文章了。不保证都是原创，但是保证每篇技术文章的质量。也会注明来源，标准就是浅显易懂。但不简单。
+原文来自：贺臣感谢原作者的好文章。 1.什么是委托，为什么要使用委托
+我正在埋头苦写程序，突然想喝水，但是又不想自己去掉杯水而打断自己的思路，于是我就想让女朋友去给我倒水。她去给我倒水，首先我得让她知道我想让她干什么，通知她之后我可以继续写自己的程序，而倒水的工作就交给了她。这样的过程就相当于一个委托。
+在程序过程中，当程序正在处理某个事件的时候，我需要另外的程序代码去辅助处理一些事情，于是委托另一个程序模块去处理，而委托就可以达到这种目的，我可以利用委托通知另外的程序模块，该去调用哪个函数方法。委托其实就起到了这样一个作用，将函数签名传递到了另一个函数中。或许这样讲还是有些模糊，看看后面的具体实例。
+2.委托的定义 delegate int Add(int num1,int num2);
+delegate void ConvertNum(string result);  上面是定义两个委托的例子，其实很简单。声明一个委托使用delegate关键字，上面分别是定义的带返回值的委托和不带返回值的委托，
+两个委托都有传递参数，当然也可以不传递参数。其实委托也是一个类，委托派生为System.MulticastDelegate,而System.MulticastDelegate
+又继承System.Delegate,如果你知道这个也就明白委托其实是一个特殊的类。 委托的简单实用例子 public delegate string TeaDelegate(string spText);
+public class DelegateSource { public void TestDelegate() { Operator op = new Operator(); TeaDelegate tea = new TeaDelegate(op.GetTea); Console.WriteLine(&#34;去给我倒杯水&#34;); Console.WriteLine(); string result=tea(&#34;去给我倒杯水&#34;); Thread.Sleep(5000); Console.WriteLine(result); Console.WriteLine(); } } public class Operator { /// &lt;summary&gt; /// 确定是否还有水 /// &lt;/summary&gt; private bool flag = true; public string GetTea(string spText) { if (spText == &#34;去给我倒杯水&#34;) { if (flag) { return &#34;老公,茶来了&#34;; } else { return &#34;老公,没有水了&#34;; } } return &#34;等待.">
+<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+<meta property="og:url" content="https://leizhiyuan.github.io/2012/09/16/c#-%E5%A7%94%E6%89%98%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="bystander&#39;s blog" />
+
+  <meta name="twitter:title" content="C# 委托知识总结" />
+  <meta name="twitter:description" content="如果你足够强大，你就不会把幸福押在别人身上，你会自己创造幸福或者给别人带来幸福。而变得强大的途径就是学习，就是读书，学一切东西，读任何想读的书。 爱你让我变得更强。。 继续读一些专业文章了。不保证都是原创，但是保证每篇技术文章的质量。也会注明来源，标准就是浅显易懂。但不简单。
+原文来自：贺臣感谢原作者的好文章。 1.什么是委托，为什么要使用委托
+我正在埋头苦写程序，突然想喝水，但是又不想自己去掉杯 …">
+  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+  <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:card" content="summary" />
-  <meta property="og:url" content="https://leizhiyuan.github.io/2012/09/16/c" />
+  <meta property="og:url" content="https://leizhiyuan.github.io/2012/09/16/c#-%E5%A7%94%E6%89%98%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://leizhiyuan.github.io/2012/09/16/c" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <meta name="generator" content="Hugo 0.58.0" />
+  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
   <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
 
 
-</head>
 
+  </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
   <div class="container-fluid">
@@ -196,11 +284,16 @@ public class DelegateSource { public void TestDelegate() { Operator op = new Ope
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 16, 2012
+  <i class="fas fa-calendar"></i>&nbsp;Posted on September 16, 2012
   
   
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 4 minutes (705 words)
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;4&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
   
   
 </span>
@@ -641,6 +734,8 @@ Predicate 委托使用例子<pre class="lang:c# decode:true " >public void TestP
         
 
         
+
+        
       </article>
 
       
@@ -661,6 +756,7 @@ Predicate 委托使用例子<pre class="lang:c# decode:true " >public void TestP
 
       
         
+          
           <div class="disqus-comments">
             <div id="disqus_thread"></div>
 <script type="application/javascript">
@@ -683,6 +779,7 @@ Predicate 委托使用例子<pre class="lang:c# decode:true " >public void TestP
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
           </div>
+          
         
         
       
@@ -700,19 +797,17 @@ Predicate 委托使用例子<pre class="lang:c# decode:true " >public void TestP
               <li>
                 <a href="https://github.com/leizhiyuan" title="GitHub">
                   <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
               </li>
           
           <li>
-            
-            <a href="https://leizhiyuan.github.io/index.xml" title="RSS">
-            
+            <a href="" title="RSS">
               <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
               </span>
             </a>
           </li>
@@ -725,8 +820,10 @@ Predicate 委托使用例子<pre class="lang:c# decode:true " >public void TestP
             
           
 
-          &nbsp;&bull;&nbsp;
-          2019
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2019
+          
 
           
             &nbsp;&bull;&nbsp;
@@ -735,25 +832,25 @@ Predicate 委托使用例子<pre class="lang:c# decode:true " >public void TestP
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>
     </div>
   </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <script src="https://leizhiyuan.github.io/js/main.js"></script>
 <script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
 <script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
-<script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+
+
+
 
 
 

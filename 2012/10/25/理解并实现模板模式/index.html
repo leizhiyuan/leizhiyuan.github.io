@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
   <head>
+    
+
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>理解并实现模板模式</title>
+  <title>理解并实现模板模式 - bystander&#39;s blog</title>
   <meta property="og:title" content="理解并实现模板模式" />
   <meta name="twitter:title" content="理解并实现模板模式" />
   <meta name="description" content="介绍 本文实现模板模式
@@ -30,7 +32,97 @@ abstract class DataExporter { // 这个方法都是一致的 public void ReadDat
 背景 有时候我们需要做很多任务，而做这些任务的算法可能不同，这样可以设计成策略模式，这样。执行该任务的基本的一些代码就是一样的。但程序可可以动态的切换来执行任务的不同部分了。
 现在，真实的情况是有些算法，从实现层面山看，有可能有一些步骤是不一样的，这种情况下。我们可以使用继承来完成。
 当有个算法，而这个算法的一部分却多样的时候。使用模板模式就很好。GoF定义模板模式为： …">
-  <meta name="author" content="bystander"/>
+  <meta name="author" content="bystander"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "bystander\x27s blog",
+    
+    "url": "https:\/\/leizhiyuan.github.io\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/leizhiyuan.github.io\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/2012\/10\/25\/%E7%90%86%E8%A7%A3%E5%B9%B6%E5%AE%9E%E7%8E%B0%E6%A8%A1%E6%9D%BF%E6%A8%A1%E5%BC%8F\/",
+          "name": "理解并实现模板模式"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "bystander"
+  },
+  "headline": "理解并实现模板模式",
+  "description" : "介绍 本文实现模板模式\n背景 有时候我们需要做很多任务，而做这些任务的算法可能不同，这样可以设计成策略模式，这样。执行该任务的基本的一些代码就是一样的。但程序可可以动态的切换来执行任务的不同部分了。\n现在，真实的情况是有些算法，从实现层面山看，有可能有一些步骤是不一样的，这种情况下。我们可以使用继承来完成。\n当有个算法，而这个算法的一部分却多样的时候。使用模板模式就很好。GoF定义模板模式为：\n \x26ldquo;Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm\x26rsquo;s structure.\x26rdquo;.\n 定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。模板模式使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。\n 在上面的类图中： AbstractClass：包含两种方法。第一种就是算法的每一步。另一种就是模板方法。模板方法就是那些可以被用在所有独立方法中。并且提供了算法执行的一个骨架 ConcreteClass：这个类重写了抽象类中每一步的方法，包含对这些步骤的个性化实现。\n使用代码 看一个简单的例子。假想我们有一个类用来读取数据。并且能够为信息管理系统到处数据。\nabstract class DataExporter { \/\/ 这个方法都是一致的 public void ReadData() { Console.WriteLine(\x22Reading the data from SqlServer\x22); } \/\/ 当报表格式顶的时候这个也是定的。 public void FormatData() { Console.WriteLine(\x22Formating the data as per requriements.",
+  "inLanguage" : "en",
+  "wordCount":  167 ,
+  "datePublished" : "2012-10-25T22:04:15",
+  "dateModified" : "2012-10-25T22:04:15",
+  "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+  "keywords" : [ "C＃, 大学, 武汉, 翻译, 设计, 软件" ],
+  "mainEntityOfPage" : "https:\/\/leizhiyuan.github.io\/2012\/10\/25\/%E7%90%86%E8%A7%A3%E5%B9%B6%E5%AE%9E%E7%8E%B0%E6%A8%A1%E6%9D%BF%E6%A8%A1%E5%BC%8F\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/leizhiyuan.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="理解并实现模板模式" />
+<meta property="og:description" content="介绍 本文实现模板模式
+背景 有时候我们需要做很多任务，而做这些任务的算法可能不同，这样可以设计成策略模式，这样。执行该任务的基本的一些代码就是一样的。但程序可可以动态的切换来执行任务的不同部分了。
+现在，真实的情况是有些算法，从实现层面山看，有可能有一些步骤是不一样的，这种情况下。我们可以使用继承来完成。
+当有个算法，而这个算法的一部分却多样的时候。使用模板模式就很好。GoF定义模板模式为：
+ &ldquo;Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm&rsquo;s structure.&rdquo;.
+ 定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。模板模式使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。
+ 在上面的类图中： AbstractClass：包含两种方法。第一种就是算法的每一步。另一种就是模板方法。模板方法就是那些可以被用在所有独立方法中。并且提供了算法执行的一个骨架 ConcreteClass：这个类重写了抽象类中每一步的方法，包含对这些步骤的个性化实现。
+使用代码 看一个简单的例子。假想我们有一个类用来读取数据。并且能够为信息管理系统到处数据。
+abstract class DataExporter { // 这个方法都是一致的 public void ReadData() { Console.WriteLine(&#34;Reading the data from SqlServer&#34;); } // 当报表格式顶的时候这个也是定的。 public void FormatData() { Console.WriteLine(&#34;Formating the data as per requriements.">
+<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+<meta property="og:url" content="https://leizhiyuan.github.io/2012/10/25/%E7%90%86%E8%A7%A3%E5%B9%B6%E5%AE%9E%E7%8E%B0%E6%A8%A1%E6%9D%BF%E6%A8%A1%E5%BC%8F/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="bystander&#39;s blog" />
+
+  <meta name="twitter:title" content="理解并实现模板模式" />
+  <meta name="twitter:description" content="介绍 本文实现模板模式
+背景 有时候我们需要做很多任务，而做这些任务的算法可能不同，这样可以设计成策略模式，这样。执行该任务的基本的一些代码就是一样的。但程序可可以动态的切换来执行任务的不同部分了。
+现在，真实的情况是有些算法，从实现层面山看，有可能有一些步骤是不一样的，这种情况下。我们可以使用继承来完成。
+当有个算法，而这个算法的一部分却多样的时候。使用模板模式就很好。GoF定义模板模式为： …">
+  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+  <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
@@ -39,20 +131,17 @@ abstract class DataExporter { // 这个方法都是一致的 public void ReadDat
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://leizhiyuan.github.io/2012/10/25/%E7%90%86%E8%A7%A3%E5%B9%B6%E5%AE%9E%E7%8E%B0%E6%A8%A1%E6%9D%BF%E6%A8%A1%E5%BC%8F/" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <meta name="generator" content="Hugo 0.58.0" />
+  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
   <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
 
 
-</head>
 
+  </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
   <div class="container-fluid">
@@ -197,11 +286,16 @@ abstract class DataExporter { // 这个方法都是一致的 public void ReadDat
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on October 25, 2012
+  <i class="fas fa-calendar"></i>&nbsp;Posted on October 25, 2012
   
   
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (167 words)
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
   
   
 </span>
@@ -343,6 +437,8 @@ ConcreteClass：这个类重写了抽象类中每一步的方法，包含对这�
         
 
         
+
+        
       </article>
 
       
@@ -363,6 +459,7 @@ ConcreteClass：这个类重写了抽象类中每一步的方法，包含对这�
 
       
         
+          
           <div class="disqus-comments">
             <div id="disqus_thread"></div>
 <script type="application/javascript">
@@ -385,6 +482,7 @@ ConcreteClass：这个类重写了抽象类中每一步的方法，包含对这�
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
           </div>
+          
         
         
       
@@ -402,19 +500,17 @@ ConcreteClass：这个类重写了抽象类中每一步的方法，包含对这�
               <li>
                 <a href="https://github.com/leizhiyuan" title="GitHub">
                   <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
               </li>
           
           <li>
-            
-            <a href="https://leizhiyuan.github.io/index.xml" title="RSS">
-            
+            <a href="" title="RSS">
               <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
               </span>
             </a>
           </li>
@@ -427,8 +523,10 @@ ConcreteClass：这个类重写了抽象类中每一步的方法，包含对这�
             
           
 
-          &nbsp;&bull;&nbsp;
-          2019
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2019
+          
 
           
             &nbsp;&bull;&nbsp;
@@ -437,25 +535,25 @@ ConcreteClass：这个类重写了抽象类中每一步的方法，包含对这�
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>
     </div>
   </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <script src="https://leizhiyuan.github.io/js/main.js"></script>
 <script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
 <script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
-<script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+
+
+
 
 
 

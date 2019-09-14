@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
   <head>
+    
+
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>一步步教你制作WPF圆形玻璃按钮</title>
+  <title>一步步教你制作WPF圆形玻璃按钮 - bystander&#39;s blog</title>
   <meta property="og:title" content="一步步教你制作WPF圆形玻璃按钮" />
   <meta name="twitter:title" content="一步步教你制作WPF圆形玻璃按钮" />
   <meta name="description" content="1.介绍
@@ -42,7 +44,103 @@
 从我开始使用vista的时候，我就非常喜欢它的圆形玻璃按钮。WPF最好的一个方面就是允许自定义任何控件的样式。用了一段时间的Microsoft Expression Blend后。我做出了这个样式。我觉得做的还行。因为。我决定分享。如我所说。我使用Microsoft Expression Blend来做。但是。我也是用XAML编辑器&ndash;Kaxaml。
 2.概述
 玻璃按钮样式包含 …">
-  <meta name="author" content="bystander"/>
+  <meta name="author" content="bystander"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "bystander\x27s blog",
+    
+    "url": "https:\/\/leizhiyuan.github.io\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/leizhiyuan.github.io\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/2012\/10\/12\/%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%95%99%E4%BD%A0%E5%88%B6%E4%BD%9Cwpf%E5%9C%86%E5%BD%A2%E7%8E%BB%E7%92%83%E6%8C%89%E9%92%AE\/",
+          "name": "一步步教你制作 w p f圆形玻璃按钮"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "bystander"
+  },
+  "headline": "一步步教你制作WPF圆形玻璃按钮",
+  "description" : "1.介绍\n从我开始使用vista的时候，我就非常喜欢它的圆形玻璃按钮。WPF最好的一个方面就是允许自定义任何控件的样式。用了一段时间的Microsoft Expression Blend后。我做出了这个样式。我觉得做的还行。因为。我决定分享。如我所说。我使用Microsoft Expression Blend来做。但是。我也是用XAML编辑器\x26ndash;Kaxaml。\n2.概述\n玻璃按钮样式包含了三层。组织了玻璃效果（Glass Effect）和一个ContentPresenter 来存储按钮的内容。所有的这些层都在一个最外层的Grid里。当鼠标放到按钮上，按下去的时候也定义了一些触发器（Triggers），来增加一些交互。\n我把这个样式做成了资源文件。但是这个Key可以删除，来使得所有的按钮都是这个效果。\n好我们来看一下这些层次。这些被广泛应用在微软产品中的按钮。\n**3.按钮层次 **\n3.1背景层\n第一层是一个椭圆。其实是一个canvas，一会在上面画反射和折射层，填充的颜色和按钮的背景（Background）关联。\n下面是Blend中的截图\n图2  \x26lt;!\x26ndash; Background Layer \x26ndash;\x26gt; \x26lt;Ellipse Fill=\x26ldquo;{TemplateBinding Background}\x26rdquo;\/\x26gt; 3.1.1折射层\n第二层模拟了光从上到下的折射。被放在反射层之前是因为，要达到反光玻璃的效果，反射层必须在按钮的中间某处有一个硬边缘。这一层实际上是另一个椭圆。但是这次。我们使用一个径向渐变（白色-透明）的填充。来模拟光的折射。渐变开始于第一层底部的中央。结束于上面的中间。然而。为了降低折射光的强度。渐变还是开始于椭圆的底部再下一点为好。可以从图上和代码里清晰的看到。  \x26lt;!\x26ndash; Refraction Layer \x26ndash;\x26gt; \x26lt;Ellipse x:Name=\x26ldquo;RefractionLayer\x26rdquo;\x26gt; \x26lt;Ellipse.Fill\x26gt; \x26lt;RadialGradientBrush GradientOrigin=\x26ldquo;0.496,1.052\x26rdquo;\x26gt; \x26lt;RadialGradientBrush.RelativeTransform\x26gt; \x26lt;TransformGroup\x26gt; \x26lt;ScaleTransform CenterX=\x26ldquo;0.5\x26rdquo; CenterY=\x26ldquo;0.5\x26rdquo; ScaleX=\x26ldquo;1.5\x26rdquo; ScaleY=\x26ldquo;1.5\x26rdquo;\/\x26gt; \x26lt;TranslateTransform X=\x26ldquo;0.02\x26rdquo; Y=\x26ldquo;0.3\x26rdquo;\/\x26gt; \x26lt;\/TransformGroup\x26gt; \x26lt;\/RadialGradientBrush.RelativeTransform\x26gt; \x26lt;GradientStop Offset=\x26ldquo;1\x26rdquo; Color=\x26ldquo;#00000000\x26rdquo;\/\x26gt; \x26lt;GradientStop Offset=\x26ldquo;0.4\x26rdquo; Color=\x26ldquo;#FFFFFFFF\x26rdquo;\/\x26gt; \x26lt;\/RadialGradientBrush\x26gt; \x26lt;\/Ellipse.Fill\x26gt; \x26lt;\/Ellipse\x26gt; \x26nbsp;\n3.1.2反射层\n第三层是光的反射层。是最难的部分。问题是反射效果不能使用任何标准的形状来画。因此。使用路径（Path）来画反射区域。当时。手工画也是可以的。但老实说。手工画图实在没什么可享受的（除非你是一个艺术家，或者有一个数位板），无论如何。我现在MS Blend中华好一个椭圆并转换成一个路径，然后我使用贝塞尔曲线点调整得到平滑的路径，你可以添加渐变到一个复杂的Path对象上。就像你对其他与定义的图形，比如椭圆，矩形所做的一样。为了得到光泽反射。我额每年需要一个透明-白色的径向渐变填充，从路径的底部开始（也就是按钮的中间某处），结束在顶部。我想如果我是一个艺术家。我会让渐变更准一点。可是我不是。因此。就这样。因为我们要把我们的按钮放在一个Grid里。所有我们设置VerticalAlignment=\x26ldquo;Top\x26rdquo; 这样反射区域在按钮的中间的结束了。\n图三  \x26lt;!\x26ndash; Reflection Layer \x26ndash;\x26gt; \x26lt;Path x:Name=\x26ldquo;ReflectionLayer\x26rdquo; VerticalAlignment=\x26ldquo;Top\x26rdquo; Stretch=\x26ldquo;Fill\x26rdquo;\x26gt; \x26lt;Path.",
+  "inLanguage" : "en",
+  "wordCount":  327 ,
+  "datePublished" : "2012-10-12T09:31:00",
+  "dateModified" : "2012-10-12T09:31:00",
+  "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+  "keywords" : [ "C＃, WPF, 大学, 学习, 翻译, 设计, 软件" ],
+  "mainEntityOfPage" : "https:\/\/leizhiyuan.github.io\/2012\/10\/12\/%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%95%99%E4%BD%A0%E5%88%B6%E4%BD%9Cwpf%E5%9C%86%E5%BD%A2%E7%8E%BB%E7%92%83%E6%8C%89%E9%92%AE\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/leizhiyuan.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="一步步教你制作WPF圆形玻璃按钮" />
+<meta property="og:description" content="1.介绍
+从我开始使用vista的时候，我就非常喜欢它的圆形玻璃按钮。WPF最好的一个方面就是允许自定义任何控件的样式。用了一段时间的Microsoft Expression Blend后。我做出了这个样式。我觉得做的还行。因为。我决定分享。如我所说。我使用Microsoft Expression Blend来做。但是。我也是用XAML编辑器&ndash;Kaxaml。
+2.概述
+玻璃按钮样式包含了三层。组织了玻璃效果（Glass Effect）和一个ContentPresenter 来存储按钮的内容。所有的这些层都在一个最外层的Grid里。当鼠标放到按钮上，按下去的时候也定义了一些触发器（Triggers），来增加一些交互。
+我把这个样式做成了资源文件。但是这个Key可以删除，来使得所有的按钮都是这个效果。
+好我们来看一下这些层次。这些被广泛应用在微软产品中的按钮。
+**3.按钮层次 **
+3.1背景层
+第一层是一个椭圆。其实是一个canvas，一会在上面画反射和折射层，填充的颜色和按钮的背景（Background）关联。
+下面是Blend中的截图
+图2  &lt;!&ndash; Background Layer &ndash;&gt; &lt;Ellipse Fill=&ldquo;{TemplateBinding Background}&rdquo;/&gt; 3.1.1折射层
+第二层模拟了光从上到下的折射。被放在反射层之前是因为，要达到反光玻璃的效果，反射层必须在按钮的中间某处有一个硬边缘。这一层实际上是另一个椭圆。但是这次。我们使用一个径向渐变（白色-透明）的填充。来模拟光的折射。渐变开始于第一层底部的中央。结束于上面的中间。然而。为了降低折射光的强度。渐变还是开始于椭圆的底部再下一点为好。可以从图上和代码里清晰的看到。  &lt;!&ndash; Refraction Layer &ndash;&gt; &lt;Ellipse x:Name=&ldquo;RefractionLayer&rdquo;&gt; &lt;Ellipse.Fill&gt; &lt;RadialGradientBrush GradientOrigin=&ldquo;0.496,1.052&rdquo;&gt; &lt;RadialGradientBrush.RelativeTransform&gt; &lt;TransformGroup&gt; &lt;ScaleTransform CenterX=&ldquo;0.5&rdquo; CenterY=&ldquo;0.5&rdquo; ScaleX=&ldquo;1.5&rdquo; ScaleY=&ldquo;1.5&rdquo;/&gt; &lt;TranslateTransform X=&ldquo;0.02&rdquo; Y=&ldquo;0.3&rdquo;/&gt; &lt;/TransformGroup&gt; &lt;/RadialGradientBrush.RelativeTransform&gt; &lt;GradientStop Offset=&ldquo;1&rdquo; Color=&ldquo;#00000000&rdquo;/&gt; &lt;GradientStop Offset=&ldquo;0.4&rdquo; Color=&ldquo;#FFFFFFFF&rdquo;/&gt; &lt;/RadialGradientBrush&gt; &lt;/Ellipse.Fill&gt; &lt;/Ellipse&gt; &nbsp;
+3.1.2反射层
+第三层是光的反射层。是最难的部分。问题是反射效果不能使用任何标准的形状来画。因此。使用路径（Path）来画反射区域。当时。手工画也是可以的。但老实说。手工画图实在没什么可享受的（除非你是一个艺术家，或者有一个数位板），无论如何。我现在MS Blend中华好一个椭圆并转换成一个路径，然后我使用贝塞尔曲线点调整得到平滑的路径，你可以添加渐变到一个复杂的Path对象上。就像你对其他与定义的图形，比如椭圆，矩形所做的一样。为了得到光泽反射。我额每年需要一个透明-白色的径向渐变填充，从路径的底部开始（也就是按钮的中间某处），结束在顶部。我想如果我是一个艺术家。我会让渐变更准一点。可是我不是。因此。就这样。因为我们要把我们的按钮放在一个Grid里。所有我们设置VerticalAlignment=&ldquo;Top&rdquo; 这样反射区域在按钮的中间的结束了。
+图三  &lt;!&ndash; Reflection Layer &ndash;&gt; &lt;Path x:Name=&ldquo;ReflectionLayer&rdquo; VerticalAlignment=&ldquo;Top&rdquo; Stretch=&ldquo;Fill&rdquo;&gt; &lt;Path.">
+<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+<meta property="og:url" content="https://leizhiyuan.github.io/2012/10/12/%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%95%99%E4%BD%A0%E5%88%B6%E4%BD%9Cwpf%E5%9C%86%E5%BD%A2%E7%8E%BB%E7%92%83%E6%8C%89%E9%92%AE/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="bystander&#39;s blog" />
+
+  <meta name="twitter:title" content="一步步教你制作WPF圆形玻璃按钮" />
+  <meta name="twitter:description" content="1.介绍
+从我开始使用vista的时候，我就非常喜欢它的圆形玻璃按钮。WPF最好的一个方面就是允许自定义任何控件的样式。用了一段时间的Microsoft Expression Blend后。我做出了这个样式。我觉得做的还行。因为。我决定分享。如我所说。我使用Microsoft Expression Blend来做。但是。我也是用XAML编辑器&ndash;Kaxaml。
+2.概述
+玻璃按钮样式包含 …">
+  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+  <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
@@ -51,20 +149,17 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://leizhiyuan.github.io/2012/10/12/%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%95%99%E4%BD%A0%E5%88%B6%E4%BD%9Cwpf%E5%9C%86%E5%BD%A2%E7%8E%BB%E7%92%83%E6%8C%89%E9%92%AE/" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <meta name="generator" content="Hugo 0.58.0" />
+  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
   <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
 
 
-</head>
 
+  </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
   <div class="container-fluid">
@@ -209,11 +304,16 @@
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on October 12, 2012
+  <i class="fas fa-calendar"></i>&nbsp;Posted on October 12, 2012
   
   
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 2 minutes (327 words)
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
   
   
 </span>
@@ -480,6 +580,8 @@
         
 
         
+
+        
       </article>
 
       
@@ -500,6 +602,7 @@
 
       
         
+          
           <div class="disqus-comments">
             <div id="disqus_thread"></div>
 <script type="application/javascript">
@@ -522,6 +625,7 @@
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
           </div>
+          
         
         
       
@@ -539,19 +643,17 @@
               <li>
                 <a href="https://github.com/leizhiyuan" title="GitHub">
                   <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
               </li>
           
           <li>
-            
-            <a href="https://leizhiyuan.github.io/index.xml" title="RSS">
-            
+            <a href="" title="RSS">
               <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
               </span>
             </a>
           </li>
@@ -564,8 +666,10 @@
             
           
 
-          &nbsp;&bull;&nbsp;
-          2019
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2019
+          
 
           
             &nbsp;&bull;&nbsp;
@@ -574,25 +678,25 @@
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>
     </div>
   </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <script src="https://leizhiyuan.github.io/js/main.js"></script>
 <script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
 <script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
-<script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+
+
+
 
 
 

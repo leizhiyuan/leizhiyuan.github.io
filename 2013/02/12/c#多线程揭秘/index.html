@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
   <head>
+    
+
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>C#多线程揭秘</title>
+  <title>C#多线程揭秘 - bystander&#39;s blog</title>
   <meta property="og:title" content="C#多线程揭秘" />
   <meta name="twitter:title" content="C#多线程揭秘" />
   <meta name="description" content="文章略长。。。 Demo下载：Demo.Threading.zip 介绍 本文将通过一些例子来展示.net 中如何实现多线程，涉及到以下四部分。 1 .线程概念 2 .如何实现多线程 3 .如何确保线程安全 4 .死锁
@@ -30,29 +32,115 @@
 简而言之，多线程就是通过使程序同时运行多个任务来最大化计算机能力，同时能够保持UI响应。下图是一个例子的图示。">
   <meta name="twitter:description" content="文章略长。。。 Demo下载：Demo.Threading.zip 介绍 本文将通过一些例子来展示.net 中如何实现多线程，涉及到以下四部分。 1 .线程概念 2 .如何实现多线程 3 .如何确保线程安全 4 .死锁
 什么是进程 一个进程就是一个可执行文件运行的操作系统上下文环境。它被用来分隔虚拟地址空间，线程，对象句柄（指向类似文件这样的资源的指针），以及环境变量，进程还有一些类似优先级类和最 …">
-  <meta name="author" content="bystander"/>
+  <meta name="author" content="bystander"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "bystander\x27s blog",
+    
+    "url": "https:\/\/leizhiyuan.github.io\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/leizhiyuan.github.io\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/2013\/02\/12\/c#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%8F%AD%E7%A7%98\/",
+          "name": "C#多线程揭秘"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "bystander"
+  },
+  "headline": "C#多线程揭秘",
+  "description" : "文章略长。。。 Demo下载：Demo.Threading.zip 介绍 本文将通过一些例子来展示.net 中如何实现多线程，涉及到以下四部分。 1 .线程概念 2 .如何实现多线程 3 .如何确保线程安全 4 .死锁\n什么是进程 一个进程就是一个可执行文件运行的操作系统上下文环境。它被用来分隔虚拟地址空间，线程，对象句柄（指向类似文件这样的资源的指针），以及环境变量，进程还有一些类似优先级类和最大内存分配的属性。\n也就是说： 1 .一个进程就是一个包含资源的内存块。 2 .操作系统执行的一个单独的任务。 3 .一个正在运行的软件 4 .一个进程拥有一个\/多个操作系统线程\n一般的。一个进程最大可以是4GB的内存空间，这块内存是安全，私有，其他进程是无法访问的。\n什么是线程 一个线程就是在一个进程里执行的一条指令流，所有的线程都在一个进程里执行，也就是一个进程可以包含多个线程。线程公用进程的虚拟地址空间。线程是操作系统的调度单元。一个线程的上下文由操作系统进行保存\/恢复。 也就是说： 1 .一个线程是进程里的一条指令流。 2 .所有的线程在进程里。一个进程可以有多个线程 3 .一个进程的所有线程使用进程的虚拟地址空间。\n什么是多线程 多线程指的是进程同时有多个线程活动。这可以通过时间片的线程模拟或是多cpu上的超线程来实现。可以提高性能。 多线程-为什么或是为什么不? 为什么多线程 1 .保持UI响应。 2 .提高性能(对于cpu密集型和I\/O密集型的进程) 为什么不多线程 1 .过度使用降低性能 2 .代码复杂，增加设计时间，潜在的bug\n线程池 线程池为你的程序提供了一个由操作系统管理的机制。在线程池里的都是后台线程。一个线程池线程在程序的前台线程都退出后，也会推出。每个进程一个线程池。默认情况下。每个处理器会为进程分配25个线程。但是可以通过SetMaxThreads 方法来改变。\n.net 中的线程 在.net 中，线程可以通过下面6个方法来实现。 1 .Thread线程类 2 .Delegates委托 3 .Background Worker 4 .ThreadPool 线程池 5 .Task任务类 6 .Parallel并行类\n下面的几部分里。我将逐一展示实现方法。\n简而言之，多线程就是通过使程序同时运行多个任务来最大化计算机能力，同时能够保持UI响应。下图是一个例子的图示。",
+  "inLanguage" : "en",
+  "wordCount":  1487 ,
+  "datePublished" : "2013-02-12T16:31:22",
+  "dateModified" : "2013-02-12T16:31:22",
+  "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+  "keywords" : [ "C＃, windows, 学习, 翻译" ],
+  "mainEntityOfPage" : "https:\/\/leizhiyuan.github.io\/2013\/02\/12\/c#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%8F%AD%E7%A7%98\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/leizhiyuan.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="C#多线程揭秘" />
+<meta property="og:description" content="文章略长。。。 Demo下载：Demo.Threading.zip 介绍 本文将通过一些例子来展示.net 中如何实现多线程，涉及到以下四部分。 1 .线程概念 2 .如何实现多线程 3 .如何确保线程安全 4 .死锁
+什么是进程 一个进程就是一个可执行文件运行的操作系统上下文环境。它被用来分隔虚拟地址空间，线程，对象句柄（指向类似文件这样的资源的指针），以及环境变量，进程还有一些类似优先级类和最大内存分配的属性。
+也就是说： 1 .一个进程就是一个包含资源的内存块。 2 .操作系统执行的一个单独的任务。 3 .一个正在运行的软件 4 .一个进程拥有一个/多个操作系统线程
+一般的。一个进程最大可以是4GB的内存空间，这块内存是安全，私有，其他进程是无法访问的。
+什么是线程 一个线程就是在一个进程里执行的一条指令流，所有的线程都在一个进程里执行，也就是一个进程可以包含多个线程。线程公用进程的虚拟地址空间。线程是操作系统的调度单元。一个线程的上下文由操作系统进行保存/恢复。 也就是说： 1 .一个线程是进程里的一条指令流。 2 .所有的线程在进程里。一个进程可以有多个线程 3 .一个进程的所有线程使用进程的虚拟地址空间。
+什么是多线程 多线程指的是进程同时有多个线程活动。这可以通过时间片的线程模拟或是多cpu上的超线程来实现。可以提高性能。 多线程-为什么或是为什么不? 为什么多线程 1 .保持UI响应。 2 .提高性能(对于cpu密集型和I/O密集型的进程) 为什么不多线程 1 .过度使用降低性能 2 .代码复杂，增加设计时间，潜在的bug
+线程池 线程池为你的程序提供了一个由操作系统管理的机制。在线程池里的都是后台线程。一个线程池线程在程序的前台线程都退出后，也会推出。每个进程一个线程池。默认情况下。每个处理器会为进程分配25个线程。但是可以通过SetMaxThreads 方法来改变。
+.net 中的线程 在.net 中，线程可以通过下面6个方法来实现。 1 .Thread线程类 2 .Delegates委托 3 .Background Worker 4 .ThreadPool 线程池 5 .Task任务类 6 .Parallel并行类
+下面的几部分里。我将逐一展示实现方法。
+简而言之，多线程就是通过使程序同时运行多个任务来最大化计算机能力，同时能够保持UI响应。下图是一个例子的图示。">
+<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+<meta property="og:url" content="https://leizhiyuan.github.io/2013/02/12/c#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%8F%AD%E7%A7%98/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="bystander&#39;s blog" />
+
+  <meta name="twitter:title" content="C#多线程揭秘" />
+  <meta name="twitter:description" content="文章略长。。。 Demo下载：Demo.Threading.zip 介绍 本文将通过一些例子来展示.net 中如何实现多线程，涉及到以下四部分。 1 .线程概念 2 .如何实现多线程 3 .如何确保线程安全 4 .死锁
+什么是进程 一个进程就是一个可执行文件运行的操作系统上下文环境。它被用来分隔虚拟地址空间，线程，对象句柄（指向类似文件这样的资源的指针），以及环境变量，进程还有一些类似优先级类和最 …">
+  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+  <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:card" content="summary" />
-  <meta property="og:url" content="https://leizhiyuan.github.io/2013/02/12/c" />
+  <meta property="og:url" content="https://leizhiyuan.github.io/2013/02/12/c#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%8F%AD%E7%A7%98/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://leizhiyuan.github.io/2013/02/12/c" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <meta name="generator" content="Hugo 0.58.0" />
+  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
   <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
 
 
-</head>
 
+  </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
   <div class="container-fluid">
@@ -197,11 +285,16 @@
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on February 12, 2013
+  <i class="fas fa-calendar"></i>&nbsp;Posted on February 12, 2013
   
   
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 7 minutes (1487 words)
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;7&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
   
   
 </span>
@@ -1029,6 +1122,8 @@ DeadLock deadLock = new DeadLock();
         
 
         
+
+        
       </article>
 
       
@@ -1049,6 +1144,7 @@ DeadLock deadLock = new DeadLock();
 
       
         
+          
           <div class="disqus-comments">
             <div id="disqus_thread"></div>
 <script type="application/javascript">
@@ -1071,6 +1167,7 @@ DeadLock deadLock = new DeadLock();
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
           </div>
+          
         
         
       
@@ -1088,19 +1185,17 @@ DeadLock deadLock = new DeadLock();
               <li>
                 <a href="https://github.com/leizhiyuan" title="GitHub">
                   <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
               </li>
           
           <li>
-            
-            <a href="https://leizhiyuan.github.io/index.xml" title="RSS">
-            
+            <a href="" title="RSS">
               <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
               </span>
             </a>
           </li>
@@ -1113,8 +1208,10 @@ DeadLock deadLock = new DeadLock();
             
           
 
-          &nbsp;&bull;&nbsp;
-          2019
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2019
+          
 
           
             &nbsp;&bull;&nbsp;
@@ -1123,25 +1220,25 @@ DeadLock deadLock = new DeadLock();
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>
     </div>
   </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <script src="https://leizhiyuan.github.io/js/main.js"></script>
 <script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
 <script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
-<script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+
+
+
 
 
 

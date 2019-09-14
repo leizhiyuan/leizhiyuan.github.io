@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
   <head>
+    
+
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>motan源码阅读-服务的发布</title>
+  <title>motan源码阅读-服务的发布 - bystander&#39;s blog</title>
   <meta property="og:title" content="motan源码阅读-服务的发布" />
   <meta name="twitter:title" content="motan源码阅读-服务的发布" />
   <meta name="description" content="这一篇继续从这个demo开始,分析一下这个服务是怎么发布出去的.关键的代码从motanDemoService.export();开始.
@@ -49,7 +51,108 @@
 1.加载有的配置中心url列表/新建
 2.doExport(ProtocolConfig,port,registryURLs) //配置中心地址列表
 2.1导出的时候,会先判断是否存 …">
-  <meta name="author" content="bystander"/>
+  <meta name="author" content="bystander"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "bystander\x27s blog",
+    
+    "url": "https:\/\/leizhiyuan.github.io\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/leizhiyuan.github.io\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/2016\/05\/30\/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%8F%91%E5%B8%83\/",
+          "name": "Motan源码阅读 服务的发布"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "bystander"
+  },
+  "headline": "motan源码阅读-服务的发布",
+  "description" : "这一篇继续从这个demo开始,分析一下这个服务是怎么发布出去的.关键的代码从motanDemoService.export();开始.\n一图胜千言.\n点击看大图\n服务发布ServiceConfig.export()\n1.加载有的配置中心url列表\/新建\n2.doExport(ProtocolConfig,port,registryURLs) \/\/配置中心地址列表\n2.1导出的时候,会先判断是否存在.其实就是根据协议名,ip,接口,参数来生成一个唯一key.\n2.2ConfigHandler.export(Class interfaceClass, T ref, List registryUrls) \/\/接口.实现.配置中心url列表\n2.2.1.根据协议名创建协议,这里ProtocolFilterDecorator\n2.2.2.根据接口,实现类,serviceUrl,构造一个Provider,用来提供服务\n2.2.3.使用协议进行导出Provider, export(Provider provider, URL url)\n2.2.3.1创建一个Exporter\n2.2.3.1.1.创建的时候会将服务提供方Provider和url有个映射关系,这样当一个url请求过来的时候,就知道改调用谁了.ProviderMessageRouter,讲一个请求路由注册到server上,同时包装了一个心跳包\n2.2.3.2进行导出 导出就是一个服务器打开的过程\/server.open();\n2.2.3.2.1进入nettyServer初始化,主要就是添加handler,编码解码.和一个rpc处理的 相当于一个请求过来的时候,先进行解码,然后调用业务处理handler进行处理,处理完成后,进行编码,然后返回给客户端\n服务器启动后,相当于这个服务就发布了\n2.2.4.注册register(registryUrls, serviceUrl) \/\/这一步就是将serviceUrl,向对应的jvm\/rpc服务中心注册url,本地注册就是LocalRegistryService类里一个map..zk的.就是向zk写node.等等",
+  "inLanguage" : "en",
+  "wordCount":  32 ,
+  "datePublished" : "2016-05-30T20:42:06",
+  "dateModified" : "2016-05-30T20:42:06",
+  "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+  "keywords" : [ "技术, 学习, java" ],
+  "mainEntityOfPage" : "https:\/\/leizhiyuan.github.io\/2016\/05\/30\/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%8F%91%E5%B8%83\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/leizhiyuan.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="motan源码阅读-服务的发布" />
+<meta property="og:description" content="这一篇继续从这个demo开始,分析一下这个服务是怎么发布出去的.关键的代码从motanDemoService.export();开始.
+一图胜千言.
+点击看大图
+服务发布ServiceConfig.export()
+1.加载有的配置中心url列表/新建
+2.doExport(ProtocolConfig,port,registryURLs) //配置中心地址列表
+2.1导出的时候,会先判断是否存在.其实就是根据协议名,ip,接口,参数来生成一个唯一key.
+2.2ConfigHandler.export(Class interfaceClass, T ref, List registryUrls) //接口.实现.配置中心url列表
+2.2.1.根据协议名创建协议,这里ProtocolFilterDecorator
+2.2.2.根据接口,实现类,serviceUrl,构造一个Provider,用来提供服务
+2.2.3.使用协议进行导出Provider, export(Provider provider, URL url)
+2.2.3.1创建一个Exporter
+2.2.3.1.1.创建的时候会将服务提供方Provider和url有个映射关系,这样当一个url请求过来的时候,就知道改调用谁了.ProviderMessageRouter,讲一个请求路由注册到server上,同时包装了一个心跳包
+2.2.3.2进行导出 导出就是一个服务器打开的过程/server.open();
+2.2.3.2.1进入nettyServer初始化,主要就是添加handler,编码解码.和一个rpc处理的 相当于一个请求过来的时候,先进行解码,然后调用业务处理handler进行处理,处理完成后,进行编码,然后返回给客户端
+服务器启动后,相当于这个服务就发布了
+2.2.4.注册register(registryUrls, serviceUrl) //这一步就是将serviceUrl,向对应的jvm/rpc服务中心注册url,本地注册就是LocalRegistryService类里一个map..zk的.就是向zk写node.等等">
+<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+<meta property="og:url" content="https://leizhiyuan.github.io/2016/05/30/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%8F%91%E5%B8%83/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="bystander&#39;s blog" />
+
+  <meta name="twitter:title" content="motan源码阅读-服务的发布" />
+  <meta name="twitter:description" content="这一篇继续从这个demo开始,分析一下这个服务是怎么发布出去的.关键的代码从motanDemoService.export();开始.
+一图胜千言.
+点击看大图
+服务发布ServiceConfig.export()
+1.加载有的配置中心url列表/新建
+2.doExport(ProtocolConfig,port,registryURLs) //配置中心地址列表
+2.1导出的时候,会先判断是否存 …">
+  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+  <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
@@ -58,20 +161,17 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://leizhiyuan.github.io/2016/05/30/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%8F%91%E5%B8%83/" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <meta name="generator" content="Hugo 0.58.0" />
+  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
   <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
 
 
-</head>
 
+  </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
   <div class="container-fluid">
@@ -216,11 +316,16 @@
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on May 30, 2016
+  <i class="fas fa-calendar"></i>&nbsp;Posted on May 30, 2016
   
   
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (32 words)
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
   
   
 </span>
@@ -291,6 +396,8 @@
         
 
         
+
+        
       </article>
 
       
@@ -311,6 +418,7 @@
 
       
         
+          
           <div class="disqus-comments">
             <div id="disqus_thread"></div>
 <script type="application/javascript">
@@ -333,6 +441,7 @@
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
           </div>
+          
         
         
       
@@ -350,19 +459,17 @@
               <li>
                 <a href="https://github.com/leizhiyuan" title="GitHub">
                   <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
               </li>
           
           <li>
-            
-            <a href="https://leizhiyuan.github.io/index.xml" title="RSS">
-            
+            <a href="" title="RSS">
               <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
               </span>
             </a>
           </li>
@@ -375,8 +482,10 @@
             
           
 
-          &nbsp;&bull;&nbsp;
-          2019
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2019
+          
 
           
             &nbsp;&bull;&nbsp;
@@ -385,25 +494,25 @@
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>
     </div>
   </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <script src="https://leizhiyuan.github.io/js/main.js"></script>
 <script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
 <script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
-<script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+
+
+
 
 
 

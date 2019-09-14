@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
   <head>
+    
+
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>C#编写文件搜索器</title>
+  <title>C#编写文件搜索器 - bystander&#39;s blog</title>
   <meta property="og:title" content="C#编写文件搜索器" />
   <meta name="twitter:title" content="C#编写文件搜索器" />
   <meta name="description" content="介绍 在装有Vista的机器上。我想通过一个给定的字符串来搜索我硬盘上的一个文件，该文件内容包含这个字符串序列，资源管理器是做不到的。因此，我就决定自己写吧。然后就写成这样了。。
@@ -39,29 +41,120 @@ private delegate void FoundInfoSyncHandler(FoundInfoEventArgs e); private FoundI
   <meta name="twitter:description" content="介绍 在装有Vista的机器上。我想通过一个给定的字符串来搜索我硬盘上的一个文件，该文件内容包含这个字符串序列，资源管理器是做不到的。因此，我就决定自己写吧。然后就写成这样了。。
 我做了什么
 你必须输入一个选择一个搜索目录，这样程序才知道在哪搜索文件/目录，如果你选上了“包含子目录”复选框，程序就会递归地搜索指定目录的子目录， …">
-  <meta name="author" content="bystander"/>
+  <meta name="author" content="bystander"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "bystander\x27s blog",
+    
+    "url": "https:\/\/leizhiyuan.github.io\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/leizhiyuan.github.io\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/2012\/10\/01\/c#%E7%BC%96%E5%86%99%E6%96%87%E4%BB%B6%E6%90%9C%E7%B4%A2%E5%99%A8\/",
+          "name": "C#编写文件搜索器"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "bystander"
+  },
+  "headline": "C#编写文件搜索器",
+  "description" : "介绍 在装有Vista的机器上。我想通过一个给定的字符串来搜索我硬盘上的一个文件，该文件内容包含这个字符串序列，资源管理器是做不到的。因此，我就决定自己写吧。然后就写成这样了。。\n我做了什么\n你必须输入一个选择一个搜索目录，这样程序才知道在哪搜索文件\/目录，如果你选上了“包含子目录”复选框，程序就会递归地搜索指定目录的子目录，指定的文件名可以是像 \x26ldquo;.wav;.mp3;Christma??ree.*\x26rdquo; 这样的字符串，程序将会列出所有的文件\/目录匹配这些文件名\n你也可以使用一些限制条件来限制找到的项目，每一个限制条件可以通过选上复选框来激活，限制条件的参数可以在右边选中就行了。\n1. “Files newer than”将会列出LastWriteTime（上次修改时间）晚于指定时间的文件 2. “Files newer than”将会列出LastWriteTime（上次修改时间）早于指定时间的文件 3. \x26ldquo;Files containing the string\x26rdquo;仅仅列出包含字符串参数的文件。\n程序将会把字符串转换成字节序列，可以使用ASCII或者Unicode编码，取决于你的选择，然后搜索每一个出现这个字节序列的文件。\n点击Start（开始）按钮就开始搜索了。找到的项目会列在下面，如果搜索时间太长了。你可以点击Stop（停止）来停止搜索。\n如果你双击下面的一个文件。不是文件夹哦，程序将会根据关联程序打开该文件 如果你邮件一个项目，然后选择“Open Containing Folder”（打开包含文件夹）将会在资源管理器里打开包含该项目的文件夹\n如果你想要把搜索结果保存到一个文本文件。输入个分隔符分隔项目，然后点击“Write results to text file…”（保存结果到文本…）\n使用代码 1. MainWindow处理所有的界面事务 2. Searcher类提供了业务逻辑，用来搜索FileSystemInfo对象\n当用户点击Start（开始）按钮，Searcher.Start 方法就会执行，该方法开启了一个名为SearchThread 的新线程，这个线程搜索文件\/目录，匹配用户输入的参数，如果找到了一个匹配的FileSystemInfo对象，它就出发一个异步的FoundInfo 事件，然后MainWindow就可以从FoundInfoEventArgs中解出FileSystemInfo对象，然后更新结果列表，当线程结束的时候，将m_thread成员对象设置为null，每一次Searcher.Start 执行的时候都会检测m_thread是否为null，因此同时不会有两个线程在运行。\n当用户点击Stop(停止)按钮的时候Searcher.Stop 方法被执行，然后设置m_stop 成员为true， Searchthread会注意到这个改变。注意本操作是线程安全的。因为布尔变量只需要一步就操作完成了\n重要：在Searcher_FoundInfo 事件处理中，MainWindow使用Invoke方法通过代理来调用this_FoundInfo 方法。通过这个方法，MainWindow是的更新结果列表的代码在MainWindow的线程里执行，而不是在Searcher的线程里，直接调用this_FoundInfo 方法会引发程序崩溃，因为Searcher_FoundInfo 事件处理和图形界面控件不同步。\nprivate delegate void FoundInfoSyncHandler(FoundInfoEventArgs e); private FoundInfoSyncHandler FoundInfo; ... private void MainWindow_Load(object sender, EventArgs e) { ... this.FoundInfo \x2b= new FoundInfoSyncHandler(this_FoundInfo); .",
+  "inLanguage" : "en",
+  "wordCount":  192 ,
+  "datePublished" : "2012-10-01T11:36:29",
+  "dateModified" : "2012-10-01T11:36:29",
+  "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+  "keywords" : [ "C＃, WPF, 大学, 学习, 翻译" ],
+  "mainEntityOfPage" : "https:\/\/leizhiyuan.github.io\/2012\/10\/01\/c#%E7%BC%96%E5%86%99%E6%96%87%E4%BB%B6%E6%90%9C%E7%B4%A2%E5%99%A8\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/leizhiyuan.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="C#编写文件搜索器" />
+<meta property="og:description" content="介绍 在装有Vista的机器上。我想通过一个给定的字符串来搜索我硬盘上的一个文件，该文件内容包含这个字符串序列，资源管理器是做不到的。因此，我就决定自己写吧。然后就写成这样了。。
+我做了什么
+你必须输入一个选择一个搜索目录，这样程序才知道在哪搜索文件/目录，如果你选上了“包含子目录”复选框，程序就会递归地搜索指定目录的子目录，指定的文件名可以是像 &ldquo;.wav;.mp3;Christma??ree.*&rdquo; 这样的字符串，程序将会列出所有的文件/目录匹配这些文件名
+你也可以使用一些限制条件来限制找到的项目，每一个限制条件可以通过选上复选框来激活，限制条件的参数可以在右边选中就行了。
+1. “Files newer than”将会列出LastWriteTime（上次修改时间）晚于指定时间的文件 2. “Files newer than”将会列出LastWriteTime（上次修改时间）早于指定时间的文件 3. &ldquo;Files containing the string&rdquo;仅仅列出包含字符串参数的文件。
+程序将会把字符串转换成字节序列，可以使用ASCII或者Unicode编码，取决于你的选择，然后搜索每一个出现这个字节序列的文件。
+点击Start（开始）按钮就开始搜索了。找到的项目会列在下面，如果搜索时间太长了。你可以点击Stop（停止）来停止搜索。
+如果你双击下面的一个文件。不是文件夹哦，程序将会根据关联程序打开该文件 如果你邮件一个项目，然后选择“Open Containing Folder”（打开包含文件夹）将会在资源管理器里打开包含该项目的文件夹
+如果你想要把搜索结果保存到一个文本文件。输入个分隔符分隔项目，然后点击“Write results to text file…”（保存结果到文本…）
+使用代码 1. MainWindow处理所有的界面事务 2. Searcher类提供了业务逻辑，用来搜索FileSystemInfo对象
+当用户点击Start（开始）按钮，Searcher.Start 方法就会执行，该方法开启了一个名为SearchThread 的新线程，这个线程搜索文件/目录，匹配用户输入的参数，如果找到了一个匹配的FileSystemInfo对象，它就出发一个异步的FoundInfo 事件，然后MainWindow就可以从FoundInfoEventArgs中解出FileSystemInfo对象，然后更新结果列表，当线程结束的时候，将m_thread成员对象设置为null，每一次Searcher.Start 执行的时候都会检测m_thread是否为null，因此同时不会有两个线程在运行。
+当用户点击Stop(停止)按钮的时候Searcher.Stop 方法被执行，然后设置m_stop 成员为true， Searchthread会注意到这个改变。注意本操作是线程安全的。因为布尔变量只需要一步就操作完成了
+重要：在Searcher_FoundInfo 事件处理中，MainWindow使用Invoke方法通过代理来调用this_FoundInfo 方法。通过这个方法，MainWindow是的更新结果列表的代码在MainWindow的线程里执行，而不是在Searcher的线程里，直接调用this_FoundInfo 方法会引发程序崩溃，因为Searcher_FoundInfo 事件处理和图形界面控件不同步。
+private delegate void FoundInfoSyncHandler(FoundInfoEventArgs e); private FoundInfoSyncHandler FoundInfo; ... private void MainWindow_Load(object sender, EventArgs e) { ... this.FoundInfo &#43;= new FoundInfoSyncHandler(this_FoundInfo); .">
+<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+<meta property="og:url" content="https://leizhiyuan.github.io/2012/10/01/c#%E7%BC%96%E5%86%99%E6%96%87%E4%BB%B6%E6%90%9C%E7%B4%A2%E5%99%A8/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="bystander&#39;s blog" />
+
+  <meta name="twitter:title" content="C#编写文件搜索器" />
+  <meta name="twitter:description" content="介绍 在装有Vista的机器上。我想通过一个给定的字符串来搜索我硬盘上的一个文件，该文件内容包含这个字符串序列，资源管理器是做不到的。因此，我就决定自己写吧。然后就写成这样了。。
+我做了什么
+你必须输入一个选择一个搜索目录，这样程序才知道在哪搜索文件/目录，如果你选上了“包含子目录”复选框，程序就会递归地搜索指定目录的子目录， …">
+  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+  <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:card" content="summary" />
-  <meta property="og:url" content="https://leizhiyuan.github.io/2012/10/01/c" />
+  <meta property="og:url" content="https://leizhiyuan.github.io/2012/10/01/c#%E7%BC%96%E5%86%99%E6%96%87%E4%BB%B6%E6%90%9C%E7%B4%A2%E5%99%A8/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://leizhiyuan.github.io/2012/10/01/c" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <meta name="generator" content="Hugo 0.58.0" />
+  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
   <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
 
 
-</head>
 
+  </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
   <div class="container-fluid">
@@ -206,11 +299,16 @@ private delegate void FoundInfoSyncHandler(FoundInfoEventArgs e); private FoundI
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on October 1, 2012
+  <i class="fas fa-calendar"></i>&nbsp;Posted on October 1, 2012
   
   
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (192 words)
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
   
   
 </span>
@@ -366,6 +464,8 @@ MessageBoxIcon.Exclamation);
         
 
         
+
+        
       </article>
 
       
@@ -386,6 +486,7 @@ MessageBoxIcon.Exclamation);
 
       
         
+          
           <div class="disqus-comments">
             <div id="disqus_thread"></div>
 <script type="application/javascript">
@@ -408,6 +509,7 @@ MessageBoxIcon.Exclamation);
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
           </div>
+          
         
         
       
@@ -425,19 +527,17 @@ MessageBoxIcon.Exclamation);
               <li>
                 <a href="https://github.com/leizhiyuan" title="GitHub">
                   <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
               </li>
           
           <li>
-            
-            <a href="https://leizhiyuan.github.io/index.xml" title="RSS">
-            
+            <a href="" title="RSS">
               <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
               </span>
             </a>
           </li>
@@ -450,8 +550,10 @@ MessageBoxIcon.Exclamation);
             
           
 
-          &nbsp;&bull;&nbsp;
-          2019
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2019
+          
 
           
             &nbsp;&bull;&nbsp;
@@ -460,25 +562,25 @@ MessageBoxIcon.Exclamation);
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>
     </div>
   </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <script src="https://leizhiyuan.github.io/js/main.js"></script>
 <script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
 <script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
-<script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+
+
+
 
 
 

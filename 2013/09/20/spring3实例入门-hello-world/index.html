@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
   <head>
+    
+
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>Spring3实例入门-Hello World</title>
+  <title>Spring3实例入门-Hello World - bystander&#39;s blog</title>
   <meta property="og:title" content="Spring3实例入门-Hello World" />
   <meta name="twitter:title" content="Spring3实例入门-Hello World" />
   <meta name="description" content="每次看到hello world,都有一种说不出的赶脚，想起了一个程序员，退休后写毛笔字，取笔研磨铺纸，大笔一挥，写下了“hello world”。
@@ -20,7 +22,91 @@
 /** * Spring bean * */ public class HelloWorld { private String name;">
   <meta name="twitter:description" content="每次看到hello world,都有一种说不出的赶脚，想起了一个程序员，退休后写毛笔字，取笔研磨铺纸，大笔一挥，写下了“hello world”。
 1.使用Maven生成项目结构 mvn archetype:generate -DgroupId=com.mkyong.core -DartifactId=Spring3Example …">
-  <meta name="author" content="bystander"/>
+  <meta name="author" content="bystander"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "bystander\x27s blog",
+    
+    "url": "https:\/\/leizhiyuan.github.io\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/leizhiyuan.github.io\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/2013\/09\/20\/spring3%E5%AE%9E%E4%BE%8B%E5%85%A5%E9%97%A8-hello-world\/",
+          "name": "Spring3实例入门 hello world"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "bystander"
+  },
+  "headline": "Spring3实例入门-Hello World",
+  "description" : "每次看到hello world,都有一种说不出的赶脚，想起了一个程序员，退休后写毛笔字，取笔研磨铺纸，大笔一挥，写下了“hello world”。\n1.使用Maven生成项目结构 mvn archetype:generate -DgroupId=com.mkyong.core -DartifactId=Spring3Example -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false 2.转换成Eclipse项目 mvn eclipse:eclipse 3.添加Spring3.0 依赖 在pom.xml文件里添加Spring 3.0 依赖，然后依赖会从Maven中央仓库自动下载 \x26lt;project xmlns=\x26ldquo;http:\/\/maven.apache.org\/POM\/4.0.0\x26quot; xmlns:xsi=\x26ldquo;http:\/\/www.w3.org\/2001\/XMLSchema-instance\x26quot; xsi:schemaLocation=\x26ldquo;http:\/\/maven.apache.org\/POM\/4.0.0 http:\/\/maven.apache.org\/maven-v4_0_0.xsd\x26quot;\x26gt; \x26lt;modelVersion\x26gt;4.0.0\x26lt;\/modelVersion\x26gt; \x26lt;groupId\x26gt;com.mkyong.core\x26lt;\/groupId\x26gt; \x26lt;artifactId\x26gt;Spring3Example\x26lt;\/artifactId\x26gt; \x26lt;packaging\x26gt;jar\x26lt;\/packaging\x26gt; \x26lt;version\x26gt;1.0-SNAPSHOT\x26lt;\/version\x26gt; \x26lt;name\x26gt;Spring3Example\x26lt;\/name\x26gt; \x26lt;url\x26gt;http:\/\/maven.apache.org\x26lt;\/url\x26gt;\n\x26amp;lt;properties\x26amp;gt; \x26amp;lt;spring.version\x26amp;gt;3.0.5.RELEASE\x26amp;lt;\/spring.version\x26amp;gt; \x26amp;lt;\/properties\x26amp;gt; \x26amp;lt;dependencies\x26amp;gt; \x26amp;lt;!-- Spring 3 dependencies --\x26amp;gt; \x26amp;lt;dependency\x26amp;gt; \x26amp;lt;groupId\x26amp;gt;org.springframework\x26amp;lt;\/groupId\x26amp;gt; \x26amp;lt;artifactId\x26amp;gt;spring-core\x26amp;lt;\/artifactId\x26amp;gt; \x26amp;lt;version\x26amp;gt;${spring.version}\x26amp;lt;\/version\x26amp;gt; \x26amp;lt;\/dependency\x26amp;gt; \x26amp;lt;dependency\x26amp;gt; \x26amp;lt;groupId\x26amp;gt;org.springframework\x26amp;lt;\/groupId\x26amp;gt; \x26amp;lt;artifactId\x26amp;gt;spring-context\x26amp;lt;\/artifactId\x26amp;gt; \x26amp;lt;version\x26amp;gt;${spring.version}\x26amp;lt;\/version\x26amp;gt; \x26amp;lt;\/dependency\x26amp;gt; \x26amp;lt;\/dependencies\x26amp;gt; \x26lt;\/project\x26gt;\n4.Spring bean 写个简单的bean package com.mkyong.core;\n\/** * Spring bean * *\/ public class HelloWorld { private String name;",
+  "inLanguage" : "en",
+  "wordCount":  152 ,
+  "datePublished" : "2013-09-20T13:14:39",
+  "dateModified" : "2013-09-20T13:14:39",
+  "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+  "keywords" : [ "java, maven, spring, 翻译, 软件" ],
+  "mainEntityOfPage" : "https:\/\/leizhiyuan.github.io\/2013\/09\/20\/spring3%E5%AE%9E%E4%BE%8B%E5%85%A5%E9%97%A8-hello-world\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/leizhiyuan.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="Spring3实例入门-Hello World" />
+<meta property="og:description" content="每次看到hello world,都有一种说不出的赶脚，想起了一个程序员，退休后写毛笔字，取笔研磨铺纸，大笔一挥，写下了“hello world”。
+1.使用Maven生成项目结构 mvn archetype:generate -DgroupId=com.mkyong.core -DartifactId=Spring3Example -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false 2.转换成Eclipse项目 mvn eclipse:eclipse 3.添加Spring3.0 依赖 在pom.xml文件里添加Spring 3.0 依赖，然后依赖会从Maven中央仓库自动下载 &lt;project xmlns=&ldquo;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&ldquo;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&ldquo;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd&quot;&gt; &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt; &lt;groupId&gt;com.mkyong.core&lt;/groupId&gt; &lt;artifactId&gt;Spring3Example&lt;/artifactId&gt; &lt;packaging&gt;jar&lt;/packaging&gt; &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt; &lt;name&gt;Spring3Example&lt;/name&gt; &lt;url&gt;http://maven.apache.org&lt;/url&gt;
+&amp;lt;properties&amp;gt; &amp;lt;spring.version&amp;gt;3.0.5.RELEASE&amp;lt;/spring.version&amp;gt; &amp;lt;/properties&amp;gt; &amp;lt;dependencies&amp;gt; &amp;lt;!-- Spring 3 dependencies --&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-core&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${spring.version}&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-context&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${spring.version}&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;/dependencies&amp;gt; &lt;/project&gt;
+4.Spring bean 写个简单的bean package com.mkyong.core;
+/** * Spring bean * */ public class HelloWorld { private String name;">
+<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+<meta property="og:url" content="https://leizhiyuan.github.io/2013/09/20/spring3%E5%AE%9E%E4%BE%8B%E5%85%A5%E9%97%A8-hello-world/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="bystander&#39;s blog" />
+
+  <meta name="twitter:title" content="Spring3实例入门-Hello World" />
+  <meta name="twitter:description" content="每次看到hello world,都有一种说不出的赶脚，想起了一个程序员，退休后写毛笔字，取笔研磨铺纸，大笔一挥，写下了“hello world”。
+1.使用Maven生成项目结构 mvn archetype:generate -DgroupId=com.mkyong.core -DartifactId=Spring3Example …">
+  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+  <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
@@ -29,20 +115,17 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://leizhiyuan.github.io/2013/09/20/spring3%E5%AE%9E%E4%BE%8B%E5%85%A5%E9%97%A8-hello-world/" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <meta name="generator" content="Hugo 0.58.0" />
+  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
   <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
 
 
-</head>
 
+  </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
   <div class="container-fluid">
@@ -187,11 +270,16 @@
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 20, 2013
+  <i class="fas fa-calendar"></i>&nbsp;Posted on September 20, 2013
   
   
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (152 words)
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
   
   
 </span>
@@ -341,6 +429,8 @@ public class App {
         
 
         
+
+        
       </article>
 
       
@@ -361,6 +451,7 @@ public class App {
 
       
         
+          
           <div class="disqus-comments">
             <div id="disqus_thread"></div>
 <script type="application/javascript">
@@ -383,6 +474,7 @@ public class App {
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
           </div>
+          
         
         
       
@@ -400,19 +492,17 @@ public class App {
               <li>
                 <a href="https://github.com/leizhiyuan" title="GitHub">
                   <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
               </li>
           
           <li>
-            
-            <a href="https://leizhiyuan.github.io/index.xml" title="RSS">
-            
+            <a href="" title="RSS">
               <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
               </span>
             </a>
           </li>
@@ -425,8 +515,10 @@ public class App {
             
           
 
-          &nbsp;&bull;&nbsp;
-          2019
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2019
+          
 
           
             &nbsp;&bull;&nbsp;
@@ -435,25 +527,25 @@ public class App {
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>
     </div>
   </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <script src="https://leizhiyuan.github.io/js/main.js"></script>
 <script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
 <script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
-<script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+
+
+
 
 
 

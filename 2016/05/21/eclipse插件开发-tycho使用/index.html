@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
   <head>
+    
+
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>eclipse插件开发-tycho使用</title>
+  <title>eclipse插件开发-tycho使用 - bystander&#39;s blog</title>
   <meta property="og:title" content="eclipse插件开发-tycho使用" />
   <meta name="twitter:title" content="eclipse插件开发-tycho使用" />
   <meta name="description" content="不说废话，直接上。本文主要包括tycho的使用，版本号的自动更新。
@@ -33,7 +35,98 @@ eclipse插件开发中，依赖的管理是个问题。如果采用常规的搞�
   <meta name="twitter:description" content="不说废话，直接上。本文主要包括tycho的使用，版本号的自动更新。
 eclipse插件开发中，依赖的管理是个问题。如果采用常规的搞个lib目录，然后加到MF文件中。一旦依赖越来越多。或者要更换版本号就变得非常麻烦。所以要用到tycho
 首先说明一下目录结构。一个parent的maven工程，一个plugin工程，。两个features。一个是deps的。一个是plugin的，这个依赖deps是独立 …">
-  <meta name="author" content="bystander"/>
+  <meta name="author" content="bystander"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "bystander\x27s blog",
+    
+    "url": "https:\/\/leizhiyuan.github.io\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/leizhiyuan.github.io\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/2016\/05\/21\/eclipse%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91-tycho%E4%BD%BF%E7%94%A8\/",
+          "name": "Eclipse插件开发 tycho使用"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "bystander"
+  },
+  "headline": "eclipse插件开发-tycho使用",
+  "description" : "不说废话，直接上。本文主要包括tycho的使用，版本号的自动更新。\neclipse插件开发中，依赖的管理是个问题。如果采用常规的搞个lib目录，然后加到MF文件中。一旦依赖越来越多。或者要更换版本号就变得非常麻烦。所以要用到tycho\n首先说明一下目录结构。一个parent的maven工程，一个plugin工程，。两个features。一个是deps的。一个是plugin的，这个依赖deps是独立的mvn项目。可以先不用管。一个deps依赖工程（这个依赖工程独立）。 在主pom下。\n步骤如下。\n关于依赖部分\n 新建一个普通的mvn工程,比如deps。打包类型写成\x26lt;packaging\x26gt;bundle\x26lt;\/packaging\x26gt;,同时在pom.xml中添加build部分\n\x26lt;build\x26gt; \x26lt;plugins\x26gt; \x26lt;plugin\x26gt; \x26lt;groupId\x26gt;org.apache.felix\x26lt;\/groupId\x26gt; \x26lt;artifactId\x26gt;maven-bundle-plugin\x26lt;\/artifactId\x26gt; \x26lt;version\x26gt;3.0.1\x26lt;\/version\x26gt; \x26lt;extensions\x26gt;true\x26lt;\/extensions\x26gt; \x26lt;configuration\x26gt; \x26lt;niceManifest\x26gt;true\x26lt;\/niceManifest\x26gt; \x26lt;manifestLocation\x26gt;META-INF\x26lt;\/manifestLocation\x26gt; \x26lt;instructions\x26gt; \x26lt;Bundle-SymbolicName\x26gt;${project.artifactId}\x26lt;\/Bundle-SymbolicName\x26gt; \x26lt;Embed-Dependency\x26gt;*\x26lt;\/Embed-Dependency\x26gt; \x26lt;Embed-Transitive\x26gt;true\x26lt;\/Embed-Transitive\x26gt; \x26lt;Embed-Directory\x26gt;lib\x26lt;\/Embed-Directory\x26gt; \x26lt;Bundle-ClassPath\x26gt;{maven-dependencies}\x26lt;\/Bundle-ClassPath\x26gt; \x26lt;_exportcontents\x26gt;*\x26lt;\/_exportcontents\x26gt; \x26lt;_failok\x26gt;true\x26lt;\/_failok\x26gt; \x26lt;_nouses\x26gt;true\x26lt;\/_nouses\x26gt; \x26lt;Import-Package\x26gt;\x26lt;\/Import-Package\x26gt; \x26lt;\/instructions\x26gt; \x26lt;\/configuration\x26gt; \x26lt;\/plugin\x26gt; \x26lt;\/plugins\x26gt; \x26lt;\/build\x26gt;  然后正常添加一些依赖到这个工程中。然后执行一下mvn clean install ，你就会发现本地mvn仓库生成了一个jar包，这个jar里直接打包了所有的jar\n关于插件部分\n 新建一个类型为pom的parent工程。用来包含下面的子工程，通过\n\x26lt;modules\x26gt; \x26lt;module\x26gt;xxx.plugin.1\x26lt;\/module\x26gt; \x26lt;module\x26gt;xxx.plugin.2\x26lt;\/module\x26gt; \x26lt;\/modules\x26gt; 来管理。同时 添加如下的插件\n\x26lt;properties\x26gt; \x26lt;tycho.version\x26gt;0.24.0\x26lt;\/tycho.version\x26gt; \x26lt;\/properties\x26gt; \x26lt;build\x26gt; \x26lt;plugins\x26gt; \x26lt;plugin\x26gt; \x26lt;groupId\x26gt;org.apache.maven.plugins\x26lt;\/groupId\x26gt; \x26lt;artifactId\x26gt;maven-source-plugin\x26lt;\/artifactId\x26gt; \x26lt;executions\x26gt; \x26lt;execution\x26gt; \x26lt;id\x26gt;attach-sources\x26lt;\/id\x26gt; \x26lt;phase\x26gt;none\x26lt;\/phase\x26gt; \x26lt;\/execution\x26gt; \x26lt;\/executions\x26gt; \x26lt;version\x26gt;2.4\x26lt;\/version\x26gt; \x26lt;\/plugin\x26gt; \x26lt;plugin\x26gt; \x26lt;groupId\x26gt;org.eclipse.tycho\x26lt;\/groupId\x26gt; \x26lt;artifactId\x26gt;tycho-maven-plugin\x26lt;\/artifactId\x26gt; \x26lt;version\x26gt;${tycho.version}\x26lt;\/version\x26gt; \x26lt;extensions\x26gt;true\x26lt;\/extensions\x26gt; \x26lt;\/plugin\x26gt; \x26lt;plugin\x26gt; \x26lt;groupId\x26gt;org.",
+  "inLanguage" : "en",
+  "wordCount":  112 ,
+  "datePublished" : "2016-05-21T18:55:27",
+  "dateModified" : "2016-05-21T18:55:27",
+  "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+  "keywords" : [ "插件, 技术, 笔记" ],
+  "mainEntityOfPage" : "https:\/\/leizhiyuan.github.io\/2016\/05\/21\/eclipse%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91-tycho%E4%BD%BF%E7%94%A8\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/leizhiyuan.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="eclipse插件开发-tycho使用" />
+<meta property="og:description" content="不说废话，直接上。本文主要包括tycho的使用，版本号的自动更新。
+eclipse插件开发中，依赖的管理是个问题。如果采用常规的搞个lib目录，然后加到MF文件中。一旦依赖越来越多。或者要更换版本号就变得非常麻烦。所以要用到tycho
+首先说明一下目录结构。一个parent的maven工程，一个plugin工程，。两个features。一个是deps的。一个是plugin的，这个依赖deps是独立的mvn项目。可以先不用管。一个deps依赖工程（这个依赖工程独立）。 在主pom下。
+步骤如下。
+关于依赖部分
+ 新建一个普通的mvn工程,比如deps。打包类型写成&lt;packaging&gt;bundle&lt;/packaging&gt;,同时在pom.xml中添加build部分
+&lt;build&gt; &lt;plugins&gt; &lt;plugin&gt; &lt;groupId&gt;org.apache.felix&lt;/groupId&gt; &lt;artifactId&gt;maven-bundle-plugin&lt;/artifactId&gt; &lt;version&gt;3.0.1&lt;/version&gt; &lt;extensions&gt;true&lt;/extensions&gt; &lt;configuration&gt; &lt;niceManifest&gt;true&lt;/niceManifest&gt; &lt;manifestLocation&gt;META-INF&lt;/manifestLocation&gt; &lt;instructions&gt; &lt;Bundle-SymbolicName&gt;${project.artifactId}&lt;/Bundle-SymbolicName&gt; &lt;Embed-Dependency&gt;*&lt;/Embed-Dependency&gt; &lt;Embed-Transitive&gt;true&lt;/Embed-Transitive&gt; &lt;Embed-Directory&gt;lib&lt;/Embed-Directory&gt; &lt;Bundle-ClassPath&gt;{maven-dependencies}&lt;/Bundle-ClassPath&gt; &lt;_exportcontents&gt;*&lt;/_exportcontents&gt; &lt;_failok&gt;true&lt;/_failok&gt; &lt;_nouses&gt;true&lt;/_nouses&gt; &lt;Import-Package&gt;&lt;/Import-Package&gt; &lt;/instructions&gt; &lt;/configuration&gt; &lt;/plugin&gt; &lt;/plugins&gt; &lt;/build&gt;  然后正常添加一些依赖到这个工程中。然后执行一下mvn clean install ，你就会发现本地mvn仓库生成了一个jar包，这个jar里直接打包了所有的jar
+关于插件部分
+ 新建一个类型为pom的parent工程。用来包含下面的子工程，通过
+&lt;modules&gt; &lt;module&gt;xxx.plugin.1&lt;/module&gt; &lt;module&gt;xxx.plugin.2&lt;/module&gt; &lt;/modules&gt; 来管理。同时 添加如下的插件
+&lt;properties&gt; &lt;tycho.version&gt;0.24.0&lt;/tycho.version&gt; &lt;/properties&gt; &lt;build&gt; &lt;plugins&gt; &lt;plugin&gt; &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt; &lt;artifactId&gt;maven-source-plugin&lt;/artifactId&gt; &lt;executions&gt; &lt;execution&gt; &lt;id&gt;attach-sources&lt;/id&gt; &lt;phase&gt;none&lt;/phase&gt; &lt;/execution&gt; &lt;/executions&gt; &lt;version&gt;2.4&lt;/version&gt; &lt;/plugin&gt; &lt;plugin&gt; &lt;groupId&gt;org.eclipse.tycho&lt;/groupId&gt; &lt;artifactId&gt;tycho-maven-plugin&lt;/artifactId&gt; &lt;version&gt;${tycho.version}&lt;/version&gt; &lt;extensions&gt;true&lt;/extensions&gt; &lt;/plugin&gt; &lt;plugin&gt; &lt;groupId&gt;org.">
+<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+<meta property="og:url" content="https://leizhiyuan.github.io/2016/05/21/eclipse%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91-tycho%E4%BD%BF%E7%94%A8/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="bystander&#39;s blog" />
+
+  <meta name="twitter:title" content="eclipse插件开发-tycho使用" />
+  <meta name="twitter:description" content="不说废话，直接上。本文主要包括tycho的使用，版本号的自动更新。
+eclipse插件开发中，依赖的管理是个问题。如果采用常规的搞个lib目录，然后加到MF文件中。一旦依赖越来越多。或者要更换版本号就变得非常麻烦。所以要用到tycho
+首先说明一下目录结构。一个parent的maven工程，一个plugin工程，。两个features。一个是deps的。一个是plugin的，这个依赖deps是独立 …">
+  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+  <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
@@ -42,20 +135,17 @@ eclipse插件开发中，依赖的管理是个问题。如果采用常规的搞�
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://leizhiyuan.github.io/2016/05/21/eclipse%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91-tycho%E4%BD%BF%E7%94%A8/" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <meta name="generator" content="Hugo 0.58.0" />
+  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
   <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
 
 
-</head>
 
+  </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
   <div class="container-fluid">
@@ -200,11 +290,16 @@ eclipse插件开发中，依赖的管理是个问题。如果采用常规的搞�
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on May 21, 2016
+  <i class="fas fa-calendar"></i>&nbsp;Posted on May 21, 2016
   
   
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (112 words)
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
   
   
 </span>
@@ -352,6 +447,8 @@ eclipse插件开发中，依赖的管理是个问题。如果采用常规的搞�
         
 
         
+
+        
       </article>
 
       
@@ -372,6 +469,7 @@ eclipse插件开发中，依赖的管理是个问题。如果采用常规的搞�
 
       
         
+          
           <div class="disqus-comments">
             <div id="disqus_thread"></div>
 <script type="application/javascript">
@@ -394,6 +492,7 @@ eclipse插件开发中，依赖的管理是个问题。如果采用常规的搞�
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
           </div>
+          
         
         
       
@@ -411,19 +510,17 @@ eclipse插件开发中，依赖的管理是个问题。如果采用常规的搞�
               <li>
                 <a href="https://github.com/leizhiyuan" title="GitHub">
                   <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
               </li>
           
           <li>
-            
-            <a href="https://leizhiyuan.github.io/index.xml" title="RSS">
-            
+            <a href="" title="RSS">
               <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
               </span>
             </a>
           </li>
@@ -436,8 +533,10 @@ eclipse插件开发中，依赖的管理是个问题。如果采用常规的搞�
             
           
 
-          &nbsp;&bull;&nbsp;
-          2019
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2019
+          
 
           
             &nbsp;&bull;&nbsp;
@@ -446,25 +545,25 @@ eclipse插件开发中，依赖的管理是个问题。如果采用常规的搞�
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>
     </div>
   </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <script src="https://leizhiyuan.github.io/js/main.js"></script>
 <script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
 <script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
-<script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+
+
+
 
 
 

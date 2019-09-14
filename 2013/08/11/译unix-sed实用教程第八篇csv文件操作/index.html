@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
   <head>
+    
+
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>[译]Unix sed实用教程第八篇–CSV文件操作</title>
+  <title>[译]Unix sed实用教程第八篇–CSV文件操作 - bystander&#39;s blog</title>
   <meta property="og:title" content="[译]Unix sed实用教程第八篇–CSV文件操作" />
   <meta name="twitter:title" content="[译]Unix sed实用教程第八篇–CSV文件操作" />
   <meta name="description" content="本文作为sed使用教程的最后一篇，将比较全面的讲解如何操作csv文件，csv文件通过逗号分隔
@@ -24,7 +26,93 @@
 6.输出最后一列是一位数字的行 $ sed -n &lsquo;/.">
   <meta name="twitter:description" content="本文作为sed使用教程的最后一篇，将比较全面的讲解如何操作csv文件，csv文件通过逗号分隔
 示例文件如下： cat file Solaris,25,11 Ubuntu,31,2 Fedora,21,3 LinuxMint,45,4 RedHat,12,5 1.删除第一列 $ sed &rsquo;s/[^,]*,//&rsquo; file 25,11 31,2 21,3 45,4 12,5 s …">
-  <meta name="author" content="bystander"/>
+  <meta name="author" content="bystander"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "bystander\x27s blog",
+    
+    "url": "https:\/\/leizhiyuan.github.io\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/leizhiyuan.github.io\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/2013\/08\/11\/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AB%E7%AF%87csv%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C\/",
+          "name": "[译] unix sed实用教程第八篇– c s v文件操作"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "bystander"
+  },
+  "headline": "[译]Unix sed实用教程第八篇–CSV文件操作",
+  "description" : "本文作为sed使用教程的最后一篇，将比较全面的讲解如何操作csv文件，csv文件通过逗号分隔\n示例文件如下： cat file Solaris,25,11 Ubuntu,31,2 Fedora,21,3 LinuxMint,45,4 RedHat,12,5 1.删除第一列 $ sed \x26rsquo;s\/[^,]*,\/\/\x26rsquo; file 25,11 31,2 21,3 45,4 12,5 s开启替换模式，当^符号在中括号里的时候，就是非的意思，也就是说[^,]匹配了所有不是逗号的一个字符，然后后面的星号表示0个或多个，然后是一个逗号，也就是匹配\x26rdquo;xxxx,\x26ldquo;替换为空\n2.删除除过最后一列的其他所有 $ sed \x26rsquo;s\/.*,\/\/\x26rsquo; file 11 2 3 4 5 sed先匹配任意多个字符，然后匹配最后一个“,”这就直接把前面的都匹配完了。替换为空即可。\n3.输出第一列 $ sed \x26rsquo;s\/,.*\/\/\x26rsquo; file Solaris Ubuntu Fedora LinuxMint RedHat 好理解把，先匹配第一列之后的逗号，然后是多个字符，然后替换为空\n4.删除第二列 $ sed \x26rsquo;s\/,[^,]*,\/,\/\x26rsquo; file Solaris,11 Ubuntu,2 Fedora,3 LinuxMint,4 RedHat,5 先匹配第一列之后的逗号，然后匹配一个或多个非逗号字符，这样就匹配了第二列的内容，然后再匹配一个逗号，我简化一下，比如该列是1，2，3，4，那么这一个匹配就是\x26rdquo;,2,\x26ldquo;，替换成一个逗号，就是1，3，4了\n5.输出第二列 $ sed \x26rsquo;s\/[^,],([^,]).\/\\1\/\x26rsquo; file 25 31 21 45 12 我们可以分析前两个斜线之间的内容 [^,],([^,]). 两个右斜线转移了括号，所以括号不是简单的符号，而是正则里的组的意义，圆括号的作用是对字符进行分组，并保存匹配的文本。这里先匹配非逗号的多个字符，然后一个逗号，然后再匹配第二列，并且第二列的匹配用括号括起来，然后匹配其他列，然后里面用\\1来引用这个括号的内容，如果前面有两个括号，就可以使用\\1或\\2这样，分别表示第一个括号或第二个括号的匹配\n6.输出最后一列是一位数字的行 $ sed -n \x26lsquo;\/.",
+  "inLanguage" : "en",
+  "wordCount":  175 ,
+  "datePublished" : "2013-08-11T16:55:33",
+  "dateModified" : "2013-08-11T16:55:33",
+  "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+  "keywords" : [ "linux, shell" ],
+  "mainEntityOfPage" : "https:\/\/leizhiyuan.github.io\/2013\/08\/11\/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AB%E7%AF%87csv%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/leizhiyuan.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="[译]Unix sed实用教程第八篇–CSV文件操作" />
+<meta property="og:description" content="本文作为sed使用教程的最后一篇，将比较全面的讲解如何操作csv文件，csv文件通过逗号分隔
+示例文件如下： cat file Solaris,25,11 Ubuntu,31,2 Fedora,21,3 LinuxMint,45,4 RedHat,12,5 1.删除第一列 $ sed &rsquo;s/[^,]*,//&rsquo; file 25,11 31,2 21,3 45,4 12,5 s开启替换模式，当^符号在中括号里的时候，就是非的意思，也就是说[^,]匹配了所有不是逗号的一个字符，然后后面的星号表示0个或多个，然后是一个逗号，也就是匹配&rdquo;xxxx,&ldquo;替换为空
+2.删除除过最后一列的其他所有 $ sed &rsquo;s/.*,//&rsquo; file 11 2 3 4 5 sed先匹配任意多个字符，然后匹配最后一个“,”这就直接把前面的都匹配完了。替换为空即可。
+3.输出第一列 $ sed &rsquo;s/,.*//&rsquo; file Solaris Ubuntu Fedora LinuxMint RedHat 好理解把，先匹配第一列之后的逗号，然后是多个字符，然后替换为空
+4.删除第二列 $ sed &rsquo;s/,[^,]*,/,/&rsquo; file Solaris,11 Ubuntu,2 Fedora,3 LinuxMint,4 RedHat,5 先匹配第一列之后的逗号，然后匹配一个或多个非逗号字符，这样就匹配了第二列的内容，然后再匹配一个逗号，我简化一下，比如该列是1，2，3，4，那么这一个匹配就是&rdquo;,2,&ldquo;，替换成一个逗号，就是1，3，4了
+5.输出第二列 $ sed &rsquo;s/[^,],([^,])./\1/&rsquo; file 25 31 21 45 12 我们可以分析前两个斜线之间的内容 [^,],([^,]). 两个右斜线转移了括号，所以括号不是简单的符号，而是正则里的组的意义，圆括号的作用是对字符进行分组，并保存匹配的文本。这里先匹配非逗号的多个字符，然后一个逗号，然后再匹配第二列，并且第二列的匹配用括号括起来，然后匹配其他列，然后里面用\1来引用这个括号的内容，如果前面有两个括号，就可以使用\1或\2这样，分别表示第一个括号或第二个括号的匹配
+6.输出最后一列是一位数字的行 $ sed -n &lsquo;/.">
+<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+<meta property="og:url" content="https://leizhiyuan.github.io/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AB%E7%AF%87csv%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="bystander&#39;s blog" />
+
+  <meta name="twitter:title" content="[译]Unix sed实用教程第八篇–CSV文件操作" />
+  <meta name="twitter:description" content="本文作为sed使用教程的最后一篇，将比较全面的讲解如何操作csv文件，csv文件通过逗号分隔
+示例文件如下： cat file Solaris,25,11 Ubuntu,31,2 Fedora,21,3 LinuxMint,45,4 RedHat,12,5 1.删除第一列 $ sed &rsquo;s/[^,]*,//&rsquo; file 25,11 31,2 21,3 45,4 12,5 s …">
+  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+  <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
@@ -33,20 +121,17 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://leizhiyuan.github.io/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AB%E7%AF%87csv%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <meta name="generator" content="Hugo 0.58.0" />
+  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
   <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
 
 
-</head>
 
+  </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
   <div class="container-fluid">
@@ -191,11 +276,16 @@
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on August 11, 2013
+  <i class="fas fa-calendar"></i>&nbsp;Posted on August 11, 2013
   
   
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (175 words)
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
   
   
 </span>
@@ -375,6 +465,8 @@ A,RedHat,12,5</pre>
         
 
         
+
+        
       </article>
 
       
@@ -395,6 +487,7 @@ A,RedHat,12,5</pre>
 
       
         
+          
           <div class="disqus-comments">
             <div id="disqus_thread"></div>
 <script type="application/javascript">
@@ -417,6 +510,7 @@ A,RedHat,12,5</pre>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
           </div>
+          
         
         
       
@@ -434,19 +528,17 @@ A,RedHat,12,5</pre>
               <li>
                 <a href="https://github.com/leizhiyuan" title="GitHub">
                   <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
               </li>
           
           <li>
-            
-            <a href="https://leizhiyuan.github.io/index.xml" title="RSS">
-            
+            <a href="" title="RSS">
               <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
               </span>
             </a>
           </li>
@@ -459,8 +551,10 @@ A,RedHat,12,5</pre>
             
           
 
-          &nbsp;&bull;&nbsp;
-          2019
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2019
+          
 
           
             &nbsp;&bull;&nbsp;
@@ -469,25 +563,25 @@ A,RedHat,12,5</pre>
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>
     </div>
   </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <script src="https://leizhiyuan.github.io/js/main.js"></script>
 <script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
 <script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
-<script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+
+
+
 
 
 

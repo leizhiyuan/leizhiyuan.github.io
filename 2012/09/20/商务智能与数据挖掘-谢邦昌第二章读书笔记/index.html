@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
   <head>
+    
+
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>《商务智能与数据挖掘-谢邦昌》第二章读书笔记</title>
+  <title>《商务智能与数据挖掘-谢邦昌》第二章读书笔记 - bystander&#39;s blog</title>
   <meta property="og:title" content="《商务智能与数据挖掘-谢邦昌》第二章读书笔记" />
   <meta name="twitter:title" content="《商务智能与数据挖掘-谢邦昌》第二章读书笔记" />
   <meta name="description" content="2.数据仓库
@@ -51,7 +53,108 @@
 2.1数据仓库特点：
 　数据仓库的四个特点。
 　1.面向主题（Subject Orient）。数据建立的着重点就是在于以重要的主题组件作为核心。作为建构的方向。数据需求者只要把谣言觉得相关主题数 …">
-  <meta name="author" content="bystander"/>
+  <meta name="author" content="bystander"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "bystander\x27s blog",
+    
+    "url": "https:\/\/leizhiyuan.github.io\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/leizhiyuan.github.io\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/2012\/09\/20\/%E5%95%86%E5%8A%A1%E6%99%BA%E8%83%BD%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-%E8%B0%A2%E9%82%A6%E6%98%8C%E7%AC%AC%E4%BA%8C%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0\/",
+          "name": "《商务智能与数据挖掘 谢邦昌》第二章读书笔记"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "bystander"
+  },
+  "headline": "《商务智能与数据挖掘-谢邦昌》第二章读书笔记",
+  "description" : "2.数据仓库\n　数据仓库名字上来看是很好理解的。他与传统的数据库的不同在于。传统的数据库是未经整理后的一大堆数据集。而数据仓库是从数据库中萃取出来。经过整理，规划，建构而成的一个有系统的数据库的子集合。\n2.1数据仓库特点：\n　数据仓库的四个特点。\n　1.面向主题（Subject Orient）。数据建立的着重点就是在于以重要的主题组件作为核心。作为建构的方向。数据需求者只要把谣言觉得相关主题数据，从数据库中攫取，整合之后就可以做研究之用。\n　2.整合性（Integrated）各应用系统的数据需经过整合。以便利执行相关分析操作\n　3.长期性（Time Variance） 为了执行趋势的分析。数据仓库系统需保留1-10年的历史数据。这与数据库为日常性的数据有所不同。\n　4.稳定性（Non-Volatile）数据库可以被随时修改，但数据仓库基本上不会大动。只有内部人员会定期修改。但频率不会太多。也不允许用户做更新的动作。\n　由于以上的几个特点。数据仓库必须通过一连串的程序才可建立。而不是说即买即用。。\n2.2数据仓库架构\n　数据源-\x26gt;整体数据仓库-\x26gt;部门性数据仓库-\x26gt;查询工具-\x26gt;终端用户\n　数据仓库的建设过程：\n　专业顾问通过与企业进行需求访谈，建立数据仓库的model，然后将企业内各种数据整合到数据库中，并建立前端分析数据的工具以及管理工具，这样的过程即为建立数据仓库的基本过程。\n　1.设计（Design） 即数据仓库的数据Model设计，这部分是最重要的，若Model设计的不够周全或布里希那个，不管之后的报表设计如何精美，也可能跑出错误的信息。这也是需要有经验的专业顾问建立数据仓库的一个重要原因。\n　2.整合（Integrate）即数据的整合转换过程，包含数据解释（Data Extraction） ，数据转换（Data Transformation）数据清理（Data Cleaning），数据加载（Data Loading）将各种来源的数据整理，转换并加载数据仓库中，程序编写较为繁杂，自动化处理困难，经常需要人工参与操作，大约占掉该项目60-70%的时间和人力。\n　3.可视化（Visualize）即前端呈现给用户看的形式，例如数据挖掘（Data Mining） 即OLAP工具，用以呈现分析过的数据形式。\n　4.调度（Administration）为管理的工具。\n2.3建立数据仓库的原因和目的\n　提高企业的竞争能力，降低成本，提高客户满意度。创造利润。",
+  "inLanguage" : "en",
+  "wordCount":  30 ,
+  "datePublished" : "2012-09-20T08:47:36",
+  "dateModified" : "2012-09-20T08:47:36",
+  "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+  "keywords" : [ "学习, 总结, 数据库, 数据挖掘, 设计" ],
+  "mainEntityOfPage" : "https:\/\/leizhiyuan.github.io\/2012\/09\/20\/%E5%95%86%E5%8A%A1%E6%99%BA%E8%83%BD%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-%E8%B0%A2%E9%82%A6%E6%98%8C%E7%AC%AC%E4%BA%8C%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/leizhiyuan.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="《商务智能与数据挖掘-谢邦昌》第二章读书笔记" />
+<meta property="og:description" content="2.数据仓库
+　数据仓库名字上来看是很好理解的。他与传统的数据库的不同在于。传统的数据库是未经整理后的一大堆数据集。而数据仓库是从数据库中萃取出来。经过整理，规划，建构而成的一个有系统的数据库的子集合。
+2.1数据仓库特点：
+　数据仓库的四个特点。
+　1.面向主题（Subject Orient）。数据建立的着重点就是在于以重要的主题组件作为核心。作为建构的方向。数据需求者只要把谣言觉得相关主题数据，从数据库中攫取，整合之后就可以做研究之用。
+　2.整合性（Integrated）各应用系统的数据需经过整合。以便利执行相关分析操作
+　3.长期性（Time Variance） 为了执行趋势的分析。数据仓库系统需保留1-10年的历史数据。这与数据库为日常性的数据有所不同。
+　4.稳定性（Non-Volatile）数据库可以被随时修改，但数据仓库基本上不会大动。只有内部人员会定期修改。但频率不会太多。也不允许用户做更新的动作。
+　由于以上的几个特点。数据仓库必须通过一连串的程序才可建立。而不是说即买即用。。
+2.2数据仓库架构
+　数据源-&gt;整体数据仓库-&gt;部门性数据仓库-&gt;查询工具-&gt;终端用户
+　数据仓库的建设过程：
+　专业顾问通过与企业进行需求访谈，建立数据仓库的model，然后将企业内各种数据整合到数据库中，并建立前端分析数据的工具以及管理工具，这样的过程即为建立数据仓库的基本过程。
+　1.设计（Design） 即数据仓库的数据Model设计，这部分是最重要的，若Model设计的不够周全或布里希那个，不管之后的报表设计如何精美，也可能跑出错误的信息。这也是需要有经验的专业顾问建立数据仓库的一个重要原因。
+　2.整合（Integrate）即数据的整合转换过程，包含数据解释（Data Extraction） ，数据转换（Data Transformation）数据清理（Data Cleaning），数据加载（Data Loading）将各种来源的数据整理，转换并加载数据仓库中，程序编写较为繁杂，自动化处理困难，经常需要人工参与操作，大约占掉该项目60-70%的时间和人力。
+　3.可视化（Visualize）即前端呈现给用户看的形式，例如数据挖掘（Data Mining） 即OLAP工具，用以呈现分析过的数据形式。
+　4.调度（Administration）为管理的工具。
+2.3建立数据仓库的原因和目的
+　提高企业的竞争能力，降低成本，提高客户满意度。创造利润。">
+<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+<meta property="og:url" content="https://leizhiyuan.github.io/2012/09/20/%E5%95%86%E5%8A%A1%E6%99%BA%E8%83%BD%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-%E8%B0%A2%E9%82%A6%E6%98%8C%E7%AC%AC%E4%BA%8C%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="bystander&#39;s blog" />
+
+  <meta name="twitter:title" content="《商务智能与数据挖掘-谢邦昌》第二章读书笔记" />
+  <meta name="twitter:description" content="2.数据仓库
+　数据仓库名字上来看是很好理解的。他与传统的数据库的不同在于。传统的数据库是未经整理后的一大堆数据集。而数据仓库是从数据库中萃取出来。经过整理，规划，建构而成的一个有系统的数据库的子集合。
+2.1数据仓库特点：
+　数据仓库的四个特点。
+　1.面向主题（Subject Orient）。数据建立的着重点就是在于以重要的主题组件作为核心。作为建构的方向。数据需求者只要把谣言觉得相关主题数 …">
+  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+  <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
@@ -60,20 +163,17 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://leizhiyuan.github.io/2012/09/20/%E5%95%86%E5%8A%A1%E6%99%BA%E8%83%BD%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-%E8%B0%A2%E9%82%A6%E6%98%8C%E7%AC%AC%E4%BA%8C%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <meta name="generator" content="Hugo 0.58.0" />
+  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
   <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
 
 
-</head>
 
+  </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
   <div class="container-fluid">
@@ -218,11 +318,16 @@
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 20, 2012
+  <i class="fas fa-calendar"></i>&nbsp;Posted on September 20, 2012
   
   
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (30 words)
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
   
   
 </span>
@@ -298,6 +403,8 @@
         
 
         
+
+        
       </article>
 
       
@@ -318,6 +425,7 @@
 
       
         
+          
           <div class="disqus-comments">
             <div id="disqus_thread"></div>
 <script type="application/javascript">
@@ -340,6 +448,7 @@
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
           </div>
+          
         
         
       
@@ -357,19 +466,17 @@
               <li>
                 <a href="https://github.com/leizhiyuan" title="GitHub">
                   <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
               </li>
           
           <li>
-            
-            <a href="https://leizhiyuan.github.io/index.xml" title="RSS">
-            
+            <a href="" title="RSS">
               <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
               </span>
             </a>
           </li>
@@ -382,8 +489,10 @@
             
           
 
-          &nbsp;&bull;&nbsp;
-          2019
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2019
+          
 
           
             &nbsp;&bull;&nbsp;
@@ -392,25 +501,25 @@
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>
     </div>
   </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <script src="https://leizhiyuan.github.io/js/main.js"></script>
 <script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
 <script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
-<script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+
+
+
 
 
 

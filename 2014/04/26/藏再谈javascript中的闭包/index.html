@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
   <head>
+    
+
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>[藏]再谈JavaScript中的闭包</title>
+  <title>[藏]再谈JavaScript中的闭包 - bystander&#39;s blog</title>
   <meta property="og:title" content="[藏]再谈JavaScript中的闭包" />
   <meta name="twitter:title" content="[藏]再谈JavaScript中的闭包" />
   <meta name="description" content="之前读js的时候总是感觉不清楚，近日决定重新攻读，看到这篇文章之后，我明白了某大神说的那句话，如果你不能向一个6岁的小朋友讲明白。那么这件事情你一定不明白。还有就是如果你必须理解一个闭包才会使用它，那么这个闭包设计本身就是失败的。情赏析本文。相当精彩。
@@ -26,7 +28,94 @@ JavaScript中函数的重要性毋庸置疑。在理解了JavaScript中的函数
 &lt;span class=&#34;token keyword&#34; style=&#34;color: #0077aa;&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;calculateRectangleArea&lt;span class=&#34;token punctuation&#34; style=&#34;color: #999999;&#34;&gt;(&lt;/span&gt;&lt;/span&gt;length&lt;span class=&#34;token punctuation&#34; style=&#34;color: #999999;&#34;&gt;,&lt;/span&gt;width&lt;span class=&#34;token punctuation&#34; style=&#34;color: #999999;&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34; style=&#34;color: #999999;&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;token keyword&#34; style=&#34;color: #0077aa;&#34;&gt;return&lt;/span&gt; length&lt;span class=&#34;token operator&#34; style=&#34;color: #a67f59;&#34;&gt;*&lt;/span&gt;width&lt;span class=&#34;token punctuation&#34; style=&#34;color: #999999;&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34; style=&#34;color: #999999;&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;token keyword&#34; style=&#34;color: #0077aa;&#34;&gt;var&lt;/span&gt; roomArea &lt;span class=&#34;token operator&#34; style=&#34;color: #a67f59;&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;calculateRectangleArea&lt;span class=&#34;token punctuation&#34; style=&#34;color: #999999;&#34;&gt;(&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token number&#34; style=&#34;color: #990055;&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;token punctuation&#34; style=&#34;color: #999999;&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token number&#34; style=&#34;color: #990055;&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;token punctuation&#34; style=&#34;color: #999999;&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34; style=&#34;color: #999999;&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;alert&lt;span class=&#34;token punctuation&#34; style=&#34;color: #999999;&#34;&gt;(&lt;/span&gt;&lt;/span&gt;roomArea&lt;span class=&#34;token punctuation&#34; style=&#34;color: #999999;&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34; style=&#34;color: #999999;&#34;&gt;;&lt;/span&gt; `&lt;/pre&gt; calculateRectangleArea函数接收两个参数并且返回这两个参数的乘积。在这个例子中没我们将返回的数赋值给了变量roomArea。 当代码运行之后，roomArea变量包含了10乘10的结果，也就是100： [!">
   <meta name="twitter:description" content="之前读js的时候总是感觉不清楚，近日决定重新攻读，看到这篇文章之后，我明白了某大神说的那句话，如果你不能向一个6岁的小朋友讲明白。那么这件事情你一定不明白。还有就是如果你必须理解一个闭包才会使用它，那么这个闭包设计本身就是失败的。情赏析本文。相当精彩。
 JavaScript中函数的重要性毋庸置疑。在理解了JavaScript中的函数之后，非常重要的地点就是理解我们怎样使用函数来创建闭包。一直以来， …">
-  <meta name="author" content="bystander"/>
+  <meta name="author" content="bystander"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "bystander\x27s blog",
+    
+    "url": "https:\/\/leizhiyuan.github.io\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/leizhiyuan.github.io\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/2014\/04\/26\/%E8%97%8F%E5%86%8D%E8%B0%88javascript%E4%B8%AD%E7%9A%84%E9%97%AD%E5%8C%85\/",
+          "name": "[藏]再谈 java script中的闭包"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "bystander"
+  },
+  "headline": "[藏]再谈JavaScript中的闭包",
+  "description" : "之前读js的时候总是感觉不清楚，近日决定重新攻读，看到这篇文章之后，我明白了某大神说的那句话，如果你不能向一个6岁的小朋友讲明白。那么这件事情你一定不明白。还有就是如果你必须理解一个闭包才会使用它，那么这个闭包设计本身就是失败的。情赏析本文。相当精彩。\nJavaScript中函数的重要性毋庸置疑。在理解了JavaScript中的函数之后，非常重要的地点就是理解我们怎样使用函数来创建闭包。一直以来，闭包都是JavaScript新手学习时的一个难点所在，它位于JavaScript函数与变量作用域交叉的一个灰色地带：\n\n本文将尽可能简单的方法讲述关于JavaScript闭包的那些事情，使用的代码也非常的简单。如果一开始就讲述闭包的概念，只会使得你更加的困惑。所以我们就从一个我们熟悉的领域开始，慢慢的向闭包的邪恶领域前进，看看我们在那里能发现什么。\n下面开始我们的冒险之旅吧！\n函数中的函数 我们要做的第一件事情是理解当你在函数中创建了函数并且从函数内部返回一个函数时究竟发生了什么。首先我们来快速的回顾一下函数。\n看下面的代码：\n\x26lt;span class=\x26#34;token keyword\x26#34; style=\x26#34;color: #0077aa;\x26#34;\x26gt;function\x26lt;\/span\x26gt; \x26lt;span class=\x26#34;token function\x26#34;\x26gt;calculateRectangleArea\x26lt;span class=\x26#34;token punctuation\x26#34; style=\x26#34;color: #999999;\x26#34;\x26gt;(\x26lt;\/span\x26gt;\x26lt;\/span\x26gt;length\x26lt;span class=\x26#34;token punctuation\x26#34; style=\x26#34;color: #999999;\x26#34;\x26gt;,\x26lt;\/span\x26gt;width\x26lt;span class=\x26#34;token punctuation\x26#34; style=\x26#34;color: #999999;\x26#34;\x26gt;)\x26lt;\/span\x26gt;\x26lt;span class=\x26#34;token punctuation\x26#34; style=\x26#34;color: #999999;\x26#34;\x26gt;{\x26lt;\/span\x26gt; \x26lt;span class=\x26#34;token keyword\x26#34; style=\x26#34;color: #0077aa;\x26#34;\x26gt;return\x26lt;\/span\x26gt; length\x26lt;span class=\x26#34;token operator\x26#34; style=\x26#34;color: #a67f59;\x26#34;\x26gt;*\x26lt;\/span\x26gt;width\x26lt;span class=\x26#34;token punctuation\x26#34; style=\x26#34;color: #999999;\x26#34;\x26gt;;\x26lt;\/span\x26gt; \x26lt;span class=\x26#34;token punctuation\x26#34; style=\x26#34;color: #999999;\x26#34;\x26gt;}\x26lt;\/span\x26gt; \x26lt;span class=\x26#34;token keyword\x26#34; style=\x26#34;color: #0077aa;\x26#34;\x26gt;var\x26lt;\/span\x26gt; roomArea \x26lt;span class=\x26#34;token operator\x26#34; style=\x26#34;color: #a67f59;\x26#34;\x26gt;=\x26lt;\/span\x26gt; \x26lt;span class=\x26#34;token function\x26#34;\x26gt;calculateRectangleArea\x26lt;span class=\x26#34;token punctuation\x26#34; style=\x26#34;color: #999999;\x26#34;\x26gt;(\x26lt;\/span\x26gt;\x26lt;\/span\x26gt;\x26lt;span class=\x26#34;token number\x26#34; style=\x26#34;color: #990055;\x26#34;\x26gt;10\x26lt;\/span\x26gt;\x26lt;span class=\x26#34;token punctuation\x26#34; style=\x26#34;color: #999999;\x26#34;\x26gt;,\x26lt;\/span\x26gt;\x26lt;span class=\x26#34;token number\x26#34; style=\x26#34;color: #990055;\x26#34;\x26gt;10\x26lt;\/span\x26gt;\x26lt;span class=\x26#34;token punctuation\x26#34; style=\x26#34;color: #999999;\x26#34;\x26gt;)\x26lt;\/span\x26gt;\x26lt;span class=\x26#34;token punctuation\x26#34; style=\x26#34;color: #999999;\x26#34;\x26gt;;\x26lt;\/span\x26gt; \x26lt;span class=\x26#34;token function\x26#34;\x26gt;alert\x26lt;span class=\x26#34;token punctuation\x26#34; style=\x26#34;color: #999999;\x26#34;\x26gt;(\x26lt;\/span\x26gt;\x26lt;\/span\x26gt;roomArea\x26lt;span class=\x26#34;token punctuation\x26#34; style=\x26#34;color: #999999;\x26#34;\x26gt;)\x26lt;\/span\x26gt;\x26lt;span class=\x26#34;token punctuation\x26#34; style=\x26#34;color: #999999;\x26#34;\x26gt;;\x26lt;\/span\x26gt; `\x26lt;\/pre\x26gt; calculateRectangleArea函数接收两个参数并且返回这两个参数的乘积。在这个例子中没我们将返回的数赋值给了变量roomArea。 当代码运行之后，roomArea变量包含了10乘10的结果，也就是100： [!",
+  "inLanguage" : "en",
+  "wordCount":  1127 ,
+  "datePublished" : "2014-04-26T16:36:28",
+  "dateModified" : "2014-04-26T16:36:28",
+  "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+  "keywords" : [ "javascript, web, 学习, 收藏" ],
+  "mainEntityOfPage" : "https:\/\/leizhiyuan.github.io\/2014\/04\/26\/%E8%97%8F%E5%86%8D%E8%B0%88javascript%E4%B8%AD%E7%9A%84%E9%97%AD%E5%8C%85\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/leizhiyuan.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="[藏]再谈JavaScript中的闭包" />
+<meta property="og:description" content="之前读js的时候总是感觉不清楚，近日决定重新攻读，看到这篇文章之后，我明白了某大神说的那句话，如果你不能向一个6岁的小朋友讲明白。那么这件事情你一定不明白。还有就是如果你必须理解一个闭包才会使用它，那么这个闭包设计本身就是失败的。情赏析本文。相当精彩。
+JavaScript中函数的重要性毋庸置疑。在理解了JavaScript中的函数之后，非常重要的地点就是理解我们怎样使用函数来创建闭包。一直以来，闭包都是JavaScript新手学习时的一个难点所在，它位于JavaScript函数与变量作用域交叉的一个灰色地带：
+
+本文将尽可能简单的方法讲述关于JavaScript闭包的那些事情，使用的代码也非常的简单。如果一开始就讲述闭包的概念，只会使得你更加的困惑。所以我们就从一个我们熟悉的领域开始，慢慢的向闭包的邪恶领域前进，看看我们在那里能发现什么。
+下面开始我们的冒险之旅吧！
+函数中的函数 我们要做的第一件事情是理解当你在函数中创建了函数并且从函数内部返回一个函数时究竟发生了什么。首先我们来快速的回顾一下函数。
+看下面的代码：
+&lt;span class=&#34;token keyword&#34; style=&#34;color: #0077aa;&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;calculateRectangleArea&lt;span class=&#34;token punctuation&#34; style=&#34;color: #999999;&#34;&gt;(&lt;/span&gt;&lt;/span&gt;length&lt;span class=&#34;token punctuation&#34; style=&#34;color: #999999;&#34;&gt;,&lt;/span&gt;width&lt;span class=&#34;token punctuation&#34; style=&#34;color: #999999;&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34; style=&#34;color: #999999;&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;token keyword&#34; style=&#34;color: #0077aa;&#34;&gt;return&lt;/span&gt; length&lt;span class=&#34;token operator&#34; style=&#34;color: #a67f59;&#34;&gt;*&lt;/span&gt;width&lt;span class=&#34;token punctuation&#34; style=&#34;color: #999999;&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34; style=&#34;color: #999999;&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;token keyword&#34; style=&#34;color: #0077aa;&#34;&gt;var&lt;/span&gt; roomArea &lt;span class=&#34;token operator&#34; style=&#34;color: #a67f59;&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;calculateRectangleArea&lt;span class=&#34;token punctuation&#34; style=&#34;color: #999999;&#34;&gt;(&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token number&#34; style=&#34;color: #990055;&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;token punctuation&#34; style=&#34;color: #999999;&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token number&#34; style=&#34;color: #990055;&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;token punctuation&#34; style=&#34;color: #999999;&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34; style=&#34;color: #999999;&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;alert&lt;span class=&#34;token punctuation&#34; style=&#34;color: #999999;&#34;&gt;(&lt;/span&gt;&lt;/span&gt;roomArea&lt;span class=&#34;token punctuation&#34; style=&#34;color: #999999;&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34; style=&#34;color: #999999;&#34;&gt;;&lt;/span&gt; `&lt;/pre&gt; calculateRectangleArea函数接收两个参数并且返回这两个参数的乘积。在这个例子中没我们将返回的数赋值给了变量roomArea。 当代码运行之后，roomArea变量包含了10乘10的结果，也就是100： [!">
+<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+<meta property="og:url" content="https://leizhiyuan.github.io/2014/04/26/%E8%97%8F%E5%86%8D%E8%B0%88javascript%E4%B8%AD%E7%9A%84%E9%97%AD%E5%8C%85/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="bystander&#39;s blog" />
+
+  <meta name="twitter:title" content="[藏]再谈JavaScript中的闭包" />
+  <meta name="twitter:description" content="之前读js的时候总是感觉不清楚，近日决定重新攻读，看到这篇文章之后，我明白了某大神说的那句话，如果你不能向一个6岁的小朋友讲明白。那么这件事情你一定不明白。还有就是如果你必须理解一个闭包才会使用它，那么这个闭包设计本身就是失败的。情赏析本文。相当精彩。
+JavaScript中函数的重要性毋庸置疑。在理解了JavaScript中的函数之后，非常重要的地点就是理解我们怎样使用函数来创建闭包。一直以来， …">
+  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+  <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
@@ -35,20 +124,17 @@ JavaScript中函数的重要性毋庸置疑。在理解了JavaScript中的函数
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://leizhiyuan.github.io/2014/04/26/%E8%97%8F%E5%86%8D%E8%B0%88javascript%E4%B8%AD%E7%9A%84%E9%97%AD%E5%8C%85/" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <meta name="generator" content="Hugo 0.58.0" />
+  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
   <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
 
 
-</head>
 
+  </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
   <div class="container-fluid">
@@ -193,11 +279,16 @@ JavaScript中函数的重要性毋庸置疑。在理解了JavaScript中的函数
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on April 26, 2014
+  <i class="fas fa-calendar"></i>&nbsp;Posted on April 26, 2014
   
   
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 6 minutes (1127 words)
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;6&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
   
   
 </span>
@@ -433,6 +524,8 @@ getDelay函数展示了一个包含当前时间Date.now()和前面定义的开�
         
 
         
+
+        
       </article>
 
       
@@ -453,6 +546,7 @@ getDelay函数展示了一个包含当前时间Date.now()和前面定义的开�
 
       
         
+          
           <div class="disqus-comments">
             <div id="disqus_thread"></div>
 <script type="application/javascript">
@@ -475,6 +569,7 @@ getDelay函数展示了一个包含当前时间Date.now()和前面定义的开�
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
           </div>
+          
         
         
       
@@ -492,19 +587,17 @@ getDelay函数展示了一个包含当前时间Date.now()和前面定义的开�
               <li>
                 <a href="https://github.com/leizhiyuan" title="GitHub">
                   <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
               </li>
           
           <li>
-            
-            <a href="https://leizhiyuan.github.io/index.xml" title="RSS">
-            
+            <a href="" title="RSS">
               <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
               </span>
             </a>
           </li>
@@ -517,8 +610,10 @@ getDelay函数展示了一个包含当前时间Date.now()和前面定义的开�
             
           
 
-          &nbsp;&bull;&nbsp;
-          2019
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2019
+          
 
           
             &nbsp;&bull;&nbsp;
@@ -527,25 +622,25 @@ getDelay函数展示了一个包含当前时间Date.now()和前面定义的开�
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>
     </div>
   </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <script src="https://leizhiyuan.github.io/js/main.js"></script>
 <script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
 <script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
-<script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+
+
+
 
 
 

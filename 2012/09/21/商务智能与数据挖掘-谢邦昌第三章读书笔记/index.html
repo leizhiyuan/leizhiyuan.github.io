@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
   <head>
+    
+
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>《商务智能与数据挖掘-谢邦昌》第三章读书笔记</title>
+  <title>《商务智能与数据挖掘-谢邦昌》第三章读书笔记 - bystander&#39;s blog</title>
   <meta property="og:title" content="《商务智能与数据挖掘-谢邦昌》第三章读书笔记" />
   <meta name="twitter:title" content="《商务智能与数据挖掘-谢邦昌》第三章读书笔记" />
   <meta name="description" content="3.数据挖掘
@@ -64,7 +66,114 @@
 3.1定义
 　数据挖掘是指找寻隐藏在数据中的信息，如趋势。特征及相关性的过程。也就是从数据中发掘信息或知识（Knowledge Discovery in Database）。也有人称之为数据考古学。。记住，它不是一个无所不能的软件或是一种技术，他是一种结合数种专业技术的应用。数据挖掘工具从数据中发掘出个各种假设。但是并不帮你查证。确认这些假设。也不帮你判断这些假设是否有价值。
 3.2 …">
-  <meta name="author" content="bystander"/>
+  <meta name="author" content="bystander"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "bystander\x27s blog",
+    
+    "url": "https:\/\/leizhiyuan.github.io\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/leizhiyuan.github.io\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/2012\/09\/21\/%E5%95%86%E5%8A%A1%E6%99%BA%E8%83%BD%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-%E8%B0%A2%E9%82%A6%E6%98%8C%E7%AC%AC%E4%B8%89%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0\/",
+          "name": "《商务智能与数据挖掘 谢邦昌》第三章读书笔记"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "bystander"
+  },
+  "headline": "《商务智能与数据挖掘-谢邦昌》第三章读书笔记",
+  "description" : "3.数据挖掘\n3.1定义\n　数据挖掘是指找寻隐藏在数据中的信息，如趋势。特征及相关性的过程。也就是从数据中发掘信息或知识（Knowledge Discovery in Database）。也有人称之为数据考古学。。记住，它不是一个无所不能的软件或是一种技术，他是一种结合数种专业技术的应用。数据挖掘工具从数据中发掘出个各种假设。但是并不帮你查证。确认这些假设。也不帮你判断这些假设是否有价值。\n3.2数据挖掘的功能\n　1.分类（Classification），按照分析对象的属性进行分门别类加以定义。建立类组（Class）。例如划分银行信用申请者的风险属性，使用的技术有决策树（Decision Tree），记忆基础推理（memory-based reasoning）\n　2.估计（Estimation），根据既有连续性数值的相关属性数据。以获知某一属性未知值。。例如按照信用申请者的教育程度，行为估计其的信用卡缴费量。使用的技术包括相关分析，回归分析及神经网络算法。\n　3.预测（Prediction）根据对象属性的过去观察值来估计该属性未来值。比如根据顾客过去刷卡消费量来预测其未来刷卡消费量。使用的技术包括回归分析，时间序列分析，神经网络。\n　4.关联分组（Affinity Grouping）从所有对象决定哪些相关对象放在一起销售。比如那个啤酒和尿不湿。。在客户营销系统上，此功能用来确定交叉销售。。\n　5.聚类（Clustering)，将异质总体中区分为特征相近的同质类组。目的是将组和组之间的差异辨识出来。并对个别组内相似样本进行挑选。\n3.3数据挖掘的步骤\n　1.理解数据和数据所代表的含义（Data Understanding）\n　2.获取相关知识和技术（Domain Knowledge Acquisition）\n　3.整合和检查数据（Integration and Checking）\n　4.去除错误或不一致的数据（Data Cleaning)\n　5.建模与假设（Model and Hypothesis Development）\n　6.数据挖掘运行（Running)\n　7.测试与验证所挖掘的数据（Testing and Verification）\n　8.解释与使用数据（Interpretation and Use）\n3.4数据挖掘建模的标准CRISP-DM\n　CRISP-DM模型强调完整的数据挖掘过程，不能只针对数据整理、数据呈现、数据分析以及构建模型，还需要对企业的需求问题进行了解，同时，后期对模型进行评价和模型的延伸应用，也是一个完整的数据挖掘过程不可或缺的要素。\n　CRISP-DM分为六个阶段（phase）和四个层次（level），分别简介如下：\n　1. 商业理解（Business Understanding）\n　本阶段主要的工作是要针对企业问题以及企业需求进行了解确认，针对不同的需求做深入的了解，将其转换成数据挖掘的问题，并拟定初步构想。在此阶段中，需要与企业进行讨论，以确定分析者可以对于问题有非常清楚的了解，只有这样才可以正确地针对问题拟定分析过程。\n　2. 数据理解（Data Understanding）\n　这部分包含建立数据库与分析数据。在此阶段必须收集初步数据，然后了解数据的内涵与特性，选择要进行数据挖掘所必须的数据，然后进行数据整理及评估数据的质量，必要时再将分属不同数据库的数据加以合并及整合。数据库建立完成后再进行数据分析，找出影响预测最大的数据。\n　3. 数据预处理（Data Preparation）",
+  "inLanguage" : "en",
+  "wordCount":  67 ,
+  "datePublished" : "2012-09-21T08:16:06",
+  "dateModified" : "2012-09-21T08:16:06",
+  "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+  "keywords" : [ "大学, 学习, 数据库, 数据挖掘, 设计" ],
+  "mainEntityOfPage" : "https:\/\/leizhiyuan.github.io\/2012\/09\/21\/%E5%95%86%E5%8A%A1%E6%99%BA%E8%83%BD%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-%E8%B0%A2%E9%82%A6%E6%98%8C%E7%AC%AC%E4%B8%89%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/leizhiyuan.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="《商务智能与数据挖掘-谢邦昌》第三章读书笔记" />
+<meta property="og:description" content="3.数据挖掘
+3.1定义
+　数据挖掘是指找寻隐藏在数据中的信息，如趋势。特征及相关性的过程。也就是从数据中发掘信息或知识（Knowledge Discovery in Database）。也有人称之为数据考古学。。记住，它不是一个无所不能的软件或是一种技术，他是一种结合数种专业技术的应用。数据挖掘工具从数据中发掘出个各种假设。但是并不帮你查证。确认这些假设。也不帮你判断这些假设是否有价值。
+3.2数据挖掘的功能
+　1.分类（Classification），按照分析对象的属性进行分门别类加以定义。建立类组（Class）。例如划分银行信用申请者的风险属性，使用的技术有决策树（Decision Tree），记忆基础推理（memory-based reasoning）
+　2.估计（Estimation），根据既有连续性数值的相关属性数据。以获知某一属性未知值。。例如按照信用申请者的教育程度，行为估计其的信用卡缴费量。使用的技术包括相关分析，回归分析及神经网络算法。
+　3.预测（Prediction）根据对象属性的过去观察值来估计该属性未来值。比如根据顾客过去刷卡消费量来预测其未来刷卡消费量。使用的技术包括回归分析，时间序列分析，神经网络。
+　4.关联分组（Affinity Grouping）从所有对象决定哪些相关对象放在一起销售。比如那个啤酒和尿不湿。。在客户营销系统上，此功能用来确定交叉销售。。
+　5.聚类（Clustering)，将异质总体中区分为特征相近的同质类组。目的是将组和组之间的差异辨识出来。并对个别组内相似样本进行挑选。
+3.3数据挖掘的步骤
+　1.理解数据和数据所代表的含义（Data Understanding）
+　2.获取相关知识和技术（Domain Knowledge Acquisition）
+　3.整合和检查数据（Integration and Checking）
+　4.去除错误或不一致的数据（Data Cleaning)
+　5.建模与假设（Model and Hypothesis Development）
+　6.数据挖掘运行（Running)
+　7.测试与验证所挖掘的数据（Testing and Verification）
+　8.解释与使用数据（Interpretation and Use）
+3.4数据挖掘建模的标准CRISP-DM
+　CRISP-DM模型强调完整的数据挖掘过程，不能只针对数据整理、数据呈现、数据分析以及构建模型，还需要对企业的需求问题进行了解，同时，后期对模型进行评价和模型的延伸应用，也是一个完整的数据挖掘过程不可或缺的要素。
+　CRISP-DM分为六个阶段（phase）和四个层次（level），分别简介如下：
+　1. 商业理解（Business Understanding）
+　本阶段主要的工作是要针对企业问题以及企业需求进行了解确认，针对不同的需求做深入的了解，将其转换成数据挖掘的问题，并拟定初步构想。在此阶段中，需要与企业进行讨论，以确定分析者可以对于问题有非常清楚的了解，只有这样才可以正确地针对问题拟定分析过程。
+　2. 数据理解（Data Understanding）
+　这部分包含建立数据库与分析数据。在此阶段必须收集初步数据，然后了解数据的内涵与特性，选择要进行数据挖掘所必须的数据，然后进行数据整理及评估数据的质量，必要时再将分属不同数据库的数据加以合并及整合。数据库建立完成后再进行数据分析，找出影响预测最大的数据。
+　3. 数据预处理（Data Preparation）">
+<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+<meta property="og:url" content="https://leizhiyuan.github.io/2012/09/21/%E5%95%86%E5%8A%A1%E6%99%BA%E8%83%BD%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-%E8%B0%A2%E9%82%A6%E6%98%8C%E7%AC%AC%E4%B8%89%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="bystander&#39;s blog" />
+
+  <meta name="twitter:title" content="《商务智能与数据挖掘-谢邦昌》第三章读书笔记" />
+  <meta name="twitter:description" content="3.数据挖掘
+3.1定义
+　数据挖掘是指找寻隐藏在数据中的信息，如趋势。特征及相关性的过程。也就是从数据中发掘信息或知识（Knowledge Discovery in Database）。也有人称之为数据考古学。。记住，它不是一个无所不能的软件或是一种技术，他是一种结合数种专业技术的应用。数据挖掘工具从数据中发掘出个各种假设。但是并不帮你查证。确认这些假设。也不帮你判断这些假设是否有价值。
+3.2 …">
+  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+  <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
@@ -73,20 +182,17 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://leizhiyuan.github.io/2012/09/21/%E5%95%86%E5%8A%A1%E6%99%BA%E8%83%BD%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-%E8%B0%A2%E9%82%A6%E6%98%8C%E7%AC%AC%E4%B8%89%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <meta name="generator" content="Hugo 0.58.0" />
+  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
   <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
 
 
-</head>
 
+  </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
   <div class="container-fluid">
@@ -231,11 +337,16 @@
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 21, 2012
+  <i class="fas fa-calendar"></i>&nbsp;Posted on September 21, 2012
   
   
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (67 words)
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
   
   
 </span>
@@ -341,6 +452,8 @@
         
 
         
+
+        
       </article>
 
       
@@ -361,6 +474,7 @@
 
       
         
+          
           <div class="disqus-comments">
             <div id="disqus_thread"></div>
 <script type="application/javascript">
@@ -383,6 +497,7 @@
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
           </div>
+          
         
         
       
@@ -400,19 +515,17 @@
               <li>
                 <a href="https://github.com/leizhiyuan" title="GitHub">
                   <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
               </li>
           
           <li>
-            
-            <a href="https://leizhiyuan.github.io/index.xml" title="RSS">
-            
+            <a href="" title="RSS">
               <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
               </span>
             </a>
           </li>
@@ -425,8 +538,10 @@
             
           
 
-          &nbsp;&bull;&nbsp;
-          2019
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2019
+          
 
           
             &nbsp;&bull;&nbsp;
@@ -435,25 +550,25 @@
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>
     </div>
   </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <script src="https://leizhiyuan.github.io/js/main.js"></script>
 <script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
 <script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
-<script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+
+
+
 
 
 

@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
   <head>
+    
+
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>WPF实现不规则窗体</title>
+  <title>WPF实现不规则窗体 - bystander&#39;s blog</title>
   <meta property="og:title" content="WPF实现不规则窗体" />
   <meta name="twitter:title" content="WPF实现不规则窗体" />
   <meta name="description" content="这几天在想C# winform程序界面实在太单一，而我C#实现不规则窗体中也说了，如果用背景这种东西来做的话，效果很差，抗锯齿能力基本为0，所以我当时在博客园提问，然后园友有了很给力的回答，比如WPF来做，或者第三方插件，或者深入底层改写ONPaint函数的，今天没事，恰好看到了一篇文章讲这个的，于是，就做一个简单的Demo出来，华丽的效果有木有，先看效果图
@@ -54,7 +56,108 @@ http://www.cnblogs.com/SkyD/archive/2008/07/13/1242044.html
 http://www.cnblogs.com/yinyao/archive/2011/05/23/2054056.html">
   <meta name="twitter:description" content="这几天在想C# winform程序界面实在太单一，而我C#实现不规则窗体中也说了，如果用背景这种东西来做的话，效果很差，抗锯齿能力基本为0，所以我当时在博客园提问，然后园友有了很给力的回答，比如WPF来做，或者第三方插件，或者深入底层改写ONPaint函数的，今天没事，恰好看到了一篇文章讲这个的，于是，就做一个简单的Demo出来，华丽的效果有木有，先看效果图
  在win 7下使用win&#43;Tab切换 …">
-  <meta name="author" content="bystander"/>
+  <meta name="author" content="bystander"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "bystander\x27s blog",
+    
+    "url": "https:\/\/leizhiyuan.github.io\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/leizhiyuan.github.io\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/2012\/06\/23\/wpf%E5%AE%9E%E7%8E%B0%E4%B8%8D%E8%A7%84%E5%88%99%E7%AA%97%E4%BD%93\/",
+          "name": "W p f实现不规则窗体"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "bystander"
+  },
+  "headline": "WPF实现不规则窗体",
+  "description" : "这几天在想C# winform程序界面实在太单一，而我C#实现不规则窗体中也说了，如果用背景这种东西来做的话，效果很差，抗锯齿能力基本为0，所以我当时在博客园提问，然后园友有了很给力的回答，比如WPF来做，或者第三方插件，或者深入底层改写ONPaint函数的，今天没事，恰好看到了一篇文章讲这个的，于是，就做一个简单的Demo出来，华丽的效果有木有，先看效果图\n 在win 7下使用win\x2bTab切换效果也很华丽。就不演示了。\n做起来还算比较简单，首先使用Microsoft Expression Design 4 设计一个界面，破解版什么的太多了，，软件界面和ps挺像，不过功能弱很多，自己操作操作就好了，我说一个问题，就是我当时想画一个空心的圆，也就是一个圆环，ps里大家都知道，直接选区相减就可以了，但是这个死活没找到，基本上最后这个界面所有的地方被找了一遍，猜了猜，才发现了，\n具体操作如下，首先汇出一个圆形，然后在圆里面再绘出一个圆形，这时候选中第二次的这个小圆，点击屏幕右侧的那个箭头会出现高级选项，\n\n然后选择混合模式为橡皮擦，就会擦去这个小圆，于是就只剩下一个圆环了。\n\n画好以后，选择文件-\x26gt;导出，按如下设置， \n\x26nbsp;\n会得到一个xaml文件，一会用\n然后新建wpf项目，然后在解决方案资源管理器视图右键点击项目 导入现有项，把上一步的xaml文件导入\n然后需要在app.xaml文件中进行设置，具体在\x26lt;Application.Resources\x26gt;标签内添加如下代码，中间那个文件名看情况而定。 \x26lt;ResourceDictionary\x26gt; \x26lt;ResourceDictionary.MergedDictionaries\x26gt; \x26lt;ResourceDictionary Source=\x26ldquo;bystander.xaml\x26rdquo;\/\x26gt; \x26lt;\/ResourceDictionary.MergedDictionaries\x26gt; \x26lt;\/ResourceDictionary\x26gt; \x26nbsp;\n然后打开“MainWindow.xaml”文件的设计视图，点击窗体边缘以选中窗体，在属性面板中更改AllowsTransparency及WindowStyle属性。 AllowsTransparency 指示窗体是否支持透明。选中 WindowStyle指示窗体边框样式，设为 None 为无边框。\n然后呢在 MainWindow.xaml文件中添加如下代码， Background=\x26ldquo;{StaticResource back}\x26rdquo; MouseDown=\x26ldquo;Window_MouseDown\x26rdquo;\x26gt; 最终代码是： \x26lt;Window x:Class=\x26ldquo;WpfDemo.MainWindow\x26rdquo; xmlns=\x26ldquo;http:\/\/schemas.microsoft.com\/winfx\/2006\/xaml\/presentation\x26quot; xmlns:x=\x26ldquo;http:\/\/schemas.microsoft.com\/winfx\/2006\/xaml\x26quot; Title=\x26ldquo;MainWindow\x26rdquo; Height=\x26ldquo;350\x26rdquo; Width=\x26ldquo;525\x26rdquo; AllowsTransparency=\x26ldquo;True\x26rdquo; WindowStyle=\x26ldquo;None\x26rdquo; Background=\x26ldquo;{StaticResource back}\x26rdquo; MouseDown=\x26ldquo;Window_MouseDown\x26rdquo;\x26gt; \x26lt;\/Window\x26gt; 其中background那个是固定的，而MouseDown是为了给窗体写可以拖动的函数，函数名为Window_MouseDown你也可以自己制定\n然后对着那个函数名点右键，如下图\n\n导航到事件处理程序，然后在打开的函数里写上 if(e.ChangedButton==MouseButton.Left) this.DragMove(); 拖动功能就实现了。\n至于添加关闭按钮的，我就不写了，很简单，代码里都有。可以参考源文件。\n工程源码下载：WPFDemo\n参考：\nhttp:\/\/www.cnblogs.com\/SkyD\/archive\/2008\/07\/13\/1242044.html\nhttp:\/\/www.cnblogs.com\/yinyao\/archive\/2011\/05\/23\/2054056.html",
+  "inLanguage" : "en",
+  "wordCount":  60 ,
+  "datePublished" : "2012-06-23T06:22:49",
+  "dateModified" : "2012-06-23T06:22:49",
+  "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+  "keywords" : [ "学习, 开发, 总结, 编程, 软件" ],
+  "mainEntityOfPage" : "https:\/\/leizhiyuan.github.io\/2012\/06\/23\/wpf%E5%AE%9E%E7%8E%B0%E4%B8%8D%E8%A7%84%E5%88%99%E7%AA%97%E4%BD%93\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/leizhiyuan.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="WPF实现不规则窗体" />
+<meta property="og:description" content="这几天在想C# winform程序界面实在太单一，而我C#实现不规则窗体中也说了，如果用背景这种东西来做的话，效果很差，抗锯齿能力基本为0，所以我当时在博客园提问，然后园友有了很给力的回答，比如WPF来做，或者第三方插件，或者深入底层改写ONPaint函数的，今天没事，恰好看到了一篇文章讲这个的，于是，就做一个简单的Demo出来，华丽的效果有木有，先看效果图
+ 在win 7下使用win&#43;Tab切换效果也很华丽。就不演示了。
+做起来还算比较简单，首先使用Microsoft Expression Design 4 设计一个界面，破解版什么的太多了，，软件界面和ps挺像，不过功能弱很多，自己操作操作就好了，我说一个问题，就是我当时想画一个空心的圆，也就是一个圆环，ps里大家都知道，直接选区相减就可以了，但是这个死活没找到，基本上最后这个界面所有的地方被找了一遍，猜了猜，才发现了，
+具体操作如下，首先汇出一个圆形，然后在圆里面再绘出一个圆形，这时候选中第二次的这个小圆，点击屏幕右侧的那个箭头会出现高级选项，
+
+然后选择混合模式为橡皮擦，就会擦去这个小圆，于是就只剩下一个圆环了。
+
+画好以后，选择文件-&gt;导出，按如下设置， 
+&nbsp;
+会得到一个xaml文件，一会用
+然后新建wpf项目，然后在解决方案资源管理器视图右键点击项目 导入现有项，把上一步的xaml文件导入
+然后需要在app.xaml文件中进行设置，具体在&lt;Application.Resources&gt;标签内添加如下代码，中间那个文件名看情况而定。 &lt;ResourceDictionary&gt; &lt;ResourceDictionary.MergedDictionaries&gt; &lt;ResourceDictionary Source=&ldquo;bystander.xaml&rdquo;/&gt; &lt;/ResourceDictionary.MergedDictionaries&gt; &lt;/ResourceDictionary&gt; &nbsp;
+然后打开“MainWindow.xaml”文件的设计视图，点击窗体边缘以选中窗体，在属性面板中更改AllowsTransparency及WindowStyle属性。 AllowsTransparency 指示窗体是否支持透明。选中 WindowStyle指示窗体边框样式，设为 None 为无边框。
+然后呢在 MainWindow.xaml文件中添加如下代码， Background=&ldquo;{StaticResource back}&rdquo; MouseDown=&ldquo;Window_MouseDown&rdquo;&gt; 最终代码是： &lt;Window x:Class=&ldquo;WpfDemo.MainWindow&rdquo; xmlns=&ldquo;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot; xmlns:x=&ldquo;http://schemas.microsoft.com/winfx/2006/xaml&quot; Title=&ldquo;MainWindow&rdquo; Height=&ldquo;350&rdquo; Width=&ldquo;525&rdquo; AllowsTransparency=&ldquo;True&rdquo; WindowStyle=&ldquo;None&rdquo; Background=&ldquo;{StaticResource back}&rdquo; MouseDown=&ldquo;Window_MouseDown&rdquo;&gt; &lt;/Window&gt; 其中background那个是固定的，而MouseDown是为了给窗体写可以拖动的函数，函数名为Window_MouseDown你也可以自己制定
+然后对着那个函数名点右键，如下图
+
+导航到事件处理程序，然后在打开的函数里写上 if(e.ChangedButton==MouseButton.Left) this.DragMove(); 拖动功能就实现了。
+至于添加关闭按钮的，我就不写了，很简单，代码里都有。可以参考源文件。
+工程源码下载：WPFDemo
+参考：
+http://www.cnblogs.com/SkyD/archive/2008/07/13/1242044.html
+http://www.cnblogs.com/yinyao/archive/2011/05/23/2054056.html">
+<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+<meta property="og:url" content="https://leizhiyuan.github.io/2012/06/23/wpf%E5%AE%9E%E7%8E%B0%E4%B8%8D%E8%A7%84%E5%88%99%E7%AA%97%E4%BD%93/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="bystander&#39;s blog" />
+
+  <meta name="twitter:title" content="WPF实现不规则窗体" />
+  <meta name="twitter:description" content="这几天在想C# winform程序界面实在太单一，而我C#实现不规则窗体中也说了，如果用背景这种东西来做的话，效果很差，抗锯齿能力基本为0，所以我当时在博客园提问，然后园友有了很给力的回答，比如WPF来做，或者第三方插件，或者深入底层改写ONPaint函数的，今天没事，恰好看到了一篇文章讲这个的，于是，就做一个简单的Demo出来，华丽的效果有木有，先看效果图
+ 在win 7下使用win&#43;Tab切换 …">
+  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+  <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
@@ -63,20 +166,17 @@ http://www.cnblogs.com/yinyao/archive/2011/05/23/2054056.html">
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://leizhiyuan.github.io/2012/06/23/wpf%E5%AE%9E%E7%8E%B0%E4%B8%8D%E8%A7%84%E5%88%99%E7%AA%97%E4%BD%93/" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <meta name="generator" content="Hugo 0.58.0" />
+  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
   <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
 
 
-</head>
 
+  </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
   <div class="container-fluid">
@@ -221,11 +321,16 @@ http://www.cnblogs.com/yinyao/archive/2011/05/23/2054056.html">
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on June 23, 2012
+  <i class="fas fa-calendar"></i>&nbsp;Posted on June 23, 2012
   
   
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (60 words)
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
   
   
 </span>
@@ -329,6 +434,8 @@ MouseDown=&ldquo;Window_MouseDown&rdquo;&gt;</pre>
         
 
         
+
+        
       </article>
 
       
@@ -349,6 +456,7 @@ MouseDown=&ldquo;Window_MouseDown&rdquo;&gt;</pre>
 
       
         
+          
           <div class="disqus-comments">
             <div id="disqus_thread"></div>
 <script type="application/javascript">
@@ -371,6 +479,7 @@ MouseDown=&ldquo;Window_MouseDown&rdquo;&gt;</pre>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
           </div>
+          
         
         
       
@@ -388,19 +497,17 @@ MouseDown=&ldquo;Window_MouseDown&rdquo;&gt;</pre>
               <li>
                 <a href="https://github.com/leizhiyuan" title="GitHub">
                   <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
               </li>
           
           <li>
-            
-            <a href="https://leizhiyuan.github.io/index.xml" title="RSS">
-            
+            <a href="" title="RSS">
               <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
               </span>
             </a>
           </li>
@@ -413,8 +520,10 @@ MouseDown=&ldquo;Window_MouseDown&rdquo;&gt;</pre>
             
           
 
-          &nbsp;&bull;&nbsp;
-          2019
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2019
+          
 
           
             &nbsp;&bull;&nbsp;
@@ -423,25 +532,25 @@ MouseDown=&ldquo;Window_MouseDown&rdquo;&gt;</pre>
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>
     </div>
   </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <script src="https://leizhiyuan.github.io/js/main.js"></script>
 <script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
 <script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
-<script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+
+
+
 
 
 

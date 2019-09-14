@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
   <head>
+    
+
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>《Effective C#》Item 9：区别和认识四个判等函数</title>
+  <title>《Effective C#》Item 9：区别和认识四个判等函数 - bystander&#39;s blog</title>
   <meta property="og:title" content="《Effective C#》Item 9：区别和认识四个判等函数" />
   <meta name="twitter:title" content="《Effective C#》Item 9：区别和认识四个判等函数" />
   <meta name="description" content=".Net有四个判等函数？不少人看到这个标题，会对此感到怀疑。事实上确是如此，.Net提供了ReferenceEquals、静态Equals，具体类型的Equals以及==操作符这四个判等函数。但是这四个函数之间有细微的关系，改变其中一个函数的实现会影响到其他函数的操作结果。
@@ -22,29 +24,111 @@
 // both null references handled above if( ( left == null ) || ( right == null ) ) return false; return left.">
   <meta name="twitter:description" content=".Net有四个判等函数？不少人看到这个标题，会对此感到怀疑。事实上确是如此，.Net提供了ReferenceEquals、静态Equals，具体类型的Equals以及==操作符这四个判等函数。但是这四个函数之间有细微的关系，改变其中一个函数的实现会影响到其他函数的操作结果。
 　首先要说的是Object.ReferenceEquals和Object.Equals这两个静态函数，对于它们俩来说，是不需 …">
-  <meta name="author" content="bystander"/>
+  <meta name="author" content="bystander"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "bystander\x27s blog",
+    
+    "url": "https:\/\/leizhiyuan.github.io\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/leizhiyuan.github.io\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/2012\/07\/05\/effective-c#item-9%E5%8C%BA%E5%88%AB%E5%92%8C%E8%AE%A4%E8%AF%86%E5%9B%9B%E4%B8%AA%E5%88%A4%E7%AD%89%E5%87%BD%E6%95%B0\/",
+          "name": "《 effective c#》 item 9：区别和认识四个判等函数"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "bystander"
+  },
+  "headline": "《Effective C#》Item 9：区别和认识四个判等函数",
+  "description" : ".Net有四个判等函数？不少人看到这个标题，会对此感到怀疑。事实上确是如此，.Net提供了ReferenceEquals、静态Equals，具体类型的Equals以及==操作符这四个判等函数。但是这四个函数之间有细微的关系，改变其中一个函数的实现会影响到其他函数的操作结果。\n　首先要说的是Object.ReferenceEquals和Object.Equals这两个静态函数，对于它们俩来说，是不需要进行重写的，因为它们已经完成它们所要得做的操作。\n对于Object.ReferenceEquals这个静态函数，函数形式如下： public static bool ReferenceEquals( object left, object right ); 这个函数就是判断两个引用类型对象是否指向同一个地址。有此说明后，就确定了它的使用范围，即只能对于引用类型操作。那么对于任何值类型数据操作，即使是与自身的判别，都会返回false。这主要因为在调用此函数的时候，值类型数据要进行装箱操作，也就是对于如下的形式来说。 int n = 10; Object.ReferenceEquals( n, n ); 这是因为对于n这个数据装箱两次，而每次装箱后的地址有不同，而造成Object.ReferenceEquals( n, n )的结果永远为false。\n对于第一个判等函数来说，没有什么好扩展的，因为本身已经很好地完成了它所要做的。\n对于第二个Object.Equals这个静态函数，其形式如下： public static bool Equals( object left, object right ); 按照书中对它的分析，其大致函数代码如下： public static void Equals( object left, object right ) { \/\/ Check object identity if( left == right ) return true;\n\/\/ both null references handled above if( ( left == null ) || ( right == null ) ) return false; return left.",
+  "inLanguage" : "en",
+  "wordCount":  323 ,
+  "datePublished" : "2012-07-05T22:56:00",
+  "dateModified" : "2012-07-05T22:56:00",
+  "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+  "keywords" : [ "C＃, 开发, 收藏, 设计" ],
+  "mainEntityOfPage" : "https:\/\/leizhiyuan.github.io\/2012\/07\/05\/effective-c#item-9%E5%8C%BA%E5%88%AB%E5%92%8C%E8%AE%A4%E8%AF%86%E5%9B%9B%E4%B8%AA%E5%88%A4%E7%AD%89%E5%87%BD%E6%95%B0\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/leizhiyuan.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="《Effective C#》Item 9：区别和认识四个判等函数" />
+<meta property="og:description" content=".Net有四个判等函数？不少人看到这个标题，会对此感到怀疑。事实上确是如此，.Net提供了ReferenceEquals、静态Equals，具体类型的Equals以及==操作符这四个判等函数。但是这四个函数之间有细微的关系，改变其中一个函数的实现会影响到其他函数的操作结果。
+　首先要说的是Object.ReferenceEquals和Object.Equals这两个静态函数，对于它们俩来说，是不需要进行重写的，因为它们已经完成它们所要得做的操作。
+对于Object.ReferenceEquals这个静态函数，函数形式如下： public static bool ReferenceEquals( object left, object right ); 这个函数就是判断两个引用类型对象是否指向同一个地址。有此说明后，就确定了它的使用范围，即只能对于引用类型操作。那么对于任何值类型数据操作，即使是与自身的判别，都会返回false。这主要因为在调用此函数的时候，值类型数据要进行装箱操作，也就是对于如下的形式来说。 int n = 10; Object.ReferenceEquals( n, n ); 这是因为对于n这个数据装箱两次，而每次装箱后的地址有不同，而造成Object.ReferenceEquals( n, n )的结果永远为false。
+对于第一个判等函数来说，没有什么好扩展的，因为本身已经很好地完成了它所要做的。
+对于第二个Object.Equals这个静态函数，其形式如下： public static bool Equals( object left, object right ); 按照书中对它的分析，其大致函数代码如下： public static void Equals( object left, object right ) { // Check object identity if( left == right ) return true;
+// both null references handled above if( ( left == null ) || ( right == null ) ) return false; return left.">
+<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+<meta property="og:url" content="https://leizhiyuan.github.io/2012/07/05/effective-c#item-9%E5%8C%BA%E5%88%AB%E5%92%8C%E8%AE%A4%E8%AF%86%E5%9B%9B%E4%B8%AA%E5%88%A4%E7%AD%89%E5%87%BD%E6%95%B0/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="bystander&#39;s blog" />
+
+  <meta name="twitter:title" content="《Effective C#》Item 9：区别和认识四个判等函数" />
+  <meta name="twitter:description" content=".Net有四个判等函数？不少人看到这个标题，会对此感到怀疑。事实上确是如此，.Net提供了ReferenceEquals、静态Equals，具体类型的Equals以及==操作符这四个判等函数。但是这四个函数之间有细微的关系，改变其中一个函数的实现会影响到其他函数的操作结果。
+　首先要说的是Object.ReferenceEquals和Object.Equals这两个静态函数，对于它们俩来说，是不需 …">
+  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+  <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:card" content="summary" />
-  <meta property="og:url" content="https://leizhiyuan.github.io/2012/07/05/effective-c" />
+  <meta property="og:url" content="https://leizhiyuan.github.io/2012/07/05/effective-c#item-9%E5%8C%BA%E5%88%AB%E5%92%8C%E8%AE%A4%E8%AF%86%E5%9B%9B%E4%B8%AA%E5%88%A4%E7%AD%89%E5%87%BD%E6%95%B0/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://leizhiyuan.github.io/2012/07/05/effective-c" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <meta name="generator" content="Hugo 0.58.0" />
+  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
   <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
 
 
-</head>
 
+  </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
   <div class="container-fluid">
@@ -189,11 +273,16 @@
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on July 5, 2012
+  <i class="fas fa-calendar"></i>&nbsp;Posted on July 5, 2012
   
   
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 2 minutes (323 words)
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
   
   
 </span>
@@ -440,6 +529,8 @@ if( this.GetType() != right.GetType() )
         
 
         
+
+        
       </article>
 
       
@@ -460,6 +551,7 @@ if( this.GetType() != right.GetType() )
 
       
         
+          
           <div class="disqus-comments">
             <div id="disqus_thread"></div>
 <script type="application/javascript">
@@ -482,6 +574,7 @@ if( this.GetType() != right.GetType() )
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
           </div>
+          
         
         
       
@@ -499,19 +592,17 @@ if( this.GetType() != right.GetType() )
               <li>
                 <a href="https://github.com/leizhiyuan" title="GitHub">
                   <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
               </li>
           
           <li>
-            
-            <a href="https://leizhiyuan.github.io/index.xml" title="RSS">
-            
+            <a href="" title="RSS">
               <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
               </span>
             </a>
           </li>
@@ -524,8 +615,10 @@ if( this.GetType() != right.GetType() )
             
           
 
-          &nbsp;&bull;&nbsp;
-          2019
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2019
+          
 
           
             &nbsp;&bull;&nbsp;
@@ -534,25 +627,25 @@ if( this.GetType() != right.GetType() )
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>
     </div>
   </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <script src="https://leizhiyuan.github.io/js/main.js"></script>
 <script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
 <script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
-<script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+
+
+
 
 
 

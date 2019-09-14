@@ -3,21 +3,43 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://leizhiyuan.github.io/</loc>
+    <lastmod>2019-09-14T13:18:41+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://leizhiyuan.github.io/categories/</loc>
-    <lastmod>2019-08-20T07:22:41+08:00</lastmod>
-    <priority>0</priority>
+    <lastmod>2019-09-14T13:18:41+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://leizhiyuan.github.io/post/</loc>
-    <lastmod>2019-08-20T07:22:41+08:00</lastmod>
-    <priority>0</priority>
+    <lastmod>2019-09-14T13:18:41+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://leizhiyuan.github.io/tags/</loc>
-    <lastmod>2019-08-20T07:22:41+08:00</lastmod>
-    <priority>0</priority>
+    <lastmod>2019-09-14T13:18:41+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://leizhiyuan.github.io/tags/%E5%AE%B6%E5%BA%AD/</loc>
+    <lastmod>2019-09-14T13:18:41+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://leizhiyuan.github.io/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/</loc>
+    <lastmod>2019-09-14T13:18:41+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://leizhiyuan.github.io/tags/%E7%94%9F%E6%B4%BB/</loc>
+    <lastmod>2019-09-14T13:18:41+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://leizhiyuan.github.io/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/</loc>
+    <lastmod>2019-09-14T13:18:41+08:00</lastmod>
   </url>
   
   <url>
@@ -26,27 +48,18 @@
   </url>
   
   <url>
-    <loc>https://leizhiyuan.github.io/</loc>
-    <lastmod>2019-08-20T07:22:41+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://leizhiyuan.github.io/tags/%E5%88%B6%E5%BA%A6/</loc>
     <lastmod>2019-08-20T07:22:41+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E8%AF%BB%E4%B9%A6/</loc>
     <lastmod>2019-08-20T07:22:41+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://leizhiyuan.github.io/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2019-08-20T07:22:41+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -102,13 +115,11 @@
   <url>
     <loc>https://leizhiyuan.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2018-05-13T12:34:32+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E5%BC%80%E5%8F%91/</loc>
     <lastmod>2018-05-13T12:34:32+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -117,15 +128,8 @@
   </url>
   
   <url>
-    <loc>https://leizhiyuan.github.io/tags/%E7%94%9F%E6%B4%BB/</loc>
-    <lastmod>2017-08-23T00:43:38+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://leizhiyuan.github.io/tags/java/</loc>
     <lastmod>2017-04-08T15:10:36+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -136,7 +140,6 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E5%B7%A5%E4%BD%9C/</loc>
     <lastmod>2017-04-08T15:10:36+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -162,7 +165,6 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E7%BC%96%E7%A8%8B/</loc>
     <lastmod>2016-11-06T14:40:03+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -173,7 +175,6 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/mac/</loc>
     <lastmod>2016-10-05T10:13:05+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -184,7 +185,6 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2016-10-05T10:13:05+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -195,19 +195,16 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2016-08-14T17:33:52+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/</loc>
     <lastmod>2016-08-14T17:33:52+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E8%AE%B0%E5%BD%95/</loc>
     <lastmod>2016-08-14T17:33:52+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -233,7 +230,6 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E6%8A%80%E6%9C%AF/</loc>
     <lastmod>2016-05-31T20:00:45+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -254,7 +250,6 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2016-05-29T15:13:24+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -265,7 +260,6 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E6%8F%92%E4%BB%B6/</loc>
     <lastmod>2016-05-21T18:55:27+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -276,13 +270,11 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/python/</loc>
     <lastmod>2016-03-25T19:51:07+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E8%BF%90%E7%BB%B4/</loc>
     <lastmod>2016-03-25T19:51:07+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -298,7 +290,6 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E5%BA%8F%E5%88%97%E5%8C%96/</loc>
     <lastmod>2015-12-28T19:17:25+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -314,7 +305,6 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E5%B9%B6%E5%8F%91/</loc>
     <lastmod>2015-11-22T16:06:43+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -330,7 +320,6 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E8%BD%AF%E4%BB%B6/</loc>
     <lastmod>2015-09-12T16:40:44+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -341,7 +330,6 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/</loc>
     <lastmod>2015-09-08T00:04:31+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -377,7 +365,6 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E6%96%87%E7%AB%A0/</loc>
     <lastmod>2015-08-07T22:24:21+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -408,7 +395,6 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E8%AE%BE%E8%AE%A1/</loc>
     <lastmod>2015-05-10T17:23:10+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -419,7 +405,6 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E8%81%8C%E4%B8%9A/</loc>
     <lastmod>2015-05-10T11:14:53+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -435,7 +420,6 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/wordpress/</loc>
     <lastmod>2015-01-13T23:21:04+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -456,7 +440,6 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/spring/</loc>
     <lastmod>2014-08-21T07:46:26+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -512,13 +495,11 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E4%BA%92%E8%81%94%E7%BD%91/</loc>
     <lastmod>2014-06-29T06:43:48+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E5%AE%89%E5%85%A8/</loc>
     <lastmod>2014-06-29T06:43:48+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -529,7 +510,6 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E9%87%91%E8%9E%8D/</loc>
     <lastmod>2014-06-27T15:28:46+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -540,19 +520,16 @@
   <url>
     <loc>https://leizhiyuan.github.io/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/</loc>
     <lastmod>2014-06-27T14:30:53+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://leizhiyuan.github.io/tags/maven/</loc>
     <lastmod>2014-04-26T16:56:41+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://leizhiyuan.github.io/tags/sql/</loc>
     <lastmod>2014-04-26T16:56:41+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -568,19 +545,16 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/javascript/</loc>
     <lastmod>2014-04-26T16:36:28+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://leizhiyuan.github.io/tags/web/</loc>
     <lastmod>2014-04-26T16:36:28+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E6%94%B6%E8%97%8F/</loc>
     <lastmod>2014-04-26T16:36:28+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -591,7 +565,6 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/linux/</loc>
     <lastmod>2014-03-29T10:31:31+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -602,7 +575,6 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/shell/</loc>
     <lastmod>2014-03-29T10:31:31+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -613,7 +585,6 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E4%B8%8A%E6%B5%B7/</loc>
     <lastmod>2014-03-11T08:28:38+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -634,7 +605,6 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/windows/</loc>
     <lastmod>2014-03-03T21:17:20+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -645,13 +615,11 @@
   <url>
     <loc>https://leizhiyuan.github.io/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/</loc>
     <lastmod>2014-03-01T10:57:33+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E7%BF%BB%E8%AF%91/</loc>
     <lastmod>2014-03-01T10:57:33+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -702,7 +670,6 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E6%80%BB%E7%BB%93/</loc>
     <lastmod>2013-11-16T14:21:11+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -763,13 +730,11 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E5%A4%A7%E5%AD%A6/</loc>
     <lastmod>2013-08-11T17:03:51+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E6%AD%A6%E6%B1%89/</loc>
     <lastmod>2013-08-11T17:03:51+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -825,7 +790,6 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/</loc>
     <lastmod>2013-07-26T08:24:54+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -836,19 +800,16 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E5%89%8D%E7%AB%AF/</loc>
     <lastmod>2013-07-17T14:45:45+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E6%95%B0%E5%AD%A6/</loc>
     <lastmod>2013-06-29T18:14:08+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E7%A4%BE%E4%BC%9A/</loc>
     <lastmod>2013-06-29T18:14:08+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -859,13 +820,11 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2013-06-29T18:14:08+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://leizhiyuan.github.io/tags/c/</loc>
     <lastmod>2013-06-25T08:48:20+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -881,7 +840,6 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/c&#43;&#43;/</loc>
     <lastmod>2013-06-02T15:44:22+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -907,7 +865,6 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E4%B8%8B%E8%BD%BD/</loc>
     <lastmod>2013-05-24T11:31:19+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -923,7 +880,6 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</loc>
     <lastmod>2013-05-22T16:16:24+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -939,7 +895,6 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E5%BF%83%E7%90%86/</loc>
     <lastmod>2013-05-13T06:31:43+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -985,13 +940,11 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E6%9D%82%E6%96%87/</loc>
     <lastmod>2013-03-11T09:44:36+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E7%88%B1%E6%83%85/</loc>
     <lastmod>2013-03-11T09:44:36+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -1002,7 +955,6 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/mysql/</loc>
     <lastmod>2013-03-03T07:53:24+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -1043,7 +995,6 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E5%8E%9F%E5%88%9B/</loc>
     <lastmod>2013-02-21T08:28:27+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -1112,14 +1063,13 @@
   </url>
   
   <url>
-    <loc>https://leizhiyuan.github.io/2013/01/06/sql%E6%B3%A8%E5%85%A5%E4%B8%AD%E7%9A%84waf%E7%BB%95%E8%BF%87%E6%8A%80%E6%9C%AF/</loc>
+    <loc>https://leizhiyuan.github.io/tags/php/</loc>
     <lastmod>2013-01-06T13:15:37+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://leizhiyuan.github.io/tags/php/</loc>
+    <loc>https://leizhiyuan.github.io/2013/01/06/sql%E6%B3%A8%E5%85%A5%E4%B8%AD%E7%9A%84waf%E7%BB%95%E8%BF%87%E6%8A%80%E6%9C%AF/</loc>
     <lastmod>2013-01-06T13:15:37+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -1180,7 +1130,6 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/</loc>
     <lastmod>2012-12-03T18:51:47+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -1234,14 +1183,13 @@
   </url>
   
   <url>
-    <loc>https://leizhiyuan.github.io/2012/10/21/android%E5%BC%80%E5%8F%91%E8%8E%B7%E5%8F%96map-api-key/</loc>
+    <loc>https://leizhiyuan.github.io/tags/android/</loc>
     <lastmod>2012-10-21T11:01:14+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://leizhiyuan.github.io/tags/android/</loc>
+    <loc>https://leizhiyuan.github.io/2012/10/21/android%E5%BC%80%E5%8F%91%E8%8E%B7%E5%8F%96map-api-key/</loc>
     <lastmod>2012-10-21T11:01:14+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -1267,13 +1215,11 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/</loc>
     <lastmod>2012-10-18T11:12:01+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://leizhiyuan.github.io/tags/wpf/</loc>
     <lastmod>2012-10-17T10:00:24+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -1359,7 +1305,6 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
     <lastmod>2012-09-30T22:33:19+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -1380,7 +1325,6 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E7%BC%96%E8%AF%91/</loc>
     <lastmod>2012-09-27T15:55:32+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -1431,7 +1375,6 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E6%B1%87%E7%BC%96/</loc>
     <lastmod>2012-09-24T08:02:36+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -1477,7 +1420,6 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/wcf/</loc>
     <lastmod>2012-09-09T19:28:44+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -1608,7 +1550,6 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E7%A7%91%E6%8A%80/</loc>
     <lastmod>2012-07-07T18:47:40+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -1632,14 +1573,13 @@
   </url>
   
   <url>
-    <loc>https://leizhiyuan.github.io/2012/07/03/unable-to-read-file-data_egcitest%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</loc>
+    <loc>https://leizhiyuan.github.io/tags/matlab/</loc>
     <lastmod>2012-07-03T19:50:19+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://leizhiyuan.github.io/tags/matlab/</loc>
+    <loc>https://leizhiyuan.github.io/2012/07/03/unable-to-read-file-data_egcitest%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</loc>
     <lastmod>2012-07-03T19:50:19+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -1740,7 +1680,6 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E6%99%BA%E8%83%BD/</loc>
     <lastmod>2012-06-02T07:58:25+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -1756,7 +1695,6 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/%E7%94%B5%E5%BD%B1/</loc>
     <lastmod>2012-05-31T11:07:23+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -1802,7 +1740,6 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/stackoverflow/</loc>
     <lastmod>2012-05-22T11:28:27+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -2003,7 +1940,6 @@
   <url>
     <loc>https://leizhiyuan.github.io/tags/nextgen-gallery/</loc>
     <lastmod>2012-04-12T07:35:43+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>

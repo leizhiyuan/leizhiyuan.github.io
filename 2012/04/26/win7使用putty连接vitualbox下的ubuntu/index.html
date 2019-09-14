@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
   <head>
+    
+
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>Win7使用Putty连接VitualBox下的Ubuntu</title>
+  <title>Win7使用Putty连接VitualBox下的Ubuntu - bystander&#39;s blog</title>
   <meta property="og:title" content="Win7使用Putty连接VitualBox下的Ubuntu" />
   <meta name="twitter:title" content="Win7使用Putty连接VitualBox下的Ubuntu" />
   <meta name="description" content="推荐连接方式选择Host-only Adapter（主机模式）。设置方法是打开vitualbox，然后选中虚拟机，点击设置，找到网络，然后如下图选择
@@ -59,7 +61,113 @@ http://spark10000.blog.51cto.com/955100/547211
 然后呢，可以在win7的cmd下 ping 192.168.56.101，看看可不可以ping通，
 
 有返 …">
-  <meta name="author" content="bystander"/>
+  <meta name="author" content="bystander"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "bystander\x27s blog",
+    
+    "url": "https:\/\/leizhiyuan.github.io\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/leizhiyuan.github.io\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/2012\/04\/26\/win7%E4%BD%BF%E7%94%A8putty%E8%BF%9E%E6%8E%A5vitualbox%E4%B8%8B%E7%9A%84ubuntu\/",
+          "name": "Win7使用 putty连接 vitual box下的 ubuntu"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "bystander"
+  },
+  "headline": "Win7使用Putty连接VitualBox下的Ubuntu",
+  "description" : "推荐连接方式选择Host-only Adapter（主机模式）。设置方法是打开vitualbox，然后选中虚拟机，点击设置，找到网络，然后如下图选择\n\n设置完成后，启动ubuntu，然后执行 ifconfig -a 找到下面这行，可以看到虚拟机分配到的ip地址为192.168.56.101\n\n然后呢，可以在win7的cmd下 ping 192.168.56.101，看看可不可以ping通，\n\n有返回所以是通的，\n然后在ubuntu下需要执行 sudo apt-get install openssh-server Ubuntu缺省安装了openssh-client（用于ubuntu连接其他服务器）,所以在这里就不安装了，只安装server，用于其它电脑连接ubuntu，如果你的系统没有安装的话，再用apt-get安装上即可。\n然后确认sshserver是否启动了： ps -e |grep ssh 如果只有ssh-agent行那ssh-server还没有启动，需要执行 service sshd start ，启动ssh服务器 如果看到sshd那说明ssh-server已经启动了。\n然后下载putty，推荐去官方下载，下载完成后发现是单文件，直接执行即可。\n输入ubuntu的ip点击open即可\n\n登录上以后执行命令会发现有乱码，鼠标右键点击putty窗口的标题栏，选择，\x26rdquo;Change Settings\x26rdquo;，\x26rdquo;Translation\x26rdquo;，在\x26rdquo;Received data assumed to be in which character set\x26rdquo;的下拉菜单里选择\x26rdquo;UTF-8\x26rdquo;。如下图\n\n这样，下次又得重复同样的工作，为了保持配置，继续在上图选择左边的session\n\n在saved session输入个名字，save即可，下次直接连这个就可以了\n参考：http:\/\/www.linuxidc.com\/Linux\/2011-12\x26frasl;49325.htm\nhttp:\/\/spark10000.blog.51cto.com\/955100\/547211\n至于putty的使用不在本文的计划范围内，以后有机会再写吧。\n每次遇到问题就体会到网络的信息实在太杂了。掌握搜索技术和对数据的快速筛选很重要。\n\x26nbsp;",
+  "inLanguage" : "en",
+  "wordCount":  47 ,
+  "datePublished" : "2012-04-26T22:40:27",
+  "dateModified" : "2012-04-26T22:40:27",
+  "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+  "keywords" : [ "windows" ],
+  "mainEntityOfPage" : "https:\/\/leizhiyuan.github.io\/2012\/04\/26\/win7%E4%BD%BF%E7%94%A8putty%E8%BF%9E%E6%8E%A5vitualbox%E4%B8%8B%E7%9A%84ubuntu\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/leizhiyuan.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="Win7使用Putty连接VitualBox下的Ubuntu" />
+<meta property="og:description" content="推荐连接方式选择Host-only Adapter（主机模式）。设置方法是打开vitualbox，然后选中虚拟机，点击设置，找到网络，然后如下图选择
+
+设置完成后，启动ubuntu，然后执行 ifconfig -a 找到下面这行，可以看到虚拟机分配到的ip地址为192.168.56.101
+
+然后呢，可以在win7的cmd下 ping 192.168.56.101，看看可不可以ping通，
+
+有返回所以是通的，
+然后在ubuntu下需要执行 sudo apt-get install openssh-server Ubuntu缺省安装了openssh-client（用于ubuntu连接其他服务器）,所以在这里就不安装了，只安装server，用于其它电脑连接ubuntu，如果你的系统没有安装的话，再用apt-get安装上即可。
+然后确认sshserver是否启动了： ps -e |grep ssh 如果只有ssh-agent行那ssh-server还没有启动，需要执行 service sshd start ，启动ssh服务器 如果看到sshd那说明ssh-server已经启动了。
+然后下载putty，推荐去官方下载，下载完成后发现是单文件，直接执行即可。
+输入ubuntu的ip点击open即可
+
+登录上以后执行命令会发现有乱码，鼠标右键点击putty窗口的标题栏，选择，&rdquo;Change Settings&rdquo;，&rdquo;Translation&rdquo;，在&rdquo;Received data assumed to be in which character set&rdquo;的下拉菜单里选择&rdquo;UTF-8&rdquo;。如下图
+
+这样，下次又得重复同样的工作，为了保持配置，继续在上图选择左边的session
+
+在saved session输入个名字，save即可，下次直接连这个就可以了
+参考：http://www.linuxidc.com/Linux/2011-12&frasl;49325.htm
+http://spark10000.blog.51cto.com/955100/547211
+至于putty的使用不在本文的计划范围内，以后有机会再写吧。
+每次遇到问题就体会到网络的信息实在太杂了。掌握搜索技术和对数据的快速筛选很重要。
+&nbsp;">
+<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+<meta property="og:url" content="https://leizhiyuan.github.io/2012/04/26/win7%E4%BD%BF%E7%94%A8putty%E8%BF%9E%E6%8E%A5vitualbox%E4%B8%8B%E7%9A%84ubuntu/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="bystander&#39;s blog" />
+
+  <meta name="twitter:title" content="Win7使用Putty连接VitualBox下的Ubuntu" />
+  <meta name="twitter:description" content="推荐连接方式选择Host-only Adapter（主机模式）。设置方法是打开vitualbox，然后选中虚拟机，点击设置，找到网络，然后如下图选择
+
+设置完成后，启动ubuntu，然后执行 ifconfig -a 找到下面这行，可以看到虚拟机分配到的ip地址为192.168.56.101
+
+然后呢，可以在win7的cmd下 ping 192.168.56.101，看看可不可以ping通，
+
+有返 …">
+  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+  <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
@@ -68,20 +176,17 @@ http://spark10000.blog.51cto.com/955100/547211
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://leizhiyuan.github.io/2012/04/26/win7%E4%BD%BF%E7%94%A8putty%E8%BF%9E%E6%8E%A5vitualbox%E4%B8%8B%E7%9A%84ubuntu/" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <meta name="generator" content="Hugo 0.58.0" />
+  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
   <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
 
 
-</head>
 
+  </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
   <div class="container-fluid">
@@ -226,11 +331,16 @@ http://spark10000.blog.51cto.com/955100/547211
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on April 26, 2012
+  <i class="fas fa-calendar"></i>&nbsp;Posted on April 26, 2012
   
   
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (47 words)
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
   
   
 </span>
@@ -313,6 +423,8 @@ Ubuntu缺省安装了openssh-client（用于ubuntu连接其他服务器）,所�
         
 
         
+
+        
       </article>
 
       
@@ -333,6 +445,7 @@ Ubuntu缺省安装了openssh-client（用于ubuntu连接其他服务器）,所�
 
       
         
+          
           <div class="disqus-comments">
             <div id="disqus_thread"></div>
 <script type="application/javascript">
@@ -355,6 +468,7 @@ Ubuntu缺省安装了openssh-client（用于ubuntu连接其他服务器）,所�
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
           </div>
+          
         
         
       
@@ -372,19 +486,17 @@ Ubuntu缺省安装了openssh-client（用于ubuntu连接其他服务器）,所�
               <li>
                 <a href="https://github.com/leizhiyuan" title="GitHub">
                   <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
               </li>
           
           <li>
-            
-            <a href="https://leizhiyuan.github.io/index.xml" title="RSS">
-            
+            <a href="" title="RSS">
               <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
               </span>
             </a>
           </li>
@@ -397,8 +509,10 @@ Ubuntu缺省安装了openssh-client（用于ubuntu连接其他服务器）,所�
             
           
 
-          &nbsp;&bull;&nbsp;
-          2019
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2019
+          
 
           
             &nbsp;&bull;&nbsp;
@@ -407,25 +521,25 @@ Ubuntu缺省安装了openssh-client（用于ubuntu连接其他服务器）,所�
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>
     </div>
   </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <script src="https://leizhiyuan.github.io/js/main.js"></script>
 <script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
 <script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
-<script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+
+
+
 
 
 

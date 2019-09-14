@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
   <head>
+    
+
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>[藏]隐藏在PNG图像元数据中的新iFrame注入攻击</title>
+  <title>[藏]隐藏在PNG图像元数据中的新iFrame注入攻击 - bystander&#39;s blog</title>
   <meta property="og:title" content="[藏]隐藏在PNG图像元数据中的新iFrame注入攻击" />
   <meta name="twitter:title" content="[藏]隐藏在PNG图像元数据中的新iFrame注入攻击" />
   <meta name="description" content="这个攻击方式很旧了，但手法相当不错，来自乐嵌网
@@ -107,7 +109,137 @@
 &nbsp;
 了解一个iFrame注入
 今天的iFrame 是非常标准的HTML标记，它是在自己网页中嵌入其他网站内容的简单方式。 被几乎所有的浏览器支持和百万 …">
-  <meta name="author" content="bystander"/>
+  <meta name="author" content="bystander"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "bystander\x27s blog",
+    
+    "url": "https:\/\/leizhiyuan.github.io\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/leizhiyuan.github.io\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/2014\/02\/09\/%E8%97%8F%E9%9A%90%E8%97%8F%E5%9C%A8png%E5%9B%BE%E5%83%8F%E5%85%83%E6%95%B0%E6%8D%AE%E4%B8%AD%E7%9A%84%E6%96%B0iframe%E6%B3%A8%E5%85%A5%E6%94%BB%E5%87%BB\/",
+          "name": "[藏]隐藏在 p n g图像元数据中的新i frame注入攻击"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "bystander"
+  },
+  "headline": "[藏]隐藏在PNG图像元数据中的新iFrame注入攻击",
+  "description" : "这个攻击方式很旧了，但手法相当不错，来自乐嵌网\n我们一直在努力保持领先的最新趋势，今天我们发现了一个非常有趣的事，这或者是我们之前没有发现，或者是刚发生的。 我们只能说这是新发现的。\n\x26nbsp;\n我们都了解的iFrame注入攻击，对吧？\n\x26nbsp;\n了解一个iFrame注入\n今天的iFrame 是非常标准的HTML标记，它是在自己网页中嵌入其他网站内容的简单方式。 被几乎所有的浏览器支持和百万计的网站使用，使用AdSense吗？ 那么你的网站中就有一个iFrame。\n我知道这东西很好，然而总是福祸相惜。\n今天的攻击，特别是当我们谈论路过式下载，首选是利用IFRAME标记。 它简单方便，只需简单的属性修改，攻击者可以稳妥的从另一个站点嵌入代码，并通过客户的浏览器不知不觉的加载。\n\x26nbsp;\n像这样：\n\n\x26nbsp;\n攻击者通常从其他网站嵌入的恶意文件，通常是一个PHP文件或类似的形式。 当然，这并不是唯一的方法，但是是最普遍的。 从检测和修复的角度来看，这往往很容易修复。\n\x26nbsp;\n新的iFrame注入法\n然而今天，我们发现一个有趣的iFrame注入类型。\n它的特殊之处不是在iframe标签中嵌入的内容，而是它分发恶意软件的方式。 你会看到，攻击者将威胁隐藏在PNG文件中。\n我几乎可以听到很多你的窃笑，PFF .. 这不是新的…. 但问题是在细节上我的朋友。\n\x26nbsp;\n如下，iFrame加载了一个有效的文件，没有什么恶意，一个叫jquery.js的JavaScript文件。这一切看上去都很好。你要细细的找：\n\n起初，很多人会说我们傻。 这些代码很好，没看见什么问题，对不对？ 然后，我们注意到了这个小函数，loadFile（）。 函数本身并不奇怪，但事实上，它是装载一个PNG-var strFile = ‘.\/dron.png。 你会被它惊讶良久，它才是一个真正的黑手。\n\x26nbsp;\n自然，下一步就是好奇的打开dron.png文件。 会有什么可怕的事情发生吗？\n\x26nbsp;\n噢，什么都没有，太无聊了，这纯粹是浪费时间。\n\n但是，请等一下，我发现这里有个有趣的小循环。\n\n嗯，这是确实挺奇怪的，这是一个解码循环。 为什么要一个循环的解码PNG文件呢？\n\x26nbsp;\n作为一个优秀的研究人员，采取最简单的方式，我可以将它加载到简单的测试页上 并提取图像内容。搞定！\n\x26nbsp;\n测试页上加载它之后这，我们获得了strData变量：\n\n\x26nbsp;\n看到它在干嘛了吗？\n它做了个iFrame注入，并把它嵌入到PNG的元数据中，像一个新的分配机制。\n\x26nbsp;\n有两点需要特别注意了，它使用createElement做了一个iFrame标签，然后设置elm.style.position.left 和 elm.style.position.top 属性的值为-1000px，把iframe放到可视区域之外。这些值都是负值，在浏览器中根本看不到。但是你知道谁能看到吗？只有浏览器和Google能看到。这就是下载驱动和搜索引擎感染（SEP)攻击的小伎俩。\n\x26nbsp;\n最后我们在elm.src元素中发现了真正的威胁。\n\x26nbsp;\n做的这么独特到底有什么用呢？\n它尽力隐藏真正的威胁的水平是独特的。现在的杀毒软件不会解码图像元数据，直到JavaScript文件加载完毕就停止扫描。不会追踪cookie文件，对于攻击者来说，这太好了，使它们很难被发现。",
+  "inLanguage" : "en",
+  "wordCount":  80 ,
+  "datePublished" : "2014-02-09T09:23:12",
+  "dateModified" : "2014-02-09T09:23:12",
+  "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+  "keywords" : [ "上海, 互联网, 安全" ],
+  "mainEntityOfPage" : "https:\/\/leizhiyuan.github.io\/2014\/02\/09\/%E8%97%8F%E9%9A%90%E8%97%8F%E5%9C%A8png%E5%9B%BE%E5%83%8F%E5%85%83%E6%95%B0%E6%8D%AE%E4%B8%AD%E7%9A%84%E6%96%B0iframe%E6%B3%A8%E5%85%A5%E6%94%BB%E5%87%BB\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/leizhiyuan.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="[藏]隐藏在PNG图像元数据中的新iFrame注入攻击" />
+<meta property="og:description" content="这个攻击方式很旧了，但手法相当不错，来自乐嵌网
+我们一直在努力保持领先的最新趋势，今天我们发现了一个非常有趣的事，这或者是我们之前没有发现，或者是刚发生的。 我们只能说这是新发现的。
+&nbsp;
+我们都了解的iFrame注入攻击，对吧？
+&nbsp;
+了解一个iFrame注入
+今天的iFrame 是非常标准的HTML标记，它是在自己网页中嵌入其他网站内容的简单方式。 被几乎所有的浏览器支持和百万计的网站使用，使用AdSense吗？ 那么你的网站中就有一个iFrame。
+我知道这东西很好，然而总是福祸相惜。
+今天的攻击，特别是当我们谈论路过式下载，首选是利用IFRAME标记。 它简单方便，只需简单的属性修改，攻击者可以稳妥的从另一个站点嵌入代码，并通过客户的浏览器不知不觉的加载。
+&nbsp;
+像这样：
+
+&nbsp;
+攻击者通常从其他网站嵌入的恶意文件，通常是一个PHP文件或类似的形式。 当然，这并不是唯一的方法，但是是最普遍的。 从检测和修复的角度来看，这往往很容易修复。
+&nbsp;
+新的iFrame注入法
+然而今天，我们发现一个有趣的iFrame注入类型。
+它的特殊之处不是在iframe标签中嵌入的内容，而是它分发恶意软件的方式。 你会看到，攻击者将威胁隐藏在PNG文件中。
+我几乎可以听到很多你的窃笑，PFF .. 这不是新的…. 但问题是在细节上我的朋友。
+&nbsp;
+如下，iFrame加载了一个有效的文件，没有什么恶意，一个叫jquery.js的JavaScript文件。这一切看上去都很好。你要细细的找：
+
+起初，很多人会说我们傻。 这些代码很好，没看见什么问题，对不对？ 然后，我们注意到了这个小函数，loadFile（）。 函数本身并不奇怪，但事实上，它是装载一个PNG-var strFile = ‘./dron.png。 你会被它惊讶良久，它才是一个真正的黑手。
+&nbsp;
+自然，下一步就是好奇的打开dron.png文件。 会有什么可怕的事情发生吗？
+&nbsp;
+噢，什么都没有，太无聊了，这纯粹是浪费时间。
+
+但是，请等一下，我发现这里有个有趣的小循环。
+
+嗯，这是确实挺奇怪的，这是一个解码循环。 为什么要一个循环的解码PNG文件呢？
+&nbsp;
+作为一个优秀的研究人员，采取最简单的方式，我可以将它加载到简单的测试页上 并提取图像内容。搞定！
+&nbsp;
+测试页上加载它之后这，我们获得了strData变量：
+
+&nbsp;
+看到它在干嘛了吗？
+它做了个iFrame注入，并把它嵌入到PNG的元数据中，像一个新的分配机制。
+&nbsp;
+有两点需要特别注意了，它使用createElement做了一个iFrame标签，然后设置elm.style.position.left 和 elm.style.position.top 属性的值为-1000px，把iframe放到可视区域之外。这些值都是负值，在浏览器中根本看不到。但是你知道谁能看到吗？只有浏览器和Google能看到。这就是下载驱动和搜索引擎感染（SEP)攻击的小伎俩。
+&nbsp;
+最后我们在elm.src元素中发现了真正的威胁。
+&nbsp;
+做的这么独特到底有什么用呢？
+它尽力隐藏真正的威胁的水平是独特的。现在的杀毒软件不会解码图像元数据，直到JavaScript文件加载完毕就停止扫描。不会追踪cookie文件，对于攻击者来说，这太好了，使它们很难被发现。">
+<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+<meta property="og:url" content="https://leizhiyuan.github.io/2014/02/09/%E8%97%8F%E9%9A%90%E8%97%8F%E5%9C%A8png%E5%9B%BE%E5%83%8F%E5%85%83%E6%95%B0%E6%8D%AE%E4%B8%AD%E7%9A%84%E6%96%B0iframe%E6%B3%A8%E5%85%A5%E6%94%BB%E5%87%BB/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="bystander&#39;s blog" />
+
+  <meta name="twitter:title" content="[藏]隐藏在PNG图像元数据中的新iFrame注入攻击" />
+  <meta name="twitter:description" content="这个攻击方式很旧了，但手法相当不错，来自乐嵌网
+我们一直在努力保持领先的最新趋势，今天我们发现了一个非常有趣的事，这或者是我们之前没有发现，或者是刚发生的。 我们只能说这是新发现的。
+&nbsp;
+我们都了解的iFrame注入攻击，对吧？
+&nbsp;
+了解一个iFrame注入
+今天的iFrame 是非常标准的HTML标记，它是在自己网页中嵌入其他网站内容的简单方式。 被几乎所有的浏览器支持和百万 …">
+  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+  <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
@@ -116,20 +248,17 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://leizhiyuan.github.io/2014/02/09/%E8%97%8F%E9%9A%90%E8%97%8F%E5%9C%A8png%E5%9B%BE%E5%83%8F%E5%85%83%E6%95%B0%E6%8D%AE%E4%B8%AD%E7%9A%84%E6%96%B0iframe%E6%B3%A8%E5%85%A5%E6%94%BB%E5%87%BB/" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <meta name="generator" content="Hugo 0.58.0" />
+  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
   <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
 
 
-</head>
 
+  </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
   <div class="container-fluid">
@@ -274,11 +403,16 @@
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on February 9, 2014
+  <i class="fas fa-calendar"></i>&nbsp;Posted on February 9, 2014
   
   
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (80 words)
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
   
   
 </span>
@@ -418,6 +552,8 @@
         
 
         
+
+        
       </article>
 
       
@@ -438,6 +574,7 @@
 
       
         
+          
           <div class="disqus-comments">
             <div id="disqus_thread"></div>
 <script type="application/javascript">
@@ -460,6 +597,7 @@
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
           </div>
+          
         
         
       
@@ -477,19 +615,17 @@
               <li>
                 <a href="https://github.com/leizhiyuan" title="GitHub">
                   <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
               </li>
           
           <li>
-            
-            <a href="https://leizhiyuan.github.io/index.xml" title="RSS">
-            
+            <a href="" title="RSS">
               <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
               </span>
             </a>
           </li>
@@ -502,8 +638,10 @@
             
           
 
-          &nbsp;&bull;&nbsp;
-          2019
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2019
+          
 
           
             &nbsp;&bull;&nbsp;
@@ -512,25 +650,25 @@
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>
     </div>
   </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <script src="https://leizhiyuan.github.io/js/main.js"></script>
 <script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
 <script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
-<script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+
+
+
 
 
 

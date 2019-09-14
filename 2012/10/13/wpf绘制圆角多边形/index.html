@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
   <head>
+    
+
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>WPF绘制圆角多边形</title>
+  <title>WPF绘制圆角多边形 - bystander&#39;s blog</title>
   <meta property="og:title" content="WPF绘制圆角多边形" />
   <meta name="twitter:title" content="WPF绘制圆角多边形" />
   <meta name="description" content="介绍
@@ -44,7 +46,106 @@ XAML方式 &lt;Canvas&gt; &lt;CustomRoundedCornersPolygon:RoundedCornersPolygon 
 2. 运行时创建圆角多边形
 
 背景 多边形可以 …">
-  <meta name="author" content="bystander"/>
+  <meta name="author" content="bystander"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "bystander\x27s blog",
+    
+    "url": "https:\/\/leizhiyuan.github.io\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/leizhiyuan.github.io\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/2012\/10\/13\/wpf%E7%BB%98%E5%88%B6%E5%9C%86%E8%A7%92%E5%A4%9A%E8%BE%B9%E5%BD%A2\/",
+          "name": "W p f绘制圆角多边形"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "bystander"
+  },
+  "headline": "WPF绘制圆角多边形",
+  "description" : "介绍\n最近，我发现我需要个圆角多边形。而且是需要在运行时从用户界面来绘制。WPF有多边形。但是不支持圆角。我搜索了一下。也没找到可行的现成例子。于是就自己做吧。本文描述了圆角多边形的实现，也包括如何用在你的项目里。在Demo里面的RoundedCornersPolygon 类是完整的实现。\n下载的Demo包括两部分\n1. 通过XAML绘制圆角多边形\n\n2. 运行时创建圆角多边形\n\n背景 多边形可以被认为是沿着一个给定半径的圆的边缘和一些指定点\/边。所构成的点的集合。\n 在WPF中。你可以给Polygon对象的Points属性添加一系列的点来制作多边形。\nXAML方式 \x26lt;Canvas\x26gt; \x26lt;Polygon Points=\x26ldquo;10,50 180,50 180,150 10,150\x26rdquo; StrokeThickness=\x26ldquo;1\x26rdquo; Stroke=\x26ldquo;Black\x26rdquo; \/\x26gt; \x26lt;\/Canvas\x26gt; C#方式 var cnv = new Canvas(); var polygon = new Polygon {StrokeThickness = 1, Fill = Brushes.Black}; polygon.Points.Add(new Point(10, 50)); polygon.Points.Add(new Point(180, 50)); polygon.Points.Add(new Point(180, 150)); polygon.Points.Add(new Point(10, 150)); cnv.Children.Add(polygon); this.Content = cnv; \x26nbsp;\n上面两个例子会输出下面的矩形\n\n使用代码 我写的RoundedCornersPolygon 类和普通的多边形类很相似。但是有更多的属性来控制圆角。首先。看一个例子。展示一下圆角矩形类的使用\nXAML方式 \x26lt;Canvas\x26gt; \x26lt;CustomRoundedCornersPolygon:RoundedCornersPolygon Points=\x26ldquo;10,50 180,50 180,150 10,150\x26rdquo; StrokeThickness=\x26ldquo;1\x26rdquo; Stroke=\x26ldquo;Black\x26rdquo; ArcRoundness=\x26ldquo;25\x26rdquo; UseAnglePercentage=\x26ldquo;False\x26rdquo; IsClosed=\x26ldquo;True\x26rdquo;\/\x26gt; \x26lt;Canvas\x26gt; C#方式 var cnv = new Canvas();",
+  "inLanguage" : "en",
+  "wordCount":  498 ,
+  "datePublished" : "2012-10-13T09:45:40",
+  "dateModified" : "2012-10-13T09:45:40",
+  "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+  "keywords" : [ "C＃, WPF, 大学, 学习, 编程, 翻译, 软件" ],
+  "mainEntityOfPage" : "https:\/\/leizhiyuan.github.io\/2012\/10\/13\/wpf%E7%BB%98%E5%88%B6%E5%9C%86%E8%A7%92%E5%A4%9A%E8%BE%B9%E5%BD%A2\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/leizhiyuan.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="WPF绘制圆角多边形" />
+<meta property="og:description" content="介绍
+最近，我发现我需要个圆角多边形。而且是需要在运行时从用户界面来绘制。WPF有多边形。但是不支持圆角。我搜索了一下。也没找到可行的现成例子。于是就自己做吧。本文描述了圆角多边形的实现，也包括如何用在你的项目里。在Demo里面的RoundedCornersPolygon 类是完整的实现。
+下载的Demo包括两部分
+1. 通过XAML绘制圆角多边形
+
+2. 运行时创建圆角多边形
+
+背景 多边形可以被认为是沿着一个给定半径的圆的边缘和一些指定点/边。所构成的点的集合。
+ 在WPF中。你可以给Polygon对象的Points属性添加一系列的点来制作多边形。
+XAML方式 &lt;Canvas&gt; &lt;Polygon Points=&ldquo;10,50 180,50 180,150 10,150&rdquo; StrokeThickness=&ldquo;1&rdquo; Stroke=&ldquo;Black&rdquo; /&gt; &lt;/Canvas&gt; C#方式 var cnv = new Canvas(); var polygon = new Polygon {StrokeThickness = 1, Fill = Brushes.Black}; polygon.Points.Add(new Point(10, 50)); polygon.Points.Add(new Point(180, 50)); polygon.Points.Add(new Point(180, 150)); polygon.Points.Add(new Point(10, 150)); cnv.Children.Add(polygon); this.Content = cnv; &nbsp;
+上面两个例子会输出下面的矩形
+
+使用代码 我写的RoundedCornersPolygon 类和普通的多边形类很相似。但是有更多的属性来控制圆角。首先。看一个例子。展示一下圆角矩形类的使用
+XAML方式 &lt;Canvas&gt; &lt;CustomRoundedCornersPolygon:RoundedCornersPolygon Points=&ldquo;10,50 180,50 180,150 10,150&rdquo; StrokeThickness=&ldquo;1&rdquo; Stroke=&ldquo;Black&rdquo; ArcRoundness=&ldquo;25&rdquo; UseAnglePercentage=&ldquo;False&rdquo; IsClosed=&ldquo;True&rdquo;/&gt; &lt;Canvas&gt; C#方式 var cnv = new Canvas();">
+<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+<meta property="og:url" content="https://leizhiyuan.github.io/2012/10/13/wpf%E7%BB%98%E5%88%B6%E5%9C%86%E8%A7%92%E5%A4%9A%E8%BE%B9%E5%BD%A2/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="bystander&#39;s blog" />
+
+  <meta name="twitter:title" content="WPF绘制圆角多边形" />
+  <meta name="twitter:description" content="介绍
+最近，我发现我需要个圆角多边形。而且是需要在运行时从用户界面来绘制。WPF有多边形。但是不支持圆角。我搜索了一下。也没找到可行的现成例子。于是就自己做吧。本文描述了圆角多边形的实现，也包括如何用在你的项目里。在Demo里面的RoundedCornersPolygon 类是完整的实现。
+下载的Demo包括两部分
+1. 通过XAML绘制圆角多边形
+
+2. 运行时创建圆角多边形
+
+背景 多边形可以 …">
+  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+  <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
@@ -53,20 +154,17 @@ XAML方式 &lt;Canvas&gt; &lt;CustomRoundedCornersPolygon:RoundedCornersPolygon 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://leizhiyuan.github.io/2012/10/13/wpf%E7%BB%98%E5%88%B6%E5%9C%86%E8%A7%92%E5%A4%9A%E8%BE%B9%E5%BD%A2/" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <meta name="generator" content="Hugo 0.58.0" />
+  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
   <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
 
 
-</head>
 
+  </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
   <div class="container-fluid">
@@ -211,11 +309,16 @@ XAML方式 &lt;Canvas&gt; &lt;CustomRoundedCornersPolygon:RoundedCornersPolygon 
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on October 13, 2012
+  <i class="fas fa-calendar"></i>&nbsp;Posted on October 13, 2012
   
   
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 3 minutes (498 words)
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;3&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
   
   
 </span>
@@ -438,6 +541,8 @@ private static Point GetPointAtDistance(Point p1, Point p2,
         
 
         
+
+        
       </article>
 
       
@@ -458,6 +563,7 @@ private static Point GetPointAtDistance(Point p1, Point p2,
 
       
         
+          
           <div class="disqus-comments">
             <div id="disqus_thread"></div>
 <script type="application/javascript">
@@ -480,6 +586,7 @@ private static Point GetPointAtDistance(Point p1, Point p2,
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
           </div>
+          
         
         
       
@@ -497,19 +604,17 @@ private static Point GetPointAtDistance(Point p1, Point p2,
               <li>
                 <a href="https://github.com/leizhiyuan" title="GitHub">
                   <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
               </li>
           
           <li>
-            
-            <a href="https://leizhiyuan.github.io/index.xml" title="RSS">
-            
+            <a href="" title="RSS">
               <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
               </span>
             </a>
           </li>
@@ -522,8 +627,10 @@ private static Point GetPointAtDistance(Point p1, Point p2,
             
           
 
-          &nbsp;&bull;&nbsp;
-          2019
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2019
+          
 
           
             &nbsp;&bull;&nbsp;
@@ -532,25 +639,25 @@ private static Point GetPointAtDistance(Point p1, Point p2,
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>
     </div>
   </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <script src="https://leizhiyuan.github.io/js/main.js"></script>
 <script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
 <script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
-<script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+
+
+
 
 
 

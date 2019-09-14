@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
   <head>
+    
+
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>Maven库依赖机制及添加自定义库</title>
+  <title>Maven库依赖机制及添加自定义库 - bystander&#39;s blog</title>
   <meta property="og:title" content="Maven库依赖机制及添加自定义库" />
   <meta name="twitter:title" content="Maven库依赖机制及添加自定义库" />
   <meta name="description" content="一.Maven库依赖机制 Maven的库依赖机制可以帮助我们自动下载依赖的库文件，并且还能更新版本。。
@@ -50,7 +52,108 @@ Maven坐标咋来的，当然去中央仓库搜索之了，搜索结果清晰的
 2）下载Log4J的jar包
 3）复制进项目的classpath里
 4）手工包含到项目 …">
-  <meta name="author" content="bystander"/>
+  <meta name="author" content="bystander"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "bystander\x27s blog",
+    
+    "url": "https:\/\/leizhiyuan.github.io\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/leizhiyuan.github.io\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/2013\/09\/19\/maven%E5%BA%93%E4%BE%9D%E8%B5%96%E6%9C%BA%E5%88%B6%E5%8F%8A%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BA%93\/",
+          "name": "Maven库依赖机制及添加自定义库"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "bystander"
+  },
+  "headline": "Maven库依赖机制及添加自定义库",
+  "description" : "一.Maven库依赖机制 Maven的库依赖机制可以帮助我们自动下载依赖的库文件，并且还能更新版本。。\n考虑一个情境来理解机制的工作原理，假设我们要使用Log4J库作为项目的日志记录。以下是我们要做的\n1.传统的方式 1）访问Log4J网站http:\/\/logging.apache.org\/log4j\/2.x\/\n2）下载Log4J的jar包\n3）复制进项目的classpath里\n4）手工包含到项目的依赖里\n看到没，你要从头做到尾，如果Log4J更新了，你得再来一遍。。\n2.Maven的方式 1）需要知道Log4J的Maven坐标(coordinates,这个暂时没想到好名字)，就是这样的东西 \x26lt;groupId\x26gt;log4j\x26lt;\/groupId\x26gt; \x26lt;artifactId\x26gt;log4j\x26lt;\/artifactId\x26gt; \x26lt;version\x26gt;1.2.14\x26lt;\/version\x26gt; 然后Maven就会自动下载1.2.14版本的Log4J了。如果version这个元素没有，那么如果有了新版本，Maven会自动下载新版本的。\n2）在pom.xml里声明这个Maven坐标 \x26lt;dependencies\x26gt; \x26lt;dependency\x26gt; \x26lt;groupId\x26gt;log4j\x26lt;\/groupId\x26gt; \x26lt;artifactId\x26gt;log4j\x26lt;\/artifactId\x26gt; \x26lt;version\x26gt;1.2.14\x26lt;\/version\x26gt; \x26lt;\/dependency\x26gt; \x26lt;\/dependencies\x26gt; 3）当Maven编译或者build的时候，Log4J会自动下载，放入本地仓库里\n4）Maven全部接管\n3.解释 搜索顺序前面说过了。本地-》中央-》远程仓库\nMaven坐标咋来的，当然去中央仓库搜索之了，搜索结果清晰的令人发指\n二.添加自定义库到本地仓库 有两个情况，需要我们包含自定义的库到本地仓库里\n1是你想使用的jar文件不再中央仓库\n2是你创建了一个自定义的jar包，需要另一个项目使用这个jar\n比如，kaptche，一个第三方的java库，生成验证码，现在中央仓库没有了。\n我们想要加到本地仓库里\n1.mvn安装 下载kaptche，解压并且拷贝kaptcha-version.jar到其他任何你喜欢的地方，比如c盘，然后输入如下格式的命令 mvn install:install-file -Dfile=c:\\kaptcha-{version}.jar -DgroupId=com.google.code -DartifactId=kaptcha -Dversion={version} -Dpackaging=jar 这里我这样输入 D:\x26amp;gt;mvn install:install-file -Dfile=c:\\kaptcha-2.3.jar -DgroupId=com.google.code -DartifactId=kaptcha -Dversion=2.3 -Dpackaging=jar [INFO] Scanning for projects\x26hellip; [INFO] Searching repository for plugin with prefix: \x26lsquo;install\x26rsquo;. [INFO] \x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash; [INFO] Building Maven Default Project [INFO] task-segment: install:install-file [INFO] \x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash; [INFO] [install:install-file] [INFO] Installing c:\\kaptcha-2.",
+  "inLanguage" : "en",
+  "wordCount":  118 ,
+  "datePublished" : "2013-09-19T22:49:42",
+  "dateModified" : "2013-09-19T22:49:42",
+  "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+  "keywords" : [ "java, maven, 开发, 翻译" ],
+  "mainEntityOfPage" : "https:\/\/leizhiyuan.github.io\/2013\/09\/19\/maven%E5%BA%93%E4%BE%9D%E8%B5%96%E6%9C%BA%E5%88%B6%E5%8F%8A%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BA%93\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/leizhiyuan.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="Maven库依赖机制及添加自定义库" />
+<meta property="og:description" content="一.Maven库依赖机制 Maven的库依赖机制可以帮助我们自动下载依赖的库文件，并且还能更新版本。。
+考虑一个情境来理解机制的工作原理，假设我们要使用Log4J库作为项目的日志记录。以下是我们要做的
+1.传统的方式 1）访问Log4J网站http://logging.apache.org/log4j/2.x/
+2）下载Log4J的jar包
+3）复制进项目的classpath里
+4）手工包含到项目的依赖里
+看到没，你要从头做到尾，如果Log4J更新了，你得再来一遍。。
+2.Maven的方式 1）需要知道Log4J的Maven坐标(coordinates,这个暂时没想到好名字)，就是这样的东西 &lt;groupId&gt;log4j&lt;/groupId&gt; &lt;artifactId&gt;log4j&lt;/artifactId&gt; &lt;version&gt;1.2.14&lt;/version&gt; 然后Maven就会自动下载1.2.14版本的Log4J了。如果version这个元素没有，那么如果有了新版本，Maven会自动下载新版本的。
+2）在pom.xml里声明这个Maven坐标 &lt;dependencies&gt; &lt;dependency&gt; &lt;groupId&gt;log4j&lt;/groupId&gt; &lt;artifactId&gt;log4j&lt;/artifactId&gt; &lt;version&gt;1.2.14&lt;/version&gt; &lt;/dependency&gt; &lt;/dependencies&gt; 3）当Maven编译或者build的时候，Log4J会自动下载，放入本地仓库里
+4）Maven全部接管
+3.解释 搜索顺序前面说过了。本地-》中央-》远程仓库
+Maven坐标咋来的，当然去中央仓库搜索之了，搜索结果清晰的令人发指
+二.添加自定义库到本地仓库 有两个情况，需要我们包含自定义的库到本地仓库里
+1是你想使用的jar文件不再中央仓库
+2是你创建了一个自定义的jar包，需要另一个项目使用这个jar
+比如，kaptche，一个第三方的java库，生成验证码，现在中央仓库没有了。
+我们想要加到本地仓库里
+1.mvn安装 下载kaptche，解压并且拷贝kaptcha-version.jar到其他任何你喜欢的地方，比如c盘，然后输入如下格式的命令 mvn install:install-file -Dfile=c:\kaptcha-{version}.jar -DgroupId=com.google.code -DartifactId=kaptcha -Dversion={version} -Dpackaging=jar 这里我这样输入 D:&amp;gt;mvn install:install-file -Dfile=c:\kaptcha-2.3.jar -DgroupId=com.google.code -DartifactId=kaptcha -Dversion=2.3 -Dpackaging=jar [INFO] Scanning for projects&hellip; [INFO] Searching repository for plugin with prefix: &lsquo;install&rsquo;. [INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash; [INFO] Building Maven Default Project [INFO] task-segment: install:install-file [INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash; [INFO] [install:install-file] [INFO] Installing c:\kaptcha-2.">
+<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+<meta property="og:url" content="https://leizhiyuan.github.io/2013/09/19/maven%E5%BA%93%E4%BE%9D%E8%B5%96%E6%9C%BA%E5%88%B6%E5%8F%8A%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BA%93/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="bystander&#39;s blog" />
+
+  <meta name="twitter:title" content="Maven库依赖机制及添加自定义库" />
+  <meta name="twitter:description" content="一.Maven库依赖机制 Maven的库依赖机制可以帮助我们自动下载依赖的库文件，并且还能更新版本。。
+考虑一个情境来理解机制的工作原理，假设我们要使用Log4J库作为项目的日志记录。以下是我们要做的
+1.传统的方式 1）访问Log4J网站http://logging.apache.org/log4j/2.x/
+2）下载Log4J的jar包
+3）复制进项目的classpath里
+4）手工包含到项目 …">
+  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+  <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
@@ -59,20 +162,17 @@ Maven坐标咋来的，当然去中央仓库搜索之了，搜索结果清晰的
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://leizhiyuan.github.io/2013/09/19/maven%E5%BA%93%E4%BE%9D%E8%B5%96%E6%9C%BA%E5%88%B6%E5%8F%8A%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BA%93/" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <meta name="generator" content="Hugo 0.58.0" />
+  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
   <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
 
 
-</head>
 
+  </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
   <div class="container-fluid">
@@ -217,11 +317,16 @@ Maven坐标咋来的，当然去中央仓库搜索之了，搜索结果清晰的
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 19, 2013
+  <i class="fas fa-calendar"></i>&nbsp;Posted on September 19, 2013
   
   
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (118 words)
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
   
   
 </span>
@@ -350,6 +455,8 @@ D:\maven_repo\com\google\code\kaptcha\2.3\kaptcha-2.3.jar
         
 
         
+
+        
       </article>
 
       
@@ -370,6 +477,7 @@ D:\maven_repo\com\google\code\kaptcha\2.3\kaptcha-2.3.jar
 
       
         
+          
           <div class="disqus-comments">
             <div id="disqus_thread"></div>
 <script type="application/javascript">
@@ -392,6 +500,7 @@ D:\maven_repo\com\google\code\kaptcha\2.3\kaptcha-2.3.jar
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
           </div>
+          
         
         
       
@@ -409,19 +518,17 @@ D:\maven_repo\com\google\code\kaptcha\2.3\kaptcha-2.3.jar
               <li>
                 <a href="https://github.com/leizhiyuan" title="GitHub">
                   <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
               </li>
           
           <li>
-            
-            <a href="https://leizhiyuan.github.io/index.xml" title="RSS">
-            
+            <a href="" title="RSS">
               <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
               </span>
             </a>
           </li>
@@ -434,8 +541,10 @@ D:\maven_repo\com\google\code\kaptcha\2.3\kaptcha-2.3.jar
             
           
 
-          &nbsp;&bull;&nbsp;
-          2019
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2019
+          
 
           
             &nbsp;&bull;&nbsp;
@@ -444,25 +553,25 @@ D:\maven_repo\com\google\code\kaptcha\2.3\kaptcha-2.3.jar
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>
     </div>
   </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <script src="https://leizhiyuan.github.io/js/main.js"></script>
 <script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
 <script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
-<script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+
+
+
 
 
 

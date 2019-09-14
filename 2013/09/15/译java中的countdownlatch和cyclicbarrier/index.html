@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
   <head>
+    
+
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>[译]Java中的CountDownLatch和CyclicBarrier</title>
+  <title>[译]Java中的CountDownLatch和CyclicBarrier - bystander&#39;s blog</title>
   <meta property="og:title" content="[译]Java中的CountDownLatch和CyclicBarrier" />
   <meta name="twitter:title" content="[译]Java中的CountDownLatch和CyclicBarrier" />
   <meta name="description" content="本文译自官方文档，有细微改动，Java多线程的时候，看了好多文档，还是官方说的最清楚。结合自己的理解，译之。
@@ -28,7 +30,95 @@ for (int i = 0; i &amp;lt; N; &#43;&#43;i) // 创建并启动线程 new Thread(n
 class Worker implements Runnable { private final CountDownLatch startSignal; private final CountDownLatch doneSignal; Worker(CountDownLatch startSignal, CountDownLatch doneSignal) { this.">
   <meta name="twitter:description" content="本文译自官方文档，有细微改动，Java多线程的时候，看了好多文档，还是官方说的最清楚。结合自己的理解，译之。
 CountDownLatch 字面意思就是倒计数闩，后面会讲到，这里的同步允许一个或多个线程等待，，知道其他线程进行的一系列操作完成。而CountDownLatch通过一个参数count（数目）来构造，而await（）则阻塞当前线程，直到countDown()将count减为了0，然后，所 …">
-  <meta name="author" content="bystander"/>
+  <meta name="author" content="bystander"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "bystander\x27s blog",
+    
+    "url": "https:\/\/leizhiyuan.github.io\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/leizhiyuan.github.io\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/2013\/09\/15\/%E8%AF%91java%E4%B8%AD%E7%9A%84countdownlatch%E5%92%8Ccyclicbarrier\/",
+          "name": "[译] java中的 count down latch和 cyclic barrier"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "bystander"
+  },
+  "headline": "[译]Java中的CountDownLatch和CyclicBarrier",
+  "description" : "本文译自官方文档，有细微改动，Java多线程的时候，看了好多文档，还是官方说的最清楚。结合自己的理解，译之。\nCountDownLatch 字面意思就是倒计数闩，后面会讲到，这里的同步允许一个或多个线程等待，，知道其他线程进行的一系列操作完成。而CountDownLatch通过一个参数count（数目）来构造，而await（）则阻塞当前线程，直到countDown()将count减为了0，然后，所有的阻塞线程被释放，也就是那些调用了await方法的线程立即返回，注意，这是一次性的，也就是说count不能被自动重置，如果你想这么做，CyclicBarrier是可以的。\nCountDownLatch用处很多，当用count=1来构造的时候，这就相当于一个开关，所有调用了await方法的线程都在等待，直到有一个线程调用了countDown()，CountDownLatch通过count=N构造的话，就可以使一个线程等待其他N个线程完成操作，或者一个操作被做N次。\n简单的demo：\n一组worker（工人）线程使用两个CountDownLatch\n第一个是开始信号，用来阻止工人提前操作，直到(driver)传送带准备好了才允许开始\n第二个是完成信号，他使传送带等待直到所有的worker都完成 class Driver { \/\/ \x26hellip; void main() throws InterruptedException { CountDownLatch startSignal = new CountDownLatch(1); CountDownLatch doneSignal = new CountDownLatch(N);\nfor (int i = 0; i \x26amp;lt; N; \x2b\x2bi) \/\/ 创建并启动线程 new Thread(new Worker(startSignal, doneSignal)).start(); doSomethingElse(); \/\/ 传送带做点准备工作 startSignal.countDown(); \/\/ 减为0，工人可以开始了 doSomethingElse(); doneSignal.await(); \/\/ 等待直到所有的工人完成任务 } }\nclass Worker implements Runnable { private final CountDownLatch startSignal; private final CountDownLatch doneSignal; Worker(CountDownLatch startSignal, CountDownLatch doneSignal) { this.",
+  "inLanguage" : "en",
+  "wordCount":  317 ,
+  "datePublished" : "2013-09-15T08:03:09",
+  "dateModified" : "2013-09-15T08:03:09",
+  "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+  "keywords" : [ "java, 学习, 工作" ],
+  "mainEntityOfPage" : "https:\/\/leizhiyuan.github.io\/2013\/09\/15\/%E8%AF%91java%E4%B8%AD%E7%9A%84countdownlatch%E5%92%8Ccyclicbarrier\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/leizhiyuan.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="[译]Java中的CountDownLatch和CyclicBarrier" />
+<meta property="og:description" content="本文译自官方文档，有细微改动，Java多线程的时候，看了好多文档，还是官方说的最清楚。结合自己的理解，译之。
+CountDownLatch 字面意思就是倒计数闩，后面会讲到，这里的同步允许一个或多个线程等待，，知道其他线程进行的一系列操作完成。而CountDownLatch通过一个参数count（数目）来构造，而await（）则阻塞当前线程，直到countDown()将count减为了0，然后，所有的阻塞线程被释放，也就是那些调用了await方法的线程立即返回，注意，这是一次性的，也就是说count不能被自动重置，如果你想这么做，CyclicBarrier是可以的。
+CountDownLatch用处很多，当用count=1来构造的时候，这就相当于一个开关，所有调用了await方法的线程都在等待，直到有一个线程调用了countDown()，CountDownLatch通过count=N构造的话，就可以使一个线程等待其他N个线程完成操作，或者一个操作被做N次。
+简单的demo：
+一组worker（工人）线程使用两个CountDownLatch
+第一个是开始信号，用来阻止工人提前操作，直到(driver)传送带准备好了才允许开始
+第二个是完成信号，他使传送带等待直到所有的worker都完成 class Driver { // &hellip; void main() throws InterruptedException { CountDownLatch startSignal = new CountDownLatch(1); CountDownLatch doneSignal = new CountDownLatch(N);
+for (int i = 0; i &amp;lt; N; &#43;&#43;i) // 创建并启动线程 new Thread(new Worker(startSignal, doneSignal)).start(); doSomethingElse(); // 传送带做点准备工作 startSignal.countDown(); // 减为0，工人可以开始了 doSomethingElse(); doneSignal.await(); // 等待直到所有的工人完成任务 } }
+class Worker implements Runnable { private final CountDownLatch startSignal; private final CountDownLatch doneSignal; Worker(CountDownLatch startSignal, CountDownLatch doneSignal) { this.">
+<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+<meta property="og:url" content="https://leizhiyuan.github.io/2013/09/15/%E8%AF%91java%E4%B8%AD%E7%9A%84countdownlatch%E5%92%8Ccyclicbarrier/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="bystander&#39;s blog" />
+
+  <meta name="twitter:title" content="[译]Java中的CountDownLatch和CyclicBarrier" />
+  <meta name="twitter:description" content="本文译自官方文档，有细微改动，Java多线程的时候，看了好多文档，还是官方说的最清楚。结合自己的理解，译之。
+CountDownLatch 字面意思就是倒计数闩，后面会讲到，这里的同步允许一个或多个线程等待，，知道其他线程进行的一系列操作完成。而CountDownLatch通过一个参数count（数目）来构造，而await（）则阻塞当前线程，直到countDown()将count减为了0，然后，所 …">
+  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+  <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
@@ -37,20 +127,17 @@ CountDownLatch 字面意思就是倒计数闩，后面会讲到，这里的同�
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://leizhiyuan.github.io/2013/09/15/%E8%AF%91java%E4%B8%AD%E7%9A%84countdownlatch%E5%92%8Ccyclicbarrier/" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <meta name="generator" content="Hugo 0.58.0" />
+  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
   <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
 
 
-</head>
 
+  </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
   <div class="container-fluid">
@@ -195,11 +282,16 @@ CountDownLatch 字面意思就是倒计数闩，后面会讲到，这里的同�
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 15, 2013
+  <i class="fas fa-calendar"></i>&nbsp;Posted on September 15, 2013
   
   
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 2 minutes (317 words)
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
   
   
 </span>
@@ -369,6 +461,8 @@ CountDownLatch 字面意思就是倒计数闩，后面会讲到，这里的同�
         
 
         
+
+        
       </article>
 
       
@@ -389,6 +483,7 @@ CountDownLatch 字面意思就是倒计数闩，后面会讲到，这里的同�
 
       
         
+          
           <div class="disqus-comments">
             <div id="disqus_thread"></div>
 <script type="application/javascript">
@@ -411,6 +506,7 @@ CountDownLatch 字面意思就是倒计数闩，后面会讲到，这里的同�
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
           </div>
+          
         
         
       
@@ -428,19 +524,17 @@ CountDownLatch 字面意思就是倒计数闩，后面会讲到，这里的同�
               <li>
                 <a href="https://github.com/leizhiyuan" title="GitHub">
                   <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
               </li>
           
           <li>
-            
-            <a href="https://leizhiyuan.github.io/index.xml" title="RSS">
-            
+            <a href="" title="RSS">
               <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
               </span>
             </a>
           </li>
@@ -453,8 +547,10 @@ CountDownLatch 字面意思就是倒计数闩，后面会讲到，这里的同�
             
           
 
-          &nbsp;&bull;&nbsp;
-          2019
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2019
+          
 
           
             &nbsp;&bull;&nbsp;
@@ -463,25 +559,25 @@ CountDownLatch 字面意思就是倒计数闩，后面会讲到，这里的同�
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>
     </div>
   </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <script src="https://leizhiyuan.github.io/js/main.js"></script>
 <script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
 <script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
-<script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+
+
+
 
 
 

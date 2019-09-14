@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
   <head>
+    
+
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>理解并实现外观设计模式</title>
+  <title>理解并实现外观设计模式 - bystander&#39;s blog</title>
   <meta property="og:title" content="理解并实现外观设计模式" />
   <meta name="twitter:title" content="理解并实现外观设计模式" />
   <meta name="description" content="介绍 本文介绍外观模式,并给出简单的实现示例
@@ -38,7 +40,101 @@ public bool IsSwitchedOn { get { return isSwitchedOn; } set { isSwitchedOn = val
 背景
 写软件的时候,有时候需要处理一系列的对象来完成一个确定的任务.比如,我们给一个万能遥控器写代码,我们需要关掉所有的设备,那么,我们有这样几种选择.第一个就是手动选择每一个设备,然后一个接一个的关闭,这好傻.那我们为什么不再遥控器上放一个按钮,我们按一下就关掉了.按钮的命令会与设备控制器通信然后关掉他们.
 如果我们又想在晚上12的时候自动关闭设备, …">
-  <meta name="author" content="bystander"/>
+  <meta name="author" content="bystander"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "bystander\x27s blog",
+    
+    "url": "https:\/\/leizhiyuan.github.io\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/leizhiyuan.github.io\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/2012\/10\/23\/%E7%90%86%E8%A7%A3%E5%B9%B6%E5%AE%9E%E7%8E%B0%E5%A4%96%E8%A7%82%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F\/",
+          "name": "理解并实现外观设计模式"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "bystander"
+  },
+  "headline": "理解并实现外观设计模式",
+  "description" : "介绍 本文介绍外观模式,并给出简单的实现示例\n背景\n写软件的时候,有时候需要处理一系列的对象来完成一个确定的任务.比如,我们给一个万能遥控器写代码,我们需要关掉所有的设备,那么,我们有这样几种选择.第一个就是手动选择每一个设备,然后一个接一个的关闭,这好傻.那我们为什么不再遥控器上放一个按钮,我们按一下就关掉了.按钮的命令会与设备控制器通信然后关掉他们.\n如果我们又想在晚上12的时候自动关闭设备,那么我们就会有一个基于事件的计时器,与设备通信,然后关闭设备,问题是在两种情况下我们都需要与这些对象通信的函数.\n有很多方法解决这个问题,为什么不能有一个对象,该对象的责任就是关闭设备,当我要关闭设备的时候,我调用该对象就行了.这也是外观模式的理念Gof大神定义外观模式 \x26ldquo;Provide a unified interface to a set of interfaces in a subsystem. Façade defines a higher-level interface that makes the subsystem easier to use.\x26rdquo;\n为子系统中的一组接口提供一个一致的界面，外观模式定义了一个高层接口，这个接口使得这一子系统更加容易使用。\n看看模式图 \n注意外观对象仅仅是提供了对函数一起操作,.不能替换子系统的接口.子系统的类仍然可以被系统的其他部分访问.外观为子系统提供了一致的界面.\n使用代码 为了模拟外观模式,我们模拟一个小例子.试着实现一个简单的外观对象,该外观对象操作一些WP手机的控制器对象,我们先定义问题\n每天早上我跑步的时候,我都得对我的手机做出以下的事情.. 1. 关闭wifi 2. 切换到移动网络 3. 打开GPS 4. 打开音乐 5. 开始跑步追踪器\n跑完以后.,我又蛋疼的做出以下几件事 1. 在twitter和facebook上分享我的跑步数据 2. 关闭跑步追踪器 3. 关闭音乐 4. 关闭GPS 5. 关闭移动数据 6. 打开wifi\n目前我都是手工做的.,我们来实现这些假想的控制器类吧. class GPSController { bool isSwitchedOn = false;\npublic bool IsSwitchedOn { get { return isSwitchedOn; } set { isSwitchedOn = value; DisplayStatus(); } } private void DisplayStatus() { string status = (isSwitchedOn == true) ?",
+  "inLanguage" : "en",
+  "wordCount":  446 ,
+  "datePublished" : "2012-10-23T18:31:47",
+  "dateModified" : "2012-10-23T18:31:47",
+  "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+  "keywords" : [ "C＃, 大学, 武汉, 翻译, 设计" ],
+  "mainEntityOfPage" : "https:\/\/leizhiyuan.github.io\/2012\/10\/23\/%E7%90%86%E8%A7%A3%E5%B9%B6%E5%AE%9E%E7%8E%B0%E5%A4%96%E8%A7%82%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/leizhiyuan.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="理解并实现外观设计模式" />
+<meta property="og:description" content="介绍 本文介绍外观模式,并给出简单的实现示例
+背景
+写软件的时候,有时候需要处理一系列的对象来完成一个确定的任务.比如,我们给一个万能遥控器写代码,我们需要关掉所有的设备,那么,我们有这样几种选择.第一个就是手动选择每一个设备,然后一个接一个的关闭,这好傻.那我们为什么不再遥控器上放一个按钮,我们按一下就关掉了.按钮的命令会与设备控制器通信然后关掉他们.
+如果我们又想在晚上12的时候自动关闭设备,那么我们就会有一个基于事件的计时器,与设备通信,然后关闭设备,问题是在两种情况下我们都需要与这些对象通信的函数.
+有很多方法解决这个问题,为什么不能有一个对象,该对象的责任就是关闭设备,当我要关闭设备的时候,我调用该对象就行了.这也是外观模式的理念Gof大神定义外观模式 &ldquo;Provide a unified interface to a set of interfaces in a subsystem. Façade defines a higher-level interface that makes the subsystem easier to use.&rdquo;
+为子系统中的一组接口提供一个一致的界面，外观模式定义了一个高层接口，这个接口使得这一子系统更加容易使用。
+看看模式图 
+注意外观对象仅仅是提供了对函数一起操作,.不能替换子系统的接口.子系统的类仍然可以被系统的其他部分访问.外观为子系统提供了一致的界面.
+使用代码 为了模拟外观模式,我们模拟一个小例子.试着实现一个简单的外观对象,该外观对象操作一些WP手机的控制器对象,我们先定义问题
+每天早上我跑步的时候,我都得对我的手机做出以下的事情.. 1. 关闭wifi 2. 切换到移动网络 3. 打开GPS 4. 打开音乐 5. 开始跑步追踪器
+跑完以后.,我又蛋疼的做出以下几件事 1. 在twitter和facebook上分享我的跑步数据 2. 关闭跑步追踪器 3. 关闭音乐 4. 关闭GPS 5. 关闭移动数据 6. 打开wifi
+目前我都是手工做的.,我们来实现这些假想的控制器类吧. class GPSController { bool isSwitchedOn = false;
+public bool IsSwitchedOn { get { return isSwitchedOn; } set { isSwitchedOn = value; DisplayStatus(); } } private void DisplayStatus() { string status = (isSwitchedOn == true) ?">
+<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+<meta property="og:url" content="https://leizhiyuan.github.io/2012/10/23/%E7%90%86%E8%A7%A3%E5%B9%B6%E5%AE%9E%E7%8E%B0%E5%A4%96%E8%A7%82%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="bystander&#39;s blog" />
+
+  <meta name="twitter:title" content="理解并实现外观设计模式" />
+  <meta name="twitter:description" content="介绍 本文介绍外观模式,并给出简单的实现示例
+背景
+写软件的时候,有时候需要处理一系列的对象来完成一个确定的任务.比如,我们给一个万能遥控器写代码,我们需要关掉所有的设备,那么,我们有这样几种选择.第一个就是手动选择每一个设备,然后一个接一个的关闭,这好傻.那我们为什么不再遥控器上放一个按钮,我们按一下就关掉了.按钮的命令会与设备控制器通信然后关掉他们.
+如果我们又想在晚上12的时候自动关闭设备, …">
+  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+  <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
@@ -47,20 +143,17 @@ public bool IsSwitchedOn { get { return isSwitchedOn; } set { isSwitchedOn = val
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://leizhiyuan.github.io/2012/10/23/%E7%90%86%E8%A7%A3%E5%B9%B6%E5%AE%9E%E7%8E%B0%E5%A4%96%E8%A7%82%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <meta name="generator" content="Hugo 0.58.0" />
+  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
   <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
 
 
-</head>
 
+  </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
   <div class="container-fluid">
@@ -205,11 +298,16 @@ public bool IsSwitchedOn { get { return isSwitchedOn; } set { isSwitchedOn = val
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on October 23, 2012
+  <i class="fas fa-calendar"></i>&nbsp;Posted on October 23, 2012
   
   
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 3 minutes (446 words)
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;3&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
   
   
 </span>
@@ -452,6 +550,8 @@ facade.StopJogging();          </pre></div>
         
 
         
+
+        
       </article>
 
       
@@ -472,6 +572,7 @@ facade.StopJogging();          </pre></div>
 
       
         
+          
           <div class="disqus-comments">
             <div id="disqus_thread"></div>
 <script type="application/javascript">
@@ -494,6 +595,7 @@ facade.StopJogging();          </pre></div>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
           </div>
+          
         
         
       
@@ -511,19 +613,17 @@ facade.StopJogging();          </pre></div>
               <li>
                 <a href="https://github.com/leizhiyuan" title="GitHub">
                   <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
               </li>
           
           <li>
-            
-            <a href="https://leizhiyuan.github.io/index.xml" title="RSS">
-            
+            <a href="" title="RSS">
               <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
               </span>
             </a>
           </li>
@@ -536,8 +636,10 @@ facade.StopJogging();          </pre></div>
             
           
 
-          &nbsp;&bull;&nbsp;
-          2019
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2019
+          
 
           
             &nbsp;&bull;&nbsp;
@@ -546,25 +648,25 @@ facade.StopJogging();          </pre></div>
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>
     </div>
   </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <script src="https://leizhiyuan.github.io/js/main.js"></script>
 <script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
 <script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
-<script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+
+
+
 
 
 

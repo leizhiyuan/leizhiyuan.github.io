@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
   <head>
+    
+
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>[译]使用Mockito简单mock入门</title>
+  <title>[译]使用Mockito简单mock入门 - bystander&#39;s blog</title>
   <meta property="og:title" content="[译]使用Mockito简单mock入门" />
   <meta name="twitter:title" content="[译]使用Mockito简单mock入门" />
   <meta name="description" content="我们在写单元测试的时候，面临的一个挑战就是要测试的内容总是依赖于其他组件，要是我们还得先配置好其他组件，未免有点不如意，那么我们可以使用Mocks来代替那些依赖的组件
@@ -28,7 +30,95 @@ public Book(String isbn, String title, List&lt;String&gt; authors, String public
 this.isbn = isbn; this.title: = title; this.">
   <meta name="twitter:description" content="我们在写单元测试的时候，面临的一个挑战就是要测试的内容总是依赖于其他组件，要是我们还得先配置好其他组件，未免有点不如意，那么我们可以使用Mocks来代替那些依赖的组件
 本文问了展示这个过程，我会创建一个DAL，数据访问层，这是一个类，提供了一个通用的api来访问和修改数据仓库的数据，然后，我们要测试这个api，而不用配置连接某个本地的数据库，，或者一个远程的数据库，或者是一个文件系统，反正就是任何 …">
-  <meta name="author" content="bystander"/>
+  <meta name="author" content="bystander"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "bystander\x27s blog",
+    
+    "url": "https:\/\/leizhiyuan.github.io\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/leizhiyuan.github.io\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/2014\/03\/01\/%E8%AF%91%E4%BD%BF%E7%94%A8mockito%E7%AE%80%E5%8D%95mock%E5%85%A5%E9%97%A8\/",
+          "name": "[译]使用 mockito简单mock入门"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "bystander"
+  },
+  "headline": "[译]使用Mockito简单mock入门",
+  "description" : "我们在写单元测试的时候，面临的一个挑战就是要测试的内容总是依赖于其他组件，要是我们还得先配置好其他组件，未免有点不如意，那么我们可以使用Mocks来代替那些依赖的组件\n本文问了展示这个过程，我会创建一个DAL，数据访问层，这是一个类，提供了一个通用的api来访问和修改数据仓库的数据，然后，我们要测试这个api，而不用配置连接某个本地的数据库，，或者一个远程的数据库，或者是一个文件系统，反正就是任何放数据的东西，DAL层的好处就是隔离开了数据访问和应用程序代码\n首先使用maven来创建一个工程 mvn archetype:generate -DgroupId=info.sanaulla -DartifactId=MockitoDemo -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false 执行之后，本地生成MockitoDemo 文件夹，然后整个工程的目录结构与生成好了。\n然后，我们写这样一个model类，表示book类型 package info.sanaulla.models;\nimport java.util.List;\n\/** * Model class for the book details. *\/ public class Book {\nprivate String isbn; private String title; private List\x26lt;String\x26gt; authors; private String publication; private Integer yearOfPublication; private Integer numberOfPages; private String image;\npublic Book(String isbn, String title, List\x26lt;String\x26gt; authors, String publication, Integer yearOfPublication, Integer numberOfPages, String image){\nthis.isbn = isbn; this.title: = title; this.",
+  "inLanguage" : "en",
+  "wordCount":  628 ,
+  "datePublished" : "2014-03-01T10:57:33",
+  "dateModified" : "2014-03-01T10:57:33",
+  "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+  "keywords" : [ "java, 工作, 翻译, 设计" ],
+  "mainEntityOfPage" : "https:\/\/leizhiyuan.github.io\/2014\/03\/01\/%E8%AF%91%E4%BD%BF%E7%94%A8mockito%E7%AE%80%E5%8D%95mock%E5%85%A5%E9%97%A8\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/leizhiyuan.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="[译]使用Mockito简单mock入门" />
+<meta property="og:description" content="我们在写单元测试的时候，面临的一个挑战就是要测试的内容总是依赖于其他组件，要是我们还得先配置好其他组件，未免有点不如意，那么我们可以使用Mocks来代替那些依赖的组件
+本文问了展示这个过程，我会创建一个DAL，数据访问层，这是一个类，提供了一个通用的api来访问和修改数据仓库的数据，然后，我们要测试这个api，而不用配置连接某个本地的数据库，，或者一个远程的数据库，或者是一个文件系统，反正就是任何放数据的东西，DAL层的好处就是隔离开了数据访问和应用程序代码
+首先使用maven来创建一个工程 mvn archetype:generate -DgroupId=info.sanaulla -DartifactId=MockitoDemo -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false 执行之后，本地生成MockitoDemo 文件夹，然后整个工程的目录结构与生成好了。
+然后，我们写这样一个model类，表示book类型 package info.sanaulla.models;
+import java.util.List;
+/** * Model class for the book details. */ public class Book {
+private String isbn; private String title; private List&lt;String&gt; authors; private String publication; private Integer yearOfPublication; private Integer numberOfPages; private String image;
+public Book(String isbn, String title, List&lt;String&gt; authors, String publication, Integer yearOfPublication, Integer numberOfPages, String image){
+this.isbn = isbn; this.title: = title; this.">
+<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+<meta property="og:url" content="https://leizhiyuan.github.io/2014/03/01/%E8%AF%91%E4%BD%BF%E7%94%A8mockito%E7%AE%80%E5%8D%95mock%E5%85%A5%E9%97%A8/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="bystander&#39;s blog" />
+
+  <meta name="twitter:title" content="[译]使用Mockito简单mock入门" />
+  <meta name="twitter:description" content="我们在写单元测试的时候，面临的一个挑战就是要测试的内容总是依赖于其他组件，要是我们还得先配置好其他组件，未免有点不如意，那么我们可以使用Mocks来代替那些依赖的组件
+本文问了展示这个过程，我会创建一个DAL，数据访问层，这是一个类，提供了一个通用的api来访问和修改数据仓库的数据，然后，我们要测试这个api，而不用配置连接某个本地的数据库，，或者一个远程的数据库，或者是一个文件系统，反正就是任何 …">
+  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+  <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
@@ -37,20 +127,17 @@ this.isbn = isbn; this.title: = title; this.">
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://leizhiyuan.github.io/2014/03/01/%E8%AF%91%E4%BD%BF%E7%94%A8mockito%E7%AE%80%E5%8D%95mock%E5%85%A5%E9%97%A8/" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <meta name="generator" content="Hugo 0.58.0" />
+  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
   <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
 
 
-</head>
 
+  </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
   <div class="container-fluid">
@@ -195,11 +282,16 @@ this.isbn = isbn; this.title: = title; this.">
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on March 1, 2014
+  <i class="fas fa-calendar"></i>&nbsp;Posted on March 1, 2014
   
   
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 3 minutes (628 words)
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;3&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
   
   
 </span>
@@ -543,6 +635,8 @@ assertEquals(book1.getIsbn(), isbn);</pre></div>
         
 
         
+
+        
       </article>
 
       
@@ -563,6 +657,7 @@ assertEquals(book1.getIsbn(), isbn);</pre></div>
 
       
         
+          
           <div class="disqus-comments">
             <div id="disqus_thread"></div>
 <script type="application/javascript">
@@ -585,6 +680,7 @@ assertEquals(book1.getIsbn(), isbn);</pre></div>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
           </div>
+          
         
         
       
@@ -602,19 +698,17 @@ assertEquals(book1.getIsbn(), isbn);</pre></div>
               <li>
                 <a href="https://github.com/leizhiyuan" title="GitHub">
                   <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
               </li>
           
           <li>
-            
-            <a href="https://leizhiyuan.github.io/index.xml" title="RSS">
-            
+            <a href="" title="RSS">
               <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
               </span>
             </a>
           </li>
@@ -627,8 +721,10 @@ assertEquals(book1.getIsbn(), isbn);</pre></div>
             
           
 
-          &nbsp;&bull;&nbsp;
-          2019
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2019
+          
 
           
             &nbsp;&bull;&nbsp;
@@ -637,25 +733,25 @@ assertEquals(book1.getIsbn(), isbn);</pre></div>
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>
     </div>
   </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <script src="https://leizhiyuan.github.io/js/main.js"></script>
 <script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
 <script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
-<script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+
+
+
 
 
 

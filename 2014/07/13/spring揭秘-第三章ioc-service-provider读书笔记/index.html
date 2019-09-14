@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
   <head>
+    
+
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>Spring揭秘-第三章IoC Service Provider读书笔记</title>
+  <title>Spring揭秘-第三章IoC Service Provider读书笔记 - bystander&#39;s blog</title>
   <meta property="og:title" content="Spring揭秘-第三章IoC Service Provider读书笔记" />
   <meta name="twitter:title" content="Spring揭秘-第三章IoC Service Provider读书笔记" />
   <meta name="description" content="我们虽然已经通过IoC声明了相应的依赖，但是最终总要有个啥东西将这些依赖对象绑定在一起，这里而IoC Service Provider, 来啦，表示一种绑定的实现方式，可以使一段代码，也可以是一组相关的泪，甚至是框架或容器。  比如前一篇提到的 IFXNewsListener newsListener = new DowJonesNewsListener(); IFXNewsPersister newsPersister = new DowJonesNewsPersister(); FXNewsProvider newsProvider = new FXNewsProvider(newsListener,newsPersister); newsProvider.getAndPersistNews(); &nbsp;
@@ -15,7 +17,88 @@
  就是一个容器，只不过太简单了，不适用于更多的场景，  IoC容器就是Spring提供依赖注入服务的Provider  IoC Service Provider 是干嘛？ 1.业务对象的构建管理，剥离客户端对象的构建的依赖逻辑，比如A引用B，那么A是B的客户端对象，容器需要理清这种关系。 2.业务对象之间的依赖绑定，通过1的实现， 识别各个对象的依赖关系，然后将这些对象依赖的对象注入绑定，用的时候就有了。   那你要问了，这怎么管理对象间的依赖关系呢  IoC Service Provider怎么就能完全领会代码的意图呢？他怎么记住这么多的依赖关系等等，他要这么做 1.元数据方式 2.通过描述性较强的xml来记录对应信息 3.通过编写代码的方式注册这些信息   3.直接编码方式， 明确了依赖关系 IoContainer container = &hellip;; container.register(FXNewsProvider.class,new FXNewsProvider()); container.register(IFXNewsListener.class,new DowJonesNewsListener()); &hellip; FXNewsProvider newsProvider = (FXNewsProvider)container.get(FXNewsProvider.class); newProvider.getAndPersistNews(); &nbsp;
   2.配置文件方式  最常见的还是xml方式，  &lt;bean id=&ldquo;newsProvider&rdquo; class=&ldquo;.">
   <meta name="twitter:description" content="我们虽然已经通过IoC声明了相应的依赖，但是最终总要有个啥东西将这些依赖对象绑定在一起，这里而IoC Service Provider, 来啦，表示一种绑定的实现方式，可以使一段代码，也可以是一组相关的泪，甚至是框架或容器。  比如前一篇提到的 IFXNewsListener newsListener = new DowJonesNewsListener(); IFXNewsPersister …">
-  <meta name="author" content="bystander"/>
+  <meta name="author" content="bystander"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "bystander\x27s blog",
+    
+    "url": "https:\/\/leizhiyuan.github.io\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/leizhiyuan.github.io\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/2014\/07\/13\/spring%E6%8F%AD%E7%A7%98-%E7%AC%AC%E4%B8%89%E7%AB%A0ioc-service-provider%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0\/",
+          "name": "Spring揭秘 第三章 io c service provider读书笔记"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "bystander"
+  },
+  "headline": "Spring揭秘-第三章IoC Service Provider读书笔记",
+  "description" : "我们虽然已经通过IoC声明了相应的依赖，但是最终总要有个啥东西将这些依赖对象绑定在一起，这里而IoC Service Provider, 来啦，表示一种绑定的实现方式，可以使一段代码，也可以是一组相关的泪，甚至是框架或容器。  比如前一篇提到的 IFXNewsListener newsListener = new DowJonesNewsListener(); IFXNewsPersister newsPersister = new DowJonesNewsPersister(); FXNewsProvider newsProvider = new FXNewsProvider(newsListener,newsPersister); newsProvider.getAndPersistNews(); \x26nbsp;\n 就是一个容器，只不过太简单了，不适用于更多的场景，  IoC容器就是Spring提供依赖注入服务的Provider  IoC Service Provider 是干嘛？ 1.业务对象的构建管理，剥离客户端对象的构建的依赖逻辑，比如A引用B，那么A是B的客户端对象，容器需要理清这种关系。 2.业务对象之间的依赖绑定，通过1的实现， 识别各个对象的依赖关系，然后将这些对象依赖的对象注入绑定，用的时候就有了。   那你要问了，这怎么管理对象间的依赖关系呢  IoC Service Provider怎么就能完全领会代码的意图呢？他怎么记住这么多的依赖关系等等，他要这么做 1.元数据方式 2.通过描述性较强的xml来记录对应信息 3.通过编写代码的方式注册这些信息   3.直接编码方式， 明确了依赖关系 IoContainer container = \x26hellip;; container.register(FXNewsProvider.class,new FXNewsProvider()); container.register(IFXNewsListener.class,new DowJonesNewsListener()); \x26hellip; FXNewsProvider newsProvider = (FXNewsProvider)container.get(FXNewsProvider.class); newProvider.getAndPersistNews(); \x26nbsp;\n  2.配置文件方式  最常见的还是xml方式，  \x26lt;bean id=\x26ldquo;newsProvider\x26rdquo; class=\x26ldquo;.",
+  "inLanguage" : "en",
+  "wordCount":  150 ,
+  "datePublished" : "2014-07-13T11:18:02",
+  "dateModified" : "2014-07-13T11:18:02",
+  "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+  "keywords" : [ "java, spring" ],
+  "mainEntityOfPage" : "https:\/\/leizhiyuan.github.io\/2014\/07\/13\/spring%E6%8F%AD%E7%A7%98-%E7%AC%AC%E4%B8%89%E7%AB%A0ioc-service-provider%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/leizhiyuan.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="Spring揭秘-第三章IoC Service Provider读书笔记" />
+<meta property="og:description" content="我们虽然已经通过IoC声明了相应的依赖，但是最终总要有个啥东西将这些依赖对象绑定在一起，这里而IoC Service Provider, 来啦，表示一种绑定的实现方式，可以使一段代码，也可以是一组相关的泪，甚至是框架或容器。  比如前一篇提到的 IFXNewsListener newsListener = new DowJonesNewsListener(); IFXNewsPersister newsPersister = new DowJonesNewsPersister(); FXNewsProvider newsProvider = new FXNewsProvider(newsListener,newsPersister); newsProvider.getAndPersistNews(); &nbsp;
+ 就是一个容器，只不过太简单了，不适用于更多的场景，  IoC容器就是Spring提供依赖注入服务的Provider  IoC Service Provider 是干嘛？ 1.业务对象的构建管理，剥离客户端对象的构建的依赖逻辑，比如A引用B，那么A是B的客户端对象，容器需要理清这种关系。 2.业务对象之间的依赖绑定，通过1的实现， 识别各个对象的依赖关系，然后将这些对象依赖的对象注入绑定，用的时候就有了。   那你要问了，这怎么管理对象间的依赖关系呢  IoC Service Provider怎么就能完全领会代码的意图呢？他怎么记住这么多的依赖关系等等，他要这么做 1.元数据方式 2.通过描述性较强的xml来记录对应信息 3.通过编写代码的方式注册这些信息   3.直接编码方式， 明确了依赖关系 IoContainer container = &hellip;; container.register(FXNewsProvider.class,new FXNewsProvider()); container.register(IFXNewsListener.class,new DowJonesNewsListener()); &hellip; FXNewsProvider newsProvider = (FXNewsProvider)container.get(FXNewsProvider.class); newProvider.getAndPersistNews(); &nbsp;
+  2.配置文件方式  最常见的还是xml方式，  &lt;bean id=&ldquo;newsProvider&rdquo; class=&ldquo;.">
+<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+<meta property="og:url" content="https://leizhiyuan.github.io/2014/07/13/spring%E6%8F%AD%E7%A7%98-%E7%AC%AC%E4%B8%89%E7%AB%A0ioc-service-provider%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="bystander&#39;s blog" />
+
+  <meta name="twitter:title" content="Spring揭秘-第三章IoC Service Provider读书笔记" />
+  <meta name="twitter:description" content="我们虽然已经通过IoC声明了相应的依赖，但是最终总要有个啥东西将这些依赖对象绑定在一起，这里而IoC Service Provider, 来啦，表示一种绑定的实现方式，可以使一段代码，也可以是一组相关的泪，甚至是框架或容器。  比如前一篇提到的 IFXNewsListener newsListener = new DowJonesNewsListener(); IFXNewsPersister …">
+  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+  <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
@@ -24,20 +107,17 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://leizhiyuan.github.io/2014/07/13/spring%E6%8F%AD%E7%A7%98-%E7%AC%AC%E4%B8%89%E7%AB%A0ioc-service-provider%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <meta name="generator" content="Hugo 0.58.0" />
+  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
   <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
 
 
-</head>
 
+  </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
   <div class="container-fluid">
@@ -182,11 +262,16 @@
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on July 13, 2014
+  <i class="fas fa-calendar"></i>&nbsp;Posted on July 13, 2014
   
   
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (150 words)
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
   
   
 </span>
@@ -331,6 +416,8 @@ newsProvider.getAndPersistNews();</pre>
         
 
         
+
+        
       </article>
 
       
@@ -351,6 +438,7 @@ newsProvider.getAndPersistNews();</pre>
 
       
         
+          
           <div class="disqus-comments">
             <div id="disqus_thread"></div>
 <script type="application/javascript">
@@ -373,6 +461,7 @@ newsProvider.getAndPersistNews();</pre>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
           </div>
+          
         
         
       
@@ -390,19 +479,17 @@ newsProvider.getAndPersistNews();</pre>
               <li>
                 <a href="https://github.com/leizhiyuan" title="GitHub">
                   <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
               </li>
           
           <li>
-            
-            <a href="https://leizhiyuan.github.io/index.xml" title="RSS">
-            
+            <a href="" title="RSS">
               <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
               </span>
             </a>
           </li>
@@ -415,8 +502,10 @@ newsProvider.getAndPersistNews();</pre>
             
           
 
-          &nbsp;&bull;&nbsp;
-          2019
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2019
+          
 
           
             &nbsp;&bull;&nbsp;
@@ -425,25 +514,25 @@ newsProvider.getAndPersistNews();</pre>
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>
     </div>
   </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <script src="https://leizhiyuan.github.io/js/main.js"></script>
 <script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
 <script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
-<script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+
+
+
 
 
 

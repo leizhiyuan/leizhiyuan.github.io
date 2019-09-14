@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
   <head>
+    
+
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>阿里巴巴5月5日综合算法题详解</title>
+  <title>阿里巴巴5月5日综合算法题详解 - bystander&#39;s blog</title>
   <meta property="og:title" content="阿里巴巴5月5日综合算法题详解" />
   <meta name="twitter:title" content="阿里巴巴5月5日综合算法题详解" />
   <meta name="description" content="之前参加了阿里的笔试和电面，让后天那个敏感的日子去参加现场面，就去看了一下那天笔试的最后一道综合题，看着网上清一色最后一道题不知道从哪转的答案，不忍直视，一看代码就是错的，最直接的就是求中位数连奇偶性都不判断，直接处以2..这，另外当在无法整除的情况下，数据结果错误。
@@ -37,7 +39,100 @@ int _tmain(int argc, _TCHAR* argv[]) { while(true) { double total = 0; double mi
   <meta name="twitter:description" content="之前参加了阿里的笔试和电面，让后天那个敏感的日子去参加现场面，就去看了一下那天笔试的最后一道综合题，看着网上清一色最后一道题不知道从哪转的答案，不忍直视，一看代码就是错的，最直接的就是求中位数连奇偶性都不判断，直接处以2..这，另外当在无法整除的情况下，数据结果错误。
 &nbsp;
 这道题的大意是：有一个淘宝商户，在某城市有n个仓库，每个仓库的储货量不同，现在要通过货物运输，将每次仓库的储货量变成 …">
-  <meta name="author" content="bystander"/>
+  <meta name="author" content="bystander"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "bystander\x27s blog",
+    
+    "url": "https:\/\/leizhiyuan.github.io\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/leizhiyuan.github.io\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/2013\/06\/02\/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B45%E6%9C%885%E6%97%A5%E7%BB%BC%E5%90%88%E7%AE%97%E6%B3%95%E9%A2%98%E8%AF%A6%E8%A7%A3\/",
+          "name": "阿里巴巴5月5日综合算法题详解"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "bystander"
+  },
+  "headline": "阿里巴巴5月5日综合算法题详解",
+  "description" : "之前参加了阿里的笔试和电面，让后天那个敏感的日子去参加现场面，就去看了一下那天笔试的最后一道综合题，看着网上清一色最后一道题不知道从哪转的答案，不忍直视，一看代码就是错的，最直接的就是求中位数连奇偶性都不判断，直接处以2..这，另外当在无法整除的情况下，数据结果错误。\n\x26nbsp;\n这道题的大意是：有一个淘宝商户，在某城市有n个仓库，每个仓库的储货量不同，现在要通过货物运输，将每次仓库的储货量变成一致的，n个仓库之间的运输线路围城一个圈，即1-\x26gt;2-\x26gt;3-\x26gt;4-\x26gt;\x26hellip;-\x26gt;n-\x26gt;1-\x26gt;\x26hellip;，货物只能通过连接的仓库运输，设计最小的运送成本（运货量*路程）达到淘宝商户的要求，并写出代码。\n解题思路：\n假设n个仓库的初始储货量分别为warehouse[1],warehouse[2],\x26hellip;,warehouse[n] 计算平均储货量 average = （warehouse[1]\x2bwarehouse[2]\x2b\x26hellip;\x2bwarehouse[n])\/n 就算出来了最终的结果中，每个仓库应该有的存量 首先，从仓库1向仓库n运送k； 然后，从1到n-1，依次向下运送某一特定值，使得每一个仓库的余量都为average，剩下的问题就是求总代价的最小值了。\n设第0步从1仓库向n仓库（注意因为是圆圈，所以路径长度是1）运出k存量，k可以为负，如果为负数，意味着从n向1运输|k|存量，然后从循环，从（1到n-1）,从i仓库向i\x2b1仓库运输，运输的量需要保证i仓库在运输完毕后等于average\n 第0步（从仓库1向仓库n运送k）:花费代价为 |k|， 第1步（确保仓库1的余量为average）：需要花费代价为 |warehouse[1]-average-k| 也就是从1向2伙从2向1运输 第2步（确保仓库2的余量为average）：代价为 |warehouse[2]\x2bwarehouse[1]-average-k-average|=|warehouse[1]\x2bwarehouse[2]-2*average-k| \x26hellip; n-1.第n-1步：代价为 |warehouse[1]\x2bwarehouse[2]\x2b\x26hellip;\x2bwarehouse[n-1]-(n-1)*average-k| 此时，仓库n剩下的货物量： (warehouse[n]\x2bk)\x2bwarehouse[1]\x2bwarehouse[2]\x2b\x26hellip;\x2bwarehouse[n-1]-(n-1)*average-k=(warehouse[1]\x2bwarehouse[2]\x2b\x26hellip;\x2bwarehouse[n])-(n-1)*average=average 刚好也满足，其实这里不用推导，因为平均值是算好的，所以最胡一定是刚好完成的。  总的代价为： |k|\x2b|warehouse[1]-average-k|\x2b|warehouse[1]\x2ba[2]-2*average-k|\x2b\x26hellip;\x2b|warehouse[1]\x2bwarehouse[2]\x2b\x26hellip;\x2bwarehouse[n-1]-(n-1)*average-k| 不妨令sum[i] = warehouse[1]\x2bwarehouse[2]\x2b\x26hellip;\x2bwarehouse[i]-i*average 则，总代价可表示为：|k|\x2b|sum[1]-k|\x2b|sum[2]-k|\x2b\x26hellip;\x2b|sum[n-1]-k| 这个式子可以看成在水平数轴上寻找一个点k，使得点k到点0,sum[1],sum[2],sum[3],\x26hellip;,sum[n-1]的距离之和最小，显然k应该取这n个数的中位数。至此问题解决。\n给出详细注释代码：\n\x26nbsp; #include \x26ldquo;stdafx.h\x26rdquo; #include \x26lt;iostream\x26gt; #include \x26lt;algorithm\x26gt; #include\x26lt;string\x26gt;\nusing namespace std;\nconst int X = 100000; double sum[X],warehouse[X]; int n;\ndouble Abs(double x) { return max(x,-x); }\nint _tmain(int argc, _TCHAR* argv[]) { while(true) { double total = 0; double mid=0; cout\x26lt;\x26lt;\x26ldquo;请输入仓库数目：\x26rdquo;; cin\x26gt;\x26gt;n; \/\/读入n个仓库的值，并计算总数 for(int i=1;i\x26lt;=n;i\x2b\x2b) { cout\x26lt;\x26lt;\x26ldquo;请输入第\x26rdquo;\x26lt;\x26lt;i\x26lt;\x26lt;\x26ldquo;个仓库的存量：\x26rdquo;; cin\x26gt;\x26gt;warehouse[i]; total \x2b= warehouse[i]; } \/\/计算每个仓库应该最终存储的值 double average = total\/n; \/\/计算sum数组 for(int i=1;i\x26lt;n;i\x2b\x2b) sum[i] = warehouse[i]\x2bsum[i-1]-average; \/\/排序后打算去中位数 \/\/sort采用半开半闭区间，所以排序为0～n-1 sort(sum,sum\x2bn); \/\/这个可以自己举个数字就知道了 if(n%2!",
+  "inLanguage" : "en",
+  "wordCount":  130 ,
+  "datePublished" : "2013-06-02T15:44:22",
+  "dateModified" : "2013-06-02T15:44:22",
+  "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+  "keywords" : [ "C\x2b\x2b, 大学, 工作, 武汉, 算法, 软件" ],
+  "mainEntityOfPage" : "https:\/\/leizhiyuan.github.io\/2013\/06\/02\/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B45%E6%9C%885%E6%97%A5%E7%BB%BC%E5%90%88%E7%AE%97%E6%B3%95%E9%A2%98%E8%AF%A6%E8%A7%A3\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/leizhiyuan.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="阿里巴巴5月5日综合算法题详解" />
+<meta property="og:description" content="之前参加了阿里的笔试和电面，让后天那个敏感的日子去参加现场面，就去看了一下那天笔试的最后一道综合题，看着网上清一色最后一道题不知道从哪转的答案，不忍直视，一看代码就是错的，最直接的就是求中位数连奇偶性都不判断，直接处以2..这，另外当在无法整除的情况下，数据结果错误。
+&nbsp;
+这道题的大意是：有一个淘宝商户，在某城市有n个仓库，每个仓库的储货量不同，现在要通过货物运输，将每次仓库的储货量变成一致的，n个仓库之间的运输线路围城一个圈，即1-&gt;2-&gt;3-&gt;4-&gt;&hellip;-&gt;n-&gt;1-&gt;&hellip;，货物只能通过连接的仓库运输，设计最小的运送成本（运货量*路程）达到淘宝商户的要求，并写出代码。
+解题思路：
+假设n个仓库的初始储货量分别为warehouse[1],warehouse[2],&hellip;,warehouse[n] 计算平均储货量 average = （warehouse[1]&#43;warehouse[2]&#43;&hellip;&#43;warehouse[n])/n 就算出来了最终的结果中，每个仓库应该有的存量 首先，从仓库1向仓库n运送k； 然后，从1到n-1，依次向下运送某一特定值，使得每一个仓库的余量都为average，剩下的问题就是求总代价的最小值了。
+设第0步从1仓库向n仓库（注意因为是圆圈，所以路径长度是1）运出k存量，k可以为负，如果为负数，意味着从n向1运输|k|存量，然后从循环，从（1到n-1）,从i仓库向i&#43;1仓库运输，运输的量需要保证i仓库在运输完毕后等于average
+ 第0步（从仓库1向仓库n运送k）:花费代价为 |k|， 第1步（确保仓库1的余量为average）：需要花费代价为 |warehouse[1]-average-k| 也就是从1向2伙从2向1运输 第2步（确保仓库2的余量为average）：代价为 |warehouse[2]&#43;warehouse[1]-average-k-average|=|warehouse[1]&#43;warehouse[2]-2*average-k| &hellip; n-1.第n-1步：代价为 |warehouse[1]&#43;warehouse[2]&#43;&hellip;&#43;warehouse[n-1]-(n-1)*average-k| 此时，仓库n剩下的货物量： (warehouse[n]&#43;k)&#43;warehouse[1]&#43;warehouse[2]&#43;&hellip;&#43;warehouse[n-1]-(n-1)*average-k=(warehouse[1]&#43;warehouse[2]&#43;&hellip;&#43;warehouse[n])-(n-1)*average=average 刚好也满足，其实这里不用推导，因为平均值是算好的，所以最胡一定是刚好完成的。  总的代价为： |k|&#43;|warehouse[1]-average-k|&#43;|warehouse[1]&#43;a[2]-2*average-k|&#43;&hellip;&#43;|warehouse[1]&#43;warehouse[2]&#43;&hellip;&#43;warehouse[n-1]-(n-1)*average-k| 不妨令sum[i] = warehouse[1]&#43;warehouse[2]&#43;&hellip;&#43;warehouse[i]-i*average 则，总代价可表示为：|k|&#43;|sum[1]-k|&#43;|sum[2]-k|&#43;&hellip;&#43;|sum[n-1]-k| 这个式子可以看成在水平数轴上寻找一个点k，使得点k到点0,sum[1],sum[2],sum[3],&hellip;,sum[n-1]的距离之和最小，显然k应该取这n个数的中位数。至此问题解决。
+给出详细注释代码：
+&nbsp; #include &ldquo;stdafx.h&rdquo; #include &lt;iostream&gt; #include &lt;algorithm&gt; #include&lt;string&gt;
+using namespace std;
+const int X = 100000; double sum[X],warehouse[X]; int n;
+double Abs(double x) { return max(x,-x); }
+int _tmain(int argc, _TCHAR* argv[]) { while(true) { double total = 0; double mid=0; cout&lt;&lt;&ldquo;请输入仓库数目：&rdquo;; cin&gt;&gt;n; //读入n个仓库的值，并计算总数 for(int i=1;i&lt;=n;i&#43;&#43;) { cout&lt;&lt;&ldquo;请输入第&rdquo;&lt;&lt;i&lt;&lt;&ldquo;个仓库的存量：&rdquo;; cin&gt;&gt;warehouse[i]; total &#43;= warehouse[i]; } //计算每个仓库应该最终存储的值 double average = total/n; //计算sum数组 for(int i=1;i&lt;n;i&#43;&#43;) sum[i] = warehouse[i]&#43;sum[i-1]-average; //排序后打算去中位数 //sort采用半开半闭区间，所以排序为0～n-1 sort(sum,sum&#43;n); //这个可以自己举个数字就知道了 if(n%2!">
+<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+<meta property="og:url" content="https://leizhiyuan.github.io/2013/06/02/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B45%E6%9C%885%E6%97%A5%E7%BB%BC%E5%90%88%E7%AE%97%E6%B3%95%E9%A2%98%E8%AF%A6%E8%A7%A3/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="bystander&#39;s blog" />
+
+  <meta name="twitter:title" content="阿里巴巴5月5日综合算法题详解" />
+  <meta name="twitter:description" content="之前参加了阿里的笔试和电面，让后天那个敏感的日子去参加现场面，就去看了一下那天笔试的最后一道综合题，看着网上清一色最后一道题不知道从哪转的答案，不忍直视，一看代码就是错的，最直接的就是求中位数连奇偶性都不判断，直接处以2..这，另外当在无法整除的情况下，数据结果错误。
+&nbsp;
+这道题的大意是：有一个淘宝商户，在某城市有n个仓库，每个仓库的储货量不同，现在要通过货物运输，将每次仓库的储货量变成 …">
+  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+  <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
@@ -46,20 +141,17 @@ int _tmain(int argc, _TCHAR* argv[]) { while(true) { double total = 0; double mi
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://leizhiyuan.github.io/2013/06/02/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B45%E6%9C%885%E6%97%A5%E7%BB%BC%E5%90%88%E7%AE%97%E6%B3%95%E9%A2%98%E8%AF%A6%E8%A7%A3/" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <meta name="generator" content="Hugo 0.58.0" />
+  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
   <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
 
 
-</head>
 
+  </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
   <div class="container-fluid">
@@ -204,11 +296,16 @@ int _tmain(int argc, _TCHAR* argv[]) { while(true) { double total = 0; double mi
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on June 2, 2013
+  <i class="fas fa-calendar"></i>&nbsp;Posted on June 2, 2013
   
   
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (130 words)
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
   
   
 </span>
@@ -350,6 +447,8 @@ int n;</p>
         
 
         
+
+        
       </article>
 
       
@@ -370,6 +469,7 @@ int n;</p>
 
       
         
+          
           <div class="disqus-comments">
             <div id="disqus_thread"></div>
 <script type="application/javascript">
@@ -392,6 +492,7 @@ int n;</p>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
           </div>
+          
         
         
       
@@ -409,19 +510,17 @@ int n;</p>
               <li>
                 <a href="https://github.com/leizhiyuan" title="GitHub">
                   <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
               </li>
           
           <li>
-            
-            <a href="https://leizhiyuan.github.io/index.xml" title="RSS">
-            
+            <a href="" title="RSS">
               <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
               </span>
             </a>
           </li>
@@ -434,8 +533,10 @@ int n;</p>
             
           
 
-          &nbsp;&bull;&nbsp;
-          2019
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2019
+          
 
           
             &nbsp;&bull;&nbsp;
@@ -444,25 +545,25 @@ int n;</p>
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>
     </div>
   </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <script src="https://leizhiyuan.github.io/js/main.js"></script>
 <script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
 <script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
-<script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+
+
+
 
 
 

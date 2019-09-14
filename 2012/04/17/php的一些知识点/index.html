@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
   <head>
+    
+
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>php的一些知识点</title>
+  <title>php的一些知识点 - bystander&#39;s blog</title>
   <meta property="og:title" content="php的一些知识点" />
   <meta name="twitter:title" content="php的一些知识点" />
   <meta name="description" content="一.php中单双引号的区别
@@ -24,7 +26,93 @@
 具体可参考：理解 Zend 框架，第 1 部分: 基础">
   <meta name="twitter:description" content="一.php中单双引号的区别
  &rdquo;&rdquo; 双引号里面的字段会经过编译器解释，然后再当作HTML代码输出。 &rdquo; 单引号里面的不进行解释，直接输出。 从字面意思上就可以看出，单引号比双引号要快了。单引号支持\&lsquo;和\的转义，但其他一些转义字符就必须是在双引号里了。 例如： $name=&lsquo;my name is bystander&rsquo;; …">
-  <meta name="author" content="bystander"/>
+  <meta name="author" content="bystander"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "bystander\x27s blog",
+    
+    "url": "https:\/\/leizhiyuan.github.io\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/leizhiyuan.github.io\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/2012\/04\/17\/php%E7%9A%84%E4%B8%80%E4%BA%9B%E7%9F%A5%E8%AF%86%E7%82%B9\/",
+          "name": "Php的一些知识点"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "bystander"
+  },
+  "headline": "php的一些知识点",
+  "description" : "一.php中单双引号的区别\n \x26rdquo;\x26rdquo; 双引号里面的字段会经过编译器解释，然后再当作HTML代码输出。 \x26rdquo; 单引号里面的不进行解释，直接输出。 从字面意思上就可以看出，单引号比双引号要快了。单引号支持\\\x26lsquo;和\\的转义，但其他一些转义字符就必须是在双引号里了。 例如： $name=\x26lsquo;my name is bystander\x26rsquo;; echo $name \/\/结果是:my name is bystander echo \x26lsquo;$name\x26rsquo; \/\/结果是:$name echo \x26ldquo;$name\x26rdquo; \/\/结果是:my name is bystander  二.require和include的区别 在于，出现错误时，require是error,也就是说脚本会停止执行，而include是warning。也就说说代码会继续执行，另外，无论require的位置如何。即使是放在一个if代码块里面。他也会将指定文件包含进来。。即使该if部分不执行。顺带说下include 和include_once。其实类似于c里面的ifdef。。就是只包含一次。不重复包含。  三。php类 php类的构造函数命名为_construct.析构函数为_destruct，需要调用父类的构造函数时，使用parent::_construct()来调用\n四。pear包 PEAR是\x26rdquo;PHP Extension and Application Repository\x26rdquo;的缩写，也就是一个PHP扩展和应用的管理工具， 具体可参考：http:\/\/www.berlinix.com\/php_pear.html\n五。PDO PDO(PHP Data Objects)扩展为PHP访问数据库定义了一个轻量级的、一致性的接口，它提供了一个数据访问抽象层，这样，无论使用什么数据库，都可以通过一致的函数执行查询和获取数据。PDO随PHP5.1发行，在PHP5.0的PECL扩展中也可以使用。其实就是一个访问数据库的一个类，连数据库的时候实例一个。调用方法就这样。前提是这个装好了。 linux下具体可以参考：LINUX下手动安装PDO_MYSQL window下和例子（例子也可以在linux下使用）参考此文：PHP5中PDO的简单使用\n六。Zend\n 准确地讲 Zend 框架究竟是什么呢？Zend 框架具有以下特征： 是基于 PHP 建立的。 是面向对象的。 使用 MVC 范例。 具有开放源码贡献者。 有贡献者负责保证他们的代码不是他人的知识产权。  通过建立 MVC 模式，Zend 框架的目标是使编程生活更加轻松，这不仅体现在通用领域，而且对您始终想要做的具体的事情也是如此，比如访问数据库或输出 PDF 文件。\n具体可参考：理解 Zend 框架，第 1 部分: 基础",
+  "inLanguage" : "en",
+  "wordCount":  85 ,
+  "datePublished" : "2012-04-17T17:37:18",
+  "dateModified" : "2012-04-17T17:37:18",
+  "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+  "keywords" : [ "php" ],
+  "mainEntityOfPage" : "https:\/\/leizhiyuan.github.io\/2012\/04\/17\/php%E7%9A%84%E4%B8%80%E4%BA%9B%E7%9F%A5%E8%AF%86%E7%82%B9\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/leizhiyuan.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="php的一些知识点" />
+<meta property="og:description" content="一.php中单双引号的区别
+ &rdquo;&rdquo; 双引号里面的字段会经过编译器解释，然后再当作HTML代码输出。 &rdquo; 单引号里面的不进行解释，直接输出。 从字面意思上就可以看出，单引号比双引号要快了。单引号支持\&lsquo;和\的转义，但其他一些转义字符就必须是在双引号里了。 例如： $name=&lsquo;my name is bystander&rsquo;; echo $name //结果是:my name is bystander echo &lsquo;$name&rsquo; //结果是:$name echo &ldquo;$name&rdquo; //结果是:my name is bystander  二.require和include的区别 在于，出现错误时，require是error,也就是说脚本会停止执行，而include是warning。也就说说代码会继续执行，另外，无论require的位置如何。即使是放在一个if代码块里面。他也会将指定文件包含进来。。即使该if部分不执行。顺带说下include 和include_once。其实类似于c里面的ifdef。。就是只包含一次。不重复包含。  三。php类 php类的构造函数命名为_construct.析构函数为_destruct，需要调用父类的构造函数时，使用parent::_construct()来调用
+四。pear包 PEAR是&rdquo;PHP Extension and Application Repository&rdquo;的缩写，也就是一个PHP扩展和应用的管理工具， 具体可参考：http://www.berlinix.com/php_pear.html
+五。PDO PDO(PHP Data Objects)扩展为PHP访问数据库定义了一个轻量级的、一致性的接口，它提供了一个数据访问抽象层，这样，无论使用什么数据库，都可以通过一致的函数执行查询和获取数据。PDO随PHP5.1发行，在PHP5.0的PECL扩展中也可以使用。其实就是一个访问数据库的一个类，连数据库的时候实例一个。调用方法就这样。前提是这个装好了。 linux下具体可以参考：LINUX下手动安装PDO_MYSQL window下和例子（例子也可以在linux下使用）参考此文：PHP5中PDO的简单使用
+六。Zend
+ 准确地讲 Zend 框架究竟是什么呢？Zend 框架具有以下特征： 是基于 PHP 建立的。 是面向对象的。 使用 MVC 范例。 具有开放源码贡献者。 有贡献者负责保证他们的代码不是他人的知识产权。  通过建立 MVC 模式，Zend 框架的目标是使编程生活更加轻松，这不仅体现在通用领域，而且对您始终想要做的具体的事情也是如此，比如访问数据库或输出 PDF 文件。
+具体可参考：理解 Zend 框架，第 1 部分: 基础">
+<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+<meta property="og:url" content="https://leizhiyuan.github.io/2012/04/17/php%E7%9A%84%E4%B8%80%E4%BA%9B%E7%9F%A5%E8%AF%86%E7%82%B9/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="bystander&#39;s blog" />
+
+  <meta name="twitter:title" content="php的一些知识点" />
+  <meta name="twitter:description" content="一.php中单双引号的区别
+ &rdquo;&rdquo; 双引号里面的字段会经过编译器解释，然后再当作HTML代码输出。 &rdquo; 单引号里面的不进行解释，直接输出。 从字面意思上就可以看出，单引号比双引号要快了。单引号支持\&lsquo;和\的转义，但其他一些转义字符就必须是在双引号里了。 例如： $name=&lsquo;my name is bystander&rsquo;; …">
+  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+  <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
@@ -33,20 +121,17 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://leizhiyuan.github.io/2012/04/17/php%E7%9A%84%E4%B8%80%E4%BA%9B%E7%9F%A5%E8%AF%86%E7%82%B9/" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <meta name="generator" content="Hugo 0.58.0" />
+  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
   <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
 
 
-</head>
 
+  </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
   <div class="container-fluid">
@@ -191,11 +276,16 @@
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on April 17, 2012
+  <i class="fas fa-calendar"></i>&nbsp;Posted on April 17, 2012
   
   
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (85 words)
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
   
   
 </span>
@@ -280,6 +370,8 @@ window下和例子（例子也可以在linux下使用）参考此文：<a href="
         
 
         
+
+        
       </article>
 
       
@@ -300,6 +392,7 @@ window下和例子（例子也可以在linux下使用）参考此文：<a href="
 
       
         
+          
           <div class="disqus-comments">
             <div id="disqus_thread"></div>
 <script type="application/javascript">
@@ -322,6 +415,7 @@ window下和例子（例子也可以在linux下使用）参考此文：<a href="
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
           </div>
+          
         
         
       
@@ -339,19 +433,17 @@ window下和例子（例子也可以在linux下使用）参考此文：<a href="
               <li>
                 <a href="https://github.com/leizhiyuan" title="GitHub">
                   <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
               </li>
           
           <li>
-            
-            <a href="https://leizhiyuan.github.io/index.xml" title="RSS">
-            
+            <a href="" title="RSS">
               <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
               </span>
             </a>
           </li>
@@ -364,8 +456,10 @@ window下和例子（例子也可以在linux下使用）参考此文：<a href="
             
           
 
-          &nbsp;&bull;&nbsp;
-          2019
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2019
+          
 
           
             &nbsp;&bull;&nbsp;
@@ -374,25 +468,25 @@ window下和例子（例子也可以在linux下使用）参考此文：<a href="
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>
     </div>
   </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <script src="https://leizhiyuan.github.io/js/main.js"></script>
 <script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
 <script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
-<script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+
+
+
 
 
 

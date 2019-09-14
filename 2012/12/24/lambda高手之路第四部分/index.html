@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
   <head>
+    
+
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>Lambda高手之路第四部分</title>
+  <title>Lambda高手之路第四部分 - bystander&#39;s blog</title>
   <meta property="og:title" content="Lambda高手之路第四部分" />
   <meta name="twitter:title" content="Lambda高手之路第四部分" />
   <meta name="description" content="首先祝大家平安夜快乐。本篇介绍一些流行的JavaScript模式。为下一篇打基础
@@ -28,7 +30,95 @@ void CreateTextBox() { var tb = new TextBox(); tb.IsReadOnly = true; tb.Text = &
 Func&lt;string, string&gt; SayMyName(string language) { switch(language.ToLower()) { case &#34;fr&#34;: return name =&gt; { return &#34;Je m&#39;appelle &#34;">
   <meta name="twitter:description" content="首先祝大家平安夜快乐。本篇介绍一些流行的JavaScript模式。为下一篇打基础
 使用/了解JavaScript的一个好处就是函数的高级用法。。在JavaScript里。函数仅仅是对象。他们可以有赋给他们的属性。而在C#中。我们不能做我们可以在JavaScript的全部事情。但是我们仍然可以做些事情。一个原因是JavaScript在函数里给变量以作用域。因此，不得不通过创建函数，大多数情况是匿名的 …">
-  <meta name="author" content="bystander"/>
+  <meta name="author" content="bystander"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "bystander\x27s blog",
+    
+    "url": "https:\/\/leizhiyuan.github.io\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/leizhiyuan.github.io\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/2012\/12\/24\/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E5%9B%9B%E9%83%A8%E5%88%86\/",
+          "name": "Lambda高手之路第四部分"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "bystander"
+  },
+  "headline": "Lambda高手之路第四部分",
+  "description" : "首先祝大家平安夜快乐。本篇介绍一些流行的JavaScript模式。为下一篇打基础\n使用\/了解JavaScript的一个好处就是函数的高级用法。。在JavaScript里。函数仅仅是对象。他们可以有赋给他们的属性。而在C#中。我们不能做我们可以在JavaScript的全部事情。但是我们仍然可以做些事情。一个原因是JavaScript在函数里给变量以作用域。因此，不得不通过创建函数，大多数情况是匿名的来定位变量。而在C#中。通过使用块，通过花括号来创建作用域\n当然，换种方式来说。C#中，函数也会给变量作用域。通过使用Lambda表达式。我们通过花括号在其里面创建了一个变量。然而。我们也可以局部的创建作用域。\n我们来看看通过使用Lambda表达式可以实现一些在JavaScript里面有用的模式把。\n回调模式\n这个模式是个老的模式。事实上。回调模式从.net 的第一版就开始使用了。但是是以一种很简单的方式实现的。而现在。通过使用Lambda表达式。闭包，捕获变量等特性能够允许我们写出如下的代码来。\nvoid CreateTextBox() { var tb = new TextBox(); tb.IsReadOnly = true; tb.Text = \x22Please wait ...\x22; DoSomeStuff(() =\x26gt; { tb.Text = string.Empty; tb.IsReadOnly = false; }); } void DoSomeStuff(Action callback) { \/\/ Do some stuff - asynchronous would be helpful ... callback(); } 对于JavaScript程序员会觉得这没什么啊。他们使用这个模式太多了。然而，它非常有用。因为我们可以使用参数作为Ajax相关事件的事件处理器（比如oncompleted，onsuccess），等等。如果你使用LINQ，那么你可能也会用到回调模式的一些东西。举个例子。LINQ的where子句将会在每一次迭代中回调你的查询语句。这只是回调函数的一个例子。在.net的世界里。事件如它名字所暗示的那样。通常是事件处理的首选方法。这有时候很像一个回调。他有两个参数。有一个特殊的关键字和一个类型模式（两个参数分别是sender和arguments，sender通常是object类型。Arguments通常继承自EventArgs） 可以通过\x2b= 和-=给事件添加\/删除事件处理程序。\n返回方法 和普通的方法比较。Lambda表达式也可以返回一个方法指针（就是一个委托实例），这意味着我们可以使用Lambda表达式创建\/返回一个lambda表达式（或者今年仅是一个已定义好的方法的委托实例），大量的情况下。这个模式也很有用。首先看一下例子。\nFunc\x26lt;string, string\x26gt; SayMyName(string language) { switch(language.ToLower()) { case \x22fr\x22: return name =\x26gt; { return \x22Je m\x27appelle \x22",
+  "inLanguage" : "en",
+  "wordCount":  483 ,
+  "datePublished" : "2012-12-24T19:20:12",
+  "dateModified" : "2012-12-24T19:20:12",
+  "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+  "keywords" : [ "C＃, windows, 学习, 总结, 翻译" ],
+  "mainEntityOfPage" : "https:\/\/leizhiyuan.github.io\/2012\/12\/24\/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E5%9B%9B%E9%83%A8%E5%88%86\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/leizhiyuan.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="Lambda高手之路第四部分" />
+<meta property="og:description" content="首先祝大家平安夜快乐。本篇介绍一些流行的JavaScript模式。为下一篇打基础
+使用/了解JavaScript的一个好处就是函数的高级用法。。在JavaScript里。函数仅仅是对象。他们可以有赋给他们的属性。而在C#中。我们不能做我们可以在JavaScript的全部事情。但是我们仍然可以做些事情。一个原因是JavaScript在函数里给变量以作用域。因此，不得不通过创建函数，大多数情况是匿名的来定位变量。而在C#中。通过使用块，通过花括号来创建作用域
+当然，换种方式来说。C#中，函数也会给变量作用域。通过使用Lambda表达式。我们通过花括号在其里面创建了一个变量。然而。我们也可以局部的创建作用域。
+我们来看看通过使用Lambda表达式可以实现一些在JavaScript里面有用的模式把。
+回调模式
+这个模式是个老的模式。事实上。回调模式从.net 的第一版就开始使用了。但是是以一种很简单的方式实现的。而现在。通过使用Lambda表达式。闭包，捕获变量等特性能够允许我们写出如下的代码来。
+void CreateTextBox() { var tb = new TextBox(); tb.IsReadOnly = true; tb.Text = &#34;Please wait ...&#34;; DoSomeStuff(() =&gt; { tb.Text = string.Empty; tb.IsReadOnly = false; }); } void DoSomeStuff(Action callback) { // Do some stuff - asynchronous would be helpful ... callback(); } 对于JavaScript程序员会觉得这没什么啊。他们使用这个模式太多了。然而，它非常有用。因为我们可以使用参数作为Ajax相关事件的事件处理器（比如oncompleted，onsuccess），等等。如果你使用LINQ，那么你可能也会用到回调模式的一些东西。举个例子。LINQ的where子句将会在每一次迭代中回调你的查询语句。这只是回调函数的一个例子。在.net的世界里。事件如它名字所暗示的那样。通常是事件处理的首选方法。这有时候很像一个回调。他有两个参数。有一个特殊的关键字和一个类型模式（两个参数分别是sender和arguments，sender通常是object类型。Arguments通常继承自EventArgs） 可以通过&#43;= 和-=给事件添加/删除事件处理程序。
+返回方法 和普通的方法比较。Lambda表达式也可以返回一个方法指针（就是一个委托实例），这意味着我们可以使用Lambda表达式创建/返回一个lambda表达式（或者今年仅是一个已定义好的方法的委托实例），大量的情况下。这个模式也很有用。首先看一下例子。
+Func&lt;string, string&gt; SayMyName(string language) { switch(language.ToLower()) { case &#34;fr&#34;: return name =&gt; { return &#34;Je m&#39;appelle &#34;">
+<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+<meta property="og:url" content="https://leizhiyuan.github.io/2012/12/24/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E5%9B%9B%E9%83%A8%E5%88%86/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="bystander&#39;s blog" />
+
+  <meta name="twitter:title" content="Lambda高手之路第四部分" />
+  <meta name="twitter:description" content="首先祝大家平安夜快乐。本篇介绍一些流行的JavaScript模式。为下一篇打基础
+使用/了解JavaScript的一个好处就是函数的高级用法。。在JavaScript里。函数仅仅是对象。他们可以有赋给他们的属性。而在C#中。我们不能做我们可以在JavaScript的全部事情。但是我们仍然可以做些事情。一个原因是JavaScript在函数里给变量以作用域。因此，不得不通过创建函数，大多数情况是匿名的 …">
+  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+  <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
@@ -37,20 +127,17 @@ Func&lt;string, string&gt; SayMyName(string language) { switch(language.ToLower(
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://leizhiyuan.github.io/2012/12/24/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E5%9B%9B%E9%83%A8%E5%88%86/" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <meta name="generator" content="Hugo 0.58.0" />
+  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
   <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
 
 
-</head>
 
+  </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
   <div class="container-fluid">
@@ -195,11 +282,16 @@ Func&lt;string, string&gt; SayMyName(string language) { switch(language.ToLower(
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on December 24, 2012
+  <i class="fas fa-calendar"></i>&nbsp;Posted on December 24, 2012
   
   
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 3 minutes (483 words)
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;3&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
   
   
 </span>
@@ -479,6 +571,8 @@ public void ReadSettings(Settings settings)
         
 
         
+
+        
       </article>
 
       
@@ -499,6 +593,7 @@ public void ReadSettings(Settings settings)
 
       
         
+          
           <div class="disqus-comments">
             <div id="disqus_thread"></div>
 <script type="application/javascript">
@@ -521,6 +616,7 @@ public void ReadSettings(Settings settings)
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
           </div>
+          
         
         
       
@@ -538,19 +634,17 @@ public void ReadSettings(Settings settings)
               <li>
                 <a href="https://github.com/leizhiyuan" title="GitHub">
                   <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
               </li>
           
           <li>
-            
-            <a href="https://leizhiyuan.github.io/index.xml" title="RSS">
-            
+            <a href="" title="RSS">
               <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
               </span>
             </a>
           </li>
@@ -563,8 +657,10 @@ public void ReadSettings(Settings settings)
             
           
 
-          &nbsp;&bull;&nbsp;
-          2019
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2019
+          
 
           
             &nbsp;&bull;&nbsp;
@@ -573,25 +669,25 @@ public void ReadSettings(Settings settings)
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>
     </div>
   </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <script src="https://leizhiyuan.github.io/js/main.js"></script>
 <script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
 <script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
-<script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+
+
+
 
 
 

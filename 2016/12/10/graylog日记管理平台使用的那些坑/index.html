@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
   <head>
+    
+
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>graylog日记管理平台使用的那些坑</title>
+  <title>graylog日记管理平台使用的那些坑 - bystander&#39;s blog</title>
   <meta property="og:title" content="graylog日记管理平台使用的那些坑" />
   <meta name="twitter:title" content="graylog日记管理平台使用的那些坑" />
   <meta name="description" content="前言 最近使用 graylog在部署日志平台的时候,踩到很多&rdquo;坑&rdquo;,记录一下
@@ -26,7 +28,94 @@ Exec if $raw_event $raw_event = substr($raw_event, 0, 1040000); 执行类似的�
 Exec if $raw_event $raw_event = substr($raw_event, 0, 1040000); 执行类似的来限制,没有尝试过,参考这里:日志大小超长配置">
   <meta name="twitter:description" content="前言 最近使用 graylog在部署日志平台的时候,踩到很多&rdquo;坑&rdquo;,记录一下
 日志采集(nxlog) 1.客户端不要做太多的正则计算 graylog 最早推荐的 nxlog 采集客户端,现在貌似有了 beats 的采集方式,不过我没了解,nxlog 采集的话,需要配置Snippets,就是定义输入,输出,处理器的地方,这个地方, Input 模块是在客户端计算的.所以,一定 …">
-  <meta name="author" content="bystander"/>
+  <meta name="author" content="bystander"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "bystander\x27s blog",
+    
+    "url": "https:\/\/leizhiyuan.github.io\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/leizhiyuan.github.io\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/2016\/12\/10\/graylog%E6%97%A5%E8%AE%B0%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91\/",
+          "name": "Graylog日记管理平台使用的那些坑"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "bystander"
+  },
+  "headline": "graylog日记管理平台使用的那些坑",
+  "description" : "前言 最近使用 graylog在部署日志平台的时候,踩到很多\x26rdquo;坑\x26rdquo;,记录一下\n日志采集(nxlog) 1.客户端不要做太多的正则计算 graylog 最早推荐的 nxlog 采集客户端,现在貌似有了 beats 的采集方式,不过我没了解,nxlog 采集的话,需要配置Snippets,就是定义输入,输出,处理器的地方,这个地方, Input 模块是在客户端计算的.所以,一定不要进行太多的正则计算.否则会严重影响客户端的 cpu 资源.降低应用程序的性能.\n2.开多行一定要慎重 graylog 可以通过配置\n\x26lt;Extension multiline\x26gt; Module xm_multiline HeaderLine \/^\\d{0,2}\\\/\\d{0,2}\\\/\\d{0,4}\/ EndLine \/^\\d{0,2}\\\/\\d{0,2}\\\/\\d{0,4}\/ \x26lt;\/Extension\x26gt; \x26lt;Input pcc-esolutions-log\x26gt; Module im_file File \x26#34;*.log\x26#34; SavePos TRUE InputType multiline \x26lt;\/Input\x26gt; 来实现对于类似错误栈这样的信息,将多行采集成一行,但是一定要注意.如果这个正则写错了,或者其他原因,导致,未能正确匹配.会导致 nxlog 客户端占用内存暴涨.原因是为了实现多行采集,会再客户端内存中保存日志内容,直到匹配到行尾.如果未能正确匹配.会一直保存.导致内存泄露.\n这时候一般伴随着nxlog 的客户端日志中开始打印: 2016-12-05 18:36:47 ERROR oversized string, limit is 1048576 bytes 这样的信息.表示单条日志超过了1m\n最终有一定几率影响客户端应用,被 oom 所杀.不要问我怎么知道的\x26hellip;\n3 日志就是太大怎么办. 貌似没办法..只能在 Input 配置中.\nExec if $raw_event $raw_event = substr($raw_event, 0, 1040000); 执行类似的来限制,没有尝试过,参考这里:日志大小超长配置",
+  "inLanguage" : "en",
+  "wordCount":  179 ,
+  "datePublished" : "2016-12-10T18:48:17",
+  "dateModified" : "2016-12-10T18:48:17",
+  "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+  "keywords" : [ "java, 工作" ],
+  "mainEntityOfPage" : "https:\/\/leizhiyuan.github.io\/2016\/12\/10\/graylog%E6%97%A5%E8%AE%B0%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/leizhiyuan.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="graylog日记管理平台使用的那些坑" />
+<meta property="og:description" content="前言 最近使用 graylog在部署日志平台的时候,踩到很多&rdquo;坑&rdquo;,记录一下
+日志采集(nxlog) 1.客户端不要做太多的正则计算 graylog 最早推荐的 nxlog 采集客户端,现在貌似有了 beats 的采集方式,不过我没了解,nxlog 采集的话,需要配置Snippets,就是定义输入,输出,处理器的地方,这个地方, Input 模块是在客户端计算的.所以,一定不要进行太多的正则计算.否则会严重影响客户端的 cpu 资源.降低应用程序的性能.
+2.开多行一定要慎重 graylog 可以通过配置
+&lt;Extension multiline&gt; Module xm_multiline HeaderLine /^\d{0,2}\/\d{0,2}\/\d{0,4}/ EndLine /^\d{0,2}\/\d{0,2}\/\d{0,4}/ &lt;/Extension&gt; &lt;Input pcc-esolutions-log&gt; Module im_file File &#34;*.log&#34; SavePos TRUE InputType multiline &lt;/Input&gt; 来实现对于类似错误栈这样的信息,将多行采集成一行,但是一定要注意.如果这个正则写错了,或者其他原因,导致,未能正确匹配.会导致 nxlog 客户端占用内存暴涨.原因是为了实现多行采集,会再客户端内存中保存日志内容,直到匹配到行尾.如果未能正确匹配.会一直保存.导致内存泄露.
+这时候一般伴随着nxlog 的客户端日志中开始打印: 2016-12-05 18:36:47 ERROR oversized string, limit is 1048576 bytes 这样的信息.表示单条日志超过了1m
+最终有一定几率影响客户端应用,被 oom 所杀.不要问我怎么知道的&hellip;
+3 日志就是太大怎么办. 貌似没办法..只能在 Input 配置中.
+Exec if $raw_event $raw_event = substr($raw_event, 0, 1040000); 执行类似的来限制,没有尝试过,参考这里:日志大小超长配置">
+<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+<meta property="og:url" content="https://leizhiyuan.github.io/2016/12/10/graylog%E6%97%A5%E8%AE%B0%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="bystander&#39;s blog" />
+
+  <meta name="twitter:title" content="graylog日记管理平台使用的那些坑" />
+  <meta name="twitter:description" content="前言 最近使用 graylog在部署日志平台的时候,踩到很多&rdquo;坑&rdquo;,记录一下
+日志采集(nxlog) 1.客户端不要做太多的正则计算 graylog 最早推荐的 nxlog 采集客户端,现在貌似有了 beats 的采集方式,不过我没了解,nxlog 采集的话,需要配置Snippets,就是定义输入,输出,处理器的地方,这个地方, Input 模块是在客户端计算的.所以,一定 …">
+  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+  <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
@@ -35,20 +124,17 @@ Exec if $raw_event $raw_event = substr($raw_event, 0, 1040000); 执行类似的�
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://leizhiyuan.github.io/2016/12/10/graylog%E6%97%A5%E8%AE%B0%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <meta name="generator" content="Hugo 0.58.0" />
+  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
   <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
 
 
-</head>
 
+  </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
   <div class="container-fluid">
@@ -193,11 +279,16 @@ Exec if $raw_event $raw_event = substr($raw_event, 0, 1040000); 执行类似的�
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on December 10, 2016
+  <i class="fas fa-calendar"></i>&nbsp;Posted on December 10, 2016
   
   
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (179 words)
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
   
   
 </span>
@@ -306,6 +397,8 @@ java.lang.OutOfMemoryError: Java heap space
         
 
         
+
+        
       </article>
 
       
@@ -326,6 +419,7 @@ java.lang.OutOfMemoryError: Java heap space
 
       
         
+          
           <div class="disqus-comments">
             <div id="disqus_thread"></div>
 <script type="application/javascript">
@@ -348,6 +442,7 @@ java.lang.OutOfMemoryError: Java heap space
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
           </div>
+          
         
         
       
@@ -365,19 +460,17 @@ java.lang.OutOfMemoryError: Java heap space
               <li>
                 <a href="https://github.com/leizhiyuan" title="GitHub">
                   <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
               </li>
           
           <li>
-            
-            <a href="https://leizhiyuan.github.io/index.xml" title="RSS">
-            
+            <a href="" title="RSS">
               <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
               </span>
             </a>
           </li>
@@ -390,8 +483,10 @@ java.lang.OutOfMemoryError: Java heap space
             
           
 
-          &nbsp;&bull;&nbsp;
-          2019
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2019
+          
 
           
             &nbsp;&bull;&nbsp;
@@ -400,25 +495,25 @@ java.lang.OutOfMemoryError: Java heap space
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>
     </div>
   </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <script src="https://leizhiyuan.github.io/js/main.js"></script>
 <script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
 <script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
-<script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+
+
+
 
 
 

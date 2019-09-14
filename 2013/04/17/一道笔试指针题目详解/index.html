@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
   <head>
+    
+
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>一道笔试指针题目详解</title>
+  <title>一道笔试指针题目详解 - bystander&#39;s blog</title>
   <meta property="og:title" content="一道笔试指针题目详解" />
   <meta name="twitter:title" content="一道笔试指针题目详解" />
   <meta name="description" content="看到本题是在搜狗某年的笔试题上,看也没人给出非常详细的讲解,直接给出了答案,我来尝试写一写,
@@ -26,7 +28,94 @@
  &#43;&#43;cpp -&gt; cp[1] // cp[1] -&gt; c&#43;2 &#43;&#43;cpp = &amp;cp[1] // &amp;(c&#43;2) *&#43;&#43;cpp = *(&amp;c&#43;2) // c[2] **&#43;&#43;cpp = &amp;c[2] 然后看第二个 ((&ndash;(*(&#43;&#43;cpp))))&#43;3; 加括号后如上，cpp再加一，就指向了cp[2],取一次值（也就是号）就变成了c[1],然后&ndash;c[1]就指向了c[0],取值就成了c[0]的地址，然后地址&#43;3，就是NG了 ((cpp[-2]))&#43;3; 上面，cpp指向cp[2]了，然后呢，cpp[-2] 相当于*(cpp-2)，间接引用cp[2]，这样cpp[-2]就指向了cp[0]了，然后，就是FIRBE了,加3就是BE了">
   <meta name="twitter:description" content="看到本题是在搜狗某年的笔试题上,看也没人给出非常详细的讲解,直接给出了答案,我来尝试写一写,
 貌似本题来源自&lt;The C Puzzle Book&gt; ，搜狗也只是换了一下字符串，直接看题吧 #include &lt;stdio.h&gt; char *c[]={&ldquo;ENTNG&rdquo;, …">
-  <meta name="author" content="bystander"/>
+  <meta name="author" content="bystander"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "bystander\x27s blog",
+    
+    "url": "https:\/\/leizhiyuan.github.io\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/leizhiyuan.github.io\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/2013\/04\/17\/%E4%B8%80%E9%81%93%E7%AC%94%E8%AF%95%E6%8C%87%E9%92%88%E9%A2%98%E7%9B%AE%E8%AF%A6%E8%A7%A3\/",
+          "name": "一道笔试指针题目详解"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "bystander"
+  },
+  "headline": "一道笔试指针题目详解",
+  "description" : "看到本题是在搜狗某年的笔试题上,看也没人给出非常详细的讲解,直接给出了答案,我来尝试写一写,\n貌似本题来源自\x26lt;The C Puzzle Book\x26gt; ，搜狗也只是换了一下字符串，直接看题吧 #include \x26lt;stdio.h\x26gt; char *c[]={\x26ldquo;ENTNG\x26rdquo;, \x26ldquo;NST\x26rdquo;,\x26ldquo;AMAZI\x26rdquo;,\x26ldquo;FIRBE\x26rdquo;}; char** cp[]={c\x2b3, c\x2b2, c\x2b1, c}; char *cpp= cp; int main() { printf(\x26ldquo;%s\x26rdquo;,\x2b\x2bcpp); printf(\x26ldquo;%s \x26ldquo;,\x26ndash;\x2b\x2bcpp\x2b3); printf(\x26ldquo;%s\x26rdquo;,*cpp[-2]\x2b3); printf(\x26ldquo;%s\x26rdquo;,cpp[-1][-1]\x2b1); } \x26lt;span style=\x26quot;font-family: Georgia, \x27Times New Roman\x27, \x27Bitstream Charter\x27, Times, serif; font-size: 13px; line-height: 19px;\x26quot;\x26gt;请写出程序的执行结果....\x26lt;\/span\x26gt;\n首先从左到右看： char *c[]= { \x26ldquo;ENTNG\x26rdquo;, \x26ldquo;NST\x26rdquo;, \x26ldquo;AMAZI\x26rdquo;, \x26ldquo;FIRBE\x26rdquo; }; *c[] 是一个字符，因此，c[]是指向该字符，c就是一个数组（数组的内容为指向字符的指针），c已经被初始化了. char** cp[]={c\x2b3, c\x2b2, c\x2b1, c}; 再看第二行，**cp[]是一个字符，*cp[]就是一个指针，指向该字符，cp[]就是一个指针，指向该指针，而cp就成为了指针数组，内容是指向字符的指针的指针。并且通过c的元素进行了初始化 char cpp= cp; 第三行，cpp是一个字符，**cpp指向该字符，*cpp指向该指针，cpp就指向该字符的指针的指针.\n然后我画一张图表示初始的情况看看\n\n然后对于下面的输出语句，通过操作符优先级使用括号来区分一下： ((\x2b\x2bcpp)); 这个嘛，就是把cpp后移(注意cpp已经改变了)然后就指向了cp[1]，然后两次取其值即可得到AMAZI\n推导过程如下：\n \x2b\x2bcpp -\x26gt; cp[1] \/\/ cp[1] -\x26gt; c\x2b2 \x2b\x2bcpp = \x26amp;cp[1] \/\/ \x26amp;(c\x2b2) *\x2b\x2bcpp = *(\x26amp;c\x2b2) \/\/ c[2] **\x2b\x2bcpp = \x26amp;c[2] 然后看第二个 ((\x26ndash;(*(\x2b\x2bcpp))))\x2b3; 加括号后如上，cpp再加一，就指向了cp[2],取一次值（也就是号）就变成了c[1],然后\x26ndash;c[1]就指向了c[0],取值就成了c[0]的地址，然后地址\x2b3，就是NG了 ((cpp[-2]))\x2b3; 上面，cpp指向cp[2]了，然后呢，cpp[-2] 相当于*(cpp-2)，间接引用cp[2]，这样cpp[-2]就指向了cp[0]了，然后，就是FIRBE了,加3就是BE了",
+  "inLanguage" : "en",
+  "wordCount":  103 ,
+  "datePublished" : "2013-04-17T08:34:39",
+  "dateModified" : "2013-04-17T08:34:39",
+  "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+  "keywords" : [ "C\x2b\x2b, 大学, 学习, 总结, 软件" ],
+  "mainEntityOfPage" : "https:\/\/leizhiyuan.github.io\/2013\/04\/17\/%E4%B8%80%E9%81%93%E7%AC%94%E8%AF%95%E6%8C%87%E9%92%88%E9%A2%98%E7%9B%AE%E8%AF%A6%E8%A7%A3\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/leizhiyuan.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="一道笔试指针题目详解" />
+<meta property="og:description" content="看到本题是在搜狗某年的笔试题上,看也没人给出非常详细的讲解,直接给出了答案,我来尝试写一写,
+貌似本题来源自&lt;The C Puzzle Book&gt; ，搜狗也只是换了一下字符串，直接看题吧 #include &lt;stdio.h&gt; char *c[]={&ldquo;ENTNG&rdquo;, &ldquo;NST&rdquo;,&ldquo;AMAZI&rdquo;,&ldquo;FIRBE&rdquo;}; char** cp[]={c&#43;3, c&#43;2, c&#43;1, c}; char *cpp= cp; int main() { printf(&ldquo;%s&rdquo;,&#43;&#43;cpp); printf(&ldquo;%s &ldquo;,&ndash;&#43;&#43;cpp&#43;3); printf(&ldquo;%s&rdquo;,*cpp[-2]&#43;3); printf(&ldquo;%s&rdquo;,cpp[-1][-1]&#43;1); } &lt;span style=&quot;font-family: Georgia, &#39;Times New Roman&#39;, &#39;Bitstream Charter&#39;, Times, serif; font-size: 13px; line-height: 19px;&quot;&gt;请写出程序的执行结果....&lt;/span&gt;
+首先从左到右看： char *c[]= { &ldquo;ENTNG&rdquo;, &ldquo;NST&rdquo;, &ldquo;AMAZI&rdquo;, &ldquo;FIRBE&rdquo; }; *c[] 是一个字符，因此，c[]是指向该字符，c就是一个数组（数组的内容为指向字符的指针），c已经被初始化了. char** cp[]={c&#43;3, c&#43;2, c&#43;1, c}; 再看第二行，**cp[]是一个字符，*cp[]就是一个指针，指向该字符，cp[]就是一个指针，指向该指针，而cp就成为了指针数组，内容是指向字符的指针的指针。并且通过c的元素进行了初始化 char cpp= cp; 第三行，cpp是一个字符，**cpp指向该字符，*cpp指向该指针，cpp就指向该字符的指针的指针.
+然后我画一张图表示初始的情况看看
+
+然后对于下面的输出语句，通过操作符优先级使用括号来区分一下： ((&#43;&#43;cpp)); 这个嘛，就是把cpp后移(注意cpp已经改变了)然后就指向了cp[1]，然后两次取其值即可得到AMAZI
+推导过程如下：
+ &#43;&#43;cpp -&gt; cp[1] // cp[1] -&gt; c&#43;2 &#43;&#43;cpp = &amp;cp[1] // &amp;(c&#43;2) *&#43;&#43;cpp = *(&amp;c&#43;2) // c[2] **&#43;&#43;cpp = &amp;c[2] 然后看第二个 ((&ndash;(*(&#43;&#43;cpp))))&#43;3; 加括号后如上，cpp再加一，就指向了cp[2],取一次值（也就是号）就变成了c[1],然后&ndash;c[1]就指向了c[0],取值就成了c[0]的地址，然后地址&#43;3，就是NG了 ((cpp[-2]))&#43;3; 上面，cpp指向cp[2]了，然后呢，cpp[-2] 相当于*(cpp-2)，间接引用cp[2]，这样cpp[-2]就指向了cp[0]了，然后，就是FIRBE了,加3就是BE了">
+<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+<meta property="og:url" content="https://leizhiyuan.github.io/2013/04/17/%E4%B8%80%E9%81%93%E7%AC%94%E8%AF%95%E6%8C%87%E9%92%88%E9%A2%98%E7%9B%AE%E8%AF%A6%E8%A7%A3/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="bystander&#39;s blog" />
+
+  <meta name="twitter:title" content="一道笔试指针题目详解" />
+  <meta name="twitter:description" content="看到本题是在搜狗某年的笔试题上,看也没人给出非常详细的讲解,直接给出了答案,我来尝试写一写,
+貌似本题来源自&lt;The C Puzzle Book&gt; ，搜狗也只是换了一下字符串，直接看题吧 #include &lt;stdio.h&gt; char *c[]={&ldquo;ENTNG&rdquo;, …">
+  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+  <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
@@ -35,20 +124,17 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://leizhiyuan.github.io/2013/04/17/%E4%B8%80%E9%81%93%E7%AC%94%E8%AF%95%E6%8C%87%E9%92%88%E9%A2%98%E7%9B%AE%E8%AF%A6%E8%A7%A3/" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <meta name="generator" content="Hugo 0.58.0" />
+  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
   <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
 
 
-</head>
 
+  </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
   <div class="container-fluid">
@@ -193,11 +279,16 @@
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on April 17, 2013
+  <i class="fas fa-calendar"></i>&nbsp;Posted on April 17, 2013
   
   
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (103 words)
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
   
   
 </span>
@@ -300,6 +391,8 @@ int main() {
         
 
         
+
+        
       </article>
 
       
@@ -320,6 +413,7 @@ int main() {
 
       
         
+          
           <div class="disqus-comments">
             <div id="disqus_thread"></div>
 <script type="application/javascript">
@@ -342,6 +436,7 @@ int main() {
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
           </div>
+          
         
         
       
@@ -359,19 +454,17 @@ int main() {
               <li>
                 <a href="https://github.com/leizhiyuan" title="GitHub">
                   <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
               </li>
           
           <li>
-            
-            <a href="https://leizhiyuan.github.io/index.xml" title="RSS">
-            
+            <a href="" title="RSS">
               <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
               </span>
             </a>
           </li>
@@ -384,8 +477,10 @@ int main() {
             
           
 
-          &nbsp;&bull;&nbsp;
-          2019
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2019
+          
 
           
             &nbsp;&bull;&nbsp;
@@ -394,25 +489,25 @@ int main() {
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>
     </div>
   </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <script src="https://leizhiyuan.github.io/js/main.js"></script>
 <script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
 <script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
-<script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+
+
+
 
 
 

@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
   <head>
+    
+
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>使用Microsoft Web Deploy技术自动部署</title>
+  <title>使用Microsoft Web Deploy技术自动部署 - bystander&#39;s blog</title>
   <meta property="og:title" content="使用Microsoft Web Deploy技术自动部署" />
   <meta name="twitter:title" content="使用Microsoft Web Deploy技术自动部署" />
   <meta name="description" content="在前段时间使用WCF的时候。部署到服务器上一直不得要领。出现各种问题。最终搞定。原文图很多，我给个摘要，大家还是原文看。因为原文写于2010年。自动部署工具已经更新至第3版。所以有些按钮得好好找找。不过相信对大家都不是难事。
@@ -32,7 +34,97 @@
 　去原文看看吧。使用Microsoft Web Deploy技术自动部署">
   <meta name="twitter:description" content="在前段时间使用WCF的时候。部署到服务器上一直不得要领。出现各种问题。最终搞定。原文图很多，我给个摘要，大家还是原文看。因为原文写于2010年。自动部署工具已经更新至第3版。所以有些按钮得好好找找。不过相信对大家都不是难事。
 　本篇文章将提供一个循序渐进的教程，教你如何在一台Web服务期上安装和启用Web Deploy。接着我们演示如何使用Visual Studio通过Web Deploy直接（将 …">
-  <meta name="author" content="bystander"/>
+  <meta name="author" content="bystander"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "bystander\x27s blog",
+    
+    "url": "https:\/\/leizhiyuan.github.io\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/leizhiyuan.github.io\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/2012\/09\/04\/%E4%BD%BF%E7%94%A8microsoft-web-deploy%E6%8A%80%E6%9C%AF%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2\/",
+          "name": "使用 microsoft web deploy技术自动部署"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "bystander"
+  },
+  "headline": "使用Microsoft Web Deploy技术自动部署",
+  "description" : "在前段时间使用WCF的时候。部署到服务器上一直不得要领。出现各种问题。最终搞定。原文图很多，我给个摘要，大家还是原文看。因为原文写于2010年。自动部署工具已经更新至第3版。所以有些按钮得好好找找。不过相信对大家都不是难事。\n　本篇文章将提供一个循序渐进的教程，教你如何在一台Web服务期上安装和启用Web Deploy。接着我们演示如何使用Visual Studio通过Web Deploy直接（将文件）发布到服务器上，以及如何使用Visual Studio创建自动部署你的应用程序的安装包。\n　Web Deploy—为什么你会喜欢它\n　部署一个Web应用程序或站点包含好几个步骤。您通常需要：\n　1. 拷贝文件和文件夹；\n　2. 提供数据库结构，或许还要生成一些数据库数据；\n　3. 在文件和文件夹上设置相应的读写和安全访问控制列表；\n　4. 安装和配置SSL认证；\n　5. 部署其它杂七杂八的依赖项（事件日志，GAC库，COM对象等等）。\n　手工执行上面的步骤又累又慢又危险（因为手工部署总是容易出错）。使用自动化流程，可以让你在一台服务器上快速维护和部署应用程序，减少出错的几率，并极大加快你在应用程序上的改动放到作业服务器上的周期。\n　去原文看看吧。使用Microsoft Web Deploy技术自动部署",
+  "inLanguage" : "en",
+  "wordCount":  23 ,
+  "datePublished" : "2012-09-04T14:03:18",
+  "dateModified" : "2012-09-04T14:03:18",
+  "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+  "keywords" : [ "C＃, WCF, 收藏, 编程, 软件" ],
+  "mainEntityOfPage" : "https:\/\/leizhiyuan.github.io\/2012\/09\/04\/%E4%BD%BF%E7%94%A8microsoft-web-deploy%E6%8A%80%E6%9C%AF%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/leizhiyuan.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="使用Microsoft Web Deploy技术自动部署" />
+<meta property="og:description" content="在前段时间使用WCF的时候。部署到服务器上一直不得要领。出现各种问题。最终搞定。原文图很多，我给个摘要，大家还是原文看。因为原文写于2010年。自动部署工具已经更新至第3版。所以有些按钮得好好找找。不过相信对大家都不是难事。
+　本篇文章将提供一个循序渐进的教程，教你如何在一台Web服务期上安装和启用Web Deploy。接着我们演示如何使用Visual Studio通过Web Deploy直接（将文件）发布到服务器上，以及如何使用Visual Studio创建自动部署你的应用程序的安装包。
+　Web Deploy—为什么你会喜欢它
+　部署一个Web应用程序或站点包含好几个步骤。您通常需要：
+　1. 拷贝文件和文件夹；
+　2. 提供数据库结构，或许还要生成一些数据库数据；
+　3. 在文件和文件夹上设置相应的读写和安全访问控制列表；
+　4. 安装和配置SSL认证；
+　5. 部署其它杂七杂八的依赖项（事件日志，GAC库，COM对象等等）。
+　手工执行上面的步骤又累又慢又危险（因为手工部署总是容易出错）。使用自动化流程，可以让你在一台服务器上快速维护和部署应用程序，减少出错的几率，并极大加快你在应用程序上的改动放到作业服务器上的周期。
+　去原文看看吧。使用Microsoft Web Deploy技术自动部署">
+<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+<meta property="og:url" content="https://leizhiyuan.github.io/2012/09/04/%E4%BD%BF%E7%94%A8microsoft-web-deploy%E6%8A%80%E6%9C%AF%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="bystander&#39;s blog" />
+
+  <meta name="twitter:title" content="使用Microsoft Web Deploy技术自动部署" />
+  <meta name="twitter:description" content="在前段时间使用WCF的时候。部署到服务器上一直不得要领。出现各种问题。最终搞定。原文图很多，我给个摘要，大家还是原文看。因为原文写于2010年。自动部署工具已经更新至第3版。所以有些按钮得好好找找。不过相信对大家都不是难事。
+　本篇文章将提供一个循序渐进的教程，教你如何在一台Web服务期上安装和启用Web Deploy。接着我们演示如何使用Visual Studio通过Web Deploy直接（将 …">
+  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+  <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
@@ -41,20 +133,17 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://leizhiyuan.github.io/2012/09/04/%E4%BD%BF%E7%94%A8microsoft-web-deploy%E6%8A%80%E6%9C%AF%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <meta name="generator" content="Hugo 0.58.0" />
+  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
   <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
 
 
-</head>
 
+  </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
   <div class="container-fluid">
@@ -199,11 +288,16 @@
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 4, 2012
+  <i class="fas fa-calendar"></i>&nbsp;Posted on September 4, 2012
   
   
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (23 words)
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
   
   
 </span>
@@ -263,6 +357,8 @@
         
 
         
+
+        
       </article>
 
       
@@ -283,6 +379,7 @@
 
       
         
+          
           <div class="disqus-comments">
             <div id="disqus_thread"></div>
 <script type="application/javascript">
@@ -305,6 +402,7 @@
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
           </div>
+          
         
         
       
@@ -322,19 +420,17 @@
               <li>
                 <a href="https://github.com/leizhiyuan" title="GitHub">
                   <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
               </li>
           
           <li>
-            
-            <a href="https://leizhiyuan.github.io/index.xml" title="RSS">
-            
+            <a href="" title="RSS">
               <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
               </span>
             </a>
           </li>
@@ -347,8 +443,10 @@
             
           
 
-          &nbsp;&bull;&nbsp;
-          2019
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2019
+          
 
           
             &nbsp;&bull;&nbsp;
@@ -357,25 +455,25 @@
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>
     </div>
   </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <script src="https://leizhiyuan.github.io/js/main.js"></script>
 <script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
 <script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
-<script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+
+
+
 
 
 

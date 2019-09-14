@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
   <head>
+    
+
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>[源码]打包下载算法与数据结构演示动画</title>
+  <title>[源码]打包下载算法与数据结构演示动画 - bystander&#39;s blog</title>
   <meta property="og:title" content="[源码]打包下载算法与数据结构演示动画" />
   <meta name="twitter:title" content="[源码]打包下载算法与数据结构演示动画" />
   <meta name="description" content="很早的时候，学习数据结构的时候。收集了一下演示的动画。帮助理解。但是不全。今天在看KMP算法的时候。看到了福州大学的一个精品课程。。81个演示动画呢。。想打包下载收藏。话说福州大学这才是好样的。踏踏实实搞学术。
@@ -32,7 +34,98 @@ namespace FzuSwf { class Program { static void Main(string[] args) { DoWork(); }
 第一种方法就是手工了。。嘎嘎。你敢么。一个个下载。。。一个个改名。。
 第二种就是用整站下载的软件了。。但是我看了一下swf的命名。我就知道下载下来意义不大。因为名字不好理解。
 第三种就是自 …">
-  <meta name="author" content="bystander"/>
+  <meta name="author" content="bystander"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "bystander\x27s blog",
+    
+    "url": "https:\/\/leizhiyuan.github.io\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/leizhiyuan.github.io\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/2012\/12\/03\/%E6%BA%90%E7%A0%81%E6%89%93%E5%8C%85%E4%B8%8B%E8%BD%BD%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%BC%94%E7%A4%BA%E5%8A%A8%E7%94%BB\/",
+          "name": "[源码]打包下载算法与数据结构演示动画"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "bystander"
+  },
+  "headline": "[源码]打包下载算法与数据结构演示动画",
+  "description" : "很早的时候，学习数据结构的时候。收集了一下演示的动画。帮助理解。但是不全。今天在看KMP算法的时候。看到了福州大学的一个精品课程。。81个演示动画呢。。想打包下载收藏。话说福州大学这才是好样的。踏踏实实搞学术。\n第一种方法就是手工了。。嘎嘎。你敢么。一个个下载。。。一个个改名。。\n第二种就是用整站下载的软件了。。但是我看了一下swf的命名。我就知道下载下来意义不大。因为名字不好理解。\n第三种就是自己写个程序吧。。\n\x26nbsp;\n整体思路，首先访问课程页面，解析得到每一章的标题和内容，然后创立章节文件夹，得到每个动画对应的html页面，然后对html页面解析，提取swf地址。然后下载就行了。\n比较疼的地方是那个页面用的是gb2312编码。而解析神器HtmlAgilityPack，不能指定编码。只能想办法绕过了。 WebClient client = new WebClient(); MemoryStream ms = new MemoryStream(client.DownloadData(url)); HtmlDocument doc = new HtmlDocument(); doc.Load(ms, Encoding.GetEncoding(\x26ldquo;gb2312\x26rdquo;)); 绕过方法就是先使用内置类得到内存流。然后从内存中加载。\n然后呢。涉及的技术就是xpath了。参考着xpath的文档。搞定了不少。中间还有一个地方就是我没注意看。这个页面有两个文件是一样名字。。调试了几次才发现。。 using System; using System.Collections.Generic; using System.Linq; using System.Text; using HtmlAgilityPack; using System.IO; using System.Threading; using System.Net;\nnamespace FzuSwf { class Program { static void Main(string[] args) { DoWork(); }\n\/\/执行任务 static void DoWork() { HtmlWeb web = new HtmlWeb(); HtmlDocument doc = web.Load(\x26#34;http:\/\/ds.fzu.edu.cn\/fine\/resources\/\x26#34;); HtmlNode divResource = doc.",
+  "inLanguage" : "en",
+  "wordCount":  214 ,
+  "datePublished" : "2012-12-03T18:51:47",
+  "dateModified" : "2012-12-03T18:51:47",
+  "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+  "keywords" : [ "C＃, 大学, 学习, 数据挖掘" ],
+  "mainEntityOfPage" : "https:\/\/leizhiyuan.github.io\/2012\/12\/03\/%E6%BA%90%E7%A0%81%E6%89%93%E5%8C%85%E4%B8%8B%E8%BD%BD%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%BC%94%E7%A4%BA%E5%8A%A8%E7%94%BB\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/leizhiyuan.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="[源码]打包下载算法与数据结构演示动画" />
+<meta property="og:description" content="很早的时候，学习数据结构的时候。收集了一下演示的动画。帮助理解。但是不全。今天在看KMP算法的时候。看到了福州大学的一个精品课程。。81个演示动画呢。。想打包下载收藏。话说福州大学这才是好样的。踏踏实实搞学术。
+第一种方法就是手工了。。嘎嘎。你敢么。一个个下载。。。一个个改名。。
+第二种就是用整站下载的软件了。。但是我看了一下swf的命名。我就知道下载下来意义不大。因为名字不好理解。
+第三种就是自己写个程序吧。。
+&nbsp;
+整体思路，首先访问课程页面，解析得到每一章的标题和内容，然后创立章节文件夹，得到每个动画对应的html页面，然后对html页面解析，提取swf地址。然后下载就行了。
+比较疼的地方是那个页面用的是gb2312编码。而解析神器HtmlAgilityPack，不能指定编码。只能想办法绕过了。 WebClient client = new WebClient(); MemoryStream ms = new MemoryStream(client.DownloadData(url)); HtmlDocument doc = new HtmlDocument(); doc.Load(ms, Encoding.GetEncoding(&ldquo;gb2312&rdquo;)); 绕过方法就是先使用内置类得到内存流。然后从内存中加载。
+然后呢。涉及的技术就是xpath了。参考着xpath的文档。搞定了不少。中间还有一个地方就是我没注意看。这个页面有两个文件是一样名字。。调试了几次才发现。。 using System; using System.Collections.Generic; using System.Linq; using System.Text; using HtmlAgilityPack; using System.IO; using System.Threading; using System.Net;
+namespace FzuSwf { class Program { static void Main(string[] args) { DoWork(); }
+//执行任务 static void DoWork() { HtmlWeb web = new HtmlWeb(); HtmlDocument doc = web.Load(&#34;http://ds.fzu.edu.cn/fine/resources/&#34;); HtmlNode divResource = doc.">
+<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+<meta property="og:url" content="https://leizhiyuan.github.io/2012/12/03/%E6%BA%90%E7%A0%81%E6%89%93%E5%8C%85%E4%B8%8B%E8%BD%BD%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%BC%94%E7%A4%BA%E5%8A%A8%E7%94%BB/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="bystander&#39;s blog" />
+
+  <meta name="twitter:title" content="[源码]打包下载算法与数据结构演示动画" />
+  <meta name="twitter:description" content="很早的时候，学习数据结构的时候。收集了一下演示的动画。帮助理解。但是不全。今天在看KMP算法的时候。看到了福州大学的一个精品课程。。81个演示动画呢。。想打包下载收藏。话说福州大学这才是好样的。踏踏实实搞学术。
+第一种方法就是手工了。。嘎嘎。你敢么。一个个下载。。。一个个改名。。
+第二种就是用整站下载的软件了。。但是我看了一下swf的命名。我就知道下载下来意义不大。因为名字不好理解。
+第三种就是自 …">
+  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+  <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
@@ -41,20 +134,17 @@ namespace FzuSwf { class Program { static void Main(string[] args) { DoWork(); }
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://leizhiyuan.github.io/2012/12/03/%E6%BA%90%E7%A0%81%E6%89%93%E5%8C%85%E4%B8%8B%E8%BD%BD%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%BC%94%E7%A4%BA%E5%8A%A8%E7%94%BB/" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <meta name="generator" content="Hugo 0.58.0" />
+  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
   <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
 
 
-</head>
 
+  </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
   <div class="container-fluid">
@@ -199,11 +289,16 @@ namespace FzuSwf { class Program { static void Main(string[] args) { DoWork(); }
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on December 3, 2012
+  <i class="fas fa-calendar"></i>&nbsp;Posted on December 3, 2012
   
   
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 2 minutes (214 words)
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
   
   
 </span>
@@ -358,6 +453,8 @@ using System.Net;</p>
         
 
         
+
+        
       </article>
 
       
@@ -378,6 +475,7 @@ using System.Net;</p>
 
       
         
+          
           <div class="disqus-comments">
             <div id="disqus_thread"></div>
 <script type="application/javascript">
@@ -400,6 +498,7 @@ using System.Net;</p>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
           </div>
+          
         
         
       
@@ -417,19 +516,17 @@ using System.Net;</p>
               <li>
                 <a href="https://github.com/leizhiyuan" title="GitHub">
                   <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
               </li>
           
           <li>
-            
-            <a href="https://leizhiyuan.github.io/index.xml" title="RSS">
-            
+            <a href="" title="RSS">
               <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
               </span>
             </a>
           </li>
@@ -442,8 +539,10 @@ using System.Net;</p>
             
           
 
-          &nbsp;&bull;&nbsp;
-          2019
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2019
+          
 
           
             &nbsp;&bull;&nbsp;
@@ -452,25 +551,25 @@ using System.Net;</p>
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>
     </div>
   </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <script src="https://leizhiyuan.github.io/js/main.js"></script>
 <script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
 <script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
-<script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+
+
+
 
 
 

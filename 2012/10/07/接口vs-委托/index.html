@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
   <head>
+    
+
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>接口VS 委托</title>
+  <title>接口VS 委托 - bystander&#39;s blog</title>
   <meta property="og:title" content="接口VS 委托" />
   <meta name="twitter:title" content="接口VS 委托" />
   <meta name="description" content="背景 对于指定的任务有不同的方案可供选择，通常是很好的。因为可能某一种方案会更加适合该任务，但是有时候做决定会很难。因为这些不同的方案有其各自的优缺点。
@@ -34,7 +36,99 @@
 我经常会停下来好好想想，是不是接口比委托更适合或者是更不适合某个任务。有时候我甚至会回去看我写的代码，这些代码刚开始使用委托来实现，我后来用接口替换掉。因此，是时候写篇文章来阐述一下这两种技术的优缺点了。
 &nbsp;
 性能 我经常看到有人问接口 …">
-  <meta name="author" content="bystander"/>
+  <meta name="author" content="bystander"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "bystander\x27s blog",
+    
+    "url": "https:\/\/leizhiyuan.github.io\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/leizhiyuan.github.io\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/2012\/10\/07\/%E6%8E%A5%E5%8F%A3vs-%E5%A7%94%E6%89%98\/",
+          "name": "接口 v s 委托"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "bystander"
+  },
+  "headline": "接口VS 委托",
+  "description" : "背景 对于指定的任务有不同的方案可供选择，通常是很好的。因为可能某一种方案会更加适合该任务，但是有时候做决定会很难。因为这些不同的方案有其各自的优缺点。\n我经常会停下来好好想想，是不是接口比委托更适合或者是更不适合某个任务。有时候我甚至会回去看我写的代码，这些代码刚开始使用委托来实现，我后来用接口替换掉。因此，是时候写篇文章来阐述一下这两种技术的优缺点了。\n\x26nbsp;\n性能 我经常看到有人问接口是不是比委托更快啊。或者是不是相反。通常。别人给的答案会是：\n 接口更快。委托相当慢 委托更快，因为他们是指向方法的指针，接口则需要一个v-table(虚函数解析表)，然后找到委托 他们一样快，但委托更容易使用 \x26nbsp;  好吧。那些都是错的。也许在.Net 1中。委托真的很慢。但是事实是：\n 委托执行（execute）的时候更快 接口获得（get）的时候更快 在下面这段代码中：  \x26nbsp; Action action = SomeMethod; 我们将得到一个Action(委托类型)来调用SomeMethod。问题是：委托是包含被调用方法的实例和指针的引用类型。而不仅仅只是一个指向方法的指针，通过引用类型，委托需要分配内存，因此，每一次你把一个方法变换成一个委托的时候。都会分配一个新的对象。\n如果委托是一个值类型。会有些不一样。但是他们不是。。\n另一方面，如果我们这样写代码： IRunnable runnable = this; \x26nbsp;\n如果实现了IRunnable接口的对象。我们简单通过一个转换得到同样的引用。没有涉及内存分配。我们将可以通过下面的代码来进行速度比较：\n对于委托： Stopwatch stopwatch = new Stopwatch(); stopwatch.Start(); for(int i=0; i\x26lt;COUNT; i\x2b\x2b) { Action action = SomeMethod; action(); } stopwatch.Stop(); Console.WriteLine(stopwatch.Elapsed); \x26nbsp;\n对于接口 Stopwatch stopwatch = new Stopwatch(); stopwatch.Start(); for(int i=0; i\x26lt;COUNT; i\x2b\x2b) { IRunnable runnable = this; runnable.",
+  "inLanguage" : "en",
+  "wordCount":  318 ,
+  "datePublished" : "2012-10-07T08:31:54",
+  "dateModified" : "2012-10-07T08:31:54",
+  "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+  "keywords" : [ "C＃, windows, 大学, 学习, 翻译" ],
+  "mainEntityOfPage" : "https:\/\/leizhiyuan.github.io\/2012\/10\/07\/%E6%8E%A5%E5%8F%A3vs-%E5%A7%94%E6%89%98\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/leizhiyuan.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="接口VS 委托" />
+<meta property="og:description" content="背景 对于指定的任务有不同的方案可供选择，通常是很好的。因为可能某一种方案会更加适合该任务，但是有时候做决定会很难。因为这些不同的方案有其各自的优缺点。
+我经常会停下来好好想想，是不是接口比委托更适合或者是更不适合某个任务。有时候我甚至会回去看我写的代码，这些代码刚开始使用委托来实现，我后来用接口替换掉。因此，是时候写篇文章来阐述一下这两种技术的优缺点了。
+&nbsp;
+性能 我经常看到有人问接口是不是比委托更快啊。或者是不是相反。通常。别人给的答案会是：
+ 接口更快。委托相当慢 委托更快，因为他们是指向方法的指针，接口则需要一个v-table(虚函数解析表)，然后找到委托 他们一样快，但委托更容易使用 &nbsp;  好吧。那些都是错的。也许在.Net 1中。委托真的很慢。但是事实是：
+ 委托执行（execute）的时候更快 接口获得（get）的时候更快 在下面这段代码中：  &nbsp; Action action = SomeMethod; 我们将得到一个Action(委托类型)来调用SomeMethod。问题是：委托是包含被调用方法的实例和指针的引用类型。而不仅仅只是一个指向方法的指针，通过引用类型，委托需要分配内存，因此，每一次你把一个方法变换成一个委托的时候。都会分配一个新的对象。
+如果委托是一个值类型。会有些不一样。但是他们不是。。
+另一方面，如果我们这样写代码： IRunnable runnable = this; &nbsp;
+如果实现了IRunnable接口的对象。我们简单通过一个转换得到同样的引用。没有涉及内存分配。我们将可以通过下面的代码来进行速度比较：
+对于委托： Stopwatch stopwatch = new Stopwatch(); stopwatch.Start(); for(int i=0; i&lt;COUNT; i&#43;&#43;) { Action action = SomeMethod; action(); } stopwatch.Stop(); Console.WriteLine(stopwatch.Elapsed); &nbsp;
+对于接口 Stopwatch stopwatch = new Stopwatch(); stopwatch.Start(); for(int i=0; i&lt;COUNT; i&#43;&#43;) { IRunnable runnable = this; runnable.">
+<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+<meta property="og:url" content="https://leizhiyuan.github.io/2012/10/07/%E6%8E%A5%E5%8F%A3vs-%E5%A7%94%E6%89%98/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="bystander&#39;s blog" />
+
+  <meta name="twitter:title" content="接口VS 委托" />
+  <meta name="twitter:description" content="背景 对于指定的任务有不同的方案可供选择，通常是很好的。因为可能某一种方案会更加适合该任务，但是有时候做决定会很难。因为这些不同的方案有其各自的优缺点。
+我经常会停下来好好想想，是不是接口比委托更适合或者是更不适合某个任务。有时候我甚至会回去看我写的代码，这些代码刚开始使用委托来实现，我后来用接口替换掉。因此，是时候写篇文章来阐述一下这两种技术的优缺点了。
+&nbsp;
+性能 我经常看到有人问接口 …">
+  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+  <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
@@ -43,20 +137,17 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://leizhiyuan.github.io/2012/10/07/%E6%8E%A5%E5%8F%A3vs-%E5%A7%94%E6%89%98/" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <meta name="generator" content="Hugo 0.58.0" />
+  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
   <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
 
 
-</head>
 
+  </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
   <div class="container-fluid">
@@ -201,11 +292,16 @@
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on October 7, 2012
+  <i class="fas fa-calendar"></i>&nbsp;Posted on October 7, 2012
   
   
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 2 minutes (318 words)
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
   
   
 </span>
@@ -532,6 +628,8 @@ Console.WriteLine(stopwatch.Elapsed);</pre>
         
 
         
+
+        
       </article>
 
       
@@ -552,6 +650,7 @@ Console.WriteLine(stopwatch.Elapsed);</pre>
 
       
         
+          
           <div class="disqus-comments">
             <div id="disqus_thread"></div>
 <script type="application/javascript">
@@ -574,6 +673,7 @@ Console.WriteLine(stopwatch.Elapsed);</pre>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
           </div>
+          
         
         
       
@@ -591,19 +691,17 @@ Console.WriteLine(stopwatch.Elapsed);</pre>
               <li>
                 <a href="https://github.com/leizhiyuan" title="GitHub">
                   <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
               </li>
           
           <li>
-            
-            <a href="https://leizhiyuan.github.io/index.xml" title="RSS">
-            
+            <a href="" title="RSS">
               <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
               </span>
             </a>
           </li>
@@ -616,8 +714,10 @@ Console.WriteLine(stopwatch.Elapsed);</pre>
             
           
 
-          &nbsp;&bull;&nbsp;
-          2019
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2019
+          
 
           
             &nbsp;&bull;&nbsp;
@@ -626,25 +726,25 @@ Console.WriteLine(stopwatch.Elapsed);</pre>
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>
     </div>
   </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <script src="https://leizhiyuan.github.io/js/main.js"></script>
 <script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
 <script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
-<script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+
+
+
 
 
 

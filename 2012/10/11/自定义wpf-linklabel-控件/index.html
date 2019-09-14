@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
   <head>
+    
+
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>自定义WPF LinkLabel 控件</title>
+  <title>自定义WPF LinkLabel 控件 - bystander&#39;s blog</title>
   <meta property="og:title" content="自定义WPF LinkLabel 控件" />
   <meta name="twitter:title" content="自定义WPF LinkLabel 控件" />
   <meta name="description" content="WPF里是没有LinkLabel控件的。因此我自己写一个。首先。我们看一下WPF中什么类似的组件可以实现这个链接功能
@@ -50,7 +52,106 @@ Url 超链接的目标
 然后是控件的使用方法。仅仅添加命名空间到xaml中。然后使用就行了。 &lt;Window xmlns=&ldquo;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot; xmlns:x=&ldquo;http://schemas.microsoft.com/winfx/2006/xaml&quot; x:Class=&ldquo;DemoApplication.Window1&rdquo; Title=&ldquo;DemoApplication&rdquo; Height=&ldquo;300&rdquo; Width=&ldquo;300&rdquo; xmlns:ThemedControlsLibrary=&ldquo;clr-namespace:ThemedControlsLibrary;assembly=ThemedControlsLibrary&rdquo; &gt; &lt;Grid&gt; &lt;ThemedControlsLibrary:LinkLabel HorizontalAlignment=&ldquo;Left&rdquo; VerticalAlignment=&ldquo;Top&rdquo; Content=&ldquo;LinkLabel&rdquo;/&gt; &lt;/Grid&gt; &lt;/Window&gt; &nbsp;">
   <meta name="twitter:description" content="WPF里是没有LinkLabel控件的。因此我自己写一个。首先。我们看一下WPF中什么类似的组件可以实现这个链接功能
 如果你想要模拟一个LinkLabel控件。你可以在TextBlock里使用内联的Hyperlink。像下面这样 &lt;TextBlock&gt; &lt;Hyperlink&gt; &lt;Run Text=&ldquo;Test link&rdquo;/&gt; …">
-  <meta name="author" content="bystander"/>
+  <meta name="author" content="bystander"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "bystander\x27s blog",
+    
+    "url": "https:\/\/leizhiyuan.github.io\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/leizhiyuan.github.io\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/2012\/10\/11\/%E8%87%AA%E5%AE%9A%E4%B9%89wpf-linklabel-%E6%8E%A7%E4%BB%B6\/",
+          "name": "自定义 w p f link label 控件"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "bystander"
+  },
+  "headline": "自定义WPF LinkLabel 控件",
+  "description" : "WPF里是没有LinkLabel控件的。因此我自己写一个。首先。我们看一下WPF中什么类似的组件可以实现这个链接功能\n如果你想要模拟一个LinkLabel控件。你可以在TextBlock里使用内联的Hyperlink。像下面这样 \x26lt;TextBlock\x26gt; \x26lt;Hyperlink\x26gt; \x26lt;Run Text=\x26ldquo;Test link\x26rdquo;\/\x26gt; \x26lt;\/Hyperlink\x26gt; \x26lt;\/TextBlock\x26gt; 你可以使用Label控件。加一个内联的HyperLink，但是我认为TextBlock更好。因为你可以在Expression Blend 中通过InlineCollection 编辑所有子元素的属性\n图1\n 虽然这种方法也行，但是我还是不太喜欢。因为我觉得我还是写一个类似windows窗体程序中的LinkLabel控件。然后我就做了。首先看一下控件的样子\n图2\n\n第一个是默认的LinkLabel控件。第二个是LinkLabelBehavior 属性被设置为HoverUnderline ，第三个的Foreground和 HoverForeground 属性都使用了自定的颜色。\n\x26nbsp;\nLinkLabel控件支持的属性\n1.Foreground和 HoverForeground属性\n允许自定义这两个属性的值\n2.LinkLabelBehavior 属性\n允许设置下划线的显示与否\n3.自定义HyperlinkStyle 属性\n你可以使用这个属性给超链接设置自定义的样式。如果你已经自定了Foreground和 HoverForeground。则会被覆盖。\nUrl 超链接的目标\n所有这些属性都继承自标准的System.Windows.Controls.Label 控件\n通过Blend\/Xaml设置这些属性很简单 \x26lt;ThemedControlLibrary:LinkLabel Content=\x26ldquo;Link Label\x26rdquo; FontSize=\x26ldquo;22\x26rdquo;\/\x26gt; \x26lt;ThemedControlLibrary:LinkLabel Content=\x26ldquo;Link Label\x26rdquo; LinkLabelBehavour=\x26ldquo;HoverUnderline\x26rdquo; \/\x26gt; \x26lt;ThemedControlLibrary:LinkLabel Foreground=\x26ldquo;#FF847901\x26rdquo; HoverForeground=\x26ldquo;#FF06C8F2\x26rdquo; Content=\x26ldquo;Link Label\x26rdquo; LinkLabelBehavour=\x26ldquo;NeverUnderline\x26rdquo;\/\x26gt; 图三\n\n然后是控件的使用方法。仅仅添加命名空间到xaml中。然后使用就行了。 \x26lt;Window xmlns=\x26ldquo;http:\/\/schemas.microsoft.com\/winfx\/2006\/xaml\/presentation\x26quot; xmlns:x=\x26ldquo;http:\/\/schemas.microsoft.com\/winfx\/2006\/xaml\x26quot; x:Class=\x26ldquo;DemoApplication.Window1\x26rdquo; Title=\x26ldquo;DemoApplication\x26rdquo; Height=\x26ldquo;300\x26rdquo; Width=\x26ldquo;300\x26rdquo; xmlns:ThemedControlsLibrary=\x26ldquo;clr-namespace:ThemedControlsLibrary;assembly=ThemedControlsLibrary\x26rdquo; \x26gt; \x26lt;Grid\x26gt; \x26lt;ThemedControlsLibrary:LinkLabel HorizontalAlignment=\x26ldquo;Left\x26rdquo; VerticalAlignment=\x26ldquo;Top\x26rdquo; Content=\x26ldquo;LinkLabel\x26rdquo;\/\x26gt; \x26lt;\/Grid\x26gt; \x26lt;\/Window\x26gt; \x26nbsp;",
+  "inLanguage" : "en",
+  "wordCount":  224 ,
+  "datePublished" : "2012-10-11T13:24:02",
+  "dateModified" : "2012-10-11T13:24:02",
+  "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+  "keywords" : [ "C＃, WPF, 大学, 编程, 软件" ],
+  "mainEntityOfPage" : "https:\/\/leizhiyuan.github.io\/2012\/10\/11\/%E8%87%AA%E5%AE%9A%E4%B9%89wpf-linklabel-%E6%8E%A7%E4%BB%B6\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/leizhiyuan.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="自定义WPF LinkLabel 控件" />
+<meta property="og:description" content="WPF里是没有LinkLabel控件的。因此我自己写一个。首先。我们看一下WPF中什么类似的组件可以实现这个链接功能
+如果你想要模拟一个LinkLabel控件。你可以在TextBlock里使用内联的Hyperlink。像下面这样 &lt;TextBlock&gt; &lt;Hyperlink&gt; &lt;Run Text=&ldquo;Test link&rdquo;/&gt; &lt;/Hyperlink&gt; &lt;/TextBlock&gt; 你可以使用Label控件。加一个内联的HyperLink，但是我认为TextBlock更好。因为你可以在Expression Blend 中通过InlineCollection 编辑所有子元素的属性
+图1
+ 虽然这种方法也行，但是我还是不太喜欢。因为我觉得我还是写一个类似windows窗体程序中的LinkLabel控件。然后我就做了。首先看一下控件的样子
+图2
+
+第一个是默认的LinkLabel控件。第二个是LinkLabelBehavior 属性被设置为HoverUnderline ，第三个的Foreground和 HoverForeground 属性都使用了自定的颜色。
+&nbsp;
+LinkLabel控件支持的属性
+1.Foreground和 HoverForeground属性
+允许自定义这两个属性的值
+2.LinkLabelBehavior 属性
+允许设置下划线的显示与否
+3.自定义HyperlinkStyle 属性
+你可以使用这个属性给超链接设置自定义的样式。如果你已经自定了Foreground和 HoverForeground。则会被覆盖。
+Url 超链接的目标
+所有这些属性都继承自标准的System.Windows.Controls.Label 控件
+通过Blend/Xaml设置这些属性很简单 &lt;ThemedControlLibrary:LinkLabel Content=&ldquo;Link Label&rdquo; FontSize=&ldquo;22&rdquo;/&gt; &lt;ThemedControlLibrary:LinkLabel Content=&ldquo;Link Label&rdquo; LinkLabelBehavour=&ldquo;HoverUnderline&rdquo; /&gt; &lt;ThemedControlLibrary:LinkLabel Foreground=&ldquo;#FF847901&rdquo; HoverForeground=&ldquo;#FF06C8F2&rdquo; Content=&ldquo;Link Label&rdquo; LinkLabelBehavour=&ldquo;NeverUnderline&rdquo;/&gt; 图三
+
+然后是控件的使用方法。仅仅添加命名空间到xaml中。然后使用就行了。 &lt;Window xmlns=&ldquo;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot; xmlns:x=&ldquo;http://schemas.microsoft.com/winfx/2006/xaml&quot; x:Class=&ldquo;DemoApplication.Window1&rdquo; Title=&ldquo;DemoApplication&rdquo; Height=&ldquo;300&rdquo; Width=&ldquo;300&rdquo; xmlns:ThemedControlsLibrary=&ldquo;clr-namespace:ThemedControlsLibrary;assembly=ThemedControlsLibrary&rdquo; &gt; &lt;Grid&gt; &lt;ThemedControlsLibrary:LinkLabel HorizontalAlignment=&ldquo;Left&rdquo; VerticalAlignment=&ldquo;Top&rdquo; Content=&ldquo;LinkLabel&rdquo;/&gt; &lt;/Grid&gt; &lt;/Window&gt; &nbsp;">
+<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+<meta property="og:url" content="https://leizhiyuan.github.io/2012/10/11/%E8%87%AA%E5%AE%9A%E4%B9%89wpf-linklabel-%E6%8E%A7%E4%BB%B6/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="bystander&#39;s blog" />
+
+  <meta name="twitter:title" content="自定义WPF LinkLabel 控件" />
+  <meta name="twitter:description" content="WPF里是没有LinkLabel控件的。因此我自己写一个。首先。我们看一下WPF中什么类似的组件可以实现这个链接功能
+如果你想要模拟一个LinkLabel控件。你可以在TextBlock里使用内联的Hyperlink。像下面这样 &lt;TextBlock&gt; &lt;Hyperlink&gt; &lt;Run Text=&ldquo;Test link&rdquo;/&gt; …">
+  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+  <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
@@ -59,20 +160,17 @@ Url 超链接的目标
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://leizhiyuan.github.io/2012/10/11/%E8%87%AA%E5%AE%9A%E4%B9%89wpf-linklabel-%E6%8E%A7%E4%BB%B6/" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <meta name="generator" content="Hugo 0.58.0" />
+  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
   <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
 
 
-</head>
 
+  </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
   <div class="container-fluid">
@@ -217,11 +315,16 @@ Url 超链接的目标
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on October 11, 2012
+  <i class="fas fa-calendar"></i>&nbsp;Posted on October 11, 2012
   
   
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 2 minutes (224 words)
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
   
   
 </span>
@@ -388,6 +491,8 @@ static LinkLabel()
         
 
         
+
+        
       </article>
 
       
@@ -408,6 +513,7 @@ static LinkLabel()
 
       
         
+          
           <div class="disqus-comments">
             <div id="disqus_thread"></div>
 <script type="application/javascript">
@@ -430,6 +536,7 @@ static LinkLabel()
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
           </div>
+          
         
         
       
@@ -447,19 +554,17 @@ static LinkLabel()
               <li>
                 <a href="https://github.com/leizhiyuan" title="GitHub">
                   <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
               </li>
           
           <li>
-            
-            <a href="https://leizhiyuan.github.io/index.xml" title="RSS">
-            
+            <a href="" title="RSS">
               <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
               </span>
             </a>
           </li>
@@ -472,8 +577,10 @@ static LinkLabel()
             
           
 
-          &nbsp;&bull;&nbsp;
-          2019
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2019
+          
 
           
             &nbsp;&bull;&nbsp;
@@ -482,25 +589,25 @@ static LinkLabel()
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>
     </div>
   </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <script src="https://leizhiyuan.github.io/js/main.js"></script>
 <script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
 <script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
-<script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+
+
+
 
 
 

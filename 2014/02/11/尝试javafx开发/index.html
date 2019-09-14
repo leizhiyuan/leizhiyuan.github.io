@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
   <head>
+    
+
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>尝试JavaFX开发</title>
+  <title>尝试JavaFX开发 - bystander&#39;s blog</title>
   <meta property="og:title" content="尝试JavaFX开发" />
   <meta name="twitter:title" content="尝试JavaFX开发" />
   <meta name="description" content="曾经有报道说JavaFX将使java在桌面开发上大有作为，感觉好像是很高端的样子，今天尝试了一下，界面对于自用的工具来说，本来也不多重要，只是一个简单的尝试
@@ -37,7 +39,101 @@ Oracle还是好好把Swing搞好吧。。不建议尝试。
 javafx需要sdk支持，java7之后的都有的。设计思路是数据和代码分离，界面通过xml或json数据来描述，这样就把业务逻辑代码和界面实现代码分开了
 一个简单的开发过程应该是这样的
 1.使 …">
-  <meta name="author" content="bystander"/>
+  <meta name="author" content="bystander"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "bystander\x27s blog",
+    
+    "url": "https:\/\/leizhiyuan.github.io\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/leizhiyuan.github.io\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/2014\/02\/11\/%E5%B0%9D%E8%AF%95javafx%E5%BC%80%E5%8F%91\/",
+          "name": "尝试 java f x开发"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "bystander"
+  },
+  "headline": "尝试JavaFX开发",
+  "description" : "曾经有报道说JavaFX将使java在桌面开发上大有作为，感觉好像是很高端的样子，今天尝试了一下，界面对于自用的工具来说，本来也不多重要，只是一个简单的尝试\n简单说下大致的步骤和一些思路，可能有错误。\njavafx需要sdk支持，java7之后的都有的。设计思路是数据和代码分离，界面通过xml或json数据来描述，这样就把业务逻辑代码和界面实现代码分开了\n一个简单的开发过程应该是这样的\n1.使用JavaFX Scene Builder来绘制界面，保存为xml\/json格式\n画的话没啥要说的，了解一下基本的整体概念就行。\n2.在eclipse里新建工程，可以是普通工程，将1中的文件放到资源目录，在代码里加载，然后界面就加载成功了。 Node topNode = FXMLLoader.load(AFI.class.getResource(\x26ldquo;\/afimain.fxml\x26rdquo;)); 逻辑代码，比如一个简单的按钮事件可以通过 Node node = topNode.lookup(\x26ldquo;#paneRightBottom\x26rdquo;); 来查找到id为paneRightBottom的元素，然后就可以通过对node添加事件监听器来完成一些功能了\n主要想说的是：\nJavaFX和WPF其实思路是一模一样的，恰好WPF我也用过，感觉两个都没搞起来，虽然界面炫，然后我去维基看了下： \x26gt; 该产品于2007年5月在JavaOne大会上首次对外公布。JavaFX技术主要应用于创建Rich Internet application（RIAs）。JavaFX期望能够在桌面应用的开发领域与Adobe公司的AIR、OpenLaszlo以及微软公司的Silverlight相竞争 已经7年了，用户数应该是非常少的，成熟的商业型产品也没几个，在尝试的过程中，我在stackoverflow，以及一些很不错的java博客上，大量查找基本也没有太多的信息，都是一些很浅的应用，包括stackoverflow上的回答数，基本还是能反映出来的，主要应用于RIA，而当前RIA已经出html5的天下了。SL早都不更新了，这种坑爹的所谓新技术。\n\x26nbsp;\nOracle还是好好把Swing搞好吧。。不建议尝试。\n\x26nbsp;",
+  "inLanguage" : "en",
+  "wordCount":  29 ,
+  "datePublished" : "2014-02-11T20:40:12",
+  "dateModified" : "2014-02-11T20:40:12",
+  "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+  "keywords" : [ "java, 上海, 学习, 工作" ],
+  "mainEntityOfPage" : "https:\/\/leizhiyuan.github.io\/2014\/02\/11\/%E5%B0%9D%E8%AF%95javafx%E5%BC%80%E5%8F%91\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/leizhiyuan.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="尝试JavaFX开发" />
+<meta property="og:description" content="曾经有报道说JavaFX将使java在桌面开发上大有作为，感觉好像是很高端的样子，今天尝试了一下，界面对于自用的工具来说，本来也不多重要，只是一个简单的尝试
+简单说下大致的步骤和一些思路，可能有错误。
+javafx需要sdk支持，java7之后的都有的。设计思路是数据和代码分离，界面通过xml或json数据来描述，这样就把业务逻辑代码和界面实现代码分开了
+一个简单的开发过程应该是这样的
+1.使用JavaFX Scene Builder来绘制界面，保存为xml/json格式
+画的话没啥要说的，了解一下基本的整体概念就行。
+2.在eclipse里新建工程，可以是普通工程，将1中的文件放到资源目录，在代码里加载，然后界面就加载成功了。 Node topNode = FXMLLoader.load(AFI.class.getResource(&ldquo;/afimain.fxml&rdquo;)); 逻辑代码，比如一个简单的按钮事件可以通过 Node node = topNode.lookup(&ldquo;#paneRightBottom&rdquo;); 来查找到id为paneRightBottom的元素，然后就可以通过对node添加事件监听器来完成一些功能了
+主要想说的是：
+JavaFX和WPF其实思路是一模一样的，恰好WPF我也用过，感觉两个都没搞起来，虽然界面炫，然后我去维基看了下： &gt; 该产品于2007年5月在JavaOne大会上首次对外公布。JavaFX技术主要应用于创建Rich Internet application（RIAs）。JavaFX期望能够在桌面应用的开发领域与Adobe公司的AIR、OpenLaszlo以及微软公司的Silverlight相竞争 已经7年了，用户数应该是非常少的，成熟的商业型产品也没几个，在尝试的过程中，我在stackoverflow，以及一些很不错的java博客上，大量查找基本也没有太多的信息，都是一些很浅的应用，包括stackoverflow上的回答数，基本还是能反映出来的，主要应用于RIA，而当前RIA已经出html5的天下了。SL早都不更新了，这种坑爹的所谓新技术。
+&nbsp;
+Oracle还是好好把Swing搞好吧。。不建议尝试。
+&nbsp;">
+<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+<meta property="og:url" content="https://leizhiyuan.github.io/2014/02/11/%E5%B0%9D%E8%AF%95javafx%E5%BC%80%E5%8F%91/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="bystander&#39;s blog" />
+
+  <meta name="twitter:title" content="尝试JavaFX开发" />
+  <meta name="twitter:description" content="曾经有报道说JavaFX将使java在桌面开发上大有作为，感觉好像是很高端的样子，今天尝试了一下，界面对于自用的工具来说，本来也不多重要，只是一个简单的尝试
+简单说下大致的步骤和一些思路，可能有错误。
+javafx需要sdk支持，java7之后的都有的。设计思路是数据和代码分离，界面通过xml或json数据来描述，这样就把业务逻辑代码和界面实现代码分开了
+一个简单的开发过程应该是这样的
+1.使 …">
+  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+  <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
@@ -46,20 +142,17 @@ javafx需要sdk支持，java7之后的都有的。设计思路是数据和代码
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://leizhiyuan.github.io/2014/02/11/%E5%B0%9D%E8%AF%95javafx%E5%BC%80%E5%8F%91/" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <meta name="generator" content="Hugo 0.58.0" />
+  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
   <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
 
 
-</head>
 
+  </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
   <div class="container-fluid">
@@ -204,11 +297,16 @@ javafx需要sdk支持，java7之后的都有的。设计思路是数据和代码
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on February 11, 2014
+  <i class="fas fa-calendar"></i>&nbsp;Posted on February 11, 2014
   
   
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (29 words)
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
   
   
 </span>
@@ -274,6 +372,8 @@ javafx需要sdk支持，java7之后的都有的。设计思路是数据和代码
         
 
         
+
+        
       </article>
 
       
@@ -294,6 +394,7 @@ javafx需要sdk支持，java7之后的都有的。设计思路是数据和代码
 
       
         
+          
           <div class="disqus-comments">
             <div id="disqus_thread"></div>
 <script type="application/javascript">
@@ -316,6 +417,7 @@ javafx需要sdk支持，java7之后的都有的。设计思路是数据和代码
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
           </div>
+          
         
         
       
@@ -333,19 +435,17 @@ javafx需要sdk支持，java7之后的都有的。设计思路是数据和代码
               <li>
                 <a href="https://github.com/leizhiyuan" title="GitHub">
                   <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
               </li>
           
           <li>
-            
-            <a href="https://leizhiyuan.github.io/index.xml" title="RSS">
-            
+            <a href="" title="RSS">
               <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
               </span>
             </a>
           </li>
@@ -358,8 +458,10 @@ javafx需要sdk支持，java7之后的都有的。设计思路是数据和代码
             
           
 
-          &nbsp;&bull;&nbsp;
-          2019
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2019
+          
 
           
             &nbsp;&bull;&nbsp;
@@ -368,25 +470,25 @@ javafx需要sdk支持，java7之后的都有的。设计思路是数据和代码
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>
     </div>
   </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <script src="https://leizhiyuan.github.io/js/main.js"></script>
 <script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
 <script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
-<script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+
+
+
 
 
 

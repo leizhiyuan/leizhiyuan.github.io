@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
   <head>
+    
+
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>kafka快速上手</title>
+  <title>kafka快速上手 - bystander&#39;s blog</title>
   <meta property="og:title" content="kafka快速上手" />
   <meta name="twitter:title" content="kafka快速上手" />
   <meta name="description" content=" 简单介绍 kafka是一个分布式消息中间件,在kafka中主要涉及到四个基本名词: Topic Kafka将消息种子分门别类， 每一类的消息称之为一个主题(Topic).
@@ -38,7 +40,101 @@ Broker 已发布的消息保存在一组服务器中，称之为Kafka集群。�
 Producer 发布消息的对象称之为主题生产者.
 Consumer 订阅消息并处理消息的对象称之为主题消费者
 Broker 已发布的消息保存在一组服务器中，称之为Kafka集群。集群中的每一个服务器称为一个代 …">
-  <meta name="author" content="bystander"/>
+  <meta name="author" content="bystander"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "bystander\x27s blog",
+    
+    "url": "https:\/\/leizhiyuan.github.io\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/leizhiyuan.github.io\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/leizhiyuan.github.io\/2015\/09\/03\/kafka%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B\/",
+          "name": "Kafka快速上手"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "bystander"
+  },
+  "headline": "kafka快速上手",
+  "description" : " 简单介绍 kafka是一个分布式消息中间件,在kafka中主要涉及到四个基本名词: Topic Kafka将消息种子分门别类， 每一类的消息称之为一个主题(Topic).\nProducer 发布消息的对象称之为主题生产者.\nConsumer 订阅消息并处理消息的对象称之为主题消费者\nBroker 已发布的消息保存在一组服务器中，称之为Kafka集群。集群中的每一个服务器称为一个代理(Broker). 消费者可以订阅一个或多个主题，并从Broker拉数据(注意是拉,不是pull,)，从而消费这些已发布的消息。\n安装(以windows为例) 安装非常简单,从这里下载,下载完成后解压到一个目录就好了.\n简单使用 首先使用kafka的一个流程就是生产者生产消息,发送给kafka集群,然后消费者从kafka集群中获取消息进行消费. 要启动kafka需要先启动zookeeper,因为ZooKeeper是通过冗余服务实现高可用性的,也就是说在分布式环境中,如何保证kafka集群的高可用.zookeeper会来做leader选取,当消费者准备发消息时,会从zookeeper中获取一个可用的消息服务器地址,然后连接进行发送,保证党集群内有服务器宕机并不影响整体的使用. 1.启动自带的简易zookeeper. 进行解压目录的bin\/windows目录 zookeeper-server-start.bat ..\/..\/config\/zookeeper.properties\n执行命令启动,从zookeeper.properties中会看到.zookeeper会开发一个clientPort=2181,2181的端口给消费者使用,其实也可以给生产者使用,但是在0.8.0版本后，producer不再通过zookeeper连接broker, 而是通过brokerlist（192.168.0.1:9092,192.168.0.2:9092,192.168.0.3:9092配置,直接和broker连接，只要能和一个broker连接上就能够获取到集群中其他broker上的信息,绕过了zookeeper.\n2.启动kafka服务 kafka-server-start.bat ..\/..\/config\/server.properties 执行启动,另一个命令行窗口,同样的.查看配置问题,会知道kafka的服务会在port=9092 ,9092端口打开.\n3.注册一个topic kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test 这个命令中,create表示创建.zookeeper 和后面的地址表示kafka使用本机2181端口开放的zookeeper保持高可用.replication-factor表示消息只冗余一份,目前我们只有一个kafka机器,broker,partitions 表示一份分区,分区是kafka的另一个概念,大致是说,同一topic内部的消息按照一定的key和算法被分区(partition)存储在不同的位置上，这个下次写好了.这样已经在kafka注册了一个名为test的消息topic了.\n4.使用简易的控制台生产者模拟 kafka-console-producer.bat --broker-list localhost:9092 --topic test 前面说过了.新版本生产者直接通过brokerlist来连接kafka,目前只有一台,所以就一个地址,准备向test这个topic发送消息.\n5.使用简易的控制台消费者模拟 kafka-console-consumer.bat --zookeeper localhost:2181 --topic test 这个前面也说过了.消费者使用zookeeper获取可用的broker列表,然后拉去消息,并且还有一些offset同步的问题.和分区,文件存储一起的一个概念,下次写.\n6.开始生产和消费消息 至此,已经开了四个控制台窗口了..在producer窗口里,随便打几个字,然后enter,在消费者的窗口里将会显示出来. 其他问题 实际可能不那么顺利,如果你启动kafka或者其他应用的时候,有错误提示,提示无法创建虚拟机vm这样的.那么修改一下对应的bat脚本.就好了 ,vm的heap申请是1G,如果你机器内存不够,改成512M,或者更小的就好了.\n更多文档  官方文档 kafka快速入门  ",
+  "inLanguage" : "en",
+  "wordCount":  64 ,
+  "datePublished" : "2015-09-03T22:29:57",
+  "dateModified" : "2015-09-03T22:29:57",
+  "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+  "keywords" : [ "中间件, 学习" ],
+  "mainEntityOfPage" : "https:\/\/leizhiyuan.github.io\/2015\/09\/03\/kafka%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/leizhiyuan.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="kafka快速上手" />
+<meta property="og:description" content=" 简单介绍 kafka是一个分布式消息中间件,在kafka中主要涉及到四个基本名词: Topic Kafka将消息种子分门别类， 每一类的消息称之为一个主题(Topic).
+Producer 发布消息的对象称之为主题生产者.
+Consumer 订阅消息并处理消息的对象称之为主题消费者
+Broker 已发布的消息保存在一组服务器中，称之为Kafka集群。集群中的每一个服务器称为一个代理(Broker). 消费者可以订阅一个或多个主题，并从Broker拉数据(注意是拉,不是pull,)，从而消费这些已发布的消息。
+安装(以windows为例) 安装非常简单,从这里下载,下载完成后解压到一个目录就好了.
+简单使用 首先使用kafka的一个流程就是生产者生产消息,发送给kafka集群,然后消费者从kafka集群中获取消息进行消费. 要启动kafka需要先启动zookeeper,因为ZooKeeper是通过冗余服务实现高可用性的,也就是说在分布式环境中,如何保证kafka集群的高可用.zookeeper会来做leader选取,当消费者准备发消息时,会从zookeeper中获取一个可用的消息服务器地址,然后连接进行发送,保证党集群内有服务器宕机并不影响整体的使用. 1.启动自带的简易zookeeper. 进行解压目录的bin/windows目录 zookeeper-server-start.bat ../../config/zookeeper.properties
+执行命令启动,从zookeeper.properties中会看到.zookeeper会开发一个clientPort=2181,2181的端口给消费者使用,其实也可以给生产者使用,但是在0.8.0版本后，producer不再通过zookeeper连接broker, 而是通过brokerlist（192.168.0.1:9092,192.168.0.2:9092,192.168.0.3:9092配置,直接和broker连接，只要能和一个broker连接上就能够获取到集群中其他broker上的信息,绕过了zookeeper.
+2.启动kafka服务 kafka-server-start.bat ../../config/server.properties 执行启动,另一个命令行窗口,同样的.查看配置问题,会知道kafka的服务会在port=9092 ,9092端口打开.
+3.注册一个topic kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test 这个命令中,create表示创建.zookeeper 和后面的地址表示kafka使用本机2181端口开放的zookeeper保持高可用.replication-factor表示消息只冗余一份,目前我们只有一个kafka机器,broker,partitions 表示一份分区,分区是kafka的另一个概念,大致是说,同一topic内部的消息按照一定的key和算法被分区(partition)存储在不同的位置上，这个下次写好了.这样已经在kafka注册了一个名为test的消息topic了.
+4.使用简易的控制台生产者模拟 kafka-console-producer.bat --broker-list localhost:9092 --topic test 前面说过了.新版本生产者直接通过brokerlist来连接kafka,目前只有一台,所以就一个地址,准备向test这个topic发送消息.
+5.使用简易的控制台消费者模拟 kafka-console-consumer.bat --zookeeper localhost:2181 --topic test 这个前面也说过了.消费者使用zookeeper获取可用的broker列表,然后拉去消息,并且还有一些offset同步的问题.和分区,文件存储一起的一个概念,下次写.
+6.开始生产和消费消息 至此,已经开了四个控制台窗口了..在producer窗口里,随便打几个字,然后enter,在消费者的窗口里将会显示出来. 其他问题 实际可能不那么顺利,如果你启动kafka或者其他应用的时候,有错误提示,提示无法创建虚拟机vm这样的.那么修改一下对应的bat脚本.就好了 ,vm的heap申请是1G,如果你机器内存不够,改成512M,或者更小的就好了.
+更多文档  官方文档 kafka快速入门  ">
+<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+<meta property="og:url" content="https://leizhiyuan.github.io/2015/09/03/kafka%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="bystander&#39;s blog" />
+
+  <meta name="twitter:title" content="kafka快速上手" />
+  <meta name="twitter:description" content=" 简单介绍 kafka是一个分布式消息中间件,在kafka中主要涉及到四个基本名词: Topic Kafka将消息种子分门别类， 每一类的消息称之为一个主题(Topic).
+Producer 发布消息的对象称之为主题生产者.
+Consumer 订阅消息并处理消息的对象称之为主题消费者
+Broker 已发布的消息保存在一组服务器中，称之为Kafka集群。集群中的每一个服务器称为一个代 …">
+  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
+  <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
@@ -47,20 +143,17 @@ Broker 已发布的消息保存在一组服务器中，称之为Kafka集群。�
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.55.6" />
-  <link rel="canonical" href="https://leizhiyuan.github.io/2015/09/03/kafka%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <meta name="generator" content="Hugo 0.58.0" />
+  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
   <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
 
 
-</head>
 
+  </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
   <div class="container-fluid">
@@ -205,11 +298,16 @@ Broker 已发布的消息保存在一组服务器中，称之为Kafka集群。�
                 <span class="post-meta">
   
   
-  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 3, 2015
+  <i class="fas fa-calendar"></i>&nbsp;Posted on September 3, 2015
   
   
-  &nbsp;|&nbsp;
-  <i class="fa fa-clock-o"></i> 1 minutes (64 words)
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
   
   
 </span>
@@ -305,6 +403,8 @@ Kafka将消息种子分门别类， 每一类的消息称之为一个主题(Topi
         
 
         
+
+        
       </article>
 
       
@@ -325,6 +425,7 @@ Kafka将消息种子分门别类， 每一类的消息称之为一个主题(Topi
 
       
         
+          
           <div class="disqus-comments">
             <div id="disqus_thread"></div>
 <script type="application/javascript">
@@ -347,6 +448,7 @@ Kafka将消息种子分门别类， 每一类的消息称之为一个主题(Topi
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
           </div>
+          
         
         
       
@@ -364,19 +466,17 @@ Kafka将消息种子分门别类， 每一类的消息称之为一个主题(Topi
               <li>
                 <a href="https://github.com/leizhiyuan" title="GitHub">
                   <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
               </li>
           
           <li>
-            
-            <a href="https://leizhiyuan.github.io/index.xml" title="RSS">
-            
+            <a href="" title="RSS">
               <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x"></i>
-                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
               </span>
             </a>
           </li>
@@ -389,8 +489,10 @@ Kafka将消息种子分门别类， 每一类的消息称之为一个主题(Topi
             
           
 
-          &nbsp;&bull;&nbsp;
-          2019
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2019
+          
 
           
             &nbsp;&bull;&nbsp;
@@ -399,25 +501,25 @@ Kafka将消息种子分门别类， 每一类的消息称之为一个主题(Topi
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.55.6</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>
     </div>
   </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <script src="https://leizhiyuan.github.io/js/main.js"></script>
 <script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
 <script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
-<script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+
+
+
 
 
 
