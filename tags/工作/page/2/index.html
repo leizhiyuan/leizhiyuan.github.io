@@ -10,9 +10,9 @@
   <title>Overview of all pages with the tag #工作 - bystander&#39;s blog</title>
   <meta property="og:title" content="Overview of all pages with the tag #工作" />
   <meta name="twitter:title" content="Overview of all pages with the tag #工作" />
-  <meta name="description" content="Overview of all pages with the tag #工作, such as: 分析代码调用关系的利器-Flow">
-  <meta property="og:description" content="Overview of all pages with the tag #工作, such as: 分析代码调用关系的利器-Flow">
-  <meta name="twitter:description" content="Overview of all pages with the tag #工作, such as: 分析代码调用关系的利器-Flow">
+  <meta name="description" content="Overview of all pages with the tag #工作, such as: Principle Note">
+  <meta property="og:description" content="Overview of all pages with the tag #工作, such as: Principle Note">
+  <meta name="twitter:description" content="Overview of all pages with the tag #工作, such as: Principle Note">
   <meta name="author" content="bystander"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -219,6 +219,55 @@
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
         <div class="posts-list">
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2014/11/07/%E4%B8%80%E9%94%AE%E5%88%87%E6%8D%A2jdk%E7%89%88%E6%9C%AC/">
+                <h2 class="post-title">一键切换jdk版本</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on November 7, 2014
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  工作中有时候会切换jdk版本.有时候需要用个64位的.有时候需要用32位的.频繁手动很不方便,参考了一下,写了一个bat脚本,保存为bat,运行即可切换.同理可以改改,运来切换1.7,1.8这样的版本.
+@echo off :init set JAVA_HOME_32=D:\5.Program\Jdk32Home set JAVA_HOME_64=D:\Software\JdkHome :start echo. echo ============================================= echo jdk版本列表 echo 32 (%JAVA_HOME_32%) echo 64 (%JAVA_HOME_64%) echo ============================================= :select set /p opt=请选择jdk版本： if %opt%==32 ( start /I /WAIT /B wmic ENVIRONMENT where name=&#39;JAVA_HOME&#39; set VariableValue=&#34;%JAVA_HOME_32%&#34; &amp;gt;nul rem reg add &#34;HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment&#34; /v JAVA_HOME /t reg_sz /d &#34;%JAVA_HOME_32%&#34; /f goto success ) if %opt%==64 ( start /I /WAIT /B wmic ENVIRONMENT where name=&#39;JAVA_HOME&#39; set VariableValue=&#34;%JAVA_HOME_64%&#34; &amp;gt;nul rem reg add &#34;HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment&#34; /v JAVA_HOME /t reg_sz /d &#34;%JAVA_HOME_64%&#34; /f goto success ) echo 选择的版本错误,请重新选择！ PAUSE goto start :success echo.
+                  <a href="https://leizhiyuan.github.io/2014/11/07/%E4%B8%80%E9%94%AE%E5%88%87%E6%8D%A2jdk%E7%89%88%E6%9C%AC/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E4%BD%9C/">工作</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2014/09/21/jenkins%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99/">
@@ -890,82 +939,6 @@ cron是linux下的定时执行工具
                 <div class="blog-tags">
                   
                     <a href="https://leizhiyuan.github.io//tags/linux/">linux</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E4%B8%8A%E6%B5%B7/">上海</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E4%BD%9C/">工作</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2014/03/08/eclipse%E7%AE%A1%E7%90%86%E5%A4%9A%E4%B8%AAworkplace/">
-                <h2 class="post-title">eclipse管理多个workplace</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on March 8, 2014
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  <p>由于eclipse用的比较多，管理多个workplace很麻烦，经常需要打开以后再切换，简单介绍个方法。</p>
-
-<p>一</p>
-
-<p>1.进入Eclipse的安装目录，鼠标点击eclipse.exe，右键菜单&ndash;&gt;发送到&ndash;&gt;桌面快捷方式</p>
-
-<p>2.到桌面上找到“eclipse.exe - 快捷方式”，鼠标右键点击查看属性，弹出菜单中选择“快捷方式”标签，然后在“目标”中增加内容：-data e:\workspace，保存后即可</p>
-
-<p>3.双击这个快捷方式，eclipse就会使用e:\workspace作为工作空间启动。</p>
-
-<p>这样你多复制几个，就好了。</p>
-
-<p>二</p>
-
-<p>1.找个目录，新建一个文件夹，名称为workspace_aaa</p>
-
-<p>2.然后在当前目录下新建一个txt文件</p>
-
-<p>3.输入内容为：</p>
-
-<pre class="lang:default decode:true">start E:\eclipse\eclipse.exe -data workspace1</pre>
-
-<p>说明：前面是eclipse的路径，中间加上&rdquo;-data” ，后面为工作空间的路径，start要有，不然打开eclipse之后，命令行窗口不会自动消失的，很是碍眼。</p>
-
-<p>4.将这个txt保存为workspace1.bat</p>
-
-<p>5.双击这个workspace1.bat，eclipse就会使用workspace1.bat 作为工作空间启动。</p>
-
-<p>&nbsp;</p>
-
-<p>对launchy党来说，新建个目录，然后创建好多个bat，以后直接快速启动真是太方便了</p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
                   
                     <a href="https://leizhiyuan.github.io//tags/%E4%B8%8A%E6%B5%B7/">上海</a>&nbsp;
                   

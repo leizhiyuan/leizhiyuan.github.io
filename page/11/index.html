@@ -224,6 +224,56 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%89%E7%AF%87%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/">
+                <h2 class="post-title">[译]Unix sed实用教程第三篇–读写文件</h2>
+                
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on August 9, 2013
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  本文将展示如何将文件内容读入到sed输出，同时包含如何将一个文件的部分内容写入到另一文件
+一.文件读取
+假定有两个文件，file1和file2，内容分别如下： $ cat file1 1apple 1banana 1mango $ cat file2 2orange 2strawberry sed有两个选项用来读写文件 r filename : 读取filename指定的文件内容 w filename : 将内容写入filename指定的文件 看例子：
+1.在file1的每一行读完之后读取file2的内容 $ sed &lsquo;r file2&rsquo; file1 1apple 2orange 2strawberry 1banana 2orange 2strawberry 1mango 2orange 2strawberry r file2读取file2的所有内容，因此r之前没有知道那个行号或匹配，因此有了上面的输出，记住，sed的工作机制，每次读file1的一行，然后执行命令
+2.如何在读取了file1的第一行之后将file2读入 $ sed &lsquo;1r file2&rsquo; file1 1apple 2orange 2strawberry 1banana 1mango r前面加个1就行了
+3.当file1某行匹配了模式之后，读入file2 $ sed &lsquo;/banana/r file2&rsquo; file1 1apple 1banana 2orange 2strawberry 1mango sed逐行读入file1，然后判断该行是否匹配banana，如果匹配，就读入file2
+4.当file1读取完成后读入file2，其实就是合并两个文件 $ sed &lsquo;$r file2&rsquo; file1 1apple 1banana 1mango 2orange 2strawberry 这里只是演示一下，其实cat file1 file2就可以完成合并
+                  <a href="https://leizhiyuan.github.io/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%89%E7%AF%87%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/linux/">linux</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/shell/">shell</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%BA%8C%E7%AF%87%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/">
                 <h2 class="post-title">[译]Unix sed实用教程第二篇–替换文件内容</h2>
                 
@@ -804,57 +854,6 @@ int _tmain(int argc, _TCHAR* argv[]) { while(true) { double total = 0; double mi
                     <a href="https://leizhiyuan.github.io//tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/05/31/%E9%82%BB%E6%8E%A5%E8%A1%A8%E5%AE%9E%E7%8E%B0%E6%97%A0%E5%90%91%E5%9B%BEc-/">
-                <h2 class="post-title">邻接表实现无向图(C&#43;&#43;)</h2>
-                
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on May 31, 2013
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  很早以前写的代码了，贴出来做个备份吧。用向量来存储一条邻接链表，存储可连通值。实现了判断是否连通，添加边，添加顶点的功能。
-UnDirectGraph.h #pragma once
-#include &ldquo;stdafx.h&rdquo; #include &lt;vector&gt; using namespace std; class UnDirectGraph { private: int vCount; vector&lt;int&gt; *adj; public: int GetVCount(); UnDirectGraph(int vCount); void AddEdge(int v,int w); vector&lt;int&gt; &amp;Vadj(int v); bool IsConnected(int v,int w); }; UnDirectGraph.cpp #pragma once
-#include &ldquo;stdafx.h&rdquo; #include &ldquo;UnDirectGraph.h&rdquo; using namespace std; UnDirectGraph::UnDirectGraph(int _vCount) { this-&gt;vCount=_vCount; adj=new vector&lt;int&gt;[vCount];
-for (int i=0;i&amp;lt;vCount;i++) { adj[i].clear(); } } void UnDirectGraph::AddEdge(int v,int w) { adj[v].push_back(w); adj[w].push_back(v); }
-vector&lt;int&gt;&amp; UnDirectGraph::Vadj(int v) { return adj[v]; }
-                  <a href="https://leizhiyuan.github.io/2013/05/31/%E9%82%BB%E6%8E%A5%E8%A1%A8%E5%AE%9E%E7%8E%B0%E6%97%A0%E5%90%91%E5%9B%BEc-/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c&#43;&#43;/">C&#43;&#43;</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
                   
                 </div>
               

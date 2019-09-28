@@ -224,6 +224,112 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2015/09/03/kafka%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/">
+                <h2 class="post-title">kafka快速上手</h2>
+                
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on September 3, 2015
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  
+
+<h2 id="简单介绍">简单介绍</h2>
+
+<p>kafka是一个分布式消息中间件,在kafka中主要涉及到四个基本名词:
+<strong>Topic</strong>
+Kafka将消息种子分门别类， 每一类的消息称之为一个主题(Topic).</p>
+
+<p><strong>Producer</strong>
+发布消息的对象称之为主题生产者.</p>
+
+<p><strong>Consumer</strong>
+订阅消息并处理消息的对象称之为主题消费者</p>
+
+<p><strong>Broker</strong>
+已发布的消息保存在一组服务器中，称之为Kafka集群。集群中的每一个服务器称为一个代理(Broker). 消费者可以订阅一个或多个主题，并从Broker拉数据(注意是拉,不是pull,)，从而消费这些已发布的消息。</p>
+
+<h2 id="安装-以windows为例">安装(以windows为例)</h2>
+
+<p>安装非常简单,从这里<a href="http://kafka.apache.org/downloads.html">下载</a>,下载完成后解压到一个目录就好了.</p>
+
+<h2 id="简单使用">简单使用</h2>
+
+<p>首先使用kafka的一个流程就是生产者生产消息,发送给kafka集群,然后消费者从kafka集群中获取消息进行消费.
+要启动kafka需要先启动zookeeper,因为ZooKeeper是通过冗余服务实现高可用性的,也就是说在分布式环境中,如何保证kafka集群的高可用.zookeeper会来做leader选取,当消费者准备发消息时,会从zookeeper中获取一个可用的消息服务器地址,然后连接进行发送,保证党集群内有服务器宕机并不影响整体的使用.
+<img src="/images/kafka_transfer.jpg" alt="来自slideshare的一张图" /></p>
+
+<p>1.启动自带的简易zookeeper.
+进行解压目录的bin/windows目录
+<code>zookeeper-server-start.bat ../../config/zookeeper.properties</code></p>
+
+<p>执行命令启动,从zookeeper.properties中会看到.zookeeper会开发一个clientPort=2181,2181的端口给消费者使用,其实也可以给生产者使用,但是在0.8.0版本后，producer不再通过zookeeper连接broker, 而是通过brokerlist（192.168.0.1:9092,192.168.0.2:9092,192.168.0.3:9092配置,直接和broker连接，只要能和一个broker连接上就能够获取到集群中其他broker上的信息,绕过了zookeeper.</p>
+
+<p>2.启动kafka服务
+<code>kafka-server-start.bat ../../config/server.properties</code> 执行启动,另一个命令行窗口,同样的.查看配置问题,会知道kafka的服务会在port=9092 ,9092端口打开.</p>
+
+<p>3.注册一个topic
+ <code>kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test</code>
+ 这个命令中,create表示创建.zookeeper 和后面的地址表示kafka使用本机2181端口开放的zookeeper保持高可用.replication-factor表示消息只冗余一份,目前我们只有一个kafka机器,broker,partitions 表示一份分区,分区是kafka的另一个概念,大致是说,同一topic内部的消息按照一定的key和算法被分区(partition)存储在不同的位置上，这个下次写好了.这样已经在kafka注册了一个名为test的消息topic了.</p>
+
+<p>4.使用简易的控制台生产者模拟
+<code>kafka-console-producer.bat --broker-list localhost:9092 --topic test</code>
+前面说过了.新版本生产者直接通过brokerlist来连接kafka,目前只有一台,所以就一个地址,准备向test这个topic发送消息.</p>
+
+<p>5.使用简易的控制台消费者模拟
+<code>kafka-console-consumer.bat --zookeeper localhost:2181 --topic test</code>
+这个前面也说过了.消费者使用zookeeper获取可用的broker列表,然后拉去消息,并且还有一些offset同步的问题.和分区,文件存储一起的一个概念,下次写.</p>
+
+<p>6.开始生产和消费消息
+至此,已经开了四个控制台窗口了..在producer窗口里,随便打几个字,然后enter,在消费者的窗口里将会显示出来.
+<img src="/images/kafka_demo.jpg" alt="实际测试图" /></p>
+
+<h2 id="其他问题">其他问题</h2>
+
+<p>实际可能不那么顺利,如果你启动kafka或者其他应用的时候,有错误提示,提示无法创建虚拟机vm这样的.那么修改一下对应的bat脚本.就好了
+<img src="/images/kafka_start_error.jpg" alt="启动错误" />,vm的heap申请是1G,如果你机器内存不够,改成512M,或者更小的就好了.</p>
+
+<h2 id="更多文档">更多文档</h2>
+
+<ol>
+<li><a href="http://kafka.apache.org/documentation.html">官方文档</a></li>
+<li><a href="http://colobu.com/2014/08/06/kafka-quickstart">kafka快速入门</a></li>
+</ol>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2015/08/08/angularjs-%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/">
                 <h2 class="post-title">AngularJS 学习资源</h2>
                 
@@ -781,53 +887,6 @@ A: When you login, it hangs or takes more than a minute to get the response. If 
                 
               </div>
 
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2015/01/13/hexo%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E9%97%AE%E9%A2%98/">
-                <h2 class="post-title">hexo建立博客过程中的问题</h2>
-                
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on January 13, 2015
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  最近博客越来越慢了.然后一直也有markdown写文章的想法.于是花了点时间把博客迁到了hexo+github+gitcafe的组合上. ##安装Git## 下载 msysgit 并执行即可完成安装。 ##安装Node.js## 在 Windows 环境下安装 Node.js 非常简单，仅须下载安装文件并执行即可完成安装。 ##安装hexo## 利用 npm 命令即可安装。（在任意位置点击鼠标右键，选择Git bash）
-npm install -g hexo
-安装完成后,找个目录,比如d:/blog下面.右键,git bash,然后执行 hexo init 这样就会自动生成所有的目录结构了然后在安装一下依赖包: npm install 然后执行 hexo generate 用来根据md文件生成对应的html文件.执行 hexo server 则启动本地服务器.打开 127.0.0.1:4000端口查看
-本地查看没啥问题.就需要部署到git上了.先配置一下. 在d:/blog下面的_config.xml中配置远程git的服务器.现在已经支持同时部署到github和gitcafe.在末尾添加
-deploy: type: git repo: github: git@github.com:yourname/yourname.github.io.git,master gitcafe: git@gitcafe.com:yourname/yourname.git,gitcafe-pages 其中的yourname就是你的名字
-然后执行 hexo deploy 即可.让输入啥就输入啥. 下面是命令的简写 hexo g == hexo generate hexo d == hexo deploy hexo s == hexo server hexo n == hexo new
-                  <a href="https://leizhiyuan.github.io/2015/01/13/hexo%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E9%97%AE%E9%A2%98/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/wordpress/">wordpress</a>&nbsp;
-                  
-                </div>
               
             </article>
           

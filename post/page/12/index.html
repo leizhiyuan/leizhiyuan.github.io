@@ -203,7 +203,7 @@
                 <span class="post-meta">
   
   
-  <i class="fas fa-calendar"></i>&nbsp;Posted on September 14, 2019
+  <i class="fas fa-calendar"></i>&nbsp;Posted on September 29, 2019
   
   
     &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;0&nbsp;minutes
@@ -233,6 +233,59 @@
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
         <div class="posts-list">
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2013/05/31/%E9%82%BB%E6%8E%A5%E8%A1%A8%E5%AE%9E%E7%8E%B0%E6%97%A0%E5%90%91%E5%9B%BEc-/">
+                <h2 class="post-title">邻接表实现无向图(C&#43;&#43;)</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on May 31, 2013
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  很早以前写的代码了，贴出来做个备份吧。用向量来存储一条邻接链表，存储可连通值。实现了判断是否连通，添加边，添加顶点的功能。
+UnDirectGraph.h #pragma once
+#include &ldquo;stdafx.h&rdquo; #include &lt;vector&gt; using namespace std; class UnDirectGraph { private: int vCount; vector&lt;int&gt; *adj; public: int GetVCount(); UnDirectGraph(int vCount); void AddEdge(int v,int w); vector&lt;int&gt; &amp;Vadj(int v); bool IsConnected(int v,int w); }; UnDirectGraph.cpp #pragma once
+#include &ldquo;stdafx.h&rdquo; #include &ldquo;UnDirectGraph.h&rdquo; using namespace std; UnDirectGraph::UnDirectGraph(int _vCount) { this-&gt;vCount=_vCount; adj=new vector&lt;int&gt;[vCount];
+for (int i=0;i&amp;lt;vCount;i++) { adj[i].clear(); } } void UnDirectGraph::AddEdge(int v,int w) { adj[v].push_back(w); adj[w].push_back(v); }
+vector&lt;int&gt;&amp; UnDirectGraph::Vadj(int v) { return adj[v]; }
+                  <a href="https://leizhiyuan.github.io/2013/05/31/%E9%82%BB%E6%8E%A5%E8%A1%A8%E5%AE%9E%E7%8E%B0%E6%97%A0%E5%90%91%E5%9B%BEc-/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c&#43;&#43;/">C&#43;&#43;</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2013/05/27/%E6%B1%82%E6%95%B4%E6%95%B01-n%E8%8C%83%E5%9B%B4%E5%92%8C%E4%B8%BAn%E7%9A%84%E6%89%80%E6%9C%89%E7%BB%84%E5%90%88/">
@@ -796,75 +849,6 @@ template&lt; class T&gt; PriorityQueue&lt;T&gt;::PriorityQueue(void) { pq=new T[
                     <a href="https://leizhiyuan.github.io//tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/04/11/%E6%A8%A1%E6%9D%BF%E6%A0%88%E4%BB%A5%E5%8F%8A%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BCc-%E5%AE%9E%E7%8E%B0/">
-                <h2 class="post-title">模板栈以及中缀表达式求值(C&#43;&#43;实现)</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on April 11, 2013
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  栈直接用链表实现，这个比较简单，不多说，不过C++写程序，IDE的错误检测不是很给力。
-至于给定一个中缀表达式，如何不转换成后缀表达式，直接求值，方法就是使用两个栈，一个操作符栈，一个操作数栈，然后从左到右扫描表达式，我这里中缀表达式计算实现的很简单，不完整，大家可以扩展。栈的实现是我想写的，思路如下：
-1.如何是操作数，压入操作数栈
-2.如果是操作符，压入操作符栈
-3.如果是左括号，直接忽略
-4.如果是有括号，弹出操作符栈栈顶元素，然后弹出操作数栈两个元素，进行操作以后结果压入操作数栈
-&nbsp;
-看个图就好了
-
-&nbsp;
-最后给出栈顶实现代码 #include &ldquo;stdafx.h&rdquo; #pragma region Node定义
-template &lt;class T&gt; class Node { template&lt;class T&gt; friend class Stack; private: T m_data; Node *pNextNode; public: Node(); Node(T d); };
-template &lt;class T&gt; Node&lt;T&gt;::Node() { m_data=default(T); pNextNode=NULL; } template &lt;class T&gt; Node&lt;T&gt;::Node(T d) { m_data=d; pNextNode=NULL; } #pragma endregion
-#pragma region Stack定义
-template &lt;class T&gt; class Stack {
-private: Node&lt;T&gt; *m_pTopNode; int m_nNodeCount; public: Stack(); ~Stack(); bool IsEmpty(); bool Push(T e); T Pop(); int Size(); };
-                  <a href="https://leizhiyuan.github.io/2013/04/11/%E6%A8%A1%E6%9D%BF%E6%A0%88%E4%BB%A5%E5%8F%8A%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BCc-%E5%AE%9E%E7%8E%B0/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c&#43;&#43;/">C&#43;&#43;</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
                   
                 </div>
               

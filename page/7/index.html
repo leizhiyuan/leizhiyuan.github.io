@@ -224,6 +224,52 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2014/07/13/spring%E6%8F%AD%E7%A7%98-%E7%AC%AC%E4%B8%89%E7%AB%A0ioc-service-provider%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
+                <h2 class="post-title">Spring揭秘-第三章IoC Service Provider读书笔记</h2>
+                
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on July 13, 2014
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  我们虽然已经通过IoC声明了相应的依赖，但是最终总要有个啥东西将这些依赖对象绑定在一起，这里而IoC Service Provider, 来啦，表示一种绑定的实现方式，可以使一段代码，也可以是一组相关的泪，甚至是框架或容器。  比如前一篇提到的 IFXNewsListener newsListener = new DowJonesNewsListener(); IFXNewsPersister newsPersister = new DowJonesNewsPersister(); FXNewsProvider newsProvider = new FXNewsProvider(newsListener,newsPersister); newsProvider.getAndPersistNews(); &nbsp;
+ 就是一个容器，只不过太简单了，不适用于更多的场景，  IoC容器就是Spring提供依赖注入服务的Provider  IoC Service Provider 是干嘛？ 1.业务对象的构建管理，剥离客户端对象的构建的依赖逻辑，比如A引用B，那么A是B的客户端对象，容器需要理清这种关系。 2.业务对象之间的依赖绑定，通过1的实现， 识别各个对象的依赖关系，然后将这些对象依赖的对象注入绑定，用的时候就有了。   那你要问了，这怎么管理对象间的依赖关系呢  IoC Service Provider怎么就能完全领会代码的意图呢？他怎么记住这么多的依赖关系等等，他要这么做 1.元数据方式 2.通过描述性较强的xml来记录对应信息 3.通过编写代码的方式注册这些信息   3.直接编码方式， 明确了依赖关系 IoContainer container = &hellip;; container.register(FXNewsProvider.class,new FXNewsProvider()); container.register(IFXNewsListener.class,new DowJonesNewsListener()); &hellip; FXNewsProvider newsProvider = (FXNewsProvider)container.get(FXNewsProvider.class); newProvider.getAndPersistNews(); &nbsp;
+  2.配置文件方式  最常见的还是xml方式，  &lt;bean id=&ldquo;newsProvider&rdquo; class=&ldquo;.
+                  <a href="https://leizhiyuan.github.io/2014/07/13/spring%E6%8F%AD%E7%A7%98-%E7%AC%AC%E4%B8%89%E7%AB%A0ioc-service-provider%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/spring/">spring</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2014/07/01/spring%E6%8F%AD%E7%A7%98%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC%E4%BA%8C%E7%AB%A0ioc%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">
                 <h2 class="post-title">《Spring揭秘》读书笔记-第二章IoC的基本概念</h2>
                 
@@ -840,62 +886,6 @@ cron是linux下的定时执行工具
                     <a href="https://leizhiyuan.github.io//tags/shell/">shell</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E4%BD%9C/">工作</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2014/03/11/%E8%97%8F%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/">
-                <h2 class="post-title">[藏]深入理解Java内存模型</h2>
-                
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on March 11, 2014
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  <ol>
-<li><a href="http://ifeve.com/java-memory-model-1/">深入理解java内存模型（一）——基础</a></li>
-<li><a href="http://ifeve.com/java-memory-model-2/">深入理解java内存模型（二）——重排序</a></li>
-<li><a href="http://ifeve.com/java-memory-model-3/">深入理解java内存模型（三）——顺序一致性</a></li>
-<li><a href="http://ifeve.com/java-memory-model-4/">深入理解java内存模型（四）——volatile</a></li>
-<li><a href="http://ifeve.com/java-memory-model-5/">深入理解java内存模型（五）——锁</a></li>
-<li><a href="http://ifeve.com/java-memory-model/">深入理解java内存模型（六）——final</a></li>
-<li><a href="http://ifeve.com/java-memory-model-7/">深入理解java内存模型（七）——总结</a></li>
-</ol>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E4%B8%8A%E6%B5%B7/">上海</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E4%BA%92%E8%81%94%E7%BD%91/">互联网</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
                   
                 </div>
               

@@ -203,7 +203,7 @@
                 <span class="post-meta">
   
   
-  <i class="fas fa-calendar"></i>&nbsp;Posted on September 14, 2019
+  <i class="fas fa-calendar"></i>&nbsp;Posted on September 29, 2019
   
   
     &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;0&nbsp;minutes
@@ -233,6 +233,101 @@
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
         <div class="posts-list">
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/04/26/win7%E4%BD%BF%E7%94%A8putty%E8%BF%9E%E6%8E%A5vitualbox%E4%B8%8B%E7%9A%84ubuntu/">
+                <h2 class="post-title">Win7使用Putty连接VitualBox下的Ubuntu</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on April 26, 2012
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  <p>推荐连接方式选择Host-only Adapter（主机模式）。设置方法是打开vitualbox，然后选中虚拟机，点击设置，找到网络，然后如下图选择</p>
+
+<p><a href="http://leaverimage.b0.upaiyun.com/20944_o.jpg"><img src="/images/6f75b3ea6509800b51958f720d2e3173390bc0a1.jpg" alt="" title="桥接设置" /></a></p>
+
+<p>设置完成后，启动ubuntu，然后执行
+<pre lang="php">ifconfig -a</pre>
+找到下面这行，可以看到虚拟机分配到的ip地址为192.168.56.101</p>
+
+<p><a href="http://leaverimage.b0.upaiyun.com/20945_o.jpg"><img src="/images/a57df08f6538afb4deebab8a4e08564bda4528e0.jpg" alt="" title="IP地址" /></a></p>
+
+<p>然后呢，可以在win7的cmd下 ping 192.168.56.101，看看可不可以ping通，</p>
+
+<p><a href="http://leaverimage.b0.upaiyun.com/20948_o.jpg"><img src="/images/b38276de90d54e82042a95ae97e40e658753d1d5.jpg" alt="" title="ping" /></a></p>
+
+<p>有返回所以是通的，</p>
+
+<p>然后在ubuntu下需要执行
+<pre lang="php">sudo apt-get install openssh-server</pre>
+Ubuntu缺省安装了openssh-client（用于ubuntu连接其他服务器）,所以在这里就不安装了，只安装server，用于其它电脑连接ubuntu，如果你的系统没有安装的话，再用apt-get安装上即可。</p>
+
+<p>然后确认sshserver是否启动了：
+<pre lang="php">ps -e |grep ssh</pre>
+如果只有ssh-agent行那ssh-server还没有启动，需要执行
+<pre lang="php">service sshd start</pre>
+，启动ssh服务器
+如果看到sshd那说明ssh-server已经启动了。</p>
+
+<p>然后下载putty，推荐去<a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">官方下载</a>，下载完成后发现是单文件，直接执行即可。</p>
+
+<p>输入ubuntu的ip点击open即可</p>
+
+<p><a href="http://leaverimage.b0.upaiyun.com/20950_o.jpg"><img src="/images/9901f47b9a70d8c61d8ea28aeb41985e4b92be9d.jpg" alt="" title="登录设置" /></a></p>
+
+<p>登录上以后执行命令会发现有乱码，鼠标右键点击putty窗口的标题栏，选择，&rdquo;Change Settings&rdquo;，&rdquo;Translation&rdquo;，在&rdquo;Received data assumed to be in which character set&rdquo;的下拉菜单里选择&rdquo;UTF-8&rdquo;。如下图</p>
+
+<p><a href="http://leaverimage.b0.upaiyun.com/20951_o.png"><img src="/images/6d08c4a6755cd31c3dc560f681162e46c797c02d.png" alt="" title="utf-8" /></a></p>
+
+<p>这样，下次又得重复同样的工作，为了保持配置，继续在上图选择左边的session</p>
+
+<p><a href="http://leaverimage.b0.upaiyun.com/20952_o.jpg"><img src="/images/d0111c6b9386937d97e77046d84dbd510a062982.jpg" alt="" title="session" /></a></p>
+
+<p>在saved session输入个名字，save即可，下次直接连这个就可以了</p>
+
+<p>参考：<a href="http://www.linuxidc.com/Linux/2011-12/49325.htm">http://www.linuxidc.com/Linux/2011-<sup>12</sup>&frasl;<sub>49325</sub>.htm</a></p>
+
+<p><a href="http://spark10000.blog.51cto.com/955100/547211">http://spark10000.blog.51cto.com/955100/547211</a></p>
+
+<p>至于putty的使用不在本文的计划范围内，以后有机会再写吧。</p>
+
+<p>每次遇到问题就体会到网络的信息实在太杂了。掌握搜索技术和对数据的快速筛选很重要。</p>
+
+<p>&nbsp;</p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/04/26/%E6%96%87%E6%AF%94%E4%B8%89%E5%AE%B6-%E6%9C%89%E5%85%B3%E5%A5%8B%E6%96%97/">
@@ -966,56 +1061,6 @@ d.最坏适应算法的优缺点：给文件分配分区后剩下的的空闲区
                     <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/04/17/php%E7%9A%84%E4%B8%80%E4%BA%9B%E7%9F%A5%E8%AF%86%E7%82%B9/">
-                <h2 class="post-title">php的一些知识点</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on April 17, 2012
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  一.php中单双引号的区别
- &rdquo;&rdquo; 双引号里面的字段会经过编译器解释，然后再当作HTML代码输出。 &rdquo; 单引号里面的不进行解释，直接输出。 从字面意思上就可以看出，单引号比双引号要快了。单引号支持\&lsquo;和\的转义，但其他一些转义字符就必须是在双引号里了。 例如： $name=&lsquo;my name is bystander&rsquo;; echo $name //结果是:my name is bystander echo &lsquo;$name&rsquo; //结果是:$name echo &ldquo;$name&rdquo; //结果是:my name is bystander  二.require和include的区别 在于，出现错误时，require是error,也就是说脚本会停止执行，而include是warning。也就说说代码会继续执行，另外，无论require的位置如何。即使是放在一个if代码块里面。他也会将指定文件包含进来。。即使该if部分不执行。顺带说下include 和include_once。其实类似于c里面的ifdef。。就是只包含一次。不重复包含。  三。php类 php类的构造函数命名为_construct.析构函数为_destruct，需要调用父类的构造函数时，使用parent::_construct()来调用
-四。pear包 PEAR是&rdquo;PHP Extension and Application Repository&rdquo;的缩写，也就是一个PHP扩展和应用的管理工具， 具体可参考：http://www.berlinix.com/php_pear.html
-五。PDO PDO(PHP Data Objects)扩展为PHP访问数据库定义了一个轻量级的、一致性的接口，它提供了一个数据访问抽象层，这样，无论使用什么数据库，都可以通过一致的函数执行查询和获取数据。PDO随PHP5.1发行，在PHP5.0的PECL扩展中也可以使用。其实就是一个访问数据库的一个类，连数据库的时候实例一个。调用方法就这样。前提是这个装好了。 linux下具体可以参考：LINUX下手动安装PDO_MYSQL window下和例子（例子也可以在linux下使用）参考此文：PHP5中PDO的简单使用
-六。Zend
- 准确地讲 Zend 框架究竟是什么呢？Zend 框架具有以下特征： 是基于 PHP 建立的。 是面向对象的。 使用 MVC 范例。 具有开放源码贡献者。 有贡献者负责保证他们的代码不是他人的知识产权。  通过建立 MVC 模式，Zend 框架的目标是使编程生活更加轻松，这不仅体现在通用领域，而且对您始终想要做的具体的事情也是如此，比如访问数据库或输出 PDF 文件。
-具体可参考：理解 Zend 框架，第 1 部分: 基础
-                  <a href="https://leizhiyuan.github.io/2012/04/17/php%E7%9A%84%E4%B8%80%E4%BA%9B%E7%9F%A5%E8%AF%86%E7%82%B9/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/php/">php</a>&nbsp;
                   
                 </div>
               

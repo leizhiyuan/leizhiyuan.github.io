@@ -224,6 +224,132 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/06/19/get%E5%92%8Cpost%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%E5%8F%8A%E4%B8%BA%E4%BB%80%E4%B9%88%E7%BD%91%E4%B8%8A%E7%9A%84%E5%A4%9A%E6%95%B0%E7%AD%94%E6%A1%88%E9%83%BD%E6%98%AF%E9%94%99%E7%9A%84/">
+                <h2 class="post-title">GET和POST有什么区别？及为什么网上的多数答案都是错的。</h2>
+                
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on June 19, 2012
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  
+
+<p>今天突然看到很多好的技术文章，转载收藏备用分享。</p>
+
+<p>如果有人问你，<strong>GET</strong><strong>和POST</strong><strong>，有什么区别？你会如何回答？</strong></p>
+
+<h2 id="我的经历">我的经历</h2>
+
+<p>前几天有人问我这个问题。我说GET是用于获取数据的，POST，一般用于将数据发给服务器之用。</p>
+
+<p>这个答案好像并不是他想要的。于是他继续追问有没有别的区别？我说这就是个名字而已，如果服务器支持，他完全可以把GET改个名字叫GET2。他反问道，那就是单纯的名字上的区别喽？我想了想，我觉得如果说再具体的区别，只能去看RFC文档了，还<strong>要取决于服务器（指</strong><strong>Apache</strong><strong>，IIS</strong><strong>）的具体实现</strong>。但我不得不承认，我的确没有仔细看过HTTP的RFC文档。于是我说，我对HTTP协议不太熟悉。这个问题也就结束了。</p>
+
+<h2 id="最普遍的答案">最普遍的答案</h2>
+
+<p>回来之后寻思了很久，他到底是想问我什么？我一直就觉得GET和POST没有什么除了语义之外的区别，自打我开始学习Web编程开始就是这么理解的。</p>
+
+<p>可能很多人都已经猜到了，他要的答案是：</p>
+
+<p>1. GET使用URL或Cookie传参。而POST将数据放在BODY中。</p>
+
+<p>2. GET的URL会有长度上的限制，则POST的数据则可以非常大。</p>
+
+<p>3. POST比GET安全，因为数据在地址栏上不可见。</p>
+
+<p>但是很不幸，<strong>这些区别全是错误的，</strong>更不幸的是，<a href="https://www.google.com/search?q=get%E5%92%8Cpost%E7%9A%84%E5%8C%BA%E5%88%AB&amp;amp;ie=utf-8&amp;amp;oe=utf-8&amp;amp;aq=t&amp;amp;rls=org.mozilla:zh-CN:official&amp;amp;client=firefox-a&amp;amp;channel=fflb">这个答案还是Google搜索的头版头条</a>，然而我根本没想着这些是答案，因为在我看来他们都是错的。我来一一解释一下。</p>
+
+<h3 id="get和post与数据如何传递没有关系">GET和POST与数据如何传递没有关系</h3>
+
+<p>GET和POST是由<a href="http://www.w3.org/Protocols/rfc2616/rfc2616.html">HTTP协议定义</a>的。在HTTP协议中，Method和Data（URL， Body， Header）是正交的两个概念，也就是说，<strong>使用哪个Method与应用层的数据如何传输是没有相互关系的</strong>。</p>
+
+<p>HTTP没有要求，如果Method是POST数据就要放在BODY中。也没有要求，如果Method是GET，数据（参数）就一定要放在URL中而不能放在BODY中。</p>
+
+<p>那么，网上流传甚广的这个说法是从何而来的呢？我<a href="http://www.w3.org/TR/REC-html40/interact/forms.html#h-17.13.1">在HTML标准中，找到了相似的描述</a>。这和网上流传的说法一致。但是这只是HTML标准对HTTP协议的用法的约定。怎么能当成GET和POST的区别呢？</p>
+
+<p>而且，现代的Web Server都是支持GET中包含BODY这样的请求。虽然这种请求不可能从浏览器发出，但是现在的Web Server又不是只给浏览器用，已经完全地超出了HTML服务器的范畴了。</p>
+
+<p>知道这个有什么用？我不想解释了，有时候就得自己痛一次才记得住。</p>
+
+<h3 id="http协议对get和post都没有对长度的限制">HTTP协议对GET和POST都没有对长度的限制</h3>
+
+<p>HTTP协议明确地指出了，HTTP头和Body都没有长度的要求。而对于URL长度上的限制，有两方面的原因造成：</p>
+
+<p>1. 浏览器。据说早期的浏览器会对URL长度做限制。据说IE对URL长度会限制在2048个字符内（流传很广，而且无数同事都表示认同）。但我自己试了一下，我构造了90K的URL通过IE9访问live.com，是正常的。网上的东西，哪怕是Wikipedia上的，也不能信。</p>
+
+<p>2. 服务器。URL长了，对服务器处理也是一种负担。原本一个会话就没有多少数据，现在如果有人恶意地构造几个几M大小的URL，并不停地访问你的服务器。服务器的最大并发数显然会下降。另一种攻击方式是，把告诉服务器Content-Length是一个很大的数，然后只给服务器发一点儿数据，嘿嘿，服务器你就傻等着去吧。哪怕你有超时设置，这种故意的次次访问超时也能让服务器吃不了兜着走。有鉴于此，多数服务器出于安全啦、稳定啦方面的考虑，会给URL长度加限制。但是这个限制是针对所有HTTP请求的，与GET、POST没有关系。</p>
+
+<h3 id="安全不安全和get-post没有关系">安全不安全和GET、POST没有关系</h3>
+
+<p>我觉得这真是中国特色。我讲个小段子，大家应该可以体会出这个说法多么的可笑。</p>
+
+<p>觉得POST数据比GET数据安全的人会说</p>
+
+<p><em>    “防君子不防小人；中国小白多，能防小白用户就行了。”</em></p>
+
+<p>_    “哼，”_我不以为然，_“那你怎么不说，<strong>URL</strong>参数都Encode<strong>过了，或是Base64</strong>一下，小白也看不懂啊。”_</p>
+
+<p>那人反驳道，_“<strong>Encode</strong>太简单了，聪明点儿的小白很容易就可以Decode_<em>并修改掉。”</em></p>
+
+<p>我笑道，_“五十步笑百步耳，再聪明点儿的小白还会截包并重发呢，<strong>Opera</strong>就有这功能。”_</p>
+
+<p>那人阴险地祭出<strong>神器——最终解释权</strong>，说，<strong><em>“这个不算小白。”</em></strong></p>
+
+<p>我日啊。</p>
+
+<h2 id="最后一点儿感想">最后一点儿感想</h2>
+
+<p>我之前一直做Windows桌面应用，对Web开发无甚了解，直到一年多前转做服务器端开发，才开始接触到HTTP。（注意，我说的是HTTP，不是HTML。服务器开放接口是基于REST理念设计的，使用的协议是HTTP，但是传输的内容不是HTML。这不是Web Server，而是一个Web Service）</p>
+
+<p>所以我对于GET和POST的理解，是纯粹地来源于HTTP协议。他们只有<strong>一点</strong>根本区别，简单点儿说，一个用于获取数据，一个用于修改数据。具体的请参考RFC文档。</p>
+
+<p>如果一个人一开始就做Web开发，很可能把HTML对HTTP协议的使用方式，当成HTTP协议的唯一的合理使用方式。从而犯了以偏概全的错误。</p>
+
+<p>可能有人会觉得我钻牛角尖。我只是不喜欢模棱两可，不喜欢边界不清、概念不明，不喜欢“拿来主义”，也不喜欢被其它喜欢钻牛角尖的人奚落得无地自容。</p>
+
+<p>“知之为知之，不知为不知，是知也。”</p>
+
+<p>原文链接：<a href="http://www.cnblogs.com/nankezhishi/archive/2012/06/09/2542968.html">http://www.cnblogs.com/nankezhishi/archive/2012/06/09/2542968.html</a></p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%94%B6%E8%97%8F/">收藏</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/06/19/sass%E7%94%A8%E6%B3%95%E6%8C%87%E5%8D%97/">
                 <h2 class="post-title">SASS用法指南</h2>
                 
@@ -805,66 +931,6 @@ on update cascade
                     <a href="https://leizhiyuan.github.io//tags/%E7%88%B1%E6%83%85/">爱情</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E7%94%9F%E6%B4%BB/">生活</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/05/31/%E7%94%B5%E5%BD%B1%E5%90%84%E7%A7%8D%E7%89%88%E6%9C%AC%E8%AF%A6%E8%A7%A3/">
-                <h2 class="post-title">电影各种版本详解</h2>
-                
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on May 31, 2012
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  这是今天早上突然想到的。因为最近一下电影网站恶意混淆各种版本，比如拿个枪版就说个DVD，骗下载量。特此找到此文。分享之。国内作者太无良啊。转载从来不注明出处。找原始出处花了一些时间。原文非常乱。音视频格式也交错着介绍。我删掉了。想看的去原文看吧。
-1.CAM（枪版）——珍爱生命，远离枪版 CAM通常是用数码摄像机从电影院盗录。有时会使用 小三角架，但大多数时候不可能使用，所以摄像机会抖动。因此我们看到画面通常偏暗人物常常会失真，下方的字幕时常会出现倾斜。 由于声音是从摄像机自带的话筒录制，所以经常会录到观众的笑声等声音。因为这些因素，图象和声音质量通常都很差。 举例说明：Journey.To.The.Center.Of.The.Earth.CAM.XViD-CAMERA（地心游记3D枪版）
-2.TS——只比枪版好一点 TS 与CAM版的标准是相同的。 但它使用的是外置音源（一般是影院座椅上为听力不好的人设的耳机孔）这个音源不能保证是好的音源，因为受到很多背景噪音的干扰。TS是在空的影院或是用专 业摄像机在投影室录制，所以图象质量可能比CAM好。但画面的起伏很大。常出现的有一般TS版和经过修复清晰TS版。 举例说明：Iron.Man.PROPER.TS.XviD-iLG（钢铁侠TS版）
-3.TC——基本也可以忽略 TC使用电视电影机从胶片直接数字拷贝。画面质量还不错,但亮度不足，有些昏暗。很多时候制作TC使用的音源来自TS，因此音质很差，但画面质量远好过TS。如果不是太讲究的话TC版还是不错的选择。 举例说明：Madagascar.2005.TC.XviD.AC3.avi（马达加斯加TC版）
-4.DVDSCR——最差也要看这个 预 览版的或者是测试版的DVD，非正式出版的版本。从预览版 DVD 中获取，通过mpeg-4技术进行高质量压缩的视频格式。能比DVDRip早发布，但画质稍差。（经常有一些不在黑边里在屏幕下方滚动的消息，包含版权和 反盗版电话号码 ，会影响观看。）如果没有严格的划分它的画质应与TC版差不多。 举例说明：Quantum.of.Solace.REPACK.DVDSCR.XviD-COALiTiON.avi（007大破量子危机DVDSCR版）
-5.DVDRIP——比较理想的版本 DVDRIP是从最终版的DVD转制。质量应该是最好的。将DVD的视频、音频、字幕剥离出来，再经过压缩或者其他处理，然后重新合成成多媒体文件。一般来说，DVDrip由影音文件(后缀为avi)和字幕文件组成。 举例说明：Pineapple.Express.2008.DVDRip.XviD-ARROW.avi（菠萝快车DVDRip版）
-6.HR-HDTV——不错的选择 HR-HDTV是用DivX/XviD/x264等MPEG4压缩技术对HDTV的视频图像进行高质量压缩,然后将视频、音频部分封装成一个.avi或.mkv文件，最后再加上外挂的字幕文件而形成的视频格式。 画面清晰度更高。
-7.HDRIP——BD之下，万人之上 HDRIP=HD-DVD Rip，即HD-DVD高清转制，效果好于一般的高清转制。 举例说明：Stardust.2007.HDRip.x264.a720.AC3-C@SiLU.mkv（星尘HDrip版）
-8.BDRIP——高清之下，普通清晰度的王者 BDrip = Blue-ray Disc Rip，即蓝光高清转制，效果比HDRIP还要好。 举例说明：Awake.2007.BDRip.X264-TLF.mkv（夺命手术BDrip版）
-9.R5——心急的您可以看这个 R5一般大都是俄罗斯5区版，由于北美大片在俄罗斯发行的语种经常配音为俄罗斯语，因此网络上会出现采用R5的视频＋枪版TS的英语原声音频＝合成版本（所以音效差），当然，也经常有未配音过音效好的R5，遇到合成版本，在发布时会特别注明音效。 举例说明：Get.Smart.R5.LINE.XViD-mVs.avi（糊涂侦探R5版）
-10、BD（蓝光版） BD是Blue Disk的简称，翻译成中文是“蓝光影碟”的意思。就是从蓝光影碟转录的视频和音频，画面清晰度很高。
-11.TVRIP——TV转制 所谓TVRip是从电视(最好是从数码有线电视/卫星电视捕捉)转制的电视剧及接收卫星接收到的节目，然后通过电视卡进行捕捉，压缩成文件，我们看的很多综艺及体育节目都是TVRip。有些电视剧也会使用TVRip的方式进行发布。
-12.720P 720P 是美国电影电视工程师协会(SMPTE)制定的最高等级高清数字电视的格式标准，有效显示格式为：1280×720.SMPTE(美国电影电视工程协会) 将数字高清信号数字电视扫描线的不同分为1080P、1080I、720P(i是interlace,隔行的意思，p是Progressive,逐行的意 思)。720P是一种在逐行扫描下达到1280×720的分辨率的显示格式。是数字电影成像技术和计算机技术的融合。这是高清视频的最低标准。 举例说明：Le.Fabuleux.Destin.d&rsquo;Amélie.Poulain.2001.Blu-ray.720p.x264.DD51-HiS@SiLUHD.mkv（天使爱美丽720P）
-13.1080I 即1080线隔行扫描，分辨率为1920×1080，仅次于1080P 举例说明：close.encounters.of.the.third.kind.1080i.disk1.ts（第三类接触1080i版本）
-14.1080P 1080P是美国电影电视工程师协会（SMPTE）制定的最高等级高清数字电视的格式标准，有效显示格式为：1920×1080，像素数达到207．36万。 1080P带来的高画质给消费者带来的是真正的家庭影院的视听享受，由于它向下全面兼容其它高清格式，通用性非常强，保证了在未来十几年的时间里产品不会过时，具有很好的超前性。随着1080P片源的不断涌现，1080P产品的优势已经显现出来。 举例说明：Resident.Evil.HD.DVD.REMUX.1080p.MPEG-2.DTS-HD.F@Silu.disk1.ts（生化危机1，1080P版本）
-15.REPACK——重新打包版 如果发布组织发布了一个坏的版本，他们会发布REPACK来解决这些问题。 举例说明：The.Eye.2008.REPACK.BDRip.X264-TLF-cd1.mkv（美版见鬼，repack版本）
-16.REMUX——无损版 Remux的意思是无损的提取出HD-DVD 和 BluRay-DVD里面的视频数据和音频数据，封装到我们熟悉的TS或者AVI文件中。 HD- DVD和 Blu-Ray Rip、Re都是把原始的高清数据进行压缩和重编码，从1080P压缩到720P, 20G左右的片子压缩到了4.
-                  <a href="https://leizhiyuan.github.io/2012/05/31/%E7%94%B5%E5%BD%B1%E5%90%84%E7%A7%8D%E7%89%88%E6%9C%AC%E8%AF%A6%E8%A7%A3/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%94%9F%E6%B4%BB/">生活</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%94%B5%E5%BD%B1/">电影</a>&nbsp;
                   
                 </div>
               

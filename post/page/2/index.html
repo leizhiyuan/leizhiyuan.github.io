@@ -203,7 +203,7 @@
                 <span class="post-meta">
   
   
-  <i class="fas fa-calendar"></i>&nbsp;Posted on September 14, 2019
+  <i class="fas fa-calendar"></i>&nbsp;Posted on September 29, 2019
   
   
     &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;0&nbsp;minutes
@@ -233,6 +233,48 @@
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
         <div class="posts-list">
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2018/10/20/27-years-old-man/">
+                <h2 class="post-title">27 Years Old Man</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on October 20, 2018
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  <p>又是一年，工作进入了第5年了。身体各方面略有一些下降，生活上，也未能彻底稳定下来。</p>
+
+<p>由于各方面的原因，博客基本荒废，最近抽空搞成了go 版本的 hugo 生成静态网站的形式。速度快很多，也没有hexo那么折腾，写作的欲望有一些上升。下一年稍微还是写几篇。</p>
+
+<p>2019年，希望几个事情能有一些推进，其他事情一切顺利，顺便祝自己生日快乐。</p>
+
+                
+              </div>
+
+              
+
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2018/05/13/skywalking%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">
@@ -757,77 +799,6 @@ brew install pssh brew install homebrew/dupes/expect brew install ssh-copy-id �
                     <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/mac/">mac</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2016/08/14/%E4%BF%AE%E6%94%B9mac%E5%8D%95%E5%BA%94%E7%94%A8%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E7%9A%84%E9%99%90%E5%88%B6/">
-                <h2 class="post-title">修改mac单应用创建线程的限制</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on August 14, 2016
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  <p>最近遇到一个问题,公司的 java 服务端应用,启动后,通过 <code>jstack pid |grep nid -c</code>,可以看到大概创建了2044个线程,然后此时应用就会报错,提示无法创建更多线程, jvm 开始抛错.
-查看 mac 的内存,发现还是够的.因为一般认为可创建的线程数=(总内存-其他占用的内存)/线程大小,所以内存够的情况下,应该是能创建的.</p>
-
-<p>google 一圈,发现mac 对单线程创建的线程是有限制的.理由应该是为了保持系统稳定性.主要有两个参数</p>
-
-<p><code>sysctl kern.num_threads</code> 这个可以看一下,说明了系统能够创建的总共的线程,单个应用能够创建的线程是<code>sysctl kern.num_taskthreads</code>,第二个参数就是导致我们创建不出来更多线程的原因,
-因为2044+一些 gc 的线程,基本上刚刚达到这个极限.</p>
-
-<p>那么要么改程序,要么改参数.改程序这是不可能的..因为只有 mac 会有这个问题..该参数尝试通过<code>sudo sysctl -w kern.num_taskthreads=4096</code>,修改,会发现提示是只读属性.google 了一圈,无解.</p>
-
-<p>最终意外解决..</p>
-
-<p>参考这里<a href="https://support.apple.com/en-us/HT202528">开启性能模式</a></p>
-
-<ol>
-<li><code>nvram boot-args</code></li>
-<li><code>sudo nvram boot-args=&quot;serverperfmode=1 $(nvram boot-args 2&gt;/dev/null | cut -f 2-)&quot;</code></li>
-<li>重启</li>
-</ol>
-
-<p>如果想要恢复的话: <code>sudo nvram boot-args=&quot;$(nvram boot-args 2&gt;/dev/null | sed -e $'s/boot-args\t//;s/serverperfmode=1//')&quot;</code></p>
-
-<p>当时各种搜索,加打apple 支持电话.无解.搜索意外看到这个说明,说开启之后,可以支持更多服务应用之类的.猜测应该会改这个值..果然..改完之后,直接重启,这个限制会变成5000..完美解决..理论上,应该通过继续修改这个参数
-是可以自定义这个值的.不过还没尝试.</p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E5%85%B7/">工具</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%AE%B0%E5%BD%95/">记录</a>&nbsp;
                   
                 </div>
               

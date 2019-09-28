@@ -224,6 +224,54 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/04/17/php%E7%9A%84%E4%B8%80%E4%BA%9B%E7%9F%A5%E8%AF%86%E7%82%B9/">
+                <h2 class="post-title">php的一些知识点</h2>
+                
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on April 17, 2012
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  一.php中单双引号的区别
+ &rdquo;&rdquo; 双引号里面的字段会经过编译器解释，然后再当作HTML代码输出。 &rdquo; 单引号里面的不进行解释，直接输出。 从字面意思上就可以看出，单引号比双引号要快了。单引号支持\&lsquo;和\的转义，但其他一些转义字符就必须是在双引号里了。 例如： $name=&lsquo;my name is bystander&rsquo;; echo $name //结果是:my name is bystander echo &lsquo;$name&rsquo; //结果是:$name echo &ldquo;$name&rdquo; //结果是:my name is bystander  二.require和include的区别 在于，出现错误时，require是error,也就是说脚本会停止执行，而include是warning。也就说说代码会继续执行，另外，无论require的位置如何。即使是放在一个if代码块里面。他也会将指定文件包含进来。。即使该if部分不执行。顺带说下include 和include_once。其实类似于c里面的ifdef。。就是只包含一次。不重复包含。  三。php类 php类的构造函数命名为_construct.析构函数为_destruct，需要调用父类的构造函数时，使用parent::_construct()来调用
+四。pear包 PEAR是&rdquo;PHP Extension and Application Repository&rdquo;的缩写，也就是一个PHP扩展和应用的管理工具， 具体可参考：http://www.berlinix.com/php_pear.html
+五。PDO PDO(PHP Data Objects)扩展为PHP访问数据库定义了一个轻量级的、一致性的接口，它提供了一个数据访问抽象层，这样，无论使用什么数据库，都可以通过一致的函数执行查询和获取数据。PDO随PHP5.1发行，在PHP5.0的PECL扩展中也可以使用。其实就是一个访问数据库的一个类，连数据库的时候实例一个。调用方法就这样。前提是这个装好了。 linux下具体可以参考：LINUX下手动安装PDO_MYSQL window下和例子（例子也可以在linux下使用）参考此文：PHP5中PDO的简单使用
+六。Zend
+ 准确地讲 Zend 框架究竟是什么呢？Zend 框架具有以下特征： 是基于 PHP 建立的。 是面向对象的。 使用 MVC 范例。 具有开放源码贡献者。 有贡献者负责保证他们的代码不是他人的知识产权。  通过建立 MVC 模式，Zend 框架的目标是使编程生活更加轻松，这不仅体现在通用领域，而且对您始终想要做的具体的事情也是如此，比如访问数据库或输出 PDF 文件。
+具体可参考：理解 Zend 框架，第 1 部分: 基础
+                  <a href="https://leizhiyuan.github.io/2012/04/17/php%E7%9A%84%E4%B8%80%E4%BA%9B%E7%9F%A5%E8%AF%86%E7%82%B9/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/php/">php</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/04/16/php%E5%92%8Cmysql%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E7%BB%86%E8%AF%B4php/">
                 <h2 class="post-title">《PHP和MySQL程序设计》&amp; 《细说PHP》</h2>
                 
@@ -680,69 +728,6 @@ import android.widget.ViewFlipper;</p>
               
             </article>
           
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/04/11/%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E4%B9%8B%E9%81%93%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
-                <h2 class="post-title">《代码整洁之道》读书笔记</h2>
-                
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on April 11, 2012
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  <div>我们是一群代码猴子，上窜下跳，自以为领略了编程的真谛，可惜，当我们抓着几只酸桃子，得意洋洋坐到树枝上，却对自己造成的混乱熟视无睹，那堆“可以运行”的乱麻程序，就在我们的眼皮底下慢慢腐烂。
-<div></div>
-<div>代码永存</div>
-<div></div>
-<div>勒布朗法则：稍后等于永不（later equals never）</div>
-<div></div>
-<div>一行修改，涉及到了数百个模块，为什么会发生，好代码变成糟糕的代码，不是愚蠢的经历，苛求的用户，而是我们自作自受，我们太不专业了。</div>
-<div></div>
-<div>能分辨出整洁代码和肮脏代码，并不意味着你就能写出整洁的代码。</div>
-<div></div>
-<div>漂亮的代码让编程语言就像是专门为解决那个问题而存在。</div>
-<div></div>
-<div>命名的意义</div>
-<div>名副其实：如果名字竟然要注释来补充说明，那就不算名副其实。</div>
-<div>避免误导：不要使用过于相似，或者与程序员直觉相悖的命名。</div>
-<div>做有意义的区分。注释都是冗余，Variable一词永远不要出现在变量名中。</div>
-<div>使用读的出来的名称</div>
-<div>使用可搜索的名称。</div>
-<div>避免思维映射</div>
-<div></div>
-<div>名字长短应与其作用域大小相对应，单字母名称仅用于短方法中的本地变量。</div>
-<div>
-                  <a href="https://leizhiyuan.github.io/2012/04/11/%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E4%B9%8B%E9%81%93%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
         </div>
 
         
@@ -752,6 +737,10 @@ import android.widget.ViewFlipper;</p>
                 <a href="https://leizhiyuan.github.io/page/30/">&larr; Newer Posts</a>
               </li>
             
+            
+              <li class="next">
+                <a href="https://leizhiyuan.github.io/page/32/">Older Posts &rarr;</a>
+              </li>
             
           </ul>
         
