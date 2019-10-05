@@ -224,6 +224,72 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2013/09/19/maven%E4%BB%93%E5%BA%93%E8%AF%A6%E8%A7%A3/">
+                <h2 class="post-title">Maven仓库详解</h2>
+                
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on September 19, 2013
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  本文由我翻译合并了多篇文章，整理成一篇。
+一.本地仓库(Local Repository) 本地仓库就是一个本机的目录，这个目录被用来存储我们项目的所有依赖（插件的jar包还有一些其他的文件），简单的说，当你build一个Maven项目的时候，所有的依赖文件都会放在本地仓库里，仓库供所有项目都可以使用
+默认情况下，本地仓库在.m2目录，windows下的话就是你的用户名目录下的.m2目录
+1.更新本地仓库目录 找到你的MAVEN_HOME目录下的conf/setting.xml文件，更新localRepository节点 &lt;settings&gt; &lt;!&ndash; localRepository | The path to the local repository maven will use to store artifacts. | | Default: ~/.m2/repository &lt;localRepository&gt;/path/to/local/repo&lt;/localRepository&gt; &ndash;&gt;
+&lt;localRepository&gt;D:/maven/repo&lt;/localRepository&gt;
+2.保存一下 完成了。新的本地仓库被放在了D:/maven/repo
+看一下这个目录
+
+二.中央仓库(central repository) 当我们build一个Maven项目的时候，Maven会检查我们的pom.xml文件，来定义项目的依赖，然后Maven会在本地仓库里查找，如果没有找到，就去maven的中央库去下载，地址是
+http://search.maven.org/#browse
+看起来是这样的
+
+&nbsp;
+注意啊，虽然这个是新的中央仓库，但有时候还是会从_“http://repo1.maven.org/maven/_这个旧仓库下载东西，不过不要紧，理解就行了
+三.远程仓库(Remote Respository) 在Maven中，当你在pom.xml中生命的依赖既不在本地库，也不在中央库的时候，就会报错。
+1.例子 org.jvnet.localizer这个包仅在java.net的仓库里有(以前是，现在中央仓库也有了。但理解就行) &lt;dependency&gt; &lt;groupId&gt;org.jvnet.localizer&lt;/groupId&gt; &lt;artifactId&gt;localizer&lt;/artifactId&gt; &lt;version&gt;1.8&lt;/version&gt; &lt;/dependency&gt; 当我们build的时候，会失败，并输出未找到错误信息
+2.声明java.net仓库 为了告诉Maven从远程仓库里获取依赖，我们需要声明一个远程仓库，在pom.xml里这样写 &lt;repositories&gt; &lt;repository&gt; &lt;id&gt;java.net&lt;/id&gt; &lt;url&gt;https://maven.java.net/content/repositories/public/&lt;/url&gt; &lt;/repository&gt; &lt;/repositories&gt; 这样，Maven搜索依赖的顺序就是：
+1）搜索本地仓库，没有找到，就去第2步，否则退出
+2）搜索中央仓库，没有找到，就去第3步，否则退出
+3）去java.net远程仓库获取，没有找到，就报错，否则退出
+补充：JBoss也有个远程仓库，可以如下配置： &lt;project &hellip;&gt; &lt;repositories&gt; &lt;repository&gt; &lt;id&gt;JBoss repository&lt;/id&gt; &lt;url&gt;http://repository.
+                  <a href="https://leizhiyuan.github.io/2013/09/19/maven%E4%BB%93%E5%BA%93%E8%AF%A6%E8%A7%A3/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/maven/">maven</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2013/09/19/maven%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">
                 <h2 class="post-title">Maven安装教程</h2>
                 
@@ -724,54 +790,6 @@ n命令是输出当前行，然后读入下一行到pattern space的意思，这
 4.向每行末尾添加内容 $ sed &rsquo;s/$/.Rs/&rsquo; file RE01:EMP1:25:2500.Rs RE02:EMP2:26:2650.Rs RE03:EMP3:24:3500.Rs RE04:EMP4:27:2900.Rs 这里，先匹配行尾，然后把&rdquo;.Rs&rdquo;添加到行尾
 5.在每行开头添加空格 $ sed &rsquo;s/^/ /&rsquo; file RE01:EMP1:25:Rs.2500 RE02:EMP2:26:Rs.2650 RE03:EMP3:24:Rs.3500 RE04:EMP4:27:Rs.2900 还记得前面说过的么，sed默认不影响原始文件，要是想更新原始文件，请加-i参数 $ sed -i &rsquo;s/^/ /&rsquo; file $ cat file RE01:EMP1:25:Rs.
                   <a href="https://leizhiyuan.github.io/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%BA%94%E7%AF%87%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E7%BB%AD/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/linux/">linux</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/shell/">shell</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%9B%9B%E7%AF%87%E9%80%89%E6%8B%A9%E6%80%A7%E6%89%93%E5%8D%B0/">
-                <h2 class="post-title">[译]Unix sed实用教程第四篇–选择性打印</h2>
-                
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on August 10, 2013
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  本文，我们将会学习如何选择性的打印（其实，这里的打印是print，也就是输出到标准输出的意思），用到的示例文件是： $ cat file Gmail 10 Yahoo 20 Redif 18 1.打印所有内容 $ sed &ldquo; file Gmail 10 Yahoo 20 Redif 18 一对单引号，没有任何参数即可
-2.如何打印包含Gmail的那一行.(grep也可以实现这个功能) $ sed &lsquo;/Gmail/p&rsquo; file Gmail 10 Gmail 10 Yahoo 20 Redif 18 在斜线里面，我们指定正则匹配模式，p的意思呢，就是print，打印的意思，也就是打印包含Gmail这一行，但是我们看到Gmail打印了两次，为什么，因为sed的默认行为是在解析完一行之后就把他输出出来，也就是对于Gmail这一行，先执行p解析，解析完成后再默认打印一次，就打印了两次，而其他的，没有命令解析，直接读入完成后输出即可。
-如果得到期望的结果呢？ $ sed -n &lsquo;/Gmail/p&rsquo; file Gmail 10 -n参数会取消sed的默认打印行为，所以就ok了
-3.删除包含Gmail的那一行。（grep -v也有同样的效果） $ sed &rsquo;/Gmail/d&rsquo; file Yahoo 20 Redif 18 d就是delete的意思，不多解释，
-同样，要想删除某一指定的行 $ sed &lsquo;1d&rsquo; file Yahoo 20 Redif 18 4.打印直到模式匹配，这里我们从头一直打印到Yahoo $ sed &rsquo;/Yahoo/q&rsquo; file Gmail 10 Yahoo 20 q就是quit的意思，这条命令就是对于前面的行都没啥可解析的，执行默认的打印即可，一到碰到Yahoo这一行，打印完成，就停止，退出，因此，就是上面的了
-                  <a href="https://leizhiyuan.github.io/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%9B%9B%E7%AF%87%E9%80%89%E6%8B%A9%E6%80%A7%E6%89%93%E5%8D%B0/" class="post-read-more">[Read More]</a>
                 
               </div>
 

@@ -203,7 +203,7 @@
                 <span class="post-meta">
   
   
-  <i class="fas fa-calendar"></i>&nbsp;Posted on September 29, 2019
+  <i class="fas fa-calendar"></i>&nbsp;Posted on October 6, 2019
   
   
     &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;0&nbsp;minutes
@@ -233,6 +233,56 @@
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
         <div class="posts-list">
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%9B%9B%E7%AF%87%E9%80%89%E6%8B%A9%E6%80%A7%E6%89%93%E5%8D%B0/">
+                <h2 class="post-title">[译]Unix sed实用教程第四篇–选择性打印</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on August 10, 2013
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  本文，我们将会学习如何选择性的打印（其实，这里的打印是print，也就是输出到标准输出的意思），用到的示例文件是： $ cat file Gmail 10 Yahoo 20 Redif 18 1.打印所有内容 $ sed &ldquo; file Gmail 10 Yahoo 20 Redif 18 一对单引号，没有任何参数即可
+2.如何打印包含Gmail的那一行.(grep也可以实现这个功能) $ sed &lsquo;/Gmail/p&rsquo; file Gmail 10 Gmail 10 Yahoo 20 Redif 18 在斜线里面，我们指定正则匹配模式，p的意思呢，就是print，打印的意思，也就是打印包含Gmail这一行，但是我们看到Gmail打印了两次，为什么，因为sed的默认行为是在解析完一行之后就把他输出出来，也就是对于Gmail这一行，先执行p解析，解析完成后再默认打印一次，就打印了两次，而其他的，没有命令解析，直接读入完成后输出即可。
+如果得到期望的结果呢？ $ sed -n &lsquo;/Gmail/p&rsquo; file Gmail 10 -n参数会取消sed的默认打印行为，所以就ok了
+3.删除包含Gmail的那一行。（grep -v也有同样的效果） $ sed &rsquo;/Gmail/d&rsquo; file Yahoo 20 Redif 18 d就是delete的意思，不多解释，
+同样，要想删除某一指定的行 $ sed &lsquo;1d&rsquo; file Yahoo 20 Redif 18 4.打印直到模式匹配，这里我们从头一直打印到Yahoo $ sed &rsquo;/Yahoo/q&rsquo; file Gmail 10 Yahoo 20 q就是quit的意思，这条命令就是对于前面的行都没啥可解析的，执行默认的打印即可，一到碰到Yahoo这一行，打印完成，就停止，退出，因此，就是上面的了
+                  <a href="https://leizhiyuan.github.io/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%9B%9B%E7%AF%87%E9%80%89%E6%8B%A9%E6%80%A7%E6%89%93%E5%8D%B0/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/linux/">linux</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/shell/">shell</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%89%E7%AF%87%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/">
@@ -816,72 +866,6 @@ IMP-00000: 未成功终止导入</pre>
                     <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/06/02/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B45%E6%9C%885%E6%97%A5%E7%BB%BC%E5%90%88%E7%AE%97%E6%B3%95%E9%A2%98%E8%AF%A6%E8%A7%A3/">
-                <h2 class="post-title">阿里巴巴5月5日综合算法题详解</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on June 2, 2013
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  之前参加了阿里的笔试和电面，让后天那个敏感的日子去参加现场面，就去看了一下那天笔试的最后一道综合题，看着网上清一色最后一道题不知道从哪转的答案，不忍直视，一看代码就是错的，最直接的就是求中位数连奇偶性都不判断，直接处以2..这，另外当在无法整除的情况下，数据结果错误。
-&nbsp;
-这道题的大意是：有一个淘宝商户，在某城市有n个仓库，每个仓库的储货量不同，现在要通过货物运输，将每次仓库的储货量变成一致的，n个仓库之间的运输线路围城一个圈，即1-&gt;2-&gt;3-&gt;4-&gt;&hellip;-&gt;n-&gt;1-&gt;&hellip;，货物只能通过连接的仓库运输，设计最小的运送成本（运货量*路程）达到淘宝商户的要求，并写出代码。
-解题思路：
-假设n个仓库的初始储货量分别为warehouse[1],warehouse[2],&hellip;,warehouse[n] 计算平均储货量 average = （warehouse[1]+warehouse[2]+&hellip;+warehouse[n])/n 就算出来了最终的结果中，每个仓库应该有的存量 首先，从仓库1向仓库n运送k； 然后，从1到n-1，依次向下运送某一特定值，使得每一个仓库的余量都为average，剩下的问题就是求总代价的最小值了。
-设第0步从1仓库向n仓库（注意因为是圆圈，所以路径长度是1）运出k存量，k可以为负，如果为负数，意味着从n向1运输|k|存量，然后从循环，从（1到n-1）,从i仓库向i+1仓库运输，运输的量需要保证i仓库在运输完毕后等于average
- 第0步（从仓库1向仓库n运送k）:花费代价为 |k|， 第1步（确保仓库1的余量为average）：需要花费代价为 |warehouse[1]-average-k| 也就是从1向2伙从2向1运输 第2步（确保仓库2的余量为average）：代价为 |warehouse[2]+warehouse[1]-average-k-average|=|warehouse[1]+warehouse[2]-2*average-k| &hellip; n-1.第n-1步：代价为 |warehouse[1]+warehouse[2]+&hellip;+warehouse[n-1]-(n-1)*average-k| 此时，仓库n剩下的货物量： (warehouse[n]+k)+warehouse[1]+warehouse[2]+&hellip;+warehouse[n-1]-(n-1)*average-k=(warehouse[1]+warehouse[2]+&hellip;+warehouse[n])-(n-1)*average=average 刚好也满足，其实这里不用推导，因为平均值是算好的，所以最胡一定是刚好完成的。  总的代价为： |k|+|warehouse[1]-average-k|+|warehouse[1]+a[2]-2*average-k|+&hellip;+|warehouse[1]+warehouse[2]+&hellip;+warehouse[n-1]-(n-1)*average-k| 不妨令sum[i] = warehouse[1]+warehouse[2]+&hellip;+warehouse[i]-i*average 则，总代价可表示为：|k|+|sum[1]-k|+|sum[2]-k|+&hellip;+|sum[n-1]-k| 这个式子可以看成在水平数轴上寻找一个点k，使得点k到点0,sum[1],sum[2],sum[3],&hellip;,sum[n-1]的距离之和最小，显然k应该取这n个数的中位数。至此问题解决。
-给出详细注释代码：
-&nbsp; #include &ldquo;stdafx.h&rdquo; #include &lt;iostream&gt; #include &lt;algorithm&gt; #include&lt;string&gt;
-using namespace std;
-const int X = 100000; double sum[X],warehouse[X]; int n;
-double Abs(double x) { return max(x,-x); }
-int _tmain(int argc, _TCHAR* argv[]) { while(true) { double total = 0; double mid=0; cout&lt;&lt;&ldquo;请输入仓库数目：&rdquo;; cin&gt;&gt;n; //读入n个仓库的值，并计算总数 for(int i=1;i&lt;=n;i++) { cout&lt;&lt;&ldquo;请输入第&rdquo;&lt;&lt;i&lt;&lt;&ldquo;个仓库的存量：&rdquo;; cin&gt;&gt;warehouse[i]; total += warehouse[i]; } //计算每个仓库应该最终存储的值 double average = total/n; //计算sum数组 for(int i=1;i&lt;n;i++) sum[i] = warehouse[i]+sum[i-1]-average; //排序后打算去中位数 //sort采用半开半闭区间，所以排序为0～n-1 sort(sum,sum+n); //这个可以自己举个数字就知道了 if(n%2!
-                  <a href="https://leizhiyuan.github.io/2013/06/02/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B45%E6%9C%885%E6%97%A5%E7%BB%BC%E5%90%88%E7%AE%97%E6%B3%95%E9%A2%98%E8%AF%A6%E8%A7%A3/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c&#43;&#43;/">C&#43;&#43;</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E4%BD%9C/">工作</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%AD%A6%E6%B1%89/">武汉</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
                   

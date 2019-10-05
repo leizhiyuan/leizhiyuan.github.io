@@ -224,6 +224,56 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2015/02/21/2014%E5%B9%B4%E8%BF%87%E5%8E%BB%E4%BA%86/">
+                <h2 class="post-title">2014年过去了</h2>
+                
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on February 21, 2015
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  <p>##2014年##</p>
+
+<p>在这一年里,入职支付宝,成长许多,也遇到了一些问题,对于复杂问题的理解力稍微变强了一点.技术上也有了一定的长进.但不够让我自己满意.博客也更新缓慢,很多总结性的东西只是记录在了evernote中,不够完整.</p>
+
+<p>和文哥也经历了很多事情.有一些问题,也多数都解决了,这一年项目紧急,加班较多,希望能够圆满的结束这个项目,未来总是充满了很多的变数.珍惜眼前人,眼前事,工作生活都是如此.</p>
+
+<p>感谢文哥,家人,师傅,同事和阿里.谢谢大家在2014年的照顾和合作.总而言之,和大家在一起很开心.</p>
+
+<p>##2015年##</p>
+
+<p>新的一年里,希望在技术上有更多的长进.实实在在可以看的见的作品或产出.坚持写博客,能够打上个人更多的标签,而不仅仅是在支付宝或者阿里工作.</p>
+
+<p>和文哥的相处上可以更加理解和体谅,希望文哥在自己喜欢的领域做出自己的事业.有梦想就要去行动.有目标才会实现.</p>
+
+<p>2015年不会比2014年更加好过或者是难过,相信明年的这个时候.还能笑谈今日的一切.</p>
+
+                
+              </div>
+
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2015/01/13/hexo%E5%BB%BA%E7%AB%8B%E5%8D%9A%E5%AE%A2%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E9%97%AE%E9%A2%98/">
                 <h2 class="post-title">hexo建立博客过程中的问题</h2>
                 
@@ -744,50 +794,6 @@ deploy: type: git repo: github: git@github.com:yourname/yourname.github.io.git,m
  之后，所有的数据访问都通过该接口进行，不论底层存储机制如何改变，DAO的实现因此会扩展，但客户端代码不需要调整   客户端要用的时候这样使用即可。   publicclassCustomerService { privateICustomerDao customerDao; publicvoid disableCustomerCampain(String customerId) { Customer customer=getCustomerDao().findCustomerByPK(customerId); customer.setCampainStatus(CampainStatus.DISABLE); getCustomerDao().updateCustomerStatus(customer); } publicICustomerDao getCustomerDao() { return customerDao; } publicvoid setCustomerDao(ICustomerDao customerDao) { this.customerDao=customerDao; } &nbsp;
   我们只要针对不同的数据存储方式实现不同的Dao类即可。  我们开始实现具体的访问数据了。   publicCustomer findCustomerByPK(String customerId) { Connection con=null; try{ con=getDataSource().getConnection(); Customer cust=..; return cust; } catch(SQLException e){ //这里咋办，直接抛出还是直接处理？ } finally{ releaseConnection(con); } } privatevoid releaseConnection(Connection con){ } &nbsp;
                   <a href="https://leizhiyuan.github.io/2014/07/13/spring%E6%8F%AD%E7%A7%98-%E7%AC%AC13%E7%AB%A0-%E7%BB%9F%E4%B8%80%E7%9A%84%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE%E5%BC%82%E5%B8%B8%E5%B1%82%E6%AC%A1%E4%BD%93%E7%B3%BB/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/spring/">spring</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2014/07/13/spring%E6%8F%AD%E7%A7%98-%E7%AC%AC%E5%9B%9B%E7%AB%A0beanfactory%E7%AC%94%E8%AE%B0/">
-                <h2 class="post-title">Spring揭秘-第四章BeanFactory笔记</h2>
-                
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on July 13, 2014
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  之前说了，IoC容器就是一个IoC Service Provider，但是容器是个啥意思？![](/images/d4d1615a6c1a06895088631c37e3fca7692f0b8a.png) 可以看到IoC容器提供了更多的内容， Spring的IoC容器又分成两种， 1.BeanFactory 。基础类型IoC容器，提供完整的IoC服务支持。如果没有特殊指定，默认采用延 迟初始化策略（lazy-load）。只有当客户端对象需要访问容器中的某个受管对象的时候，才对 该受管对象进行初始化以及依赖注入操作。所以，相对来说，容器启动初期速度较快，所需 要的资源有限。对于资源有限，并且功能要求不是很严格的场景，BeanFactory是比较合适的 IoC容器选择。  2.ApplicationContext。ApplicationContext在BeanFactory的基础上构建，是相对比较高 级的容器实现，除了拥有BeanFactory的所有支持，ApplicationContext还提供了其他高级特性，比如事件发布、国际化信息支持等，这些会在后面详述。ApplicationContext所管理 的对象，在该类型容器启动之后，默认全部初始化并绑定完成。所以，相对于BeanFactory来 说，ApplicationContext要求更多的系统资源，同时，因为在启动时就完成所有初始化，容 器启动时间较之BeanFactory也会长一些。在那些系统资源充足，并且要求更多功能的场景中， ApplicationContext类型的容器是比较合适的选择。   通过 图4-2，我们可以对BeanFactory和ApplicationContext之间的关系有一个更清晰的认识。      ![](/images/f531ea3e11bb391453eb5f763283398c938634b2.png)     Bean工长，就是生成Bean的嘛，每个业务对象被看成Javabean,我们与工厂打交道就简单得多，我们只要告诉他我要什么对象，至于怎么组装，那是他的事情。   工厂提供了一些对外的接口，比如获取Bean，渠道Bean的状态等等。 以xml为例    &lt;?xml version="1.0" encoding="UTF-8"?&gt; &lt;!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd"&gt; &lt;beans&gt; &lt;bean id="djNewsProvider" class="..FXNewsProvider"&gt; &lt;constructor-arg index="0"&gt; &lt;ref bean="djNewsListener"/&gt; &lt;/constructor-arg&gt; &lt;constructor-arg index="1"&gt; &lt;ref bean="djNewsPersister"/&gt; &lt;/constructor-arg&gt; &lt;/bean&gt; &lt;bean id="djNewsListener" class="..impl.DowJonesNewsListener"&gt; &lt;/bean&gt; &lt;bean id="
-                  <a href="https://leizhiyuan.github.io/2014/07/13/spring%E6%8F%AD%E7%A7%98-%E7%AC%AC%E5%9B%9B%E7%AB%A0beanfactory%E7%AC%94%E8%AE%B0/" class="post-read-more">[Read More]</a>
                 
               </div>
 

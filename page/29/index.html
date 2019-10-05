@@ -224,6 +224,77 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/05/09/c-%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/">
+                <h2 class="post-title">C&#43;&#43;回调函数</h2>
+                
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on May 9, 2012
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  回调函数就是一个通过函数指针调用的函数。如果你把函数的指针(地址)作为参数传递给另一个函数，当这个指针被用为调用它所指向的函数时，我们就说这是回调函数。
+　也就是说，回调函数它首先是一个函数，然后有一个指针指向它（该指针称为函数指针），在别的代码块中，通过这个函数指针调用了这个函数，仅此而已。
+　下面给出一个例子，我写出了比较详细的注释。希望足够清晰。这个例子说明了，回调函数可以把调用者和被调用者分开，对于调用者来说，只需要知道自己要调用一个函数，该函数有一个string类型的参数，至于具体调用哪个，被调用的函数到底怎么执行，怎么解释该参数，是完全不用关心的。 #include 
+#include 
+using namespace std;
+typedef void (*PF)(string s); //定义一个名为PF的函数指针，该指针指向一类函数，该类函数有一个string类型的参数，返回值为void。
+void funcOne(string s) //回调函数1
+{
+cout &lt;&lt; s+&rdquo; One&rdquo;&lt;&lt; endl;
+}
+void funcTwo(string s) //回调函数2 {
+cout &lt;&lt; s+&rdquo; Two&rdquo;&lt;&lt; endl;
+}
+void caller( PF pf, string s) //调用函数
+{
+cout &lt;&lt; &ldquo;I am Caller Function&rdquo; &lt;&lt; endl;
+pf(s);
+}
+int main()
+{
+string str = &ldquo;Test CallBack Function&rdquo;;
+PF pf1 = funcOne; //实例化一个函数指针，指向func函数
+                  <a href="https://leizhiyuan.github.io/2012/05/09/c-%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c&#43;&#43;/">C&#43;&#43;</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%8E%9F%E5%88%9B/">原创</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/05/08/gsmgprswcdmahsdpa3g-%E7%AD%89%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A/">
                 <h2 class="post-title">GSM,GPRS,WCDMA,HSDPA,3G 等名词解释</h2>
                 
@@ -784,51 +855,6 @@ GB2312是基于区位码设计的，在区位码的区号和位号上分别加�
                 <div class="blog-tags">
                   
                     <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/04/28/wordpress-%E5%AE%9E%E7%8E%B0404%E4%B8%AA%E6%80%A7%E8%B7%B3%E8%BD%AC%E9%A1%B5%E9%9D%A2/">
-                <h2 class="post-title">wordpress 实现404个性跳转页面</h2>
-                
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on April 28, 2012
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  这个就不多说了，直接贴代码，使用方法就是把这些代码全部拷贝进你的404.php这个文件。后台点击外观-编辑-选择404.php，开始编辑，
-完成后然后就可以自己测试下效果了，你也可以先访问http://leaver.me/test404查看效果 &lt;title&gt;404&lt;/title&gt; &lt;style type=&ldquo;text/css&rdquo;&gt; body{ margin:0; padding:0; font:14px/1.6 Arial,Sans-serif; background:#fff url(img/body.png) repeat-x; } a:link,a:visited{ color:#007ab7; text-decoration:none; } h1{ position:relative; z-index:2; width:540px; height:0; margin:110px auto 15px; padding:230px 0 0; overflow:hidden; xxxxborder:1px solid; background-image: url(http://leaverimage.b0.upaiyun.com/20346_o.jpg); background-repeat: no-repeat; } h2{ position:absolute; top:17px; left:187px; margin:0; font-size:0; text-indent:-999px; -moz-user-select:none; -webkit-user-select:none; user-select:none; cursor:default; width: 534px; } h2 em{ display:block; font:italic bold 200px/120px &ldquo;Times New Roman&rdquo;,Times,Serif; text-indent:0; letter-spacing:-5px; color:rgba(216,226,244,0.3); } .link a{margin-right:1em;} .link,.texts{ width:540px; margin:0 auto 15px; color:#505050; } .
-                  <a href="https://leizhiyuan.github.io/2012/04/28/wordpress-%E5%AE%9E%E7%8E%B0404%E4%B8%AA%E6%80%A7%E8%B7%B3%E8%BD%AC%E9%A1%B5%E9%9D%A2/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/wordpress/">wordpress</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%AC%94%E8%AE%B0/">笔记</a>&nbsp;
                   
                 </div>
               

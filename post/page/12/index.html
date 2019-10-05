@@ -203,7 +203,7 @@
                 <span class="post-meta">
   
   
-  <i class="fas fa-calendar"></i>&nbsp;Posted on September 29, 2019
+  <i class="fas fa-calendar"></i>&nbsp;Posted on October 6, 2019
   
   
     &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;0&nbsp;minutes
@@ -233,6 +233,72 @@
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
         <div class="posts-list">
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2013/06/02/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B45%E6%9C%885%E6%97%A5%E7%BB%BC%E5%90%88%E7%AE%97%E6%B3%95%E9%A2%98%E8%AF%A6%E8%A7%A3/">
+                <h2 class="post-title">阿里巴巴5月5日综合算法题详解</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on June 2, 2013
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  之前参加了阿里的笔试和电面，让后天那个敏感的日子去参加现场面，就去看了一下那天笔试的最后一道综合题，看着网上清一色最后一道题不知道从哪转的答案，不忍直视，一看代码就是错的，最直接的就是求中位数连奇偶性都不判断，直接处以2..这，另外当在无法整除的情况下，数据结果错误。
+&nbsp;
+这道题的大意是：有一个淘宝商户，在某城市有n个仓库，每个仓库的储货量不同，现在要通过货物运输，将每次仓库的储货量变成一致的，n个仓库之间的运输线路围城一个圈，即1-&gt;2-&gt;3-&gt;4-&gt;&hellip;-&gt;n-&gt;1-&gt;&hellip;，货物只能通过连接的仓库运输，设计最小的运送成本（运货量*路程）达到淘宝商户的要求，并写出代码。
+解题思路：
+假设n个仓库的初始储货量分别为warehouse[1],warehouse[2],&hellip;,warehouse[n] 计算平均储货量 average = （warehouse[1]+warehouse[2]+&hellip;+warehouse[n])/n 就算出来了最终的结果中，每个仓库应该有的存量 首先，从仓库1向仓库n运送k； 然后，从1到n-1，依次向下运送某一特定值，使得每一个仓库的余量都为average，剩下的问题就是求总代价的最小值了。
+设第0步从1仓库向n仓库（注意因为是圆圈，所以路径长度是1）运出k存量，k可以为负，如果为负数，意味着从n向1运输|k|存量，然后从循环，从（1到n-1）,从i仓库向i+1仓库运输，运输的量需要保证i仓库在运输完毕后等于average
+ 第0步（从仓库1向仓库n运送k）:花费代价为 |k|， 第1步（确保仓库1的余量为average）：需要花费代价为 |warehouse[1]-average-k| 也就是从1向2伙从2向1运输 第2步（确保仓库2的余量为average）：代价为 |warehouse[2]+warehouse[1]-average-k-average|=|warehouse[1]+warehouse[2]-2*average-k| &hellip; n-1.第n-1步：代价为 |warehouse[1]+warehouse[2]+&hellip;+warehouse[n-1]-(n-1)*average-k| 此时，仓库n剩下的货物量： (warehouse[n]+k)+warehouse[1]+warehouse[2]+&hellip;+warehouse[n-1]-(n-1)*average-k=(warehouse[1]+warehouse[2]+&hellip;+warehouse[n])-(n-1)*average=average 刚好也满足，其实这里不用推导，因为平均值是算好的，所以最胡一定是刚好完成的。  总的代价为： |k|+|warehouse[1]-average-k|+|warehouse[1]+a[2]-2*average-k|+&hellip;+|warehouse[1]+warehouse[2]+&hellip;+warehouse[n-1]-(n-1)*average-k| 不妨令sum[i] = warehouse[1]+warehouse[2]+&hellip;+warehouse[i]-i*average 则，总代价可表示为：|k|+|sum[1]-k|+|sum[2]-k|+&hellip;+|sum[n-1]-k| 这个式子可以看成在水平数轴上寻找一个点k，使得点k到点0,sum[1],sum[2],sum[3],&hellip;,sum[n-1]的距离之和最小，显然k应该取这n个数的中位数。至此问题解决。
+给出详细注释代码：
+&nbsp; #include &ldquo;stdafx.h&rdquo; #include &lt;iostream&gt; #include &lt;algorithm&gt; #include&lt;string&gt;
+using namespace std;
+const int X = 100000; double sum[X],warehouse[X]; int n;
+double Abs(double x) { return max(x,-x); }
+int _tmain(int argc, _TCHAR* argv[]) { while(true) { double total = 0; double mid=0; cout&lt;&lt;&ldquo;请输入仓库数目：&rdquo;; cin&gt;&gt;n; //读入n个仓库的值，并计算总数 for(int i=1;i&lt;=n;i++) { cout&lt;&lt;&ldquo;请输入第&rdquo;&lt;&lt;i&lt;&lt;&ldquo;个仓库的存量：&rdquo;; cin&gt;&gt;warehouse[i]; total += warehouse[i]; } //计算每个仓库应该最终存储的值 double average = total/n; //计算sum数组 for(int i=1;i&lt;n;i++) sum[i] = warehouse[i]+sum[i-1]-average; //排序后打算去中位数 //sort采用半开半闭区间，所以排序为0～n-1 sort(sum,sum+n); //这个可以自己举个数字就知道了 if(n%2!
+                  <a href="https://leizhiyuan.github.io/2013/06/02/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B45%E6%9C%885%E6%97%A5%E7%BB%BC%E5%90%88%E7%AE%97%E6%B3%95%E9%A2%98%E8%AF%A6%E8%A7%A3/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c&#43;&#43;/">C&#43;&#43;</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E4%BD%9C/">工作</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%AD%A6%E6%B1%89/">武汉</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2013/05/31/%E9%82%BB%E6%8E%A5%E8%A1%A8%E5%AE%9E%E7%8E%B0%E6%97%A0%E5%90%91%E5%9B%BEc-/">
@@ -793,62 +859,6 @@ A B ##### 0 0 0 3 3 0 3 3 4 2 &lt;- B中也得到了2 但是注意,从 B-&gt;A �
                     <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/04/16/%E6%A8%A1%E6%9D%BF%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97%E5%8F%8A%E5%A0%86%E6%8E%92%E5%BA%8Fc-%E5%AE%9E%E7%8E%B0/">
-                <h2 class="post-title">模板优先级队列及堆排序(C&#43;&#43;实现)</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on April 16, 2013
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  模板优先级队列，数组实现，再熟悉一下常用算法，同时简单的堆排序应用
-写了一个是队列自增长，另一个为了演示我还添加了一个叫做FillPq的方法，这个方法可以使用一个数组直接填充到优先级队列里，此时，优先级队列并不优先，然后进行下滤调整，之后建堆完成，输出即可 #include &ldquo;stdafx.h&rdquo;
-template&lt; class T&gt; class PriorityQueue { private: T *pq; int N; int capacity; public: PriorityQueue(void); ~PriorityQueue(void); void Insert(T x); T DelTop(); void Swim(int k); void Sink(int k); bool Less(int i,int j); void Swap(int i,int j); bool Resize(); void FillPq(T arr[],int size); };
-template&lt; class T&gt; void PriorityQueue&lt;T&gt;::FillPq( T arr[],int size ) { N=size; capacity=2*size; for (int i=0;i&lt;size;i++) { pq[i+1]=arr[i]; } }
-template&lt; class T&gt; PriorityQueue&lt;T&gt;::PriorityQueue(void) { pq=new T[10]; N=0; capacity=10; }
-                  <a href="https://leizhiyuan.github.io/2013/04/16/%E6%A8%A1%E6%9D%BF%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97%E5%8F%8A%E5%A0%86%E6%8E%92%E5%BA%8Fc-%E5%AE%9E%E7%8E%B0/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c&#43;&#43;/">C&#43;&#43;</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
                   
                 </div>
               

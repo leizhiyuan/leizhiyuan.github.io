@@ -224,6 +224,69 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/06/21/c#winform%E5%AE%9E%E7%8E%B0%E4%B8%8D%E8%A7%84%E5%88%99%E7%AA%97%E4%BD%93/">
+                <h2 class="post-title">C#WinForm实现不规则窗体</h2>
+                
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on June 21, 2012
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  这个纯属娱乐，因为其实用的不是太多，因为非主流，非标准的界面不符合用户的体验，不符合可用性功能的某一条HE规则。
+为了完成这个效果，首先需要自己动手画个你需要的界面出来，界面边缘需要是一种可以很好区别的颜色，比如纯蓝色，因为实现不规则窗体是让C#使边缘颜色透明化来实现的，所以需要唯一识别。因为我用的图是一张灰色的图，我然后圈了一个蓝色的边缘。
+刚开始的图；
+
+然后新建windows应用程序。创建windows窗体并设置窗体基本属性。 （1）将 FormBorderStyle 属性设置为 None。 （2）将窗体的 BackgroundImage 属性设置为先前创建的位图文件。不必将文件添加到项目系统中；这将在指定该文件作为背景图像时自动完成。 （3）将 TransparencyKey 属性设置为位图文件的背景色，本例中为蓝色。（此属性告诉应用程序窗体中的哪些部分需要设置为透明。 ） 上面两个步骤已经完成了不规则窗体自身显示效果的制作。
+有人说在24位色以下的环境中可以显示正常，但在24位色以上时黄色背景不能消失，所以上述不能胜任24位色以上环境。但我看到了一种解决方法，那就是先将背景图片添加到资源文件，然后在窗体构造时为窗体设置背景图片：
+&nbsp; private void Form1_Load(object sender, EventArgs e){
+Bitmap bmp = Properties.Resources.form2; bmp.MakeTransparent(Color.Blue); // bmp.MakeTransparent(Color.FromArgb(2,2,2));如果rgb则是这样用 this.BackColor = Color.Blue; this.BackgroundImage = bmp; this.TransparencyKey = Color.Blue;
+} &nbsp;
+实测是可以的。
+然后就是为窗体添加移动、关闭、最大最小化的事件。代码直接给出 private bool isMouseDown = false; //记录鼠标是否被按下 private Point position; //记录鼠标位置
+private void Form1_MouseDown(object sender, MouseEventArgs e) { if (e.Button == MouseButtons.Left) { int x = -e.
+                  <a href="https://leizhiyuan.github.io/2012/06/21/c#winform%E5%AE%9E%E7%8E%B0%E4%B8%8D%E8%A7%84%E5%88%99%E7%AA%97%E4%BD%93/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%8E%9F%E5%88%9B/">原创</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%AC%94%E8%AE%B0/">笔记</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/06/19/get%E5%92%8Cpost%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%E5%8F%8A%E4%B8%BA%E4%BB%80%E4%B9%88%E7%BD%91%E4%B8%8A%E7%9A%84%E5%A4%9A%E6%95%B0%E7%AD%94%E6%A1%88%E9%83%BD%E6%98%AF%E9%94%99%E7%9A%84/">
                 <h2 class="post-title">GET和POST有什么区别？及为什么网上的多数答案都是错的。</h2>
                 
@@ -867,70 +930,6 @@ on update cascade
                     <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E8%AF%91/">编译</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/06/01/%E6%88%91%E5%8F%AF%E4%BB%A5%E8%B9%B2%E4%B8%8B%E6%9D%A5%E9%99%AA%E4%BD%A0%E5%81%9A%E4%B8%80%E5%8F%AA%E8%98%91%E8%8F%87/">
-                <h2 class="post-title">我可以蹲下来，陪你做一只蘑菇</h2>
-                
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on June 1, 2012
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  <p>　　有一个精神病人，以为自己是一只蘑菇，于是他每天都撑着一把伞蹲在房间的墙角里，不吃也不喝，像一只真正的蘑菇一样。</p>
-
-<p>　　心理医生想了一个办法。有一天，心理医生也撑了一把伞，蹲坐在了病人的旁边，病人很奇怪的问：你是谁呀？医生回答：我也是一只蘑菇呀。病人点点头，继续做他的蘑菇。</p>
-
-<p>　　过了一会儿，医生站了起来，在房间里走来走去，病人就问他：你不是蘑菇么，怎么可以走来走去？</p>
-
-<p>　　医生回答说：蘑菇当然可以走来走去啦！病人觉得有道理，就也站起来走走。</p>
-
-<p>　　又过了一会儿，医生拿出了一个汉堡开始吃，病人又问：你不是蘑菇么，怎么可以吃东西？医生理直气壮地回答：蘑菇当然也可以吃东西啦。病人觉得很对，于是也开始吃东西。</p>
-
-<p>　　……</p>
-
-<p>　　几个星期以后，这个病人就可以像正常人一样生活了，虽然，他还是觉得自己是一只蘑菇。</p>
-
-<p>　　其实…… 一个人可以带着过去的创伤继续，只要他把悲伤放在心里的一个圈圈里，不要让苦痛浸染了他的整个生命，他就可以像正常人一样快乐的生活。当一个人悲伤得难以自持的时候，也许，他不需要太多的劝解和安慰，训戒和指明。他需要的，只是能有一个在他身边蹲下来，陪他做一只蘑菇。</p>
-
-<p>　　我可以蹲下来，陪你做一只蘑菇。我愿意分担你的不快乐，只是当你的世界下雨时单纯的为你撑起一把伞。请你不要封闭自己的心，一个人承受那么多。你知道的。只要你睁开眼，你从来都不是一个人。我是你的蘑菇…也希望在我无助的时候，你能蹲下来，陪我一起做一朵蘑菇。</p>
-
-<p>　　来源：<a href="http://www.zreading.cn/archives/2982.html">http://www.zreading.cn/archives/2982.html</a></p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%BF%83%E7%90%86/">心理</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%88%B1%E6%83%85/">爱情</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%94%9F%E6%B4%BB/">生活</a>&nbsp;
                   
                 </div>
               

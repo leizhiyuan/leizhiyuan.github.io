@@ -224,6 +224,51 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2018/11/17/wireshark%E5%8F%AF%E7%94%A8%E7%9A%84bolt%E5%8D%8F%E8%AE%AE%E8%A7%A3%E6%9E%90%E6%8F%92%E4%BB%B6/">
+                <h2 class="post-title">Wireshark可用的BOLT协议解析插件</h2>
+                
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on November 17, 2018
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;4&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  https://github.com/leizhiyuan/bolt-dissector
+自己平常看协议,经常看到眼花,所以写了一个解析 SOFARPC 中 BOLT 协议的 wiresharks 插件
+Wireshark是排查网络问题最常用的工具，它已经内置支持了上百种通用协议，扩展性也好,对于私有协议,还是得自己写的.对 C 不熟,但是 Lua 看了一下语法,还是挺简单的.
+插件是使用lua开发的，安装比较简单，以OS X平台为例：
+ 将协议解析脚本拷贝到/Applications/Wireshark.app/Contents/Resources/share/wireshark/ 目录 (非必须) 编辑init.lua文件，设置disable_lua = false，确保lua支持打开,默认是打开的.一般就不要操作了. 在init.lua文件末尾增加,当然你也可以写全路径.
+dofile(&#34;bolt.lua&#34;) 再次启动Wireshark，会对12200端口的数据流使用脚本解析，已经可以识别BOLT协议了。
+  参考文档
+https://wiki.wireshark.org/LuaAPI
+附上 lua脚本 目前只支持 boltv1,稍后看看改一下支持 boltv2和 tr,方便大家理解 和抓包.
+--- --- Created by bystander. --- DateTime: 2018/11/16 8:57 AM --- -- declare the protocol bolt_proto = Proto(&#34;bolt&#34;, &#34;SOFA BOLT Protocol&#34;) -- declare the value strings local vs_proto = { [1] = &#34;BOLT&#34;, [13] = &#34;TR&#34;, } local vs_type = { [1] = &#34;Request&#34;, [2] = &#34;Request Oneway&#34;, [0] = &#34;Response&#34;, } local vs_cmdcode = { [0] = &#34;HeartBeat&#34;, [1] = &#34;Request&#34;, [2] = &#34;Response&#34;, } local vs_version2 = { [1] = &#34;v1&#34;, [2] = &#34;v2&#34;, } local vs_codec = { [1] = &#34;HESSIAN_CODEC&#34;, [2] = &#34;JAVA_CODEC&#34;, [11] = &#34;PROTOBUF_CODEC&#34;, } local vs_responsestatus = { [00] = &#34;Success&#34;, [01] = &#34;Error&#34;, [02] = &#34;Server Exception&#34;, [03] = &#34;Unknown Exception&#34;, [04] = &#34;Server Thread Pool Busy&#34;, [05] = &#34;Error Communication&#34;, [06] = &#34;No Processor&#34;, [07] = &#34;Timeout Exception&#34;, [08] = &#34;Client Send Error&#34;, [09] = &#34;Codec Exception&#34;, [10] = &#34;Connection Closed&#34;, [11] = &#34;Server Serialize Exception&#34;, [12] = &#34;Server DeSerialize Exception&#34;, } -- declare the fields local f_proto = ProtoField.
+                  <a href="https://leizhiyuan.github.io/2018/11/17/wireshark%E5%8F%AF%E7%94%A8%E7%9A%84bolt%E5%8D%8F%E8%AE%AE%E8%A7%A3%E6%9E%90%E6%8F%92%E4%BB%B6/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2018/10/20/27-years-old-man/">
                 <h2 class="post-title">27 Years Old Man</h2>
                 
@@ -718,57 +763,6 @@ rs.initiate() rs.add(&#34;&lt;hostname&gt;:27017&#34;) rs.add(&#34;&lt;hostname&
                     <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E4%BD%9C/">工作</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2016/10/05/mac%E6%97%A5%E5%BF%97%E6%89%B9%E9%87%8F%E6%9F%A5%E8%AF%A2%E9%85%8D%E7%BD%AE/">
-                <h2 class="post-title">mac日志批量查询配置</h2>
-                
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on October 5, 2016
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  由于公司线下机器非常多,导致每次查日志变得非常痛苦.线下的trace平台大部分时候还是可用的.但是有时候需要本机来批量查询.方案就是批量分发ssh key,实现免登.然后luit实现编码转换,这个主要是公司的机器编码有差异.历史原因.
-0. 准备 先要安装pssh,expect,ssh-copy-id.
-brew install pssh brew install homebrew/dupes/expect brew install ssh-copy-id 另外安装luit的安装参考这里luit安装
-1. 生成ssh key ,并批量copy 生成ssh key比较简单.ssh-keygen -t rsa -C &quot;your_email@example.com&quot;,直接使用git的ssh key也是可以的.然后保存下面这个脚本为pscopy.sh,
-#!/bin/bash FILE=`cat ~/host.txt` for ip in $FILE;do expect -c &#34; spawn ssh-copy-id $ipexpect { \&#34;*yes/no*\&#34; {send \&#34;yes\r\&#34;;exp_continue} \&#34;*password*\&#34; {send \&#34;pass\r\&#34;;exp_continue} \&#34;*password*\&#34; {send \&#34;pass\r\&#34;;} } &#34; done 然后执行一下sh pscopy.sh,注意,host.txt要保证存在.格式是user@address.一行一个,中间的paas要改成user的密码,这样就会使用指定的用户密码,自动copy ssh key了. 完成上面的步骤之后,ssh user@address 就可以免登了.
-2. 写一个简单的pssh脚本 #!/bin/bash  encoding= key= command= file= usage() { echo &#34;Usage: `basename $0` [-f filename] [-c encoding] [-k keyword]&#34; exit 1 } while getopts :f:c:k: opt do case $opt in c) encoding=$OPTARG ;; :) echo &#34;-$OPTARGneeds an argument&#34; ;; k) key=$OPTARG ;; f) file=$OPTARG ;; *) echo &#34;-$optnot recognized&#34; usage ;; esac done if [ -z &#34;$encoding&#34; ]; then #该脚本必须提供-d选项 encoding=&#34;gbk&#34; fi if [ -z &#34;$file&#34; ]; then #该脚本必须提供-d选项 file=&#34;~/hosts.
-                  <a href="https://leizhiyuan.github.io/2016/10/05/mac%E6%97%A5%E5%BF%97%E6%89%B9%E9%87%8F%E6%9F%A5%E8%AF%A2%E9%85%8D%E7%BD%AE/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/mac/">mac</a>&nbsp;
                   
                 </div>
               

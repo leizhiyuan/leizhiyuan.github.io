@@ -203,7 +203,7 @@
                 <span class="post-meta">
   
   
-  <i class="fas fa-calendar"></i>&nbsp;Posted on September 29, 2019
+  <i class="fas fa-calendar"></i>&nbsp;Posted on October 6, 2019
   
   
     &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;0&nbsp;minutes
@@ -233,6 +233,137 @@
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
         <div class="posts-list">
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/04/18/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB%E4%B8%8A/">
+                <h2 class="post-title">操作系统知识点汇总(上)</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on April 18, 2012
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  <p>这两天为了考试看完了<a href="http://book.douban.com/subject/1913490/">操作系统习题与解析</a> 写了一些笔记，然后今天整理成电子版，，我去。写完发现2500字了都.唉，苦啊。。顺序没有过多整理。也能加深印象，太长了，还是分成两篇。此为上
+<a href="http://leaverimage.b0.upaiyun.com/20732_o.jpg"><img src="/images/59b3749d2e8d723c6558ed6c851f50d1af8cf56d.jpg" alt="" /></a></p>
+
+<p>操作系统的发展与形成：1.手工操作阶段，2.脱机输入输出阶段，3.批处理技术，4.多道程序设计技术。</p>
+
+<p>操作系统的基本类型：1.批处理，2.分时，3.实时。</p>
+
+<p>操作系统的特征：并发，共享，虚拟性，不确定性</p>
+
+<p>实时操作系统必须在规定时间内处理完来自外部的事件。。</p>
+
+<p>现代操作系统的两个基本特征是并发和共享</p>
+
+<p>内部命令是由系统定义的，常驻内存的处理程序的集合。</p>
+
+<p>操作系统的结构层次：
+裸机-》cpu调度-》内存管理-》设备管理-》文件管理-》作业管理-》命令管理-》用户</p>
+
+<p>程序顺序执行的特征。顺序性。封闭性，可再现性。</p>
+
+<p>程序并发执行的特征：间断性，失去封闭性，不可再现性。</p>
+
+<p>进程的几个基本状态：就绪，执行，阻塞。</p>
+
+<p>引入进程的目的是使多道程序并发执行，以改善资源利用率，及提高系统吞吐量，而引入线程，则是为了减少并发执行所付出的时空开销，具有更好的并发性。</p>
+
+<p>每个进程中，访问临界资源的那段程序称之为临界区。</p>
+
+<p>进程互斥的准则；1.空闲放进，2.忙则等待，3.有限等待，4.让权等待</p>
+
+<p>管程：局部于管程的共享变量说明了对该数据结构进行操作的一组过程，以及局部与管程的数据设置初始值。</p>
+
+<p>P，V操作是低级进程通信原语。原语是对进程进行管理和控制的。进程不是指令的集合。</p>
+
+<p>创建原语的主要工作：向系统申请一个空闲PCB，并为创建进程分配必要的资源，然后初始化PCB，并插入到就绪队列。返回进程的标识号</p>
+
+<p>一个进程会唤醒，指的是进入就绪状态。</p>
+
+<p>资源分配的基本单位是进程，CPU分配的基本单位是线程。</p>
+
+<p>进程的基本特征：</p>
+
+<ol>
+<li>动态性：进程的实质是程序的一次执行过程，进程是动态产生，动态消亡的。</li>
+<li>并发性：任何进程都可以同其他进程一起并发执行</li>
+<li>独立性：进程是一个能独立运行的基本单位，同时也是系统分配资源和调度的独立单位；</li>
+<li>异步性：由于进程间的相互制约，使进程具有执行的间断性，即进程按各自独立的、不可预知的速度向前推进</li>
+<li>结构特征：进程由程序、数据和进程控制块三部分组成。</li>
+</ol>
+
+<p>进程之间的关系：同步和互斥</p>
+
+<p>m个进程访问临界资源，信号量的变化在1- （1-m）之间</p>
+
+<p>进程是由一个具有一定功能的程序关于某个数据集合的一次运行活动。</p>
+
+<p>调度的类型：
+1.作业调度（也叫；宏观，高级，长程），是从外存调到内存然后进入竞争执行
+2.进程调度（也叫：微观，低级，短程），取就绪状态的进程进入执行阶段
+3.交换调度（也叫：中级，中程）是将外存中具备执行条件的进程调入内存或者相反</p>
+
+<p>调度的两种方法：1.剥夺方式，2.非剥夺方式</p>
+
+<p>进程调度的算法：1.先来先服务，2.最高优先权，3.时间片轮转，4.多级反馈。具体的课本上有。也可以看<a href="http://www.cnblogs.com/fora/archive/2011/04/05/2006049.html">此文</a></p>
+
+<p>死锁的原因：1.资源不足。2.推进顺序不当</p>
+
+<p>形成死锁的必要条件：1.互斥，2.不剥夺。3.部分分配。4.环路等待。</p>
+
+<p>并非所有不安全状态就为死锁。但反之成立</p>
+
+<p>银行家算法其实很简单。就是规范化比较麻烦。<a href="https://zh.wikipedia.org/zh-cn/%E9%93%B6%E8%A1%8C%E5%AE%B6%E7%AE%97%E6%B3%95">看维基百科吧。</a></p>
+
+<p>破坏资源互斥这个条件来避免死锁是不现实的。</p>
+
+<p>资源的按序分配
+这种算法资源按某种规则系统中的所有资源统一编号（例如打印机为1、磁带机为2、磁盘为3、等等），申请时必须以上升的次序。系统要求申请进程：
+1、对它所必须使用的而且属于同一类的所有资源，必须一次申请完；
+2、在申请不同类资源时，必须按各类设备的编号依次申请。
+这样申请的时候要么没有。要么全部分配，破坏了循环等待的条件</p>
+
+<p>调度算法中程序的相应比=1+等待时间/估计运行时间
+操作系统提供给程序员的接口是系统调用
+作业生存期的四个状态：1.提交。2.后备，3.开始，3.完成</p>
+
+<p><strong>转载请注明：<a href="http://leaver.me/archives/317.html">http://leaver.me/archives/317.html</a></strong></p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/04/17/php%E7%9A%84%E4%B8%80%E4%BA%9B%E7%9F%A5%E8%AF%86%E7%82%B9/">
@@ -702,57 +833,6 @@ import android.widget.ViewFlipper;</p>
                 <div class="blog-tags">
                   
                     <a href="https://leizhiyuan.github.io//tags/%E5%BF%83%E7%90%86/">心理</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/04/11/%E4%B8%80%E4%BD%8D%E7%A8%8B%E5%BA%8F%E5%91%98%E5%B7%A5%E4%BD%9C10%E5%B9%B4%E6%80%BB%E7%BB%93%E7%9A%8413%E4%B8%AA%E5%BF%A0%E5%91%8A/">
-                <h2 class="post-title">一位程序员工作10年总结的13个忠告</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on April 11, 2012
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  <p>展望未来，总结过去10年的程序员生涯，给程序员小弟弟小妹妹们的一些总结性忠告</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/20328_o.jpg"><img src="/images/0879e53683bb292802a314bbdb3753660658501b.jpg" alt="" /></a>
- 走过的路，回忆起来是那么曲折，把自己的一些心得体会分享给程序员兄弟姐妹们，虽然时代在变化，但是很可能你也会走我已经做过的10年的路程，有些心得体会你可以借鉴一下，觉得说得有道理的你就接纳，觉得说得没道理的，你就抛弃，以下是我发自内心的，给大家的忠告，特别是针对那些小弟弟妹妹们。</p>
-
-<p>01. 自己的户口档案、养老保险、医疗保险、住房公积金一定要保管好。
- 由于程序员行业每年跳槽一次，我不隐瞒大家，我至少换过5个以上的单位，这期间跳来跳去，甚至是城市都换过3个。还好户口没丢掉，其他都已经是乱了，好几个城市里，都有交过三金，甚至是一个程序的2个区里交的都有，那些东西，10年后，会变得很重要。你买房子若有公积金，可以取出来，贷款利率也会比较低一些，有孩子了，还需要上学，生病了还需要医疗保险。
- 特别是买房子时，你要商业贷款与公积金贷款的利率差别还是很大，有可能会有10万的差距。你平时都注意这些，会给你带来的损失会最小，例如每个月缴纳300元的公积金，公司也缴纳300元，</p>
-                  <a href="https://leizhiyuan.github.io/2012/04/11/%E4%B8%80%E4%BD%8D%E7%A8%8B%E5%BA%8F%E5%91%98%E5%B7%A5%E4%BD%9C10%E5%B9%B4%E6%80%BB%E7%BB%93%E7%9A%8413%E4%B8%AA%E5%BF%A0%E5%91%8A/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
                   
                 </div>
               
