@@ -48,7 +48,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.58.0" />
+  <meta name="generator" content="Hugo 0.59.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -233,6 +233,71 @@
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
         <div class="posts-list">
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2013/06/11/dmp%E7%89%88%E6%9C%AC%E4%BF%AE%E6%94%B9%E5%B7%A5%E5%85%B7c/">
+                <h2 class="post-title">DMP版本修改工具(C#)</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on June 11, 2013
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  <p>最近在使用oracle导入一个dmp文件的时候，由于不知道dmp文件是如何导出的，是使用exp还是expdp导出的，所以纠结了比较长的时间，最后想到是否可以查看dmp文件的一些辅助信息呢，于是有了这个工具。</p>
+
+<p>在使用dmp导入的时候报如下错误
+<pre class="lang:default decode:true">IMP-00010: 不是有效的导出文件，标题验证失败
+IMP-00000: 未成功终止导入</pre>
+据说有两个可能，1个是文件本身损坏，另一个是版本问题，多出现在高版本导出的数据向低版本导入。解决方法就是修改一下dmp文件就行了。dmp文件头部大概9个字节处标识了版本号用来头部验证。对于非常大的dmp我们不能直接用文本编辑器打开，因此找找资料，写个工具。本机一个12GB的文件已测试。</p>
+
+<p><a href="http://leaverimage.b0.upaiyun.com/37341_o.png"><img src="/images/71a2a354a4dd2867eb60f08548a9da16870e4949.png" alt="" /></a></p>
+
+<p>工具使用很简单，选择文件，识别出来版本，按格式改成导入端oracle的版本值，然后即可正常导入11G-10G测试成功。</p>
+
+<p>下载地址：<a href="http://pan.baidu.com/share/link?shareid=2717736101&amp;amp;uk=1493685990">DMP版本修改工具</a></p>
+
+<p>&nbsp;</p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2013/06/02/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B45%E6%9C%885%E6%97%A5%E7%BB%BC%E5%90%88%E7%AE%97%E6%B3%95%E9%A2%98%E8%AF%A6%E8%A7%A3/">
@@ -806,65 +871,6 @@ A B ##### 0 0 0 3 3 0 3 3 4 2 &lt;- B中也得到了2 但是注意,从 B-&gt;A �
 
             </article>
           
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/04/17/%E4%B8%80%E9%81%93%E7%AC%94%E8%AF%95%E6%8C%87%E9%92%88%E9%A2%98%E7%9B%AE%E8%AF%A6%E8%A7%A3/">
-                <h2 class="post-title">一道笔试指针题目详解</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on April 17, 2013
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  看到本题是在搜狗某年的笔试题上,看也没人给出非常详细的讲解,直接给出了答案,我来尝试写一写,
-貌似本题来源自&lt;The C Puzzle Book&gt; ，搜狗也只是换了一下字符串，直接看题吧 #include &lt;stdio.h&gt; char *c[]={&ldquo;ENTNG&rdquo;, &ldquo;NST&rdquo;,&ldquo;AMAZI&rdquo;,&ldquo;FIRBE&rdquo;}; char** cp[]={c+3, c+2, c+1, c}; char *cpp= cp; int main() { printf(&ldquo;%s&rdquo;,++cpp); printf(&ldquo;%s &ldquo;,&ndash;++cpp+3); printf(&ldquo;%s&rdquo;,*cpp[-2]+3); printf(&ldquo;%s&rdquo;,cpp[-1][-1]+1); } &lt;span style=&quot;font-family: Georgia, 'Times New Roman', 'Bitstream Charter', Times, serif; font-size: 13px; line-height: 19px;&quot;&gt;请写出程序的执行结果....&lt;/span&gt;
-首先从左到右看： char *c[]= { &ldquo;ENTNG&rdquo;, &ldquo;NST&rdquo;, &ldquo;AMAZI&rdquo;, &ldquo;FIRBE&rdquo; }; *c[] 是一个字符，因此，c[]是指向该字符，c就是一个数组（数组的内容为指向字符的指针），c已经被初始化了. char** cp[]={c+3, c+2, c+1, c}; 再看第二行，**cp[]是一个字符，*cp[]就是一个指针，指向该字符，cp[]就是一个指针，指向该指针，而cp就成为了指针数组，内容是指向字符的指针的指针。并且通过c的元素进行了初始化 char cpp= cp; 第三行，cpp是一个字符，**cpp指向该字符，*cpp指向该指针，cpp就指向该字符的指针的指针.
-然后我画一张图表示初始的情况看看
-
-然后对于下面的输出语句，通过操作符优先级使用括号来区分一下： ((++cpp)); 这个嘛，就是把cpp后移(注意cpp已经改变了)然后就指向了cp[1]，然后两次取其值即可得到AMAZI
-推导过程如下：
- ++cpp -&gt; cp[1] // cp[1] -&gt; c+2 ++cpp = &amp;cp[1] // &amp;(c+2) *++cpp = *(&amp;c+2) // c[2] **++cpp = &amp;c[2] 然后看第二个 ((&ndash;(*(++cpp))))+3; 加括号后如上，cpp再加一，就指向了cp[2],取一次值（也就是号）就变成了c[1],然后&ndash;c[1]就指向了c[0],取值就成了c[0]的地址，然后地址+3，就是NG了 ((cpp[-2]))+3; 上面，cpp指向cp[2]了，然后呢，cpp[-2] 相当于*(cpp-2)，间接引用cp[2]，这样cpp[-2]就指向了cp[0]了，然后，就是FIRBE了,加3就是BE了
-                  <a href="https://leizhiyuan.github.io/2013/04/17/%E4%B8%80%E9%81%93%E7%AC%94%E8%AF%95%E6%8C%87%E9%92%88%E9%A2%98%E7%9B%AE%E8%AF%A6%E8%A7%A3/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c&#43;&#43;/">C&#43;&#43;</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
         </div>
         
           <ul class="pager main-pager">
@@ -928,7 +934,7 @@ A B ##### 0 0 0 3 3 0 3 3 4 2 &lt;- B中也得到了2 但是注意,从 B-&gt;A �
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

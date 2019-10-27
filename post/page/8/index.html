@@ -48,7 +48,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.58.0" />
+  <meta name="generator" content="Hugo 0.59.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -233,6 +233,83 @@
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
         <div class="posts-list">
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2014/03/29/google%E8%BE%93%E5%85%A5%E6%B3%95%E5%92%8Cjava%E4%B8%8D%E5%85%BC%E5%AE%B9/">
+                <h2 class="post-title">Google输入法和Java不兼容</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on March 29, 2014
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  
+
+<p>一直发现自己写的Swing界面无法关闭，症状是点击了界面的关闭按钮后程序会卡住，然后点击无响应最后就挂掉了。</p>
+
+<p>最开始以为是自己的资源没释放，但是没理由呀，应该在关闭的时候会自动释放，而且改了代码也没用。</p>
+
+<p>今天再执行另一个Swing的时候，eclipse报错了
+<pre class="lang:default decode:true">#</p>
+
+<h1 id="a-fatal-error-has-been-detected-by-the-java-runtime-environment">A fatal error has been detected by the Java Runtime Environment:</h1>
+
+<p>#</p>
+
+<h1 id="exception-access-violation-0xc0000005-at-pc-0x6d986cc3-pid-700-tid-2280">EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x6d986cc3, pid=700, tid=2280</h1>
+
+<p>#</p>
+
+<h1 id="jre-version-java-tm-se-runtime-environment-7-0-45-b18-build-1-7-0-45-b18">JRE version: Java&trade; SE Runtime Environment (7.0_45-b18) (build 1.7.0_45-b18)</h1>
+
+<h1 id="java-vm-java-hotspot-tm-client-vm-24-45-b08-mixed-mode-sharing-windows-x86">Java VM: Java HotSpot&trade; Client VM (24.45-b08 mixed mode, sharing windows-x86 )</h1>
+
+<h1 id="problematic-frame">Problematic frame:</h1>
+
+<h1 id="c-googlepinyin2-ime-0x96cc3">C  [GOOGLEPINYIN2.IME+0x96cc3]</h1>
+
+<p>#</p>
+
+<h1 id="failed-to-write-core-dump-minidumps-are-not-enabled-by-default-on-client-versions-of-windows-pre">Failed to write core dump. Minidumps are not enabled by default on client versions of Windows</pre></h1>
+
+<p>看问题说是Google拼音输入法冲突，导致访问禁止，在PChunder里卸载掉javaw的Google拼音模块，javaw马上就关闭了，于是修改系统的默认输入法为其他输入法问题解决。</p>
+
+<p>我了个去，纠结了我好长时间。我说为啥公司电脑和我的电脑都会关不了呢&hellip;</p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E4%BD%9C/">工作</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2014/03/29/linux%E7%BC%96%E5%86%99%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/">
@@ -849,56 +926,6 @@ public class SOAPClientSAAJ {
 
             </article>
           
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2014/02/04/%E7%AC%94%E8%AE%B0%E5%86%99%E4%BB%A3%E7%A0%81%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB%E4%B8%8A/">
-                <h2 class="post-title">[笔记]写代码遇到的一些问题汇总上</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on February 4, 2014
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  今天大雪，天冷，不能出去玩了。把保存在pocket里的一些记录总结一下，太懒了。。下篇等我去了上海用我电脑写吧
-1.java模拟https登陆
-首先我要登陆，然后保存cookie，然后利用cookie来访问后续的网页，发包，处理包这样，然后，为了方便，我选择了 org.apache.http 这个库，典型的一个登陆场景应该是这样的，以后遇到问题一定先要去看官方的例子，别人给出的例子一般要么是不能用，要么是用的方法都是一些过时的，虽然能用，但看到警告还是不舒服。 public static BasicCookieStore cookieStore; //整个过程用一个client public static CloseableHttpClient httpclient; cookieStore = new BasicCookieStore(); httpclient = HttpClients.custom().setDefaultCookieStore(cookieStore).build(); //先访问一下首页，然后cookie、会填充进来 HttpGet httpget = new HttpGet(&ldquo;https://leaver.me/index.htm&quot;); httpclient.execute(httpget); CloseableHttpResponse responseCookie = null; //然后post请求登陆 HttpPost httpost = new HttpPost(&ldquo;https://leaver.me/login.htm&quot;); //通过键值对来作为post参数 List &lt; NameValuePair &gt; nameValuePairs = new ArrayList &lt; NameValuePair &gt; (1); nameValuePairs.add(new BasicNameValuePair(&ldquo;loginType&rdquo;, &ldquo;1&rdquo;)); nameValuePairs.add(new BasicNameValuePair(&ldquo;loginName&rdquo;, username)); nameValuePairs.add(new BasicNameValuePair(&ldquo;Password&rdquo;, password)); httpost.setEntity(new UrlEncodedFormEntity(nameValuePairs, Consts.UTF_8)); CloseableHttpResponse responLogin = null; responLogin = httpclient.execute(httpost); 但是，这个过程报了如下的错 e: sun.
-                  <a href="https://leizhiyuan.github.io/2014/02/04/%E7%AC%94%E8%AE%B0%E5%86%99%E4%BB%A3%E7%A0%81%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB%E4%B8%8A/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E4%B8%8A%E6%B5%B7/">上海</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E4%BA%92%E8%81%94%E7%BD%91/">互联网</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
         </div>
         
           <ul class="pager main-pager">
@@ -962,7 +989,7 @@ public class SOAPClientSAAJ {
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

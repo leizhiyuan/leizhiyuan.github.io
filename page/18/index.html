@@ -48,7 +48,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.58.0" />
+  <meta name="generator" content="Hugo 0.59.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -222,6 +222,67 @@
 
         <div class="posts-list">
           
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/10/21/android%E5%BC%80%E5%8F%91%E8%8E%B7%E5%8F%96map-api-key/">
+                <h2 class="post-title">Android开发获取Map API Key</h2>
+                
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on October 21, 2012
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  <p>地图应用使用com.google.android.maps这个包。通过MapView控件使用。但是之前需要申请一个用于开发的API Key，这个key会和当前的计算机用户绑定。然后通过这个key去官方申请就可以拿到一个开发用的api key了
+&lt;1&gt;首先找到用户的debug.keystore文件，可以再”运行“里面搜debug.keystore；如：c:\users\Administrator.android\debug.keystore</p>
+
+<p>&lt;2&gt;接下来获取MD5指纹，网上很多说的有误。貌似新版默认是出现sha1加密的。通过添加-v 参数会显示所有。</p>
+
+<p>首先运行cmd,在dos界面里，输入
+<pre class="lang:apache decode:true crayon-selected">keytool -list -v -keystore c:\users\Bystander.android\debug.keystore</pre>
+命令，然后会让你输入keystore密码，</p>
+
+<p>输入：android，之后，会出现指纹认证MD5，如下：</p>
+
+<p><a href="http://leaverimage.b0.upaiyun.com/28249_o.jpg"><img src="/images/81f1a9c78815b22e8b390275737d4d1c74212447.jpg" alt="" title="md5" /></a>
+&lt;3&gt;去官方生成真正的api key
+访问 <a href="https://developers.google.com/android/maps-api-signup?hl=zh-CN">Sign Up for the Android Maps API</a> 输入那串值，同意条款，确定后要求用Google帐号登录。然后会拿到一个key。ok</p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/android/">android</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%8E%9F%E5%88%9B/">原创</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
+                  
+                </div>
+              
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/10/20/%E5%85%B3%E4%BA%8E%E7%88%B1%E6%83%85%E5%92%8C%E7%88%B1%E6%83%85%E7%9A%84%E9%99%84%E5%8A%A0%E5%80%BC/">
@@ -827,75 +888,6 @@ XAML方式 &lt;Canvas&gt; &lt;CustomRoundedCornersPolygon:RoundedCornersPolygon 
               
             </article>
           
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/10/11/%E8%87%AA%E5%AE%9A%E4%B9%89wpf-linklabel-%E6%8E%A7%E4%BB%B6/">
-                <h2 class="post-title">自定义WPF LinkLabel 控件</h2>
-                
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on October 11, 2012
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  WPF里是没有LinkLabel控件的。因此我自己写一个。首先。我们看一下WPF中什么类似的组件可以实现这个链接功能
-如果你想要模拟一个LinkLabel控件。你可以在TextBlock里使用内联的Hyperlink。像下面这样 &lt;TextBlock&gt; &lt;Hyperlink&gt; &lt;Run Text=&ldquo;Test link&rdquo;/&gt; &lt;/Hyperlink&gt; &lt;/TextBlock&gt; 你可以使用Label控件。加一个内联的HyperLink，但是我认为TextBlock更好。因为你可以在Expression Blend 中通过InlineCollection 编辑所有子元素的属性
-图1
- 虽然这种方法也行，但是我还是不太喜欢。因为我觉得我还是写一个类似windows窗体程序中的LinkLabel控件。然后我就做了。首先看一下控件的样子
-图2
-
-第一个是默认的LinkLabel控件。第二个是LinkLabelBehavior 属性被设置为HoverUnderline ，第三个的Foreground和 HoverForeground 属性都使用了自定的颜色。
-&nbsp;
-LinkLabel控件支持的属性
-1.Foreground和 HoverForeground属性
-允许自定义这两个属性的值
-2.LinkLabelBehavior 属性
-允许设置下划线的显示与否
-3.自定义HyperlinkStyle 属性
-你可以使用这个属性给超链接设置自定义的样式。如果你已经自定了Foreground和 HoverForeground。则会被覆盖。
-Url 超链接的目标
-所有这些属性都继承自标准的System.Windows.Controls.Label 控件
-通过Blend/Xaml设置这些属性很简单 &lt;ThemedControlLibrary:LinkLabel Content=&ldquo;Link Label&rdquo; FontSize=&ldquo;22&rdquo;/&gt; &lt;ThemedControlLibrary:LinkLabel Content=&ldquo;Link Label&rdquo; LinkLabelBehavour=&ldquo;HoverUnderline&rdquo; /&gt; &lt;ThemedControlLibrary:LinkLabel Foreground=&ldquo;#FF847901&rdquo; HoverForeground=&ldquo;#FF06C8F2&rdquo; Content=&ldquo;Link Label&rdquo; LinkLabelBehavour=&ldquo;NeverUnderline&rdquo;/&gt; 图三
-
-然后是控件的使用方法。仅仅添加命名空间到xaml中。然后使用就行了。 &lt;Window xmlns=&ldquo;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot; xmlns:x=&ldquo;http://schemas.microsoft.com/winfx/2006/xaml&quot; x:Class=&ldquo;DemoApplication.Window1&rdquo; Title=&ldquo;DemoApplication&rdquo; Height=&ldquo;300&rdquo; Width=&ldquo;300&rdquo; xmlns:ThemedControlsLibrary=&ldquo;clr-namespace:ThemedControlsLibrary;assembly=ThemedControlsLibrary&rdquo; &gt; &lt;Grid&gt; &lt;ThemedControlsLibrary:LinkLabel HorizontalAlignment=&ldquo;Left&rdquo; VerticalAlignment=&ldquo;Top&rdquo; Content=&ldquo;LinkLabel&rdquo;/&gt; &lt;/Grid&gt; &lt;/Window&gt; &nbsp;
-                  <a href="https://leizhiyuan.github.io/2012/10/11/%E8%87%AA%E5%AE%9A%E4%B9%89wpf-linklabel-%E6%8E%A7%E4%BB%B6/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/wpf/">WPF</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
         </div>
 
         
@@ -960,7 +952,7 @@ Url 超链接的目标
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

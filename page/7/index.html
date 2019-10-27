@@ -48,7 +48,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.58.0" />
+  <meta name="generator" content="Hugo 0.59.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -222,6 +222,52 @@
 
         <div class="posts-list">
           
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2014/07/13/spring%E6%8F%AD%E7%A7%98-%E7%AC%AC13%E7%AB%A0-%E7%BB%9F%E4%B8%80%E7%9A%84%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE%E5%BC%82%E5%B8%B8%E5%B1%82%E6%AC%A1%E4%BD%93%E7%B3%BB/">
+                <h2 class="post-title">Spring揭秘-第13章 统一的数据访问异常层次体系</h2>
+                
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on July 13, 2014
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  Spring揭秘-第13章 统一的数据访问异常层次体系  DAO可以分离数据哭的访问和存储，屏蔽各种数据访问方式的差异性，下面以访问顾客信息为例，使用DAO模式 首先定义一个数据访问对象接口，如下   public interrface ICustomerDao{ Customer findCustomerByPK(String customerId); void updateCustomerStatus(Customer customer); &nbsp;
+ 之后，所有的数据访问都通过该接口进行，不论底层存储机制如何改变，DAO的实现因此会扩展，但客户端代码不需要调整   客户端要用的时候这样使用即可。   publicclassCustomerService { privateICustomerDao customerDao; publicvoid disableCustomerCampain(String customerId) { Customer customer=getCustomerDao().findCustomerByPK(customerId); customer.setCampainStatus(CampainStatus.DISABLE); getCustomerDao().updateCustomerStatus(customer); } publicICustomerDao getCustomerDao() { return customerDao; } publicvoid setCustomerDao(ICustomerDao customerDao) { this.customerDao=customerDao; } &nbsp;
+  我们只要针对不同的数据存储方式实现不同的Dao类即可。  我们开始实现具体的访问数据了。   publicCustomer findCustomerByPK(String customerId) { Connection con=null; try{ con=getDataSource().getConnection(); Customer cust=..; return cust; } catch(SQLException e){ //这里咋办，直接抛出还是直接处理？ } finally{ releaseConnection(con); } } privatevoid releaseConnection(Connection con){ } &nbsp;
+                  <a href="https://leizhiyuan.github.io/2014/07/13/spring%E6%8F%AD%E7%A7%98-%E7%AC%AC13%E7%AB%A0-%E7%BB%9F%E4%B8%80%E7%9A%84%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE%E5%BC%82%E5%B8%B8%E5%B1%82%E6%AC%A1%E4%BD%93%E7%B3%BB/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/spring/">spring</a>&nbsp;
+                  
+                </div>
+              
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2014/07/13/spring%E6%8F%AD%E7%A7%98-%E7%AC%AC%E5%9B%9B%E7%AB%A0beanfactory%E7%AC%94%E8%AE%B0/">
@@ -802,81 +848,6 @@ JavaScript中函数的重要性毋庸置疑。在理解了JavaScript中的函数
               
             </article>
           
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2014/03/29/google%E8%BE%93%E5%85%A5%E6%B3%95%E5%92%8Cjava%E4%B8%8D%E5%85%BC%E5%AE%B9/">
-                <h2 class="post-title">Google输入法和Java不兼容</h2>
-                
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on March 29, 2014
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  
-
-<p>一直发现自己写的Swing界面无法关闭，症状是点击了界面的关闭按钮后程序会卡住，然后点击无响应最后就挂掉了。</p>
-
-<p>最开始以为是自己的资源没释放，但是没理由呀，应该在关闭的时候会自动释放，而且改了代码也没用。</p>
-
-<p>今天再执行另一个Swing的时候，eclipse报错了
-<pre class="lang:default decode:true">#</p>
-
-<h1 id="a-fatal-error-has-been-detected-by-the-java-runtime-environment">A fatal error has been detected by the Java Runtime Environment:</h1>
-
-<p>#</p>
-
-<h1 id="exception-access-violation-0xc0000005-at-pc-0x6d986cc3-pid-700-tid-2280">EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x6d986cc3, pid=700, tid=2280</h1>
-
-<p>#</p>
-
-<h1 id="jre-version-java-tm-se-runtime-environment-7-0-45-b18-build-1-7-0-45-b18">JRE version: Java&trade; SE Runtime Environment (7.0_45-b18) (build 1.7.0_45-b18)</h1>
-
-<h1 id="java-vm-java-hotspot-tm-client-vm-24-45-b08-mixed-mode-sharing-windows-x86">Java VM: Java HotSpot&trade; Client VM (24.45-b08 mixed mode, sharing windows-x86 )</h1>
-
-<h1 id="problematic-frame">Problematic frame:</h1>
-
-<h1 id="c-googlepinyin2-ime-0x96cc3">C  [GOOGLEPINYIN2.IME+0x96cc3]</h1>
-
-<p>#</p>
-
-<h1 id="failed-to-write-core-dump-minidumps-are-not-enabled-by-default-on-client-versions-of-windows-pre">Failed to write core dump. Minidumps are not enabled by default on client versions of Windows</pre></h1>
-
-<p>看问题说是Google拼音输入法冲突，导致访问禁止，在PChunder里卸载掉javaw的Google拼音模块，javaw马上就关闭了，于是修改系统的默认输入法为其他输入法问题解决。</p>
-
-<p>我了个去，纠结了我好长时间。我说为啥公司电脑和我的电脑都会关不了呢&hellip;</p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E4%BD%9C/">工作</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
         </div>
 
         
@@ -941,7 +912,7 @@ JavaScript中函数的重要性毋庸置疑。在理解了JavaScript中的函数
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

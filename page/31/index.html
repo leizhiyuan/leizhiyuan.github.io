@@ -48,7 +48,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.58.0" />
+  <meta name="generator" content="Hugo 0.59.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -222,6 +222,133 @@
 
         <div class="posts-list">
           
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/04/18/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB%E4%B8%8B/">
+                <h2 class="post-title">操作系统知识点汇总(下)</h2>
+                
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on April 18, 2012
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  <p>太长了，还是分成两篇。此为下</p>
+
+<p>同时到达的作业使用短作业优先平均周转时间最短。</p>
+
+<p>系统调用和一般过程调用的区别：
+1.运行状态不同 用户态/和心态
+2.进入方式不同 过程调用/访问管中断
+3.代码层次不同 用户级/系统级</p>
+
+<p>周转时间=完成时间-提交时间</p>
+
+<p>平均带权周转时间=周转时间/执行时间</p>
+
+<p>存储器分配的三种方式：1.直接分配，2.静态分配（连续），3.动态分配（需要用到重定位）</p>
+
+<p>地址空间是逻辑地址的集合，内存空间是物理地址的集合</p>
+
+<p>分区存储管理的策略：
+分配策略有：首次适应算法、循环首次适应算法、最佳适应算法、最坏适应算法。
+a.首次适应算法的优缺点：保留了高址部分的大空闲区，有利于后到来的大型作业的分配；低址部分不断被划分，留下许多难以利用的、小的空闲区，且每次分区分配查找时都是从低址部分开始，会增加查找时的系统开销。
+b.循环首次适应算法的优缺点：使内存中的空闲分区分布得更为均匀，减少了查找时的系统开销；缺乏大的空闲分区，从而导致不能装入大型作业。
+c.最佳适应算法的优缺点：每次分配给文件的都是最适合该文件大小的分区；内存中留下许多难以利用的小的空闲区。
+d.最坏适应算法的优缺点：给文件分配分区后剩下的的空闲区不至于太小，产生碎片的几率最小，对中小型文件分配分区操作有利；使存储器中缺乏大的空闲区，对大型文件的分区分配不利。</p>
+
+<p>内部碎片是指分配给作业的存储空间未被使用的部分，外部碎片是指系统中无法利用的小存储块。
+页面置换算法：
+1.最佳置换算法 永远不需要，最长的时间后才能访问的页面被调出
+2.先进先出
+3.最近最久未使用 传说中的LRU，最近一段时间内没被访问的页面被调出</p>
+
+<p>采用分段式不会产生内部碎片，虚拟存储器的最大容量是由计算的地址结构决定的</p>
+
+<p>页面的大小与可能产生缺页中断的次数成反比</p>
+
+<p>作业在执行中发生了缺页中断，经操作系统处理后，应让其执行被中断的指令</p>
+
+<p>段页式存储器管理系统中，内存等分成块，然后程序按照逻辑模块划分成若干段。</p>
+
+<p>先进先出页面置换算法会产生Belady现象</p>
+
+<p>回收分区后造成空闲分区-1的原因是有有上邻和下邻空闲分区</p>
+
+<p>执行过程不能被修改的代码称为可重入代码。。
+请求分页存储器管理中，地址变换可能因为地址越界，缺页，访问存在权限错误而产生中断</p>
+
+<p>交换技术是以CPU时间为代价的</p>
+
+<p>段页式管理中，作业分段，段内分页，页内分块，每条访问内存的指令需要三步
+1.通过段号查段表。。得到页表地址
+2.通过页号查页表。。得到物理块号
+3.物理块号+页内地址 访问真实地址</p>
+
+<p>固定分区分配和页式管理会产生内碎片，额可变分区和段式则产生外部碎片。</p>
+
+<p>输出输入控制方式
+①程序I/O控制方式:适用于结构简单，只需少量硬件的电路；
+②中断驱动I/O控制方式：适用于高效场合；
+③直接存储访问DMA I/O控制方式：适用于无须CPU介入的控制器来控制内存与外设之间的数据交流的场合；
+④I/O通道控制方式：适用于以字节为单位的干预，同时实现CPU，通道和I/O设备三者并行操作的场合。</p>
+
+<p>设备处理程序又称为设备驱动程序，其主要任务是接收来自上层的与设备无关的输入输出请求，进行与设备相关的处理</p>
+
+<p>通道又称为I/0处理机，用来实现内存与外设之间的信息传输。</p>
+
+<p>为了使多个进程能够更有效的同时处理输入和输出请求，最好使用缓冲池结构的缓冲技术</p>
+
+<p>缺页中断属于外部中断，Ctrl+C属于程序性中断</p>
+
+<p>设备分配时涉及到的主要数据结构设备控制表，控制器控制表，通道控制表，系统设备表</p>
+
+<p>从资源分配的角度可将I/0分为独享设备，共享设备，虚拟设备</p>
+
+<p>引入缓冲技术的原因：
+1.缓和cpu和I/0之间的速度不匹配的矛盾
+2.减少中断cpu的次数
+3.提高cpu和I/o之间设备的并行性</p>
+
+<p>文件系统是指文件，管理文件的软件以及数据结构的总体</p>
+
+<p>文件系统的目的是为了实现对文件的按名存取。
+逻辑文件的两种类型：记录式和流式</p>
+
+<p>二进制的那个位图表行号=（盘块号-1）/列数。
+<strong>转载请注明：<a href="http://leaver.me/archives/328.html">http://leaver.me/archives/328.html</a></strong></p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%AC%94%E8%AE%B0/">笔记</a>&nbsp;
+                  
+                </div>
+              
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/04/18/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB%E4%B8%8A/">
@@ -759,55 +886,6 @@ import android.widget.ViewFlipper;</p>
               
             </article>
           
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/04/11/%E6%8B%96%E5%BB%B6%E5%BF%83%E7%90%86%E5%88%86%E6%9E%90/">
-                <h2 class="post-title">拖延心理分析</h2>
-                
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on April 11, 2012
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  <p>拖延从根本上来说并不是一个时间管理方面的问题，也不是一个道德问题，而是一个复杂的心理问题。根本而言，拖延的问题是一个人跟自身如何相处的问题，它反映的是一个人在自尊上的问题。在我们的第一本书里，我们将它看做是一个人自我价值感方面的问题。我们强调，自我价值感是以一种自我接受的能力为基础的，其中包括接受我们的生理状况，接受我们的历史，接受我们的环境，以及接受我们作为人的诸多局限性. -摘录</p>
-
-<p>&nbsp;</p>
-
-<p><span style="background-color: #00ff00;">一.拖延是什么 </span>
- 拖，我懂，就是打死以后拉走的意思，延，我也懂。就是打死以后等会再拉走，那么，至于拖延，我想就不必多说了，主要分清拖延和延后处理的关系就行了，一个评判点就是看有没有让你感到烦恼。
- <span style="background-color: #00ff00;">二，拖延的症状 </span>
- 怎么知道自己是不是拖延患者呢。我们知道，行为是判断我们的最佳方法，如果你都懒的去想这个问题，认为还太早的话，那么你显然就是拖延的患者呢。请允许我用患者这个词，</p>
-                  <a href="https://leizhiyuan.github.io/2012/04/11/%E6%8B%96%E5%BB%B6%E5%BF%83%E7%90%86%E5%88%86%E6%9E%90/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%BF%83%E7%90%86/">心理</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
         </div>
 
         
@@ -872,7 +950,7 @@ import android.widget.ViewFlipper;</p>
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

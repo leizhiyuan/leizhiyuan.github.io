@@ -48,7 +48,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.58.0" />
+  <meta name="generator" content="Hugo 0.59.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -233,6 +233,56 @@
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
         <div class="posts-list">
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2014/02/04/%E7%AC%94%E8%AE%B0%E5%86%99%E4%BB%A3%E7%A0%81%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB%E4%B8%8A/">
+                <h2 class="post-title">[笔记]写代码遇到的一些问题汇总上</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on February 4, 2014
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  今天大雪，天冷，不能出去玩了。把保存在pocket里的一些记录总结一下，太懒了。。下篇等我去了上海用我电脑写吧
+1.java模拟https登陆
+首先我要登陆，然后保存cookie，然后利用cookie来访问后续的网页，发包，处理包这样，然后，为了方便，我选择了 org.apache.http 这个库，典型的一个登陆场景应该是这样的，以后遇到问题一定先要去看官方的例子，别人给出的例子一般要么是不能用，要么是用的方法都是一些过时的，虽然能用，但看到警告还是不舒服。 public static BasicCookieStore cookieStore; //整个过程用一个client public static CloseableHttpClient httpclient; cookieStore = new BasicCookieStore(); httpclient = HttpClients.custom().setDefaultCookieStore(cookieStore).build(); //先访问一下首页，然后cookie、会填充进来 HttpGet httpget = new HttpGet(&ldquo;https://leaver.me/index.htm&quot;); httpclient.execute(httpget); CloseableHttpResponse responseCookie = null; //然后post请求登陆 HttpPost httpost = new HttpPost(&ldquo;https://leaver.me/login.htm&quot;); //通过键值对来作为post参数 List &lt; NameValuePair &gt; nameValuePairs = new ArrayList &lt; NameValuePair &gt; (1); nameValuePairs.add(new BasicNameValuePair(&ldquo;loginType&rdquo;, &ldquo;1&rdquo;)); nameValuePairs.add(new BasicNameValuePair(&ldquo;loginName&rdquo;, username)); nameValuePairs.add(new BasicNameValuePair(&ldquo;Password&rdquo;, password)); httpost.setEntity(new UrlEncodedFormEntity(nameValuePairs, Consts.UTF_8)); CloseableHttpResponse responLogin = null; responLogin = httpclient.execute(httpost); 但是，这个过程报了如下的错 e: sun.
+                  <a href="https://leizhiyuan.github.io/2014/02/04/%E7%AC%94%E8%AE%B0%E5%86%99%E4%BB%A3%E7%A0%81%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB%E4%B8%8A/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E4%B8%8A%E6%B5%B7/">上海</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E4%BA%92%E8%81%94%E7%BD%91/">互联网</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2014/01/28/%E5%89%8D%E8%B7%AF%E6%9C%88%E5%85%89/">
@@ -839,73 +889,6 @@ public class App { public static void main( String[] args ) { IOutputGenerator o
 
             </article>
           
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/09/19/maven%E5%BA%93%E4%BE%9D%E8%B5%96%E6%9C%BA%E5%88%B6%E5%8F%8A%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BA%93/">
-                <h2 class="post-title">Maven库依赖机制及添加自定义库</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on September 19, 2013
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  一.Maven库依赖机制 Maven的库依赖机制可以帮助我们自动下载依赖的库文件，并且还能更新版本。。
-考虑一个情境来理解机制的工作原理，假设我们要使用Log4J库作为项目的日志记录。以下是我们要做的
-1.传统的方式 1）访问Log4J网站http://logging.apache.org/log4j/2.x/
-2）下载Log4J的jar包
-3）复制进项目的classpath里
-4）手工包含到项目的依赖里
-看到没，你要从头做到尾，如果Log4J更新了，你得再来一遍。。
-2.Maven的方式 1）需要知道Log4J的Maven坐标(coordinates,这个暂时没想到好名字)，就是这样的东西 &lt;groupId&gt;log4j&lt;/groupId&gt; &lt;artifactId&gt;log4j&lt;/artifactId&gt; &lt;version&gt;1.2.14&lt;/version&gt; 然后Maven就会自动下载1.2.14版本的Log4J了。如果version这个元素没有，那么如果有了新版本，Maven会自动下载新版本的。
-2）在pom.xml里声明这个Maven坐标 &lt;dependencies&gt; &lt;dependency&gt; &lt;groupId&gt;log4j&lt;/groupId&gt; &lt;artifactId&gt;log4j&lt;/artifactId&gt; &lt;version&gt;1.2.14&lt;/version&gt; &lt;/dependency&gt; &lt;/dependencies&gt; 3）当Maven编译或者build的时候，Log4J会自动下载，放入本地仓库里
-4）Maven全部接管
-3.解释 搜索顺序前面说过了。本地-》中央-》远程仓库
-Maven坐标咋来的，当然去中央仓库搜索之了，搜索结果清晰的令人发指
-二.添加自定义库到本地仓库 有两个情况，需要我们包含自定义的库到本地仓库里
-1是你想使用的jar文件不再中央仓库
-2是你创建了一个自定义的jar包，需要另一个项目使用这个jar
-比如，kaptche，一个第三方的java库，生成验证码，现在中央仓库没有了。
-我们想要加到本地仓库里
-1.mvn安装 下载kaptche，解压并且拷贝kaptcha-version.jar到其他任何你喜欢的地方，比如c盘，然后输入如下格式的命令 mvn install:install-file -Dfile=c:\kaptcha-{version}.jar -DgroupId=com.google.code -DartifactId=kaptcha -Dversion={version} -Dpackaging=jar 这里我这样输入 D:&amp;gt;mvn install:install-file -Dfile=c:\kaptcha-2.3.jar -DgroupId=com.google.code -DartifactId=kaptcha -Dversion=2.3 -Dpackaging=jar [INFO] Scanning for projects&hellip; [INFO] Searching repository for plugin with prefix: &lsquo;install&rsquo;. [INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash; [INFO] Building Maven Default Project [INFO] task-segment: install:install-file [INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash; [INFO] [install:install-file] [INFO] Installing c:\kaptcha-2.
-                  <a href="https://leizhiyuan.github.io/2013/09/19/maven%E5%BA%93%E4%BE%9D%E8%B5%96%E6%9C%BA%E5%88%B6%E5%8F%8A%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BA%93/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/maven/">maven</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
         </div>
         
           <ul class="pager main-pager">
@@ -969,7 +952,7 @@ Maven坐标咋来的，当然去中央仓库搜索之了，搜索结果清晰的
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

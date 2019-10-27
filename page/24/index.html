@@ -48,7 +48,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.58.0" />
+  <meta name="generator" content="Hugo 0.59.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -222,6 +222,85 @@
 
         <div class="posts-list">
           
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/07/11/sqlserver%E5%90%AF%E7%94%A8xp_cmdshell/">
+                <h2 class="post-title">SQLServer启用xp_cmdshell</h2>
+                
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on July 11, 2012
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  <p>忘了当时是执行哪条命令的时候需要启动xp_cmdshell了。。反正是必须用的。。</p>
+
+<p>默认情况下,sql server安装完后,xp_cmdshell是禁用的(可能是安全考虑),如果要使用它,可按以下步骤
+<pre class="lang:pgsql decode:true">&ndash; 允许配置高级选项
+EXEC sp_configure &lsquo;show advanced options&rsquo;, 1
+GO
+&ndash; 重新配置
+RECONFIGURE
+GO
+&ndash; 启用xp_cmdshell
+EXEC sp_configure &lsquo;xp_cmdshell&rsquo;, 1
+GO
+&ndash;重新配置
+RECONFIGURE
+GO</p>
+
+<p>&ndash;执行想要的xp_cmdshell语句
+Exec xp_cmdshell &lsquo;query user&rsquo;
+GO</p>
+
+<p>&ndash;用完后,要记得将xp_cmdshell禁用(出于安全考虑)
+&ndash; 允许配置高级选项
+EXEC sp_configure &lsquo;show advanced options&rsquo;, 1
+GO
+&ndash; 重新配置
+RECONFIGURE
+GO
+&ndash; 禁用xp_cmdshell
+EXEC sp_configure &lsquo;xp_cmdshell&rsquo;, 0
+GO
+&ndash;重新配置
+RECONFIGURE
+GO</pre>
+&nbsp;</p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%94%B6%E8%97%8F/">收藏</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
+                  
+                </div>
+              
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/07/11/c#-%E7%BA%BF%E7%A8%8B%E4%BC%98%E7%A7%80%E6%96%87%E7%AB%A0%E6%B1%87%E6%80%BB/">
@@ -866,73 +945,6 @@ void GetBat(string InputPath,string OutFile) { DirectoryInfo di = new DirectoryI
               
             </article>
           
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/07/03/unable-to-read-file-data_egcitest%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">
-                <h2 class="post-title">Unable to read file Data_EGCITest解决方法</h2>
-                
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on July 3, 2012
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  <p>　　今天做的是使用matlab进行协整检验，好吧。。听起来似乎很厉害的样子，其实，我也不太清楚协整到底是干嘛呢。不过经管的各位很给力。
-想来协整检验matlab是可以做的。所以就去查matlab是不是有这个函数，结果是有的。egcitest，但是具体的参数还是景观的朋友看懂的。</p>
-
-<p>　　早上3点多起床，看matlab的书，然后早上看完了。基本上熟悉了matlab的操作。然后就开始写这个。大致的流程和昨天的那篇文章是一致的。但是matlab生成的dll文件在C#里面调用始终会提示这样一个错误。：
-<pre class="lang:default decode:true">MWMCR::EvaluateFunction error &hellip; Error using ==&gt;
-load Unable to read file Data_EGCITest: No such file or directory. Error in =&gt; test.m</pre>
-　　组合了几个关键字进行搜索，发现了<a href="http://www.mathworks.cn/matlabcentral/answers/33037-matlab-builder-ne-exception-with-supposedly-toolbox-support">这篇文章</a>，翻译过来很简单。</p>
-
-<p>　　错误提示说的那个Data_EGCITest是一个名为Data_EGCITest.mat的文件，位于$MATLABROOT/toolbox/econ/econ/Data_EGCITest.mat目录下，$MATLABROOT指的是你matlab的安装路径。在你build 工程的时候，在下图中，记得添加这个文件。
-<a href="http://leaverimage.b0.upaiyun.com/24000_o.jpg"><img src="/images/9f98cf04debe57b3ec360a6b3ae27c8995579770.jpg" alt="" title="操作" /></a></p>
-
-<p>　　然后build生成的dll文件就可以正常在C#里使用了。</p>
-
-<p>　　中间走了很多弯路。因为我想既然matlab都编译生成了dll，那么dll应该没问题。然后我就把精力放在了C#那边。。结果后来折腾了很长时间，才发现是这边的问题。。坑爹。。</p>
-
-<p>　　协整检验的代码就不发了。和题目没关系。。
-参考：
-　　<a href="http://www.mathworks.cn/help/toolbox/econ/egcitest.html">http://www.mathworks.cn/help/toolbox/econ/egcitest.html</a></p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/matlab/">matlab</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%AC%94%E8%AE%B0/">笔记</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
         </div>
 
         
@@ -997,7 +1009,7 @@ load Unable to read file Data_EGCITest: No such file or directory. Error in =&gt
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

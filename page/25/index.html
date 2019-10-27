@@ -48,7 +48,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.58.0" />
+  <meta name="generator" content="Hugo 0.59.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -222,6 +222,73 @@
 
         <div class="posts-list">
           
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/07/03/unable-to-read-file-data_egcitest%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">
+                <h2 class="post-title">Unable to read file Data_EGCITest解决方法</h2>
+                
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on July 3, 2012
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  <p>　　今天做的是使用matlab进行协整检验，好吧。。听起来似乎很厉害的样子，其实，我也不太清楚协整到底是干嘛呢。不过经管的各位很给力。
+想来协整检验matlab是可以做的。所以就去查matlab是不是有这个函数，结果是有的。egcitest，但是具体的参数还是景观的朋友看懂的。</p>
+
+<p>　　早上3点多起床，看matlab的书，然后早上看完了。基本上熟悉了matlab的操作。然后就开始写这个。大致的流程和昨天的那篇文章是一致的。但是matlab生成的dll文件在C#里面调用始终会提示这样一个错误。：
+<pre class="lang:default decode:true">MWMCR::EvaluateFunction error &hellip; Error using ==&gt;
+load Unable to read file Data_EGCITest: No such file or directory. Error in =&gt; test.m</pre>
+　　组合了几个关键字进行搜索，发现了<a href="http://www.mathworks.cn/matlabcentral/answers/33037-matlab-builder-ne-exception-with-supposedly-toolbox-support">这篇文章</a>，翻译过来很简单。</p>
+
+<p>　　错误提示说的那个Data_EGCITest是一个名为Data_EGCITest.mat的文件，位于$MATLABROOT/toolbox/econ/econ/Data_EGCITest.mat目录下，$MATLABROOT指的是你matlab的安装路径。在你build 工程的时候，在下图中，记得添加这个文件。
+<a href="http://leaverimage.b0.upaiyun.com/24000_o.jpg"><img src="/images/9f98cf04debe57b3ec360a6b3ae27c8995579770.jpg" alt="" title="操作" /></a></p>
+
+<p>　　然后build生成的dll文件就可以正常在C#里使用了。</p>
+
+<p>　　中间走了很多弯路。因为我想既然matlab都编译生成了dll，那么dll应该没问题。然后我就把精力放在了C#那边。。结果后来折腾了很长时间，才发现是这边的问题。。坑爹。。</p>
+
+<p>　　协整检验的代码就不发了。和题目没关系。。
+参考：
+　　<a href="http://www.mathworks.cn/help/toolbox/econ/egcitest.html">http://www.mathworks.cn/help/toolbox/econ/egcitest.html</a></p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/matlab/">matlab</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%AC%94%E8%AE%B0/">笔记</a>&nbsp;
+                  
+                </div>
+              
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/07/02/c#%E8%B0%83%E7%94%A8matlab%E5%AE%9E%E7%8E%B0n%E9%98%B6%E5%B9%BB%E6%96%B9/">
@@ -1036,82 +1103,6 @@ MouseDown=&ldquo;Window_MouseDown&rdquo;&gt;</pre>
               
             </article>
           
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/06/22/u%E7%9B%98%E6%88%96%E7%A1%AC%E7%9B%98%E8%A3%85%E6%BB%A1%E8%B5%84%E6%96%99%E5%90%8E%E8%B4%A8%E9%87%8F%E4%BC%9A%E5%A2%9E%E5%8A%A0%E5%90%97/">
-                <h2 class="post-title">U盘或硬盘装满资料后，质量会增加吗？</h2>
-                
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on June 22, 2012
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  <p>　　科普文，以前看到过，今天又想起来了，所以拿来和大家分享，感谢原作者的努力。</p>
-
-<p>　<strong><em>U盘或硬盘装满资料后，质量会增加吗？</em></strong></p>
-
-<p>　　要回答这个问题，先让我们看看U盘和硬盘的存储原理。</p>
-
-<p>　　U盘又称为闪存(Flash Memory)，其存储介质为flash，简单地说，flash是用浮栅来存储数据的，浮栅就是可以存储电荷的电荷势阱，向flash写入数据的过程就是向这个电荷势阱注入电荷的过程。</p>
-
-<p>　　至于硬盘，如今使用较多的是固态硬盘，其存储介质多为DRAM，简单来说，DRAM是用电容来存取数据的，电容可以充放电，可以储能，有电荷的时候是&rdquo;1&rdquo;，无电荷的时候是&rdquo;0&rdquo;。</p>
-
-<p>　　回到开头的问题，通过上面的分析可以发现，U盘或硬盘装满资料前后，改变的是数字讯号记录的内容，也就是说多了许多电子。</p>
-
-<p>　　电子的质量约为9.10938188E-31 kg，所以说，U盘或硬盘装满资料后，质量是会增加的，只不过增加的量非常的少。</p>
-
-<p>　　<strong><em>同样，我们可以思考这样的问题，每比特的数据有多重？</em></strong></p>
-
-<p>　　众所周知，计算机使用一串串二进制的&rdquo;1&rdquo;和&rdquo;0&rdquo;表示所有种类的信息———电子邮件、文档、视频、网页，一切的一切。</p>
-
-<p>　　我们拿普通电脑的存储器来说，其存储机制就是刚刚提到的DRAM，电容充电后代表&rdquo;1&rdquo;，没充电就代表&rdquo;0&rdquo;。比特&rdquo;0&rdquo;的数据是没有电子的，也就是没有质量的，而比特&rdquo;1&rdquo;的数据是有质量的，虽然轻得微不足道。</p>
-
-<p>　　具体是多少，需要考虑存储器的电容器，估计的值是每个电容器只需要4万个电子就能充满，4万个电子的质量就是3.6E-26 kg，也就是说，比特&rdquo;1&rdquo;的数据质量是3.6E-26 kg。</p>
-
-<p>　　<strong><em>最后，让我们计算一下全球互联网信息总重量！</em></strong></p>
-
-<p>　　要想得出这个结果，我们需要的数据是互联网上流动的信息总量，这可以从克利福德·霍利迪的著作《互联网发展2006》中找到答案：这个总流量就是……大得令人吃惊的40P字节，即4E16字节———4后面跟着16个0。</p>
-
-<p>　　并不是所有的比特都是&rdquo;1&rdquo;，要不然网络的内容也太无趣了，平均大约有一半的比特是&rdquo;1&rdquo;，另一半是&rdquo;0&rdquo;，也就是有20P的比特&rdquo;1&rdquo;，套用我们计算的比特&rdquo;1&rdquo;数据重量时的公式，于是得到了总数7.2E-9 kg。</p>
-
-<p>　　在遭罪地写了这么多字之后，我们终于得出了结论：互联网的重量全部加起来大约只有1盎司(1盎司约等于28克)的五百万分之一。</p>
-
-<p>　　原文:<a href="http://www.cnblogs.com/jyaray/archive/2010/12/09/1901610.html">http://www.cnblogs.com/jyaray/archive/2010/12/09/1901610.html</a></p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%A7%91%E6%8A%80/">科技</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
         </div>
 
         
@@ -1176,7 +1167,7 @@ MouseDown=&ldquo;Window_MouseDown&rdquo;&gt;</pre>
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

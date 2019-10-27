@@ -48,7 +48,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.58.0" />
+  <meta name="generator" content="Hugo 0.59.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -222,6 +222,66 @@
 
         <div class="posts-list">
           
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/06/02/lr1%E9%A1%B9%E7%9B%AE%E9%9B%86%E8%A7%84%E8%8C%83%E7%B0%87%E7%9A%84%E6%9E%84%E9%80%A0/">
+                <h2 class="post-title">LR(1)项目集规范簇的构造</h2>
+                
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on June 2, 2012
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  首先我们知道LR(0)的项目的形式是[A→α·β ]这样的.而在LR(1)中的项目形式是[A→α·β ，a ]，其中A→α·β 为LR(0)项目，称为心，a为终结符或#，称为向前搜索符。对归约项目[A→α·,a]，仅当前输入符号是a时，才能用A→α进行归约。一会将会看到具体的例子。
+　课本上给出的规则是：我将要对照着规则来说明，这里要强调一下，&rdquo;,&lsquo;在这里是分隔符。不是终结符。他是一个标志，
+　以S′→·S，#属于初始项目集中，把&rsquo;#&lsquo;号作为向前搜索符，表示活前缀为γ(若γ是有关S产生式的某一右部)要归约成S时，必须面临输入符为&rsquo;#&lsquo;号才行。因此对初始项目S′→·S，# 求闭包后再用转换函数逐步求出整个文法的LR(1)项目集族。具体构造步骤如下：
+　(1) 构造LR(1)项目集的闭包函数。
+　a) I 的任何项目都属于CLOSURE(I) b) 若有项目[A→α·Bβ,a ]属于CLOSURE(I)，B→γ是文法中的产生式，β∈V*，b∈FIRST(βa)， 则[B→·γ,b]也属于CLOSURE(I)中。 c) 重复b)直到CLOSURE(I)不再增大为止。
+　(2) 转换函数的构造
+　LR(1)转换函数的构造与LR(0)的相似，GO(I,X)＝CLOSURE(J)　其中I是LR(1)的项目集，X是文法符号： J={任何形如[A→αX·β,a]的项目 | [A→α·Xβ,a]∈I}
+　例如下列文法G′为：
+　(0) S′→S (1) S→aAd　(2) S→bAc　(3) S→aec (4) S→bed (5) A→e　构造他的LR(1)项目集规范簇。
+　以I0=CLOSURE（S′→·S，#）开始。运算。若有项目[A→α·Bβ,a ]属于CLOSURE(I)，B→γ是文法中的产生式，β∈V*，b∈FIRST(βa)， 则[B→·γ,b]也属于CLOSURE(I)中。此时，我们可以把S看成B，#看成a，然后需要求FIRST集合，此时没有β，a为#，所以FIRST（#）中只有一个b=#，而S有四个产生式。所有四个产生式加上#都是在I0中，最终求得的I0项目集为
+　{　S′→·S,#　S→·aAd,#　S→·bAc,#　S→·aec,#　S→·bed,#　}
+　然后使用GO函数来构造I1，从J={任何形如[A→αX·β,a]的项目 | [A→α·Xβ,a]∈I}我们可以知道I1的核（最初的产生式）就是这里的J，然后呢。X是I（也就是我们的I0）中的·后面的符号，也就是输入符。。可以看到在I0中，X可以为S，a，b，我们先以I1=GO(I0,S)=CLOSURE( S′→S·,# )，注意，·号已经前进了。因为J是I输入进一的项目，求I1，发现·后面没符号了，所以闭包就是他自己了。最终求得的I1的项目集为：
+　{S′→S·,# }
+                  <a href="https://leizhiyuan.github.io/2012/06/02/lr1%E9%A1%B9%E7%9B%AE%E9%9B%86%E8%A7%84%E8%8C%83%E7%B0%87%E7%9A%84%E6%9E%84%E9%80%A0/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E8%AF%91/">编译</a>&nbsp;
+                  
+                </div>
+              
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/06/01/%E6%88%91%E5%8F%AF%E4%BB%A5%E8%B9%B2%E4%B8%8B%E6%9D%A5%E9%99%AA%E4%BD%A0%E5%81%9A%E4%B8%80%E5%8F%AA%E8%98%91%E8%8F%87/">
@@ -743,57 +803,6 @@ Why sizeof operator returns different values for c &amp; c++ ? 为什么sizeof�
               
             </article>
           
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/05/21/%E4%B8%BA%E4%BB%80%E4%B9%88sizeofstr.substr03.c_str8/">
-                <h2 class="post-title">为什么sizeof(str.substr(0,3).c_str())=8?</h2>
-                
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on May 21, 2012
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  问题： string str = &quot;abcdefgdcb&quot;; cout &amp;lt; &amp;lt; sizeof(str.substr(0,3).c_str()); For some reason, the above string is giving me 8. I assumed c_str() returns a null string, 由于某些原因，上面的这个字符串得到的结果是8，我估计c_str()返回了一个null，
-and sizeof uses the null to determine the size of the string. 并且sizeof函数使用这个null来定义这个字符串的大小。
-答案： Because sizeof doesn&rsquo;t give you the length of a string, 因为sizeof给你的不是一个字符串的长度，
-it gives you the size of the type (const char * in this case). Try strlen. 他给你的是这个类型的大小（这种情况下的类型是c_str()返回的const char*类型），想要得到正确的结果，试试strlen函数吧。
-                  <a href="https://leizhiyuan.github.io/2012/05/21/%E4%B8%BA%E4%BB%80%E4%B9%88sizeofstr.substr03.c_str8/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%8E%9F%E5%88%9B/">原创</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
         </div>
 
         
@@ -858,7 +867,7 @@ it gives you the size of the type (const char * in this case). Try strlen. 他�
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

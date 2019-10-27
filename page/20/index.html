@@ -48,7 +48,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.58.0" />
+  <meta name="generator" content="Hugo 0.59.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -222,6 +222,67 @@
 
         <div class="posts-list">
           
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/09/30/csv%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E5%B7%A5%E5%85%B7/">
+                <h2 class="post-title">CSV导入导出工具</h2>
+                
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on September 30, 2012
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;3&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  介绍
+本文介绍并且实现了在平面文件CSV和SQL server之间的导入导出功能。使用VS2005写的。使用了.net 2.0
+本文基于前一篇文章：从CSV导入数据并存储到数据库，本文包含了新功能，比如，导出功能，在数据库创建表，批量拷贝。接下来的例子中有很多注释。
+导入
+通过ODBC驱动连接到一个CSV文件，然后把文件读到一张表了（基于前面提到的那篇文章） 使用不同的编码和不同的行分隔符（基于前文） 加载CSV文件到DataSet（基于前文） 如何显示对CSV文件的预览（基于前文） 通过SqlBulkCopy的对象向SQL server转移数据，原始数据是DataSet实例
+使用结构表，基于CSV文件，创建一个新表 使用事件来处理批量拷贝的进程 导出
+浏览SQL 数据库中的用户表 使用不同的编码和分隔符 使用SqlDataReader读取数据，使用StreamWriter转移数据到平面文件
+ 使用 1. 下载工程 2. 新建一个数据库，或者使用一个存在的数据库 3. 修改软件中的数据库连接字符串，在prop.cs文件中
+public static string sqlConnString = "server=(local); database=Test_CSV_impex;Trusted_Connection=True";  运行工程  一些代码段 加载CSV到DataSet中 /* *加载CSV到DataSet. * * 如果numberOfRows parameter 是 -1, 就加载所有行, 否则就加载指定数目的行 */
+public DataSet LoadCSV(int numberOfRows) { DataSet ds = new DataSet(); try { // 创建并打开ODBC连接 string strConnString = &ldquo;Driver={Microsoft Text Driver (*.
+                  <a href="https://leizhiyuan.github.io/2012/09/30/csv%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E5%B7%A5%E5%85%B7/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
+                  
+                </div>
+              
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/09/29/listview%E5%B8%83%E5%B1%80%E7%AE%A1%E7%90%86%E5%99%A8/">
@@ -805,78 +866,6 @@ namespace leaver
               
             </article>
           
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/09/24/wpf%E6%AF%9B%E7%8E%BB%E7%92%83%E6%95%88%E6%9E%9Cdemo%E5%92%8C%E4%B8%80%E4%B8%AA%E9%97%AE%E9%A2%98/">
-                <h2 class="post-title">WPF毛玻璃效果Demo和一个问题</h2>
-                
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on September 24, 2012
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  <p>　　那天看到WPF书上讲的毛玻璃效果，就去找了下效果。。忘了例子是从哪发现得了。。先看下效果，</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/27420_o.jpg"><img src="/images/638a69761205e3d5c16a5bd34a2f775de190d137.jpg" alt="" title="glass" /></a>
-　　但是这不是重点，作者给出的代码有一个设计时错误。。错误提示为：
-无法将类型为“Microsoft.Expression.Platform.WPF.InstanceBuilders.WindowInstance”的对象强制转换为类型“System.Windows.Window”，，</p>
-
-<p>　　中文搜了一下。没有发现有人解决过。目测。。。然后又拿英文搜了下。几经辗转。。终于是解决了。。原文在<a href="http://social.msdn.microsoft.com/Forums/is/wpf/thread/931e75a8-cab6-492d-89cd-b7ca291fa273">Unable to cast XAML error</a>。其实就是将原作者这个函数修改如下的</p>
-
-<p><pre class="lang:c# decode:true " >public static void OnIsEnabledChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
-        {</p>
-<div class="highlight"><pre class="chroma">        if ((bool)args.NewValue == true)
-        {
-            Window wnd = obj as Window;
-            if (wnd != null) wnd.Loaded += new RoutedEventHandler(wnd_Loaded);
-        }
-    }&lt;/pre&gt; </pre></div>
-<p>　　也就是验证了一下转换是否成功。</p>
-
-<p>下载：<a href="http://pan.baidu.com/share/link?shareid=61615&amp;uk=1493685990">修改后的RGSamples</a></p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/wpf/">WPF</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%8E%9F%E5%88%9B/">原创</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%94%B6%E8%97%8F/">收藏</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
         </div>
 
         
@@ -941,7 +930,7 @@ namespace leaver
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.58.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>
