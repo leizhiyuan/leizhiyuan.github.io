@@ -10,9 +10,9 @@
   <title>Overview of all pages with the category #学习笔记 - bystander&#39;s blog</title>
   <meta property="og:title" content="Overview of all pages with the category #学习笔记" />
   <meta name="twitter:title" content="Overview of all pages with the category #学习笔记" />
-  <meta name="description" content="Overview of all pages with the category #学习笔记, such as: skywalking插件开发的注意事项">
-  <meta property="og:description" content="Overview of all pages with the category #学习笔记, such as: skywalking插件开发的注意事项">
-  <meta name="twitter:description" content="Overview of all pages with the category #学习笔记, such as: skywalking插件开发的注意事项">
+  <meta name="description" content="Overview of all pages with the category #学习笔记, such as: 深入理解Raft协议">
+  <meta property="og:description" content="Overview of all pages with the category #学习笔记, such as: 深入理解Raft协议">
+  <meta name="twitter:description" content="Overview of all pages with the category #学习笔记, such as: 深入理解Raft协议">
   <meta name="author" content="bystander"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -51,7 +51,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -221,6 +221,64 @@
         <div class="posts-list">
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2014/07/26/python%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/">
+                <h2 class="post-title">Python学习资源</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on July 26, 2014
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  <p>最近突然觉得需要学习一个轻便的语言，每次写个小工具啥的还要打开eclipse，很是不方便。于是学习了一下python，看看官方文档基本就可以上手了，剩下的就是多用了，个人用python写了个调用websevice的东西，suds这个库3.x已经不维护了，坑爹，需要使用<a href="http://pypi.python.org/pypi/suds-jurko">http://pypi.python.org/pypi/suds-jurko</a> 这个库代替，主要是为了批量测试mock的连通性的，</p>
+<p>另外是python3.x和python2.x差异是在很大，我选了3&hellip;, 刚学习的人还是建议从2.x开始吧，否则很多源代码你下载回来基本运行不了。</p>
+<p>本文是我在学习过程中看到的不错的文档，希望有所帮助。</p>
+<p>先看官方文档，英文版觉得有难度看下中文版：<a href="http://www.pythondoc.com/pythontutorial3/">Python3.4 入门指南</a></p>
+<p>然后写写代码，小例子看看<a href="http://www.cnblogs.com/vamei/archive/2012/09/13/2682778.html">Python快速教程</a></p>
+<p>遇到问题，可以去看看：<a href="https://github.com/wklken/stackoverflow-py-top-qa">stackoverflow python 百问</a></p>
+<p>刚开始，你可能不知道module，package，这些都傻，先看看这篇文章<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/0013868200171577d6385bb5b4f4875bee9cbf0f0fa29c5000">python模块</a></p>
+<p>如果你比较纳闷那个命名中的双下划线，但下划线都啥意思，看看<a href="http://igorsobreira.com/2010/09/16/difference-between-one-underline-and-two-underlines-in-python.html">单下划线和双下划线区别</a></p>
+<p>之后，你可能想看看一个系统的组织，那么看看<a href="http://docs.python-guide.org/en/latest/">python最佳实践指南全版</a></p>
+<p>如果你觉得上面的太多，看看<a href="http://wklken.me/posts/2013/11/25/summary-of-the-hitchhikers-guide-2-python.html">中文的摘要版</a></p>
+<p>后来我看到一个yield，不太明白，于是我看到了<a href="http://www.ibm.com/developerworks/cn/opensource/os-cn-python-yield/">Python yield 使用浅析</a>，只能说写的真是好，就是迭代器生成的</p>
+<p>想看看正则？看看<a href="http://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html">python正则表达式指南，</a>非常全面</p>
+<p>我只是想发个http请求，如果你用了python3.x，报错，Import error: No module name urllib，那么看看<a href="http://stackoverflow.com/questions/2792650/python3-error-import-error-no-module-name-urllib">urllib</a>这个坑，你可能要看看，你没有看错，他们合并了。。</p>
+<p><a href="http://woodpecker.org.cn/diveintopython/toc/index.html"> Dive into Python </a>中文也看看，不要在意细节。</p>
+<p>最后好像看看<a href="http://book.douban.com/subject/3285148/"><strong>Expert Python</strong> Programming</a>，因为我没看。</p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/python/">python</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2014/07/13/spring%E6%8F%AD%E7%A7%98-23%E7%AB%A0spring-mvc%E5%88%9D%E4%BD%93%E9%AA%8C/">
                 <h2 class="post-title">Spring揭秘-23章，Spring MVC初体验</h2>
 
@@ -249,15 +307,8 @@
               </p>
               <div class="post-entry">
                 
-                  <p>&nbsp;鸟瞰Spring MVC<div>与其他请求驱动的Web框架思路类似。org.springframework.web.servlet.DispatcherServlet就是Spring mvC中的Front Controller。负责处理请求，但是不针对具体的处理逻辑。而是委派给下一级的控制器，也就是<span style="font-size: 10.5pt; line-height: 1.5;">org.springframework.web.servlet.mvc.Controller</span><span style="font-size: 10.5pt; line-height: 1.5;">去执行。</span></div><div><span style="font-size: 10.5pt; line-height: 1.5;">
-</span></div><div>DispatcherServlet的处理流程如下：</div><div>1.HandlerMapping</div><div>DispathcherServlet是FrontController，所以他服务于一组Web请求，需要在web.xml中配置。</div><div>DispathcherServlet需要自己处理请求和处理之前的对应关系，比如根据参数对应到不同的Controller上。为了更加方便的处理映射的匹配，引入<span style="font-size: 10.5pt; line-height: 1.5;">HandlerMapping用来获取需要处理请求的对应的Controller类。</span>
-</div><div><span style="font-size: 10.5pt; line-height: 1.5;">2.Controller</span></div><div>对应于<span style="font-size: 10.5pt; line-height: 1.5;">DispathcherServlet的次级控制器，本身实现了对应某个具体Web请求的处理逻辑，当</span><span style="font-size: 10.5pt; line-height: 1.5;">HandlerMapping查到了Controller之后，</span><span style="font-size: 10.5pt; line-height: 1.5;">DispathcherServlet获得了</span><span style="font-size: 10.5pt; line-height: 1.5;">HandlerMapping的返回结果。然后调用Controller处理请求，处理完成后，返回一个ModelAndView实例，里面包含两部分内容</span></div><div>视图的逻辑名称，<span style="font-size: 10.5pt; line-height: 1.5;">DispathcherServlet根据名称决定显示哪个视图</span></div><div>模型数据，渲染过程中需要将这些模型数据并入视图的显示中</div><div>
-</div><div>ViewResolver和View</div><div>我们已经来到了最后一步，要转成最终的JSP视图文件。由于模板引擎很多，Spring提供了一套基于ViewResolver和View的抽象层。</div><div>
-</div><div><img src="/images/fc45dedeba68b31c39383776fc7a7a35eba30a5a.jpg" alt="" />
-</div></p>
-
-<div>[来自为知笔记(Wiz)](http://www.wiz.cn/i/e0140d75 "来自为知笔记(Wiz)")</div>
-
+                  鸟瞰Spring MVC与其他请求驱动的Web框架思路类似。org.springframework.web.servlet.DispatcherServlet就是Spring mvC中的Front Controller。负责处理请求，但是不针对具体的处理逻辑。而是委派给下一级的控制器，也就是org.
+                  <a href="https://leizhiyuan.github.io/2014/07/13/spring%E6%8F%AD%E7%A7%98-23%E7%AB%A0spring-mvc%E5%88%9D%E4%BD%93%E9%AA%8C/" class="post-read-more">[Read More]</a>
                 
               </div>
 
@@ -302,19 +353,9 @@
               </p>
               <div class="post-entry">
                 
-                  <p>Spring揭秘-22章，迈向Spring MVC的旅程<div>
-</div><div>Servlet导致数据访问逻辑和业务处理逻辑和对应的视图渲染逻辑相互混杂。之后，JSP出现，通过将输出渲染以模板的形式抽取到jsp后缀的模板文件中，jsp开始繁盛，同时要注意，Servlet处理web请求的时候，要在web.xml中，注册相应的请求url和具体的Serlet的映射关系。于是，jsp有开始混合着写代码</div><div>
-</div><div>于是，我们引入了JavaBean,来封装相关业务逻辑，经过一次升级后，</div><div>
-</div><div><img src="/images/e6af173baae0c480b8dddc398ce8dd3078b260e4.jpg" alt="" />
-</div><div>这个模型就比较清楚了。但是和MVC还是有点差别</div><div>一个典型的mvc模式应该是这样的</div><div><img src="/images/4bcce41a42b7cc021f4b726da1c3533cc5371a21.jpg" alt="" />
-</div><div>
-</div><div>控制器处理请求，模型封装逻辑和状态，视图给用户，</div><div>
-</div><div>Structs以请求/响应框架为基础。</div><div>
-</div><div>Spring MVC属于请求渠道的WEb框架。框架引入Front Controller做分发之后，就更加好管理了。</div><div>
-</div><div><img src="/images/131d593fd9a36cfc8180a4b86495208a356ae563.jpg" alt="" />
-</div></p>
-
-<div>[来自为知笔记(Wiz)](http://www.wiz.cn/i/e0140d75 "来自为知笔记(Wiz)")</div>
+                  <p>Spring揭秘-22章，迈向Spring MVC的旅程<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 
                 
               </div>
@@ -360,10 +401,16 @@
               </p>
               <div class="post-entry">
                 
-                  Spring揭秘-第13章 统一的数据访问异常层次体系  DAO可以分离数据哭的访问和存储，屏蔽各种数据访问方式的差异性，下面以访问顾客信息为例，使用DAO模式 首先定义一个数据访问对象接口，如下   public interrface ICustomerDao{ Customer findCustomerByPK(String customerId); void updateCustomerStatus(Customer customer); &nbsp;
- 之后，所有的数据访问都通过该接口进行，不论底层存储机制如何改变，DAO的实现因此会扩展，但客户端代码不需要调整   客户端要用的时候这样使用即可。   publicclassCustomerService { privateICustomerDao customerDao; publicvoid disableCustomerCampain(String customerId) { Customer customer=getCustomerDao().findCustomerByPK(customerId); customer.setCampainStatus(CampainStatus.DISABLE); getCustomerDao().updateCustomerStatus(customer); } publicICustomerDao getCustomerDao() { return customerDao; } publicvoid setCustomerDao(ICustomerDao customerDao) { this.customerDao=customerDao; } &nbsp;
-  我们只要针对不同的数据存储方式实现不同的Dao类即可。  我们开始实现具体的访问数据了。   publicCustomer findCustomerByPK(String customerId) { Connection con=null; try{ con=getDataSource().getConnection(); Customer cust=..; return cust; } catch(SQLException e){ //这里咋办，直接抛出还是直接处理？ } finally{ releaseConnection(con); } } privatevoid releaseConnection(Connection con){ } &nbsp;
-                  <a href="https://leizhiyuan.github.io/2014/07/13/spring%E6%8F%AD%E7%A7%98-%E7%AC%AC13%E7%AB%A0-%E7%BB%9F%E4%B8%80%E7%9A%84%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE%E5%BC%82%E5%B8%B8%E5%B1%82%E6%AC%A1%E4%BD%93%E7%B3%BB/" class="post-read-more">[Read More]</a>
+                  <p>Spring揭秘-第13章 统一的数据访问异常层次体系</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<ol>
+<li><code>&lt;span class=&quot;typ&quot;&gt;Customer&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt; findCustomerByPK&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;typ&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt; customerId&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;kwd&quot;&gt;throws&lt;/span&gt;&lt;span class=&quot;typ&quot;&gt;SQLExcepiton&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;;&lt;/span&gt;</code></li>
+</ol>
+<!-- raw HTML omitted -->
+
                 
               </div>
 
@@ -393,7 +440,7 @@
   <i class="fas fa-calendar"></i>&nbsp;Posted on July 13, 2014
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;0&nbsp;minutes
   
   
   
@@ -408,8 +455,8 @@
               </p>
               <div class="post-entry">
                 
-                  之前说了，IoC容器就是一个IoC Service Provider，但是容器是个啥意思？![](/images/d4d1615a6c1a06895088631c37e3fca7692f0b8a.png) 可以看到IoC容器提供了更多的内容， Spring的IoC容器又分成两种， 1.BeanFactory 。基础类型IoC容器，提供完整的IoC服务支持。如果没有特殊指定，默认采用延 迟初始化策略（lazy-load）。只有当客户端对象需要访问容器中的某个受管对象的时候，才对 该受管对象进行初始化以及依赖注入操作。所以，相对来说，容器启动初期速度较快，所需 要的资源有限。对于资源有限，并且功能要求不是很严格的场景，BeanFactory是比较合适的 IoC容器选择。  2.ApplicationContext。ApplicationContext在BeanFactory的基础上构建，是相对比较高 级的容器实现，除了拥有BeanFactory的所有支持，ApplicationContext还提供了其他高级特性，比如事件发布、国际化信息支持等，这些会在后面详述。ApplicationContext所管理 的对象，在该类型容器启动之后，默认全部初始化并绑定完成。所以，相对于BeanFactory来 说，ApplicationContext要求更多的系统资源，同时，因为在启动时就完成所有初始化，容 器启动时间较之BeanFactory也会长一些。在那些系统资源充足，并且要求更多功能的场景中， ApplicationContext类型的容器是比较合适的选择。   通过 图4-2，我们可以对BeanFactory和ApplicationContext之间的关系有一个更清晰的认识。      ![](/images/f531ea3e11bb391453eb5f763283398c938634b2.png)     Bean工长，就是生成Bean的嘛，每个业务对象被看成Javabean,我们与工厂打交道就简单得多，我们只要告诉他我要什么对象，至于怎么组装，那是他的事情。   工厂提供了一些对外的接口，比如获取Bean，渠道Bean的状态等等。 以xml为例    &lt;?xml version="1.0" encoding="UTF-8"?&gt; &lt;!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd"&gt; &lt;beans&gt; &lt;bean id="djNewsProvider" class="..FXNewsProvider"&gt; &lt;constructor-arg index="0"&gt; &lt;ref bean="djNewsListener"/&gt; &lt;/constructor-arg&gt; &lt;constructor-arg index="1"&gt; &lt;ref bean="djNewsPersister"/&gt; &lt;/constructor-arg&gt; &lt;/bean&gt; &lt;bean id="djNewsListener" class="..impl.DowJonesNewsListener"&gt; &lt;/bean&gt; &lt;bean id="
-                  <a href="https://leizhiyuan.github.io/2014/07/13/spring%E6%8F%AD%E7%A7%98-%E7%AC%AC%E5%9B%9B%E7%AB%A0beanfactory%E7%AC%94%E8%AE%B0/" class="post-read-more">[Read More]</a>
+                  <!-- raw HTML omitted -->
+
                 
               </div>
 
@@ -454,10 +501,12 @@
               </p>
               <div class="post-entry">
                 
-                  我们虽然已经通过IoC声明了相应的依赖，但是最终总要有个啥东西将这些依赖对象绑定在一起，这里而IoC Service Provider, 来啦，表示一种绑定的实现方式，可以使一段代码，也可以是一组相关的泪，甚至是框架或容器。  比如前一篇提到的 IFXNewsListener newsListener = new DowJonesNewsListener(); IFXNewsPersister newsPersister = new DowJonesNewsPersister(); FXNewsProvider newsProvider = new FXNewsProvider(newsListener,newsPersister); newsProvider.getAndPersistNews(); &nbsp;
- 就是一个容器，只不过太简单了，不适用于更多的场景，  IoC容器就是Spring提供依赖注入服务的Provider  IoC Service Provider 是干嘛？ 1.业务对象的构建管理，剥离客户端对象的构建的依赖逻辑，比如A引用B，那么A是B的客户端对象，容器需要理清这种关系。 2.业务对象之间的依赖绑定，通过1的实现， 识别各个对象的依赖关系，然后将这些对象依赖的对象注入绑定，用的时候就有了。   那你要问了，这怎么管理对象间的依赖关系呢  IoC Service Provider怎么就能完全领会代码的意图呢？他怎么记住这么多的依赖关系等等，他要这么做 1.元数据方式 2.通过描述性较强的xml来记录对应信息 3.通过编写代码的方式注册这些信息   3.直接编码方式， 明确了依赖关系 IoContainer container = &hellip;; container.register(FXNewsProvider.class,new FXNewsProvider()); container.register(IFXNewsListener.class,new DowJonesNewsListener()); &hellip; FXNewsProvider newsProvider = (FXNewsProvider)container.get(FXNewsProvider.class); newProvider.getAndPersistNews(); &nbsp;
-  2.配置文件方式  最常见的还是xml方式，  &lt;bean id=&ldquo;newsProvider&rdquo; class=&ldquo;.
-                  <a href="https://leizhiyuan.github.io/2014/07/13/spring%E6%8F%AD%E7%A7%98-%E7%AC%AC%E4%B8%89%E7%AB%A0ioc-service-provider%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="post-read-more">[Read More]</a>
+                  <p><!-- raw HTML omitted -->我们虽然已经通过IoC声明了相应的依赖，但是最终总要有个啥东西将这些依赖对象绑定在一起，这里而IoC Service Provider, 来啦，表示一种绑定的实现方式，可以使一段代码，也可以是一组相关的泪，甚至是框架或容器。<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+
                 
               </div>
 
@@ -487,7 +536,7 @@
   <i class="fas fa-calendar"></i>&nbsp;Posted on July 1, 2014
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -502,24 +551,81 @@
               </p>
               <div class="post-entry">
                 
-                  理念就是让别人为你服务，中文名控制反转，也叫依赖注入DI
-public class FXNewsProvider { private IFXNewsListener newsListener; private IFXNewsPersister newPersistener; public void getAndPersistNews() { String[] newsIds = newsListener.getAvailableNewsIds(); if(ArrayUtils.isEmpty(newsIds)) { return; } for(String newsId : newsIds) { FXNewsBean newsBean = newsListener.getNewsByPK(newsId); newPersistener.persistNews(newsBean); newsListener.postProcessIfNecessary(newsId); } } }  假设这个类用来处理新闻，
-IFXNewsListener 用来获取新闻，
-IFXNewsPersister  用来把获取的新闻持久化
-当我们需要获取不同的新闻源，比如道琼斯的新闻时，我们会写一个 DowJonesNewsListener 类和 DowJonesNewsPersister 类，然后实例化
-public FXNewsProvider()
-{
-newsListener = new DowJonesNewsListener();
-newPersistener = new DowJonesNewsPersister();
-} &nbsp;
-如果我们依赖于某个类或服务，最简单而有效的方式就是直接
-在类的构造函数中新建相应的依赖类。
-注意看， ，我们都是自己主动地去获
-取依赖的对象！
-可是回头想想，我们自己每次用到什么依赖对象都要主动地去获取，这是否真的必要？我们最终
-所要做的，其实就是直接调用依赖对象所提供的某项服务而已
-能不能我们用的时候自动送过来呢？
-                  <a href="https://leizhiyuan.github.io/2014/07/01/spring%E6%8F%AD%E7%A7%98%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC%E4%BA%8C%E7%AB%A0ioc%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" class="post-read-more">[Read More]</a>
+                  <p><!-- raw HTML omitted -->理念就是让别人为你服务，中文名控制反转，也叫依赖注入DI<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> <!-- raw HTML omitted -->假设这个类用来处理新闻，<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->IFXNewsListener <!-- raw HTML omitted --><!-- raw HTML omitted -->用来获取新闻，<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->IFXNewsPersister  <!-- raw HTML omitted --> <!-- raw HTML omitted -->用来把获取的新闻持久化<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->当我们需要获取不同的新闻源，比如道琼斯的新闻时，我们会写一个<!-- raw HTML omitted --> <!-- raw HTML omitted -->DowJonesNewsListener<!-- raw HTML omitted --> <!-- raw HTML omitted -->类和<!-- raw HTML omitted --> <!-- raw HTML omitted -->DowJonesNewsPersister<!-- raw HTML omitted --> <!-- raw HTML omitted -->类，然后实例化<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p><!-- raw HTML omitted -->如果我们依赖于某个类或服务，最简单而有效的方式就是直接<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->在类的构造函数中新建相应的依赖类。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->注意看，<!-- raw HTML omitted --> <!-- raw HTML omitted -->，我们都是自己主动地去获<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->取依赖的对象！<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->可是回头想想，我们自己每次用到什么依赖对象都要主动地去获取，这是否真的必要？我们最终<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->所要做的，其实就是直接调用依赖对象所提供的某项服务而已<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->能不能我们用的时候自动送过来呢？<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->。现在是用什么，让别人直接送过来就成。所以，简单点儿说，<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC<!-- raw HTML omitted --> <!-- raw HTML omitted -->的理念就是，<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->让别人为你服务！在图<!-- raw HTML omitted --> <!-- raw HTML omitted -->2-1<!-- raw HTML omitted --> <!-- raw HTML omitted -->中，也就是让<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->来为你服务！<!-- raw HTML omitted --></p>
+<p><img src="/images/45ddcfa8929fe85603c18852a59afac715fa4c7f.bmp" alt=""></p>
+<p><!-- raw HTML omitted -->这里，被注入对象就是<!-- raw HTML omitted --> <!-- raw HTML omitted -->FXNewsProvider<!-- raw HTML omitted --> <!-- raw HTML omitted -->，被依赖于对象<!-- raw HTML omitted --> <!-- raw HTML omitted -->IFXNewsListener<!-- raw HTML omitted --> <!-- raw HTML omitted -->和<!-- raw HTML omitted --> <!-- raw HTML omitted -->IFXNewsPersister  <!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->通常情况下，被注入对象会直接依赖于被依赖对象。但是，在<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC<!-- raw HTML omitted --> <!-- raw HTML omitted -->的场景中，二者之间通过<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->来打交道，所有的被注入对象和依赖对象现在由<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->统一管理。被注入对象需要<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->什么，直接跟<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->招呼一声，后者就会把相应的被依赖对象注入到被注入对象中，从而<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->达到<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->为被注入对象服务的目的。<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->在这里就是通常的<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC<!-- raw HTML omitted --> <!-- raw HTML omitted -->容器所充<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->当的角色。从被注入对象的角度看，与之前直接寻求依赖对象相比，依赖对象的取得方式发生了反转，<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->控制也从被注入对象转到了<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->那里<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->这里我们想知道的是？怎么跟<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->打招呼<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->在<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC<!-- raw HTML omitted --> <!-- raw HTML omitted -->模式中，被注入对象又是通过哪些方式来通知<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->为其提供适当服务的呢？三种打招呼的方式<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->，即构造方法注入（<!-- raw HTML omitted --> <!-- raw HTML omitted -->constructor<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->injection<!-- raw HTML omitted --> <!-- raw HTML omitted -->）、<!-- raw HTML omitted --> <!-- raw HTML omitted -->setter<!-- raw HTML omitted --> <!-- raw HTML omitted -->方法注入（<!-- raw HTML omitted --> <!-- raw HTML omitted -->setter injection<!-- raw HTML omitted --> <!-- raw HTML omitted -->）以及接口注入（<!-- raw HTML omitted --> <!-- raw HTML omitted -->interface injection<!-- raw HTML omitted --> <!-- raw HTML omitted -->）。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->构造方法注入：<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p> </p>
+<p><!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->会检查被注入对象的构造方法，取得它所需要的依赖对象列表，进而为其注<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->入相应的对象。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->setter方法注入<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p> </p>
+<p><!-- raw HTML omitted -->外界就可以通过调用<!-- raw HTML omitted --> <!-- raw HTML omitted -->setNewsListener<!-- raw HTML omitted --> <!-- raw HTML omitted -->和<!-- raw HTML omitted --> <!-- raw HTML omitted -->setNewPersistener<!-- raw HTML omitted --> <!-- raw HTML omitted -->方法为<!-- raw HTML omitted --> <!-- raw HTML omitted -->FXNewsProvider<!-- raw HTML omitted --> <!-- raw HTML omitted -->对<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->象注入所依赖的对象了。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->接口注入，这个基本不用了。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->接口注入<!-- raw HTML omitted --> <!-- raw HTML omitted -->。从注入方式的使用上来说，接口注入是现在不甚提倡的一种方式，基本处于&quot;退<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->役状态&rdquo;。因为它强制被注入对象实现不必要的接口，带有侵入性。而构造方法注入和<!-- raw HTML omitted --> <!-- raw HTML omitted -->setter<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->方法注入则不需要如此。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->8<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->q<!-- raw HTML omitted --> <!-- raw HTML omitted -->构造方法注入。<!-- raw HTML omitted --> <!-- raw HTML omitted -->这种注入方式的优点就是，对象在构造完成之后，即已进入就绪状态，可以 <!-- raw HTML omitted --><!-- raw HTML omitted -->9<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->马上使用。缺点就是，当依赖对象比较多的时候，构造方法的参数列表会比较长。而通过反<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->射构造对象的时候，对相同类型的参数的处理会比较困难，维护和使用上也比较麻烦。而且<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->在<!-- raw HTML omitted --> <!-- raw HTML omitted -->Java<!-- raw HTML omitted --> <!-- raw HTML omitted -->中，构造方法无法被继承，无法设置默认值。对于非必须的依赖处理，可能需要引入多<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->个构造方法，而参数数量的变动可能造成维护上的不便。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->10<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->q<!-- raw HTML omitted --> <!-- raw HTML omitted -->setter<!-- raw HTML omitted --> <!-- raw HTML omitted -->方法注入<!-- raw HTML omitted --> <!-- raw HTML omitted -->。因为方法可以命名，所以<!-- raw HTML omitted --> <!-- raw HTML omitted -->setter<!-- raw HTML omitted --> <!-- raw HTML omitted -->方法注入在描述性上要比构造方法注入好一些。 <!-- raw HTML omitted --><!-- raw HTML omitted -->11<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->另外，<!-- raw HTML omitted --> <!-- raw HTML omitted -->setter<!-- raw HTML omitted --> <!-- raw HTML omitted -->方法可以被继承，允许设置默认值，而且有良好的<!-- raw HTML omitted --> <!-- raw HTML omitted -->IDE<!-- raw HTML omitted --> <!-- raw HTML omitted -->支持。缺点当然就是对象无<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->法在构造完成后马上进入就绪状态。<!-- raw HTML omitted --> <!-- raw HTML omitted -->12<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->综上所述，构造方法注入和<!-- raw HTML omitted --> <!-- raw HTML omitted -->setter<!-- raw HTML omitted --> <!-- raw HTML omitted -->方法注入因为其侵入性较弱，且易于理解和使用，所以是现在使<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->用最多的注入方式；而接口注入因为侵入性较强，近年来已经不流行了。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->回到开头的代码<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p> </p>
+<p><!-- raw HTML omitted -->由于这里已经写死了，所以当我们添加了一个新的新闻源，比如M4网站的时候，这个对象不能用了，我们要新写一个<!-- raw HTML omitted --> <!-- raw HTML omitted -->M4<!-- raw HTML omitted --> <!-- raw HTML omitted -->NewsProvider<!-- raw HTML omitted --> <!-- raw HTML omitted -->的类，然后新写新闻获取类，然后重新实现。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->而使用了IoC之后，<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p> </p>
+<p><!-- raw HTML omitted -->我们只要实现一个<!-- raw HTML omitted --> <!-- raw HTML omitted -->MarketWin24NewsListener<!-- raw HTML omitted --> <!-- raw HTML omitted -->雷就可以，而且<!-- raw HTML omitted --> <!-- raw HTML omitted -->FXNewsProvider <!-- raw HTML omitted --><!-- raw HTML omitted -->可以重用。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->而且使用了IoC之后，单元测试变得简单，我们只有写一个Mock<!-- raw HTML omitted --> <!-- raw HTML omitted -->NewsPersister<!-- raw HTML omitted --> <!-- raw HTML omitted -->就可以来测试了。<!-- raw HTML omitted --></p>
+
                 
               </div>
 
@@ -567,24 +673,15 @@ newPersistener = new DowJonesNewsPersister();
               <div class="post-entry">
                 
                   <p>1.框架的由来</p>
-
 <p>倡导J2EE轻量级应用解决方案</p>
-
 <p>框架总结结构</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/2014/06/Spring-Framework.jpg"><img src="/images/8775d9e40dbc29240061edd2b9b6f76990f39cad.jpg" alt="Spring Framework" /></a>
+<p><a href="http://leaverimage.b0.upaiyun.com/2014/06/Spring-Framework.jpg"><img src="/images/8775d9e40dbc29240061edd2b9b6f76990f39cad.jpg" alt="Spring Framework"></a>
 整个Spring架构建立在Core核心模块上，是基础，该模块中，有一个IoC容器的实现，用来以依赖注入的方式管理对象之间的依赖关系。Core中还有一些气筒工具类，比如IO工具类</p>
-
 <p>从图中看到，AOP模块，提供了轻便二强大的AOP框架，一AOP的形式增强POJO的能力，弥补OOP/OOSD的不足，采用Proxy模式，与IoC容器相结合</p>
-
 <p>继续向上看，在Core和AOP之上，提供了完毕的数据访问和事务管理的抽象，其中，对JDBC API的最佳实践简化了API的使用，还未ORM产品提供了统一的支持，</p>
-
 <p>为了简化Java EE的服务，比如JNDI，JMS等等，Spring还提供了这些的集成服务，</p>
-
 <p>最后就是Web模块，提供了一套自己的Web MVC框架，上层模块依赖于下层模块，水平之间的模块彼此基本可以认为独立。</p>
-
 <p>Spring不仅仅是容器，更是开发任何Java应用的框架，</p>
-
 <p>Spring 框架之上衍生的产品包括不限于Spring Web Flow,Spring Web Services,Spring Security,Spring Integration，Spring Rich Client 等等等等</p>
 
                 
@@ -636,34 +733,20 @@ newPersistener = new DowJonesNewsPersister();
               <div class="post-entry">
                 
                   <p>最近工作需要，需要burpsuite抓下https的包</p>
-
 <p>burpsuite抓包https的时候，如果是https协议，火狐会不信任证书</p>
-
-<p>&nbsp;</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/2014/06/untrust.jpg"><img src="/images/14c5d2aedaa02e325fe21c03758796234ed83576.jpg" alt="untrust" /></a></p>
-
+<p> </p>
+<p><a href="http://leaverimage.b0.upaiyun.com/2014/06/untrust.jpg"><img src="/images/14c5d2aedaa02e325fe21c03758796234ed83576.jpg" alt="untrust"></a></p>
 <p>这个时候点击我已充分了解可能的风险，然后添加例外，弹出图中的对话框</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/2014/06/step.jpg"><img src="/images/4adf7f8902f07ea98a728a2d71270906208bfea6.jpg" alt="step" /></a></p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/2014/06/step.jpg"><img src="/images/4adf7f8902f07ea98a728a2d71270906208bfea6.jpg" alt="step"></a></p>
 <p>点击查看，进入证书管理企业免，选择图中的PortSwigger CA根证书，选择导出，保存一下这个证书</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/2014/06/export.jpg"><img src="/images/6e81972ac7283935e22a260f92ab4a582780eb73.jpg" alt="export" /></a></p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/2014/06/export.jpg"><img src="/images/6e81972ac7283935e22a260f92ab4a582780eb73.jpg" alt="export"></a></p>
 <p>然后打开火狐的选项，进入高级-&gt;证书-&gt;查看证书-&gt;证书机构-&gt;导入，选择刚才的证书</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/2014/06/import.jpg"><img src="/images/3e43de2ca0a2c88519035a3d39a60fb8757c4da9.jpg" alt="import" /></a></p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/2014/06/import.jpg"><img src="/images/3e43de2ca0a2c88519035a3d39a60fb8757c4da9.jpg" alt="import"></a></p>
 <p>，最后，记住选中信任此CA证书标识的网站，ok</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/2014/06/finish.jpg"><img src="/images/070d8695abea24e9e8bf11e162f12afccaa5385f.jpg" alt="finish" /></a></p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/2014/06/finish.jpg"><img src="/images/070d8695abea24e9e8bf11e162f12afccaa5385f.jpg" alt="finish"></a></p>
 <p>现在再抓包，可以看到https也抓到了。</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/2014/06/capture.jpg"><img src="/images/cf1f9324b8934ba12cab8ea0a19a530897e206e3.jpg" alt="capture" /></a></p>
-
-<p>&nbsp;</p>
+<p><a href="http://leaverimage.b0.upaiyun.com/2014/06/capture.jpg"><img src="/images/cf1f9324b8934ba12cab8ea0a19a530897e206e3.jpg" alt="capture"></a></p>
+<p> </p>
 
                 
               </div>
@@ -709,35 +792,20 @@ newPersistener = new DowJonesNewsPersister();
               </p>
               <div class="post-entry">
                 
-                  
-
-<p>以下是我在学习的时候发现的好的资料，都是非常有帮助的。</p>
-
+                  <p>以下是我在学习的时候发现的好的资料，都是非常有帮助的。</p>
 <p>如果你想知道原理，看完下面这篇就会了</p>
-
-<h2 id="藏-轻松掌握iso8583报文协议原理-http-leaver-me-archives-3663-html"><a href="http://leaver.me/archives/3663.html">[藏]轻松掌握ISO8583报文协议原理</a></h2>
-
+<h2 id="iso8583httpleavermearchives3663html"><a href="http://leaver.me/archives/3663.html">[藏]轻松掌握ISO8583报文协议原理</a></h2>
 <p>看了原理之后还想知道怎么来的。手工联系一下</p>
-
-<h2 id="谈谈8583报文的使用及测试-http-blog-sina-com-cn-s-blog-4c925dca010178pt-html"><a href="http://blog.sina.com.cn/s/blog_4c925dca010178pt.html">谈谈8583报文的使用及测试</a></h2>
-
+<h2 id="8583httpblogsinacomcnsblog-4c925dca010178pthtml"><a href="http://blog.sina.com.cn/s/blog_4c925dca010178pt.html">谈谈8583报文的使用及测试</a></h2>
 <p>这篇文章不错</p>
-
 <p>看完了想写代码了，可以看看这篇文章，基本上不能直接拿来用，但是可以参考实现</p>
-
-<h2 id="span-class-link-title-iso8583报文工具类-组装和解析报文-http-blog-csdn-net-lushuaiyin-article-details-14390725-span"><span class="link_title"><a href="http://blog.csdn.net/lushuaiyin/article/details/14390725"> ISO8583报文工具类（组装和解析报文） </a></span></h2>
-
+<h2 id="span-classlink-title-iso8583-httpblogcsdnnetlushuaiyinarticledetails14390725span"><!-- raw HTML omitted --><a href="http://blog.csdn.net/lushuaiyin/article/details/14390725"> ISO8583报文工具类（组装和解析报文） </a><!-- raw HTML omitted --></h2>
 <p>看完之后这里还有一些补充</p>
-
-<h2 id="iso-8583协议的简要说明-http-blog-sina-com-cn-s-blog-6182547f01014p02-html"><a href="http://blog.sina.com.cn/s/blog_6182547f01014p02.html">ISO-8583协议的简要说明</a></h2>
-
-<p>&nbsp;</p>
-
-<p>最后，<a href="http://www.jpos.org/这个库基本可以用来做这个事情。">http://www.jpos.org/这个库基本可以用来做这个事情。</a></p>
-
+<h2 id="iso-8583httpblogsinacomcnsblog-6182547f01014p02html"><a href="http://blog.sina.com.cn/s/blog_6182547f01014p02.html">ISO-8583协议的简要说明</a></h2>
+<p> </p>
+<p>最后，http://www.jpos.org/这个库基本可以用来做这个事情。</p>
 <p>Jimmy写了一个例子非常好，<a href="http://jimmod.com/blog/2011/07/jimmys-blog-iso-8583-tutorial-build-and-parse-iso-message-using-jpos-library/">iso-8583-tutorial-build-and-parse-iso-message-using-jpos-library</a>，至于银联的那个规范搜一下。</p>
-
-<p>&nbsp;</p>
+<p> </p>
 
                 
               </div>
@@ -750,75 +818,6 @@ newPersistener = new DowJonesNewsPersister();
                     <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E4%BD%9C/">工作</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E9%87%91%E8%9E%8D/">金融</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2014/04/26/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/">
-                <h2 class="post-title">构建数据库连接的配置方法</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on April 26, 2014
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  以前我在写数据库连接的时候，都是在文件里写死的，或者一个简单地配置文件，只有一个数据库连接嘛，但是最近写一个测试工具的时候，需要很多数据库，而且有些还有分库规则，于是查找资料，完善了两个类，和xml的定义规则，分享出来。仅供参考，有任何指教请回复。不胜感谢
-首先xml的配置格式定义如下 &lt;?xml version=&ldquo;1.0&rdquo; encoding=&ldquo;UTF-8&rdquo;?&gt;
-&lt;config&gt;
-&lt;db-info&gt; &lt;id&gt;oracle-test&lt;/id&gt;
-&lt;driver-name&gt;oracle.jdbc.driver.OracleDriver&lt;/driver-name&gt;
-&lt;url&gt;jdbc:oracle:thin:@127.0.0.1:1521:test&lt;/url&gt;
-&lt;user-name&gt;admin&lt;/user-name&gt;
-&lt;password&gt;admin&lt;/password&gt;
-&lt;/db-info&gt;
-&lt;db-info&gt; &lt;id&gt;mysql-test&lt;/id&gt;
-&lt;driver-name&gt;com.mysql.jdbc.Driver&lt;/driver-name&gt;
-&lt;url&gt;jdbc:mysql://127.0.0.1:3306&lt;/url&gt;
-&lt;user-name&gt;root&lt;/user-name&gt;
-&lt;password&gt;root&lt;/password&gt;
-&lt;/db-info&gt; &lt;/config&gt; 然后我们有XmlConfigReader类，用来读取这个配置文件，并且返回对应的jdbcConfig对象。
-这个对象就是一个model类，对应xml的属性
-然后我们的DBUtil类会调用XmlConfigReader，通用的一般是传个 &lt;id&gt;mysql-test&lt;/id&gt; 值，然后XmlConfigReader来读取返回，对象，然后在DBUtil里用这个对象得知来构造连接，我添加了一个简单的方法 public static Connection getConnection(String dbId,String dbName) throws ClassNotFoundException { Connection conn = null;
-try { //新建jdbc配置类。 XmlConfigReader xcr=new XmlConfigReader(); JdbcConfig jdbcconfig = xcr.getConnection(dbId,dbName); Class.forName(jdbcconfig.getDriverName()); //取得连接对象。 conn = DriverManager.getConnection(jdbcconfig.getUrl(), jdbcconfig.getUserName(), jdbcconfig.getPassword()); } catch (ClassNotFoundException e) { // 抛出 exception e.printStackTrace(); }catch(SQLException e) { e.printStackTrace(); } return conn; }&lt;/pre&gt; 就是多传一个数据库名
-                  <a href="https://leizhiyuan.github.io/2014/04/26/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/maven/">maven</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/sql/">sql</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E4%BD%9C/">工作</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
                   
                 </div>
               
@@ -888,7 +887,7 @@ try { //新建jdbc配置类。 XmlConfigReader xcr=new XmlConfigReader(); JdbcCo
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

@@ -10,9 +10,9 @@
   <title>Overview of all pages with the category #学习笔记 - bystander&#39;s blog</title>
   <meta property="og:title" content="Overview of all pages with the category #学习笔记" />
   <meta name="twitter:title" content="Overview of all pages with the category #学习笔记" />
-  <meta name="description" content="Overview of all pages with the category #学习笔记, such as: skywalking插件开发的注意事项">
-  <meta property="og:description" content="Overview of all pages with the category #学习笔记, such as: skywalking插件开发的注意事项">
-  <meta name="twitter:description" content="Overview of all pages with the category #学习笔记, such as: skywalking插件开发的注意事项">
+  <meta name="description" content="Overview of all pages with the category #学习笔记, such as: 深入理解Raft协议">
+  <meta property="og:description" content="Overview of all pages with the category #学习笔记, such as: 深入理解Raft协议">
+  <meta name="twitter:description" content="Overview of all pages with the category #学习笔记, such as: 深入理解Raft协议">
   <meta name="author" content="bystander"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -51,7 +51,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -221,6 +221,64 @@
         <div class="posts-list">
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2015/11/25/json-lib%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%B2%BE%E5%BA%A6%E4%B8%A2%E5%A4%B1%E9%97%AE%E9%A2%98/">
+                <h2 class="post-title">json-lib反序列化精度丢失问题</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on November 25, 2015
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  最近在工作中,遇到一个问题,项目中某处使用了json-lib的2.4-jdk15版本.问题最终简化为
+double amount = 6264583.33; String jsonString = &#34;{\&#34;pi\&#34;:&#34; + amount + &#34;}&#34;; JSONObject jsonObject = JSONObject.fromObject(jsonString); System.out.println(&#34;转换前:&#34; + jsonString); System.out.println(&#34;转换后:&#34; + jsonObject); 这个值输出的将会是6264583.5 这个值.这个问题.先google一下,很快赵到了 http://sourceforge.net/p/json-lib/bugs/116/ 于是,大概问题知道了.是json-lib的一个bug,但是这个bug怎么来的呢.结合这个bug下面的评论和debug代码,先以pi这个例子,很快走到了.
+可以看到json-lib走到了apache common-lang(2.5这个版本) 的NumberUtils.createNumber处,此时String的还是对的. 继续单步,来到这个方法里面
+可以看到这里小数部分,整数部分也都还是对的.继续向下走.我擦.画风不太对.居然采用了先尝试float,发现没问题.然后就继续尝试double,我擦.直接数据就丢失了呀..
+好吧..那么现在问题就便成了更简单的一个问题.
+使用NumberUtils.createNumber 的bug.在bug issue里,有人提到.这个bug,apache官方已知.好的. https://issues.apache.org/jira/browse/LANG-693 然后在这里有官方的一次修复,修复记录在这里.3.2版本已经修复. http://svn.apache.org/viewvc?view=revision&amp;revision=1484263 可以看到是对小数部分的长度进行了判断.如果小于7位,就用float转换,如果大于7,小于16,就用double,如果还大,就用BigDecimal.
+n = org.apache.commons.lang3.math.NumberUtils.createNumber(&#34;3.14159265358&#34;); System.out.println(&#34;lang3_createNumber_3.14159265358----&gt;&#34; + n + &#34;-&gt;精度正常&#34;); 于是我继续debug,看common-lang3的修复情况,好像确实是修复了.但是对于我出现的问题1.6264583.33 这个数字,还是出现了精度丢失,因为这里小数部分小于7位,所以尝试使用float转换,直接丢失精度
+修复不完善..
+于是提个bug :https://issues.apache.org/jira/browse/LANG-1187 等回复.
+继续.公司内部一般使用fastjson,那么如果我使用fastjson,有问题吗? 发现没有问题.
+Object o = com.alibaba.fastjson.JSONObject.parse(&#34;3.14159265358&#34;); System.out.println(&#34;fastjson_createNumber_3.14159265358----&gt;&#34; + o + &#34;-&gt;精度正常&#34;); o = com.alibaba.fastjson.JSONObject.parse(&#34;6264583.33&#34;); System.out.println(&#34;fastjson_createNumber_6264583.33----&gt;&#34; + o + &#34;-&gt;精度正常&#34;); 可以看到,这里做转换的时候传递了一个是否是bigdecimal的标识.
+                  <a href="https://leizhiyuan.github.io/2015/11/25/json-lib%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%B2%BE%E5%BA%A6%E4%B8%A2%E5%A4%B1%E9%97%AE%E9%A2%98/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%BA%8F%E5%88%97%E5%8C%96/">序列化</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2015/11/22/zookeeper%E4%BC%AA%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/">
                 <h2 class="post-title">zookeeper伪集群部署</h2>
 
@@ -310,12 +368,13 @@ setlocal call &#34;%~dp0zkEnv.cmd&#34; set ZOOMAIN=org.apache.zookeeper.server.q
               <div class="post-entry">
                 
                   前几天被前辈问到这个可重入锁,结果忘掉了.于是抽空整个了解一下
-目录  什么是可重入锁 为什么要可重入 如何实现可重入锁 有不可重入锁吗 demo代码展示 参考文章  1 . 什么是可重入锁 锁的概念就不用多解释了,当某个线程A已经持有了一个锁,当线程B尝试进入被这个锁保护的代码段的时候.就会被阻塞.而锁的操作粒度是&rdquo;线程&rdquo;,而不是调用(至于为什么要这样,下面解释).同一个线程再次进入同步代码的时候.可以使用自己已经获取到的锁,这就是可重入锁 java里面内置锁(synchronize)和Lock(ReentrantLock)都是可重入的
+目录  什么是可重入锁 为什么要可重入 如何实现可重入锁 有不可重入锁吗 demo代码展示 参考文章  1 . 什么是可重入锁 锁的概念就不用多解释了,当某个线程A已经持有了一个锁,当线程B尝试进入被这个锁保护的代码段的时候.就会被阻塞.而锁的操作粒度是&quot;线程&rdquo;,而不是调用(至于为什么要这样,下面解释).同一个线程再次进入同步代码的时候.可以使用自己已经获取到的锁,这就是可重入锁 java里面内置锁(synchronize)和Lock(ReentrantLock)都是可重入的
 2 . 为什么要可重入 如果线程A继续再次获得这个锁呢?比如一个方法是synchronized,递归调用自己,那么第一次已经获得了锁,第二次调用的时候还能进入吗? 直观上当然需要能进入.这就要求必须是可重入的.可重入锁又叫做递归锁,再举个例子.
 public class Widget { public synchronized void doSomething() { ... } } public class LoggingWidget extends Widget { public synchronized void doSomething() { System.out.println(toString() + &#34;: calling doSomething&#34;); super.doSomething();//若内置锁是不可重入的，则发生死锁 } } 这个例子是java并发编程实战中的例 子.synchronized 是父类Widget的内置锁,当执行子 类的方法的时候,先获取了一次Widget的锁,然后在执行super的时候,就要获取一次,如果不可重入,那么就跪了.
 3 . 如何实现可重入锁 为每个锁关联一个获取计数器和一个所有者线程,当计数值为0的时候,这个所就没有被任何线程只有.当线程请求一个未被持有的锁时,JVM将记下锁的持有者,并且将获取计数值置为1,如果同一个线程再次获取这个锁,技术值将递增,退出一次同步代码块,计算值递减,当计数值为0时,这个锁就被释放. ReentrantLock里面有实现
 4 . 有不可重入锁吗 这个还真有.Linux下的pthread_mutex_t锁是默认是非递归的。可以通过设置PTHREAD_MUTEX_RECURSIVE属性，将pthread_mutex_t锁设置为递归锁。如果要自己实现不可重入锁,同可重入锁,这个计数器只能为1.或者0,再次进入的时候,发现已经是1了,就进行阻塞.jdk里面没有默认的实现类.
 5 . demo代码展示 5.1 内置锁的可重入
+public class ReentrantTest { public void method1() { synchronized (ReentrantTest.
                   <a href="https://leizhiyuan.github.io/2015/11/20/java%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -365,8 +424,8 @@ public class Widget { public synchronized void doSomething() { ... } } public cl
                 
                   最近有个感受,在实践中学习固然重要,但是实践遇到的问题常常并没有想象的那么多,而且并不能覆盖所有的情况,所以还是需要对理论有一些深入的理解
 什么是事务 事务指的是逻辑上的一组操作,这组操作要么全部成功,要么全部失败,不允许出现部分成功的情况.
-事务的特性 定义了事务之后,事务四个特性 1. 原子性 事务是不可分割的单位,事务中的这组操作要么都发生,要么都不发生. 2. 一致性 一致性说是事务执行前后必须要保持一致,不能出现凭空消失的情况,典型的如银行转账的操作,A给B转账,如果刚开始两人总共有100元,转账完成后两人总共还要有100元. 3. 隔离性 多个用户并发访问数据库的时候,一个用户的事务不能被其他的用户的事务所干扰.多个并发事务之间数据要相互隔离.比如事务1,C给A转帐,此时事务2,A给B转账.那么两个事务都要修改A账户的余额,一个增加,一个减少,如何保证他们改完之后数据是对的.这是隔离性的要求. 4. 持久性 一旦事务被提交,对数据库的改变就是持久性的.即使数据库发生故障也不应该有任何影响.
-事务的隔离级别 为什么要有隔离级别呢,因为如果没有隔离级别,当两个事务同时对某条记录进行操作的时候,可能会出现如下几种大家常常听到的情况.
+事务的特性 定义了事务之后,事务四个特性
+ 原子性 事务是不可分割的单位,事务中的这组操作要么都发生,要么都不发生. 一致性 一致性说是事务执行前后必须要保持一致,不能出现凭空消失的情况,典型的如银行转账的操作,A给B转账,如果刚开始两人总共有100元,转账完成后两人总共还要有100元. 隔离性 多个用户并发访问数据库的时候,一个用户的事务不能被其他的用户的事务所干扰.多个并发事务之间数据要相互隔离.比如事务1,C给A转帐,此时事务2,A给B转账.那么两个事务都要修改A账户的余额,一个增加,一个减少,如何保证他们改完之后数据是对的.这是隔离性的要求. 持久性 一旦事务被提交,对数据库的改变就是持久性的.即使数据库发生故障也不应该有任何影响.  事务的隔离级别 为什么要有隔离级别呢,因为如果没有隔离级别,当两个事务同时对某条记录进行操作的时候,可能会出现如下几种大家常常听到的情况.
 1 脏读 脏读就是指当一个事务正在访问数据，并且对数据进行了修改，而这种修改还没有提交到数据库中，这时，另外一个事务也访问这个数据，然后使用了这个数据。
 事务1：更新一条数据 -------&gt;事务2：读取事务1更新的记录 事务1：调用commit进行提交 由于事务2使用了事务1还没有提交的记录,如果事务1最后正常提交了还好,但是如果事务1没有提交,而是回滚了.那么事务2的操作就有问题,因为他用的数据是错的.这就是脏读
 2 不可重复读 在同一事务中，两次读取同一数据，得到内容不同
@@ -377,7 +436,8 @@ public class Widget { public synchronized void doSomething() { ... } } public cl
 为此,对事务引入了隔离级别这个概念,由数据库保证 DEFAULT 使用数据库设置的隔离级别 ( 默认 ) ，由 DBA 默认的设置来决定隔离级别 . READ_UNCOMMITTED 会出现脏读、不可重复读、幻读 ( 隔离级别最低，并发性能高 ) READ_COMMITTED 会出现不可重复读、幻读问题（锁定正在读取的行） REPEATABLE_READ 会出幻读（锁定所读取的所有行） SERIALIZABLE 保证所有的情况不会发生（锁表） 可以看到,这四种从上到下性能越来越差,保障性越来越高.
 以解决幻读问题为例,SERIALIZABLE直接进行了锁表,那么印发幻读的对该表的插入和删除都无法操作,只能查询.所以不会有问题了..
 事务的传播行为 事务的传播行为主要是为了解决事务嵌套调用的问题,比如A方法里面使用了事务操作,B方法里面也使用了事务操作,当A调用B的时候.这个情况是如何处理的呢
-1 REQUIRED 业务方法需要在一个事务中运行,如果方法运行时,已处在一个事务中,那么就加入该事务,否则自己创建一个新的事务.
+1 REQUIRED 业务方法需要在一个事务中运行,如果方法运行时,已处在一个事务中,那么就加入该事务,否则自己创建一个新的事务.这是spring默认的传播行为.
+2 SUPPORTS 如果业务方法在某个事务范围内被调用,则方法成为该事务的一部分,如果业务方法在事务范围外被调用,则方法在没有事务的环境下执行.
                   <a href="https://leizhiyuan.github.io/2015/09/12/%E4%BA%8B%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -474,7 +534,6 @@ public class KafkaProducer extends Thread { private Producer&lt;Integer, String&
               <div class="post-entry">
                 
                   <p>本文主要分享看到的好的关于kafka的文章.后续看到持续更新</p>
-
 <ol>
 <li><a href="http://www.infoq.com/cn/articles/kafka-analysis-part-1">Kafka剖析（一）：Kafka背景及架构介绍</a></li>
 <li><a href="http://www.infoq.com/cn/articles/kafka-analysis-part-2">Kafka设计解析（二）：Kafka High Availability （上）</a></li>
@@ -535,7 +594,8 @@ kafka集群(cluster) 一台机器不够,那就多搞几台,首先,启动zookeepe
 其他的就不用解释了.这里选出了2是leader,也就是说2这个节点会给消费者提供服务.
 然后我们测试一条信息. kafka-console-producer.bat --broker-list localhost:7777,localhost:8888,localhost:9999 --topic replicationtest 上面的7777是server1.properties 中设置的.根据个人情况.改改.然后在控制台发发消息.
 然后消费一下. kafka-console-consumer.bat --zookeeper localhost:2181 --topic replicationtest 这里的2181是zookeeper的端口,不用改. 然后.我们开始关掉一个broker,在3的控制台里CTRL,C.然后是否终止操作,输入Y. 再发一条消息 一切正常.我们看一下集群信息 发现Isr中存活的机器少了3.因为3挂了. 然后我们关掉broker2.这时候,会触发新的leader选举.期望值1变成leader,再发一条消息 可以看到生产者发消息过程中,产生了异常,因为和2的连接断开了.但是注意,消息并没有丢,因为触发了新的选举.可以看到,消费者还是接到了正常的消息.集群情况如下 至此,kafka的broker集群测试完毕,那么剩下的问题来了.消费者启动的时候连接的是zookeeper的地址,如果这台zookeeper挂了呢. 那么我们需要zookeeper集群部署.
-zookeeper集群 这就包括两部分. 1.
+zookeeper集群 这就包括两部分.
+ 是broker本来要能知道这些zookeeper集群的地址,当一个宕机的时候,才会切换到另一个zookeeper 消费者要知道这些zookeeper的地址,理由同上.
                   <a href="https://leizhiyuan.github.io/2015/09/05/kafka%E5%88%86%E5%B8%83%E5%BC%8F%E9%83%A8%E7%BD%B2%E4%B8%8E%E9%AA%8C%E8%AF%81/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -581,43 +641,28 @@ zookeeper集群 这就包括两部分. 1.
               </p>
               <div class="post-entry">
                 
-                  
-
-<p>在<a href="http://leaver.me/2015/09/03/kafka%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/">kafka快速上手</a>中,留下的问题是关于partition和offset,这篇文章主要解释这个.</p>
-
-<h2 id="log机制">Log机制</h2>
-
+                  <p>在<a href="http://leaver.me/2015/09/03/kafka%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/">kafka快速上手</a>中,留下的问题是关于partition和offset,这篇文章主要解释这个.</p>
+<h2 id="log">Log机制</h2>
 <p>说到分区,就要说kafka对消息的存储.在<a href="http://kafka.apache.org/documentation.html#replication">官方文档</a>中.
-<img src="/images/kafka_partition_log.jpg" alt="分区读写日志图" />
+<img src="/images/kafka_partition_log.jpg" alt="分区读写日志图">
 首先,kafka是通过log(日志)来记录消息发布的.每当产生一个消息,kafka会记录到本地的log文件中,这个log和我们平时的log有一定的区别.这里可以参考一下<a href="http://www.cnblogs.com/foreach-break/p/notes_about_distributed_system_and_The_log.html">The Log</a>,不多解释.</p>
-
 <p>这个log文件默认的位置在config/server.properties中指定的.默认的位置是log.dirs=/tmp/kafka-logs,linux不用说,windows的话就在你对应磁盘的根目录下.我这里是D盘.</p>
-
 <p>#分区partition#
 kafka是为分布式环境设计的,因此如果日志文件,其实也可以理解成消息数据库,放在同一个地方,那么必然会带来可用性的下降,一挂全挂,如果全量拷贝到所有的机器上,那么数据又存在过多的冗余,而且由于每台机器的磁盘大小是有限的,所以即使有再多的机器,可处理的消息还是被磁盘所限制,无法超越当前磁盘大小.因此有了partition的概念.</p>
-
 <p>kafka对消息进行一定的计算,通过hash来进行分区.这样,就把一份log文件分成了多份.如上面的分区读写日志图,分成多份以后,在单台broker上,比如快速上手中,如果新建topic的时候,我们选择了<code>--replication-factor 1 --partitions 2</code>,那么在log目录里,我们会看到
 test-0目录和test-1目录.就是两个分区了.</p>
-
 <p>你可能会想,这特么没啥区别呀.注意,当有了多个broker之后,这个意义就存在了.这里上一张图,原文在参考链接里有
-<img src="/images/kafka_partition_storage.jpg" alt="kafka分布式分区存储" />
+<img src="/images/kafka_partition_storage.jpg" alt="kafka分布式分区存储">
 这是一个topic包含4个Partition，2 Replication(拷贝),也就是说全部的消息被放在了4个分区存储,为了高可用,将4个分区做了2份冗余,然后根据<a href="http://blog.csdn.net/lizhitao/article/details/41778193">分配算法</a>.将总共8份数据,分配到broker集群上.</p>
-
 <p>结果就是每个broker上存储的数据比全量数据要少,但每份数据都有冗余,这样,一旦一台机器宕机,并不影响使用.比如图中的Broker1,宕机了.那么剩下的三台broker依然保留了全量的分区数据.所以还能使用,如果再宕机一台,那么数据不完整了.当然你可以设置更多的冗余,比如设置了冗余是4,那么每台机器就有了0123完整的数据,宕机几台都行.需要在存储占用和高可用之间做衡量.
 至于宕机后,zookeeper会选出新的partition leader.来提供服务.这个等下篇文章</p>
-
 <p>#偏移offset#</p>
-
 <p>上一段说了分区,分区就是一个有序的,不可变的消息队列.新来的commit log持续往后面加数据.这些消息被分配了一个下标(或者偏移),就是offset,用来定位这一条消息.</p>
-
 <p>消费者消费到了哪条消息,是保持在消费者这一端的.消息者也可以控制,消费者可以在本地保存最后消息的offset,并间歇性的向zookeeper注册offset.也可以重置offset</p>
-
 <p>#如何通过offset算出分区#</p>
-
 <p>其实partition存储的时候,又分成了多个segment(段),然后通过一个index,索引,来标识第几段.这里先可以去看一下本地log目录的分区文件夹.
 在我这里,test-0,这个分区里面,会有一个index文件和一个log文件,
-<img src="/images/kafka_index_log.jpg" alt="index和log" /></p>
-
+<img src="/images/kafka_index_log.jpg" alt="index和log"></p>
 <p>对于某个指定的分区,假设每5个消息,作为一个段大小,当产生了10条消息的情况想,目前有会得到(只是解释)
 0.index (表示这里index是对0-4做的索引)
 5.index (表示这里index是对5-9做的索引)
@@ -627,11 +672,8 @@ test-0目录和test-1目录.就是两个分区了.</p>
 5.log
 10.log
 ,当消费者需要读取offset=8的时候,首先kafka对index文件列表进行二分查找,可以算出.应该是在5.index对应的log文件中,然后对对应的5.log文件,进行顺序查找,5-&gt;6-&gt;7-&gt;8,直到顺序找到8就好了.</p>
-
 <p>具体的算法参看<a href="http://tech.meituan.com/kafka-fs-design-theory.html">美团的文章</a>好了</p>
-
-<h2 id="更多文档">更多文档</h2>
-
+<h2 id="heading">更多文档</h2>
 <ol>
 <li><a href="http://kafka.apache.org/documentation.html">官方文档</a></li>
 <li><a href="http://tech.meituan.com/kafka-fs-design-theory.html">Kafka文件存储机制那些事</a></li>
@@ -682,65 +724,44 @@ test-0目录和test-1目录.就是两个分区了.</p>
               </p>
               <div class="post-entry">
                 
-                  
-
-<h2 id="简单介绍">简单介绍</h2>
-
+                  <h2 id="heading">简单介绍</h2>
 <p>kafka是一个分布式消息中间件,在kafka中主要涉及到四个基本名词:
 <strong>Topic</strong>
 Kafka将消息种子分门别类， 每一类的消息称之为一个主题(Topic).</p>
-
 <p><strong>Producer</strong>
 发布消息的对象称之为主题生产者.</p>
-
 <p><strong>Consumer</strong>
 订阅消息并处理消息的对象称之为主题消费者</p>
-
 <p><strong>Broker</strong>
 已发布的消息保存在一组服务器中，称之为Kafka集群。集群中的每一个服务器称为一个代理(Broker). 消费者可以订阅一个或多个主题，并从Broker拉数据(注意是拉,不是pull,)，从而消费这些已发布的消息。</p>
-
-<h2 id="安装-以windows为例">安装(以windows为例)</h2>
-
+<h2 id="windows">安装(以windows为例)</h2>
 <p>安装非常简单,从这里<a href="http://kafka.apache.org/downloads.html">下载</a>,下载完成后解压到一个目录就好了.</p>
-
-<h2 id="简单使用">简单使用</h2>
-
+<h2 id="heading-1">简单使用</h2>
 <p>首先使用kafka的一个流程就是生产者生产消息,发送给kafka集群,然后消费者从kafka集群中获取消息进行消费.
 要启动kafka需要先启动zookeeper,因为ZooKeeper是通过冗余服务实现高可用性的,也就是说在分布式环境中,如何保证kafka集群的高可用.zookeeper会来做leader选取,当消费者准备发消息时,会从zookeeper中获取一个可用的消息服务器地址,然后连接进行发送,保证党集群内有服务器宕机并不影响整体的使用.
-<img src="/images/kafka_transfer.jpg" alt="来自slideshare的一张图" /></p>
-
+<img src="/images/kafka_transfer.jpg" alt="来自slideshare的一张图"></p>
 <p>1.启动自带的简易zookeeper.
 进行解压目录的bin/windows目录
 <code>zookeeper-server-start.bat ../../config/zookeeper.properties</code></p>
-
 <p>执行命令启动,从zookeeper.properties中会看到.zookeeper会开发一个clientPort=2181,2181的端口给消费者使用,其实也可以给生产者使用,但是在0.8.0版本后，producer不再通过zookeeper连接broker, 而是通过brokerlist（192.168.0.1:9092,192.168.0.2:9092,192.168.0.3:9092配置,直接和broker连接，只要能和一个broker连接上就能够获取到集群中其他broker上的信息,绕过了zookeeper.</p>
-
 <p>2.启动kafka服务
 <code>kafka-server-start.bat ../../config/server.properties</code> 执行启动,另一个命令行窗口,同样的.查看配置问题,会知道kafka的服务会在port=9092 ,9092端口打开.</p>
-
 <p>3.注册一个topic
- <code>kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test</code>
- 这个命令中,create表示创建.zookeeper 和后面的地址表示kafka使用本机2181端口开放的zookeeper保持高可用.replication-factor表示消息只冗余一份,目前我们只有一个kafka机器,broker,partitions 表示一份分区,分区是kafka的另一个概念,大致是说,同一topic内部的消息按照一定的key和算法被分区(partition)存储在不同的位置上，这个下次写好了.这样已经在kafka注册了一个名为test的消息topic了.</p>
-
+<code>kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test</code>
+这个命令中,create表示创建.zookeeper 和后面的地址表示kafka使用本机2181端口开放的zookeeper保持高可用.replication-factor表示消息只冗余一份,目前我们只有一个kafka机器,broker,partitions 表示一份分区,分区是kafka的另一个概念,大致是说,同一topic内部的消息按照一定的key和算法被分区(partition)存储在不同的位置上，这个下次写好了.这样已经在kafka注册了一个名为test的消息topic了.</p>
 <p>4.使用简易的控制台生产者模拟
 <code>kafka-console-producer.bat --broker-list localhost:9092 --topic test</code>
 前面说过了.新版本生产者直接通过brokerlist来连接kafka,目前只有一台,所以就一个地址,准备向test这个topic发送消息.</p>
-
 <p>5.使用简易的控制台消费者模拟
 <code>kafka-console-consumer.bat --zookeeper localhost:2181 --topic test</code>
 这个前面也说过了.消费者使用zookeeper获取可用的broker列表,然后拉去消息,并且还有一些offset同步的问题.和分区,文件存储一起的一个概念,下次写.</p>
-
 <p>6.开始生产和消费消息
 至此,已经开了四个控制台窗口了..在producer窗口里,随便打几个字,然后enter,在消费者的窗口里将会显示出来.
-<img src="/images/kafka_demo.jpg" alt="实际测试图" /></p>
-
-<h2 id="其他问题">其他问题</h2>
-
+<img src="/images/kafka_demo.jpg" alt="实际测试图"></p>
+<h2 id="heading-2">其他问题</h2>
 <p>实际可能不那么顺利,如果你启动kafka或者其他应用的时候,有错误提示,提示无法创建虚拟机vm这样的.那么修改一下对应的bat脚本.就好了
-<img src="/images/kafka_start_error.jpg" alt="启动错误" />,vm的heap申请是1G,如果你机器内存不够,改成512M,或者更小的就好了.</p>
-
-<h2 id="更多文档">更多文档</h2>
-
+<img src="/images/kafka_start_error.jpg" alt="启动错误">,vm的heap申请是1G,如果你机器内存不够,改成512M,或者更小的就好了.</p>
+<h2 id="heading-3">更多文档</h2>
 <ol>
 <li><a href="http://kafka.apache.org/documentation.html">官方文档</a></li>
 <li><a href="http://colobu.com/2014/08/06/kafka-quickstart">kafka快速入门</a></li>
@@ -790,16 +811,10 @@ Kafka将消息种子分门别类， 每一类的消息称之为一个主题(Topi
               </p>
               <div class="post-entry">
                 
-                  
-
-<p>工作过程中,有时候需要在本地执行一些简单的sql,但是不想下载太大的mysql这类客户端.恰好看到<a href="https://code.google.com/p/java-ascii-table/" title="java-ascii-table">https://code.google.com/p/java-ascii-table/</a>,完美辅助,于是写个了简单的工具.应该是支持sqlserver,oracle,和mysql的.mysql的测试了.其他的没有测试.还要继续完善.已经放在了<a href="https://github.com/leizhiyuan/sqlclient" title="sqlclient@github">github</a>上.</p>
-
+                  <p>工作过程中,有时候需要在本地执行一些简单的sql,但是不想下载太大的mysql这类客户端.恰好看到<a href="https://code.google.com/p/java-ascii-table/" title="java-ascii-table">https://code.google.com/p/java-ascii-table/</a>,完美辅助,于是写个了简单的工具.应该是支持sqlserver,oracle,和mysql的.mysql的测试了.其他的没有测试.还要继续完善.已经放在了<a href="https://github.com/leizhiyuan/sqlclient" title="sqlclient@github">github</a>上.</p>
 <p>代码很简单.就不贴了.</p>
-
-<h2 id="使用说明">使用说明</h2>
-
+<h2 id="heading">使用说明</h2>
 <p>先打包,然后<code>https://github.com/leizhiyuan/sqlclient/blob/master/README.md</code> 根据不同的情况写几个简单的bat就可以了.</p>
-
 <ol>
 <li>mysql
 <code>java -jar sqlclient.jar -u &quot;jdbc:mysql://localhost:3306/mysql&quot; -n &quot;name&quot;</code>
@@ -811,17 +826,12 @@ Kafka将消息种子分门别类， 每一类的消息称之为一个主题(Topi
 <code>java -jar sqlclient.jar -u &quot;jdbc:jtds:sqlserver://localhost:1433/sqlserver&quot;</code>
 <code>-n &quot;name&quot; -p &quot;pass&quot; -d &quot;net.sourceforge.jtds.jdbc.Driver&quot;</code></li>
 </ol>
-
-<h2 id="截图">截图</h2>
-
+<h2 id="heading-1">截图</h2>
 <p>交互式执行截图
-<img src="/images/sqlclient-interactive-screen.jpg" alt="交互式截图" /></p>
-
+<img src="/images/sqlclient-interactive-screen.jpg" alt="交互式截图"></p>
 <p>普通执行截图
-<img src="/images/sqlclient-direct-sql-screen.jpg" alt="一次执行" /></p>
-
-<h2 id="引用">引用</h2>
-
+<img src="/images/sqlclient-direct-sql-screen.jpg" alt="一次执行"></p>
+<h2 id="heading-2">引用</h2>
 <ol>
 <li><a href="https://code.google.com/p/java-ascii-table/" title="java-ascii-table">java-ascii-table项目</a></li>
 <li><a href="https://commons.apache.org/proper/commons-cli/" title="commons-cli">commons-cli命令行解析</a></li>
@@ -836,54 +846,6 @@ Kafka将消息种子分门别类， 每一类的消息称之为一个主题(Topi
                     <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E5%85%B7/">工具</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2015/07/04/javosize%E6%96%B0%E4%B8%80%E4%BB%A3java%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/">
-                <h2 class="post-title">javOSize:新一代java分析工具</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on July 4, 2015
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  介绍 最近看到这么个工具-javOSize .官网地址,去官网看了下.发现介绍很有意思,叫做 the missing sugar for your Java cup.(你的咖啡杯中缺少的那颗糖).于是感受一下这颗糖到底甜不甜
-安装 安装非常简单,从这里下载,其实完成之后就是一个jar包.非常简单,不用配置啥的.
-简单使用 使用方法就是从先附加到一个java进程上,在linux,上我直接执行 ps aux|grep java 就能看到了.不废话,得到java进程的pid之后,运行 java -jar javosize-1.0.9.jar pid pid就是pid的号了. 然后会看到如下图的界面,表示已经附加成功了.先看看都有啥.执行ls.看到有这么几个命令.我比较单纯,刚开始以为是可执行文件.结果丢人了.看了下官方文档,才知道是目录.进入对应的目录.然后执行ls就能看到对应的信息了.ls简直不能再万能..改目录支持的所有命令通过在对应的目录执行help来查看.个人尝试觉得好的功能有.  动态修改类 进入CLASSES目录,然后通过执行 ls|grep xxx 来找到需要修改的类,然后通过vi 就可以直接编辑.编辑完成后,直接保存就会动态替换.文档里说是支持jdk1.7以上,对1.6的支持估计是不行的.没有测试.  无须重启开启jmx 直接挂载之后,执行cd REPOSITORY 然后执行就好了. exec START_JMX_SERVER 6666 拦截任意代码 可以动态添加类似Spring中的aop方法.用于打印一些调用日志,排查线上问题.进入INTERCEPTOR目录.然后通过如下的方法给某个类的某个方法添加拦截器. create TickServlet begin mypackage.Hello doGet System.out.println(&quot;Servlet invoked&quot;); 检测内存泄漏 进入 REPOSITORY 目录,执行 exec TOP_FAT_STATIC_VARIABLES 5 com.apache.*会取出某个包下面占用大小最大的5个类.会很方便找到. 自动检测性能问题 PROBLEMS 目录专业解决这种问题.进入目录后.执行ls命令.会看到这样的场景 &gt;* Concurrency &gt; Deadlocked: false &gt;* Memory &gt; High GC (&gt;2%): false
-                  <a href="https://leizhiyuan.github.io/2015/07/04/javosize%E6%96%B0%E4%B8%80%E4%BB%A3java%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E4%BD%9C/">工作</a>&nbsp;
                   
                 </div>
               
@@ -953,7 +915,7 @@ Kafka将消息种子分门别类， 每一类的消息称之为一个主题(Topi
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

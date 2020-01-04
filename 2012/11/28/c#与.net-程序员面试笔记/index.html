@@ -16,38 +16,40 @@
 程序集是指包含编译好的。面向.net framework的代码的逻辑单元。是完全自我描述性的一个逻辑单元。可以存储在多个文件中。简单来说，程序集就是几个彼此有关联程序文件的集合。程序集会包含程序的元数据。描述了对应代码中定义的方法和类型。
 装箱和拆箱：装箱转换是将一个值类型显式或隐式的转换成一个object对象。并且把这个对象转换成一个被该值类型应用的的接口类型。装箱后的object对象中的数据位于堆中。一般应该避免这种运算。 CLR将值类型的数据包裹到匿名的托管对象中，并将托管对象的引用放在Object类型的变量中。这个过程称为装箱。一般还是使用泛型来代替多好。
 值类型和引用类型：值类型实例通常分配在线程的栈上。并且不包含指向任何实例数据的指针。引用类型实例分配在托管堆上。变量保存了实例数据的内存引用。引用类型复制的话会导致引用同一个内存地址。
-C#预处理指令是在编译时调用的。预处理指令通知C#编译器要编译哪些代码。并指出如何处理特定的错误和异常。比如用在一些调试的时候。在顶部define一个debug 内部的测试部分写上测试用例。具体示例 //定义条件变量，注意条件变量的定义要在代码的最前面 #define Debug using System; namespace MyConsole { class Preprocesor { public static void Main() { //如果条件变量是Debug则运行单元调试代码，再运行功能模块返回运行结果 #if Debug Console.WriteLine(&ldquo;运行单元测试模块&rdquo;); Console.WriteLine(&ldquo;运行功能模块，返回输出结果&rdquo;); Console.Read(); #elif Release //如果条件变量是Release，则直接运行功能模块返回运行结果 Console.WriteLine(&ldquo;运行功能模块，返回输出结果&rdquo;); Console.Read(); #endif } } } C#中的指针 指针是一个无符号整数。是以当前系统寻址范围为取值范围的整数，CLR支持三种指针类型：受托管指针，非托管指针，非托管函数指针，受托管指针存储在堆上的托管块的引用，一个非托管指针就是传统意义上的指针，要放在unsafe中使用，C#中指针并不继承自Object
+C#预处理指令是在编译时调用的。预处理指令通知C#编译器要编译哪些代码。并指出如何处理特定的错误和异常。比如用在一些调试的时候。在顶部define一个debug 内部的测试部分写上测试用例。具体示例
+C#中的指针 指针是一个无符号整数。是以当前系统寻址范围为取值范围的整数，CLR支持三种指针类型：受托管指针，非托管指针，非托管函数指针，受托管指针存储在堆上的托管块的引用，一个非托管指针就是传统意义上的指针，要放在unsafe中使用，C#中指针并不继承自Object
 String 是CLR的类型名称。而string是C#的关键字。其实C#编译时。。会增下如下代码： using string=System.String
 Array 到ArrayList的转换 1.使用ArrayList.Adapter(ArrayName) 可以直接得到ArrayList 2.使用遍历逐个添加到ArrayList里。 反向的话直接使用(Array[])ArrayListName.ToArray(typeof(Array));即可
 checked和unchecked语句用于控制整形算术运算和显示转换的溢出检查上下文。checked关键字用于对整型算术运算和转换显式启用溢出检查。因为默认情况下。如果表达式产生的值超过了类型的范围。则常数表达式将会导致编译时错误。而非常数表达式则在运行时计算并将引发异常。
 Asp.Net 中的Request对象主要功能是从客户端得到数据信息。他的属性比较多。比如UserLanguage，TotalBytes，Path，ApplicationPath
 ViewState是其的一个重要特性。用于把生成页面要用的状态值保存到一个隐藏域里。而不是用cookie/内存
 SOAP是Web Service应用的基础协议。他是一种轻量的简单的。基于xml的协议。被设计成在wEb上交换结构化的和固有的信息。 WSDL是一种用于描述web服务和说明如何与Web服务通信的XML语言。WSDL是一种符合XML语法规范的语言。它的设计完全基于Soap协议的实现。当一个WEb Service 服务器期望为使用者提供服务说明时，WSDL语言是最好的选择之一。
-&nbsp;
-对企业的一些认识 
+ **对企业的一些认识 **
 千万不要说自己未来的打算是做到管理层，首先对管理层的定义不清楚。职务不清楚。所以保险的答案是我会努力钻研技术。使得能够达到业内的专业人士。深刻理解公司和行业
 我是为了找一份长期性的工作。我不喜欢频繁的跳槽我希望在这个利于发展自己的事业。深入学习。向专业人士请教。那。该我想问这个职务是长期的吗？
 不要把公司想像成慈善机构。工作的运作方面应该是尽可能快的实现盈利。树立品牌，赢得客户。我的工作就是完成企业的良性运作。
-如果被问到是否需要考虑看分数。应该说用人单位确实需要全面考量。也要考虑应聘者的工作积极性/服从性。实际经验/对开发的理解诶。这些也许比分数更有价值。">
+如果被问到是否需要考虑看分数。应该说用人单位确实需要全面考量。也要考虑应聘者的工作积极性/服从性。实际经验/对开发的理解诶。这些也许比分数更有价值。
+应届生的优缺点应该是足够的理论知识和专业能力。缺点是工作和社会经验不足。">
   <meta property="og:description" content="这是前几天读的书。书不难。10-13章跳过了。以后再看。
 以前，一个应用程序对应一个进程。并且为该进程指定虚拟内存，这样。进程会消耗很多资源，而且进程之间的通信业比较麻烦
 应用程序域可以理解为很多应用程序域都可以运行在同一个.net 进程中，降低内存消耗。同时不同的域之间隔离。安全有保证。通信也简单。
 程序集是指包含编译好的。面向.net framework的代码的逻辑单元。是完全自我描述性的一个逻辑单元。可以存储在多个文件中。简单来说，程序集就是几个彼此有关联程序文件的集合。程序集会包含程序的元数据。描述了对应代码中定义的方法和类型。
 装箱和拆箱：装箱转换是将一个值类型显式或隐式的转换成一个object对象。并且把这个对象转换成一个被该值类型应用的的接口类型。装箱后的object对象中的数据位于堆中。一般应该避免这种运算。 CLR将值类型的数据包裹到匿名的托管对象中，并将托管对象的引用放在Object类型的变量中。这个过程称为装箱。一般还是使用泛型来代替多好。
 值类型和引用类型：值类型实例通常分配在线程的栈上。并且不包含指向任何实例数据的指针。引用类型实例分配在托管堆上。变量保存了实例数据的内存引用。引用类型复制的话会导致引用同一个内存地址。
-C#预处理指令是在编译时调用的。预处理指令通知C#编译器要编译哪些代码。并指出如何处理特定的错误和异常。比如用在一些调试的时候。在顶部define一个debug 内部的测试部分写上测试用例。具体示例 //定义条件变量，注意条件变量的定义要在代码的最前面 #define Debug using System; namespace MyConsole { class Preprocesor { public static void Main() { //如果条件变量是Debug则运行单元调试代码，再运行功能模块返回运行结果 #if Debug Console.WriteLine(&ldquo;运行单元测试模块&rdquo;); Console.WriteLine(&ldquo;运行功能模块，返回输出结果&rdquo;); Console.Read(); #elif Release //如果条件变量是Release，则直接运行功能模块返回运行结果 Console.WriteLine(&ldquo;运行功能模块，返回输出结果&rdquo;); Console.Read(); #endif } } } C#中的指针 指针是一个无符号整数。是以当前系统寻址范围为取值范围的整数，CLR支持三种指针类型：受托管指针，非托管指针，非托管函数指针，受托管指针存储在堆上的托管块的引用，一个非托管指针就是传统意义上的指针，要放在unsafe中使用，C#中指针并不继承自Object
+C#预处理指令是在编译时调用的。预处理指令通知C#编译器要编译哪些代码。并指出如何处理特定的错误和异常。比如用在一些调试的时候。在顶部define一个debug 内部的测试部分写上测试用例。具体示例
+C#中的指针 指针是一个无符号整数。是以当前系统寻址范围为取值范围的整数，CLR支持三种指针类型：受托管指针，非托管指针，非托管函数指针，受托管指针存储在堆上的托管块的引用，一个非托管指针就是传统意义上的指针，要放在unsafe中使用，C#中指针并不继承自Object
 String 是CLR的类型名称。而string是C#的关键字。其实C#编译时。。会增下如下代码： using string=System.String
 Array 到ArrayList的转换 1.使用ArrayList.Adapter(ArrayName) 可以直接得到ArrayList 2.使用遍历逐个添加到ArrayList里。 反向的话直接使用(Array[])ArrayListName.ToArray(typeof(Array));即可
 checked和unchecked语句用于控制整形算术运算和显示转换的溢出检查上下文。checked关键字用于对整型算术运算和转换显式启用溢出检查。因为默认情况下。如果表达式产生的值超过了类型的范围。则常数表达式将会导致编译时错误。而非常数表达式则在运行时计算并将引发异常。
 Asp.Net 中的Request对象主要功能是从客户端得到数据信息。他的属性比较多。比如UserLanguage，TotalBytes，Path，ApplicationPath
 ViewState是其的一个重要特性。用于把生成页面要用的状态值保存到一个隐藏域里。而不是用cookie/内存
 SOAP是Web Service应用的基础协议。他是一种轻量的简单的。基于xml的协议。被设计成在wEb上交换结构化的和固有的信息。 WSDL是一种用于描述web服务和说明如何与Web服务通信的XML语言。WSDL是一种符合XML语法规范的语言。它的设计完全基于Soap协议的实现。当一个WEb Service 服务器期望为使用者提供服务说明时，WSDL语言是最好的选择之一。
-&nbsp;
-对企业的一些认识 
+ **对企业的一些认识 **
 千万不要说自己未来的打算是做到管理层，首先对管理层的定义不清楚。职务不清楚。所以保险的答案是我会努力钻研技术。使得能够达到业内的专业人士。深刻理解公司和行业
 我是为了找一份长期性的工作。我不喜欢频繁的跳槽我希望在这个利于发展自己的事业。深入学习。向专业人士请教。那。该我想问这个职务是长期的吗？
 不要把公司想像成慈善机构。工作的运作方面应该是尽可能快的实现盈利。树立品牌，赢得客户。我的工作就是完成企业的良性运作。
-如果被问到是否需要考虑看分数。应该说用人单位确实需要全面考量。也要考虑应聘者的工作积极性/服从性。实际经验/对开发的理解诶。这些也许比分数更有价值。">
+如果被问到是否需要考虑看分数。应该说用人单位确实需要全面考量。也要考虑应聘者的工作积极性/服从性。实际经验/对开发的理解诶。这些也许比分数更有价值。
+应届生的优缺点应该是足够的理论知识和专业能力。缺点是工作和社会经验不足。">
   <meta name="twitter:description" content="这是前几天读的书。书不难。10-13章跳过了。以后再看。
 以前，一个应用程序对应一个进程。并且为该进程指定虚拟内存，这样。进程会消耗很多资源，而且进程之间的通信业比较麻烦
 应用程序域可以理解为很多应用程序域都可以运行在同一个.net 进程中，降低内存消耗。同时不同的域之间隔离。安全有保证。通信也简单。
@@ -100,9 +102,9 @@ SOAP是Web Service应用的基础协议。他是一种轻量的简单的。基�
     "name" : "bystander"
   },
   "headline": "C#与.net 程序员面试笔记",
-  "description" : "这是前几天读的书。书不难。10-13章跳过了。以后再看。\n以前，一个应用程序对应一个进程。并且为该进程指定虚拟内存，这样。进程会消耗很多资源，而且进程之间的通信业比较麻烦\n应用程序域可以理解为很多应用程序域都可以运行在同一个.net 进程中，降低内存消耗。同时不同的域之间隔离。安全有保证。通信也简单。\n程序集是指包含编译好的。面向.net framework的代码的逻辑单元。是完全自我描述性的一个逻辑单元。可以存储在多个文件中。简单来说，程序集就是几个彼此有关联程序文件的集合。程序集会包含程序的元数据。描述了对应代码中定义的方法和类型。\n装箱和拆箱：装箱转换是将一个值类型显式或隐式的转换成一个object对象。并且把这个对象转换成一个被该值类型应用的的接口类型。装箱后的object对象中的数据位于堆中。一般应该避免这种运算。 CLR将值类型的数据包裹到匿名的托管对象中，并将托管对象的引用放在Object类型的变量中。这个过程称为装箱。一般还是使用泛型来代替多好。\n值类型和引用类型：值类型实例通常分配在线程的栈上。并且不包含指向任何实例数据的指针。引用类型实例分配在托管堆上。变量保存了实例数据的内存引用。引用类型复制的话会导致引用同一个内存地址。\nC#预处理指令是在编译时调用的。预处理指令通知C#编译器要编译哪些代码。并指出如何处理特定的错误和异常。比如用在一些调试的时候。在顶部define一个debug 内部的测试部分写上测试用例。具体示例 \/\/定义条件变量，注意条件变量的定义要在代码的最前面 #define Debug using System; namespace MyConsole { class Preprocesor { public static void Main() { \/\/如果条件变量是Debug则运行单元调试代码，再运行功能模块返回运行结果 #if Debug Console.WriteLine(\x26ldquo;运行单元测试模块\x26rdquo;); Console.WriteLine(\x26ldquo;运行功能模块，返回输出结果\x26rdquo;); Console.Read(); #elif Release \/\/如果条件变量是Release，则直接运行功能模块返回运行结果 Console.WriteLine(\x26ldquo;运行功能模块，返回输出结果\x26rdquo;); Console.Read(); #endif } } } C#中的指针 指针是一个无符号整数。是以当前系统寻址范围为取值范围的整数，CLR支持三种指针类型：受托管指针，非托管指针，非托管函数指针，受托管指针存储在堆上的托管块的引用，一个非托管指针就是传统意义上的指针，要放在unsafe中使用，C#中指针并不继承自Object\nString 是CLR的类型名称。而string是C#的关键字。其实C#编译时。。会增下如下代码： using string=System.String\nArray 到ArrayList的转换 1.使用ArrayList.Adapter(ArrayName) 可以直接得到ArrayList 2.使用遍历逐个添加到ArrayList里。 反向的话直接使用(Array[])ArrayListName.ToArray(typeof(Array));即可\nchecked和unchecked语句用于控制整形算术运算和显示转换的溢出检查上下文。checked关键字用于对整型算术运算和转换显式启用溢出检查。因为默认情况下。如果表达式产生的值超过了类型的范围。则常数表达式将会导致编译时错误。而非常数表达式则在运行时计算并将引发异常。\nAsp.Net 中的Request对象主要功能是从客户端得到数据信息。他的属性比较多。比如UserLanguage，TotalBytes，Path，ApplicationPath\nViewState是其的一个重要特性。用于把生成页面要用的状态值保存到一个隐藏域里。而不是用cookie\/内存\nSOAP是Web Service应用的基础协议。他是一种轻量的简单的。基于xml的协议。被设计成在wEb上交换结构化的和固有的信息。 WSDL是一种用于描述web服务和说明如何与Web服务通信的XML语言。WSDL是一种符合XML语法规范的语言。它的设计完全基于Soap协议的实现。当一个WEb Service 服务器期望为使用者提供服务说明时，WSDL语言是最好的选择之一。\n\x26nbsp;\n对企业的一些认识 \n千万不要说自己未来的打算是做到管理层，首先对管理层的定义不清楚。职务不清楚。所以保险的答案是我会努力钻研技术。使得能够达到业内的专业人士。深刻理解公司和行业\n我是为了找一份长期性的工作。我不喜欢频繁的跳槽我希望在这个利于发展自己的事业。深入学习。向专业人士请教。那。该我想问这个职务是长期的吗？\n不要把公司想像成慈善机构。工作的运作方面应该是尽可能快的实现盈利。树立品牌，赢得客户。我的工作就是完成企业的良性运作。\n如果被问到是否需要考虑看分数。应该说用人单位确实需要全面考量。也要考虑应聘者的工作积极性\/服从性。实际经验\/对开发的理解诶。这些也许比分数更有价值。",
+  "description" : "这是前几天读的书。书不难。10-13章跳过了。以后再看。\n以前，一个应用程序对应一个进程。并且为该进程指定虚拟内存，这样。进程会消耗很多资源，而且进程之间的通信业比较麻烦\n应用程序域可以理解为很多应用程序域都可以运行在同一个.net 进程中，降低内存消耗。同时不同的域之间隔离。安全有保证。通信也简单。\n程序集是指包含编译好的。面向.net framework的代码的逻辑单元。是完全自我描述性的一个逻辑单元。可以存储在多个文件中。简单来说，程序集就是几个彼此有关联程序文件的集合。程序集会包含程序的元数据。描述了对应代码中定义的方法和类型。\n装箱和拆箱：装箱转换是将一个值类型显式或隐式的转换成一个object对象。并且把这个对象转换成一个被该值类型应用的的接口类型。装箱后的object对象中的数据位于堆中。一般应该避免这种运算。 CLR将值类型的数据包裹到匿名的托管对象中，并将托管对象的引用放在Object类型的变量中。这个过程称为装箱。一般还是使用泛型来代替多好。\n值类型和引用类型：值类型实例通常分配在线程的栈上。并且不包含指向任何实例数据的指针。引用类型实例分配在托管堆上。变量保存了实例数据的内存引用。引用类型复制的话会导致引用同一个内存地址。\nC#预处理指令是在编译时调用的。预处理指令通知C#编译器要编译哪些代码。并指出如何处理特定的错误和异常。比如用在一些调试的时候。在顶部define一个debug 内部的测试部分写上测试用例。具体示例\nC#中的指针 指针是一个无符号整数。是以当前系统寻址范围为取值范围的整数，CLR支持三种指针类型：受托管指针，非托管指针，非托管函数指针，受托管指针存储在堆上的托管块的引用，一个非托管指针就是传统意义上的指针，要放在unsafe中使用，C#中指针并不继承自Object\nString 是CLR的类型名称。而string是C#的关键字。其实C#编译时。。会增下如下代码： using string=System.String\nArray 到ArrayList的转换 1.使用ArrayList.Adapter(ArrayName) 可以直接得到ArrayList 2.使用遍历逐个添加到ArrayList里。 反向的话直接使用(Array[])ArrayListName.ToArray(typeof(Array));即可\nchecked和unchecked语句用于控制整形算术运算和显示转换的溢出检查上下文。checked关键字用于对整型算术运算和转换显式启用溢出检查。因为默认情况下。如果表达式产生的值超过了类型的范围。则常数表达式将会导致编译时错误。而非常数表达式则在运行时计算并将引发异常。\nAsp.Net 中的Request对象主要功能是从客户端得到数据信息。他的属性比较多。比如UserLanguage，TotalBytes，Path，ApplicationPath\nViewState是其的一个重要特性。用于把生成页面要用的状态值保存到一个隐藏域里。而不是用cookie\/内存\nSOAP是Web Service应用的基础协议。他是一种轻量的简单的。基于xml的协议。被设计成在wEb上交换结构化的和固有的信息。 WSDL是一种用于描述web服务和说明如何与Web服务通信的XML语言。WSDL是一种符合XML语法规范的语言。它的设计完全基于Soap协议的实现。当一个WEb Service 服务器期望为使用者提供服务说明时，WSDL语言是最好的选择之一。\n **对企业的一些认识 **\n千万不要说自己未来的打算是做到管理层，首先对管理层的定义不清楚。职务不清楚。所以保险的答案是我会努力钻研技术。使得能够达到业内的专业人士。深刻理解公司和行业\n我是为了找一份长期性的工作。我不喜欢频繁的跳槽我希望在这个利于发展自己的事业。深入学习。向专业人士请教。那。该我想问这个职务是长期的吗？\n不要把公司想像成慈善机构。工作的运作方面应该是尽可能快的实现盈利。树立品牌，赢得客户。我的工作就是完成企业的良性运作。\n如果被问到是否需要考虑看分数。应该说用人单位确实需要全面考量。也要考虑应聘者的工作积极性\/服从性。实际经验\/对开发的理解诶。这些也许比分数更有价值。\n应届生的优缺点应该是足够的理论知识和专业能力。缺点是工作和社会经验不足。",
   "inLanguage" : "en",
-  "wordCount":  70 ,
+  "wordCount":  39 ,
   "datePublished" : "2012-11-28T07:13:03",
   "dateModified" : "2012-11-28T07:13:03",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -128,19 +130,20 @@ SOAP是Web Service应用的基础协议。他是一种轻量的简单的。基�
 程序集是指包含编译好的。面向.net framework的代码的逻辑单元。是完全自我描述性的一个逻辑单元。可以存储在多个文件中。简单来说，程序集就是几个彼此有关联程序文件的集合。程序集会包含程序的元数据。描述了对应代码中定义的方法和类型。
 装箱和拆箱：装箱转换是将一个值类型显式或隐式的转换成一个object对象。并且把这个对象转换成一个被该值类型应用的的接口类型。装箱后的object对象中的数据位于堆中。一般应该避免这种运算。 CLR将值类型的数据包裹到匿名的托管对象中，并将托管对象的引用放在Object类型的变量中。这个过程称为装箱。一般还是使用泛型来代替多好。
 值类型和引用类型：值类型实例通常分配在线程的栈上。并且不包含指向任何实例数据的指针。引用类型实例分配在托管堆上。变量保存了实例数据的内存引用。引用类型复制的话会导致引用同一个内存地址。
-C#预处理指令是在编译时调用的。预处理指令通知C#编译器要编译哪些代码。并指出如何处理特定的错误和异常。比如用在一些调试的时候。在顶部define一个debug 内部的测试部分写上测试用例。具体示例 //定义条件变量，注意条件变量的定义要在代码的最前面 #define Debug using System; namespace MyConsole { class Preprocesor { public static void Main() { //如果条件变量是Debug则运行单元调试代码，再运行功能模块返回运行结果 #if Debug Console.WriteLine(&ldquo;运行单元测试模块&rdquo;); Console.WriteLine(&ldquo;运行功能模块，返回输出结果&rdquo;); Console.Read(); #elif Release //如果条件变量是Release，则直接运行功能模块返回运行结果 Console.WriteLine(&ldquo;运行功能模块，返回输出结果&rdquo;); Console.Read(); #endif } } } C#中的指针 指针是一个无符号整数。是以当前系统寻址范围为取值范围的整数，CLR支持三种指针类型：受托管指针，非托管指针，非托管函数指针，受托管指针存储在堆上的托管块的引用，一个非托管指针就是传统意义上的指针，要放在unsafe中使用，C#中指针并不继承自Object
+C#预处理指令是在编译时调用的。预处理指令通知C#编译器要编译哪些代码。并指出如何处理特定的错误和异常。比如用在一些调试的时候。在顶部define一个debug 内部的测试部分写上测试用例。具体示例
+C#中的指针 指针是一个无符号整数。是以当前系统寻址范围为取值范围的整数，CLR支持三种指针类型：受托管指针，非托管指针，非托管函数指针，受托管指针存储在堆上的托管块的引用，一个非托管指针就是传统意义上的指针，要放在unsafe中使用，C#中指针并不继承自Object
 String 是CLR的类型名称。而string是C#的关键字。其实C#编译时。。会增下如下代码： using string=System.String
 Array 到ArrayList的转换 1.使用ArrayList.Adapter(ArrayName) 可以直接得到ArrayList 2.使用遍历逐个添加到ArrayList里。 反向的话直接使用(Array[])ArrayListName.ToArray(typeof(Array));即可
 checked和unchecked语句用于控制整形算术运算和显示转换的溢出检查上下文。checked关键字用于对整型算术运算和转换显式启用溢出检查。因为默认情况下。如果表达式产生的值超过了类型的范围。则常数表达式将会导致编译时错误。而非常数表达式则在运行时计算并将引发异常。
 Asp.Net 中的Request对象主要功能是从客户端得到数据信息。他的属性比较多。比如UserLanguage，TotalBytes，Path，ApplicationPath
 ViewState是其的一个重要特性。用于把生成页面要用的状态值保存到一个隐藏域里。而不是用cookie/内存
 SOAP是Web Service应用的基础协议。他是一种轻量的简单的。基于xml的协议。被设计成在wEb上交换结构化的和固有的信息。 WSDL是一种用于描述web服务和说明如何与Web服务通信的XML语言。WSDL是一种符合XML语法规范的语言。它的设计完全基于Soap协议的实现。当一个WEb Service 服务器期望为使用者提供服务说明时，WSDL语言是最好的选择之一。
-&nbsp;
-对企业的一些认识 
+ **对企业的一些认识 **
 千万不要说自己未来的打算是做到管理层，首先对管理层的定义不清楚。职务不清楚。所以保险的答案是我会努力钻研技术。使得能够达到业内的专业人士。深刻理解公司和行业
 我是为了找一份长期性的工作。我不喜欢频繁的跳槽我希望在这个利于发展自己的事业。深入学习。向专业人士请教。那。该我想问这个职务是长期的吗？
 不要把公司想像成慈善机构。工作的运作方面应该是尽可能快的实现盈利。树立品牌，赢得客户。我的工作就是完成企业的良性运作。
-如果被问到是否需要考虑看分数。应该说用人单位确实需要全面考量。也要考虑应聘者的工作积极性/服从性。实际经验/对开发的理解诶。这些也许比分数更有价值。">
+如果被问到是否需要考虑看分数。应该说用人单位确实需要全面考量。也要考虑应聘者的工作积极性/服从性。实际经验/对开发的理解诶。这些也许比分数更有价值。
+应届生的优缺点应该是足够的理论知识和专业能力。缺点是工作和社会经验不足。">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2012/11/28/c#%E4%B8%8E.net-%E7%A8%8B%E5%BA%8F%E5%91%98%E9%9D%A2%E8%AF%95%E7%AC%94%E8%AE%B0/" />
 <meta property="og:type" content="website" />
@@ -161,7 +164,7 @@ SOAP是Web Service应用的基础协议。他是一种轻量的简单的。基�
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -346,73 +349,34 @@ SOAP是Web Service应用的基础协议。他是一种轻量的简单的。基�
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <p>这是前几天读的书。书不难。10-13章跳过了。以后再看。</p>
-
 <p>以前，一个应用程序对应一个进程。并且为该进程指定虚拟内存，这样。进程会消耗很多资源，而且进程之间的通信业比较麻烦</p>
-
 <p><strong>应用程序域</strong>可以理解为很多应用程序域都可以运行在同一个.net 进程中，降低内存消耗。同时不同的域之间隔离。安全有保证。通信也简单。</p>
-
 <p><strong>程序集</strong>是指包含编译好的。面向.net framework的代码的逻辑单元。是完全自我描述性的一个逻辑单元。可以存储在多个文件中。简单来说，程序集就是几个彼此有关联程序文件的集合。程序集会包含程序的元数据。描述了对应代码中定义的方法和类型。</p>
-
 <p><strong>装箱和拆箱</strong>：装箱转换是将一个值类型显式或隐式的转换成一个object对象。并且把这个对象转换成一个被该值类型应用的的接口类型。装箱后的object对象中的数据位于堆中。一般应该避免这种运算。
 CLR将值类型的数据包裹到匿名的托管对象中，并将托管对象的引用放在Object类型的变量中。这个过程称为装箱。一般还是使用泛型来代替多好。</p>
-
 <p><strong>值类型和引用类型</strong>：值类型实例通常分配在线程的栈上。并且不包含指向任何实例数据的指针。引用类型实例分配在托管堆上。变量保存了实例数据的内存引用。引用类型复制的话会导致引用同一个内存地址。</p>
-
-<p><strong>C#预处理指令</strong>是在编译时调用的。预处理指令通知C#编译器要编译哪些代码。并指出如何处理特定的错误和异常。比如用在一些调试的时候。在顶部define一个debug 内部的测试部分写上测试用例。具体示例
-<pre class="lang:default decode:true">//定义条件变量，注意条件变量的定义要在代码的最前面
-#define Debug
-using System;
-namespace MyConsole
-{
-  class Preprocesor
-  {
-    public static void Main()
-    {
-     //如果条件变量是Debug则运行单元调试代码，再运行功能模块返回运行结果
-    #if Debug
-      Console.WriteLine(&ldquo;运行单元测试模块&rdquo;);
-      Console.WriteLine(&ldquo;运行功能模块，返回输出结果&rdquo;);
-     Console.Read();
-   #elif Release
-      //如果条件变量是Release，则直接运行功能模块返回运行结果
-        Console.WriteLine(&ldquo;运行功能模块，返回输出结果&rdquo;);
-       Console.Read();
-       #endif
-      }
-   }
-}</pre>
-<strong>C#中的指针</strong>
+<p><strong>C#预处理指令</strong>是在编译时调用的。预处理指令通知C#编译器要编译哪些代码。并指出如何处理特定的错误和异常。比如用在一些调试的时候。在顶部define一个debug 内部的测试部分写上测试用例。具体示例</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><strong>C#中的指针</strong>
 指针是一个无符号整数。是以当前系统寻址范围为取值范围的整数，CLR支持三种指针类型：受托管指针，非托管指针，非托管函数指针，受托管指针存储在堆上的托管块的引用，一个非托管指针就是传统意义上的指针，要放在unsafe中使用，C#中指针并不继承自Object</p>
-
 <p>String 是CLR的类型名称。而string是C#的关键字。其实C#编译时。。会增下如下代码：
 using string=System.String</p>
-
 <p><strong>Array 到ArrayList的转换</strong>
 1.使用ArrayList.Adapter(ArrayName) 可以直接得到ArrayList
 2.使用遍历逐个添加到ArrayList里。
 反向的话直接使用(Array[])ArrayListName.ToArray(typeof(Array));即可</p>
-
 <p><strong>checked和unchecked</strong>语句用于控制整形算术运算和显示转换的溢出检查上下文。checked关键字用于对整型算术运算和转换显式启用溢出检查。因为默认情况下。如果表达式产生的值超过了类型的范围。则常数表达式将会导致编译时错误。而非常数表达式则在运行时计算并将引发异常。</p>
-
 <p>Asp.Net 中的<strong>Request对象</strong>主要功能是从客户端得到数据信息。他的属性比较多。比如UserLanguage，TotalBytes，Path，ApplicationPath</p>
-
 <p><strong>ViewState</strong>是其的一个重要特性。用于把生成页面要用的状态值保存到一个隐藏域里。而不是用cookie/内存</p>
-
 <p><strong>SOAP</strong>是Web Service应用的基础协议。他是一种轻量的简单的。基于xml的协议。被设计成在wEb上交换结构化的和固有的信息。
 WSDL是一种用于描述web服务和说明如何与Web服务通信的XML语言。WSDL是一种符合XML语法规范的语言。它的设计完全基于Soap协议的实现。当一个WEb Service 服务器期望为使用者提供服务说明时，WSDL语言是最好的选择之一。</p>
-
-<p>&nbsp;</p>
-
-<p><strong>对企业的一些认识 </strong></p>
-
+<p> </p>
+<p>**对企业的一些认识 **</p>
 <p>千万不要说自己未来的打算是做到管理层，首先对管理层的定义不清楚。职务不清楚。所以保险的答案是我会努力钻研技术。使得能够达到业内的专业人士。深刻理解公司和行业</p>
-
 <p>我是为了找一份长期性的工作。我不喜欢频繁的跳槽我希望在这个利于发展自己的事业。深入学习。向专业人士请教。那。该我想问这个职务是长期的吗？</p>
-
 <p>不要把公司想像成慈善机构。工作的运作方面应该是尽可能快的实现盈利。树立品牌，赢得客户。我的工作就是完成企业的良性运作。</p>
-
 <p>如果被问到是否需要考虑看分数。应该说用人单位确实需要全面考量。也要考虑应聘者的工作积极性/服从性。实际经验/对开发的理解诶。这些也许比分数更有价值。</p>
-
 <p>应届生的优缺点应该是足够的理论知识和专业能力。缺点是工作和社会经验不足。</p>
 
 
@@ -529,7 +493,7 @@ WSDL是一种用于描述web服务和说明如何与Web服务通信的XML语言�
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

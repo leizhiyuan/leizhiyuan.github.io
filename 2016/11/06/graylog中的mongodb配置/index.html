@@ -16,32 +16,32 @@
 mongorestore -h dbhost -d dbname --directoryperdb dbdirectory
 来恢复.相关说明可以参考这里
 之后就可以正式开始了
- 修改集群名字  在/etc/mongod.conf 中,修改这个值.设置集群使用的集群名称是 graylog,几个机器都配置一下.都先不要启动
+  修改集群名字
+在/etc/mongod.conf 中,修改这个值.设置集群使用的集群名称是 graylog,几个机器都配置一下.都先不要启动
 replication: replSetName: graylog
- 然后添加集群配置  启动其中一台,然后通过mongo 命令连接上数据库,依次执行下面的命令.注意,这里有个坑.添加本机的时候,一定要写对外的域名或者 ip.否则会导致无法选主.
+  然后添加集群配置
+  启动其中一台,然后通过mongo 命令连接上数据库,依次执行下面的命令.注意,这里有个坑.添加本机的时候,一定要写对外的域名或者 ip.否则会导致无法选主.
 rs.initiate() rs.add(&#34;&lt;hostname&gt;:27017&#34;) rs.add(&#34;&lt;hostname&gt;:27017&#34;) rs.add(&#34;&lt;hostname&gt;:27017&#34;) rs.conf()  开始启动
 这里启动就不用说了. service mongod start 启动就好了.
- 配置 graylog 集群连接地址
+  配置 graylog 集群连接地址
 在/etc/graylog/server/server.conf 中配置.mongodb_uri = mongodb://host1,host2,host3/graylog
-  后面这个 graylog 就是给 graylog 使用的库名,你可以先创建.
-之后mongodb 就开始自行同步了.
-[参考]">
+  后面这个 graylog 就是给 graylog 使用的库名,你可以先创建.">
   <meta property="og:description" content="接手的一个工具平台,发现 graylog 集群使用了单个的 mongodb 作为数据库,于是需要配置一下集群,来防止数据丢失,毕竟很多配置都在里面.
 为了以防万一,先备份一下 graylog 的配置. mongodump -h dbhost -d dbname -o dbdirectory
 防止分布式部署的使用搞坏了.之后的恢复可以使用
 mongorestore -h dbhost -d dbname --directoryperdb dbdirectory
 来恢复.相关说明可以参考这里
 之后就可以正式开始了
- 修改集群名字  在/etc/mongod.conf 中,修改这个值.设置集群使用的集群名称是 graylog,几个机器都配置一下.都先不要启动
+  修改集群名字
+在/etc/mongod.conf 中,修改这个值.设置集群使用的集群名称是 graylog,几个机器都配置一下.都先不要启动
 replication: replSetName: graylog
- 然后添加集群配置  启动其中一台,然后通过mongo 命令连接上数据库,依次执行下面的命令.注意,这里有个坑.添加本机的时候,一定要写对外的域名或者 ip.否则会导致无法选主.
+  然后添加集群配置
+  启动其中一台,然后通过mongo 命令连接上数据库,依次执行下面的命令.注意,这里有个坑.添加本机的时候,一定要写对外的域名或者 ip.否则会导致无法选主.
 rs.initiate() rs.add(&#34;&lt;hostname&gt;:27017&#34;) rs.add(&#34;&lt;hostname&gt;:27017&#34;) rs.add(&#34;&lt;hostname&gt;:27017&#34;) rs.conf()  开始启动
 这里启动就不用说了. service mongod start 启动就好了.
- 配置 graylog 集群连接地址
+  配置 graylog 集群连接地址
 在/etc/graylog/server/server.conf 中配置.mongodb_uri = mongodb://host1,host2,host3/graylog
-  后面这个 graylog 就是给 graylog 使用的库名,你可以先创建.
-之后mongodb 就开始自行同步了.
-[参考]">
+  后面这个 graylog 就是给 graylog 使用的库名,你可以先创建.">
   <meta name="twitter:description" content="接手的一个工具平台,发现 graylog 集群使用了单个的 mongodb 作为数据库,于是需要配置一下集群,来防止数据丢失,毕竟很多配置都在里面.
 为了以防万一,先备份一下 graylog 的配置. mongodump -h dbhost -d dbname -o dbdirectory
 防止分布式部署的使用搞坏了.之后的恢复可以使用
@@ -94,7 +94,7 @@ mongorestore -h dbhost -d …">
     "name" : "bystander"
   },
   "headline": "graylog中的mongodb配置",
-  "description" : "接手的一个工具平台,发现 graylog 集群使用了单个的 mongodb 作为数据库,于是需要配置一下集群,来防止数据丢失,毕竟很多配置都在里面.\n为了以防万一,先备份一下 graylog 的配置. mongodump -h dbhost -d dbname -o dbdirectory\n防止分布式部署的使用搞坏了.之后的恢复可以使用\nmongorestore -h dbhost -d dbname --directoryperdb dbdirectory\n来恢复.相关说明可以参考这里\n之后就可以正式开始了\n 修改集群名字  在\/etc\/mongod.conf 中,修改这个值.设置集群使用的集群名称是 graylog,几个机器都配置一下.都先不要启动\nreplication: replSetName: graylog\n 然后添加集群配置  启动其中一台,然后通过mongo 命令连接上数据库,依次执行下面的命令.注意,这里有个坑.添加本机的时候,一定要写对外的域名或者 ip.否则会导致无法选主.\nrs.initiate() rs.add(\x26#34;\x26lt;hostname\x26gt;:27017\x26#34;) rs.add(\x26#34;\x26lt;hostname\x26gt;:27017\x26#34;) rs.add(\x26#34;\x26lt;hostname\x26gt;:27017\x26#34;) rs.conf()  开始启动\n这里启动就不用说了. service mongod start 启动就好了.\n 配置 graylog 集群连接地址\n在\/etc\/graylog\/server\/server.conf 中配置.mongodb_uri = mongodb:\/\/host1,host2,host3\/graylog\n  后面这个 graylog 就是给 graylog 使用的库名,你可以先创建.\n之后mongodb 就开始自行同步了.\n[参考]",
+  "description" : "接手的一个工具平台,发现 graylog 集群使用了单个的 mongodb 作为数据库,于是需要配置一下集群,来防止数据丢失,毕竟很多配置都在里面.\n为了以防万一,先备份一下 graylog 的配置. mongodump -h dbhost -d dbname -o dbdirectory\n防止分布式部署的使用搞坏了.之后的恢复可以使用\nmongorestore -h dbhost -d dbname --directoryperdb dbdirectory\n来恢复.相关说明可以参考这里\n之后就可以正式开始了\n  修改集群名字\n在\/etc\/mongod.conf 中,修改这个值.设置集群使用的集群名称是 graylog,几个机器都配置一下.都先不要启动\nreplication: replSetName: graylog\n  然后添加集群配置\n  启动其中一台,然后通过mongo 命令连接上数据库,依次执行下面的命令.注意,这里有个坑.添加本机的时候,一定要写对外的域名或者 ip.否则会导致无法选主.\nrs.initiate() rs.add(\x26#34;\x26lt;hostname\x26gt;:27017\x26#34;) rs.add(\x26#34;\x26lt;hostname\x26gt;:27017\x26#34;) rs.add(\x26#34;\x26lt;hostname\x26gt;:27017\x26#34;) rs.conf()  开始启动\n这里启动就不用说了. service mongod start 启动就好了.\n  配置 graylog 集群连接地址\n在\/etc\/graylog\/server\/server.conf 中配置.mongodb_uri = mongodb:\/\/host1,host2,host3\/graylog\n  后面这个 graylog 就是给 graylog 使用的库名,你可以先创建.",
   "inLanguage" : "en",
   "wordCount":  64 ,
   "datePublished" : "2016-11-06T14:40:03",
@@ -122,16 +122,16 @@ mongorestore -h dbhost -d …">
 mongorestore -h dbhost -d dbname --directoryperdb dbdirectory
 来恢复.相关说明可以参考这里
 之后就可以正式开始了
- 修改集群名字  在/etc/mongod.conf 中,修改这个值.设置集群使用的集群名称是 graylog,几个机器都配置一下.都先不要启动
+  修改集群名字
+在/etc/mongod.conf 中,修改这个值.设置集群使用的集群名称是 graylog,几个机器都配置一下.都先不要启动
 replication: replSetName: graylog
- 然后添加集群配置  启动其中一台,然后通过mongo 命令连接上数据库,依次执行下面的命令.注意,这里有个坑.添加本机的时候,一定要写对外的域名或者 ip.否则会导致无法选主.
+  然后添加集群配置
+  启动其中一台,然后通过mongo 命令连接上数据库,依次执行下面的命令.注意,这里有个坑.添加本机的时候,一定要写对外的域名或者 ip.否则会导致无法选主.
 rs.initiate() rs.add(&#34;&lt;hostname&gt;:27017&#34;) rs.add(&#34;&lt;hostname&gt;:27017&#34;) rs.add(&#34;&lt;hostname&gt;:27017&#34;) rs.conf()  开始启动
 这里启动就不用说了. service mongod start 启动就好了.
- 配置 graylog 集群连接地址
+  配置 graylog 集群连接地址
 在/etc/graylog/server/server.conf 中配置.mongodb_uri = mongodb://host1,host2,host3/graylog
-  后面这个 graylog 就是给 graylog 使用的库名,你可以先创建.
-之后mongodb 就开始自行同步了.
-[参考]">
+  后面这个 graylog 就是给 graylog 使用的库名,你可以先创建.">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2016/11/06/graylog%E4%B8%AD%E7%9A%84mongodb%E9%85%8D%E7%BD%AE/" />
 <meta property="og:type" content="website" />
@@ -152,7 +152,7 @@ mongorestore -h dbhost -d …">
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -337,55 +337,43 @@ mongorestore -h dbhost -d …">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <p>接手的一个工具平台,发现 graylog 集群使用了单个的 mongodb 作为数据库,于是需要配置一下集群,来防止数据丢失,毕竟很多配置都在里面.</p>
-
 <p>为了以防万一,先备份一下 graylog 的配置.
 <code>mongodump -h dbhost -d dbname -o dbdirectory</code></p>
-
 <p>防止分布式部署的使用搞坏了.之后的恢复可以使用</p>
-
 <p><code>mongorestore -h dbhost -d dbname --directoryperdb dbdirectory</code></p>
-
 <p>来恢复.相关说明可以参考<a href="http://www.runoob.com/mongodb/mongodb-mongodump-mongorestore.html">这里</a></p>
-
 <p>之后就可以正式开始了</p>
-
 <ol>
-<li>修改集群名字</li>
-</ol>
-
+<li>
+<p>修改集群名字</p>
 <p>在/etc/mongod.conf 中,修改这个值.设置集群使用的集群名称是 graylog,几个机器都配置一下.都先不要启动</p>
-
 <p>replication:
-     replSetName: graylog</p>
-
-<ol>
-<li>然后添加集群配置</li>
+replSetName: graylog</p>
+</li>
+<li>
+<p>然后添加集群配置</p>
+</li>
 </ol>
-
 <p>启动其中一台,然后通过mongo 命令连接上数据库,依次执行下面的命令.注意,这里有个坑.添加本机的时候,一定要写对外的域名或者 ip.否则会导致无法选主.</p>
-<div class="highlight"><pre class="chroma">	rs.initiate()
-	rs.add(&#34;&lt;hostname&gt;:27017&#34;)
-	rs.add(&#34;&lt;hostname&gt;:27017&#34;)
-	rs.add(&#34;&lt;hostname&gt;:27017&#34;)
-	rs.conf()</pre></div>
-<ol>
-<li><p>开始启动</p>
-
-<p>这里启动就不用说了. <code>service mongod start</code> 启动就好了.</p></li>
-
-<li><p>配置 graylog 集群连接地址</p>
-
-<p>在/etc/graylog/server/server.conf 中配置.mongodb_uri = mongodb://host1,host2,host3/graylog</p></li>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"> rs.initiate()
+ rs.add(&#34;&lt;hostname&gt;:27017&#34;)
+ rs.add(&#34;&lt;hostname&gt;:27017&#34;)
+ rs.add(&#34;&lt;hostname&gt;:27017&#34;)
+ rs.conf()
+</code></pre></div><ol start="3">
+<li>
+<p>开始启动</p>
+<p>这里启动就不用说了. <code>service mongod start</code> 启动就好了.</p>
+</li>
+<li>
+<p>配置 graylog 集群连接地址</p>
+<p>在/etc/graylog/server/server.conf 中配置.mongodb_uri = mongodb://host1,host2,host3/graylog</p>
+</li>
 </ol>
-
 <p>后面这个 graylog 就是给 graylog 使用的库名,你可以先创建.</p>
-
 <p>之后mongodb 就开始自行同步了.</p>
-
 <p>[参考]</p>
-
 <p><a href="http://www.jianshu.com/p/2825a66d6aed">高可用的MongoDB集群</a></p>
-
 <p>​</p>
 
 
@@ -496,7 +484,7 @@ mongorestore -h dbhost -d …">
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

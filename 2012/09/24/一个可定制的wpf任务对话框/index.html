@@ -13,11 +13,23 @@
   <meta name="description" content="今天实在看WPF揭秘的时候看到TaskDialog这个控件的。然后就去找了一下开源的代码。在codeproject上发现了这个，非常给力。。另外codeproject改版后很漂亮哦。 
 介绍： 这是用WPF实现Vista上TaskDialog效果的代码。
 Messagbox消息框 通过调用重写的静态Show方法。TaskDialog就会表现的像一个Messagebox。他有四个文本类型的属性：Header（头部）, Content（内容）, Detail（更多）, 和 Footer（底部），其实Detail是一个折叠的区域， 而Header和Footer还有一个icon属性（HeaderIcon和FooterIcon），除此之外，Header还有Background（背景）和Foreground（前景）属性
-// TaskDialog.Show方法签名 public static TaskDialogResult Show( string title, string header, string content, string detail, string footer, TaskDialogButton button, TaskDialogResult defaultResult, TaskDialogIcon headerIcon, TaskDialogIcon footerIcon, Brush headerBackground, Brush headerForeground) // TaskDialog.Show 方法的一个例子 TaskDialog.Show(&#34;Task Dialog 测试&#34;, &#34;消息框的标题文字&#34;, &#34;消息框的内容部分. &#34; &#43; &#34; 可以自适应内容.&#34;, &#34;消息框的细节部分 &#34; &#43; &#34;可以自适应内容&#34;, &#34;消息框的底部.&#34;, TaskDialogButton.Ok, TaskDialogResult.None, TaskDialogIcon.Information, TaskDialogIcon.Shield, Brushes.White, Brushes.Navy); 定制TaskDialog 使用静态的Show方法。Header, Content, Detail, 和Footer 就限制了只能传递字符串作为值了。 为了定义这个对话框，你先创建TaskDialog类的一个对象，然后分别设置一下各个属性，最后调用Show方法就可以了">
+TaskDialog控件派生自HeaderedContentControl类，因为从HeaderedContentControl类可以获得Header和Content属性，TaskDialog仅仅是添加了Detail和Footer属性，这些属性是Object类型，并且有他们自己的template（模板）属性HeaderTemplate, ContentTemplate, DetailTemplate, 和 FooterTemplate)，TaskDialog类对于文本内容有着缺省的数据模板，当然你也可以用那四个模板来替换，这样你就可以以你喜欢的任何方式来格式化文本了。下面这个图展示了通过斜体和下划线来格式化文本。
+ 图2
+因为Header，Content，Detail和Footer是object类型，因此不再受到只能是文本的限制了，你可以防止你喜欢的任何类型到TaskDialog，下面这个例子中的TaskDialog是不是很像UAC的提示呢。这里Content属性是一个UserControl类型，放置了一个图片和一些文本还有两个CommandButtons（都是普通的按钮。。不过添加了一些定制的样式，再加了Header属性）
+ 图三
+一个模拟vista的文件拷贝窗口的TaskDialog。。
+ 图四
+额外的一些有意思的属性 下面是TaskDialog暴露的属性列表（按字母表排序） Button1Text: string类型，当TaskDialogButton属性被设置为Custom的时候，用来设置按钮的文字 Button2Text: 同上 Button3Text: 同上 DefaultResult: TaskDialogResult类型. 设置缺省的按钮 IsButton1Enabled: bool类型. 获取或设置按钮的Enabled状态 IsButton2Enabled: 同上 IsButton3Enabled: 同上 IsCloseButtonEnabled: bool类型. 获取或设置窗口关闭按钮的Enabled状态 (缺省为false) IsExpanded: bool类型，获取或是设置Detail部分的可见性。 IsModal: bool类型，获取或是设置对话框是不是模态的 ShowInTaskBar: bool类型，获取或是设置对话框是不是显示在任务栏中 SystemSound: TaskDialogSound类型. 设置当对话框显示的时候播放的声音 TaskDialogButton: TaskDialogButton类型. 显示在对话框上的按钮可以是None, Ok, OkCancel, YesNo, YesNoCancel, or Custom (查看上面提到的按钮设置) title: string类型，对话框的标题 ToggleButtonTexts: TaskDialogToggleButtonTexts提供了两个属性来设置toggle按钮的这个属性，当toggle 按钮折叠或是展开的时候 (缺省是&#39;Show Details&rsquo; 和&#39;Hide Details&rsquo;).">
   <meta property="og:description" content="今天实在看WPF揭秘的时候看到TaskDialog这个控件的。然后就去找了一下开源的代码。在codeproject上发现了这个，非常给力。。另外codeproject改版后很漂亮哦。 
 介绍： 这是用WPF实现Vista上TaskDialog效果的代码。
 Messagbox消息框 通过调用重写的静态Show方法。TaskDialog就会表现的像一个Messagebox。他有四个文本类型的属性：Header（头部）, Content（内容）, Detail（更多）, 和 Footer（底部），其实Detail是一个折叠的区域， 而Header和Footer还有一个icon属性（HeaderIcon和FooterIcon），除此之外，Header还有Background（背景）和Foreground（前景）属性
-// TaskDialog.Show方法签名 public static TaskDialogResult Show( string title, string header, string content, string detail, string footer, TaskDialogButton button, TaskDialogResult defaultResult, TaskDialogIcon headerIcon, TaskDialogIcon footerIcon, Brush headerBackground, Brush headerForeground) // TaskDialog.Show 方法的一个例子 TaskDialog.Show(&#34;Task Dialog 测试&#34;, &#34;消息框的标题文字&#34;, &#34;消息框的内容部分. &#34; &#43; &#34; 可以自适应内容.&#34;, &#34;消息框的细节部分 &#34; &#43; &#34;可以自适应内容&#34;, &#34;消息框的底部.&#34;, TaskDialogButton.Ok, TaskDialogResult.None, TaskDialogIcon.Information, TaskDialogIcon.Shield, Brushes.White, Brushes.Navy); 定制TaskDialog 使用静态的Show方法。Header, Content, Detail, 和Footer 就限制了只能传递字符串作为值了。 为了定义这个对话框，你先创建TaskDialog类的一个对象，然后分别设置一下各个属性，最后调用Show方法就可以了">
+TaskDialog控件派生自HeaderedContentControl类，因为从HeaderedContentControl类可以获得Header和Content属性，TaskDialog仅仅是添加了Detail和Footer属性，这些属性是Object类型，并且有他们自己的template（模板）属性HeaderTemplate, ContentTemplate, DetailTemplate, 和 FooterTemplate)，TaskDialog类对于文本内容有着缺省的数据模板，当然你也可以用那四个模板来替换，这样你就可以以你喜欢的任何方式来格式化文本了。下面这个图展示了通过斜体和下划线来格式化文本。
+ 图2
+因为Header，Content，Detail和Footer是object类型，因此不再受到只能是文本的限制了，你可以防止你喜欢的任何类型到TaskDialog，下面这个例子中的TaskDialog是不是很像UAC的提示呢。这里Content属性是一个UserControl类型，放置了一个图片和一些文本还有两个CommandButtons（都是普通的按钮。。不过添加了一些定制的样式，再加了Header属性）
+ 图三
+一个模拟vista的文件拷贝窗口的TaskDialog。。
+ 图四
+额外的一些有意思的属性 下面是TaskDialog暴露的属性列表（按字母表排序） Button1Text: string类型，当TaskDialogButton属性被设置为Custom的时候，用来设置按钮的文字 Button2Text: 同上 Button3Text: 同上 DefaultResult: TaskDialogResult类型. 设置缺省的按钮 IsButton1Enabled: bool类型. 获取或设置按钮的Enabled状态 IsButton2Enabled: 同上 IsButton3Enabled: 同上 IsCloseButtonEnabled: bool类型. 获取或设置窗口关闭按钮的Enabled状态 (缺省为false) IsExpanded: bool类型，获取或是设置Detail部分的可见性。 IsModal: bool类型，获取或是设置对话框是不是模态的 ShowInTaskBar: bool类型，获取或是设置对话框是不是显示在任务栏中 SystemSound: TaskDialogSound类型. 设置当对话框显示的时候播放的声音 TaskDialogButton: TaskDialogButton类型. 显示在对话框上的按钮可以是None, Ok, OkCancel, YesNo, YesNoCancel, or Custom (查看上面提到的按钮设置) title: string类型，对话框的标题 ToggleButtonTexts: TaskDialogToggleButtonTexts提供了两个属性来设置toggle按钮的这个属性，当toggle 按钮折叠或是展开的时候 (缺省是&#39;Show Details&rsquo; 和&#39;Hide Details&rsquo;).">
   <meta name="twitter:description" content="今天实在看WPF揭秘的时候看到TaskDialog这个控件的。然后就去找了一下开源的代码。在codeproject上发现了这个，非常给力。。另外codeproject改版后很漂亮哦。 
 介绍： 这是用WPF实现Vista上TaskDialog效果的代码。
 Messagbox消息框 通过调用重写的静态Show方法。TaskDialog就会表现的像一个Messagebox。他有四个文本类型的属 …">
@@ -69,9 +81,9 @@ Messagbox消息框 通过调用重写的静态Show方法。TaskDialog就会表�
     "name" : "bystander"
   },
   "headline": "一个可定制的WPF任务对话框",
-  "description" : "今天实在看WPF揭秘的时候看到TaskDialog这个控件的。然后就去找了一下开源的代码。在codeproject上发现了这个，非常给力。。另外codeproject改版后很漂亮哦。 \n介绍： 这是用WPF实现Vista上TaskDialog效果的代码。\nMessagbox消息框 通过调用重写的静态Show方法。TaskDialog就会表现的像一个Messagebox。他有四个文本类型的属性：Header（头部）, Content（内容）, Detail（更多）, 和 Footer（底部），其实Detail是一个折叠的区域， 而Header和Footer还有一个icon属性（HeaderIcon和FooterIcon），除此之外，Header还有Background（背景）和Foreground（前景）属性\n\/\/ TaskDialog.Show方法签名 public static TaskDialogResult Show( string title, string header, string content, string detail, string footer, TaskDialogButton button, TaskDialogResult defaultResult, TaskDialogIcon headerIcon, TaskDialogIcon footerIcon, Brush headerBackground, Brush headerForeground) \/\/ TaskDialog.Show 方法的一个例子 TaskDialog.Show(\x22Task Dialog 测试\x22, \x22消息框的标题文字\x22, \x22消息框的内容部分. \x22 \x2b \x22 可以自适应内容.\x22, \x22消息框的细节部分 \x22 \x2b \x22可以自适应内容\x22, \x22消息框的底部.\x22, TaskDialogButton.Ok, TaskDialogResult.None, TaskDialogIcon.Information, TaskDialogIcon.Shield, Brushes.White, Brushes.Navy); 定制TaskDialog 使用静态的Show方法。Header, Content, Detail, 和Footer 就限制了只能传递字符串作为值了。 为了定义这个对话框，你先创建TaskDialog类的一个对象，然后分别设置一下各个属性，最后调用Show方法就可以了",
+  "description" : "今天实在看WPF揭秘的时候看到TaskDialog这个控件的。然后就去找了一下开源的代码。在codeproject上发现了这个，非常给力。。另外codeproject改版后很漂亮哦。 \n介绍： 这是用WPF实现Vista上TaskDialog效果的代码。\nMessagbox消息框 通过调用重写的静态Show方法。TaskDialog就会表现的像一个Messagebox。他有四个文本类型的属性：Header（头部）, Content（内容）, Detail（更多）, 和 Footer（底部），其实Detail是一个折叠的区域， 而Header和Footer还有一个icon属性（HeaderIcon和FooterIcon），除此之外，Header还有Background（背景）和Foreground（前景）属性\nTaskDialog控件派生自HeaderedContentControl类，因为从HeaderedContentControl类可以获得Header和Content属性，TaskDialog仅仅是添加了Detail和Footer属性，这些属性是Object类型，并且有他们自己的template（模板）属性HeaderTemplate, ContentTemplate, DetailTemplate, 和 FooterTemplate)，TaskDialog类对于文本内容有着缺省的数据模板，当然你也可以用那四个模板来替换，这样你就可以以你喜欢的任何方式来格式化文本了。下面这个图展示了通过斜体和下划线来格式化文本。\n 图2\n因为Header，Content，Detail和Footer是object类型，因此不再受到只能是文本的限制了，你可以防止你喜欢的任何类型到TaskDialog，下面这个例子中的TaskDialog是不是很像UAC的提示呢。这里Content属性是一个UserControl类型，放置了一个图片和一些文本还有两个CommandButtons（都是普通的按钮。。不过添加了一些定制的样式，再加了Header属性）\n 图三\n一个模拟vista的文件拷贝窗口的TaskDialog。。\n 图四\n额外的一些有意思的属性 下面是TaskDialog暴露的属性列表（按字母表排序） Button1Text: string类型，当TaskDialogButton属性被设置为Custom的时候，用来设置按钮的文字 Button2Text: 同上 Button3Text: 同上 DefaultResult: TaskDialogResult类型. 设置缺省的按钮 IsButton1Enabled: bool类型. 获取或设置按钮的Enabled状态 IsButton2Enabled: 同上 IsButton3Enabled: 同上 IsCloseButtonEnabled: bool类型. 获取或设置窗口关闭按钮的Enabled状态 (缺省为false) IsExpanded: bool类型，获取或是设置Detail部分的可见性。 IsModal: bool类型，获取或是设置对话框是不是模态的 ShowInTaskBar: bool类型，获取或是设置对话框是不是显示在任务栏中 SystemSound: TaskDialogSound类型. 设置当对话框显示的时候播放的声音 TaskDialogButton: TaskDialogButton类型. 显示在对话框上的按钮可以是None, Ok, OkCancel, YesNo, YesNoCancel, or Custom (查看上面提到的按钮设置) title: string类型，对话框的标题 ToggleButtonTexts: TaskDialogToggleButtonTexts提供了两个属性来设置toggle按钮的这个属性，当toggle 按钮折叠或是展开的时候 (缺省是\x27Show Details\x26rsquo; 和\x27Hide Details\x26rsquo;).",
   "inLanguage" : "en",
-  "wordCount":  209 ,
+  "wordCount":  78 ,
   "datePublished" : "2012-09-24T08:03:17",
   "dateModified" : "2012-09-24T08:03:17",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -94,7 +106,13 @@ Messagbox消息框 通过调用重写的静态Show方法。TaskDialog就会表�
 <meta property="og:description" content="今天实在看WPF揭秘的时候看到TaskDialog这个控件的。然后就去找了一下开源的代码。在codeproject上发现了这个，非常给力。。另外codeproject改版后很漂亮哦。 
 介绍： 这是用WPF实现Vista上TaskDialog效果的代码。
 Messagbox消息框 通过调用重写的静态Show方法。TaskDialog就会表现的像一个Messagebox。他有四个文本类型的属性：Header（头部）, Content（内容）, Detail（更多）, 和 Footer（底部），其实Detail是一个折叠的区域， 而Header和Footer还有一个icon属性（HeaderIcon和FooterIcon），除此之外，Header还有Background（背景）和Foreground（前景）属性
-// TaskDialog.Show方法签名 public static TaskDialogResult Show( string title, string header, string content, string detail, string footer, TaskDialogButton button, TaskDialogResult defaultResult, TaskDialogIcon headerIcon, TaskDialogIcon footerIcon, Brush headerBackground, Brush headerForeground) // TaskDialog.Show 方法的一个例子 TaskDialog.Show(&#34;Task Dialog 测试&#34;, &#34;消息框的标题文字&#34;, &#34;消息框的内容部分. &#34; &#43; &#34; 可以自适应内容.&#34;, &#34;消息框的细节部分 &#34; &#43; &#34;可以自适应内容&#34;, &#34;消息框的底部.&#34;, TaskDialogButton.Ok, TaskDialogResult.None, TaskDialogIcon.Information, TaskDialogIcon.Shield, Brushes.White, Brushes.Navy); 定制TaskDialog 使用静态的Show方法。Header, Content, Detail, 和Footer 就限制了只能传递字符串作为值了。 为了定义这个对话框，你先创建TaskDialog类的一个对象，然后分别设置一下各个属性，最后调用Show方法就可以了">
+TaskDialog控件派生自HeaderedContentControl类，因为从HeaderedContentControl类可以获得Header和Content属性，TaskDialog仅仅是添加了Detail和Footer属性，这些属性是Object类型，并且有他们自己的template（模板）属性HeaderTemplate, ContentTemplate, DetailTemplate, 和 FooterTemplate)，TaskDialog类对于文本内容有着缺省的数据模板，当然你也可以用那四个模板来替换，这样你就可以以你喜欢的任何方式来格式化文本了。下面这个图展示了通过斜体和下划线来格式化文本。
+ 图2
+因为Header，Content，Detail和Footer是object类型，因此不再受到只能是文本的限制了，你可以防止你喜欢的任何类型到TaskDialog，下面这个例子中的TaskDialog是不是很像UAC的提示呢。这里Content属性是一个UserControl类型，放置了一个图片和一些文本还有两个CommandButtons（都是普通的按钮。。不过添加了一些定制的样式，再加了Header属性）
+ 图三
+一个模拟vista的文件拷贝窗口的TaskDialog。。
+ 图四
+额外的一些有意思的属性 下面是TaskDialog暴露的属性列表（按字母表排序） Button1Text: string类型，当TaskDialogButton属性被设置为Custom的时候，用来设置按钮的文字 Button2Text: 同上 Button3Text: 同上 DefaultResult: TaskDialogResult类型. 设置缺省的按钮 IsButton1Enabled: bool类型. 获取或设置按钮的Enabled状态 IsButton2Enabled: 同上 IsButton3Enabled: 同上 IsCloseButtonEnabled: bool类型. 获取或设置窗口关闭按钮的Enabled状态 (缺省为false) IsExpanded: bool类型，获取或是设置Detail部分的可见性。 IsModal: bool类型，获取或是设置对话框是不是模态的 ShowInTaskBar: bool类型，获取或是设置对话框是不是显示在任务栏中 SystemSound: TaskDialogSound类型. 设置当对话框显示的时候播放的声音 TaskDialogButton: TaskDialogButton类型. 显示在对话框上的按钮可以是None, Ok, OkCancel, YesNo, YesNoCancel, or Custom (查看上面提到的按钮设置) title: string类型，对话框的标题 ToggleButtonTexts: TaskDialogToggleButtonTexts提供了两个属性来设置toggle按钮的这个属性，当toggle 按钮折叠或是展开的时候 (缺省是&#39;Show Details&rsquo; 和&#39;Hide Details&rsquo;).">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2012/09/24/%E4%B8%80%E4%B8%AA%E5%8F%AF%E5%AE%9A%E5%88%B6%E7%9A%84wpf%E4%BB%BB%E5%8A%A1%E5%AF%B9%E8%AF%9D%E6%A1%86/" />
 <meta property="og:type" content="website" />
@@ -114,7 +132,7 @@ Messagbox消息框 通过调用重写的静态Show方法。TaskDialog就会表�
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -298,96 +316,27 @@ Messagbox消息框 通过调用重写的静态Show方法。TaskDialog就会表�
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        
-
-<p>今天实在看WPF揭秘的时候看到TaskDialog这个控件的。然后就去找了一下开源的代码。在codeproject上发现了这个，非常给力。。另外codeproject改版后很漂亮哦。
-<a href="http://leaverimage.b0.upaiyun.com/27400_o.jpg"><img src="/images/ea5f46934b5478701eb79bb9b9b08381704b7996.jpg" alt="" title="one" /></a></p>
-
-<h3 id="介绍">介绍：</h3>
-
+        <p>今天实在看WPF揭秘的时候看到TaskDialog这个控件的。然后就去找了一下开源的代码。在codeproject上发现了这个，非常给力。。另外codeproject改版后很漂亮哦。
+<a href="http://leaverimage.b0.upaiyun.com/27400_o.jpg"><img src="/images/ea5f46934b5478701eb79bb9b9b08381704b7996.jpg" alt="" title="one"></a></p>
+<h3 id="heading">介绍：</h3>
 <p>这是用WPF实现Vista上TaskDialog效果的代码。</p>
-
-<h3 id="messagbox消息框">Messagbox消息框</h3>
-
+<h3 id="messagbox">Messagbox消息框</h3>
 <p>通过调用重写的静态Show方法。TaskDialog就会表现的像一个Messagebox。他有四个文本类型的属性：Header（头部）, Content（内容）, Detail（更多）, 和 Footer（底部），其实Detail是一个折叠的区域， 而Header和Footer还有一个icon属性（HeaderIcon和FooterIcon），除此之外，Header还有Background（背景）和Foreground（前景）属性</p>
-
-<pre class="lang:c# decode:true " >// TaskDialog.Show方法签名
-public static TaskDialogResult Show(
-    string title, 
-    string header, 
-    string content, 
-    string detail, 
-    string footer, 
-    TaskDialogButton button, 
-    TaskDialogResult defaultResult, 
-    TaskDialogIcon headerIcon, 
-    TaskDialogIcon footerIcon, 
-    Brush headerBackground, 
-    Brush headerForeground)
-
-// TaskDialog.Show 方法的一个例子
-TaskDialog.Show("Task Dialog 测试",
-     "消息框的标题文字",
-     "消息框的内容部分. " +
-     " 可以自适应内容.",
-     "消息框的细节部分 " +
-     "可以自适应内容",
-     "消息框的底部.",
-     TaskDialogButton.Ok,
-     TaskDialogResult.None,
-     TaskDialogIcon.Information,
-     TaskDialogIcon.Shield,
-     Brushes.White,
-     Brushes.Navy);</pre> 
-
-<h3 id="定制taskdialog">定制TaskDialog</h3>
-
-<p>使用静态的Show方法。Header, Content, Detail, 和Footer 就限制了只能传递字符串作为值了。
-为了定义这个对话框，你先创建TaskDialog类的一个对象，然后分别设置一下各个属性，最后调用Show方法就可以了</p>
-
-<pre class="lang:c# decode:true " >// TaskDialog 实例化例子
-TaskDialog dialog = new TaskDialog();
-dialog.title: = "TaskDialog example";
-dialog.HeaderIcon = TaskDialogIcon.Warning;
-dialog.SystemSound = TaskDialogSound.Exclamation;
-// header 属性设置
-dialog.Header = "This is the Header.";
-dialog.HeaderBackground = Brushes.DarkGray;
-dialog.HeaderForeground = Brushes.White;
-// Content, Detail 和 Footer属性设置
-dialog.Content = "This is the content";
-dialog.Detail = "This is the detail";
-dialog.Footer = "this is the Footer";
-dialog.Show();</pre> 
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>TaskDialog控件派生自HeaderedContentControl类，因为从HeaderedContentControl类可以获得Header和Content属性，TaskDialog仅仅是添加了Detail和Footer属性，这些属性是Object类型，并且有他们自己的template（模板）属性HeaderTemplate, ContentTemplate, DetailTemplate, 和 FooterTemplate)，TaskDialog类对于文本内容有着缺省的数据模板，当然你也可以用那四个模板来替换，这样你就可以以你喜欢的任何方式来格式化文本了。下面这个图展示了通过斜体和下划线来格式化文本。</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/27401_o.jpg"><img src="/images/05a7c6d00f37749a2b770d0b1f1ebaab51528de0.jpg" alt="" title="two" /></a>
+<p><a href="http://leaverimage.b0.upaiyun.com/27401_o.jpg"><img src="/images/05a7c6d00f37749a2b770d0b1f1ebaab51528de0.jpg" alt="" title="two"></a>
 图2</p>
-
-<pre class="lang:c# decode:true " >//为上面这个图的content属性的 DataTemplate 模板 
-&lt;DataTemplate x:Key="_customContentDataTemplate"&gt;
-   &lt;TextBlock Text="{Binding Content, 
-        RelativeSource={RelativeSource FindAncestor, 
-                        AncestorType={x:Type Controls:TaskDialog}}}" 
-        FontStyle="Italic" 
-        TextDecorations="Underline" 
-        TextWrapping="Wrap"/&gt;
-&lt;/DataTemplate&gt;</pre> 
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>因为Header，Content，Detail和Footer是object类型，因此不再受到只能是文本的限制了，你可以防止你喜欢的任何类型到TaskDialog，下面这个例子中的TaskDialog是不是很像UAC的提示呢。这里Content属性是一个UserControl类型，放置了一个图片和一些文本还有两个CommandButtons（都是普通的按钮。。不过添加了一些定制的样式，再加了Header属性）</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/27402_o.jpg"><img src="/images/8d51c0c800cce2a90b815b20432b5cd520562e92.jpg" alt="" title="three" /></a>
+<p><a href="http://leaverimage.b0.upaiyun.com/27402_o.jpg"><img src="/images/8d51c0c800cce2a90b815b20432b5cd520562e92.jpg" alt="" title="three"></a>
 图三</p>
-
 <p>一个模拟vista的文件拷贝窗口的TaskDialog。。</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/27403_o.jpg"><img src="/images/14c4b78afe3921ae6648d96cdd78718930914d07.jpg" alt="" title="four" /></a>
+<p><a href="http://leaverimage.b0.upaiyun.com/27403_o.jpg"><img src="/images/14c4b78afe3921ae6648d96cdd78718930914d07.jpg" alt="" title="four"></a>
 图四</p>
-
-<h3 id="额外的一些有意思的属性">额外的一些有意思的属性</h3>
-
-<p>下面是TaskDialog暴露的属性列表（按字母表排序）
+<h3 id="heading-1">额外的一些有意思的属性</h3>
+<h2 id="taskdialogbutton-taskdialogbutton-none-ok-okcancel-yesno-yesnocancel-or-custom-">下面是TaskDialog暴露的属性列表（按字母表排序）
 Button1Text: string类型，当TaskDialogButton属性被设置为Custom的时候，用来设置按钮的文字
 Button2Text: 同上
 Button3Text: 同上
@@ -399,23 +348,16 @@ IsCloseButtonEnabled: bool类型. 获取或设置窗口关闭按钮的Enabled状
 IsExpanded: bool类型，获取或是设置Detail部分的可见性。
 IsModal: bool类型，获取或是设置对话框是不是模态的
 ShowInTaskBar: bool类型，获取或是设置对话框是不是显示在任务栏中
-SystemSound: TaskDialogSound类型. 设置当对话框显示的时候播放的声音</p>
-
-<h2 id="taskdialogbutton-taskdialogbutton类型-显示在对话框上的按钮可以是none-ok-okcancel-yesno-yesnocancel-or-custom-查看上面提到的按钮设置">TaskDialogButton: TaskDialogButton类型. 显示在对话框上的按钮可以是None, Ok, OkCancel, YesNo, YesNoCancel, or Custom (查看上面提到的按钮设置)</h2>
-
+SystemSound: TaskDialogSound类型. 设置当对话框显示的时候播放的声音
+TaskDialogButton: TaskDialogButton类型. 显示在对话框上的按钮可以是None, Ok, OkCancel, YesNo, YesNoCancel, or Custom (查看上面提到的按钮设置)</h2>
 <p>title: string类型，对话框的标题
-ToggleButtonTexts:  TaskDialogToggleButtonTexts提供了两个属性来设置toggle按钮的这个属性，当toggle 按钮折叠或是展开的时候 (缺省是&rsquo;Show Details&rsquo; 和&rsquo;Hide Details&rsquo;).
+ToggleButtonTexts:  TaskDialogToggleButtonTexts提供了两个属性来设置toggle按钮的这个属性，当toggle 按钮折叠或是展开的时候 (缺省是'Show Details&rsquo; 和'Hide Details&rsquo;).
 TopMost: 设置对话框是否置顶</p>
-
 <h3 id="demo">Demo</h3>
-
 <p>下载<a href="http://pan.baidu.com/share/link?shareid=61407&amp;uk=1493685990">TaskDialog例子</a>，查看Window1.xaml中按钮的单击事件，来看TaskDialog是如何被创建的。。</p>
-
 <p>版权：本文，包括源代码和文件，在CPOL下授权。</p>
-
 <p>原文地址：<a href="http://www.codeproject.com/Articles/30649/A-Customizable-WPF-TaskDialog">A-Customizable-WPF-TaskDialog</a></p>
-
-<p>著作权声明：本文由<a href="http://leaver.me">http://leaver.me</a> 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</p>
+<p>著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</p>
 
 
         
@@ -535,7 +477,7 @@ TopMost: 设置对话框是否置顶</p>
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

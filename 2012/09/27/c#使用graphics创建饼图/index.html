@@ -14,16 +14,38 @@
 使用代码 最近我迷上了Graphics类。我仅仅体验了一下Graphics的DrawPie() 和FillPie() 方法。
 最为一个简单的Demo，我创建一个有着五个文本框的窗体，一个按钮，一个图片框。一会我就把饼图画在图片框里
  在创建一个饼图之前，我们头脑里要有这个意识。我们不能创建一个不符合常规的圆，创建圆我们需要度数信息。
-为了转换度数。我们首先把给定的值做个求和。然后得出文本框里所有值的和。然后呢。用每个值除以总值再乘以360度。 代码如下： int i1 = Int32.Parse(textBox1.Text); int i2 = Int32.Parse(textBox2.Text); int i3 = Int32.Parse(textBox3.Text); int i4 = Int32.Parse(textBox4.Text); int i5 = Int32.Parse(textBox5.Text);
-float total = i1 &#43; i2 &#43; i3 &#43; i4 &#43; i5 ;
-float deg1 = (i1 / total) * 360; float deg2 = (i2 / total) * 360; float deg3 = (i3 / total) * 360; float deg4 = (i4 / total) * 360; float deg5 = (i5 / total) * 360; 值转换完毕后。我们可以创建Graphics类的实例了。">
+为了转换度数。我们首先把给定的值做个求和。然后得出文本框里所有值的和。然后呢。用每个值除以总值再乘以360度。 代码如下：
+值转换完毕后。我们可以创建Graphics类的实例了。
+然后我们需要创建一个矩形区域，在这个矩形区域里绘制饼图。
+前两个参数定义了矩形左上角的坐标，后两个分别定义了举行的宽和高。
+为了能够比较清晰的看出饼图各部分的比例。我们需要创建五个笔刷。
+现在我们可以开始创建我们的饼图了。graphics.FillPie();方法接受四个参数
+ 笔刷，用来填充扇形 矩形：饼图将被创建的区域。 开始角度：饼部分的开始角度 覆盖角度：饼部分扫过的角度  一般来说graphics.FillPie();方法并不是创建一个完全的饼图，而是创建饼图的一个扇形部分，我们会创建一系列的扇形最终看起来像是一个饼图。
+上面代码的第一行将会创建第一个红色的扇形。起点是0度，并且创建一个计算好的扇面。 之后，在第二行，我们的扇面的起点就会接着上一步的结束的位置，也就是deg1 ，第二行，我们的起点就会是 deg1&#43;deg2
+这段代码如你所见，可能不是最优的。我们创建了五个不同的笔刷。和不同的浮点数，而这些操作可以用循环完成。。
+我故意没有这样做。因为，这样做了就可能使问题复杂化。下面是使用循环和数组完成相同的工作。
+ 首先我创建一个整型数组，数组元素个数等于列表框里的数目。然后我使用一个循环计算了所有值的和。 然后。我创建了一个颜色的数组，这里我建议不要创建一个多于6个扇形。。不然看起来就连在一起了。。 第三步呢。。我再次使用循环去把值转换成度数。fDegValue 用来保存每次计算的度数。在我们前面的例子里。我们需要把前面几个值加起来作为下一个扇形的开始。而这里。我们使用fDegSum 来保存前面的和就很好了。
+本文很简单，也就使用Graphics创建一个饼图而已。如果是要创建一些专业的图表就要用到.net提供的图表控件了。
+下载：源代码和Demo
+原文地址：Create-Pie-Chart-Using-Graphics-in-Csharp-NET 著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！">
   <meta property="og:description" content="介绍 这个程序是使用C#中的Graphics来创建一个饼图的，我已经尽我所能写的很好了。如果你有任何建议可以分享给我，这样我也能从中学习。
 使用代码 最近我迷上了Graphics类。我仅仅体验了一下Graphics的DrawPie() 和FillPie() 方法。
 最为一个简单的Demo，我创建一个有着五个文本框的窗体，一个按钮，一个图片框。一会我就把饼图画在图片框里
  在创建一个饼图之前，我们头脑里要有这个意识。我们不能创建一个不符合常规的圆，创建圆我们需要度数信息。
-为了转换度数。我们首先把给定的值做个求和。然后得出文本框里所有值的和。然后呢。用每个值除以总值再乘以360度。 代码如下： int i1 = Int32.Parse(textBox1.Text); int i2 = Int32.Parse(textBox2.Text); int i3 = Int32.Parse(textBox3.Text); int i4 = Int32.Parse(textBox4.Text); int i5 = Int32.Parse(textBox5.Text);
-float total = i1 &#43; i2 &#43; i3 &#43; i4 &#43; i5 ;
-float deg1 = (i1 / total) * 360; float deg2 = (i2 / total) * 360; float deg3 = (i3 / total) * 360; float deg4 = (i4 / total) * 360; float deg5 = (i5 / total) * 360; 值转换完毕后。我们可以创建Graphics类的实例了。">
+为了转换度数。我们首先把给定的值做个求和。然后得出文本框里所有值的和。然后呢。用每个值除以总值再乘以360度。 代码如下：
+值转换完毕后。我们可以创建Graphics类的实例了。
+然后我们需要创建一个矩形区域，在这个矩形区域里绘制饼图。
+前两个参数定义了矩形左上角的坐标，后两个分别定义了举行的宽和高。
+为了能够比较清晰的看出饼图各部分的比例。我们需要创建五个笔刷。
+现在我们可以开始创建我们的饼图了。graphics.FillPie();方法接受四个参数
+ 笔刷，用来填充扇形 矩形：饼图将被创建的区域。 开始角度：饼部分的开始角度 覆盖角度：饼部分扫过的角度  一般来说graphics.FillPie();方法并不是创建一个完全的饼图，而是创建饼图的一个扇形部分，我们会创建一系列的扇形最终看起来像是一个饼图。
+上面代码的第一行将会创建第一个红色的扇形。起点是0度，并且创建一个计算好的扇面。 之后，在第二行，我们的扇面的起点就会接着上一步的结束的位置，也就是deg1 ，第二行，我们的起点就会是 deg1&#43;deg2
+这段代码如你所见，可能不是最优的。我们创建了五个不同的笔刷。和不同的浮点数，而这些操作可以用循环完成。。
+我故意没有这样做。因为，这样做了就可能使问题复杂化。下面是使用循环和数组完成相同的工作。
+ 首先我创建一个整型数组，数组元素个数等于列表框里的数目。然后我使用一个循环计算了所有值的和。 然后。我创建了一个颜色的数组，这里我建议不要创建一个多于6个扇形。。不然看起来就连在一起了。。 第三步呢。。我再次使用循环去把值转换成度数。fDegValue 用来保存每次计算的度数。在我们前面的例子里。我们需要把前面几个值加起来作为下一个扇形的开始。而这里。我们使用fDegSum 来保存前面的和就很好了。
+本文很简单，也就使用Graphics创建一个饼图而已。如果是要创建一些专业的图表就要用到.net提供的图表控件了。
+下载：源代码和Demo
+原文地址：Create-Pie-Chart-Using-Graphics-in-Csharp-NET 著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！">
   <meta name="twitter:description" content="介绍 这个程序是使用C#中的Graphics来创建一个饼图的，我已经尽我所能写的很好了。如果你有任何建议可以分享给我，这样我也能从中学习。
 使用代码 最近我迷上了Graphics类。我仅仅体验了一下Graphics的DrawPie() 和FillPie() 方法。
 最为一个简单的Demo，我创建一个有着五个文本框的窗体，一个按钮，一个图片框。一会我就把饼图画在图片框里
@@ -76,9 +98,9 @@ float deg1 = (i1 / total) * 360; float deg2 = (i2 / total) * 360; float deg3 = (
     "name" : "bystander"
   },
   "headline": "C#使用Graphics创建饼图",
-  "description" : "介绍 这个程序是使用C#中的Graphics来创建一个饼图的，我已经尽我所能写的很好了。如果你有任何建议可以分享给我，这样我也能从中学习。\n使用代码 最近我迷上了Graphics类。我仅仅体验了一下Graphics的DrawPie() 和FillPie() 方法。\n最为一个简单的Demo，我创建一个有着五个文本框的窗体，一个按钮，一个图片框。一会我就把饼图画在图片框里\n 在创建一个饼图之前，我们头脑里要有这个意识。我们不能创建一个不符合常规的圆，创建圆我们需要度数信息。\n为了转换度数。我们首先把给定的值做个求和。然后得出文本框里所有值的和。然后呢。用每个值除以总值再乘以360度。 代码如下： int i1 = Int32.Parse(textBox1.Text); int i2 = Int32.Parse(textBox2.Text); int i3 = Int32.Parse(textBox3.Text); int i4 = Int32.Parse(textBox4.Text); int i5 = Int32.Parse(textBox5.Text);\nfloat total = i1 \x2b i2 \x2b i3 \x2b i4 \x2b i5 ;\nfloat deg1 = (i1 \/ total) * 360; float deg2 = (i2 \/ total) * 360; float deg3 = (i3 \/ total) * 360; float deg4 = (i4 \/ total) * 360; float deg5 = (i5 \/ total) * 360; 值转换完毕后。我们可以创建Graphics类的实例了。",
+  "description" : "介绍 这个程序是使用C#中的Graphics来创建一个饼图的，我已经尽我所能写的很好了。如果你有任何建议可以分享给我，这样我也能从中学习。\n使用代码 最近我迷上了Graphics类。我仅仅体验了一下Graphics的DrawPie() 和FillPie() 方法。\n最为一个简单的Demo，我创建一个有着五个文本框的窗体，一个按钮，一个图片框。一会我就把饼图画在图片框里\n 在创建一个饼图之前，我们头脑里要有这个意识。我们不能创建一个不符合常规的圆，创建圆我们需要度数信息。\n为了转换度数。我们首先把给定的值做个求和。然后得出文本框里所有值的和。然后呢。用每个值除以总值再乘以360度。 代码如下：\n值转换完毕后。我们可以创建Graphics类的实例了。\n然后我们需要创建一个矩形区域，在这个矩形区域里绘制饼图。\n前两个参数定义了矩形左上角的坐标，后两个分别定义了举行的宽和高。\n为了能够比较清晰的看出饼图各部分的比例。我们需要创建五个笔刷。\n现在我们可以开始创建我们的饼图了。graphics.FillPie();方法接受四个参数\n 笔刷，用来填充扇形 矩形：饼图将被创建的区域。 开始角度：饼部分的开始角度 覆盖角度：饼部分扫过的角度  一般来说graphics.FillPie();方法并不是创建一个完全的饼图，而是创建饼图的一个扇形部分，我们会创建一系列的扇形最终看起来像是一个饼图。\n上面代码的第一行将会创建第一个红色的扇形。起点是0度，并且创建一个计算好的扇面。 之后，在第二行，我们的扇面的起点就会接着上一步的结束的位置，也就是deg1 ，第二行，我们的起点就会是 deg1\x2bdeg2\n这段代码如你所见，可能不是最优的。我们创建了五个不同的笔刷。和不同的浮点数，而这些操作可以用循环完成。。\n我故意没有这样做。因为，这样做了就可能使问题复杂化。下面是使用循环和数组完成相同的工作。\n 首先我创建一个整型数组，数组元素个数等于列表框里的数目。然后我使用一个循环计算了所有值的和。 然后。我创建了一个颜色的数组，这里我建议不要创建一个多于6个扇形。。不然看起来就连在一起了。。 第三步呢。。我再次使用循环去把值转换成度数。fDegValue 用来保存每次计算的度数。在我们前面的例子里。我们需要把前面几个值加起来作为下一个扇形的开始。而这里。我们使用fDegSum 来保存前面的和就很好了。\n本文很简单，也就使用Graphics创建一个饼图而已。如果是要创建一些专业的图表就要用到.net提供的图表控件了。\n下载：源代码和Demo\n原文地址：Create-Pie-Chart-Using-Graphics-in-Csharp-NET 著作权声明：本文由http:\/\/leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！",
   "inLanguage" : "en",
-  "wordCount":  193 ,
+  "wordCount":  36 ,
   "datePublished" : "2012-09-27T13:47:25",
   "dateModified" : "2012-09-27T13:47:25",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -102,9 +124,20 @@ float deg1 = (i1 / total) * 360; float deg2 = (i2 / total) * 360; float deg3 = (
 使用代码 最近我迷上了Graphics类。我仅仅体验了一下Graphics的DrawPie() 和FillPie() 方法。
 最为一个简单的Demo，我创建一个有着五个文本框的窗体，一个按钮，一个图片框。一会我就把饼图画在图片框里
  在创建一个饼图之前，我们头脑里要有这个意识。我们不能创建一个不符合常规的圆，创建圆我们需要度数信息。
-为了转换度数。我们首先把给定的值做个求和。然后得出文本框里所有值的和。然后呢。用每个值除以总值再乘以360度。 代码如下： int i1 = Int32.Parse(textBox1.Text); int i2 = Int32.Parse(textBox2.Text); int i3 = Int32.Parse(textBox3.Text); int i4 = Int32.Parse(textBox4.Text); int i5 = Int32.Parse(textBox5.Text);
-float total = i1 &#43; i2 &#43; i3 &#43; i4 &#43; i5 ;
-float deg1 = (i1 / total) * 360; float deg2 = (i2 / total) * 360; float deg3 = (i3 / total) * 360; float deg4 = (i4 / total) * 360; float deg5 = (i5 / total) * 360; 值转换完毕后。我们可以创建Graphics类的实例了。">
+为了转换度数。我们首先把给定的值做个求和。然后得出文本框里所有值的和。然后呢。用每个值除以总值再乘以360度。 代码如下：
+值转换完毕后。我们可以创建Graphics类的实例了。
+然后我们需要创建一个矩形区域，在这个矩形区域里绘制饼图。
+前两个参数定义了矩形左上角的坐标，后两个分别定义了举行的宽和高。
+为了能够比较清晰的看出饼图各部分的比例。我们需要创建五个笔刷。
+现在我们可以开始创建我们的饼图了。graphics.FillPie();方法接受四个参数
+ 笔刷，用来填充扇形 矩形：饼图将被创建的区域。 开始角度：饼部分的开始角度 覆盖角度：饼部分扫过的角度  一般来说graphics.FillPie();方法并不是创建一个完全的饼图，而是创建饼图的一个扇形部分，我们会创建一系列的扇形最终看起来像是一个饼图。
+上面代码的第一行将会创建第一个红色的扇形。起点是0度，并且创建一个计算好的扇面。 之后，在第二行，我们的扇面的起点就会接着上一步的结束的位置，也就是deg1 ，第二行，我们的起点就会是 deg1&#43;deg2
+这段代码如你所见，可能不是最优的。我们创建了五个不同的笔刷。和不同的浮点数，而这些操作可以用循环完成。。
+我故意没有这样做。因为，这样做了就可能使问题复杂化。下面是使用循环和数组完成相同的工作。
+ 首先我创建一个整型数组，数组元素个数等于列表框里的数目。然后我使用一个循环计算了所有值的和。 然后。我创建了一个颜色的数组，这里我建议不要创建一个多于6个扇形。。不然看起来就连在一起了。。 第三步呢。。我再次使用循环去把值转换成度数。fDegValue 用来保存每次计算的度数。在我们前面的例子里。我们需要把前面几个值加起来作为下一个扇形的开始。而这里。我们使用fDegSum 来保存前面的和就很好了。
+本文很简单，也就使用Graphics创建一个饼图而已。如果是要创建一些专业的图表就要用到.net提供的图表控件了。
+下载：源代码和Demo
+原文地址：Create-Pie-Chart-Using-Graphics-in-Csharp-NET 著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2012/09/27/c#%E4%BD%BF%E7%94%A8graphics%E5%88%9B%E5%BB%BA%E9%A5%BC%E5%9B%BE/" />
 <meta property="og:type" content="website" />
@@ -125,7 +158,7 @@ float deg1 = (i1 / total) * 360; float deg2 = (i2 / total) * 360; float deg3 = (
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -309,113 +342,47 @@ float deg1 = (i1 / total) * 360; float deg2 = (i2 / total) * 360; float deg3 = (
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        
-
-<h3 id="介绍">介绍</h3>
-
+        <h3 id="heading">介绍</h3>
 <p>这个程序是使用C#中的Graphics来创建一个饼图的，我已经尽我所能写的很好了。如果你有任何建议可以分享给我，这样我也能从中学习。</p>
-
-<h3 id="使用代码">使用代码</h3>
-
+<h3 id="heading-1">使用代码</h3>
 <p>最近我迷上了Graphics类。我仅仅体验了一下Graphics的DrawPie() 和FillPie() 方法。</p>
-
 <p>最为一个简单的Demo，我创建一个有着五个文本框的窗体，一个按钮，一个图片框。一会我就把饼图画在图片框里</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/27557_o.png"><img src="/images/f3681994ca4fce2b724886db9d7a958d854c8e39.png" alt="" title="client" /></a>
+<p><a href="http://leaverimage.b0.upaiyun.com/27557_o.png"><img src="/images/f3681994ca4fce2b724886db9d7a958d854c8e39.png" alt="" title="client"></a>
 在创建一个饼图之前，我们头脑里要有这个意识。我们不能创建一个不符合常规的圆，创建圆我们需要度数信息。</p>
-
 <p>为了转换度数。我们首先把给定的值做个求和。然后得出文本框里所有值的和。然后呢。用每个值除以总值再乘以360度。
-代码如下：
-<pre class="lang:c# decode:true " >int i1 = Int32.Parse(textBox1.Text);
-int i2 = Int32.Parse(textBox2.Text);
-int i3 = Int32.Parse(textBox3.Text);
-int i4 = Int32.Parse(textBox4.Text);
-int i5 = Int32.Parse(textBox5.Text);</p>
-
-<p>float total = i1 + i2 + i3 + i4 + i5 ;</p>
-
-<p>float deg1 = (i1 / total) * 360;
-float deg2 = (i2 / total) * 360;
-float deg3 = (i3 / total) * 360;
-float deg4 = (i4 / total) * 360;
-float deg5 = (i5 / total) * 360;</pre>
-值转换完毕后。我们可以创建Graphics类的实例了。</p>
-
-<pre class="lang:c# decode:true " >Graphics graphics = pictureBox1.CreateGraphics();  </pre>
-
-<p>然后我们需要创建一个矩形区域，在这个矩形区域里绘制饼图。
-<pre class="lang:c# decode:true " >Rectangle rect = new Rectangle(0, 0, 150, 150);</pre>
-前两个参数定义了矩形左上角的坐标，后两个分别定义了举行的宽和高。</p>
-
-<p>为了能够比较清晰的看出饼图各部分的比例。我们需要创建五个笔刷。
-<pre class="lang:c# decode:true " >Brush brush1 = new SolidBrush(Color.Red);
-Brush brush2 = new SolidBrush(Color.Blue);
-Brush brush3 = new SolidBrush(Color.Maroon);
-Brush brush4 = new SolidBrush(Color.Navy);
-Brush brush5 = new SolidBrush(Color.YellowGreen);
-graphics.Clear(pictureBox1.BackColor);</pre></p>
-
+代码如下：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>值转换完毕后。我们可以创建Graphics类的实例了。</p>
+<!-- raw HTML omitted -->
+<p>然后我们需要创建一个矩形区域，在这个矩形区域里绘制饼图。</p>
+<!-- raw HTML omitted -->
+<p>前两个参数定义了矩形左上角的坐标，后两个分别定义了举行的宽和高。</p>
+<p>为了能够比较清晰的看出饼图各部分的比例。我们需要创建五个笔刷。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>现在我们可以开始创建我们的饼图了。graphics.FillPie();方法接受四个参数</p>
-
 <ol>
 <li>笔刷，用来填充扇形</li>
 <li>矩形：饼图将被创建的区域。</li>
 <li>开始角度：饼部分的开始角度</li>
 <li>覆盖角度：饼部分扫过的角度</li>
 </ol>
-
 <p>一般来说graphics.FillPie();方法并不是创建一个完全的饼图，而是创建饼图的一个扇形部分，我们会创建一系列的扇形最终看起来像是一个饼图。</p>
-
-<pre class="lang:c# decode:true " >graphics.FillPie(brush1, rect, 0, deg1);
-graphics.FillPie(brush2, rect, deg1, deg2);
-graphics.FillPie(brush3, rect, deg1 + deg2, deg3);
-graphics.FillPie(brush4, rect, deg1 + deg2 + deg3, deg4);
-graphics.FillPie(brush5, rect, deg1 + deg2 + deg3 + deg4, deg5);</pre> 
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>上面代码的第一行将会创建第一个红色的扇形。起点是0度，并且创建一个计算好的扇面。
 之后，在第二行，我们的扇面的起点就会接着上一步的结束的位置，也就是deg1 ，第二行，我们的起点就会是 deg1+deg2</p>
-
 <p>这段代码如你所见，可能不是最优的。我们创建了五个不同的笔刷。和不同的浮点数，而这些操作可以用循环完成。。</p>
-
 <p>我故意没有这样做。因为，这样做了就可能使问题复杂化。下面是使用循环和数组完成相同的工作。</p>
-
-<pre class="lang:c# decode:true " >private void createPie()
-{
-   iarrPieValues = new int[lstValuesCount];
-
-   for (int iCnt = 0; iCnt < lstValuesCount; iCnt++)
-   {
-       iarrPieValues[iCnt] = Int32.Parse(lstValues.Items[iCnt].ToString());
-       sum += iarrPieValues[iCnt];
-   }
-
-   Color[] color = { Color.Red, Color.Blue, Color.Maroon, Color.Yellow, Color.Green, Color.Indigo };
-   Rectangle rect = new Rectangle(30, 10, 130, 130);
-
-   Graphics graphics = pictureBox1.CreateGraphics();
-   graphics.Clear(pictureBox1.BackColor);
-
-   float fDegValue = 0.0f;
-   float fDegSum = 0.0f;
-
-   for (int iCnt = 0; iCnt < iarrPieValues.Length; iCnt++)
-   {
-       fDegValue = (iarrPieValues[iCnt] / sum) * 360;
-       Brush brush = new SolidBrush(color[iCnt]);
-       graphics.FillPie(brush, rect, fDegSum, fDegValue);
-       fDegSum += fDegValue;
-   }
-}</pre>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/27558_o.png"><img src="/images/341f6010ffe346f8245bdae48986ae61c6dfe90f.png" alt="" title="listbox" /></a>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><a href="http://leaverimage.b0.upaiyun.com/27558_o.png"><img src="/images/341f6010ffe346f8245bdae48986ae61c6dfe90f.png" alt="" title="listbox"></a>
 首先我创建一个整型数组，数组元素个数等于列表框里的数目。然后我使用一个循环计算了所有值的和。
 然后。我创建了一个颜色的数组，这里我建议不要创建一个多于6个扇形。。不然看起来就连在一起了。。
 第三步呢。。我再次使用循环去把值转换成度数。fDegValue 用来保存每次计算的度数。在我们前面的例子里。我们需要把前面几个值加起来作为下一个扇形的开始。而这里。我们使用fDegSum 来保存前面的和就很好了。</p>
-
 <p>本文很简单，也就使用Graphics创建一个饼图而已。如果是要创建一些专业的图表就要用到.net提供的图表控件了。</p>
-
 <p>下载：<a href="http://pan.baidu.com/share/link?shareid=63681&amp;uk=1493685990">源代码和Demo</a></p>
-
 <p>原文地址：<a href="http://www.codeproject.com/Articles/463284/Create-Pie-Chart-Using-Graphics-in-Csharp-NET">Create-Pie-Chart-Using-Graphics-in-Csharp-NET</a>
 著作权声明：本文由<a href="http://leaver.me">http://leaver.me</a> 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</p>
 
@@ -533,7 +500,7 @@ graphics.FillPie(brush5, rect, deg1 + deg2 + deg3 + deg4, deg5);</pre>
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

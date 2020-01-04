@@ -11,17 +11,23 @@
   <meta property="og:title" content="C#隐藏TabControl标签栏" />
   <meta name="twitter:title" content="C#隐藏TabControl标签栏" />
   <meta name="description" content="今天考过了微软的那个70-562和70-536的考试。然后下午把软件体系结构的作业做了。然后看了一下栈溢出，我博客首页右侧的那个就是我的栈溢出id了。。
-然后就看到了这个问题。这个问题。我曾经遇到过。貌似大家知道比较多的是两种。第一种就是设置大小。 tabControl1.SizeMode = TabSizeMode.Fixed; tabControl1.ItemSize = new Size(0, 1); 
+然后就看到了这个问题。这个问题。我曾经遇到过。貌似大家知道比较多的是两种。第一种就是设置大小。
+
 但是这样你注意看的话，左上角有个小的瑕疵。这个没办法的。。还有一种比较低级但还算有效的方法就是在设计的时候将TabControl向上移动。运行以后就会遮住了。
-我当时不过取巧了。好像就用的第二种。。今天看到这个题目的时候，就做了下标记。刚才去看。大牛已经给出答案了。就是自己继承一个TabControl控件。重写 void WndProc(ref Message m) 方法，在方法里拦截系统消息。 using System; using System.Windows.Forms;
-class TablessControl : TabControl { protected override void WndProc(ref Message m) { // Hide tabs by trapping the TCM_ADJUSTRECT message if (m.Msg == 0x1328 &amp;&amp; !DesignMode) m.Result = (IntPtr)1; else base.WndProc(ref m); } } 具体用法。就是在你的项目里新建一个类文件。然后把上面的代码拷进去。然后编译一下。就会在工具箱里多出一个TablessControl控件。拖进来即可使用。当然你也可以自定义一个用户控件。都不是事。这个控件设计时标签页可见。运行时由于拦截了信息消息。标签栏就不可见了。堪称完美。。">
+我当时不过取巧了。好像就用的第二种。。今天看到这个题目的时候，就做了下标记。刚才去看。大牛已经给出答案了。就是自己继承一个TabControl控件。重写
+方法，在方法里拦截系统消息。
+具体用法。就是在你的项目里新建一个类文件。然后把上面的代码拷进去。然后编译一下。就会在工具箱里多出一个TablessControl控件。拖进来即可使用。当然你也可以自定义一个用户控件。都不是事。这个控件设计时标签页可见。运行时由于拦截了信息消息。标签栏就不可见了。堪称完美。。">
   <meta property="og:description" content="今天考过了微软的那个70-562和70-536的考试。然后下午把软件体系结构的作业做了。然后看了一下栈溢出，我博客首页右侧的那个就是我的栈溢出id了。。
-然后就看到了这个问题。这个问题。我曾经遇到过。貌似大家知道比较多的是两种。第一种就是设置大小。 tabControl1.SizeMode = TabSizeMode.Fixed; tabControl1.ItemSize = new Size(0, 1); 
+然后就看到了这个问题。这个问题。我曾经遇到过。貌似大家知道比较多的是两种。第一种就是设置大小。
+
 但是这样你注意看的话，左上角有个小的瑕疵。这个没办法的。。还有一种比较低级但还算有效的方法就是在设计的时候将TabControl向上移动。运行以后就会遮住了。
-我当时不过取巧了。好像就用的第二种。。今天看到这个题目的时候，就做了下标记。刚才去看。大牛已经给出答案了。就是自己继承一个TabControl控件。重写 void WndProc(ref Message m) 方法，在方法里拦截系统消息。 using System; using System.Windows.Forms;
-class TablessControl : TabControl { protected override void WndProc(ref Message m) { // Hide tabs by trapping the TCM_ADJUSTRECT message if (m.Msg == 0x1328 &amp;&amp; !DesignMode) m.Result = (IntPtr)1; else base.WndProc(ref m); } } 具体用法。就是在你的项目里新建一个类文件。然后把上面的代码拷进去。然后编译一下。就会在工具箱里多出一个TablessControl控件。拖进来即可使用。当然你也可以自定义一个用户控件。都不是事。这个控件设计时标签页可见。运行时由于拦截了信息消息。标签栏就不可见了。堪称完美。。">
+我当时不过取巧了。好像就用的第二种。。今天看到这个题目的时候，就做了下标记。刚才去看。大牛已经给出答案了。就是自己继承一个TabControl控件。重写
+方法，在方法里拦截系统消息。
+具体用法。就是在你的项目里新建一个类文件。然后把上面的代码拷进去。然后编译一下。就会在工具箱里多出一个TablessControl控件。拖进来即可使用。当然你也可以自定义一个用户控件。都不是事。这个控件设计时标签页可见。运行时由于拦截了信息消息。标签栏就不可见了。堪称完美。。">
   <meta name="twitter:description" content="今天考过了微软的那个70-562和70-536的考试。然后下午把软件体系结构的作业做了。然后看了一下栈溢出，我博客首页右侧的那个就是我的栈溢出id了。。
-然后就看到了这个问题。这个问题。我曾经遇到过。貌似大家知道比较多的是两种。第一种就是设置大小。 tabControl1.SizeMode = TabSizeMode.Fixed; tabControl1.ItemSize = new …">
+然后就看到了这个问题。这个问题。我曾经遇到过。貌似大家知道比较多的是两种。第一种就是设置大小。
+
+但是这样你注意看的话，左上角有个小的瑕疵。这个没办法的。。还有一种比较低级但还算有效的方法就是在设计的时候将TabControl向上移动。运行以后就 …">
   <meta name="author" content="bystander"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -70,9 +76,9 @@ class TablessControl : TabControl { protected override void WndProc(ref Message 
     "name" : "bystander"
   },
   "headline": "C#隐藏TabControl标签栏",
-  "description" : "今天考过了微软的那个70-562和70-536的考试。然后下午把软件体系结构的作业做了。然后看了一下栈溢出，我博客首页右侧的那个就是我的栈溢出id了。。\n然后就看到了这个问题。这个问题。我曾经遇到过。貌似大家知道比较多的是两种。第一种就是设置大小。 tabControl1.SizeMode = TabSizeMode.Fixed; tabControl1.ItemSize = new Size(0, 1); \n但是这样你注意看的话，左上角有个小的瑕疵。这个没办法的。。还有一种比较低级但还算有效的方法就是在设计的时候将TabControl向上移动。运行以后就会遮住了。\n我当时不过取巧了。好像就用的第二种。。今天看到这个题目的时候，就做了下标记。刚才去看。大牛已经给出答案了。就是自己继承一个TabControl控件。重写 void WndProc(ref Message m) 方法，在方法里拦截系统消息。 using System; using System.Windows.Forms;\nclass TablessControl : TabControl { protected override void WndProc(ref Message m) { \/\/ Hide tabs by trapping the TCM_ADJUSTRECT message if (m.Msg == 0x1328 \x26amp;\x26amp; !DesignMode) m.Result = (IntPtr)1; else base.WndProc(ref m); } } 具体用法。就是在你的项目里新建一个类文件。然后把上面的代码拷进去。然后编译一下。就会在工具箱里多出一个TablessControl控件。拖进来即可使用。当然你也可以自定义一个用户控件。都不是事。这个控件设计时标签页可见。运行时由于拦截了信息消息。标签栏就不可见了。堪称完美。。",
+  "description" : "今天考过了微软的那个70-562和70-536的考试。然后下午把软件体系结构的作业做了。然后看了一下栈溢出，我博客首页右侧的那个就是我的栈溢出id了。。\n然后就看到了这个问题。这个问题。我曾经遇到过。貌似大家知道比较多的是两种。第一种就是设置大小。\n\n但是这样你注意看的话，左上角有个小的瑕疵。这个没办法的。。还有一种比较低级但还算有效的方法就是在设计的时候将TabControl向上移动。运行以后就会遮住了。\n我当时不过取巧了。好像就用的第二种。。今天看到这个题目的时候，就做了下标记。刚才去看。大牛已经给出答案了。就是自己继承一个TabControl控件。重写\n方法，在方法里拦截系统消息。\n具体用法。就是在你的项目里新建一个类文件。然后把上面的代码拷进去。然后编译一下。就会在工具箱里多出一个TablessControl控件。拖进来即可使用。当然你也可以自定义一个用户控件。都不是事。这个控件设计时标签页可见。运行时由于拦截了信息消息。标签栏就不可见了。堪称完美。。",
   "inLanguage" : "en",
-  "wordCount":  56 ,
+  "wordCount":  6 ,
   "datePublished" : "2013-01-11T21:31:52",
   "dateModified" : "2013-01-11T21:31:52",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -93,10 +99,12 @@ class TablessControl : TabControl { protected override void WndProc(ref Message 
 
 <meta property="og:title" content="C#隐藏TabControl标签栏" />
 <meta property="og:description" content="今天考过了微软的那个70-562和70-536的考试。然后下午把软件体系结构的作业做了。然后看了一下栈溢出，我博客首页右侧的那个就是我的栈溢出id了。。
-然后就看到了这个问题。这个问题。我曾经遇到过。貌似大家知道比较多的是两种。第一种就是设置大小。 tabControl1.SizeMode = TabSizeMode.Fixed; tabControl1.ItemSize = new Size(0, 1); 
+然后就看到了这个问题。这个问题。我曾经遇到过。貌似大家知道比较多的是两种。第一种就是设置大小。
+
 但是这样你注意看的话，左上角有个小的瑕疵。这个没办法的。。还有一种比较低级但还算有效的方法就是在设计的时候将TabControl向上移动。运行以后就会遮住了。
-我当时不过取巧了。好像就用的第二种。。今天看到这个题目的时候，就做了下标记。刚才去看。大牛已经给出答案了。就是自己继承一个TabControl控件。重写 void WndProc(ref Message m) 方法，在方法里拦截系统消息。 using System; using System.Windows.Forms;
-class TablessControl : TabControl { protected override void WndProc(ref Message m) { // Hide tabs by trapping the TCM_ADJUSTRECT message if (m.Msg == 0x1328 &amp;&amp; !DesignMode) m.Result = (IntPtr)1; else base.WndProc(ref m); } } 具体用法。就是在你的项目里新建一个类文件。然后把上面的代码拷进去。然后编译一下。就会在工具箱里多出一个TablessControl控件。拖进来即可使用。当然你也可以自定义一个用户控件。都不是事。这个控件设计时标签页可见。运行时由于拦截了信息消息。标签栏就不可见了。堪称完美。。">
+我当时不过取巧了。好像就用的第二种。。今天看到这个题目的时候，就做了下标记。刚才去看。大牛已经给出答案了。就是自己继承一个TabControl控件。重写
+方法，在方法里拦截系统消息。
+具体用法。就是在你的项目里新建一个类文件。然后把上面的代码拷进去。然后编译一下。就会在工具箱里多出一个TablessControl控件。拖进来即可使用。当然你也可以自定义一个用户控件。都不是事。这个控件设计时标签页可见。运行时由于拦截了信息消息。标签栏就不可见了。堪称完美。。">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2013/01/11/c#%E9%9A%90%E8%97%8Ftabcontrol%E6%A0%87%E7%AD%BE%E6%A0%8F/" />
 <meta property="og:type" content="website" />
@@ -104,7 +112,9 @@ class TablessControl : TabControl { protected override void WndProc(ref Message 
 
   <meta name="twitter:title" content="C#隐藏TabControl标签栏" />
   <meta name="twitter:description" content="今天考过了微软的那个70-562和70-536的考试。然后下午把软件体系结构的作业做了。然后看了一下栈溢出，我博客首页右侧的那个就是我的栈溢出id了。。
-然后就看到了这个问题。这个问题。我曾经遇到过。貌似大家知道比较多的是两种。第一种就是设置大小。 tabControl1.SizeMode = TabSizeMode.Fixed; tabControl1.ItemSize = new …">
+然后就看到了这个问题。这个问题。我曾经遇到过。貌似大家知道比较多的是两种。第一种就是设置大小。
+
+但是这样你注意看的话，左上角有个小的瑕疵。这个没办法的。。还有一种比较低级但还算有效的方法就是在设计的时候将TabControl向上移动。运行以后就 …">
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -115,7 +125,7 @@ class TablessControl : TabControl { protected override void WndProc(ref Message 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -300,28 +310,17 @@ class TablessControl : TabControl { protected override void WndProc(ref Message 
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <p>今天考过了微软的那个70-562和70-536的考试。然后下午把软件体系结构的作业做了。然后看了一下栈溢出，我博客首页右侧的那个就是我的栈溢出id了。。</p>
-
-<p>然后就看到了这个问题。这个问题。我曾经遇到过。貌似大家知道比较多的是两种。第一种就是设置大小。
-<pre class="lang:default decode:true">tabControl1.SizeMode = TabSizeMode.Fixed;
-tabControl1.ItemSize = new Size(0, 1);</pre>
-<a href="http://leaverimage.b0.upaiyun.com/31378_o.jpg"><img src="/images/3070c473ca2d01dd23741af3e13d2f4328b9d89d.jpg" alt="" /></a></p>
-
+<p>然后就看到了这个问题。这个问题。我曾经遇到过。貌似大家知道比较多的是两种。第一种就是设置大小。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><a href="http://leaverimage.b0.upaiyun.com/31378_o.jpg"><img src="/images/3070c473ca2d01dd23741af3e13d2f4328b9d89d.jpg" alt=""></a></p>
 <p>但是这样你注意看的话，左上角有个小的瑕疵。这个没办法的。。还有一种比较低级但还算有效的方法就是在设计的时候将TabControl向上移动。运行以后就会遮住了。</p>
-
-<p>我当时不过取巧了。好像就用的第二种。。今天看到这个题目的时候，就做了下标记。刚才去看。大牛已经给出答案了。就是自己继承一个TabControl控件。重写
-<pre>void WndProc(ref Message m)</pre>
-方法，在方法里拦截系统消息。
-<pre class="lang:default decode:true">using System;
-using System.Windows.Forms;</p>
-
-<p>class TablessControl : TabControl {
-  protected override void WndProc(ref Message m) {
-    // Hide tabs by trapping the TCM_ADJUSTRECT message
-    if (m.Msg == 0x1328 &amp;&amp; !DesignMode) m.Result = (IntPtr)1;
-    else base.WndProc(ref m);
-  }
-}</pre>
-具体用法。就是在你的项目里新建一个类文件。然后把上面的代码拷进去。然后编译一下。就会在工具箱里多出一个TablessControl控件。拖进来即可使用。当然你也可以自定义一个用户控件。都不是事。这个控件设计时标签页可见。运行时由于拦截了信息消息。标签栏就不可见了。堪称完美。。</p>
+<p>我当时不过取巧了。好像就用的第二种。。今天看到这个题目的时候，就做了下标记。刚才去看。大牛已经给出答案了。就是自己继承一个TabControl控件。重写</p>
+<!-- raw HTML omitted -->
+<p>方法，在方法里拦截系统消息。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>具体用法。就是在你的项目里新建一个类文件。然后把上面的代码拷进去。然后编译一下。就会在工具箱里多出一个TablessControl控件。拖进来即可使用。当然你也可以自定义一个用户控件。都不是事。这个控件设计时标签页可见。运行时由于拦截了信息消息。标签栏就不可见了。堪称完美。。</p>
 
 
         
@@ -437,7 +436,7 @@ using System.Windows.Forms;</p>
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

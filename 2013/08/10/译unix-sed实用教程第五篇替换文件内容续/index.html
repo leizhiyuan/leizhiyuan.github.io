@@ -11,19 +11,50 @@
   <meta property="og:title" content="[译]Unix sed实用教程第五篇–替换文件内容续" />
   <meta name="twitter:title" content="[译]Unix sed实用教程第五篇–替换文件内容续" />
   <meta name="description" content="前面已经学习过替换文件内容了，本文我们学习一些更频繁使用的搜索替换操作.
-示例文件使用： $ cat file RE01:EMP1:25:2500 RE02:EMP2:26:2650 RE03:EMP3:24:3500 RE04:EMP4:27:2900 1.替换每行开始的两个字母，这里用XX来替换 $ sed &rsquo;s/^../XX/&rsquo; file XX01:EMP1:25:2500 XX02:EMP2:26:2650 XX03:EMP3:24:3500 XX04:EMP4:27:2900 s代表substitute，前面说过了，^用来匹配行开头，.表示任意一个字符，两个..就是你懂的，
-其实，不要^符号也是可以的，因为默认就是从开头开始匹配，如下也可以实现 sed &rsquo;s/../XX/&rsquo; file 2.删除每行开头的两个字符 $ sed &rsquo;s/^..//&rsquo; file 01:EMP1:25:2500 02:EMP2:26:2650 03:EMP3:24:3500 04:EMP4:27:2900 看到没有，后两个斜线之间没有内容，也就是用空字符来替换开头的两个字符，就实现了删除
-3.要是想删除每行最后的两个字符呢 $ sed &rsquo;s/..$//&rsquo; file RE01:EMP1:25:25 RE02:EMP2:26:26 RE03:EMP3:24:35 RE04:EMP4:27:29 再次强调，$在不同的情况下表示不同的意思，这里匹配行尾，有时候也匹配文件尾部
-4.向每行末尾添加内容 $ sed &rsquo;s/$/.Rs/&rsquo; file RE01:EMP1:25:2500.Rs RE02:EMP2:26:2650.Rs RE03:EMP3:24:3500.Rs RE04:EMP4:27:2900.Rs 这里，先匹配行尾，然后把&rdquo;.Rs&rdquo;添加到行尾
-5.在每行开头添加空格 $ sed &rsquo;s/^/ /&rsquo; file RE01:EMP1:25:Rs.2500 RE02:EMP2:26:Rs.2650 RE03:EMP3:24:Rs.3500 RE04:EMP4:27:Rs.2900 还记得前面说过的么，sed默认不影响原始文件，要是想更新原始文件，请加-i参数 $ sed -i &rsquo;s/^/ /&rsquo; file $ cat file RE01:EMP1:25:Rs.">
+示例文件使用：
+1.替换每行开始的两个字母，这里用XX来替换s代表substitute，前面说过了，^用来匹配行开头，.表示任意一个字符，两个..就是你懂的，
+其实，不要^符号也是可以的，因为默认就是从开头开始匹配，如下也可以实现
+2.删除每行开头的两个字符看到没有，后两个斜线之间没有内容，也就是用空字符来替换开头的两个字符，就实现了删除
+3.要是想删除每行最后的两个字符呢再次强调，$在不同的情况下表示不同的意思，这里匹配行尾，有时候也匹配文件尾部
+4.向每行末尾添加内容这里，先匹配行尾，然后把&rdquo;.Rs&quot;添加到行尾
+5.在每行开头添加空格还记得前面说过的么，sed默认不影响原始文件，要是想更新原始文件，请加-i参数
+6.移除开始的空格^匹配行首，然后是一个空格，然后是*，表示一个或多个空格嘛，然后替换为空字符
+7.移除行首和行尾的空格不要怕，从分号处分开，就是两条命令啦，一个做行首的，一个做行尾的，前面说过的，可以使用-e参数来分开
+8.如何在一个字符串前后添加一些其他字符呢，可以用来字符串转义前两个斜线匹配了所有字符，也就是本行，然后后面两个斜线是替换的内容，注意里面的&amp;符号，之前也说过的，表示匹配到的字符，也就是本行了。所有就这样啦
+9.移除行首和行尾的一个字符（多个你也会的啦）分开看看，你可以的
+10.删除第一个数字之前的所有字符这条命令略复杂，请先回头看一下我们的示例文件，然后我们开始分析这个表达式，地一个^表示匹配行首，然后[^0-9]* 是一个典型的正则，匹配非数字的多个字符，简单说一下[0-9]表示匹配0,1,2,3,4,5,6,7,8,9任意一个字符，前面加个一个^，表示非，也就是不匹配这些数字，然后最后是一个*，表示匹配非数字的连续多个字符，有机会的话我会推荐一个正则系列，或者自己写一篇文章。这里就先这样理解吧。
+那猜猜这个是干嘛的
+是的，你猜对了，删除开头的所有非字母字符。
+11.删除行尾的数字看看前面的你就知道了
+12.通过分隔符得到文件最后一列可能你你预想的不一样，是不是，你可能认为会是第一列被删除，其他的列都在，不对的，sed是很贪心的，当我们指定&rsquo;.*:&lsquo;时，他会一直向后查找，尽量匹配更多，所以，就匹配到最后一个列之前了
+13.转换整行字符为小写\L是sed的一个命令，Lowercase嘛。\L之后的内容被毁转换，而&amp;表示前面匹配道德内容，所以就实现了转换
+14.转换大写\U你懂的，Uppercase
+  ">
   <meta property="og:description" content="前面已经学习过替换文件内容了，本文我们学习一些更频繁使用的搜索替换操作.
-示例文件使用： $ cat file RE01:EMP1:25:2500 RE02:EMP2:26:2650 RE03:EMP3:24:3500 RE04:EMP4:27:2900 1.替换每行开始的两个字母，这里用XX来替换 $ sed &rsquo;s/^../XX/&rsquo; file XX01:EMP1:25:2500 XX02:EMP2:26:2650 XX03:EMP3:24:3500 XX04:EMP4:27:2900 s代表substitute，前面说过了，^用来匹配行开头，.表示任意一个字符，两个..就是你懂的，
-其实，不要^符号也是可以的，因为默认就是从开头开始匹配，如下也可以实现 sed &rsquo;s/../XX/&rsquo; file 2.删除每行开头的两个字符 $ sed &rsquo;s/^..//&rsquo; file 01:EMP1:25:2500 02:EMP2:26:2650 03:EMP3:24:3500 04:EMP4:27:2900 看到没有，后两个斜线之间没有内容，也就是用空字符来替换开头的两个字符，就实现了删除
-3.要是想删除每行最后的两个字符呢 $ sed &rsquo;s/..$//&rsquo; file RE01:EMP1:25:25 RE02:EMP2:26:26 RE03:EMP3:24:35 RE04:EMP4:27:29 再次强调，$在不同的情况下表示不同的意思，这里匹配行尾，有时候也匹配文件尾部
-4.向每行末尾添加内容 $ sed &rsquo;s/$/.Rs/&rsquo; file RE01:EMP1:25:2500.Rs RE02:EMP2:26:2650.Rs RE03:EMP3:24:3500.Rs RE04:EMP4:27:2900.Rs 这里，先匹配行尾，然后把&rdquo;.Rs&rdquo;添加到行尾
-5.在每行开头添加空格 $ sed &rsquo;s/^/ /&rsquo; file RE01:EMP1:25:Rs.2500 RE02:EMP2:26:Rs.2650 RE03:EMP3:24:Rs.3500 RE04:EMP4:27:Rs.2900 还记得前面说过的么，sed默认不影响原始文件，要是想更新原始文件，请加-i参数 $ sed -i &rsquo;s/^/ /&rsquo; file $ cat file RE01:EMP1:25:Rs.">
+示例文件使用：
+1.替换每行开始的两个字母，这里用XX来替换s代表substitute，前面说过了，^用来匹配行开头，.表示任意一个字符，两个..就是你懂的，
+其实，不要^符号也是可以的，因为默认就是从开头开始匹配，如下也可以实现
+2.删除每行开头的两个字符看到没有，后两个斜线之间没有内容，也就是用空字符来替换开头的两个字符，就实现了删除
+3.要是想删除每行最后的两个字符呢再次强调，$在不同的情况下表示不同的意思，这里匹配行尾，有时候也匹配文件尾部
+4.向每行末尾添加内容这里，先匹配行尾，然后把&rdquo;.Rs&quot;添加到行尾
+5.在每行开头添加空格还记得前面说过的么，sed默认不影响原始文件，要是想更新原始文件，请加-i参数
+6.移除开始的空格^匹配行首，然后是一个空格，然后是*，表示一个或多个空格嘛，然后替换为空字符
+7.移除行首和行尾的空格不要怕，从分号处分开，就是两条命令啦，一个做行首的，一个做行尾的，前面说过的，可以使用-e参数来分开
+8.如何在一个字符串前后添加一些其他字符呢，可以用来字符串转义前两个斜线匹配了所有字符，也就是本行，然后后面两个斜线是替换的内容，注意里面的&amp;符号，之前也说过的，表示匹配到的字符，也就是本行了。所有就这样啦
+9.移除行首和行尾的一个字符（多个你也会的啦）分开看看，你可以的
+10.删除第一个数字之前的所有字符这条命令略复杂，请先回头看一下我们的示例文件，然后我们开始分析这个表达式，地一个^表示匹配行首，然后[^0-9]* 是一个典型的正则，匹配非数字的多个字符，简单说一下[0-9]表示匹配0,1,2,3,4,5,6,7,8,9任意一个字符，前面加个一个^，表示非，也就是不匹配这些数字，然后最后是一个*，表示匹配非数字的连续多个字符，有机会的话我会推荐一个正则系列，或者自己写一篇文章。这里就先这样理解吧。
+那猜猜这个是干嘛的
+是的，你猜对了，删除开头的所有非字母字符。
+11.删除行尾的数字看看前面的你就知道了
+12.通过分隔符得到文件最后一列可能你你预想的不一样，是不是，你可能认为会是第一列被删除，其他的列都在，不对的，sed是很贪心的，当我们指定&rsquo;.*:&lsquo;时，他会一直向后查找，尽量匹配更多，所以，就匹配到最后一个列之前了
+13.转换整行字符为小写\L是sed的一个命令，Lowercase嘛。\L之后的内容被毁转换，而&amp;表示前面匹配道德内容，所以就实现了转换
+14.转换大写\U你懂的，Uppercase
+  ">
   <meta name="twitter:description" content="前面已经学习过替换文件内容了，本文我们学习一些更频繁使用的搜索替换操作.
-示例文件使用： $ cat file RE01:EMP1:25:2500 RE02:EMP2:26:2650 RE03:EMP3:24:3500 RE04:EMP4:27:2900 1.替换每行开始的两个字母，这里用XX来替换 $ sed &rsquo;s/^../XX/&rsquo; file …">
+示例文件使用：
+1.替换每行开始的两个字母，这里用XX来替换s代表substitute，前面说过了，^用来匹配行开头，.表示任意一个字符，两个..就是你懂的，
+其实，不要^符号也是可以的，因为默认就是从开头开始匹配，如下也可以实现
+2.删除每行开头的两个字符看到没有，后两个斜线之间没有内容，也就是用空字符来替换开头的两个字 …">
   <meta name="author" content="bystander"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -72,9 +103,9 @@
     "name" : "bystander"
   },
   "headline": "[译]Unix sed实用教程第五篇–替换文件内容续",
-  "description" : "前面已经学习过替换文件内容了，本文我们学习一些更频繁使用的搜索替换操作.\n示例文件使用： $ cat file RE01:EMP1:25:2500 RE02:EMP2:26:2650 RE03:EMP3:24:3500 RE04:EMP4:27:2900 1.替换每行开始的两个字母，这里用XX来替换 $ sed \x26rsquo;s\/^..\/XX\/\x26rsquo; file XX01:EMP1:25:2500 XX02:EMP2:26:2650 XX03:EMP3:24:3500 XX04:EMP4:27:2900 s代表substitute，前面说过了，^用来匹配行开头，.表示任意一个字符，两个..就是你懂的，\n其实，不要^符号也是可以的，因为默认就是从开头开始匹配，如下也可以实现 sed \x26rsquo;s\/..\/XX\/\x26rsquo; file 2.删除每行开头的两个字符 $ sed \x26rsquo;s\/^..\/\/\x26rsquo; file 01:EMP1:25:2500 02:EMP2:26:2650 03:EMP3:24:3500 04:EMP4:27:2900 看到没有，后两个斜线之间没有内容，也就是用空字符来替换开头的两个字符，就实现了删除\n3.要是想删除每行最后的两个字符呢 $ sed \x26rsquo;s\/..$\/\/\x26rsquo; file RE01:EMP1:25:25 RE02:EMP2:26:26 RE03:EMP3:24:35 RE04:EMP4:27:29 再次强调，$在不同的情况下表示不同的意思，这里匹配行尾，有时候也匹配文件尾部\n4.向每行末尾添加内容 $ sed \x26rsquo;s\/$\/.Rs\/\x26rsquo; file RE01:EMP1:25:2500.Rs RE02:EMP2:26:2650.Rs RE03:EMP3:24:3500.Rs RE04:EMP4:27:2900.Rs 这里，先匹配行尾，然后把\x26rdquo;.Rs\x26rdquo;添加到行尾\n5.在每行开头添加空格 $ sed \x26rsquo;s\/^\/ \/\x26rsquo; file RE01:EMP1:25:Rs.2500 RE02:EMP2:26:Rs.2650 RE03:EMP3:24:Rs.3500 RE04:EMP4:27:Rs.2900 还记得前面说过的么，sed默认不影响原始文件，要是想更新原始文件，请加-i参数 $ sed -i \x26rsquo;s\/^\/ \/\x26rsquo; file $ cat file RE01:EMP1:25:Rs.",
+  "description" : "前面已经学习过替换文件内容了，本文我们学习一些更频繁使用的搜索替换操作.\n示例文件使用：\n1.替换每行开始的两个字母，这里用XX来替换s代表substitute，前面说过了，^用来匹配行开头，.表示任意一个字符，两个..就是你懂的，\n其实，不要^符号也是可以的，因为默认就是从开头开始匹配，如下也可以实现\n2.删除每行开头的两个字符看到没有，后两个斜线之间没有内容，也就是用空字符来替换开头的两个字符，就实现了删除\n3.要是想删除每行最后的两个字符呢再次强调，$在不同的情况下表示不同的意思，这里匹配行尾，有时候也匹配文件尾部\n4.向每行末尾添加内容这里，先匹配行尾，然后把\x26rdquo;.Rs\x26quot;添加到行尾\n5.在每行开头添加空格还记得前面说过的么，sed默认不影响原始文件，要是想更新原始文件，请加-i参数\n6.移除开始的空格^匹配行首，然后是一个空格，然后是*，表示一个或多个空格嘛，然后替换为空字符\n7.移除行首和行尾的空格不要怕，从分号处分开，就是两条命令啦，一个做行首的，一个做行尾的，前面说过的，可以使用-e参数来分开\n8.如何在一个字符串前后添加一些其他字符呢，可以用来字符串转义前两个斜线匹配了所有字符，也就是本行，然后后面两个斜线是替换的内容，注意里面的\x26amp;符号，之前也说过的，表示匹配到的字符，也就是本行了。所有就这样啦\n9.移除行首和行尾的一个字符（多个你也会的啦）分开看看，你可以的\n10.删除第一个数字之前的所有字符这条命令略复杂，请先回头看一下我们的示例文件，然后我们开始分析这个表达式，地一个^表示匹配行首，然后[^0-9]* 是一个典型的正则，匹配非数字的多个字符，简单说一下[0-9]表示匹配0,1,2,3,4,5,6,7,8,9任意一个字符，前面加个一个^，表示非，也就是不匹配这些数字，然后最后是一个*，表示匹配非数字的连续多个字符，有机会的话我会推荐一个正则系列，或者自己写一篇文章。这里就先这样理解吧。\n那猜猜这个是干嘛的\n是的，你猜对了，删除开头的所有非字母字符。\n11.删除行尾的数字看看前面的你就知道了\n12.通过分隔符得到文件最后一列可能你你预想的不一样，是不是，你可能认为会是第一列被删除，其他的列都在，不对的，sed是很贪心的，当我们指定\x26rsquo;.*:\x26lsquo;时，他会一直向后查找，尽量匹配更多，所以，就匹配到最后一个列之前了\n13.转换整行字符为小写\\L是sed的一个命令，Lowercase嘛。\\L之后的内容被毁转换，而\x26amp;表示前面匹配道德内容，所以就实现了转换\n14.转换大写\\U你懂的，Uppercase\n  ",
   "inLanguage" : "en",
-  "wordCount":  185 ,
+  "wordCount":  20 ,
   "datePublished" : "2013-08-10T09:05:55",
   "dateModified" : "2013-08-10T09:05:55",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -95,11 +126,25 @@
 
 <meta property="og:title" content="[译]Unix sed实用教程第五篇–替换文件内容续" />
 <meta property="og:description" content="前面已经学习过替换文件内容了，本文我们学习一些更频繁使用的搜索替换操作.
-示例文件使用： $ cat file RE01:EMP1:25:2500 RE02:EMP2:26:2650 RE03:EMP3:24:3500 RE04:EMP4:27:2900 1.替换每行开始的两个字母，这里用XX来替换 $ sed &rsquo;s/^../XX/&rsquo; file XX01:EMP1:25:2500 XX02:EMP2:26:2650 XX03:EMP3:24:3500 XX04:EMP4:27:2900 s代表substitute，前面说过了，^用来匹配行开头，.表示任意一个字符，两个..就是你懂的，
-其实，不要^符号也是可以的，因为默认就是从开头开始匹配，如下也可以实现 sed &rsquo;s/../XX/&rsquo; file 2.删除每行开头的两个字符 $ sed &rsquo;s/^..//&rsquo; file 01:EMP1:25:2500 02:EMP2:26:2650 03:EMP3:24:3500 04:EMP4:27:2900 看到没有，后两个斜线之间没有内容，也就是用空字符来替换开头的两个字符，就实现了删除
-3.要是想删除每行最后的两个字符呢 $ sed &rsquo;s/..$//&rsquo; file RE01:EMP1:25:25 RE02:EMP2:26:26 RE03:EMP3:24:35 RE04:EMP4:27:29 再次强调，$在不同的情况下表示不同的意思，这里匹配行尾，有时候也匹配文件尾部
-4.向每行末尾添加内容 $ sed &rsquo;s/$/.Rs/&rsquo; file RE01:EMP1:25:2500.Rs RE02:EMP2:26:2650.Rs RE03:EMP3:24:3500.Rs RE04:EMP4:27:2900.Rs 这里，先匹配行尾，然后把&rdquo;.Rs&rdquo;添加到行尾
-5.在每行开头添加空格 $ sed &rsquo;s/^/ /&rsquo; file RE01:EMP1:25:Rs.2500 RE02:EMP2:26:Rs.2650 RE03:EMP3:24:Rs.3500 RE04:EMP4:27:Rs.2900 还记得前面说过的么，sed默认不影响原始文件，要是想更新原始文件，请加-i参数 $ sed -i &rsquo;s/^/ /&rsquo; file $ cat file RE01:EMP1:25:Rs.">
+示例文件使用：
+1.替换每行开始的两个字母，这里用XX来替换s代表substitute，前面说过了，^用来匹配行开头，.表示任意一个字符，两个..就是你懂的，
+其实，不要^符号也是可以的，因为默认就是从开头开始匹配，如下也可以实现
+2.删除每行开头的两个字符看到没有，后两个斜线之间没有内容，也就是用空字符来替换开头的两个字符，就实现了删除
+3.要是想删除每行最后的两个字符呢再次强调，$在不同的情况下表示不同的意思，这里匹配行尾，有时候也匹配文件尾部
+4.向每行末尾添加内容这里，先匹配行尾，然后把&rdquo;.Rs&quot;添加到行尾
+5.在每行开头添加空格还记得前面说过的么，sed默认不影响原始文件，要是想更新原始文件，请加-i参数
+6.移除开始的空格^匹配行首，然后是一个空格，然后是*，表示一个或多个空格嘛，然后替换为空字符
+7.移除行首和行尾的空格不要怕，从分号处分开，就是两条命令啦，一个做行首的，一个做行尾的，前面说过的，可以使用-e参数来分开
+8.如何在一个字符串前后添加一些其他字符呢，可以用来字符串转义前两个斜线匹配了所有字符，也就是本行，然后后面两个斜线是替换的内容，注意里面的&amp;符号，之前也说过的，表示匹配到的字符，也就是本行了。所有就这样啦
+9.移除行首和行尾的一个字符（多个你也会的啦）分开看看，你可以的
+10.删除第一个数字之前的所有字符这条命令略复杂，请先回头看一下我们的示例文件，然后我们开始分析这个表达式，地一个^表示匹配行首，然后[^0-9]* 是一个典型的正则，匹配非数字的多个字符，简单说一下[0-9]表示匹配0,1,2,3,4,5,6,7,8,9任意一个字符，前面加个一个^，表示非，也就是不匹配这些数字，然后最后是一个*，表示匹配非数字的连续多个字符，有机会的话我会推荐一个正则系列，或者自己写一篇文章。这里就先这样理解吧。
+那猜猜这个是干嘛的
+是的，你猜对了，删除开头的所有非字母字符。
+11.删除行尾的数字看看前面的你就知道了
+12.通过分隔符得到文件最后一列可能你你预想的不一样，是不是，你可能认为会是第一列被删除，其他的列都在，不对的，sed是很贪心的，当我们指定&rsquo;.*:&lsquo;时，他会一直向后查找，尽量匹配更多，所以，就匹配到最后一个列之前了
+13.转换整行字符为小写\L是sed的一个命令，Lowercase嘛。\L之后的内容被毁转换，而&amp;表示前面匹配道德内容，所以就实现了转换
+14.转换大写\U你懂的，Uppercase
+  ">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%BA%94%E7%AF%87%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E7%BB%AD/" />
 <meta property="og:type" content="website" />
@@ -107,7 +152,10 @@
 
   <meta name="twitter:title" content="[译]Unix sed实用教程第五篇–替换文件内容续" />
   <meta name="twitter:description" content="前面已经学习过替换文件内容了，本文我们学习一些更频繁使用的搜索替换操作.
-示例文件使用： $ cat file RE01:EMP1:25:2500 RE02:EMP2:26:2650 RE03:EMP3:24:3500 RE04:EMP4:27:2900 1.替换每行开始的两个字母，这里用XX来替换 $ sed &rsquo;s/^../XX/&rsquo; file …">
+示例文件使用：
+1.替换每行开始的两个字母，这里用XX来替换s代表substitute，前面说过了，^用来匹配行开头，.表示任意一个字符，两个..就是你懂的，
+其实，不要^符号也是可以的，因为默认就是从开头开始匹配，如下也可以实现
+2.删除每行开头的两个字符看到没有，后两个斜线之间没有内容，也就是用空字符来替换开头的两个字 …">
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -118,7 +166,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -303,136 +351,75 @@
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <p>前面已经学习过<a href="http://leaver.me/archives/3174.html">替换文件内容</a>了，本文我们学习一些更频繁使用的搜索替换操作.</p>
-
-<p>示例文件使用：
-<pre>$ cat file
-RE01:EMP1:25:2500
-RE02:EMP2:26:2650
-RE03:EMP3:24:3500
-RE04:EMP4:27:2900</pre>
-<span style="color: #3366ff;">1.替换每行开始的两个字母，这里用XX来替换</span>
-<pre>$ sed &rsquo;s/^../XX/&rsquo; file
-XX01:EMP1:25:2500
-XX02:EMP2:26:2650
-XX03:EMP3:24:3500
-XX04:EMP4:27:2900</pre>
-s代表substitute，前面说过了，^用来匹配行开头，.表示任意一个字符，两个..就是你懂的，</p>
-
-<p>其实，不要^符号也是可以的，因为默认就是从开头开始匹配，如下也可以实现
-<pre>sed &rsquo;s/../XX/&rsquo; file</pre>
-<span style="color: #3366ff;">2.删除每行开头的两个字符</span>
-<pre>$ sed &rsquo;s/^..//&rsquo; file
-01:EMP1:25:2500
-02:EMP2:26:2650
-03:EMP3:24:3500
-04:EMP4:27:2900</pre>
-看到没有，后两个斜线之间没有内容，也就是用空字符来替换开头的两个字符，就实现了删除</p>
-
-<p><span style="color: #3366ff;">3.要是想删除每行最后的两个字符呢</span>
-<pre>$ sed &rsquo;s/..$//&rsquo; file
-RE01:EMP1:25:25
-RE02:EMP2:26:26
-RE03:EMP3:24:35
-RE04:EMP4:27:29</pre>
-再次强调，$在不同的情况下表示不同的意思，这里匹配行尾，有时候也匹配文件尾部</p>
-
-<p><span style="color: #3366ff;">4.向每行末尾添加内容</span>
-<pre>$ sed &rsquo;s/$/.Rs/&rsquo; file
-RE01:EMP1:25:2500.Rs
-RE02:EMP2:26:2650.Rs
-RE03:EMP3:24:3500.Rs
-RE04:EMP4:27:2900.Rs</pre>
-这里，先匹配行尾，然后把&rdquo;.Rs&rdquo;添加到行尾</p>
-
-<p><span style="color: #3366ff;">5.在每行开头添加空格</span>
-<pre>$ sed &rsquo;s/^/   /&rsquo; file
-   RE01:EMP1:25:Rs.2500
-   RE02:EMP2:26:Rs.2650
-   RE03:EMP3:24:Rs.3500
-   RE04:EMP4:27:Rs.2900</pre>
-还记得前面说过的么，sed默认不影响原始文件，要是想更新原始文件，请加-i参数
-<pre>$ sed -i &rsquo;s/^/   /&rsquo; file
-$ cat file
-   RE01:EMP1:25:Rs.2500
-   RE02:EMP2:26:Rs.2650
-   RE03:EMP3:24:Rs.3500
-   RE04:EMP4:27:Rs.2900</pre>
-<span style="color: #3366ff;">6.移除开始的空格</span>
-<pre>$ sed &rsquo;s/^ *//&rsquo; file
-RE01:EMP1:25:2500
-RE02:EMP2:26:2650
-RE03:EMP3:24:3500
-RE04:EMP4:27:2900</pre>
-^匹配行首，然后是一个空格，然后是*，表示一个或多个空格嘛，然后替换为空字符</p>
-
-<p><span style="color: #3366ff;">7.移除行首和行尾的空格</span>
-<pre>$ sed &rsquo;s/^ *//; s/ *$//&rsquo; file
-RE01:EMP1:25:2500
-RE02:EMP2:26:2650
-RE03:EMP3:24:3500
-RE04:EMP4:27:2900</pre>
-不要怕，从分号处分开，就是两条命令啦，一个做行首的，一个做行尾的，前面说过的，可以使用-e参数来分开
-<pre>sed -e &rsquo;s/^ *//&rsquo; -e &rsquo;s/ <em>$//&rsquo; file</pre>
-<span style="color: #3366ff;">8.如何在一个字符串前后添加一些其他字符呢，可以用来字符串转义</span>
-<pre>$ sed &rsquo;s/.</em>/&rdquo;&amp;&rdquo;/&rsquo; file
-&ldquo;RE01:EMP1:25:Rs.2500&rdquo;
-&ldquo;RE02:EMP2:26:Rs.2650&rdquo;
-&ldquo;RE03:EMP3:24:Rs.3500&rdquo;
-&ldquo;RE04:EMP4:27:Rs.2900&rdquo;</pre>
-前两个斜线匹配了所有字符，也就是本行，然后后面两个斜线是替换的内容，注意里面的&amp;符号，之前也说过的，表示匹配到的字符，也就是本行了。所有就这样啦</p>
-
-<p><span style="color: #3366ff;">9.移除行首和行尾的一个字符（多个你也会的啦）</span>
-<pre>$ sed &rsquo;s/^.//;s/.$//&rsquo; file
-RE01:EMP1:25:2500
-RE02:EMP2:26:2650
-RE03:EMP3:24:3500
-RE04:EMP4:27:2900</pre>
-分开看看，你可以的</p>
-
-<p><span style="color: #3366ff;">10.删除第一个数字之前的所有字符</span>
-<pre>$ sed &rsquo;s/^[^0-9]<em>//&rsquo; file
-01:EMP1:25:2500
-02:EMP2:26:2650
-03:EMP3:24:3500
-04:EMP4:27:2900</pre>
-这条命令略复杂，请先回头看一下我们的示例文件，然后我们开始分析这个表达式，地一个^表示匹配行首，然后[^0-9]</em> 是一个典型的正则，匹配非数字的多个字符，简单说一下[0-9]表示匹配0,1,2,3,4,5,6,7,8,9任意一个字符，前面加个一个^，表示非，也就是不匹配这些数字，然后最后是一个*，表示匹配非数字的连续多个字符，有机会的话我会推荐一个正则系列，或者自己写一篇文章。这里就先这样理解吧。</p>
-
-<p>那猜猜这个是干嘛的
-<pre>sed &rsquo;s/^[^a-zA-Z]*//&rsquo; file</pre>
-是的，你猜对了，删除开头的所有非字母字符。</p>
-
-<p><span style="color: #3366ff;">11.删除行尾的数字</span>
-<pre>$ sed &rsquo;s/[0-9]*$//&rsquo; file
-RE01:EMP1:25:
-RE02:EMP2:26:
-RE03:EMP3:24:
-RE04:EMP4:27:</pre>
-看看前面的你就知道了</p>
-
-<p><span style="color: #3366ff;">12.通过分隔符得到文件最后一列</span>
-<pre>$ sed &rsquo;s/.<em>://&rsquo; file
-2500
-2650
-3500
-2900</pre>
-可能你你预想的不一样，是不是，你可能认为会是第一列被删除，其他的列都在，不对的，sed是很贪心的，当我们指定&rsquo;.</em>:&lsquo;时，他会一直向后查找，尽量匹配更多，所以，就匹配到最后一个列之前了</p>
-
-<p><span style="color: #3366ff;">13.转换整行字符为小写</span>
-<pre>$ sed &rsquo;s/.*/\L&amp;/&rsquo; file
-re01:emp1:25:rs.2500
-re02:emp2:26:rs.2650
-re03:emp3:24:rs.3500
-re04:emp4:27:rs.2900</pre>
-\L是sed的一个命令，Lowercase嘛。\L之后的内容被毁转换，而&amp;表示前面匹配道德内容，所以就实现了转换</p>
-
-<p><span style="color: #3366ff;">14.转换大写</span></p>
-
-<p>\U你懂的，Uppercase
-<pre>$ sed &rsquo;s/.*/\U&amp;/&rsquo; file
-RE01:EMP1:25:RS.2500
-RE02:EMP2:26:RS.2650
-RE03:EMP3:24:RS.3500
-RE04:EMP4:27:RS.2900</pre></p>
+<p>示例文件使用：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->1.替换每行开始的两个字母，这里用XX来替换<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>s代表substitute，前面说过了，^用来匹配行开头，.表示任意一个字符，两个..就是你懂的，</p>
+<p>其实，不要^符号也是可以的，因为默认就是从开头开始匹配，如下也可以实现</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->2.删除每行开头的两个字符<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>看到没有，后两个斜线之间没有内容，也就是用空字符来替换开头的两个字符，就实现了删除</p>
+<p><!-- raw HTML omitted -->3.要是想删除每行最后的两个字符呢<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>再次强调，$在不同的情况下表示不同的意思，这里匹配行尾，有时候也匹配文件尾部</p>
+<p><!-- raw HTML omitted -->4.向每行末尾添加内容<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这里，先匹配行尾，然后把&rdquo;.Rs&quot;添加到行尾</p>
+<p><!-- raw HTML omitted -->5.在每行开头添加空格<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>还记得前面说过的么，sed默认不影响原始文件，要是想更新原始文件，请加-i参数</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->6.移除开始的空格<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>^匹配行首，然后是一个空格，然后是*，表示一个或多个空格嘛，然后替换为空字符</p>
+<p><!-- raw HTML omitted -->7.移除行首和行尾的空格<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>不要怕，从分号处分开，就是两条命令啦，一个做行首的，一个做行尾的，前面说过的，可以使用-e参数来分开</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->8.如何在一个字符串前后添加一些其他字符呢，可以用来字符串转义<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>前两个斜线匹配了所有字符，也就是本行，然后后面两个斜线是替换的内容，注意里面的&amp;符号，之前也说过的，表示匹配到的字符，也就是本行了。所有就这样啦</p>
+<p><!-- raw HTML omitted -->9.移除行首和行尾的一个字符（多个你也会的啦）<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>分开看看，你可以的</p>
+<p><!-- raw HTML omitted -->10.删除第一个数字之前的所有字符<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这条命令略复杂，请先回头看一下我们的示例文件，然后我们开始分析这个表达式，地一个^表示匹配行首，然后[^0-9]* 是一个典型的正则，匹配非数字的多个字符，简单说一下[0-9]表示匹配0,1,2,3,4,5,6,7,8,9任意一个字符，前面加个一个^，表示非，也就是不匹配这些数字，然后最后是一个*，表示匹配非数字的连续多个字符，有机会的话我会推荐一个正则系列，或者自己写一篇文章。这里就先这样理解吧。</p>
+<p>那猜猜这个是干嘛的</p>
+<!-- raw HTML omitted -->
+<p>是的，你猜对了，删除开头的所有非字母字符。</p>
+<p><!-- raw HTML omitted -->11.删除行尾的数字<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>看看前面的你就知道了</p>
+<p><!-- raw HTML omitted -->12.通过分隔符得到文件最后一列<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>可能你你预想的不一样，是不是，你可能认为会是第一列被删除，其他的列都在，不对的，sed是很贪心的，当我们指定&rsquo;.*:&lsquo;时，他会一直向后查找，尽量匹配更多，所以，就匹配到最后一个列之前了</p>
+<p><!-- raw HTML omitted -->13.转换整行字符为小写<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>\L是sed的一个命令，Lowercase嘛。\L之后的内容被毁转换，而&amp;表示前面匹配道德内容，所以就实现了转换</p>
+<p><!-- raw HTML omitted -->14.转换大写<!-- raw HTML omitted --></p>
+<p>\U你懂的，Uppercase</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<blockquote>
+</blockquote>
 
 
         
@@ -544,7 +531,7 @@ RE04:EMP4:27:RS.2900</pre></p>
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

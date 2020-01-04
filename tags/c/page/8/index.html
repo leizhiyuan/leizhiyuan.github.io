@@ -51,7 +51,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -249,22 +249,15 @@
               </p>
               <div class="post-entry">
                 
-                  
-
-<p>数组是最基础的数据结构。ArrayList可以看作是Array的复杂版本。下面比较两者的异同</p>
-
-<h3 id="比较">比较：</h3>
-
+                  <p>数组是最基础的数据结构。ArrayList可以看作是Array的复杂版本。下面比较两者的异同</p>
+<h3 id="heading">比较：</h3>
 <blockquote>
-<h3 id="相同点">相同点：</h3>
-
+<h3 id="heading-1">相同点：</h3>
 <blockquote>
 <p>Array和ArrayList均实现了相同的接口，因此具有许多相同的操作方法，例如对自身进行枚举，能够以foreach语句遍历。
 Array和ArrayList创建的对象均保存在托管堆中。</p>
 </blockquote>
-
-<h3 id="不同点">不同点：</h3>
-
+<h3 id="heading-2">不同点：</h3>
 <blockquote>
 <ol>
 <li>Array只能存储同构对象，当然，声明为Object类型的数组除外，因为任何类型都可以隐式转换成Object类型。ArrayList可以存储异构对象，这是因为本质上ArrayList内部维护着一个object[] items类型的字段，在应用ArrayList时，应该考虑装箱和拆箱所带来的性能损失。一般情况下，Array的性能高于ArrayList。</li>
@@ -325,32 +318,21 @@ tip：List泛型类对应于ArrayList。</li>
               </p>
               <div class="post-entry">
                 
-                  
-
-<p>本文同样是笔记整理，手动输入一遍和看书的感觉还是很不一样的。文章非常好，讲的很清楚。</p>
-
-<h3 id="什么是接口">什么是接口？</h3>
-
+                  <p>本文同样是笔记整理，手动输入一遍和看书的感觉还是很不一样的。文章非常好，讲的很清楚。</p>
+<h3 id="heading">什么是接口？</h3>
 <p>　　　接口是包含一组虚方法的抽象类型，其中每一种方法都有其名称、参数和返回值。接口方法不能包含任何实现，CLR允许接口可以包含事件、属性、索引器、静态方法、静态字段、静态构造函数以及常数。但是注意：<strong>C#中不能包含任何静态成员</strong>。一个类可以实现多个接口，当一个类继承某个接口时，它不仅要实现该接口定义的所有方法，还要实现该接口从其他接口中继承的<strong>所有</strong>方法。</p>
-
-<h3 id="什么是抽象类">什么是抽象类？</h3>
-
+<h3 id="heading-1">什么是抽象类？</h3>
 <p>　　　抽象类提供多个派生类共享基类的公共定义，它既可以提供抽象方法，也可以提供非抽象方法。抽象类不能实例化，必须通过继承由派生类实现其抽象方法，因此对抽象类不能使用new关键字，也不能被密封。如果派生类没有实现所有的抽象方法，则该派生类也必须声明为抽象类。另外，实现抽象方法由override方法来实现。</p>
-
-<h3 id="比较">比较</h3>
-
+<h3 id="heading-2">比较</h3>
 <blockquote>
-<h3 id="相同点">相同点</h3>
-
+<h3 id="heading-3">相同点</h3>
 <blockquote>
 <ul>
 <li>都不能被直接实例化，都可以通过继承实现其抽象方法。</li>
 <li>都是面向抽象编程的技术基础，实现了诸多的设计模式。</li>
 </ul>
 </blockquote>
-
-<h3 id="不同点">不同点</h3>
-
+<h3 id="heading-4">不同点</h3>
 <blockquote>
 <ul>
 <li>接口<strong>支持</strong>多继承；抽象类不能实现多继承。</li>
@@ -361,9 +343,7 @@ tip：List泛型类对应于ArrayList。</li>
 <li>接口可以作用于值类型和引用类型；抽象类只能作用于引用类型。例如，Struct就可以继承接口，而不能继承类。</li>
 </ul>
 </blockquote>
-
-<h3 id="规则与场合">规则与场合</h3>
-
+<h3 id="heading-5">规则与场合</h3>
 <blockquote>
 <ol>
 <li>请记住，面向对象思想的一个最重要的原则就是：<strong>面向接口编程</strong>。</li>
@@ -384,10 +364,8 @@ tip：List泛型类对应于ArrayList。</li>
 </ol>
 </blockquote>
 </blockquote>
-
 <p>参考：<a href="http://www.cnblogs.com/anytao/archive/2007/04/12/must_net_02.html">对抽象编程：接口和抽象类</a></p>
-
-<p>&nbsp;</p>
+<p> </p>
 
                 
               </div>
@@ -439,14 +417,60 @@ tip：List泛型类对应于ArrayList。</li>
               </p>
               <div class="post-entry">
                 
-                  字符串string可以理解为char[]，他是一个引用类型。
-字符串创建  操作上类似于int，char等类型，直接进行赋值，string str=&ldquo;bystander&rdquo;;虽然string 是个类，但是如果你天真的使用 string str=new string(&ldquo;bystander&rdquo;); 来构造，会导致一个编译错误。因为System.String只提供了数个接受Char*，Char[]类型参数的构造函数。 所以只能像下面这样使用， Char[] cs={&lsquo;b&rsquo;,&lsquo;y&rsquo;,&lsquo;e&rsquo;}; String str=new String(cs); 看出来了吧，很麻烦的。所以一般还是使用第一种。
- 字符串恒定性  恒定性(Immutability)，是指字符串一经创建，就不可改变，这是String最为重要的特性之一。具体来说，就是字符串一旦创建，就会在托管堆上分配一块连续的内存空间，我们对其的任何改变都不会影响到原有的String对象，而是重新创建的新的String对象。类似Insert，Substring，ToUpper都只是创建出了新的临时的字符串，会成为下次垃圾回收的目标。 好处：
- 保证了对String对象的任何操作不会改变源字符串。 恒定性还意味着操作字符串不会出现线程同步问题 恒定性一定程度上，成就了字符串驻留。   字符串驻留  CLR维护一个表来存放字符串，该表叫做拘留表（或驻留池），他包含程序上以编程方式声明或创建的每一个唯一的字符串的引用，因此具有特定值的实例在系统中只有一个。如果将同一个字符串分配给多个变量，那么CLR就会向拘留池检索相同引用，并分配给变量。
-通过下面这个例子来说明： class StringInterning { public static void Main() { string strA = &ldquo;bystander&rdquo;; string strB = &ldquo;bystander&rdquo;; Console.WriteLine(ReferenceEquals(strA,strB)); string strC = &ldquo;by&rdquo;; string strD = strC+&ldquo;stander&rdquo;; Console.WriteLine(ReferenceEquals(strA,strD)); strD=String.Intern(strD); Console.WriteLine(ReferenceEquals(strA,strD)); } } 猜猜答案是什么。。 正确答案是：True，False，True 为什么不是我们通常认为的那样呢。这就是因为字符串驻留了
-缘起  String类型的特性恒定性，对字符串的任何操作都只会创建新的字符串，这会导致性能下降，而String又用的很频繁，为此，CLR使用字符串驻留来解决这一问题。为此，CLR内部维护一个哈希表，来管理其创建的大部分string对象。其中Key为string本身，Value为分配给对应的string的内存地址。
- 细节  string strA = &ldquo;bystander&rdquo;; CLR初始化时，创建一个空的哈希表，当JIT编译方法的时候，会首先在哈希表中查找每一个字符串常量，显然找不到任何&rdquo;bystander&rdquo;变量，因此会在托管堆中创建一个新的string对系那个strA，并更新哈希表，Key被赋值为&rdquo;bystander&rdquo;,Value被赋值为strA的引用.
-                  <a href="https://leizhiyuan.github.io/2012/07/08/c#%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%A9%BB%E7%95%99/" class="post-read-more">[Read More]</a>
+                  <p>字符串string可以理解为char[]，他是一个引用类型。</p>
+<h3 id="heading">字符串创建</h3>
+<blockquote>
+<p>操作上类似于int，char等类型，直接进行赋值，string str=&quot;bystander&rdquo;;虽然string 是个类，但是如果你天真的使用</p>
+<!-- raw HTML omitted -->
+<p>来构造，会导致一个编译错误。因为System.String只提供了数个接受Char*，Char[]类型参数的构造函数。
+所以只能像下面这样使用，</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>看出来了吧，很麻烦的。所以一般还是使用第一种。</p>
+</blockquote>
+<h3 id="heading-1">字符串恒定性</h3>
+<blockquote>
+<p>恒定性(Immutability)，是指字符串一经创建，就不可改变，这是String最为重要的特性之一。具体来说，就是字符串一旦创建，就会在托管堆上分配一块连续的内存空间，我们对其的任何改变都不会影响到原有的String对象，而是重新创建的新的String对象。类似Insert，Substring，ToUpper都只是创建出了新的临时的字符串，会成为下次垃圾回收的目标。
+好处：</p>
+<ul>
+<li>保证了对String对象的任何操作不会改变源字符串。</li>
+<li>恒定性还意味着操作字符串不会出现线程同步问题</li>
+<li>恒定性一定程度上，成就了字符串驻留。</li>
+</ul>
+</blockquote>
+<h3 id="heading-2">字符串驻留</h3>
+<blockquote>
+<p>CLR维护一个表来存放字符串，该表叫做拘留表（或驻留池），他包含程序上以编程方式声明或创建的每一个唯一的字符串的引用，因此具有特定值的实例在系统中只有一个。如果将同一个字符串分配给多个变量，那么CLR就会向拘留池检索相同引用，并分配给变量。</p>
+<p>通过下面这个例子来说明：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>猜猜答案是什么。。
+正确答案是：True，False，True
+为什么不是我们通常认为的那样呢。这就是因为字符串驻留了</p>
+<h3 id="heading-3">缘起</h3>
+<blockquote>
+<p>String类型的特性恒定性，对字符串的任何操作都只会创建新的字符串，这会导致性能下降，而String又用的很频繁，为此，CLR使用字符串驻留来解决这一问题。为此，CLR内部维护一个哈希表，来管理其创建的大部分string对象。其中Key为string本身，Value为分配给对应的string的内存地址。</p>
+</blockquote>
+<h3 id="heading-4">细节</h3>
+<blockquote>
+<!-- raw HTML omitted -->
+<p>　　CLR初始化时，创建一个空的哈希表，当JIT编译方法的时候，会首先在哈希表中查找每一个字符串常量，显然找不到任何&quot;bystander&quot;变量，因此会在托管堆中创建一个新的string对系那个strA，并更新哈希表，Key被赋值为&quot;bystander&rdquo;,Value被赋值为strA的引用.也就是Value内保留了&quot;bystander&quot;在托管堆中的引用地址.</p>
+<!-- raw HTML omitted -->
+<p>　　接着,JIT根据&quot;bystander&quot;查找哈希表,结果找到了,所以JIT不做操作,只把找到的key对应的Value值赋给了strB对象.因此,第一个输出为true,引用相等.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>　　同样,JIT向哈希表中添加了Key为&quot;by&rdquo;,Value为托管堆上&quot;by&quot;的地址.返回strC对象.但是注意,strD不同,JIT不检测,因为strD他是动态生成的.这样的字符串不会被添加到哈希表中进行维护,而是在托管堆中直接分配,所以第二个Console输出False.</p>
+<p>　　对于第三个,我们首先看看Intern方法和IsInterned方法,对于动态生成的字符串,因为没有添加到CLR维护的哈希表,所以字符串驻留机制对其失效,但是可以手工开启,来实现高效的比较字符串相等.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>　　两者的机制都是去哈希表中查找是否存在str字符串,找到的话也都返回对str的引用,不同的是当哈希表中没有str的话,IsInterned返回null,而Intern将把这个字符串添加到哈希表,并返回引用.注意,IsInterned返回非null并不代表两个字符串引用了相同的地址.
+所以</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>就很好理解了.</p>
+</blockquote>
+</blockquote>
+
                 
               </div>
 
@@ -497,9 +521,16 @@ tip：List泛型类对应于ArrayList。</li>
               </p>
               <div class="post-entry">
                 
-                  看书的时候，看到的。然后感觉书上的写的不清楚，于是自己写了一下。还真的有问题。 要进行序列化和反序列化，首先要定义一个可以序列化的类，方法是在类的声明前加上特性 [Serializable] 定义了一个简单的用户类，需要注意的是私有字段是不能序列化的，只有公有字段和公有属性才可以。如下
-[Serializable] //特性，可以序列化 public class UserData { public string Name; public int Age; private string sex; public string Sex { set{sex=value;} get{return sex;} } public UserData() { } public UserData(string name, int age, string sex) { Name = name; Age = age; Sex = sex; } } 注意，书上有个例子没有给出默认的构造函数，实际测试时如果没有默认构造函数，是不能执行xml序列化的。注意。 然后就导入需要的命名空间。 需要导入 using System.IO; using System.Runtime.Serialization.Formatters.Binary; using System.Xml.Serialization; 分贝对应文件操作，二进制序列化和xml序列化 为了方便，我封装了四个静态函数，用于实现序列化和反序列化。 //封装二进制序列化方法 public static void BinarySerialize(UserData user) { FileStream fs = new FileStream("
-                  <a href="https://leizhiyuan.github.io/2012/07/07/c#%E4%B8%ADxml%E5%92%8C%E4%BA%8C%E8%BF%9B%E5%88%B6%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96/" class="post-read-more">[Read More]</a>
+                  <p>看书的时候，看到的。然后感觉书上的写的不清楚，于是自己写了一下。还真的有问题。
+要进行序列化和反序列化，首先要定义一个可以序列化的类，方法是在类的声明前加上特性
+[Serializable]
+定义了一个简单的用户类，需要注意的是私有字段是不能序列化的，只有公有字段和公有属性才可以。如下</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>分贝对应文件操作，二进制序列化和xml序列化</p>
+<p>为了方便，我封装了四个静态函数，用于实现序列化和反序列化。</p>
+<!-- raw HTML omitted -->
+
                 
               </div>
 
@@ -550,11 +581,15 @@ tip：List泛型类对应于ArrayList。</li>
               </p>
               <div class="post-entry">
                 
-                  最近的一个事就是那个诡异的CSV导入，后来决定用最笨的方法。就是readline，然后确实是可以正常识别了。思路就是一行行读入，然后构造sql语句，保存为sql文件，然后去批量执行sql文件。其实在codeproject找到了一些类似的工具，都有不如意的地方，但是时间关系还没能自己去定制，这件事完成后，就去完善一下大牛们的工具。
-　因为是多个csv文件，每个文件对应于我们想建的一个表，实际是大约2000个csv文件，每个文件大约4000行数据，构造成对应的sql语句比较简单，需要注意的就是如果sql server表中的字段和关键字重名，那么需要加[]，比如我们有个字段是open，那么实际sql语句中使用的时候，比如
-CREATE TABLE ( [open] decimal not null, ) 　简单的读写以后我们构造了2000个sql文件，然后我们需要执行这些sql文件。。必然需要写个代码来批量执行了。。为此，我先用C#生成一个批处理文件，然后来执行
-void GetBat(string InputPath,string OutFile) { DirectoryInfo di = new DirectoryInfo(InputPath); FileInfo[] fi = di.GetFiles(); // Create an array representing the files in the current directory StringBuilder strtemp = new StringBuilder(); foreach (FileInfo fiTemp in fi) { string temp = "osql -S \"127.0.0.1\" -U \"sa\" -P \"broker\" -d \"test_money\" -i \""; temp += fiTemp.FullName.ToString() + "\"\n"; strtemp.
-                  <a href="https://leizhiyuan.github.io/2012/07/06/csv%E6%89%B9%E9%87%8F%E5%AF%BC%E5%85%A5%E8%A7%A3%E5%86%B3/" class="post-read-more">[Read More]</a>
+                  <p>　　最近的一个事就是那个诡异的CSV导入，后来决定用最笨的方法。就是readline，然后确实是可以正常识别了。思路就是一行行读入，然后构造sql语句，保存为sql文件，然后去批量执行sql文件。其实在codeproject找到了一些类似的工具，都有不如意的地方，但是时间关系还没能自己去定制，这件事完成后，就去完善一下大牛们的工具。</p>
+<p>　　因为是多个csv文件，每个文件对应于我们想建的一个表，实际是大约2000个csv文件，每个文件大约4000行数据，构造成对应的sql语句比较简单，需要注意的就是如果sql server表中的字段和关键字重名，那么需要加[]，比如我们有个字段是open，那么实际sql语句中使用的时候，比如</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>　　简单的读写以后我们构造了2000个sql文件，然后我们需要执行这些sql文件。。必然需要写个代码来批量执行了。。为此，我先用C#生成一个批处理文件，然后来执行</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>600M的sql文件执行起来三个多小时。。因为只算一次，所以就不考虑优化了。。鄙视我们吧。</p>
+
                 
               </div>
 
@@ -588,7 +623,7 @@ void GetBat(string InputPath,string OutFile) { DirectoryInfo di = new DirectoryI
   <i class="fas fa-calendar"></i>&nbsp;Posted on July 5, 2012
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -605,10 +640,37 @@ void GetBat(string InputPath,string OutFile) { DirectoryInfo di = new DirectoryI
                 
                   .Net有四个判等函数？不少人看到这个标题，会对此感到怀疑。事实上确是如此，.Net提供了ReferenceEquals、静态Equals，具体类型的Equals以及==操作符这四个判等函数。但是这四个函数之间有细微的关系，改变其中一个函数的实现会影响到其他函数的操作结果。
 　首先要说的是Object.ReferenceEquals和Object.Equals这两个静态函数，对于它们俩来说，是不需要进行重写的，因为它们已经完成它们所要得做的操作。
-对于Object.ReferenceEquals这个静态函数，函数形式如下： public static bool ReferenceEquals( object left, object right ); 这个函数就是判断两个引用类型对象是否指向同一个地址。有此说明后，就确定了它的使用范围，即只能对于引用类型操作。那么对于任何值类型数据操作，即使是与自身的判别，都会返回false。这主要因为在调用此函数的时候，值类型数据要进行装箱操作，也就是对于如下的形式来说。 int n = 10; Object.ReferenceEquals( n, n ); 这是因为对于n这个数据装箱两次，而每次装箱后的地址有不同，而造成Object.ReferenceEquals( n, n )的结果永远为false。
+对于Object.ReferenceEquals这个静态函数，函数形式如下：
+　这个函数就是判断两个引用类型对象是否指向同一个地址。有此说明后，就确定了它的使用范围，即只能对于引用类型操作。那么对于任何值类型数据操作，即使是与自身的判别，都会返回false。这主要因为在调用此函数的时候，值类型数据要进行装箱操作，也就是对于如下的形式来说。
+这是因为对于n这个数据装箱两次，而每次装箱后的地址有不同，而造成Object.ReferenceEquals( n, n )的结果永远为false。
 对于第一个判等函数来说，没有什么好扩展的，因为本身已经很好地完成了它所要做的。
-对于第二个Object.Equals这个静态函数，其形式如下： public static bool Equals( object left, object right ); 按照书中对它的分析，其大致函数代码如下： public static void Equals( object left, object right ) { // Check object identity if( left == right ) return true;
-// both null references handled above if( ( left == null ) || ( right == null ) ) return false; return left.
+对于第二个Object.Equals这个静态函数，其形式如下：
+　按照书中对它的分析，其大致函数代码如下：
+　可以说，Object.Equals这个函数完成判等操作，需要经过三个步骤，
+第一步是需要根据对象所属类型的==操作符的执行结果；
+第二步是判别是否为null，也是和第一步一样，需要根据类型的==操作符的执行结果；
+最后一步要使用到类型的Equals函数的执行结果。
+也就是说这个静态函数的返回结果，要取决于后面要提到的两个判等函数。类型是否提供相应的判等函数，成为这个函数返回结果的重要因素。
+　那么对于Object.Equals这个静态方法来说，虽说接受参数的类型也属于引用类型，但是不同于Object.ReferenceEquals函数，对于如下的代码，能得出正确的结果。
+ 这是因为在此函数中要用到具体类型的两个判等函数，不过就函数本身而言，该做的判断都做了，因此不需要去重载添加复杂的操作。
+为了更好的述说剩下两个函数，先解释一下等价的意义。对于等价的意义，就是自反、对称以及传递。
+ 所谓自反，即a == a； 而对称，是a == b，则b == a； 传递是 a == b，b == c，则 a == c； 理解等价的意义后，那么在实现类型的判等函数也要满足这个等价规则。  对于可以重载的两个判等函数，首先来介绍的是类型的Equals函数，其大致形式如下：
+ 如上增加了一个类型检查，即
+　这部分，这是由于子类对象可以通过as转化成基类对象，从而造成不同类型对象可以进行判等操作，违反了等价关系。
+　除此外对于类型的Equals函数来，其实并没有限制类型非要属于引用类型，对于值类型也是可以重载此函数，但是我并不推荐，主要是Equals函数的参数类型是不可变的，也就是说通过此方法，值类型要经过装箱操作，而这是比较影响效率的。
+　而对于值类型来说，我推荐使用最后一种判等函数，即重载运算符==函数，其大致形式如下：
+ 对于一个值类型而言，其的大致形式应该如下：
+ 　由于==操作与!=操作要同步定义，所以在定义==重载函数的时候，也要定义!=重载函数。这也是.Net在判等操作保持一致性。那么对于最后一个判等函数，这种重载运算符的方法并不适合引用类型。这就是.Net经常现象，去判断两个引用类型，不要用==，而要用某个对象的Equals函数。所以在编写自己类型的时候，要保留这种风格。
+那么对于以上介绍的四种判等函数，会产生如下类似的对比表格。
+操作结果取决于
+适用范围
+建议
+Object.ReferenceEquals
+引用类型
+Object.Equals
+无限制
+类型的Equals
+无限制
                   <a href="https://leizhiyuan.github.io/2012/07/05/effective-c#item-9%E5%8C%BA%E5%88%AB%E5%92%8C%E8%AE%A4%E8%AF%86%E5%9B%9B%E4%B8%AA%E5%88%A4%E7%AD%89%E5%87%BD%E6%95%B0/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -660,19 +722,14 @@ void GetBat(string InputPath,string OutFile) { DirectoryInfo di = new DirectoryI
                 
                   <p>　　今天做的是使用matlab进行协整检验，好吧。。听起来似乎很厉害的样子，其实，我也不太清楚协整到底是干嘛呢。不过经管的各位很给力。
 想来协整检验matlab是可以做的。所以就去查matlab是不是有这个函数，结果是有的。egcitest，但是具体的参数还是景观的朋友看懂的。</p>
-
-<p>　　早上3点多起床，看matlab的书，然后早上看完了。基本上熟悉了matlab的操作。然后就开始写这个。大致的流程和昨天的那篇文章是一致的。但是matlab生成的dll文件在C#里面调用始终会提示这样一个错误。：
-<pre class="lang:default decode:true">MWMCR::EvaluateFunction error &hellip; Error using ==&gt;
-load Unable to read file Data_EGCITest: No such file or directory. Error in =&gt; test.m</pre>
-　　组合了几个关键字进行搜索，发现了<a href="http://www.mathworks.cn/matlabcentral/answers/33037-matlab-builder-ne-exception-with-supposedly-toolbox-support">这篇文章</a>，翻译过来很简单。</p>
-
+<p>　　早上3点多起床，看matlab的书，然后早上看完了。基本上熟悉了matlab的操作。然后就开始写这个。大致的流程和昨天的那篇文章是一致的。但是matlab生成的dll文件在C#里面调用始终会提示这样一个错误。：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>　　组合了几个关键字进行搜索，发现了<a href="http://www.mathworks.cn/matlabcentral/answers/33037-matlab-builder-ne-exception-with-supposedly-toolbox-support">这篇文章</a>，翻译过来很简单。</p>
 <p>　　错误提示说的那个Data_EGCITest是一个名为Data_EGCITest.mat的文件，位于$MATLABROOT/toolbox/econ/econ/Data_EGCITest.mat目录下，$MATLABROOT指的是你matlab的安装路径。在你build 工程的时候，在下图中，记得添加这个文件。
-<a href="http://leaverimage.b0.upaiyun.com/24000_o.jpg"><img src="/images/9f98cf04debe57b3ec360a6b3ae27c8995579770.jpg" alt="" title="操作" /></a></p>
-
+<a href="http://leaverimage.b0.upaiyun.com/24000_o.jpg"><img src="/images/9f98cf04debe57b3ec360a6b3ae27c8995579770.jpg" alt="" title="操作"></a></p>
 <p>　　然后build生成的dll文件就可以正常在C#里使用了。</p>
-
 <p>　　中间走了很多弯路。因为我想既然matlab都编译生成了dll，那么dll应该没问题。然后我就把精力放在了C#那边。。结果后来折腾了很长时间，才发现是这边的问题。。坑爹。。</p>
-
 <p>　　协整检验的代码就不发了。和题目没关系。。
 参考：
 　　<a href="http://www.mathworks.cn/help/toolbox/econ/egcitest.html">http://www.mathworks.cn/help/toolbox/econ/egcitest.html</a></p>
@@ -727,11 +784,51 @@ load Unable to read file Data_EGCITest: No such file or directory. Error in =&gt
               </p>
               <div class="post-entry">
                 
-                  MatLab的计算能力太强大了。最近需要通过C#来调用MatLab来进行一些计算，可是MatLab没用过。安装文件在我硬盘里躺了整整一年。
-　我们希望的是由外部程序调用MatLab函数。所以。希望可以完全脱离MATLAB环境，实现软件的快速开发。为此需要先介绍一下MCR。
-MCR简介 　MCR的全称是MATLAB Compiler Runtime，即MATLAB编译器运行时。是一个由MATLAB共享类库构成的执行引擎，他能够使MATLAB文件在没有MATLAB的机器上运行。这一点和.NET Framework相对于.NET程序一样，即为程序的运行提供了底层支持。当发布程序的时候，需要将MCR也打包进来，这样没有MATLAB的机器上也能执行，MCR随MATLAB软件一同发布，可以在MATLAB中输入命令“mcr”或者“mcrinstaller”获取其保存路径：
-&gt;&gt; mcr The WIN32 MCR Installer, version 7.15, is: D:\Program Files\MATLAB\R2011a\toolbox\compiler\deploy\win32\MCRInstaller.exe MCR installers for other platforms are located in: D:\Program Files\MATLAB\R2011a\toolbox\compiler\deploy\&lt;ARCH&gt; &lt;ARCH&gt; is the value of COMPUTER('arch') on the target machine. Full list of available MCR installers: D:\Program Files\MATLAB\R2011a\toolbox\compiler\deploy\win32\MCRInstaller.exe For more information, read your local MCR Installer help. Or see the online documentation at MathWorks' web site. (Page may load slowly.
-                  <a href="https://leizhiyuan.github.io/2012/07/02/c#%E8%B0%83%E7%94%A8matlab%E5%AE%9E%E7%8E%B0n%E9%98%B6%E5%B9%BB%E6%96%B9/" class="post-read-more">[Read More]</a>
+                  <p>　　MatLab的计算能力太强大了。最近需要通过C#来调用MatLab来进行一些计算，可是MatLab没用过。安装文件在我硬盘里躺了整整一年。</p>
+<p>　　我们希望的是由外部程序调用MatLab函数。所以。希望可以完全脱离MATLAB环境，实现软件的快速开发。为此需要先介绍一下MCR。</p>
+<h3 id="mcr">MCR简介</h3>
+<p>　　 MCR的全称是MATLAB Compiler Runtime，即MATLAB编译器运行时。是一个由MATLAB共享类库构成的执行引擎，他能够使MATLAB文件在没有MATLAB的机器上运行。这一点和.NET Framework相对于.NET程序一样，即为程序的运行提供了底层支持。当发布程序的时候，需要将MCR也打包进来，这样没有MATLAB的机器上也能执行，MCR随MATLAB软件一同发布，可以在MATLAB中输入命令“mcr”或者“mcrinstaller”获取其保存路径：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>　　根据上面的运行结果，可知该文件的完整路径是：</p>
+<!-- raw HTML omitted -->
+<h3 id="mwarray-api">MWArray API简介</h3>
+<p>　MCR包含了文件MWArray.dll，该文件中的API承担了用户程序和MCR之间数据交换的任务，因此，每一个独立文件都需要包含对该文件的引用，否则程序就不能使用MATLAB中的函数，为使用该文件，需要先使用上一步找到的安装MCR，我安装在D:\Program Files\MATLAB\MATLAB Compiler Runtime目录，然后该dll该文件在安装完MCR后位于：</p>
+<!-- raw HTML omitted -->
+<p>　　另外，该文件中有两个重要的命名空间，MathWorks.MATLAB.NET.Arrays和MathWorks.MATLAB.NET.Utility，Arrays命名空间下的类提供从其他任何兼容CLS（Common Language Specification） 语言访问MATLAB中数组的功能，这些类支持数组格式化、类型的特定索引和错误处理的功能。而Utility命名空间下的类提供了对MWArray类架构和MATLAB公共运行时的托管API的通用支持。</p>
+<h3 id="heading">实施</h3>
+<blockquote>
+<p>为了将MATLAB中的程序作为组件提供给其他.NET程序使用，需要做两方面的工作：</p>
+<p>1.将M文件打包为与.NET兼容的程序集</p>
+<p>2.在外部程序中添加对程序集的引用</p>
+<h3 id="matlab">MATLAB端的工作</h3>
+<p>　　以我这个功能为例。打开MatLab，然后File-&gt;New-&gt;Deployment Project.然后在Type里选择.net Assembly,Ok即可。我选择的工程名是test，注意，这个test就会生成一个名为test.dll的程序集，所以起个好名字，，我没起好。如图1
+<a href="http://leaverimage.b0.upaiyun.com/23964_o.jpg"><img src="/images/494daca0321a65539ea6b2c7d6d3155345c3c32d.jpg" alt="" title="start"></a>
+　　然后在图2的视图中定位到你选择的工程目录，并依次点击。
+<a href="http://leaverimage.b0.upaiyun.com/23966_o.jpg"><img src="/images/b2e74076bfe76e6aeac6b3b7365668d2f23431fe.jpg" alt="" title="step"></a>
+　　添加一个test.m的文件。图3
+<a href="http://leaverimage.b0.upaiyun.com/23965_o.jpg"><img src="/images/110d97e0942789e04445dd3d3eee89873c49de11.jpg" alt="" title="test"></a>这个名称随意。但是要注意，这个名字必须和你里面将要写的那个函数名称一致，这个很好理解。好了以后，双击test.m就会打开。输入</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>　　创建一个test方法。该方法在C#调用的时候要用到，接受一个参数，然后输出一个幻方。保存关闭m文件，然后回到上图，双击test.prj也就是工程文件。
+来到图4
+<a href="http://leaverimage.b0.upaiyun.com/23967_o.jpg"><img src="/images/5ab49b4504bc1aba33d62b3c2cfbf897656c751d.jpg" alt="" title="add"></a>
+　　点击Add Class，就是向test.dll的程序集中添加类。我添加了一个类叫做Func1.这个类用来在C#中创建一个对象，然后调用test（n）这个函数，然后出现Add Files，点击打开浏览框，把刚才写好的test.m选上。就可以了
+　　最后看窗口右上角，，点击那个build图标就ok，等个几分钟，就会在目录里生成test.dll文件了。图5
+<a href="http://leaverimage.b0.upaiyun.com/23968_o.jpg"><img src="/images/4e21f5823ece422097e73e2321e43b3b09a2cb7a.jpg" alt="" title="build"></a></p>
+<h3 id="vs">VS端的代码</h3>
+<p>　　现在，打开vs，创建C#工程，添加两个引用，分别是MWArray.dll和test.dll，添加引用的方法就是在解决方案资源管理器中，的引用上，点击，然后添加引用-&gt;浏览-&gt;找到这两个dll，为了方便，我一般会把这两个dll复制到我的C#工程目录里，然后添加引用，如前面所说，MWArray.dll里有两个命名空间，我们使用using语句都添加上。也包括生成的test.dll</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>　　然后设计C#界面，很简单的拖一个界面，图6
+<a href="http://leaverimage.b0.upaiyun.com/23969_o.jpg"><img src="/images/07a97d0fe021665574597469b813e53dc6b48677.jpg" alt="" title="ui"></a>
+　　然后单击事件代码：</p>
+<!-- raw HTML omitted -->
+</blockquote>
+<p>　　注意程序在初始化自定义类Func1时会花费较多时间，大约持续2~3秒钟，程序如同假死一般，但第二次点击按钮反应却很快.
+参考：
+<a href="http://www.360doc.com/content/12/0530/10/9587654_214689438.shtml">http://www.360doc.com/content/12/0530/10/9587654_214689438.shtml</a></p>
+
                 
               </div>
 
@@ -784,24 +881,14 @@ MCR简介 　MCR的全称是MATLAB Compiler Runtime，即MATLAB编译器运行�
               </p>
               <div class="post-entry">
                 
-                  
-
-<h3 id="为什么要分静态和非静态">为什么要分静态和非静态</h3>
-
+                  <h3 id="heading">为什么要分静态和非静态</h3>
 <p>在面向对象的世界里，大部分的情况都是实例特征主宰天下，类相当于一个类型模板，而对象则是类特征的拷贝，并且独立于其他对象来操作这些特征，但是在某些情况下，需要某些特征被所有的对象共公有，因此有必要实现一种基于类的特征，而不是基于实例对象的特征机制，这就是静态特征。</p>
-
-<h3 id="1-静态类和非静态类">1.静态类和非静态类</h3>
-
+<h3 id="1">1.静态类和非静态类</h3>
 <blockquote>
 <p>一个类如果包含静态成员和静态方法，那么该类就可以定义为静态类，定义方法是在类定义前加上static，比如</p>
-
-<pre class="lang:c# decode:true " >static class MyClass
-{
-//define the class
-}</pre> 
-
-<h3 id="比较">比较：</h3>
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h3 id="heading-1">比较：</h3>
 <blockquote>
 <ol>
 <li>静态类只能包含静态成员和静态方法，否则会抛出编译错误，而非静态类既可以包含非静态成员和非静态方法，还可以包含静态成员和静态方法。但不能作用于静态只读字段。</li>
@@ -811,14 +898,12 @@ MCR简介 　MCR的全称是MATLAB Compiler Runtime，即MATLAB编译器运行�
 </ol>
 </blockquote>
 </blockquote>
-
-<h3 id="2-静态构造函数和实例构造函数">2.静态构造函数和实例构造函数</h3>
-
+<h3 id="heading-2"></h3>
+<h3 id="heading-3"></h3>
+<h3 id="2">2.静态构造函数和实例构造函数</h3>
 <blockquote>
 <p>静态构造函数，<strong>只能</strong>用于初始化类中的静态成员，包括静态字段和静态属性，静态构造函数不能带参数，不能有访问修饰符也不能被手工调用，通过是在.net运行库第一次调用类成员之前执行。其中，实例构造函数中也是可以初始化静态成员的。</p>
-
-<h3 id="比较-1">比较</h3>
-
+<h3 id="heading-4">比较</h3>
 <blockquote>
 <ol>
 <li>静态构造函数，可以和无参的构造函数共存。虽然参数列表相同，但是二者的执行顺序不同，静态构造函数在运行库加载类时执行，而实例构造函数在实例创建时执行。</li>
@@ -829,14 +914,12 @@ MCR简介 　MCR的全称是MATLAB Compiler Runtime，即MATLAB编译器运行�
 </ol>
 </blockquote>
 </blockquote>
-
-<h3 id="3-静态成员和实例成员">3.静态成员和实例成员</h3>
-
+<h3 id="heading-5"></h3>
+<h3 id="heading-6"></h3>
+<h3 id="3">3.静态成员和实例成员</h3>
 <blockquote>
 <p>静态成员主要包括静态字段和静态属性，静态成员可以实现在类中能够被所有实例对象共享的数据。例如一个缴费登记系统中，消费总额作为所以消费的综合，静态成员来实现就有很好。没有不必要的数据冗余。</p>
-
-<h3 id="比较-2">比较</h3>
-
+<h3 id="heading-7">比较</h3>
 <blockquote>
 <ol>
 <li>静态成员包括静态字段和静态属性，静态字段一般实现为private，而静态属性一般为public，以体现类的封装原则。</li>
@@ -845,14 +928,10 @@ MCR简介 　MCR的全称是MATLAB Compiler Runtime，即MATLAB编译器运行�
 </ol>
 </blockquote>
 </blockquote>
-
-<h3 id="4-静态方法和实例方法">4.静态方法和实例方法</h3>
-
+<h3 id="4">4.静态方法和实例方法</h3>
 <blockquote>
 <p>类似于静态成员共享数据段，静态方法共享代码段，静态方法以static标识。</p>
-
-<h3 id="比较-3">比较</h3>
-
+<h3 id="heading-8">比较</h3>
 <blockquote>
 <ol>
 <li>性能上，静态方法和实例方法差别不大，所有方法，不管是静态的还是非静态的，都是在JIT加载类时分配内存，不同的是静态方法以类名引用，而静态方法以对象引用，创建实例时，不会再为类的方法分配内存，所有的实例对象公用一个类的方法代码，因此，静态方法和实例方法的调用，区别仅在于实例方法需要当前对象指针指向该方法，而静态方法可以直接调用，性能上差异微乎其微。</li>
@@ -917,12 +996,8 @@ MCR简介 　MCR的全称是MATLAB Compiler Runtime，即MATLAB编译器运行�
               </p>
               <div class="post-entry">
                 
-                  
-
-<p>is和as都是用作类型转换的，类型转换包括显示转换和隐式转换，在.NET中类型转换的基本规则如下：</p>
-
-<h3 id="基本规则">基本规则</h3>
-
+                  <p>is和as都是用作类型转换的，类型转换包括显示转换和隐式转换，在.NET中类型转换的基本规则如下：</p>
+<h3 id="heading">基本规则</h3>
 <blockquote>
 <ul>
 <li>任何类型都可以安全的转换为其基类类型，可以由隐式转换来完成；</li>
@@ -934,9 +1009,7 @@ MCR简介 　MCR的全称是MATLAB Compiler Runtime，即MATLAB编译器运行�
 is和as操作符，是C#中用于类型转换的，提供了对类型兼容性的判断，从而使得类型转换控制在安全的范畴，提供了灵活的类型转换控制。</li>
 </ul>
 </blockquote>
-
-<h3 id="is的模式如下">is的模式如下：</h3>
-
+<h3 id="is">is的模式如下：</h3>
 <blockquote>
 <ul>
 <li>检查对象类型的兼容性，并返回结果，true或者false；</li>
@@ -945,18 +1018,11 @@ is和as操作符，是C#中用于类型转换的，提供了对类型兼容性�
 使用很简单，用于条件判断中.</li>
 </ul>
 </blockquote>
-
-<p>举例：
-<pre class="lang:c# decode:true">object o=new object();
-if(o is ISSsample)
- {
-    //转换
-    ISSample a =(ISSample)o;
- }</pre>
-&nbsp;</p>
-
-<h3 id="as的模式如下">as的模式如下：</h3>
-
+<p>举例：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<h3 id="as">as的模式如下：</h3>
 <blockquote>
 <ul>
 <li>检查对象类型的兼容性，并返回转换结果，如果不兼容就返回null；</li>
@@ -965,14 +1031,10 @@ if(o is ISSsample)
 <li>as必须和引用类型一起使用</li>
 </ul>
 </blockquote>
-
-<p>举例：
-<pre class="lang:c# decode:true">object o =new object();
-ASSample a=o as ASSample;
-if(a!=null)
- //do some work</pre>
-&nbsp;</p>
-
+<p>举例：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
 <p>参考：<a href="http://www.cnblogs.com/anytao/archive/2007/04/07/must_net_01.html">http://www.cnblogs.com/anytao/archive/2007/04/07/must_net_01.html</a></p>
 
                 
@@ -1059,7 +1121,7 @@ if(a!=null)
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

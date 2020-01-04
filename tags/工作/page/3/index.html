@@ -51,7 +51,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -250,37 +250,26 @@
               <div class="post-entry">
                 
                   <p>当运行在Linux上的程序有问题之后，我们通常要看一下当前CPU和内存的使用情况来分析一下问题</p>
-
 <p>对于CPU的使用率，通常用Load Average，也就是负载均值来度量</p>
-
 <p><strong>负载均值是啥？</strong></p>
-
 <p>负载是啥，负载就是对CPU使用率的一个计量，均值就是某一段时间内的一个平均值。</p>
-
 <p><strong>怎么看啊？</strong></p>
-
-<p>直接输入w命令
-<pre class="lang:default decode:true"># w
-20:02:51 up 23 days, 8:10, 2 users, load average: 1.20, 1.28, 1.29</pre>
-第一位1.20：表示最近1分钟平均负载
+<p>直接输入w命令</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>第一位1.20：表示最近1分钟平均负载
 第二位1.28：表示最近5分钟平均负载
 第三位1.29：表示最近15分钟平均负载</p>
-
-<p>或者uptime命令
-<pre class="lang:default decode:true">$ uptime
-09:50:21 up 200 days, 15:07, 1 user, load average: 0.27, 0.33, 0.37</pre>
-我们一般认为0.00表示无负载，可以理解为CPU空闲，1.00表示CPU满负载，但是注意，1.00是对于单cpu来说的，也就是说，如果是双核，那么这个满负载显示的值应该是2.00，以此类推。</p>
-
-<p><strong>怎么看我是几核啊</strong>
-<pre class="lang:default decode:true ">grep &lsquo;model name&rsquo; /proc/cpuinfo | wc -l</pre>
-通过统计cpuinfo的model name信息来算的</p>
-
+<p>或者uptime命令</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>我们一般认为0.00表示无负载，可以理解为CPU空闲，1.00表示CPU满负载，但是注意，1.00是对于单cpu来说的，也就是说，如果是双核，那么这个满负载显示的值应该是2.00，以此类推。</p>
+<p><strong>怎么看我是几核啊</strong></p>
+<!-- raw HTML omitted -->
+<p>通过统计cpuinfo的model name信息来算的</p>
 <p><strong>这三个值哪个重要？</strong></p>
-
 <p>一分钟内突然负载很大没关系，当然如果你要排查也没人拦着，如果15分钟的负载均值超过cpu的数目，就要关注了。</p>
-
 <p><strong>那什么就是理想负载呢？</strong></p>
-
 <p>以单个cpu为例，1.00表示cpu满负载运行，没有一点点浪费，实际上，有些管理员认为0.7也许是理想的状态。如果你的经常超过0.7，那么最好查一查。</p>
 
                 
@@ -330,35 +319,20 @@
               <div class="post-entry">
                 
                   <p>由于eclipse用的比较多，管理多个workplace很麻烦，经常需要打开以后再切换，简单介绍个方法。</p>
-
 <p>一</p>
-
 <p>1.进入Eclipse的安装目录，鼠标点击eclipse.exe，右键菜单&ndash;&gt;发送到&ndash;&gt;桌面快捷方式</p>
-
 <p>2.到桌面上找到“eclipse.exe - 快捷方式”，鼠标右键点击查看属性，弹出菜单中选择“快捷方式”标签，然后在“目标”中增加内容：-data e:\workspace，保存后即可</p>
-
 <p>3.双击这个快捷方式，eclipse就会使用e:\workspace作为工作空间启动。</p>
-
 <p>这样你多复制几个，就好了。</p>
-
 <p>二</p>
-
 <p>1.找个目录，新建一个文件夹，名称为workspace_aaa</p>
-
 <p>2.然后在当前目录下新建一个txt文件</p>
-
 <p>3.输入内容为：</p>
-
-<pre class="lang:default decode:true">start E:\eclipse\eclipse.exe -data workspace1</pre>
-
+<!-- raw HTML omitted -->
 <p>说明：前面是eclipse的路径，中间加上&rdquo;-data” ，后面为工作空间的路径，start要有，不然打开eclipse之后，命令行窗口不会自动消失的，很是碍眼。</p>
-
 <p>4.将这个txt保存为workspace1.bat</p>
-
 <p>5.双击这个workspace1.bat，eclipse就会使用workspace1.bat 作为工作空间启动。</p>
-
-<p>&nbsp;</p>
-
+<p> </p>
 <p>对launchy党来说，新建个目录，然后创建好多个bat，以后直接快速启动真是太方便了</p>
 
                 
@@ -390,7 +364,7 @@
   <i class="fas fa-calendar"></i>&nbsp;Posted on March 1, 2014
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;3&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -405,16 +379,46 @@
               </p>
               <div class="post-entry">
                 
-                  我们在写单元测试的时候，面临的一个挑战就是要测试的内容总是依赖于其他组件，要是我们还得先配置好其他组件，未免有点不如意，那么我们可以使用Mocks来代替那些依赖的组件
-本文问了展示这个过程，我会创建一个DAL，数据访问层，这是一个类，提供了一个通用的api来访问和修改数据仓库的数据，然后，我们要测试这个api，而不用配置连接某个本地的数据库，，或者一个远程的数据库，或者是一个文件系统，反正就是任何放数据的东西，DAL层的好处就是隔离开了数据访问和应用程序代码
-首先使用maven来创建一个工程 mvn archetype:generate -DgroupId=info.sanaulla -DartifactId=MockitoDemo -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false 执行之后，本地生成MockitoDemo 文件夹，然后整个工程的目录结构与生成好了。
-然后，我们写这样一个model类，表示book类型 package info.sanaulla.models;
-import java.util.List;
-/** * Model class for the book details. */ public class Book {
-private String isbn; private String title; private List&lt;String&gt; authors; private String publication; private Integer yearOfPublication; private Integer numberOfPages; private String image;
-public Book(String isbn, String title, List&lt;String&gt; authors, String publication, Integer yearOfPublication, Integer numberOfPages, String image){
-this.isbn = isbn; this.title: = title; this.
-                  <a href="https://leizhiyuan.github.io/2014/03/01/%E8%AF%91%E4%BD%BF%E7%94%A8mockito%E7%AE%80%E5%8D%95mock%E5%85%A5%E9%97%A8/" class="post-read-more">[Read More]</a>
+                  <p>我们在写单元测试的时候，面临的一个挑战就是要测试的内容总是依赖于其他组件，要是我们还得先配置好其他组件，未免有点不如意，那么我们可以使用Mocks来代替那些依赖的组件</p>
+<p>本文问了展示这个过程，我会创建一个DAL，数据访问层，这是一个类，提供了一个通用的api来访问和修改数据仓库的数据，然后，我们要测试这个api，而不用配置连接某个本地的数据库，，或者一个远程的数据库，或者是一个文件系统，反正就是任何放数据的东西，DAL层的好处就是隔离开了数据访问和应用程序代码</p>
+<p>首先使用maven来创建一个工程</p>
+<!-- raw HTML omitted -->
+<p>执行之后，本地生成MockitoDemo 文件夹，然后整个工程的目录结构与生成好了。</p>
+<p>然后，我们写这样一个model类，表示book类型</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>然后，我们访问Book model的DAL类会如下</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>DAL层现在还没啥功能，我们要通过TDD来测试，实际中，DAL可能和ORM来交互，也可能和数据库API交互，但是我们设计DAL的时候，不用关心</p>
+<p>准备测试</p>
+<p>我倾向于用junit做单元测试，而Mockito做mock。首先更新一下pom文件。添加依赖</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>下面，我们要测试啦，我们会在单元测试中把mock数据注入到BookDAL中，这样我们就不要依赖任何数据源就可以完成测试</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>我们当然对应测试DAL类的每个方法嘛。</p>
+<p>然后我们会在setup（这个方法是在测试类执行测试前执行的，用于准备数据啦）</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>在setup()方法中</p>
+<p>1.首先我创建BookDAL的对象</p>
+<!-- raw HTML omitted -->
+<p>2.然后stub,存根。。用mock的数据。这样当对应的方法被调用的时候就返回我mock的数据</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>然后，我们执行一下</p>
+<p>mvn test就可以看到结果了</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p> </p>
+<p> </p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>很简单。。。没有配置任何实际的数据源。</p>
+
                 
               </div>
 
@@ -464,34 +468,25 @@ this.isbn = isbn; this.title: = title; this.
               <div class="post-entry">
                 
                   <p>曾经有报道说JavaFX将使java在桌面开发上大有作为，感觉好像是很高端的样子，今天尝试了一下，界面对于自用的工具来说，本来也不多重要，只是一个简单的尝试</p>
-
 <p>简单说下大致的步骤和一些思路，可能有错误。</p>
-
 <p>javafx需要sdk支持，java7之后的都有的。设计思路是数据和代码分离，界面通过xml或json数据来描述，这样就把业务逻辑代码和界面实现代码分开了</p>
-
 <p>一个简单的开发过程应该是这样的</p>
-
 <p>1.使用JavaFX Scene Builder来绘制界面，保存为xml/json格式</p>
-
 <p>画的话没啥要说的，了解一下基本的整体概念就行。</p>
-
-<p>2.在eclipse里新建工程，可以是普通工程，将1中的文件放到资源目录，在代码里加载，然后界面就加载成功了。
-<pre class="lang:default decode:true">Node topNode = FXMLLoader.load(AFI.class.getResource(&ldquo;/afimain.fxml&rdquo;));</pre>
-逻辑代码，比如一个简单的按钮事件可以通过
-<pre>Node node = topNode.lookup(&ldquo;#paneRightBottom&rdquo;);</pre>
-来查找到id为paneRightBottom的元素，然后就可以通过对node添加事件监听器来完成一些功能了</p>
-
+<p>2.在eclipse里新建工程，可以是普通工程，将1中的文件放到资源目录，在代码里加载，然后界面就加载成功了。</p>
+<!-- raw HTML omitted -->
+<p>逻辑代码，比如一个简单的按钮事件可以通过</p>
+<!-- raw HTML omitted -->
+<p>来查找到id为paneRightBottom的元素，然后就可以通过对node添加事件监听器来完成一些功能了</p>
 <p><em><strong>主要想说的是：</strong></em></p>
-
-<p>JavaFX和WPF其实思路是一模一样的，恰好WPF我也用过，感觉两个都没搞起来，虽然界面炫，然后我去维基看了下：
-&gt; 该产品于2007年5月在JavaOne大会上首次对外公布。JavaFX技术主要应用于创建Rich Internet application（<a href="http://zh.wikipedia.org/wiki/RIA" title="RIA">RIAs</a>）。JavaFX期望能够在桌面应用的开发领域与Adobe公司的AIR、<a href="http://zh.wikipedia.org/w/index.php?title=OpenLaszlo&amp;amp;action=edit&amp;amp;redlink=1" title="OpenLaszlo（页面不存在）">OpenLaszlo</a>以及<a href="http://zh.wikipedia.org/wiki/%E5%BE%AE%E8%BD%AF" title="微软">微软</a>公司的<a href="http://zh.wikipedia.org/wiki/Silverlight" title="Silverlight">Silverlight</a>相竞争
+<p>JavaFX和WPF其实思路是一模一样的，恰好WPF我也用过，感觉两个都没搞起来，虽然界面炫，然后我去维基看了下：</p>
+<blockquote>
+<p>该产品于2007年5月在JavaOne大会上首次对外公布。JavaFX技术主要应用于创建Rich Internet application（<a href="http://zh.wikipedia.org/wiki/RIA" title="RIA">RIAs</a>）。JavaFX期望能够在桌面应用的开发领域与Adobe公司的AIR、<a href="http://zh.wikipedia.org/w/index.php?title=OpenLaszlo&amp;action=edit&amp;redlink=1" title="OpenLaszlo（页面不存在）">OpenLaszlo</a>以及<a href="http://zh.wikipedia.org/wiki/%E5%BE%AE%E8%BD%AF" title="微软">微软</a>公司的<a href="http://zh.wikipedia.org/wiki/Silverlight" title="Silverlight">Silverlight</a>相竞争
 已经7年了，用户数应该是非常少的，<strong>成熟的商业型产品也没几个</strong>，在尝试的过程中，我在stackoverflow，以及一些很不错的java博客上，大量查找基本也没有太多的信息，都是一些很浅的应用，包括stackoverflow上的回答数，基本还是能反映出来的，主要应用于RIA，而当前RIA已经出html5的天下了。SL早都不更新了，这种坑爹的所谓新技术。</p>
-
-<p>&nbsp;</p>
-
+</blockquote>
+<p> </p>
 <p>Oracle还是好好把Swing搞好吧。。不建议尝试。</p>
-
-<p>&nbsp;</p>
+<p> </p>
 
                 
               </div>
@@ -526,7 +521,7 @@ this.isbn = isbn; this.title: = title; this.
   <i class="fas fa-calendar"></i>&nbsp;Posted on February 8, 2014
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;4&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -543,12 +538,32 @@ this.isbn = isbn; this.title: = title; this.
                 
                   本篇是用来填上一篇 挖下的坑的。
 1.java调用webservice
-有一些已有的webservice服务，由xfire生成发布，有些有参数，有些无参数，无参数的直接我直接使用org.codehaus.xfire这个包里的Client来动态生成客户端。然后调用就可以了。非常简单 Client client = null; try { client = new Client( new URL( &ldquo;http://leaver.me/testService?wsdl&quot;)); client.invoke(&ldquo;refreshAllCache&rdquo;, new Object[0]);
-} catch (MalformedURLException e) { e.printStackTrace(); } catch (Exception e) { e.printStackTrace(); }&lt;/pre&gt; 但对于有参的，且是服务器自定义的类作为参数的时候，实在是搞不定。。不管是把自定义的类放到本地，包名一致，在invoke的时候生成这个对象还是其他什么方法。都无法完成。
+有一些已有的webservice服务，由xfire生成发布，有些有参数，有些无参数，无参数的直接我直接使用org.codehaus.xfire这个包里的Client来动态生成客户端。然后调用就可以了。非常简单
+但对于有参的，且是服务器自定义的类作为参数的时候，实在是搞不定。。不管是把自定义的类放到本地，包名一致，在invoke的时候生成这个对象还是其他什么方法。都无法完成。
 最终换了直接发送soap报文来完成。dirty hack啊。如果你有一些好的方法希望不吝赐教。
-解决方案来源自stackoverflow，因为stackoverflow现在国内好像有时候打不开。因此把代码贴过来。有疑问的话留言讨论。 import javax.xml.soap.; import javax.xml.transform.; import javax.xml.transform.stream.*;
-public class SOAPClientSAAJ {
-/** * Starting point for the SAAJ - SOAP Client Testing */ public static void main(String args[]) { try { // Create SOAP Connection SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.
+解决方案来源自stackoverflow，因为stackoverflow现在国内好像有时候打不开。因此把代码贴过来。有疑问的话留言讨论。
+2.Access restriction on class due to restriction on required library rt.jar? 报错
+总么都感觉是环境问题，系统bug。解决如下：
+ 进入project properties的 Build Path 设置里. 移除 JRE System Library 再添加回来，方法是: 选择 &ldquo;Add Library&rdquo; ，然后选择 JRE System Library.   3.SSHManager类报错：com.jcraft.jsch.JSchException: UnknownHostKey
+我使用的一个SSHManager类如下：
+报这个错是因为
+连接这段代码里少了config.put(&ldquo;StrictHostKeyChecking&rdquo;, &ldquo;no&rdquo;);这段设置，这个是去掉了严格的安全检查，一般只用于测试目的。
+4.navicat连接oracle数据库
+之前使用PL/SQL操作Oracle数据库，使用Heidisql操作mysql数据库。。切换麻烦。而且PL/SQL搜索的时候中文有问题。于是打算使用navicat统一管理
+方法是：
+1.首先下载Instant Client 的32位版本和Navicat Premium
+2.然后解压Instant Client，配置navicat
+
+选择oci文件即可
+然后新建oracle配置，选择basic模式，其他的根据你的数据库信息自己填写即可。
+ 5.HttpClient的logger日志实在太多了
+大人，实在太多了。看不过来啊。附赠一篇log4j配置文件详解
+在log4j.properties文件中添加如下配置信息
+log4j.logger.httpclient.wire.header=INFO
+log4j.logger.httpclient.wire.content=INFO
+log4j.logger.org.apache.commons.httpclient = INFO
+最后附赠一些实用的工具
+http://www.freeformatter.com/ 程序员必备。各类转换，包括转义工具，格式校验工具。效果很好。
                   <a href="https://leizhiyuan.github.io/2014/02/08/%E7%AC%94%E8%AE%B0%E5%86%99%E4%BB%A3%E7%A0%81%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB%E4%B8%8B/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -608,24 +623,20 @@ public class SOAPClientSAAJ {
 首先来拿生活中的一个非常常见的例子来说明跨行清算的整个过程，这里面不涉及交易费等其他概念。
 跨行取款流程 张三是工行的持卡人，他需要取现金，但是找不到工行的ATM机器，发现附近有建行的ATM机器，他只能去建行取款，整个过程就是跨行清算的过程，我们以这个场景为例，分析一下业务流程，具体交互流程见下面一张图。
 
-&nbsp;
-工行持卡人张三在建行ATM机器取款100，ATM请求建行主机，由于是工行的卡，建行不识别，只能请求工行去处理，工行识别持卡人账户并扣款100，然后通知建行，建行则通知atm吐钱。
+ 工行持卡人张三在建行ATM机器取款100，ATM请求建行主机，由于是工行的卡，建行不识别，只能请求工行去处理，工行识别持卡人账户并扣款100，然后通知建行，建行则通知atm吐钱。
 这里整个系统要解决两个问题：
 1 建行如何与工行通信
 2 建行和工行之间如何清算，如上图结果，工行欠建行100.
 整个系统的分析基于以上两个问题，下面首先解决是通信问题
-&nbsp;
-跨行通信的两种模式 我们先假设工行提供接口，只需要建行发送指约定格式的报文，即可于工行通信，这种相当于建行直接通过接口方式与工行通信。如果是这种方式，只能解决建行和工行的单向通信，如果工行和建行通信，则工行要发送建行指定的通信报文格式。可是大家想想，如果银行更多怎么办，下面是三家银行间的通信
+ 跨行通信的两种模式 我们先假设工行提供接口，只需要建行发送指约定格式的报文，即可于工行通信，这种相当于建行直接通过接口方式与工行通信。如果是这种方式，只能解决建行和工行的单向通信，如果工行和建行通信，则工行要发送建行指定的通信报文格式。可是大家想想，如果银行更多怎么办，下面是三家银行间的通信
 
 当有三家银行的时候，通信链路就有3*2=6条，当银行越来越多的时候，这种点对点的通信变的越来越复杂，每新增一家银行，他要做之前银行都要做的很多重复性的劳动，这样的成本非常高，也不经济，那么必须出现一个网络，它能够接入所有的银行，新的银行只需要接入这个网络，就可以和其他所有的银行进行通信。
 先把这个网络成为通信网络，这种通信网络有两种方式可以连接所有的银行
  1 这个通信网络定义标准接口，所有的银行都必须实现这个通信网络定义的api，新的银行如果想要接入这个通信网络，必须实现通信接口约定的协议。简称公共接口模式 2 这个通信网络主动去连接所有的银行的接口，把所有银行的接口信息都接入里面，就像一个适配器，新的银行如果想要接入这个通信网络，这个通信网络必须主动联系银行，按照银行的接口协议实现通信，简称适配器模式。 下面一幅图演示了这两种模式的不同：  
 对于这两模式，主要博弈就在于谁强谁弱。显然第三方支付公司属于适配器模式，需要一家一家银行去接入，至于银联，个人认为应该是第一种模式，这种对于银联这种需要稳定的系统来说是最具有优势的。
-&nbsp;
-跨行清算保证金模式 解决了通信问题，下面就看如何解决资金的清算问题。一种简单的方案就是工行在建行里面开设一个保证金账户，用这个账户去偿还在整个跨行交易中应付给建行的资金。
+ 跨行清算保证金模式 解决了通信问题，下面就看如何解决资金的清算问题。一种简单的方案就是工行在建行里面开设一个保证金账户，用这个账户去偿还在整个跨行交易中应付给建行的资金。
 
-&nbsp;
-从上图来看，这种方案确实可行。只需要工行在建行里面放足额的保证金，就可以满足跨行的费用。但是这里面实际上存在非常多的问题，
+ 从上图来看，这种方案确实可行。只需要工行在建行里面放足额的保证金，就可以满足跨行的费用。但是这里面实际上存在非常多的问题，
  1 如果银行越来也多，每个银行都要在其他银行存钱，太不经济了 2 保证金需要放多少资金？如果一直都没有发生跨行交易，工行就亏大发了 3 如果保证金不够怎么办？交易失败还是记应收款？ 对于第一个问题假设银行越来越多，会导致工行需要在其他每个银行里面都开设保证金账户（见下图），是一个很不经济的方案。  说明这个在其他银行存保证金的方案是不可行的，和之前通信的问题一样，是不是可以把所有的银行保证金账户单独管理起来，统一放置在一起，方便各个银行之间的清算。我们暂时把这个系统称之为保证金系统。
 保证金系统 保证金就是方便各个银行之间的清算，需要单独由一个系统进行管理，解决了跨行之间保证金存放的问题。每个银行只需要在保证金系统中存点钱就可以了。保证金系统也有两种模式。先看看比较好理解的第一种模式：
 
@@ -636,9 +647,9 @@ public class SOAPClientSAAJ {
 所有的第三方支付公司跨行清算的流程都是第二种方式，只有国家级清算公司（比如银联）是第一种方式，这是一种资源和权力上的不平等，不过是可以理解的。
 清算系统 保证金系统解决了保证金存放的问题，接下来就是解决如何清算的问题。假设保证金转账是实时的，就要面对上面说的问题，保证金不够的情况下，跨行交易是成功还是失败。这是一个业务上问题，有很多种解决方案，我们暂不说。从技术上来讲，如果每一笔交易都要保证金实时记账，那么保证金系统的负载太大，事务如何保证等等一些列的问题。所以一个最简单的方案就是：一天结算一次。
 每天由一个系统记录这些跨行交易信息，汇总出来，统一记账。这样一天只需要调用一次保证金系统即可。那么整个清算过程则是下面的流程：
- 1 系统T日发生建行和工行的跨行交易100 
- 2 清算系统T+1日汇总T日工行和建行之间发生的交易明细数据，并且发这些数据发给建行和工行进行确认 
-  &nbsp;
+  1 系统T日发生建行和工行的跨行交易100 
+  2 清算系统T+1日汇总T日工行和建行之间发生的交易明细数据，并且发这些数据发给建行和工行进行确认 
+    3 工行建行分别对明细对账确认之后，通知清算系统确认交易明细无误，清算系统开始清算，调用保证金支付系统转账。 4 清算完成之后，工行和建行分别获取保证金系统的真实金额和自身系统内部的映射账户进行余额对账。    清算中心最主要干得事情就是统计谁欠谁多少钱，以及触发保证金系统的调拨操作。
                   <a href="https://leizhiyuan.github.io/2013/12/14/%E8%97%8F%E8%B7%A8%E8%A1%8C%E6%B8%85%E7%AE%97%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -688,15 +699,38 @@ public class SOAPClientSAAJ {
               </p>
               <div class="post-entry">
                 
-                  有一次遇到了，查了查。原文地址
-Java中取资源时，经常用到Class.getResource和ClassLoader.getResource，这里来看看他们在取资源文件时候的路径问题。
-Class.getResource(String path)  path不以’/&lsquo;开头时，默认是从此类所在的包下取资源； path 以’/&lsquo;开头时，则是从ClassPath根下获取；  什么意思呢？看下面这段代码的输出结果就明白了：  package testpackage; public class TestMain { public static void main(String[] args) { System.out.println(TestMain.class.getResource(&ldquo;&rdquo;)); System.out.println(TestMain.class.getResource(&ldquo;/&rdquo;)); } }  输出结果：  file:/E:/workspace/Test/bin/testpackage/ file:/E:/workspace/Test/bin/  上面说到的【path以’/&lsquo;开头时，则是从ClassPath根下获取；】在这里就是相当于bin目录(Eclipse环境下)。
-再来一个实例，假设有如下Project结构：
+                  <p>有一次遇到了，查了查。<a href="http://www.cnblogs.com/yejg1212/p/3270152.html">原文地址</a></p>
+<p>Java中取资源时，经常用到Class.getResource和ClassLoader.getResource，这里来看看他们在取资源文件时候的路径问题。</p>
+<h2 id="classgetresourcestring-path">Class.getResource(String path)</h2>
+<!-- raw HTML omitted -->
+<p>再来一个实例，假设有如下Project结构：</p>
+<p><a href="http://leaverimage.b0.upaiyun.com/2013/12/o_PackageStructure1.png"><img src="/images/94eb328bce2cf9ff32430cc4075af46091202a22.png" alt="o_PackageStructure1"></a></p>
+<p>如果我们想在TestMain.java中分别取到1~3.properties文件，该怎么写路径呢？代码如下：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p>※Class.getResource和Class.getResourceAsStream在使用时，路径选择上是一样的。</p>
+<p> </p>
+<p> </p>
+<h2 id="classgetclassloadergetresourcestring-path">Class.getClassLoader（）.getResource(String path)</h2>
+<!-- raw HTML omitted -->
+<p>如果有同样的Project结构</p>
+<p><a href="http://leaverimage.b0.upaiyun.com/2013/12/o_PackageStructure.png"><img src="/images/46e184c9601d96bbb9fbb19e475c7909c85fe52c.png" alt="o_PackageStructure"></a></p>
+<p>使用Class.getClassLoader（）.getResource(String path)可以这么写：</p>
+<!-- raw HTML omitted -->
+<p>public class TestMain {
+public static void main(String[] args) {
+TestMain t = new TestMain();
+System.out.println(t.getClass().getClassLoader().getResource(&quot;&quot;));</p>
+<pre><code>    System.out.println(t.getClass().getClassLoader().getResource(&quot;1.properties&quot;));
+    System.out.println(t.getClass().getClassLoader().getResource(&quot;testpackage/2.properties&quot;));
+    System.out.println(t.getClass().getClassLoader().getResource(&quot;testpackage/subpackage/3.properties&quot;));
+}
+</code></pre>
+<p>}<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<p>※Class.getClassLoader（）.getResource和Class.getClassLoader（）.getResourceAsStream在使用时，路径选择上也是一样的。</p>
 
-如果我们想在TestMain.java中分别取到1~3.properties文件，该怎么写路径呢？代码如下： package testpackage;
-public class TestMain {
-public static void main(String[] args) { // 当前类(class)所在的包目录 System.out.println(TestMain.class.getResource(&#34;&#34;)); // class path根目录 System.out.println(TestMain.class.getResource(&#34;/&#34;)); // TestMain.class在&amp;lt;bin&amp;gt;/testpackage包中 // 2.properties 在&amp;lt;bin&amp;gt;/testpackage包中 System.out.println(TestMain.class.getResource(&#34;2.properties&#34;)); // TestMain.class在&amp;lt;bin&amp;gt;/testpackage包中 // 3.properties 在&amp;lt;bin&amp;gt;/testpackage.subpackage包中 System.out.println(TestMain.class.getResource(&#34;subpackage/3.properties&#34;)); // TestMain.
-                  <a href="https://leizhiyuan.github.io/2013/12/14/%E8%97%8Fclass.getresource%E5%92%8Cclassloader.getresource%E4%B8%8D%E5%90%8C%E7%82%B9/" class="post-read-more">[Read More]</a>
                 
               </div>
 
@@ -745,11 +779,24 @@ public static void main(String[] args) { // 当前类(class)所在的包目录 S
               </p>
               <div class="post-entry">
                 
-                  首先什么是代理？ 所谓代理呢也就是在调用实现类的方法时，可以在方法执行前后做额外的工作，这个就是代理。  那动态代理呢，官方解释是：  Java 动态代理机制的出现，使得 Java 开发人员不用手工编写代理类，只要简单地指定一组接口及委托类对象，便能动态地获得代理类。代理类会负责将所有的方法调用分派到委托对象上反射执行，在分派执行的过程中，开发人员还可以按需调整委托类对象及其功能，这是一套非常灵活有弹性的代理框架。 老湿，你说的是个毛啊，完全没看懂啊！
-我更喜欢另一种通俗的解释，官方的解释总是高度抽象的，等用了一段时间才能理解体会  动态代理实现了日志和业务的分开，也就是某个类只是要提供了某些业务，比如银行取款业务。这个类实现了取款业务的同时也需要实现日志功能，如果不用动态代理的话，那么由此一来该类代码里面已经额外地添加了自己不该添加的日志功能能代码。所以我们就得使用动态代理把它的业务代码和日志功能代码分开。所以用到了动态代理概念，spring里面的AOP就是一个很好的例子。  不直观啊，老湿，能再给力一点不？ 额，这样的话，我们来看一个例子，要用到的两个类 实现java.lang.reflect.InvocationHandler接口提供一个执行处理器，也就是真正做事的，然后通过java.lang.reflect.Proxy得到一个代理对象，通过这个代理对象来执行业务方法,在业务方法被调用的同时，执行处理器会被自动调用。 记住，动态代理只能对接口 首先业务接口：  public interface HelloWorld { public void sayHelloWorld(); } 然后我们是这样写的实现 public class HelloWorldImpl implements HelloWorld { public void sayHelloWorld() { System.out.println(&ldquo;Hello World!&rdquo;); } } 后来我们觉得执行这个方法前能不能做点其他啥事呢，比如写个日志？见个妹子？啥，这段代码不让改了，改了的话，业务方法和日志混合的一塌糊涂啊，以后想改个日志格式你来写啊
-那我们就得定义一个拦截器/执行处理器了。 public class HelloWorldHandler implements InvocationHandler { //目标对象 private Object targetObject;
-public HelloWorldHandler(Object targetObject){ this.targetObject = targetObject; } public Object invoke(Object proxy, Method method, Object[] args) throws Throwable { System.
-                  <a href="https://leizhiyuan.github.io/2013/11/24/java%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E5%AE%9E%E4%BE%8B/" class="post-read-more">[Read More]</a>
+                  <p>首先什么是代理？</p>
+<!-- raw HTML omitted -->
+<p>我更喜欢另一种通俗的解释，官方的解释总是高度抽象的，等用了一段时间才能理解体会</p>
+<!-- raw HTML omitted -->
+<p>那我们就得定义一个拦截器/执行处理器了。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这客户端咋用啊，老湿</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>看到没，通过Proxy类的newProxyInstance方法，传入类加载器，类接口，和这个处理器，我们就获得一个代理</p>
+<p>执行结果是这样的</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>恩，电脑没死机，是这样的</p>
+<p> </p>
+<!-- raw HTML omitted -->
+
                 
               </div>
 
@@ -783,7 +830,7 @@ public HelloWorldHandler(Object targetObject){ this.targetObject = targetObject;
   <i class="fas fa-calendar"></i>&nbsp;Posted on September 15, 2013
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -798,16 +845,33 @@ public HelloWorldHandler(Object targetObject){ this.targetObject = targetObject;
               </p>
               <div class="post-entry">
                 
-                  本文译自官方文档，有细微改动，Java多线程的时候，看了好多文档，还是官方说的最清楚。结合自己的理解，译之。
-CountDownLatch 字面意思就是倒计数闩，后面会讲到，这里的同步允许一个或多个线程等待，，知道其他线程进行的一系列操作完成。而CountDownLatch通过一个参数count（数目）来构造，而await（）则阻塞当前线程，直到countDown()将count减为了0，然后，所有的阻塞线程被释放，也就是那些调用了await方法的线程立即返回，注意，这是一次性的，也就是说count不能被自动重置，如果你想这么做，CyclicBarrier是可以的。
-CountDownLatch用处很多，当用count=1来构造的时候，这就相当于一个开关，所有调用了await方法的线程都在等待，直到有一个线程调用了countDown()，CountDownLatch通过count=N构造的话，就可以使一个线程等待其他N个线程完成操作，或者一个操作被做N次。
-简单的demo：
-一组worker（工人）线程使用两个CountDownLatch
-第一个是开始信号，用来阻止工人提前操作，直到(driver)传送带准备好了才允许开始
-第二个是完成信号，他使传送带等待直到所有的worker都完成 class Driver { // &hellip; void main() throws InterruptedException { CountDownLatch startSignal = new CountDownLatch(1); CountDownLatch doneSignal = new CountDownLatch(N);
-for (int i = 0; i &amp;lt; N; ++i) // 创建并启动线程 new Thread(new Worker(startSignal, doneSignal)).start(); doSomethingElse(); // 传送带做点准备工作 startSignal.countDown(); // 减为0，工人可以开始了 doSomethingElse(); doneSignal.await(); // 等待直到所有的工人完成任务 } }
-class Worker implements Runnable { private final CountDownLatch startSignal; private final CountDownLatch doneSignal; Worker(CountDownLatch startSignal, CountDownLatch doneSignal) { this.
-                  <a href="https://leizhiyuan.github.io/2013/09/15/%E8%AF%91java%E4%B8%AD%E7%9A%84countdownlatch%E5%92%8Ccyclicbarrier/" class="post-read-more">[Read More]</a>
+                  <p>本文译自官方文档，有细微改动，Java多线程的时候，看了好多文档，还是官方说的最清楚。结合自己的理解，译之。</p>
+<h2 id="countdownlatch">CountDownLatch</h2>
+<p>字面意思就是倒计数闩，后面会讲到，这里的同步允许一个或多个线程等待，，知道其他线程进行的一系列操作完成。而CountDownLatch通过一个参数count（数目）来构造，而await（）则阻塞当前线程，直到countDown()将count减为了0，然后，所有的阻塞线程被释放，也就是那些调用了await方法的线程立即返回，注意，这是一次性的，也就是说count不能被自动重置，如果你想这么做，CyclicBarrier是可以的。</p>
+<p>CountDownLatch用处很多，当用count=1来构造的时候，这就相当于一个开关，所有调用了await方法的线程都在等待，直到有一个线程调用了countDown()，CountDownLatch通过count=N构造的话，就可以使一个线程等待其他N个线程完成操作，或者一个操作被做N次。</p>
+<p>简单的demo：</p>
+<p>一组worker（工人）线程使用两个CountDownLatch</p>
+<p>第一个是开始信号，用来阻止工人提前操作，直到(driver)传送带准备好了才允许开始</p>
+<p>第二个是完成信号，他使传送带等待直到所有的worker都完成</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>另一个典型的例子就是把问题分成N部分，通过线程执行每一部分，具体的话是将线程入队到一个Executor对象里。然后调用execute方法。当执行完毕一部分，就并给latch 减去1，当减到0的时候调用await的方法就可以继续运行了，当需要重复计数的话，用CyclicBarrier代替</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<h2 id="cyclicbarrier">CyclicBarrier</h2>
+<p>字面意思回环栅栏。这里的同步是允许一系列的线程互相等待直到大家都来到一个barrier前面，当程序中有互相等待的情况的时候，非常有用，叫做回环是因为当所有等待线程都被释放以后，cyclicBarrier可以被重用</p>
+<p>同时，CyclicBarrier支持一个可选的Runnable参数，当所有的线程都来到barrier前面的时候，程序开始执行runable线程动作，当需要更新所有线程共享的某个状态的时候，该动作非常有用。例子是一个并行分解的例子</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这里每一个worker线程处理矩阵的一行，然后在barrier前面等待，直到所有的行都处理完成，当所有的都完成以后，这里</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>改为</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>如果一个线程由于中断，失败或者超时过早的离开了barrier，那么所有的线程都会通过BrokenBarrierException引发异常。</p>
+
                 
               </div>
 
@@ -854,20 +918,43 @@ class Worker implements Runnable { private final CountDownLatch startSignal; pri
               </p>
               <div class="post-entry">
                 
-                  之前参加了阿里的笔试和电面，让后天那个敏感的日子去参加现场面，就去看了一下那天笔试的最后一道综合题，看着网上清一色最后一道题不知道从哪转的答案，不忍直视，一看代码就是错的，最直接的就是求中位数连奇偶性都不判断，直接处以2..这，另外当在无法整除的情况下，数据结果错误。
-&nbsp;
-这道题的大意是：有一个淘宝商户，在某城市有n个仓库，每个仓库的储货量不同，现在要通过货物运输，将每次仓库的储货量变成一致的，n个仓库之间的运输线路围城一个圈，即1-&gt;2-&gt;3-&gt;4-&gt;&hellip;-&gt;n-&gt;1-&gt;&hellip;，货物只能通过连接的仓库运输，设计最小的运送成本（运货量*路程）达到淘宝商户的要求，并写出代码。
-解题思路：
-假设n个仓库的初始储货量分别为warehouse[1],warehouse[2],&hellip;,warehouse[n] 计算平均储货量 average = （warehouse[1]+warehouse[2]+&hellip;+warehouse[n])/n 就算出来了最终的结果中，每个仓库应该有的存量 首先，从仓库1向仓库n运送k； 然后，从1到n-1，依次向下运送某一特定值，使得每一个仓库的余量都为average，剩下的问题就是求总代价的最小值了。
-设第0步从1仓库向n仓库（注意因为是圆圈，所以路径长度是1）运出k存量，k可以为负，如果为负数，意味着从n向1运输|k|存量，然后从循环，从（1到n-1）,从i仓库向i+1仓库运输，运输的量需要保证i仓库在运输完毕后等于average
- 第0步（从仓库1向仓库n运送k）:花费代价为 |k|， 第1步（确保仓库1的余量为average）：需要花费代价为 |warehouse[1]-average-k| 也就是从1向2伙从2向1运输 第2步（确保仓库2的余量为average）：代价为 |warehouse[2]+warehouse[1]-average-k-average|=|warehouse[1]+warehouse[2]-2*average-k| &hellip; n-1.第n-1步：代价为 |warehouse[1]+warehouse[2]+&hellip;+warehouse[n-1]-(n-1)*average-k| 此时，仓库n剩下的货物量： (warehouse[n]+k)+warehouse[1]+warehouse[2]+&hellip;+warehouse[n-1]-(n-1)*average-k=(warehouse[1]+warehouse[2]+&hellip;+warehouse[n])-(n-1)*average=average 刚好也满足，其实这里不用推导，因为平均值是算好的，所以最胡一定是刚好完成的。  总的代价为： |k|+|warehouse[1]-average-k|+|warehouse[1]+a[2]-2*average-k|+&hellip;+|warehouse[1]+warehouse[2]+&hellip;+warehouse[n-1]-(n-1)*average-k| 不妨令sum[i] = warehouse[1]+warehouse[2]+&hellip;+warehouse[i]-i*average 则，总代价可表示为：|k|+|sum[1]-k|+|sum[2]-k|+&hellip;+|sum[n-1]-k| 这个式子可以看成在水平数轴上寻找一个点k，使得点k到点0,sum[1],sum[2],sum[3],&hellip;,sum[n-1]的距离之和最小，显然k应该取这n个数的中位数。至此问题解决。
-给出详细注释代码：
-&nbsp; #include &ldquo;stdafx.h&rdquo; #include &lt;iostream&gt; #include &lt;algorithm&gt; #include&lt;string&gt;
-using namespace std;
-const int X = 100000; double sum[X],warehouse[X]; int n;
-double Abs(double x) { return max(x,-x); }
-int _tmain(int argc, _TCHAR* argv[]) { while(true) { double total = 0; double mid=0; cout&lt;&lt;&ldquo;请输入仓库数目：&rdquo;; cin&gt;&gt;n; //读入n个仓库的值，并计算总数 for(int i=1;i&lt;=n;i++) { cout&lt;&lt;&ldquo;请输入第&rdquo;&lt;&lt;i&lt;&lt;&ldquo;个仓库的存量：&rdquo;; cin&gt;&gt;warehouse[i]; total += warehouse[i]; } //计算每个仓库应该最终存储的值 double average = total/n; //计算sum数组 for(int i=1;i&lt;n;i++) sum[i] = warehouse[i]+sum[i-1]-average; //排序后打算去中位数 //sort采用半开半闭区间，所以排序为0～n-1 sort(sum,sum+n); //这个可以自己举个数字就知道了 if(n%2!
-                  <a href="https://leizhiyuan.github.io/2013/06/02/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B45%E6%9C%885%E6%97%A5%E7%BB%BC%E5%90%88%E7%AE%97%E6%B3%95%E9%A2%98%E8%AF%A6%E8%A7%A3/" class="post-read-more">[Read More]</a>
+                  <p>之前参加了阿里的笔试和电面，让后天那个敏感的日子去参加现场面，就去看了一下那天笔试的最后一道综合题，看着网上清一色最后一道题不知道从哪转的答案，不忍直视，一看代码就是错的，最直接的就是求中位数连奇偶性都不判断，直接处以2..这，另外当在无法整除的情况下，数据结果错误。</p>
+<p> </p>
+<p>这道题的大意是：有一个淘宝商户，在某城市有n个仓库，每个仓库的储货量不同，现在要通过货物运输，将每次仓库的储货量变成一致的，n个仓库之间的运输线路围城一个圈，即1-&gt;2-&gt;3-&gt;4-&gt;&hellip;-&gt;n-&gt;1-&gt;&hellip;，货物只能通过连接的仓库运输，设计最小的运送成本（运货量*路程）达到淘宝商户的要求，并写出代码。</p>
+<p><strong>解题思路：</strong></p>
+<p>假设n个仓库的初始储货量分别为warehouse[1],warehouse[2],&hellip;,warehouse[n]
+计算平均储货量</p>
+<!-- raw HTML omitted -->
+<p>就算出来了最终的结果中，每个仓库应该有的存量
+首先，从仓库1向仓库n运送k；
+然后，从1到n-1，依次向下运送某一特定值，使得每一个仓库的余量都为average，剩下的问题就是求总代价的最小值了。</p>
+<p>设第0步从1仓库向n仓库（注意因为是圆圈，所以路径长度是1）运出k存量，k可以为负，如果为负数，意味着从n向1运输|k|存量，然后从循环，从（1到n-1）,从i仓库向i+1仓库运输，运输的量需要保证i仓库在运输完毕后等于average</p>
+<ol>
+<li>第0步（从仓库1向仓库n运送k）:花费代价为 |k|，</li>
+<li>第1步（确保仓库1的余量为average）：需要花费代价为</li>
+</ol>
+<!-- raw HTML omitted -->
+<p>也就是从1向2伙从2向1运输
+3.  第2步（确保仓库2的余量为average）：代价为</p>
+<!-- raw HTML omitted -->
+<p>&hellip;
+n-1.第n-1步：代价为</p>
+<!-- raw HTML omitted -->
+<p>此时，仓库n剩下的货物量：</p>
+<!-- raw HTML omitted -->
+<p>刚好也满足，其实这里不用推导，因为平均值是算好的，所以最胡一定是刚好完成的。</p>
+<p><strong>总的代价为</strong>：</p>
+<!-- raw HTML omitted -->
+<p>不妨令sum[i] = warehouse[1]+warehouse[2]+&hellip;+warehouse[i]-i*average
+则，总代价可表示为：|k|+|sum[1]-k|+|sum[2]-k|+&hellip;+|sum[n-1]-k|
+这个式子可以看成在水平数轴上寻找一个点k，使得点k到点0,sum[1],sum[2],sum[3],&hellip;,sum[n-1]的距离之和最小，显然k应该取这n个数的中位数。至此问题解决。</p>
+<p>给出详细注释代码：</p>
+<p> </p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>思路借鉴了：<a href="http://hi.baidu.com/hujunjiehit/item/54204f01931ee6c49157184c">http://hi.baidu.com/hujunjiehit/item/54204f01931ee6c49157184c</a></p>
+<p>错误之处欢迎留言指出..</p>
+
                 
               </div>
 
@@ -954,7 +1041,7 @@ int _tmain(int argc, _TCHAR* argv[]) { while(true) { double total = 0; double mi
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

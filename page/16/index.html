@@ -48,7 +48,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -224,8 +224,8 @@
           
           
             <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/12/28/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E5%85%AD%E9%83%A8%E5%88%86/">
-                <h2 class="post-title">Lambda高手之路第六部分</h2>
+              <a href="https://leizhiyuan.github.io/2013/01/04/%E8%BF%9C%E7%A8%8B%E7%AE%A1%E7%90%86democ/">
+                <h2 class="post-title">远程管理Demo(C#)</h2>
                 
                 
                 
@@ -234,10 +234,10 @@
               <span class="post-meta">
   
   
-  <i class="fas fa-calendar"></i>&nbsp;Posted on December 28, 2012
+  <i class="fas fa-calendar"></i>&nbsp;Posted on January 4, 2013
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;3&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -251,14 +251,98 @@
 
               <div class="post-entry">
                 
-                  今天武汉地铁通车了，今天介绍一些新的Lambda设计模式，应该是最后一部分了。
-本节介绍一些核心有lambda表达式的模式，我不认为他们完全是新的模式，但是至少我还没有看到有人给他们起过名字，我于是决定尝试取个可能好，也可能不好的名字，这样我起码能很容易的给别人描述，有话在先，许多模式相当强大，但是可能会引入潜在的bug，所以小心为上
-复杂的多态
-Lambda表达式也可以被用来创建一些多态（override），而不用使用abstract或者virtual关键字（当然这并不意味着就不能用），考虑如下的代码片段
-class MyBaseClass { public Action SomeAction { get; protected set; } public MyBaseClass() { SomeAction = () =&gt; { //Do something! }; } } 看起来没什么新的知识，我们创建一个类，里面有一个属性（一个lambda表达式），又一次JavaScript化了，有趣的地方是：属性暴露的这个部分不只是本类可以改变，子类也可以改变，看代码
-class MyInheritedClass : MyBaseClass { public MyInheritedClass { SomeAction = () =&gt; { //Do something different! }; } }  看到了。我们可以改变这个方法。或者进行更精确的操作，这种方法的缺点是我们不能直接访问父类的实现，也就缺乏了基类的能力，因为，这个父类的属性会有同样的值，如果程序员真的需要这样写，我建议你遵循 pattern
-class MyBaseClass { public Action SomeAction { get; private set; } Stack&lt;Action&gt; previousActions; protected void AddSomeAction(Action newMethod) { previousActions.Push(SomeAction); SomeAction = newMethod; } protected void RemoveSomeAction() { if(previousActions.
-                  <a href="https://leizhiyuan.github.io/2012/12/28/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E5%85%AD%E9%83%A8%E5%88%86/" class="post-read-more">[Read More]</a>
+                  <p>一个C#的通信的例子</p>
+<p><a href="http://leaverimage.b0.upaiyun.com/31142_o.jpg"><img src="/images/8a608877e1ae0aef14d26fea8260f247bbb7ee33.jpg" alt=""></a></p>
+<p>1.服务端，服务端通过ip和端口生成客户端之后，点击开始监听后，便开启监听线程持续监听，同时注册断开连接和收到信息的事件。收到来自TcpClient 流中的信息后，解析之，如果是连接信息，就添加到连接列表，这样服务端就可以显示多个客户端了。如果是断开信息，就删掉。如果服务端想要给客户端发消息，就选中该客户，然后填写信息，就会调用连接类的发送方法。</p>
+<p> </p>
+<p>2.客户端，也就是被控端，被控端通过tcp连接到远端ip，然后发送连接成功状态，随后异步读取。读取到信息后调用解析方式。然后处理。。</p>
+<p>3.服务端如何生成客户端。其实也比较简单。就是写好客户端以后，保存为文本。然后通过CodeDomProvider的相关方法来编译即可。代码如下：</p>
+<!-- raw HTML omitted -->
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%AE%BE%E8%AE%A1/">设计</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/12/28/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E5%85%AD%E9%83%A8%E5%88%86/">
+                <h2 class="post-title">Lambda高手之路第六部分</h2>
+                
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on December 28, 2012
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  <p>今天武汉地铁通车了，今天介绍一些新的Lambda设计模式，应该是最后一部分了。</p>
+<p>本节介绍一些核心有lambda表达式的模式，我不认为他们完全是新的模式，但是至少我还没有看到有人给他们起过名字，我于是决定尝试取个可能好，也可能不好的名字，这样我起码能很容易的给别人描述，有话在先，许多模式相当强大，但是可能会引入潜在的bug，所以小心为上</p>
+<p><strong>复杂的多态</strong></p>
+<p>Lambda表达式也可以被用来创建一些多态（override），而不用使用abstract或者virtual关键字（当然这并不意味着就不能用），考虑如下的代码片段</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>看起来没什么新的知识，我们创建一个类，里面有一个属性（一个lambda表达式），又一次JavaScript化了，有趣的地方是：属性暴露的这个部分不只是本类可以改变，子类也可以改变，看代码</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>看到了。我们可以改变这个方法。或者进行更精确的操作，这种方法的缺点是我们不能直接访问父类的实现，也就缺乏了基类的能力，因为，这个父类的属性会有同样的值，如果程序员真的需要这样写，我建议你遵循 <em>pattern</em></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这样的话，子类就不得不拥有了 AddSomeAction()  方法，而这个方法是吧当前的方法压入堆栈，那样我们可以恢复之前的状态。</p>
+<p>这种模式我起了一个名字叫做Lambda属性多态模式（LP3），它简单的描述了可以在属性里捕获任何方法。之后可以被子类所设置，栈是这个模式的一个附加品，没有改变我们使用属性来完成的模式目标</p>
+<p>为什么要用这种模式？有几个理由。地一个，因为我们可以用。但是等一等。如果你使用当中不同的属性，这个模式会变得相当棘手，突然，多态变成了一个完全的新方法。但是这也许是一个不同的模式，现在我想说这个模式完成了以前人们认为不可能的事情</p>
+<p>举个例子，你想要（不建议，但是也许对该问题是最优雅的解决方法了。）重写一个静态方法，好吧。静态不可能被继承，原因很简单，师承是对实例对象来说的。而静态方法不属于任何一个实例，对于所有的实例都是一样的。这会引发一个警告，下面的例子也许并不如你所想的结果，因此，除非你非常清楚。否则不要乱用。
+看代码</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这很简单，希望没有对你产生误导，这种模式有时候会让事情变得异常复杂，这也是为什么我总是避免使用它。不过他很有用。（可以通过该方法构造所有的静态属性和方法，并且可以使你总是获得你感兴趣的那个）只要你不感到头疼，这是解决静态多态性的一个好方法。是的。静态多态性是可能的。</p>
+<p><strong>简单请求一个方法</strong></p>
+<p>之前我已经介绍过这个方法了。但是我没有说名字，这就是方法字典模式，这个模式的一个基础就是一个哈希表或是一个字典，包含一个keys（通常是字符串，但取决于具体的情况），这些keys对应一些特定的方法，这个模式也指定了一个特殊的方法构造这些字典，否则，一个简单的switch-case就搞定了，看代码</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这哪里需要字典？好像不需要。事实上我们写的更好一些。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>等等，这个模式现在没有优点了。。事实上，这个模式并不特别好写，她还需要多写写代码，但是我们可以使用反射来自动化这个字典的构造，这样我们就会和switch-case一样搞笑了。但是我们的代码更加健壮，并且维护更简单，如果你写switch-case。。你就需要手工添加很多分支语句了。。</p>
+<p>我们看一种可能的实现方法。我通常更倾向于添加一些类型转换，这样就可以方便的使用keys对应的值了。当然，你也可以通过其他方法实现，比如使用一致的方法签名，这里我还是用转换。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>现在看起来好多了，事实上。这个模式节省了我很多时间。这个模式最好的就是：它使你可以写出优雅的插件。通过不同的库扩充功能。为什么。你可以使用该方法来扫描未知的库，这些库符合一些确定的模式。然后包含他们进入你的代码，这样。没有任何问题。其他库的方法就会继承成你的代码里。你所需要做的仅仅如下：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>现在，我们所需要做的就是确定加载的插件，并且添加一些方法来处理这些事事情。最后。可以通过调用LoadPlugin()方法从给定的程序集实例上加载方法。这只是这个模式的一个应用。而我其实还可以做很多。。。比如我们也在JavaScript里面使用。那里可是没有内置的反射的。。</p>
+
                 
               </div>
 
@@ -305,17 +389,31 @@ class MyBaseClass { public Action SomeAction { get; private set; } Stack&lt;Acti
 
               <div class="post-entry">
                 
-                  武汉下雪了。。今天介绍Lambda表达式非常有用的情况。。ps:这个高手之路已经翻译了10000多字了。。疼啊。。
-一些模式比另一些模式有时候更加合适，真正有用的模式是自定义方法表达式，用爱促使话一些对象的部分，我们考虑下面这种情况。
-我们想要创建一个可以处理多种延迟加载的对象，这意味着即时对象已经被实例化了，我们还没有加载所有请求的资源，一个理由就是防止大量的IO操作。（比如通过网络传输），当我们开始使用数据的时候，我们想要确定数据足够新鲜，现在有一些确定的方法可以做这个。并且最有效的显然是实体框架已经用LINQ解决了延迟加载的问题，Iqueryable仅存储了查询，而没有任何无关的数据。一旦我们请求一个结果。不仅仅构造的查询被执行，同时也被以更高效的方式执行，比如一个在远程数据服务器上的SQL查询。
-在这里，我们仅仅想要看看两种情况的不同点，首先，我们查询，一切就绪，查询应该在已经加载了的数据上进行。
-class LazyLoad { public LazyLoad() { Search = query =&gt; { var source = Database.SearchQuery(query); Search = subquery =&gt; { var filtered = source.Filter(subquery); foreach(var result in filtered) yield return result; }; foreach(var result in source) yield return result; }; } public Func&lt;string, IEnumerable&lt;ResultObject&gt;&gt; Search { get; private set; } }  简单来看，这里我们有两种不他哦你的方法，地一个是我们把数据从数据库里提取出来（也就是Database静态类所做的），然后第二个方法将会过滤从数据库里提取出来的数据。一旦我们将会从我们的第一次查询取得结果，当然我们也可以构造内置的其他方法来重置类的行为，对于工业级的代码，其他的方法也许更加有用。
-另一个例子是初始时间分支，假设我们有一个对象，该对象有个方法叫做Perform(),这个方法可以用来调用一些代码，包含这个方法的对象可以被初始化，初始化有三种方式。 1. 通过传递方法来调用 2. 通过传递一些包含这个方法的对象来调用 3. 或者通过传递第一种情况下的序列化以后的信息来调用。
-现在我们可以保留所有的三种方式做全局变量。而Perform方法将不得不查看当前的状态（或者是保存在枚举变量里，或者和null进行比较）然后检测被调用的正确的方式，最后调用开始。
-更好的一种方法是吧Perform()方法写成一个属性，这个属性仅仅允许在类里面进行set，它是一个委托类型，现在我们可以在对应的构造方法里面直接设置这个属性，因此，我们可以不用全局变量，也不用担心这个对象是如何实例化的，这种方法更好。
-看一小段简单的代码。
-class Example { public Action&lt;object&gt; Perform { get; private set; } public Example(Action&lt;object&gt; methodToBeInvoked) { Perform = methodToBeInvoked; } //接口 public Example(IHaveThatFunction mother) { //传递的对象必须有我们要用的方法 Perform = mother.
-                  <a href="https://leizhiyuan.github.io/2012/12/27/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E4%BA%94%E9%83%A8%E5%88%86/" class="post-read-more">[Read More]</a>
+                  <p>武汉下雪了。。今天介绍Lambda表达式非常有用的情况。。ps:这个高手之路已经翻译了10000多字了。。疼啊。。</p>
+<p>一些模式比另一些模式有时候更加合适，真正有用的模式是自定义方法表达式，用爱促使话一些对象的部分，我们考虑下面这种情况。</p>
+<p>我们想要创建一个可以处理多种延迟加载的对象，这意味着即时对象已经被实例化了，我们还没有加载所有请求的资源，一个理由就是防止大量的IO操作。（比如通过网络传输），当我们开始使用数据的时候，我们想要确定数据足够新鲜，现在有一些确定的方法可以做这个。并且最有效的显然是实体框架已经用LINQ解决了延迟加载的问题，Iqueryable<!-- raw HTML omitted -->仅存储了查询，而没有任何无关的数据。一旦我们请求一个结果。不仅仅构造的查询被执行，同时也被以更高效的方式执行，比如一个在远程数据服务器上的SQL查询。</p>
+<p>在这里，我们仅仅想要看看两种情况的不同点，首先，我们查询，一切就绪，查询应该在已经加载了的数据上进行。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>简单来看，这里我们有两种不他哦你的方法，地一个是我们把数据从数据库里提取出来（也就是Database静态类所做的），然后第二个方法将会过滤从数据库里提取出来的数据。一旦我们将会从我们的第一次查询取得结果，当然我们也可以构造内置的其他方法来重置类的行为，对于工业级的代码，其他的方法也许更加有用。</p>
+<p>另一个例子是初始时间分支，假设我们有一个对象，该对象有个方法叫做Perform(),这个方法可以用来调用一些代码，包含这个方法的对象可以被初始化，初始化有三种方式。</p>
+<ol>
+<li>通过传递方法来调用</li>
+<li>通过传递一些包含这个方法的对象来调用</li>
+<li>或者通过传递第一种情况下的序列化以后的信息来调用。</li>
+</ol>
+<p>现在我们可以保留所有的三种方式做全局变量。而Perform方法将不得不查看当前的状态（或者是保存在枚举变量里，或者和null进行比较）然后检测被调用的正确的方式，最后调用开始。</p>
+<p>更好的一种方法是吧Perform()方法写成一个属性，这个属性仅仅允许在类里面进行set，它是一个委托类型，现在我们可以在对应的构造方法里面直接设置这个属性，因此，我们可以不用全局变量，也不用担心这个对象是如何实例化的，这种方法更好。</p>
+<p>看一小段简单的代码。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>即时这个例子看起来如我们所愿被构造了。让阿尔。大多数情况下只使用前两种，但是随着领域特性语言，编译器，日志框架，数据访问层和其他很多情况下，通常有很多方式可以完成，但Lambda表达式也许是最优雅的。</p>
+<p>考虑这种情况，我们可以在函数编程领域体会到即时调用方法表达式的好处，我们可以看到C#中IIFE的一种用法。用的不多。但是我认为真的很好。但不是用在这种情况下。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>我们也可以使用即时调用方法来防止一些确定的非静态的方法被重复调用。这就会出现自定义方法和初始时间分支和IIFE的组合使用了。</p>
+<p>下一节介绍一些新的Lambda设计模式</p>
+
                 
               </div>
 
@@ -348,7 +446,7 @@ class Example { public Action&lt;object&gt; Perform { get; private set; } public
   <i class="fas fa-calendar"></i>&nbsp;Posted on December 24, 2012
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;3&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -362,16 +460,75 @@ class Example { public Action&lt;object&gt; Perform { get; private set; } public
 
               <div class="post-entry">
                 
-                  首先祝大家平安夜快乐。本篇介绍一些流行的JavaScript模式。为下一篇打基础
-使用/了解JavaScript的一个好处就是函数的高级用法。。在JavaScript里。函数仅仅是对象。他们可以有赋给他们的属性。而在C#中。我们不能做我们可以在JavaScript的全部事情。但是我们仍然可以做些事情。一个原因是JavaScript在函数里给变量以作用域。因此，不得不通过创建函数，大多数情况是匿名的来定位变量。而在C#中。通过使用块，通过花括号来创建作用域
-当然，换种方式来说。C#中，函数也会给变量作用域。通过使用Lambda表达式。我们通过花括号在其里面创建了一个变量。然而。我们也可以局部的创建作用域。
-我们来看看通过使用Lambda表达式可以实现一些在JavaScript里面有用的模式把。
-回调模式
-这个模式是个老的模式。事实上。回调模式从.net 的第一版就开始使用了。但是是以一种很简单的方式实现的。而现在。通过使用Lambda表达式。闭包，捕获变量等特性能够允许我们写出如下的代码来。
-void CreateTextBox() { var tb = new TextBox(); tb.IsReadOnly = true; tb.Text = "Please wait ..."; DoSomeStuff(() =&gt; { tb.Text = string.Empty; tb.IsReadOnly = false; }); } void DoSomeStuff(Action callback) { // Do some stuff - asynchronous would be helpful ... callback(); } 对于JavaScript程序员会觉得这没什么啊。他们使用这个模式太多了。然而，它非常有用。因为我们可以使用参数作为Ajax相关事件的事件处理器（比如oncompleted，onsuccess），等等。如果你使用LINQ，那么你可能也会用到回调模式的一些东西。举个例子。LINQ的where子句将会在每一次迭代中回调你的查询语句。这只是回调函数的一个例子。在.net的世界里。事件如它名字所暗示的那样。通常是事件处理的首选方法。这有时候很像一个回调。他有两个参数。有一个特殊的关键字和一个类型模式（两个参数分别是sender和arguments，sender通常是object类型。Arguments通常继承自EventArgs） 可以通过+= 和-=给事件添加/删除事件处理程序。
-返回方法 和普通的方法比较。Lambda表达式也可以返回一个方法指针（就是一个委托实例），这意味着我们可以使用Lambda表达式创建/返回一个lambda表达式（或者今年仅是一个已定义好的方法的委托实例），大量的情况下。这个模式也很有用。首先看一下例子。
-Func&lt;string, string&gt; SayMyName(string language) { switch(language.ToLower()) { case "fr": return name =&gt; { return "Je m'appelle "
-                  <a href="https://leizhiyuan.github.io/2012/12/24/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E5%9B%9B%E9%83%A8%E5%88%86/" class="post-read-more">[Read More]</a>
+                  <p>首先祝大家平安夜快乐。本篇介绍一些流行的JavaScript模式。为下一篇打基础</p>
+<p>使用/了解JavaScript的一个好处就是函数的高级用法。。在JavaScript里。函数仅仅是对象。他们可以有赋给他们的属性。而在C#中。我们不能做我们可以在JavaScript的全部事情。但是我们仍然可以做些事情。一个原因是JavaScript在函数里给变量以作用域。因此，不得不通过创建函数，大多数情况是匿名的来定位变量。而在C#中。通过使用块，通过花括号来创建作用域</p>
+<p>当然，换种方式来说。C#中，函数也会给变量作用域。通过使用Lambda表达式。我们通过花括号在其里面创建了一个变量。然而。我们也可以局部的创建作用域。</p>
+<p>我们来看看通过使用Lambda表达式可以实现一些在JavaScript里面有用的模式把。</p>
+<p><strong>回调模式</strong></p>
+<p>这个模式是个老的模式。事实上。回调模式从.net 的第一版就开始使用了。但是是以一种很简单的方式实现的。而现在。通过使用Lambda表达式。闭包，捕获变量等特性能够允许我们写出如下的代码来。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>对于JavaScript程序员会觉得这没什么啊。他们使用这个模式太多了。然而，它非常有用。因为我们可以使用参数作为Ajax相关事件的事件处理器（比如oncompleted，onsuccess），等等。如果你使用LINQ，那么你可能也会用到回调模式的一些东西。举个例子。LINQ的where子句将会在每一次迭代中回调你的查询语句。这只是回调函数的一个例子。在.net的世界里。事件如它名字所暗示的那样。通常是事件处理的首选方法。这有时候很像一个回调。他有两个参数。有一个特殊的关键字和一个类型模式（两个参数分别是sender和arguments，sender通常是object类型。Arguments通常继承自EventArgs）
+可以通过+= 和-=给事件添加/删除事件处理程序。</p>
+<p><strong>返回方法</strong>
+和普通的方法比较。Lambda表达式也可以返回一个方法指针（就是一个委托实例），这意味着我们可以使用Lambda表达式创建/返回一个lambda表达式（或者今年仅是一个已定义好的方法的委托实例），大量的情况下。这个模式也很有用。首先看一下例子。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>代码本应该更短些。我们可以让default如果请求的语言没有找到。只是抛出一个异常即可。不过。这个例子展示了这是一种方法工厂。另一种同等效果的方法是包含一个Hashtable。或者更好的话用Dictionary&lt;K, V&gt;</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>即使这看起来似乎有点过度工程化了。但是也许这是方法工厂最好的例子了。毕竟方法简单易扩展，可以被用在很多情况下。这中模式和反射的组合可以是的程序代码更松耦合，更易使用。并且代码更健壮。下图展示了模式的工作流程
+<a href="http://leaverimage.b0.upaiyun.com/30815_o.png"><img src="/images/e6a03db9751c4ebd13b63fd2880f2267e3af2b44.png" alt=""></a></p>
+<p><strong>自定义方法</strong>
+自定义方法模式一个JavaScript中普遍的技术。可以用在代码中提高性能和健壮性，这种模式的背后思想是方法被设置为一个属性。于是可以和其他方法非常方便的交换。我们看一下具体的代码</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这段代码做了什么？好吧。第一种情况下，我们得到第一个素数。也就是2.虽然这很显而易见。我们可以体征我们的算法默认来排除掉所有的偶数。这就加速我们的算法。但是我们依然能够得到开始的偶素数2.我们就可以通过调用NextPrime方法来获得素数了。我们就可以在第二部分里有话我们的算了。</p>
+<p>我们已经看到这种写法可以优化性能。我们可能一下这个例子</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这里我们有了两根分开的区域。一个是为钱1000个数准备的。其他的则留在了另一个区域。通常我们可能需要区分这两种情况。这就是我们为什么使用了自定义方法，当小区域执行完后，自定义函数就会改变了。来执行大的区域了。</p>
+<p><strong>即时执行方法表达式</strong></p>
+<p>在JavaScript中即时执行方法表达式也叫做IIFEs,也相当普遍。这是因为在JavaScript中，不像C#中的花括号可以构造一个局部变量。因此一个变狼可能会污染一个全局对象。（最有可能就是一个window对象），由于很多原因，这种情况很不好。。</p>
+<p>解决方法也很简单，当花括号不能给一个作用域的时候，方法却可以。因此，定义在方法里面的变量就被限制在这个方法里。就像是他的孩子一样。因此，通常JavaScript用户想让那些方法立刻执行。否则，是对变量名和语句行的浪费。另一个原因就是这个方法只执行一次。</p>
+<p>在C#中我们也可以写出类似的方法。我们也会得到一个新的作用域。但这不是我们主要关心的。因为我们可以随心所欲创建新的作用域，我们看些例子</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这段代码很容易理解。然后，如果我们想要传一些参数时候。我们需要定义他们的类型你个，我们看一下如何给即时执行方法传递参数</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>看上去似乎没做什么。然而。我们可以和async关键字组合起来。我们看</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Ok了。</p>
+<p><strong>即时对象初始化</strong></p>
+<p>我把这个模式放在关于Lambda表达式的文章里是因为匿名对象比我们刚刚的一些简单的例子能表达的要多得多。其中一个就是匿名对象也可以包含Lambda表达式。这可以作为我写在本文里的理由。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>如果你想要运行这个模式，你可能会看到一个异常。。至少我看到了。。这难以理解的理由是Lambda表达式不能被赋给匿名对象。如果你也没明白。。那我们看来是坐在一条船上的。
+幸运的是，编译器已经告诉我们了。“哥们，我不知道我该为你的那个Lambda表达式创建哪种类型的委托啊”我们可以帮一下编译器。如下所示。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>一个问题就产生了。方法（这里是Ask）存活的作用域是什么？答案是他存活在创建匿名对象的类里面，或者如果他使用了捕获变量，就在他自己的作用域里面。因此，编译器仍然创建了一个匿名对象（包含对编译器生成的类的元数据，实例化了一个有着类信息的新的对象），但是只是设置了委托对象Ask属性</p>
+<p>注意：你应该避免使用这个模式，当你真的想要访问一个匿名对象的所有属性的时候。理由如下：C#编译器请求在你使用每一个对象之前，应该首先声明他。因此，用的地方一定在声明之后，但是编译器怎么知道？在编译器看来。Person变量还没声明完呢。就开始使用了。
+所以，在上面那个Lambda表达式里并不能直接访问person的Name和Age属性
+有一个方法跳出这个陷阱（事实上有很多种，但我只喜欢这一种最优雅的，考虑下面这段代码</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>现在因为我们之前已经声明了，我们也可以说明person为object对象。但是这样的话我们就要用到反射机制了（可能还需要一些漂亮的包装器），来访问匿名对象的属性，在这种情况下，我们依赖于DLR，他会对这种情况出现一个最漂亮的包装器，现在这段代码就非常JavaScript化了，我也不知道是好还是坏，这也就是为什么我说这个是一个注意点。。</p>
+<p><strong>初始时间分支</strong></p>
+<p>这个模式事实上和自定义方法非常接近，唯一的不同，这种情况下，该方法并不定义自己，而是包含其他方法。显然是可能的。如果这个“其他方法”不是通过传统的方式定义，而是通过属性，（成员变量）</p>
+<p>这种模式的别名也叫做加载时分支，是一个优化模式，这个模式用来避免switch-case或if-else语句等控制结构的大量使用。也可以理解为这个模式为代码永久性的创建了确定分支之间的连接。
+考虑下面这个例子</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>我们都做了什么呢？首先我们有一个方法读取用户配置（由一个配置Setting类来保存），如果我们发现启用了自动设置。我们就给AutoSave这个属性赋上全部的代码，否则我们就放一个空方法在这里，而们就可以通过调用AutoSave（）一次就行了，不再需要检查配置设置或其他的什么情况了。我们也不需要保存一个特殊的布尔变量，因为对应的方法已经被动态的设置了。</p>
+<p>有人也许认为这不是一个巨大的性能提高，但是这仅仅是一个小例子，在一些复杂的代码里，这会节省很多时间，尤其是代码越来越复杂的情况下。</p>
+<p>另外（我认为这是最主要的原因），代码更加容易维护（如果你了解这个模式的话）没有了不必要的控制逻辑，程序员可以更加专注于重要的东西—调用这个自动保存的具体操作</p>
+<p>在JavaScript中，像初始时间分支模式被用在很多性能检测上（比如浏览器检测）不去管浏览器检测实际上是很邪恶的，并且不应该在任何网页上检测用户的浏览器，
+性能检测非常有用，通常和这种模式一起组合使用，这也是Jquery用来对Ajax请求检测需要的正确对象的方法。</p>
+<p>下一部分介绍Lambda表达式超级有用的情况，同样圣诞节快乐。</p>
+
                 
               </div>
 
@@ -420,16 +577,33 @@ Func&lt;string, string&gt; SayMyName(string language) { switch(language.ToLower(
 
               <div class="post-entry">
                 
-                  背后的秘密-MSIL
-通过著名的LINQPad，我们可以更深入的查看MSIL代码而没有任何秘密。下图是一个LINQPad的使用截图 
-我们会看三个例子，第一个Lambda表达式如下：
-Action&lt;string&gt; DoSomethingLambda = (s) =&gt; { Console.WriteLine(s);// + local }; 对应的普通函数是这样的
-Action&lt;string&gt; DoSomethingLambda = (s) =&gt; { Console.WriteLine(s);// + local };  生成的MSIL代码片段如下：
-DoSomethingNormal: IL_0000: nop IL_0001: ldarg.1 IL_0002: call System.Console.WriteLine IL_0007: nop IL_0008: ret &lt;Main&gt;b__0: IL_0000: nop IL_0001: ldarg.0 IL_0002: call System.Console.WriteLine IL_0007: nop IL_0008: ret  最大的不同是方法的名称用法不同。而不是声明。事实上。声明是完全一样的。编译器在类里面创建了一个新的方法来实现这个方法。这没什么新东西，仅仅是为了我们使用Lambda表达式方便代码编写。从MSIL代码中，我们做了同样的事情。在当前对象里调用了一个方法。
-我们在下图里演示一下编译器所做的修改。在这个图例。我们可以看到编译器把Lambda表达式移动成了一个固定的方法。
- 第二个例子将展示Lambda表达式真正的奇妙之处，在这个例子里。我们既使用了有着全局变量的普通方法也使用了有捕获变量的Lambda表达式。代码如下
-void Main() { int local = 5; Action&lt;string&gt; DoSomethingLambda = (s) =&gt; { Console.WriteLine(s + local); }; global = local; DoSomethingLambda("
-                  <a href="https://leizhiyuan.github.io/2012/12/20/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E4%B8%89%E9%83%A8%E5%88%86/" class="post-read-more">[Read More]</a>
+                  <p>背后的秘密-MSIL</p>
+<p>通过著名的LINQPad，我们可以更深入的查看MSIL代码而没有任何秘密。下图是一个LINQPad的使用截图
+<a href="http://leaverimage.b0.upaiyun.com/30624_o.png"><img src="/images/2cc26ed754b0ac72d7caf372a917ef44d327d51a.png" alt=""></a></p>
+<p>我们会看三个例子，第一个Lambda表达式如下：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>对应的普通函数是这样的</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>生成的MSIL代码片段如下：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>最大的不同是方法的名称用法不同。而不是声明。事实上。声明是完全一样的。编译器在类里面创建了一个新的方法来实现这个方法。这没什么新东西，仅仅是为了我们使用Lambda表达式方便代码编写。从MSIL代码中，我们做了同样的事情。在当前对象里调用了一个方法。</p>
+<p>我们在下图里演示一下编译器所做的修改。在这个图例。我们可以看到编译器把Lambda表达式移动成了一个固定的方法。</p>
+<p><a href="http://leaverimage.b0.upaiyun.com/30625_o.png"><img src="/images/1500b574e9e4fd0cfb11b286eaff270102810b02.png" alt=""></a>
+第二个例子将展示Lambda表达式真正的奇妙之处，在这个例子里。我们既使用了有着全局变量的普通方法也使用了有捕获变量的Lambda表达式。代码如下</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>没什么不同的似乎。关键是：lambda表达式如何被编译器处理</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>和第一个例子一样。机制相同。编译器把lambda表达式移动到一个方法里。但是不同的是，编译器这次还生成了一个类。编译器为我们的lambda表达式生成的方法会放在类里，这就给了捕获的变量一个全局的作用域，通过这样。Lambda表达式可以访问局部变量。因为在MSIL里。它是类实例里面的一个全局变量。</p>
+<p>所有的变量因此就可以在新生成的类的对象里赋值/读取了。这解决了变量之间的引用问题。（其实就是只保留了对该类实例的引用。）编译器也足够智能之会把这些捕获的变量放到类里面。因此，当我们使用Lambda的时候才没有太大的性能问题。无论如何。注意。由于保持了对lambda表达式的引用，因此可能造成内存泄漏。只要方法还在。变量就仍然存活。显而易见。而现在我们知道了原因。</p>
+<p>我们再次用图示来说明。这这种闭包情况下里。不仅仅方法会被移动。捕获的变量也会被移动。所有被移动了的对象会被放到一个新生成的类里。因此一个没有名称的类就隐式的出现了。
+<a href="http://leaverimage.b0.upaiyun.com/30626_o.png"><img src="/images/708c4bd6bea1fa2d592281cebf202af1b36b4e14.png" alt=""></a></p>
+<p>下一节将是映射流行的JavaScrpit模式。</p>
+
                 
               </div>
 
@@ -462,7 +636,7 @@ void Main() { int local = 5; Action&lt;string&gt; DoSomethingLambda = (s) =&gt; 
   <i class="fas fa-calendar"></i>&nbsp;Posted on December 19, 2012
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -476,10 +650,47 @@ void Main() { int local = 5; Action&lt;string&gt; DoSomethingLambda = (s) =&gt; 
 
               <div class="post-entry">
                 
-                  闭包的影响 为了展示闭包的影响，我们看下面这个例子。 var buttons = new Button[10];
-for(var i = 0; i &lt; buttons.Length; i++) { var button = new Button(); button.Text = (i + 1) + &ldquo;. Button - Click for Index!&rdquo;; button.OnClick += (s, e) =&gt; { Messagebox.Show(i.ToString()); }; buttons[i] = button; } //如果我们点击按钮会发生什么 这个问题很怪，我在我的JavaScript课程上经常问我的学生。95%的学生会说。显然按钮0显示0，按钮1显示1，等等。而不足5%的学生学习了闭包之后会明白。所有的按钮都会显示10.
-局部变量i的值改变了。并且等于buttons.Length。也就是10了。想要避免这个诡异的情况也很简单。如下就行了。 var button = new Button(); var index = i; button.Text = (i + 1) + &ldquo;. Button - Click for Index!&rdquo;; button.
-                  <a href="https://leizhiyuan.github.io/2012/12/19/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86/" class="post-read-more">[Read More]</a>
+                  <h1 id="span-stylecolor-0000ffspan"><!-- raw HTML omitted -->闭包的影响<!-- raw HTML omitted --></h1>
+<p>为了展示闭包的影响，我们看下面这个例子。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这个问题很怪，我在我的JavaScript课程上经常问我的学生。95%的学生会说。显然按钮0显示0，按钮1显示1，等等。而不足5%的学生学习了闭包之后会明白。所有的按钮都会显示10.</p>
+<p>局部变量i的值改变了。并且等于buttons.Length。也就是10了。想要避免这个诡异的情况也很简单。如下就行了。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>问题解决了，但是index变量是一个值类型，因此保留了“全局”i的一个拷贝</p>
+<p>最后一个话题是一个叫做表达式树的东西，他和Lambda表达式协作。并且，他会使得在ASP.NET MVC中的Html扩展方法发生一些很奇妙的东西。关键的问题是：如何发现目标函数</p>
+<p>1. 传递进去的变量的名称是什么
+2. 方法的主体是什么
+3. 函数体里使用了什么类型</p>
+<p>Expression 解决了这些问题，他允许我们挖掘生成的表达式树，我们也可以执行传递给Func和Action委托的函数，而且，可以在运行时解析Lambda表达式</p>
+<p>我们看一下如何使用Expression 类型的例子</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这是Expression最简单的用法了。规则也相当直接。通过构建一个Expression类型的对象。编译器为生成的解释树生成一些元数据。这个解释树包含所有相关的信息，比如参数和方法体。</p>
+<p>方法体包含完整的解释树，我们可以访问这些操作。就像完整的语句一样。也可以操作返回指和类型。当然，返回可以为null，无论如此。大多数情况下。我们对表达式很感兴趣。这和ASP.NET MVC中处理Expression类型的方法是很相似的—可以得到使用的参数的名字，而好处是显而易见的。不会出现名称拼写错误了。也就不会出现因此而出现的编译错误了。</p>
+<p>注意：当程序员仅仅对调用的属性的名字感兴趣的时候。有一个更简单，更优雅的解决方案，那就是参数特性CallerMemberName 这个特性可以得到调用方法/属性的名称。而字段被编译器自动填充。因此，如果我们仅仅想知道名字，而不想知道其他更多的信息，那么我我们只需要写出像下面这个例子里的代码就行了。通过调用WhatsMyName() 方法可以返回方法的名字</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h1 id="span-stylecolor-0000fflambdaspan"><!-- raw HTML omitted -->Lambda表达式的性能<!-- raw HTML omitted --></h1>
+<p>有一个很大的问题：Lambda表达式有多快？好吧。首先，我们期望他们能和我们一般的函数一样快。下一节里。我们会看到Lambda的MSIL代码和普通的函数没有太大的不同。</p>
+<p>最有趣的一个讨论是如果Lambda表达式产生了闭包，将会和使用全局变量的方法一样快。这就产生了一个有趣的问题，和一个区域内局部变量的数目多少会有关系吗？</p>
+<p>我们看看测试代码，通过4个不同的指标，我们可以看到普通方法和Lambda方法的不同。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>本来用Lambda表达式我们可以把代码写的更好。最终我没有这样做。是为了防止影响看最后的结果。因此，本质上。上述代码里有三个方法
+1个是Lambda测试，一个是普通测试，还有一个是在普通测试里调用的方法。而没有的第四个方法其实是我们的lambda表达式。在第一个方法里已经创建了。计算过程很简单，我们随机取数字防止编译器做任何优化。最后我们对普通方法和Lambda方法的不同很有兴趣。</p>
+<p>如果我们运行这个测试程序。我们会发现Lambda表达式并不总是比普通方法差。我们惊奇的是有时候甚至Lambda表达式更快一些。然而，在有闭包的情况下，，就不对了。这就是说大多数情况下我们可以毫不犹豫的使用lambda表达式。当使用闭包的时候会出现一点点的性能损失，不过还好，下一节会讲述性能损失的几个原因。
+下面是测试输出的结果表</p>
+<p>Test Lambda [ms] Normal [ms]
+0 45+-1                       46+-1
+1 44+-1                       46+-2
+2 49+-3                      45+-2
+3 48+-2                      45+-2</p>
+<p>下图是上表的结果，我们可以看得到普通的方法和Lambda表达式基本上限差不多。当使用Lambda表达式的时候没有太大的性能损失。</p>
+<p><a href="http://leaverimage.b0.upaiyun.com/30616_o.png"><img src="/images/b4702d953670f850f72d24daf0aefd146eb33227.png" alt=""></a></p>
+<p>第三部分会介绍背后的秘密-MSIL</p>
+
                 
               </div>
 
@@ -512,7 +723,7 @@ for(var i = 0; i &lt; buttons.Length; i++) { var button = new Button(); button.T
   <i class="fas fa-calendar"></i>&nbsp;Posted on December 18, 2012
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -526,28 +737,68 @@ for(var i = 0; i &lt; buttons.Length; i++) { var button = new Button(); button.T
 
               <div class="post-entry">
                 
-                  好长时间没发技术文章了，恰好看到一篇非常详细的Lambda文章。一边翻译一边学习。题目好像有点霸气。。
-介绍 Lambda表达式是使代码更加动态，易于扩展并且更加快速（看完本文你就知道原因了）的强有力的工具。也可以用来降低潜在的错误。同时可以利用静态输入和智能提示，就像VS里一样。
-&nbsp;
-Lambda表达式在.net framework 3.5中提出来。并且在LINQ和ASP.NET MVC内部的一些技术中扮演了相当重要的角色。如果你考虑一下ASP.NET MVC中各类控件的实现。你就发现。奥妙就是他们大多使用了Lambda表达式。和Lambda表达式一起，使用Html扩展方法将会使得在后台创建模型成为可能。
-本文会讲到如下的知识。
-1.简短的介绍-Lambda表达式是什么，以及为什么和匿名方法不同（之前我们使用的） 2.走近Lambda表达式的性能-在哪些情况下比起标准方法，Lambda会提高/损失性能 3.深入-Lambda表达式在MSIL代码中是什么样 4.一些来自JS世界的模式映射到C#中 5.那些能够提高性能，并且代码看起来相当舒服的使用Lambda的情况。 6.一些我提出的新模式-当然有可能别人也提出来了。但这是我的思考结果。
-&nbsp;
-如果你期望本文是一篇入门教程我可能要让你失望了，除非你真的很优秀并且很聪明，当然我不是这种人，所以我也想提前声明一下：为了读懂这篇文章你可能需要C#的一些高级知识，并且对C#比较了解。
-&nbsp;
-你应该期望本文试着解释一些事情给你，也会解释一些有趣的问题，至少对我来说是这样的。最后我会展示一些实际的例子和模式，如我所说，Lambda表达式简化了很多情况。因此写显式的模式很有用。
-背景知识-什么是Lambda表达式 在C#1.0中，委托被提出了，它使得传递函数成为可能，一句话就是委托就是强类型的函数指针，但委托比指针更强大。一般传递一个函数需要如下几步。 1. 写一个委托（就像一个类）包含返回类型和参数类型 2. 使用委托作为某一个函数的参数类型，这样，该函数就可以接受和委托描述的有着相同签名的函数了 3. 将一个委托类型的函数传递给委托，创建一个委托实例。
-&nbsp;
-如果听起来很复杂，确实本来很复杂，但这是必需的。（虽然不是造火箭，但是比你认为的要更多的代码），然而步骤三不是必需的，编译器会为你做他，但是步骤1和2却是必不可少的。
-&nbsp;
-幸运的是C#2.0出现了泛型，现在我们也可以写泛型类，方法，更重要的是，泛型委托，然而，直到.net framework 3.5的时候。微软意识到实际上只有两种泛型委托（当然有一些不同的重载），会覆盖99%的使用情况：
-1.Action 没有任何输入参数，也没有输出参数。 2.Action&lt;t1,…t16&gt; 需要1-16个参数，没有输出参数。 3.Func&lt;t1….t16,tout&gt;需要0-16个参数，一个输出参数
-&nbsp;
-Action和其对应的泛型版本（仅仅是一个动作，执行一些事情）返回void的时候。Func则可以返回最后一个参数指定的类型，通过这两个委托类型，我们事实上，大部分情况下。前面提到的三步中的第一部就不用写的。而第二步仍然需要。
-&nbsp;
-那么如果我们想要运行代码的时候怎么做呢。在C#2.0中问题已经可以解决了。在这个版本里。我们可以创建委托方法，也就是一个匿名方法，然后这个语法一直未能流行起来，一个相当简化的匿名方法的版本类似这样： Func&lt;double, double&gt; square = delegate (double x) { return x * x; } 为了提高这种语法，欢迎来到Lambda表达式的国度。首先，这个Lambda名字怎么来的？事实上。来自于数学上的λ演算，更准确的说他是数学中一个正式的系统。用于通过变量绑定和替换来进行表达式计算，所以我们有0-N个输入参数和一个返回值，而在编程中，也可以没有返回值
-我们看一下Lambda表达式的一些例子 //编译器可以识别，然后就可以通过dummyLambda();来调用了 var dummyLambda = () =&gt; { Console.WriteLine(&ldquo;Hallo World from a Lambda expression!
-                  <a href="https://leizhiyuan.github.io/2012/12/18/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86/" class="post-read-more">[Read More]</a>
+                  <p>好长时间没发技术文章了，恰好看到一篇非常详细的Lambda文章。一边翻译一边学习。题目好像有点霸气。。</p>
+<h1 id="span-stylecolor-0000ffspan"><!-- raw HTML omitted --><strong>介绍</strong><!-- raw HTML omitted --></h1>
+<p>Lambda表达式是使代码更加动态，易于扩展并且更加快速（看完本文你就知道原因了）的强有力的工具。也可以用来降低潜在的错误。同时可以利用静态输入和智能提示，就像VS里一样。</p>
+<p> </p>
+<p>Lambda表达式在.net framework 3.5中提出来。并且在LINQ和ASP.NET MVC内部的一些技术中扮演了相当重要的角色。如果你考虑一下ASP.NET MVC中各类控件的实现。你就发现。奥妙就是他们大多使用了Lambda表达式。和Lambda表达式一起，使用Html扩展方法将会使得在后台创建模型成为可能。</p>
+<p>本文会讲到如下的知识。</p>
+<p>1.简短的介绍-Lambda表达式是什么，以及为什么和匿名方法不同（之前我们使用的）
+2.走近Lambda表达式的性能-在哪些情况下比起标准方法，Lambda会提高/损失性能
+3.深入-Lambda表达式在MSIL代码中是什么样
+4.一些来自JS世界的模式映射到C#中
+5.那些能够提高性能，并且代码看起来相当舒服的使用Lambda的情况。
+6.一些我提出的新模式-当然有可能别人也提出来了。但这是我的思考结果。</p>
+<p> </p>
+<p>如果你期望本文是一篇入门教程我可能要让你失望了，除非你真的很优秀并且很聪明，当然我不是这种人，所以我也想提前声明一下：为了读懂这篇文章你可能需要C#的一些高级知识，并且对C#比较了解。</p>
+<p> </p>
+<p>你应该期望本文试着解释一些事情给你，也会解释一些有趣的问题，至少对我来说是这样的。最后我会展示一些实际的例子和模式，如我所说，Lambda表达式简化了很多情况。因此写显式的模式很有用。</p>
+<h1 id="span-stylecolor-0000ff-lambdaspan"><!-- raw HTML omitted --><strong>背景知识-什么是Lambda表达式</strong><!-- raw HTML omitted --></h1>
+<p>在C#1.0中，委托被提出了，它使得传递函数成为可能，一句话就是委托就是强类型的函数指针，但委托比指针更强大。一般传递一个函数需要如下几步。
+1. 写一个委托（就像一个类）包含返回类型和参数类型
+2. 使用委托作为某一个函数的参数类型，这样，该函数就可以接受和委托描述的有着相同签名的函数了
+3. 将一个委托类型的函数传递给委托，创建一个委托实例。</p>
+<p> </p>
+<p>如果听起来很复杂，确实本来很复杂，但这是必需的。（虽然不是造火箭，但是比你认为的要更多的代码），然而步骤三不是必需的，编译器会为你做他，但是步骤1和2却是必不可少的。</p>
+<p> </p>
+<p>幸运的是C#2.0出现了泛型，现在我们也可以写泛型类，方法，更重要的是，泛型委托，然而，直到.net framework 3.5的时候。微软意识到实际上只有两种泛型委托（当然有一些不同的重载），会覆盖99%的使用情况：</p>
+<p>1.Action 没有任何输入参数，也没有输出参数。
+2.Action&lt;t1,…t16&gt; 需要1-16个参数，没有输出参数。
+3.Func&lt;t1….t16,tout&gt;需要0-16个参数，一个输出参数</p>
+<p> </p>
+<p>Action和其对应的泛型版本（仅仅是一个动作，执行一些事情）返回void的时候。Func则可以返回最后一个参数指定的类型，通过这两个委托类型，我们事实上，大部分情况下。前面提到的三步中的第一部就不用写的。而第二步仍然需要。</p>
+<p> </p>
+<p>那么如果我们想要运行代码的时候怎么做呢。在C#2.0中问题已经可以解决了。在这个版本里。我们可以创建委托方法，也就是一个匿名方法，然后这个语法一直未能流行起来，一个相当简化的匿名方法的版本类似这样：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>为了提高这种语法，欢迎来到Lambda表达式的国度。首先，这个Lambda名字怎么来的？事实上。来自于数学上的λ演算，更准确的说他是数学中一个正式的系统。用于通过变量绑定和替换来进行表达式计算，所以我们有0-N个输入参数和一个返回值，而在编程中，也可以没有返回值</p>
+<h1 id="span-stylecolor-0000fflambdaspan"><!-- raw HTML omitted -->我们看一下Lambda表达式的一些例子<!-- raw HTML omitted --></h1>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>从上面的代码段里我们可以学到一些东西</p>
+<ul>
+<li>如果我们只有一个输入参数，我们可以省略()</li>
+<li>如果我们有一个输入参数，并且向返回一个，那么我们可以省略{}和return关键字</li>
+<li>我们可以让我们的Lambda表达式异步执行，只要加上async关键字就可以了</li>
+<li>Var关键字一般都不可以用，只有在极少的情况下有才可以。
+当然我们可以使用像平常那样使用var，如果我们指定了参数类型，这是可选的。因为类型可以从委托的类型中推断出来。而下面的情况都是错误的。请看下面的例子</li>
+</ul>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p>大部分基本情况我们都知道。但是有些相当cool的东西（这使得他们在很多情况下很有用），我们考虑下面的代码片段</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p>这是可以的。因此你可以使用其他的变量。这比你想象的要更特殊。因为这里出现了捕获变量。这使得出现了一个闭包，考虑下面的情况。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p>猜猜看这段代码会发生什么。首先我们创建了一个局部变量。和两个lambda表达式，第一额Lambda表达式展示在其他局部区域里访问局部变量是可以的。这已经很让人难以置信了。这意味着我们想要保护一个变量，但事实上他仍然可以在其他方法里被访问。而不论方法是被定义在内部还是其他类的里。</p>
+<p> </p>
+<p>而第二个Lambda表达式则模拟了一个Lambda表达式可以修改外部域变量。这意味着我们可以在其他方法里修改我们的局部变量，仅仅需要传一个在对应域里创建好的Lambda表达式就可以了。因此，我认为闭包有点魔幻的色彩了。就像并行编程一样。可能导致未期望的结果。就像在并行编程中的竞争情况。</p>
+<p>为了展示一下未期望的结果。欢迎期待下一篇。。</p>
+
                 
               </div>
 
@@ -599,25 +850,15 @@ Action和其对应的泛型版本（仅仅是一个动作，执行一些事情�
               <div class="post-entry">
                 
                   <p>相亲现在挺火的。。</p>
-
 <p>文章来自<strong>xiuloveshow</strong></p>
-
 <p>老妈说：“妈希望你找个家庭条件好点儿的，以后少吃苦，别走老妈的路！”。老爸说：“老爸没别的要求，就希望你找个家庭和睦的，这样的家庭教育出来的子女各方面都不会差到哪儿去，家庭条件爸不是特别看重”。老哥说：”这么大个村儿就你一个单身了，小心被剩下！“。朋友说：”咋总是忙着给别人介绍，赶紧把自己推销出去再说！”我说：我想找个在我不开心的时候，什么都不用做，就静静的呆在我旁边，即使是看着我哭也好。</p>
-
 <p>三毛说：看得不顺眼的话，千万富翁也不嫁；看得中意，亿万富翁也嫁。张小娴说：你走，我不送你。你来，无论多大风多大雨，我都要去接你。史铁生说：爱情就是在追求喜欢和爱，这二者同时达到便是爱的理想状态，爱就是一种理想。我说：嫁与不嫁，送与不送，喜欢与爱，我只想用我自己的方式去做人生最重要的选择，这种东西没有参数值，用完一次便没有了！</p>
-
 <p>之前为凑热闹跟一老乡去相亲，相亲的目标性特别强，大家都冲着结婚去的，他们从来不会凭感觉去判断这个人是否是自己中意的人。对方开口便问月工资多少？家里买房没？而男方像是履行一项任务或是已经习惯了这样一套开场白，还未等女方开口，从爷爷的退休工资开始说到自己的工资水平。这其中我没有听到任何一句关于心理沟通的话题，全是围绕物质展开的激烈对白。我有点儿后悔跟她去了，这让我看到了现代人最“真实”的婚恋观，我有些后怕！</p>
-
 <p>后来，我问老乡对男方的印象怎么样。她毫无掩饰的说：“家庭条件还可以，人也挺老实，没更好的就成了“”你到底想找个什么样的？”因为我不确定她的方向，作为女性擅有的八卦心态，我还是忍不住问了。“没什么特别的要求，只要有房，工资还可以，父母不要我们负担就好了。至于感情可以慢慢培养的！”她的表情很轻松，像是在述说一件很平常的事。我有些失望，像是在风和日丽的宁静之夏突然袭来的狂风暴雨。</p>
-
 <p>我想如果是我，我不一定要多大的房，多高的工资。物质和精神两个层面，我永远把精神排第一。两个人每天围绕着柴米油盐酱醋茶，围绕着生活中的琐琐碎碎，内心的苦闷却苦于找不到人述说。彼此不懂对方的世界，不懂爱好为何物，不懂兴趣乃何价，这样的恋爱，这样的婚姻多么的恐怖。我不希望半夜醒来向着电台诉说悲伤，乞求听众收容我的眼泪！</p>
-
 <p>如史铁生所说，爱乃一种理想。即为理想凭努力不一定能达到。喜欢一个人和爱一个人是完全不同的两种境界，喜欢一个人，当激情用尽之时，就只有靠着那张印着两个人照片的结婚证来维持彼此的关系，这种关系完全靠法律来维系。爱一个人，当你生老病死，激情褪去之后依然想着跟你白头到老。这些恐怕是一张房产证换不来的细水长流般的幸福。关于物质和精神，关于爱和不爱。物质已经主导了我们的价值取向，我们不再自已。物质可以让人放弃精神随时转变自身角色，爱也会因为物质变得不爱了。</p>
-
 <p>我已经很久没有听到关于爱的序曲了。物质可以这样轻易的扭曲爱的意义，我们追求的幸福到底为何物？ 当年因物质放弃了最宝贵的东西，最稀有的精神支撑，当你得到了你所有物质的满足，物质填充了你的欲望，你能坦然的对自己说你很幸福？当你开着宝马，驾着良驹，住着豪宅，驱着游艇，是否我们就幸福了？</p>
-
 <p>我努力学习，认真工作，享受音乐，沉侵阅读，爱好写作，喜欢画画，偶尔给老爸老妈给好朋友煲电话粥！我不依赖任何人，我不向任何人屈服！面对机会我不放弃，面对感情拿得起放得下，面对亲情我感动无疑！喜欢倾听，喜欢跟人交往，喜欢跟老人交谈…。消费过后还有金钱结余，偶尔向文字倾吐心声。继续等待着那个可以说话的人出现。自创的理想也可以很诗意！</p>
-
 <p>我希望的婚恋观如同我的生活般平静，如果你能走进我的世界，如果你懂我的世界，我们可以无话不谈。但似乎这变成了一种奢侈，我们就是简单的无话可说！你在你的世界游历，我在我的世界漫步，踽踽独行有何不可！</p>
 
                 
@@ -667,45 +908,28 @@ Action和其对应的泛型版本（仅仅是一个动作，执行一些事情�
               <div class="post-entry">
                 
                   <p><strong>1.什么是Lambda表达式</strong></p>
-
 <p>Lambda表达式是一个匿名方法，通常在LINQ中被用来创建委托</p>
-
 <p>简单来说。它是一个没有声明，没有访问修饰符，没有返回值。甚至没有名字的方法。</p>
-
-<p>&nbsp;</p>
-
+<p> </p>
 <p><strong>2.为什么我们需要使用Lambda表达式？或者说为什么我们要写一个没有名字的函数？</strong></p>
-
 <p>为了方便，这种快捷方式允许你在调用的地方直接编写代码，尤其是你想调用的代码只会在这个地方使用一次。并且方法体本身很短。节省了单独写方法中写声明等等的麻烦。。</p>
-
 <p>好处</p>
-
 <p>1.代码量减少。不必写方法的名称。返回值和访问修饰符</p>
-
 <p>2.当阅读代码的时候。直接就可以看到被调用函数的代码，不用去别的地方。</p>
-
 <p>Lambda表示应该短些。太复杂了。可读性就下降了</p>
-
-<p>&nbsp;</p>
-
+<p> </p>
 <p><strong>如果编写Lambda表达式</strong></p>
-
 <p>Lambda基本的定义是：参数=&gt;执行代码</p>
-
-<p>举个例子
-<pre lang="cs">n = &gt; n % 2 == 1</pre>
-n是输入参数
+<p>举个例子</p>
+<!-- raw HTML omitted -->
+<p>n是输入参数
 n % 2 == 1 是函数体</p>
-
 <p>你可以读作：给这个匿名方法传入一个参数n，如果n是奇数就返回true</p>
-
-<p>&nbsp;</p>
-
-<p><strong>使用该Lambda的例子</strong>
-<pre class="lang:default decode:true">List&lt;int&gt; numbers = new List&lt;int&gt;{11,37,52};
-List&lt;int&gt; oddNumbers = numbers.where(n =&gt; n % 2 == 1).ToList();
-//现在oddNumbers 里面就是11和37了</pre>
-ok.基本的Lambda表达式就是这样了。</p>
+<p> </p>
+<p><strong>使用该Lambda的例子</strong></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>ok.基本的Lambda表达式就是这样了。</p>
 
                 
               </div>
@@ -756,17 +980,11 @@ ok.基本的Lambda表达式就是这样了。</p>
               <div class="post-entry">
                 
                   <p>一篇来自左岸的文章，可以读一读。只是不知道有几人能够认认真真读完。文予有缘人。随意吧。</p>
-
 <p><strong>作者：<a href="http://www.zreading.cn/archives/3030.html">文刀</a></strong></p>
-
 <p>当一件事情刚开始时，我们总会偏向于好的预期，因为这样我们才会去行动。当事情在不断的进展时，外界的因素（客观条件）总会引起我们主观上的波动，时而信心满满，时而跌入谷底。然而事情总是要有个结果的，在这样一种偏向反复，时好时坏的自我预期中，有些人选择了放弃，有些了继续了坚持。放弃，或许是因为有更明智的选择，又或许已经没戏了。坚持，或许是因为没有了退路，又或许是总体偏向于好的预期。不管怎么样，预期总会无穷的趋于向现实要一个结果。而关于结果是正无穷还是负无穷，我们却无法量化，因为做每一个选择，特别是人生选择时，其机会成本（选择成本）是无法量化的。读三年研与先工作三年是难以在同一个人身上同时进行，是不可逆的单一选择，也就无法真正理性地去决定。而我们之所以能够去决定，大部分取决于我们自己与身边人的偏好。所幸，我们都能也都应该看到，做如此的选择并没有犯下方向上的错误。总体上这条路上，我们的步伐是朝前迈的。我们的学识，我们的视野都在增进，然而，要问我们是否就此告别了平庸，是否走向了幸福与快乐，这却是无关的。</p>
-
 <p>知识的增长并不意味着个人道德水平的提高或是人个涵养的提升。在物欲横流的社会中，总能听到那么多关于知识分子的道德丑闻与民工的善行。平庸并不是表明人的身份，而是表明个人的如何从众。所以，对于钱权与名利的追求，恰恰是平庸之举。再看看幸福，知识的提高会带来更高的视野，也可能会导致更多的欲求。有限理性的欲求会是生活源源不断的动力，带来的实现会成为幸福的体验。纵然如此，这也只是一时的，更多的幸福并不在于我们要不断去满足，而是要学会去知足，学会去感激，去给予。所以，幸福是一种认知状态，是一种心境。</p>
-
 <p>再来设想一下，当我们把梦想比作一种财富的实现，我们就会发现。当一阶段内的目标实现了，我们就会寻找下一阶段的目标，然后再去实现它。这样的生活是富有挑战与方向感的，也就是有意义的，这种不断的自在追求本身会是幸福的。如此，追求财富就如梦想一般无可厚非（可能财富就是梦想），但如果我们无法认清财富存在的更多效用，我们就免不了坠入平庸，欲壑难填，我们又何来幸福。一千万在当下社会足以自在一把，然而却已然超出了本身的欲求（理性的），那么就应该拿出钱来做好事，给予会让自己更为幸福，因为我们可以就此看到更多幸福的存在。</p>
-
 <p>即使把幸福看作是一种认知状态，一种心境，但其也应该是我们毕生的追求。以前，我们生活无忧无虑，饭来张口衣来伸手，但我们都明白，那也只是一时的，是建立在亲人的血汗之上的。如今，我们走出校园，参加工作，就要懂得去承担相应的去给予身边人力所能及的照顾。从接受到享受再到给予最终还是到享受，这一过程就是认知状态的提升，就是对幸福的追求。幸福是学会接受与学会给予的过程。心境是个什么概念，又要如何提升呢？我们都清楚，在现世中不存在世外桃源，田园牧歌也不太现实。那么，我们就要学会把这种不可能变成可能带到生活中，其唯一的途径就是提升我们的心境。而这并不是说，我们要在现实生活中学会自欺欺人，而是把这样一份浪漫主义的情怀赋予到真实中，做到真、性、情。对于生活中的真真假假，我们要学会看到，看透，看淡；对于生活中的点点滴滴，我们要学会感激，感怀，感悟；还有对于他人，对于自己，也要力求做到真与善，从而现实幸福的美感。如此，心境的提高是一个领悟与缓慢提升的过程。幸福是一生的追求。</p>
-
 <p>当我们意识到追求梦想更深的是在追求幸福时，我们又深深的坚信着幸福是一种心境，那我们何不学会像相信幸福总是存在一样去相信梦想会实现呢，我们又何必多去假定另一种不好的预期存在呢。既然我们已经走在路上了，在正确追求幸福的路上呢，那我们何不去幸福呢 ？相对于冷漠的大众，我深信，时时能感到幸福，时时有梦想，为断去追求幸福的人，注定是个不平庸的人。</p>
 
                 
@@ -780,63 +998,6 @@ ok.基本的Lambda表达式就是这样了。</p>
                     <a href="https://leizhiyuan.github.io//tags/%E6%94%B6%E8%97%8F/">收藏</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E6%9D%82%E6%96%87/">杂文</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/12/03/%E6%BA%90%E7%A0%81%E6%89%93%E5%8C%85%E4%B8%8B%E8%BD%BD%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%BC%94%E7%A4%BA%E5%8A%A8%E7%94%BB/">
-                <h2 class="post-title">[源码]打包下载算法与数据结构演示动画</h2>
-                
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on December 3, 2012
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  很早的时候，学习数据结构的时候。收集了一下演示的动画。帮助理解。但是不全。今天在看KMP算法的时候。看到了福州大学的一个精品课程。。81个演示动画呢。。想打包下载收藏。话说福州大学这才是好样的。踏踏实实搞学术。
-第一种方法就是手工了。。嘎嘎。你敢么。一个个下载。。。一个个改名。。
-第二种就是用整站下载的软件了。。但是我看了一下swf的命名。我就知道下载下来意义不大。因为名字不好理解。
-第三种就是自己写个程序吧。。
-&nbsp;
-整体思路，首先访问课程页面，解析得到每一章的标题和内容，然后创立章节文件夹，得到每个动画对应的html页面，然后对html页面解析，提取swf地址。然后下载就行了。
-比较疼的地方是那个页面用的是gb2312编码。而解析神器HtmlAgilityPack，不能指定编码。只能想办法绕过了。 WebClient client = new WebClient(); MemoryStream ms = new MemoryStream(client.DownloadData(url)); HtmlDocument doc = new HtmlDocument(); doc.Load(ms, Encoding.GetEncoding(&ldquo;gb2312&rdquo;)); 绕过方法就是先使用内置类得到内存流。然后从内存中加载。
-然后呢。涉及的技术就是xpath了。参考着xpath的文档。搞定了不少。中间还有一个地方就是我没注意看。这个页面有两个文件是一样名字。。调试了几次才发现。。 using System; using System.Collections.Generic; using System.Linq; using System.Text; using HtmlAgilityPack; using System.IO; using System.Threading; using System.Net;
-namespace FzuSwf { class Program { static void Main(string[] args) { DoWork(); }
-//执行任务 static void DoWork() { HtmlWeb web = new HtmlWeb(); HtmlDocument doc = web.Load(&#34;http://ds.fzu.edu.cn/fine/resources/&#34;); HtmlNode divResource = doc.
-                  <a href="https://leizhiyuan.github.io/2012/12/03/%E6%BA%90%E7%A0%81%E6%89%93%E5%8C%85%E4%B8%8B%E8%BD%BD%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%BC%94%E7%A4%BA%E5%8A%A8%E7%94%BB/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">数据挖掘</a>&nbsp;
                   
                 </div>
               
@@ -906,7 +1067,7 @@ namespace FzuSwf { class Program { static void Main(string[] args) { DoWork(); }
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

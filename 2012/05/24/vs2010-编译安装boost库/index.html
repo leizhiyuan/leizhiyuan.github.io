@@ -14,14 +14,22 @@
 2.编译安装
 在D:\Program Files\boost_1_49_0的目录下，有一个bootstrap.bat文件，直接双击运行。就会在同目录生成b2.exe；bjam.exe两个文件。
 3.设定编译环境 修改user-config.jam (D:\Program Files\boost_1_49_0\tools\build\v2\user-config.jam) 的MSVC configuration
-MSVC configuration Configure msvc (default version, searched for in standard locations and PATH). using msvc ; 在上面这段的下面直接添加如下的文字。 using msvc : 10.0 : :/wd4819/D_CRT_SECURE_NO_DEPRECATE/D_SCL_SECURE_NO_DEPRECATE/D_SECURE_SCL=0 ; 保存关闭。
-4.开始编译 点击开始-&gt;所有程序-&gt;“Microsoft Visual Studio 2010”，指向“Visual Studio tools(工具)”，然后单击“Visual Studio 2010 command prompt（命令提示）” 使用cd切换到D:\Program Files\boost_1_49_0目录。这个就不说了 然后输入如下的代码： b2 toolset=msvc-10.0 architecture=x86 instruction-set=i686 address-model=32 link=static variant=debug,release threading=multi runtime-link=shared &ndash;without-python &ndash;without-mpi &ndash;without-wave &ndash;without-graph &ndash;without-math &ndash;without-serialization stage &nbsp;">
+MSVC configuration Configure msvc (default version, searched for in standard locations and PATH). using msvc ; 在上面这段的下面直接添加如下的文字。
+保存关闭。
+4.开始编译 点击开始-&gt;所有程序-&gt;“Microsoft Visual Studio 2010”，指向“Visual Studio tools(工具)”，然后单击“Visual Studio 2010 command prompt（命令提示）” 使用cd切换到D:\Program Files\boost_1_49_0目录。这个就不说了 然后输入如下的代码：
+ 解释一下命令的意思： 1.toolset：表示编译器工具，我安装的是VS2010，所以是msvc-10(如果你是VS2005，可以使用msvc-8.0 VS2008是msvc-9.0) 2.architecture：表示架构，也就是你的CPU架构，x86,x64，因为我安装的是win7 32位，所以使用了x86的架构 3.instruction-set：表示指令集，依然是8086指令集 4.address-model：表示地址长度为32位 5.link：表示生成动态/静态链接库，动态链接库是shared，静态链接库是static，一般都会编译成静态库，因为给出程序的时候打包boost的库会非常庞大 6.variant：表示生成的Debug或者release版本，一般情况下会两种版本都会编译出来的 7.threading：表示单/多线程编译，一般我们的程序都会用到多线程，所以选择了multi 8.runtime-link：表示动态/静态链接C/C&#43;&#43;运行时库(C/C&#43;&#43; Runtime)，我们选择了动态链接 9.without/with：表示不需要编译/需要编译哪些库，一些自己不用的库可以无需编译 10.stage/install：stage表示只生成库文件(DLL和Lib)，install还会生成包含头文件的include目录，推荐使用stage，因为boost_1_49\boost中就是boost库完整的头文件，所以无需再拷贝一份出来。编译出来的库会放在stage文件夹中 这样一份完整的boost库就生成了，剩下就是直接使用到项目中了。
+其实编译的具体命令都是可以自己写的。如果你需要编译所有。只需要使用下面的这行代码 b2 &ndash;toolset=msvc-10.0 &ndash;build-type=complete 就可以了。
+不出问题的话。就开始编译了。。登个半个多小时吧。就会完成了。 5.">
   <meta property="og:description" content="实践是最好的办法。。学习C&#43;&#43;，想试试线程，然后打算用boost库，结果boost库编译差点吓到我。。没看到比较完整的安装教程。。一直耽搁。今天动手。完成了。方法记录如下： 1.下载boost 从boost官网( http://www.boost.org )上下载最新的boost版本，现在最新是1.49版本，解压到自定义目录(我解压到了D:/program files,最终的目录结构是D:\Program Files\boost_1_49_0)
 2.编译安装
 在D:\Program Files\boost_1_49_0的目录下，有一个bootstrap.bat文件，直接双击运行。就会在同目录生成b2.exe；bjam.exe两个文件。
 3.设定编译环境 修改user-config.jam (D:\Program Files\boost_1_49_0\tools\build\v2\user-config.jam) 的MSVC configuration
-MSVC configuration Configure msvc (default version, searched for in standard locations and PATH). using msvc ; 在上面这段的下面直接添加如下的文字。 using msvc : 10.0 : :/wd4819/D_CRT_SECURE_NO_DEPRECATE/D_SCL_SECURE_NO_DEPRECATE/D_SECURE_SCL=0 ; 保存关闭。
-4.开始编译 点击开始-&gt;所有程序-&gt;“Microsoft Visual Studio 2010”，指向“Visual Studio tools(工具)”，然后单击“Visual Studio 2010 command prompt（命令提示）” 使用cd切换到D:\Program Files\boost_1_49_0目录。这个就不说了 然后输入如下的代码： b2 toolset=msvc-10.0 architecture=x86 instruction-set=i686 address-model=32 link=static variant=debug,release threading=multi runtime-link=shared &ndash;without-python &ndash;without-mpi &ndash;without-wave &ndash;without-graph &ndash;without-math &ndash;without-serialization stage &nbsp;">
+MSVC configuration Configure msvc (default version, searched for in standard locations and PATH). using msvc ; 在上面这段的下面直接添加如下的文字。
+保存关闭。
+4.开始编译 点击开始-&gt;所有程序-&gt;“Microsoft Visual Studio 2010”，指向“Visual Studio tools(工具)”，然后单击“Visual Studio 2010 command prompt（命令提示）” 使用cd切换到D:\Program Files\boost_1_49_0目录。这个就不说了 然后输入如下的代码：
+ 解释一下命令的意思： 1.toolset：表示编译器工具，我安装的是VS2010，所以是msvc-10(如果你是VS2005，可以使用msvc-8.0 VS2008是msvc-9.0) 2.architecture：表示架构，也就是你的CPU架构，x86,x64，因为我安装的是win7 32位，所以使用了x86的架构 3.instruction-set：表示指令集，依然是8086指令集 4.address-model：表示地址长度为32位 5.link：表示生成动态/静态链接库，动态链接库是shared，静态链接库是static，一般都会编译成静态库，因为给出程序的时候打包boost的库会非常庞大 6.variant：表示生成的Debug或者release版本，一般情况下会两种版本都会编译出来的 7.threading：表示单/多线程编译，一般我们的程序都会用到多线程，所以选择了multi 8.runtime-link：表示动态/静态链接C/C&#43;&#43;运行时库(C/C&#43;&#43; Runtime)，我们选择了动态链接 9.without/with：表示不需要编译/需要编译哪些库，一些自己不用的库可以无需编译 10.stage/install：stage表示只生成库文件(DLL和Lib)，install还会生成包含头文件的include目录，推荐使用stage，因为boost_1_49\boost中就是boost库完整的头文件，所以无需再拷贝一份出来。编译出来的库会放在stage文件夹中 这样一份完整的boost库就生成了，剩下就是直接使用到项目中了。
+其实编译的具体命令都是可以自己写的。如果你需要编译所有。只需要使用下面的这行代码 b2 &ndash;toolset=msvc-10.0 &ndash;build-type=complete 就可以了。
+不出问题的话。就开始编译了。。登个半个多小时吧。就会完成了。 5.">
   <meta name="twitter:description" content="实践是最好的办法。。学习C&#43;&#43;，想试试线程，然后打算用boost库，结果boost库编译差点吓到我。。没看到比较完整的安装教程。。一直耽搁。今天动手。完成了。方法记录如下： 1.下载boost 从boost官网( http://www.boost.org )上下载最新的boost版本，现在最新是1.49版本，解压到自定义目录(我解压到了D:/program files,最终的目录结构 …">
   <meta name="author" content="bystander"/><script type="application/ld+json">
 {
@@ -71,9 +79,9 @@ MSVC configuration Configure msvc (default version, searched for in standard loc
     "name" : "bystander"
   },
   "headline": "VS2010 编译安装boost库",
-  "description" : "实践是最好的办法。。学习C\x2b\x2b，想试试线程，然后打算用boost库，结果boost库编译差点吓到我。。没看到比较完整的安装教程。。一直耽搁。今天动手。完成了。方法记录如下： 1.下载boost 从boost官网( http:\/\/www.boost.org )上下载最新的boost版本，现在最新是1.49版本，解压到自定义目录(我解压到了D:\/program files,最终的目录结构是D:\\Program Files\\boost_1_49_0)\n2.编译安装\n在D:\\Program Files\\boost_1_49_0的目录下，有一个bootstrap.bat文件，直接双击运行。就会在同目录生成b2.exe；bjam.exe两个文件。\n3.设定编译环境 修改user-config.jam (D:\\Program Files\\boost_1_49_0\\tools\\build\\v2\\user-config.jam) 的MSVC configuration\nMSVC configuration Configure msvc (default version, searched for in standard locations and PATH). using msvc ; 在上面这段的下面直接添加如下的文字。 using msvc : 10.0 : :\/wd4819\/D_CRT_SECURE_NO_DEPRECATE\/D_SCL_SECURE_NO_DEPRECATE\/D_SECURE_SCL=0 ; 保存关闭。\n4.开始编译 点击开始-\x26gt;所有程序-\x26gt;“Microsoft Visual Studio 2010”，指向“Visual Studio tools(工具)”，然后单击“Visual Studio 2010 command prompt（命令提示）” 使用cd切换到D:\\Program Files\\boost_1_49_0目录。这个就不说了 然后输入如下的代码： b2 toolset=msvc-10.0 architecture=x86 instruction-set=i686 address-model=32 link=static variant=debug,release threading=multi runtime-link=shared \x26ndash;without-python \x26ndash;without-mpi \x26ndash;without-wave \x26ndash;without-graph \x26ndash;without-math \x26ndash;without-serialization stage \x26nbsp;",
+  "description" : "实践是最好的办法。。学习C\x2b\x2b，想试试线程，然后打算用boost库，结果boost库编译差点吓到我。。没看到比较完整的安装教程。。一直耽搁。今天动手。完成了。方法记录如下： 1.下载boost 从boost官网( http:\/\/www.boost.org )上下载最新的boost版本，现在最新是1.49版本，解压到自定义目录(我解压到了D:\/program files,最终的目录结构是D:\\Program Files\\boost_1_49_0)\n2.编译安装\n在D:\\Program Files\\boost_1_49_0的目录下，有一个bootstrap.bat文件，直接双击运行。就会在同目录生成b2.exe；bjam.exe两个文件。\n3.设定编译环境 修改user-config.jam (D:\\Program Files\\boost_1_49_0\\tools\\build\\v2\\user-config.jam) 的MSVC configuration\nMSVC configuration Configure msvc (default version, searched for in standard locations and PATH). using msvc ; 在上面这段的下面直接添加如下的文字。\n保存关闭。\n4.开始编译 点击开始-\x26gt;所有程序-\x26gt;“Microsoft Visual Studio 2010”，指向“Visual Studio tools(工具)”，然后单击“Visual Studio 2010 command prompt（命令提示）” 使用cd切换到D:\\Program Files\\boost_1_49_0目录。这个就不说了 然后输入如下的代码：\n 解释一下命令的意思： 1.toolset：表示编译器工具，我安装的是VS2010，所以是msvc-10(如果你是VS2005，可以使用msvc-8.0 VS2008是msvc-9.0) 2.architecture：表示架构，也就是你的CPU架构，x86,x64，因为我安装的是win7 32位，所以使用了x86的架构 3.instruction-set：表示指令集，依然是8086指令集 4.address-model：表示地址长度为32位 5.link：表示生成动态\/静态链接库，动态链接库是shared，静态链接库是static，一般都会编译成静态库，因为给出程序的时候打包boost的库会非常庞大 6.variant：表示生成的Debug或者release版本，一般情况下会两种版本都会编译出来的 7.threading：表示单\/多线程编译，一般我们的程序都会用到多线程，所以选择了multi 8.runtime-link：表示动态\/静态链接C\/C\x2b\x2b运行时库(C\/C\x2b\x2b Runtime)，我们选择了动态链接 9.without\/with：表示不需要编译\/需要编译哪些库，一些自己不用的库可以无需编译 10.stage\/install：stage表示只生成库文件(DLL和Lib)，install还会生成包含头文件的include目录，推荐使用stage，因为boost_1_49\\boost中就是boost库完整的头文件，所以无需再拷贝一份出来。编译出来的库会放在stage文件夹中 这样一份完整的boost库就生成了，剩下就是直接使用到项目中了。\n其实编译的具体命令都是可以自己写的。如果你需要编译所有。只需要使用下面的这行代码 b2 \x26ndash;toolset=msvc-10.0 \x26ndash;build-type=complete 就可以了。\n不出问题的话。就开始编译了。。登个半个多小时吧。就会完成了。 5.",
   "inLanguage" : "en",
-  "wordCount":  140 ,
+  "wordCount":  86 ,
   "datePublished" : "2012-05-24T11:39:55",
   "dateModified" : "2012-05-24T11:39:55",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -97,8 +105,12 @@ MSVC configuration Configure msvc (default version, searched for in standard loc
 2.编译安装
 在D:\Program Files\boost_1_49_0的目录下，有一个bootstrap.bat文件，直接双击运行。就会在同目录生成b2.exe；bjam.exe两个文件。
 3.设定编译环境 修改user-config.jam (D:\Program Files\boost_1_49_0\tools\build\v2\user-config.jam) 的MSVC configuration
-MSVC configuration Configure msvc (default version, searched for in standard locations and PATH). using msvc ; 在上面这段的下面直接添加如下的文字。 using msvc : 10.0 : :/wd4819/D_CRT_SECURE_NO_DEPRECATE/D_SCL_SECURE_NO_DEPRECATE/D_SECURE_SCL=0 ; 保存关闭。
-4.开始编译 点击开始-&gt;所有程序-&gt;“Microsoft Visual Studio 2010”，指向“Visual Studio tools(工具)”，然后单击“Visual Studio 2010 command prompt（命令提示）” 使用cd切换到D:\Program Files\boost_1_49_0目录。这个就不说了 然后输入如下的代码： b2 toolset=msvc-10.0 architecture=x86 instruction-set=i686 address-model=32 link=static variant=debug,release threading=multi runtime-link=shared &ndash;without-python &ndash;without-mpi &ndash;without-wave &ndash;without-graph &ndash;without-math &ndash;without-serialization stage &nbsp;">
+MSVC configuration Configure msvc (default version, searched for in standard locations and PATH). using msvc ; 在上面这段的下面直接添加如下的文字。
+保存关闭。
+4.开始编译 点击开始-&gt;所有程序-&gt;“Microsoft Visual Studio 2010”，指向“Visual Studio tools(工具)”，然后单击“Visual Studio 2010 command prompt（命令提示）” 使用cd切换到D:\Program Files\boost_1_49_0目录。这个就不说了 然后输入如下的代码：
+ 解释一下命令的意思： 1.toolset：表示编译器工具，我安装的是VS2010，所以是msvc-10(如果你是VS2005，可以使用msvc-8.0 VS2008是msvc-9.0) 2.architecture：表示架构，也就是你的CPU架构，x86,x64，因为我安装的是win7 32位，所以使用了x86的架构 3.instruction-set：表示指令集，依然是8086指令集 4.address-model：表示地址长度为32位 5.link：表示生成动态/静态链接库，动态链接库是shared，静态链接库是static，一般都会编译成静态库，因为给出程序的时候打包boost的库会非常庞大 6.variant：表示生成的Debug或者release版本，一般情况下会两种版本都会编译出来的 7.threading：表示单/多线程编译，一般我们的程序都会用到多线程，所以选择了multi 8.runtime-link：表示动态/静态链接C/C&#43;&#43;运行时库(C/C&#43;&#43; Runtime)，我们选择了动态链接 9.without/with：表示不需要编译/需要编译哪些库，一些自己不用的库可以无需编译 10.stage/install：stage表示只生成库文件(DLL和Lib)，install还会生成包含头文件的include目录，推荐使用stage，因为boost_1_49\boost中就是boost库完整的头文件，所以无需再拷贝一份出来。编译出来的库会放在stage文件夹中 这样一份完整的boost库就生成了，剩下就是直接使用到项目中了。
+其实编译的具体命令都是可以自己写的。如果你需要编译所有。只需要使用下面的这行代码 b2 &ndash;toolset=msvc-10.0 &ndash;build-type=complete 就可以了。
+不出问题的话。就开始编译了。。登个半个多小时吧。就会完成了。 5.">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2012/05/24/vs2010-%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85boost%E5%BA%93/" />
 <meta property="og:type" content="website" />
@@ -116,7 +128,7 @@ MSVC configuration Configure msvc (default version, searched for in standard loc
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -300,37 +312,25 @@ MSVC configuration Configure msvc (default version, searched for in standard loc
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        
-
-<p>实践是最好的办法。。学习C++，想试试线程，然后打算用boost库，结果boost库编译差点吓到我。。没看到比较完整的安装教程。。一直耽搁。今天动手。完成了。方法记录如下：
+        <p>实践是最好的办法。。学习C++，想试试线程，然后打算用boost库，结果boost库编译差点吓到我。。没看到比较完整的安装教程。。一直耽搁。今天动手。完成了。方法记录如下：
 1.下载boost
 从boost官网( <a href="http://www.boost.org">http://www.boost.org</a> )上下载最新的boost版本，现在最新是1.49版本，解压到自定义目录(我解压到了D:/program files,最终的目录结构是D:\Program Files\boost_1_49_0)</p>
-
 <p>2.编译安装</p>
-
 <p>在D:\Program Files\boost_1_49_0的目录下，有一个bootstrap.bat文件，直接双击运行。就会在同目录生成b2.exe；bjam.exe两个文件。</p>
-
 <p>3.设定编译环境
 修改user-config.jam (D:\Program Files\boost_1_49_0\tools\build\v2\user-config.jam) 的MSVC configuration</p>
-
 <h1 id="msvc-configuration">MSVC configuration</h1>
-
 <h1 id="configure-msvc-default-version-searched-for-in-standard-locations-and-path">Configure msvc (default version, searched for in standard locations and PATH).</h1>
-
-<h1 id="using-msvc">using msvc ;</h1>
-
-<p>在上面这段的下面直接添加如下的文字。
-<pre class="lang:default decode:true">using msvc : 10.0 : :/wd4819/D_CRT_SECURE_NO_DEPRECATE/D_SCL_SECURE_NO_DEPRECATE/D_SECURE_SCL=0 ;</pre>
-保存关闭。</p>
-
+<h1 id="using-msvc-">using msvc ;</h1>
+<p>在上面这段的下面直接添加如下的文字。</p>
+<!-- raw HTML omitted -->
+<p>保存关闭。</p>
 <p>4.开始编译
 点击开始-&gt;所有程序-&gt;“Microsoft Visual Studio 2010”，指向“Visual Studio tools(工具)”，然后单击“Visual Studio 2010 command prompt（命令提示）” 使用cd切换到D:\Program Files\boost_1_49_0目录。这个就不说了
-然后输入如下的代码：
-<pre class="lang:sh decode:true  crayon-selected">b2 toolset=msvc-10.0 architecture=x86 instruction-set=i686 address-model=32 link=static
-variant=debug,release threading=multi runtime-link=shared &ndash;without-python &ndash;without-mpi
-&ndash;without-wave &ndash;without-graph &ndash;without-math &ndash;without-serialization stage</pre>
-&nbsp;</p>
-
+然后输入如下的代码：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
 <p>解释一下命令的意思：
 1.toolset：表示编译器工具，我安装的是VS2010，所以是msvc-10(如果你是VS2005，可以使用msvc-8.0 VS2008是msvc-9.0)
 2.architecture：表示架构，也就是你的CPU架构，x86,x64，因为我安装的是win7 32位，所以使用了x86的架构
@@ -343,42 +343,23 @@ variant=debug,release threading=multi runtime-link=shared &ndash;without-python 
 9.without/with：表示不需要编译/需要编译哪些库，一些自己不用的库可以无需编译
 10.stage/install：stage表示只生成库文件(DLL和Lib)，install还会生成包含头文件的include目录，推荐使用stage，因为boost_1_49\boost中就是boost库完整的头文件，所以无需再拷贝一份出来。编译出来的库会放在stage文件夹中
 这样一份完整的boost库就生成了，剩下就是直接使用到项目中了。</p>
-
 <p>其实编译的具体命令都是可以自己写的。如果你需要编译所有。只需要使用下面的这行代码
 b2 &ndash;toolset=msvc-10.0 &ndash;build-type=complete
 就可以了。</p>
-
 <p>不出问题的话。就开始编译了。。登个半个多小时吧。就会完成了。
 5.设置vs
 打开vs，新建一个工程。然后工程属性。配置属性-&gt;C/C++ ，附加包含目录
 填上
 D:\Program Files\boost_1_49_0;%(AdditionalIncludeDirectories)
 这个是最终的结果，你也可以手动添加</p>
-
 <p>在左侧选择链接器-&gt;附加库目录，填上
 D:\Program Files\boost_1_49_0\stage\lib;%(AdditionalLibraryDirectories)
 就可以了。</p>
-
 <p>6.测试
-在你新建的工程里输入如下的代码。运行成功就说明可以了
-<pre class="lang:c++ decode:true ">#include &lt;boost/thread/thread.hpp&gt;
-#include &lt;iostream&gt;</p>
-
-<p>void hello()
-{
-        std::cout &lt;&lt;
-        &ldquo;Hello world, I&rsquo;m a thread!&rdquo;
-        &lt;&lt; std::endl;
-}</p>
-
-<p>int main(int argc, char* argv[])
-{
-        boost::thread thrd(&amp;hello);
-        thrd.join();
-        return 0;
-}</pre>
-&nbsp;</p>
-
+在你新建的工程里输入如下的代码。运行成功就说明可以了</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
 <p>参考：
 <a href="http://www.cppfans.org/1317.html">http://www.cppfans.org/1317.html</a>
 <a href="http://www.cnblogs.com/ComputerG/archive/2011/03/10/1979730.html">http://www.cnblogs.com/ComputerG/archive/2011/03/10/1979730.html</a>
@@ -500,7 +481,7 @@ D:\Program Files\boost_1_49_0\stage\lib;%(AdditionalLibraryDirectories)
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

@@ -51,7 +51,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -249,25 +249,30 @@
               </p>
               <div class="post-entry">
                 
-                  以前我在写数据库连接的时候，都是在文件里写死的，或者一个简单地配置文件，只有一个数据库连接嘛，但是最近写一个测试工具的时候，需要很多数据库，而且有些还有分库规则，于是查找资料，完善了两个类，和xml的定义规则，分享出来。仅供参考，有任何指教请回复。不胜感谢
-首先xml的配置格式定义如下 &lt;?xml version=&ldquo;1.0&rdquo; encoding=&ldquo;UTF-8&rdquo;?&gt;
-&lt;config&gt;
-&lt;db-info&gt; &lt;id&gt;oracle-test&lt;/id&gt;
-&lt;driver-name&gt;oracle.jdbc.driver.OracleDriver&lt;/driver-name&gt;
-&lt;url&gt;jdbc:oracle:thin:@127.0.0.1:1521:test&lt;/url&gt;
-&lt;user-name&gt;admin&lt;/user-name&gt;
-&lt;password&gt;admin&lt;/password&gt;
-&lt;/db-info&gt;
-&lt;db-info&gt; &lt;id&gt;mysql-test&lt;/id&gt;
-&lt;driver-name&gt;com.mysql.jdbc.Driver&lt;/driver-name&gt;
-&lt;url&gt;jdbc:mysql://127.0.0.1:3306&lt;/url&gt;
-&lt;user-name&gt;root&lt;/user-name&gt;
-&lt;password&gt;root&lt;/password&gt;
-&lt;/db-info&gt; &lt;/config&gt; 然后我们有XmlConfigReader类，用来读取这个配置文件，并且返回对应的jdbcConfig对象。
-这个对象就是一个model类，对应xml的属性
-然后我们的DBUtil类会调用XmlConfigReader，通用的一般是传个 &lt;id&gt;mysql-test&lt;/id&gt; 值，然后XmlConfigReader来读取返回，对象，然后在DBUtil里用这个对象得知来构造连接，我添加了一个简单的方法 public static Connection getConnection(String dbId,String dbName) throws ClassNotFoundException { Connection conn = null;
-try { //新建jdbc配置类。 XmlConfigReader xcr=new XmlConfigReader(); JdbcConfig jdbcconfig = xcr.getConnection(dbId,dbName); Class.forName(jdbcconfig.getDriverName()); //取得连接对象。 conn = DriverManager.getConnection(jdbcconfig.getUrl(), jdbcconfig.getUserName(), jdbcconfig.getPassword()); } catch (ClassNotFoundException e) { // 抛出 exception e.printStackTrace(); }catch(SQLException e) { e.printStackTrace(); } return conn; }&lt;/pre&gt; 就是多传一个数据库名
-                  <a href="https://leizhiyuan.github.io/2014/04/26/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/" class="post-read-more">[Read More]</a>
+                  <p>以前我在写数据库连接的时候，都是在文件里写死的，或者一个简单地配置文件，只有一个数据库连接嘛，但是最近写一个测试工具的时候，需要很多数据库，而且有些还有分库规则，于是查找资料，完善了两个类，和xml的定义规则，分享出来。仅供参考，有任何指教请回复。不胜感谢</p>
+<p>首先xml的配置格式定义如下</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>然后我们有XmlConfigReader类，用来读取这个配置文件，并且返回对应的jdbcConfig对象。</p>
+<p>这个对象就是一个model类，对应xml的属性</p>
+<p>然后我们的DBUtil类会调用XmlConfigReader，通用的一般是传个</p>
+<!-- raw HTML omitted -->
+<p>值，然后XmlConfigReader来读取返回，对象，然后在DBUtil里用这个对象得知来构造连接，我添加了一个简单的方法</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>就是多传一个数据库名</p>
+<p>然后XmlConfigReader哩对应有这个方法</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<!-- raw HTML omitted -->
+<p>这里会有一个拼接的操作，比较简单。</p>
+<p>这几个类我打包了。由于我是用了maven做包管理，所以org.dom4j这个包自行下载了。。</p>
+<p>下载地址：<a href="http://pan.baidu.com/s/1o617RAy">http://pan.baidu.com/s/1o617RAy</a></p>
+<p> </p>
+<p> </p>
+<p> </p>
+
                 
               </div>
 
@@ -339,7 +344,7 @@ try { //新建jdbc配置类。 XmlConfigReader xcr=new XmlConfigReader(); JdbcCo
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

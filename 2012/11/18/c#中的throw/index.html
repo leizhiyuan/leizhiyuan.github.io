@@ -12,12 +12,26 @@
   <meta name="twitter:title" content="C#中的throw" />
   <meta name="description" content="Throw会抛出/传递异常,通过在catch块里使用throw语句.可以改变产生的异常,比如我们可以抛出一个新的异常,throw语句有各种各样的,并且很有必要.
 例子 我们首先看一下三个方法,分别叫做A,B,C，他们使用不同的throw语句。方法A使用了无参的throw语句。这可以被看作是rethrow(继续抛出)—他会抛出已经出现的同样的异常
-继续，方法B throw一个命名的异常变量。这就不是一个完全的rethrow了—因为他虽然抛出了同样的异常。但是改变了StackTrace（堆栈轨迹），如果有必要的话，我们可以收集一些异常信息，而方法C则创建了一个新的异常。 提示:你可以通过这种方法实现自定义的的错误处理 使用throw语句的例子 using System; class Program { static void Main() { try { A(); B(); C(null); } catch (Exception ex) { Console.WriteLine(ex); } }
-static void A() { // Rethrow 语法. try { int value = 1 / int.Parse(&#34;0&#34;); } catch { throw; } } static void B() { // 过滤异常类型. try { int value = 1 / int.Parse(&#34;0&#34;); } catch (DivideByZeroException ex) { throw ex; } } static void C(string value) { // 创建新的异常.">
+继续，方法B throw一个命名的异常变量。这就不是一个完全的rethrow了—因为他虽然抛出了同样的异常。但是改变了StackTrace（堆栈轨迹），如果有必要的话，我们可以收集一些异常信息，而方法C则创建了一个新的异常。 提示:你可以通过这种方法实现自定义的的错误处理 使用throw语句的例子
+程序可能的输出结果
+Rethrow
+接着我们看更多的关于rethrows的细节。Rethrow必须是一个无参的throw语句。如果使用throw ex，那么TargetSie(TargetSite 从堆栈跟踪中获取抛出该异常的方法。如果堆栈跟踪为空引用，TargetSite 也返回空引用。-译者注)和StackTrace都被改变了。
+在下面的程序里，X()方法使用了rethrow语句。Y()使用了throw ex语句。我们可以看看当rethrow语句使用的使用，引发异常的方法，也就是异常的TargetSite是在StringToNumber&mdash;一个int.Parse内部的方法。
+但是：当throw ex用的时候。就像在Y()里面，这个异常的TargetSite被修改到了当前的Y()方法里。 测试rethrow的例子
+输出
+总结： 异常处理机制提供了可选的控制路径，它将异常逻辑和异常处理分割开来。并且可以通过throw来rethrow异常或是生成一个新的异常。 译自：http://www.dotnetperls.com/throw
+本文由Bystander翻译，转载请注明http://leaver.me">
   <meta property="og:description" content="Throw会抛出/传递异常,通过在catch块里使用throw语句.可以改变产生的异常,比如我们可以抛出一个新的异常,throw语句有各种各样的,并且很有必要.
 例子 我们首先看一下三个方法,分别叫做A,B,C，他们使用不同的throw语句。方法A使用了无参的throw语句。这可以被看作是rethrow(继续抛出)—他会抛出已经出现的同样的异常
-继续，方法B throw一个命名的异常变量。这就不是一个完全的rethrow了—因为他虽然抛出了同样的异常。但是改变了StackTrace（堆栈轨迹），如果有必要的话，我们可以收集一些异常信息，而方法C则创建了一个新的异常。 提示:你可以通过这种方法实现自定义的的错误处理 使用throw语句的例子 using System; class Program { static void Main() { try { A(); B(); C(null); } catch (Exception ex) { Console.WriteLine(ex); } }
-static void A() { // Rethrow 语法. try { int value = 1 / int.Parse(&#34;0&#34;); } catch { throw; } } static void B() { // 过滤异常类型. try { int value = 1 / int.Parse(&#34;0&#34;); } catch (DivideByZeroException ex) { throw ex; } } static void C(string value) { // 创建新的异常.">
+继续，方法B throw一个命名的异常变量。这就不是一个完全的rethrow了—因为他虽然抛出了同样的异常。但是改变了StackTrace（堆栈轨迹），如果有必要的话，我们可以收集一些异常信息，而方法C则创建了一个新的异常。 提示:你可以通过这种方法实现自定义的的错误处理 使用throw语句的例子
+程序可能的输出结果
+Rethrow
+接着我们看更多的关于rethrows的细节。Rethrow必须是一个无参的throw语句。如果使用throw ex，那么TargetSie(TargetSite 从堆栈跟踪中获取抛出该异常的方法。如果堆栈跟踪为空引用，TargetSite 也返回空引用。-译者注)和StackTrace都被改变了。
+在下面的程序里，X()方法使用了rethrow语句。Y()使用了throw ex语句。我们可以看看当rethrow语句使用的使用，引发异常的方法，也就是异常的TargetSite是在StringToNumber&mdash;一个int.Parse内部的方法。
+但是：当throw ex用的时候。就像在Y()里面，这个异常的TargetSite被修改到了当前的Y()方法里。 测试rethrow的例子
+输出
+总结： 异常处理机制提供了可选的控制路径，它将异常逻辑和异常处理分割开来。并且可以通过throw来rethrow异常或是生成一个新的异常。 译自：http://www.dotnetperls.com/throw
+本文由Bystander翻译，转载请注明http://leaver.me">
   <meta name="twitter:description" content="Throw会抛出/传递异常,通过在catch块里使用throw语句.可以改变产生的异常,比如我们可以抛出一个新的异常,throw语句有各种各样的,并且很有必要.
 例子 我们首先看一下三个方法,分别叫做A,B,C，他们使用不同的throw语句。方法A使用了无参的throw语句。这可以被看作是rethrow(继续抛出)—他会抛出已经出现的同样的异常
 继续，方法B throw一个命名的异常变量。这就不是 …">
@@ -69,9 +83,9 @@ static void A() { // Rethrow 语法. try { int value = 1 / int.Parse(&#34;0&#34;
     "name" : "bystander"
   },
   "headline": "C#中的throw",
-  "description" : "Throw会抛出\/传递异常,通过在catch块里使用throw语句.可以改变产生的异常,比如我们可以抛出一个新的异常,throw语句有各种各样的,并且很有必要.\n例子 我们首先看一下三个方法,分别叫做A,B,C，他们使用不同的throw语句。方法A使用了无参的throw语句。这可以被看作是rethrow(继续抛出)—他会抛出已经出现的同样的异常\n继续，方法B throw一个命名的异常变量。这就不是一个完全的rethrow了—因为他虽然抛出了同样的异常。但是改变了StackTrace（堆栈轨迹），如果有必要的话，我们可以收集一些异常信息，而方法C则创建了一个新的异常。 提示:你可以通过这种方法实现自定义的的错误处理 使用throw语句的例子 using System; class Program { static void Main() { try { A(); B(); C(null); } catch (Exception ex) { Console.WriteLine(ex); } }\nstatic void A() { \/\/ Rethrow 语法. try { int value = 1 \/ int.Parse(\x26#34;0\x26#34;); } catch { throw; } } static void B() { \/\/ 过滤异常类型. try { int value = 1 \/ int.Parse(\x26#34;0\x26#34;); } catch (DivideByZeroException ex) { throw ex; } } static void C(string value) { \/\/ 创建新的异常.",
+  "description" : "Throw会抛出\/传递异常,通过在catch块里使用throw语句.可以改变产生的异常,比如我们可以抛出一个新的异常,throw语句有各种各样的,并且很有必要.\n例子 我们首先看一下三个方法,分别叫做A,B,C，他们使用不同的throw语句。方法A使用了无参的throw语句。这可以被看作是rethrow(继续抛出)—他会抛出已经出现的同样的异常\n继续，方法B throw一个命名的异常变量。这就不是一个完全的rethrow了—因为他虽然抛出了同样的异常。但是改变了StackTrace（堆栈轨迹），如果有必要的话，我们可以收集一些异常信息，而方法C则创建了一个新的异常。 提示:你可以通过这种方法实现自定义的的错误处理 使用throw语句的例子\n程序可能的输出结果\nRethrow\n接着我们看更多的关于rethrows的细节。Rethrow必须是一个无参的throw语句。如果使用throw ex，那么TargetSie(TargetSite 从堆栈跟踪中获取抛出该异常的方法。如果堆栈跟踪为空引用，TargetSite 也返回空引用。-译者注)和StackTrace都被改变了。\n在下面的程序里，X()方法使用了rethrow语句。Y()使用了throw ex语句。我们可以看看当rethrow语句使用的使用，引发异常的方法，也就是异常的TargetSite是在StringToNumber\x26mdash;一个int.Parse内部的方法。\n但是：当throw ex用的时候。就像在Y()里面，这个异常的TargetSite被修改到了当前的Y()方法里。 测试rethrow的例子\n输出\n总结： 异常处理机制提供了可选的控制路径，它将异常逻辑和异常处理分割开来。并且可以通过throw来rethrow异常或是生成一个新的异常。 译自：http:\/\/www.dotnetperls.com\/throw\n本文由Bystander翻译，转载请注明http:\/\/leaver.me",
   "inLanguage" : "en",
-  "wordCount":  199 ,
+  "wordCount":  23 ,
   "datePublished" : "2012-11-18T12:33:49",
   "dateModified" : "2012-11-18T12:33:49",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -93,8 +107,15 @@ static void A() { // Rethrow 语法. try { int value = 1 / int.Parse(&#34;0&#34;
 <meta property="og:title" content="C#中的throw" />
 <meta property="og:description" content="Throw会抛出/传递异常,通过在catch块里使用throw语句.可以改变产生的异常,比如我们可以抛出一个新的异常,throw语句有各种各样的,并且很有必要.
 例子 我们首先看一下三个方法,分别叫做A,B,C，他们使用不同的throw语句。方法A使用了无参的throw语句。这可以被看作是rethrow(继续抛出)—他会抛出已经出现的同样的异常
-继续，方法B throw一个命名的异常变量。这就不是一个完全的rethrow了—因为他虽然抛出了同样的异常。但是改变了StackTrace（堆栈轨迹），如果有必要的话，我们可以收集一些异常信息，而方法C则创建了一个新的异常。 提示:你可以通过这种方法实现自定义的的错误处理 使用throw语句的例子 using System; class Program { static void Main() { try { A(); B(); C(null); } catch (Exception ex) { Console.WriteLine(ex); } }
-static void A() { // Rethrow 语法. try { int value = 1 / int.Parse(&#34;0&#34;); } catch { throw; } } static void B() { // 过滤异常类型. try { int value = 1 / int.Parse(&#34;0&#34;); } catch (DivideByZeroException ex) { throw ex; } } static void C(string value) { // 创建新的异常.">
+继续，方法B throw一个命名的异常变量。这就不是一个完全的rethrow了—因为他虽然抛出了同样的异常。但是改变了StackTrace（堆栈轨迹），如果有必要的话，我们可以收集一些异常信息，而方法C则创建了一个新的异常。 提示:你可以通过这种方法实现自定义的的错误处理 使用throw语句的例子
+程序可能的输出结果
+Rethrow
+接着我们看更多的关于rethrows的细节。Rethrow必须是一个无参的throw语句。如果使用throw ex，那么TargetSie(TargetSite 从堆栈跟踪中获取抛出该异常的方法。如果堆栈跟踪为空引用，TargetSite 也返回空引用。-译者注)和StackTrace都被改变了。
+在下面的程序里，X()方法使用了rethrow语句。Y()使用了throw ex语句。我们可以看看当rethrow语句使用的使用，引发异常的方法，也就是异常的TargetSite是在StringToNumber&mdash;一个int.Parse内部的方法。
+但是：当throw ex用的时候。就像在Y()里面，这个异常的TargetSite被修改到了当前的Y()方法里。 测试rethrow的例子
+输出
+总结： 异常处理机制提供了可选的控制路径，它将异常逻辑和异常处理分割开来。并且可以通过throw来rethrow异常或是生成一个新的异常。 译自：http://www.dotnetperls.com/throw
+本文由Bystander翻译，转载请注明http://leaver.me">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2012/11/18/c#%E4%B8%AD%E7%9A%84throw/" />
 <meta property="og:type" content="website" />
@@ -114,7 +135,7 @@ static void A() { // Rethrow 语法. try { int value = 1 / int.Parse(&#34;0&#34;
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -299,132 +320,29 @@ static void A() { // Rethrow 语法. try { int value = 1 / int.Parse(&#34;0&#34;
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <p>Throw会抛出/传递异常,通过在catch块里使用throw语句.可以改变产生的异常,比如我们可以抛出一个新的异常,throw语句有各种各样的,并且很有必要.</p>
-
 <p><strong>例子</strong>
 我们首先看一下三个方法,分别叫做A,B,C，他们使用不同的throw语句。方法A使用了无参的throw语句。这可以被看作是rethrow(继续抛出)—他会抛出已经出现的同样的异常</p>
-
 <p>继续，方法B throw一个命名的异常变量。这就不是一个完全的rethrow了—因为他虽然抛出了同样的异常。但是改变了StackTrace（堆栈轨迹），如果有必要的话，我们可以收集一些异常信息，而方法C则创建了一个新的异常。
 提示:你可以通过这种方法实现自定义的的错误处理
-使用throw语句的例子
-<pre class="lang:default decode:true">using System;
-class Program
-{
-    static void Main()
-    {
-    try
-    {
-        A();
-        B();
-        C(null);
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine(ex);
-    }
-    }</p>
-<div class="highlight"><pre class="chroma">static void A()
-{
-// Rethrow 语法.
-try
-{
-    int value = 1 / int.Parse(&#34;0&#34;);
-}
-catch
-{
-    throw;
-}
-}
-
-static void B()
-{
-// 过滤异常类型.
-try
-{
-    int value = 1 / int.Parse(&#34;0&#34;);
-}
-catch (DivideByZeroException ex)
-{
-    throw ex;
-}
-}
-
-static void C(string value)
-{
-// 创建新的异常.
-if (value == null)
-{
-    throw new ArgumentNullException(&#34;value&#34;);
-}
-}</pre></div>
-<p>}</pre>
-程序可能的输出结果
-<pre class="lang:default decode:true">System.DivideByZeroException: Attempted to divide by zero.
-System.DivideByZeroException: Attempted to divide by zero.
-System.ArgumentNullException: Value cannot be null.
-Parameter name: value</pre>
-<strong>Rethrow</strong></p>
-
+使用throw语句的例子</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>程序可能的输出结果</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><strong>Rethrow</strong></p>
 <p>接着我们看更多的关于rethrows的细节。Rethrow必须是一个无参的throw语句。如果使用throw ex，那么TargetSie(TargetSite 从堆栈跟踪中获取抛出该异常的方法。如果堆栈跟踪为空引用，TargetSite 也返回空引用。-译者注)和StackTrace都被改变了。</p>
-
 <p>在下面的程序里，X()方法使用了rethrow语句。Y()使用了throw ex语句。我们可以看看当rethrow语句使用的使用，引发异常的方法，也就是异常的TargetSite是在StringToNumber&mdash;一个int.Parse内部的方法。</p>
-
 <p>但是：当throw ex用的时候。就像在Y()里面，这个异常的TargetSite被修改到了当前的Y()方法里。
-测试rethrow的例子
-<pre class="lang:default decode:true">using System;</p>
-
-<p>class Program
-{
-    static void Main()
-    {
-    try
-    {
-        X();
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine(ex.TargetSite);
-    }</p>
-<div class="highlight"><pre class="chroma">try
-{
-    Y();
-}
-catch (Exception ex)
-{
-    Console.WriteLine(ex.TargetSite);
-}
-}
-
-static void X()
-{
-try
-{
-    int.Parse(&#34;?&#34;);
-}
-catch (Exception)
-{
-    throw; // [Rethrow 构造]
-}
-}
-
-static void Y()
-{
-try
-{
-    int.Parse(&#34;?&#34;);
-}
-catch (Exception ex)
-{
-    throw ex; // [Throw 捕获的ex变量]
-}
-}</pre></div>
-<p>}</pre>
-输出
-<pre class="lang:default decode:true">Void StringToNumber(System.String, &hellip;)
-Void Y()</pre>
-<strong>总结：</strong>
+测试rethrow的例子</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>输出</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><strong>总结：</strong>
 异常处理机制提供了可选的控制路径，它将异常逻辑和异常处理分割开来。并且可以通过throw来rethrow异常或是生成一个新的异常。
-译自：<a href="http://www.dotnetperls.com/throw">http://www.dotnetperls.com/throw</a></p>
-
+译自：http://www.dotnetperls.com/throw</p>
 <p>本文由Bystander翻译，转载请注明<a href="http://leaver.me">http://leaver.me</a></p>
 
 
@@ -541,7 +459,7 @@ Void Y()</pre>
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

@@ -11,11 +11,14 @@
   <meta property="og:title" content="C#中XML和二进制的序列化" />
   <meta name="twitter:title" content="C#中XML和二进制的序列化" />
   <meta name="description" content="看书的时候，看到的。然后感觉书上的写的不清楚，于是自己写了一下。还真的有问题。 要进行序列化和反序列化，首先要定义一个可以序列化的类，方法是在类的声明前加上特性 [Serializable] 定义了一个简单的用户类，需要注意的是私有字段是不能序列化的，只有公有字段和公有属性才可以。如下
-[Serializable] //特性，可以序列化 public class UserData { public string Name; public int Age; private string sex; public string Sex { set{sex=value;} get{return sex;} } public UserData() { } public UserData(string name, int age, string sex) { Name = name; Age = age; Sex = sex; } } 注意，书上有个例子没有给出默认的构造函数，实际测试时如果没有默认构造函数，是不能执行xml序列化的。注意。 然后就导入需要的命名空间。 需要导入 using System.IO; using System.Runtime.Serialization.Formatters.Binary; using System.Xml.Serialization; 分贝对应文件操作，二进制序列化和xml序列化 为了方便，我封装了四个静态函数，用于实现序列化和反序列化。 //封装二进制序列化方法 public static void BinarySerialize(UserData user) { FileStream fs = new FileStream(&#34;">
+分贝对应文件操作，二进制序列化和xml序列化
+为了方便，我封装了四个静态函数，用于实现序列化和反序列化。">
   <meta property="og:description" content="看书的时候，看到的。然后感觉书上的写的不清楚，于是自己写了一下。还真的有问题。 要进行序列化和反序列化，首先要定义一个可以序列化的类，方法是在类的声明前加上特性 [Serializable] 定义了一个简单的用户类，需要注意的是私有字段是不能序列化的，只有公有字段和公有属性才可以。如下
-[Serializable] //特性，可以序列化 public class UserData { public string Name; public int Age; private string sex; public string Sex { set{sex=value;} get{return sex;} } public UserData() { } public UserData(string name, int age, string sex) { Name = name; Age = age; Sex = sex; } } 注意，书上有个例子没有给出默认的构造函数，实际测试时如果没有默认构造函数，是不能执行xml序列化的。注意。 然后就导入需要的命名空间。 需要导入 using System.IO; using System.Runtime.Serialization.Formatters.Binary; using System.Xml.Serialization; 分贝对应文件操作，二进制序列化和xml序列化 为了方便，我封装了四个静态函数，用于实现序列化和反序列化。 //封装二进制序列化方法 public static void BinarySerialize(UserData user) { FileStream fs = new FileStream(&#34;">
+分贝对应文件操作，二进制序列化和xml序列化
+为了方便，我封装了四个静态函数，用于实现序列化和反序列化。">
   <meta name="twitter:description" content="看书的时候，看到的。然后感觉书上的写的不清楚，于是自己写了一下。还真的有问题。 要进行序列化和反序列化，首先要定义一个可以序列化的类，方法是在类的声明前加上特性 [Serializable] 定义了一个简单的用户类，需要注意的是私有字段是不能序列化的，只有公有字段和公有属性才可以。如下
-[Serializable] //特性，可以序列化 public class UserData { public …">
+分贝对应文件操作，二进制序列化和xml序列化
+为了方便，我封装了四个静态函数，用于实现序列化和反序列化。">
   <meta name="author" content="bystander"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -64,9 +67,9 @@
     "name" : "bystander"
   },
   "headline": "C#中XML和二进制的序列化",
-  "description" : "看书的时候，看到的。然后感觉书上的写的不清楚，于是自己写了一下。还真的有问题。 要进行序列化和反序列化，首先要定义一个可以序列化的类，方法是在类的声明前加上特性 [Serializable] 定义了一个简单的用户类，需要注意的是私有字段是不能序列化的，只有公有字段和公有属性才可以。如下\n[Serializable] \/\/特性，可以序列化 public class UserData { public string Name; public int Age; private string sex; public string Sex { set{sex=value;} get{return sex;} } public UserData() { } public UserData(string name, int age, string sex) { Name = name; Age = age; Sex = sex; } } 注意，书上有个例子没有给出默认的构造函数，实际测试时如果没有默认构造函数，是不能执行xml序列化的。注意。 然后就导入需要的命名空间。 需要导入 using System.IO; using System.Runtime.Serialization.Formatters.Binary; using System.Xml.Serialization; 分贝对应文件操作，二进制序列化和xml序列化 为了方便，我封装了四个静态函数，用于实现序列化和反序列化。 \/\/封装二进制序列化方法 public static void BinarySerialize(UserData user) { FileStream fs = new FileStream(\x22",
+  "description" : "看书的时候，看到的。然后感觉书上的写的不清楚，于是自己写了一下。还真的有问题。 要进行序列化和反序列化，首先要定义一个可以序列化的类，方法是在类的声明前加上特性 [Serializable] 定义了一个简单的用户类，需要注意的是私有字段是不能序列化的，只有公有字段和公有属性才可以。如下\n分贝对应文件操作，二进制序列化和xml序列化\n为了方便，我封装了四个静态函数，用于实现序列化和反序列化。",
   "inLanguage" : "en",
-  "wordCount":  203 ,
+  "wordCount":  6 ,
   "datePublished" : "2012-07-07T18:30:23",
   "dateModified" : "2012-07-07T18:30:23",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -87,7 +90,8 @@
 
 <meta property="og:title" content="C#中XML和二进制的序列化" />
 <meta property="og:description" content="看书的时候，看到的。然后感觉书上的写的不清楚，于是自己写了一下。还真的有问题。 要进行序列化和反序列化，首先要定义一个可以序列化的类，方法是在类的声明前加上特性 [Serializable] 定义了一个简单的用户类，需要注意的是私有字段是不能序列化的，只有公有字段和公有属性才可以。如下
-[Serializable] //特性，可以序列化 public class UserData { public string Name; public int Age; private string sex; public string Sex { set{sex=value;} get{return sex;} } public UserData() { } public UserData(string name, int age, string sex) { Name = name; Age = age; Sex = sex; } } 注意，书上有个例子没有给出默认的构造函数，实际测试时如果没有默认构造函数，是不能执行xml序列化的。注意。 然后就导入需要的命名空间。 需要导入 using System.IO; using System.Runtime.Serialization.Formatters.Binary; using System.Xml.Serialization; 分贝对应文件操作，二进制序列化和xml序列化 为了方便，我封装了四个静态函数，用于实现序列化和反序列化。 //封装二进制序列化方法 public static void BinarySerialize(UserData user) { FileStream fs = new FileStream(&#34;">
+分贝对应文件操作，二进制序列化和xml序列化
+为了方便，我封装了四个静态函数，用于实现序列化和反序列化。">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2012/07/07/c#%E4%B8%ADxml%E5%92%8C%E4%BA%8C%E8%BF%9B%E5%88%B6%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96/" />
 <meta property="og:type" content="website" />
@@ -95,7 +99,8 @@
 
   <meta name="twitter:title" content="C#中XML和二进制的序列化" />
   <meta name="twitter:description" content="看书的时候，看到的。然后感觉书上的写的不清楚，于是自己写了一下。还真的有问题。 要进行序列化和反序列化，首先要定义一个可以序列化的类，方法是在类的声明前加上特性 [Serializable] 定义了一个简单的用户类，需要注意的是私有字段是不能序列化的，只有公有字段和公有属性才可以。如下
-[Serializable] //特性，可以序列化 public class UserData { public …">
+分贝对应文件操作，二进制序列化和xml序列化
+为了方便，我封装了四个静态函数，用于实现序列化和反序列化。">
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -106,7 +111,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -294,99 +299,11 @@
 要进行序列化和反序列化，首先要定义一个可以序列化的类，方法是在类的声明前加上特性
 [Serializable]
 定义了一个简单的用户类，需要注意的是私有字段是不能序列化的，只有公有字段和公有属性才可以。如下</p>
-
-<pre class="lang:c# decode:true " >[Serializable]  //特性，可以序列化
-    public class UserData
-    {
-        public string Name;
-        public int Age;
-        private string sex;
-        public string Sex
-        {
-            set{sex=value;}
-            get{return sex;}
-        }
-        public UserData() 
-        { 
-        }
-        public UserData(string name, int age, string sex)
-        {
-            Name = name;
-            Age = age;
-            Sex = sex;
-        }
-    }</pre> 
-注意，书上有个例子没有给出默认的构造函数，实际测试时如果没有默认构造函数，是不能执行xml序列化的。注意。
-
-然后就导入需要的命名空间。
-需要导入
-
-<pre class="lang:c# decode:true " >using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Xml.Serialization;</pre> 
-分贝对应文件操作，二进制序列化和xml序列化
-
-为了方便，我封装了四个静态函数，用于实现序列化和反序列化。
-
-<pre class="lang:c# decode:true " > //封装二进制序列化方法
-        public static void BinarySerialize(UserData user)
-        {
-            FileStream fs = new FileStream("user.bin", FileMode.Create);
-            BinaryFormatter formater = new BinaryFormatter();
-            //执行序列化
-            formater.Serialize(fs, user);
-            fs.Close();
-        }
-
-        //封装二进制反序列化方法
-        public static UserData BinaryDeserialize()
-        {
-            FileStream fs = new FileStream("user.bin", FileMode.Open, FileAccess.Read, FileShare.Read);
-            BinaryFormatter formater = new BinaryFormatter();
-            UserData user = formater.Deserialize(fs) as UserData;
-            fs.Close();
-            return user;
-        }
-
-        //封装xml序列化方法
-        public static void XmlSerialize(UserData user)
-        {
-            XmlSerializer serializer = new XmlSerializer(typeof(UserData));
-            FileStream fs = new FileStream("user.xml", FileMode.Create);
-            serializer.Serialize(fs, user);
-            fs.Close();
-        }
-
-        //封装xml反序列化方法
-        public static UserData XmlDeserialize()
-        {
-             XmlSerializer serializer = new XmlSerializer(typeof(UserData));
-            FileStream fs = new FileStream("user.xml", FileMode.Open);
-            UserData user = serializer.Deserialize(fs) as UserData;
-            fs.Close();
-            return user;
-        }</pre> 
-代码比较简单。
- 最后是一个简单的测试。
-<pre class="lang:c# decode:true " >static void Main(string[] args)
-        {
-            UserData user = new UserData("bystander", 20, "man");
-            UserData userAfterBin;
-            UserData userAfterXml;
-            //二进制序列化测试
-            BinarySerialize(user);
-            //二进制反序列化
-            userAfterBin = BinaryDeserialize();
-            Console.WriteLine("二进制反序列化测试");
-            Console.WriteLine("Name:{0}\nAge:{1}\nSex:{2}", userAfterBin.Name, userAfterBin.Age, userAfterBin.Sex);
-            //xml序列化测试
-            XmlSerialize(user);
-            //xml反序列化测试
-            userAfterXml = XmlDeserialize();
-            Console.WriteLine("XML反序列化测试");
-            Console.WriteLine("Name:{0}\nAge:{1}\nSex:{2}", userAfterXml.Name, userAfterXml.Age, userAfterXml.Sex);
-
-        }</pre> 
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>分贝对应文件操作，二进制序列化和xml序列化</p>
+<p>为了方便，我封装了四个静态函数，用于实现序列化和反序列化。</p>
+<!-- raw HTML omitted -->
 
 
         
@@ -504,7 +421,7 @@ using System.Xml.Serialization;</pre>
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

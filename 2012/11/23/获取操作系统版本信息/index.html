@@ -11,15 +11,35 @@
   <meta property="og:title" content="获取操作系统版本信息" />
   <meta name="twitter:title" content="获取操作系统版本信息" />
   <meta name="description" content="坊间流传的代码都有些问题，比如不能正常获取win7以上的版本信息，不能获取诸如专业版，旗舰版等的信息，不能正常获取操作系统位的信息。
-使用代码，写了一个简单的库来实现效果。用法大概如下： StringBuilder sb = new StringBuilder(String.Empty); sb.AppendLine(&ldquo;Operation System Information&rdquo;); sb.AppendLine(&ldquo;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-&rdquo;); sb.AppendLine(String.Format(&ldquo;Name = {0}&rdquo;, OSVersionInfo.Name)); sb.AppendLine(String.Format(&ldquo;Edition = {0}&rdquo;, OSVersionInfo.Edition)); if (OSVersionInfo.ServicePack!=string.Empty) sb.AppendLine(String.Format(&ldquo;Service Pack = {0}&rdquo;, OSVersionInfo.ServicePack)); else sb.AppendLine(&ldquo;Service Pack = None&rdquo;); sb.AppendLine(String.Format(&ldquo;Version = {0}&rdquo;, OSVersionInfo.VersionString)); sb.AppendLine(String.Format(&ldquo;ProcessorBits = {0}&rdquo;, OSVersionInfo.ProcessorBits)); sb.AppendLine(String.Format(&ldquo;OSBits = {0}&rdquo;, OSVersionInfo.OSBits)); sb.AppendLine(String.Format(&ldquo;ProgramBits = {0}&rdquo;, OSVersionInfo.ProgramBits));
-textBox1.Text = sb.ToString(); 对比一下坊间的几种不足： 总的来说。最大的问题就是不能正确检测你的操作系统到底是32位还是64位。几种方法大致如下： 1. 使用IntPtr指针的大小 最关键的一句代码是： return IntPtr.Size * 8; 但是事实上，这个返回的不是操作系统的位数，返回的是运行的程序的位数，如果在64位的windows上以32位的模式运行了这个程序，那么就会返回32.
-2. 使用PROCESSOR_ARCHITECTURE 环境变量 string pa = Environment.GetEnvironmentVariable(&ldquo;PROCESSOR_ARCHITECTURE&rdquo;); return ((String.IsNullOrEmpty(pa) || String.">
+使用代码，写了一个简单的库来实现效果。用法大概如下：
+对比一下坊间的几种不足： 总的来说。最大的问题就是不能正确检测你的操作系统到底是32位还是64位。几种方法大致如下： 1. 使用IntPtr指针的大小 最关键的一句代码是：
+但是事实上，这个返回的不是操作系统的位数，返回的是运行的程序的位数，如果在64位的windows上以32位的模式运行了这个程序，那么就会返回32.
+2. 使用PROCESSOR_ARCHITECTURE 环境变量
+这就是纯粹的误导了，因为和1的情况一样。不能返回处理器的位数而是返回了运行程序的位数，如果在64位的windows上以32位的模式运行了这个程序，那么就会返回32.
+3. 使用PInvoke 和 GetSystemInfo 注意：为了保持文章不要太长。。我没有包括PInvoke API的声明，（译者注：C#的互操作性嘛），但你可能在我提供的源代码里找到。
+老问题，还是会返回运行程序的位数，而不是操作系统/处理器的位数。 4. 使用PInvoke和GetNativeSystemInfo 我看到过有人说上面的都不可信。可以使用GetNativeSystemInfo代替，代码和上面一样，只是把GetSystemInfo换成GetNativeSystemInfo就好。
+结果不一样了。但是。。。这个API返回了处理器本身的位数，而我对操作系统的位数感兴趣。。毕竟64位的处理器上也可以轻松运行32位的操作系统 5. 组合 IntPtr.Size 和 IsWow64Process
+如果IntPtr是64.操作系统必然也是64位，因为你不能在32位的操作系统上运行64位的程序 如果程序在32位模式下运行，代码会检测是否是64位的处理器，而程序在32位模式下运行来判断是32位还是64位。 如果返回的是64，那么操作系统是64位，但是程序以32位的模式运行，如果是32，那么操作系统也是32.
+最后，我在lib里还加入了一些方法。以便区分程序/操作系统/处理器的位数。
+源码下载：
+[downloadicon href=http://pan.baidu.com/share/link?shareid=161028&amp;uk=1493685990]OSVersion.zip[/downloadicon] 译自：http://www.codeproject.com/Articles/73000/Getting-Operating-System-Version-Info-Even-for-Win，有删减。">
   <meta property="og:description" content="坊间流传的代码都有些问题，比如不能正常获取win7以上的版本信息，不能获取诸如专业版，旗舰版等的信息，不能正常获取操作系统位的信息。
-使用代码，写了一个简单的库来实现效果。用法大概如下： StringBuilder sb = new StringBuilder(String.Empty); sb.AppendLine(&ldquo;Operation System Information&rdquo;); sb.AppendLine(&ldquo;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-&rdquo;); sb.AppendLine(String.Format(&ldquo;Name = {0}&rdquo;, OSVersionInfo.Name)); sb.AppendLine(String.Format(&ldquo;Edition = {0}&rdquo;, OSVersionInfo.Edition)); if (OSVersionInfo.ServicePack!=string.Empty) sb.AppendLine(String.Format(&ldquo;Service Pack = {0}&rdquo;, OSVersionInfo.ServicePack)); else sb.AppendLine(&ldquo;Service Pack = None&rdquo;); sb.AppendLine(String.Format(&ldquo;Version = {0}&rdquo;, OSVersionInfo.VersionString)); sb.AppendLine(String.Format(&ldquo;ProcessorBits = {0}&rdquo;, OSVersionInfo.ProcessorBits)); sb.AppendLine(String.Format(&ldquo;OSBits = {0}&rdquo;, OSVersionInfo.OSBits)); sb.AppendLine(String.Format(&ldquo;ProgramBits = {0}&rdquo;, OSVersionInfo.ProgramBits));
-textBox1.Text = sb.ToString(); 对比一下坊间的几种不足： 总的来说。最大的问题就是不能正确检测你的操作系统到底是32位还是64位。几种方法大致如下： 1. 使用IntPtr指针的大小 最关键的一句代码是： return IntPtr.Size * 8; 但是事实上，这个返回的不是操作系统的位数，返回的是运行的程序的位数，如果在64位的windows上以32位的模式运行了这个程序，那么就会返回32.
-2. 使用PROCESSOR_ARCHITECTURE 环境变量 string pa = Environment.GetEnvironmentVariable(&ldquo;PROCESSOR_ARCHITECTURE&rdquo;); return ((String.IsNullOrEmpty(pa) || String.">
+使用代码，写了一个简单的库来实现效果。用法大概如下：
+对比一下坊间的几种不足： 总的来说。最大的问题就是不能正确检测你的操作系统到底是32位还是64位。几种方法大致如下： 1. 使用IntPtr指针的大小 最关键的一句代码是：
+但是事实上，这个返回的不是操作系统的位数，返回的是运行的程序的位数，如果在64位的windows上以32位的模式运行了这个程序，那么就会返回32.
+2. 使用PROCESSOR_ARCHITECTURE 环境变量
+这就是纯粹的误导了，因为和1的情况一样。不能返回处理器的位数而是返回了运行程序的位数，如果在64位的windows上以32位的模式运行了这个程序，那么就会返回32.
+3. 使用PInvoke 和 GetSystemInfo 注意：为了保持文章不要太长。。我没有包括PInvoke API的声明，（译者注：C#的互操作性嘛），但你可能在我提供的源代码里找到。
+老问题，还是会返回运行程序的位数，而不是操作系统/处理器的位数。 4. 使用PInvoke和GetNativeSystemInfo 我看到过有人说上面的都不可信。可以使用GetNativeSystemInfo代替，代码和上面一样，只是把GetSystemInfo换成GetNativeSystemInfo就好。
+结果不一样了。但是。。。这个API返回了处理器本身的位数，而我对操作系统的位数感兴趣。。毕竟64位的处理器上也可以轻松运行32位的操作系统 5. 组合 IntPtr.Size 和 IsWow64Process
+如果IntPtr是64.操作系统必然也是64位，因为你不能在32位的操作系统上运行64位的程序 如果程序在32位模式下运行，代码会检测是否是64位的处理器，而程序在32位模式下运行来判断是32位还是64位。 如果返回的是64，那么操作系统是64位，但是程序以32位的模式运行，如果是32，那么操作系统也是32.
+最后，我在lib里还加入了一些方法。以便区分程序/操作系统/处理器的位数。
+源码下载：
+[downloadicon href=http://pan.baidu.com/share/link?shareid=161028&amp;uk=1493685990]OSVersion.zip[/downloadicon] 译自：http://www.codeproject.com/Articles/73000/Getting-Operating-System-Version-Info-Even-for-Win，有删减。">
   <meta name="twitter:description" content="坊间流传的代码都有些问题，比如不能正常获取win7以上的版本信息，不能获取诸如专业版，旗舰版等的信息，不能正常获取操作系统位的信息。
-使用代码，写了一个简单的库来实现效果。用法大概如下： StringBuilder sb = new StringBuilder(String.Empty); sb.AppendLine(&ldquo;Operation System …">
+使用代码，写了一个简单的库来实现效果。用法大概如下：
+对比一下坊间的几种不足： 总的来说。最大的问题就是不能正确检测你的操作系统到底是32位还是64位。几种方法大致如下： 1. 使用IntPtr指针的大小 最关键的一句代码是：
+但是事实上，这个返回的不是操作系统的位 …">
   <meta name="author" content="bystander"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -68,9 +88,9 @@ textBox1.Text = sb.ToString(); 对比一下坊间的几种不足： 总的来说
     "name" : "bystander"
   },
   "headline": "获取操作系统版本信息",
-  "description" : "坊间流传的代码都有些问题，比如不能正常获取win7以上的版本信息，不能获取诸如专业版，旗舰版等的信息，不能正常获取操作系统位的信息。\n使用代码，写了一个简单的库来实现效果。用法大概如下： StringBuilder sb = new StringBuilder(String.Empty); sb.AppendLine(\x26ldquo;Operation System Information\x26rdquo;); sb.AppendLine(\x26ldquo;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;-\x26rdquo;); sb.AppendLine(String.Format(\x26ldquo;Name = {0}\x26rdquo;, OSVersionInfo.Name)); sb.AppendLine(String.Format(\x26ldquo;Edition = {0}\x26rdquo;, OSVersionInfo.Edition)); if (OSVersionInfo.ServicePack!=string.Empty) sb.AppendLine(String.Format(\x26ldquo;Service Pack = {0}\x26rdquo;, OSVersionInfo.ServicePack)); else sb.AppendLine(\x26ldquo;Service Pack = None\x26rdquo;); sb.AppendLine(String.Format(\x26ldquo;Version = {0}\x26rdquo;, OSVersionInfo.VersionString)); sb.AppendLine(String.Format(\x26ldquo;ProcessorBits = {0}\x26rdquo;, OSVersionInfo.ProcessorBits)); sb.AppendLine(String.Format(\x26ldquo;OSBits = {0}\x26rdquo;, OSVersionInfo.OSBits)); sb.AppendLine(String.Format(\x26ldquo;ProgramBits = {0}\x26rdquo;, OSVersionInfo.ProgramBits));\ntextBox1.Text = sb.ToString(); 对比一下坊间的几种不足： 总的来说。最大的问题就是不能正确检测你的操作系统到底是32位还是64位。几种方法大致如下： 1. 使用IntPtr指针的大小 最关键的一句代码是： return IntPtr.Size * 8; 但是事实上，这个返回的不是操作系统的位数，返回的是运行的程序的位数，如果在64位的windows上以32位的模式运行了这个程序，那么就会返回32.\n2. 使用PROCESSOR_ARCHITECTURE 环境变量 string pa = Environment.GetEnvironmentVariable(\x26ldquo;PROCESSOR_ARCHITECTURE\x26rdquo;); return ((String.IsNullOrEmpty(pa) || String.",
+  "description" : "坊间流传的代码都有些问题，比如不能正常获取win7以上的版本信息，不能获取诸如专业版，旗舰版等的信息，不能正常获取操作系统位的信息。\n使用代码，写了一个简单的库来实现效果。用法大概如下：\n对比一下坊间的几种不足： 总的来说。最大的问题就是不能正确检测你的操作系统到底是32位还是64位。几种方法大致如下： 1. 使用IntPtr指针的大小 最关键的一句代码是：\n但是事实上，这个返回的不是操作系统的位数，返回的是运行的程序的位数，如果在64位的windows上以32位的模式运行了这个程序，那么就会返回32.\n2. 使用PROCESSOR_ARCHITECTURE 环境变量\n这就是纯粹的误导了，因为和1的情况一样。不能返回处理器的位数而是返回了运行程序的位数，如果在64位的windows上以32位的模式运行了这个程序，那么就会返回32.\n3. 使用PInvoke 和 GetSystemInfo 注意：为了保持文章不要太长。。我没有包括PInvoke API的声明，（译者注：C#的互操作性嘛），但你可能在我提供的源代码里找到。\n老问题，还是会返回运行程序的位数，而不是操作系统\/处理器的位数。 4. 使用PInvoke和GetNativeSystemInfo 我看到过有人说上面的都不可信。可以使用GetNativeSystemInfo代替，代码和上面一样，只是把GetSystemInfo换成GetNativeSystemInfo就好。\n结果不一样了。但是。。。这个API返回了处理器本身的位数，而我对操作系统的位数感兴趣。。毕竟64位的处理器上也可以轻松运行32位的操作系统 5. 组合 IntPtr.Size 和 IsWow64Process\n如果IntPtr是64.操作系统必然也是64位，因为你不能在32位的操作系统上运行64位的程序 如果程序在32位模式下运行，代码会检测是否是64位的处理器，而程序在32位模式下运行来判断是32位还是64位。 如果返回的是64，那么操作系统是64位，但是程序以32位的模式运行，如果是32，那么操作系统也是32.\n最后，我在lib里还加入了一些方法。以便区分程序\/操作系统\/处理器的位数。\n源码下载：\n[downloadicon href=http:\/\/pan.baidu.com\/share\/link?shareid=161028\x26amp;uk=1493685990]OSVersion.zip[\/downloadicon] 译自：http:\/\/www.codeproject.com\/Articles\/73000\/Getting-Operating-System-Version-Info-Even-for-Win，有删减。",
   "inLanguage" : "en",
-  "wordCount":  274 ,
+  "wordCount":  36 ,
   "datePublished" : "2012-11-23T13:24:50",
   "dateModified" : "2012-11-23T13:24:50",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -91,9 +111,18 @@ textBox1.Text = sb.ToString(); 对比一下坊间的几种不足： 总的来说
 
 <meta property="og:title" content="获取操作系统版本信息" />
 <meta property="og:description" content="坊间流传的代码都有些问题，比如不能正常获取win7以上的版本信息，不能获取诸如专业版，旗舰版等的信息，不能正常获取操作系统位的信息。
-使用代码，写了一个简单的库来实现效果。用法大概如下： StringBuilder sb = new StringBuilder(String.Empty); sb.AppendLine(&ldquo;Operation System Information&rdquo;); sb.AppendLine(&ldquo;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-&rdquo;); sb.AppendLine(String.Format(&ldquo;Name = {0}&rdquo;, OSVersionInfo.Name)); sb.AppendLine(String.Format(&ldquo;Edition = {0}&rdquo;, OSVersionInfo.Edition)); if (OSVersionInfo.ServicePack!=string.Empty) sb.AppendLine(String.Format(&ldquo;Service Pack = {0}&rdquo;, OSVersionInfo.ServicePack)); else sb.AppendLine(&ldquo;Service Pack = None&rdquo;); sb.AppendLine(String.Format(&ldquo;Version = {0}&rdquo;, OSVersionInfo.VersionString)); sb.AppendLine(String.Format(&ldquo;ProcessorBits = {0}&rdquo;, OSVersionInfo.ProcessorBits)); sb.AppendLine(String.Format(&ldquo;OSBits = {0}&rdquo;, OSVersionInfo.OSBits)); sb.AppendLine(String.Format(&ldquo;ProgramBits = {0}&rdquo;, OSVersionInfo.ProgramBits));
-textBox1.Text = sb.ToString(); 对比一下坊间的几种不足： 总的来说。最大的问题就是不能正确检测你的操作系统到底是32位还是64位。几种方法大致如下： 1. 使用IntPtr指针的大小 最关键的一句代码是： return IntPtr.Size * 8; 但是事实上，这个返回的不是操作系统的位数，返回的是运行的程序的位数，如果在64位的windows上以32位的模式运行了这个程序，那么就会返回32.
-2. 使用PROCESSOR_ARCHITECTURE 环境变量 string pa = Environment.GetEnvironmentVariable(&ldquo;PROCESSOR_ARCHITECTURE&rdquo;); return ((String.IsNullOrEmpty(pa) || String.">
+使用代码，写了一个简单的库来实现效果。用法大概如下：
+对比一下坊间的几种不足： 总的来说。最大的问题就是不能正确检测你的操作系统到底是32位还是64位。几种方法大致如下： 1. 使用IntPtr指针的大小 最关键的一句代码是：
+但是事实上，这个返回的不是操作系统的位数，返回的是运行的程序的位数，如果在64位的windows上以32位的模式运行了这个程序，那么就会返回32.
+2. 使用PROCESSOR_ARCHITECTURE 环境变量
+这就是纯粹的误导了，因为和1的情况一样。不能返回处理器的位数而是返回了运行程序的位数，如果在64位的windows上以32位的模式运行了这个程序，那么就会返回32.
+3. 使用PInvoke 和 GetSystemInfo 注意：为了保持文章不要太长。。我没有包括PInvoke API的声明，（译者注：C#的互操作性嘛），但你可能在我提供的源代码里找到。
+老问题，还是会返回运行程序的位数，而不是操作系统/处理器的位数。 4. 使用PInvoke和GetNativeSystemInfo 我看到过有人说上面的都不可信。可以使用GetNativeSystemInfo代替，代码和上面一样，只是把GetSystemInfo换成GetNativeSystemInfo就好。
+结果不一样了。但是。。。这个API返回了处理器本身的位数，而我对操作系统的位数感兴趣。。毕竟64位的处理器上也可以轻松运行32位的操作系统 5. 组合 IntPtr.Size 和 IsWow64Process
+如果IntPtr是64.操作系统必然也是64位，因为你不能在32位的操作系统上运行64位的程序 如果程序在32位模式下运行，代码会检测是否是64位的处理器，而程序在32位模式下运行来判断是32位还是64位。 如果返回的是64，那么操作系统是64位，但是程序以32位的模式运行，如果是32，那么操作系统也是32.
+最后，我在lib里还加入了一些方法。以便区分程序/操作系统/处理器的位数。
+源码下载：
+[downloadicon href=http://pan.baidu.com/share/link?shareid=161028&amp;uk=1493685990]OSVersion.zip[/downloadicon] 译自：http://www.codeproject.com/Articles/73000/Getting-Operating-System-Version-Info-Even-for-Win，有删减。">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2012/11/23/%E8%8E%B7%E5%8F%96%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%89%88%E6%9C%AC%E4%BF%A1%E6%81%AF/" />
 <meta property="og:type" content="website" />
@@ -101,7 +130,9 @@ textBox1.Text = sb.ToString(); 对比一下坊间的几种不足： 总的来说
 
   <meta name="twitter:title" content="获取操作系统版本信息" />
   <meta name="twitter:description" content="坊间流传的代码都有些问题，比如不能正常获取win7以上的版本信息，不能获取诸如专业版，旗舰版等的信息，不能正常获取操作系统位的信息。
-使用代码，写了一个简单的库来实现效果。用法大概如下： StringBuilder sb = new StringBuilder(String.Empty); sb.AppendLine(&ldquo;Operation System …">
+使用代码，写了一个简单的库来实现效果。用法大概如下：
+对比一下坊间的几种不足： 总的来说。最大的问题就是不能正确检测你的操作系统到底是32位还是64位。几种方法大致如下： 1. 使用IntPtr指针的大小 最关键的一句代码是：
+但是事实上，这个返回的不是操作系统的位 …">
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -112,7 +143,7 @@ textBox1.Text = sb.ToString(); 对比一下坊间的几种不足： 总的来说
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -270,7 +301,7 @@ textBox1.Text = sb.ToString(); 对比一下坊间的几种不足： 总的来说
   <i class="fas fa-calendar"></i>&nbsp;Posted on November 23, 2012
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -296,147 +327,39 @@ textBox1.Text = sb.ToString(); 对比一下坊间的几种不足： 总的来说
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <p><a href="http://leaverimage.b0.upaiyun.com/29601_o.jpg"><img src="/images/ab5c1bb6b5cf05669ff110a1a4fe35b5a28a68a5.jpg" alt="" title="wnidows version" /></a>
+        <p><a href="http://leaverimage.b0.upaiyun.com/29601_o.jpg"><img src="/images/ab5c1bb6b5cf05669ff110a1a4fe35b5a28a68a5.jpg" alt="" title="wnidows version"></a>
 坊间流传的代码都有些问题，比如不能正常获取win7以上的版本信息，不能获取诸如专业版，旗舰版等的信息，不能正常获取操作系统位的信息。</p>
-
-<p>使用代码，写了一个简单的库来实现效果。用法大概如下：
-<pre class="lang:default decode:true">StringBuilder sb = new StringBuilder(String.Empty);
-sb.AppendLine(&ldquo;Operation System Information&rdquo;);
-sb.AppendLine(&ldquo;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-&rdquo;);
-sb.AppendLine(String.Format(&ldquo;Name = {0}&rdquo;, OSVersionInfo.Name));
-sb.AppendLine(String.Format(&ldquo;Edition = {0}&rdquo;, OSVersionInfo.Edition));
-if (OSVersionInfo.ServicePack!=string.Empty)
-sb.AppendLine(String.Format(&ldquo;Service Pack = {0}&rdquo;, OSVersionInfo.ServicePack));
-else
-sb.AppendLine(&ldquo;Service Pack = None&rdquo;);
-sb.AppendLine(String.Format(&ldquo;Version = {0}&rdquo;, OSVersionInfo.VersionString));
-sb.AppendLine(String.Format(&ldquo;ProcessorBits = {0}&rdquo;, OSVersionInfo.ProcessorBits));
-sb.AppendLine(String.Format(&ldquo;OSBits = {0}&rdquo;, OSVersionInfo.OSBits));
-sb.AppendLine(String.Format(&ldquo;ProgramBits = {0}&rdquo;, OSVersionInfo.ProgramBits));</p>
-
-<p>textBox1.Text = sb.ToString();</pre>
-对比一下坊间的几种不足：
+<p>使用代码，写了一个简单的库来实现效果。用法大概如下：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>对比一下坊间的几种不足：
 总的来说。最大的问题就是不能正确检测你的操作系统到底是32位还是64位。几种方法大致如下：
 1. 使用IntPtr指针的大小
-最关键的一句代码是：
-<pre class="lang:default decode:true">return IntPtr.Size * 8;</pre>
-但是事实上，这个返回的不是操作系统的位数，返回的是运行的程序的位数，如果在64位的windows上以32位的模式运行了这个程序，那么就会返回32.</p>
-
-<p>2. 使用PROCESSOR_ARCHITECTURE 环境变量
-<pre class="lang:default decode:true">string pa = Environment.GetEnvironmentVariable(&ldquo;PROCESSOR_ARCHITECTURE&rdquo;);
-return ((String.IsNullOrEmpty(pa) || String.Compare(pa, 0,
-&ldquo;x86&rdquo;, 0, 3, true) == 0) ? 32 : 64);</pre>
-这就是纯粹的误导了，因为和1的情况一样。不能返回处理器的位数而是返回了运行程序的位数，如果在64位的windows上以32位的模式运行了这个程序，那么就会返回32.</p>
-
+最关键的一句代码是：</p>
+<!-- raw HTML omitted -->
+<p>但是事实上，这个返回的不是操作系统的位数，返回的是运行的程序的位数，如果在64位的windows上以32位的模式运行了这个程序，那么就会返回32.</p>
+<p>2. 使用PROCESSOR_ARCHITECTURE 环境变量</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这就是纯粹的误导了，因为和1的情况一样。不能返回处理器的位数而是返回了运行程序的位数，如果在64位的windows上以32位的模式运行了这个程序，那么就会返回32.</p>
 <p>3. 使用PInvoke 和 GetSystemInfo
-注意：为了保持文章不要太长。。我没有包括PInvoke API的声明，（译者注：C#的互操作性嘛），但你可能在我提供的源代码里找到。
-<pre class="lang:default decode:true">ProcessorArchitecture pbits = ProcessorArchitecture.Unknown;
-try
-{
-SYSTEM_INFO l_System_Info = new SYSTEM_INFO();
-GetSystemInfo(ref l_System_Info);
-switch (l_System_Info.uProcessorInfo.wProcessorArchitecture)
-{
-case 9: // PROCESSOR_ARCHITECTURE_AMD64
-pbits = ProcessorArchitecture.Bit64;
-break;
-case 6: // PROCESSOR_ARCHITECTURE_IA64
-pbits = ProcessorArchitecture.Itanium64;
-break;
-case 0: // PROCESSOR_ARCHITECTURE_INTEL
-pbits = ProcessorArchitecture.Bit32;
-break;
-default: // PROCESSOR_ARCHITECTURE_UNKNOWN
-pbits = ProcessorArchitecture.Unknown;
-break;
-}
-}
-catch
-{
-Ignore
-}
-return pbits;</pre>
-老问题，还是会返回运行程序的位数，而不是操作系统/处理器的位数。
+注意：为了保持文章不要太长。。我没有包括PInvoke API的声明，（译者注：C#的互操作性嘛），但你可能在我提供的源代码里找到。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>老问题，还是会返回运行程序的位数，而不是操作系统/处理器的位数。
 4. 使用PInvoke和GetNativeSystemInfo
 我看到过有人说上面的都不可信。可以使用GetNativeSystemInfo代替，代码和上面一样，只是把GetSystemInfo换成GetNativeSystemInfo就好。</p>
-
 <p>结果不一样了。但是。。。这个API返回了处理器本身的位数，而我对操作系统的位数感兴趣。。毕竟64位的处理器上也可以轻松运行32位的操作系统
-5. 组合 IntPtr.Size 和 IsWow64Process
-<pre class="lang:default decode:true">static public SoftwareArchitecture OSBits
-{
-get
-{
-SoftwareArchitecture osbits = SoftwareArchitecture.Unknown;</p>
-
-<p>switch (IntPtr.Size * 8)
-{
-case 64:
-osbits = SoftwareArchitecture.Bit64;
-break;</p>
-
-<p>case 32:
-if (Is32BitProcessOn64BitProcessor())
-osbits = SoftwareArchitecture.Bit64;
-else
-osbits = SoftwareArchitecture.Bit32;
-break;</p>
-
-<p>default:
-osbits = SoftwareArchitecture.Unknown;
-break;
-}</p>
-
-<p>return osbits;
-}
-}</p>
-
-<p>private static IsWow64ProcessDelegate GetIsWow64ProcessDelegate()
-{
-IntPtr handle = LoadLibrary(&ldquo;kernel32&rdquo;);</p>
-
-<p>if (handle != IntPtr.Zero)
-{
-IntPtr fnPtr = GetProcAddress(handle, &ldquo;IsWow64Process&rdquo;);</p>
-
-<p>if (fnPtr != IntPtr.Zero)
-{
-return (IsWow64ProcessDelegate)Marshal.GetDelegateForFunctionPointer((IntPtr)fnPtr,
-typeof(IsWow64ProcessDelegate));
-}
-}</p>
-
-<p>return null;
-}</p>
-
-<p>private static bool Is32BitProcessOn64BitProcessor()
-{
-IsWow64ProcessDelegate fnDelegate = GetIsWow64ProcessDelegate();</p>
-
-<p>if (fnDelegate == null)
-{
-return false;
-}</p>
-
-<p>bool isWow64;
-bool retVal = fnDelegate.Invoke(Process.GetCurrentProcess().Handle, out isWow64);</p>
-
-<p>if (retVal == false)
-{
-return false;
-}</p>
-
-<p>return isWow64;
-}</pre>
-如果IntPtr是64.操作系统必然也是64位，因为你不能在32位的操作系统上运行64位的程序
+5. 组合 IntPtr.Size 和 IsWow64Process</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>如果IntPtr是64.操作系统必然也是64位，因为你不能在32位的操作系统上运行64位的程序
 如果程序在32位模式下运行，代码会检测是否是64位的处理器，而程序在32位模式下运行来判断是32位还是64位。
 如果返回的是64，那么操作系统是64位，但是程序以32位的模式运行，如果是32，那么操作系统也是32.</p>
-
 <p>最后，我在lib里还加入了一些方法。以便区分程序/操作系统/处理器的位数。</p>
-
 <p>源码下载：</p>
-
-<p>[downloadicon href=<a href="http://pan.baidu.com/share/link?shareid=161028&amp;uk=1493685990]OSVersion.zip[/downloadicon">http://pan.baidu.com/share/link?shareid=161028&amp;uk=1493685990]OSVersion.zip[/downloadicon</a>]
-译自：<a href="http://www.codeproject.com/Articles/73000/Getting-Operating-System-Version-Info-Even-for-Win，有删减。">http://www.codeproject.com/Articles/73000/Getting-Operating-System-Version-Info-Even-for-Win，有删减。</a></p>
+<p>[downloadicon href=http://pan.baidu.com/share/link?shareid=161028&amp;uk=1493685990]OSVersion.zip[/downloadicon]
+译自：http://www.codeproject.com/Articles/73000/Getting-Operating-System-Version-Info-Even-for-Win，有删减。</p>
 
 
         
@@ -554,7 +477,7 @@ return false;
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

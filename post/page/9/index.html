@@ -48,7 +48,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -203,7 +203,7 @@
                 <span class="post-meta">
   
   
-  <i class="fas fa-calendar"></i>&nbsp;Posted on October 27, 2019
+  <i class="fas fa-calendar"></i>&nbsp;Posted on December 30, 2019
   
   
     &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;0&nbsp;minutes
@@ -235,8 +235,8 @@
         <div class="posts-list">
           
             <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2014/02/04/%E7%AC%94%E8%AE%B0%E5%86%99%E4%BB%A3%E7%A0%81%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB%E4%B8%8A/">
-                <h2 class="post-title">[笔记]写代码遇到的一些问题汇总上</h2>
+              <a href="https://leizhiyuan.github.io/2014/02/08/%E7%AC%94%E8%AE%B0%E5%86%99%E4%BB%A3%E7%A0%81%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB%E4%B8%8B/">
+                <h2 class="post-title">[笔记]写代码遇到的一些问题汇总下</h2>
 
                 
               </a>
@@ -245,10 +245,10 @@
                 <span class="post-meta">
   
   
-  <i class="fas fa-calendar"></i>&nbsp;Posted on February 4, 2014
+  <i class="fas fa-calendar"></i>&nbsp;Posted on February 8, 2014
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -263,10 +263,126 @@
               </p>
               <div class="post-entry">
                 
-                  今天大雪，天冷，不能出去玩了。把保存在pocket里的一些记录总结一下，太懒了。。下篇等我去了上海用我电脑写吧
-1.java模拟https登陆
-首先我要登陆，然后保存cookie，然后利用cookie来访问后续的网页，发包，处理包这样，然后，为了方便，我选择了 org.apache.http 这个库，典型的一个登陆场景应该是这样的，以后遇到问题一定先要去看官方的例子，别人给出的例子一般要么是不能用，要么是用的方法都是一些过时的，虽然能用，但看到警告还是不舒服。 public static BasicCookieStore cookieStore; //整个过程用一个client public static CloseableHttpClient httpclient; cookieStore = new BasicCookieStore(); httpclient = HttpClients.custom().setDefaultCookieStore(cookieStore).build(); //先访问一下首页，然后cookie、会填充进来 HttpGet httpget = new HttpGet(&ldquo;https://leaver.me/index.htm&quot;); httpclient.execute(httpget); CloseableHttpResponse responseCookie = null; //然后post请求登陆 HttpPost httpost = new HttpPost(&ldquo;https://leaver.me/login.htm&quot;); //通过键值对来作为post参数 List &lt; NameValuePair &gt; nameValuePairs = new ArrayList &lt; NameValuePair &gt; (1); nameValuePairs.add(new BasicNameValuePair(&ldquo;loginType&rdquo;, &ldquo;1&rdquo;)); nameValuePairs.add(new BasicNameValuePair(&ldquo;loginName&rdquo;, username)); nameValuePairs.add(new BasicNameValuePair(&ldquo;Password&rdquo;, password)); httpost.setEntity(new UrlEncodedFormEntity(nameValuePairs, Consts.UTF_8)); CloseableHttpResponse responLogin = null; responLogin = httpclient.execute(httpost); 但是，这个过程报了如下的错 e: sun.
-                  <a href="https://leizhiyuan.github.io/2014/02/04/%E7%AC%94%E8%AE%B0%E5%86%99%E4%BB%A3%E7%A0%81%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB%E4%B8%8A/" class="post-read-more">[Read More]</a>
+                  本篇是用来填上一篇 挖下的坑的。
+1.java调用webservice
+有一些已有的webservice服务，由xfire生成发布，有些有参数，有些无参数，无参数的直接我直接使用org.codehaus.xfire这个包里的Client来动态生成客户端。然后调用就可以了。非常简单
+但对于有参的，且是服务器自定义的类作为参数的时候，实在是搞不定。。不管是把自定义的类放到本地，包名一致，在invoke的时候生成这个对象还是其他什么方法。都无法完成。
+最终换了直接发送soap报文来完成。dirty hack啊。如果你有一些好的方法希望不吝赐教。
+解决方案来源自stackoverflow，因为stackoverflow现在国内好像有时候打不开。因此把代码贴过来。有疑问的话留言讨论。
+2.Access restriction on class due to restriction on required library rt.jar? 报错
+总么都感觉是环境问题，系统bug。解决如下：
+ 进入project properties的 Build Path 设置里. 移除 JRE System Library 再添加回来，方法是: 选择 &ldquo;Add Library&rdquo; ，然后选择 JRE System Library.   3.SSHManager类报错：com.jcraft.jsch.JSchException: UnknownHostKey
+我使用的一个SSHManager类如下：
+报这个错是因为
+连接这段代码里少了config.put(&ldquo;StrictHostKeyChecking&rdquo;, &ldquo;no&rdquo;);这段设置，这个是去掉了严格的安全检查，一般只用于测试目的。
+4.navicat连接oracle数据库
+之前使用PL/SQL操作Oracle数据库，使用Heidisql操作mysql数据库。。切换麻烦。而且PL/SQL搜索的时候中文有问题。于是打算使用navicat统一管理
+方法是：
+1.首先下载Instant Client 的32位版本和Navicat Premium
+2.然后解压Instant Client，配置navicat
+
+选择oci文件即可
+然后新建oracle配置，选择basic模式，其他的根据你的数据库信息自己填写即可。
+ 5.HttpClient的logger日志实在太多了
+大人，实在太多了。看不过来啊。附赠一篇log4j配置文件详解
+在log4j.properties文件中添加如下配置信息
+log4j.logger.httpclient.wire.header=INFO
+log4j.logger.httpclient.wire.content=INFO
+log4j.logger.org.apache.commons.httpclient = INFO
+最后附赠一些实用的工具
+http://www.freeformatter.com/ 程序员必备。各类转换，包括转义工具，格式校验工具。效果很好。
+                  <a href="https://leizhiyuan.github.io/2014/02/08/%E7%AC%94%E8%AE%B0%E5%86%99%E4%BB%A3%E7%A0%81%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB%E4%B8%8B/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/linux/">linux</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E4%B8%8A%E6%B5%B7/">上海</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E4%BA%92%E8%81%94%E7%BD%91/">互联网</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E4%BD%9C/">工作</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2014/02/04/%E7%AC%94%E8%AE%B0%E5%86%99%E4%BB%A3%E7%A0%81%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB%E4%B8%8A/">
+                <h2 class="post-title">[笔记]写代码遇到的一些问题汇总上</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on February 4, 2014
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  <p>今天大雪，天冷，不能出去玩了。把保存在pocket里的一些记录总结一下，太懒了。。下篇等我去了上海用我电脑写吧</p>
+<p><em><strong>1.java模拟https登陆</strong></em></p>
+<p>首先我要登陆，然后保存cookie，然后利用cookie来访问后续的网页，发包，处理包这样，然后，为了方便，我选择了 org.apache.http 这个库，典型的一个登陆场景应该是这样的，以后遇到问题一定先要去看官方的例子，别人给出的例子一般要么是不能用，要么是用的方法都是一些过时的，虽然能用，但看到警告还是不舒服。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>但是，这个过程报了如下的错</p>
+<!-- raw HTML omitted -->
+<p>google之，发现时访问https的原因。需要先安装对应站点的证书。这里要用到一个通用的java类，我贴下<a href="http://pan.baidu.com/s/1sjMyvgx">链接</a></p>
+<p>编译这个工具类，然后执行java InstallCert &lt;host&gt;[:port] 会生成一个证书文件</p>
+<p>然后在项目里通过</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>设置即可，你可以吧证书文件放到资源目录，就更好了。</p>
+<p><em><strong>2.java正则替换反斜线</strong></em></p>
+<p>我在某个地方需要把字符串里的所有反斜线替换成两个，我就写了</p>
+<!-- raw HTML omitted -->
+<p>结果发现我还是too young,实际上，</p>
+<p>java replaceAll() 方法要用 4 个反斜杠,表示一个反斜杠 例如</p>
+<!-- raw HTML omitted -->
+<p>要想替换成</p>
+<!-- raw HTML omitted -->
+<p>必须这样替换：</p>
+<!-- raw HTML omitted -->
+<p>原因如下： String 的 replaceAll（） 方法，实际是采用正则表达式的规则去匹配的， \\ ，java解析为\交给正则表达式， 正则表达式再经过一次转换，把\转换成为\ 也就是java里面要用正则来表示一个. 必须写成4个\ 如果要表示\，那就要写8个\ 所以如果写成： str1 = str1.replaceAll(&quot;\&quot;, &ldquo;\\&quot;); 就会报正则表达式的错误。</p>
+<p><em><strong>3.httpClient如何模拟表单上传文件</strong></em></p>
+<p>这个还是要去看官方例子，网上没找到，需要添加</p>
+<p>org.apache.http.entity包</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>其他都和普通的post请求没啥区别了</p>
+<p><em><strong>4.json-lib的一个问题</strong></em></p>
+<p>在maven里添加了json-lib的依赖后，启动报错</p>
+<p>missing net.sf.json-lib，但实际上这个我的确是加载进来了。去了SO，才知道，还需要知道classifier 依赖，把jdk的版本添加上就行。这个应该是我当时添加的时候没有去maven中央库填写造成的</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>然后在工程目录执行</p>
+<!-- raw HTML omitted -->
+<p>就会在target目录生成jar包啦</p>
+
                 
               </div>
 
@@ -314,36 +430,30 @@
               <div class="post-entry">
                 
                   <p>火影片头曲想知道中文，没找到翻译，于是译之，感谢<a href="http://weibo.com/u/1095659682">@sepith </a>  。</p>
-
 <p>今夜月光
 不知为何
 比往日温柔
 崎岖泥泞的来时路
 何时才能有同行之人</p>
-
 <p>我沉默
 为即将而来的眼泪
 泪水中努力
 悲伤着变得更强</p>
-
 <p>很多时候，伤痕累累
 忘掉了痛苦
 流过血泪
 王者归来是使命所及
 哪管一路秋叶萧萧</p>
-
 <p>我仰望星空
 孤独从来不是虚假的幻想
 你的过去我无法参与
 我想要的的是现在和未来</p>
-
 <p>昨日月光
 无论是明亮，还是黯淡
 我用双手铸造
 始于生而终于死
 一定错过了
 诸多美好</p>
-
 <p>我的同伴
 虽然时过境迁
 可是，你住过的地方
@@ -351,33 +461,28 @@
 如果你想对我说
 我还是会在你身边
 舍命相陪</p>
-
 <p>很多时候，伤痕累累
 星空暗淡
 假使黎明
 也悄然消失
 我一定再一次
 为了梦想努力拼搏</p>
-
 <p>痛到难以承受
 迷惘前路崎岖
 我轻轻闭上双眼
 感受月光温柔
 前路相伴
 岂敢轻易迷失</p>
-
 <p>如果欺骗了内心
 失去了自己
 莫忘星空璀璨
 凝视遥远的未来
 固执地努力</p>
-
 <p>很多时候，伤痕累累
 忘掉了痛苦
 流过血泪，
 王者归来是使命所及
 哪管一路秋叶萧萧</p>
-
 <p>我仰望星空
 真正强大的是
 心怀梦想的人
@@ -433,24 +538,20 @@
 首先来拿生活中的一个非常常见的例子来说明跨行清算的整个过程，这里面不涉及交易费等其他概念。
 跨行取款流程 张三是工行的持卡人，他需要取现金，但是找不到工行的ATM机器，发现附近有建行的ATM机器，他只能去建行取款，整个过程就是跨行清算的过程，我们以这个场景为例，分析一下业务流程，具体交互流程见下面一张图。
 
-&nbsp;
-工行持卡人张三在建行ATM机器取款100，ATM请求建行主机，由于是工行的卡，建行不识别，只能请求工行去处理，工行识别持卡人账户并扣款100，然后通知建行，建行则通知atm吐钱。
+ 工行持卡人张三在建行ATM机器取款100，ATM请求建行主机，由于是工行的卡，建行不识别，只能请求工行去处理，工行识别持卡人账户并扣款100，然后通知建行，建行则通知atm吐钱。
 这里整个系统要解决两个问题：
 1 建行如何与工行通信
 2 建行和工行之间如何清算，如上图结果，工行欠建行100.
 整个系统的分析基于以上两个问题，下面首先解决是通信问题
-&nbsp;
-跨行通信的两种模式 我们先假设工行提供接口，只需要建行发送指约定格式的报文，即可于工行通信，这种相当于建行直接通过接口方式与工行通信。如果是这种方式，只能解决建行和工行的单向通信，如果工行和建行通信，则工行要发送建行指定的通信报文格式。可是大家想想，如果银行更多怎么办，下面是三家银行间的通信
+ 跨行通信的两种模式 我们先假设工行提供接口，只需要建行发送指约定格式的报文，即可于工行通信，这种相当于建行直接通过接口方式与工行通信。如果是这种方式，只能解决建行和工行的单向通信，如果工行和建行通信，则工行要发送建行指定的通信报文格式。可是大家想想，如果银行更多怎么办，下面是三家银行间的通信
 
 当有三家银行的时候，通信链路就有3*2=6条，当银行越来越多的时候，这种点对点的通信变的越来越复杂，每新增一家银行，他要做之前银行都要做的很多重复性的劳动，这样的成本非常高，也不经济，那么必须出现一个网络，它能够接入所有的银行，新的银行只需要接入这个网络，就可以和其他所有的银行进行通信。
 先把这个网络成为通信网络，这种通信网络有两种方式可以连接所有的银行
  1 这个通信网络定义标准接口，所有的银行都必须实现这个通信网络定义的api，新的银行如果想要接入这个通信网络，必须实现通信接口约定的协议。简称公共接口模式 2 这个通信网络主动去连接所有的银行的接口，把所有银行的接口信息都接入里面，就像一个适配器，新的银行如果想要接入这个通信网络，这个通信网络必须主动联系银行，按照银行的接口协议实现通信，简称适配器模式。 下面一幅图演示了这两种模式的不同：  
 对于这两模式，主要博弈就在于谁强谁弱。显然第三方支付公司属于适配器模式，需要一家一家银行去接入，至于银联，个人认为应该是第一种模式，这种对于银联这种需要稳定的系统来说是最具有优势的。
-&nbsp;
-跨行清算保证金模式 解决了通信问题，下面就看如何解决资金的清算问题。一种简单的方案就是工行在建行里面开设一个保证金账户，用这个账户去偿还在整个跨行交易中应付给建行的资金。
+ 跨行清算保证金模式 解决了通信问题，下面就看如何解决资金的清算问题。一种简单的方案就是工行在建行里面开设一个保证金账户，用这个账户去偿还在整个跨行交易中应付给建行的资金。
 
-&nbsp;
-从上图来看，这种方案确实可行。只需要工行在建行里面放足额的保证金，就可以满足跨行的费用。但是这里面实际上存在非常多的问题，
+ 从上图来看，这种方案确实可行。只需要工行在建行里面放足额的保证金，就可以满足跨行的费用。但是这里面实际上存在非常多的问题，
  1 如果银行越来也多，每个银行都要在其他银行存钱，太不经济了 2 保证金需要放多少资金？如果一直都没有发生跨行交易，工行就亏大发了 3 如果保证金不够怎么办？交易失败还是记应收款？ 对于第一个问题假设银行越来越多，会导致工行需要在其他每个银行里面都开设保证金账户（见下图），是一个很不经济的方案。  说明这个在其他银行存保证金的方案是不可行的，和之前通信的问题一样，是不是可以把所有的银行保证金账户单独管理起来，统一放置在一起，方便各个银行之间的清算。我们暂时把这个系统称之为保证金系统。
 保证金系统 保证金就是方便各个银行之间的清算，需要单独由一个系统进行管理，解决了跨行之间保证金存放的问题。每个银行只需要在保证金系统中存点钱就可以了。保证金系统也有两种模式。先看看比较好理解的第一种模式：
 
@@ -461,9 +562,9 @@
 所有的第三方支付公司跨行清算的流程都是第二种方式，只有国家级清算公司（比如银联）是第一种方式，这是一种资源和权力上的不平等，不过是可以理解的。
 清算系统 保证金系统解决了保证金存放的问题，接下来就是解决如何清算的问题。假设保证金转账是实时的，就要面对上面说的问题，保证金不够的情况下，跨行交易是成功还是失败。这是一个业务上问题，有很多种解决方案，我们暂不说。从技术上来讲，如果每一笔交易都要保证金实时记账，那么保证金系统的负载太大，事务如何保证等等一些列的问题。所以一个最简单的方案就是：一天结算一次。
 每天由一个系统记录这些跨行交易信息，汇总出来，统一记账。这样一天只需要调用一次保证金系统即可。那么整个清算过程则是下面的流程：
- 1 系统T日发生建行和工行的跨行交易100 
- 2 清算系统T+1日汇总T日工行和建行之间发生的交易明细数据，并且发这些数据发给建行和工行进行确认 
-  &nbsp;
+  1 系统T日发生建行和工行的跨行交易100 
+  2 清算系统T+1日汇总T日工行和建行之间发生的交易明细数据，并且发这些数据发给建行和工行进行确认 
+    3 工行建行分别对明细对账确认之后，通知清算系统确认交易明细无误，清算系统开始清算，调用保证金支付系统转账。 4 清算完成之后，工行和建行分别获取保证金系统的真实金额和自身系统内部的映射账户进行余额对账。    清算中心最主要干得事情就是统计谁欠谁多少钱，以及触发保证金系统的调拨操作。
                   <a href="https://leizhiyuan.github.io/2013/12/14/%E8%97%8F%E8%B7%A8%E8%A1%8C%E6%B8%85%E7%AE%97%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -513,15 +614,38 @@
               </p>
               <div class="post-entry">
                 
-                  有一次遇到了，查了查。原文地址
-Java中取资源时，经常用到Class.getResource和ClassLoader.getResource，这里来看看他们在取资源文件时候的路径问题。
-Class.getResource(String path)  path不以’/&lsquo;开头时，默认是从此类所在的包下取资源； path 以’/&lsquo;开头时，则是从ClassPath根下获取；  什么意思呢？看下面这段代码的输出结果就明白了：  package testpackage; public class TestMain { public static void main(String[] args) { System.out.println(TestMain.class.getResource(&ldquo;&rdquo;)); System.out.println(TestMain.class.getResource(&ldquo;/&rdquo;)); } }  输出结果：  file:/E:/workspace/Test/bin/testpackage/ file:/E:/workspace/Test/bin/  上面说到的【path以’/&lsquo;开头时，则是从ClassPath根下获取；】在这里就是相当于bin目录(Eclipse环境下)。
-再来一个实例，假设有如下Project结构：
+                  <p>有一次遇到了，查了查。<a href="http://www.cnblogs.com/yejg1212/p/3270152.html">原文地址</a></p>
+<p>Java中取资源时，经常用到Class.getResource和ClassLoader.getResource，这里来看看他们在取资源文件时候的路径问题。</p>
+<h2 id="classgetresourcestring-path">Class.getResource(String path)</h2>
+<!-- raw HTML omitted -->
+<p>再来一个实例，假设有如下Project结构：</p>
+<p><a href="http://leaverimage.b0.upaiyun.com/2013/12/o_PackageStructure1.png"><img src="/images/94eb328bce2cf9ff32430cc4075af46091202a22.png" alt="o_PackageStructure1"></a></p>
+<p>如果我们想在TestMain.java中分别取到1~3.properties文件，该怎么写路径呢？代码如下：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p>※Class.getResource和Class.getResourceAsStream在使用时，路径选择上是一样的。</p>
+<p> </p>
+<p> </p>
+<h2 id="classgetclassloadergetresourcestring-path">Class.getClassLoader（）.getResource(String path)</h2>
+<!-- raw HTML omitted -->
+<p>如果有同样的Project结构</p>
+<p><a href="http://leaverimage.b0.upaiyun.com/2013/12/o_PackageStructure.png"><img src="/images/46e184c9601d96bbb9fbb19e475c7909c85fe52c.png" alt="o_PackageStructure"></a></p>
+<p>使用Class.getClassLoader（）.getResource(String path)可以这么写：</p>
+<!-- raw HTML omitted -->
+<p>public class TestMain {
+public static void main(String[] args) {
+TestMain t = new TestMain();
+System.out.println(t.getClass().getClassLoader().getResource(&quot;&quot;));</p>
+<pre><code>    System.out.println(t.getClass().getClassLoader().getResource(&quot;1.properties&quot;));
+    System.out.println(t.getClass().getClassLoader().getResource(&quot;testpackage/2.properties&quot;));
+    System.out.println(t.getClass().getClassLoader().getResource(&quot;testpackage/subpackage/3.properties&quot;));
+}
+</code></pre>
+<p>}<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<p>※Class.getClassLoader（）.getResource和Class.getClassLoader（）.getResourceAsStream在使用时，路径选择上也是一样的。</p>
 
-如果我们想在TestMain.java中分别取到1~3.properties文件，该怎么写路径呢？代码如下： package testpackage;
-public class TestMain {
-public static void main(String[] args) { // 当前类(class)所在的包目录 System.out.println(TestMain.class.getResource(&#34;&#34;)); // class path根目录 System.out.println(TestMain.class.getResource(&#34;/&#34;)); // TestMain.class在&amp;lt;bin&amp;gt;/testpackage包中 // 2.properties 在&amp;lt;bin&amp;gt;/testpackage包中 System.out.println(TestMain.class.getResource(&#34;2.properties&#34;)); // TestMain.class在&amp;lt;bin&amp;gt;/testpackage包中 // 3.properties 在&amp;lt;bin&amp;gt;/testpackage.subpackage包中 System.out.println(TestMain.class.getResource(&#34;subpackage/3.properties&#34;)); // TestMain.
-                  <a href="https://leizhiyuan.github.io/2013/12/14/%E8%97%8Fclass.getresource%E5%92%8Cclassloader.getresource%E4%B8%8D%E5%90%8C%E7%82%B9/" class="post-read-more">[Read More]</a>
                 
               </div>
 
@@ -570,11 +694,24 @@ public static void main(String[] args) { // 当前类(class)所在的包目录 S
               </p>
               <div class="post-entry">
                 
-                  首先什么是代理？ 所谓代理呢也就是在调用实现类的方法时，可以在方法执行前后做额外的工作，这个就是代理。  那动态代理呢，官方解释是：  Java 动态代理机制的出现，使得 Java 开发人员不用手工编写代理类，只要简单地指定一组接口及委托类对象，便能动态地获得代理类。代理类会负责将所有的方法调用分派到委托对象上反射执行，在分派执行的过程中，开发人员还可以按需调整委托类对象及其功能，这是一套非常灵活有弹性的代理框架。 老湿，你说的是个毛啊，完全没看懂啊！
-我更喜欢另一种通俗的解释，官方的解释总是高度抽象的，等用了一段时间才能理解体会  动态代理实现了日志和业务的分开，也就是某个类只是要提供了某些业务，比如银行取款业务。这个类实现了取款业务的同时也需要实现日志功能，如果不用动态代理的话，那么由此一来该类代码里面已经额外地添加了自己不该添加的日志功能能代码。所以我们就得使用动态代理把它的业务代码和日志功能代码分开。所以用到了动态代理概念，spring里面的AOP就是一个很好的例子。  不直观啊，老湿，能再给力一点不？ 额，这样的话，我们来看一个例子，要用到的两个类 实现java.lang.reflect.InvocationHandler接口提供一个执行处理器，也就是真正做事的，然后通过java.lang.reflect.Proxy得到一个代理对象，通过这个代理对象来执行业务方法,在业务方法被调用的同时，执行处理器会被自动调用。 记住，动态代理只能对接口 首先业务接口：  public interface HelloWorld { public void sayHelloWorld(); } 然后我们是这样写的实现 public class HelloWorldImpl implements HelloWorld { public void sayHelloWorld() { System.out.println(&ldquo;Hello World!&rdquo;); } } 后来我们觉得执行这个方法前能不能做点其他啥事呢，比如写个日志？见个妹子？啥，这段代码不让改了，改了的话，业务方法和日志混合的一塌糊涂啊，以后想改个日志格式你来写啊
-那我们就得定义一个拦截器/执行处理器了。 public class HelloWorldHandler implements InvocationHandler { //目标对象 private Object targetObject;
-public HelloWorldHandler(Object targetObject){ this.targetObject = targetObject; } public Object invoke(Object proxy, Method method, Object[] args) throws Throwable { System.
-                  <a href="https://leizhiyuan.github.io/2013/11/24/java%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E5%AE%9E%E4%BE%8B/" class="post-read-more">[Read More]</a>
+                  <p>首先什么是代理？</p>
+<!-- raw HTML omitted -->
+<p>我更喜欢另一种通俗的解释，官方的解释总是高度抽象的，等用了一段时间才能理解体会</p>
+<!-- raw HTML omitted -->
+<p>那我们就得定义一个拦截器/执行处理器了。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这客户端咋用啊，老湿</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>看到没，通过Proxy类的newProxyInstance方法，传入类加载器，类接口，和这个处理器，我们就获得一个代理</p>
+<p>执行结果是这样的</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>恩，电脑没死机，是这样的</p>
+<p> </p>
+<!-- raw HTML omitted -->
+
                 
               </div>
 
@@ -623,16 +760,55 @@ public HelloWorldHandler(Object targetObject){ this.targetObject = targetObject;
               </p>
               <div class="post-entry">
                 
-                  本文转自：http://my.oschina.net/colorleaf/blog/176569
-这个算说的比较清楚的了，虽然简单但是很有用。收藏一下。
-详解Eclipse断点
-大家肯定都用过Eclipse的调试的功能，在调试的过程中自然也无法避免要使用断点(breakpoint)，但不知是否对Eclipse中各类断点都有所了解。本篇图文并茂地介绍了Eclipse中全部类型的断点，及其设置，希望对大家有所帮助。(2011.11.20)
-1. 示例程序 BreakpointDemo是一个臆造的应用程序，只是为了便于讲解Eclipse中各类断点的使用罢了。其代码如下图所示，  BreakpointDemo主要包含两个方法： [1]setValue，该方法根据指定的次数(count)，对成员变量value进行赋值，值的范围为0-9的随机整数。 [2]printValue，该方法会调用setValue()对value进行赋值，并打印出value的值；但，如果value能被3整除，那么就会抛出IllegalArgumentException异常。
-2. Line Breakpoint Line Breakpoin是最简单的Eclipse断点，只要双击某行代码对应的左侧栏，就对该行设置上断点。此处，对第20行代码设置上Line Breakpoint，如下图所示，  可以为Line Breakpoint设置一个条件，那么当程序运行到该断点时，只有满足设定的条件，才会被中断。右键点击第20行的断点，选择&rdquo;Breakpoint Properties&hellip;&rdquo;  在弹出的属性对话框中，勾选上&rdquo;Conditional&rdquo;，然后在文本框中输入&rdquo;count % 2 == 0&rdquo;。  该条件表示，当程序运行到第20行时，只有当count为偶数时，程序才会被中断。细心地话，你会发现该断点的图标发生了改变，多了一个问号。 
-3. Watchpoint Line Breakpoint关注于程序运行的&rdquo;过程&rdquo;，大家也常把使用这种断点的调试称为单步调试。但有时候，我们对程序的运行过程不太了解，可能也不太关心，不能确定在什么地方设置断点比较合适，而可能比较关注某个关键变量的变化或使用。此时，就可以为该变量设置一种特殊的断点&ndash;Watchpoint。在此示例，我们最关心的就是成员变量value的值，那么就可以为它设置一个Watchpoint，双击第9行代码对应的左侧栏就可以了。  使用在2中所提及的方法，查看该断点的属性，  默认地，当该变量被访问或它的值被修改时，程序都会被中断。但在本示例中，只希望当对value的值进行修改时程序才需要被中断，所以取消对&rdquo;Access&rdquo;的勾选。  这时，我们会发现原来的Watchpoin图标也有变化了。 
-4. Method Breakpoint 与关注对某个变量的访问与修改一样，我们也可以关注程序对某个方法的调用情况，即，可以设置Method Breakpoint。在此处，设置针对方法setValue的Method Breakpoint。同理，双击第11行代码对应的左侧栏即可。  仍然要查看该断点的属性。默认地，只勾选了&rdquo;Entry&rdquo;，而没有勾选&rdquo;Exit&rdquo;。  这表示，当刚进入该方法(调用开始)时，程序会被中断；而，离开该方法(调用结束)时，程序并不会被中断。在本示例中，需要同时勾选上&rdquo;Exit&rdquo;。  点击OK之后，可以看到该断点的图标也有所改变。  根据这里的设置，当程序运行到第20行后会在第12行被中断，尽管这里没有显式的断点，但这就是setValue()方法的入口(Entry)。必须注意地是，程序在运行到第16行时不会被中断，尽管它看起来像是setValue()方法的出口(Exit)。实际上，程序会在第17行被中断，这里才是setValue()调用结束的地方。
-5. Exception Breakpoint 如果，我们期望某个特定异常发生时程序能够被中断，以方便查看当时程序所处的状态。通过设置Exception Breakpoint就能达到这一目标。本示例故意在第23行抛出了IllegalArgumentException异常，我们期望程序运行到此处时会被中断。但我们不直接为此行代码设置Line Breakpoint，而是为IllegalArgumentException设置Exception Breakpoint。设置Exception Breakpoint的方法与其它类型断点都不同，它不能通过双击左侧栏的方式在代码编辑器上直接进行设置。点击Breakpoints视图右上角形如Ji的图标，  会弹出如下所示的对话框，  在其中选中IllegalArgumentException，并点击OK，这时一个Exception Breakpoint就设置好了。  当value为3的倍数时，程序会在第23行被中断，这时我们就能使用调试器来看看value具体是等于0，3或6。 6.
-                  <a href="https://leizhiyuan.github.io/2013/11/16/%E8%97%8F%E5%9B%BE%E6%96%87%E5%B9%B6%E8%8C%82%E8%AF%A6%E8%A7%A3eclipse%E6%96%AD%E7%82%B9/" class="post-read-more">[Read More]</a>
+                  <p>本文转自：<a href="http://my.oschina.net/colorleaf/blog/176569">http://my.oschina.net/colorleaf/blog/176569</a></p>
+<p>这个算说的比较清楚的了，虽然简单但是很有用。收藏一下。</p>
+<p><strong>详解Eclipse断点</strong></p>
+<p>大家肯定都用过Eclipse的调试的功能，在调试的过程中自然也无法避免要使用断点(breakpoint)，但不知是否对Eclipse中各类断点都有所了解。本篇图文并茂地介绍了Eclipse中全部类型的断点，及其设置，希望对大家有所帮助。(2011.11.20)</p>
+<p><strong>1. 示例程序</strong>
+BreakpointDemo是一个臆造的应用程序，只是为了便于讲解Eclipse中各类断点的使用罢了。其代码如下图所示，
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153245_BTUJ.png"><img src="/images/abd1d53612eeef8d1feccdf17a894d3e71d41941.png" alt="15153245_BTUJ"></a>
+BreakpointDemo主要包含两个方法：
+[1]setValue，该方法根据指定的次数(count)，对成员变量value进行赋值，值的范围为0-9的随机整数。
+[2]printValue，该方法会调用setValue()对value进行赋值，并打印出value的值；但，如果value能被3整除，那么就会抛出IllegalArgumentException异常。</p>
+<p><strong>2. Line Breakpoint</strong>
+Line Breakpoin是最简单的Eclipse断点，只要双击某行代码对应的左侧栏，就对该行设置上断点。此处，对第20行代码设置上Line Breakpoint，如下图所示，
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153245_zkOp.png"><img src="/images/ca7da4e9038334e0603072298cbaf834326da937.png" alt="15153245_zkOp"></a>
+可以为Line Breakpoint设置一个条件，那么当程序运行到该断点时，只有满足设定的条件，才会被中断。右键点击第20行的断点，选择&quot;Breakpoint Properties&hellip;&rdquo;
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153245_I2Pe.png"><img src="/images/ff95dcb0130a35d3e293a52487e4109316cba1f8.png" alt="15153245_I2Pe"></a>
+在弹出的属性对话框中，勾选上&quot;Conditional&rdquo;，然后在文本框中输入&quot;count % 2 == 0&rdquo;。
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153246_rJtm.png"><img src="/images/4f5d2d716473a55f1e3b96a59ac07f700657452a.png" alt="15153246_rJtm"></a>
+该条件表示，当程序运行到第20行时，只有当count为偶数时，程序才会被中断。细心地话，你会发现该断点的图标发生了改变，多了一个问号。
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153246_5APe.png"><img src="/images/e3d69e5d5b31edbf729ce4522f9b21e2f5024f17.png" alt="15153246_5APe"></a></p>
+<p><strong>3. Watchpoint</strong>
+Line Breakpoint关注于程序运行的&quot;过程&rdquo;，大家也常把使用这种断点的调试称为单步调试。但有时候，我们对程序的运行过程不太了解，可能也不太关心，不能确定在什么地方设置断点比较合适，而可能比较关注某个关键变量的变化或使用。此时，就可以为该变量设置一种特殊的断点&ndash;Watchpoint。在此示例，我们最关心的就是成员变量value的值，那么就可以为它设置一个Watchpoint，双击第9行代码对应的左侧栏就可以了。
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153246_zzEM.png"><img src="/images/082e1647ca341b0f3549dcfc136ce278d73f4acb.png" alt="15153246_zzEM"></a>
+使用在2中所提及的方法，查看该断点的属性，
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153246_e1gH.png"><img src="/images/f268f9ed80a672eeb51d164658a971d6777989b9.png" alt="15153246_e1gH"></a>
+默认地，当该变量被访问或它的值被修改时，程序都会被中断。但在本示例中，只希望当对value的值进行修改时程序才需要被中断，所以取消对&quot;Access&quot;的勾选。
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153246_evtw.png"><img src="/images/1deb043f0baa72b61a76e794f7acf9d25762112c.png" alt="15153246_evtw"></a>
+这时，我们会发现原来的Watchpoin图标也有变化了。
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153246_Sw8K.png"><img src="/images/d2dff57a03768ac00b84dd9bb651e99031d94cdc.png" alt="15153246_Sw8K"></a></p>
+<p><strong>4. Method Breakpoint</strong>
+与关注对某个变量的访问与修改一样，我们也可以关注程序对某个方法的调用情况，即，可以设置Method Breakpoint。在此处，设置针对方法setValue的Method Breakpoint。同理，双击第11行代码对应的左侧栏即可。
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153247_xdH4.png"><img src="/images/bd49da0a82d0dc044a917e5b53107b05b36f6378.png" alt="15153247_xdH4"></a>
+仍然要查看该断点的属性。默认地，只勾选了&quot;Entry&rdquo;，而没有勾选&quot;Exit&rdquo;。
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153247_W1oy.png"><img src="/images/7294186aaa782865383feb3a4e375a5a3b628c27.png" alt="15153247_W1oy"></a>
+这表示，当刚进入该方法(调用开始)时，程序会被中断；而，离开该方法(调用结束)时，程序并不会被中断。在本示例中，需要同时勾选上&quot;Exit&rdquo;。
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153247_QVwz.png"><img src="/images/39f23217e1d0ead7061f1d636b97f52b6ee886fd.png" alt="15153247_QVwz"></a>
+点击OK之后，可以看到该断点的图标也有所改变。
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153247_YRMh.png"><img src="/images/bdeda47c131aefb575366c4d23b16b3e0ee59321.png" alt="15153247_YRMh"></a>
+根据这里的设置，当程序运行到第20行后会在第12行被中断，尽管这里没有显式的断点，但这就是setValue()方法的入口(Entry)。必须注意地是，程序在运行到第16行时不会被中断，尽管它看起来像是setValue()方法的出口(Exit)。实际上，程序会在第17行被中断，这里才是setValue()调用结束的地方。</p>
+<p><strong>5. Exception Breakpoint</strong>
+如果，我们期望某个特定异常发生时程序能够被中断，以方便查看当时程序所处的状态。通过设置Exception Breakpoint就能达到这一目标。本示例故意在第23行抛出了IllegalArgumentException异常，我们期望程序运行到此处时会被中断。但我们不直接为此行代码设置Line Breakpoint，而是为IllegalArgumentException设置Exception Breakpoint。设置Exception Breakpoint的方法与其它类型断点都不同，它不能通过双击左侧栏的方式在代码编辑器上直接进行设置。点击Breakpoints视图右上角形如Ji的图标，
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153247_Wm2U.png"><img src="/images/d4f298befa3d1c0100aef36797c56bbc1d2a423c.png" alt="15153247_Wm2U"></a>
+会弹出如下所示的对话框，
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153248_WgLd.png"><img src="/images/04e45e47d1e4248fd2ec8db8b13252e1c196e525.png" alt="15153248_WgLd"></a>
+在其中选中IllegalArgumentException，并点击OK，这时一个Exception Breakpoint就设置好了。
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153248_kE2O.png"><img src="/images/fd555622458bbb34ad01929c6a7483768f6b37a8.png" alt="15153248_kE2O"></a></p>
+<!-- raw HTML omitted -->
+<p><strong>小结</strong>
+上述的Eclipse断点，我们在现实工作中肯定都有意或无意地使用过其中的几种，只是不一定十分了解内情罢了。使用好Eclipse的各种断点，可以把很好地帮助我们分析程序，定位问题。</p>
+
                 
               </div>
 
@@ -683,24 +859,31 @@ public HelloWorldHandler(Object targetObject){ this.targetObject = targetObject;
               </p>
               <div class="post-entry">
                 
-                  在Spring框架中，依赖注入设计模式主要用来定义对象之间的依赖，存在两种主要类型
-1)setter注入(设置器)
-2)constructor注入(构造器)
-1.Setter注入 是最流行最简单的DI方法，通过一个setter方法来完成依赖。
-例子：
-一个有一个setter方法的Helper类 package com.mkyong.output;
-import com.mkyong.output.IOutputGenerator;
-public class OutputHelper { IOutputGenerator outputGenerator;
-public void setOutputGenerator(IOutputGenerator outputGenerator){ this.outputGenerator = outputGenerator; } } 再写一个bean配合iwenjianshengming这些bean，并且通过property(属性)标签来设置依赖 &lt;beans xmlns=&ldquo;http://www.springframework.org/schema/beans&quot; xmlns:xsi=&ldquo;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&ldquo;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd&quot;&gt;
-&amp;lt;bean id=&#34;OutputHelper&#34; class=&#34;com.mkyong.output.OutputHelper&#34;&amp;gt; &amp;lt;property name=&#34;outputGenerator&#34;&amp;gt; &amp;lt;ref bean=&#34;CsvOutputGenerator&#34; /&amp;gt; &amp;lt;/property&amp;gt; &amp;lt;/bean&amp;gt; &lt;bean id=&ldquo;CsvOutputGenerator&rdquo; class=&ldquo;com.mkyong.output.impl.CsvOutputGenerator&rdquo; /&gt; &lt;bean id=&ldquo;JsonOutputGenerator&rdquo; class=&ldquo;com.mkyong.output.impl.JsonOutputGenerator&rdquo; /&gt;
-&lt;/beans&gt; 看到了把。我们只需要一个setter方法把CsvOutputGenerator注入进去就行了
-2.Constructor注入 这种方式是通过一个构造函数来完成依赖设置的
-例子：
-一个有着一个构造函数的Helper类 package com.mkyong.output;
-import com.mkyong.output.IOutputGenerator;
-public class OutputHelper { IOutputGenerator outputGenerator;
-OutputHelper(IOutputGenerator outputGenerator){ this.outputGenerator = outputGenerator; } } 然后当然是一个bean配置文件了。通过constructor-arg标签来写依赖 &lt;beans xmlns=&ldquo;http://www.
-                  <a href="https://leizhiyuan.github.io/2013/09/20/spring%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/" class="post-read-more">[Read More]</a>
+                  <p>在Spring框架中，依赖注入设计模式主要用来定义对象之间的依赖，存在两种主要类型</p>
+<p>1)setter注入(设置器)</p>
+<p>2)constructor注入(构造器)</p>
+<h2 id="1setter">1.Setter注入</h2>
+<p>是最流行最简单的DI方法，通过一个setter方法来完成依赖。</p>
+<p>例子：</p>
+<p>一个有一个setter方法的Helper类</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>再写一个bean配合iwenjianshengming这些bean，并且通过property(属性)标签来设置依赖</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>看到了把。我们只需要一个setter方法把CsvOutputGenerator注入进去就行了</p>
+<h2 id="2constructor">2.Constructor注入</h2>
+<p>这种方式是通过一个构造函数来完成依赖设置的</p>
+<p>例子：</p>
+<p>一个有着一个构造函数的Helper类</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>然后当然是一个bean配置文件了。通过constructor-arg标签来写依赖</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="heading">该选哪个？</h2>
+<p>没有硬性规定，哪个合适就用那个，由于setter的简单性，一般还是setter用得多。</p>
+
                 
               </div>
 
@@ -734,7 +917,7 @@ OutputHelper(IOutputGenerator outputGenerator){ this.outputGenerator = outputGen
   <i class="fas fa-calendar"></i>&nbsp;Posted on September 20, 2013
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -749,17 +932,47 @@ OutputHelper(IOutputGenerator outputGenerator){ this.outputGenerator = outputGen
               </p>
               <div class="post-entry">
                 
-                  面向对象设计的理念是把整个系统分成一组可重用的组件，然而，当系统变得越大的时候，尤其是在java中，这最大的对象依赖将会紧紧耦合，以至于非常难以管理和修改，而现在，你可以使用Spring框架扮演一个中间模块的角色，方便高效地管理其他组件依赖
-输出生成的例子 看个例子，假设你的项目有一个方法可以输出内容到csv或者json格式，你可能写出这样的代码 package com.mkyong.output;
-public interface IOutputGenerator { public void generateOutput(); } ，然后是实现接口的类 package com.mkyong.output.impl;
-import com.mkyong.output.IOutputGenerator;
-public class CsvOutputGenerator implements IOutputGenerator { public void generateOutput(){ System.out.println(&ldquo;Csv Output Generator&rdquo;); } } 再写个Json生成的类 package com.mkyong.output.impl;
-import com.mkyong.output.IOutputGenerator;
-public class JsonOutputGenerator implements IOutputGenerator { public void generateOutput(){ System.out.println(&ldquo;Json Output Generator&rdquo;); } } 有好几种方法来调用IOutputGenerator接口，以及我们如何使用Spring来避免对象的过度耦合。
-方法1-直接调用 package com.mkyong.common;
-import com.mkyong.output.IOutputGenerator; import com.mkyong.output.impl.CsvOutputGenerator;
-public class App { public static void main( String[] args ) { IOutputGenerator output = new CsvOutputGenerator(); output.
-                  <a href="https://leizhiyuan.github.io/2013/09/20/spring%E6%9D%BE%E8%80%A6%E5%90%88%E7%A4%BA%E4%BE%8B/" class="post-read-more">[Read More]</a>
+                  <p>面向对象设计的理念是把整个系统分成一组可重用的组件，然而，当系统变得越大的时候，尤其是在java中，这最大的对象依赖将会紧紧耦合，以至于非常难以管理和修改，而现在，你可以使用Spring框架扮演一个中间模块的角色，方便高效地管理其他组件依赖</p>
+<h2 id="heading">输出生成的例子</h2>
+<p>看个例子，假设你的项目有一个方法可以输出内容到csv或者json格式，你可能写出这样的代码</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>，然后是实现接口的类</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>再写个Json生成的类</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>有好几种方法来调用IOutputGenerator接口，以及我们如何使用Spring来避免对象的过度耦合。</p>
+<h2 id="1-">方法1-直接调用</h2>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>问题：</p>
+<p>这种方法，output这个对象和CsvOutputGenerator耦合在了一起，每次要改变输出格式的话都要修改代码，如果这类代码遍布项目，那么改起来就跪了</p>
+<h2 id="2-">方法2-通过帮助类调用</h2>
+<p>也许你会想创建一个Helper类吧所有的output实现都移进去</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>然后可以这样调用</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>问题：</p>
+<p>看起来似乎更加优雅了，你仅仅需要管理这个Helper类就可以实现不同格式的输出需求改变了，然而，Helper还是和CvsOutputGenerator耦合，每一次要改变输出格式的时候，都要对Helper类做一下微调。</p>
+<h2 id="3-spring">方法3-Spring</h2>
+<p>Spring依赖注入很合适，可以使不同的格式生成类分离开来</p>
+<p>首先对OutputHelper做一点微调，添加了一个参数</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>然后创建一个Spring bean配置文件，并声明所有的Java对象依赖</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>然后通过Spring调用</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>以后要改Json格式，直接改一下xml配置文件就行了。能够减少错误</p>
+<h2 id="heading-1">结论</h2>
+<p>通过Spring框架的依赖注入，可以优雅的管理对象依赖，更大的灵活性，尤其是对于Java项目非常好用。</p>
+
                 
               </div>
 
@@ -808,12 +1021,35 @@ public class App { public static void main( String[] args ) { IOutputGenerator o
               </p>
               <div class="post-entry">
                 
-                  每次看到hello world,都有一种说不出的赶脚，想起了一个程序员，退休后写毛笔字，取笔研磨铺纸，大笔一挥，写下了“hello world”。
-1.使用Maven生成项目结构 mvn archetype:generate -DgroupId=com.mkyong.core -DartifactId=Spring3Example -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false 2.转换成Eclipse项目 mvn eclipse:eclipse 3.添加Spring3.0 依赖 在pom.xml文件里添加Spring 3.0 依赖，然后依赖会从Maven中央仓库自动下载 &lt;project xmlns=&ldquo;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&ldquo;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&ldquo;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd&quot;&gt; &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt; &lt;groupId&gt;com.mkyong.core&lt;/groupId&gt; &lt;artifactId&gt;Spring3Example&lt;/artifactId&gt; &lt;packaging&gt;jar&lt;/packaging&gt; &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt; &lt;name&gt;Spring3Example&lt;/name&gt; &lt;url&gt;http://maven.apache.org&lt;/url&gt;
-&amp;lt;properties&amp;gt; &amp;lt;spring.version&amp;gt;3.0.5.RELEASE&amp;lt;/spring.version&amp;gt; &amp;lt;/properties&amp;gt; &amp;lt;dependencies&amp;gt; &amp;lt;!-- Spring 3 dependencies --&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-core&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${spring.version}&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-context&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${spring.version}&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;/dependencies&amp;gt; &lt;/project&gt;
-4.Spring bean 写个简单的bean package com.mkyong.core;
-/** * Spring bean * */ public class HelloWorld { private String name;
-                  <a href="https://leizhiyuan.github.io/2013/09/20/spring3%E5%AE%9E%E4%BE%8B%E5%85%A5%E9%97%A8-hello-world/" class="post-read-more">[Read More]</a>
+                  <p>每次看到hello world,都有一种说不出的赶脚，想起了一个程序员，退休后写毛笔字，取笔研磨铺纸，大笔一挥，写下了“hello world”。</p>
+<h2 id="1maven">1.使用Maven生成项目结构</h2>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="2eclipse"> 2.转换成Eclipse项目</h2>
+<!-- raw HTML omitted -->
+<h2 id="3spring30-"> 3.添加Spring3.0 依赖</h2>
+<p>在pom.xml文件里添加Spring 3.0 依赖，然后依赖会从Maven中央仓库自动下载</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="4spring-bean"> 4.Spring bean</h2>
+<p>写个简单的bean</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="5spring-bean"> 5.Spring bean配置文件</h2>
+<p>创建一个配置文件，在里面声明所有可用的Spring beans</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="6"> 6.最终的目录结构</h2>
+<p><a href="http://leaverimage.b0.upaiyun.com/2013/09/Spring3-hello-world-example.png"><img src="/images/bbe4d8f74c9337766eb4a368bb71c6c0d09a248b.png" alt="Spring3-hello-world-example"></a></p>
+<p> </p>
+<h2 id="7">7.运行</h2>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="8"> 8.输出</h2>
+<!-- raw HTML omitted -->
+<h2 id="9demo"> 9.Demo下载</h2>
+<p><a href="http://pan.baidu.com/share/link?shareid=2464458395&amp;uk=1493685990">Spring3-hello-world-example.zip </a></p>
+
                 
               </div>
 
@@ -829,60 +1065,6 @@ public class App { public static void main( String[] args ) { IOutputGenerator o
                     <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/09/20/%E4%BD%BF%E7%94%A8maven%E5%88%9B%E5%BB%BAweb%E9%A1%B9%E7%9B%AE/">
-                <h2 class="post-title">使用Maven创建Web项目</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on September 20, 2013
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;3&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  本文通过Maven完成一个简单的Web项目（注意，Spring配置不是重点，看看就行）
-1.从Maven模板创建Web应用程序 命令格式如下： mvn archetype:generate -DgroupId={project-packaging} -DartifactId={project-name} -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false 这就告诉Maven从**maven-archetype-webapp **这个模板来创建
-友情提示：是不是太难记了..好吧，直接输入 mvn archetype:generate 根据向导来创建把。。
-比如我这样写： &gt; mvn archetype:generate -DgroupId=com.mkyong -DartifactId=CounterWebApp -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false [INFO] Scanning for projects&hellip; [INFO]
-[INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash; [INFO] Building Maven Stub Project (No POM) 1 [INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash; [INFO] [INFO] Generating project in Batch mode [INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;- [INFO] Using following parameters for creating project from Old (1.x) Archetype: maven-archetype-webapp:1.0 [INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;- [INFO] Parameter: groupId, Value: com.mkyong [INFO] Parameter: packageName, Value: com.
-                  <a href="https://leizhiyuan.github.io/2013/09/20/%E4%BD%BF%E7%94%A8maven%E5%88%9B%E5%BB%BAweb%E9%A1%B9%E7%9B%AE/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/maven/">maven</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
                   
                 </div>
               
@@ -952,7 +1134,7 @@ public class App { public static void main( String[] args ) { IOutputGenerator o
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

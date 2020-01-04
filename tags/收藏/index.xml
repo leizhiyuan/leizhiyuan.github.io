@@ -24,7 +24,7 @@ JavaScript中函数的重要性毋庸置疑。在理解了JavaScript中的函数
 下面开始我们的冒险之旅吧！
 函数中的函数 我们要做的第一件事情是理解当你在函数中创建了函数并且从函数内部返回一个函数时究竟发生了什么。首先我们来快速的回顾一下函数。
 看下面的代码：
-&amp;lt;span class=&amp;#34;token keyword&amp;#34; style=&amp;#34;color: #0077aa;&amp;#34;&amp;gt;function&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;token function&amp;#34;&amp;gt;calculateRectangleArea&amp;lt;span class=&amp;#34;token punctuation&amp;#34; style=&amp;#34;color: #999999;&amp;#34;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;length&amp;lt;span class=&amp;#34;token punctuation&amp;#34; style=&amp;#34;color: #999999;&amp;#34;&amp;gt;,&amp;lt;/span&amp;gt;width&amp;lt;span class=&amp;#34;token punctuation&amp;#34; style=&amp;#34;color: #999999;&amp;#34;&amp;gt;)&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;token punctuation&amp;#34; style=&amp;#34;color: #999999;&amp;#34;&amp;gt;{&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;token keyword&amp;#34; style=&amp;#34;color: #0077aa;&amp;#34;&amp;gt;return&amp;lt;/span&amp;gt; length&amp;lt;span class=&amp;#34;token operator&amp;#34; style=&amp;#34;color: #a67f59;&amp;#34;&amp;gt;*&amp;lt;/span&amp;gt;width&amp;lt;span class=&amp;#34;token punctuation&amp;#34; style=&amp;#34;color: #999999;&amp;#34;&amp;gt;;&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;token punctuation&amp;#34; style=&amp;#34;color: #999999;&amp;#34;&amp;gt;}&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;token keyword&amp;#34; style=&amp;#34;color: #0077aa;&amp;#34;&amp;gt;var&amp;lt;/span&amp;gt; roomArea &amp;lt;span class=&amp;#34;token operator&amp;#34; style=&amp;#34;color: #a67f59;&amp;#34;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;token function&amp;#34;&amp;gt;calculateRectangleArea&amp;lt;span class=&amp;#34;token punctuation&amp;#34; style=&amp;#34;color: #999999;&amp;#34;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;token number&amp;#34; style=&amp;#34;color: #990055;&amp;#34;&amp;gt;10&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;token punctuation&amp;#34; style=&amp;#34;color: #999999;&amp;#34;&amp;gt;,&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;token number&amp;#34; style=&amp;#34;color: #990055;&amp;#34;&amp;gt;10&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;token punctuation&amp;#34; style=&amp;#34;color: #999999;&amp;#34;&amp;gt;)&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;token punctuation&amp;#34; style=&amp;#34;color: #999999;&amp;#34;&amp;gt;;&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;#34;token function&amp;#34;&amp;gt;alert&amp;lt;span class=&amp;#34;token punctuation&amp;#34; style=&amp;#34;color: #999999;&amp;#34;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;roomArea&amp;lt;span class=&amp;#34;token punctuation&amp;#34; style=&amp;#34;color: #999999;&amp;#34;&amp;gt;)&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;#34;token punctuation&amp;#34; style=&amp;#34;color: #999999;&amp;#34;&amp;gt;;&amp;lt;/span&amp;gt; `&amp;lt;/pre&amp;gt; calculateRectangleArea函数接收两个参数并且返回这两个参数的乘积。在这个例子中没我们将返回的数赋值给了变量roomArea。 当代码运行之后，roomArea变量包含了10乘10的结果，也就是100： [!</description>
+&amp;lt;span class=&amp;quot;token keyword&amp;quot; style=&amp;quot;color: #0077aa;&amp;quot;&amp;gt;function&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;token function&amp;quot;&amp;gt;calculateRectangleArea&amp;lt;span class=&amp;quot;token punctuation&amp;quot; style=&amp;quot;color: #999999;&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;length&amp;lt;span class=&amp;quot;token punctuation&amp;quot; style=&amp;quot;color: #999999;&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;width&amp;lt;span class=&amp;quot;token punctuation&amp;quot; style=&amp;quot;color: #999999;&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;token punctuation&amp;quot; style=&amp;quot;color: #999999;&amp;quot;&amp;gt;{&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;token keyword&amp;quot; style=&amp;quot;color: #0077aa;&amp;quot;&amp;gt;return&amp;lt;/span&amp;gt; length&amp;lt;span class=&amp;quot;token operator&amp;quot; style=&amp;quot;color: #a67f59;&amp;quot;&amp;gt;*&amp;lt;/span&amp;gt;width&amp;lt;span class=&amp;quot;token punctuation&amp;quot; style=&amp;quot;color: #999999;&amp;quot;&amp;gt;;&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;token punctuation&amp;quot; style=&amp;quot;color: #999999;&amp;quot;&amp;gt;}&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;token keyword&amp;quot; style=&amp;quot;color: #0077aa;&amp;quot;&amp;gt;var&amp;lt;/span&amp;gt; roomArea &amp;lt;span class=&amp;quot;token operator&amp;quot; style=&amp;quot;color: #a67f59;&amp;quot;&amp;gt;=&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;token function&amp;quot;&amp;gt;calculateRectangleArea&amp;lt;span class=&amp;quot;token punctuation&amp;quot; style=&amp;quot;color: #999999;&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;token number&amp;quot; style=&amp;quot;color: #990055;&amp;quot;&amp;gt;10&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;token punctuation&amp;quot; style=&amp;quot;color: #999999;&amp;quot;&amp;gt;,&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;token number&amp;quot; style=&amp;quot;color: #990055;&amp;quot;&amp;gt;10&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;token punctuation&amp;quot; style=&amp;quot;color: #999999;&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;token punctuation&amp;quot; style=&amp;quot;color: #999999;&amp;quot;&amp;gt;;&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;token function&amp;quot;&amp;gt;alert&amp;lt;span class=&amp;quot;token punctuation&amp;quot; style=&amp;quot;color: #999999;&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;roomArea&amp;lt;span class=&amp;quot;token punctuation&amp;quot; style=&amp;quot;color: #999999;&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;token punctuation&amp;quot; style=&amp;quot;color: #999999;&amp;quot;&amp;gt;;&amp;lt;/span&amp;gt; `&amp;lt;/pre&amp;gt; calculateRectangleArea函数接收两个参数并且返回这两个参数的乘积。在这个例子中没我们将返回的数赋值给了变量roomArea。 当代码运行之后，roomArea变量包含了10乘10的结果，也就是100： [!</description>
     </item>
     
     <item>
@@ -39,24 +39,20 @@ JavaScript中函数的重要性毋庸置疑。在理解了JavaScript中的函数
 首先来拿生活中的一个非常常见的例子来说明跨行清算的整个过程，这里面不涉及交易费等其他概念。
 跨行取款流程 张三是工行的持卡人，他需要取现金，但是找不到工行的ATM机器，发现附近有建行的ATM机器，他只能去建行取款，整个过程就是跨行清算的过程，我们以这个场景为例，分析一下业务流程，具体交互流程见下面一张图。
 
-&amp;nbsp;
-工行持卡人张三在建行ATM机器取款100，ATM请求建行主机，由于是工行的卡，建行不识别，只能请求工行去处理，工行识别持卡人账户并扣款100，然后通知建行，建行则通知atm吐钱。
+ 工行持卡人张三在建行ATM机器取款100，ATM请求建行主机，由于是工行的卡，建行不识别，只能请求工行去处理，工行识别持卡人账户并扣款100，然后通知建行，建行则通知atm吐钱。
 这里整个系统要解决两个问题：
 1 建行如何与工行通信
 2 建行和工行之间如何清算，如上图结果，工行欠建行100.
 整个系统的分析基于以上两个问题，下面首先解决是通信问题
-&amp;nbsp;
-跨行通信的两种模式 我们先假设工行提供接口，只需要建行发送指约定格式的报文，即可于工行通信，这种相当于建行直接通过接口方式与工行通信。如果是这种方式，只能解决建行和工行的单向通信，如果工行和建行通信，则工行要发送建行指定的通信报文格式。可是大家想想，如果银行更多怎么办，下面是三家银行间的通信
+ 跨行通信的两种模式 我们先假设工行提供接口，只需要建行发送指约定格式的报文，即可于工行通信，这种相当于建行直接通过接口方式与工行通信。如果是这种方式，只能解决建行和工行的单向通信，如果工行和建行通信，则工行要发送建行指定的通信报文格式。可是大家想想，如果银行更多怎么办，下面是三家银行间的通信
 
 当有三家银行的时候，通信链路就有3*2=6条，当银行越来越多的时候，这种点对点的通信变的越来越复杂，每新增一家银行，他要做之前银行都要做的很多重复性的劳动，这样的成本非常高，也不经济，那么必须出现一个网络，它能够接入所有的银行，新的银行只需要接入这个网络，就可以和其他所有的银行进行通信。
 先把这个网络成为通信网络，这种通信网络有两种方式可以连接所有的银行
  1 这个通信网络定义标准接口，所有的银行都必须实现这个通信网络定义的api，新的银行如果想要接入这个通信网络，必须实现通信接口约定的协议。简称公共接口模式 2 这个通信网络主动去连接所有的银行的接口，把所有银行的接口信息都接入里面，就像一个适配器，新的银行如果想要接入这个通信网络，这个通信网络必须主动联系银行，按照银行的接口协议实现通信，简称适配器模式。 下面一幅图演示了这两种模式的不同：  
 对于这两模式，主要博弈就在于谁强谁弱。显然第三方支付公司属于适配器模式，需要一家一家银行去接入，至于银联，个人认为应该是第一种模式，这种对于银联这种需要稳定的系统来说是最具有优势的。
-&amp;nbsp;
-跨行清算保证金模式 解决了通信问题，下面就看如何解决资金的清算问题。一种简单的方案就是工行在建行里面开设一个保证金账户，用这个账户去偿还在整个跨行交易中应付给建行的资金。
+ 跨行清算保证金模式 解决了通信问题，下面就看如何解决资金的清算问题。一种简单的方案就是工行在建行里面开设一个保证金账户，用这个账户去偿还在整个跨行交易中应付给建行的资金。
 
-&amp;nbsp;
-从上图来看，这种方案确实可行。只需要工行在建行里面放足额的保证金，就可以满足跨行的费用。但是这里面实际上存在非常多的问题，
+ 从上图来看，这种方案确实可行。只需要工行在建行里面放足额的保证金，就可以满足跨行的费用。但是这里面实际上存在非常多的问题，
  1 如果银行越来也多，每个银行都要在其他银行存钱，太不经济了 2 保证金需要放多少资金？如果一直都没有发生跨行交易，工行就亏大发了 3 如果保证金不够怎么办？交易失败还是记应收款？ 对于第一个问题假设银行越来越多，会导致工行需要在其他每个银行里面都开设保证金账户（见下图），是一个很不经济的方案。  说明这个在其他银行存保证金的方案是不可行的，和之前通信的问题一样，是不是可以把所有的银行保证金账户单独管理起来，统一放置在一起，方便各个银行之间的清算。我们暂时把这个系统称之为保证金系统。
 保证金系统 保证金就是方便各个银行之间的清算，需要单独由一个系统进行管理，解决了跨行之间保证金存放的问题。每个银行只需要在保证金系统中存点钱就可以了。保证金系统也有两种模式。先看看比较好理解的第一种模式：
 
@@ -67,9 +63,9 @@ JavaScript中函数的重要性毋庸置疑。在理解了JavaScript中的函数
 所有的第三方支付公司跨行清算的流程都是第二种方式，只有国家级清算公司（比如银联）是第一种方式，这是一种资源和权力上的不平等，不过是可以理解的。
 清算系统 保证金系统解决了保证金存放的问题，接下来就是解决如何清算的问题。假设保证金转账是实时的，就要面对上面说的问题，保证金不够的情况下，跨行交易是成功还是失败。这是一个业务上问题，有很多种解决方案，我们暂不说。从技术上来讲，如果每一笔交易都要保证金实时记账，那么保证金系统的负载太大，事务如何保证等等一些列的问题。所以一个最简单的方案就是：一天结算一次。
 每天由一个系统记录这些跨行交易信息，汇总出来，统一记账。这样一天只需要调用一次保证金系统即可。那么整个清算过程则是下面的流程：
- 1 系统T日发生建行和工行的跨行交易100 
- 2 清算系统T+1日汇总T日工行和建行之间发生的交易明细数据，并且发这些数据发给建行和工行进行确认 
-  &amp;nbsp;</description>
+  1 系统T日发生建行和工行的跨行交易100 
+  2 清算系统T+1日汇总T日工行和建行之间发生的交易明细数据，并且发这些数据发给建行和工行进行确认 
+    3 工行建行分别对明细对账确认之后，通知清算系统确认交易明细无误，清算系统开始清算，调用保证金支付系统转账。 4 清算完成之后，工行和建行分别获取保证金系统的真实金额和自身系统内部的映射账户进行余额对账。    清算中心最主要干得事情就是统计谁欠谁多少钱，以及触发保证金系统的调拨操作。</description>
     </item>
     
     <item>
@@ -80,12 +76,15 @@ JavaScript中函数的重要性毋庸置疑。在理解了JavaScript中的函数
       <guid>https://leizhiyuan.github.io/2013/12/14/%E8%97%8Fclass.getresource%E5%92%8Cclassloader.getresource%E4%B8%8D%E5%90%8C%E7%82%B9/</guid>
       <description>有一次遇到了，查了查。原文地址
 Java中取资源时，经常用到Class.getResource和ClassLoader.getResource，这里来看看他们在取资源文件时候的路径问题。
-Class.getResource(String path)  path不以’/&amp;lsquo;开头时，默认是从此类所在的包下取资源； path 以’/&amp;lsquo;开头时，则是从ClassPath根下获取；  什么意思呢？看下面这段代码的输出结果就明白了：  package testpackage; public class TestMain { public static void main(String[] args) { System.out.println(TestMain.class.getResource(&amp;ldquo;&amp;rdquo;)); System.out.println(TestMain.class.getResource(&amp;ldquo;/&amp;rdquo;)); } }  输出结果：  file:/E:/workspace/Test/bin/testpackage/ file:/E:/workspace/Test/bin/  上面说到的【path以’/&amp;lsquo;开头时，则是从ClassPath根下获取；】在这里就是相当于bin目录(Eclipse环境下)。
-再来一个实例，假设有如下Project结构：
+Class.getResource(String path) 再来一个实例，假设有如下Project结构：
 
-如果我们想在TestMain.java中分别取到1~3.properties文件，该怎么写路径呢？代码如下： package testpackage;
-public class TestMain {
-public static void main(String[] args) { // 当前类(class)所在的包目录 System.out.println(TestMain.class.getResource(&amp;#34;&amp;#34;)); // class path根目录 System.out.println(TestMain.class.getResource(&amp;#34;/&amp;#34;)); // TestMain.class在&amp;amp;lt;bin&amp;amp;gt;/testpackage包中 // 2.properties 在&amp;amp;lt;bin&amp;amp;gt;/testpackage包中 System.out.println(TestMain.class.getResource(&amp;#34;2.properties&amp;#34;)); // TestMain.class在&amp;amp;lt;bin&amp;amp;gt;/testpackage包中 // 3.properties 在&amp;amp;lt;bin&amp;amp;gt;/testpackage.subpackage包中 System.out.println(TestMain.class.getResource(&amp;#34;subpackage/3.properties&amp;#34;)); // TestMain.</description>
+如果我们想在TestMain.java中分别取到1~3.properties文件，该怎么写路径呢？代码如下：
+ ※Class.getResource和Class.getResourceAsStream在使用时，路径选择上是一样的。
+  Class.getClassLoader（）.getResource(String path) 如果有同样的Project结构
+
+使用Class.getClassLoader（）.getResource(String path)可以这么写：
+public class TestMain { public static void main(String[] args) { TestMain t = new TestMain(); System.out.println(t.getClass().getClassLoader().getResource(&amp;quot;&amp;quot;));
+ System.out.println(t.getClass().getClassLoader().getResource(&amp;quot;1.properties&amp;quot;)); System.out.println(t.getClass().getClassLoader().getResource(&amp;quot;testpackage/2.properties&amp;quot;)); System.out.println(t.getClass().getClassLoader().getResource(&amp;quot;testpackage/subpackage/3.properties&amp;quot;)); }  }※Class.getClassLoader（）.getResource和Class.getClassLoader（）.getResourceAsStream在使用时，路径选择上也是一样的。</description>
     </item>
     
     <item>
@@ -99,10 +98,11 @@ public static void main(String[] args) { // 当前类(class)所在的包目录 S
 详解Eclipse断点
 大家肯定都用过Eclipse的调试的功能，在调试的过程中自然也无法避免要使用断点(breakpoint)，但不知是否对Eclipse中各类断点都有所了解。本篇图文并茂地介绍了Eclipse中全部类型的断点，及其设置，希望对大家有所帮助。(2011.11.20)
 1. 示例程序 BreakpointDemo是一个臆造的应用程序，只是为了便于讲解Eclipse中各类断点的使用罢了。其代码如下图所示，  BreakpointDemo主要包含两个方法： [1]setValue，该方法根据指定的次数(count)，对成员变量value进行赋值，值的范围为0-9的随机整数。 [2]printValue，该方法会调用setValue()对value进行赋值，并打印出value的值；但，如果value能被3整除，那么就会抛出IllegalArgumentException异常。
-2. Line Breakpoint Line Breakpoin是最简单的Eclipse断点，只要双击某行代码对应的左侧栏，就对该行设置上断点。此处，对第20行代码设置上Line Breakpoint，如下图所示，  可以为Line Breakpoint设置一个条件，那么当程序运行到该断点时，只有满足设定的条件，才会被中断。右键点击第20行的断点，选择&amp;rdquo;Breakpoint Properties&amp;hellip;&amp;rdquo;  在弹出的属性对话框中，勾选上&amp;rdquo;Conditional&amp;rdquo;，然后在文本框中输入&amp;rdquo;count % 2 == 0&amp;rdquo;。  该条件表示，当程序运行到第20行时，只有当count为偶数时，程序才会被中断。细心地话，你会发现该断点的图标发生了改变，多了一个问号。 
-3. Watchpoint Line Breakpoint关注于程序运行的&amp;rdquo;过程&amp;rdquo;，大家也常把使用这种断点的调试称为单步调试。但有时候，我们对程序的运行过程不太了解，可能也不太关心，不能确定在什么地方设置断点比较合适，而可能比较关注某个关键变量的变化或使用。此时，就可以为该变量设置一种特殊的断点&amp;ndash;Watchpoint。在此示例，我们最关心的就是成员变量value的值，那么就可以为它设置一个Watchpoint，双击第9行代码对应的左侧栏就可以了。  使用在2中所提及的方法，查看该断点的属性，  默认地，当该变量被访问或它的值被修改时，程序都会被中断。但在本示例中，只希望当对value的值进行修改时程序才需要被中断，所以取消对&amp;rdquo;Access&amp;rdquo;的勾选。  这时，我们会发现原来的Watchpoin图标也有变化了。 
-4. Method Breakpoint 与关注对某个变量的访问与修改一样，我们也可以关注程序对某个方法的调用情况，即，可以设置Method Breakpoint。在此处，设置针对方法setValue的Method Breakpoint。同理，双击第11行代码对应的左侧栏即可。  仍然要查看该断点的属性。默认地，只勾选了&amp;rdquo;Entry&amp;rdquo;，而没有勾选&amp;rdquo;Exit&amp;rdquo;。  这表示，当刚进入该方法(调用开始)时，程序会被中断；而，离开该方法(调用结束)时，程序并不会被中断。在本示例中，需要同时勾选上&amp;rdquo;Exit&amp;rdquo;。  点击OK之后，可以看到该断点的图标也有所改变。  根据这里的设置，当程序运行到第20行后会在第12行被中断，尽管这里没有显式的断点，但这就是setValue()方法的入口(Entry)。必须注意地是，程序在运行到第16行时不会被中断，尽管它看起来像是setValue()方法的出口(Exit)。实际上，程序会在第17行被中断，这里才是setValue()调用结束的地方。
-5. Exception Breakpoint 如果，我们期望某个特定异常发生时程序能够被中断，以方便查看当时程序所处的状态。通过设置Exception Breakpoint就能达到这一目标。本示例故意在第23行抛出了IllegalArgumentException异常，我们期望程序运行到此处时会被中断。但我们不直接为此行代码设置Line Breakpoint，而是为IllegalArgumentException设置Exception Breakpoint。设置Exception Breakpoint的方法与其它类型断点都不同，它不能通过双击左侧栏的方式在代码编辑器上直接进行设置。点击Breakpoints视图右上角形如Ji的图标，  会弹出如下所示的对话框，  在其中选中IllegalArgumentException，并点击OK，这时一个Exception Breakpoint就设置好了。  当value为3的倍数时，程序会在第23行被中断，这时我们就能使用调试器来看看value具体是等于0，3或6。 6.</description>
+2. Line Breakpoint Line Breakpoin是最简单的Eclipse断点，只要双击某行代码对应的左侧栏，就对该行设置上断点。此处，对第20行代码设置上Line Breakpoint，如下图所示，  可以为Line Breakpoint设置一个条件，那么当程序运行到该断点时，只有满足设定的条件，才会被中断。右键点击第20行的断点，选择&amp;quot;Breakpoint Properties&amp;hellip;&amp;rdquo;  在弹出的属性对话框中，勾选上&amp;quot;Conditional&amp;rdquo;，然后在文本框中输入&amp;quot;count % 2 == 0&amp;rdquo;。  该条件表示，当程序运行到第20行时，只有当count为偶数时，程序才会被中断。细心地话，你会发现该断点的图标发生了改变，多了一个问号。 
+3. Watchpoint Line Breakpoint关注于程序运行的&amp;quot;过程&amp;rdquo;，大家也常把使用这种断点的调试称为单步调试。但有时候，我们对程序的运行过程不太了解，可能也不太关心，不能确定在什么地方设置断点比较合适，而可能比较关注某个关键变量的变化或使用。此时，就可以为该变量设置一种特殊的断点&amp;ndash;Watchpoint。在此示例，我们最关心的就是成员变量value的值，那么就可以为它设置一个Watchpoint，双击第9行代码对应的左侧栏就可以了。  使用在2中所提及的方法，查看该断点的属性，  默认地，当该变量被访问或它的值被修改时，程序都会被中断。但在本示例中，只希望当对value的值进行修改时程序才需要被中断，所以取消对&amp;quot;Access&amp;quot;的勾选。  这时，我们会发现原来的Watchpoin图标也有变化了。 
+4. Method Breakpoint 与关注对某个变量的访问与修改一样，我们也可以关注程序对某个方法的调用情况，即，可以设置Method Breakpoint。在此处，设置针对方法setValue的Method Breakpoint。同理，双击第11行代码对应的左侧栏即可。  仍然要查看该断点的属性。默认地，只勾选了&amp;quot;Entry&amp;rdquo;，而没有勾选&amp;quot;Exit&amp;rdquo;。  这表示，当刚进入该方法(调用开始)时，程序会被中断；而，离开该方法(调用结束)时，程序并不会被中断。在本示例中，需要同时勾选上&amp;quot;Exit&amp;rdquo;。  点击OK之后，可以看到该断点的图标也有所改变。  根据这里的设置，当程序运行到第20行后会在第12行被中断，尽管这里没有显式的断点，但这就是setValue()方法的入口(Entry)。必须注意地是，程序在运行到第16行时不会被中断，尽管它看起来像是setValue()方法的出口(Exit)。实际上，程序会在第17行被中断，这里才是setValue()调用结束的地方。
+5. Exception Breakpoint 如果，我们期望某个特定异常发生时程序能够被中断，以方便查看当时程序所处的状态。通过设置Exception Breakpoint就能达到这一目标。本示例故意在第23行抛出了IllegalArgumentException异常，我们期望程序运行到此处时会被中断。但我们不直接为此行代码设置Line Breakpoint，而是为IllegalArgumentException设置Exception Breakpoint。设置Exception Breakpoint的方法与其它类型断点都不同，它不能通过双击左侧栏的方式在代码编辑器上直接进行设置。点击Breakpoints视图右上角形如Ji的图标，  会弹出如下所示的对话框，  在其中选中IllegalArgumentException，并点击OK，这时一个Exception Breakpoint就设置好了。 
+小结 上述的Eclipse断点，我们在现实工作中肯定都有意或无意地使用过其中的几种，只是不一定十分了解内情罢了。使用好Eclipse的各种断点，可以把很好地帮助我们分析程序，定位问题。</description>
     </item>
     
     <item>
@@ -133,9 +133,8 @@ bystander:本文回答了你刷社交网络的内在因素.希望读到的人不
       <description>很多人对B树的理解有很多错误，我看的最多的就是有人混淆二叉树（Binary Tree）和B树（B-Tree）,二叉树是不用简称，也就是BT的，而特殊一点的二叉搜索树才会用BST(Binary Search Tree),至于B-树和B树，这两个其实一样的，英文都是(B-Tree)，注意看中间的-号，这个是国内翻译的问题.所以大家不要被误导.
 Rudolf Bayer 和 Ed McCreight 于1972年，在Boeing Research Labs 工作时发明了B 树，但是他们没有解释B 代表什么意义（如果有的话）.Douglas Comer 解释说: 两位作者从来都没解释过B树的原始意义。我个人觉得很有可能是他的名字，程序员对其作品的一种情结吧.
 这篇文章来自国外,是某大学的CS课程在线的,由于有时候无法访问，我直接提供PDF版,对其构造过程非常清晰.非常非常好的B树教程,图示很多,就不翻译了,强烈推荐阅读！
-&amp;nbsp;
-下载：B树讲解
-&amp;nbsp;</description>
+ 下载：B树讲解
+ </description>
     </item>
     
     <item>
@@ -215,15 +214,23 @@ Rudolf Bayer 和 Ed McCreight 于1972年，在Boeing Research Labs 工作时发�
 首发。转载什么的请注明出处。起码给我留个链接啥的嘛。
 首先介绍一下。这个工具是国外刚刚发布的。主要用来渗透前的信息探测。使用类似Metasploit 主要有 Auxiliary： 这个模块查询主机信息泄漏页。进行hash反查，模糊名称精确，检查某个email是否密码泄漏，域名解析ip等 Contacts： 这个模块探测和某一公司有关的人员的信息，主要包括 LinkedIn 和Jigsaw 这两个模块。得到的信息可以被Auxiliary模块使用，如果和Social Engineer Toolkit(社会工程学工具集，这个工具已经发布了。是开源的。大家可以看看)，一起。效果强大。
 Hosts： 这个用来获取站点子域名。。包括使用baidu。Google bing等。。效果相当强大。 Output： 这个模块用来创建输出报表 Pwnedlist： 这个模块不是得shell的。他可通过 Pwnedlist.com 提供的api，如果这个网站被入侵过。那么可以直接获得其他黑客泄漏的帐号密码。。（需要去 Pwnedlist.com 注册）
-安装方法： bt下直接 git clone https://LaNMaSteR53@bitbucket.org/LaNMaSteR53/recon-ng.git 然后有可能提示输入密码，好象是随便输一个用来保护版本控制。。我输的是toor。。 然后就安装好了。输入 cd recon-ng 然后 ./recon-ng.py 首先查看有哪些模块。输入 modules 图一
+安装方法： bt下直接
+然后有可能提示输入密码，好象是随便输一个用来保护版本控制。。我输的是toor。。 然后就安装好了。输入
+然后
+首先查看有哪些模块。输入
+图一
 
 我以获取子域名为例，通过我前面的介绍你已经知道了hosts模块里的所有模块基本都是干这事的。我用里面的baidu模块来说明。你也可以使用bing等，，
-输入命令 load hosts::baidu 图二
+输入命令
+图二
 
-刚开始你可能不清楚这个模块的说明。那么继续输入info即可查看模块的详细说明 要开始使用。我们输入 options 和Metasploit很像把。可以查看要使用需要的配置。
+刚开始你可能不清楚这个模块的说明。那么继续输入info即可查看模块的详细说明 要开始使用。我们输入
+和Metasploit很像把。可以查看要使用需要的配置。
 图三
 
-看表，会发现有三行。第一行是标题，第二行是域名设置，第三行是输出。这个current value也就是当前值已经为true。所以不用设置。req的意思是是否必须设置。我们输入 baidu.com就是你的目标了。 set domain baidu.com 就会从百度的结果里提取百度的子域名信息了。要开始。我们输入 run 图四
+看表，会发现有三行。第一行是标题，第二行是域名设置，第三行是输出。这个current value也就是当前值已经为true。所以不用设置。req的意思是是否必须设置。我们输入 baidu.com就是你的目标了。
+就会从百度的结果里提取百度的子域名信息了。要开始。我们输入
+图四
 
 更多希望大家发掘吧。我抛砖。求引玉。</description>
     </item>
@@ -259,8 +266,7 @@ C# 3.0
 16. Linq介绍
 C# 4.0
 17. 深入理解动态类型
-&amp;nbsp;
-从C#的所有特性可以看出,C#中提出的每个新特性都是建立在原来特性的基础上,并且是对原来特性的一个改进, 做这么多的改进主要是为了方便开发人员更好地使用C#来编写程序,是让我们写更少的代码来实现我们的程序,把一些额外的工作交给编译器去帮我们做,也就是很多人说微软很喜欢搞语法糖的意思(语法糖即让编译器帮我们做一些额外的事情，减少开发人员所考虑的事情，使开发人员放更多的精力放在系统的业务逻辑上面。)，大家从C# 3中提出的特性中可以很好的看出这点(指的是玩语法糖)，C#3中几乎大部分特性都是C#提供的语法糖，从CLR层面来说(指的是增加新的IL指令)，C# 3并没有更新什么，C# 4中提出的动态类型又是建立在表达式树的基础上，包括Linq也是建立在表达式树的基础上，所以每个特性都是层层递进的一个关系。相信C#后面提出的新特性将会更加方便我们开发程序，感觉所有语言的一个统一的思想都是——写更少的代码，却可以做更多的事情。但是我们不能仅仅停住于知道怎么使用它，我们还应该深入研究它的背后的故事，知道新特性是如何实现的和原理。用一句说就是——我们要知其然之气所以然，学习知识应该抱着刨根问底的态度去学习,相信这样的学习方式也可以让大家不感到心虚,写出的程序将会更加自信。</description>
+ 从C#的所有特性可以看出,C#中提出的每个新特性都是建立在原来特性的基础上,并且是对原来特性的一个改进, 做这么多的改进主要是为了方便开发人员更好地使用C#来编写程序,是让我们写更少的代码来实现我们的程序,把一些额外的工作交给编译器去帮我们做,也就是很多人说微软很喜欢搞语法糖的意思(语法糖即让编译器帮我们做一些额外的事情，减少开发人员所考虑的事情，使开发人员放更多的精力放在系统的业务逻辑上面。)，大家从C# 3中提出的特性中可以很好的看出这点(指的是玩语法糖)，C#3中几乎大部分特性都是C#提供的语法糖，从CLR层面来说(指的是增加新的IL指令)，C# 3并没有更新什么，C# 4中提出的动态类型又是建立在表达式树的基础上，包括Linq也是建立在表达式树的基础上，所以每个特性都是层层递进的一个关系。相信C#后面提出的新特性将会更加方便我们开发程序，感觉所有语言的一个统一的思想都是——写更少的代码，却可以做更多的事情。但是我们不能仅仅停住于知道怎么使用它，我们还应该深入研究它的背后的故事，知道新特性是如何实现的和原理。用一句说就是——我们要知其然之气所以然，学习知识应该抱着刨根问底的态度去学习,相信这样的学习方式也可以让大家不感到心虚,写出的程序将会更加自信。</description>
     </item>
     
     <item>
@@ -275,10 +281,27 @@ C# 4.0
  图8.10所示的是无向图的邻接矩阵表示法，可以观察到，矩阵延对角线对称，即A(i，j)= A(j，i)。无向图邻接矩阵的第i行或第i列非零元素的个数其实就是第i个顶点的度。这表示无向图邻接矩阵存在一定的数据冗余。
 图8.11所示的是有向图邻接矩阵表示法，矩阵并不延对角线对称，A(i，j)=1表示顶点Vi邻接到顶点Vj；A(j，i)=1则表示顶点Vi邻接自顶点Vj。两者并不象无向图邻接矩阵那样表示相同的意思。有向图邻接矩阵的第i行非零元素的个数其实就是第i个顶点的出度，而第i列非零元素的个数是第i个顶点的入度，即第i个顶点的度是第i行和第i列非零元素个数之和。
 由于存在n个顶点的图需要n2个数组元素进行存储，当图为稀疏图时，使用邻接矩阵存储方法将出现大量零元素，照成极大地空间浪费，这时应该使用邻接表表示法存储图中的数据。
-8.2.2 邻接表表示法 图的邻接矩阵存储方法跟树的孩子链表示法相类似，是一种顺序分配和链式分配相结合的存储结构。邻接表由表头结点和表结点两部分组成，其中图中每个顶点均对应一个存储在数组中的表头结点。如这个表头结点所对应的顶点存在相邻顶点，则把相邻顶点依次存放于表头结点所指向的单向链表中。如图8.12所示，表结点存放的是邻接顶点在数组中的索引。对于无向图来说，使用邻接表进行存储也会出现数据冗余，表头结点A所指链表中存在一个指向C的表结点的同时，表头结点C所指链表也会存在一个指向A的表结点。  有向图的邻接表有出边表和入边表（又称逆邻接表）之分。出边表的表结点存放的是从表头结点出发的有向边所指的尾顶点；入边表的表结点存放的则是指向表头结点的某个头顶点。如图8.13所示，图(b)和&amp;copy;分别为有向图(a)的出边表和入边表。  以上所讨论的邻接表所表示的都是不带权的图，如果要表示带权图，可以在表结点中增加一个存放权的字段，其效果如图8.14所示。
+8.2.2 邻接表表示法 图的邻接矩阵存储方法跟树的孩子链表示法相类似，是一种顺序分配和链式分配相结合的存储结构。邻接表由表头结点和表结点两部分组成，其中图中每个顶点均对应一个存储在数组中的表头结点。如这个表头结点所对应的顶点存在相邻顶点，则把相邻顶点依次存放于表头结点所指向的单向链表中。如图8.12所示，表结点存放的是邻接顶点在数组中的索引。对于无向图来说，使用邻接表进行存储也会出现数据冗余，表头结点A所指链表中存在一个指向C的表结点的同时，表头结点C所指链表也会存在一个指向A的表结点。  有向图的邻接表有出边表和入边表（又称逆邻接表）之分。出边表的表结点存放的是从表头结点出发的有向边所指的尾顶点；入边表的表结点存放的则是指向表头结点的某个头顶点。如图8.13所示，图(b)和(c)分别为有向图(a)的出边表和入边表。  以上所讨论的邻接表所表示的都是不带权的图，如果要表示带权图，可以在表结点中增加一个存放权的字段，其效果如图8.14所示。
 
 【注意】：观察图8.14可以发现，当删除存储表头结点的数组中的某一元素，有可能使部分表头结点索引号的改变，从而导致大面积修改表结点的情况发生。可以在表结点中直接存放指向表头结点的指针以解决这个问题（在链表中存放类实例即是存放指针，但必须要保证表头结点是类而不是结构体）。在实际创建邻接表时，甚至可以使用链表代替数组存放表头结点或使用顺序表存代替链表存放表结点。对所学的数据结构知识应当根据实际情况及所使用语言的特点灵活应用，切不可生搬硬套。
-【例8-1 AdjacencyList.cs】图的邻接表存储结构  using System; using System.Collections.Generic; public class AdjacencyList&amp;lt;T&amp;gt; { List&amp;lt;Vertex&amp;lt;T&amp;gt;&amp;gt; items; //图的顶点集合 public AdjacencyList() : this(10) { } //构造方法 public AdjacencyList(int capacity) //指定容量的构造方法 { items = new List&amp;lt;Vertex&amp;lt;T&amp;gt;&amp;gt;(capacity); } public void AddVertex(T item) //添加一个顶点 { //不允许插入重复值 if (Contains(item)) { throw new ArgumentException(&amp;ldquo;插入了重复顶点！&amp;rdquo;); } items.Add(new Vertex&amp;lt;T&amp;gt;(item)); } public void AddEdge(T from, T to) //添加无向边 { Vertex&amp;lt;T&amp;gt; fromVer = Find(from); //找到起始顶点 if (fromVer == null) { throw new ArgumentException(&amp;ldquo;头顶点并不存在！&amp;rdquo;); } Vertex&amp;lt;T&amp;gt; toVer = Find(to); //找到结束顶点 if (toVer == null) { throw new ArgumentException(&amp;ldquo;尾顶点并不存在！&amp;rdquo;); } //无向边的两个顶点都需记录边信息 AddDirectedEdge(fromVer, toVer); AddDirectedEdge(toVer, fromVer); } public bool Contains(T item) //查找图中是否包含某项 { foreach (Vertex&amp;lt;T&amp;gt; v in items) { if (v.</description>
+【例8-1 AdjacencyList.cs】图的邻接表存储结构
+l Vertex类中包含了一个visited成员，它的作用是在图遍历时标识当前节点是否被访问过，这一点在稍后会讲到。
+l 邻接点指针域adjvex直接指向某个表头结点，而不是表头结点在数组中的索引。
+AdjacencyList&amp;lt;T&amp;gt;类中使用了一个泛型List代替数组来保存表头结点信息（第5行代码），从而不再考虑数组存储空间不够的情况发生，简化了操作。
+由于一条无向边的信息需要在边的两个顶点分别存储信息，即添加两个有向边，所以58～78行代码的私有方法AddDirectedEdge()方法用于添加一个有向边。新的邻接点信息即可以添加到链表的头部也可以添加到尾部，添加到链表头部可以简化操作，但考虑到要检查是否添加了重复边，需要遍历整个链表，所以最终把邻接点信息添加到链表尾部。
+【例8-1 Demo8-1.cs】图的邻接表存储结构测试
+B：AD
+C：A
+D：AB
+ 本例存储的表如图8.12所示，结果中，冒号前面的是表头结点，冒号后面的是链表中的表结点。
+8.3 图的遍历 和树的遍历类似，在此，我们希望从图中某一顶点出发访遍图中其余顶点，且使每一个顶点仅被访问一次，这一过程就叫做图的遍历(TraversingGraph)。如果只访问图的顶点而不关注边的信息，那么图的遍历十分简单，使用一个foreach语句遍历存放顶点信息的数组即可。但如果为了实现特定算法，就需要根据边的信息按照一定顺序进行遍历。图的遍历算法是求解图的连通性问题、拓扑排序和求关键路径等算法的基础。
+图的遍历要比树的遍历复杂得多，由于图的任一顶点都可能和其余顶点相邻接，故在访问了某顶点之后，可能顺着某条边又访问到了已访问过的顶点，因此，在图的遍历过程中，必须记下每个访问过的顶点，以免同一个顶点被访问多次。为此给顶点附设访问标志visited，其初值为false，一旦某个顶点被访问，则其visited标志置为true。
+图的遍历方法有两种：一种是深度优先搜索遍历（Depth-First Search 简称DFS）；另一种是广度优先搜索遍历（Breadth_First Search 简称BFS）。
+8.3.1 深度优先搜索遍历 图的深度优先搜索遍历类似于二叉树的深度优先搜索遍历。其基本思想如下：假定以图中某个顶点Vi为出发点，首先访问出发点，然后选择一个Vi的未访问过的邻接点Vj，以Vj为新的出发点继续进行深度优先搜索，直至图中所有顶点都被访问过。显然，这是一个递归的搜索过程。
+现以图8.15为例说明深度优先搜索过程。假定V1是出发点，首先访问V1。因V1有两个邻接点V2、V3均末被访问过，可以选择V2作为新的出发点，访问V2之后，再找V2的末访问过的邻接点。同V2邻接的有V1、V4和V5，其中V1已被访问过，而V4、V5尚未被访问过，可以选择V4作为新的出发点。重复上述搜索过程，继续依次访问V8、V5。访问V5之后，由于与V5相邻的顶点均已被访问过，搜索退回到V8，访问V8的另一个邻接点V6。接下来依次访问V3和V7，最后得到的的顶点的访问序列为：V1→ V2→ V4→ V8→ V5→ V6→ V3→V7。  下面根据上一节创建的邻接表存储结构添加深度优先搜索遍历代码。
+【例8-2 DFSTraverse.cs】深度优先搜索遍历
+打开【例8-1 AdjacencyList.cs】，在AdjacencyList&amp;lt;T&amp;gt;类中添加以下代码后，将文件另存为DFSTraverse.cs。
+private void InitVisited() //初始化visited标志 { foreach (Vertex&amp;amp;lt;T&amp;amp;gt; v in items) { v.</description>
     </item>
     
     <item>
@@ -340,7 +363,7 @@ C# 4.0
 　不要说我的朋友不痛苦，她如果不痛苦她就不会找我倾诉了。她想再找回当年的感情，但是那难度比找回去年的雪还大。她常常抱怨，我当时为什么这么傻？不就是一个三环边的房子和一辆富康车吗？不就是几顿小情小调的西餐吗？我就答应和他生活一辈子，一辈子是多长的时间啊！
 　我们都不能否认爱情中除了有爱情还有其他的东西，自古以来就有无数女人通过爱一个男人而彻底改变自己命运的例子，那些女人到底是幸运还是不幸？我想假如她们像从来没有吃过禁果的夏娃，或者像从来没有向人间偷窥的七仙女，她们也许是幸运的，因为她们不知道什么叫爱情。她们以为爱情就是她们已经得到的生活，但是千万不要让她们接触到任何与爱有关的事物，那会大大刺激她们的。她们在刺激之下，会觉得自己是最可怜的女人。就像查泰莱夫人一样，丈夫那样有地位有身份，但是当她懂得什么叫世间的爱之后，她还是义无返顾抛家舍业。因为她知道，那种爱是无法替代的，是物质生活不能补偿的。我不希望你像查泰莱夫人一样，在忍受那么多屈辱、不幸、心灵的折磨之后，才奔向情人的怀抱。你原本是没必要给自己找那么多麻烦的，
  一个你不爱的男人，即使一切都好，又能好到哪里去呢？无非是他能给一些你现在还得不到的生活品质，但是如果你对自己有信心，那些所谓的生活品质是很难达到的吗？也许现在你会为一个肯送你路易威登手提袋的男人而心动，但是当你自己可以到巴黎总店随便挑选的时候，你还会为那个男人心动吗？你还会因为他送得起这样一个昂贵的包而凭空给他打几个高分吗？
-世间值得追求的东西很多，但惟有爱情，是必须真心相爱才可以尝到它的滋味的。而其他的东西，你得到它的途径其实有很多，并不一定非要通过和一个人结婚才可以得到。既然这样，你为什么要给自己的爱设定那么高的门槛？我担心的不是你对爱的要求太高，我是担心迈得进你门槛的人，恰恰都是与爱无关的人。因为真爱是不需要门槛的，而且也不屑于门槛。爱是两情相悦，你情我愿，又不是在自由市场挑西红柿，非要找性能价格，比最合理的。
+  世间值得追求的东西很多，但惟有爱情，是必须真心相爱才可以尝到它的滋味的。而其他的东西，你得到它的途径其实有很多，并不一定非要通过和一个人结婚才可以得到。既然这样，你为什么要给自己的爱设定那么高的门槛？我担心的不是你对爱的要求太高，我是担心迈得进你门槛的人，恰恰都是与爱无关的人。因为真爱是不需要门槛的，而且也不屑于门槛。爱是两情相悦，你情我愿，又不是在自由市场挑西红柿，非要找性能价格，比最合理的。
  　恋人之间最爱问的一句话，大概就是“你爱我什么？”从来没有人会说我爱你的钱，你的财富，你所能给我提供的生活，为什么？因为我们都知道那太煞风景。至今为止，我听到的最动人的答案是一句英文：“I LOVE YOU NOT BECAUSE OF WHO YOU ARE，BUT BECAUSE OF WHO I AM WHEN I AM WITH YOU.”我不知道如何把它翻译得浪漫多情，但是我想即使是直截了当的翻译，那其中的真情也足以动人：我爱你，并不是因为你是谁，而是因为和你在一起时，我才是最真实的我。
 [text]PS:私自觉得那句英文应该翻译为：我爱你，不是因为你是谁，而是因为我在你面前可以是谁。[/text]</description>
     </item>
@@ -363,10 +386,7 @@ C# 4.0
       <guid>https://leizhiyuan.github.io/2012/09/24/wpf%E6%AF%9B%E7%8E%BB%E7%92%83%E6%95%88%E6%9E%9Cdemo%E5%92%8C%E4%B8%80%E4%B8%AA%E9%97%AE%E9%A2%98/</guid>
       <description>那天看到WPF书上讲的毛玻璃效果，就去找了下效果。。忘了例子是从哪发现得了。。先看下效果，
  但是这不是重点，作者给出的代码有一个设计时错误。。错误提示为： 无法将类型为“Microsoft.Expression.Platform.WPF.InstanceBuilders.WindowInstance”的对象强制转换为类型“System.Windows.Window”，，
-　中文搜了一下。没有发现有人解决过。目测。。。然后又拿英文搜了下。几经辗转。。终于是解决了。。原文在Unable to cast XAML error。其实就是将原作者这个函数修改如下的
-public static void OnIsEnabledChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args) {
-if ((bool)args.NewValue == true) { Window wnd = obj as Window; if (wnd != null) wnd.Loaded += new RoutedEventHandler(wnd_Loaded); } }&amp;lt;/pre&amp;gt;  　也就是验证了一下转换是否成功。
-下载：修改后的RGSamples</description>
+　中文搜了一下。没有发现有人解决过。目测。。。然后又拿英文搜了下。几经辗转。。终于是解决了。。原文在Unable to cast XAML error。其实就是将原作者这个函数修改如下的</description>
     </item>
     
     <item>
@@ -378,7 +398,13 @@ if ((bool)args.NewValue == true) { Window wnd = obj as Window; if (wnd != null) 
       <description>今天实在看WPF揭秘的时候看到TaskDialog这个控件的。然后就去找了一下开源的代码。在codeproject上发现了这个，非常给力。。另外codeproject改版后很漂亮哦。 
 介绍： 这是用WPF实现Vista上TaskDialog效果的代码。
 Messagbox消息框 通过调用重写的静态Show方法。TaskDialog就会表现的像一个Messagebox。他有四个文本类型的属性：Header（头部）, Content（内容）, Detail（更多）, 和 Footer（底部），其实Detail是一个折叠的区域， 而Header和Footer还有一个icon属性（HeaderIcon和FooterIcon），除此之外，Header还有Background（背景）和Foreground（前景）属性
-// TaskDialog.Show方法签名 public static TaskDialogResult Show( string title, string header, string content, string detail, string footer, TaskDialogButton button, TaskDialogResult defaultResult, TaskDialogIcon headerIcon, TaskDialogIcon footerIcon, Brush headerBackground, Brush headerForeground) // TaskDialog.Show 方法的一个例子 TaskDialog.Show(&#34;Task Dialog 测试&#34;, &#34;消息框的标题文字&#34;, &#34;消息框的内容部分. &#34; + &#34; 可以自适应内容.&#34;, &#34;消息框的细节部分 &#34; + &#34;可以自适应内容&#34;, &#34;消息框的底部.&#34;, TaskDialogButton.Ok, TaskDialogResult.None, TaskDialogIcon.Information, TaskDialogIcon.Shield, Brushes.White, Brushes.Navy); 定制TaskDialog 使用静态的Show方法。Header, Content, Detail, 和Footer 就限制了只能传递字符串作为值了。 为了定义这个对话框，你先创建TaskDialog类的一个对象，然后分别设置一下各个属性，最后调用Show方法就可以了</description>
+TaskDialog控件派生自HeaderedContentControl类，因为从HeaderedContentControl类可以获得Header和Content属性，TaskDialog仅仅是添加了Detail和Footer属性，这些属性是Object类型，并且有他们自己的template（模板）属性HeaderTemplate, ContentTemplate, DetailTemplate, 和 FooterTemplate)，TaskDialog类对于文本内容有着缺省的数据模板，当然你也可以用那四个模板来替换，这样你就可以以你喜欢的任何方式来格式化文本了。下面这个图展示了通过斜体和下划线来格式化文本。
+ 图2
+因为Header，Content，Detail和Footer是object类型，因此不再受到只能是文本的限制了，你可以防止你喜欢的任何类型到TaskDialog，下面这个例子中的TaskDialog是不是很像UAC的提示呢。这里Content属性是一个UserControl类型，放置了一个图片和一些文本还有两个CommandButtons（都是普通的按钮。。不过添加了一些定制的样式，再加了Header属性）
+ 图三
+一个模拟vista的文件拷贝窗口的TaskDialog。。
+ 图四
+额外的一些有意思的属性 下面是TaskDialog暴露的属性列表（按字母表排序） Button1Text: string类型，当TaskDialogButton属性被设置为Custom的时候，用来设置按钮的文字 Button2Text: 同上 Button3Text: 同上 DefaultResult: TaskDialogResult类型. 设置缺省的按钮 IsButton1Enabled: bool类型. 获取或设置按钮的Enabled状态 IsButton2Enabled: 同上 IsButton3Enabled: 同上 IsCloseButtonEnabled: bool类型. 获取或设置窗口关闭按钮的Enabled状态 (缺省为false) IsExpanded: bool类型，获取或是设置Detail部分的可见性。 IsModal: bool类型，获取或是设置对话框是不是模态的 ShowInTaskBar: bool类型，获取或是设置对话框是不是显示在任务栏中 SystemSound: TaskDialogSound类型. 设置当对话框显示的时候播放的声音 TaskDialogButton: TaskDialogButton类型. 显示在对话框上的按钮可以是None, Ok, OkCancel, YesNo, YesNoCancel, or Custom (查看上面提到的按钮设置) title: string类型，对话框的标题 ToggleButtonTexts: TaskDialogToggleButtonTexts提供了两个属性来设置toggle按钮的这个属性，当toggle 按钮折叠或是展开的时候 (缺省是&#39;Show Details&amp;rsquo; 和&#39;Hide Details&amp;rsquo;).</description>
     </item>
     
     <item>
@@ -428,11 +454,15 @@ Messagbox消息框 通过调用重写的静态Show方法。TaskDialog就会表�
 原文来自：贺臣感谢原作者的好文章。 1.什么是委托，为什么要使用委托
 我正在埋头苦写程序，突然想喝水，但是又不想自己去掉杯水而打断自己的思路，于是我就想让女朋友去给我倒水。她去给我倒水，首先我得让她知道我想让她干什么，通知她之后我可以继续写自己的程序，而倒水的工作就交给了她。这样的过程就相当于一个委托。
 在程序过程中，当程序正在处理某个事件的时候，我需要另外的程序代码去辅助处理一些事情，于是委托另一个程序模块去处理，而委托就可以达到这种目的，我可以利用委托通知另外的程序模块，该去调用哪个函数方法。委托其实就起到了这样一个作用，将函数签名传递到了另一个函数中。或许这样讲还是有些模糊，看看后面的具体实例。
-2.委托的定义 delegate int Add(int num1,int num2);
-delegate void ConvertNum(string result);  上面是定义两个委托的例子，其实很简单。声明一个委托使用delegate关键字，上面分别是定义的带返回值的委托和不带返回值的委托，
+2.委托的定义
+上面是定义两个委托的例子，其实很简单。声明一个委托使用delegate关键字，上面分别是定义的带返回值的委托和不带返回值的委托，
 两个委托都有传递参数，当然也可以不传递参数。其实委托也是一个类，委托派生为System.MulticastDelegate,而System.MulticastDelegate
-又继承System.Delegate,如果你知道这个也就明白委托其实是一个特殊的类。 委托的简单实用例子 public delegate string TeaDelegate(string spText);
-public class DelegateSource { public void TestDelegate() { Operator op = new Operator(); TeaDelegate tea = new TeaDelegate(op.GetTea); Console.WriteLine(&amp;#34;去给我倒杯水&amp;#34;); Console.WriteLine(); string result=tea(&amp;#34;去给我倒杯水&amp;#34;); Thread.Sleep(5000); Console.WriteLine(result); Console.WriteLine(); } } public class Operator { /// &amp;lt;summary&amp;gt; /// 确定是否还有水 /// &amp;lt;/summary&amp;gt; private bool flag = true; public string GetTea(string spText) { if (spText == &amp;#34;去给我倒杯水&amp;#34;) { if (flag) { return &amp;#34;老公,茶来了&amp;#34;; } else { return &amp;#34;老公,没有水了&amp;#34;; } } return &amp;#34;等待.</description>
+又继承System.Delegate,如果你知道这个也就明白委托其实是一个特殊的类。 委托的简单实用例子
+在委托定义的例子中我们看到委托的使用方法是在委托实例化的时候指定的[new DelegateName(FunctionName)],这里可能表述不是太但是代码应该看得白了。 而委托的推断，并没有new 委托这个步骤，而是直接将Function 指定给委托。
+(2).匿名函数 匿名委托例子
+这是一个非常有特色的泛型委托，可能我们用的比较少，但是作用是不能忽视的。 我们看看三个非常具有代表性的泛型委托.现在.NET4.0已经出来了，但是泛型委托.NET2.0就出来了，Linq 大家用的那叫一个甜，
+为啥 函数式编程风格，匿名方法，Lamda表达式表达式使用是如此的魅力。但是大家仔细观察过没有，Linq 中的方法有几个经常出现的参数：
+Func&amp;lt;T, E&amp;gt;：封装一个具有一个参数并返回 E 参数指定的类型值的方法,T 是这个委托封装方法的参数类型，E是方法的返回值类型。当然Func&amp;lt;T, Result&amp;gt; 只是其中的一种情况,这个委托还有其他的几种情况:Func&amp;lt;T&amp;gt; 这个是方法没有参数,返回值类型是T;Func&amp;lt;T1,T2,Result&amp;gt; 这个方法有两个参数,类型分别为T1,T2，返回值是Result,还有Func&amp;lt;T1,T2,T3,Result&amp;gt;，Func&amp;lt;T1,T2,T3,T4,Result&amp;gt; 这几中情况，具体情况就不介绍了.我们还可以通过扩展类型，扩展为更多的参数. Func 委托的使用</description>
     </item>
     
     <item>
@@ -486,9 +516,8 @@ public class DelegateSource { public void TestDelegate() { Operator op = new Ope
       
       <guid>https://leizhiyuan.github.io/2012/07/11/sqlserver%E5%90%AF%E7%94%A8xp_cmdshell/</guid>
       <description>忘了当时是执行哪条命令的时候需要启动xp_cmdshell了。。反正是必须用的。。
-默认情况下,sql server安装完后,xp_cmdshell是禁用的(可能是安全考虑),如果要使用它,可按以下步骤 &amp;ndash; 允许配置高级选项 EXEC sp_configure &amp;lsquo;show advanced options&amp;rsquo;, 1 GO &amp;ndash; 重新配置 RECONFIGURE GO &amp;ndash; 启用xp_cmdshell EXEC sp_configure &amp;lsquo;xp_cmdshell&amp;rsquo;, 1 GO &amp;ndash;重新配置 RECONFIGURE GO
-&amp;ndash;执行想要的xp_cmdshell语句 Exec xp_cmdshell &amp;lsquo;query user&amp;rsquo; GO
-&amp;ndash;用完后,要记得将xp_cmdshell禁用(出于安全考虑) &amp;ndash; 允许配置高级选项 EXEC sp_configure &amp;lsquo;show advanced options&amp;rsquo;, 1 GO &amp;ndash; 重新配置 RECONFIGURE GO &amp;ndash; 禁用xp_cmdshell EXEC sp_configure &amp;lsquo;xp_cmdshell&amp;rsquo;, 0 GO &amp;ndash;重新配置 RECONFIGURE GO &amp;nbsp;</description>
+默认情况下,sql server安装完后,xp_cmdshell是禁用的(可能是安全考虑),如果要使用它,可按以下步骤
+ </description>
     </item>
     
     <item>
@@ -497,7 +526,7 @@ public class DelegateSource { public void TestDelegate() { Operator op = new Ope
       <pubDate>Wed, 11 Jul 2012 14:04:07 +0000</pubDate>
       
       <guid>https://leizhiyuan.github.io/2012/07/11/c#-%E7%BA%BF%E7%A8%8B%E4%BC%98%E7%A7%80%E6%96%87%E7%AB%A0%E6%B1%87%E6%80%BB/</guid>
-      <description> 最近在看线程的东西，整理一些文档以便学习。分享。
+      <description>最近在看线程的东西，整理一些文档以便学习。分享。
 刚刚  C#多线程学习(一) 多线程的相关概念 C#多线程学习(二) 如何操纵一个线程 C#多线程学习(三) 生产者和消费者 C#多线程学习(四) 多线程的自动管理(线程池) C#多线程学习(五) 多线程的自动管理(定时器) C#多线程学习(六) 互斥对象 C# 实现多线程的同步方法详解  JimmyZheng  C# 温故而知新： 线程篇(一) Thread C# 温故而知新： 线程篇(二) 线程池和异步线程  zhoufoxcn  C#多线程编程（1）：线程的启动 多线程编程(2)：线程的同步 多线程编程(3)：线程池ThreadPool 多线程编程(4)：多线程与UI操作 一个简单的C#多线程间同步的例子  老赵  浅谈线程池（上）：线程池的作用及CLR线程池 浅谈线程池（中）：独立线程池的作用及IO线程池 浅谈线程池（下）：相关试验及注意事项  bloodish  C# Tip &amp;ndash; 如何优雅的控制线程状态  Autumoon  白话多线程  </description>
     </item>
     
@@ -509,10 +538,37 @@ public class DelegateSource { public void TestDelegate() { Operator op = new Ope
       <guid>https://leizhiyuan.github.io/2012/07/05/effective-c#item-9%E5%8C%BA%E5%88%AB%E5%92%8C%E8%AE%A4%E8%AF%86%E5%9B%9B%E4%B8%AA%E5%88%A4%E7%AD%89%E5%87%BD%E6%95%B0/</guid>
       <description>.Net有四个判等函数？不少人看到这个标题，会对此感到怀疑。事实上确是如此，.Net提供了ReferenceEquals、静态Equals，具体类型的Equals以及==操作符这四个判等函数。但是这四个函数之间有细微的关系，改变其中一个函数的实现会影响到其他函数的操作结果。
 　首先要说的是Object.ReferenceEquals和Object.Equals这两个静态函数，对于它们俩来说，是不需要进行重写的，因为它们已经完成它们所要得做的操作。
-对于Object.ReferenceEquals这个静态函数，函数形式如下： public static bool ReferenceEquals( object left, object right ); 这个函数就是判断两个引用类型对象是否指向同一个地址。有此说明后，就确定了它的使用范围，即只能对于引用类型操作。那么对于任何值类型数据操作，即使是与自身的判别，都会返回false。这主要因为在调用此函数的时候，值类型数据要进行装箱操作，也就是对于如下的形式来说。 int n = 10; Object.ReferenceEquals( n, n ); 这是因为对于n这个数据装箱两次，而每次装箱后的地址有不同，而造成Object.ReferenceEquals( n, n )的结果永远为false。
+对于Object.ReferenceEquals这个静态函数，函数形式如下：
+　这个函数就是判断两个引用类型对象是否指向同一个地址。有此说明后，就确定了它的使用范围，即只能对于引用类型操作。那么对于任何值类型数据操作，即使是与自身的判别，都会返回false。这主要因为在调用此函数的时候，值类型数据要进行装箱操作，也就是对于如下的形式来说。
+这是因为对于n这个数据装箱两次，而每次装箱后的地址有不同，而造成Object.ReferenceEquals( n, n )的结果永远为false。
 对于第一个判等函数来说，没有什么好扩展的，因为本身已经很好地完成了它所要做的。
-对于第二个Object.Equals这个静态函数，其形式如下： public static bool Equals( object left, object right ); 按照书中对它的分析，其大致函数代码如下： public static void Equals( object left, object right ) { // Check object identity if( left == right ) return true;
-// both null references handled above if( ( left == null ) || ( right == null ) ) return false; return left.</description>
+对于第二个Object.Equals这个静态函数，其形式如下：
+　按照书中对它的分析，其大致函数代码如下：
+　可以说，Object.Equals这个函数完成判等操作，需要经过三个步骤，
+第一步是需要根据对象所属类型的==操作符的执行结果；
+第二步是判别是否为null，也是和第一步一样，需要根据类型的==操作符的执行结果；
+最后一步要使用到类型的Equals函数的执行结果。
+也就是说这个静态函数的返回结果，要取决于后面要提到的两个判等函数。类型是否提供相应的判等函数，成为这个函数返回结果的重要因素。
+　那么对于Object.Equals这个静态方法来说，虽说接受参数的类型也属于引用类型，但是不同于Object.ReferenceEquals函数，对于如下的代码，能得出正确的结果。
+ 这是因为在此函数中要用到具体类型的两个判等函数，不过就函数本身而言，该做的判断都做了，因此不需要去重载添加复杂的操作。
+为了更好的述说剩下两个函数，先解释一下等价的意义。对于等价的意义，就是自反、对称以及传递。
+ 所谓自反，即a == a； 而对称，是a == b，则b == a； 传递是 a == b，b == c，则 a == c； 理解等价的意义后，那么在实现类型的判等函数也要满足这个等价规则。  对于可以重载的两个判等函数，首先来介绍的是类型的Equals函数，其大致形式如下：
+ 如上增加了一个类型检查，即
+　这部分，这是由于子类对象可以通过as转化成基类对象，从而造成不同类型对象可以进行判等操作，违反了等价关系。
+　除此外对于类型的Equals函数来，其实并没有限制类型非要属于引用类型，对于值类型也是可以重载此函数，但是我并不推荐，主要是Equals函数的参数类型是不可变的，也就是说通过此方法，值类型要经过装箱操作，而这是比较影响效率的。
+　而对于值类型来说，我推荐使用最后一种判等函数，即重载运算符==函数，其大致形式如下：
+ 对于一个值类型而言，其的大致形式应该如下：
+ 　由于==操作与!=操作要同步定义，所以在定义==重载函数的时候，也要定义!=重载函数。这也是.Net在判等操作保持一致性。那么对于最后一个判等函数，这种重载运算符的方法并不适合引用类型。这就是.Net经常现象，去判断两个引用类型，不要用==，而要用某个对象的Equals函数。所以在编写自己类型的时候，要保留这种风格。
+那么对于以上介绍的四种判等函数，会产生如下类似的对比表格。
+操作结果取决于
+适用范围
+建议
+Object.ReferenceEquals
+引用类型
+Object.Equals
+无限制
+类型的Equals
+无限制</description>
     </item>
     
     <item>
@@ -584,13 +640,13 @@ http://nds.cngba.com/nds_bd/2007122122100.shtml</description>
       <description>今天突然看到很多好的技术文章，转载收藏备用分享。
 如果有人问你，GET和POST，有什么区别？你会如何回答？
 我的经历 前几天有人问我这个问题。我说GET是用于获取数据的，POST，一般用于将数据发给服务器之用。
-这个答案好像并不是他想要的。于是他继续追问有没有别的区别？我说这就是个名字而已，如果服务器支持，他完全可以把GET改个名字叫GET2。他反问道，那就是单纯的名字上的区别喽？我想了想，我觉得如果说再具体的区别，只能去看RFC文档了，还要取决于服务器（指Apache，IIS）的具体实现。但我不得不承认，我的确没有仔细看过HTTP的RFC文档。于是我说，我对HTTP协议不太熟悉。这个问题也就结束了。
+这个答案好像并不是他想要的。于是他继续追问有没有别的区别？我说这就是个名字而已，如果服务器支持，他完全可以把GET改个名字叫GET2。他反问道，那就是单纯的名字上的区别喽？我想了想，我觉得如果说再具体的区别，只能去看RFC文档了，还要取决于服务器（指Apache，IIS****）的具体实现。但我不得不承认，我的确没有仔细看过HTTP的RFC文档。于是我说，我对HTTP协议不太熟悉。这个问题也就结束了。
 最普遍的答案 回来之后寻思了很久，他到底是想问我什么？我一直就觉得GET和POST没有什么除了语义之外的区别，自打我开始学习Web编程开始就是这么理解的。
 可能很多人都已经猜到了，他要的答案是：
 1. GET使用URL或Cookie传参。而POST将数据放在BODY中。
 2. GET的URL会有长度上的限制，则POST的数据则可以非常大。
 3. POST比GET安全，因为数据在地址栏上不可见。
-但是很不幸，这些区别全是错误的，更不幸的是，这个答案还是Google搜索的头版头条，然而我根本没想着这些是答案，因为在我看来他们都是错的。我来一一解释一下。
+但是很不幸，**这些区别全是错误的，**更不幸的是，这个答案还是Google搜索的头版头条，然而我根本没想着这些是答案，因为在我看来他们都是错的。我来一一解释一下。
 GET和POST与数据如何传递没有关系 GET和POST是由HTTP协议定义的。在HTTP协议中，Method和Data（URL， Body， Header）是正交的两个概念，也就是说，使用哪个Method与应用层的数据如何传输是没有相互关系的。
 HTTP没有要求，如果Method是POST数据就要放在BODY中。也没有要求，如果Method是GET，数据（参数）就一定要放在URL中而不能放在BODY中。
 那么，网上流传甚广的这个说法是从何而来的呢？我在HTML标准中，找到了相似的描述。这和网上流传的说法一致。但是这只是HTML标准对HTTP协议的用法的约定。怎么能当成GET和POST的区别呢？
@@ -601,10 +657,10 @@ HTTP协议对GET和POST都没有对长度的限制 HTTP协议明确地指出了�
 2. 服务器。URL长了，对服务器处理也是一种负担。原本一个会话就没有多少数据，现在如果有人恶意地构造几个几M大小的URL，并不停地访问你的服务器。服务器的最大并发数显然会下降。另一种攻击方式是，把告诉服务器Content-Length是一个很大的数，然后只给服务器发一点儿数据，嘿嘿，服务器你就傻等着去吧。哪怕你有超时设置，这种故意的次次访问超时也能让服务器吃不了兜着走。有鉴于此，多数服务器出于安全啦、稳定啦方面的考虑，会给URL长度加限制。但是这个限制是针对所有HTTP请求的，与GET、POST没有关系。
 安全不安全和GET、POST没有关系 我觉得这真是中国特色。我讲个小段子，大家应该可以体会出这个说法多么的可笑。
 觉得POST数据比GET数据安全的人会说
- “防君子不防小人；中国小白多，能防小白用户就行了。”
-_ “哼，”_我不以为然，_“那你怎么不说，URL参数都Encode过了，或是Base64一下，小白也看不懂啊。”_
-那人反驳道，_“Encode太简单了，聪明点儿的小白很容易就可以Decode_并修改掉。”
-我笑道，_“五十步笑百步耳，再聪明点儿的小白还会截包并重发呢，Opera就有这功能。”_
+_ “防君子不防小人；中国小白多，能防小白用户就行了。”_
+_ “哼，”我不以为然，“那你怎么不说，_URL__参数都Encode__过了，或是Base64__一下，小白也看不懂啊。”
+那人反驳道，_“_Encode__太简单了，聪明点儿的小白很容易就可以Decode__并修改掉。”
+我笑道，_“五十步笑百步耳，再聪明点儿的小白还会截包并重发呢，_Opera__就有这功能。”
 那人阴险地祭出神器——最终解释权，说，“这个不算小白。”
 我日啊。
 最后一点儿感想 我之前一直做Windows桌面应用，对Web开发无甚了解，直到一年多前转做服务器端开发，才开始接触到HTTP。（注意，我说的是HTTP，不是HTML。服务器开放接口是基于REST理念设计的，使用的协议是HTTP，但是传输的内容不是HTML。这不是Web Server，而是一个Web Service）
@@ -621,7 +677,36 @@ _ “哼，”_我不以为然，_“那你怎么不说，URL参数都Encode过
       <pubDate>Tue, 19 Jun 2012 17:03:49 +0000</pubDate>
       
       <guid>https://leizhiyuan.github.io/2012/06/19/sass%E7%94%A8%E6%B3%95%E6%8C%87%E5%8D%97/</guid>
-      <description>作者： [阮一峰](http://www.ruanyifeng.com/) 日期： [2012年6月19日](http://www.ruanyifeng.com/blog/2012/06/)   学过[CSS](http://zh.wikipedia.org/wiki/%E5%B1%82%E5%8F%A0%E6%A0%B7%E5%BC%8F%E8%A1%A8)的人都知道，它不是一种编程语言。  你可以用它开发网页样式，但是没法用它编程。也就是说，CSS基本上是设计师的工具，不是程序员的工具。在程序员眼里，CSS是一件很麻烦的东西。它没有变量，也没有条件语句，只是一行行单纯的描述，写起来相当费事。 ![](/images/24063303e3abc5d5089bc58bdba65c550be0f8cb.jpg) 很自然地，有人就开始为CSS加入编程元素，这被叫做[&#34;CSS预处理器&#34;](http://www.catswhocode.com/blog/8-css-preprocessors-to-speed-up-development-time)（css preprocessor）。它的基本思想是，用一种专门的编程语言，进行网页样式设计，然后再编译成正常的CSS文件。 各种&#34;CSS预处理器&#34;之中，我自己最喜欢[SASS](http://sass-lang.com/)，觉得它有很多优点，打算以后都用它来写CSS。下面是我整理的用法总结，供自己开发时参考，相信对其他人也有用。 ============================================ **SASS用法指南** 作者：阮一峰 ![](/images/c00b9e9a6c97811cb70a4f18ec85976f493eb3e7.png) **一、什么是SASS** [SASS](http://sass-lang.com/)是一种CSS的开发工具，提供了许多便利的写法，大大节省了设计者的时间，使得CSS的开发，变得简单和可维护。 本文总结了SASS的主要用法。我的目标是，有了这篇文章，日常的一般使用就不需要去看[官方文档](http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html)了。 **二、安装和使用** **2.1 安装** SASS是Ruby语言写的，但是两者的语法没有关系。不懂Ruby，照样使用。只是必须先[安装Ruby](http://www.ruby-lang.org/zh_cn/downloads/)，然后再安装SASS。 假定你已经安装好了Ruby，接着在命令行输入下面的命令：  gem install sass 然后，就可以使用了。 **2.2 使用** SASS文件就是普通的文本文件，里面可以直接使用CSS语法。文件后缀名是.scss，意思为Sassy CSS。 下面的命令，可以在屏幕上显示.scss文件转化的css代码。（假设文件名为test。）  sass test.scss 如果要将显示结果保存成文件，后面再跟一个.css文件名。  sass test.scss test.css SASS提供四个编译风格的选项：  * nested：嵌套缩进的css代码，它是默认值。   * expanded：没有缩进的、扩展的css代码。   * compact：简洁格式的css代码。   * compressed：压缩后的css代码。 生产环境当中，一般使用最后一个选项。  sass --style compressed test.sass test.css SASS的官方网站，提供了一个[在线转换器](http://sass-lang.com/try.html)。你可以在那里，试运行下面的各种例子。 **三、基本用法** **3.1 变量** SASS允许使用变量，所有变量以$开头。  $blue : #1875e7;   div {  color : $blue;  } 如果变量需要镶嵌在字符串之中，就必须需要写在#{}之中。  $side : left;   .</description>
+      <description>作者： 阮一峰
+日期： 2012年6月19日
+学过CSS的人都知道，它不是一种编程语言。
+你可以用它开发网页样式，但是没法用它编程。也就是说，CSS基本上是设计师的工具，不是程序员的工具。在程序员眼里，CSS是一件很麻烦的东西。它没有变量，也没有条件语句，只是一行行单纯的描述，写起来相当费事。
+很自然地，有人就开始为CSS加入编程元素，这被叫做&amp;ldquo;CSS预处理器&amp;rdquo;（css preprocessor）。它的基本思想是，用一种专门的编程语言，进行网页样式设计，然后再编译成正常的CSS文件。
+各种&amp;quot;CSS预处理器&amp;quot;之中，我自己最喜欢SASS，觉得它有很多优点，打算以后都用它来写CSS。下面是我整理的用法总结，供自己开发时参考，相信对其他人也有用。
+============================================
+SASS用法指南
+作者：阮一峰
+一、什么是SASS
+SASS是一种CSS的开发工具，提供了许多便利的写法，大大节省了设计者的时间，使得CSS的开发，变得简单和可维护。
+本文总结了SASS的主要用法。我的目标是，有了这篇文章，日常的一般使用就不需要去看官方文档了。
+二、安装和使用
+2.1 安装
+SASS是Ruby语言写的，但是两者的语法没有关系。不懂Ruby，照样使用。只是必须先安装Ruby，然后再安装SASS。
+假定你已经安装好了Ruby，接着在命令行输入下面的命令：
+ gem install sass 然后，就可以使用了。
+ 2.2 使用
+SASS文件就是普通的文本文件，里面可以直接使用CSS语法。文件后缀名是.scss，意思为Sassy CSS。
+下面的命令，可以在屏幕上显示.scss文件转化的css代码。（假设文件名为test。）
+ sass test.scss 如果要将显示结果保存成文件，后面再跟一个.css文件名。 sass test.scss test.css SASS提供四个编译风格的选项：
+  nested：嵌套缩进的css代码，它是默认值。
+  expanded：没有缩进的、扩展的css代码。
+  compact：简洁格式的css代码。
+  compressed：压缩后的css代码。 生产环境当中，一般使用最后一个选项。 sass &amp;ndash;style compressed test.sass test.css SASS的官方网站，提供了一个在线转换器。你可以在那里，试运行下面的各种例子。
+   三、基本用法
+3.1 变量
+SASS允许使用变量，所有变量以$开头。
+ $blue : #1875e7;
+div { color : $blue; } 如果变量需要镶嵌在字符串之中，就必须需要写在#{}之中。 $side : left;</description>
     </item>
     
     <item>
@@ -647,11 +732,10 @@ _ “哼，”_我不以为然，_“那你怎么不说，URL参数都Encode过
 　密码学是理论计算机的一个很大的方向。之前准备先写密码学概论再提在hash函数破解上做出重大贡献的王小云教授的工作，不过前两天王小云获得求是杰出科学家奖以及100万奖金，在媒体上又掀起了一轮宣传狂潮，但是有些报道极端弱智，错误百出，所以我趁机纠正一下，并介绍密码学的一个组成部分——hash函数，以及王小云在这上面的工作。
 　王小云的主要工作是关于hash函数的破解工作。她在2005一个密码学会议上宣布破解了SHA-1，震惊了全世界。所以要介绍和理解她的工作，先看一下hash函数具体是怎么回事。
 　简单的说，hash函数就是把任意长的输入字符串变化成固定长的输出字符串的一种函数。通俗得说，hash函数用来生成信息的摘要。输出字符串的长度称为hash函数的位数。
-　目前应用最为广泛的hash函数是SHA-1和MD5，大多是128位和更长。
+　目前应用最为广泛的hash函数是**SHA-1和MD5**，大多是128位和更长。
 　hash函数在现实生活中应用十分广泛。很多下载网站都提供下载文件的MD5码校验，可以用来判别文件是否完整。另外，比如在WordPress的数据库，所有密码都是保存的MD5码，这样即使数据库的管理员也无法知道用户的原始密码，避免隐私泄露（很多人在不同地方都是用的同一个密码）。
 　如果两个输入串的hash函数的值一样，则称这两个串是一个碰撞(Collision)。既然是把任意长度的字符串变成固定长度的字符串，所以，必有一个输出串对应无穷多个输入串，碰撞是必然存在的。
-　一个“优良”的hash函数 _f _应当满足以下三个条件：　　1.任意y，找x，使得f(x)=y，非常困难。 2.给定x1，找x2，使得f(x1)=f(x2)，非常困难。 3.找x1，x2，使得f(x1)=f(x2)，非常困难。
-　上面的“非常困难”的意思是除了枚举外不可能有别的更快的方法。比如第3条，根据生日定理，要想找到这样的x1，x2，理论上需要大约2^(n/2)的枚举次数。
+　一个“优良”的hash函数 _f _应当满足以下三个条件：　　1.任意y，找x，使得f(x)=y，非常困难。2.给定x1，找x2，使得f(x1)=f(x2)，非常困难。3.找x1，x2，使得f(x1)=f(x2)，非常困难。　上面的“非常困难”的意思是除了枚举外不可能有别的更快的方法。比如第3条，根据生日定理，要想找到这样的x1，x2，理论上需要大约2^(n/2)的枚举次数。
 　几乎所有的hash函数的破解，都是指的破坏上面的第三条性质，即找到一个碰撞（前两条都能被破坏的hash函数也太弱了点，早就被人抛弃了）。在密码学上还有一个概念是理论破解，指的是提出一个算法，使得可以用低于理论值得枚举次数找到碰撞。
 　王小云的主要工作是给出了MD5，SHA-0的碰撞，以及SHA-1的理论破解，她证明了160位SHA-1，只需要大约2^69次计算就能找出来，而理论值是2^80次。她的寻找MD5碰撞的方法是极端高效的。传说王小云当时在会议上把碰撞写出来，结果被下面的人验证发现不对，原来她把MD5算法的一个步骤弄错了。但是她立马联系她的当时留在中国的学生，修正算法，并找到一个新的碰撞。这一个是对的。
 　看到这里，那些认为中国国安局应该将这些结果封存作为秘密武器甚至幻想用这些成果来袭击美国之徒可以停住你们的YY了。这种形式上的破解，在大多数情况下没有实际性的作用。更别提MD5早就被美国人抛弃了。
@@ -662,7 +746,8 @@ _ “哼，”_我不以为然，_“那你怎么不说，URL参数都Encode过
 　　a25f7f0b 29ee0b39 68c86073 8533a4b9
 　事实上，Alice要求Caesar签名的文件letter已经被Alice做了手脚，准确地说，Alice还准备了另外一个文件order，它们的MD5码完全一致。而Caesar的数字签名还依赖于MD5算法，所以Alice用order文件替换Letter文件之后，Caesar的数字签名依然有效。那封order给Alice提供了察看秘密文件的权限。
 　具体的实现方法可见Hash Functions and the Blind Passenger Attack。我在这里简单的解释一下(只是大致思路，具体实现方式，需要对文件结构信息有所了解)：
-　letter文件的内容是： if(x1==x1) show &amp;ldquo;letter&amp;rdquo; else show &amp;ldquo;order&amp;rdquo; order文件的内容是：　if(x2==x1) show &amp;ldquo;letter&amp;rdquo; else show &amp;ldquo;order&amp;rdquo; 其中字符串&amp;rdquo;letter&amp;rdquo;和&amp;rdquo;order&amp;rdquo;代表两封信实际显示的内容。x1，x2是一个MD5的碰撞。</description>
+　letter文件的内容是： if(x1==x1) show &amp;ldquo;letter&amp;rdquo; else show &amp;ldquo;order&amp;rdquo; order文件的内容是：　if(x2==x1) show &amp;ldquo;letter&amp;rdquo; else show &amp;ldquo;order&amp;rdquo; 其中字符串&amp;quot;letter&amp;quot;和&amp;quot;order&amp;quot;代表两封信实际显示的内容。x1，x2是一个MD5的碰撞。
+　上面的方法，只供参考和学术用途，实际使用所引起的后果概不负责。　参考： １.</description>
     </item>
     
     <item>
@@ -683,7 +768,7 @@ _ “哼，”_我不以为然，_“那你怎么不说，URL参数都Encode过
 英文的终极解决方案：ASCII
 每个人都可以约定自己的一套编码，只要使用方之间了解就ok了。比如说咱俩约定0×10表示a，0×11表示b。在一开始也的确是这样的，出现了各式各样的编码。这样有两个问题：1. 各个编码的字符集不一样，有的多，有的少。2. 相同字符的编码也不一样。你这里a是0×10，他那里a可能是0×30。于是你保存的文件他就不能直接用，必须要转换编码。随着沟通范围的扩大，采用不同编码的人们互相通信就乱套了，这就是我们常说的：鸡同鸭讲。如果要避免这种混乱，那么大家就必须使用相同的编码规则，于是美国有关的标准化组织就出台了ASCII（American Standard Code for Information Interchange）编码，统一规定了英文常用符号用哪些二进制数来表示。ASCII是标准的单字节字符编码方案，用于基于文本的数据。
 ASCII最初是美国国家标准，供不同计算机在相互通信时用作共同遵守的西文字符编码标准，已被国际标准化组织（International Organization for Standardization, ISO）定为国际标准，称为ISO 646标准。适用于所有拉丁文字字母。ASCII 码使用指定的7位或8位二进制数组合来表示128或256种可能的字符。标准ASCII 码也叫基础ASCII码，使用7位二进制数来表示所有的大写和小写字母，数字0 到9、标点符号， 以及在美式英语中使用的特殊控制字符。而最高位为1的另128个字符（80H—FFH）被称为“扩展ASCII”，一般用来存放英文的制表符、部分音标字符等等的一些其它符号。
-其中：0～31及127(共33个)是控制字符或通信专用字符（其余为可显示字符），32～126(共95个)是字符(32是空格），其中48～57为0到9十个阿拉伯数字，65～90为26个大写英文字母，97～122号为26个小写英文字母，其余为一些标点符号、运算符号等。
+其中：**0～31及127(共33个)****是控制字符或通信专用字符（其余为可显示字符），**32～126(共95个)是字符(32是空格），其中48～57为0到9十个阿拉伯数字，65～90为26个大写英文字母，97～122号为26个小写英文字母，其余为一些标点符号、运算符号等。
 现在所有使用英文的电脑终于可以用同一种编码来交流了。理解了ASCII编码，其他字母型的语言编码方案就触类旁通了。
 一波三折的中文编码
 第一次尝试：GB2312
@@ -691,13 +776,21 @@ ASCII这种字符编码规则显然用来处理英文没有什么问题，它的
 GB2312是基于区位码设计的，在区位码的区号和位号上分别加上A0H就得到了GB2312编码。这里第一次提到了“区位码”，我就连带把下面这几个让人摸不到头脑的XX码一锅端了吧：
 区位码，国标码，交换码，内码，外码
 区位码：就是把中文常用的符号，数字，汉字等分门别类进行编码。区位码把编码表分为94个区，每个区对应94个位，每个位置就放一个字符（汉字，符号，数字都属于字符）。这样每个字符的区号和位号组合起来就成为该汉字的区位码。区位码一般用10进制数来表示，如4907就表示49区7位，对应的字符是“学”。区位码中01-09区是符号、数字区，16-87区是汉字区，10-15和88-94是未定义的空白区。它将收录的汉字分成两级：第一级是常用汉字计3755个，置于16-55区，按汉语拼音字母/笔形顺序排列；第二级汉字是次常用汉字计3008个，置于56-87区，按部首/笔画顺序排列。在网上搜索“区位码查询系统”可以很方便的找到汉字和对应区位码转换的工具。为了避免广告嫌疑和死链，这里就不举例了。
-国标码： 区位码无法用于汉字通信，因为它可能与通信使用的控制码（00H~1FH）（即0~31，还记得ASCII码特殊字符的范围吗？）发生冲突。于是ISO2022规定每个汉字的区号和位号必须分别加上32（即二进制数00100000，16进制20H），得到对应的国标交换码，简称国标码，交换码，因此，“学”字的国标交换码计算为：   00110001 00000111 + 00100000 00100000
-01010001 00100111  用十六进制数表示即为5127H。
+国标码： 区位码无法用于汉字通信，因为它可能与通信使用的控制码（00H~1FH）（即0~31，还记得ASCII码特殊字符的范围吗？）发生冲突。于是ISO2022规定每个汉字的区号和位号必须分别加上32（即二进制数00100000，16进制20H），得到对应的国标交换码，简称国标码，交换码，因此，“学”字的国标交换码计算为：
 交换码：即国标交换码的简称，等同上面说的国标码。
-内码：由于文本中通常混合使用汉字和西文字符，汉字信息如果不予以特别标识，就会与单字节的ASCII码混淆。此问题的解决方法之一是将一个汉字看成是两个扩展ASCII码，使表示GB2312汉字的两个字节的最高位都为1。即国标码加上128（即二进制数10000000,16进制80H）这种高位为1的双字节汉字编码即为GB2312汉字的机内码，简称为内码。20H+80H=A0H。这也就是常说的在区位码的区号和位号上分别加上A0H就得到了GB2312编码的由来。   00110001 00000111 + 10100000 10100000
-11010001 10100111  用十六进制数表示即为D1A7H。
+内码：由于文本中通常混合使用汉字和西文字符，汉字信息如果不予以特别标识，就会与单字节的ASCII码混淆。此问题的解决方法之一是将一个汉字看成是两个扩展ASCII码，使表示GB2312汉字的两个字节的最高位都为1。即国标码加上128（即二进制数10000000,16进制80H）这种高位为1的双字节汉字编码即为GB2312汉字的机内码，简称为内码。20H+80H=A0H。这也就是常说的在区位码的区号和位号上分别加上A0H就得到了GB2312编码的由来。
 外码：机外码的简称，就是汉字输入码，是为了通过键盘字符把汉字输入计算机而设计的一种编码。 英文输入时，相输入什么字符便按什么键，外码和内码一致。汉字输入时，可能要按几个键才能输入一个汉字。 汉字输入方案有成百上千个，但是这千差万别的外码输入进计算机后都会转换成统一的内码。
-最后总结一下上面的概念。中国国家标准总局把中文常用字符编码为94个区，每个区对应94个位，每个字符的区号和位号组合起来就是该字符的区位码, 区位码用10进制数来表示，如4907就表示49区7位，对应的字符是“学”。 由于区位码的取值范围与通信使用的控制码（00H~1FH）（即0~31）发生冲突。每个汉字的区号和位号分别加上32（即16进制20H）得到国标码，交换码。“学”的国标码为5127H。由于文本中通常混合使用汉字和西文字符，为了让汉字信息不会与单字节的ASCII码混淆，将一个汉字看成是两个扩展ASCII码，即汉字的两个字节的最高位置为1，得到的编码为GB2312汉字的内码。“学”的内码为D1A7H。无论你使用什么输入法，通过什么样的按键组合把“学”输入计算机，“学”在使用GB2312（以及兼容GB2312）编码的计算机里的内码都是D1A7H。</description>
+最后总结一下上面的概念。中国国家标准总局把中文常用字符编码为94个区，每个区对应94个位，每个字符的区号和位号组合起来就是该字符的区位码, 区位码用10进制数来表示，如4907就表示49区7位，对应的字符是“学”。 由于区位码的取值范围与通信使用的控制码（00H~1FH）（即0~31）发生冲突。每个汉字的区号和位号分别加上32（即16进制20H）得到国标码，交换码。“学”的国标码为5127H。由于文本中通常混合使用汉字和西文字符，为了让汉字信息不会与单字节的ASCII码混淆，将一个汉字看成是两个扩展ASCII码，即汉字的两个字节的最高位置为1，得到的编码为GB2312汉字的内码。“学”的内码为D1A7H。无论你使用什么输入法，通过什么样的按键组合把“学”输入计算机，“学”在使用GB2312（以及兼容GB2312）编码的计算机里的内码都是D1A7H。
+第二次尝试：GBK
+GB2312的出现基本满足了汉字的计算机处理需要，但由于上面提到未收录繁体字和生僻字，从而不能处理人名、古汉语等方面出现的罕用字，这导致了1995年《汉字编码扩展规范》（GBK）的出现。GBK编码是GB2312编码的超集，向下完全兼容GB2312，兼容的含义是不仅字符兼容，而且相同字符的编码也相同，同时在字汇一级支持ISO/IEC10646—1和GB 13000—1的全部中、日、韩（CJK）汉字，共计20902字。GBK还收录了GB2312不包含的汉字部首符号、竖排标点符号等字符。CP936和GBK的有些许差别，绝大多数情况下可以把CP936当作GBK的别名。
+第三次尝试：GB18030
+GB18030编码向下兼容GBK和GB2312。GB18030收录了所有Unicode3.1中的字符，包括中国少数民族字符，GBK不支持的韩文字符等等，也可以说是世界大多民族的文字符号都被收录在内。GBK和GB2312都是双字节等宽编码，如果算上和ASCII兼容所支持的单字节，也可以理解为是单字节和双字节混合的变长编码。GB18030编码是变长编码，有单字节、双字节和四字节三种方式。
+其实，这三个标准并不需要死记硬背，只需要了解是根据应用需求不断扩展编码范围即可。从GB2312到GBK再到GB18030收录的字符越来越多即可。万幸的是一直是向下兼容的，也就是说一个汉字在这三个编码标准里的编码是一模一样的。这些编码的共性是变长编码，单字节ASCII兼容，对其他字符GB2312和GBK都使用双字节等宽编码，只有GB18030还有四字节编码的方式。这些编码最大的问题是2个。1. 由于低字节的编码范围和ASCII有重合，所以不能根据一个字节的内容判断是中文的一部分还是一个独立的英文字符。2. 如果有两个汉字编码为A1A2B1B2，存在A2B1也是一个有效汉字编码的特殊情况。这样就不能直接使用标准的字符串匹配函数来判断一个字符串里是否包含某一个汉字，而需要先判断字符边界然后才能进行字符匹配判断。
+最后，提一个小插曲，上面讲的都是大陆推行的汉字编码标准，使用繁体的中文社群中最常用的电脑汉字字符集标准叫大五码（Big5），共收录13,060个中文字，其中有二字为重覆编码(实在是不应该)。Big5虽普及于中国的台湾、香港与澳门等繁体中文通行区，但长期以来并非当地的国家标准，而只是业界标准。倚天中文系统、Windows等主要系统的字符集都是以Big5为基准，但厂商又各自增删，衍生成多种不同版本。2003年，Big5被收录到台湾官方标准的附录当中，取得了较正式的地位。这个最新版本被称为Big5-2003。
+天下归一Unicode
+看了上面的多个中文编码是不是有点头晕了呢？如果把这个问题放到全世界n多个国家n多语种呢？各国和各地区自己的文字编码规则互相冲突的情况全球信息交换带来了很大的麻烦。
+要真正彻底解决这个问题，上面介绍的那些通过扩展ASCII修修补补的方式已经走不通了，而必须有一个全新的编码系统，这个系统要可以将中文、日文、法文、德文……等等所有的文字统一起来考虑，为每一个文字都分配一个单独的编码。于是，Unicode诞生了。Unicode（统一码、万国码、单一码）为地球上（以后会包括火星，金星，喵星等）每种语言中的每个字符设定了统一并且唯一的二进制编码，以满足跨语言、跨平台进行文本转换、处理的要求。在Unicode里，所有的字符被一视同仁，汉字不再使用“两个扩展ASCII”，而是使用“1个Unicode”来表示，也就是说，所有的文字都按一个字符来处理，它们都有一个唯一的Unicode码。Unicode用数字0-0x10FFFF来映射这些字符，最多可以容纳1114112个字符，或者说有1114112个码位（码位就是可以分配给字符的数字）。
+提到Unicode不能不提UCS（通用字符集Universal Character Set）。UCS是由ISO制定的ISO 10646（或称ISO/IEC 10646）标准所定义的标准字符集。UCS-2用两个字节编码，UCS-4用4个字节编码。Unicode是由unicode.org制定的编码机制，ISO与unicode.org是两个不同的组织， 虽然最初制定了不同的标准; 但目标是一致的。所以自从Unicode 2.0开始， Unicode采用了与ISO 10646-1相同的字库和字码， ISO也承诺ISO10646将不会给超出0x10FFFF的UCS-4编码赋值， 使得两者保持一致。大家简单认为UCS等同于Unicode就可以了。</description>
     </item>
     
   </channel>

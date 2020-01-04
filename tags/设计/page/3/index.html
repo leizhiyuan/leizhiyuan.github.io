@@ -51,7 +51,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -234,7 +234,7 @@
   <i class="fas fa-calendar"></i>&nbsp;Posted on October 19, 2012
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;3&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -256,8 +256,24 @@ GoF 定义原型模式为用原型实例指定创建对象的种类，并且通�
 主要的参与者有 • Prototype: 抽象类或接口，定义了方法来拷贝自己 • ConcretePrototype: 克隆的具体类. • Client: 需要执行拷贝对象的软件对象 然后实现吧
 使用代码
 为了简化。我以一个著名的偷车游戏作为例子 我们说游戏里有一个注脚。这个主要有着一些定义游戏数据的统计量。保存游戏的时候我们就需要拷贝这个对象，然后序列化到文件中。（仅仅是举个例子，真实的游戏里很少这样做）
-下面这个类抽象类就是概念中的Prototype public abstract class AProtagonist { int m_health; int m_felony; double m_money;
-public int Health { get { return m_health; } set { m_health = value; } } public int Felony { get { return m_felony; } set { m_felony = value; } } public double Money { get { return m_money; } set { m_money = value; } } public abstract AProtagonist Clone(); } &nbsp;
+下面这个类抽象类就是概念中的Prototype
+ 接口定义了玩家重要的信息，然后定义了一个Clone方法。然后我们定义一个具体的玩家类CJ。这样我们可以克隆当前对象，然后异步的进行序列化
+这个类就是概念中的ConcretePrototype 。这里为了简化也没有其他一些方法了。
+现在看看客户端软件的写法
+
+理解深浅拷贝
+上面的代码就模拟了原型模式，有一个问题就是我们使用了MemberwiseCopy 方法。而这个方法是创建浅拷贝的。如果对象里包含引用类型，引用类型的地址就会被从前者拷贝到后者。这样。两个就指向了同样的对象。
+为了说明情况。我们让主角类包含更多的，叫做AdditionalDetails
+ 然后抽象类将会一个AdditionalDetails 对象
+ 具体类既然使用MemberwiseCopy实现拷贝
+ 问题来了。两份拷贝会指向同一个AdditionalDetials 对象
+
+画个图。看得清楚些
+ 为了避免这种期刊。我们需要在堆上创建引用类型的拷贝，然后对应赋值
+ 这样就可以了
+
+注意。当执行深拷贝的时候，可能引用类型来包括引用类型，因此好的做法是用反射。并且递归的拷贝。直到没有引用类型，具体可参考另一文
+实现ICloneable接口 ICloneable接口提供了定义拷贝方法的接口。我们可以使用ICloneable 作为概念中的Prototype，我们看一下如果实现ConcretePrototype
                   <a href="https://leizhiyuan.github.io/2012/10/19/%E7%90%86%E8%A7%A3%E5%B9%B6%E5%AE%9E%E7%8E%B0%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E5%AE%9E%E7%8E%B0icloneable%E6%8E%A5%E5%8F%A3.%E7%90%86%E8%A7%A3%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -294,7 +310,7 @@ public int Health { get { return m_health; } set { m_health = value; } } public 
   <i class="fas fa-calendar"></i>&nbsp;Posted on October 16, 2012
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;3&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -309,15 +325,36 @@ public int Health { get { return m_health; } set { m_health = value; } } public 
               </p>
               <div class="post-entry">
                 
-                  有时候对于对象来说。在一个软件中，不直接通过互相引用而做到共享信息是非常有用的。比如像带有插件的软件。可以互相进行通信。假设我们有了很多对象。其中一些包含一些数据。而另一些对象需要消费这些数据 不同的子集，我们不通过对数据生产者和消费者的直接引用来实现，而是通过更低耦合的方式。叫做创建一个“BlackBoard”（黑板）对象。该对象允许其他对象自由对其进行读取/写入数据。这种解耦方式使得消费者不知道也不必知道数据来自哪里。如果想要了解更多关于黑板模式的信息。我们常说的。Google是你最好的朋友。
-一个最简单的黑板对象应该是 Dictionary一些简单的命名值的字典。所有的对象共享同一个字典引用。使得他们可以交换这些命名数据。这种方法有两个问题。一个是名字。一个是类型安全—数据生产者和消费者对每一个数据值都必须共享一个字符串标识。消费者也没有对字典中的值进行编译时的类型检查，比如，可能期望一个小数，结果运行时读到了字符串。本文对这两个问题演示了一种解决方案。
-背景
-最近我在开发一个通用任务的异步执行的引擎。我的通用任务通常有Do/Undo方法。原则上是相互独立的，但是有一些任务需要从已经执行的任务重请求数据。比如。一个任务可以 为一个硬件设备建立一个API，随后的任务就可以使用创建好的API来操作硬件设备。但是。我不想我的执行引擎知道关于这个执行任务的任何信息。而且。我也不想直接手工的就在一个任务里引用另一个任务。
-黑板类
-黑板类本质上是一个Dictionary的包装类，对外暴露Get和Set方法。黑板类允许其他对象存储并且取回数据。但是要求这些数据使用一个 BlackboardProperty 类型的标识符来表示这些数据是可存取的。BlackboardProperty 对象应该在那些准备读写黑板类的对象之间共享，因此，他应该在那些类中作为一个静态成员。（很像WPF的依赖属性。是他们所属控件的静态成员）
-注意：命名安全应该可以通过同样的方式实现。但是但是依然没有解决类型安全的问题。那么。到了主要的部分了。那就是黑板类的代码了 public class Blackboard : INotifyPropertyChanged, INotifyPropertyChanging { Dictionary&lt;string, object&gt; _dict = new Dictionary&lt;string, object&gt;();
-public T Get&amp;lt;T&amp;gt;(BlackboardProperty&amp;lt;T&amp;gt; property) { if (!_dict.ContainsKey(property.Name)) _dict[property.Name] = property.GetDefault(); return (T)_dict[property.Name]; } public void Set&amp;lt;T&amp;gt;(BlackboardProperty&amp;lt;T&amp;gt; property, T value) { OnPropertyChanging(property.Name); _dict[property.Name] = value; OnPropertyChanged(property.Name); } #region property change notification public event PropertyChangingEventHandler PropertyChanging; public event PropertyChangedEventHandler PropertyChanged; protected virtual void OnPropertyChanging(string propertyName) { if (PropertyChanging !
-                  <a href="https://leizhiyuan.github.io/2012/10/16/%E7%B1%BB%E5%9E%8B%E5%AE%89%E5%85%A8%E7%9A%84%E9%BB%91%E6%9D%BF%E6%A8%A1%E5%BC%8F%E5%B1%9E%E6%80%A7%E5%8C%85/" class="post-read-more">[Read More]</a>
+                  <p>有时候对于对象来说。在一个软件中，不直接通过互相引用而做到共享信息是非常有用的。比如像带有插件的软件。可以互相进行通信。假设我们有了很多对象。其中一些包含一些数据。而另一些对象需要消费这些数据 不同的子集，我们不通过对数据生产者和消费者的直接引用来实现，而是通过更低耦合的方式。叫做创建一个“BlackBoard”（黑板）对象。该对象允许其他对象自由对其进行读取/写入数据。这种解耦方式使得消费者不知道也不必知道数据来自哪里。如果想要了解更多关于黑板模式的信息。我们常说的。Google是你最好的朋友。</p>
+<p>一个最简单的黑板对象应该是 Dictionary一些简单的命名值的字典。所有的对象共享同一个字典引用。使得他们可以交换这些命名数据。这种方法有两个问题。一个是名字。一个是类型安全—数据生产者和消费者对每一个数据值都必须共享一个字符串标识。消费者也没有对字典中的值进行编译时的类型检查，比如，可能期望一个小数，结果运行时读到了字符串。本文对这两个问题演示了一种解决方案。</p>
+<p><strong>背景</strong></p>
+<p>最近我在开发一个通用任务的异步执行的引擎。我的通用任务通常有Do/Undo方法。原则上是相互独立的，但是有一些任务需要从已经执行的任务重请求数据。比如。一个任务可以
+为一个硬件设备建立一个API，随后的任务就可以使用创建好的API来操作硬件设备。但是。我不想我的执行引擎知道关于这个执行任务的任何信息。而且。我也不想直接手工的就在一个任务里引用另一个任务。</p>
+<p><strong>黑板类</strong></p>
+<p>黑板类本质上是一个Dictionary的包装类，对外暴露Get和Set方法。黑板类允许其他对象存储并且取回数据。但是要求这些数据使用一个
+BlackboardProperty 类型的标识符来表示这些数据是可存取的。BlackboardProperty 对象应该在那些准备读写黑板类的对象之间共享，因此，他应该在那些类中作为一个静态成员。（很像WPF的依赖属性。是他们所属控件的静态成员）</p>
+<p>注意：命名安全应该可以通过同样的方式实现。但是但是依然没有解决类型安全的问题。那么。到了主要的部分了。那就是黑板类的代码了</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><strong>黑板属性（BlackBoardProperty）类</strong></p>
+<p>BlackBoardProperty 类 提供了一个标识符来存取黑板对象中的数据。定义了名称和值的类型。也定义了一个默认的返回值。以防黑板类中对应属性没有值。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>我承认不是非常有用的代码。但是。能够模拟两个类的使用。
+下一个例子会更和现实情况接近。但是肯定是被简化过了的。在下面的例子里。我定义了集中不同的任务。我用这些任务来启动对硬件设备的连接。操作设备。关闭连接。这些任务通过一个执行引擎依次执行，这些任务通过一个公用的黑板类来共享数据。至于这个任务类的和执行引擎（ExecutionEngine）类还是留到另一篇文章中把。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>黑板类另一种可能的使用情况就是一个支持插件的软件。如果需要的话允许插件进行通信，这种情况下属性改变的时候能够通知是很有用的。</p>
+<p>还有一件重要的事情是注意 BlackboardProperty 实例一般应该作为逻辑上拥有该属性的类的一个静态成员。那么既然那是静态的。同样的BlackboardProperty 实例就可以出现在多个黑板对象里。当某一个给定的属性。黑板对象里没有值的时候。他会请求BlackboardProperty 实例提供一个默认的值。缺省的值可能是一个引用类型，因此，如果你不想在多个黑板对象间共享同一个引用。在创建BlackboardProperty 对象的时候务必使用下面的构造函数。
+public BlackboardProperty(string name, Func createDefaultValueFunc)
+这就会使得默认的值不会在多个黑板对象间共享。</p>
+<p><strong>有意思的地方</strong>
+我应该说过了。这个方案一部分是受微软WPF中依赖属性的影响。还参考了我前段时间读到的一篇关于枚举类的文章</p>
+<p><strong>许可</strong>
+本文包括源代码和文件在CPOL下授权。</p>
+<p>原文地址： <a href="http://www.codeproject.com/Articles/451326/Type-safe-blackboard-property-bag">Type-safe-blackboard-property-bag</a></p>
+<p>著作权声明：本文由<a href="http://leaver.me/">http://leaver.me</a> 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</p>
+
                 
               </div>
 
@@ -355,7 +392,7 @@ public T Get&amp;lt;T&amp;gt;(BlackboardProperty&amp;lt;T&amp;gt; property) { if
   <i class="fas fa-calendar"></i>&nbsp;Posted on October 12, 2012
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -370,22 +407,67 @@ public T Get&amp;lt;T&amp;gt;(BlackboardProperty&amp;lt;T&amp;gt; property) { if
               </p>
               <div class="post-entry">
                 
-                  1.介绍
-从我开始使用vista的时候，我就非常喜欢它的圆形玻璃按钮。WPF最好的一个方面就是允许自定义任何控件的样式。用了一段时间的Microsoft Expression Blend后。我做出了这个样式。我觉得做的还行。因为。我决定分享。如我所说。我使用Microsoft Expression Blend来做。但是。我也是用XAML编辑器&ndash;Kaxaml。
-2.概述
-玻璃按钮样式包含了三层。组织了玻璃效果（Glass Effect）和一个ContentPresenter 来存储按钮的内容。所有的这些层都在一个最外层的Grid里。当鼠标放到按钮上，按下去的时候也定义了一些触发器（Triggers），来增加一些交互。
-我把这个样式做成了资源文件。但是这个Key可以删除，来使得所有的按钮都是这个效果。
-好我们来看一下这些层次。这些被广泛应用在微软产品中的按钮。
-**3.按钮层次 **
-3.1背景层
-第一层是一个椭圆。其实是一个canvas，一会在上面画反射和折射层，填充的颜色和按钮的背景（Background）关联。
-下面是Blend中的截图
-图2  &lt;!&ndash; Background Layer &ndash;&gt; &lt;Ellipse Fill=&ldquo;{TemplateBinding Background}&rdquo;/&gt; 3.1.1折射层
-第二层模拟了光从上到下的折射。被放在反射层之前是因为，要达到反光玻璃的效果，反射层必须在按钮的中间某处有一个硬边缘。这一层实际上是另一个椭圆。但是这次。我们使用一个径向渐变（白色-透明）的填充。来模拟光的折射。渐变开始于第一层底部的中央。结束于上面的中间。然而。为了降低折射光的强度。渐变还是开始于椭圆的底部再下一点为好。可以从图上和代码里清晰的看到。  &lt;!&ndash; Refraction Layer &ndash;&gt; &lt;Ellipse x:Name=&ldquo;RefractionLayer&rdquo;&gt; &lt;Ellipse.Fill&gt; &lt;RadialGradientBrush GradientOrigin=&ldquo;0.496,1.052&rdquo;&gt; &lt;RadialGradientBrush.RelativeTransform&gt; &lt;TransformGroup&gt; &lt;ScaleTransform CenterX=&ldquo;0.5&rdquo; CenterY=&ldquo;0.5&rdquo; ScaleX=&ldquo;1.5&rdquo; ScaleY=&ldquo;1.5&rdquo;/&gt; &lt;TranslateTransform X=&ldquo;0.02&rdquo; Y=&ldquo;0.3&rdquo;/&gt; &lt;/TransformGroup&gt; &lt;/RadialGradientBrush.RelativeTransform&gt; &lt;GradientStop Offset=&ldquo;1&rdquo; Color=&ldquo;#00000000&rdquo;/&gt; &lt;GradientStop Offset=&ldquo;0.4&rdquo; Color=&ldquo;#FFFFFFFF&rdquo;/&gt; &lt;/RadialGradientBrush&gt; &lt;/Ellipse.Fill&gt; &lt;/Ellipse&gt; &nbsp;
-3.1.2反射层
-第三层是光的反射层。是最难的部分。问题是反射效果不能使用任何标准的形状来画。因此。使用路径（Path）来画反射区域。当时。手工画也是可以的。但老实说。手工画图实在没什么可享受的（除非你是一个艺术家，或者有一个数位板），无论如何。我现在MS Blend中华好一个椭圆并转换成一个路径，然后我使用贝塞尔曲线点调整得到平滑的路径，你可以添加渐变到一个复杂的Path对象上。就像你对其他与定义的图形，比如椭圆，矩形所做的一样。为了得到光泽反射。我额每年需要一个透明-白色的径向渐变填充，从路径的底部开始（也就是按钮的中间某处），结束在顶部。我想如果我是一个艺术家。我会让渐变更准一点。可是我不是。因此。就这样。因为我们要把我们的按钮放在一个Grid里。所有我们设置VerticalAlignment=&ldquo;Top&rdquo; 这样反射区域在按钮的中间的结束了。
-图三  &lt;!&ndash; Reflection Layer &ndash;&gt; &lt;Path x:Name=&ldquo;ReflectionLayer&rdquo; VerticalAlignment=&ldquo;Top&rdquo; Stretch=&ldquo;Fill&rdquo;&gt; &lt;Path.
-                  <a href="https://leizhiyuan.github.io/2012/10/12/%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%95%99%E4%BD%A0%E5%88%B6%E4%BD%9Cwpf%E5%9C%86%E5%BD%A2%E7%8E%BB%E7%92%83%E6%8C%89%E9%92%AE/" class="post-read-more">[Read More]</a>
+                  <p><a href="http://leaverimage.b0.upaiyun.com/28015_o.jpg"><img src="/images/491dd2dbc974b8c78aee2f36006e65ad3e5533f2.jpg" alt="" title="1"></a>
+<strong>1.介绍</strong></p>
+<p>从我开始使用vista的时候，我就非常喜欢它的圆形玻璃按钮。WPF最好的一个方面就是允许自定义任何控件的样式。用了一段时间的Microsoft Expression Blend后。我做出了这个样式。我觉得做的还行。因为。我决定分享。如我所说。我使用Microsoft Expression Blend来做。但是。我也是用XAML编辑器&ndash;Kaxaml。</p>
+<p><strong>2.概述</strong></p>
+<p>玻璃按钮样式包含了三层。组织了玻璃效果（Glass Effect）和一个ContentPresenter 来存储按钮的内容。所有的这些层都在一个最外层的Grid里。当鼠标放到按钮上，按下去的时候也定义了一些触发器（Triggers），来增加一些交互。</p>
+<p>我把这个样式做成了资源文件。但是这个Key可以删除，来使得所有的按钮都是这个效果。</p>
+<p>好我们来看一下这些层次。这些被广泛应用在微软产品中的按钮。</p>
+<p>**3.按钮层次 **</p>
+<p><strong>3.1背景层</strong></p>
+<p>第一层是一个椭圆。其实是一个canvas，一会在上面画反射和折射层，填充的颜色和按钮的背景（Background）关联。</p>
+<p>下面是Blend中的截图</p>
+<p>图2
+<a href="http://leaverimage.b0.upaiyun.com/28012_o.png"><img src="/images/2443ed6bf6b648418ee018a527c9a76eaf277716.png" alt="" title="2"></a></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><strong>3.1.1折射层</strong></p>
+<p>第二层模拟了光从上到下的折射。被放在反射层之前是因为，要达到反光玻璃的效果，反射层必须在按钮的中间某处有一个硬边缘。这一层实际上是另一个椭圆。但是这次。我们使用一个径向渐变（白色-透明）的填充。来模拟光的折射。渐变开始于第一层底部的中央。结束于上面的中间。然而。为了降低折射光的强度。渐变还是开始于椭圆的底部再下一点为好。可以从图上和代码里清晰的看到。
+<a href="http://leaverimage.b0.upaiyun.com/28013_o.png"><img src="/images/9d0d815903ff370933cfca9fcd669ae09996e045.png" alt="" title="3"></a></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<!-- raw HTML omitted -->
+<p><strong>3.1.2反射层</strong></p>
+<p>第三层是光的反射层。是最难的部分。问题是反射效果不能使用任何标准的形状来画。因此。使用路径（Path）来画反射区域。当时。手工画也是可以的。但老实说。手工画图实在没什么可享受的（除非你是一个艺术家，或者有一个数位板），无论如何。我现在MS Blend中华好一个椭圆并转换成一个路径，然后我使用贝塞尔曲线点调整得到平滑的路径，你可以添加渐变到一个复杂的Path对象上。就像你对其他与定义的图形，比如椭圆，矩形所做的一样。为了得到光泽反射。我额每年需要一个透明-白色的径向渐变填充，从路径的底部开始（也就是按钮的中间某处），结束在顶部。我想如果我是一个艺术家。我会让渐变更准一点。可是我不是。因此。就这样。因为我们要把我们的按钮放在一个Grid里。所有我们设置VerticalAlignment=&quot;Top&rdquo; 这样反射区域在按钮的中间的结束了。</p>
+<p>图三
+<a href="http://leaverimage.b0.upaiyun.com/28014_o.png"><img src="/images/a837470f0822bf1b924293855638d696dc4dba4a.png" alt="" title="3"></a></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<!-- raw HTML omitted -->
+<p>最后。我添加一个ContentPresenter 到按钮中间。经验告诉我，内容区域再向下一个像素会使得按钮看起来更漂亮。因此，在这里我用了margin属性（注意。因为内容区域在Grid的中间（Center）。所以2个像素的top实际上是向下移动了一个像素 ）</p>
+<p>好了。最后在Blend中看起来大概是这样</p>
+<p>图4
+<a href="http://leaverimage.b0.upaiyun.com/28011_o.png"><img src="/images/19fbafa7ad1cde09eafc0f6a70ac27b576e6302c.png" alt="" title="4"></a></p>
+<p><strong>4.添加一些交互性</strong></p>
+<p><strong>4.1鼠标悬停效果</strong></p>
+<p>为了有鼠标悬停效果，我们需要增加光源的亮度。因此。我们为IsMouseOver 事件定义一个触发器，复制并且粘贴反射和折射层的渐变设置代码。对于折射层。我仅仅移动了渐变的起点向上了一点。在反射层中。我改变了渐变停止点。使不透明的白色多一点。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p><strong>4.2鼠标点击效果</strong>
+对于IsPressed 事件，需要降低光。因此。反向操作即可。折射层中光源下一点。反射层中渐变停止点更加透明一些。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p>再说一次。渐变停止点的值靠经验选的。我也不能给出精确的值。</p>
+<p>5.使用代码</p>
+<p>为了使用这个样式。把定义在GlassButton.xaml 里的样式资源文件并不到你的窗体/页里。然后设置按钮的样式为{StaticResource GlassButton}. 为了设置按钮的颜色。使用Background属性即可。</p>
+<p> </p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p><strong>6.Demo下载</strong>
+[downloadicon href=http://pan.baidu.com/share/link?shareid=81378&amp;uk=1493685990]Demo与源代码下载[/downloadicon]
+<strong>7.许可</strong></p>
+<p>本文包括源代码和文件在CPOL下授权。</p>
+<p>原文地址：<a href="http://www.codeproject.com/articles/32257/a-style-for-round-glassy-wpf-buttons">a-style-for-round-glassy-wpf-buttons</a></p>
+<p> </p>
+<p>著作权声明：本文由<a href="http://leaver.me/">http://leaver.me</a> 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</p>
+
                 
               </div>
 
@@ -425,7 +507,7 @@ public T Get&amp;lt;T&amp;gt;(BlackboardProperty&amp;lt;T&amp;gt; property) { if
   <i class="fas fa-calendar"></i>&nbsp;Posted on October 10, 2012
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;4&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -440,15 +522,69 @@ public T Get&amp;lt;T&amp;gt;(BlackboardProperty&amp;lt;T&amp;gt; property) { if
               </p>
               <div class="post-entry">
                 
-                  介绍
-这是我在CodeProject上的第一篇文章。我希望对你有用
-当我开发软件的时候。我通常因为一个很耗时是任务需要完成。而请求让用户等待，并且通过也允许用户取消。不论我做何种操作（比如下载文件。保存大文件等等）。我都需要做下面几件事：
- 通过一个模态对话框来让用户等待操作完成 能让用户看到进度。 能让用户随时取消。 我搜了好久也没找到拿来就能用的窗体控件，也许是我没找到。于是我自己写。。 图1  背景
-BackgroundWorker 类包含了我需要完成任务的所有东西。我只需要给他提供一个对话框。
-使用代码
-ProgressForm 包含了一个BackgroundWorker ，你要做的仅仅就是提供了一个完成工作的方法。 ProgressForm form = new ProgressForm(); form.DoWork += new ProgressForm.DoWorkEventHandler(form_DoWork); //如果想为后台任务提供参数的话 form.Argument = something; 为了开始BackgroundWorker，只需要调用ShowDialog 方法。返回值则取决于任务是怎么完成的。 DialogResult result = form.ShowDialog(); if (result == DialogResult.Cancel) { //用户点击了取消 } else if (result == DialogResult.Abort) { /未处理的异常抛出 //你可以得到异常信息 MessageBox.Show(form.Result.Error.Message); } else if (result == DialogResult.OK) { //正常完成 //结果存储在 form.Result里 } &nbsp;
-最后。任务方法看起来是这样的。 void form_DoWork(ProgressForm sender, DoWorkEventArgs e) { //得到参数 object myArgument = e.
-                  <a href="https://leizhiyuan.github.io/2012/10/10/c#%E5%88%B6%E4%BD%9C%E8%BF%9B%E5%BA%A6%E7%AA%97%E4%BD%93/" class="post-read-more">[Read More]</a>
+                  <p><strong>介绍</strong></p>
+<p>这是我在CodeProject上的第一篇文章。我希望对你有用</p>
+<p>当我开发软件的时候。我通常因为一个很耗时是任务需要完成。而请求让用户等待，并且通过也允许用户取消。不论我做何种操作（比如下载文件。保存大文件等等）。我都需要做下面几件事：</p>
+<ul>
+<li>通过一个模态对话框来让用户等待操作完成</li>
+<li>能让用户看到进度。</li>
+<li>能让用户随时取消。
+我搜了好久也没找到拿来就能用的窗体控件，也许是我没找到。于是我自己写。。
+图1</li>
+</ul>
+<p><img src="/images/9f46aad8d865255936532f68d592d8ffd45b8b3d.jpg" alt="" title="progress"></p>
+<p><strong>背景</strong></p>
+<p>BackgroundWorker 类包含了我需要完成任务的所有东西。我只需要给他提供一个对话框。</p>
+<p><strong>使用代码</strong></p>
+<p>ProgressForm 包含了一个BackgroundWorker ，你要做的仅仅就是提供了一个完成工作的方法。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>为了开始BackgroundWorker，只需要调用ShowDialog 方法。返回值则取决于任务是怎么完成的。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p>最后。任务方法看起来是这样的。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>如果你想要改改进度条，或者进度条显示的文本。SetProgress 有一些重载的方法</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>最后一个可自定义的字符串是：有两个预定义的字符串CancellingText 和DefaultStatusText. CancellingText ，这两个字符串，当用户点击取消的时候显示</p>
+<p><strong>如何实现</strong>
+ProgressForm 紧紧嵌入了一个BackgroundWorker ，并包装进了主函数。</p>
+<p>首先。我设计了如图所示的一个窗体，然后。添加了BackgroundWorker。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>我们必须把DoWork事件暴露给用户。我添加了一个委托。这样。我可以很容易的访问窗体成员</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p>好。我们已经有了任务和事件。先爱。我们希望当窗体显示的时候。后台任务尽可能开始。我们在Load事件中写代码</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>现在写一个方法通知进度。添加代码到ProgressChanged 事件处理程序中</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>我们快做好了。现在我们添加取消按钮</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>最后一件事是我们想要当worker完成的时候自动关闭窗体，因为我们的worker通过ShowDialog 方法启动。如果直接接收返回结果会很好</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>主要的工作就完成了。我添加了一些预定义的字符串啊。如果正在取消。保护状态不会改变。还有传递参数啊。
+完整的代码如下：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><strong>结论</strong>
+窗体简单，我通常用。希望对你们也有用</p>
+<p><strong>Demo下载</strong></p>
+<p><a href="http://pan.baidu.com/share/link?shareid=79426&amp;uk=1493685990">源码和测试下载</a></p>
+<p><strong>许可</strong>
+本文，包括源代码和文件在CPOL下授权。</p>
+<p> </p>
+<p>原文地址：<a href="http://www.codeproject.com/Articles/160219/ProgressForm-A-simple-form-linked-to-a-BackgroundW">ProgressForm-A-simple-form-linked-to-a-BackgroundW</a>
+著作权声明：本文由<a href="http://leaver.me">http://leaver.me</a> 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</p>
+
                 
               </div>
 
@@ -502,69 +638,49 @@ ProgressForm 包含了一个BackgroundWorker ，你要做的仅仅就是提供�
               <div class="post-entry">
                 
                   <p><strong>介绍</strong></p>
-
 <p>调试是软件开发周期中的一个很重要的部分，有时很有挑战性，有时候则让程序员迷惑，有时候让程序员发疯，但是。可以肯定的是，对于任何不是太那个微不足道的程序来说，调试是不可避免的。近年来，调试工具的发展已经使得很多调试任务简单省时了。</p>
-
 <p>本文总结了十个调试技巧，当你使用VS的时候可以节省你很多时间。</p>
-
 <p>1. 悬停鼠标查看表达式</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/27679_o.png"><img src="/images/5b9e01a5158e02f8079c7dc331f56110f3e0b82d.png" alt="" title="1" /></a></p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/27679_o.png"><img src="/images/5b9e01a5158e02f8079c7dc331f56110f3e0b82d.png" alt="" title="1"></a></p>
 <p>调试有时候很有挑战性，当你步入一个函数想看看哪块出错的时候，查看调用栈来想想值是从哪来的。另一些情况下，则需要添加一些监视表达式，或者查看局部变量列表，这通常还是花费一些时间的，但是。如果你把你鼠标指向你感兴趣的一个变量。你会发现事情简单多了。而且，类和结构体可以通过单击展开。这样。你就可以方便快捷的找到你想查看的变量了。</p>
-
 <p>2. 实时改变值
-<a href="http://leaverimage.b0.upaiyun.com/27680_o.png"><img src="/images/eade577f5ea39d3b970613ac3123610b67e427cb.png" alt="" title="2" /></a>
+<a href="http://leaverimage.b0.upaiyun.com/27680_o.png"><img src="/images/eade577f5ea39d3b970613ac3123610b67e427cb.png" alt="" title="2"></a>
 调试器不仅仅是一个分析程序崩溃或是异常结果的工具了，许多bug都可以通过步入新写的函数，检查函数是否如期望的那样运行来预防。有时候你可能会好奇“如果条件为真函数会正确运行吗”大多数情况下，根本不需要改变代码重启挑起，仅仅把鼠标悬停到一个变量上，双击值然后输入一个新值就可以了。。</p>
-
 <p>3．设置下一条语句
-<a href="http://leaverimage.b0.upaiyun.com/27690_o.png"><img src="/images/1c86cc15b16c98adc1563eb1660481fa249beaf0.png" alt="" title="3" /></a>
+<a href="http://leaverimage.b0.upaiyun.com/27690_o.png"><img src="/images/1c86cc15b16c98adc1563eb1660481fa249beaf0.png" alt="" title="3"></a>
 一个典型的调试情况就是通过单步跟踪分析为什么一个函数调用失败了。当你发现一个函数调用的另一个函数返回错误的时候你会怎么做？重启调试？有更好的方法。拖动这个黄色的语句标识到你想下一步执行的语句前就可以了。比如你刚才失败的那块，然后步入。简单，不是吗？</p>
-
 <p>4.编辑然后继续
-<a href="http://leaverimage.b0.upaiyun.com/27682_o.png"><img src="/images/8117d2025d49155485268fc1b56041e96cefaeac.png" alt="" title="4" /></a>
+<a href="http://leaverimage.b0.upaiyun.com/27682_o.png"><img src="/images/8117d2025d49155485268fc1b56041e96cefaeac.png" alt="" title="4"></a>
 调试一个复杂的程序，或是一个插件的时候，在一个被调用很多次的函数处发现一个错误。但是不想浪费时间停下来，重新编译然后重新调试。没问题，仅仅在该处改正代码然后继续单步就可以。VS会修正程序然后继续调试不需要重启</p>
-
 <p>注意，编辑然后继续有大量的已知限制，首先，64位代码是不行的。如果他如果为你的C#程序工作。就去工程设置的生成选项，然后目标平台为x86.不要担心。发布版的目标平台和调试的时候是分开的。可以被设置为任何平台。。</p>
-
 <p>第二．编辑然后继续改变在一个方法里应该是局部的。。如果你改变了方法签名，添加一些新方法或是类。你就不得不重启程序了。或者撤销改变来继续。改变方法也包含lambda表达式隐式修改的自动生成的代理类，因此也不能继续。</p>
-
 <p>5.方便的监视窗口
-<a href="http://leaverimage.b0.upaiyun.com/27683_o.png"><img src="/images/a204da1e7bb82719b4a965da45d1cfcc51a90cd3.png" alt="" title="5" /></a>
+<a href="http://leaverimage.b0.upaiyun.com/27683_o.png"><img src="/images/a204da1e7bb82719b4a965da45d1cfcc51a90cd3.png" alt="" title="5"></a>
 大概现代的调试器都有一个监视窗口，无论如何。VS允许你简单的添加或移除变量。单击空行，输入你的表达式按下回车，或者是在不需要的表达式上按下Delete键就可以删除了。
 而且。从监视窗口你不仅仅可以看到“正常”的变量。你可以输入$handles 来追踪你的程序打开了多少句柄（可以方便的修复内存泄漏） ，输入$err 可以看到上一个函数的错误码，然后使用工具-错误信息可以看到更详细的描述，或者输入@eax（64位是@rax）来查看包含函数返回值的寄存器。</p>
-
 <p>6.带注释的反汇编
-<a href="http://leaverimage.b0.upaiyun.com/27684_o.png"><img src="/images/d61b64ed0a189bec2f34f2faaf059916cce8e525.png" alt="" title="6" /></a>
+<a href="http://leaverimage.b0.upaiyun.com/27684_o.png"><img src="/images/d61b64ed0a189bec2f34f2faaf059916cce8e525.png" alt="" title="6"></a>
 使用交互式的反汇编模式可以使得优化程序的关键部分变得很容易，VS给出对应你代码每一行的汇编指令，并且运行单步运行。同时，可以在任何位置设置断点。而且，表达式的查看和修改也像在C++代码里一样</p>
-
 <p>7.带有栈的线程窗口
-<a href="http://leaverimage.b0.upaiyun.com/27691_o.png"><img src="/images/5b212033679007829bb5c0684d62ab8f27a0514b.png" alt="" title="7" /></a>
+<a href="http://leaverimage.b0.upaiyun.com/27691_o.png"><img src="/images/5b212033679007829bb5c0684d62ab8f27a0514b.png" alt="" title="7"></a>
 调试多线程的程序是痛苦的。。或者也可以是很有趣的。取决于你的调试器。VS2010真正优美的特性是线程窗口的栈视图，通过窗口的调用栈你可以方便的总览线程。</p>
-
 <p>8.条件断点
-<a href="http://leaverimage.b0.upaiyun.com/27686_o.png"><img src="/images/e93436bf72af22e533fe859971913a3d3c555789.png" alt="" title="8" /></a>
+<a href="http://leaverimage.b0.upaiyun.com/27686_o.png"><img src="/images/e93436bf72af22e533fe859971913a3d3c555789.png" alt="" title="8"></a>
 如果你尝试通过断点再现一个罕见的事件，该情况引发了一些严重的错误。你可以添加条件断点。定义一个断点的条件，然后如果条件不成立，VS会忽略该断点</p>
-
 <p>9.内存窗口
-<a href="http://leaverimage.b0.upaiyun.com/27687_o.png"><img src="/images/0cfda80c7dbe3d0c50bb5646155914b5e3f07f4f.png" alt="" title="9" /></a>
+<a href="http://leaverimage.b0.upaiyun.com/27687_o.png"><img src="/images/0cfda80c7dbe3d0c50bb5646155914b5e3f07f4f.png" alt="" title="9"></a>
 有些bug由不正确的结构体定义引起，忽略的对齐属性等等。查看内存中的内容可以定位然后修复bug。VS提供了一个放百年的内存窗口，可以把值以8/16/32/64位的形式展示。还有浮点值。也允许实时改变他们。就像在文本编辑器里一样。</p>
-
 <p>10.转到定义
-<a href="http://leaverimage.b0.upaiyun.com/27688_o.png"><img src="/images/3593aad0199fbed2f8faaef908e151a068e14d09.png" alt="" title="10" /></a>
+<a href="http://leaverimage.b0.upaiyun.com/27688_o.png"><img src="/images/3593aad0199fbed2f8faaef908e151a068e14d09.png" alt="" title="10"></a>
 这个特性不是直接关于调试的，而是关于浏览大项目的。如果你尝试找到一些不是你自己写的代码中的错误，快速知道“这个类型是什么”或者“这个函数是干嘛的”，可以节省很多时间，VS通过一个转到定义命令方便了你。</p>
-
 <p>11.命令窗口
-<a href="http://leaverimage.b0.upaiyun.com/27689_o.png"><img src="/images/2af5b37764b18abe3ae34c1a67e4398721fbd04b.png" alt="" title="11" /></a>
-第十一的技巧<a href="http://www.codeproject.com/script/Membership/View.aspx?mid=4917930">chaau</a>已经建议过了。确实可以节省很多时间，VS支持命令窗口，可以通过，视图-其他窗口-命令窗口来启动。一旦激活，你可以输入不同的命令来自动化调试。举个例子。你可以通过如下命令 简单的模拟MFC COleDateTime 变量。
-<pre class="lang:default decode:true">? dt.Format(&ldquo;%Y-%m-%d %H:%M:%S&rdquo;)</pre>
-许可
+<a href="http://leaverimage.b0.upaiyun.com/27689_o.png"><img src="/images/2af5b37764b18abe3ae34c1a67e4398721fbd04b.png" alt="" title="11"></a>
+第十一的技巧<a href="http://www.codeproject.com/script/Membership/View.aspx?mid=4917930">chaau</a>已经建议过了。确实可以节省很多时间，VS支持命令窗口，可以通过，视图-其他窗口-命令窗口来启动。一旦激活，你可以输入不同的命令来自动化调试。举个例子。你可以通过如下命令 简单的模拟MFC COleDateTime 变量。</p>
+<!-- raw HTML omitted -->
+<p>许可
 本文包括源代码和文件在CPOL下授权。</p>
-
-<p>&nbsp;</p>
-
+<p> </p>
 <p>原文地址：<a href="http://www.codeproject.com/Articles/359801/10plus-powerful-debugging-tricks-with-Visual-Studi">10plus-powerful-debugging-tricks-with-Visual-Studi</a></p>
-
 <p>著作权声明：本文由<a href="http://leaver.me/">http://leaver.me</a> 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</p>
 
                 
@@ -701,41 +817,23 @@ ProgressForm 包含了一个BackgroundWorker ，你要做的仅仅就是提供�
               <div class="post-entry">
                 
                   <p><strong>2.数据仓库</strong></p>
-
 <p>　　数据仓库名字上来看是很好理解的。他与传统的数据库的不同在于。传统的数据库是未经整理后的一大堆数据集。而数据仓库是从数据库中萃取出来。经过整理，规划，建构而成的一个有系统的数据库的子集合。</p>
-
 <p><strong>2.1数据仓库特点：</strong></p>
-
 <p>　　数据仓库的四个特点。</p>
-
 <p>　　1.面向主题（Subject Orient）。数据建立的着重点就是在于以重要的主题组件作为核心。作为建构的方向。数据需求者只要把谣言觉得相关主题数据，从数据库中攫取，整合之后就可以做研究之用。</p>
-
 <p>　　2.整合性（Integrated）各应用系统的数据需经过整合。以便利执行相关分析操作</p>
-
 <p>　　3.长期性（Time Variance） 为了执行趋势的分析。数据仓库系统需保留1-10年的历史数据。这与数据库为日常性的数据有所不同。</p>
-
 <p>　　4.稳定性（Non-Volatile）数据库可以被随时修改，但数据仓库基本上不会大动。只有内部人员会定期修改。但频率不会太多。也不允许用户做更新的动作。</p>
-
 <p>　　由于以上的几个特点。数据仓库必须通过一连串的程序才可建立。而不是说即买即用。。</p>
-
 <p><strong>2.2数据仓库架构</strong></p>
-
 <p>　　数据源-&gt;整体数据仓库-&gt;部门性数据仓库-&gt;查询工具-&gt;终端用户</p>
-
 <p>　　数据仓库的建设过程：</p>
-
 <p>　　专业顾问通过与企业进行需求访谈，建立数据仓库的model，然后将企业内各种数据整合到数据库中，并建立前端分析数据的工具以及管理工具，这样的过程即为建立数据仓库的基本过程。</p>
-
 <p>　　1.设计（Design） 即数据仓库的数据Model设计，这部分是最重要的，若Model设计的不够周全或布里希那个，不管之后的报表设计如何精美，也可能跑出错误的信息。这也是需要有经验的专业顾问建立数据仓库的一个重要原因。</p>
-
 <p>　　2.整合（Integrate）即数据的整合转换过程，包含数据解释（Data Extraction） ，数据转换（Data Transformation）数据清理（Data Cleaning），数据加载（Data Loading）将各种来源的数据整理，转换并加载数据仓库中，程序编写较为繁杂，自动化处理困难，经常需要人工参与操作，大约占掉该项目60-70%的时间和人力。</p>
-
 <p>　　3.可视化（Visualize）即前端呈现给用户看的形式，例如数据挖掘（Data Mining） 即OLAP工具，用以呈现分析过的数据形式。</p>
-
 <p>　　4.调度（Administration）为管理的工具。</p>
-
 <p><strong>2.3建立数据仓库的原因和目的</strong></p>
-
 <p>　　提高企业的竞争能力，降低成本，提高客户满意度。创造利润。</p>
 
                 
@@ -846,31 +944,11 @@ ProgressForm 包含了一个BackgroundWorker ，你要做的仅仅就是提供�
               <div class="post-entry">
                 
                   <p>首先很简单，当然是去添加两个控件了，这里我添加了两个控件，都是label，然后我想实现的是将label1拖动到label2上的时候，label1的内容会被复制到label2上。</p>
-
-<pre class="lang:c# decode:true " > &lt;Label Content="TestDrop" 
-Height ="28" HorizontalAlignment="Left" Margin="70,35,0,0" Name ="label1" 
-VerticalAlignment="Top" MouseDown="label1_MouseDown"  /&gt;
-
-&lt;Label Content ="ToHere" Height="28" HorizontalAlignment="Left" 
-Margin ="342,107,0,0" Name="label2" VerticalAlignment="Top" AllowDrop ="True"
- Drop="tagert_drop"   /&gt;</pre> 
-
-<p>需要注意的代码是label1中的MouseDown事件。和label2中的AllowDrop =&ldquo;True&rdquo;  Drop=&ldquo;tagert_drop&rdquo;</p>
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>需要注意的代码是label1中的MouseDown事件。和label2中的AllowDrop =&quot;True&rdquo;  Drop=&quot;tagert_drop&rdquo;</p>
 <p>然后对应的处理事件</p>
-
-<pre class="lang:c# decode:true " >     private void label1_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            Label lbl = (Label )sender;
-            DragDrop.DoDragDrop(lbl, lbl.Content, DragDropEffects .Copy);
-        }
-
-        private void tagert_drop(object sender, DragEventArgs e)
-        {
-            (( Label)sender).Content = e.Data.GetData(DataFormats.Text);
-        }</pre> 
-
-<p>其他的效果可以仿照这个来做。比如拖动以后的效果可以DragDropEffects来设置。。</p>
+<!-- raw HTML omitted -->
 
                 
               </div>
@@ -922,13 +1000,11 @@ Margin ="342,107,0,0" Name="label2" VerticalAlignment="Top" AllowDrop ="True"
               </p>
               <div class="post-entry">
                 
-                  <p>　　因为要用到wpf开发软件，而作为一个审美能力和制作美的能力完全不匹配的人。。需要有一个基本的主题框架来作为基础进行开发。。于是我找了找。。刚开始找的是<a href="http://www.telerik.com/这个商业库，不过这个用的不太顺手，于是还是试试DevExpress，，果断很不错，找到了破解补丁。">http://www.telerik.com/这个商业库，不过这个用的不太顺手，于是还是试试DevExpress，，果断很不错，找到了破解补丁。</a>
+                  <p>　　因为要用到wpf开发软件，而作为一个审美能力和制作美的能力完全不匹配的人。。需要有一个基本的主题框架来作为基础进行开发。。于是我找了找。。刚开始找的是http://www.telerik.com/这个商业库，不过这个用的不太顺手，于是还是试试DevExpress，，果断很不错，找到了破解补丁。
 给一个官方的Demo示例图：
-<a href="http://leaverimage.b0.upaiyun.com/25025_o.jpg"><img src="/images/5de045da9ce167999bd9e8df93580d0c93579daf.jpg" alt="" title="Demo" /></a>
+<a href="http://leaverimage.b0.upaiyun.com/25025_o.jpg"><img src="/images/5de045da9ce167999bd9e8df93580d0c93579daf.jpg" alt="" title="Demo"></a>
 安装文件：<a href="http://downloads.devexpress.com/d0577ccc-5137-4622-b397-a128d153f2aa/0.0.0.0/DXperience/2012.1/5/DXperience-12.1.5.exe">DXperience-12.1.5安装包</a></p>
-
 <p>帮助文档：<a href="http://downloads.devexpress.com/24614371-d026-41ab-89c8-b2c3769f9059/0.0.0.0/DXperience/2012.1/Help/DXperienceHelp2010-12.1.5.exe">DXperience 12.1.5 Universal 帮助文档</a>：</p>
-
 <p>破解补丁：<a href="http://pan.baidu.com/share/link?shareid=34831&amp;uk=1493685990">DevExpress.Registration.Setup.v12.1.5.E3.msi</a></p>
 
                 
@@ -1013,7 +1089,7 @@ Margin ="342,107,0,0" Name="label2" VerticalAlignment="Top" AllowDrop ="True"
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

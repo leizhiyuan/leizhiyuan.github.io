@@ -11,26 +11,41 @@
   <meta property="og:title" content="[译]Unix sed实用教程第七篇–输出文件内容(10 Demo)" />
   <meta name="twitter:title" content="[译]Unix sed实用教程第七篇–输出文件内容(10 Demo)" />
   <meta name="description" content="之前已经学习过选择性打印输出了，本文将通过10个例子全面讲解文件输出的一些方法，主打p命令
-首先看一下将使用的示例文件 $ cat file AIX Solaris Unix Linux HPUX 1.打印文件首行 $ sed -n &lsquo;1p&rsquo; file AIX 之前讲过了，-n取消默认的全部打印，p表示print，1就是行号了
-2.输出最后一行 $ sed -n &lsquo;$p&rsquo; file HPUX 3.输出不匹配X的那些行 $ sed -n &lsquo;/X/!p&rsquo; file Solaris Unix Linux 也好理解，！表示非，就是说包含X匹配的不打印输出
-4.输出包含u/x的那些行 $ sed -n &lsquo;/[ux]/p&rsquo; file Unix Linux 正则是强大的，这样就匹配了u/x
-5.输出以x/X结尾的那些行 $ sed -n &lsquo;/[xX]$/p&rsquo; file AIX Unix Linux HPUX 这里$符号不再是匹配文件尾部，而是行尾，这是正则的规则
-6.输出以A/L开头的行 $ sed -n &lsquo;/^A|^L/p&rsquo; file AIX Linux 前面也说过，^匹配了行首，A表示A匹配，然而|则是或者的意思，为什么要加\转义，是为了避免被解析成pipe管道，后面的就不解释了
-7.隔行打印
-n命令是输出当前行，然后读入下一行到pattern space的意思，这句命令是这么执行的，首先读入一行，然后通过n命令输出，然后通过n命令再读一行，然后把这行删除，就出现了隔行输出的效果
-8.如何两行输出，隔两行再输出 $ sed &rsquo;n;n;N;d&rsquo; file AIX Solaris HPUX n;n; 命令呢输出了前两行，然后读入第三行到pattern space，N命令则对如下一行并与第三行合并，然后d命令删除pattern space中的内容，于是三四行被清空，然后读入56行，继续重复。就这样。作者这里给出的例子不直观，我举个例子，我的文件内容是 $ cat test.">
+首先看一下将使用的示例文件
+1.打印文件首行之前讲过了，-n取消默认的全部打印，p表示print，1就是行号了
+2.输出最后一行3.输出不匹配X的那些行也好理解，！表示非，就是说包含X匹配的不打印输出
+4.输出包含u/x的那些行正则是强大的，这样就匹配了u/x
+5.输出以x/X结尾的那些行这里$符号不再是匹配文件尾部，而是行尾，这是正则的规则
+6.输出以A/L开头的行前面也说过，^匹配了行首，A表示A匹配，然而|则是或者的意思，为什么要加\转义，是为了避免被解析成pipe管道，后面的就不解释了
+7.隔行打印n命令是输出当前行，然后读入下一行到pattern space的意思，这句命令是这么执行的，首先读入一行，然后通过n命令输出，然后通过n命令再读一行，然后把这行删除，就出现了隔行输出的效果
+8.如何两行输出，隔两行再输出n;n; 命令呢输出了前两行，然后读入第三行到pattern space，N命令则对如下一行并与第三行合并，然后d命令删除pattern space中的内容，于是三四行被清空，然后读入56行，继续重复。就这样。作者这里给出的例子不直观，我举个例子，我的文件内容是
+执行上面的命令后，会输出
+明白了吧
+9.输出某个范围行内以X结果的那些行这里首先制定了从/Unix/匹配开始到文件尾部的这些行，然后呢，在这些之间的行，如果以X结果，就输出。
+10.输出不包括开始和结尾的那些行这个命令就会只输出/Solaris/和/HPUX/之间的行，不包括他们两个。
+这里要说一下//这个，当匹配了Solaris的时候就进入了花括号，因为这个里面没有提供任何匹配，所以就考虑最后一次匹配模式，也就是相当于是考虑Solaris这一行，他不被打印，当到了HPUX这一匹配，//又代表了HPUX匹配，这一行也不打印。
+Demo完了，你懂了么。">
   <meta property="og:description" content="之前已经学习过选择性打印输出了，本文将通过10个例子全面讲解文件输出的一些方法，主打p命令
-首先看一下将使用的示例文件 $ cat file AIX Solaris Unix Linux HPUX 1.打印文件首行 $ sed -n &lsquo;1p&rsquo; file AIX 之前讲过了，-n取消默认的全部打印，p表示print，1就是行号了
-2.输出最后一行 $ sed -n &lsquo;$p&rsquo; file HPUX 3.输出不匹配X的那些行 $ sed -n &lsquo;/X/!p&rsquo; file Solaris Unix Linux 也好理解，！表示非，就是说包含X匹配的不打印输出
-4.输出包含u/x的那些行 $ sed -n &lsquo;/[ux]/p&rsquo; file Unix Linux 正则是强大的，这样就匹配了u/x
-5.输出以x/X结尾的那些行 $ sed -n &lsquo;/[xX]$/p&rsquo; file AIX Unix Linux HPUX 这里$符号不再是匹配文件尾部，而是行尾，这是正则的规则
-6.输出以A/L开头的行 $ sed -n &lsquo;/^A|^L/p&rsquo; file AIX Linux 前面也说过，^匹配了行首，A表示A匹配，然而|则是或者的意思，为什么要加\转义，是为了避免被解析成pipe管道，后面的就不解释了
-7.隔行打印
-n命令是输出当前行，然后读入下一行到pattern space的意思，这句命令是这么执行的，首先读入一行，然后通过n命令输出，然后通过n命令再读一行，然后把这行删除，就出现了隔行输出的效果
-8.如何两行输出，隔两行再输出 $ sed &rsquo;n;n;N;d&rsquo; file AIX Solaris HPUX n;n; 命令呢输出了前两行，然后读入第三行到pattern space，N命令则对如下一行并与第三行合并，然后d命令删除pattern space中的内容，于是三四行被清空，然后读入56行，继续重复。就这样。作者这里给出的例子不直观，我举个例子，我的文件内容是 $ cat test.">
+首先看一下将使用的示例文件
+1.打印文件首行之前讲过了，-n取消默认的全部打印，p表示print，1就是行号了
+2.输出最后一行3.输出不匹配X的那些行也好理解，！表示非，就是说包含X匹配的不打印输出
+4.输出包含u/x的那些行正则是强大的，这样就匹配了u/x
+5.输出以x/X结尾的那些行这里$符号不再是匹配文件尾部，而是行尾，这是正则的规则
+6.输出以A/L开头的行前面也说过，^匹配了行首，A表示A匹配，然而|则是或者的意思，为什么要加\转义，是为了避免被解析成pipe管道，后面的就不解释了
+7.隔行打印n命令是输出当前行，然后读入下一行到pattern space的意思，这句命令是这么执行的，首先读入一行，然后通过n命令输出，然后通过n命令再读一行，然后把这行删除，就出现了隔行输出的效果
+8.如何两行输出，隔两行再输出n;n; 命令呢输出了前两行，然后读入第三行到pattern space，N命令则对如下一行并与第三行合并，然后d命令删除pattern space中的内容，于是三四行被清空，然后读入56行，继续重复。就这样。作者这里给出的例子不直观，我举个例子，我的文件内容是
+执行上面的命令后，会输出
+明白了吧
+9.输出某个范围行内以X结果的那些行这里首先制定了从/Unix/匹配开始到文件尾部的这些行，然后呢，在这些之间的行，如果以X结果，就输出。
+10.输出不包括开始和结尾的那些行这个命令就会只输出/Solaris/和/HPUX/之间的行，不包括他们两个。
+这里要说一下//这个，当匹配了Solaris的时候就进入了花括号，因为这个里面没有提供任何匹配，所以就考虑最后一次匹配模式，也就是相当于是考虑Solaris这一行，他不被打印，当到了HPUX这一匹配，//又代表了HPUX匹配，这一行也不打印。
+Demo完了，你懂了么。">
   <meta name="twitter:description" content="之前已经学习过选择性打印输出了，本文将通过10个例子全面讲解文件输出的一些方法，主打p命令
-首先看一下将使用的示例文件 $ cat file AIX Solaris Unix Linux HPUX 1.打印文件首行 $ sed -n &lsquo;1p&rsquo; file AIX 之前讲过了，-n取消默认的全部打印，p表示print，1就是行号了
-2.输出最后一行 $ sed -n …">
+首先看一下将使用的示例文件
+1.打印文件首行之前讲过了，-n取消默认的全部打印，p表示print，1就是行号了
+2.输出最后一行3.输出不匹配X的那些行也好理解，！表示非，就是说包含X匹配的不打印输出
+4.输出包含u/x的那些行正则是强大的，这样就匹配了u/x
+5.输出以x/X结尾的那些行这里$符号不再是匹 …">
   <meta name="author" content="bystander"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -79,9 +94,9 @@ n命令是输出当前行，然后读入下一行到pattern space的意思，这
     "name" : "bystander"
   },
   "headline": "[译]Unix sed实用教程第七篇–输出文件内容(10 Demo)",
-  "description" : "之前已经学习过选择性打印输出了，本文将通过10个例子全面讲解文件输出的一些方法，主打p命令\n首先看一下将使用的示例文件 $ cat file AIX Solaris Unix Linux HPUX 1.打印文件首行 $ sed -n \x26lsquo;1p\x26rsquo; file AIX 之前讲过了，-n取消默认的全部打印，p表示print，1就是行号了\n2.输出最后一行 $ sed -n \x26lsquo;$p\x26rsquo; file HPUX 3.输出不匹配X的那些行 $ sed -n \x26lsquo;\/X\/!p\x26rsquo; file Solaris Unix Linux 也好理解，！表示非，就是说包含X匹配的不打印输出\n4.输出包含u\/x的那些行 $ sed -n \x26lsquo;\/[ux]\/p\x26rsquo; file Unix Linux 正则是强大的，这样就匹配了u\/x\n5.输出以x\/X结尾的那些行 $ sed -n \x26lsquo;\/[xX]$\/p\x26rsquo; file AIX Unix Linux HPUX 这里$符号不再是匹配文件尾部，而是行尾，这是正则的规则\n6.输出以A\/L开头的行 $ sed -n \x26lsquo;\/^A|^L\/p\x26rsquo; file AIX Linux 前面也说过，^匹配了行首，A表示A匹配，然而|则是或者的意思，为什么要加\\转义，是为了避免被解析成pipe管道，后面的就不解释了\n7.隔行打印\nn命令是输出当前行，然后读入下一行到pattern space的意思，这句命令是这么执行的，首先读入一行，然后通过n命令输出，然后通过n命令再读一行，然后把这行删除，就出现了隔行输出的效果\n8.如何两行输出，隔两行再输出 $ sed \x26rsquo;n;n;N;d\x26rsquo; file AIX Solaris HPUX n;n; 命令呢输出了前两行，然后读入第三行到pattern space，N命令则对如下一行并与第三行合并，然后d命令删除pattern space中的内容，于是三四行被清空，然后读入56行，继续重复。就这样。作者这里给出的例子不直观，我举个例子，我的文件内容是 $ cat test.",
+  "description" : "之前已经学习过选择性打印输出了，本文将通过10个例子全面讲解文件输出的一些方法，主打p命令\n首先看一下将使用的示例文件\n1.打印文件首行之前讲过了，-n取消默认的全部打印，p表示print，1就是行号了\n2.输出最后一行3.输出不匹配X的那些行也好理解，！表示非，就是说包含X匹配的不打印输出\n4.输出包含u\/x的那些行正则是强大的，这样就匹配了u\/x\n5.输出以x\/X结尾的那些行这里$符号不再是匹配文件尾部，而是行尾，这是正则的规则\n6.输出以A\/L开头的行前面也说过，^匹配了行首，A表示A匹配，然而|则是或者的意思，为什么要加\\转义，是为了避免被解析成pipe管道，后面的就不解释了\n7.隔行打印n命令是输出当前行，然后读入下一行到pattern space的意思，这句命令是这么执行的，首先读入一行，然后通过n命令输出，然后通过n命令再读一行，然后把这行删除，就出现了隔行输出的效果\n8.如何两行输出，隔两行再输出n;n; 命令呢输出了前两行，然后读入第三行到pattern space，N命令则对如下一行并与第三行合并，然后d命令删除pattern space中的内容，于是三四行被清空，然后读入56行，继续重复。就这样。作者这里给出的例子不直观，我举个例子，我的文件内容是\n执行上面的命令后，会输出\n明白了吧\n9.输出某个范围行内以X结果的那些行这里首先制定了从\/Unix\/匹配开始到文件尾部的这些行，然后呢，在这些之间的行，如果以X结果，就输出。\n10.输出不包括开始和结尾的那些行这个命令就会只输出\/Solaris\/和\/HPUX\/之间的行，不包括他们两个。\n这里要说一下\/\/这个，当匹配了Solaris的时候就进入了花括号，因为这个里面没有提供任何匹配，所以就考虑最后一次匹配模式，也就是相当于是考虑Solaris这一行，他不被打印，当到了HPUX这一匹配，\/\/又代表了HPUX匹配，这一行也不打印。\nDemo完了，你懂了么。",
   "inLanguage" : "en",
-  "wordCount":  117 ,
+  "wordCount":  19 ,
   "datePublished" : "2013-08-11T16:27:31",
   "dateModified" : "2013-08-11T16:27:31",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -102,14 +117,20 @@ n命令是输出当前行，然后读入下一行到pattern space的意思，这
 
 <meta property="og:title" content="[译]Unix sed实用教程第七篇–输出文件内容(10 Demo)" />
 <meta property="og:description" content="之前已经学习过选择性打印输出了，本文将通过10个例子全面讲解文件输出的一些方法，主打p命令
-首先看一下将使用的示例文件 $ cat file AIX Solaris Unix Linux HPUX 1.打印文件首行 $ sed -n &lsquo;1p&rsquo; file AIX 之前讲过了，-n取消默认的全部打印，p表示print，1就是行号了
-2.输出最后一行 $ sed -n &lsquo;$p&rsquo; file HPUX 3.输出不匹配X的那些行 $ sed -n &lsquo;/X/!p&rsquo; file Solaris Unix Linux 也好理解，！表示非，就是说包含X匹配的不打印输出
-4.输出包含u/x的那些行 $ sed -n &lsquo;/[ux]/p&rsquo; file Unix Linux 正则是强大的，这样就匹配了u/x
-5.输出以x/X结尾的那些行 $ sed -n &lsquo;/[xX]$/p&rsquo; file AIX Unix Linux HPUX 这里$符号不再是匹配文件尾部，而是行尾，这是正则的规则
-6.输出以A/L开头的行 $ sed -n &lsquo;/^A|^L/p&rsquo; file AIX Linux 前面也说过，^匹配了行首，A表示A匹配，然而|则是或者的意思，为什么要加\转义，是为了避免被解析成pipe管道，后面的就不解释了
-7.隔行打印
-n命令是输出当前行，然后读入下一行到pattern space的意思，这句命令是这么执行的，首先读入一行，然后通过n命令输出，然后通过n命令再读一行，然后把这行删除，就出现了隔行输出的效果
-8.如何两行输出，隔两行再输出 $ sed &rsquo;n;n;N;d&rsquo; file AIX Solaris HPUX n;n; 命令呢输出了前两行，然后读入第三行到pattern space，N命令则对如下一行并与第三行合并，然后d命令删除pattern space中的内容，于是三四行被清空，然后读入56行，继续重复。就这样。作者这里给出的例子不直观，我举个例子，我的文件内容是 $ cat test.">
+首先看一下将使用的示例文件
+1.打印文件首行之前讲过了，-n取消默认的全部打印，p表示print，1就是行号了
+2.输出最后一行3.输出不匹配X的那些行也好理解，！表示非，就是说包含X匹配的不打印输出
+4.输出包含u/x的那些行正则是强大的，这样就匹配了u/x
+5.输出以x/X结尾的那些行这里$符号不再是匹配文件尾部，而是行尾，这是正则的规则
+6.输出以A/L开头的行前面也说过，^匹配了行首，A表示A匹配，然而|则是或者的意思，为什么要加\转义，是为了避免被解析成pipe管道，后面的就不解释了
+7.隔行打印n命令是输出当前行，然后读入下一行到pattern space的意思，这句命令是这么执行的，首先读入一行，然后通过n命令输出，然后通过n命令再读一行，然后把这行删除，就出现了隔行输出的效果
+8.如何两行输出，隔两行再输出n;n; 命令呢输出了前两行，然后读入第三行到pattern space，N命令则对如下一行并与第三行合并，然后d命令删除pattern space中的内容，于是三四行被清空，然后读入56行，继续重复。就这样。作者这里给出的例子不直观，我举个例子，我的文件内容是
+执行上面的命令后，会输出
+明白了吧
+9.输出某个范围行内以X结果的那些行这里首先制定了从/Unix/匹配开始到文件尾部的这些行，然后呢，在这些之间的行，如果以X结果，就输出。
+10.输出不包括开始和结尾的那些行这个命令就会只输出/Solaris/和/HPUX/之间的行，不包括他们两个。
+这里要说一下//这个，当匹配了Solaris的时候就进入了花括号，因为这个里面没有提供任何匹配，所以就考虑最后一次匹配模式，也就是相当于是考虑Solaris这一行，他不被打印，当到了HPUX这一匹配，//又代表了HPUX匹配，这一行也不打印。
+Demo完了，你懂了么。">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%83%E7%AF%87%E8%BE%93%E5%87%BA%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B910-demo/" />
 <meta property="og:type" content="website" />
@@ -117,8 +138,11 @@ n命令是输出当前行，然后读入下一行到pattern space的意思，这
 
   <meta name="twitter:title" content="[译]Unix sed实用教程第七篇–输出文件内容(10 Demo)" />
   <meta name="twitter:description" content="之前已经学习过选择性打印输出了，本文将通过10个例子全面讲解文件输出的一些方法，主打p命令
-首先看一下将使用的示例文件 $ cat file AIX Solaris Unix Linux HPUX 1.打印文件首行 $ sed -n &lsquo;1p&rsquo; file AIX 之前讲过了，-n取消默认的全部打印，p表示print，1就是行号了
-2.输出最后一行 $ sed -n …">
+首先看一下将使用的示例文件
+1.打印文件首行之前讲过了，-n取消默认的全部打印，p表示print，1就是行号了
+2.输出最后一行3.输出不匹配X的那些行也好理解，！表示非，就是说包含X匹配的不打印输出
+4.输出包含u/x的那些行正则是强大的，这样就匹配了u/x
+5.输出以x/X结尾的那些行这里$符号不再是匹 …">
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -129,7 +153,7 @@ n命令是输出当前行，然后读入下一行到pattern space的意思，这
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -314,90 +338,53 @@ n命令是输出当前行，然后读入下一行到pattern space的意思，这
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <p>之前已经学习过<a href="http://leaver.me/archives/3179.html">选择性打印输出</a>了，本文将通过10个例子全面讲解文件输出的一些方法，主打p命令</p>
-
-<p>首先看一下将使用的示例文件
-<pre>$ cat file
-AIX
-Solaris
-Unix
-Linux
-HPUX</pre>
-<span style="color: #3366ff;">1.打印文件首行</span>
-<pre>$ sed -n &lsquo;1p&rsquo; file
-AIX</pre>
-之前讲过了，-n取消默认的全部打印，p表示print，1就是行号了</p>
-
-<p><span style="color: #3366ff;">2.输出最后一行</span>
-<pre>$ sed -n &lsquo;$p&rsquo; file
-HPUX</pre>
-<span style="color: #3366ff;">3.输出不匹配X的那些行</span>
-<pre>$ sed -n &lsquo;/X/!p&rsquo; file
-Solaris
-Unix
-Linux</pre>
-也好理解，！表示非，就是说包含X匹配的不打印输出</p>
-
-<p><span style="color: #3366ff;">4.输出包含u/x的那些行</span>
-<pre>$ sed -n &lsquo;/[ux]/p&rsquo; file
-Unix
-Linux</pre>
-正则是强大的，这样就匹配了u/x</p>
-
-<p><span style="color: #3366ff;">5.输出以x/X结尾的那些行</span>
-<pre>$ sed -n &lsquo;/[xX]$/p&rsquo; file
-AIX
-Unix
-Linux
-HPUX</pre>
-这里$符号不再是匹配文件尾部，而是行尾，这是正则的规则</p>
-
-<p><span style="color: #3366ff;">6.输出以A/L开头的行</span>
-<pre>$ sed -n &lsquo;/^A|^L/p&rsquo; file
-AIX
-Linux</pre>
-前面也说过，^匹配了行首，A表示A匹配，然而|则是或者的意思，为什么要加\转义，是为了避免被解析成pipe管道，后面的就不解释了</p>
-
-<p><span style="color: #3366ff;">7.隔行打印</span></p>
-
+<p>首先看一下将使用的示例文件</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->1.打印文件首行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>之前讲过了，-n取消默认的全部打印，p表示print，1就是行号了</p>
+<p><!-- raw HTML omitted -->2.输出最后一行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->3.输出不匹配X的那些行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>也好理解，！表示非，就是说包含X匹配的不打印输出</p>
+<p><!-- raw HTML omitted -->4.输出包含u/x的那些行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>正则是强大的，这样就匹配了u/x</p>
+<p><!-- raw HTML omitted -->5.输出以x/X结尾的那些行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这里$符号不再是匹配文件尾部，而是行尾，这是正则的规则</p>
+<p><!-- raw HTML omitted -->6.输出以A/L开头的行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>前面也说过，^匹配了行首，A表示A匹配，然而|则是或者的意思，为什么要加\转义，是为了避免被解析成pipe管道，后面的就不解释了</p>
+<p><!-- raw HTML omitted -->7.隔行打印<!-- raw HTML omitted --></p>
 <p>n命令是输出当前行，然后读入下一行到pattern space的意思，这句命令是这么执行的，首先读入一行，然后通过n命令输出，然后通过n命令再读一行，然后把这行删除，就出现了隔行输出的效果</p>
-
-<p><span style="color: #3366ff;">8.如何两行输出，隔两行再输出</span>
-<pre>$ sed  &rsquo;n;n;N;d&rsquo; file
-AIX
-Solaris
-HPUX</pre>
-n;n; 命令呢输出了前两行，然后读入第三行到pattern space，N命令则对如下一行并与第三行合并，然后d命令删除pattern space中的内容，于是三四行被清空，然后读入56行，继续重复。就这样。作者这里给出的例子不直观，我举个例子，我的文件内容是
-<pre class="lang:default decode:true">$ cat test.txt
-1
-2
-3
-4
-5
-6
-7
-8
-9</pre>
-执行上面的命令后，会输出
-<pre class="lang:default decode:true">1
-2
-5
-6
-9</pre>
-明白了吧</p>
-
-<p><span style="color: #3366ff;">9.输出某个范围行内以X结果的那些行</span>
-<pre>$ sed -n &lsquo;/Unix/,${/X$/p;}&rsquo; file
-HPUX</pre>
-这里首先制定了从/Unix/匹配开始到文件尾部的这些行，然后呢，在这些之间的行，如果以X结果，就输出。</p>
-
-<p><span style="color: #3366ff;">10.输出不包括开始和结尾的那些行</span>
-<pre>$ sed -n &lsquo;/Solaris/,/HPUX/{//!p;}&rsquo; file
-Unix
-Linux</pre>
-这个命令就会只输出/Solaris/和/HPUX/之间的行，不包括他们两个。</p>
-
+<p><!-- raw HTML omitted -->8.如何两行输出，隔两行再输出<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>n;n; 命令呢输出了前两行，然后读入第三行到pattern space，N命令则对如下一行并与第三行合并，然后d命令删除pattern space中的内容，于是三四行被清空，然后读入56行，继续重复。就这样。作者这里给出的例子不直观，我举个例子，我的文件内容是</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>执行上面的命令后，会输出</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>明白了吧</p>
+<p><!-- raw HTML omitted -->9.输出某个范围行内以X结果的那些行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这里首先制定了从/Unix/匹配开始到文件尾部的这些行，然后呢，在这些之间的行，如果以X结果，就输出。</p>
+<p><!-- raw HTML omitted -->10.输出不包括开始和结尾的那些行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这个命令就会只输出/Solaris/和/HPUX/之间的行，不包括他们两个。</p>
 <p>这里要说一下//这个，当匹配了Solaris的时候就进入了花括号，因为这个里面没有提供任何匹配，所以就考虑最后一次匹配模式，也就是相当于是考虑Solaris这一行，他不被打印，当到了HPUX这一匹配，//又代表了HPUX匹配，这一行也不打印。</p>
-
 <p>Demo完了，你懂了么。</p>
 
 
@@ -510,7 +497,7 @@ Linux</pre>
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

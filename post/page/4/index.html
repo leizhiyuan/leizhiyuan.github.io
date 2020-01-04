@@ -48,7 +48,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -203,7 +203,7 @@
                 <span class="post-meta">
   
   
-  <i class="fas fa-calendar"></i>&nbsp;Posted on October 27, 2019
+  <i class="fas fa-calendar"></i>&nbsp;Posted on December 30, 2019
   
   
     &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;0&nbsp;minutes
@@ -233,6 +233,55 @@
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
         <div class="posts-list">
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2016/05/29/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E7%B3%BB%E5%88%97%E7%9B%AE%E5%BD%95/">
+                <h2 class="post-title">motan源码阅读系列目录</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on May 29, 2016
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  <p>本系列希望可以吧motan的源码通读一遍.</p>
+<p><a href="/2016/05/29/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E5%85%A5%E9%97%A8%E5%92%8C%E8%BF%90%E8%A1%8Cdemo/">motan源码阅读-入门和运行demo</a></p>
+<p><a href="/2016/05/30/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%8F%91%E5%B8%83/">motan源码阅读-服务的发布</a></p>
+<p><a href="/2016/05/31/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%BC%95%E7%94%A8/">motan源码阅读-客户端服务引用</a></p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%AC%94%E8%AE%B0/">笔记</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
           
             <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2016/05/21/eclipse%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91-tycho%E4%BD%BF%E7%94%A8/">
@@ -268,11 +317,9 @@ eclipse插件开发中，依赖的管理是个问题。如果采用常规的搞�
 首先说明一下目录结构。一个parent的maven工程，一个plugin工程，。两个features。一个是deps的。一个是plugin的，这个依赖deps是独立的mvn项目。可以先不用管。一个deps依赖工程（这个依赖工程独立）。 在主pom下。
 步骤如下。
 关于依赖部分
- 新建一个普通的mvn工程,比如deps。打包类型写成&lt;packaging&gt;bundle&lt;/packaging&gt;,同时在pom.xml中添加build部分
-&lt;build&gt; &lt;plugins&gt; &lt;plugin&gt; &lt;groupId&gt;org.apache.felix&lt;/groupId&gt; &lt;artifactId&gt;maven-bundle-plugin&lt;/artifactId&gt; &lt;version&gt;3.0.1&lt;/version&gt; &lt;extensions&gt;true&lt;/extensions&gt; &lt;configuration&gt; &lt;niceManifest&gt;true&lt;/niceManifest&gt; &lt;manifestLocation&gt;META-INF&lt;/manifestLocation&gt; &lt;instructions&gt; &lt;Bundle-SymbolicName&gt;${project.artifactId}&lt;/Bundle-SymbolicName&gt; &lt;Embed-Dependency&gt;*&lt;/Embed-Dependency&gt; &lt;Embed-Transitive&gt;true&lt;/Embed-Transitive&gt; &lt;Embed-Directory&gt;lib&lt;/Embed-Directory&gt; &lt;Bundle-ClassPath&gt;{maven-dependencies}&lt;/Bundle-ClassPath&gt; &lt;_exportcontents&gt;*&lt;/_exportcontents&gt; &lt;_failok&gt;true&lt;/_failok&gt; &lt;_nouses&gt;true&lt;/_nouses&gt; &lt;Import-Package&gt;&lt;/Import-Package&gt; &lt;/instructions&gt; &lt;/configuration&gt; &lt;/plugin&gt; &lt;/plugins&gt; &lt;/build&gt;  然后正常添加一些依赖到这个工程中。然后执行一下mvn clean install ，你就会发现本地mvn仓库生成了一个jar包，这个jar里直接打包了所有的jar
+ 新建一个普通的mvn工程,比如deps。打包类型写成&lt;packaging&gt;bundle&lt;/packaging&gt;,同时在pom.xml中添加build部分  &lt;build&gt; &lt;plugins&gt; &lt;plugin&gt; &lt;groupId&gt;org.apache.felix&lt;/groupId&gt; &lt;artifactId&gt;maven-bundle-plugin&lt;/artifactId&gt; &lt;version&gt;3.0.1&lt;/version&gt; &lt;extensions&gt;true&lt;/extensions&gt; &lt;configuration&gt; &lt;niceManifest&gt;true&lt;/niceManifest&gt; &lt;manifestLocation&gt;META-INF&lt;/manifestLocation&gt; &lt;instructions&gt; &lt;Bundle-SymbolicName&gt;${project.artifactId}&lt;/Bundle-SymbolicName&gt; &lt;Embed-Dependency&gt;*&lt;/Embed-Dependency&gt; &lt;Embed-Transitive&gt;true&lt;/Embed-Transitive&gt; &lt;Embed-Directory&gt;lib&lt;/Embed-Directory&gt; &lt;Bundle-ClassPath&gt;{maven-dependencies}&lt;/Bundle-ClassPath&gt; &lt;_exportcontents&gt;*&lt;/_exportcontents&gt; &lt;_failok&gt;true&lt;/_failok&gt; &lt;_nouses&gt;true&lt;/_nouses&gt; &lt;Import-Package&gt;&lt;/Import-Package&gt; &lt;/instructions&gt; &lt;/configuration&gt; &lt;/plugin&gt; &lt;/plugins&gt; &lt;/build&gt; 然后正常添加一些依赖到这个工程中。然后执行一下mvn clean install ，你就会发现本地mvn仓库生成了一个jar包，这个jar里直接打包了所有的jar
 关于插件部分
- 新建一个类型为pom的parent工程。用来包含下面的子工程，通过
-&lt;modules&gt; &lt;module&gt;xxx.plugin.1&lt;/module&gt; &lt;module&gt;xxx.plugin.2&lt;/module&gt; &lt;/modules&gt; 来管理。同时 添加如下的插件
+ 新建一个类型为pom的parent工程。用来包含下面的子工程，通过  &lt;modules&gt; &lt;module&gt;xxx.plugin.1&lt;/module&gt; &lt;module&gt;xxx.plugin.2&lt;/module&gt; &lt;/modules&gt; 来管理。同时 添加如下的插件
 &lt;properties&gt; &lt;tycho.version&gt;0.24.0&lt;/tycho.version&gt; &lt;/properties&gt; &lt;build&gt; &lt;plugins&gt; &lt;plugin&gt; &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt; &lt;artifactId&gt;maven-source-plugin&lt;/artifactId&gt; &lt;executions&gt; &lt;execution&gt; &lt;id&gt;attach-sources&lt;/id&gt; &lt;phase&gt;none&lt;/phase&gt; &lt;/execution&gt; &lt;/executions&gt; &lt;version&gt;2.4&lt;/version&gt; &lt;/plugin&gt; &lt;plugin&gt; &lt;groupId&gt;org.eclipse.tycho&lt;/groupId&gt; &lt;artifactId&gt;tycho-maven-plugin&lt;/artifactId&gt; &lt;version&gt;${tycho.version}&lt;/version&gt; &lt;extensions&gt;true&lt;/extensions&gt; &lt;/plugin&gt; &lt;plugin&gt; &lt;groupId&gt;org.
                   <a href="https://leizhiyuan.github.io/2016/05/21/eclipse%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91-tycho%E4%BD%BF%E7%94%A8/" class="post-read-more">[Read More]</a>
                 
@@ -326,7 +373,7 @@ $ sudo apt-get install software-properties-common $ sudo apt-add-repository ppa:
 sudo: add-apt-repository: command not found 这时候.先执行
 $ sudo add-apt-repository ppa:git-core/ppa $ sudo apt-get update 然后接着执行上面的第二步就行了..
 安装完成后,配置集群
-cat /etc/ansible/hosts[servergroup1] 192.168.1.1 ansible_ssh_user=root ansible_ssh_pass=root [servergroup2] 192.168.2.1 ansible_ssh_user=root ansible_ssh_pass=root 后面的账号和密码,如果你使用ssh key登陆的话就不需要了.但是如果有很多机器,需要加到known_hosts就太多了. 这时候可以参考Batch_key 这个脚本.稍微修改一下,就能批量生成了
+cat /etc/ansible/hosts [servergroup1] 192.168.1.1 ansible_ssh_user=root ansible_ssh_pass=root [servergroup2] 192.168.2.1 ansible_ssh_user=root ansible_ssh_pass=root 后面的账号和密码,如果你使用ssh key登陆的话就不需要了.但是如果有很多机器,需要加到known_hosts就太多了. 这时候可以参考Batch_key 这个脚本.稍微修改一下,就能批量生成了
 然后就是执行命令了
 ansible常见用法为ansible host-pattern -m 模块 -a 命令，host-pattern类似于简化的正则表达式，而模块可以通过ansible-doc -l命令来查询。下面是一些常用模块的使用方法：
 安装软件：ansible servergroup1 -m apt -a 'name=gcc state=present' 或者ansible local -m yum -a &quot;name=nmap state=installed&quot;
@@ -378,7 +425,6 @@ ansible常见用法为ansible host-pattern -m 模块 -a 命令，host-pattern类
               <div class="post-entry">
                 
                   <p><a href="https://www.cppfans.org/">C++爱好者博客</a>:<a href="https://www.cppfans.org/">https://www.cppfans.org/</a></p>
-
 <p><a href="http://www.kailing.pub">KL，每天进步一点点</a>:<a href="http://www.kailing.pub">http://www.kailing.pub</a></p>
 
                 
@@ -420,11 +466,9 @@ ansible常见用法为ansible host-pattern -m 模块 -a 命令，host-pattern类
                   最近由于一些需求,要搞一下python,于是周末搞了搞.要连接服务器,进行一些服务器的操作,于是安装这个Paramiko包,
 直接pip install paramiko 结果.报错,最关键的一句是:
 error: Unable to find vcvarsall.bat google一圈.最终找到一种最简单地方法.其他的安装vs.安装MinGW都太复杂了.
- 安装PyCrypto 第三方版 因为paramiko依赖PyCrypto,上面那个错就是他报错出来的.安装PyCrypto第三方版
-pip install --use-wheel --no-index --find-links=https://github.com/sfbahr/PyCrypto-Wheels/raw/master/pycrypto-2.6.1-cp35-none-win_amd64.whl pycrypto ````` 安装完成后,再次安装paramiko即可. 2.修改nt.py 安装完上面的步骤,写一个简单的程序测试下 java
-  #-- coding: utf-8 -- #!/usr/bin/python import paramiko import threading
-def ssh2(ip,username,passwd,cmd): try: ssh = paramiko.SSHClient() ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy()) ssh.connect(ip,22,username,passwd,timeout=5) for m in cmd: stdin, stdout, stderr = ssh.exec_command(m) out = stdout.readlines() #屏幕输出 for o in out: print(o) print(&lsquo;%s\tOK\n&rsquo;%(ip)) ssh.close() except : print(&lsquo;%s\tError\n&rsquo;%(ip))
-if name==&rsquo;main&lsquo;: cmd = [&lsquo;find /home/admin/logs/ -mtime +3 -name \&rsquo;.
+ 安装PyCrypto 第三方版 因为paramiko依赖PyCrypto,上面那个错就是他报错出来的.安装PyCrypto第三方版  pip install --use-wheel --no-index --find-links=https://github.com/sfbahr/PyCrypto-Wheels/raw/master/pycrypto-2.6.1-cp35-none-win_amd64.whl pycrypto 安装完成后,再次安装paramiko即可. 2.修改nt.py
+安装完上面的步骤,写一个简单的程序测试下
+#-*- coding: utf-8 -*- #!/usr/bin/python import paramiko import threading def ssh2(ip,username,passwd,cmd): try: ssh = paramiko.SSHClient() ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy()) ssh.connect(ip,22,username,passwd,timeout=5) for m in cmd: stdin, stdout, stderr = ssh.exec_command(m) out = stdout.readlines() #屏幕输出 for o in out: print(o) print(&#39;%s\tOK\n&#39;%(ip)) ssh.close() except : print(&#39;%s\tError\n&#39;%(ip)) if __name__==&#39;__main__&#39;: cmd = [&#39;find /home/admin/logs/ -mtime +3 -name \&#39;*.
                   <a href="https://leizhiyuan.github.io/2015/12/28/python3.5-%E5%AE%89%E8%A3%85-paramiko/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -591,12 +635,13 @@ setlocal call &#34;%~dp0zkEnv.cmd&#34; set ZOOMAIN=org.apache.zookeeper.server.q
               <div class="post-entry">
                 
                   前几天被前辈问到这个可重入锁,结果忘掉了.于是抽空整个了解一下
-目录  什么是可重入锁 为什么要可重入 如何实现可重入锁 有不可重入锁吗 demo代码展示 参考文章  1 . 什么是可重入锁 锁的概念就不用多解释了,当某个线程A已经持有了一个锁,当线程B尝试进入被这个锁保护的代码段的时候.就会被阻塞.而锁的操作粒度是&rdquo;线程&rdquo;,而不是调用(至于为什么要这样,下面解释).同一个线程再次进入同步代码的时候.可以使用自己已经获取到的锁,这就是可重入锁 java里面内置锁(synchronize)和Lock(ReentrantLock)都是可重入的
+目录  什么是可重入锁 为什么要可重入 如何实现可重入锁 有不可重入锁吗 demo代码展示 参考文章  1 . 什么是可重入锁 锁的概念就不用多解释了,当某个线程A已经持有了一个锁,当线程B尝试进入被这个锁保护的代码段的时候.就会被阻塞.而锁的操作粒度是&quot;线程&rdquo;,而不是调用(至于为什么要这样,下面解释).同一个线程再次进入同步代码的时候.可以使用自己已经获取到的锁,这就是可重入锁 java里面内置锁(synchronize)和Lock(ReentrantLock)都是可重入的
 2 . 为什么要可重入 如果线程A继续再次获得这个锁呢?比如一个方法是synchronized,递归调用自己,那么第一次已经获得了锁,第二次调用的时候还能进入吗? 直观上当然需要能进入.这就要求必须是可重入的.可重入锁又叫做递归锁,再举个例子.
 public class Widget { public synchronized void doSomething() { ... } } public class LoggingWidget extends Widget { public synchronized void doSomething() { System.out.println(toString() + &#34;: calling doSomething&#34;); super.doSomething();//若内置锁是不可重入的，则发生死锁 } } 这个例子是java并发编程实战中的例 子.synchronized 是父类Widget的内置锁,当执行子 类的方法的时候,先获取了一次Widget的锁,然后在执行super的时候,就要获取一次,如果不可重入,那么就跪了.
 3 . 如何实现可重入锁 为每个锁关联一个获取计数器和一个所有者线程,当计数值为0的时候,这个所就没有被任何线程只有.当线程请求一个未被持有的锁时,JVM将记下锁的持有者,并且将获取计数值置为1,如果同一个线程再次获取这个锁,技术值将递增,退出一次同步代码块,计算值递减,当计数值为0时,这个锁就被释放. ReentrantLock里面有实现
 4 . 有不可重入锁吗 这个还真有.Linux下的pthread_mutex_t锁是默认是非递归的。可以通过设置PTHREAD_MUTEX_RECURSIVE属性，将pthread_mutex_t锁设置为递归锁。如果要自己实现不可重入锁,同可重入锁,这个计数器只能为1.或者0,再次进入的时候,发现已经是1了,就进行阻塞.jdk里面没有默认的实现类.
 5 . demo代码展示 5.1 内置锁的可重入
+public class ReentrantTest { public void method1() { synchronized (ReentrantTest.
                   <a href="https://leizhiyuan.github.io/2015/11/20/java%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -646,8 +691,8 @@ public class Widget { public synchronized void doSomething() { ... } } public cl
                 
                   最近有个感受,在实践中学习固然重要,但是实践遇到的问题常常并没有想象的那么多,而且并不能覆盖所有的情况,所以还是需要对理论有一些深入的理解
 什么是事务 事务指的是逻辑上的一组操作,这组操作要么全部成功,要么全部失败,不允许出现部分成功的情况.
-事务的特性 定义了事务之后,事务四个特性 1. 原子性 事务是不可分割的单位,事务中的这组操作要么都发生,要么都不发生. 2. 一致性 一致性说是事务执行前后必须要保持一致,不能出现凭空消失的情况,典型的如银行转账的操作,A给B转账,如果刚开始两人总共有100元,转账完成后两人总共还要有100元. 3. 隔离性 多个用户并发访问数据库的时候,一个用户的事务不能被其他的用户的事务所干扰.多个并发事务之间数据要相互隔离.比如事务1,C给A转帐,此时事务2,A给B转账.那么两个事务都要修改A账户的余额,一个增加,一个减少,如何保证他们改完之后数据是对的.这是隔离性的要求. 4. 持久性 一旦事务被提交,对数据库的改变就是持久性的.即使数据库发生故障也不应该有任何影响.
-事务的隔离级别 为什么要有隔离级别呢,因为如果没有隔离级别,当两个事务同时对某条记录进行操作的时候,可能会出现如下几种大家常常听到的情况.
+事务的特性 定义了事务之后,事务四个特性
+ 原子性 事务是不可分割的单位,事务中的这组操作要么都发生,要么都不发生. 一致性 一致性说是事务执行前后必须要保持一致,不能出现凭空消失的情况,典型的如银行转账的操作,A给B转账,如果刚开始两人总共有100元,转账完成后两人总共还要有100元. 隔离性 多个用户并发访问数据库的时候,一个用户的事务不能被其他的用户的事务所干扰.多个并发事务之间数据要相互隔离.比如事务1,C给A转帐,此时事务2,A给B转账.那么两个事务都要修改A账户的余额,一个增加,一个减少,如何保证他们改完之后数据是对的.这是隔离性的要求. 持久性 一旦事务被提交,对数据库的改变就是持久性的.即使数据库发生故障也不应该有任何影响.  事务的隔离级别 为什么要有隔离级别呢,因为如果没有隔离级别,当两个事务同时对某条记录进行操作的时候,可能会出现如下几种大家常常听到的情况.
 1 脏读 脏读就是指当一个事务正在访问数据，并且对数据进行了修改，而这种修改还没有提交到数据库中，这时，另外一个事务也访问这个数据，然后使用了这个数据。
 事务1：更新一条数据 -------&gt;事务2：读取事务1更新的记录 事务1：调用commit进行提交 由于事务2使用了事务1还没有提交的记录,如果事务1最后正常提交了还好,但是如果事务1没有提交,而是回滚了.那么事务2的操作就有问题,因为他用的数据是错的.这就是脏读
 2 不可重复读 在同一事务中，两次读取同一数据，得到内容不同
@@ -658,7 +703,8 @@ public class Widget { public synchronized void doSomething() { ... } } public cl
 为此,对事务引入了隔离级别这个概念,由数据库保证 DEFAULT 使用数据库设置的隔离级别 ( 默认 ) ，由 DBA 默认的设置来决定隔离级别 . READ_UNCOMMITTED 会出现脏读、不可重复读、幻读 ( 隔离级别最低，并发性能高 ) READ_COMMITTED 会出现不可重复读、幻读问题（锁定正在读取的行） REPEATABLE_READ 会出幻读（锁定所读取的所有行） SERIALIZABLE 保证所有的情况不会发生（锁表） 可以看到,这四种从上到下性能越来越差,保障性越来越高.
 以解决幻读问题为例,SERIALIZABLE直接进行了锁表,那么印发幻读的对该表的插入和删除都无法操作,只能查询.所以不会有问题了..
 事务的传播行为 事务的传播行为主要是为了解决事务嵌套调用的问题,比如A方法里面使用了事务操作,B方法里面也使用了事务操作,当A调用B的时候.这个情况是如何处理的呢
-1 REQUIRED 业务方法需要在一个事务中运行,如果方法运行时,已处在一个事务中,那么就加入该事务,否则自己创建一个新的事务.
+1 REQUIRED 业务方法需要在一个事务中运行,如果方法运行时,已处在一个事务中,那么就加入该事务,否则自己创建一个新的事务.这是spring默认的传播行为.
+2 SUPPORTS 如果业务方法在某个事务范围内被调用,则方法成为该事务的一部分,如果业务方法在事务范围外被调用,则方法在没有事务的环境下执行.
                   <a href="https://leizhiyuan.github.io/2015/09/12/%E4%BA%8B%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -710,59 +756,6 @@ public class Widget { public synchronized void doSomething() { ... } } public cl
 public interface KafkaProperties { public final static String ZK = &#34;127.0.0.1:2181&#34;; public final static String GROUP_ID = &#34;test_group1&#34;; public final static String TOPIC = &#34;test&#34;; public final static String BROKER_LIST = &#34;127.0.0.1:9092&#34;; public final static String SESSION_TIMEOUT = &#34;20000&#34;; public final static String SYNC_TIMEOUT = &#34;20000&#34;; public final static String INTERVAL = &#34;1000&#34;; } 3 编写生产者
 public class KafkaProducer extends Thread { private Producer&lt;Integer, String&gt; producer; private String topic; private Properties props = new Properties(); private final int SLEEP = 1000 * 3; public KafkaProducer(String topic) { props.
                   <a href="https://leizhiyuan.github.io/2015/09/08/kafka%E5%BF%AB%E9%80%9F%E5%BC%80%E5%8F%91demo/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2015/09/07/kafka%E6%96%87%E7%AB%A0%E6%8E%A8%E8%8D%90/">
-                <h2 class="post-title">kafka文章推荐</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on September 7, 2015
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  <p>本文主要分享看到的好的关于kafka的文章.后续看到持续更新</p>
-
-<ol>
-<li><a href="http://www.infoq.com/cn/articles/kafka-analysis-part-1">Kafka剖析（一）：Kafka背景及架构介绍</a></li>
-<li><a href="http://www.infoq.com/cn/articles/kafka-analysis-part-2">Kafka设计解析（二）：Kafka High Availability （上）</a></li>
-<li><a href="http://www.infoq.com/cn/articles/kafka-analysis-part-3">Kafka设计解析（三）：Kafka High Availability （下）</a></li>
-<li><a href="http://www.infoq.com/cn/articles/kafka-analysis-part-4">Kafka设计解析（四）：Kafka Consumer解析</a></li>
-</ol>
-
                 
               </div>
 
@@ -841,7 +834,7 @@ public class KafkaProducer extends Thread { private Producer&lt;Integer, String&
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

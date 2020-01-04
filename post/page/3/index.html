@@ -48,7 +48,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -203,7 +203,7 @@
                 <span class="post-meta">
   
   
-  <i class="fas fa-calendar"></i>&nbsp;Posted on October 27, 2019
+  <i class="fas fa-calendar"></i>&nbsp;Posted on December 30, 2019
   
   
     &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;0&nbsp;minutes
@@ -235,6 +235,65 @@
         <div class="posts-list">
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2016/11/06/graylog%E4%B8%AD%E7%9A%84mongodb%E9%85%8D%E7%BD%AE/">
+                <h2 class="post-title">graylog中的mongodb配置</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on November 6, 2016
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  接手的一个工具平台,发现 graylog 集群使用了单个的 mongodb 作为数据库,于是需要配置一下集群,来防止数据丢失,毕竟很多配置都在里面.
+为了以防万一,先备份一下 graylog 的配置. mongodump -h dbhost -d dbname -o dbdirectory
+防止分布式部署的使用搞坏了.之后的恢复可以使用
+mongorestore -h dbhost -d dbname --directoryperdb dbdirectory
+来恢复.相关说明可以参考这里
+之后就可以正式开始了
+  修改集群名字
+在/etc/mongod.conf 中,修改这个值.设置集群使用的集群名称是 graylog,几个机器都配置一下.都先不要启动
+replication: replSetName: graylog
+  然后添加集群配置
+  启动其中一台,然后通过mongo 命令连接上数据库,依次执行下面的命令.注意,这里有个坑.添加本机的时候,一定要写对外的域名或者 ip.否则会导致无法选主.
+rs.initiate() rs.add(&#34;&lt;hostname&gt;:27017&#34;) rs.add(&#34;&lt;hostname&gt;:27017&#34;) rs.add(&#34;&lt;hostname&gt;:27017&#34;) rs.conf()  开始启动
+这里启动就不用说了. service mongod start 启动就好了.
+  配置 graylog 集群连接地址
+在/etc/graylog/server/server.conf 中配置.mongodb_uri = mongodb://host1,host2,host3/graylog
+  后面这个 graylog 就是给 graylog 使用的库名,你可以先创建.
+                  <a href="https://leizhiyuan.github.io/2016/11/06/graylog%E4%B8%AD%E7%9A%84mongodb%E9%85%8D%E7%BD%AE/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2016/10/30/graylog%E4%B8%AD%E7%9A%84%E5%AD%97%E6%AE%B5%E8%A7%A3%E6%9E%90/">
                 <h2 class="post-title">graylog中的字段解析</h2>
 
@@ -263,14 +322,9 @@
               </p>
               <div class="post-entry">
                 
-                  
-
-<h2 id="关于字段解析">关于字段解析</h2>
-
+                  <h2 id="heading">关于字段解析</h2>
 <p>一旦 graylog 用在了一个分布式系统上,那么采集的日志格式多种多样,涉及到通过 rules.drl来解析具体的字段.之前的同学的方案是用<a href="http://www.jboss.org/drools">drools</a> 来完成的.通过一个统一的界面,来给用户生成一些正则规则这种.然后自己写了个转换器转成 Drools 的文件.更新到 graylog 的服务器上.然后重启gralog 应用完成.</p>
-
 <p>实际上, graylog 2之后的版本提供了rules和 pipeline ,这种不需要重启应用,完成这个解析的动作.但是.注意.这个不完善.所以只支持一些简单的语法,无法实现原有的完全转换.所以放弃.</p>
-
 <p>在此过程中.这个rules 有一个比较强大的功能,自动解析 key value 对.需要添加,但是,需要你的日志文件格式里的 key value有空格,
 也就是要求必须是 key=value 这样,不能紧挨着逗号这样的..比如你的打印日志是 key=value,key2=value2.那么久无法解析了..这个暂时没看到比较好的办法.估计要改代码.如果你恰好符合.那最好了.</p>
 
@@ -322,7 +376,7 @@
 0. 准备 先要安装pssh,expect,ssh-copy-id.
 brew install pssh brew install homebrew/dupes/expect brew install ssh-copy-id 另外安装luit的安装参考这里luit安装
 1. 生成ssh key ,并批量copy 生成ssh key比较简单.ssh-keygen -t rsa -C &quot;your_email@example.com&quot;,直接使用git的ssh key也是可以的.然后保存下面这个脚本为pscopy.sh,
-#!/bin/bash FILE=`cat ~/host.txt` for ip in $FILE;do expect -c &#34; spawn ssh-copy-id $ipexpect { \&#34;*yes/no*\&#34; {send \&#34;yes\r\&#34;;exp_continue} \&#34;*password*\&#34; {send \&#34;pass\r\&#34;;exp_continue} \&#34;*password*\&#34; {send \&#34;pass\r\&#34;;} } &#34; done 然后执行一下sh pscopy.sh,注意,host.txt要保证存在.格式是user@address.一行一个,中间的paas要改成user的密码,这样就会使用指定的用户密码,自动copy ssh key了. 完成上面的步骤之后,ssh user@address 就可以免登了.
+#!/bin/bash FILE=`cat ~/host.txt` for ip in $FILE;do expect -c &#34;spawn ssh-copy-id $ipexpect { \&#34;*yes/no*\&#34; {send \&#34;yes\r\&#34;;exp_continue} \&#34;*password*\&#34; {send \&#34;pass\r\&#34;;exp_continue} \&#34;*password*\&#34; {send \&#34;pass\r\&#34;;} } &#34; done 然后执行一下sh pscopy.sh,注意,host.txt要保证存在.格式是user@address.一行一个,中间的paas要改成user的密码,这样就会使用指定的用户密码,自动copy ssh key了. 完成上面的步骤之后,ssh user@address 就可以免登了.
 2. 写一个简单的pssh脚本 #!/bin/bash  encoding= key= command= file= usage() { echo &#34;Usage: `basename $0` [-f filename] [-c encoding] [-k keyword]&#34; exit 1 } while getopts :f:c:k: opt do case $opt in c) encoding=$OPTARG ;; :) echo &#34;-$OPTARGneeds an argument&#34; ;; k) key=$OPTARG ;; f) file=$OPTARG ;; *) echo &#34;-$optnot recognized&#34; usage ;; esac done if [ -z &#34;$encoding&#34; ]; then #该脚本必须提供-d选项 encoding=&#34;gbk&#34; fi if [ -z &#34;$file&#34; ]; then #该脚本必须提供-d选项 file=&#34;~/hosts.
                   <a href="https://leizhiyuan.github.io/2016/10/05/mac%E6%97%A5%E5%BF%97%E6%89%B9%E9%87%8F%E6%9F%A5%E8%AF%A2%E9%85%8D%E7%BD%AE/" class="post-read-more">[Read More]</a>
                 
@@ -373,26 +427,18 @@ brew install pssh brew install homebrew/dupes/expect brew install ssh-copy-id �
                 
                   <p>最近遇到一个问题,公司的 java 服务端应用,启动后,通过 <code>jstack pid |grep nid -c</code>,可以看到大概创建了2044个线程,然后此时应用就会报错,提示无法创建更多线程, jvm 开始抛错.
 查看 mac 的内存,发现还是够的.因为一般认为可创建的线程数=(总内存-其他占用的内存)/线程大小,所以内存够的情况下,应该是能创建的.</p>
-
 <p>google 一圈,发现mac 对单线程创建的线程是有限制的.理由应该是为了保持系统稳定性.主要有两个参数</p>
-
 <p><code>sysctl kern.num_threads</code> 这个可以看一下,说明了系统能够创建的总共的线程,单个应用能够创建的线程是<code>sysctl kern.num_taskthreads</code>,第二个参数就是导致我们创建不出来更多线程的原因,
 因为2044+一些 gc 的线程,基本上刚刚达到这个极限.</p>
-
 <p>那么要么改程序,要么改参数.改程序这是不可能的..因为只有 mac 会有这个问题..该参数尝试通过<code>sudo sysctl -w kern.num_taskthreads=4096</code>,修改,会发现提示是只读属性.google 了一圈,无解.</p>
-
 <p>最终意外解决..</p>
-
 <p>参考这里<a href="https://support.apple.com/en-us/HT202528">开启性能模式</a></p>
-
 <ol>
 <li><code>nvram boot-args</code></li>
 <li><code>sudo nvram boot-args=&quot;serverperfmode=1 $(nvram boot-args 2&gt;/dev/null | cut -f 2-)&quot;</code></li>
 <li>重启</li>
 </ol>
-
 <p>如果想要恢复的话: <code>sudo nvram boot-args=&quot;$(nvram boot-args 2&gt;/dev/null | sed -e $'s/boot-args\t//;s/serverperfmode=1//')&quot;</code></p>
-
 <p>当时各种搜索,加打apple 支持电话.无解.搜索意外看到这个说明,说开启之后,可以支持更多服务应用之类的.猜测应该会改这个值..果然..改完之后,直接重启,这个限制会变成5000..完美解决..理论上,应该通过继续修改这个参数
 是可以自定义这个值的.不过还没尝试.</p>
 
@@ -443,18 +489,15 @@ brew install pssh brew install homebrew/dupes/expect brew install ssh-copy-id �
               <div class="post-entry">
                 
                   <p>mac 下使用 homebrew 作为包管理工具是非常好的. brew 用来安装非 gui 界面的程序. cask 用来安装 gui 界面的程序.但是这两个是使用的源在国外.所以你懂得..</p>
-
 <p>1.替换 homebrew 默认源</p>
-<div class="highlight"><pre class="chroma">cd /usr/local
-git remote set-url origin git://mirrors.ustc.edu.cn/brew.git</pre></div>
-<p>这里注意记一下以前的默认源.防止以后想换回来..</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">cd /usr/local
+git remote set-url origin git://mirrors.ustc.edu.cn/brew.git
+</code></pre></div><p>这里注意记一下以前的默认源.防止以后想换回来..</p>
 <p>默认源是
 <code>https://github.com/Homebrew/brew</code></p>
-
 <p>2.替换homebrew bottles默认源</p>
-<div class="highlight"><pre class="chroma">echo &#39;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles&#39; &gt;&gt; ~/.bashrc</pre></div>
-<p>这里的.bashrc根据自己的情况替换.我是 zsh,就写到.zshrc 文件.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">echo &#39;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles&#39; &gt;&gt; ~/.bashrc
+</code></pre></div><p>这里的.bashrc根据自己的情况替换.我是 zsh,就写到.zshrc 文件.</p>
 
                 
               </div>
@@ -503,16 +546,12 @@ git remote set-url origin git://mirrors.ustc.edu.cn/brew.git</pre></div>
               <div class="post-entry">
                 
                   <p>自从入了 hexo 的坑.这玩意折腾的我不要不要的.各种诡异的问题,不过也顺便搞了搞其他的东西.看了很多相关的代理设置方案.最终沿用 windows 下的策略.最简单高效.</p>
-
 <p>mac 下的 ss 代理是只能设置浏览器代理的.对于一些不走 http 代理的.比如终端.或者其他软件.那么就需要将 ss 代理指定给其他软件或者终端使用.</p>
-
 <p>1.有一个 ss 代理
 2.安装proxifier,直接 <code>brew cask install proxifier</code>
 3.安装好之后,添加Proxies 里面,把 ssh 的信息添加进入
 4.添加 Rules, 我为了简单..直接将default 设置成走代理.这样,就啥也不用管了.等 hexo deploy 结束.再关闭proxifier 就行了.</p>
-
 <p>实际使用中.可以先开全局代理.然后知道哪个程序走了代理.需要走代理.然后单独设置即可.软件很好使用.</p>
-
 <p>不得不说, wall 越来越令人难受与不安.</p>
 
                 
@@ -616,33 +655,20 @@ sudo ln -s /Library/Developer/CommandLineTools/Library/Perl/5.18/darwin-thread-m
               <div class="post-entry">
                 
                   <p>一旦服务器启动,服务开始提供,并且在配置中心注册了(配置中心可以是本地的地址,也可以是zk,也可以是其他的实现),那么客户端就要开始调用了</p>
-
 <p><a href="/images/service_ref.png">点击看大图</a></p>
-
-<p><img src="/images/service_ref.png" alt="服务引用" /></p>
-
+<p><img src="/images/service_ref.png" alt="服务引用"></p>
 <p>服务引用 RefererConfig.getRef()</p>
-
 <p>先是获取集群支持(先忽略,主要是配置中心相关的)</p>
-
 <p>configHandler.refer(interfaceClass, clusters, proxy)
 开始获取接口代理</p>
-
 <p>1.一旦知道接口名,Class.forName加载接口类,就开始通过proxy工厂来为服务端接口创建代理了</p>
-
 <p>2.jdk的Proxy类,直接来创建代理.同时代理要传入RefererInvocationHandler
 这个类可以看错是真正的stub,封装了rpc调用请求.当在客户端获取到服务接口的bean的时候,实际上调用过程被这个类拦截,进行封装发送rpc</p>
-
 <p>1.当接口被调用的时候,这个拦截器险根据拦截到的请求构造一个rpc请求</p>
-
 <p>2.这里就会存在一个策略.该调用哪个,以FailoverHaStrategy为例</p>
-
 <p>1.选择一个服务提供方</p>
-
 <p>1.如果是jvm服务,那么直接从本地的服务map中取出一个调用就行</p>
-
 <p>2.如果是真正的远程服务,这时候就进入nettyClient部分了</p>
-
 <p>把请求向netty的Channel中写就行了.服务端会从Channel中取进行处理,然后放回来.这样客户端就拿到结果了</p>
 
                 
@@ -692,40 +718,23 @@ sudo ln -s /Library/Developer/CommandLineTools/Library/Perl/5.18/darwin-thread-m
               <div class="post-entry">
                 
                   <p>这一篇继续从这个demo开始,分析一下这个服务是怎么发布出去的.关键的代码从<code>motanDemoService.export();</code>开始.</p>
-
 <p>一图胜千言.</p>
-
 <p><a href="/images/serviceConfig_export.png">点击看大图</a></p>
-
-<p><img src="/images/serviceConfig_export.png" alt="服务发布" /></p>
-
+<p><img src="/images/serviceConfig_export.png" alt="服务发布"></p>
 <p>服务发布ServiceConfig.export()</p>
-
 <p>1.加载有的配置中心url列表/新建</p>
-
 <p>2.doExport(ProtocolConfig,port,registryURLs) //配置中心地址列表</p>
-
 <p>2.1导出的时候,会先判断是否存在.其实就是根据协议名,ip,接口,参数来生成一个唯一key.</p>
-
-<p>2.2ConfigHandler.export(Class<T> interfaceClass, T ref, List<URL> registryUrls) //接口.实现.配置中心url列表</p>
-
+<p>2.2ConfigHandler.export(Class<!-- raw HTML omitted --> interfaceClass, T ref, List<!-- raw HTML omitted --> registryUrls) //接口.实现.配置中心url列表</p>
 <p>2.2.1.根据协议名创建协议,这里ProtocolFilterDecorator</p>
-
 <p>2.2.2.根据接口,实现类,serviceUrl,构造一个Provider,用来提供服务</p>
-
-<p>2.2.3.使用协议进行导出Provider,  export(Provider<T> provider, URL url)</p>
-
+<p>2.2.3.使用协议进行导出Provider,  export(Provider<!-- raw HTML omitted --> provider, URL url)</p>
 <p>2.2.3.1创建一个Exporter</p>
-
 <p>2.2.3.1.1.创建的时候会将服务提供方Provider和url有个映射关系,这样当一个url请求过来的时候,就知道改调用谁了.ProviderMessageRouter,讲一个请求路由注册到server上,同时包装了一个心跳包</p>
-
 <p>2.2.3.2进行导出 导出就是一个服务器打开的过程/server.open();</p>
-
 <p>2.2.3.2.1进入nettyServer初始化,主要就是添加handler,编码解码.和一个rpc处理的
 相当于一个请求过来的时候,先进行解码,然后调用业务处理handler进行处理,处理完成后,进行编码,然后返回给客户端</p>
-
 <p>服务器启动后,相当于这个服务就发布了</p>
-
 <p>2.2.4.注册register(registryUrls, serviceUrl) //这一步就是将serviceUrl,向对应的jvm/rpc服务中心注册url,本地注册就是LocalRegistryService类里一个map..zk的.就是向zk写node.等等</p>
 
                 
@@ -776,28 +785,17 @@ sudo ln -s /Library/Developer/CommandLineTools/Library/Perl/5.18/darwin-thread-m
                 
                   <p>工作中一直在使用rpc,但是只是对简单的原理比较熟悉.最近看到有motan的一个介绍,代码拉下来看了看,除了测试用例比较少之外.其他还是不错的,和阿里的rpc框架比起来,还是弱了一些,好处就是方便用来学习.
 <a href="https://github.com/weibocom/motan">motan</a> 是weibo的一个rpc框架,据说已经在线上使用了.</p>
-
 <p>在学习rpc框架之前,建议看一个hello world级别的文章<a href="http://javatar.iteye.com/blog/1123915">RPC框架几行代码就够了</a>,写的非常好,看完基本就知道rpc的核心了.</p>
-
 <p><a href="https://www.cs.rutgers.edu/~pxk/417/notes/08-rpc.html">Remote Procedure Calls</a>中最关键的那个图,就能说明了.</p>
-
-<p><img src="/images/rpc-flow.png" alt="rpc的flow" /></p>
-
+<p><img src="/images/rpc-flow.png" alt="rpc的flow"></p>
 <p>本地client调用本地client stub,stub对消息进行封装,通过socket发送,服务端的server stub接收到,然后解包,将里面传递的方法名,方法参数.等等信息,识别出来,调用服务端对应的服务,然后得到结果后,又通过socket返回,本地client又进行解包.就行了.</p>
-
 <p>这里面会涉及到,封装,封装就是吧对象序列化,这样才能在网络中传递.</p>
-
 <p>而生产环境的rpc框架需要考虑的有:</p>
-
 <p>stub怎么生成,序列化怎么最高效,如何统一不同机器之前的调用,(大小端的机器等),如何识别该调用哪个机器,负载均衡.socket通信.等等.</p>
-
 <p>先跑个demo熟悉一下.</p>
-
 <p>下载motan源码,导入ide,然后先启动服务端,MotanApiExportDemo,这个类,然后控制台会打出服务已经启动.然后运行MotanApiClientDemo,会发现一个控制台打出motan,服务端打出hello motan.就说明跑起来了.</p>
-
 <p>如果控制台日志没有.修改对应resources下面的log4j.properties文件.首行添加<code>log4j.rootLogger=debug,stdout</code> ,会设置默认日志级别为debug,并且在控制台输出.
 或者直接fork<a href="https://github.com/leizhiyuan/motan">我这个</a></p>
-
 <p>后面会逐步分析,希望坚持下来.</p>
 
                 
@@ -811,58 +809,6 @@ sudo ln -s /Library/Developer/CommandLineTools/Library/Perl/5.18/darwin-thread-m
                     <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2016/05/29/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E7%B3%BB%E5%88%97%E7%9B%AE%E5%BD%95/">
-                <h2 class="post-title">motan源码阅读系列目录</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on May 29, 2016
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  <p>本系列希望可以吧motan的源码通读一遍.</p>
-
-<p><a href="/2016/05/29/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E5%85%A5%E9%97%A8%E5%92%8C%E8%BF%90%E8%A1%8Cdemo/">motan源码阅读-入门和运行demo</a></p>
-
-<p><a href="/2016/05/30/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%8F%91%E5%B8%83/">motan源码阅读-服务的发布</a></p>
-
-<p><a href="/2016/05/31/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%BC%95%E7%94%A8/">motan源码阅读-客户端服务引用</a></p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%AC%94%E8%AE%B0/">笔记</a>&nbsp;
                   
                 </div>
               
@@ -932,7 +878,7 @@ sudo ln -s /Library/Developer/CommandLineTools/Library/Perl/5.18/darwin-thread-m
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

@@ -51,7 +51,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -250,15 +250,10 @@
               <div class="post-entry">
                 
                   <p>　　今天在把wcf发布到远程服务器后。出现了这个错误。</p>
-
 <p>　　确运行报告“未能从程序集“System.ServiceModel, Version=3.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089”中加载类型“System.ServiceModel.Activation.HttpModule”。”。</p>
-
 <p>　　因为远程服务器是临时装的。肯定是少装了什么东西。。果断Google。直接输入下面的命令。安装注册一下asp.net4就可以了。</p>
-
-<p>　　<pre class="lang:default decode:true " >c:\windows\microsoft.net\framework64\v4.0.30319\aspnet_regiis.exe -iru</pre></p>
-
+<p>　　<!-- raw HTML omitted -->c:\windows\microsoft.net\framework64\v4.0.30319\aspnet_regiis.exe -iru<!-- raw HTML omitted --></p>
 <p>　　中间的版本号应该是自己去目录看一看。</p>
-
 <p>　　哦。我的是win server 2008的服务器。如果你也遇到了同样的问题。试试吧。</p>
 
                 
@@ -307,22 +302,15 @@
               </p>
               <div class="post-entry">
                 
-                  
-
-<p>数组是最基础的数据结构。ArrayList可以看作是Array的复杂版本。下面比较两者的异同</p>
-
-<h3 id="比较">比较：</h3>
-
+                  <p>数组是最基础的数据结构。ArrayList可以看作是Array的复杂版本。下面比较两者的异同</p>
+<h3 id="heading">比较：</h3>
 <blockquote>
-<h3 id="相同点">相同点：</h3>
-
+<h3 id="heading-1">相同点：</h3>
 <blockquote>
 <p>Array和ArrayList均实现了相同的接口，因此具有许多相同的操作方法，例如对自身进行枚举，能够以foreach语句遍历。
 Array和ArrayList创建的对象均保存在托管堆中。</p>
 </blockquote>
-
-<h3 id="不同点">不同点：</h3>
-
+<h3 id="heading-2">不同点：</h3>
 <blockquote>
 <ol>
 <li>Array只能存储同构对象，当然，声明为Object类型的数组除外，因为任何类型都可以隐式转换成Object类型。ArrayList可以存储异构对象，这是因为本质上ArrayList内部维护着一个object[] items类型的字段，在应用ArrayList时，应该考虑装箱和拆箱所带来的性能损失。一般情况下，Array的性能高于ArrayList。</li>
@@ -383,32 +371,21 @@ tip：List泛型类对应于ArrayList。</li>
               </p>
               <div class="post-entry">
                 
-                  
-
-<p>本文同样是笔记整理，手动输入一遍和看书的感觉还是很不一样的。文章非常好，讲的很清楚。</p>
-
-<h3 id="什么是接口">什么是接口？</h3>
-
+                  <p>本文同样是笔记整理，手动输入一遍和看书的感觉还是很不一样的。文章非常好，讲的很清楚。</p>
+<h3 id="heading">什么是接口？</h3>
 <p>　　　接口是包含一组虚方法的抽象类型，其中每一种方法都有其名称、参数和返回值。接口方法不能包含任何实现，CLR允许接口可以包含事件、属性、索引器、静态方法、静态字段、静态构造函数以及常数。但是注意：<strong>C#中不能包含任何静态成员</strong>。一个类可以实现多个接口，当一个类继承某个接口时，它不仅要实现该接口定义的所有方法，还要实现该接口从其他接口中继承的<strong>所有</strong>方法。</p>
-
-<h3 id="什么是抽象类">什么是抽象类？</h3>
-
+<h3 id="heading-1">什么是抽象类？</h3>
 <p>　　　抽象类提供多个派生类共享基类的公共定义，它既可以提供抽象方法，也可以提供非抽象方法。抽象类不能实例化，必须通过继承由派生类实现其抽象方法，因此对抽象类不能使用new关键字，也不能被密封。如果派生类没有实现所有的抽象方法，则该派生类也必须声明为抽象类。另外，实现抽象方法由override方法来实现。</p>
-
-<h3 id="比较">比较</h3>
-
+<h3 id="heading-2">比较</h3>
 <blockquote>
-<h3 id="相同点">相同点</h3>
-
+<h3 id="heading-3">相同点</h3>
 <blockquote>
 <ul>
 <li>都不能被直接实例化，都可以通过继承实现其抽象方法。</li>
 <li>都是面向抽象编程的技术基础，实现了诸多的设计模式。</li>
 </ul>
 </blockquote>
-
-<h3 id="不同点">不同点</h3>
-
+<h3 id="heading-4">不同点</h3>
 <blockquote>
 <ul>
 <li>接口<strong>支持</strong>多继承；抽象类不能实现多继承。</li>
@@ -419,9 +396,7 @@ tip：List泛型类对应于ArrayList。</li>
 <li>接口可以作用于值类型和引用类型；抽象类只能作用于引用类型。例如，Struct就可以继承接口，而不能继承类。</li>
 </ul>
 </blockquote>
-
-<h3 id="规则与场合">规则与场合</h3>
-
+<h3 id="heading-5">规则与场合</h3>
 <blockquote>
 <ol>
 <li>请记住，面向对象思想的一个最重要的原则就是：<strong>面向接口编程</strong>。</li>
@@ -442,10 +417,8 @@ tip：List泛型类对应于ArrayList。</li>
 </ol>
 </blockquote>
 </blockquote>
-
 <p>参考：<a href="http://www.cnblogs.com/anytao/archive/2007/04/12/must_net_02.html">对抽象编程：接口和抽象类</a></p>
-
-<p>&nbsp;</p>
+<p> </p>
 
                 
               </div>
@@ -573,11 +546,15 @@ tip：List泛型类对应于ArrayList。</li>
               </p>
               <div class="post-entry">
                 
-                  最近的一个事就是那个诡异的CSV导入，后来决定用最笨的方法。就是readline，然后确实是可以正常识别了。思路就是一行行读入，然后构造sql语句，保存为sql文件，然后去批量执行sql文件。其实在codeproject找到了一些类似的工具，都有不如意的地方，但是时间关系还没能自己去定制，这件事完成后，就去完善一下大牛们的工具。
-　因为是多个csv文件，每个文件对应于我们想建的一个表，实际是大约2000个csv文件，每个文件大约4000行数据，构造成对应的sql语句比较简单，需要注意的就是如果sql server表中的字段和关键字重名，那么需要加[]，比如我们有个字段是open，那么实际sql语句中使用的时候，比如
-CREATE TABLE ( [open] decimal not null, ) 　简单的读写以后我们构造了2000个sql文件，然后我们需要执行这些sql文件。。必然需要写个代码来批量执行了。。为此，我先用C#生成一个批处理文件，然后来执行
-void GetBat(string InputPath,string OutFile) { DirectoryInfo di = new DirectoryInfo(InputPath); FileInfo[] fi = di.GetFiles(); // Create an array representing the files in the current directory StringBuilder strtemp = new StringBuilder(); foreach (FileInfo fiTemp in fi) { string temp = "osql -S \"127.0.0.1\" -U \"sa\" -P \"broker\" -d \"test_money\" -i \""; temp += fiTemp.FullName.ToString() + "\"\n"; strtemp.
-                  <a href="https://leizhiyuan.github.io/2012/07/06/csv%E6%89%B9%E9%87%8F%E5%AF%BC%E5%85%A5%E8%A7%A3%E5%86%B3/" class="post-read-more">[Read More]</a>
+                  <p>　　最近的一个事就是那个诡异的CSV导入，后来决定用最笨的方法。就是readline，然后确实是可以正常识别了。思路就是一行行读入，然后构造sql语句，保存为sql文件，然后去批量执行sql文件。其实在codeproject找到了一些类似的工具，都有不如意的地方，但是时间关系还没能自己去定制，这件事完成后，就去完善一下大牛们的工具。</p>
+<p>　　因为是多个csv文件，每个文件对应于我们想建的一个表，实际是大约2000个csv文件，每个文件大约4000行数据，构造成对应的sql语句比较简单，需要注意的就是如果sql server表中的字段和关键字重名，那么需要加[]，比如我们有个字段是open，那么实际sql语句中使用的时候，比如</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>　　简单的读写以后我们构造了2000个sql文件，然后我们需要执行这些sql文件。。必然需要写个代码来批量执行了。。为此，我先用C#生成一个批处理文件，然后来执行</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>600M的sql文件执行起来三个多小时。。因为只算一次，所以就不考虑优化了。。鄙视我们吧。</p>
+
                 
               </div>
 
@@ -611,7 +588,7 @@ void GetBat(string InputPath,string OutFile) { DirectoryInfo di = new DirectoryI
   <i class="fas fa-calendar"></i>&nbsp;Posted on July 5, 2012
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -628,10 +605,37 @@ void GetBat(string InputPath,string OutFile) { DirectoryInfo di = new DirectoryI
                 
                   .Net有四个判等函数？不少人看到这个标题，会对此感到怀疑。事实上确是如此，.Net提供了ReferenceEquals、静态Equals，具体类型的Equals以及==操作符这四个判等函数。但是这四个函数之间有细微的关系，改变其中一个函数的实现会影响到其他函数的操作结果。
 　首先要说的是Object.ReferenceEquals和Object.Equals这两个静态函数，对于它们俩来说，是不需要进行重写的，因为它们已经完成它们所要得做的操作。
-对于Object.ReferenceEquals这个静态函数，函数形式如下： public static bool ReferenceEquals( object left, object right ); 这个函数就是判断两个引用类型对象是否指向同一个地址。有此说明后，就确定了它的使用范围，即只能对于引用类型操作。那么对于任何值类型数据操作，即使是与自身的判别，都会返回false。这主要因为在调用此函数的时候，值类型数据要进行装箱操作，也就是对于如下的形式来说。 int n = 10; Object.ReferenceEquals( n, n ); 这是因为对于n这个数据装箱两次，而每次装箱后的地址有不同，而造成Object.ReferenceEquals( n, n )的结果永远为false。
+对于Object.ReferenceEquals这个静态函数，函数形式如下：
+　这个函数就是判断两个引用类型对象是否指向同一个地址。有此说明后，就确定了它的使用范围，即只能对于引用类型操作。那么对于任何值类型数据操作，即使是与自身的判别，都会返回false。这主要因为在调用此函数的时候，值类型数据要进行装箱操作，也就是对于如下的形式来说。
+这是因为对于n这个数据装箱两次，而每次装箱后的地址有不同，而造成Object.ReferenceEquals( n, n )的结果永远为false。
 对于第一个判等函数来说，没有什么好扩展的，因为本身已经很好地完成了它所要做的。
-对于第二个Object.Equals这个静态函数，其形式如下： public static bool Equals( object left, object right ); 按照书中对它的分析，其大致函数代码如下： public static void Equals( object left, object right ) { // Check object identity if( left == right ) return true;
-// both null references handled above if( ( left == null ) || ( right == null ) ) return false; return left.
+对于第二个Object.Equals这个静态函数，其形式如下：
+　按照书中对它的分析，其大致函数代码如下：
+　可以说，Object.Equals这个函数完成判等操作，需要经过三个步骤，
+第一步是需要根据对象所属类型的==操作符的执行结果；
+第二步是判别是否为null，也是和第一步一样，需要根据类型的==操作符的执行结果；
+最后一步要使用到类型的Equals函数的执行结果。
+也就是说这个静态函数的返回结果，要取决于后面要提到的两个判等函数。类型是否提供相应的判等函数，成为这个函数返回结果的重要因素。
+　那么对于Object.Equals这个静态方法来说，虽说接受参数的类型也属于引用类型，但是不同于Object.ReferenceEquals函数，对于如下的代码，能得出正确的结果。
+ 这是因为在此函数中要用到具体类型的两个判等函数，不过就函数本身而言，该做的判断都做了，因此不需要去重载添加复杂的操作。
+为了更好的述说剩下两个函数，先解释一下等价的意义。对于等价的意义，就是自反、对称以及传递。
+ 所谓自反，即a == a； 而对称，是a == b，则b == a； 传递是 a == b，b == c，则 a == c； 理解等价的意义后，那么在实现类型的判等函数也要满足这个等价规则。  对于可以重载的两个判等函数，首先来介绍的是类型的Equals函数，其大致形式如下：
+ 如上增加了一个类型检查，即
+　这部分，这是由于子类对象可以通过as转化成基类对象，从而造成不同类型对象可以进行判等操作，违反了等价关系。
+　除此外对于类型的Equals函数来，其实并没有限制类型非要属于引用类型，对于值类型也是可以重载此函数，但是我并不推荐，主要是Equals函数的参数类型是不可变的，也就是说通过此方法，值类型要经过装箱操作，而这是比较影响效率的。
+　而对于值类型来说，我推荐使用最后一种判等函数，即重载运算符==函数，其大致形式如下：
+ 对于一个值类型而言，其的大致形式应该如下：
+ 　由于==操作与!=操作要同步定义，所以在定义==重载函数的时候，也要定义!=重载函数。这也是.Net在判等操作保持一致性。那么对于最后一个判等函数，这种重载运算符的方法并不适合引用类型。这就是.Net经常现象，去判断两个引用类型，不要用==，而要用某个对象的Equals函数。所以在编写自己类型的时候，要保留这种风格。
+那么对于以上介绍的四种判等函数，会产生如下类似的对比表格。
+操作结果取决于
+适用范围
+建议
+Object.ReferenceEquals
+引用类型
+Object.Equals
+无限制
+类型的Equals
+无限制
                   <a href="https://leizhiyuan.github.io/2012/07/05/effective-c#item-9%E5%8C%BA%E5%88%AB%E5%92%8C%E8%AE%A4%E8%AF%86%E5%9B%9B%E4%B8%AA%E5%88%A4%E7%AD%89%E5%87%BD%E6%95%B0/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -683,19 +687,14 @@ void GetBat(string InputPath,string OutFile) { DirectoryInfo di = new DirectoryI
                 
                   <p>　　今天做的是使用matlab进行协整检验，好吧。。听起来似乎很厉害的样子，其实，我也不太清楚协整到底是干嘛呢。不过经管的各位很给力。
 想来协整检验matlab是可以做的。所以就去查matlab是不是有这个函数，结果是有的。egcitest，但是具体的参数还是景观的朋友看懂的。</p>
-
-<p>　　早上3点多起床，看matlab的书，然后早上看完了。基本上熟悉了matlab的操作。然后就开始写这个。大致的流程和昨天的那篇文章是一致的。但是matlab生成的dll文件在C#里面调用始终会提示这样一个错误。：
-<pre class="lang:default decode:true">MWMCR::EvaluateFunction error &hellip; Error using ==&gt;
-load Unable to read file Data_EGCITest: No such file or directory. Error in =&gt; test.m</pre>
-　　组合了几个关键字进行搜索，发现了<a href="http://www.mathworks.cn/matlabcentral/answers/33037-matlab-builder-ne-exception-with-supposedly-toolbox-support">这篇文章</a>，翻译过来很简单。</p>
-
+<p>　　早上3点多起床，看matlab的书，然后早上看完了。基本上熟悉了matlab的操作。然后就开始写这个。大致的流程和昨天的那篇文章是一致的。但是matlab生成的dll文件在C#里面调用始终会提示这样一个错误。：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>　　组合了几个关键字进行搜索，发现了<a href="http://www.mathworks.cn/matlabcentral/answers/33037-matlab-builder-ne-exception-with-supposedly-toolbox-support">这篇文章</a>，翻译过来很简单。</p>
 <p>　　错误提示说的那个Data_EGCITest是一个名为Data_EGCITest.mat的文件，位于$MATLABROOT/toolbox/econ/econ/Data_EGCITest.mat目录下，$MATLABROOT指的是你matlab的安装路径。在你build 工程的时候，在下图中，记得添加这个文件。
-<a href="http://leaverimage.b0.upaiyun.com/24000_o.jpg"><img src="/images/9f98cf04debe57b3ec360a6b3ae27c8995579770.jpg" alt="" title="操作" /></a></p>
-
+<a href="http://leaverimage.b0.upaiyun.com/24000_o.jpg"><img src="/images/9f98cf04debe57b3ec360a6b3ae27c8995579770.jpg" alt="" title="操作"></a></p>
 <p>　　然后build生成的dll文件就可以正常在C#里使用了。</p>
-
 <p>　　中间走了很多弯路。因为我想既然matlab都编译生成了dll，那么dll应该没问题。然后我就把精力放在了C#那边。。结果后来折腾了很长时间，才发现是这边的问题。。坑爹。。</p>
-
 <p>　　协整检验的代码就不发了。和题目没关系。。
 参考：
 　　<a href="http://www.mathworks.cn/help/toolbox/econ/egcitest.html">http://www.mathworks.cn/help/toolbox/econ/egcitest.html</a></p>
@@ -751,7 +750,6 @@ load Unable to read file Data_EGCITest: No such file or directory. Error in =&gt
               <div class="post-entry">
                 
                   <p>上次的<a href="http://leaver.me/archives/431.html">C#温故而知新：Stream篇</a> 已经完结了，这次，<a href="http://www.cnblogs.com/JimmyZheng/">JimmyZheng</a> 开始更新线程了，转发收藏，持续更新，当然你也可以直接去看JimmyZheng的文章，欢迎学习交流</p>
-
 <ol>
 <li><a href="http://www.cnblogs.com/JimmyZheng/archive/2012/06/10/2543143.html">c#温故而知新： 线程篇(一)：<strong>Thread</strong></a></li>
 <li><a href="http://www.cnblogs.com/JimmyZheng/archive/2012/07/07/2580253.html">c#温故而知新： 线程篇(二)：<strong>线程池和异步线程</strong></a></li>
@@ -806,70 +804,29 @@ load Unable to read file Data_EGCITest: No such file or directory. Error in =&gt
               <div class="post-entry">
                 
                   <p>这几天在想C# winform程序界面实在太单一，而我<a href="http://leaver.me/archives/990.html">C#实现不规则窗体</a>中也说了，如果用背景这种东西来做的话，效果很差，抗锯齿能力基本为0，所以我当时在博客园提问，然后园友有了很给力的回答，比如WPF来做，或者第三方插件，或者深入底层改写ONPaint函数的，今天没事，恰好看到了一篇文章讲这个的，于是，就做一个简单的Demo出来，华丽的效果有木有，先看效果图</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/23622_o.jpg"><img src="/images/ba031241897a97ce5f76970d0787694511d3960a.jpg" alt="" title="效果" /></a>
+<p><a href="http://leaverimage.b0.upaiyun.com/23622_o.jpg"><img src="/images/ba031241897a97ce5f76970d0787694511d3960a.jpg" alt="" title="效果"></a>
 在win 7下使用win+Tab切换效果也很华丽。就不演示了。</p>
-
 <p>做起来还算比较简单，首先使用Microsoft Expression Design 4 设计一个界面，破解版什么的太多了，，软件界面和ps挺像，不过功能弱很多，自己操作操作就好了，我说一个问题，就是我当时想画一个空心的圆，也就是一个圆环，ps里大家都知道，直接选区相减就可以了，但是这个死活没找到，基本上最后这个界面所有的地方被找了一遍，猜了猜，才发现了，</p>
-
 <p>具体操作如下，首先汇出一个圆形，然后在圆里面再绘出一个圆形，这时候选中第二次的这个小圆，点击屏幕右侧的那个箭头会出现高级选项，</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/23623_o.jpg"><img src="/images/7bb961d46945780dd51bf752d4109eb6dfec9583.jpg" alt="" title="高级" /></a></p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/23623_o.jpg"><img src="/images/7bb961d46945780dd51bf752d4109eb6dfec9583.jpg" alt="" title="高级"></a></p>
 <p>然后选择混合模式为橡皮擦，就会擦去这个小圆，于是就只剩下一个圆环了。</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/23624_o.jpg"><img src="/images/47a442eae19c0450c9de4ef532d026c4608439f1.jpg" alt="" title="橡皮擦" /></a></p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/23624_o.jpg"><img src="/images/47a442eae19c0450c9de4ef532d026c4608439f1.jpg" alt="" title="橡皮擦"></a></p>
 <p>画好以后，选择文件-&gt;导出，按如下设置，
-<a href="http://leaverimage.b0.upaiyun.com/23625_o.jpg"><img src="/images/5a4dc13cbe7e3ade5841d175eace74870fd42395.jpg" alt="" title="导出" /></a></p>
-
-<p>&nbsp;</p>
-
+<a href="http://leaverimage.b0.upaiyun.com/23625_o.jpg"><img src="/images/5a4dc13cbe7e3ade5841d175eace74870fd42395.jpg" alt="" title="导出"></a></p>
+<p> </p>
 <p>会得到一个xaml文件，一会用</p>
-
 <p>然后新建wpf项目，然后在解决方案资源管理器视图右键点击项目 导入现有项，把上一步的xaml文件导入</p>
-
-<p>然后需要在app.xaml文件中进行设置，具体在&lt;Application.Resources&gt;标签内添加如下代码，中间那个文件名看情况而定。
-<pre class="lang:default decode:true">        &lt;ResourceDictionary&gt;
-            &lt;ResourceDictionary.MergedDictionaries&gt;
-                &lt;ResourceDictionary Source=&ldquo;bystander.xaml&rdquo;/&gt;
-            &lt;/ResourceDictionary.MergedDictionaries&gt;
-        &lt;/ResourceDictionary&gt;</pre>
-&nbsp;</p>
-
-<p>然后打开“MainWindow.xaml”文件的设计视图，点击窗体边缘以选中窗体，在属性面板中更改AllowsTransparency及WindowStyle属性。
-AllowsTransparency 指示窗体是否支持透明。选中
-WindowStyle指示窗体边框样式，设为 None 为无边框。</p>
-
-<p>然后呢在 MainWindow.xaml文件中添加如下代码，
-<pre class="lang:default decode:true">Background=&ldquo;{StaticResource back}&rdquo;
-MouseDown=&ldquo;Window_MouseDown&rdquo;&gt;</pre>
-最终代码是：
-<pre class="lang:default decode:true">&lt;Window x:Class=&ldquo;WpfDemo.MainWindow&rdquo;
-        xmlns=&ldquo;<a href="http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;">http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;</a>
-        xmlns:x=&ldquo;<a href="http://schemas.microsoft.com/winfx/2006/xaml&quot;">http://schemas.microsoft.com/winfx/2006/xaml&quot;</a>
-        Title=&ldquo;MainWindow&rdquo; Height=&ldquo;350&rdquo; Width=&ldquo;525&rdquo; AllowsTransparency=&ldquo;True&rdquo; WindowStyle=&ldquo;None&rdquo; Background=&ldquo;{StaticResource back}&rdquo; MouseDown=&ldquo;Window_MouseDown&rdquo;&gt;
-&lt;/Window&gt;</pre>
-其中background那个是固定的，而MouseDown是为了给窗体写可以拖动的函数，函数名为Window_MouseDown你也可以自己制定</p>
-
+<p>然后需要在app.xaml文件中进行设置，具体在&lt;Application.Resources&gt;标签内添加如下代码，中间那个文件名看情况而定。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>最终代码是：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>其中background那个是固定的，而MouseDown是为了给窗体写可以拖动的函数，函数名为Window_MouseDown你也可以自己制定</p>
 <p>然后对着那个函数名点右键，如下图</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/23626_o.jpg"><img src="/images/2bda8545e86b4ffc4155d5c63505252bb57506bf.jpg" alt="" title="导航" /></a></p>
-
-<p>导航到事件处理程序，然后在打开的函数里写上
-<pre class="lang:default decode:true">if(e.ChangedButton==MouseButton.Left)
-    this.DragMove();</pre>
-拖动功能就实现了。</p>
-
-<p>至于添加关闭按钮的，我就不写了，很简单，代码里都有。可以参考源文件。</p>
-
-<p>工程源码下载：<a href="http://115.com/file/c2aq7abt#WpfDemo.7z">WPFDemo</a></p>
-
-<p>参考：</p>
-
-<p><a href="http://www.cnblogs.com/SkyD/archive/2008/07/13/1242044.html">http://www.cnblogs.com/SkyD/archive/2008/07/13/1242044.html</a></p>
-
-<p><a href="http://www.cnblogs.com/yinyao/archive/2011/05/23/2054056.html">http://www.cnblogs.com/yinyao/archive/2011/05/23/2054056.html</a></p>
+<p><a href="http://leaverimage.b0.upaiyun.com/23626_o.jpg"><img src="/images/2bda8545e86b4ffc4155d5c63505252bb57506bf.jpg" alt="" title="导航"></a></p>
+<p>导航到事件处理程序，然后在打开的函数里写上</p>
+<!-- raw HTML omitted -->
 
                 
               </div>
@@ -921,82 +878,43 @@ MouseDown=&ldquo;Window_MouseDown&rdquo;&gt;</pre>
               </p>
               <div class="post-entry">
                 
-                  
-
-<p>今天突然看到很多好的技术文章，转载收藏备用分享。</p>
-
-<p>如果有人问你，<strong>GET</strong><strong>和POST</strong><strong>，有什么区别？你会如何回答？</strong></p>
-
-<h2 id="我的经历">我的经历</h2>
-
+                  <p>今天突然看到很多好的技术文章，转载收藏备用分享。</p>
+<p>如果有人问你，<strong>GET<strong><strong>和POST</strong></strong>，有什么区别？你会如何回答？</strong></p>
+<h2 id="heading">我的经历</h2>
 <p>前几天有人问我这个问题。我说GET是用于获取数据的，POST，一般用于将数据发给服务器之用。</p>
-
-<p>这个答案好像并不是他想要的。于是他继续追问有没有别的区别？我说这就是个名字而已，如果服务器支持，他完全可以把GET改个名字叫GET2。他反问道，那就是单纯的名字上的区别喽？我想了想，我觉得如果说再具体的区别，只能去看RFC文档了，还<strong>要取决于服务器（指</strong><strong>Apache</strong><strong>，IIS</strong><strong>）的具体实现</strong>。但我不得不承认，我的确没有仔细看过HTTP的RFC文档。于是我说，我对HTTP协议不太熟悉。这个问题也就结束了。</p>
-
-<h2 id="最普遍的答案">最普遍的答案</h2>
-
+<p>这个答案好像并不是他想要的。于是他继续追问有没有别的区别？我说这就是个名字而已，如果服务器支持，他完全可以把GET改个名字叫GET2。他反问道，那就是单纯的名字上的区别喽？我想了想，我觉得如果说再具体的区别，只能去看RFC文档了，还<strong>要取决于服务器（指<strong><strong>Apache</strong></strong>，IIS****）的具体实现</strong>。但我不得不承认，我的确没有仔细看过HTTP的RFC文档。于是我说，我对HTTP协议不太熟悉。这个问题也就结束了。</p>
+<h2 id="heading-1">最普遍的答案</h2>
 <p>回来之后寻思了很久，他到底是想问我什么？我一直就觉得GET和POST没有什么除了语义之外的区别，自打我开始学习Web编程开始就是这么理解的。</p>
-
 <p>可能很多人都已经猜到了，他要的答案是：</p>
-
 <p>1. GET使用URL或Cookie传参。而POST将数据放在BODY中。</p>
-
 <p>2. GET的URL会有长度上的限制，则POST的数据则可以非常大。</p>
-
 <p>3. POST比GET安全，因为数据在地址栏上不可见。</p>
-
-<p>但是很不幸，<strong>这些区别全是错误的，</strong>更不幸的是，<a href="https://www.google.com/search?q=get%E5%92%8Cpost%E7%9A%84%E5%8C%BA%E5%88%AB&amp;amp;ie=utf-8&amp;amp;oe=utf-8&amp;amp;aq=t&amp;amp;rls=org.mozilla:zh-CN:official&amp;amp;client=firefox-a&amp;amp;channel=fflb">这个答案还是Google搜索的头版头条</a>，然而我根本没想着这些是答案，因为在我看来他们都是错的。我来一一解释一下。</p>
-
-<h3 id="get和post与数据如何传递没有关系">GET和POST与数据如何传递没有关系</h3>
-
+<p>但是很不幸，**这些区别全是错误的，**更不幸的是，<a href="https://www.google.com/search?q=get%E5%92%8Cpost%E7%9A%84%E5%8C%BA%E5%88%AB&amp;ie=utf-8&amp;oe=utf-8&amp;aq=t&amp;rls=org.mozilla:zh-CN:official&amp;client=firefox-a&amp;channel=fflb">这个答案还是Google搜索的头版头条</a>，然而我根本没想着这些是答案，因为在我看来他们都是错的。我来一一解释一下。</p>
+<h3 id="getpost">GET和POST与数据如何传递没有关系</h3>
 <p>GET和POST是由<a href="http://www.w3.org/Protocols/rfc2616/rfc2616.html">HTTP协议定义</a>的。在HTTP协议中，Method和Data（URL， Body， Header）是正交的两个概念，也就是说，<strong>使用哪个Method与应用层的数据如何传输是没有相互关系的</strong>。</p>
-
 <p>HTTP没有要求，如果Method是POST数据就要放在BODY中。也没有要求，如果Method是GET，数据（参数）就一定要放在URL中而不能放在BODY中。</p>
-
 <p>那么，网上流传甚广的这个说法是从何而来的呢？我<a href="http://www.w3.org/TR/REC-html40/interact/forms.html#h-17.13.1">在HTML标准中，找到了相似的描述</a>。这和网上流传的说法一致。但是这只是HTML标准对HTTP协议的用法的约定。怎么能当成GET和POST的区别呢？</p>
-
 <p>而且，现代的Web Server都是支持GET中包含BODY这样的请求。虽然这种请求不可能从浏览器发出，但是现在的Web Server又不是只给浏览器用，已经完全地超出了HTML服务器的范畴了。</p>
-
 <p>知道这个有什么用？我不想解释了，有时候就得自己痛一次才记得住。</p>
-
-<h3 id="http协议对get和post都没有对长度的限制">HTTP协议对GET和POST都没有对长度的限制</h3>
-
+<h3 id="httpgetpost">HTTP协议对GET和POST都没有对长度的限制</h3>
 <p>HTTP协议明确地指出了，HTTP头和Body都没有长度的要求。而对于URL长度上的限制，有两方面的原因造成：</p>
-
 <p>1. 浏览器。据说早期的浏览器会对URL长度做限制。据说IE对URL长度会限制在2048个字符内（流传很广，而且无数同事都表示认同）。但我自己试了一下，我构造了90K的URL通过IE9访问live.com，是正常的。网上的东西，哪怕是Wikipedia上的，也不能信。</p>
-
 <p>2. 服务器。URL长了，对服务器处理也是一种负担。原本一个会话就没有多少数据，现在如果有人恶意地构造几个几M大小的URL，并不停地访问你的服务器。服务器的最大并发数显然会下降。另一种攻击方式是，把告诉服务器Content-Length是一个很大的数，然后只给服务器发一点儿数据，嘿嘿，服务器你就傻等着去吧。哪怕你有超时设置，这种故意的次次访问超时也能让服务器吃不了兜着走。有鉴于此，多数服务器出于安全啦、稳定啦方面的考虑，会给URL长度加限制。但是这个限制是针对所有HTTP请求的，与GET、POST没有关系。</p>
-
-<h3 id="安全不安全和get-post没有关系">安全不安全和GET、POST没有关系</h3>
-
+<h3 id="getpost-1">安全不安全和GET、POST没有关系</h3>
 <p>我觉得这真是中国特色。我讲个小段子，大家应该可以体会出这个说法多么的可笑。</p>
-
 <p>觉得POST数据比GET数据安全的人会说</p>
-
-<p><em>    “防君子不防小人；中国小白多，能防小白用户就行了。”</em></p>
-
-<p>_    “哼，”_我不以为然，_“那你怎么不说，<strong>URL</strong>参数都Encode<strong>过了，或是Base64</strong>一下，小白也看不懂啊。”_</p>
-
-<p>那人反驳道，_“<strong>Encode</strong>太简单了，聪明点儿的小白很容易就可以Decode_<em>并修改掉。”</em></p>
-
-<p>我笑道，_“五十步笑百步耳，再聪明点儿的小白还会截包并重发呢，<strong>Opera</strong>就有这功能。”_</p>
-
+<p>_    “防君子不防小人；中国小白多，能防小白用户就行了。”_</p>
+<p>_    “哼，”<em>我不以为然，</em>“那你怎么不说，_<em>URL__参数都Encode__过了，或是Base64__一下，小白也看不懂啊。”</em></p>
+<p>那人反驳道，_“_<em>Encode__太简单了，聪明点儿的小白很容易就可以Decode__并修改掉。”</em></p>
+<p>我笑道，_“五十步笑百步耳，再聪明点儿的小白还会截包并重发呢，_<em>Opera__就有这功能。”</em></p>
 <p>那人阴险地祭出<strong>神器——最终解释权</strong>，说，<strong><em>“这个不算小白。”</em></strong></p>
-
 <p>我日啊。</p>
-
-<h2 id="最后一点儿感想">最后一点儿感想</h2>
-
+<h2 id="heading-2">最后一点儿感想</h2>
 <p>我之前一直做Windows桌面应用，对Web开发无甚了解，直到一年多前转做服务器端开发，才开始接触到HTTP。（注意，我说的是HTTP，不是HTML。服务器开放接口是基于REST理念设计的，使用的协议是HTTP，但是传输的内容不是HTML。这不是Web Server，而是一个Web Service）</p>
-
 <p>所以我对于GET和POST的理解，是纯粹地来源于HTTP协议。他们只有<strong>一点</strong>根本区别，简单点儿说，一个用于获取数据，一个用于修改数据。具体的请参考RFC文档。</p>
-
 <p>如果一个人一开始就做Web开发，很可能把HTML对HTTP协议的使用方式，当成HTTP协议的唯一的合理使用方式。从而犯了以偏概全的错误。</p>
-
 <p>可能有人会觉得我钻牛角尖。我只是不喜欢模棱两可，不喜欢边界不清、概念不明，不喜欢“拿来主义”，也不喜欢被其它喜欢钻牛角尖的人奚落得无地自容。</p>
-
 <p>“知之为知之，不知为不知，是知也。”</p>
-
 <p>原文链接：<a href="http://www.cnblogs.com/nankezhishi/archive/2012/06/09/2542968.html">http://www.cnblogs.com/nankezhishi/archive/2012/06/09/2542968.html</a></p>
 
                 
@@ -1083,7 +1001,7 @@ MouseDown=&ldquo;Window_MouseDown&rdquo;&gt;</pre>
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

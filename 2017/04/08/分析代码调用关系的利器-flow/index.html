@@ -124,7 +124,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -308,43 +308,24 @@
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        
-
-<p>今天推荐一个不错的软件.是idea 的插件.名字是Flow, 官方称:A better way to understand your Java applications,原理就是通过 java-agent 修改字节码,配置了拦截器,然后真实地跑一个测试用例,或者启动一下项目,就会生成一个真实的调用关系.官方地址:<a href="http://findtheflow.io/">http://findtheflow.io/</a></p>
-
+        <p>今天推荐一个不错的软件.是idea 的插件.名字是Flow, 官方称:A better way to understand your Java applications,原理就是通过 java-agent 修改字节码,配置了拦截器,然后真实地跑一个测试用例,或者启动一下项目,就会生成一个真实的调用关系.官方地址:http://findtheflow.io/</p>
 <p>之前阅读源代码,对于抽象类,或者接口,静态阅读代码不太容易确定具体的调用类,因此阅读有一定的阻碍,当然 debug 也行..但是这个可以通过跑用例,或者简单的测试用例,理清调用关系,非常不错.
 可以对代码结构有一个整体关系</p>
-
-<h2 id="安装">安装</h2>
-
-<p>安装比较简单:<a href="https://plugins.jetbrains.com/plugin/8362?pr=idea">https://plugins.jetbrains.com/plugin/8362?pr=idea</a> 直接安装idea 这个插件,然后重新启动 idea, 安装完成后的效果.</p>
-
-<p><img src="/images/flow_install.png" alt="安装结果" /></p>
-
-<h2 id="使用">使用</h2>
-
+<h2 id="heading">安装</h2>
+<p>安装比较简单:https://plugins.jetbrains.com/plugin/8362?pr=idea 直接安装idea 这个插件,然后重新启动 idea, 安装完成后的效果.</p>
+<p><img src="/images/flow_install.png" alt="安装结果"></p>
+<h2 id="heading-1">使用</h2>
 <p>使用更简单,直接点击上图中的按钮,开始跑一下,即可,如果启动成功.控制台会有显示.</p>
-
-<p><img src="/images/flow_start.png" alt="开始启动" /></p>
-
+<p><img src="/images/flow_start.png" alt="开始启动"></p>
 <p>然后,会在本地开启7575的端口,来显示结果.</p>
-
-<h2 id="效果">效果</h2>
-
-<p><img src="/images/flow_common.png" alt="结果" /></p>
-
-<p><img src="/images/flow_detail.png" alt="结果明细" /></p>
-
+<h2 id="heading-2">效果</h2>
+<p><img src="/images/flow_common.png" alt="结果"></p>
+<p><img src="/images/flow_detail.png" alt="结果明细"></p>
 <p>注意,在结果页里,可以和 idea 源码交互,对着方法点右键,可以直接定位到 idea 代码中的源代码,非常方便.</p>
-
-<p><img src="/images/flow_jump.png" alt="跳转" /></p>
-
-<h2 id="其他">其他</h2>
-
+<p><img src="/images/flow_jump.png" alt="跳转"></p>
+<h2 id="heading-3">其他</h2>
 <p>其他,就是 可以在配置里设置根据哪些类,这样一些工具类啥的可以直接忽略了.</p>
-
-<p><img src="/images/flow_conf.png" alt="运行配置" /></p>
-
+<p><img src="/images/flow_conf.png" alt="运行配置"></p>
 <p>使用了一下,还是不错的.但是这个有个问题,如果你的项目自定义了 classloader/ 或者使用了自定义的容易,这个由于没有 mvn 的 jar 包,可能会报错,类找不到.暂时没有好的办法.但是阅读开源代码基本没有问题了.</p>
 
 
@@ -457,7 +438,7 @@
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

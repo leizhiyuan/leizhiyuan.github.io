@@ -14,34 +14,32 @@
 thanks toblue-green-deployment
 蓝绿发布的意义 整个发布过程，用户没有感受到任何宕机或者服务重启。
 蓝绿发布的过程 第0步:部署以前的配置 
-第1步: 把绿色集群的状态改为&rsquo;备用&rsquo;. 从负载均衡的池里把这些地址去掉,这样,绿色的集群就不再回接收到来自用户的请求了.转而进入备用负载均衡的池里. 
+第1步: 把绿色集群的状态改为&#39;备用&rsquo;. 从负载均衡的池里把这些地址去掉,这样,绿色的集群就不再回接收到来自用户的请求了.转而进入备用负载均衡的池里. 
 第2步:在绿色集群里部署新的代码,直到应用启动成功 
 第3步:使用备用负载均衡简单测试一下备用集群的部署情况.理想状态下是全自动的.
 第4步:把绿色备用集群的状态改成存货,于是进入了存活负载均衡的池里 
 看到 蓝色运行v1版本,绿色运行v2版本,都连接的是相同的数据库.这意味着v2版本也要在老的数据模型上运行.如果数据库有变更,要等到所有的集群升级到新的代码上.
 第5步: 对蓝色集群也进行同样的操作.   最终v2代码完成部署. 
 第6步:根据情况.运行数据库迁移
- &nbsp;
-&nbsp;">
+ ">
   <meta property="og:description" content="一直听说蓝绿发布,不知道是怎么个过程.
 thanks toblue-green-deployment
 蓝绿发布的意义 整个发布过程，用户没有感受到任何宕机或者服务重启。
 蓝绿发布的过程 第0步:部署以前的配置 
-第1步: 把绿色集群的状态改为&rsquo;备用&rsquo;. 从负载均衡的池里把这些地址去掉,这样,绿色的集群就不再回接收到来自用户的请求了.转而进入备用负载均衡的池里. 
+第1步: 把绿色集群的状态改为&#39;备用&rsquo;. 从负载均衡的池里把这些地址去掉,这样,绿色的集群就不再回接收到来自用户的请求了.转而进入备用负载均衡的池里. 
 第2步:在绿色集群里部署新的代码,直到应用启动成功 
 第3步:使用备用负载均衡简单测试一下备用集群的部署情况.理想状态下是全自动的.
 第4步:把绿色备用集群的状态改成存货,于是进入了存活负载均衡的池里 
 看到 蓝色运行v1版本,绿色运行v2版本,都连接的是相同的数据库.这意味着v2版本也要在老的数据模型上运行.如果数据库有变更,要等到所有的集群升级到新的代码上.
 第5步: 对蓝色集群也进行同样的操作.   最终v2代码完成部署. 
 第6步:根据情况.运行数据库迁移
- &nbsp;
-&nbsp;">
+ ">
   <meta name="twitter:description" content="一直听说蓝绿发布,不知道是怎么个过程.
 thanks toblue-green-deployment
 蓝绿发布的意义 整个发布过程，用户没有感受到任何宕机或者服务重启。
 蓝绿发布的过程 第0步:部署以前的配置 
-第1步: 把绿色集群的状态改为&rsquo;备用&rsquo;. 从负载均衡的池里把这些地址去掉,这样,绿色的集群就不再回接收到来自用户的请求了.转而进入备用负载均衡的池里. 
-第2步:在 …">
+第1步: 把绿色集群的状态改为&#39;备用&rsquo;. 从负载均衡的池里把这些地址去掉,这样,绿色的集群就不再回接收到来自用户的请求了.转而进入备用负载均衡的池里. 
+第2步:在绿色集群里部 …">
   <meta name="author" content="bystander"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -90,9 +88,9 @@ thanks toblue-green-deployment
     "name" : "bystander"
   },
   "headline": "蓝绿发布的整个部署过程",
-  "description" : "一直听说蓝绿发布,不知道是怎么个过程.\nthanks toblue-green-deployment\n蓝绿发布的意义 整个发布过程，用户没有感受到任何宕机或者服务重启。\n蓝绿发布的过程 第0步:部署以前的配置 \n第1步: 把绿色集群的状态改为\x26rsquo;备用\x26rsquo;. 从负载均衡的池里把这些地址去掉,这样,绿色的集群就不再回接收到来自用户的请求了.转而进入备用负载均衡的池里. \n第2步:在绿色集群里部署新的代码,直到应用启动成功 \n第3步:使用备用负载均衡简单测试一下备用集群的部署情况.理想状态下是全自动的.\n第4步:把绿色备用集群的状态改成存货,于是进入了存活负载均衡的池里 \n看到 蓝色运行v1版本,绿色运行v2版本,都连接的是相同的数据库.这意味着v2版本也要在老的数据模型上运行.如果数据库有变更,要等到所有的集群升级到新的代码上.\n第5步: 对蓝色集群也进行同样的操作.   最终v2代码完成部署. \n第6步:根据情况.运行数据库迁移\n \x26nbsp;\n\x26nbsp;",
+  "description" : "一直听说蓝绿发布,不知道是怎么个过程.\nthanks toblue-green-deployment\n蓝绿发布的意义 整个发布过程，用户没有感受到任何宕机或者服务重启。\n蓝绿发布的过程 第0步:部署以前的配置 \n第1步: 把绿色集群的状态改为\x27备用\x26rsquo;. 从负载均衡的池里把这些地址去掉,这样,绿色的集群就不再回接收到来自用户的请求了.转而进入备用负载均衡的池里. \n第2步:在绿色集群里部署新的代码,直到应用启动成功 \n第3步:使用备用负载均衡简单测试一下备用集群的部署情况.理想状态下是全自动的.\n第4步:把绿色备用集群的状态改成存货,于是进入了存活负载均衡的池里 \n看到 蓝色运行v1版本,绿色运行v2版本,都连接的是相同的数据库.这意味着v2版本也要在老的数据模型上运行.如果数据库有变更,要等到所有的集群升级到新的代码上.\n第5步: 对蓝色集群也进行同样的操作.   最终v2代码完成部署. \n第6步:根据情况.运行数据库迁移\n ",
   "inLanguage" : "en",
-  "wordCount":  21 ,
+  "wordCount":  19 ,
   "datePublished" : "2014-09-14T10:01:55",
   "dateModified" : "2014-09-14T10:01:55",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -116,15 +114,14 @@ thanks toblue-green-deployment
 thanks toblue-green-deployment
 蓝绿发布的意义 整个发布过程，用户没有感受到任何宕机或者服务重启。
 蓝绿发布的过程 第0步:部署以前的配置 
-第1步: 把绿色集群的状态改为&rsquo;备用&rsquo;. 从负载均衡的池里把这些地址去掉,这样,绿色的集群就不再回接收到来自用户的请求了.转而进入备用负载均衡的池里. 
+第1步: 把绿色集群的状态改为&#39;备用&rsquo;. 从负载均衡的池里把这些地址去掉,这样,绿色的集群就不再回接收到来自用户的请求了.转而进入备用负载均衡的池里. 
 第2步:在绿色集群里部署新的代码,直到应用启动成功 
 第3步:使用备用负载均衡简单测试一下备用集群的部署情况.理想状态下是全自动的.
 第4步:把绿色备用集群的状态改成存货,于是进入了存活负载均衡的池里 
 看到 蓝色运行v1版本,绿色运行v2版本,都连接的是相同的数据库.这意味着v2版本也要在老的数据模型上运行.如果数据库有变更,要等到所有的集群升级到新的代码上.
 第5步: 对蓝色集群也进行同样的操作.   最终v2代码完成部署. 
 第6步:根据情况.运行数据库迁移
- &nbsp;
-&nbsp;">
+ ">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2014/09/14/%E8%93%9D%E7%BB%BF%E5%8F%91%E5%B8%83%E7%9A%84%E6%95%B4%E4%B8%AA%E9%83%A8%E7%BD%B2%E8%BF%87%E7%A8%8B/" />
 <meta property="og:type" content="website" />
@@ -135,8 +132,8 @@ thanks toblue-green-deployment
 thanks toblue-green-deployment
 蓝绿发布的意义 整个发布过程，用户没有感受到任何宕机或者服务重启。
 蓝绿发布的过程 第0步:部署以前的配置 
-第1步: 把绿色集群的状态改为&rsquo;备用&rsquo;. 从负载均衡的池里把这些地址去掉,这样,绿色的集群就不再回接收到来自用户的请求了.转而进入备用负载均衡的池里. 
-第2步:在 …">
+第1步: 把绿色集群的状态改为&#39;备用&rsquo;. 从负载均衡的池里把这些地址去掉,这样,绿色的集群就不再回接收到来自用户的请求了.转而进入备用负载均衡的池里. 
+第2步:在绿色集群里部 …">
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -147,7 +144,7 @@ thanks toblue-green-deployment
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -331,48 +328,30 @@ thanks toblue-green-deployment
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        
-
-<p><div></p>
-
+        <!-- raw HTML omitted -->
 <p>一直听说蓝绿发布,不知道是怎么个过程.</p>
-
-<p>thanks to<span class="Apple-converted-space"> </span><a href="http://sunitspace.blogspot.jp/2013/10/blue-green-deployment.html" title="blue green deploy">blue-green-deployment</a></p>
-
-<h2 id="蓝绿发布的意义">蓝绿发布的意义</h2>
-
+<p>thanks to<!-- raw HTML omitted --> <!-- raw HTML omitted --><a href="http://sunitspace.blogspot.jp/2013/10/blue-green-deployment.html" title="blue green deploy">blue-green-deployment</a></p>
+<h2 id="heading">蓝绿发布的意义</h2>
 <p>整个发布过程，用户没有感受到任何宕机或者服务重启。</p>
-
-<h2 id="蓝绿发布的过程">蓝绿发布的过程</h2>
-
+<h2 id="heading-1">蓝绿发布的过程</h2>
 <p>第0步:部署以前的配置
-<a href="http://leaverimage.b0.upaiyun.com/2014/09/Blue-Green-Deployment-for-Zero-Downtime-8.png"><img src="/images/640798001262d94e7dbb6e2e7c58bf456e447775.png" alt="Blue Green Deployment for Zero Downtime (8)" /></a></p>
-
-<p>第1步: 把绿色集群的状态改为&rsquo;备用&rsquo;. 从负载均衡的池里把这些地址去掉,这样,绿色的集群就不再回接收到来自用户的请求了.转而进入备用负载均衡的池里.
-<a href="http://leaverimage.b0.upaiyun.com/2014/09/Blue-Green-Deployment-for-Zero-Downtime-9.png"><img src="/images/3f51064c7e2863de366d71673e234504f6991048.png" alt="Blue Green Deployment for Zero Downtime (9)" /></a></p>
-
+<a href="http://leaverimage.b0.upaiyun.com/2014/09/Blue-Green-Deployment-for-Zero-Downtime-8.png"><img src="/images/640798001262d94e7dbb6e2e7c58bf456e447775.png" alt="Blue Green Deployment for Zero Downtime (8)"></a></p>
+<p>第1步: 把绿色集群的状态改为'备用&rsquo;. 从负载均衡的池里把这些地址去掉,这样,绿色的集群就不再回接收到来自用户的请求了.转而进入备用负载均衡的池里.
+<a href="http://leaverimage.b0.upaiyun.com/2014/09/Blue-Green-Deployment-for-Zero-Downtime-9.png"><img src="/images/3f51064c7e2863de366d71673e234504f6991048.png" alt="Blue Green Deployment for Zero Downtime (9)"></a></p>
 <p>第2步:在绿色集群里部署新的代码,直到应用启动成功
-<a href="http://leaverimage.b0.upaiyun.com/2014/09/Blue-Green-Deployment-for-Zero-Downtime-3.png"><img src="/images/d4b51b6ce1a44b5cbaa11da5e8c1aa1d5eeea056.png" alt="Blue Green Deployment for Zero Downtime (3)" /></a></p>
-
+<a href="http://leaverimage.b0.upaiyun.com/2014/09/Blue-Green-Deployment-for-Zero-Downtime-3.png"><img src="/images/d4b51b6ce1a44b5cbaa11da5e8c1aa1d5eeea056.png" alt="Blue Green Deployment for Zero Downtime (3)"></a></p>
 <p>第3步:使用备用负载均衡简单测试一下备用集群的部署情况.理想状态下是全自动的.</p>
-
 <p>第4步:把绿色备用集群的状态改成存货,于是进入了存活负载均衡的池里
-<a href="http://leaverimage.b0.upaiyun.com/2014/09/Blue-Green-Deployment-for-Zero-Downtime-4.png"><img src="/images/19b275c22c2540d4cd4c8e6f28f6c90e474fd0ad.png" alt="Blue Green Deployment for Zero Downtime (4)" /></a></p>
-
+<a href="http://leaverimage.b0.upaiyun.com/2014/09/Blue-Green-Deployment-for-Zero-Downtime-4.png"><img src="/images/19b275c22c2540d4cd4c8e6f28f6c90e474fd0ad.png" alt="Blue Green Deployment for Zero Downtime (4)"></a></p>
 <p>看到 蓝色运行v1版本,绿色运行v2版本,都连接的是相同的数据库.这意味着v2版本也要在老的数据模型上运行.如果数据库有变更,要等到所有的集群升级到新的代码上.</p>
-
 <p>第5步: 对蓝色集群也进行同样的操作.
-<a href="http://leaverimage.b0.upaiyun.com/2014/09/Blue-Green-Deployment-for-Zero-Downtime-5.png"><img src="/images/d40415aeafd0197ad5408a7d9bcf17e99b2b8d64.png" alt="Blue Green Deployment for Zero Downtime (5)" /></a>
-<a href="http://leaverimage.b0.upaiyun.com/2014/09/Blue-Green-Deployment-for-Zero-Downtime-6.png"><img src="/images/6d403f2fcd75c1dcacab86ef6447f837018aaf5e.png" alt="Blue Green Deployment for Zero Downtime (6)" /></a>
+<a href="http://leaverimage.b0.upaiyun.com/2014/09/Blue-Green-Deployment-for-Zero-Downtime-5.png"><img src="/images/d40415aeafd0197ad5408a7d9bcf17e99b2b8d64.png" alt="Blue Green Deployment for Zero Downtime (5)"></a>
+<a href="http://leaverimage.b0.upaiyun.com/2014/09/Blue-Green-Deployment-for-Zero-Downtime-6.png"><img src="/images/6d403f2fcd75c1dcacab86ef6447f837018aaf5e.png" alt="Blue Green Deployment for Zero Downtime (6)"></a>
 最终v2代码完成部署.
-<a href="http://leaverimage.b0.upaiyun.com/2014/09/Blue-Green-Deployment-for-Zero-Downtime-7.png"><img src="/images/6f2592793b9517521e14b4aae09696e30d708ae6.png" alt="Blue Green Deployment for Zero Downtime (7)" /></a></p>
-
+<a href="http://leaverimage.b0.upaiyun.com/2014/09/Blue-Green-Deployment-for-Zero-Downtime-7.png"><img src="/images/6f2592793b9517521e14b4aae09696e30d708ae6.png" alt="Blue Green Deployment for Zero Downtime (7)"></a></p>
 <p>第6步:根据情况.运行数据库迁移</p>
-
-<p></div>
-&nbsp;</p>
-
-<p>&nbsp;</p>
+<!-- raw HTML omitted -->
+<p> </p>
 
 
         
@@ -486,7 +465,7 @@ thanks toblue-green-deployment
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

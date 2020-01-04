@@ -51,7 +51,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -253,19 +253,25 @@
 我说双查询很难讲清楚，这次就试着讲一下。读了一些原理性的东西。然后尽量通俗的给大家讲清楚。。
 在此之前，我们理解一下子查询，查询的关键字是select，这个大家都知道。子查询可以简单的理解在一个select语句里还有一个select。里面的这个select语句就是子查询。
 看一个简单的例子：
-Select concat((select database())); 真正执行的时候，先从子查询进行。因此执行select database() 这个语句就会把当前的数据库查出来，然后把结果传入到concat函数。这个函数是用来连接的。比如 concat(‘a’,’b’)那结果就是ab了。
+真正执行的时候，先从子查询进行。因此执行select database() 这个语句就会把当前的数据库查出来，然后把结果传入到concat函数。这个函数是用来连接的。比如 concat(‘a’,’b’)那结果就是ab了。
 原理：
 双注入查询需要理解四个函数/语句 1. Rand() //随机函数 2. Floor() //取整函数 3. Count() //汇总函数 4. Group by clause //分组语句
 简单的一句话原理就是有研究人员发现，当在一个聚合函数，比如count函数后面如果使用分组语句就会把查询的一部分以错误的形式显示出来。
 以本地一个名为Security的数据库为例 首先在bt5下的命令行下输入
-mysql -u root –p toor 就会连接上数据库了。 然后通过use security； 就可以切换到security数据库了。因为一个服务器上可能有多个数据库嘛。 
+就会连接上数据库了。 然后通过use security； 就可以切换到security数据库了。因为一个服务器上可能有多个数据库嘛。 
 然后我们执行一下前面那个简单的子查询的例子
-SELECT concat((select database())); 就能显示security，也就是显示了当前数据库的名字了。 然后我们测试一下concat的用法。输入
-SELECT concat('string1','string2'); 显然结果就是string1string2了
+就能显示security，也就是显示了当前数据库的名字了。 然后我们测试一下concat的用法。输入
+显然结果就是string1string2了
  然后我们测试一下rand()这个随机函数是干嘛的
-Select rand(); 我们多执行几次  可以看到，这个函数就是返回大于0，小于1之间的数 然后看看取整函数
-Select floor(1.1123456); [![](/images/4477acaba79cf1464c028cab96e32534d81af2e5.png)](http://leaverimage.b0.upaiyun.com/33520_o.png) 这个函数就是返回小于等于你输入的数的整数。 然后我们看看双注入查询中的一个简单组合。大家从我的上一篇文章中应该也看到了有一个子查询是 SELECT floor(rand()*2); 我们从里向外看。rand() 返回大于0小于1的小数，乘以2之后就成了小于0小于2了。然后对结果进行取证。就只能是0或1了。也就是这个查询的结果不是1，就是0 我们稍微加大一点难度。看这个查询
-SELECT CONCAT((SELECT database()), FLOOR(RAND()*2)); 不要怕。先看最里面的SELECT database() 这个就返回数据库名，这里就是security了。然后FLOOR(RAND()*2)这个上面说过了。不是0，就是1.
+我们多执行几次  可以看到，这个函数就是返回大于0，小于1之间的数 然后看看取整函数
+ 这个函数就是返回小于等于你输入的数的整数。
+然后我们看看双注入查询中的一个简单组合。大家从我的上一篇文章中应该也看到了有一个子查询是
+我们从里向外看。rand() 返回大于0小于1的小数，乘以2之后就成了小于0小于2了。然后对结果进行取证。就只能是0或1了。也就是这个查询的结果不是1，就是0 我们稍微加大一点难度。看这个查询
+不要怕。先看最里面的SELECT database() 这个就返回数据库名，这里就是security了。然后FLOOR(RAND()*2)这个上面说过了。不是0，就是1.然后把这两个的结果进行concat连接，那么结果不是security0就是security1了。
+ 如果我们把这条语句后面加上from 一个表名。那么一般会返回security0或security1的一个集合。数目是由表本身有几条结果决定的。比如一个管理表里有5个管理员。这个就会返回五条记录，这里users表里有13个用户，所以返回了13条  如果是从information_schema.schemata里，这个表里包含了mysql的所有数据库名。这里本机有三个数据库。所以会返回三个结果
+
+现在我们准备加上Group By 语句了。 我们使用information_schema.tables 或 information_schema.columns者两个表来查询。因为表里面一般数据很多。容易生成很多的随机值，不至于全部是security0，这样就不能查询出结果了。
+这里我先解释一下。我们把concat((select database()), floor(rand()*2)) 这个结果取了一个别名 a ，然后使用他进行分组。这样相同的security0分到一组，security1分到一组。就剩下两个结果了。
                   <a href="https://leizhiyuan.github.io/2013/03/03/%E8%AF%A6%E7%BB%86%E8%AE%B2%E8%A7%A3%E5%8F%8C%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -316,25 +322,14 @@ SELECT CONCAT((SELECT database()), FLOOR(RAND()*2)); 不要怕。先看最里面
               <div class="post-entry">
                 
                   <p>最近在做数据库大作业，采用mysql建立数据库的时候出现了这个情况，查了一下，解决了。</p>
-
 <p>出现问题的大致可能情况</p>
-
 <p>1、外键的引用类型不一样，如主键是int外键是char</p>
-
 <p>2、找不到主表中引用的列</p>
-
 <p>3、主键和外键的字符编码不一致，也可能存储引擎不一样</p>
-
-<p>对于第一个问题，检查一下自己的主外键记录数据类型是否一样，改了就行了，对于第二个问题，同样的道理，确定你主表中有对应的列。对于第三个问题
-<pre class="lang:pgsql decode:true  crayon-selected">create table pw_test(
-uid int unsigned not null,
-primary key (uid),
-foreign key (uid) references pw_other(uid)
-on delete cascade
-on update cascade
-)ENGINE = MYISAM;</pre>
-&nbsp;</p>
-
+<p>对于第一个问题，检查一下自己的主外键记录数据类型是否一样，改了就行了，对于第二个问题，同样的道理，确定你主表中有对应的列。对于第三个问题</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
 <p>括号外面的语句设置了引擎。实战过程中通过。中间的外键设置了delete 和update约束。uid引用了pw_other表中的uid键
 记下语法，出现问题的时候就可以用了。</p>
 
@@ -385,19 +380,17 @@ on update cascade
               <div class="post-entry">
                 
                   <p>在<a href="http://leaver.me/archives/196.html">lamp环境搭建</a>这篇文章中，使用apt-get安装了lamp环境，可能你会发现mysql命令行操作不方便。那么需要安装web版的phpmyadmin来辅助了。两步；
-1.打开终端 输入
-<pre lang="c">
-sudo apt-get install phpmyadmin
-</pre>
-执行过程中我记得会让输入msql的密码。和设置phpmyadmin的密码。phpmyadmin的用户名是root
-然后直接访问 <a href="http://localhost/phpmyadmin，会发现不能用。因为phpmyadmin被安装在了/usr/share/phpmyadmin/目录。">http://localhost/phpmyadmin，会发现不能用。因为phpmyadmin被安装在了/usr/share/phpmyadmin/目录。</a></p>
-
-<p>2.
-<pre lang="c">sudo ln -s /usr/share/phpmyadmin/ /var/www/</pre></p>
-
+1.打开终端 输入</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>执行过程中我记得会让输入msql的密码。和设置phpmyadmin的密码。phpmyadmin的用户名是root
+然后直接访问 http://localhost/phpmyadmin，会发现不能用。因为phpmyadmin被安装在了/usr/share/phpmyadmin/目录。</p>
+<ol start="2">
+<li></li>
+</ol>
+<!-- raw HTML omitted -->
 <p>建立一个软连接，不喜欢的话，你也把phpmyadmin直接复制到 /var/www/的文件夹下面也可以。</p>
-
-<p>在Ubuntu下面就可以通过<a href="http://localhost/phpmyadmin正常使用phpmyadmin了。">http://localhost/phpmyadmin正常使用phpmyadmin了。</a></p>
+<p>在Ubuntu下面就可以通过http://localhost/phpmyadmin正常使用phpmyadmin了。</p>
 
                 
               </div>
@@ -441,17 +434,13 @@ sudo apt-get install phpmyadmin
               </p>
               <div class="post-entry">
                 
-                  <p>昨天在lamp环境下写sql语句的时候，其中有一条语句是这样的，看着没什么错啊。。然后执行会报ERROR 1064这个错误。
-<pre lang="php">create table book
-(id unsigned primary key  auto_increment);
-</pre>
-后来解决了原来是是类型不全。必须写成
-<pre lang="php">
-create table book
-(id int unsigned primary key auto_increment);</pre></p>
-
+                  <p>昨天在lamp环境下写sql语句的时候，其中有一条语句是这样的，看着没什么错啊。。然后执行会报ERROR 1064这个错误。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>后来解决了原来是是类型不全。必须写成</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>很诡异。。因为理论上unsigned应该是被识别成int unsigned。。还有其他一些情况，反正就是只要报1064.可能语法错误。可能是拼写。或者是分号，mysql的错误提示是很差的。如果把 auto_increment 自增属性加到非主键上。也会报1064的诡异错误。。</p>
-
 <p>参考：<a href="http://stackoverflow.com/questions/2758649/unable-create-a-table-error-1064-42000-you-have-an-error-in-your-sql-syntax">stackoverflow</a></p>
 
                 
@@ -517,7 +506,7 @@ create table book
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

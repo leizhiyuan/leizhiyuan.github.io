@@ -10,9 +10,9 @@
   <title>Overview of all pages with the category #学习笔记 - bystander&#39;s blog</title>
   <meta property="og:title" content="Overview of all pages with the category #学习笔记" />
   <meta name="twitter:title" content="Overview of all pages with the category #学习笔记" />
-  <meta name="description" content="Overview of all pages with the category #学习笔记, such as: skywalking插件开发的注意事项">
-  <meta property="og:description" content="Overview of all pages with the category #学习笔记, such as: skywalking插件开发的注意事项">
-  <meta name="twitter:description" content="Overview of all pages with the category #学习笔记, such as: skywalking插件开发的注意事项">
+  <meta name="description" content="Overview of all pages with the category #学习笔记, such as: 深入理解Raft协议">
+  <meta property="og:description" content="Overview of all pages with the category #学习笔记, such as: 深入理解Raft协议">
+  <meta name="twitter:description" content="Overview of all pages with the category #学习笔记, such as: 深入理解Raft协议">
   <meta name="author" content="bystander"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -51,7 +51,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -221,6 +221,63 @@
         <div class="posts-list">
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2016/08/07/homebrew%E7%BC%93%E6%85%A2%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+                <h2 class="post-title">homebrew缓慢解决方案</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on August 7, 2016
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  <p>mac 下使用 homebrew 作为包管理工具是非常好的. brew 用来安装非 gui 界面的程序. cask 用来安装 gui 界面的程序.但是这两个是使用的源在国外.所以你懂得..</p>
+<p>1.替换 homebrew 默认源</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">cd /usr/local
+git remote set-url origin git://mirrors.ustc.edu.cn/brew.git
+</code></pre></div><p>这里注意记一下以前的默认源.防止以后想换回来..</p>
+<p>默认源是
+<code>https://github.com/Homebrew/brew</code></p>
+<p>2.替换homebrew bottles默认源</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">echo &#39;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles&#39; &gt;&gt; ~/.bashrc
+</code></pre></div><p>这里的.bashrc根据自己的情况替换.我是 zsh,就写到.zshrc 文件.</p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E5%85%B7/">工具</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%AE%B0%E5%BD%95/">记录</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2016/08/07/mac%E4%BD%BF%E7%94%A8%E5%85%A8%E5%B1%80%E4%BB%A3%E7%90%86/">
                 <h2 class="post-title">mac使用全局代理</h2>
 
@@ -250,16 +307,12 @@
               <div class="post-entry">
                 
                   <p>自从入了 hexo 的坑.这玩意折腾的我不要不要的.各种诡异的问题,不过也顺便搞了搞其他的东西.看了很多相关的代理设置方案.最终沿用 windows 下的策略.最简单高效.</p>
-
 <p>mac 下的 ss 代理是只能设置浏览器代理的.对于一些不走 http 代理的.比如终端.或者其他软件.那么就需要将 ss 代理指定给其他软件或者终端使用.</p>
-
 <p>1.有一个 ss 代理
 2.安装proxifier,直接 <code>brew cask install proxifier</code>
 3.安装好之后,添加Proxies 里面,把 ssh 的信息添加进入
 4.添加 Rules, 我为了简单..直接将default 设置成走代理.这样,就啥也不用管了.等 hexo deploy 结束.再关闭proxifier 就行了.</p>
-
 <p>实际使用中.可以先开全局代理.然后知道哪个程序走了代理.需要走代理.然后单独设置即可.软件很好使用.</p>
-
 <p>不得不说, wall 越来越令人难受与不安.</p>
 
                 
@@ -363,33 +416,20 @@ sudo ln -s /Library/Developer/CommandLineTools/Library/Perl/5.18/darwin-thread-m
               <div class="post-entry">
                 
                   <p>一旦服务器启动,服务开始提供,并且在配置中心注册了(配置中心可以是本地的地址,也可以是zk,也可以是其他的实现),那么客户端就要开始调用了</p>
-
 <p><a href="/images/service_ref.png">点击看大图</a></p>
-
-<p><img src="/images/service_ref.png" alt="服务引用" /></p>
-
+<p><img src="/images/service_ref.png" alt="服务引用"></p>
 <p>服务引用 RefererConfig.getRef()</p>
-
 <p>先是获取集群支持(先忽略,主要是配置中心相关的)</p>
-
 <p>configHandler.refer(interfaceClass, clusters, proxy)
 开始获取接口代理</p>
-
 <p>1.一旦知道接口名,Class.forName加载接口类,就开始通过proxy工厂来为服务端接口创建代理了</p>
-
 <p>2.jdk的Proxy类,直接来创建代理.同时代理要传入RefererInvocationHandler
 这个类可以看错是真正的stub,封装了rpc调用请求.当在客户端获取到服务接口的bean的时候,实际上调用过程被这个类拦截,进行封装发送rpc</p>
-
 <p>1.当接口被调用的时候,这个拦截器险根据拦截到的请求构造一个rpc请求</p>
-
 <p>2.这里就会存在一个策略.该调用哪个,以FailoverHaStrategy为例</p>
-
 <p>1.选择一个服务提供方</p>
-
 <p>1.如果是jvm服务,那么直接从本地的服务map中取出一个调用就行</p>
-
 <p>2.如果是真正的远程服务,这时候就进入nettyClient部分了</p>
-
 <p>把请求向netty的Channel中写就行了.服务端会从Channel中取进行处理,然后放回来.这样客户端就拿到结果了</p>
 
                 
@@ -439,40 +479,23 @@ sudo ln -s /Library/Developer/CommandLineTools/Library/Perl/5.18/darwin-thread-m
               <div class="post-entry">
                 
                   <p>这一篇继续从这个demo开始,分析一下这个服务是怎么发布出去的.关键的代码从<code>motanDemoService.export();</code>开始.</p>
-
 <p>一图胜千言.</p>
-
 <p><a href="/images/serviceConfig_export.png">点击看大图</a></p>
-
-<p><img src="/images/serviceConfig_export.png" alt="服务发布" /></p>
-
+<p><img src="/images/serviceConfig_export.png" alt="服务发布"></p>
 <p>服务发布ServiceConfig.export()</p>
-
 <p>1.加载有的配置中心url列表/新建</p>
-
 <p>2.doExport(ProtocolConfig,port,registryURLs) //配置中心地址列表</p>
-
 <p>2.1导出的时候,会先判断是否存在.其实就是根据协议名,ip,接口,参数来生成一个唯一key.</p>
-
-<p>2.2ConfigHandler.export(Class<T> interfaceClass, T ref, List<URL> registryUrls) //接口.实现.配置中心url列表</p>
-
+<p>2.2ConfigHandler.export(Class<!-- raw HTML omitted --> interfaceClass, T ref, List<!-- raw HTML omitted --> registryUrls) //接口.实现.配置中心url列表</p>
 <p>2.2.1.根据协议名创建协议,这里ProtocolFilterDecorator</p>
-
 <p>2.2.2.根据接口,实现类,serviceUrl,构造一个Provider,用来提供服务</p>
-
-<p>2.2.3.使用协议进行导出Provider,  export(Provider<T> provider, URL url)</p>
-
+<p>2.2.3.使用协议进行导出Provider,  export(Provider<!-- raw HTML omitted --> provider, URL url)</p>
 <p>2.2.3.1创建一个Exporter</p>
-
 <p>2.2.3.1.1.创建的时候会将服务提供方Provider和url有个映射关系,这样当一个url请求过来的时候,就知道改调用谁了.ProviderMessageRouter,讲一个请求路由注册到server上,同时包装了一个心跳包</p>
-
 <p>2.2.3.2进行导出 导出就是一个服务器打开的过程/server.open();</p>
-
 <p>2.2.3.2.1进入nettyServer初始化,主要就是添加handler,编码解码.和一个rpc处理的
 相当于一个请求过来的时候,先进行解码,然后调用业务处理handler进行处理,处理完成后,进行编码,然后返回给客户端</p>
-
 <p>服务器启动后,相当于这个服务就发布了</p>
-
 <p>2.2.4.注册register(registryUrls, serviceUrl) //这一步就是将serviceUrl,向对应的jvm/rpc服务中心注册url,本地注册就是LocalRegistryService类里一个map..zk的.就是向zk写node.等等</p>
 
                 
@@ -523,28 +546,17 @@ sudo ln -s /Library/Developer/CommandLineTools/Library/Perl/5.18/darwin-thread-m
                 
                   <p>工作中一直在使用rpc,但是只是对简单的原理比较熟悉.最近看到有motan的一个介绍,代码拉下来看了看,除了测试用例比较少之外.其他还是不错的,和阿里的rpc框架比起来,还是弱了一些,好处就是方便用来学习.
 <a href="https://github.com/weibocom/motan">motan</a> 是weibo的一个rpc框架,据说已经在线上使用了.</p>
-
 <p>在学习rpc框架之前,建议看一个hello world级别的文章<a href="http://javatar.iteye.com/blog/1123915">RPC框架几行代码就够了</a>,写的非常好,看完基本就知道rpc的核心了.</p>
-
 <p><a href="https://www.cs.rutgers.edu/~pxk/417/notes/08-rpc.html">Remote Procedure Calls</a>中最关键的那个图,就能说明了.</p>
-
-<p><img src="/images/rpc-flow.png" alt="rpc的flow" /></p>
-
+<p><img src="/images/rpc-flow.png" alt="rpc的flow"></p>
 <p>本地client调用本地client stub,stub对消息进行封装,通过socket发送,服务端的server stub接收到,然后解包,将里面传递的方法名,方法参数.等等信息,识别出来,调用服务端对应的服务,然后得到结果后,又通过socket返回,本地client又进行解包.就行了.</p>
-
 <p>这里面会涉及到,封装,封装就是吧对象序列化,这样才能在网络中传递.</p>
-
 <p>而生产环境的rpc框架需要考虑的有:</p>
-
 <p>stub怎么生成,序列化怎么最高效,如何统一不同机器之前的调用,(大小端的机器等),如何识别该调用哪个机器,负载均衡.socket通信.等等.</p>
-
 <p>先跑个demo熟悉一下.</p>
-
 <p>下载motan源码,导入ide,然后先启动服务端,MotanApiExportDemo,这个类,然后控制台会打出服务已经启动.然后运行MotanApiClientDemo,会发现一个控制台打出motan,服务端打出hello motan.就说明跑起来了.</p>
-
 <p>如果控制台日志没有.修改对应resources下面的log4j.properties文件.首行添加<code>log4j.rootLogger=debug,stdout</code> ,会设置默认日志级别为debug,并且在控制台输出.
 或者直接fork<a href="https://github.com/leizhiyuan/motan">我这个</a></p>
-
 <p>后面会逐步分析,希望坚持下来.</p>
 
                 
@@ -594,11 +606,8 @@ sudo ln -s /Library/Developer/CommandLineTools/Library/Perl/5.18/darwin-thread-m
               <div class="post-entry">
                 
                   <p>本系列希望可以吧motan的源码通读一遍.</p>
-
 <p><a href="/2016/05/29/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E5%85%A5%E9%97%A8%E5%92%8C%E8%BF%90%E8%A1%8Cdemo/">motan源码阅读-入门和运行demo</a></p>
-
 <p><a href="/2016/05/30/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%8F%91%E5%B8%83/">motan源码阅读-服务的发布</a></p>
-
 <p><a href="/2016/05/31/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%BC%95%E7%94%A8/">motan源码阅读-客户端服务引用</a></p>
 
                 
@@ -650,11 +659,9 @@ eclipse插件开发中，依赖的管理是个问题。如果采用常规的搞�
 首先说明一下目录结构。一个parent的maven工程，一个plugin工程，。两个features。一个是deps的。一个是plugin的，这个依赖deps是独立的mvn项目。可以先不用管。一个deps依赖工程（这个依赖工程独立）。 在主pom下。
 步骤如下。
 关于依赖部分
- 新建一个普通的mvn工程,比如deps。打包类型写成&lt;packaging&gt;bundle&lt;/packaging&gt;,同时在pom.xml中添加build部分
-&lt;build&gt; &lt;plugins&gt; &lt;plugin&gt; &lt;groupId&gt;org.apache.felix&lt;/groupId&gt; &lt;artifactId&gt;maven-bundle-plugin&lt;/artifactId&gt; &lt;version&gt;3.0.1&lt;/version&gt; &lt;extensions&gt;true&lt;/extensions&gt; &lt;configuration&gt; &lt;niceManifest&gt;true&lt;/niceManifest&gt; &lt;manifestLocation&gt;META-INF&lt;/manifestLocation&gt; &lt;instructions&gt; &lt;Bundle-SymbolicName&gt;${project.artifactId}&lt;/Bundle-SymbolicName&gt; &lt;Embed-Dependency&gt;*&lt;/Embed-Dependency&gt; &lt;Embed-Transitive&gt;true&lt;/Embed-Transitive&gt; &lt;Embed-Directory&gt;lib&lt;/Embed-Directory&gt; &lt;Bundle-ClassPath&gt;{maven-dependencies}&lt;/Bundle-ClassPath&gt; &lt;_exportcontents&gt;*&lt;/_exportcontents&gt; &lt;_failok&gt;true&lt;/_failok&gt; &lt;_nouses&gt;true&lt;/_nouses&gt; &lt;Import-Package&gt;&lt;/Import-Package&gt; &lt;/instructions&gt; &lt;/configuration&gt; &lt;/plugin&gt; &lt;/plugins&gt; &lt;/build&gt;  然后正常添加一些依赖到这个工程中。然后执行一下mvn clean install ，你就会发现本地mvn仓库生成了一个jar包，这个jar里直接打包了所有的jar
+ 新建一个普通的mvn工程,比如deps。打包类型写成&lt;packaging&gt;bundle&lt;/packaging&gt;,同时在pom.xml中添加build部分  &lt;build&gt; &lt;plugins&gt; &lt;plugin&gt; &lt;groupId&gt;org.apache.felix&lt;/groupId&gt; &lt;artifactId&gt;maven-bundle-plugin&lt;/artifactId&gt; &lt;version&gt;3.0.1&lt;/version&gt; &lt;extensions&gt;true&lt;/extensions&gt; &lt;configuration&gt; &lt;niceManifest&gt;true&lt;/niceManifest&gt; &lt;manifestLocation&gt;META-INF&lt;/manifestLocation&gt; &lt;instructions&gt; &lt;Bundle-SymbolicName&gt;${project.artifactId}&lt;/Bundle-SymbolicName&gt; &lt;Embed-Dependency&gt;*&lt;/Embed-Dependency&gt; &lt;Embed-Transitive&gt;true&lt;/Embed-Transitive&gt; &lt;Embed-Directory&gt;lib&lt;/Embed-Directory&gt; &lt;Bundle-ClassPath&gt;{maven-dependencies}&lt;/Bundle-ClassPath&gt; &lt;_exportcontents&gt;*&lt;/_exportcontents&gt; &lt;_failok&gt;true&lt;/_failok&gt; &lt;_nouses&gt;true&lt;/_nouses&gt; &lt;Import-Package&gt;&lt;/Import-Package&gt; &lt;/instructions&gt; &lt;/configuration&gt; &lt;/plugin&gt; &lt;/plugins&gt; &lt;/build&gt; 然后正常添加一些依赖到这个工程中。然后执行一下mvn clean install ，你就会发现本地mvn仓库生成了一个jar包，这个jar里直接打包了所有的jar
 关于插件部分
- 新建一个类型为pom的parent工程。用来包含下面的子工程，通过
-&lt;modules&gt; &lt;module&gt;xxx.plugin.1&lt;/module&gt; &lt;module&gt;xxx.plugin.2&lt;/module&gt; &lt;/modules&gt; 来管理。同时 添加如下的插件
+ 新建一个类型为pom的parent工程。用来包含下面的子工程，通过  &lt;modules&gt; &lt;module&gt;xxx.plugin.1&lt;/module&gt; &lt;module&gt;xxx.plugin.2&lt;/module&gt; &lt;/modules&gt; 来管理。同时 添加如下的插件
 &lt;properties&gt; &lt;tycho.version&gt;0.24.0&lt;/tycho.version&gt; &lt;/properties&gt; &lt;build&gt; &lt;plugins&gt; &lt;plugin&gt; &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt; &lt;artifactId&gt;maven-source-plugin&lt;/artifactId&gt; &lt;executions&gt; &lt;execution&gt; &lt;id&gt;attach-sources&lt;/id&gt; &lt;phase&gt;none&lt;/phase&gt; &lt;/execution&gt; &lt;/executions&gt; &lt;version&gt;2.4&lt;/version&gt; &lt;/plugin&gt; &lt;plugin&gt; &lt;groupId&gt;org.eclipse.tycho&lt;/groupId&gt; &lt;artifactId&gt;tycho-maven-plugin&lt;/artifactId&gt; &lt;version&gt;${tycho.version}&lt;/version&gt; &lt;extensions&gt;true&lt;/extensions&gt; &lt;/plugin&gt; &lt;plugin&gt; &lt;groupId&gt;org.
                   <a href="https://leizhiyuan.github.io/2016/05/21/eclipse%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91-tycho%E4%BD%BF%E7%94%A8/" class="post-read-more">[Read More]</a>
                 
@@ -708,7 +715,7 @@ $ sudo apt-get install software-properties-common $ sudo apt-add-repository ppa:
 sudo: add-apt-repository: command not found 这时候.先执行
 $ sudo add-apt-repository ppa:git-core/ppa $ sudo apt-get update 然后接着执行上面的第二步就行了..
 安装完成后,配置集群
-cat /etc/ansible/hosts[servergroup1] 192.168.1.1 ansible_ssh_user=root ansible_ssh_pass=root [servergroup2] 192.168.2.1 ansible_ssh_user=root ansible_ssh_pass=root 后面的账号和密码,如果你使用ssh key登陆的话就不需要了.但是如果有很多机器,需要加到known_hosts就太多了. 这时候可以参考Batch_key 这个脚本.稍微修改一下,就能批量生成了
+cat /etc/ansible/hosts [servergroup1] 192.168.1.1 ansible_ssh_user=root ansible_ssh_pass=root [servergroup2] 192.168.2.1 ansible_ssh_user=root ansible_ssh_pass=root 后面的账号和密码,如果你使用ssh key登陆的话就不需要了.但是如果有很多机器,需要加到known_hosts就太多了. 这时候可以参考Batch_key 这个脚本.稍微修改一下,就能批量生成了
 然后就是执行命令了
 ansible常见用法为ansible host-pattern -m 模块 -a 命令，host-pattern类似于简化的正则表达式，而模块可以通过ansible-doc -l命令来查询。下面是一些常用模块的使用方法：
 安装软件：ansible servergroup1 -m apt -a 'name=gcc state=present' 或者ansible local -m yum -a &quot;name=nmap state=installed&quot;
@@ -762,70 +769,10 @@ ansible常见用法为ansible host-pattern -m 模块 -a 命令，host-pattern类
                   最近由于一些需求,要搞一下python,于是周末搞了搞.要连接服务器,进行一些服务器的操作,于是安装这个Paramiko包,
 直接pip install paramiko 结果.报错,最关键的一句是:
 error: Unable to find vcvarsall.bat google一圈.最终找到一种最简单地方法.其他的安装vs.安装MinGW都太复杂了.
- 安装PyCrypto 第三方版 因为paramiko依赖PyCrypto,上面那个错就是他报错出来的.安装PyCrypto第三方版
-pip install --use-wheel --no-index --find-links=https://github.com/sfbahr/PyCrypto-Wheels/raw/master/pycrypto-2.6.1-cp35-none-win_amd64.whl pycrypto ````` 安装完成后,再次安装paramiko即可. 2.修改nt.py 安装完上面的步骤,写一个简单的程序测试下 java
-  #-- coding: utf-8 -- #!/usr/bin/python import paramiko import threading
-def ssh2(ip,username,passwd,cmd): try: ssh = paramiko.SSHClient() ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy()) ssh.connect(ip,22,username,passwd,timeout=5) for m in cmd: stdin, stdout, stderr = ssh.exec_command(m) out = stdout.readlines() #屏幕输出 for o in out: print(o) print(&lsquo;%s\tOK\n&rsquo;%(ip)) ssh.close() except : print(&lsquo;%s\tError\n&rsquo;%(ip))
-if name==&rsquo;main&lsquo;: cmd = [&lsquo;find /home/admin/logs/ -mtime +3 -name \&rsquo;.
+ 安装PyCrypto 第三方版 因为paramiko依赖PyCrypto,上面那个错就是他报错出来的.安装PyCrypto第三方版  pip install --use-wheel --no-index --find-links=https://github.com/sfbahr/PyCrypto-Wheels/raw/master/pycrypto-2.6.1-cp35-none-win_amd64.whl pycrypto 安装完成后,再次安装paramiko即可. 2.修改nt.py
+安装完上面的步骤,写一个简单的程序测试下
+#-*- coding: utf-8 -*- #!/usr/bin/python import paramiko import threading def ssh2(ip,username,passwd,cmd): try: ssh = paramiko.SSHClient() ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy()) ssh.connect(ip,22,username,passwd,timeout=5) for m in cmd: stdin, stdout, stderr = ssh.exec_command(m) out = stdout.readlines() #屏幕输出 for o in out: print(o) print(&#39;%s\tOK\n&#39;%(ip)) ssh.close() except : print(&#39;%s\tError\n&#39;%(ip)) if __name__==&#39;__main__&#39;: cmd = [&#39;find /home/admin/logs/ -mtime +3 -name \&#39;*.
                   <a href="https://leizhiyuan.github.io/2015/12/28/python3.5-%E5%AE%89%E8%A3%85-paramiko/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%BA%8F%E5%88%97%E5%8C%96/">序列化</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2015/11/25/json-lib%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%B2%BE%E5%BA%A6%E4%B8%A2%E5%A4%B1%E9%97%AE%E9%A2%98/">
-                <h2 class="post-title">json-lib反序列化精度丢失问题</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on November 25, 2015
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  最近在工作中,遇到一个问题,项目中某处使用了json-lib的2.4-jdk15版本.问题最终简化为
-double amount = 6264583.33; String jsonString = &#34;{\&#34;pi\&#34;:&#34; + amount + &#34;}&#34;; JSONObject jsonObject = JSONObject.fromObject(jsonString); System.out.println(&#34;转换前:&#34; + jsonString); System.out.println(&#34;转换后:&#34; + jsonObject); 这个值输出的将会是6264583.5 这个值.这个问题.先google一下,很快赵到了 http://sourceforge.net/p/json-lib/bugs/116/ 于是,大概问题知道了.是json-lib的一个bug,但是这个bug怎么来的呢.结合这个bug下面的评论和debug代码,先以pi这个例子,很快走到了.
-可以看到json-lib走到了apache common-lang(2.5这个版本) 的NumberUtils.createNumber处,此时String的还是对的. 继续单步,来到这个方法里面
-可以看到这里小数部分,整数部分也都还是对的.继续向下走.我擦.画风不太对.居然采用了先尝试float,发现没问题.然后就继续尝试double,我擦.直接数据就丢失了呀..
-好吧..那么现在问题就便成了更简单的一个问题.
-使用NumberUtils.createNumber 的bug.在bug issue里,有人提到.这个bug,apache官方已知.好的. https://issues.apache.org/jira/browse/LANG-693 然后在这里有官方的一次修复,修复记录在这里.3.2版本已经修复. http://svn.apache.org/viewvc?view=revision&amp;revision=1484263 可以看到是对小数部分的长度进行了判断.如果小于7位,就用float转换,如果大于7,小于16,就用double,如果还大,就用BigDecimal.
-n = org.apache.commons.lang3.math.NumberUtils.createNumber(&#34;3.14159265358&#34;); System.out.println(&#34;lang3_createNumber_3.14159265358----&gt;&#34; + n + &#34;-&gt;精度正常&#34;); 于是我继续debug,看common-lang3的修复情况,好像确实是修复了.但是对于我出现的问题1.6264583.33 这个数字,还是出现了精度丢失,因为这里小数部分小于7位,所以尝试使用float转换,直接丢失精度
-修复不完善..
-于是提个bug :https://issues.apache.org/jira/browse/LANG-1187 等回复.
-继续.公司内部一般使用fastjson,那么如果我使用fastjson,有问题吗? 发现没有问题.
-Object o = com.alibaba.fastjson.JSONObject.parse(&#34;3.14159265358&#34;); System.out.println(&#34;fastjson_createNumber_3.14159265358----&gt;&#34; + o + &#34;-&gt;精度正常&#34;); o = com.alibaba.fastjson.JSONObject.parse(&#34;6264583.33&#34;); System.out.println(&#34;fastjson_createNumber_6264583.33----&gt;&#34; + o + &#34;-&gt;精度正常&#34;); 可以看到,这里做转换的时候传递了一个是否是bigdecimal的标识.
-                  <a href="https://leizhiyuan.github.io/2015/11/25/json-lib%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%B2%BE%E5%BA%A6%E4%B8%A2%E5%A4%B1%E9%97%AE%E9%A2%98/" class="post-read-more">[Read More]</a>
                 
               </div>
 
@@ -906,7 +853,7 @@ Object o = com.alibaba.fastjson.JSONObject.parse(&#34;3.14159265358&#34;); Syste
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

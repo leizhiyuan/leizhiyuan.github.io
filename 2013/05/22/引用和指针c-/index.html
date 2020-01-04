@@ -11,19 +11,46 @@
   <meta property="og:title" content="引用和指针(C&#43;&#43;)" />
   <meta name="twitter:title" content="引用和指针(C&#43;&#43;)" />
   <meta name="description" content="今天在整理收藏夹的时候，又看到了这两篇非常不错的文章，关于指针和引用的，我就不翻译了，文章很简单，不过把其中我觉得很有意思的两部分结合我的理解希望说的更清楚,假定你读这篇文章之前已经知道指针，但是不是很清楚其中的部分。
-首先是关于指针的一个直观的一个认识. #include &lt;iostream&gt;
-int main() { using namespace std;
-// 声明并初始化指针. unsigned short int * pPointer = 0; // 定义一个unsigned short int 变量 值为35698 unsigned short int twoInt = 35698; // 定义一个unsigned short int 变量 值为 77 unsigned short int oneInt = 77; // 使用&amp;操作符将twoInt的地址赋给指针 pPointer = &amp;twoInt; // pPointer 现在的值就是twoInt的地址了
-// 打印 cout &lt;&lt; &ldquo;pPointer的内存地址:\t\t&rdquo; &lt;&lt; &amp;pPointer &lt;&lt; endl; cout &lt;&lt; &ldquo;oneInt的内存地址:\t&rdquo; &lt;&lt; &amp;oneInt &lt;&lt; &ldquo;\t整数值:\t&rdquo; &lt;&lt; oneInt &lt;&lt; endl; cout &lt;&lt; &ldquo;twoInt的内存地址:\t&rdquo; &lt;&lt; &amp;twoInt &lt;&lt; &ldquo;\t整数值:\t&rdquo; &lt;&lt; twoInt &lt;&lt; endl; cout &lt;&lt; &ldquo;pPointer所指向的地址(也就是pPoint的值):\t&rdquo; &lt;&lt; pPointer &lt;&lt; &ldquo;\t整数值:\t&rdquo; &lt;&lt; *pPointer &lt;&lt; endl;">
+首先是关于指针的一个直观的一个认识.
+上面这段代码，声明了一个指针，和两个整数，指针指向第一个整数，然后输出结果（每个人的输出结果不一样）是：
+
+这张图是这几个变量的内存分布图，上面一排是内存地址编号，正对我们的是该处的值
+指针pPointer这个变量从最左边0xbff43314这个内存位置开始，占用了四个字节，这个一个指针占四个字节，大家都知道的，这个变量的值是一个地址，也就是他的指向地址。
+pPointer 所指向的地址呢，是一个short int 类型的值所在的位置，在这里就是我们的twoint，twoint在内存中呢，是从0xbff4331a开始的，也就是说，我们的pPointer指向了twoint所在的地址，
+注意，看一下左边四个方块前面的二进制数，转换成16进制就是0xbff4331a了
+因此，取指针所指向的值就是35698了。指针本身的值则是0xbff4331a，指针所在的位置是0xbff43314。
+参考文章：C&#43;&#43; : Understanding pointers
+ 另一个呢是关于引用的实现原理
+大家都知道，引用就是别名，比如下面这段代码
+输出结果肯定一目了然，其中的原理想过没
+其实，引用和指针的工作原理类似，引用变量存储了其引用变量的地址，看图
+
+ refNumber这个引用变量在内存中的值就是number这个被引用变量的地址.但和指针不同的是，引用是对一个地址的命名常量，因此，必须在声明引用的时候初始化。并且取值的时候，也不需要像指针一样加*，而是当作一个普通变量，直接用就行了。
+参考文章：Pointers, References and Dynamic Memory Allocation
+  ">
   <meta property="og:description" content="今天在整理收藏夹的时候，又看到了这两篇非常不错的文章，关于指针和引用的，我就不翻译了，文章很简单，不过把其中我觉得很有意思的两部分结合我的理解希望说的更清楚,假定你读这篇文章之前已经知道指针，但是不是很清楚其中的部分。
-首先是关于指针的一个直观的一个认识. #include &lt;iostream&gt;
-int main() { using namespace std;
-// 声明并初始化指针. unsigned short int * pPointer = 0; // 定义一个unsigned short int 变量 值为35698 unsigned short int twoInt = 35698; // 定义一个unsigned short int 变量 值为 77 unsigned short int oneInt = 77; // 使用&amp;操作符将twoInt的地址赋给指针 pPointer = &amp;twoInt; // pPointer 现在的值就是twoInt的地址了
-// 打印 cout &lt;&lt; &ldquo;pPointer的内存地址:\t\t&rdquo; &lt;&lt; &amp;pPointer &lt;&lt; endl; cout &lt;&lt; &ldquo;oneInt的内存地址:\t&rdquo; &lt;&lt; &amp;oneInt &lt;&lt; &ldquo;\t整数值:\t&rdquo; &lt;&lt; oneInt &lt;&lt; endl; cout &lt;&lt; &ldquo;twoInt的内存地址:\t&rdquo; &lt;&lt; &amp;twoInt &lt;&lt; &ldquo;\t整数值:\t&rdquo; &lt;&lt; twoInt &lt;&lt; endl; cout &lt;&lt; &ldquo;pPointer所指向的地址(也就是pPoint的值):\t&rdquo; &lt;&lt; pPointer &lt;&lt; &ldquo;\t整数值:\t&rdquo; &lt;&lt; *pPointer &lt;&lt; endl;">
+首先是关于指针的一个直观的一个认识.
+上面这段代码，声明了一个指针，和两个整数，指针指向第一个整数，然后输出结果（每个人的输出结果不一样）是：
+
+这张图是这几个变量的内存分布图，上面一排是内存地址编号，正对我们的是该处的值
+指针pPointer这个变量从最左边0xbff43314这个内存位置开始，占用了四个字节，这个一个指针占四个字节，大家都知道的，这个变量的值是一个地址，也就是他的指向地址。
+pPointer 所指向的地址呢，是一个short int 类型的值所在的位置，在这里就是我们的twoint，twoint在内存中呢，是从0xbff4331a开始的，也就是说，我们的pPointer指向了twoint所在的地址，
+注意，看一下左边四个方块前面的二进制数，转换成16进制就是0xbff4331a了
+因此，取指针所指向的值就是35698了。指针本身的值则是0xbff4331a，指针所在的位置是0xbff43314。
+参考文章：C&#43;&#43; : Understanding pointers
+ 另一个呢是关于引用的实现原理
+大家都知道，引用就是别名，比如下面这段代码
+输出结果肯定一目了然，其中的原理想过没
+其实，引用和指针的工作原理类似，引用变量存储了其引用变量的地址，看图
+
+ refNumber这个引用变量在内存中的值就是number这个被引用变量的地址.但和指针不同的是，引用是对一个地址的命名常量，因此，必须在声明引用的时候初始化。并且取值的时候，也不需要像指针一样加*，而是当作一个普通变量，直接用就行了。
+参考文章：Pointers, References and Dynamic Memory Allocation
+  ">
   <meta name="twitter:description" content="今天在整理收藏夹的时候，又看到了这两篇非常不错的文章，关于指针和引用的，我就不翻译了，文章很简单，不过把其中我觉得很有意思的两部分结合我的理解希望说的更清楚,假定你读这篇文章之前已经知道指针，但是不是很清楚其中的部分。
-首先是关于指针的一个直观的一个认识. #include &lt;iostream&gt;
-int main() { using namespace std;
-// 声明并初始化指 …">
+首先是关于指针的一个直观的一个认识.
+上面这段代码，声明了一个指针，和两个整数，指针指向第一个整数，然后输出结果（每个人的输出结果不一样）是：
+
+这张图是这几个变量的内存分布图，上 …">
   <meta name="author" content="bystander"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -72,9 +99,9 @@ int main() { using namespace std;
     "name" : "bystander"
   },
   "headline": "引用和指针(C\x2b\x2b)",
-  "description" : "今天在整理收藏夹的时候，又看到了这两篇非常不错的文章，关于指针和引用的，我就不翻译了，文章很简单，不过把其中我觉得很有意思的两部分结合我的理解希望说的更清楚,假定你读这篇文章之前已经知道指针，但是不是很清楚其中的部分。\n首先是关于指针的一个直观的一个认识. #include \x26lt;iostream\x26gt;\nint main() { using namespace std;\n\/\/ 声明并初始化指针. unsigned short int * pPointer = 0; \/\/ 定义一个unsigned short int 变量 值为35698 unsigned short int twoInt = 35698; \/\/ 定义一个unsigned short int 变量 值为 77 unsigned short int oneInt = 77; \/\/ 使用\x26amp;操作符将twoInt的地址赋给指针 pPointer = \x26amp;twoInt; \/\/ pPointer 现在的值就是twoInt的地址了\n\/\/ 打印 cout \x26lt;\x26lt; \x26ldquo;pPointer的内存地址:\\t\\t\x26rdquo; \x26lt;\x26lt; \x26amp;pPointer \x26lt;\x26lt; endl; cout \x26lt;\x26lt; \x26ldquo;oneInt的内存地址:\\t\x26rdquo; \x26lt;\x26lt; \x26amp;oneInt \x26lt;\x26lt; \x26ldquo;\\t整数值:\\t\x26rdquo; \x26lt;\x26lt; oneInt \x26lt;\x26lt; endl; cout \x26lt;\x26lt; \x26ldquo;twoInt的内存地址:\\t\x26rdquo; \x26lt;\x26lt; \x26amp;twoInt \x26lt;\x26lt; \x26ldquo;\\t整数值:\\t\x26rdquo; \x26lt;\x26lt; twoInt \x26lt;\x26lt; endl; cout \x26lt;\x26lt; \x26ldquo;pPointer所指向的地址(也就是pPoint的值):\\t\x26rdquo; \x26lt;\x26lt; pPointer \x26lt;\x26lt; \x26ldquo;\\t整数值:\\t\x26rdquo; \x26lt;\x26lt; *pPointer \x26lt;\x26lt; endl;",
+  "description" : "今天在整理收藏夹的时候，又看到了这两篇非常不错的文章，关于指针和引用的，我就不翻译了，文章很简单，不过把其中我觉得很有意思的两部分结合我的理解希望说的更清楚,假定你读这篇文章之前已经知道指针，但是不是很清楚其中的部分。\n首先是关于指针的一个直观的一个认识.\n上面这段代码，声明了一个指针，和两个整数，指针指向第一个整数，然后输出结果（每个人的输出结果不一样）是：\n\n这张图是这几个变量的内存分布图，上面一排是内存地址编号，正对我们的是该处的值\n指针pPointer这个变量从最左边0xbff43314这个内存位置开始，占用了四个字节，这个一个指针占四个字节，大家都知道的，这个变量的值是一个地址，也就是他的指向地址。\npPointer 所指向的地址呢，是一个short int 类型的值所在的位置，在这里就是我们的twoint，twoint在内存中呢，是从0xbff4331a开始的，也就是说，我们的pPointer指向了twoint所在的地址，\n注意，看一下左边四个方块前面的二进制数，转换成16进制就是0xbff4331a了\n因此，取指针所指向的值就是35698了。指针本身的值则是0xbff4331a，指针所在的位置是0xbff43314。\n参考文章：C\x2b\x2b : Understanding pointers\n 另一个呢是关于引用的实现原理\n大家都知道，引用就是别名，比如下面这段代码\n输出结果肯定一目了然，其中的原理想过没\n其实，引用和指针的工作原理类似，引用变量存储了其引用变量的地址，看图\n\n refNumber这个引用变量在内存中的值就是number这个被引用变量的地址.但和指针不同的是，引用是对一个地址的命名常量，因此，必须在声明引用的时候初始化。并且取值的时候，也不需要像指针一样加*，而是当作一个普通变量，直接用就行了。\n参考文章：Pointers, References and Dynamic Memory Allocation\n  ",
   "inLanguage" : "en",
-  "wordCount":  214 ,
+  "wordCount":  26 ,
   "datePublished" : "2013-05-22T16:16:24",
   "dateModified" : "2013-05-22T16:16:24",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -95,10 +122,23 @@ int main() { using namespace std;
 
 <meta property="og:title" content="引用和指针(C&#43;&#43;)" />
 <meta property="og:description" content="今天在整理收藏夹的时候，又看到了这两篇非常不错的文章，关于指针和引用的，我就不翻译了，文章很简单，不过把其中我觉得很有意思的两部分结合我的理解希望说的更清楚,假定你读这篇文章之前已经知道指针，但是不是很清楚其中的部分。
-首先是关于指针的一个直观的一个认识. #include &lt;iostream&gt;
-int main() { using namespace std;
-// 声明并初始化指针. unsigned short int * pPointer = 0; // 定义一个unsigned short int 变量 值为35698 unsigned short int twoInt = 35698; // 定义一个unsigned short int 变量 值为 77 unsigned short int oneInt = 77; // 使用&amp;操作符将twoInt的地址赋给指针 pPointer = &amp;twoInt; // pPointer 现在的值就是twoInt的地址了
-// 打印 cout &lt;&lt; &ldquo;pPointer的内存地址:\t\t&rdquo; &lt;&lt; &amp;pPointer &lt;&lt; endl; cout &lt;&lt; &ldquo;oneInt的内存地址:\t&rdquo; &lt;&lt; &amp;oneInt &lt;&lt; &ldquo;\t整数值:\t&rdquo; &lt;&lt; oneInt &lt;&lt; endl; cout &lt;&lt; &ldquo;twoInt的内存地址:\t&rdquo; &lt;&lt; &amp;twoInt &lt;&lt; &ldquo;\t整数值:\t&rdquo; &lt;&lt; twoInt &lt;&lt; endl; cout &lt;&lt; &ldquo;pPointer所指向的地址(也就是pPoint的值):\t&rdquo; &lt;&lt; pPointer &lt;&lt; &ldquo;\t整数值:\t&rdquo; &lt;&lt; *pPointer &lt;&lt; endl;">
+首先是关于指针的一个直观的一个认识.
+上面这段代码，声明了一个指针，和两个整数，指针指向第一个整数，然后输出结果（每个人的输出结果不一样）是：
+
+这张图是这几个变量的内存分布图，上面一排是内存地址编号，正对我们的是该处的值
+指针pPointer这个变量从最左边0xbff43314这个内存位置开始，占用了四个字节，这个一个指针占四个字节，大家都知道的，这个变量的值是一个地址，也就是他的指向地址。
+pPointer 所指向的地址呢，是一个short int 类型的值所在的位置，在这里就是我们的twoint，twoint在内存中呢，是从0xbff4331a开始的，也就是说，我们的pPointer指向了twoint所在的地址，
+注意，看一下左边四个方块前面的二进制数，转换成16进制就是0xbff4331a了
+因此，取指针所指向的值就是35698了。指针本身的值则是0xbff4331a，指针所在的位置是0xbff43314。
+参考文章：C&#43;&#43; : Understanding pointers
+ 另一个呢是关于引用的实现原理
+大家都知道，引用就是别名，比如下面这段代码
+输出结果肯定一目了然，其中的原理想过没
+其实，引用和指针的工作原理类似，引用变量存储了其引用变量的地址，看图
+
+ refNumber这个引用变量在内存中的值就是number这个被引用变量的地址.但和指针不同的是，引用是对一个地址的命名常量，因此，必须在声明引用的时候初始化。并且取值的时候，也不需要像指针一样加*，而是当作一个普通变量，直接用就行了。
+参考文章：Pointers, References and Dynamic Memory Allocation
+  ">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2013/05/22/%E5%BC%95%E7%94%A8%E5%92%8C%E6%8C%87%E9%92%88c-/" />
 <meta property="og:type" content="website" />
@@ -106,9 +146,10 @@ int main() { using namespace std;
 
   <meta name="twitter:title" content="引用和指针(C&#43;&#43;)" />
   <meta name="twitter:description" content="今天在整理收藏夹的时候，又看到了这两篇非常不错的文章，关于指针和引用的，我就不翻译了，文章很简单，不过把其中我觉得很有意思的两部分结合我的理解希望说的更清楚,假定你读这篇文章之前已经知道指针，但是不是很清楚其中的部分。
-首先是关于指针的一个直观的一个认识. #include &lt;iostream&gt;
-int main() { using namespace std;
-// 声明并初始化指 …">
+首先是关于指针的一个直观的一个认识.
+上面这段代码，声明了一个指针，和两个整数，指针指向第一个整数，然后输出结果（每个人的输出结果不一样）是：
+
+这张图是这几个变量的内存分布图，上 …">
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -119,7 +160,7 @@ int main() { using namespace std;
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -277,7 +318,7 @@ int main() { using namespace std;
   <i class="fas fa-calendar"></i>&nbsp;Posted on May 22, 2013
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -304,90 +345,32 @@ int main() { using namespace std;
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <p>今天在整理收藏夹的时候，又看到了这两篇非常不错的文章，关于指针和引用的，我就不翻译了，文章很简单，不过把其中我觉得很有意思的两部分结合我的理解希望说的更清楚,假定你读这篇文章之前已经知道指针，但是不是很清楚其中的部分。</p>
-
-<p>首先是关于指针的一个直观的一个认识.
-<pre class="lang:default decode:true">#include &lt;iostream&gt;</p>
-
-<p>int main()
-{
-  using namespace std;</p>
-
-<p>// 声明并初始化指针.
-  unsigned short int * pPointer = 0;
-// 定义一个unsigned short int 变量 值为35698
-  unsigned short int twoInt = 35698;
-// 定义一个unsigned short int 变量 值为 77
-  unsigned short int oneInt = 77;
-// 使用&amp;操作符将twoInt的地址赋给指针
-  pPointer = &amp;twoInt;
-// pPointer 现在的值就是twoInt的地址了</p>
-
-<p>// 打印
-  cout &lt;&lt; &ldquo;pPointer的内存地址:\t\t&rdquo; &lt;&lt; &amp;pPointer &lt;&lt; endl;
-  cout &lt;&lt; &ldquo;oneInt的内存地址:\t&rdquo; &lt;&lt; &amp;oneInt &lt;&lt; &ldquo;\t整数值:\t&rdquo; &lt;&lt; oneInt &lt;&lt; endl;
-  cout &lt;&lt; &ldquo;twoInt的内存地址:\t&rdquo; &lt;&lt; &amp;twoInt &lt;&lt; &ldquo;\t整数值:\t&rdquo; &lt;&lt; twoInt &lt;&lt; endl;
-  cout &lt;&lt; &ldquo;pPointer所指向的地址(也就是pPoint的值):\t&rdquo; &lt;&lt; pPointer &lt;&lt; &ldquo;\t整数值:\t&rdquo; &lt;&lt; *pPointer &lt;&lt; endl;</p>
-
-<p>return 0;
-}</pre>
-上面这段代码，声明了一个指针，和两个整数，指针指向第一个整数，然后输出结果（每个人的输出结果不一样）是：
-<pre class="lang:default decode:true">pPointer的内存地址:                   0xbff43314
-oneInt的内存地址:                     0xbff43318       整数值:  77
-twoInt的内存地址:                     0xbff4331a       整数值:  35698
-pPointer所指向的地址(也就是pPoint的值): 0xbff4331a       整数值:  35698</pre>
-<a href="http://leaverimage.b0.upaiyun.com/36294_o.png"><img src="/images/ef97273d51f6843eb062463a3091a8edb177b30e.png" alt="" /></a></p>
-
+<p>首先是关于指针的一个直观的一个认识.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>上面这段代码，声明了一个指针，和两个整数，指针指向第一个整数，然后输出结果（每个人的输出结果不一样）是：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><a href="http://leaverimage.b0.upaiyun.com/36294_o.png"><img src="/images/ef97273d51f6843eb062463a3091a8edb177b30e.png" alt=""></a></p>
 <p>这张图是这几个变量的内存分布图，上面一排是内存地址编号，正对我们的是该处的值</p>
-
 <p>指针pPointer这个变量从最左边0xbff43314这个内存位置开始，占用了四个字节，这个一个指针占四个字节，大家都知道的，这个变量的值是一个地址，也就是他的指向地址。</p>
-
 <p>pPointer 所指向的地址呢，是一个short int 类型的值所在的位置，在这里就是我们的twoint，twoint在内存中呢，是从0xbff4331a开始的，也就是说，我们的pPointer指向了twoint所在的地址，</p>
-
 <p>注意，看一下左边四个方块前面的二进制数，转换成16进制就是0xbff4331a了</p>
-
 <p>因此，取指针所指向的值就是35698了。指针本身的值则是0xbff4331a，指针所在的位置是0xbff43314。</p>
-
 <p>参考文章：<a href="http://linuxconfig.org/c-understanding-pointers">C++ : Understanding pointers</a></p>
-
-<p>&nbsp;</p>
-
+<p> </p>
 <p>另一个呢是关于引用的实现原理</p>
-
-<p>大家都知道，引用就是别名，比如下面这段代码
-<pre class="lang:default decode:true">#include &lt;iostream&gt;
-using namespace std;</p>
-
-<p>int main() {
-   int number = 88;          // 定义一个int变量
-   int &amp; refNumber = number; // 声明并初始化一个引用
-                             // 现在他们都表示了同一个值</p>
-
-<p>cout &lt;&lt; number &lt;&lt; endl;    // 打印number的值 (88)
-   cout &lt;&lt; refNumber &lt;&lt; endl; // 打印引用的值 (88)</p>
-
-<p>refNumber = 99;            // 给refNumber重新赋一个值
-   cout &lt;&lt; refNumber &lt;&lt; endl;
-   cout &lt;&lt; number &lt;&lt; endl;    // number的值也就变成了 (99)</p>
-
-<p>number = 55;               // 重新给number赋一个值
-   cout &lt;&lt; number &lt;&lt; endl;
-   cout &lt;&lt; refNumber &lt;&lt; endl; // refNumber也就变成了(55)
-}</pre>
-输出结果肯定一目了然，其中的原理想过没</p>
-
+<p>大家都知道，引用就是别名，比如下面这段代码</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>输出结果肯定一目了然，其中的原理想过没</p>
 <p>其实，引用和指针的工作原理类似，引用变量存储了其引用变量的地址，看图</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/36295_o.png"><img src="/images/4bfa9483e34045214dcefa4a6a383a8d189cc7fa.png" alt="" /></a></p>
-
-<p>&nbsp;</p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/36295_o.png"><img src="/images/4bfa9483e34045214dcefa4a6a383a8d189cc7fa.png" alt=""></a></p>
+<p> </p>
 <p>refNumber这个引用变量在内存中的值就是number这个被引用变量的地址.但和指针不同的是，引用是对一个地址的命名常量，因此，必须在声明引用的时候初始化。并且取值的时候，也不需要像指针一样加*，而是当作一个普通变量，直接用就行了。</p>
-
 <p>参考文章：<a href="http://www.ntu.edu.sg/home/ehchua/programming/cpp/cp4_PointerReference.html">Pointers, References and Dynamic Memory Allocation</a></p>
-
-<p>&nbsp;</p>
-
-<p>&nbsp;</p>
+<p> </p>
+<p> </p>
 
 
         
@@ -503,7 +486,7 @@ using namespace std;</p>
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

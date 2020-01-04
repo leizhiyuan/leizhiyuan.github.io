@@ -48,7 +48,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -224,6 +224,56 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2015/09/07/kafka%E6%96%87%E7%AB%A0%E6%8E%A8%E8%8D%90/">
+                <h2 class="post-title">kafka文章推荐</h2>
+                
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on September 7, 2015
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  <p>本文主要分享看到的好的关于kafka的文章.后续看到持续更新</p>
+<ol>
+<li><a href="http://www.infoq.com/cn/articles/kafka-analysis-part-1">Kafka剖析（一）：Kafka背景及架构介绍</a></li>
+<li><a href="http://www.infoq.com/cn/articles/kafka-analysis-part-2">Kafka设计解析（二）：Kafka High Availability （上）</a></li>
+<li><a href="http://www.infoq.com/cn/articles/kafka-analysis-part-3">Kafka设计解析（三）：Kafka High Availability （下）</a></li>
+<li><a href="http://www.infoq.com/cn/articles/kafka-analysis-part-4">Kafka设计解析（四）：Kafka Consumer解析</a></li>
+</ol>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2015/09/05/kafka%E5%88%86%E5%B8%83%E5%BC%8F%E9%83%A8%E7%BD%B2%E4%B8%8E%E9%AA%8C%E8%AF%81/">
                 <h2 class="post-title">kafka分布式部署与验证</h2>
                 
@@ -260,7 +310,8 @@ kafka集群(cluster) 一台机器不够,那就多搞几台,首先,启动zookeepe
 其他的就不用解释了.这里选出了2是leader,也就是说2这个节点会给消费者提供服务.
 然后我们测试一条信息. kafka-console-producer.bat --broker-list localhost:7777,localhost:8888,localhost:9999 --topic replicationtest 上面的7777是server1.properties 中设置的.根据个人情况.改改.然后在控制台发发消息.
 然后消费一下. kafka-console-consumer.bat --zookeeper localhost:2181 --topic replicationtest 这里的2181是zookeeper的端口,不用改. 然后.我们开始关掉一个broker,在3的控制台里CTRL,C.然后是否终止操作,输入Y. 再发一条消息 一切正常.我们看一下集群信息 发现Isr中存活的机器少了3.因为3挂了. 然后我们关掉broker2.这时候,会触发新的leader选举.期望值1变成leader,再发一条消息 可以看到生产者发消息过程中,产生了异常,因为和2的连接断开了.但是注意,消息并没有丢,因为触发了新的选举.可以看到,消费者还是接到了正常的消息.集群情况如下 至此,kafka的broker集群测试完毕,那么剩下的问题来了.消费者启动的时候连接的是zookeeper的地址,如果这台zookeeper挂了呢. 那么我们需要zookeeper集群部署.
-zookeeper集群 这就包括两部分. 1.
+zookeeper集群 这就包括两部分.
+ 是broker本来要能知道这些zookeeper集群的地址,当一个宕机的时候,才会切换到另一个zookeeper 消费者要知道这些zookeeper的地址,理由同上.
                   <a href="https://leizhiyuan.github.io/2015/09/05/kafka%E5%88%86%E5%B8%83%E5%BC%8F%E9%83%A8%E7%BD%B2%E4%B8%8E%E9%AA%8C%E8%AF%81/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -304,43 +355,28 @@ zookeeper集群 这就包括两部分. 1.
 
               <div class="post-entry">
                 
-                  
-
-<p>在<a href="http://leaver.me/2015/09/03/kafka%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/">kafka快速上手</a>中,留下的问题是关于partition和offset,这篇文章主要解释这个.</p>
-
-<h2 id="log机制">Log机制</h2>
-
+                  <p>在<a href="http://leaver.me/2015/09/03/kafka%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/">kafka快速上手</a>中,留下的问题是关于partition和offset,这篇文章主要解释这个.</p>
+<h2 id="log">Log机制</h2>
 <p>说到分区,就要说kafka对消息的存储.在<a href="http://kafka.apache.org/documentation.html#replication">官方文档</a>中.
-<img src="/images/kafka_partition_log.jpg" alt="分区读写日志图" />
+<img src="/images/kafka_partition_log.jpg" alt="分区读写日志图">
 首先,kafka是通过log(日志)来记录消息发布的.每当产生一个消息,kafka会记录到本地的log文件中,这个log和我们平时的log有一定的区别.这里可以参考一下<a href="http://www.cnblogs.com/foreach-break/p/notes_about_distributed_system_and_The_log.html">The Log</a>,不多解释.</p>
-
 <p>这个log文件默认的位置在config/server.properties中指定的.默认的位置是log.dirs=/tmp/kafka-logs,linux不用说,windows的话就在你对应磁盘的根目录下.我这里是D盘.</p>
-
 <p>#分区partition#
 kafka是为分布式环境设计的,因此如果日志文件,其实也可以理解成消息数据库,放在同一个地方,那么必然会带来可用性的下降,一挂全挂,如果全量拷贝到所有的机器上,那么数据又存在过多的冗余,而且由于每台机器的磁盘大小是有限的,所以即使有再多的机器,可处理的消息还是被磁盘所限制,无法超越当前磁盘大小.因此有了partition的概念.</p>
-
 <p>kafka对消息进行一定的计算,通过hash来进行分区.这样,就把一份log文件分成了多份.如上面的分区读写日志图,分成多份以后,在单台broker上,比如快速上手中,如果新建topic的时候,我们选择了<code>--replication-factor 1 --partitions 2</code>,那么在log目录里,我们会看到
 test-0目录和test-1目录.就是两个分区了.</p>
-
 <p>你可能会想,这特么没啥区别呀.注意,当有了多个broker之后,这个意义就存在了.这里上一张图,原文在参考链接里有
-<img src="/images/kafka_partition_storage.jpg" alt="kafka分布式分区存储" />
+<img src="/images/kafka_partition_storage.jpg" alt="kafka分布式分区存储">
 这是一个topic包含4个Partition，2 Replication(拷贝),也就是说全部的消息被放在了4个分区存储,为了高可用,将4个分区做了2份冗余,然后根据<a href="http://blog.csdn.net/lizhitao/article/details/41778193">分配算法</a>.将总共8份数据,分配到broker集群上.</p>
-
 <p>结果就是每个broker上存储的数据比全量数据要少,但每份数据都有冗余,这样,一旦一台机器宕机,并不影响使用.比如图中的Broker1,宕机了.那么剩下的三台broker依然保留了全量的分区数据.所以还能使用,如果再宕机一台,那么数据不完整了.当然你可以设置更多的冗余,比如设置了冗余是4,那么每台机器就有了0123完整的数据,宕机几台都行.需要在存储占用和高可用之间做衡量.
 至于宕机后,zookeeper会选出新的partition leader.来提供服务.这个等下篇文章</p>
-
 <p>#偏移offset#</p>
-
 <p>上一段说了分区,分区就是一个有序的,不可变的消息队列.新来的commit log持续往后面加数据.这些消息被分配了一个下标(或者偏移),就是offset,用来定位这一条消息.</p>
-
 <p>消费者消费到了哪条消息,是保持在消费者这一端的.消息者也可以控制,消费者可以在本地保存最后消息的offset,并间歇性的向zookeeper注册offset.也可以重置offset</p>
-
 <p>#如何通过offset算出分区#</p>
-
 <p>其实partition存储的时候,又分成了多个segment(段),然后通过一个index,索引,来标识第几段.这里先可以去看一下本地log目录的分区文件夹.
 在我这里,test-0,这个分区里面,会有一个index文件和一个log文件,
-<img src="/images/kafka_index_log.jpg" alt="index和log" /></p>
-
+<img src="/images/kafka_index_log.jpg" alt="index和log"></p>
 <p>对于某个指定的分区,假设每5个消息,作为一个段大小,当产生了10条消息的情况想,目前有会得到(只是解释)
 0.index (表示这里index是对0-4做的索引)
 5.index (表示这里index是对5-9做的索引)
@@ -350,11 +386,8 @@ test-0目录和test-1目录.就是两个分区了.</p>
 5.log
 10.log
 ,当消费者需要读取offset=8的时候,首先kafka对index文件列表进行二分查找,可以算出.应该是在5.index对应的log文件中,然后对对应的5.log文件,进行顺序查找,5-&gt;6-&gt;7-&gt;8,直到顺序找到8就好了.</p>
-
 <p>具体的算法参看<a href="http://tech.meituan.com/kafka-fs-design-theory.html">美团的文章</a>好了</p>
-
-<h2 id="更多文档">更多文档</h2>
-
+<h2 id="heading">更多文档</h2>
 <ol>
 <li><a href="http://kafka.apache.org/documentation.html">官方文档</a></li>
 <li><a href="http://tech.meituan.com/kafka-fs-design-theory.html">Kafka文件存储机制那些事</a></li>
@@ -403,65 +436,44 @@ test-0目录和test-1目录.就是两个分区了.</p>
 
               <div class="post-entry">
                 
-                  
-
-<h2 id="简单介绍">简单介绍</h2>
-
+                  <h2 id="heading">简单介绍</h2>
 <p>kafka是一个分布式消息中间件,在kafka中主要涉及到四个基本名词:
 <strong>Topic</strong>
 Kafka将消息种子分门别类， 每一类的消息称之为一个主题(Topic).</p>
-
 <p><strong>Producer</strong>
 发布消息的对象称之为主题生产者.</p>
-
 <p><strong>Consumer</strong>
 订阅消息并处理消息的对象称之为主题消费者</p>
-
 <p><strong>Broker</strong>
 已发布的消息保存在一组服务器中，称之为Kafka集群。集群中的每一个服务器称为一个代理(Broker). 消费者可以订阅一个或多个主题，并从Broker拉数据(注意是拉,不是pull,)，从而消费这些已发布的消息。</p>
-
-<h2 id="安装-以windows为例">安装(以windows为例)</h2>
-
+<h2 id="windows">安装(以windows为例)</h2>
 <p>安装非常简单,从这里<a href="http://kafka.apache.org/downloads.html">下载</a>,下载完成后解压到一个目录就好了.</p>
-
-<h2 id="简单使用">简单使用</h2>
-
+<h2 id="heading-1">简单使用</h2>
 <p>首先使用kafka的一个流程就是生产者生产消息,发送给kafka集群,然后消费者从kafka集群中获取消息进行消费.
 要启动kafka需要先启动zookeeper,因为ZooKeeper是通过冗余服务实现高可用性的,也就是说在分布式环境中,如何保证kafka集群的高可用.zookeeper会来做leader选取,当消费者准备发消息时,会从zookeeper中获取一个可用的消息服务器地址,然后连接进行发送,保证党集群内有服务器宕机并不影响整体的使用.
-<img src="/images/kafka_transfer.jpg" alt="来自slideshare的一张图" /></p>
-
+<img src="/images/kafka_transfer.jpg" alt="来自slideshare的一张图"></p>
 <p>1.启动自带的简易zookeeper.
 进行解压目录的bin/windows目录
 <code>zookeeper-server-start.bat ../../config/zookeeper.properties</code></p>
-
 <p>执行命令启动,从zookeeper.properties中会看到.zookeeper会开发一个clientPort=2181,2181的端口给消费者使用,其实也可以给生产者使用,但是在0.8.0版本后，producer不再通过zookeeper连接broker, 而是通过brokerlist（192.168.0.1:9092,192.168.0.2:9092,192.168.0.3:9092配置,直接和broker连接，只要能和一个broker连接上就能够获取到集群中其他broker上的信息,绕过了zookeeper.</p>
-
 <p>2.启动kafka服务
 <code>kafka-server-start.bat ../../config/server.properties</code> 执行启动,另一个命令行窗口,同样的.查看配置问题,会知道kafka的服务会在port=9092 ,9092端口打开.</p>
-
 <p>3.注册一个topic
- <code>kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test</code>
- 这个命令中,create表示创建.zookeeper 和后面的地址表示kafka使用本机2181端口开放的zookeeper保持高可用.replication-factor表示消息只冗余一份,目前我们只有一个kafka机器,broker,partitions 表示一份分区,分区是kafka的另一个概念,大致是说,同一topic内部的消息按照一定的key和算法被分区(partition)存储在不同的位置上，这个下次写好了.这样已经在kafka注册了一个名为test的消息topic了.</p>
-
+<code>kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test</code>
+这个命令中,create表示创建.zookeeper 和后面的地址表示kafka使用本机2181端口开放的zookeeper保持高可用.replication-factor表示消息只冗余一份,目前我们只有一个kafka机器,broker,partitions 表示一份分区,分区是kafka的另一个概念,大致是说,同一topic内部的消息按照一定的key和算法被分区(partition)存储在不同的位置上，这个下次写好了.这样已经在kafka注册了一个名为test的消息topic了.</p>
 <p>4.使用简易的控制台生产者模拟
 <code>kafka-console-producer.bat --broker-list localhost:9092 --topic test</code>
 前面说过了.新版本生产者直接通过brokerlist来连接kafka,目前只有一台,所以就一个地址,准备向test这个topic发送消息.</p>
-
 <p>5.使用简易的控制台消费者模拟
 <code>kafka-console-consumer.bat --zookeeper localhost:2181 --topic test</code>
 这个前面也说过了.消费者使用zookeeper获取可用的broker列表,然后拉去消息,并且还有一些offset同步的问题.和分区,文件存储一起的一个概念,下次写.</p>
-
 <p>6.开始生产和消费消息
 至此,已经开了四个控制台窗口了..在producer窗口里,随便打几个字,然后enter,在消费者的窗口里将会显示出来.
-<img src="/images/kafka_demo.jpg" alt="实际测试图" /></p>
-
-<h2 id="其他问题">其他问题</h2>
-
+<img src="/images/kafka_demo.jpg" alt="实际测试图"></p>
+<h2 id="heading-2">其他问题</h2>
 <p>实际可能不那么顺利,如果你启动kafka或者其他应用的时候,有错误提示,提示无法创建虚拟机vm这样的.那么修改一下对应的bat脚本.就好了
-<img src="/images/kafka_start_error.jpg" alt="启动错误" />,vm的heap申请是1G,如果你机器内存不够,改成512M,或者更小的就好了.</p>
-
-<h2 id="更多文档">更多文档</h2>
-
+<img src="/images/kafka_start_error.jpg" alt="启动错误">,vm的heap申请是1G,如果你机器内存不够,改成512M,或者更小的就好了.</p>
+<h2 id="heading-3">更多文档</h2>
 <ol>
 <li><a href="http://kafka.apache.org/documentation.html">官方文档</a></li>
 <li><a href="http://colobu.com/2014/08/06/kafka-quickstart">kafka快速入门</a></li>
@@ -510,31 +522,18 @@ Kafka将消息种子分门别类， 每一类的消息称之为一个主题(Topi
               <div class="post-entry">
                 
                   <p>一直对AngularJS很好奇,之前看过国内某在线网站的一套AngularJS教程,可惜没看懂.也没理解为了解决什么问题,只是知道是个前端JS框架.这周看到个Udemy - Learn and Understand AngularJS 这个教程.去看了一下,是收费的.强烈推荐看.无字幕,但是不难,已经看完了.讲的非常非常好.网上有别人分享的.我给个<a href="magnet:?xt=urn:btih:900a5d5f6535bcf956cba5248ffce416d150a7fc">磁力链接</a>吧.</p>
-
 <p>01 Getting Started</p>
-
 <p>02 Model, View, Whatever___</p>
-
 <p>03 Services and Dependency Injection</p>
-
 <p>04 Data Binding and Directives</p>
-
 <p>05 Single Page Applications</p>
-
 <p>06 Custom Services</p>
-
 <p>07 Custom Directives</p>
-
 <p>08 Lets Build an App in record time</p>
-
 <p>09 BONUS Lectures</p>
-
 <p>10 Getting Ready for AngularJS 2.0 in 2016</p>
-
 <p>11 Conclusion</p>
-
 <p>非常的介绍.看完之后,你会理解AngularJS解决了什么问题,他的数据绑定怎么使用,模块怎么弄,怎么写服务,怎么定义指令等等.强烈推荐.</p>
-
 <p>最好有一点js和css的基础会比较好理解.如果懂后端开发的就更好了.依赖注入这些有点基础会比较好理解.</p>
 
                 
@@ -577,48 +576,31 @@ Kafka将消息种子分门别类， 每一类的消息称之为一个主题(Topi
 
               <div class="post-entry">
                 
-                  
-
-<p>这周为啥想说这个话题呢,因为我常用的一个专门用来存储照片的<a href="https://kanbox.com/news/201508032254">酷盘要关闭了</a>,这直接导致的结果就是几十G的照片文件需要自己再下载下来,然后转到另一个地方.之后我会从以下几个方便说起.
-1. 我使用过的已经被关闭的服务
-2. 我使用过的仍然健在的服务
-3. 为什么说免费的就是最贵的
-4. 我们应该怎么做</p>
-
-<h2 id="1-我使用过的已经被关闭的服务">1. 我使用过的已经被关闭的服务</h2>
-
-<p>这个先从百度空间说起,在很久很久以前,大概是我高中的时候,很多同学开始在百度空间写文章,我当时对各种各样的小软件比较感兴趣,于是开了个百度空间,专门用来写这个东东.分享各种各样的软件.后来百度空间被个产品经理搞坏,然后<a href="http://hi.baidu.com/index.html">被关闭了.</a>  <img src="/images/baiduzone_is_down.jpg" alt="百度关闭截图" /></p>
-
+                  <p>这周为啥想说这个话题呢,因为我常用的一个专门用来存储照片的<a href="https://kanbox.com/news/201508032254">酷盘要关闭了</a>,这直接导致的结果就是几十G的照片文件需要自己再下载下来,然后转到另一个地方.之后我会从以下几个方便说起.</p>
+<ol>
+<li>我使用过的已经被关闭的服务</li>
+<li>我使用过的仍然健在的服务</li>
+<li>为什么说免费的就是最贵的</li>
+<li>我们应该怎么做</li>
+</ol>
+<h2 id="1-">1. 我使用过的已经被关闭的服务</h2>
+<p>这个先从百度空间说起,在很久很久以前,大概是我高中的时候,很多同学开始在百度空间写文章,我当时对各种各样的小软件比较感兴趣,于是开了个百度空间,专门用来写这个东东.分享各种各样的软件.后来百度空间被个产品经理搞坏,然后<a href="http://hi.baidu.com/index.html">被关闭了.</a>  <img src="/images/baiduzone_is_down.jpg" alt="百度关闭截图"></p>
 <p>由于分享各种各样的软件.需要有一个提供下载的地方,于是选择了当时很火的<a href="http://www.qiannao.com/desktop/into.html">千脑网盘</a>这个网盘当时和很多其他网盘一样,下载有收入.刚才去登陆了一下.居然还有点钱.这个网盘现在处于半死不活的状态.印象中好几年没更新了,当时推行的webOS的概念,只能说太超前,技术又不行.搞成现在这样.基本上就是个高级web页面..后来我就清掉了所有数据
-  <img src="/images/qiannao_withdraw.jpg" alt="千脑截图" /></p>
-
+<img src="/images/qiannao_withdraw.jpg" alt="千脑截图"></p>
 <p>当时个人需要保留一些小的精美的软件,于是当时我大联想推出了一个联想网盘,当时大概是500M的额度,承诺免费永久使用,结果内测期结束没过多久,先是暂停上传,然后取消了个人服务.嗯嗯.从此联想一生黑</p>
-
 <p>什么坚果云之类的我就更不说了.</p>
-
 <p>然后使用了酷盘.原因不多解释,目前他就是那个样子了.说个细节.酷盘在第一次关闭的时候没有声明中的FAQ,只有道歉,没有后续解决方案,相当差劲.后来才加上的FAQ.一旦道歉,说明对方对不起你,要坑你,这句话谁说的来着,大体是对的.</p>
-
 <p>Google Reader.这个不多说.还有云诺,这个厂商更是垃圾,我记得没用几天,就关闭了.然后CEO出来哭,说是大家要理解.
-  不要在宣传的时候说的天花乱坠,永远免费,绝不关闭,而在关闭的时候说的文艺,煽情,多么不舍,最长久的是默默的陪伴.你说的这么煽情,这么文艺不就是为了坑么.</p>
-
-<h2 id="2-我使用过的仍然健在的服务">2. 我使用过的仍然健在的服务</h2>
-
+不要在宣传的时候说的天花乱坠,永远免费,绝不关闭,而在关闭的时候说的文艺,煽情,多么不舍,最长久的是默默的陪伴.你说的这么煽情,这么文艺不就是为了坑么.</p>
+<h2 id="2-">2. 我使用过的仍然健在的服务</h2>
 <p>Dropbox,dropbox由于国内访问不畅,已经基本不使用了,但是,Dropbox服务非常长久稳定.空间不大,但是绝对良心.好用.</p>
-
 <p>Google相册,好用.智能,空间不大.前段时间无意在Google相册里发现7年前的一张照片.当时的感觉就是还是Google靠谱.好吧,其实Google也不靠谱.Google Reader的关闭就是个坑.</p>
-
 <p>印象笔记,这小伙貌似最近也顶不住的样子,国内弹购买方案的频率现在极其高.可是免费的我真的够用了..如果哪天超过了免费额度,就买收费额度.</p>
-
-<h2 id="3-为什么说免费的就是最贵的">3. 为什么说免费的就是最贵的</h2>
-
+<h2 id="3-">3. 为什么说免费的就是最贵的</h2>
 <p>免费的产品.那么使用者就是真正的产品.通过这些免费的反馈途径,免费的bug提供者,由于是免费,出现损失可以不赔偿,丢了自负,一旦关闭,使用者需要承受迁移的成本,数据丢失的风险.这个体会最深的就是科学上网了.之前一直找各种工具,各种方法,结果大部分时间耗费上找所谓稳定的那啥,想来花费的时间多看点书,写点代码,也值回来了.最后花点钱买个稳定的,有啥问题,卖方也有责任解决,大家干好自己的事情就好了.非常方便.</p>
-
-<h2 id="4-我们应该怎么做">4. 我们应该怎么做</h2>
-
+<h2 id="4-">4. 我们应该怎么做</h2>
 <p>买,买,买,任何东西,只有付费,才能享受更好的服务.才能有更稳定的服务,才能有售后支持,和赔偿,不论是科学上网,还是云端存储,还是其他任何东西.有钱的捧个钱厂,没钱的捧个小钱厂.</p>
-
 <p>在服务选择上,国外收费&gt;国外免费&gt;国内收费&gt;国内免费.</p>
-
 <p>目前计划先迁移到百度云上,同时同步到Google相册,然后看条件是不是买个主机,搞个私有云.</p>
 
                 
@@ -661,16 +643,10 @@ Kafka将消息种子分门别类， 每一类的消息称之为一个主题(Topi
 
               <div class="post-entry">
                 
-                  
-
-<p>工作过程中,有时候需要在本地执行一些简单的sql,但是不想下载太大的mysql这类客户端.恰好看到<a href="https://code.google.com/p/java-ascii-table/" title="java-ascii-table">https://code.google.com/p/java-ascii-table/</a>,完美辅助,于是写个了简单的工具.应该是支持sqlserver,oracle,和mysql的.mysql的测试了.其他的没有测试.还要继续完善.已经放在了<a href="https://github.com/leizhiyuan/sqlclient" title="sqlclient@github">github</a>上.</p>
-
+                  <p>工作过程中,有时候需要在本地执行一些简单的sql,但是不想下载太大的mysql这类客户端.恰好看到<a href="https://code.google.com/p/java-ascii-table/" title="java-ascii-table">https://code.google.com/p/java-ascii-table/</a>,完美辅助,于是写个了简单的工具.应该是支持sqlserver,oracle,和mysql的.mysql的测试了.其他的没有测试.还要继续完善.已经放在了<a href="https://github.com/leizhiyuan/sqlclient" title="sqlclient@github">github</a>上.</p>
 <p>代码很简单.就不贴了.</p>
-
-<h2 id="使用说明">使用说明</h2>
-
+<h2 id="heading">使用说明</h2>
 <p>先打包,然后<code>https://github.com/leizhiyuan/sqlclient/blob/master/README.md</code> 根据不同的情况写几个简单的bat就可以了.</p>
-
 <ol>
 <li>mysql
 <code>java -jar sqlclient.jar -u &quot;jdbc:mysql://localhost:3306/mysql&quot; -n &quot;name&quot;</code>
@@ -682,17 +658,12 @@ Kafka将消息种子分门别类， 每一类的消息称之为一个主题(Topi
 <code>java -jar sqlclient.jar -u &quot;jdbc:jtds:sqlserver://localhost:1433/sqlserver&quot;</code>
 <code>-n &quot;name&quot; -p &quot;pass&quot; -d &quot;net.sourceforge.jtds.jdbc.Driver&quot;</code></li>
 </ol>
-
-<h2 id="截图">截图</h2>
-
+<h2 id="heading-1">截图</h2>
 <p>交互式执行截图
-<img src="/images/sqlclient-interactive-screen.jpg" alt="交互式截图" /></p>
-
+<img src="/images/sqlclient-interactive-screen.jpg" alt="交互式截图"></p>
 <p>普通执行截图
-<img src="/images/sqlclient-direct-sql-screen.jpg" alt="一次执行" /></p>
-
-<h2 id="引用">引用</h2>
-
+<img src="/images/sqlclient-direct-sql-screen.jpg" alt="一次执行"></p>
+<h2 id="heading-2">引用</h2>
 <ol>
 <li><a href="https://code.google.com/p/java-ascii-table/" title="java-ascii-table">java-ascii-table项目</a></li>
 <li><a href="https://commons.apache.org/proper/commons-cli/" title="commons-cli">commons-cli命令行解析</a></li>
@@ -742,7 +713,11 @@ Kafka将消息种子分门别类， 每一类的消息称之为一个主题(Topi
                 
                   介绍 最近看到这么个工具-javOSize .官网地址,去官网看了下.发现介绍很有意思,叫做 the missing sugar for your Java cup.(你的咖啡杯中缺少的那颗糖).于是感受一下这颗糖到底甜不甜
 安装 安装非常简单,从这里下载,其实完成之后就是一个jar包.非常简单,不用配置啥的.
-简单使用 使用方法就是从先附加到一个java进程上,在linux,上我直接执行 ps aux|grep java 就能看到了.不废话,得到java进程的pid之后,运行 java -jar javosize-1.0.9.jar pid pid就是pid的号了. 然后会看到如下图的界面,表示已经附加成功了.先看看都有啥.执行ls.看到有这么几个命令.我比较单纯,刚开始以为是可执行文件.结果丢人了.看了下官方文档,才知道是目录.进入对应的目录.然后执行ls就能看到对应的信息了.ls简直不能再万能..改目录支持的所有命令通过在对应的目录执行help来查看.个人尝试觉得好的功能有.  动态修改类 进入CLASSES目录,然后通过执行 ls|grep xxx 来找到需要修改的类,然后通过vi 就可以直接编辑.编辑完成后,直接保存就会动态替换.文档里说是支持jdk1.7以上,对1.6的支持估计是不行的.没有测试.  无须重启开启jmx 直接挂载之后,执行cd REPOSITORY 然后执行就好了. exec START_JMX_SERVER 6666 拦截任意代码 可以动态添加类似Spring中的aop方法.用于打印一些调用日志,排查线上问题.进入INTERCEPTOR目录.然后通过如下的方法给某个类的某个方法添加拦截器. create TickServlet begin mypackage.Hello doGet System.out.println(&quot;Servlet invoked&quot;); 检测内存泄漏 进入 REPOSITORY 目录,执行 exec TOP_FAT_STATIC_VARIABLES 5 com.apache.*会取出某个包下面占用大小最大的5个类.会很方便找到. 自动检测性能问题 PROBLEMS 目录专业解决这种问题.进入目录后.执行ls命令.会看到这样的场景 &gt;* Concurrency &gt; Deadlocked: false &gt;* Memory &gt; High GC (&gt;2%): false
+简单使用 使用方法就是从先附加到一个java进程上,在linux,上我直接执行 ps aux|grep java  就能看到了.不废话,得到java进程的pid之后,运行 java -jar javosize-1.0.9.jar pid pid就是pid的号了. 然后会看到如下图的界面,表示已经附加成功了.先看看都有啥.执行ls.看到有这么几个命令.我比较单纯,刚开始以为是可执行文件.结果丢人了.看了下官方文档,才知道是目录.进入对应的目录.然后执行ls就能看到对应的信息了.ls简直不能再万能..改目录支持的所有命令通过在对应的目录执行help来查看.个人尝试觉得好的功能有.   动态修改类 进入CLASSES目录,然后通过执行 ls|grep xxx  来找到需要修改的类,然后通过vi 就可以直接编辑.编辑完成后,直接保存就会动态替换.文档里说是支持jdk1.7以上,对1.6的支持估计是不行的.没有测试.   无须重启开启jmx 直接挂载之后,执行cd REPOSITORY 然后执行就好了. exec START_JMX_SERVER 6666
+  拦截任意代码 可以动态添加类似Spring中的aop方法.用于打印一些调用日志,排查线上问题.进入INTERCEPTOR目录.然后通过如下的方法给某个类的某个方法添加拦截器. create TickServlet begin mypackage.Hello doGet System.out.println(&quot;Servlet invoked&quot;);
+  检测内存泄漏 进入 REPOSITORY 目录,执行 exec TOP_FAT_STATIC_VARIABLES 5 com.apache.*会取出某个包下面占用大小最大的5个类.会很方便找到.
+  自动检测性能问题 PROBLEMS 目录专业解决这种问题.进入目录后.执行ls命令.会看到这样的场景
+  Concurrency Deadlocked: false Memory High GC (&gt;2%): false   这里目前只检测了死锁和频繁GC.
                   <a href="https://leizhiyuan.github.io/2015/07/04/javosize%E6%96%B0%E4%B8%80%E4%BB%A3java%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -787,21 +762,14 @@ Kafka将消息种子分门别类， 每一类的消息称之为一个主题(Topi
               <div class="post-entry">
                 
                   <p>项目经过一年终于告一段落.于是有了一个短暂的休假.</p>
-
-<p>早上照例没能睡好觉.很早就醒了.然后又躺了一会,醒来看了会订阅.然后听了一集&lt;&lt; Mr.Robot &gt;&gt;,感觉还行,再对着字幕看了一遍,以后还是有一些地方理解的有问题.以后还是要多对着无字幕版的美剧去看,才能慢慢听懂更多的,比如今天听到个<code>society</code>,讲社交焦虑,听到很熟悉,就是没反应过来.学而不用则殆.</p>
-
-<p>中午给文哥寄了个快递,顺便点个饭.之前的&rdquo;手艺&rdquo;应该也已经忘得差不多了.到杭州之后很少做饭,工作太忙.没办法.当然这只是借口.主要还是我懒吧.</p>
-
-<p>下午按计划好的去浙江图书馆,从大学出来后,虽然书还是看了一些的.但是也再也没有走入图书馆.之前一直想去上海图书馆,结果一直耽搁,今天去浙江图书馆办了个证,借了几本书,看着里面的人自习的自习,借阅的借阅,想想还是有点熟悉的.遗憾的是书相同的份数有点少.想借的几本书都被人借走了,最终借了个<strong>&lt;&lt; 七周七语言 &gt;&gt;</strong>,希望能给自己的编程带来不一样的思考角度.读完后争取写个书评和总结,还借了一本摄影相关的,毕竟拍照是服务妹子的技能.还有个<strong>&lt;&lt; netty权威指南 &gt;&gt;</strong> ,虽然这本书评价好像不高,但是拿来看看还是可以的.</p>
-
+<p>早上照例没能睡好觉.很早就醒了.然后又躺了一会,醒来看了会订阅.然后听了一集&laquo; Mr.Robot &raquo;,感觉还行,再对着字幕看了一遍,以后还是有一些地方理解的有问题.以后还是要多对着无字幕版的美剧去看,才能慢慢听懂更多的,比如今天听到个<code>society</code>,讲社交焦虑,听到很熟悉,就是没反应过来.学而不用则殆.</p>
+<p>中午给文哥寄了个快递,顺便点个饭.之前的&quot;手艺&quot;应该也已经忘得差不多了.到杭州之后很少做饭,工作太忙.没办法.当然这只是借口.主要还是我懒吧.</p>
+<p>下午按计划好的去浙江图书馆,从大学出来后,虽然书还是看了一些的.但是也再也没有走入图书馆.之前一直想去上海图书馆,结果一直耽搁,今天去浙江图书馆办了个证,借了几本书,看着里面的人自习的自习,借阅的借阅,想想还是有点熟悉的.遗憾的是书相同的份数有点少.想借的几本书都被人借走了,最终借了个<strong>&laquo; 七周七语言 &raquo;</strong>,希望能给自己的编程带来不一样的思考角度.读完后争取写个书评和总结,还借了一本摄影相关的,毕竟拍照是服务妹子的技能.还有个<strong>&laquo; netty权威指南 &raquo;</strong> ,虽然这本书评价好像不高,但是拿来看看还是可以的.</p>
 <p>下午回家.杭州的下午还挺美的.天气凉爽.只是作为工作狗,没有下午出来的机会吧.</p>
-
 <p>工作忙,不过在一切自动化的指导下,(马克思没有找我),对linux 的shell操作熟悉度急剧上升,希望能写的更好,让更多的过程自动化,也希望有时间停下来想一想.当时为什么选择写代码,为什么选择当前的职业,知道自己做了什么,知道自己是否进步,想起之前看到的一个话,不知真假,</p>
-
 <blockquote>
 <p>只是因为三轮车好学，你就要一辈子骑三轮车吗？ – Douglas Englebart</p>
 </blockquote>
-
 <p>在职业之外,除了高效做好自己的工作外,也要学习更多的技能,英语,锻炼身体,其他编程相关的.不要安于现状.不要重复自己.还是那句话,不要让你的身份限制你的能力.</p>
 
                 
@@ -851,7 +819,7 @@ Kafka将消息种子分门别类， 每一类的消息称之为一个主题(Topi
 http://bugs.java.com/view_bug.do?bug_id=6521844
 详细的解释过程: 参考: http://www.websina.com/bugzero/faq/securerandom-slowness.html
  Q: Why the SecureRandom generateSeed is so slow or even hang on Linux OS?
-A: When you login, it hangs or takes more than a minute to get the response. If your server is on a Linux OS, the culprit here is SecureRandom generateSeed() which uses /dev/random to generate the seed. However, /dev/random is a blocking number generator and if it doesn&rsquo;t have enough random data to provide, it will simply wait until it does, which forces the JVM to wait.
+  A: When you login, it hangs or takes more than a minute to get the response. If your server is on a Linux OS, the culprit here is SecureRandom generateSeed() which uses /dev/random to generate the seed. However, /dev/random is a blocking number generator and if it doesn't have enough random data to provide, it will simply wait until it does, which forces the JVM to wait.
                   <a href="https://leizhiyuan.github.io/2015/06/30/securerandom%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E6%95%B0%E9%9D%9E%E5%B8%B8%E6%85%A2/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -862,60 +830,6 @@ A: When you login, it hangs or takes more than a minute to get the response. If 
                     <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E4%BD%9C/">工作</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2015/05/10/%E5%85%B3%E4%BA%8E%E9%87%8D%E6%9E%84%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
-                <h2 class="post-title">关于重构和设计模式</h2>
-                
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on May 10, 2015
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  <p>之前在工作写了一个数据库查询的工具.大体背景就是这种工具需要跨不同环境的数据库,开发,测试,性能等.最早简单写了一个版本,在第一次查询时会初始化三个库的连接,保存在map中,然后后续查询直接根据使用者选择的环境类型取出对应的连接构造sql即可.</p>
-
-<p>随着各个不同系统接入的越来越多,各个平台都保存了自己的连接,导致代码冗余度急剧上升,上周,利用晚上的一点时间读了一下&lt;&lt;重构&gt;&gt;,这本书,深受启发,一个是重构就是要采用小步快走的方式,在测试用例的覆盖下,快速改动,去掉代码中不合理的地方.另一个就是重构需要对业务的当下和未来的变化有一个比较深刻的理解,知道这个系统能做什么,不能做什么.才能更好地做重构.</p>
-
-<p>于是,根据这个工具的特点,感觉抽象工厂模式比较合适,于是在抽象工厂模式的指导下,对关键部分进行了重构,在增加了几个类之后,代码复杂度开始下降.各个接入系统的代码基本上保持在了几十行内,之前都是几百行,大量冗余代码,只能说自己之前眼光太短浅了.并且,采用了类似单例模式的操作.当查询的时候,先根据当前环境作为key取连接,如果连接被关闭,或者不存在,则初始化,然后放到map中,返回.如果有的话,直接用.这样改动后,第一次查询的时候只需要初始化一个连接,速度极快.也算个好处..</p>
-
-<p>由此,反思了一下,设计模式之前也看过.但是总觉得各种书上讲的都比较浅显,给出的例子也似乎如作者所说,很符合那个模式,但实际上,在工作中如何识别当下的业务应该是比较难的,需要在业务变动中,不断地重构自己的代码,才能发现,某一种模式似乎特别适合解决这种问题,反之,重构也需要一定的设计模式作为基础,否则对代码的重构会只停留在抽取公共方法.重命名.大类变小类的阶段..</p>
-
-<p>希望接下来能够抽空把&lt;&lt;敏捷软件开发：原则、模式与实践&gt;&gt;这本书看完.同时能够真的理解这些模式的场合,想起一句话,知道一个技术方案的好,说明你还没有理解这种方法,只有你知道了这个方案的不足,你才真正理解了他,相信很多技术我都没有理解.设计模式也是,希望之后能够理解每种模式的不足,重构这本书也要经常翻翻,能加深对代码的理解.</p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%AE%BE%E8%AE%A1/">设计</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
                   
                 </div>
               
@@ -985,7 +899,7 @@ A: When you login, it hangs or takes more than a minute to get the response. If 
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

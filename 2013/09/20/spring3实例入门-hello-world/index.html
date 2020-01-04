@@ -11,17 +11,20 @@
   <meta property="og:title" content="Spring3实例入门-Hello World" />
   <meta name="twitter:title" content="Spring3实例入门-Hello World" />
   <meta name="description" content="每次看到hello world,都有一种说不出的赶脚，想起了一个程序员，退休后写毛笔字，取笔研磨铺纸，大笔一挥，写下了“hello world”。
-1.使用Maven生成项目结构 mvn archetype:generate -DgroupId=com.mkyong.core -DartifactId=Spring3Example -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false 2.转换成Eclipse项目 mvn eclipse:eclipse 3.添加Spring3.0 依赖 在pom.xml文件里添加Spring 3.0 依赖，然后依赖会从Maven中央仓库自动下载 &lt;project xmlns=&ldquo;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&ldquo;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&ldquo;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd&quot;&gt; &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt; &lt;groupId&gt;com.mkyong.core&lt;/groupId&gt; &lt;artifactId&gt;Spring3Example&lt;/artifactId&gt; &lt;packaging&gt;jar&lt;/packaging&gt; &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt; &lt;name&gt;Spring3Example&lt;/name&gt; &lt;url&gt;http://maven.apache.org&lt;/url&gt;
-&amp;lt;properties&amp;gt; &amp;lt;spring.version&amp;gt;3.0.5.RELEASE&amp;lt;/spring.version&amp;gt; &amp;lt;/properties&amp;gt; &amp;lt;dependencies&amp;gt; &amp;lt;!-- Spring 3 dependencies --&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-core&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${spring.version}&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-context&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${spring.version}&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;/dependencies&amp;gt; &lt;/project&gt;
-4.Spring bean 写个简单的bean package com.mkyong.core;
-/** * Spring bean * */ public class HelloWorld { private String name;">
+1.使用Maven生成项目结构 2.转换成Eclipse项目 3.添加Spring3.0 依赖 在pom.xml文件里添加Spring 3.0 依赖，然后依赖会从Maven中央仓库自动下载
+4.Spring bean 写个简单的bean
+5.Spring bean配置文件 创建一个配置文件，在里面声明所有可用的Spring beans
+6.最终的目录结构 
+ 7.运行 8.输出 9.Demo下载 Spring3-hello-world-example.zip">
   <meta property="og:description" content="每次看到hello world,都有一种说不出的赶脚，想起了一个程序员，退休后写毛笔字，取笔研磨铺纸，大笔一挥，写下了“hello world”。
-1.使用Maven生成项目结构 mvn archetype:generate -DgroupId=com.mkyong.core -DartifactId=Spring3Example -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false 2.转换成Eclipse项目 mvn eclipse:eclipse 3.添加Spring3.0 依赖 在pom.xml文件里添加Spring 3.0 依赖，然后依赖会从Maven中央仓库自动下载 &lt;project xmlns=&ldquo;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&ldquo;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&ldquo;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd&quot;&gt; &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt; &lt;groupId&gt;com.mkyong.core&lt;/groupId&gt; &lt;artifactId&gt;Spring3Example&lt;/artifactId&gt; &lt;packaging&gt;jar&lt;/packaging&gt; &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt; &lt;name&gt;Spring3Example&lt;/name&gt; &lt;url&gt;http://maven.apache.org&lt;/url&gt;
-&amp;lt;properties&amp;gt; &amp;lt;spring.version&amp;gt;3.0.5.RELEASE&amp;lt;/spring.version&amp;gt; &amp;lt;/properties&amp;gt; &amp;lt;dependencies&amp;gt; &amp;lt;!-- Spring 3 dependencies --&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-core&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${spring.version}&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-context&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${spring.version}&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;/dependencies&amp;gt; &lt;/project&gt;
-4.Spring bean 写个简单的bean package com.mkyong.core;
-/** * Spring bean * */ public class HelloWorld { private String name;">
+1.使用Maven生成项目结构 2.转换成Eclipse项目 3.添加Spring3.0 依赖 在pom.xml文件里添加Spring 3.0 依赖，然后依赖会从Maven中央仓库自动下载
+4.Spring bean 写个简单的bean
+5.Spring bean配置文件 创建一个配置文件，在里面声明所有可用的Spring beans
+6.最终的目录结构 
+ 7.运行 8.输出 9.Demo下载 Spring3-hello-world-example.zip">
   <meta name="twitter:description" content="每次看到hello world,都有一种说不出的赶脚，想起了一个程序员，退休后写毛笔字，取笔研磨铺纸，大笔一挥，写下了“hello world”。
-1.使用Maven生成项目结构 mvn archetype:generate -DgroupId=com.mkyong.core -DartifactId=Spring3Example …">
+1.使用Maven生成项目结构 2.转换成Eclipse项目 3.添加Spring3.0 依赖 在pom.xml文件里添加Spring 3.0 依赖，然后依赖会从Maven中央仓库自动下载
+4.Spring bean 写个简单的bean …">
   <meta name="author" content="bystander"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -70,9 +73,9 @@
     "name" : "bystander"
   },
   "headline": "Spring3实例入门-Hello World",
-  "description" : "每次看到hello world,都有一种说不出的赶脚，想起了一个程序员，退休后写毛笔字，取笔研磨铺纸，大笔一挥，写下了“hello world”。\n1.使用Maven生成项目结构 mvn archetype:generate -DgroupId=com.mkyong.core -DartifactId=Spring3Example -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false 2.转换成Eclipse项目 mvn eclipse:eclipse 3.添加Spring3.0 依赖 在pom.xml文件里添加Spring 3.0 依赖，然后依赖会从Maven中央仓库自动下载 \x26lt;project xmlns=\x26ldquo;http:\/\/maven.apache.org\/POM\/4.0.0\x26quot; xmlns:xsi=\x26ldquo;http:\/\/www.w3.org\/2001\/XMLSchema-instance\x26quot; xsi:schemaLocation=\x26ldquo;http:\/\/maven.apache.org\/POM\/4.0.0 http:\/\/maven.apache.org\/maven-v4_0_0.xsd\x26quot;\x26gt; \x26lt;modelVersion\x26gt;4.0.0\x26lt;\/modelVersion\x26gt; \x26lt;groupId\x26gt;com.mkyong.core\x26lt;\/groupId\x26gt; \x26lt;artifactId\x26gt;Spring3Example\x26lt;\/artifactId\x26gt; \x26lt;packaging\x26gt;jar\x26lt;\/packaging\x26gt; \x26lt;version\x26gt;1.0-SNAPSHOT\x26lt;\/version\x26gt; \x26lt;name\x26gt;Spring3Example\x26lt;\/name\x26gt; \x26lt;url\x26gt;http:\/\/maven.apache.org\x26lt;\/url\x26gt;\n\x26amp;lt;properties\x26amp;gt; \x26amp;lt;spring.version\x26amp;gt;3.0.5.RELEASE\x26amp;lt;\/spring.version\x26amp;gt; \x26amp;lt;\/properties\x26amp;gt; \x26amp;lt;dependencies\x26amp;gt; \x26amp;lt;!-- Spring 3 dependencies --\x26amp;gt; \x26amp;lt;dependency\x26amp;gt; \x26amp;lt;groupId\x26amp;gt;org.springframework\x26amp;lt;\/groupId\x26amp;gt; \x26amp;lt;artifactId\x26amp;gt;spring-core\x26amp;lt;\/artifactId\x26amp;gt; \x26amp;lt;version\x26amp;gt;${spring.version}\x26amp;lt;\/version\x26amp;gt; \x26amp;lt;\/dependency\x26amp;gt; \x26amp;lt;dependency\x26amp;gt; \x26amp;lt;groupId\x26amp;gt;org.springframework\x26amp;lt;\/groupId\x26amp;gt; \x26amp;lt;artifactId\x26amp;gt;spring-context\x26amp;lt;\/artifactId\x26amp;gt; \x26amp;lt;version\x26amp;gt;${spring.version}\x26amp;lt;\/version\x26amp;gt; \x26amp;lt;\/dependency\x26amp;gt; \x26amp;lt;\/dependencies\x26amp;gt; \x26lt;\/project\x26gt;\n4.Spring bean 写个简单的bean package com.mkyong.core;\n\/** * Spring bean * *\/ public class HelloWorld { private String name;",
+  "description" : "每次看到hello world,都有一种说不出的赶脚，想起了一个程序员，退休后写毛笔字，取笔研磨铺纸，大笔一挥，写下了“hello world”。\n1.使用Maven生成项目结构 2.转换成Eclipse项目 3.添加Spring3.0 依赖 在pom.xml文件里添加Spring 3.0 依赖，然后依赖会从Maven中央仓库自动下载\n4.Spring bean 写个简单的bean\n5.Spring bean配置文件 创建一个配置文件，在里面声明所有可用的Spring beans\n6.最终的目录结构 \n 7.运行 8.输出 9.Demo下载 Spring3-hello-world-example.zip",
   "inLanguage" : "en",
-  "wordCount":  152 ,
+  "wordCount":  22 ,
   "datePublished" : "2013-09-20T13:14:39",
   "dateModified" : "2013-09-20T13:14:39",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -93,10 +96,11 @@
 
 <meta property="og:title" content="Spring3实例入门-Hello World" />
 <meta property="og:description" content="每次看到hello world,都有一种说不出的赶脚，想起了一个程序员，退休后写毛笔字，取笔研磨铺纸，大笔一挥，写下了“hello world”。
-1.使用Maven生成项目结构 mvn archetype:generate -DgroupId=com.mkyong.core -DartifactId=Spring3Example -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false 2.转换成Eclipse项目 mvn eclipse:eclipse 3.添加Spring3.0 依赖 在pom.xml文件里添加Spring 3.0 依赖，然后依赖会从Maven中央仓库自动下载 &lt;project xmlns=&ldquo;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&ldquo;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&ldquo;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd&quot;&gt; &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt; &lt;groupId&gt;com.mkyong.core&lt;/groupId&gt; &lt;artifactId&gt;Spring3Example&lt;/artifactId&gt; &lt;packaging&gt;jar&lt;/packaging&gt; &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt; &lt;name&gt;Spring3Example&lt;/name&gt; &lt;url&gt;http://maven.apache.org&lt;/url&gt;
-&amp;lt;properties&amp;gt; &amp;lt;spring.version&amp;gt;3.0.5.RELEASE&amp;lt;/spring.version&amp;gt; &amp;lt;/properties&amp;gt; &amp;lt;dependencies&amp;gt; &amp;lt;!-- Spring 3 dependencies --&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-core&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${spring.version}&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-context&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${spring.version}&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;/dependencies&amp;gt; &lt;/project&gt;
-4.Spring bean 写个简单的bean package com.mkyong.core;
-/** * Spring bean * */ public class HelloWorld { private String name;">
+1.使用Maven生成项目结构 2.转换成Eclipse项目 3.添加Spring3.0 依赖 在pom.xml文件里添加Spring 3.0 依赖，然后依赖会从Maven中央仓库自动下载
+4.Spring bean 写个简单的bean
+5.Spring bean配置文件 创建一个配置文件，在里面声明所有可用的Spring beans
+6.最终的目录结构 
+ 7.运行 8.输出 9.Demo下载 Spring3-hello-world-example.zip">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2013/09/20/spring3%E5%AE%9E%E4%BE%8B%E5%85%A5%E9%97%A8-hello-world/" />
 <meta property="og:type" content="website" />
@@ -104,7 +108,8 @@
 
   <meta name="twitter:title" content="Spring3实例入门-Hello World" />
   <meta name="twitter:description" content="每次看到hello world,都有一种说不出的赶脚，想起了一个程序员，退休后写毛笔字，取笔研磨铺纸，大笔一挥，写下了“hello world”。
-1.使用Maven生成项目结构 mvn archetype:generate -DgroupId=com.mkyong.core -DartifactId=Spring3Example …">
+1.使用Maven生成项目结构 2.转换成Eclipse项目 3.添加Spring3.0 依赖 在pom.xml文件里添加Spring 3.0 依赖，然后依赖会从Maven中央仓库自动下载
+4.Spring bean 写个简单的bean …">
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -115,7 +120,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -299,117 +304,34 @@
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        
-
-<p>每次看到hello world,都有一种说不出的赶脚，想起了一个程序员，退休后写毛笔字，取笔研磨铺纸，大笔一挥，写下了“hello world”。</p>
-
-<h2 id="1-使用maven生成项目结构">1.使用Maven生成项目结构</h2>
-
-<pre class="lang:default decode:true ">mvn archetype:generate -DgroupId=com.mkyong.core -DartifactId=Spring3Example 
-    -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false</pre>
-
-<h2 id="2-转换成eclipse项目"> 2.转换成Eclipse项目</h2>
-
-<pre class="lang:default decode:true ">mvn eclipse:eclipse</pre>
-
-<h2 id="3-添加spring3-0-依赖"> 3.添加Spring3.0 依赖</h2>
-
-<p>在pom.xml文件里添加Spring 3.0 依赖，然后依赖会从Maven中央仓库自动下载
-<pre class="lang:default decode:true" title="pom.xml">&lt;project xmlns=&ldquo;<a href="http://maven.apache.org/POM/4.0.0&quot;">http://maven.apache.org/POM/4.0.0&quot;</a>
-    xmlns:xsi=&ldquo;<a href="http://www.w3.org/2001/XMLSchema-instance&quot;">http://www.w3.org/2001/XMLSchema-instance&quot;</a>
-    xsi:schemaLocation=&ldquo;<a href="http://maven.apache.org/POM/4.0.0">http://maven.apache.org/POM/4.0.0</a>
-    <a href="http://maven.apache.org/maven-v4_0_0.xsd&quot;&gt;">http://maven.apache.org/maven-v4_0_0.xsd&quot;&gt;</a>
-    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
-    &lt;groupId&gt;com.mkyong.core&lt;/groupId&gt;
-    &lt;artifactId&gt;Spring3Example&lt;/artifactId&gt;
-    &lt;packaging&gt;jar&lt;/packaging&gt;
-    &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
-    &lt;name&gt;Spring3Example&lt;/name&gt;
-    &lt;url&gt;<a href="http://maven.apache.org&lt;/url&gt;">http://maven.apache.org&lt;/url&gt;</a></p>
-<div class="highlight"><pre class="chroma">&amp;lt;properties&amp;gt;
-    &amp;lt;spring.version&amp;gt;3.0.5.RELEASE&amp;lt;/spring.version&amp;gt;
-&amp;lt;/properties&amp;gt;
-
-&amp;lt;dependencies&amp;gt;
-
-    &amp;lt;!-- Spring 3 dependencies --&amp;gt;
-    &amp;lt;dependency&amp;gt;
-        &amp;lt;groupId&amp;gt;org.springframework&amp;lt;/groupId&amp;gt;
-        &amp;lt;artifactId&amp;gt;spring-core&amp;lt;/artifactId&amp;gt;
-        &amp;lt;version&amp;gt;${spring.version}&amp;lt;/version&amp;gt;
-    &amp;lt;/dependency&amp;gt;
-
-    &amp;lt;dependency&amp;gt;
-        &amp;lt;groupId&amp;gt;org.springframework&amp;lt;/groupId&amp;gt;
-        &amp;lt;artifactId&amp;gt;spring-context&amp;lt;/artifactId&amp;gt;
-        &amp;lt;version&amp;gt;${spring.version}&amp;lt;/version&amp;gt;
-    &amp;lt;/dependency&amp;gt;
-
-&amp;lt;/dependencies&amp;gt;</pre></div>
-<p>&lt;/project&gt;</pre></p>
-
-<h2 id="4-spring-bean"> 4.Spring bean</h2>
-
-<p>写个简单的bean
-<pre class="lang:default decode:true" title="HelloWorld">package com.mkyong.core;</p>
-
-<p>/**
- * Spring bean
- *
- */
-public class HelloWorld {
-    private String name;</p>
-<div class="highlight"><pre class="chroma">public void setName(String name) {
-    this.name = name;
-}
-
-public void printHello() {
-    System.out.println(&#34;Spring 3 : Hello ! &#34; + name);
-}</pre></div>
-<p>}</pre></p>
-
-<h2 id="5-spring-bean配置文件"> 5.Spring bean配置文件</h2>
-
-<p>创建一个配置文件，在里面声明所有可用的Spring beans
-<pre class="lang:default decode:true" title="SpringBeans.xml">&lt;beans xmlns=&ldquo;<a href="http://www.springframework.org/schema/beans&quot;">http://www.springframework.org/schema/beans&quot;</a>
-    xmlns:xsi=&ldquo;<a href="http://www.w3.org/2001/XMLSchema-instance&quot;">http://www.w3.org/2001/XMLSchema-instance&quot;</a>
-    xsi:schemaLocation=&ldquo;<a href="http://www.springframework.org/schema/beans">http://www.springframework.org/schema/beans</a>
-    <a href="http://www.springframework.org/schema/beans/spring-beans-3.0.xsd&quot;&gt;">http://www.springframework.org/schema/beans/spring-beans-3.0.xsd&quot;&gt;</a></p>
-<div class="highlight"><pre class="chroma">&amp;lt;bean id=&#34;helloBean&#34; class=&#34;com.mkyong.core.HelloWorld&#34;&amp;gt;
-    &amp;lt;property name=&#34;name&#34; value=&#34;Mkyong&#34; /&amp;gt;
-&amp;lt;/bean&amp;gt;</pre></div>
-<p>&lt;/beans&gt;</pre></p>
-
-<h2 id="6-最终的目录结构"> 6.最终的目录结构</h2>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/2013/09/Spring3-hello-world-example.png"><img src="/images/bbe4d8f74c9337766eb4a368bb71c6c0d09a248b.png" alt="Spring3-hello-world-example" /></a></p>
-
-<p>&nbsp;</p>
-
-<h2 id="7-运行">7.运行</h2>
-
-<pre class="lang:default decode:true" title="App.java">package com.mkyong.core;
-
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-public class App {
-    public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext(
-                "SpringBeans.xml");
-
-        HelloWorld obj = (HelloWorld) context.getBean("helloBean");
-        obj.printHello();
-    }
-}</pre>
-
-<h2 id="8-输出"> 8.输出</h2>
-
-<pre class="lang:default decode:true">Spring 3 : Hello ! Mkyong</pre>
-
-<h2 id="9-demo下载"> 9.Demo下载</h2>
-
-<p><a href="http://pan.baidu.com/share/link?shareid=2464458395&amp;amp;uk=1493685990">Spring3-hello-world-example.zip </a></p>
+        <p>每次看到hello world,都有一种说不出的赶脚，想起了一个程序员，退休后写毛笔字，取笔研磨铺纸，大笔一挥，写下了“hello world”。</p>
+<h2 id="1maven">1.使用Maven生成项目结构</h2>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="2eclipse"> 2.转换成Eclipse项目</h2>
+<!-- raw HTML omitted -->
+<h2 id="3spring30-"> 3.添加Spring3.0 依赖</h2>
+<p>在pom.xml文件里添加Spring 3.0 依赖，然后依赖会从Maven中央仓库自动下载</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="4spring-bean"> 4.Spring bean</h2>
+<p>写个简单的bean</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="5spring-bean"> 5.Spring bean配置文件</h2>
+<p>创建一个配置文件，在里面声明所有可用的Spring beans</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="6"> 6.最终的目录结构</h2>
+<p><a href="http://leaverimage.b0.upaiyun.com/2013/09/Spring3-hello-world-example.png"><img src="/images/bbe4d8f74c9337766eb4a368bb71c6c0d09a248b.png" alt="Spring3-hello-world-example"></a></p>
+<p> </p>
+<h2 id="7">7.运行</h2>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="8"> 8.输出</h2>
+<!-- raw HTML omitted -->
+<h2 id="9demo"> 9.Demo下载</h2>
+<p><a href="http://pan.baidu.com/share/link?shareid=2464458395&amp;uk=1493685990">Spring3-hello-world-example.zip </a></p>
 
 
         
@@ -527,7 +449,7 @@ public class App {
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

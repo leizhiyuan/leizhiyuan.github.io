@@ -11,17 +11,120 @@
   <meta property="og:title" content="使用Maven创建Web项目" />
   <meta name="twitter:title" content="使用Maven创建Web项目" />
   <meta name="description" content="本文通过Maven完成一个简单的Web项目（注意，Spring配置不是重点，看看就行）
-1.从Maven模板创建Web应用程序 命令格式如下： mvn archetype:generate -DgroupId={project-packaging} -DartifactId={project-name} -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false 这就告诉Maven从**maven-archetype-webapp **这个模板来创建
-友情提示：是不是太难记了..好吧，直接输入 mvn archetype:generate 根据向导来创建把。。
-比如我这样写： &gt; mvn archetype:generate -DgroupId=com.mkyong -DartifactId=CounterWebApp -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false [INFO] Scanning for projects&hellip; [INFO]
-[INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash; [INFO] Building Maven Stub Project (No POM) 1 [INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash; [INFO] [INFO] Generating project in Batch mode [INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;- [INFO] Using following parameters for creating project from Old (1.x) Archetype: maven-archetype-webapp:1.0 [INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;- [INFO] Parameter: groupId, Value: com.mkyong [INFO] Parameter: packageName, Value: com.">
+1.从Maven模板创建Web应用程序 命令格式如下：
+这就告诉Maven从**maven-archetype-webapp **这个模板来创建
+友情提示：是不是太难记了..好吧，直接输入
+根据向导来创建把。。
+比如我这样写：
+就创建了一个包名为com.mkyong,类名为CounterWebApp的项目了
+2.Maven的Web程序目录结构 标准的web.xml部署描述文件生成了
+对结构有疑问的去这里
+生成的pom.xml文件如下
+没啥疑问的。web.xml文件则如下：
+index.jsp内容是：
+3.转换以支持Eclipse 为了使Maven的web项目支持Eclipse，在命令行下，cd到CounterWebApp目录下，然后输入这个命令
+-Dwtpversion=2.0参数是必需的，这个参数指明了是web项目，然后导入到eclipse里就行了。从导入的工程ico可以看出是个web项目
+图一
+  
+不要迷惑，如果我们只输入
+会转换成java项目，而不是web项目的。
+好了，现在项目已经准备好部署了，eclipse里的tomcat server插件装好，然后启动项目
+图二
+
+可以通过_http://localhost:8080/CounterWebApp/_地址来访问
+4.更新pom文件 为了使Maven项目支持Spring MVC框架，我们需要修改pom.xml文件
+1.添加编译插件指定jdk6来编译
+2.添加Spring框架依赖
+3.升级JUnit到4.1.1
+5.Spring MVC 松耦合 创建Spring MVC控制器类，有两个方法，打印信息
+然后，创建Spring配置文件，定义视图解析器
+然后更新一下web.xml文件，通过Spring的监听器ContextLoaderListener把Spring框架集成进去
+然移动index.jsp到WEB-INF目录里，以防用户直接访问他，同时我们编辑，增加${message}变量，也就是controller控制器传过来的值到页面
+最终的页面结构是：
+图三
+
+6.Eclipse&#43;Tomcat 为了通过Eclipse的Tomcat插件开始/调试项目，需要再执行一次下面的命令，使得所有的依赖附加完成
+在没执行以前，项目依赖是空的
+图四
+
+执行完以后，就都有了
+图五
+
+重要！许多人就是没有第二次执行这个命令导致无法开始/调试，如果有问题，右击你的项目属性，看看依赖是否为空
+7.Maven打包 web项目打包成war。放在target目录
+进入项目目录，执行一下就可以了
+然后把target目录的CountWebApp.war文件拷贝，并部署到你的web容器里就行了
+8.Demo演示 打开_http://localhost:8080/CounterWebApp/welcome_
+可以看到
+图六
+
+我们传个参数进去
+http://localhost:8080/CounterWebApp/welcome/mkyong
+就可以看到效果了
+图七
+
+9.Demo下载">
   <meta property="og:description" content="本文通过Maven完成一个简单的Web项目（注意，Spring配置不是重点，看看就行）
-1.从Maven模板创建Web应用程序 命令格式如下： mvn archetype:generate -DgroupId={project-packaging} -DartifactId={project-name} -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false 这就告诉Maven从**maven-archetype-webapp **这个模板来创建
-友情提示：是不是太难记了..好吧，直接输入 mvn archetype:generate 根据向导来创建把。。
-比如我这样写： &gt; mvn archetype:generate -DgroupId=com.mkyong -DartifactId=CounterWebApp -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false [INFO] Scanning for projects&hellip; [INFO]
-[INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash; [INFO] Building Maven Stub Project (No POM) 1 [INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash; [INFO] [INFO] Generating project in Batch mode [INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;- [INFO] Using following parameters for creating project from Old (1.x) Archetype: maven-archetype-webapp:1.0 [INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;- [INFO] Parameter: groupId, Value: com.mkyong [INFO] Parameter: packageName, Value: com.">
+1.从Maven模板创建Web应用程序 命令格式如下：
+这就告诉Maven从**maven-archetype-webapp **这个模板来创建
+友情提示：是不是太难记了..好吧，直接输入
+根据向导来创建把。。
+比如我这样写：
+就创建了一个包名为com.mkyong,类名为CounterWebApp的项目了
+2.Maven的Web程序目录结构 标准的web.xml部署描述文件生成了
+对结构有疑问的去这里
+生成的pom.xml文件如下
+没啥疑问的。web.xml文件则如下：
+index.jsp内容是：
+3.转换以支持Eclipse 为了使Maven的web项目支持Eclipse，在命令行下，cd到CounterWebApp目录下，然后输入这个命令
+-Dwtpversion=2.0参数是必需的，这个参数指明了是web项目，然后导入到eclipse里就行了。从导入的工程ico可以看出是个web项目
+图一
+  
+不要迷惑，如果我们只输入
+会转换成java项目，而不是web项目的。
+好了，现在项目已经准备好部署了，eclipse里的tomcat server插件装好，然后启动项目
+图二
+
+可以通过_http://localhost:8080/CounterWebApp/_地址来访问
+4.更新pom文件 为了使Maven项目支持Spring MVC框架，我们需要修改pom.xml文件
+1.添加编译插件指定jdk6来编译
+2.添加Spring框架依赖
+3.升级JUnit到4.1.1
+5.Spring MVC 松耦合 创建Spring MVC控制器类，有两个方法，打印信息
+然后，创建Spring配置文件，定义视图解析器
+然后更新一下web.xml文件，通过Spring的监听器ContextLoaderListener把Spring框架集成进去
+然移动index.jsp到WEB-INF目录里，以防用户直接访问他，同时我们编辑，增加${message}变量，也就是controller控制器传过来的值到页面
+最终的页面结构是：
+图三
+
+6.Eclipse&#43;Tomcat 为了通过Eclipse的Tomcat插件开始/调试项目，需要再执行一次下面的命令，使得所有的依赖附加完成
+在没执行以前，项目依赖是空的
+图四
+
+执行完以后，就都有了
+图五
+
+重要！许多人就是没有第二次执行这个命令导致无法开始/调试，如果有问题，右击你的项目属性，看看依赖是否为空
+7.Maven打包 web项目打包成war。放在target目录
+进入项目目录，执行一下就可以了
+然后把target目录的CountWebApp.war文件拷贝，并部署到你的web容器里就行了
+8.Demo演示 打开_http://localhost:8080/CounterWebApp/welcome_
+可以看到
+图六
+
+我们传个参数进去
+http://localhost:8080/CounterWebApp/welcome/mkyong
+就可以看到效果了
+图七
+
+9.Demo下载">
   <meta name="twitter:description" content="本文通过Maven完成一个简单的Web项目（注意，Spring配置不是重点，看看就行）
-1.从Maven模板创建Web应用程序 命令格式如下： mvn archetype:generate -DgroupId={project-packaging} -DartifactId={project-name} -DarchetypeArtifactId=maven-archetype-webapp …">
+1.从Maven模板创建Web应用程序 命令格式如下：
+这就告诉Maven从**maven-archetype-webapp **这个模板来创建
+友情提示：是不是太难记了..好吧，直接输入
+根据向导来创建把。。
+比如我这样写：
+就创建了一个包名为com.mkyong,类名为CounterWebApp …">
   <meta name="author" content="bystander"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -70,9 +173,9 @@
     "name" : "bystander"
   },
   "headline": "使用Maven创建Web项目",
-  "description" : "本文通过Maven完成一个简单的Web项目（注意，Spring配置不是重点，看看就行）\n1.从Maven模板创建Web应用程序 命令格式如下： mvn archetype:generate -DgroupId={project-packaging} -DartifactId={project-name} -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false 这就告诉Maven从**maven-archetype-webapp **这个模板来创建\n友情提示：是不是太难记了..好吧，直接输入 mvn archetype:generate 根据向导来创建把。。\n比如我这样写： \x26gt; mvn archetype:generate -DgroupId=com.mkyong -DartifactId=CounterWebApp -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false [INFO] Scanning for projects\x26hellip; [INFO]\n[INFO] \x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash; [INFO] Building Maven Stub Project (No POM) 1 [INFO] \x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash; [INFO] [INFO] Generating project in Batch mode [INFO] \x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;- [INFO] Using following parameters for creating project from Old (1.x) Archetype: maven-archetype-webapp:1.0 [INFO] \x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;- [INFO] Parameter: groupId, Value: com.mkyong [INFO] Parameter: packageName, Value: com.",
+  "description" : "本文通过Maven完成一个简单的Web项目（注意，Spring配置不是重点，看看就行）\n1.从Maven模板创建Web应用程序 命令格式如下：\n这就告诉Maven从**maven-archetype-webapp **这个模板来创建\n友情提示：是不是太难记了..好吧，直接输入\n根据向导来创建把。。\n比如我这样写：\n就创建了一个包名为com.mkyong,类名为CounterWebApp的项目了\n2.Maven的Web程序目录结构 标准的web.xml部署描述文件生成了\n对结构有疑问的去这里\n生成的pom.xml文件如下\n没啥疑问的。web.xml文件则如下：\nindex.jsp内容是：\n3.转换以支持Eclipse 为了使Maven的web项目支持Eclipse，在命令行下，cd到CounterWebApp目录下，然后输入这个命令\n-Dwtpversion=2.0参数是必需的，这个参数指明了是web项目，然后导入到eclipse里就行了。从导入的工程ico可以看出是个web项目\n图一\n  \n不要迷惑，如果我们只输入\n会转换成java项目，而不是web项目的。\n好了，现在项目已经准备好部署了，eclipse里的tomcat server插件装好，然后启动项目\n图二\n\n可以通过_http:\/\/localhost:8080\/CounterWebApp\/_地址来访问\n4.更新pom文件 为了使Maven项目支持Spring MVC框架，我们需要修改pom.xml文件\n1.添加编译插件指定jdk6来编译\n2.添加Spring框架依赖\n3.升级JUnit到4.1.1\n5.Spring MVC 松耦合 创建Spring MVC控制器类，有两个方法，打印信息\n然后，创建Spring配置文件，定义视图解析器\n然后更新一下web.xml文件，通过Spring的监听器ContextLoaderListener把Spring框架集成进去\n然移动index.jsp到WEB-INF目录里，以防用户直接访问他，同时我们编辑，增加${message}变量，也就是controller控制器传过来的值到页面\n最终的页面结构是：\n图三\n\n6.Eclipse\x2bTomcat 为了通过Eclipse的Tomcat插件开始\/调试项目，需要再执行一次下面的命令，使得所有的依赖附加完成\n在没执行以前，项目依赖是空的\n图四\n\n执行完以后，就都有了\n图五\n\n重要！许多人就是没有第二次执行这个命令导致无法开始\/调试，如果有问题，右击你的项目属性，看看依赖是否为空\n7.Maven打包 web项目打包成war。放在target目录\n进入项目目录，执行一下就可以了\n然后把target目录的CountWebApp.war文件拷贝，并部署到你的web容器里就行了\n8.Demo演示 打开_http:\/\/localhost:8080\/CounterWebApp\/welcome_\n可以看到\n图六\n\n我们传个参数进去\nhttp:\/\/localhost:8080\/CounterWebApp\/welcome\/mkyong\n就可以看到效果了\n图七\n\n9.Demo下载",
   "inLanguage" : "en",
-  "wordCount":  447 ,
+  "wordCount":  62 ,
   "datePublished" : "2013-09-20T08:44:11",
   "dateModified" : "2013-09-20T08:44:11",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -93,10 +196,59 @@
 
 <meta property="og:title" content="使用Maven创建Web项目" />
 <meta property="og:description" content="本文通过Maven完成一个简单的Web项目（注意，Spring配置不是重点，看看就行）
-1.从Maven模板创建Web应用程序 命令格式如下： mvn archetype:generate -DgroupId={project-packaging} -DartifactId={project-name} -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false 这就告诉Maven从**maven-archetype-webapp **这个模板来创建
-友情提示：是不是太难记了..好吧，直接输入 mvn archetype:generate 根据向导来创建把。。
-比如我这样写： &gt; mvn archetype:generate -DgroupId=com.mkyong -DartifactId=CounterWebApp -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false [INFO] Scanning for projects&hellip; [INFO]
-[INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash; [INFO] Building Maven Stub Project (No POM) 1 [INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash; [INFO] [INFO] Generating project in Batch mode [INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;- [INFO] Using following parameters for creating project from Old (1.x) Archetype: maven-archetype-webapp:1.0 [INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;- [INFO] Parameter: groupId, Value: com.mkyong [INFO] Parameter: packageName, Value: com.">
+1.从Maven模板创建Web应用程序 命令格式如下：
+这就告诉Maven从**maven-archetype-webapp **这个模板来创建
+友情提示：是不是太难记了..好吧，直接输入
+根据向导来创建把。。
+比如我这样写：
+就创建了一个包名为com.mkyong,类名为CounterWebApp的项目了
+2.Maven的Web程序目录结构 标准的web.xml部署描述文件生成了
+对结构有疑问的去这里
+生成的pom.xml文件如下
+没啥疑问的。web.xml文件则如下：
+index.jsp内容是：
+3.转换以支持Eclipse 为了使Maven的web项目支持Eclipse，在命令行下，cd到CounterWebApp目录下，然后输入这个命令
+-Dwtpversion=2.0参数是必需的，这个参数指明了是web项目，然后导入到eclipse里就行了。从导入的工程ico可以看出是个web项目
+图一
+  
+不要迷惑，如果我们只输入
+会转换成java项目，而不是web项目的。
+好了，现在项目已经准备好部署了，eclipse里的tomcat server插件装好，然后启动项目
+图二
+
+可以通过_http://localhost:8080/CounterWebApp/_地址来访问
+4.更新pom文件 为了使Maven项目支持Spring MVC框架，我们需要修改pom.xml文件
+1.添加编译插件指定jdk6来编译
+2.添加Spring框架依赖
+3.升级JUnit到4.1.1
+5.Spring MVC 松耦合 创建Spring MVC控制器类，有两个方法，打印信息
+然后，创建Spring配置文件，定义视图解析器
+然后更新一下web.xml文件，通过Spring的监听器ContextLoaderListener把Spring框架集成进去
+然移动index.jsp到WEB-INF目录里，以防用户直接访问他，同时我们编辑，增加${message}变量，也就是controller控制器传过来的值到页面
+最终的页面结构是：
+图三
+
+6.Eclipse&#43;Tomcat 为了通过Eclipse的Tomcat插件开始/调试项目，需要再执行一次下面的命令，使得所有的依赖附加完成
+在没执行以前，项目依赖是空的
+图四
+
+执行完以后，就都有了
+图五
+
+重要！许多人就是没有第二次执行这个命令导致无法开始/调试，如果有问题，右击你的项目属性，看看依赖是否为空
+7.Maven打包 web项目打包成war。放在target目录
+进入项目目录，执行一下就可以了
+然后把target目录的CountWebApp.war文件拷贝，并部署到你的web容器里就行了
+8.Demo演示 打开_http://localhost:8080/CounterWebApp/welcome_
+可以看到
+图六
+
+我们传个参数进去
+http://localhost:8080/CounterWebApp/welcome/mkyong
+就可以看到效果了
+图七
+
+9.Demo下载">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2013/09/20/%E4%BD%BF%E7%94%A8maven%E5%88%9B%E5%BB%BAweb%E9%A1%B9%E7%9B%AE/" />
 <meta property="og:type" content="website" />
@@ -104,7 +256,12 @@
 
   <meta name="twitter:title" content="使用Maven创建Web项目" />
   <meta name="twitter:description" content="本文通过Maven完成一个简单的Web项目（注意，Spring配置不是重点，看看就行）
-1.从Maven模板创建Web应用程序 命令格式如下： mvn archetype:generate -DgroupId={project-packaging} -DartifactId={project-name} -DarchetypeArtifactId=maven-archetype-webapp …">
+1.从Maven模板创建Web应用程序 命令格式如下：
+这就告诉Maven从**maven-archetype-webapp **这个模板来创建
+友情提示：是不是太难记了..好吧，直接输入
+根据向导来创建把。。
+比如我这样写：
+就创建了一个包名为com.mkyong,类名为CounterWebApp …">
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -115,7 +272,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -273,7 +430,7 @@
   <i class="fas fa-calendar"></i>&nbsp;Posted on September 20, 2013
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;3&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -299,340 +456,95 @@
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        
-
-<p>本文通过Maven完成一个简单的Web项目（注意，Spring配置不是重点，看看就行）</p>
-
-<h2 id="1-从maven模板创建web应用程序">1.从Maven模板创建Web应用程序</h2>
-
-<p>命令格式如下：
-<pre class="lang:default decode:true">mvn archetype:generate -DgroupId={project-packaging} -DartifactId={project-name} -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false</pre>
-这就告诉Maven从**maven-archetype-webapp **这个模板来创建</p>
-
-<p>友情提示：是不是太难记了..好吧，直接输入
-<pre>mvn archetype:generate</pre>
-根据向导来创建把。。</p>
-
-<p>比如我这样写：
-<pre class="lang:default decode:true">&gt; mvn archetype:generate -DgroupId=com.mkyong -DartifactId=CounterWebApp -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
-[INFO] Scanning for projects&hellip;
-[INFO]<br />
-[INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;
-[INFO] Building Maven Stub Project (No POM) 1
-[INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;
-[INFO]
-[INFO] Generating project in Batch mode
-[INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-
-[INFO] Using following parameters for creating project from Old (1.x) Archetype: maven-archetype-webapp:1.0
-[INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-
-[INFO] Parameter: groupId, Value: com.mkyong
-[INFO] Parameter: packageName, Value: com.mkyong
-[INFO] Parameter: package, Value: com.mkyong
-[INFO] Parameter: artifactId, Value: CounterWebApp
-[INFO] Parameter: basedir, Value: /Users/mkyong/Documents/workspace
-[INFO] Parameter: version, Value: 1.0-SNAPSHOT
-[INFO] project created from Old (1.x) Archetype in dir: /Users/mkyong/Documents/workspace/CounterWebApp
-[INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;
-[INFO] BUILD SUCCESS
-[INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;
-[INFO] Total time: 3.147s
-[INFO] Finished at: Thu Dec 20 20:35:19 MYT 2012
-[INFO] Final Memory: 12M/128M
-[INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;</pre>
-就创建了一个包名为com.mkyong,类名为CounterWebApp的项目了</p>
-
-<h2 id="2-maven的web程序目录结构">2.Maven的Web程序目录结构</h2>
-
-<p>标准的web.xml部署描述文件生成了
-<pre>CounterWebApp
-   |-src
-   |&mdash;main
-   |&mdash;&ndash;resources
-   |&mdash;&ndash;webapp
-   |&mdash;&mdash;-index.jsp
-   |&mdash;&mdash;-WEB-INF
-   |&mdash;&mdash;&mdash;web.xml
-   |-pom.xml</pre>
-对结构有疑问的去<a href="http://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html">这里</a></p>
-
-<p>生成的pom.xml文件如下
-<pre class="lang:default decode:true">&lt;project xmlns=&ldquo;<a href="http://maven.apache.org/POM/4.0.0&quot;">http://maven.apache.org/POM/4.0.0&quot;</a>
-    xmlns:xsi=&ldquo;<a href="http://www.w3.org/2001/XMLSchema-instance&quot;">http://www.w3.org/2001/XMLSchema-instance&quot;</a>
-    xsi:schemaLocation=&ldquo;<a href="http://maven.apache.org/POM/4.0.0">http://maven.apache.org/POM/4.0.0</a>
-    <a href="http://maven.apache.org/maven-v4_0_0.xsd&quot;&gt;">http://maven.apache.org/maven-v4_0_0.xsd&quot;&gt;</a>
-  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
-  &lt;groupId&gt;com.mkyong&lt;/groupId&gt;
-  &lt;artifactId&gt;CounterWebApp&lt;/artifactId&gt;
-  &lt;packaging&gt;war&lt;/packaging&gt;
-  &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
-  &lt;name&gt;CounterWebApp Maven Webapp&lt;/name&gt;
-  &lt;url&gt;<a href="http://maven.apache.org&lt;/url&gt;">http://maven.apache.org&lt;/url&gt;</a>
-  &lt;dependencies&gt;
-    &lt;dependency&gt;
-      &lt;groupId&gt;junit&lt;/groupId&gt;
-      &lt;artifactId&gt;junit&lt;/artifactId&gt;
-      &lt;version&gt;3.8.1&lt;/version&gt;
-      &lt;scope&gt;test&lt;/scope&gt;
-    &lt;/dependency&gt;
-  &lt;/dependencies&gt;
-  &lt;build&gt;
-    &lt;finalName&gt;CounterWebApp&lt;/finalName&gt;
-  &lt;/build&gt;
-&lt;/project&gt;</pre>
-没啥疑问的。web.xml文件则如下：
-<pre class="lang:default decode:true" title="web.xml">&lt;!DOCTYPE web-app PUBLIC
- &ldquo;-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN&rdquo;
- &ldquo;<a href="http://java.sun.com/dtd/web-app_2_3.dtd&quot;">http://java.sun.com/dtd/web-app_2_3.dtd&quot;</a> &gt;</p>
-
-<p>&lt;web-app&gt;
-  &lt;display-name&gt;Archetype Created Web Application&lt;/display-name&gt;
-&lt;/web-app&gt;</pre>
-index.jsp内容是：
-<pre class="lang:default decode:true" title="index.jsp">&lt;html&gt;
-&lt;body&gt;
-&lt;h2&gt;Hello World!&lt;/h2&gt;
-&lt;/body&gt;
-&lt;/html&gt;</pre></p>
-
-<h2 id="3-转换以支持eclipse"> 3.转换以支持Eclipse</h2>
-
-<p>为了使Maven的web项目支持Eclipse，在命令行下，cd到CounterWebApp目录下，然后输入这个命令
-<pre class="lang:default decode:true">mvn eclipse:eclipse -Dwtpversion=2.0</pre>
--Dwtpversion=2.0参数是必需的，这个参数指明了是web项目，然后导入到eclipse里就行了。从导入的工程ico可以看出是个web项目</p>
-
+        <p>本文通过Maven完成一个简单的Web项目（注意，Spring配置不是重点，看看就行）</p>
+<h2 id="1mavenweb">1.从Maven模板创建Web应用程序</h2>
+<p>命令格式如下：</p>
+<!-- raw HTML omitted -->
+<p>这就告诉Maven从**maven-archetype-webapp **这个模板来创建</p>
+<p>友情提示：是不是太难记了..好吧，直接输入</p>
+<!-- raw HTML omitted -->
+<p>根据向导来创建把。。</p>
+<p>比如我这样写：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>就创建了一个包名为com.mkyong,类名为CounterWebApp的项目了</p>
+<h2 id="2mavenweb">2.Maven的Web程序目录结构</h2>
+<p>标准的web.xml部署描述文件生成了</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>对结构有疑问的去<a href="http://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html">这里</a></p>
+<p>生成的pom.xml文件如下</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>没啥疑问的。web.xml文件则如下：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>index.jsp内容是：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="3eclipse"> 3.转换以支持Eclipse</h2>
+<p>为了使Maven的web项目支持Eclipse，在命令行下，cd到CounterWebApp目录下，然后输入这个命令</p>
+<!-- raw HTML omitted -->
+<p>-Dwtpversion=2.0参数是必需的，这个参数指明了是web项目，然后导入到eclipse里就行了。从导入的工程ico可以看出是个web项目</p>
 <p>图一</p>
-
-<p><a href="/images/5c29f69c7cf928d6300dff7c9a176110ddb6c5ab.png"><img src="/images/5c29f69c7cf928d6300dff7c9a176110ddb6c5ab.png" alt="eclipse-tomcat-server" /></a> <a href="/images/4876ca43cc63ce27270db95cc57c40c1e862cbe7.png"><img src="/images/4876ca43cc63ce27270db95cc57c40c1e862cbe7.png" alt="final-folder" /></a> <a href="http://leaverimage.b0.upaiyun.com/2013/09/project-structure.png"><img src="/images/beffae62b8bf33f55abebbe65011f8547ea7b91f.png" alt="project-structure" /></a></p>
-
-<p>不要迷惑，如果我们只输入
-<pre class="lang:default decode:true">mvn eclipse:eclipse</pre>
-会转换成java项目，而不是web项目的。</p>
-
+<p><a href="/images/5c29f69c7cf928d6300dff7c9a176110ddb6c5ab.png"><img src="/images/5c29f69c7cf928d6300dff7c9a176110ddb6c5ab.png" alt="eclipse-tomcat-server"></a> <a href="/images/4876ca43cc63ce27270db95cc57c40c1e862cbe7.png"><img src="/images/4876ca43cc63ce27270db95cc57c40c1e862cbe7.png" alt="final-folder"></a> <a href="http://leaverimage.b0.upaiyun.com/2013/09/project-structure.png"><img src="/images/beffae62b8bf33f55abebbe65011f8547ea7b91f.png" alt="project-structure"></a></p>
+<p>不要迷惑，如果我们只输入</p>
+<!-- raw HTML omitted -->
+<p>会转换成java项目，而不是web项目的。</p>
 <p>好了，现在项目已经准备好部署了，eclipse里的tomcat server插件装好，然后启动项目</p>
-
 <p>图二</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/2013/09/eclipse-tomcat-server.png"><img src="/images/5c29f69c7cf928d6300dff7c9a176110ddb6c5ab.png" alt="eclipse-tomcat-server" /></a></p>
-
-<p>可以通过_<a href="http://localhost:8080/CounterWebApp/_地址来访问">http://localhost:8080/CounterWebApp/_地址来访问</a></p>
-
-<h2 id="4-更新pom文件">4.更新pom文件</h2>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/2013/09/eclipse-tomcat-server.png"><img src="/images/5c29f69c7cf928d6300dff7c9a176110ddb6c5ab.png" alt="eclipse-tomcat-server"></a></p>
+<p>可以通过_http://localhost:8080/CounterWebApp/_地址来访问</p>
+<h2 id="4pom">4.更新pom文件</h2>
 <p>为了使Maven项目支持Spring MVC框架，我们需要修改pom.xml文件</p>
-
 <p>1.添加编译插件指定jdk6来编译</p>
-
 <p>2.添加Spring框架依赖</p>
-
-<p>3.升级JUnit到4.1.1
-<pre class="lang:default decode:true" title="pom.xml">&lt;project xmlns=&ldquo;<a href="http://maven.apache.org/POM/4.0.0&quot;">http://maven.apache.org/POM/4.0.0&quot;</a>
-    xmlns:xsi=&ldquo;<a href="http://www.w3.org/2001/XMLSchema-instance&quot;">http://www.w3.org/2001/XMLSchema-instance&quot;</a>
-    xsi:schemaLocation=&ldquo;<a href="http://maven.apache.org/POM/4.0.0">http://maven.apache.org/POM/4.0.0</a>
-    <a href="http://maven.apache.org/maven-v4_0_0.xsd&quot;&gt;">http://maven.apache.org/maven-v4_0_0.xsd&quot;&gt;</a>
-    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
-    &lt;groupId&gt;com.mkyong&lt;/groupId&gt;
-    &lt;artifactId&gt;CounterWebApp&lt;/artifactId&gt;
-    &lt;packaging&gt;war&lt;/packaging&gt;
-    &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
-    &lt;name&gt;CounterWebApp Maven Webapp&lt;/name&gt;
-    &lt;url&gt;<a href="http://maven.apache.org&lt;/url&gt;">http://maven.apache.org&lt;/url&gt;</a></p>
-<div class="highlight"><pre class="chroma">&amp;lt;properties&amp;gt;
-    &amp;lt;spring.version&amp;gt;3.0.5.RELEASE&amp;lt;/spring.version&amp;gt;
-    &amp;lt;junit.version&amp;gt;4.11&amp;lt;/junit.version&amp;gt;
-    &amp;lt;jdk.version&amp;gt;1.6&amp;lt;/jdk.version&amp;gt;
-&amp;lt;/properties&amp;gt;
-
-&amp;lt;dependencies&amp;gt;
-
-    &amp;lt;!-- Spring 3 dependencies --&amp;gt;
-    &amp;lt;dependency&amp;gt;
-        &amp;lt;groupId&amp;gt;org.springframework&amp;lt;/groupId&amp;gt;
-        &amp;lt;artifactId&amp;gt;spring-core&amp;lt;/artifactId&amp;gt;
-        &amp;lt;version&amp;gt;${spring.version}&amp;lt;/version&amp;gt;
-    &amp;lt;/dependency&amp;gt;
-
-    &amp;lt;dependency&amp;gt;
-        &amp;lt;groupId&amp;gt;org.springframework&amp;lt;/groupId&amp;gt;
-        &amp;lt;artifactId&amp;gt;spring-web&amp;lt;/artifactId&amp;gt;
-        &amp;lt;version&amp;gt;${spring.version}&amp;lt;/version&amp;gt;
-    &amp;lt;/dependency&amp;gt;
-
-    &amp;lt;dependency&amp;gt;
-        &amp;lt;groupId&amp;gt;org.springframework&amp;lt;/groupId&amp;gt;
-        &amp;lt;artifactId&amp;gt;spring-webmvc&amp;lt;/artifactId&amp;gt;
-        &amp;lt;version&amp;gt;${spring.version}&amp;lt;/version&amp;gt;
-    &amp;lt;/dependency&amp;gt;
-
-    &amp;lt;dependency&amp;gt;
-        &amp;lt;groupId&amp;gt;junit&amp;lt;/groupId&amp;gt;
-        &amp;lt;artifactId&amp;gt;junit&amp;lt;/artifactId&amp;gt;
-        &amp;lt;version&amp;gt;${junit.version}&amp;lt;/version&amp;gt;
-        &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;
-    &amp;lt;/dependency&amp;gt;
-&amp;lt;/dependencies&amp;gt;
-&amp;lt;build&amp;gt;
-    &amp;lt;finalName&amp;gt;CounterWebApp&amp;lt;/finalName&amp;gt;
-    &amp;lt;plugins&amp;gt;
-        &amp;lt;plugin&amp;gt;
-            &amp;lt;groupId&amp;gt;org.apache.maven.plugins&amp;lt;/groupId&amp;gt;
-            &amp;lt;artifactId&amp;gt;maven-compiler-plugin&amp;lt;/artifactId&amp;gt;
-            &amp;lt;version&amp;gt;3.0&amp;lt;/version&amp;gt;
-            &amp;lt;configuration&amp;gt;
-                &amp;lt;source&amp;gt;${jdk.version}&amp;lt;/source&amp;gt;
-                &amp;lt;target&amp;gt;${jdk.version}&amp;lt;/target&amp;gt;
-            &amp;lt;/configuration&amp;gt;
-        &amp;lt;/plugin&amp;gt;
-    &amp;lt;/plugins&amp;gt;
-&amp;lt;/build&amp;gt;</pre></div>
-<p>&lt;/project&gt;</pre></p>
-
-<h2 id="5-spring-mvc-松耦合"> 5.Spring MVC 松耦合</h2>
-
-<p>创建Spring MVC控制器类，有两个方法，打印信息
-<pre class="lang:default decode:true" title="/src/main/java/com/mkyong/controller/BaseController.java">package com.mkyong.controller;</p>
-
-<p>import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;</p>
-
-<p>@Controller
-@RequestMapping(&ldquo;/&rdquo;)
-public class BaseController {</p>
-<div class="highlight"><pre class="chroma">@RequestMapping(value=&#34;/welcome&#34;, method = RequestMethod.GET)
-public String welcome(ModelMap model) {
-
-    model.addAttribute(&#34;message&#34;, &#34;Maven Web Project + Spring 3 MVC - welcome()&#34;);
-
-    //Spring uses InternalResourceViewResolver and return back index.jsp
-    return &#34;index&#34;;
-
-}
-
-@RequestMapping(value=&#34;/welcome/{name}&#34;, method = RequestMethod.GET)
-public String welcomeName(@PathVariable String name, ModelMap model) {
-
-    model.addAttribute(&#34;message&#34;, &#34;Maven Web Project + Spring 3 MVC - &#34; + name);
-    return &#34;index&#34;;
-
-}</pre></div>
-<p>}</pre>
-然后，创建Spring配置文件，定义视图解析器
-<pre class="lang:default decode:true" title="/src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml">&lt;beans xmlns=&ldquo;<a href="http://www.springframework.org/schema/beans&quot;">http://www.springframework.org/schema/beans&quot;</a>
-    xmlns:context=&ldquo;<a href="http://www.springframework.org/schema/context&quot;">http://www.springframework.org/schema/context&quot;</a>
-    xmlns:xsi=&ldquo;<a href="http://www.w3.org/2001/XMLSchema-instance&quot;">http://www.w3.org/2001/XMLSchema-instance&quot;</a>
-    xsi:schemaLocation=&rdquo;
-        <a href="http://www.springframework.org/schema/beans">http://www.springframework.org/schema/beans</a><br />
-        <a href="http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">http://www.springframework.org/schema/beans/spring-beans-3.0.xsd</a>
-        <a href="http://www.springframework.org/schema/context">http://www.springframework.org/schema/context</a>
-        <a href="http://www.springframework.org/schema/context/spring-context-3.0.xsd&quot;&gt;">http://www.springframework.org/schema/context/spring-context-3.0.xsd&quot;&gt;</a></p>
-<div class="highlight"><pre class="chroma">&amp;lt;context:component-scan base-package=&#34;com.mkyong.controller&#34; /&amp;gt;
-
-&amp;lt;bean
-    class=&#34;org.springframework.web.servlet.view.InternalResourceViewResolver&#34;&amp;gt;
-    &amp;lt;property name=&#34;prefix&#34;&amp;gt;
-        &amp;lt;value&amp;gt;/WEB-INF/pages/&amp;lt;/value&amp;gt;
-    &amp;lt;/property&amp;gt;
-    &amp;lt;property name=&#34;suffix&#34;&amp;gt;
-        &amp;lt;value&amp;gt;.jsp&amp;lt;/value&amp;gt;
-    &amp;lt;/property&amp;gt;
-&amp;lt;/bean&amp;gt;</pre></div>
-<p>&lt;/beans&gt;</pre>
-然后更新一下web.xml文件，通过Spring的监听器ContextLoaderListener把Spring框架集成进去
-<pre class="lang:default decode:true" title="/src/main/webapp/WEB-INF/web.xml">&lt;web-app xmlns=&ldquo;<a href="http://java.sun.com/xml/ns/javaee&quot;">http://java.sun.com/xml/ns/javaee&quot;</a>
-          xmlns:xsi=&ldquo;<a href="http://www.w3.org/2001/XMLSchema-instance&quot;">http://www.w3.org/2001/XMLSchema-instance&quot;</a>
-          xsi:schemaLocation=&ldquo;<a href="http://java.sun.com/xml/ns/javaee">http://java.sun.com/xml/ns/javaee</a>
-          <a href="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd&quot;">http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd&quot;</a>
-          version=&ldquo;2.5&rdquo;&gt;</p>
-<div class="highlight"><pre class="chroma">&amp;lt;display-name&amp;gt;Counter Web Application&amp;lt;/display-name&amp;gt;
-
-&amp;lt;servlet&amp;gt;
-    &amp;lt;servlet-name&amp;gt;mvc-dispatcher&amp;lt;/servlet-name&amp;gt;
-    &amp;lt;servlet-class&amp;gt;
-        org.springframework.web.servlet.DispatcherServlet
-    &amp;lt;/servlet-class&amp;gt;
-    &amp;lt;load-on-startup&amp;gt;1&amp;lt;/load-on-startup&amp;gt;
-&amp;lt;/servlet&amp;gt;
-
-&amp;lt;servlet-mapping&amp;gt;
-    &amp;lt;servlet-name&amp;gt;mvc-dispatcher&amp;lt;/servlet-name&amp;gt;
-    &amp;lt;url-pattern&amp;gt;/&amp;lt;/url-pattern&amp;gt;
-&amp;lt;/servlet-mapping&amp;gt;
-
-&amp;lt;context-param&amp;gt;
-    &amp;lt;param-name&amp;gt;contextConfigLocation&amp;lt;/param-name&amp;gt;
-    &amp;lt;param-value&amp;gt;/WEB-INF/mvc-dispatcher-servlet.xml&amp;lt;/param-value&amp;gt;
-&amp;lt;/context-param&amp;gt;
-
-&amp;lt;listener&amp;gt;
-    &amp;lt;listener-class&amp;gt;
-        org.springframework.web.context.ContextLoaderListener
-    &amp;lt;/listener-class&amp;gt;
-&amp;lt;/listener&amp;gt;</pre></div>
-<p>&lt;/web-app&gt;</pre>
-然移动index.jsp到WEB-INF目录里，以防用户直接访问他，同时我们编辑，增加${message}变量，也就是controller控制器传过来的值到页面</p>
-
+<p>3.升级JUnit到4.1.1</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="5spring-mvc-"> 5.Spring MVC 松耦合</h2>
+<p>创建Spring MVC控制器类，有两个方法，打印信息</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>然后，创建Spring配置文件，定义视图解析器</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>然后更新一下web.xml文件，通过Spring的监听器ContextLoaderListener把Spring框架集成进去</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>然移动index.jsp到WEB-INF目录里，以防用户直接访问他，同时我们编辑，增加${message}变量，也就是controller控制器传过来的值到页面</p>
 <p>最终的页面结构是：</p>
-
 <p>图三</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/2013/09/final-folder.png"><img src="/images/4876ca43cc63ce27270db95cc57c40c1e862cbe7.png" alt="final-folder" /></a></p>
-
-<h2 id="6-eclipse-tomcat">6.Eclipse+Tomcat</h2>
-
-<p>为了通过Eclipse的Tomcat插件开始/调试项目，需要再执行一次下面的命令，使得所有的依赖附加完成
-<pre class="lang:default decode:true">mvn eclipse:eclipse -Dwtpversion=2.0</pre>
-在没执行以前，项目依赖是空的</p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/2013/09/final-folder.png"><img src="/images/4876ca43cc63ce27270db95cc57c40c1e862cbe7.png" alt="final-folder"></a></p>
+<h2 id="6eclipsetomcat">6.Eclipse+Tomcat</h2>
+<p>为了通过Eclipse的Tomcat插件开始/调试项目，需要再执行一次下面的命令，使得所有的依赖附加完成</p>
+<!-- raw HTML omitted -->
+<p>在没执行以前，项目依赖是空的</p>
 <p>图四</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/2013/09/web-deployment-assembly.png"><img src="/images/73a4412bcfedbc568e2c60c2ec1bf3bca9e1d102.png" alt="web-deployment-assembly" /></a></p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/2013/09/web-deployment-assembly.png"><img src="/images/73a4412bcfedbc568e2c60c2ec1bf3bca9e1d102.png" alt="web-deployment-assembly"></a></p>
 <p>执行完以后，就都有了</p>
-
 <p>图五</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/2013/09/web-deployment-assembly-2.png"><img src="/images/ce231a20448fb14ef64cbd33f10ce124236af4c4.png" alt="web-deployment-assembly-2" /></a></p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/2013/09/web-deployment-assembly-2.png"><img src="/images/ce231a20448fb14ef64cbd33f10ce124236af4c4.png" alt="web-deployment-assembly-2"></a></p>
 <p>重要！许多人就是没有第二次执行这个命令导致无法开始/调试，如果有问题，右击你的项目属性，看看依赖是否为空</p>
-
-<h2 id="7-maven打包">7.Maven打包</h2>
-
-<p><pre class="lang:default decode:true" title="pom.xml">&lt;project &hellip;&gt;
-    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
-    &lt;groupId&gt;com.mkyong&lt;/groupId&gt;
-    &lt;artifactId&gt;CounterWebApp&lt;/artifactId&gt;</p>
-<div class="highlight"><pre class="chroma">&amp;lt;packaging&amp;gt;war&amp;lt;/packaging&amp;gt;
-&amp;lt;version&amp;gt;1.0-SNAPSHOT&amp;lt;/version&amp;gt;&lt;/pre&gt;</pre></div>
+<h2 id="7maven">7.Maven打包</h2>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>web项目打包成war。放在target目录</p>
-
-<p>进入项目目录，执行一下就可以了
-<pre class="lang:default decode:true">mvn package</pre>
-然后把target目录的CountWebApp.war文件拷贝，并部署到你的web容器里就行了</p>
-
-<h2 id="8-demo演示">8.Demo演示</h2>
-
-<p>打开<em><a href="http://localhost:8080/CounterWebApp/welcome">http://localhost:8080/CounterWebApp/welcome</a></em></p>
-
+<p>进入项目目录，执行一下就可以了</p>
+<!-- raw HTML omitted -->
+<p>然后把target目录的CountWebApp.war文件拷贝，并部署到你的web容器里就行了</p>
+<h2 id="8demo">8.Demo演示</h2>
+<p>打开_http://localhost:8080/CounterWebApp/welcome_</p>
 <p>可以看到</p>
-
 <p>图六</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/2013/09/demo1.png"><img src="/images/b2247eded5f745ec924642e931b586cd75a1e4e5.png" alt="demo1" /></a></p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/2013/09/demo1.png"><img src="/images/b2247eded5f745ec924642e931b586cd75a1e4e5.png" alt="demo1"></a></p>
 <p>我们传个参数进去</p>
-
-<p><em><a href="http://localhost:8080/CounterWebApp/welcome/mkyong">http://localhost:8080/CounterWebApp/welcome/mkyong</a></em></p>
-
+<p><em>http://localhost:8080/CounterWebApp/welcome/mkyong</em></p>
 <p>就可以看到效果了</p>
-
 <p>图七</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/2013/09/demo2.png"><img src="/images/0856171569637fa29d743717f2b75f91913b3dee.png" alt="demo2" /></a></p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/2013/09/demo2.png"><img src="/images/0856171569637fa29d743717f2b75f91913b3dee.png" alt="demo2"></a></p>
 <p>9.Demo下载</p>
-
-<p><a href="http://pan.baidu.com/share/link?shareid=579597800&amp;amp;uk=1493685990">CounterWebApp.zip</a></p>
+<p><a href="http://pan.baidu.com/share/link?shareid=579597800&amp;uk=1493685990">CounterWebApp.zip</a></p>
 
 
         
@@ -748,7 +660,7 @@ public String welcomeName(@PathVariable String name, ModelMap model) {
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

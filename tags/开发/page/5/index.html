@@ -51,7 +51,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -249,7 +249,36 @@
               </p>
               <div class="post-entry">
                 
-                  作者： [阮一峰](http://www.ruanyifeng.com/) 日期： [2012年6月19日](http://www.ruanyifeng.com/blog/2012/06/)   学过[CSS](http://zh.wikipedia.org/wiki/%E5%B1%82%E5%8F%A0%E6%A0%B7%E5%BC%8F%E8%A1%A8)的人都知道，它不是一种编程语言。  你可以用它开发网页样式，但是没法用它编程。也就是说，CSS基本上是设计师的工具，不是程序员的工具。在程序员眼里，CSS是一件很麻烦的东西。它没有变量，也没有条件语句，只是一行行单纯的描述，写起来相当费事。 ![](/images/24063303e3abc5d5089bc58bdba65c550be0f8cb.jpg) 很自然地，有人就开始为CSS加入编程元素，这被叫做["CSS预处理器"](http://www.catswhocode.com/blog/8-css-preprocessors-to-speed-up-development-time)（css preprocessor）。它的基本思想是，用一种专门的编程语言，进行网页样式设计，然后再编译成正常的CSS文件。 各种"CSS预处理器"之中，我自己最喜欢[SASS](http://sass-lang.com/)，觉得它有很多优点，打算以后都用它来写CSS。下面是我整理的用法总结，供自己开发时参考，相信对其他人也有用。 ============================================ **SASS用法指南** 作者：阮一峰 ![](/images/c00b9e9a6c97811cb70a4f18ec85976f493eb3e7.png) **一、什么是SASS** [SASS](http://sass-lang.com/)是一种CSS的开发工具，提供了许多便利的写法，大大节省了设计者的时间，使得CSS的开发，变得简单和可维护。 本文总结了SASS的主要用法。我的目标是，有了这篇文章，日常的一般使用就不需要去看[官方文档](http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html)了。 **二、安装和使用** **2.1 安装** SASS是Ruby语言写的，但是两者的语法没有关系。不懂Ruby，照样使用。只是必须先[安装Ruby](http://www.ruby-lang.org/zh_cn/downloads/)，然后再安装SASS。 假定你已经安装好了Ruby，接着在命令行输入下面的命令：  gem install sass 然后，就可以使用了。 **2.2 使用** SASS文件就是普通的文本文件，里面可以直接使用CSS语法。文件后缀名是.scss，意思为Sassy CSS。 下面的命令，可以在屏幕上显示.scss文件转化的css代码。（假设文件名为test。）  sass test.scss 如果要将显示结果保存成文件，后面再跟一个.css文件名。  sass test.scss test.css SASS提供四个编译风格的选项：  * nested：嵌套缩进的css代码，它是默认值。   * expanded：没有缩进的、扩展的css代码。   * compact：简洁格式的css代码。   * compressed：压缩后的css代码。 生产环境当中，一般使用最后一个选项。  sass --style compressed test.sass test.css SASS的官方网站，提供了一个[在线转换器](http://sass-lang.com/try.html)。你可以在那里，试运行下面的各种例子。 **三、基本用法** **3.1 变量** SASS允许使用变量，所有变量以$开头。  $blue : #1875e7;   div {  color : $blue;  } 如果变量需要镶嵌在字符串之中，就必须需要写在#{}之中。  $side : left;   .
+                  作者： 阮一峰
+日期： 2012年6月19日
+学过CSS的人都知道，它不是一种编程语言。
+你可以用它开发网页样式，但是没法用它编程。也就是说，CSS基本上是设计师的工具，不是程序员的工具。在程序员眼里，CSS是一件很麻烦的东西。它没有变量，也没有条件语句，只是一行行单纯的描述，写起来相当费事。
+很自然地，有人就开始为CSS加入编程元素，这被叫做&ldquo;CSS预处理器&rdquo;（css preprocessor）。它的基本思想是，用一种专门的编程语言，进行网页样式设计，然后再编译成正常的CSS文件。
+各种&quot;CSS预处理器&quot;之中，我自己最喜欢SASS，觉得它有很多优点，打算以后都用它来写CSS。下面是我整理的用法总结，供自己开发时参考，相信对其他人也有用。
+============================================
+SASS用法指南
+作者：阮一峰
+一、什么是SASS
+SASS是一种CSS的开发工具，提供了许多便利的写法，大大节省了设计者的时间，使得CSS的开发，变得简单和可维护。
+本文总结了SASS的主要用法。我的目标是，有了这篇文章，日常的一般使用就不需要去看官方文档了。
+二、安装和使用
+2.1 安装
+SASS是Ruby语言写的，但是两者的语法没有关系。不懂Ruby，照样使用。只是必须先安装Ruby，然后再安装SASS。
+假定你已经安装好了Ruby，接着在命令行输入下面的命令：
+ gem install sass 然后，就可以使用了。
+ 2.2 使用
+SASS文件就是普通的文本文件，里面可以直接使用CSS语法。文件后缀名是.scss，意思为Sassy CSS。
+下面的命令，可以在屏幕上显示.scss文件转化的css代码。（假设文件名为test。）
+ sass test.scss 如果要将显示结果保存成文件，后面再跟一个.css文件名。 sass test.scss test.css SASS提供四个编译风格的选项：
+  nested：嵌套缩进的css代码，它是默认值。
+  expanded：没有缩进的、扩展的css代码。
+  compact：简洁格式的css代码。
+  compressed：压缩后的css代码。 生产环境当中，一般使用最后一个选项。 sass &ndash;style compressed test.sass test.css SASS的官方网站，提供了一个在线转换器。你可以在那里，试运行下面的各种例子。
+   三、基本用法
+3.1 变量
+SASS允许使用变量，所有变量以$开头。
+ $blue : #1875e7;
+div { color : $blue; } 如果变量需要镶嵌在字符串之中，就必须需要写在#{}之中。 $side : left;
                   <a href="https://leizhiyuan.github.io/2012/06/19/sass%E7%94%A8%E6%B3%95%E6%8C%87%E5%8D%97/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -284,7 +313,7 @@
   <i class="fas fa-calendar"></i>&nbsp;Posted on June 17, 2012
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -299,11 +328,11 @@
               </p>
               <div class="post-entry">
                 
-                  这个名字确实有点不太好。。因为刚开始我想到这个工具是在今天早上看到一个别人的代理工具的时候，突然想做的，没有好好规化，结果后来代码越写越多。。不过收获很大。
-先看界面，因为是简单实现一下，所以就不要吐槽界面了。。
-刚开始想的思路就是先去一个经常发布代理IP的网页去采集。然后解析成一条条的信息。然后显示出来。中途遇到几个问题，一个就是在做代理验证的时候，没有用多线程，导致直接界面无响应。另一个就是DataGridView控件要实现对一个数组的绑定，需要的一个实体对象。 public IPEntity[] GetIpInfo(string url) {
-//获得网页源码 string content = Get_Http(url); //定位代理ip位置 int start = content.IndexOf(&#34;&amp;lt;/strong&amp;gt;&amp;lt;/u&amp;gt;&amp;lt;/a&amp;gt;&amp;lt;BR&amp;gt;&#34;); int end = content.LastIndexOf(&#34;&amp;lt;BR&amp;gt;&amp;lt;SCRIPT type=text/javascript&amp;gt;&#34;); //提取并去除一些冗余代码 string subContent = content.Substring(start, end - start).Substring(21); subContent = subContent.Replace(&#34;&amp;amp;nbsp; dn28.com&#34;, &#34;&#34;); //通过br标签分隔代理列表为数组 string[] sArray = Regex.Split(subContent, &#34;&amp;lt;br&amp;gt;&#34;, RegexOptions.IgnoreCase); IPEntity[] list = new IPEntity[sArray.Length]; int j = 0; foreach (string i in sArray) { int addrpos = i.IndexOf(&#34;:&#34;); string ipaddress = i.Substring(0, addrpos); int portpos = i.
-                  <a href="https://leizhiyuan.github.io/2012/06/17/freeanony-%E4%BB%A3%E7%90%86%E9%87%87%E9%9B%86%E8%AE%BE%E7%BD%AE%E5%B7%A5%E5%85%B7/" class="post-read-more">[Read More]</a>
+                  <p>这个名字确实有点不太好。。因为刚开始我想到这个工具是在今天早上看到一个别人的代理工具的时候，突然想做的，没有好好规化，结果后来代码越写越多。。不过收获很大。</p>
+<p>先看界面，因为是简单实现一下，所以就不要吐槽界面了。。<a href="http://leaverimage.b0.upaiyun.com/23525_o.jpg"><img src="/images/10c75978f904af3fc0eb8e9c41cf2a47d4d2545f.jpg" alt="" title="FreeAnony"></a></p>
+<p>刚开始想的思路就是先去一个经常发布代理IP的网页去采集。然后解析成一条条的信息。然后显示出来。中途遇到几个问题，一个就是在做代理验证的时候，没有用多线程，导致直接界面无响应。另一个就是DataGridView控件要实现对一个数组的绑定，需要的一个实体对象。</p>
+<!-- raw HTML omitted -->
+
                 
               </div>
 
@@ -356,7 +385,7 @@
                 
                   问题： string str = &quot;abcdefgdcb&quot;; cout &amp;lt; &amp;lt; sizeof(str.substr(0,3).c_str()); For some reason, the above string is giving me 8. I assumed c_str() returns a null string, 由于某些原因，上面的这个字符串得到的结果是8，我估计c_str()返回了一个null，
 and sizeof uses the null to determine the size of the string. 并且sizeof函数使用这个null来定义这个字符串的大小。
-答案： Because sizeof doesn&rsquo;t give you the length of a string, 因为sizeof给你的不是一个字符串的长度，
+答案： Because sizeof doesn't give you the length of a string, 因为sizeof给你的不是一个字符串的长度，
 it gives you the size of the type (const char * in this case). Try strlen. 他给你的是这个类型的大小（这种情况下的类型是c_str()返回的const char*类型），想要得到正确的结果，试试strlen函数吧。
                   <a href="https://leizhiyuan.github.io/2012/05/21/%E4%B8%BA%E4%BB%80%E4%B9%88sizeofstr.substr03.c_str8/" class="post-read-more">[Read More]</a>
                 
@@ -407,11 +436,15 @@ it gives you the size of the type (const char * in this case). Try strlen. 他�
               </p>
               <div class="post-entry">
                 
-                  使用Serialization来进行序列化和反序列化，因此需要引入System.Xml.Serialization；命名空间。
-为什么要做序列化和反序列化？ .Net程序执行时，对象都驻留在内存中；内存中的对象如果需要传递给其他系统使用；或者在关机时需要保存下来以便下次再次启动程序使用就需要序列化和反序列化。
-本文的原始例子在参考文中，但是参考文中没有给出反序列化的例子，且xml文件不清晰。于是修改了代码，同时实现对象数组序列化和反序列化。
-using System; using System.Collections.Generic; using System.Linq; using System.Text; using System.Xml.Serialization; using System.IO; namespace UseXmlSerialization { class Program { static void Main(string[] args) { //声明一个猫对象 var cWhite = new Cat { Color = "White", Speed = 10, Saying = "I am a good WHITE cat" }; var cBlack = new Cat { Color = "Black", Speed = 10, Saying = "I am a good BLACK cat" }; CatCollection cc = new CatCollection { Cats = new Cat[] { cWhite, cBlack } }; //序列化这个对象 XmlSerializer serializer = new XmlSerializer(typeof(CatCollection)); StringWriter sw = new StringWriter(); serializer.
-                  <a href="https://leizhiyuan.github.io/2012/05/18/%E5%AF%B9%E8%B1%A1%E6%95%B0%E7%BB%84%E7%9A%84xml%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" class="post-read-more">[Read More]</a>
+                  <p>使用Serialization来进行序列化和反序列化，因此需要引入System.Xml.Serialization；命名空间。</p>
+<p>为什么要做序列化和反序列化？
+.Net程序执行时，对象都驻留在内存中；内存中的对象如果需要传递给其他系统使用；或者在关机时需要保存下来以便下次再次启动程序使用就需要序列化和反序列化。</p>
+<p>本文的原始例子在参考文中，但是参考文中没有给出反序列化的例子，且xml文件不清晰。于是修改了代码，同时实现对象数组序列化和反序列化。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>参考：
+　　<a href="http://www.cnblogs.com/yukaizhao/archive/2011/07/22/xml-serialization.html">http://www.cnblogs.com/yukaizhao/archive/2011/07/22/xml-serialization.html</a></p>
+
                 
               </div>
 
@@ -468,21 +501,21 @@ using System; using System.Collections.Generic; using System.Linq; using System.
 老规矩。因为是非常不错的文章。所有有必要收藏下来备用。推荐。
 **三层体系结构的概念
 **
- 用户界面表示层(USL) 业务逻辑层(BLL) 数据访问层(DAL) BLL将USL与DAL隔开了，并且加入了业务规则    各层的作用 1：数据数据访问层:主要是对原始数据（数据库或者文本文件等存放数据的形式）的操作层，而不是指原始数据，也就是说，是对数据的操作，而不是数据库,具体为业务逻辑层或表示层提供数据服务． 2：业务逻辑层:主要是针对具体的问题的操作，也可以理解成对数据层的操作,对数据业务逻辑处理，如果说数据层是积木，那逻辑层就是对这些积木的搭建。 3：表示层:主要表示WEB方式,也可以表示成WINFORM方式,WEB方式也可以表现成:aspx, 如果逻辑层相当强大和完善,无论表现层如何定义和更改,逻辑层都能完善地提供服务。  具体的区分方法
+ 用户界面表示层(USL) 业务逻辑层(BLL) 数据访问层(DAL) BLL将USL与DAL隔开了，并且加入了业务规则    各层的作用
+  2：业务逻辑层:主要是针对具体的问题的操作，也可以理解成对数据层的操作,对数据业务逻辑处理，如果说数据层是积木，那逻辑层就是对这些积木的搭建。
+3：表示层:主要表示WEB方式,也可以表示成WINFORM方式,WEB方式也可以表现成:aspx, 如果逻辑层相当强大和完善,无论表现层如何定义和更改,逻辑层都能完善地提供服务。    具体的区分方法
 1：数据数据访问层:主要看你的数据层里面有没有包含逻辑处理，实际上他的各个函数主要完成各个对数据文件的操作。而不必管其他操作。
 2：业务逻辑层:主要负责对数据层的操作。也就是说把一些数据层的操作进行组合。
-3：表示层:主要对用户的请求接受，以及数据的返回，为客户端提供应用程序的访问。 
- 三层结构解释
+3：表示层:主要对用户的请求接受，以及数据的返回，为客户端提供应用程序的访问。
+    三层结构解释
 所谓三层体系结构，是在客户端与数据库之间加入了一个中间层，也叫组件层。这里所说的三层体系，不是指物理上的三层，不是简单地放置三台机器就是三层体系结构，也不仅仅有B/S应用才是三层体系结构，三层是指逻辑上的三层，即使这三个层放置到一台机器上。 三层体系的应用程序将业务规则、数据访问、合法性校验等工作放到了中间层进行处理。通常情况下，客户端不直接与数据库进行交互，而是通过COM/DCOM通讯与中间层建立连接，再经由中间层与数据库进行交换.
-开发人员可以将应用的商业逻辑放在中间层应用服务器上，把应用的业务逻辑与用户界面分开。在保证客户端功能的前提下，为用户提供一个简洁的界面。这意味着如果需要修改应用程序代码，只需要对中间层应用服务器进行修改，而不用修改成千上万的客户端应用程序。从而使开发人员可以专注于应用系统核心业务逻辑的分析、设计和开发，简化了应用系统的开发、更新和升级工作。 
- 那么为什么要应用“中间业务层”呢？举些例子: 我们假设有一段登录代码，则可以这样处理Web程序，外观层负责接收前台页面的数据，然后传给中间层，中间层对数据进行处理，比如格式化，防SQL注入等等一些，这样的数据再传给数据访问层然后与数据库进行操作，比如与数据库的用户名和密码匹配等等一些代码。**
-  ** * “中间业务层”的用途有很多，例如：验证用户输入数据、缓存从数据库中读取的数据等等……但是，“中间业务层”的实际目的是将“数据访问层”的最基础的存储逻辑组合起来，形成一种业务规则。例如：“在一个购物网站中有这样的一个规则：在该网站第一次购物的用户，系统为其自动注册”。这样的业务逻辑放在中间层最合适： &gt; 在“数据访问层”中，最好不要出现任何“业务逻辑”！也就是说，要保证“数据访问层”的中的函数功能的原子性！即最小性和不可再分。“数据访问层”只管负责存储或读取数据就可以了。 &gt; ** &gt; **
- ASP.NET中的三层结构说明
-完善的三层结构的要求是:修改表现层而不用修改逻辑层,修改逻辑层而不用修改数据层。否则你的应用是不是多层结构,或者说是层结构的划分和组织上是不是有问题就很难说.不同的应用有不同的理解，这只是一个概念的问题．
-   理解ASP.NET中的三层结构——为什么要分三层？
-我们用三层结构主要是使项目结构更清楚，分工更明确，有利于后期的维护和升级。它未必会提升性能，因为当子程序模块未执行结束时，主程序模块只能处于等待状态。这说明将应用程序划分层次，会带来其执行速度上的一些损失。但从团队开发效率角度上来讲却可以感受到大不相同的效果。
-  需要说明一下，三层结构不是.NET的专利，也不是专门用在数据库上的技术。它是一种更加普适的架构设计理念。  此种架构要在数据库设计上注意表之间的关系，尽力满足主与子的关系。在功能上对用户要有一定的限制，不要表现在对于子表的删除操作一定要慎重，以免造成主表与子表的数据在逻辑上出现的主表的外键在子表中没有相对应的值。
- 对于表的综合查询方法是： 先对主表查询，调用主表所对应的DL。再根据主表的记录分别对每一个子表进行查询。将自表的查询结果添加的主表后，形成一个大的查询集合。 对于表的操作（增删改）： 此时只对主表进行操作，调用主表对应的DL中的操作方法。 RL层是逻辑判断层，主要是对页面上传入的数据进行逻辑判断。RL层之上就是UI 如何建立一个三层体系结构解决方案
+开发人员可以将应用的商业逻辑放在中间层应用服务器上，把应用的业务逻辑与用户界面分开。在保证客户端功能的前提下，为用户提供一个简洁的界面。这意味着如果需要修改应用程序代码，只需要对中间层应用服务器进行修改，而不用修改成千上万的客户端应用程序。从而使开发人员可以专注于应用系统核心业务逻辑的分析、设计和开发，简化了应用系统的开发、更新和升级工作。
+   那么为什么要应用“中间业务层”呢？举些例子: 我们假设有一段登录代码，则可以这样处理Web程序，外观层负责接收前台页面的数据，然后传给中间层，中间层对数据进行处理，比如格式化，防SQL注入等等一些，这样的数据再传给数据访问层然后与数据库进行操作，比如与数据库的用户名和密码匹配等等一些代码。**  **
+     在“数据访问层”中，最好不要出现任何“业务逻辑”！也就是说，要保证“数据访问层”的中的函数功能的原子性！即最小性和不可再分。“数据访问层”只管负责存储或读取数据就可以了。   ASP.NET中的三层结构说明
+完善的三层结构的要求是:**修改表现层而不用修改逻辑层,修改逻辑层而不用修改数据层。**否则你的应用是不是多层结构,或者说是层结构的划分和组织上是不是有问题就很难说.不同的应用有不同的理解，这只是一个概念的问题．
+    我们用三层结构主要是使项目结构更清楚，分工更明确，有利于后期的维护和升级。它未必会提升性能，因为当子程序模块未执行结束时，主程序模块只能处于等待状态。这说明将应用程序划分层次，会带来其执行速度上的一些损失。但从团队开发效率角度上来讲却可以感受到大不相同的效果。  需要说明一下，三层结构不是.NET的专利，也不是专门用在数据库上的技术。它是一种更加普适的架构设计理念。
+  对于表的综合查询方法是： 先对主表查询，调用主表所对应的DL。再根据主表的记录分别对每一个子表进行查询。将自表的查询结果添加的主表后，形成一个大的查询集合。 对于表的操作（增删改）： 此时只对主表进行操作，调用主表对应的DL中的操作方法。 RL层是逻辑判断层，主要是对页面上传入的数据进行逻辑判断。RL层之上就是UI
+  如何建立一个三层体系结构解决方案
 新建一个空白解决方案。然后： “添加”－“新建项目”－“其他项目”－“企业级模版项目”－“C#生成块”－“数据访问”（数据层，下简称D层） “添加”－“新建项目”－“其他项目”－“企业级模版项目”－“C#生成块”－“业务规则”（业务层，下简称C层） “添加”－“新建项目”－“其他项目”－“企业级模版项目”－“C#生成块”－“Web用户界面”（界面层，下简称U层） 右键点“解决方案”－“项目依赖项”，设置U依赖于D、C，C依赖于D。 对U添加引用D、C，对C添加引用D。 到此为止，一个三层的架子建立起来了。我上面说的很具体很“傻瓜”，知道的人觉得我废话，其实我这段时间很强烈的感觉到非常多的人其实对这个简单的过程完全不了解。虽然不反对建2个“空项目”和1个“Asp net Web应用程序项目”也可以作为3层的框架，而且相当多的人认为其实这些“企业级模板项目”其实就是个空项目，这是一个误区。没错，企业级模板项目你从解决方案资源管理器里看它是个什么也没有的，但是你可以用记事本打开项目文件，看见不同了吧？？有些东西在背后，你是看不见的，不过系统已经做好了。也就是说，如果你在C层里的某个类里“using System Data SqlClineit”，或者使用一个SqlConnection对象，编译时候不会出错，但是会在“任务列表”里生成一些“策略警告”，警告你在C层里不要放应该放在D层的东西（虽然就程序来说没错，但是可读性可维护性就打了折扣）而这种功能，空项目是无法給你的。
                   <a href="https://leizhiyuan.github.io/2012/05/05/.net%E4%B8%89%E5%B1%82%E6%9E%B6%E6%9E%84/" class="post-read-more">[Read More]</a>
                 
@@ -535,11 +568,9 @@ using System; using System.Collections.Generic; using System.Linq; using System.
               </p>
               <div class="post-entry">
                 
-                  今天打算用C#写个模拟登录的程序。从类库里找到一个HTMLHelper的类。用来处理html的请求接收等处理。为了让类能够先运行起来，先把该类拖入解决方案，引用就不用添加了，因为该类没写命名空间，可以直接用，我测试其中一个最简单的函数 private void btnGet_Click(object sender, EventArgs e) { txtContent.Text=HTMLHelper.Get_Http(&ldquo;http://leaver.me&quot;); } 获取我网站的首页源代码。到TextBox控件 编译，运行。出现如题错误。
- 命名空间“System.Web”中不存在类型或命名空间名称“UI”。是否缺少程序集引用? E:\project\C#\GTest\GTest\HTMLHelper.cs 直接对着错误点右键，复制。然后删掉后面的路径。使关键字包括前面几个就行了，到Google中搜索。大部分人给的说明都是 原因是缺少System.web的引用，只要右键单击项目，添加引用就行了！ 那咱就添加呗 对着工程点击引用-&gt;添加引用
- 悲剧发生了。。 
-根本就没有该dll文件。。泪奔了。。于是Google之。。发现没有一个讲清楚的。都是夸夸其谈。。没有任何实质性方案。于是换英语搜。 关键字：Cannot add System.Web.dll reference  第一个是stackoverflow，大名鼎鼎的栈溢出啊。。进去看看。 &gt; For people that cant find &ldquo;System.Web&rdquo; at .Net References, this might be the answer: &gt; &gt; &ldquo;you need to right-click the project -&gt; properties -&gt; then change the &ldquo;Target framework&rdquo; which will probably be &ldquo;.NET Framework 4 Client Profile&rdquo; to just &ldquo;.
-                  <a href="https://leizhiyuan.github.io/2012/04/13/system.web%E4%B8%AD%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%B1%BB%E5%9E%8B%E6%88%96%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E5%90%8D%E7%A7%B0ui%E8%A7%A3%E5%86%B3/" class="post-read-more">[Read More]</a>
+                  <p>今天打算用C#写个模拟登录的程序。从类库里找到一个HTMLHelper的类。用来处理html的请求接收等处理。为了让类能够先运行起来，先把该类拖入解决方案，引用就不用添加了，因为该类没写命名空间，可以直接用，我测试其中一个最简单的函数</p>
+<!-- raw HTML omitted -->
+
                 
               </div>
 
@@ -614,7 +645,7 @@ using System; using System.Collections.Generic; using System.Linq; using System.
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

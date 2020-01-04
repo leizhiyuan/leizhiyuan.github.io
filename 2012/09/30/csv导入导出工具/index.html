@@ -17,9 +17,14 @@
 通过ODBC驱动连接到一个CSV文件，然后把文件读到一张表了（基于前面提到的那篇文章） 使用不同的编码和不同的行分隔符（基于前文） 加载CSV文件到DataSet（基于前文） 如何显示对CSV文件的预览（基于前文） 通过SqlBulkCopy的对象向SQL server转移数据，原始数据是DataSet实例
 使用结构表，基于CSV文件，创建一个新表 使用事件来处理批量拷贝的进程 导出
 浏览SQL 数据库中的用户表 使用不同的编码和分隔符 使用SqlDataReader读取数据，使用StreamWriter转移数据到平面文件
- 使用 1. 下载工程 2. 新建一个数据库，或者使用一个存在的数据库 3. 修改软件中的数据库连接字符串，在prop.cs文件中
-public static string sqlConnString = &#34;server=(local); database=Test_CSV_impex;Trusted_Connection=True&#34;;  运行工程  一些代码段 加载CSV到DataSet中 /* *加载CSV到DataSet. * * 如果numberOfRows parameter 是 -1, 就加载所有行, 否则就加载指定数目的行 */
-public DataSet LoadCSV(int numberOfRows) { DataSet ds = new DataSet(); try { // 创建并打开ODBC连接 string strConnString = &ldquo;Driver={Microsoft Text Driver (*.">
+ 使用
+ 下载工程 新建一个数据库，或者使用一个存在的数据库 修改软件中的数据库连接字符串，在prop.cs文件中  运行工程  一些代码段 加载CSV到DataSet中
+通过SqlBulkCopy从ODBC连接中转移数据到数据库
+基于结构表创建表
+获取数据库中用户表名
+通过StreamWriter写数据
+Demo下载 CSV_import_export 许可 本文包括源代码和文件在CPOL下授权
+原文地址：C-CSV-Import-Export">
   <meta property="og:description" content="介绍
 本文介绍并且实现了在平面文件CSV和SQL server之间的导入导出功能。使用VS2005写的。使用了.net 2.0
 本文基于前一篇文章：从CSV导入数据并存储到数据库，本文包含了新功能，比如，导出功能，在数据库创建表，批量拷贝。接下来的例子中有很多注释。
@@ -27,9 +32,14 @@ public DataSet LoadCSV(int numberOfRows) { DataSet ds = new DataSet(); try { // 
 通过ODBC驱动连接到一个CSV文件，然后把文件读到一张表了（基于前面提到的那篇文章） 使用不同的编码和不同的行分隔符（基于前文） 加载CSV文件到DataSet（基于前文） 如何显示对CSV文件的预览（基于前文） 通过SqlBulkCopy的对象向SQL server转移数据，原始数据是DataSet实例
 使用结构表，基于CSV文件，创建一个新表 使用事件来处理批量拷贝的进程 导出
 浏览SQL 数据库中的用户表 使用不同的编码和分隔符 使用SqlDataReader读取数据，使用StreamWriter转移数据到平面文件
- 使用 1. 下载工程 2. 新建一个数据库，或者使用一个存在的数据库 3. 修改软件中的数据库连接字符串，在prop.cs文件中
-public static string sqlConnString = &#34;server=(local); database=Test_CSV_impex;Trusted_Connection=True&#34;;  运行工程  一些代码段 加载CSV到DataSet中 /* *加载CSV到DataSet. * * 如果numberOfRows parameter 是 -1, 就加载所有行, 否则就加载指定数目的行 */
-public DataSet LoadCSV(int numberOfRows) { DataSet ds = new DataSet(); try { // 创建并打开ODBC连接 string strConnString = &ldquo;Driver={Microsoft Text Driver (*.">
+ 使用
+ 下载工程 新建一个数据库，或者使用一个存在的数据库 修改软件中的数据库连接字符串，在prop.cs文件中  运行工程  一些代码段 加载CSV到DataSet中
+通过SqlBulkCopy从ODBC连接中转移数据到数据库
+基于结构表创建表
+获取数据库中用户表名
+通过StreamWriter写数据
+Demo下载 CSV_import_export 许可 本文包括源代码和文件在CPOL下授权
+原文地址：C-CSV-Import-Export">
   <meta name="twitter:description" content="介绍
 本文介绍并且实现了在平面文件CSV和SQL server之间的导入导出功能。使用VS2005写的。使用了.net 2.0
 本文基于前一篇文章：从CSV导入数据并存储到数据库，本文包含了新功能，比如，导出功能，在数据库创建表，批量拷贝。接下来的例子中有很多注释。
@@ -83,9 +93,9 @@ public DataSet LoadCSV(int numberOfRows) { DataSet ds = new DataSet(); try { // 
     "name" : "bystander"
   },
   "headline": "CSV导入导出工具",
-  "description" : "介绍\n本文介绍并且实现了在平面文件CSV和SQL server之间的导入导出功能。使用VS2005写的。使用了.net 2.0\n本文基于前一篇文章：从CSV导入数据并存储到数据库，本文包含了新功能，比如，导出功能，在数据库创建表，批量拷贝。接下来的例子中有很多注释。\n导入\n通过ODBC驱动连接到一个CSV文件，然后把文件读到一张表了（基于前面提到的那篇文章） 使用不同的编码和不同的行分隔符（基于前文） 加载CSV文件到DataSet（基于前文） 如何显示对CSV文件的预览（基于前文） 通过SqlBulkCopy的对象向SQL server转移数据，原始数据是DataSet实例\n使用结构表，基于CSV文件，创建一个新表 使用事件来处理批量拷贝的进程 导出\n浏览SQL 数据库中的用户表 使用不同的编码和分隔符 使用SqlDataReader读取数据，使用StreamWriter转移数据到平面文件\n 使用 1. 下载工程 2. 新建一个数据库，或者使用一个存在的数据库 3. 修改软件中的数据库连接字符串，在prop.cs文件中\npublic static string sqlConnString = \x22server=(local); database=Test_CSV_impex;Trusted_Connection=True\x22;  运行工程  一些代码段 加载CSV到DataSet中 \/* *加载CSV到DataSet. * * 如果numberOfRows parameter 是 -1, 就加载所有行, 否则就加载指定数目的行 *\/\npublic DataSet LoadCSV(int numberOfRows) { DataSet ds = new DataSet(); try { \/\/ 创建并打开ODBC连接 string strConnString = \x26ldquo;Driver={Microsoft Text Driver (*.",
+  "description" : "介绍\n本文介绍并且实现了在平面文件CSV和SQL server之间的导入导出功能。使用VS2005写的。使用了.net 2.0\n本文基于前一篇文章：从CSV导入数据并存储到数据库，本文包含了新功能，比如，导出功能，在数据库创建表，批量拷贝。接下来的例子中有很多注释。\n导入\n通过ODBC驱动连接到一个CSV文件，然后把文件读到一张表了（基于前面提到的那篇文章） 使用不同的编码和不同的行分隔符（基于前文） 加载CSV文件到DataSet（基于前文） 如何显示对CSV文件的预览（基于前文） 通过SqlBulkCopy的对象向SQL server转移数据，原始数据是DataSet实例\n使用结构表，基于CSV文件，创建一个新表 使用事件来处理批量拷贝的进程 导出\n浏览SQL 数据库中的用户表 使用不同的编码和分隔符 使用SqlDataReader读取数据，使用StreamWriter转移数据到平面文件\n 使用\n 下载工程 新建一个数据库，或者使用一个存在的数据库 修改软件中的数据库连接字符串，在prop.cs文件中  运行工程  一些代码段 加载CSV到DataSet中\n通过SqlBulkCopy从ODBC连接中转移数据到数据库\n基于结构表创建表\n获取数据库中用户表名\n通过StreamWriter写数据\nDemo下载 CSV_import_export 许可 本文包括源代码和文件在CPOL下授权\n原文地址：C-CSV-Import-Export",
   "inLanguage" : "en",
-  "wordCount":  586 ,
+  "wordCount":  35 ,
   "datePublished" : "2012-09-30T22:33:19",
   "dateModified" : "2012-09-30T22:33:19",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -112,9 +122,14 @@ public DataSet LoadCSV(int numberOfRows) { DataSet ds = new DataSet(); try { // 
 通过ODBC驱动连接到一个CSV文件，然后把文件读到一张表了（基于前面提到的那篇文章） 使用不同的编码和不同的行分隔符（基于前文） 加载CSV文件到DataSet（基于前文） 如何显示对CSV文件的预览（基于前文） 通过SqlBulkCopy的对象向SQL server转移数据，原始数据是DataSet实例
 使用结构表，基于CSV文件，创建一个新表 使用事件来处理批量拷贝的进程 导出
 浏览SQL 数据库中的用户表 使用不同的编码和分隔符 使用SqlDataReader读取数据，使用StreamWriter转移数据到平面文件
- 使用 1. 下载工程 2. 新建一个数据库，或者使用一个存在的数据库 3. 修改软件中的数据库连接字符串，在prop.cs文件中
-public static string sqlConnString = &#34;server=(local); database=Test_CSV_impex;Trusted_Connection=True&#34;;  运行工程  一些代码段 加载CSV到DataSet中 /* *加载CSV到DataSet. * * 如果numberOfRows parameter 是 -1, 就加载所有行, 否则就加载指定数目的行 */
-public DataSet LoadCSV(int numberOfRows) { DataSet ds = new DataSet(); try { // 创建并打开ODBC连接 string strConnString = &ldquo;Driver={Microsoft Text Driver (*.">
+ 使用
+ 下载工程 新建一个数据库，或者使用一个存在的数据库 修改软件中的数据库连接字符串，在prop.cs文件中  运行工程  一些代码段 加载CSV到DataSet中
+通过SqlBulkCopy从ODBC连接中转移数据到数据库
+基于结构表创建表
+获取数据库中用户表名
+通过StreamWriter写数据
+Demo下载 CSV_import_export 许可 本文包括源代码和文件在CPOL下授权
+原文地址：C-CSV-Import-Export">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2012/09/30/csv%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E5%B7%A5%E5%85%B7/" />
 <meta property="og:type" content="website" />
@@ -136,7 +151,7 @@ public DataSet LoadCSV(int numberOfRows) { DataSet ds = new DataSet(); try { // 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -294,7 +309,7 @@ public DataSet LoadCSV(int numberOfRows) { DataSet ds = new DataSet(); try { // 
   <i class="fas fa-calendar"></i>&nbsp;Posted on September 30, 2012
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;3&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -320,334 +335,54 @@ public DataSet LoadCSV(int numberOfRows) { DataSet ds = new DataSet(); try { // 
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <p><a href="http://leaverimage.b0.upaiyun.com/27639_o.png"><img src="/images/650890bebf13c4d041d3113af4b40fb93a2cc0c5.png" alt="" title="form1" /></a>
+        <p><a href="http://leaverimage.b0.upaiyun.com/27639_o.png"><img src="/images/650890bebf13c4d041d3113af4b40fb93a2cc0c5.png" alt="" title="form1"></a>
 <strong>介绍</strong></p>
-
 <p>本文介绍并且实现了在平面文件CSV和SQL server之间的导入导出功能。使用VS2005写的。使用了.net 2.0</p>
-
 <p>本文基于前一篇文章：<a href="http://www.codeproject.com/KB/database/FinalCSVReader.aspx">从CSV导入数据并存储到数据库</a>，本文包含了新功能，比如，导出功能，在数据库创建表，批量拷贝。接下来的例子中有很多注释。</p>
-
 <p><strong>导入</strong></p>
-
 <p>通过ODBC驱动连接到一个CSV文件，然后把文件读到一张表了（基于前面提到的那篇文章）
 使用不同的编码和不同的行分隔符（基于前文）
 加载CSV文件到DataSet（基于前文）
 如何显示对CSV文件的预览（基于前文）
 通过SqlBulkCopy的对象向SQL server转移数据，原始数据是DataSet实例</p>
-
 <p>使用结构表，基于CSV文件，创建一个新表
 使用事件来处理批量拷贝的进程
 <strong>导出</strong></p>
-
 <p>浏览SQL 数据库中的用户表
 使用不同的编码和分隔符
 使用SqlDataReader读取数据，使用StreamWriter转移数据到平面文件</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/27640_o.png"><img src="/images/b131fd0af27287ab9270df33d1a313ab957dfb12.png" alt="" title="form2" /></a>
-使用
-1.  下载工程
-2.  新建一个数据库，或者使用一个存在的数据库
-3.  修改软件中的数据库连接字符串，在prop.cs文件中</p>
-
-<pre class="lang:c# decode:true " >public static string sqlConnString = "server=(local);
-    database=Test_CSV_impex;Trusted_Connection=True";</pre> 
-
+<p><a href="http://leaverimage.b0.upaiyun.com/27640_o.png"><img src="/images/b131fd0af27287ab9270df33d1a313ab957dfb12.png" alt="" title="form2"></a>
+使用</p>
 <ol>
+<li>下载工程</li>
+<li>新建一个数据库，或者使用一个存在的数据库</li>
+<li>修改软件中的数据库连接字符串，在prop.cs文件中</li>
+</ol>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<ol start="4">
 <li>运行工程</li>
 </ol>
-
 <p><strong>一些代码段</strong>
-加载CSV到DataSet中
-<pre class="lang:c# decode:true " >
-/*
- *加载CSV到DataSet.
- *
- * 如果numberOfRows parameter 是 -1, 就加载所有行, 否则就加载指定数目的行
- */</p>
-
-<p>public DataSet LoadCSV(int numberOfRows)
-{
-    DataSet ds = new DataSet();
-    try
-    {
-        // 创建并打开ODBC连接
-        string strConnString = &ldquo;Driver={Microsoft Text Driver (*.txt; *.csv)};
-            Dbq=&rdquo; + this.dirCSV.Trim() + &ldquo;;
-            Extensions=asc,csv,tab,txt;Persist Security Info=False&rdquo;;
-        string sql_select;
-        OdbcConnection conn;
-        conn = new OdbcConnection(strConnString.Trim());
-        conn.Open();</p>
-<div class="highlight"><pre class="chroma">    //创建SQL语句
-    if (numberOfRows == -1)
-    {
-        sql_select = &#34;select * from [&#34; + 
-                this.FileNevCSV.Trim() + &#34;]&#34;;
-    }
-    else
-    {
-        sql_select = &#34;select top &#34; + numberOfRows + 
-            &#34; * from [&#34; + this.FileNevCSV.Trim() + &#34;]&#34;;
-    }
-
-    //创建数据适配器 
-    OdbcDataAdapter obj_oledb_da = new OdbcDataAdapter(sql_select, conn);
-
-    //用CSV的数据填充DataSet
-    obj_oledb_da.Fill(ds, &#34;csv&#34;);
-
-    //关闭连接
-    conn.Close();
-}
-catch (Exception e) //异常处理
-{
-    MessageBox.Show(e.Message, &#34;Error - LoadCSV&#34;,
-            MessageBoxButtons.OK,MessageBoxIcon.Error);
-}
-return ds;</pre></div>
-<p>}</pre></p>
-
-<p>通过SqlBulkCopy从ODBC连接中转移数据到数据库
-<pre class="lang:c# decode:true " >/*
- *通过SqlBulkCopy从ODBC连接中转移数据到数据库
- * 该方法不使用临时的dataset，而是直接从ODBC连接中加载数据
- */</p>
-
-<p>private void SaveToDatabaseDirectly()
-{
-    try
-    {
-        if (fileCheck())
-        {
-            // 选择 格式，编码 ，并且写结构表<br />
-Format();
-            Encoding();
-            writeSchema();</p>
-<div class="highlight"><pre class="chroma">        // 创建并打开ODBC连接
-        string strConnString = &#34;Driver={Microsoft Text Driver 
-            (*.txt; *.csv)};Dbq=&#34; + this.dirCSV.Trim() + &#34;;
-            Extensions=asc,csv,tab,txt;
-            Persist Security Info=False&#34;;
-        string sql_select;
-        OdbcConnection conn;
-        conn = new OdbcConnection(strConnString.Trim());
-        conn.Open();
-
-        //通过SQL语句统计CVS的行数
-        OdbcCommand commandRowCount = new OdbcCommand
-            (&#34;SELECT COUNT(*) FROM [&#34; + 
-            this.FileNevCSV.Trim() + &#34;]&#34;, conn);
-        this.rowCount = System.Convert.ToInt32
-                (commandRowCount.ExecuteScalar());
-
-        // 创建ODBC命令
-        sql_select = &#34;select * from [&#34; + 
-                this.FileNevCSV.Trim() + &#34;]&#34;;
-        OdbcCommand commandSourceData = 
-            new OdbcCommand(sql_select, conn);
-
-        // 创建OdbcDataReader读取CSV数据
-        OdbcDataReader dataReader = 
-            commandSourceData.ExecuteReader();
-
-        // 创建结构表. 
-                       // 提供列名来创建表
-        DataTable dt;
-        dt = dataReader.GetSchemaTable();
-
-        // 可以预览表:
-        //this.dataGridView_preView.DataSource = dt;
-
-        // 创建一个新的空表
-        CreateTableInDatabase(dt, this.txtOwner.Text, 
-            this.txtTableName.Text, prop.sqlConnString);
-
-        //从原数据拷贝数据到数据库
-        using (SqlBulkCopy bc = new SqlBulkCopy
-            (&#34;server=(local);database=Test_CSV_impex;
-            Trusted_Connection=True&#34;))
-        {
-            // 本例不检查表所有者和表名
-            bc.DestinationTableName = &#34;[&#34; + 
-                this.txtOwner.Text + &#34;].[&#34; + 
-                this.txtTableName.Text + &#34;]&#34;;
-
-            // 通过SqlRowsCopied事件来通知
-            bc.NotifyAfter = 100;
-            bc.SqlRowsCopied += 
-               new SqlRowsCopiedEventHandler(OnSqlRowsCopied);
-
-            // 开始大量拷贝.
-            bc.WriteToServer(dataReader);
-
-            // 关闭SqlBulkCopy实例
-            bc.Close();
-        }
-
-        // 向窗体显示导入的数目
-        this.lblProgress.Text = &#34;Imported: &#34; + 
-            this.rowCount.ToString() + &#34;/&#34; + 
-            this.rowCount.ToString() + &#34; row(s)&#34;;
-        this.lblProgress.Refresh();
-
-        // 通知用户
-        MessageBox.Show(&#34;ready&#34;);
-    }
-}
-catch (Exception e)
-{
-    MessageBox.Show(e.Message, &#34;Error - SaveToDatabaseDirectly&#34;, 
-            MessageBoxButtons.OK, MessageBoxIcon.Error);
-}</pre></div>
-<p>}</pre></p>
-
+加载CSV到DataSet中</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>通过SqlBulkCopy从ODBC连接中转移数据到数据库</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>基于结构表创建表</p>
-
-<pre class="lang:c# decode:true " >/*
- * 使用结构表生成创建表的命令, 并且在数据库执行
- */
-
-private bool CreateTableInDatabase(DataTable dtSchemaTable, string tableOwner, 
-        string tableName, string connectionString)
-{
-    try
-    {
-        // 生成创建表的命令
-        // 结构表的第一行包含列名.
-        // 所有列的数据类型是 nvarcher(4000) 
-
-        string ctStr = "CREATE TABLE [" + tableOwner + "].[" + 
-                        tableName + "](\r\n";
-        for (int i = 0; i < dtSchemaTable.Rows.Count; i++)
-        {
-            ctStr += "  [" + dtSchemaTable.Rows[i][0].ToString() + "]
-                    [nvarchar](4000) NULL";
-            if (i < dtSchemaTable.Rows.Count)
-            {
-                ctStr += ",";
-            }
-            ctStr += "\r\n";
-        }
-        ctStr += ")";
-
-        // 你可以检查Sql语句
-        //MessageBox.Show(ctStr);
-
-        // 执行SQL语句生成表.      
-        SqlConnection conn = new SqlConnection(connectionString);
-        SqlCommand command = conn.CreateCommand();
-        command.CommandText = ctStr;
-        conn.Open();
-        command.ExecuteNonQuery();
-        conn.Close();
-
-        return true;
-    }
-    catch (Exception e)
-    {
-        MessageBox.Show(e.Message, "CreateTableInDatabase", 
-            MessageBoxButtons.OK, MessageBoxIcon.Error);
-        return false;
-    }
-}</pre>
-获取数据库中用户表名
-<pre class="lang:c# decode:true " >/*
- * 加载数据库里的用户表，并且用表名填充listbox控件
- */
-
-private void loadTables()
-{
-         // 连接到数据库，选择表名.
-         SqlConnection cn = new SqlConnection(prop.sqlConnString);
-    SqlDataAdapter da = new SqlDataAdapter
-            ("select name from dbo.sysobjects where xtype = 'U' 
-        and name <> 'dtproperties' order by name", cn);
-    DataTable dt = new DataTable();
-
-         // 填充列表到 DataTable.
-    da.Fill(dt);
-
-         // 清空ListBox
-    this.lbxTables.Items.Clear();
-
-         // 填充表名到 ListBox.
-         //如果数据库没有用户名则通知用户
-    if (dt.Rows.Count == 0)
-    {
-    MessageBox.Show("There is no user table in the specified database. 
-        Import a CSV file first.", "Warning", 
-        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-    this.lbxTables.Items.Add("< no user table in database >");
-    this.btnExportToCSV.Enabled = false;
-    }
-    else
-    {
-    this.btnExportToCSV.Enabled = true;
-
-    for (int i = 0; i < dt.Rows.Count; i++)
-    {
-        this.lbxTables.Items.Add(dt.Rows[i][0].ToString());
-    }
-    this.lbxTables.SelectedIndex = 0;
-    }
-}</pre>
-
-<p>通过StreamWriter写数据
-<pre class="lang:c# decode:true " >/*
- * 导出数据到CSV文件
- */</p>
-
-<p>private void exportToCSVfile(string fileOut)
-{
-    // 连接到数据库，生成选择命令.
-    SqlConnection conn = new SqlConnection(prop.sqlConnString);
-    string sqlQuery = &ldquo;select * from &ldquo; + this.lbxTables.SelectedItem.ToString();
-    SqlCommand command = new SqlCommand(sqlQuery, conn);
-    conn.Open();</p>
-<div class="highlight"><pre class="chroma">// 创建SqlDataReader实例从表中读取数据
-SqlDataReader dr = command.ExecuteReader();
-
-// 检索表的结构
-DataTable dtSchema = dr.GetSchemaTable();</pre></div>
-<p>// 用流创建CSV文件，使用指定的编码
-  StreamWriter sw = new StreamWriter(fileOut, false, this.encodingCSV);</p>
-<div class="highlight"><pre class="chroma">string strRow; // 表示一行
-
-// 如果用户要求，写入表头.
-if (this.chkFirstRowColumnNames.Checked)
-{
-sw.WriteLine(columnNames(dtSchema, this.separator));
-}
-
-// 从SqlDataReader 一行行读
-// 通过给定的分隔符转换成字符串然后写到文件里
-while (dr.Read())
-{
-strRow = &#34;&#34;;
-for (int i = 0; i &lt; dr.FieldCount; i++)
-{
-    strRow += dr.GetString(i);
-    if (i &lt; dr.FieldCount - 1)
-    {
-    strRow += this.separator;
-    }
-}
-sw.WriteLine(strRow);
-}
-
-// 关闭文本流和数据库连接
-sw.Close();
-conn.Close();
-
-// 通知用户
-MessageBox.Show(&#34;ready&#34;);</pre></div>
-<p>}</pre></p>
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>获取数据库中用户表名</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>通过StreamWriter写数据</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>Demo下载
 <a href="http://pan.baidu.com/share/link?shareid=68408&amp;uk=1493685990">CSV_import_export</a>
 许可
 本文包括源代码和文件在CPOL下授权</p>
-
 <p>原文地址：<a href="http://www.codeproject.com/Articles/30705/C-CSV-Import-Export">C-CSV-Import-Export</a></p>
 
 
@@ -768,7 +503,7 @@ MessageBox.Show(&#34;ready&#34;);</pre></div>
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

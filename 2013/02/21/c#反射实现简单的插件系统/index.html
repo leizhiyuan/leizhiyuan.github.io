@@ -14,16 +14,12 @@
 C#的反射可以用来实现一个简单的插件系统。思路很简单，我们创建一个解决方案，包含三个工程，一个为我们的软件MyApplication，一个为插件接口IPlugin，一个为具体的插件MyPlugin。插件系统的基本思路是我们用一个接口类库,来定义我们软件可以使用的插件必须实现的方法签名。然后我们的软件MyApplication通过引用该IPlugin dll来动态调用，而具体的实现插件MyPlugin则引用该接口来实现具体的方法。这样我们的应用程序就能在不知道具体插件的情况下调用插件了。。
 结构图如下：
 
-关键代码也就是通过对程序集载入。搜索到对应接口的实现类。然后调用即可。 Assembly a = Assembly.LoadFrom(AssemblyName); foreach (Type t in a.GetTypes()) { if (t.GetInterface(&ldquo;IMyFunction&rdquo;) != null) { try { IMyFunction pluginclass = Activator.CreateInstance(t) as IMyFunction; pluginclass.doSomething(); } catch (Exception ex) { MessageBox.Show(ex.ToString()); } } } 运行结果：
-
-源码下载：PluginSystem.zip">
+关键代码也就是通过对程序集载入。搜索到对应接口的实现类。然后调用即可。">
   <meta property="og:description" content="如果用过一些优秀的开源或是非开源的应用软件，就会发现这些软件的一个很大的优势就是其开放性，任何有能力的人都可以为其开发不同的插件来增强其的功能。比如著名的foobar2000，Vim和TotalCommander等等。
 C#的反射可以用来实现一个简单的插件系统。思路很简单，我们创建一个解决方案，包含三个工程，一个为我们的软件MyApplication，一个为插件接口IPlugin，一个为具体的插件MyPlugin。插件系统的基本思路是我们用一个接口类库,来定义我们软件可以使用的插件必须实现的方法签名。然后我们的软件MyApplication通过引用该IPlugin dll来动态调用，而具体的实现插件MyPlugin则引用该接口来实现具体的方法。这样我们的应用程序就能在不知道具体插件的情况下调用插件了。。
 结构图如下：
 
-关键代码也就是通过对程序集载入。搜索到对应接口的实现类。然后调用即可。 Assembly a = Assembly.LoadFrom(AssemblyName); foreach (Type t in a.GetTypes()) { if (t.GetInterface(&ldquo;IMyFunction&rdquo;) != null) { try { IMyFunction pluginclass = Activator.CreateInstance(t) as IMyFunction; pluginclass.doSomething(); } catch (Exception ex) { MessageBox.Show(ex.ToString()); } } } 运行结果：
-
-源码下载：PluginSystem.zip">
+关键代码也就是通过对程序集载入。搜索到对应接口的实现类。然后调用即可。">
   <meta name="twitter:description" content="如果用过一些优秀的开源或是非开源的应用软件，就会发现这些软件的一个很大的优势就是其开放性，任何有能力的人都可以为其开发不同的插件来增强其的功能。比如著名的foobar2000，Vim和TotalCommander等等。
 C#的反射可以用来实现一个简单的插件系统。思路很简单，我们创建一个解决方案，包含三个工程，一个为我们的软件MyApplication，一个为插件接口IPlugin，一个为具体的插 …">
   <meta name="author" content="bystander"/><script type="application/ld+json">
@@ -74,9 +70,9 @@ C#的反射可以用来实现一个简单的插件系统。思路很简单，我
     "name" : "bystander"
   },
   "headline": "C#反射实现简单的插件系统",
-  "description" : "如果用过一些优秀的开源或是非开源的应用软件，就会发现这些软件的一个很大的优势就是其开放性，任何有能力的人都可以为其开发不同的插件来增强其的功能。比如著名的foobar2000，Vim和TotalCommander等等。\nC#的反射可以用来实现一个简单的插件系统。思路很简单，我们创建一个解决方案，包含三个工程，一个为我们的软件MyApplication，一个为插件接口IPlugin，一个为具体的插件MyPlugin。插件系统的基本思路是我们用一个接口类库,来定义我们软件可以使用的插件必须实现的方法签名。然后我们的软件MyApplication通过引用该IPlugin dll来动态调用，而具体的实现插件MyPlugin则引用该接口来实现具体的方法。这样我们的应用程序就能在不知道具体插件的情况下调用插件了。。\n结构图如下：\n\n关键代码也就是通过对程序集载入。搜索到对应接口的实现类。然后调用即可。 Assembly a = Assembly.LoadFrom(AssemblyName); foreach (Type t in a.GetTypes()) { if (t.GetInterface(\x26ldquo;IMyFunction\x26rdquo;) != null) { try { IMyFunction pluginclass = Activator.CreateInstance(t) as IMyFunction; pluginclass.doSomething(); } catch (Exception ex) { MessageBox.Show(ex.ToString()); } } } 运行结果：\n\n源码下载：PluginSystem.zip",
+  "description" : "如果用过一些优秀的开源或是非开源的应用软件，就会发现这些软件的一个很大的优势就是其开放性，任何有能力的人都可以为其开发不同的插件来增强其的功能。比如著名的foobar2000，Vim和TotalCommander等等。\nC#的反射可以用来实现一个简单的插件系统。思路很简单，我们创建一个解决方案，包含三个工程，一个为我们的软件MyApplication，一个为插件接口IPlugin，一个为具体的插件MyPlugin。插件系统的基本思路是我们用一个接口类库,来定义我们软件可以使用的插件必须实现的方法签名。然后我们的软件MyApplication通过引用该IPlugin dll来动态调用，而具体的实现插件MyPlugin则引用该接口来实现具体的方法。这样我们的应用程序就能在不知道具体插件的情况下调用插件了。。\n结构图如下：\n\n关键代码也就是通过对程序集载入。搜索到对应接口的实现类。然后调用即可。",
   "inLanguage" : "en",
-  "wordCount":  40 ,
+  "wordCount":  5 ,
   "datePublished" : "2013-02-21T08:28:27",
   "dateModified" : "2013-02-21T08:28:27",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -100,9 +96,7 @@ C#的反射可以用来实现一个简单的插件系统。思路很简单，我
 C#的反射可以用来实现一个简单的插件系统。思路很简单，我们创建一个解决方案，包含三个工程，一个为我们的软件MyApplication，一个为插件接口IPlugin，一个为具体的插件MyPlugin。插件系统的基本思路是我们用一个接口类库,来定义我们软件可以使用的插件必须实现的方法签名。然后我们的软件MyApplication通过引用该IPlugin dll来动态调用，而具体的实现插件MyPlugin则引用该接口来实现具体的方法。这样我们的应用程序就能在不知道具体插件的情况下调用插件了。。
 结构图如下：
 
-关键代码也就是通过对程序集载入。搜索到对应接口的实现类。然后调用即可。 Assembly a = Assembly.LoadFrom(AssemblyName); foreach (Type t in a.GetTypes()) { if (t.GetInterface(&ldquo;IMyFunction&rdquo;) != null) { try { IMyFunction pluginclass = Activator.CreateInstance(t) as IMyFunction; pluginclass.doSomething(); } catch (Exception ex) { MessageBox.Show(ex.ToString()); } } } 运行结果：
-
-源码下载：PluginSystem.zip">
+关键代码也就是通过对程序集载入。搜索到对应接口的实现类。然后调用即可。">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2013/02/21/c#%E5%8F%8D%E5%B0%84%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E6%8F%92%E4%BB%B6%E7%B3%BB%E7%BB%9F/" />
 <meta property="og:type" content="website" />
@@ -121,7 +115,7 @@ C#的反射可以用来实现一个简单的插件系统。思路很简单，我
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -306,35 +300,11 @@ C#的反射可以用来实现一个简单的插件系统。思路很简单，我
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <p>如果用过一些优秀的开源或是非开源的应用软件，就会发现这些软件的一个很大的优势就是其开放性，任何有能力的人都可以为其开发不同的插件来增强其的功能。比如著名的foobar2000，Vim和TotalCommander等等。</p>
-
 <p>C#的反射可以用来实现一个简单的插件系统。思路很简单，我们创建一个解决方案，包含三个工程，一个为我们的软件MyApplication，一个为插件接口IPlugin，一个为具体的插件MyPlugin。插件系统的基本思路是我们用一个接口类库,来定义我们软件可以使用的插件必须实现的方法签名。然后我们的软件MyApplication通过引用该IPlugin dll来动态调用，而具体的实现插件MyPlugin则引用该接口来实现具体的方法。这样我们的应用程序就能在不知道具体插件的情况下调用插件了。。</p>
-
 <p>结构图如下：</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/32896_o.jpg"><img src="/images/bf202a9b50d5ce497f88718743c344d8579fadf1.jpg" alt="Myapplication" /></a></p>
-
-<p>关键代码也就是通过对程序集载入。搜索到对应接口的实现类。然后调用即可。
-<pre class="lang:default decode:true">Assembly a = Assembly.LoadFrom(AssemblyName);
-                foreach (Type t in a.GetTypes())
-                {
-                    if (t.GetInterface(&ldquo;IMyFunction&rdquo;) != null)
-                    {
-                        try
-                        {
-                            IMyFunction pluginclass = Activator.CreateInstance(t) as IMyFunction;
-                            pluginclass.doSomething();
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.ToString());
-                        }
-                    }
-                }</pre>
-运行结果：</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/32897_o.jpg"><img src="/images/6c33ac761faef8c7d4beae4a478b4240cdeb7ee3.jpg" alt="QQ截图20130220200408" /></a></p>
-
-<p>源码下载：<a href="http://pan.baidu.com/share/link?shareid=302323&amp;amp;uk=1493685990">PluginSystem.zip</a></p>
+<p><a href="http://leaverimage.b0.upaiyun.com/32896_o.jpg"><img src="/images/bf202a9b50d5ce497f88718743c344d8579fadf1.jpg" alt="Myapplication"></a></p>
+<p>关键代码也就是通过对程序集载入。搜索到对应接口的实现类。然后调用即可。</p>
+<!-- raw HTML omitted -->
 
 
         
@@ -452,7 +422,7 @@ C#的反射可以用来实现一个简单的插件系统。思路很简单，我
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

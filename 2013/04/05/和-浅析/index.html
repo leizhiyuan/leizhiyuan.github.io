@@ -19,14 +19,15 @@
 于是，研制人员想了个办法解决这个问题，就是在每行后面加两个表示结束的字符。一个叫做“回车”，告诉打字机把打印头定位在左边界；另一个叫做“换行”，告诉打字机把纸向下移一行（这句的意思是把纸向上拉，然后打印头就定位到了下一行），可以想象一下，这个打印头只能在一个固定的水平线上左右移动，而不能上下移动，我们通过移动纸来完成打印下一行。
 不明白的我在youtube上找到一个这种打字机的演示视频，为了方便读者观看，我提供一个下载地址。
 后来，计算机发明了，这两个概念也就被般到了计算机上。那时，存储器很贵，一些科学家认为在每行结尾加两个字符太浪费了，加一个就可以。于是，就出现了分歧。
-Unix系统里，每行结尾只有&rdquo;&lt;换行&gt;&ldquo;，即&rdquo;\n&rdquo;；
-Windows系统里面，每行结尾是&rdquo;&lt;换行&gt;&lt;回车&gt;&ldquo;，即&rdquo;\n\r&rdquo;；
-Mac系统里，每行结尾是&rdquo;&lt;回车&gt;&ldquo;，不过mac基于unix，所以换行也应该是可以的。
+Unix系统里，每行结尾只有&rdquo;&lt;换行&gt;&quot;，即&rdquo;\n&rdquo;；
+Windows系统里面，每行结尾是&rdquo;&lt;换行&gt;&lt;回车&gt;&quot;，即&rdquo;\n\r&rdquo;；
+Mac系统里，每行结尾是&rdquo;&lt;回车&gt;&quot;，不过mac基于unix，所以换行也应该是可以的。
 一个直接后果是，Unix/Mac系统下的文件在Windows里打开的话，所有文字会变成一行；而Windows里的文件在Unix/Mac下打开的话，在每行的结尾可能会多出一个^M符号。这个如果你在windows下使用vim也会发现这个情况
 用C&#43;&#43;来说明
-如： int main() { cout &lt;&lt; &ldquo;leaver.me&rdquo; &lt;&lt; &ldquo;\r&rdquo; &lt;&lt; &ldquo;bystander&rdquo; ; return 0; } &nbsp;
-最后只显示 bystander 而 leaver.me 背覆盖了
-\n 是换行，系统会将其替换成回车＋换行 把光标 先移到 行首 然后换到下一行 也就是 下一行的行首拉 int main() { cout &lt;&lt; &ldquo;leaver.me&rdquo; &lt;&lt; &ldquo;\n&rdquo; &lt;&lt; &ldquo;bystander&rdquo; ; return 0; } 则 显示
+如：
+ 最后只显示 bystander 而 leaver.me 背覆盖了
+\n 是换行，系统会将其替换成回车＋换行 把光标 先移到 行首 然后换到下一行 也就是 下一行的行首拉
+则 显示
 leaver.me
 bystander
 一句话，这看起来是一个历史遗留问题&hellip;&hellip;">
@@ -36,14 +37,15 @@ bystander
 于是，研制人员想了个办法解决这个问题，就是在每行后面加两个表示结束的字符。一个叫做“回车”，告诉打字机把打印头定位在左边界；另一个叫做“换行”，告诉打字机把纸向下移一行（这句的意思是把纸向上拉，然后打印头就定位到了下一行），可以想象一下，这个打印头只能在一个固定的水平线上左右移动，而不能上下移动，我们通过移动纸来完成打印下一行。
 不明白的我在youtube上找到一个这种打字机的演示视频，为了方便读者观看，我提供一个下载地址。
 后来，计算机发明了，这两个概念也就被般到了计算机上。那时，存储器很贵，一些科学家认为在每行结尾加两个字符太浪费了，加一个就可以。于是，就出现了分歧。
-Unix系统里，每行结尾只有&rdquo;&lt;换行&gt;&ldquo;，即&rdquo;\n&rdquo;；
-Windows系统里面，每行结尾是&rdquo;&lt;换行&gt;&lt;回车&gt;&ldquo;，即&rdquo;\n\r&rdquo;；
-Mac系统里，每行结尾是&rdquo;&lt;回车&gt;&ldquo;，不过mac基于unix，所以换行也应该是可以的。
+Unix系统里，每行结尾只有&rdquo;&lt;换行&gt;&quot;，即&rdquo;\n&rdquo;；
+Windows系统里面，每行结尾是&rdquo;&lt;换行&gt;&lt;回车&gt;&quot;，即&rdquo;\n\r&rdquo;；
+Mac系统里，每行结尾是&rdquo;&lt;回车&gt;&quot;，不过mac基于unix，所以换行也应该是可以的。
 一个直接后果是，Unix/Mac系统下的文件在Windows里打开的话，所有文字会变成一行；而Windows里的文件在Unix/Mac下打开的话，在每行的结尾可能会多出一个^M符号。这个如果你在windows下使用vim也会发现这个情况
 用C&#43;&#43;来说明
-如： int main() { cout &lt;&lt; &ldquo;leaver.me&rdquo; &lt;&lt; &ldquo;\r&rdquo; &lt;&lt; &ldquo;bystander&rdquo; ; return 0; } &nbsp;
-最后只显示 bystander 而 leaver.me 背覆盖了
-\n 是换行，系统会将其替换成回车＋换行 把光标 先移到 行首 然后换到下一行 也就是 下一行的行首拉 int main() { cout &lt;&lt; &ldquo;leaver.me&rdquo; &lt;&lt; &ldquo;\n&rdquo; &lt;&lt; &ldquo;bystander&rdquo; ; return 0; } 则 显示
+如：
+ 最后只显示 bystander 而 leaver.me 背覆盖了
+\n 是换行，系统会将其替换成回车＋换行 把光标 先移到 行首 然后换到下一行 也就是 下一行的行首拉
+则 显示
 leaver.me
 bystander
 一句话，这看起来是一个历史遗留问题&hellip;&hellip;">
@@ -98,9 +100,9 @@ bystander
     "name" : "bystander"
   },
   "headline": "\r和\n浅析",
-  "description" : "这两个转义字符最初学习C\x2b\x2b的时候看到了,当时没多想，后来某一天突然想起来，回车不就是换行吗？这不是多此一举吗？今天又看到，索性查了下相关资料，整理一下，留作记录.\n关于“回车”（carriage return）和“换行”（line feed）这两个概念的来历和区别。\n在计算机还没有出现之前，有一种叫做电传打字机（Teletype Model 33）的玩意，每秒钟可以打10个字符。但是它有一个问题，就是打完一行换行的时候，要用去0.2秒，正好可以打两个字符。要是在这0.2秒里面，又有新的字符传过来，那么这个字符将丢失。\n于是，研制人员想了个办法解决这个问题，就是在每行后面加两个表示结束的字符。一个叫做“回车”，告诉打字机把打印头定位在左边界；另一个叫做“换行”，告诉打字机把纸向下移一行（这句的意思是把纸向上拉，然后打印头就定位到了下一行），可以想象一下，这个打印头只能在一个固定的水平线上左右移动，而不能上下移动，我们通过移动纸来完成打印下一行。\n不明白的我在youtube上找到一个这种打字机的演示视频，为了方便读者观看，我提供一个下载地址。\n后来，计算机发明了，这两个概念也就被般到了计算机上。那时，存储器很贵，一些科学家认为在每行结尾加两个字符太浪费了，加一个就可以。于是，就出现了分歧。\nUnix系统里，每行结尾只有\x26rdquo;\x26lt;换行\x26gt;\x26ldquo;，即\x26rdquo;\\n\x26rdquo;；\nWindows系统里面，每行结尾是\x26rdquo;\x26lt;换行\x26gt;\x26lt;回车\x26gt;\x26ldquo;，即\x26rdquo;\\n\\r\x26rdquo;；\nMac系统里，每行结尾是\x26rdquo;\x26lt;回车\x26gt;\x26ldquo;，不过mac基于unix，所以换行也应该是可以的。\n一个直接后果是，Unix\/Mac系统下的文件在Windows里打开的话，所有文字会变成一行；而Windows里的文件在Unix\/Mac下打开的话，在每行的结尾可能会多出一个^M符号。这个如果你在windows下使用vim也会发现这个情况\n用C\x2b\x2b来说明\n如： int main() { cout \x26lt;\x26lt; \x26ldquo;leaver.me\x26rdquo; \x26lt;\x26lt; \x26ldquo;\\r\x26rdquo; \x26lt;\x26lt; \x26ldquo;bystander\x26rdquo; ; return 0; } \x26nbsp;\n最后只显示 bystander 而 leaver.me 背覆盖了\n\\n 是换行，系统会将其替换成回车＋换行 把光标 先移到 行首 然后换到下一行 也就是 下一行的行首拉 int main() { cout \x26lt;\x26lt; \x26ldquo;leaver.me\x26rdquo; \x26lt;\x26lt; \x26ldquo;\\n\x26rdquo; \x26lt;\x26lt; \x26ldquo;bystander\x26rdquo; ; return 0; } 则 显示\nleaver.me\nbystander\n一句话，这看起来是一个历史遗留问题\x26hellip;\x26hellip;",
+  "description" : "这两个转义字符最初学习C\x2b\x2b的时候看到了,当时没多想，后来某一天突然想起来，回车不就是换行吗？这不是多此一举吗？今天又看到，索性查了下相关资料，整理一下，留作记录.\n关于“回车”（carriage return）和“换行”（line feed）这两个概念的来历和区别。\n在计算机还没有出现之前，有一种叫做电传打字机（Teletype Model 33）的玩意，每秒钟可以打10个字符。但是它有一个问题，就是打完一行换行的时候，要用去0.2秒，正好可以打两个字符。要是在这0.2秒里面，又有新的字符传过来，那么这个字符将丢失。\n于是，研制人员想了个办法解决这个问题，就是在每行后面加两个表示结束的字符。一个叫做“回车”，告诉打字机把打印头定位在左边界；另一个叫做“换行”，告诉打字机把纸向下移一行（这句的意思是把纸向上拉，然后打印头就定位到了下一行），可以想象一下，这个打印头只能在一个固定的水平线上左右移动，而不能上下移动，我们通过移动纸来完成打印下一行。\n不明白的我在youtube上找到一个这种打字机的演示视频，为了方便读者观看，我提供一个下载地址。\n后来，计算机发明了，这两个概念也就被般到了计算机上。那时，存储器很贵，一些科学家认为在每行结尾加两个字符太浪费了，加一个就可以。于是，就出现了分歧。\nUnix系统里，每行结尾只有\x26rdquo;\x26lt;换行\x26gt;\x26quot;，即\x26rdquo;\\n\x26rdquo;；\nWindows系统里面，每行结尾是\x26rdquo;\x26lt;换行\x26gt;\x26lt;回车\x26gt;\x26quot;，即\x26rdquo;\\n\\r\x26rdquo;；\nMac系统里，每行结尾是\x26rdquo;\x26lt;回车\x26gt;\x26quot;，不过mac基于unix，所以换行也应该是可以的。\n一个直接后果是，Unix\/Mac系统下的文件在Windows里打开的话，所有文字会变成一行；而Windows里的文件在Unix\/Mac下打开的话，在每行的结尾可能会多出一个^M符号。这个如果你在windows下使用vim也会发现这个情况\n用C\x2b\x2b来说明\n如：\n 最后只显示 bystander 而 leaver.me 背覆盖了\n\\n 是换行，系统会将其替换成回车＋换行 把光标 先移到 行首 然后换到下一行 也就是 下一行的行首拉\n则 显示\nleaver.me\nbystander\n一句话，这看起来是一个历史遗留问题\x26hellip;\x26hellip;",
   "inLanguage" : "en",
-  "wordCount":  63 ,
+  "wordCount":  34 ,
   "datePublished" : "2013-04-05T13:29:04",
   "dateModified" : "2013-04-05T13:29:04",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -127,14 +129,15 @@ bystander
 于是，研制人员想了个办法解决这个问题，就是在每行后面加两个表示结束的字符。一个叫做“回车”，告诉打字机把打印头定位在左边界；另一个叫做“换行”，告诉打字机把纸向下移一行（这句的意思是把纸向上拉，然后打印头就定位到了下一行），可以想象一下，这个打印头只能在一个固定的水平线上左右移动，而不能上下移动，我们通过移动纸来完成打印下一行。
 不明白的我在youtube上找到一个这种打字机的演示视频，为了方便读者观看，我提供一个下载地址。
 后来，计算机发明了，这两个概念也就被般到了计算机上。那时，存储器很贵，一些科学家认为在每行结尾加两个字符太浪费了，加一个就可以。于是，就出现了分歧。
-Unix系统里，每行结尾只有&rdquo;&lt;换行&gt;&ldquo;，即&rdquo;\n&rdquo;；
-Windows系统里面，每行结尾是&rdquo;&lt;换行&gt;&lt;回车&gt;&ldquo;，即&rdquo;\n\r&rdquo;；
-Mac系统里，每行结尾是&rdquo;&lt;回车&gt;&ldquo;，不过mac基于unix，所以换行也应该是可以的。
+Unix系统里，每行结尾只有&rdquo;&lt;换行&gt;&quot;，即&rdquo;\n&rdquo;；
+Windows系统里面，每行结尾是&rdquo;&lt;换行&gt;&lt;回车&gt;&quot;，即&rdquo;\n\r&rdquo;；
+Mac系统里，每行结尾是&rdquo;&lt;回车&gt;&quot;，不过mac基于unix，所以换行也应该是可以的。
 一个直接后果是，Unix/Mac系统下的文件在Windows里打开的话，所有文字会变成一行；而Windows里的文件在Unix/Mac下打开的话，在每行的结尾可能会多出一个^M符号。这个如果你在windows下使用vim也会发现这个情况
 用C&#43;&#43;来说明
-如： int main() { cout &lt;&lt; &ldquo;leaver.me&rdquo; &lt;&lt; &ldquo;\r&rdquo; &lt;&lt; &ldquo;bystander&rdquo; ; return 0; } &nbsp;
-最后只显示 bystander 而 leaver.me 背覆盖了
-\n 是换行，系统会将其替换成回车＋换行 把光标 先移到 行首 然后换到下一行 也就是 下一行的行首拉 int main() { cout &lt;&lt; &ldquo;leaver.me&rdquo; &lt;&lt; &ldquo;\n&rdquo; &lt;&lt; &ldquo;bystander&rdquo; ; return 0; } 则 显示
+如：
+ 最后只显示 bystander 而 leaver.me 背覆盖了
+\n 是换行，系统会将其替换成回车＋换行 把光标 先移到 行首 然后换到下一行 也就是 下一行的行首拉
+则 显示
 leaver.me
 bystander
 一句话，这看起来是一个历史遗留问题&hellip;&hellip;">
@@ -158,7 +161,7 @@ bystander
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -344,49 +347,27 @@ bystander
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <p>这两个转义字符最初学习C++的时候看到了,当时没多想，后来某一天突然想起来，回车不就是换行吗？这不是多此一举吗？今天又看到，索性查了下相关资料，整理一下，留作记录.</p>
-
 <p>关于“回车”（carriage return）和“换行”（line feed）这两个概念的来历和区别。</p>
-
 <p>在计算机还没有出现之前，有一种叫做电传打字机（Teletype Model 33）的玩意，每秒钟可以打10个字符。但是它有一个问题，就是打完一行换行的时候，要用去0.2秒，正好可以打两个字符。要是在这0.2秒里面，又有新的字符传过来，那么这个字符将丢失。</p>
-
 <p>于是，研制人员想了个办法解决这个问题，就是在每行后面加两个表示结束的字符。一个叫做“回车”，告诉打字机把打印头定位在左边界；另一个叫做“换行”，告诉打字机把纸向下移一行（这句的意思是把纸向上拉，然后打印头就定位到了下一行），可以想象一下，这个打印头只能在一个固定的水平线上左右移动，而不能上下移动，我们通过移动纸来完成打印下一行。</p>
-
-<p>不明白的我在youtube上找到一个这种打字机的演示视频，为了方便读者观看，我提供一个<a href="http://pan.baidu.com/share/link?shareid=428006&amp;amp;uk=1493685990">下载地址</a>。</p>
-
+<p>不明白的我在youtube上找到一个这种打字机的演示视频，为了方便读者观看，我提供一个<a href="http://pan.baidu.com/share/link?shareid=428006&amp;uk=1493685990">下载地址</a>。</p>
 <p>后来，计算机发明了，这两个概念也就被般到了计算机上。那时，存储器很贵，一些科学家认为在每行结尾加两个字符太浪费了，加一个就可以。于是，就出现了分歧。</p>
-
-<p>Unix系统里，每行结尾只有&rdquo;&lt;换行&gt;&ldquo;，即&rdquo;\n&rdquo;；</p>
-
-<p>Windows系统里面，每行结尾是&rdquo;&lt;换行&gt;&lt;回车&gt;&ldquo;，即&rdquo;\n\r&rdquo;；</p>
-
-<p>Mac系统里，每行结尾是&rdquo;&lt;回车&gt;&ldquo;，不过mac基于unix，所以换行也应该是可以的。</p>
-
+<p>Unix系统里，每行结尾只有&rdquo;&lt;换行&gt;&quot;，即&rdquo;\n&rdquo;；</p>
+<p>Windows系统里面，每行结尾是&rdquo;&lt;换行&gt;&lt;回车&gt;&quot;，即&rdquo;\n\r&rdquo;；</p>
+<p>Mac系统里，每行结尾是&rdquo;&lt;回车&gt;&quot;，不过mac基于unix，所以换行也应该是可以的。</p>
 <p>一个直接后果是，Unix/Mac系统下的文件在Windows里打开的话，所有文字会变成一行；而Windows里的文件在Unix/Mac下打开的话，在每行的结尾可能会多出一个^M符号。这个如果你在windows下使用vim也会发现这个情况</p>
-
 <p>用C++来说明</p>
-
-<p>如：
-<pre class="lang:default decode:true">int main()
-{
-   cout &lt;&lt; &ldquo;leaver.me&rdquo; &lt;&lt; &ldquo;\r&rdquo; &lt;&lt; &ldquo;bystander&rdquo; ;
-   return 0;
-}</pre>
-&nbsp;</p>
-
+<p>如：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
 <p>最后只显示 bystander 而 leaver.me 背覆盖了</p>
-
-<p>\n 是换行，系统会将其替换成回车＋换行 把光标 先移到 行首 然后换到下一行 也就是 下一行的行首拉
-<pre class="lang:default decode:true">int main()
-{
-   cout &lt;&lt; &ldquo;leaver.me&rdquo; &lt;&lt; &ldquo;\n&rdquo; &lt;&lt; &ldquo;bystander&rdquo; ;
-   return 0;
-}</pre>
-则 显示</p>
-
+<p>\n 是换行，系统会将其替换成回车＋换行 把光标 先移到 行首 然后换到下一行 也就是 下一行的行首拉</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>则 显示</p>
 <p>leaver.me</p>
-
 <p>bystander</p>
-
 <p>一句话，这看起来是一个历史遗留问题&hellip;&hellip;</p>
 
 
@@ -505,7 +486,7 @@ bystander
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

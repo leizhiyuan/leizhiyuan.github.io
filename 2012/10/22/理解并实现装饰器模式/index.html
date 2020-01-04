@@ -13,21 +13,27 @@
   <meta name="description" content="背景 本文讨论装饰器模式,这个模式是因为很多情况下需要动态的给对象添加功能.比如我们创建了一个Stream类.后来需要对这个数据流类动态的添加一个加密功能.有人可能说把加密方法写到流类里面啊.然后使用一个bool变量来控制开关就行了.但是这样.这个加密方法只能写一种..如果用派生类来实现.那么..对于不同的加密方法.,都要创建一个子类,举个例子.比如有时候是一些函数的组合.我们最终的派生类的数目基本上就和排列组合的数目一样了.
 我们使用装饰器模式来解决这个问题.GoF描述为 &ldquo;Attach additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing for extending functionality.&rdquo;
 首先看一下图.理解一下这个模式中每一个类的作用
- • Component:定义了可以动态添加功能的具体类ConcreteComponents的接口. • ConcreteComponent: 可以动态添加功能的具体类 • Decorator: 定义了动态添加到ConcreteComponent类中的功能的接口 • ConcreteDecorator: 可以添加到 ConcreteComponent.中的具体功能类.
+ •	Component:定义了可以动态添加功能的具体类ConcreteComponents的接口. •	ConcreteComponent: 可以动态添加功能的具体类 •	Decorator: 定义了动态添加到ConcreteComponent类中的功能的接口 •	ConcreteDecorator: 可以添加到 ConcreteComponent.中的具体功能类.
 使用代码
 我们开一个面包店的例子.面包店卖蛋糕和甜点.客户可以买蛋糕和甜点,同时添加一些额外的东西.额外的东西包括奶油(Cream),樱桃(Cherry),香料(Scent)和会员(Name Card)
-如果我们用派生类来实现..那么我们会有如下的类 • CakeOnly • CakeWithCreamAndCherry • CakeWithCreamAndCherryAndScent • CakeWithCreamAndCherryAndScentAndNameCard • CakeWithCherryOnly • PastryOnly • PastryWithCreamAndCherry • PastryWithCreamAndCherryAndScent • PastryWithCreamAndCherryAndScentAndNameCard • PastryWithCherryOnly • 等等等等
+如果我们用派生类来实现..那么我们会有如下的类 •	CakeOnly •	CakeWithCreamAndCherry •	CakeWithCreamAndCherryAndScent •	CakeWithCreamAndCherryAndScentAndNameCard •	CakeWithCherryOnly •	PastryOnly •	PastryWithCreamAndCherry •	PastryWithCreamAndCherryAndScent •	PastryWithCreamAndCherryAndScentAndNameCard •	PastryWithCherryOnly •	等等等等
 这简直就是噩梦..我们用装饰器模式来实现把. 首先定义Component 接口
-public abstract class BakeryComponent { public abstract string GetName(); public abstract double GetPrice(); }  前面说过了.">
+前面说过了.这个类定义了能够动态添加功能的具体类(ConcreteComponents)的接口,好吧.然后来创建具体类ConcreteComponents
+现在基对象准备好了.看看那些可以被动态添加的功能.我们看看Decorator 类
+注意两个地方.第一个就是类实现BakeryComponent 接口,原因是装饰后的蛋糕还是蛋糕,另一个是该类也持有一个BakeryComponent 对象,原因是,我们需要Cake和装饰的项目是is-a关系,但是事实上不是.通过加一个对象就可以模拟is-a关系.
+一句话.我们使用继承实现了静态的is-a关系,而是用构成则是一个动态的is-a关系.">
   <meta property="og:description" content="背景 本文讨论装饰器模式,这个模式是因为很多情况下需要动态的给对象添加功能.比如我们创建了一个Stream类.后来需要对这个数据流类动态的添加一个加密功能.有人可能说把加密方法写到流类里面啊.然后使用一个bool变量来控制开关就行了.但是这样.这个加密方法只能写一种..如果用派生类来实现.那么..对于不同的加密方法.,都要创建一个子类,举个例子.比如有时候是一些函数的组合.我们最终的派生类的数目基本上就和排列组合的数目一样了.
 我们使用装饰器模式来解决这个问题.GoF描述为 &ldquo;Attach additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing for extending functionality.&rdquo;
 首先看一下图.理解一下这个模式中每一个类的作用
- • Component:定义了可以动态添加功能的具体类ConcreteComponents的接口. • ConcreteComponent: 可以动态添加功能的具体类 • Decorator: 定义了动态添加到ConcreteComponent类中的功能的接口 • ConcreteDecorator: 可以添加到 ConcreteComponent.中的具体功能类.
+ •	Component:定义了可以动态添加功能的具体类ConcreteComponents的接口. •	ConcreteComponent: 可以动态添加功能的具体类 •	Decorator: 定义了动态添加到ConcreteComponent类中的功能的接口 •	ConcreteDecorator: 可以添加到 ConcreteComponent.中的具体功能类.
 使用代码
 我们开一个面包店的例子.面包店卖蛋糕和甜点.客户可以买蛋糕和甜点,同时添加一些额外的东西.额外的东西包括奶油(Cream),樱桃(Cherry),香料(Scent)和会员(Name Card)
-如果我们用派生类来实现..那么我们会有如下的类 • CakeOnly • CakeWithCreamAndCherry • CakeWithCreamAndCherryAndScent • CakeWithCreamAndCherryAndScentAndNameCard • CakeWithCherryOnly • PastryOnly • PastryWithCreamAndCherry • PastryWithCreamAndCherryAndScent • PastryWithCreamAndCherryAndScentAndNameCard • PastryWithCherryOnly • 等等等等
+如果我们用派生类来实现..那么我们会有如下的类 •	CakeOnly •	CakeWithCreamAndCherry •	CakeWithCreamAndCherryAndScent •	CakeWithCreamAndCherryAndScentAndNameCard •	CakeWithCherryOnly •	PastryOnly •	PastryWithCreamAndCherry •	PastryWithCreamAndCherryAndScent •	PastryWithCreamAndCherryAndScentAndNameCard •	PastryWithCherryOnly •	等等等等
 这简直就是噩梦..我们用装饰器模式来实现把. 首先定义Component 接口
-public abstract class BakeryComponent { public abstract string GetName(); public abstract double GetPrice(); }  前面说过了.">
+前面说过了.这个类定义了能够动态添加功能的具体类(ConcreteComponents)的接口,好吧.然后来创建具体类ConcreteComponents
+现在基对象准备好了.看看那些可以被动态添加的功能.我们看看Decorator 类
+注意两个地方.第一个就是类实现BakeryComponent 接口,原因是装饰后的蛋糕还是蛋糕,另一个是该类也持有一个BakeryComponent 对象,原因是,我们需要Cake和装饰的项目是is-a关系,但是事实上不是.通过加一个对象就可以模拟is-a关系.
+一句话.我们使用继承实现了静态的is-a关系,而是用构成则是一个动态的is-a关系.">
   <meta name="twitter:description" content="背景 本文讨论装饰器模式,这个模式是因为很多情况下需要动态的给对象添加功能.比如我们创建了一个Stream类.后来需要对这个数据流类动态的添加一个加密功能.有人可能说把加密方法写到流类里面啊.然后使用一个bool变量来控制开关就行了.但是这样.这个加密方法只能写一种..如果用派生类来实现.那么..对于不同的加密方法.,都要创建一个子类,举个例子.比如有时候是一些函数的组合.我们最终的派生类的数目基 …">
   <meta name="author" content="bystander"/><script type="application/ld+json">
 {
@@ -77,9 +83,9 @@ public abstract class BakeryComponent { public abstract string GetName(); public
     "name" : "bystander"
   },
   "headline": "理解并实现装饰器模式",
-  "description" : "背景 本文讨论装饰器模式,这个模式是因为很多情况下需要动态的给对象添加功能.比如我们创建了一个Stream类.后来需要对这个数据流类动态的添加一个加密功能.有人可能说把加密方法写到流类里面啊.然后使用一个bool变量来控制开关就行了.但是这样.这个加密方法只能写一种..如果用派生类来实现.那么..对于不同的加密方法.,都要创建一个子类,举个例子.比如有时候是一些函数的组合.我们最终的派生类的数目基本上就和排列组合的数目一样了.\n我们使用装饰器模式来解决这个问题.GoF描述为 \x26ldquo;Attach additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing for extending functionality.\x26rdquo;\n首先看一下图.理解一下这个模式中每一个类的作用\n • Component:定义了可以动态添加功能的具体类ConcreteComponents的接口. • ConcreteComponent: 可以动态添加功能的具体类 • Decorator: 定义了动态添加到ConcreteComponent类中的功能的接口 • ConcreteDecorator: 可以添加到 ConcreteComponent.中的具体功能类.\n使用代码\n我们开一个面包店的例子.面包店卖蛋糕和甜点.客户可以买蛋糕和甜点,同时添加一些额外的东西.额外的东西包括奶油(Cream),樱桃(Cherry),香料(Scent)和会员(Name Card)\n如果我们用派生类来实现..那么我们会有如下的类 • CakeOnly • CakeWithCreamAndCherry • CakeWithCreamAndCherryAndScent • CakeWithCreamAndCherryAndScentAndNameCard • CakeWithCherryOnly • PastryOnly • PastryWithCreamAndCherry • PastryWithCreamAndCherryAndScent • PastryWithCreamAndCherryAndScentAndNameCard • PastryWithCherryOnly • 等等等等\n这简直就是噩梦..我们用装饰器模式来实现把. 首先定义Component 接口\npublic abstract class BakeryComponent { public abstract string GetName(); public abstract double GetPrice(); }  前面说过了.",
+  "description" : "背景 本文讨论装饰器模式,这个模式是因为很多情况下需要动态的给对象添加功能.比如我们创建了一个Stream类.后来需要对这个数据流类动态的添加一个加密功能.有人可能说把加密方法写到流类里面啊.然后使用一个bool变量来控制开关就行了.但是这样.这个加密方法只能写一种..如果用派生类来实现.那么..对于不同的加密方法.,都要创建一个子类,举个例子.比如有时候是一些函数的组合.我们最终的派生类的数目基本上就和排列组合的数目一样了.\n我们使用装饰器模式来解决这个问题.GoF描述为 \x26ldquo;Attach additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing for extending functionality.\x26rdquo;\n首先看一下图.理解一下这个模式中每一个类的作用\n •\tComponent:定义了可以动态添加功能的具体类ConcreteComponents的接口. •\tConcreteComponent: 可以动态添加功能的具体类 •\tDecorator: 定义了动态添加到ConcreteComponent类中的功能的接口 •\tConcreteDecorator: 可以添加到 ConcreteComponent.中的具体功能类.\n使用代码\n我们开一个面包店的例子.面包店卖蛋糕和甜点.客户可以买蛋糕和甜点,同时添加一些额外的东西.额外的东西包括奶油(Cream),樱桃(Cherry),香料(Scent)和会员(Name Card)\n如果我们用派生类来实现..那么我们会有如下的类 •\tCakeOnly •\tCakeWithCreamAndCherry •\tCakeWithCreamAndCherryAndScent •\tCakeWithCreamAndCherryAndScentAndNameCard •\tCakeWithCherryOnly •\tPastryOnly •\tPastryWithCreamAndCherry •\tPastryWithCreamAndCherryAndScent •\tPastryWithCreamAndCherryAndScentAndNameCard •\tPastryWithCherryOnly •\t等等等等\n这简直就是噩梦..我们用装饰器模式来实现把. 首先定义Component 接口\n前面说过了.这个类定义了能够动态添加功能的具体类(ConcreteComponents)的接口,好吧.然后来创建具体类ConcreteComponents\n现在基对象准备好了.看看那些可以被动态添加的功能.我们看看Decorator 类\n注意两个地方.第一个就是类实现BakeryComponent 接口,原因是装饰后的蛋糕还是蛋糕,另一个是该类也持有一个BakeryComponent 对象,原因是,我们需要Cake和装饰的项目是is-a关系,但是事实上不是.通过加一个对象就可以模拟is-a关系.\n一句话.我们使用继承实现了静态的is-a关系,而是用构成则是一个动态的is-a关系.",
   "inLanguage" : "en",
-  "wordCount":  388 ,
+  "wordCount":  85 ,
   "datePublished" : "2012-10-22T11:31:47",
   "dateModified" : "2012-10-22T11:31:47",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -102,12 +108,15 @@ public abstract class BakeryComponent { public abstract string GetName(); public
 <meta property="og:description" content="背景 本文讨论装饰器模式,这个模式是因为很多情况下需要动态的给对象添加功能.比如我们创建了一个Stream类.后来需要对这个数据流类动态的添加一个加密功能.有人可能说把加密方法写到流类里面啊.然后使用一个bool变量来控制开关就行了.但是这样.这个加密方法只能写一种..如果用派生类来实现.那么..对于不同的加密方法.,都要创建一个子类,举个例子.比如有时候是一些函数的组合.我们最终的派生类的数目基本上就和排列组合的数目一样了.
 我们使用装饰器模式来解决这个问题.GoF描述为 &ldquo;Attach additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing for extending functionality.&rdquo;
 首先看一下图.理解一下这个模式中每一个类的作用
- • Component:定义了可以动态添加功能的具体类ConcreteComponents的接口. • ConcreteComponent: 可以动态添加功能的具体类 • Decorator: 定义了动态添加到ConcreteComponent类中的功能的接口 • ConcreteDecorator: 可以添加到 ConcreteComponent.中的具体功能类.
+ •	Component:定义了可以动态添加功能的具体类ConcreteComponents的接口. •	ConcreteComponent: 可以动态添加功能的具体类 •	Decorator: 定义了动态添加到ConcreteComponent类中的功能的接口 •	ConcreteDecorator: 可以添加到 ConcreteComponent.中的具体功能类.
 使用代码
 我们开一个面包店的例子.面包店卖蛋糕和甜点.客户可以买蛋糕和甜点,同时添加一些额外的东西.额外的东西包括奶油(Cream),樱桃(Cherry),香料(Scent)和会员(Name Card)
-如果我们用派生类来实现..那么我们会有如下的类 • CakeOnly • CakeWithCreamAndCherry • CakeWithCreamAndCherryAndScent • CakeWithCreamAndCherryAndScentAndNameCard • CakeWithCherryOnly • PastryOnly • PastryWithCreamAndCherry • PastryWithCreamAndCherryAndScent • PastryWithCreamAndCherryAndScentAndNameCard • PastryWithCherryOnly • 等等等等
+如果我们用派生类来实现..那么我们会有如下的类 •	CakeOnly •	CakeWithCreamAndCherry •	CakeWithCreamAndCherryAndScent •	CakeWithCreamAndCherryAndScentAndNameCard •	CakeWithCherryOnly •	PastryOnly •	PastryWithCreamAndCherry •	PastryWithCreamAndCherryAndScent •	PastryWithCreamAndCherryAndScentAndNameCard •	PastryWithCherryOnly •	等等等等
 这简直就是噩梦..我们用装饰器模式来实现把. 首先定义Component 接口
-public abstract class BakeryComponent { public abstract string GetName(); public abstract double GetPrice(); }  前面说过了.">
+前面说过了.这个类定义了能够动态添加功能的具体类(ConcreteComponents)的接口,好吧.然后来创建具体类ConcreteComponents
+现在基对象准备好了.看看那些可以被动态添加的功能.我们看看Decorator 类
+注意两个地方.第一个就是类实现BakeryComponent 接口,原因是装饰后的蛋糕还是蛋糕,另一个是该类也持有一个BakeryComponent 对象,原因是,我们需要Cake和装饰的项目是is-a关系,但是事实上不是.通过加一个对象就可以模拟is-a关系.
+一句话.我们使用继承实现了静态的is-a关系,而是用构成则是一个动态的is-a关系.">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2012/10/22/%E7%90%86%E8%A7%A3%E5%B9%B6%E5%AE%9E%E7%8E%B0%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F/" />
 <meta property="og:type" content="website" />
@@ -125,7 +134,7 @@ public abstract class BakeryComponent { public abstract string GetName(); public
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -283,7 +292,7 @@ public abstract class BakeryComponent { public abstract string GetName(); public
   <i class="fas fa-calendar"></i>&nbsp;Posted on October 22, 2012
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -311,214 +320,57 @@ public abstract class BakeryComponent { public abstract string GetName(); public
       <article role="main" class="blog-post">
         <p><strong>背景</strong>
 本文讨论装饰器模式,这个模式是因为很多情况下需要动态的给对象添加功能.比如我们创建了一个Stream类.后来需要对这个数据流类动态的添加一个加密功能.有人可能说把加密方法写到流类里面啊.然后使用一个bool变量来控制开关就行了.但是这样.这个加密方法只能写一种..如果用派生类来实现.那么..对于不同的加密方法.,都要创建一个子类,举个例子.比如有时候是一些函数的组合.我们最终的派生类的数目基本上就和排列组合的数目一样了.</p>
-
 <p>我们使用装饰器模式来解决这个问题.GoF描述为
- &ldquo;Attach additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing for extending functionality.&rdquo;</p>
-
+&ldquo;Attach additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing for extending functionality.&rdquo;</p>
 <p>首先看一下图.理解一下这个模式中每一个类的作用</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/28377_o.jpg"><img src="/images/7858234df16590f30fcdf85a0a8791d33d076e2d.jpg" alt="" title="1" /></a>
-•   Component:定义了可以动态添加功能的具体类ConcreteComponents的接口.
-•   ConcreteComponent: 可以动态添加功能的具体类
-•   Decorator: 定义了动态添加到ConcreteComponent类中的功能的接口
-•   ConcreteDecorator: 可以添加到 ConcreteComponent.中的具体功能类.</p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/28377_o.jpg"><img src="/images/7858234df16590f30fcdf85a0a8791d33d076e2d.jpg" alt="" title="1"></a>
+•	Component:定义了可以动态添加功能的具体类ConcreteComponents的接口.
+•	ConcreteComponent: 可以动态添加功能的具体类
+•	Decorator: 定义了动态添加到ConcreteComponent类中的功能的接口
+•	ConcreteDecorator: 可以添加到 ConcreteComponent.中的具体功能类.</p>
 <p>使用代码</p>
-
 <p>我们开一个面包店的例子.面包店卖蛋糕和甜点.客户可以买蛋糕和甜点,同时添加一些额外的东西.额外的东西包括奶油(Cream),樱桃(Cherry),香料(Scent)和会员(Name Card)</p>
-
 <p>如果我们用派生类来实现..那么我们会有如下的类
-•   CakeOnly
-•   CakeWithCreamAndCherry
-•   CakeWithCreamAndCherryAndScent
-•   CakeWithCreamAndCherryAndScentAndNameCard
-•   CakeWithCherryOnly
-•   PastryOnly
-•   PastryWithCreamAndCherry
-•   PastryWithCreamAndCherryAndScent
-•   PastryWithCreamAndCherryAndScentAndNameCard
-•   PastryWithCherryOnly
-•   等等等等</p>
-
+•	CakeOnly
+•	CakeWithCreamAndCherry
+•	CakeWithCreamAndCherryAndScent
+•	CakeWithCreamAndCherryAndScentAndNameCard
+•	CakeWithCherryOnly
+•	PastryOnly
+•	PastryWithCreamAndCherry
+•	PastryWithCreamAndCherryAndScent
+•	PastryWithCreamAndCherryAndScentAndNameCard
+•	PastryWithCherryOnly
+•	等等等等</p>
 <p>这简直就是噩梦..我们用装饰器模式来实现把.
 首先定义Component 接口</p>
-
-<pre class="lang:default decode:true " >public abstract class BakeryComponent
-{
-    public abstract string GetName();
-    public abstract double GetPrice();
-}
-</pre> 
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>前面说过了.这个类定义了能够动态添加功能的具体类(ConcreteComponents)的接口,好吧.然后来创建具体类ConcreteComponents</p>
-
-<pre class="lang:default decode:true " >class CakeBase : BakeryComponent
-{
-    // 真实世界里,这个值应该来自数据库等
-    private string m_Name = "Cake Base";
-    private double m_Price = 200.0;
-
-    public override string GetName()
-    {
-        return m_Name;
-    }
-
-    public override double GetPrice()
-    {
-        return m_Price;
-    }
-}
-
-class PastryBase : BakeryComponent
-{
-    //真实世界里,这个值应该来自数据库等
-    private string m_Name = "Pastry Base";
-    private double m_Price = 20.0;
-
-    public override string GetName()
-    {
-        return m_Name;
-    }
-
-    public override double GetPrice()
-    {
-        return m_Price;
-    }
-}</pre> 
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>现在基对象准备好了.看看那些可以被动态添加的功能.我们看看Decorator  类</p>
-
-<pre class="lang:default decode:true " >public abstract class Decorator : BakeryComponent
-{
-    BakeryComponent m_BaseComponent = null;
-
-    protected string m_Name = "Undefined Decorator";
-    protected double m_Price = 0.0;
-
-    protected Decorator(BakeryComponent baseComponent)
-    {
-        m_BaseComponent = baseComponent;
-    }
-
-    #region BakeryComponent Members
-
-    string BakeryComponent.GetName()
-    {
-        return string.Format("{0}, {1}", m_BaseComponent.GetName(), m_Name);
-    }
-
-    double BakeryComponent.GetPrice()
-    {
-        return m_Price + m_BaseComponent.GetPrice();
-    }
-    #endregion
-}
-</pre> 
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>注意两个地方.第一个就是类实现BakeryComponent  接口,原因是装饰后的蛋糕还是蛋糕,另一个是该类也持有一个BakeryComponent 对象,原因是,我们需要Cake和装饰的项目是is-a关系,但是事实上不是.通过加一个对象就可以模拟is-a关系.</p>
-
 <p>一句话.我们使用继承实现了静态的is-a关系,而是用构成则是一个动态的is-a关系.</p>
-
 <p>然后看看ConcreteDecorators 如何实现</p>
-
-<pre class="lang:default decode:true " >class ArtificialScentDecorator : Decorator
-{
-    public ArtificialScentDecorator(BakeryComponent baseComponent)
-        : base(baseComponent)
-    {
-        this.m_Name = "Artificial Scent";
-        this.m_Price = 3.0;
-    }
-}
-
-class CherryDecorator : Decorator
-{
-    public CherryDecorator(BakeryComponent baseComponent)
-        : base(baseComponent)
-    {
-        this.m_Name = "Cherry";
-        this.m_Price = 2.0;
-    }
-}
-
-class CreamDecorator : Decorator
-{
-    public CreamDecorator(BakeryComponent baseComponent)
-        : base(baseComponent)
-    {
-        this.m_Name = "Cream";
-        this.m_Price = 1.0;
-    }
-}</pre> 
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>然后看一下如何给一个会员卡添加一个打折的信息.</p>
-
-<pre class="lang:default decode:true " >class NameCardDecorator : Decorator
-{
-    private int m_DiscountRate = 5;
-
-    public NameCardDecorator(BakeryComponent baseComponent)
-        : base(baseComponent)
-    {
-        this.m_Name = "Name Card";
-        this.m_Price = 4.0;
-    }
-
-    public override string GetName()
-    {
-        return base.GetName() + 
-            string.Format("\n(Please Collect your discount card for {0}%)", 
-            m_DiscountRate);
-    }        
-}
-</pre> 
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>现在我们的客户端可使用Decorator 来装饰ConcreteComponents  生成不同的组合.看看例子</p>
-
-<pre class="lang:default decode:true " >static void Main(string[] args)
-{
-    // 创建一个基本的蛋糕
-    CakeBase cBase = new CakeBase();
-    PrintProductDetails(cBase);
-
-    // 添加奶油
-    CreamDecorator creamCake = new CreamDecorator(cBase);
-    PrintProductDetails(creamCake);
-
-    // 添加樱桃
-    CherryDecorator cherryCake = new CherryDecorator(creamCake);
-    PrintProductDetails(cherryCake);
-
-    // 添加香料
-    ArtificialScentDecorator scentedCake = new ArtificialScentDecorator(cherryCake);
-    PrintProductDetails(scentedCake);
-
-    // 添加一张会员卡
-    NameCardDecorator nameCardOnCake = new NameCardDecorator(scentedCake);
-    PrintProductDetails(nameCardOnCake);
-
-    // 添加一个甜点
-    PastryBase pastry = new PastryBase();
-    PrintProductDetails(pastry);
-
-    // 添加 奶油和樱桃
-    CreamDecorator creamPastry = new CreamDecorator(pastry);
-    CherryDecorator cherryPastry = new CherryDecorator(creamPastry);
-    PrintProductDetails(cherryPastry);
-}</pre> 
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>运行效果</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/28379_o.jpg"><img src="/images/107779584959d1f4308b310068eb087bcb423852.jpg" alt="" title="2" /></a>
+<p><a href="http://leaverimage.b0.upaiyun.com/28379_o.jpg"><img src="/images/107779584959d1f4308b310068eb087bcb423852.jpg" alt="" title="2"></a>
 看看我们的装饰器模式例子的类图结构</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/28378_o.jpg"><img src="/images/df8b8eab0b223420a2b0127c16f55802925fb0f9.jpg" alt="" title="3" /></a></p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/28378_o.jpg"><img src="/images/df8b8eab0b223420a2b0127c16f55802925fb0f9.jpg" alt="" title="3"></a></p>
 <p><strong>亮点在那里</strong>
 装饰器模式是很典型的开放-封闭原则的例子.我们的类对扩展开放,而对修改封闭.
 <strong>Demo下载</strong>
-[downloadicon href=<a href="http://pan.baidu.com/share/link?shareid=88379&amp;uk=1493685990]DecoratorSampleApp.zip[/downloadicon">http://pan.baidu.com/share/link?shareid=88379&amp;uk=1493685990]DecoratorSampleApp.zip[/downloadicon</a>]</p>
-
+[downloadicon href=http://pan.baidu.com/share/link?shareid=88379&amp;uk=1493685990]DecoratorSampleApp.zip[/downloadicon]</p>
 <p>原文地址：<a href="http://www.codeproject.com/Articles/479635/UnderstandingplusandplusImplementingplusDecoratorp">UnderstandingplusandplusImplementingplusDecoratorp</a>
 著作权声明：本文由<a href="http://leaver.me">http://leaver.me</a> 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</p>
 
@@ -636,7 +488,7 @@ class CreamDecorator : Decorator
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

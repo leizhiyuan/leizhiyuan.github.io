@@ -14,18 +14,14 @@
 C# 中的委托和事件 ，如果你已经有了相应的基础，但没写过相关的例子，那我这里提供一个，首先看一下规范
 .Net Framework的编码规范：
  委托类型的名称都应该以EventHandler结束。 委托的原型定义：有一个void返回值，并接受两个输入参数：一个Object 类型，一个 EventArgs类型(或继承自EventArgs)。 事件的命名为 委托去掉 EventHandler之后剩余的部分。 继承自EventArgs的类型应该以EventArgs结尾。 然后描述一下流程：  老板监视时间变动（ComputerOffWorkTime方法），当工作时间满50后，通知员工时间到（OnNotifyOffWork方法，并传递OffWorkEventArgs参数），可以下班了，（OnNotifyOffWork方法内部调用事件NotifyOffWork），正式员工收到通知后，则下班，其他员工则清扫一下办公室
-&nbsp;
-然后给出例子： using System; using System.Collections.Generic; using System.IO; using System.Linq; using System.Security.Cryptography; using System.Text;
-namespace DelegateAndEvent {
-public class Boss { //表示工作时间 private int virTime; //下班时老板说的话 public String SaidWords { get { return &#34;Boss:时间到，下班了&#34;; } } //委托定义 public delegate void NotifyOffWorkEventHandler(Object sender, OffWorkEventArgs e); //事件 public event NotifyOffWorkEventHandler NotifyOffWork; //事件参数 public class OffWorkEventArgs:EventArgs { public readonly int virTime; public OffWorkEventArgs(int virTime) { this.">
+ 然后给出例子：
+ ">
   <meta property="og:description" content="C#中委托和事件的例子比较多，讲得好的非常好，就不瞎凑热闹了，推荐博客园大牛的一篇：
 C# 中的委托和事件 ，如果你已经有了相应的基础，但没写过相关的例子，那我这里提供一个，首先看一下规范
 .Net Framework的编码规范：
  委托类型的名称都应该以EventHandler结束。 委托的原型定义：有一个void返回值，并接受两个输入参数：一个Object 类型，一个 EventArgs类型(或继承自EventArgs)。 事件的命名为 委托去掉 EventHandler之后剩余的部分。 继承自EventArgs的类型应该以EventArgs结尾。 然后描述一下流程：  老板监视时间变动（ComputerOffWorkTime方法），当工作时间满50后，通知员工时间到（OnNotifyOffWork方法，并传递OffWorkEventArgs参数），可以下班了，（OnNotifyOffWork方法内部调用事件NotifyOffWork），正式员工收到通知后，则下班，其他员工则清扫一下办公室
-&nbsp;
-然后给出例子： using System; using System.Collections.Generic; using System.IO; using System.Linq; using System.Security.Cryptography; using System.Text;
-namespace DelegateAndEvent {
-public class Boss { //表示工作时间 private int virTime; //下班时老板说的话 public String SaidWords { get { return &#34;Boss:时间到，下班了&#34;; } } //委托定义 public delegate void NotifyOffWorkEventHandler(Object sender, OffWorkEventArgs e); //事件 public event NotifyOffWorkEventHandler NotifyOffWork; //事件参数 public class OffWorkEventArgs:EventArgs { public readonly int virTime; public OffWorkEventArgs(int virTime) { this.">
+ 然后给出例子：
+ ">
   <meta name="twitter:description" content="C#中委托和事件的例子比较多，讲得好的非常好，就不瞎凑热闹了，推荐博客园大牛的一篇：
 C# 中的委托和事件 ，如果你已经有了相应的基础，但没写过相关的例子，那我这里提供一个，首先看一下规范
 .Net Framework的编码规范：
@@ -78,9 +74,9 @@ C# 中的委托和事件 ，如果你已经有了相应的基础，但没写过
     "name" : "bystander"
   },
   "headline": "委托和事件示例",
-  "description" : "C#中委托和事件的例子比较多，讲得好的非常好，就不瞎凑热闹了，推荐博客园大牛的一篇：\nC# 中的委托和事件 ，如果你已经有了相应的基础，但没写过相关的例子，那我这里提供一个，首先看一下规范\n.Net Framework的编码规范：\n 委托类型的名称都应该以EventHandler结束。 委托的原型定义：有一个void返回值，并接受两个输入参数：一个Object 类型，一个 EventArgs类型(或继承自EventArgs)。 事件的命名为 委托去掉 EventHandler之后剩余的部分。 继承自EventArgs的类型应该以EventArgs结尾。 然后描述一下流程：  老板监视时间变动（ComputerOffWorkTime方法），当工作时间满50后，通知员工时间到（OnNotifyOffWork方法，并传递OffWorkEventArgs参数），可以下班了，（OnNotifyOffWork方法内部调用事件NotifyOffWork），正式员工收到通知后，则下班，其他员工则清扫一下办公室\n\x26nbsp;\n然后给出例子： using System; using System.Collections.Generic; using System.IO; using System.Linq; using System.Security.Cryptography; using System.Text;\nnamespace DelegateAndEvent {\npublic class Boss { \/\/表示工作时间 private int virTime; \/\/下班时老板说的话 public String SaidWords { get { return \x26#34;Boss:时间到，下班了\x26#34;; } } \/\/委托定义 public delegate void NotifyOffWorkEventHandler(Object sender, OffWorkEventArgs e); \/\/事件 public event NotifyOffWorkEventHandler NotifyOffWork; \/\/事件参数 public class OffWorkEventArgs:EventArgs { public readonly int virTime; public OffWorkEventArgs(int virTime) { this.",
+  "description" : "C#中委托和事件的例子比较多，讲得好的非常好，就不瞎凑热闹了，推荐博客园大牛的一篇：\nC# 中的委托和事件 ，如果你已经有了相应的基础，但没写过相关的例子，那我这里提供一个，首先看一下规范\n.Net Framework的编码规范：\n 委托类型的名称都应该以EventHandler结束。 委托的原型定义：有一个void返回值，并接受两个输入参数：一个Object 类型，一个 EventArgs类型(或继承自EventArgs)。 事件的命名为 委托去掉 EventHandler之后剩余的部分。 继承自EventArgs的类型应该以EventArgs结尾。 然后描述一下流程：  老板监视时间变动（ComputerOffWorkTime方法），当工作时间满50后，通知员工时间到（OnNotifyOffWork方法，并传递OffWorkEventArgs参数），可以下班了，（OnNotifyOffWork方法内部调用事件NotifyOffWork），正式员工收到通知后，则下班，其他员工则清扫一下办公室\n 然后给出例子：\n ",
   "inLanguage" : "en",
-  "wordCount":  197 ,
+  "wordCount":  17 ,
   "datePublished" : "2013-06-25T08:48:20",
   "dateModified" : "2013-06-25T08:48:20",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -104,10 +100,8 @@ C# 中的委托和事件 ，如果你已经有了相应的基础，但没写过
 C# 中的委托和事件 ，如果你已经有了相应的基础，但没写过相关的例子，那我这里提供一个，首先看一下规范
 .Net Framework的编码规范：
  委托类型的名称都应该以EventHandler结束。 委托的原型定义：有一个void返回值，并接受两个输入参数：一个Object 类型，一个 EventArgs类型(或继承自EventArgs)。 事件的命名为 委托去掉 EventHandler之后剩余的部分。 继承自EventArgs的类型应该以EventArgs结尾。 然后描述一下流程：  老板监视时间变动（ComputerOffWorkTime方法），当工作时间满50后，通知员工时间到（OnNotifyOffWork方法，并传递OffWorkEventArgs参数），可以下班了，（OnNotifyOffWork方法内部调用事件NotifyOffWork），正式员工收到通知后，则下班，其他员工则清扫一下办公室
-&nbsp;
-然后给出例子： using System; using System.Collections.Generic; using System.IO; using System.Linq; using System.Security.Cryptography; using System.Text;
-namespace DelegateAndEvent {
-public class Boss { //表示工作时间 private int virTime; //下班时老板说的话 public String SaidWords { get { return &#34;Boss:时间到，下班了&#34;; } } //委托定义 public delegate void NotifyOffWorkEventHandler(Object sender, OffWorkEventArgs e); //事件 public event NotifyOffWorkEventHandler NotifyOffWork; //事件参数 public class OffWorkEventArgs:EventArgs { public readonly int virTime; public OffWorkEventArgs(int virTime) { this.">
+ 然后给出例子：
+ ">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2013/06/25/%E5%A7%94%E6%89%98%E5%92%8C%E4%BA%8B%E4%BB%B6%E7%A4%BA%E4%BE%8B/" />
 <meta property="og:type" content="website" />
@@ -128,7 +122,7 @@ C# 中的委托和事件 ，如果你已经有了相应的基础，但没写过
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -313,11 +307,8 @@ C# 中的委托和事件 ，如果你已经有了相应的基础，但没写过
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <p>C#中委托和事件的例子比较多，讲得好的非常好，就不瞎凑热闹了，推荐博客园大牛的一篇：</p>
-
 <p><a href="http://www.tracefact.net/csharp-programming/delegates-and-events-in-csharp.aspx">C# 中的委托和事件</a> ，如果你已经有了相应的基础，但没写过相关的例子，那我这里提供一个，首先看一下规范</p>
-
 <p>.Net Framework的编码规范：</p>
-
 <ul>
 <li>委托类型的名称都应该以EventHandler结束。</li>
 <li>委托的原型定义：有一个void返回值，并接受两个输入参数：一个Object 类型，一个 EventArgs类型(或继承自EventArgs)。</li>
@@ -325,105 +316,12 @@ C# 中的委托和事件 ，如果你已经有了相应的基础，但没写过
 <li>继承自EventArgs的类型应该以EventArgs结尾。
 然后描述一下流程：</li>
 </ul>
-
 <p>老板监视时间变动（ComputerOffWorkTime方法），当工作时间满50后，通知员工时间到（OnNotifyOffWork方法，并传递OffWorkEventArgs参数），可以下班了，（OnNotifyOffWork方法内部调用事件NotifyOffWork），正式员工收到通知后，则下班，其他员工则清扫一下办公室</p>
-
-<p>&nbsp;</p>
-
-<p>然后给出例子：
-<pre class="lang:c# decode:true">using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;</p>
-
-<p>namespace DelegateAndEvent
-{</p>
-<div class="highlight"><pre class="chroma">public class Boss
-{
-    //表示工作时间
-    private int virTime;
-    //下班时老板说的话
-    public String SaidWords
-    {
-        get { return &#34;Boss:时间到，下班了&#34;; }
-    }
-    //委托定义
-    public delegate void NotifyOffWorkEventHandler(Object sender, OffWorkEventArgs e);
-
-    //事件
-    public event NotifyOffWorkEventHandler NotifyOffWork;
-    //事件参数
-    public class OffWorkEventArgs:EventArgs
-    {
-        public readonly int virTime;
-        public OffWorkEventArgs(int virTime)
-        {
-            this.virTime = virTime;
-        }
-    }
-    //触发事件
-  protected void OnNotifyOffWork(OffWorkEventArgs e)
-    {
-        if (NotifyOffWork!=null)
-        {
-            NotifyOffWork(this, e);
-        }
-    }
-
-    //执行操作
-    public void ComputerOffWorkTime()
-    {
-        for (int i = 1; i &amp;lt;= 50; i++)
-        {
-            virTime = i;
-            if (i&amp;gt;=50)
-            {
-                OffWorkEventArgs e = new OffWorkEventArgs(i);
-                OnNotifyOffWork(e);
-            }
-        }
-    }
-}
-//正式员工
-public class FormalEmployee
-{
-    public static void GoHome(Object sender, Boss.OffWorkEventArgs e)
-    {
-        Boss boss = (Boss) sender;
-        Console.WriteLine(boss.SaidWords);
-        Console.WriteLine(e.virTime);
-        Console.WriteLine(&#34;FormalEmployee:准备回家&#34;);
-
-    }
-}
-//其他员工
-public class OtherEmployee
-{
-    public static void CleanOffice(Object sender, Boss.OffWorkEventArgs e)
-    {
-        Boss boss = (Boss)sender;
-        Console.WriteLine(boss.SaidWords);
-        Console.WriteLine(e.virTime);
-        Console.WriteLine(&#34;OtherEmployee:准备清扫办公室&#34;);
-    }
-}
-public class Program
-{
-
-    static void Main(string[] args)
-    {
-       Boss boss=new Boss();
-        //注册事件
-        boss.NotifyOffWork += FormalEmployee.GoHome;
-        boss.NotifyOffWork += OtherEmployee.CleanOffice;
-        //老板开始计时
-        boss.ComputerOffWorkTime();
-    }
-}</pre></div>
-<p>}</pre>
-&nbsp;</p>
+<p> </p>
+<p>然后给出例子：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
 
 
         
@@ -539,7 +437,7 @@ public class Program
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

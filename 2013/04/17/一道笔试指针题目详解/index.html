@@ -11,23 +11,42 @@
   <meta property="og:title" content="一道笔试指针题目详解" />
   <meta name="twitter:title" content="一道笔试指针题目详解" />
   <meta name="description" content="看到本题是在搜狗某年的笔试题上,看也没人给出非常详细的讲解,直接给出了答案,我来尝试写一写,
-貌似本题来源自&lt;The C Puzzle Book&gt; ，搜狗也只是换了一下字符串，直接看题吧 #include &lt;stdio.h&gt; char *c[]={&ldquo;ENTNG&rdquo;, &ldquo;NST&rdquo;,&ldquo;AMAZI&rdquo;,&ldquo;FIRBE&rdquo;}; char** cp[]={c&#43;3, c&#43;2, c&#43;1, c}; char *cpp= cp; int main() { printf(&ldquo;%s&rdquo;,&#43;&#43;cpp); printf(&ldquo;%s &ldquo;,&ndash;&#43;&#43;cpp&#43;3); printf(&ldquo;%s&rdquo;,*cpp[-2]&#43;3); printf(&ldquo;%s&rdquo;,cpp[-1][-1]&#43;1); } &lt;span style=&quot;font-family: Georgia, &#39;Times New Roman&#39;, &#39;Bitstream Charter&#39;, Times, serif; font-size: 13px; line-height: 19px;&quot;&gt;请写出程序的执行结果....&lt;/span&gt;
-首先从左到右看： char *c[]= { &ldquo;ENTNG&rdquo;, &ldquo;NST&rdquo;, &ldquo;AMAZI&rdquo;, &ldquo;FIRBE&rdquo; }; *c[] 是一个字符，因此，c[]是指向该字符，c就是一个数组（数组的内容为指向字符的指针），c已经被初始化了. char** cp[]={c&#43;3, c&#43;2, c&#43;1, c}; 再看第二行，**cp[]是一个字符，*cp[]就是一个指针，指向该字符，cp[]就是一个指针，指向该指针，而cp就成为了指针数组，内容是指向字符的指针的指针。并且通过c的元素进行了初始化 char cpp= cp; 第三行，cpp是一个字符，**cpp指向该字符，*cpp指向该指针，cpp就指向该字符的指针的指针.
+貌似本题来源自&lt;**The C Puzzle Book&gt; ，**搜狗也只是换了一下字符串，直接看题吧
+&lt;span style=&quot;font-family: Georgia, &#39;Times New Roman&#39;, &#39;Bitstream Charter&#39;, Times, serif; font-size: 13px; line-height: 19px;&quot;&gt;请写出程序的执行结果....&lt;/span&gt;
+首先从左到右看：
+再看第二行，**cp[]是一个字符，*cp[]就是一个指针，指向该字符，cp[]就是一个指针，指向该指针，而cp就成为了指针数组，内容是指向字符的指针的指针。并且通过c的元素进行了初始化
+第三行，***cpp是一个字符，**cpp指向该字符，*cpp指向该指针，cpp就指向该字符的指针的指针.
 然后我画一张图表示初始的情况看看
 
-然后对于下面的输出语句，通过操作符优先级使用括号来区分一下： ((&#43;&#43;cpp)); 这个嘛，就是把cpp后移(注意cpp已经改变了)然后就指向了cp[1]，然后两次取其值即可得到AMAZI
+然后对于下面的输出语句，通过操作符优先级使用括号来区分一下：
+这个嘛，就是把cpp后移(注意cpp已经改变了)然后就指向了cp[1]，然后两次取其值即可得到AMAZI
 推导过程如下：
- &#43;&#43;cpp -&gt; cp[1] // cp[1] -&gt; c&#43;2 &#43;&#43;cpp = &amp;cp[1] // &amp;(c&#43;2) *&#43;&#43;cpp = *(&amp;c&#43;2) // c[2] **&#43;&#43;cpp = &amp;c[2] 然后看第二个 ((&ndash;(*(&#43;&#43;cpp))))&#43;3; 加括号后如上，cpp再加一，就指向了cp[2],取一次值（也就是号）就变成了c[1],然后&ndash;c[1]就指向了c[0],取值就成了c[0]的地址，然后地址&#43;3，就是NG了 ((cpp[-2]))&#43;3; 上面，cpp指向cp[2]了，然后呢，cpp[-2] 相当于*(cpp-2)，间接引用cp[2]，这样cpp[-2]就指向了cp[0]了，然后，就是FIRBE了,加3就是BE了">
+最后
+ cpp还是之前的cp[2]，cpp[-1][-1]相当于*(*(cpp-1)-1),先减1指向了cp[1],取一次值就是c[2]了，然后c[2]-1就成为c[1]了，然后&#43;1之后就是ST了.
+所以，最后输出就是
+AMAZINGBEST
+错误之处还望指正.
+  ">
   <meta property="og:description" content="看到本题是在搜狗某年的笔试题上,看也没人给出非常详细的讲解,直接给出了答案,我来尝试写一写,
-貌似本题来源自&lt;The C Puzzle Book&gt; ，搜狗也只是换了一下字符串，直接看题吧 #include &lt;stdio.h&gt; char *c[]={&ldquo;ENTNG&rdquo;, &ldquo;NST&rdquo;,&ldquo;AMAZI&rdquo;,&ldquo;FIRBE&rdquo;}; char** cp[]={c&#43;3, c&#43;2, c&#43;1, c}; char *cpp= cp; int main() { printf(&ldquo;%s&rdquo;,&#43;&#43;cpp); printf(&ldquo;%s &ldquo;,&ndash;&#43;&#43;cpp&#43;3); printf(&ldquo;%s&rdquo;,*cpp[-2]&#43;3); printf(&ldquo;%s&rdquo;,cpp[-1][-1]&#43;1); } &lt;span style=&quot;font-family: Georgia, &#39;Times New Roman&#39;, &#39;Bitstream Charter&#39;, Times, serif; font-size: 13px; line-height: 19px;&quot;&gt;请写出程序的执行结果....&lt;/span&gt;
-首先从左到右看： char *c[]= { &ldquo;ENTNG&rdquo;, &ldquo;NST&rdquo;, &ldquo;AMAZI&rdquo;, &ldquo;FIRBE&rdquo; }; *c[] 是一个字符，因此，c[]是指向该字符，c就是一个数组（数组的内容为指向字符的指针），c已经被初始化了. char** cp[]={c&#43;3, c&#43;2, c&#43;1, c}; 再看第二行，**cp[]是一个字符，*cp[]就是一个指针，指向该字符，cp[]就是一个指针，指向该指针，而cp就成为了指针数组，内容是指向字符的指针的指针。并且通过c的元素进行了初始化 char cpp= cp; 第三行，cpp是一个字符，**cpp指向该字符，*cpp指向该指针，cpp就指向该字符的指针的指针.
+貌似本题来源自&lt;**The C Puzzle Book&gt; ，**搜狗也只是换了一下字符串，直接看题吧
+&lt;span style=&quot;font-family: Georgia, &#39;Times New Roman&#39;, &#39;Bitstream Charter&#39;, Times, serif; font-size: 13px; line-height: 19px;&quot;&gt;请写出程序的执行结果....&lt;/span&gt;
+首先从左到右看：
+再看第二行，**cp[]是一个字符，*cp[]就是一个指针，指向该字符，cp[]就是一个指针，指向该指针，而cp就成为了指针数组，内容是指向字符的指针的指针。并且通过c的元素进行了初始化
+第三行，***cpp是一个字符，**cpp指向该字符，*cpp指向该指针，cpp就指向该字符的指针的指针.
 然后我画一张图表示初始的情况看看
 
-然后对于下面的输出语句，通过操作符优先级使用括号来区分一下： ((&#43;&#43;cpp)); 这个嘛，就是把cpp后移(注意cpp已经改变了)然后就指向了cp[1]，然后两次取其值即可得到AMAZI
+然后对于下面的输出语句，通过操作符优先级使用括号来区分一下：
+这个嘛，就是把cpp后移(注意cpp已经改变了)然后就指向了cp[1]，然后两次取其值即可得到AMAZI
 推导过程如下：
- &#43;&#43;cpp -&gt; cp[1] // cp[1] -&gt; c&#43;2 &#43;&#43;cpp = &amp;cp[1] // &amp;(c&#43;2) *&#43;&#43;cpp = *(&amp;c&#43;2) // c[2] **&#43;&#43;cpp = &amp;c[2] 然后看第二个 ((&ndash;(*(&#43;&#43;cpp))))&#43;3; 加括号后如上，cpp再加一，就指向了cp[2],取一次值（也就是号）就变成了c[1],然后&ndash;c[1]就指向了c[0],取值就成了c[0]的地址，然后地址&#43;3，就是NG了 ((cpp[-2]))&#43;3; 上面，cpp指向cp[2]了，然后呢，cpp[-2] 相当于*(cpp-2)，间接引用cp[2]，这样cpp[-2]就指向了cp[0]了，然后，就是FIRBE了,加3就是BE了">
+最后
+ cpp还是之前的cp[2]，cpp[-1][-1]相当于*(*(cpp-1)-1),先减1指向了cp[1],取一次值就是c[2]了，然后c[2]-1就成为c[1]了，然后&#43;1之后就是ST了.
+所以，最后输出就是
+AMAZINGBEST
+错误之处还望指正.
+  ">
   <meta name="twitter:description" content="看到本题是在搜狗某年的笔试题上,看也没人给出非常详细的讲解,直接给出了答案,我来尝试写一写,
-貌似本题来源自&lt;The C Puzzle Book&gt; ，搜狗也只是换了一下字符串，直接看题吧 #include &lt;stdio.h&gt; char *c[]={&ldquo;ENTNG&rdquo;, …">
+貌似本题来源自&lt;**The C Puzzle Book&gt; ，**搜狗也只是换了一下字符串，直接看题吧
+&lt;span style=&quot;font-family: Georgia, &#39;Times New Roman&#39;, &#39;Bitstream Charter&#39;, Times, serif; …">
   <meta name="author" content="bystander"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -76,9 +95,9 @@
     "name" : "bystander"
   },
   "headline": "一道笔试指针题目详解",
-  "description" : "看到本题是在搜狗某年的笔试题上,看也没人给出非常详细的讲解,直接给出了答案,我来尝试写一写,\n貌似本题来源自\x26lt;The C Puzzle Book\x26gt; ，搜狗也只是换了一下字符串，直接看题吧 #include \x26lt;stdio.h\x26gt; char *c[]={\x26ldquo;ENTNG\x26rdquo;, \x26ldquo;NST\x26rdquo;,\x26ldquo;AMAZI\x26rdquo;,\x26ldquo;FIRBE\x26rdquo;}; char** cp[]={c\x2b3, c\x2b2, c\x2b1, c}; char *cpp= cp; int main() { printf(\x26ldquo;%s\x26rdquo;,\x2b\x2bcpp); printf(\x26ldquo;%s \x26ldquo;,\x26ndash;\x2b\x2bcpp\x2b3); printf(\x26ldquo;%s\x26rdquo;,*cpp[-2]\x2b3); printf(\x26ldquo;%s\x26rdquo;,cpp[-1][-1]\x2b1); } \x26lt;span style=\x26quot;font-family: Georgia, \x27Times New Roman\x27, \x27Bitstream Charter\x27, Times, serif; font-size: 13px; line-height: 19px;\x26quot;\x26gt;请写出程序的执行结果....\x26lt;\/span\x26gt;\n首先从左到右看： char *c[]= { \x26ldquo;ENTNG\x26rdquo;, \x26ldquo;NST\x26rdquo;, \x26ldquo;AMAZI\x26rdquo;, \x26ldquo;FIRBE\x26rdquo; }; *c[] 是一个字符，因此，c[]是指向该字符，c就是一个数组（数组的内容为指向字符的指针），c已经被初始化了. char** cp[]={c\x2b3, c\x2b2, c\x2b1, c}; 再看第二行，**cp[]是一个字符，*cp[]就是一个指针，指向该字符，cp[]就是一个指针，指向该指针，而cp就成为了指针数组，内容是指向字符的指针的指针。并且通过c的元素进行了初始化 char cpp= cp; 第三行，cpp是一个字符，**cpp指向该字符，*cpp指向该指针，cpp就指向该字符的指针的指针.\n然后我画一张图表示初始的情况看看\n\n然后对于下面的输出语句，通过操作符优先级使用括号来区分一下： ((\x2b\x2bcpp)); 这个嘛，就是把cpp后移(注意cpp已经改变了)然后就指向了cp[1]，然后两次取其值即可得到AMAZI\n推导过程如下：\n \x2b\x2bcpp -\x26gt; cp[1] \/\/ cp[1] -\x26gt; c\x2b2 \x2b\x2bcpp = \x26amp;cp[1] \/\/ \x26amp;(c\x2b2) *\x2b\x2bcpp = *(\x26amp;c\x2b2) \/\/ c[2] **\x2b\x2bcpp = \x26amp;c[2] 然后看第二个 ((\x26ndash;(*(\x2b\x2bcpp))))\x2b3; 加括号后如上，cpp再加一，就指向了cp[2],取一次值（也就是号）就变成了c[1],然后\x26ndash;c[1]就指向了c[0],取值就成了c[0]的地址，然后地址\x2b3，就是NG了 ((cpp[-2]))\x2b3; 上面，cpp指向cp[2]了，然后呢，cpp[-2] 相当于*(cpp-2)，间接引用cp[2]，这样cpp[-2]就指向了cp[0]了，然后，就是FIRBE了,加3就是BE了",
+  "description" : "看到本题是在搜狗某年的笔试题上,看也没人给出非常详细的讲解,直接给出了答案,我来尝试写一写,\n貌似本题来源自\x26lt;**The C Puzzle Book\x26gt; ，**搜狗也只是换了一下字符串，直接看题吧\n\x26lt;span style=\x26quot;font-family: Georgia, \x27Times New Roman\x27, \x27Bitstream Charter\x27, Times, serif; font-size: 13px; line-height: 19px;\x26quot;\x26gt;请写出程序的执行结果....\x26lt;\/span\x26gt;\n首先从左到右看：\n再看第二行，**cp[]是一个字符，*cp[]就是一个指针，指向该字符，cp[]就是一个指针，指向该指针，而cp就成为了指针数组，内容是指向字符的指针的指针。并且通过c的元素进行了初始化\n第三行，***cpp是一个字符，**cpp指向该字符，*cpp指向该指针，cpp就指向该字符的指针的指针.\n然后我画一张图表示初始的情况看看\n\n然后对于下面的输出语句，通过操作符优先级使用括号来区分一下：\n这个嘛，就是把cpp后移(注意cpp已经改变了)然后就指向了cp[1]，然后两次取其值即可得到AMAZI\n推导过程如下：\n最后\n cpp还是之前的cp[2]，cpp[-1][-1]相当于*(*(cpp-1)-1),先减1指向了cp[1],取一次值就是c[2]了，然后c[2]-1就成为c[1]了，然后\x2b1之后就是ST了.\n所以，最后输出就是\nAMAZINGBEST\n错误之处还望指正.\n  ",
   "inLanguage" : "en",
-  "wordCount":  103 ,
+  "wordCount":  32 ,
   "datePublished" : "2013-04-17T08:34:39",
   "dateModified" : "2013-04-17T08:34:39",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -99,13 +118,22 @@
 
 <meta property="og:title" content="一道笔试指针题目详解" />
 <meta property="og:description" content="看到本题是在搜狗某年的笔试题上,看也没人给出非常详细的讲解,直接给出了答案,我来尝试写一写,
-貌似本题来源自&lt;The C Puzzle Book&gt; ，搜狗也只是换了一下字符串，直接看题吧 #include &lt;stdio.h&gt; char *c[]={&ldquo;ENTNG&rdquo;, &ldquo;NST&rdquo;,&ldquo;AMAZI&rdquo;,&ldquo;FIRBE&rdquo;}; char** cp[]={c&#43;3, c&#43;2, c&#43;1, c}; char *cpp= cp; int main() { printf(&ldquo;%s&rdquo;,&#43;&#43;cpp); printf(&ldquo;%s &ldquo;,&ndash;&#43;&#43;cpp&#43;3); printf(&ldquo;%s&rdquo;,*cpp[-2]&#43;3); printf(&ldquo;%s&rdquo;,cpp[-1][-1]&#43;1); } &lt;span style=&quot;font-family: Georgia, &#39;Times New Roman&#39;, &#39;Bitstream Charter&#39;, Times, serif; font-size: 13px; line-height: 19px;&quot;&gt;请写出程序的执行结果....&lt;/span&gt;
-首先从左到右看： char *c[]= { &ldquo;ENTNG&rdquo;, &ldquo;NST&rdquo;, &ldquo;AMAZI&rdquo;, &ldquo;FIRBE&rdquo; }; *c[] 是一个字符，因此，c[]是指向该字符，c就是一个数组（数组的内容为指向字符的指针），c已经被初始化了. char** cp[]={c&#43;3, c&#43;2, c&#43;1, c}; 再看第二行，**cp[]是一个字符，*cp[]就是一个指针，指向该字符，cp[]就是一个指针，指向该指针，而cp就成为了指针数组，内容是指向字符的指针的指针。并且通过c的元素进行了初始化 char cpp= cp; 第三行，cpp是一个字符，**cpp指向该字符，*cpp指向该指针，cpp就指向该字符的指针的指针.
+貌似本题来源自&lt;**The C Puzzle Book&gt; ，**搜狗也只是换了一下字符串，直接看题吧
+&lt;span style=&quot;font-family: Georgia, &#39;Times New Roman&#39;, &#39;Bitstream Charter&#39;, Times, serif; font-size: 13px; line-height: 19px;&quot;&gt;请写出程序的执行结果....&lt;/span&gt;
+首先从左到右看：
+再看第二行，**cp[]是一个字符，*cp[]就是一个指针，指向该字符，cp[]就是一个指针，指向该指针，而cp就成为了指针数组，内容是指向字符的指针的指针。并且通过c的元素进行了初始化
+第三行，***cpp是一个字符，**cpp指向该字符，*cpp指向该指针，cpp就指向该字符的指针的指针.
 然后我画一张图表示初始的情况看看
 
-然后对于下面的输出语句，通过操作符优先级使用括号来区分一下： ((&#43;&#43;cpp)); 这个嘛，就是把cpp后移(注意cpp已经改变了)然后就指向了cp[1]，然后两次取其值即可得到AMAZI
+然后对于下面的输出语句，通过操作符优先级使用括号来区分一下：
+这个嘛，就是把cpp后移(注意cpp已经改变了)然后就指向了cp[1]，然后两次取其值即可得到AMAZI
 推导过程如下：
- &#43;&#43;cpp -&gt; cp[1] // cp[1] -&gt; c&#43;2 &#43;&#43;cpp = &amp;cp[1] // &amp;(c&#43;2) *&#43;&#43;cpp = *(&amp;c&#43;2) // c[2] **&#43;&#43;cpp = &amp;c[2] 然后看第二个 ((&ndash;(*(&#43;&#43;cpp))))&#43;3; 加括号后如上，cpp再加一，就指向了cp[2],取一次值（也就是号）就变成了c[1],然后&ndash;c[1]就指向了c[0],取值就成了c[0]的地址，然后地址&#43;3，就是NG了 ((cpp[-2]))&#43;3; 上面，cpp指向cp[2]了，然后呢，cpp[-2] 相当于*(cpp-2)，间接引用cp[2]，这样cpp[-2]就指向了cp[0]了，然后，就是FIRBE了,加3就是BE了">
+最后
+ cpp还是之前的cp[2]，cpp[-1][-1]相当于*(*(cpp-1)-1),先减1指向了cp[1],取一次值就是c[2]了，然后c[2]-1就成为c[1]了，然后&#43;1之后就是ST了.
+所以，最后输出就是
+AMAZINGBEST
+错误之处还望指正.
+  ">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2013/04/17/%E4%B8%80%E9%81%93%E7%AC%94%E8%AF%95%E6%8C%87%E9%92%88%E9%A2%98%E7%9B%AE%E8%AF%A6%E8%A7%A3/" />
 <meta property="og:type" content="website" />
@@ -113,7 +141,8 @@
 
   <meta name="twitter:title" content="一道笔试指针题目详解" />
   <meta name="twitter:description" content="看到本题是在搜狗某年的笔试题上,看也没人给出非常详细的讲解,直接给出了答案,我来尝试写一写,
-貌似本题来源自&lt;The C Puzzle Book&gt; ，搜狗也只是换了一下字符串，直接看题吧 #include &lt;stdio.h&gt; char *c[]={&ldquo;ENTNG&rdquo;, …">
+貌似本题来源自&lt;**The C Puzzle Book&gt; ，**搜狗也只是换了一下字符串，直接看题吧
+&lt;span style=&quot;font-family: Georgia, &#39;Times New Roman&#39;, &#39;Bitstream Charter&#39;, Times, serif; …">
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -124,7 +153,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -309,69 +338,32 @@
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <p>看到本题是在搜狗某年的笔试题上,看也没人给出非常详细的讲解,直接给出了答案,我来尝试写一写,</p>
-
-<p>貌似本题来源自&lt;<strong>The C Puzzle Book&gt; ，</strong>搜狗也只是换了一下字符串，直接看题吧
-<pre class="lang:default decode:true">#include &lt;stdio.h&gt;
-char *c[]={&ldquo;ENTNG&rdquo;, &ldquo;NST&rdquo;,&ldquo;AMAZI&rdquo;,&ldquo;FIRBE&rdquo;};
-char** cp[]={c+3, c+2, c+1, c};
-char *<strong>cpp= cp;
-int main() {
-    printf(&ldquo;%s&rdquo;,</strong>++cpp);
-    printf(&ldquo;%s &ldquo;,<em>&ndash;</em>++cpp+3);
-    printf(&ldquo;%s&rdquo;,*cpp[-2]+3);
-    printf(&ldquo;%s&rdquo;,cpp[-1][-1]+1);
-}</pre>
-<code>&lt;span style=&quot;font-family: Georgia, 'Times New Roman', 'Bitstream Charter', Times, serif; font-size: 13px; line-height: 19px;&quot;&gt;请写出程序的执行结果....&lt;/span&gt;</code></p>
-
-<p>首先从左到右看：
-<pre class="lang:default decode:true">char *c[]= {
-              &ldquo;ENTNG&rdquo;,
-              &ldquo;NST&rdquo;,
-              &ldquo;AMAZI&rdquo;,
-              &ldquo;FIRBE&rdquo;
-            };</pre>
-*c[] 是一个字符，因此，c[]是指向该字符，c就是一个数组（数组的内容为指向字符的指针），c已经被初始化了.
-<pre class="lang:default decode:true">char** cp[]={c+3, c+2, c+1, c};</pre>
-再看第二行，**cp[]是一个字符，*cp[]就是一个指针，指向该字符，cp[]就是一个指针，指向该指针，而cp就成为了指针数组，内容是指向字符的指针的指针。并且通过c的元素进行了初始化
-<pre class="lang:default decode:true">char <strong><em>cpp= cp;</pre>
-第三行，</em></strong>cpp是一个字符，**cpp指向该字符，*cpp指向该指针，cpp就指向该字符的指针的指针.</p>
-
+<p>貌似本题来源自&lt;**The C Puzzle Book&gt; ，**搜狗也只是换了一下字符串，直接看题吧</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><code>&lt;span style=&quot;font-family: Georgia, 'Times New Roman', 'Bitstream Charter', Times, serif; font-size: 13px; line-height: 19px;&quot;&gt;请写出程序的执行结果....&lt;/span&gt;</code></p>
+<p>首先从左到右看：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>再看第二行，**cp[]是一个字符，*cp[]就是一个指针，指向该字符，cp[]就是一个指针，指向该指针，而cp就成为了指针数组，内容是指向字符的指针的指针。并且通过c的元素进行了初始化</p>
+<!-- raw HTML omitted -->
+<p>第三行，***cpp是一个字符，**cpp指向该字符，*cpp指向该指针，cpp就指向该字符的指针的指针.</p>
 <p>然后我画一张图表示初始的情况看看</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/35001_o.png"><img src="/images/ec5c34f9784a9f2a30d7a044ee954099a6e32e78.png" alt="" /></a></p>
-
-<p>然后对于下面的输出语句，通过操作符优先级使用括号来区分一下：
-<pre class="lang:default decode:true"><em>(</em>(++cpp));</pre>
-这个嘛，就是把cpp后移(注意cpp已经改变了)然后就指向了cp[1]，然后两次取其值即可得到AMAZI</p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/35001_o.png"><img src="/images/ec5c34f9784a9f2a30d7a044ee954099a6e32e78.png" alt=""></a></p>
+<p>然后对于下面的输出语句，通过操作符优先级使用括号来区分一下：</p>
+<!-- raw HTML omitted -->
+<p>这个嘛，就是把cpp后移(注意cpp已经改变了)然后就指向了cp[1]，然后两次取其值即可得到AMAZI</p>
 <p>推导过程如下：</p>
-
-<p><address>
-<pre class="lang:default decode:true">++cpp -&gt; cp[1]       // cp[1] -&gt; c+2
-++cpp = &amp;cp[1]       // &amp;(c+2)
-*++cpp = *(&amp;c+2)     //  c[2]
-**++cpp = <em>&amp;c[2]</pre>
-</address>然后看第二个
-<pre class="lang:default decode:true">(</em>(&ndash;(*(++cpp))))+3;</pre>
-加括号后如上，cpp再加一，就指向了cp[2],取一次值（也就是<em>号）就变成了c[1],然后&ndash;c[1]就指向了c[0],取值就成了c[0]的地址，然后地址+3，就是NG了
-<pre class="lang:default decode:true">(</em>(cpp[-2]))+3;</pre>
-上面，cpp指向cp[2]了，然后呢，cpp[-2] 相当于*(cpp-2)，间接引用cp[2]，这样cpp[-2]就指向了cp[0]了，然后，就是FIRBE了,加3就是BE了</p>
-
-<p>最后
-<pre class="lang:default decode:true">(cpp[-1][-1])+1;</pre>
-&nbsp;</p>
-
-<p>cpp还是之前的cp[2]，cpp[-1][-1]相当于<em>(</em>(cpp-1)-1),先减1指向了cp[1],取一次值就是c[2]了，然后c[2]-1就成为c[1]了，然后+1之后就是ST了.</p>
-
+<!-- raw HTML omitted -->
+<p>最后</p>
+<!-- raw HTML omitted -->
+<p> </p>
+<p>cpp还是之前的cp[2]，cpp[-1][-1]相当于*(*(cpp-1)-1),先减1指向了cp[1],取一次值就是c[2]了，然后c[2]-1就成为c[1]了，然后+1之后就是ST了.</p>
 <p>所以，最后输出就是</p>
-
 <p>AMAZINGBEST</p>
-
 <p>错误之处还望指正.</p>
-
-<p>&nbsp;</p>
-
-<p>&nbsp;</p>
+<p> </p>
+<p> </p>
 
 
         
@@ -489,7 +481,7 @@ int main() {
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

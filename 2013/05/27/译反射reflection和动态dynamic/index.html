@@ -10,24 +10,14 @@
   <title>[译]反射(Reflection)和动态(dynamic) - bystander&#39;s blog</title>
   <meta property="og:title" content="[译]反射(Reflection)和动态(dynamic)" />
   <meta name="twitter:title" content="[译]反射(Reflection)和动态(dynamic)" />
-  <meta name="description" content="反射 &nbsp; 当我们需要检查，调用一个程序集的内容的时候，用反射，比如，当VS给智能提示的时候，就应用了反射。  
-简单用法实例： &nbsp;  var myAssembly = Assembly.LoadFile(@&ldquo;C:\ClassLibrary1.dll&rdquo;); var myType = myAssembly.GetType(&ldquo;ClassLibrary1.Class1&rdquo;); dynamic objMyClass = Activator.CreateInstance(myType); // 获取类的类型信息 Type parameterType = objMyClass.GetType();
-// 浏览方法 foreach (MemberInfo objMemberInfo in parameterType.GetMembers()) {Console.WriteLine(objMemberInfo.Name);}
+  <meta name="description" content="反射  简单用法实例：  // 浏览方法 foreach (MemberInfo objMemberInfo in parameterType.GetMembers()) {Console.WriteLine(objMemberInfo.Name);}
 // 浏览属性. foreach (PropertyInfo objPropertyInfo in parameterType.GetProperties()) {Console.WriteLine(objPropertyInfo.Name);}
-//开始调用 parameterType.InvokeMember(&ldquo;Display&rdquo;,BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.InvokeMethod | BindingFlags.Instance,null, objMyClass, null);   
-实际一点的用处呢： &nbsp; 1.当你也要开发一个类似VS的编辑器的时候，要提供智能提示就需要反射 2.当创建单元测试框架的时候，为了测试需要动态调用方法和属性的时候 3.有时候我们想把类型的属性，方法等全部导出的时候  
-动态dynamic &nbsp; 编程语言分为强/弱类型，dynamic是弱类型，此关键字会让编译器不做编译时的类型检查，只做运行时的检查。  
-简单用法示例： &nbsp;  dynamic x = &ldquo;c#&rdquo;; x&#43;&#43;;  所以上面这行代码可以编译通过，但会产生运行时一场。">
-  <meta property="og:description" content="反射 &nbsp; 当我们需要检查，调用一个程序集的内容的时候，用反射，比如，当VS给智能提示的时候，就应用了反射。  
-简单用法实例： &nbsp;  var myAssembly = Assembly.LoadFile(@&ldquo;C:\ClassLibrary1.dll&rdquo;); var myType = myAssembly.GetType(&ldquo;ClassLibrary1.Class1&rdquo;); dynamic objMyClass = Activator.CreateInstance(myType); // 获取类的类型信息 Type parameterType = objMyClass.GetType();
-// 浏览方法 foreach (MemberInfo objMemberInfo in parameterType.GetMembers()) {Console.WriteLine(objMemberInfo.Name);}
+//开始调用 parameterType.InvokeMember(&ldquo;Display&rdquo;,BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.InvokeMethod | BindingFlags.Instance,null, objMyClass, null);实际一点的用处呢：  动态dynamic  简单用法示例：  实际用处：  两者的区别和联系呢 ">
+  <meta property="og:description" content="反射  简单用法实例：  // 浏览方法 foreach (MemberInfo objMemberInfo in parameterType.GetMembers()) {Console.WriteLine(objMemberInfo.Name);}
 // 浏览属性. foreach (PropertyInfo objPropertyInfo in parameterType.GetProperties()) {Console.WriteLine(objPropertyInfo.Name);}
-//开始调用 parameterType.InvokeMember(&ldquo;Display&rdquo;,BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.InvokeMethod | BindingFlags.Instance,null, objMyClass, null);   
-实际一点的用处呢： &nbsp; 1.当你也要开发一个类似VS的编辑器的时候，要提供智能提示就需要反射 2.当创建单元测试框架的时候，为了测试需要动态调用方法和属性的时候 3.有时候我们想把类型的属性，方法等全部导出的时候  
-动态dynamic &nbsp; 编程语言分为强/弱类型，dynamic是弱类型，此关键字会让编译器不做编译时的类型检查，只做运行时的检查。  
-简单用法示例： &nbsp;  dynamic x = &ldquo;c#&rdquo;; x&#43;&#43;;  所以上面这行代码可以编译通过，但会产生运行时一场。">
-  <meta name="twitter:description" content="反射 &nbsp; 当我们需要检查，调用一个程序集的内容的时候，用反射，比如，当VS给智能提示的时候，就应用了反射。  
-简单用法实例： &nbsp;  var myAssembly = Assembly.LoadFile(@&ldquo;C:\ClassLibrary1.dll&rdquo;); var myType = …">
+//开始调用 parameterType.InvokeMember(&ldquo;Display&rdquo;,BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.InvokeMethod | BindingFlags.Instance,null, objMyClass, null);实际一点的用处呢：  动态dynamic  简单用法示例：  实际用处：  两者的区别和联系呢 ">
+  <meta name="twitter:description" content="反射  简单用法实例：  // 浏览方法 foreach (MemberInfo objMemberInfo in parameterType.GetMembers()) {Console.WriteLine(objMemberInfo.Name);}
+// 浏览属性. foreach (PropertyInfo objPropertyInfo in …">
   <meta name="author" content="bystander"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -76,9 +66,9 @@
     "name" : "bystander"
   },
   "headline": "[译]反射(Reflection)和动态(dynamic)",
-  "description" : "反射 \x26nbsp; 当我们需要检查，调用一个程序集的内容的时候，用反射，比如，当VS给智能提示的时候，就应用了反射。  \n简单用法实例： \x26nbsp;  var myAssembly = Assembly.LoadFile(@\x26ldquo;C:\\ClassLibrary1.dll\x26rdquo;); var myType = myAssembly.GetType(\x26ldquo;ClassLibrary1.Class1\x26rdquo;); dynamic objMyClass = Activator.CreateInstance(myType); \/\/ 获取类的类型信息 Type parameterType = objMyClass.GetType();\n\/\/ 浏览方法 foreach (MemberInfo objMemberInfo in parameterType.GetMembers()) {Console.WriteLine(objMemberInfo.Name);}\n\/\/ 浏览属性. foreach (PropertyInfo objPropertyInfo in parameterType.GetProperties()) {Console.WriteLine(objPropertyInfo.Name);}\n\/\/开始调用 parameterType.InvokeMember(\x26ldquo;Display\x26rdquo;,BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.InvokeMethod | BindingFlags.Instance,null, objMyClass, null);   \n实际一点的用处呢： \x26nbsp; 1.当你也要开发一个类似VS的编辑器的时候，要提供智能提示就需要反射 2.当创建单元测试框架的时候，为了测试需要动态调用方法和属性的时候 3.有时候我们想把类型的属性，方法等全部导出的时候  \n动态dynamic \x26nbsp; 编程语言分为强\/弱类型，dynamic是弱类型，此关键字会让编译器不做编译时的类型检查，只做运行时的检查。  \n简单用法示例： \x26nbsp;  dynamic x = \x26ldquo;c#\x26rdquo;; x\x2b\x2b;  所以上面这行代码可以编译通过，但会产生运行时一场。",
+  "description" : "反射  简单用法实例：  \/\/ 浏览方法 foreach (MemberInfo objMemberInfo in parameterType.GetMembers()) {Console.WriteLine(objMemberInfo.Name);}\n\/\/ 浏览属性. foreach (PropertyInfo objPropertyInfo in parameterType.GetProperties()) {Console.WriteLine(objPropertyInfo.Name);}\n\/\/开始调用 parameterType.InvokeMember(\x26ldquo;Display\x26rdquo;,BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.InvokeMethod | BindingFlags.Instance,null, objMyClass, null);实际一点的用处呢：  动态dynamic  简单用法示例：  实际用处：  两者的区别和联系呢 ",
   "inLanguage" : "en",
-  "wordCount":  140 ,
+  "wordCount":  32 ,
   "datePublished" : "2013-05-27T08:47:34",
   "dateModified" : "2013-05-27T08:47:34",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -98,22 +88,17 @@
 </script>
 
 <meta property="og:title" content="[译]反射(Reflection)和动态(dynamic)" />
-<meta property="og:description" content="反射 &nbsp; 当我们需要检查，调用一个程序集的内容的时候，用反射，比如，当VS给智能提示的时候，就应用了反射。  
-简单用法实例： &nbsp;  var myAssembly = Assembly.LoadFile(@&ldquo;C:\ClassLibrary1.dll&rdquo;); var myType = myAssembly.GetType(&ldquo;ClassLibrary1.Class1&rdquo;); dynamic objMyClass = Activator.CreateInstance(myType); // 获取类的类型信息 Type parameterType = objMyClass.GetType();
-// 浏览方法 foreach (MemberInfo objMemberInfo in parameterType.GetMembers()) {Console.WriteLine(objMemberInfo.Name);}
+<meta property="og:description" content="反射  简单用法实例：  // 浏览方法 foreach (MemberInfo objMemberInfo in parameterType.GetMembers()) {Console.WriteLine(objMemberInfo.Name);}
 // 浏览属性. foreach (PropertyInfo objPropertyInfo in parameterType.GetProperties()) {Console.WriteLine(objPropertyInfo.Name);}
-//开始调用 parameterType.InvokeMember(&ldquo;Display&rdquo;,BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.InvokeMethod | BindingFlags.Instance,null, objMyClass, null);   
-实际一点的用处呢： &nbsp; 1.当你也要开发一个类似VS的编辑器的时候，要提供智能提示就需要反射 2.当创建单元测试框架的时候，为了测试需要动态调用方法和属性的时候 3.有时候我们想把类型的属性，方法等全部导出的时候  
-动态dynamic &nbsp; 编程语言分为强/弱类型，dynamic是弱类型，此关键字会让编译器不做编译时的类型检查，只做运行时的检查。  
-简单用法示例： &nbsp;  dynamic x = &ldquo;c#&rdquo;; x&#43;&#43;;  所以上面这行代码可以编译通过，但会产生运行时一场。">
+//开始调用 parameterType.InvokeMember(&ldquo;Display&rdquo;,BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.InvokeMethod | BindingFlags.Instance,null, objMyClass, null);实际一点的用处呢：  动态dynamic  简单用法示例：  实际用处：  两者的区别和联系呢 ">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2013/05/27/%E8%AF%91%E5%8F%8D%E5%B0%84reflection%E5%92%8C%E5%8A%A8%E6%80%81dynamic/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="bystander&#39;s blog" />
 
   <meta name="twitter:title" content="[译]反射(Reflection)和动态(dynamic)" />
-  <meta name="twitter:description" content="反射 &nbsp; 当我们需要检查，调用一个程序集的内容的时候，用反射，比如，当VS给智能提示的时候，就应用了反射。  
-简单用法实例： &nbsp;  var myAssembly = Assembly.LoadFile(@&ldquo;C:\ClassLibrary1.dll&rdquo;); var myType = …">
+  <meta name="twitter:description" content="反射  简单用法实例：  // 浏览方法 foreach (MemberInfo objMemberInfo in parameterType.GetMembers()) {Console.WriteLine(objMemberInfo.Name);}
+// 浏览属性. foreach (PropertyInfo objPropertyInfo in …">
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -124,7 +109,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -308,141 +293,38 @@
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        
-
-<h1 id="反射">反射</h1>
-
-<p>&nbsp;
-<div>当我们需要检查，调用一个程序集的内容的时候，用反射，比如，当VS给智能提示的时候，就应用了反射。</div>
-<div></div>
-<div></div></p>
-
-<h2 id="简单用法实例">简单用法实例：</h2>
-
-<p>&nbsp;
-<div>
-<pre class="lang:default decode:true">var myAssembly = Assembly.LoadFile(@&ldquo;C:\ClassLibrary1.dll&rdquo;);
-var myType = myAssembly.GetType(&ldquo;ClassLibrary1.Class1&rdquo;);
-dynamic objMyClass = Activator.CreateInstance(myType);
-// 获取类的类型信息
-Type parameterType = objMyClass.GetType();</p>
-
+        <h1 id="heading">反射</h1>
+<p> </p>
+<!-- raw HTML omitted -->
+<h2 id="heading-1">简单用法实例：</h2>
+<p> </p>
+<!-- raw HTML omitted -->
 <p>// 浏览方法
 foreach (MemberInfo objMemberInfo in parameterType.GetMembers())
 {Console.WriteLine(objMemberInfo.Name);}</p>
-
 <p>// 浏览属性.
 foreach (PropertyInfo objPropertyInfo in parameterType.GetProperties())
 {Console.WriteLine(objPropertyInfo.Name);}</p>
-
 <p>//开始调用
 parameterType.InvokeMember(&ldquo;Display&rdquo;,BindingFlags.Public | 
 BindingFlags.NonPublic | BindingFlags.InvokeMethod | 
-BindingFlags.Instance,null, objMyClass, null);</pre>
-</div>
-<div></div>
-<div></div></p>
-
-<h2 id="实际一点的用处呢">实际一点的用处呢：</h2>
-
-<p>&nbsp;
-<div>1.当你也要开发一个类似VS的编辑器的时候，要提供智能提示就需要反射</div>
-<div>2.当创建单元测试框架的时候，为了测试需要动态调用方法和属性的时候</div>
-<div>3.有时候我们想把类型的属性，方法等全部导出的时候</div>
-<div></div>
-<div></div></p>
-
-<h1 id="动态dynamic">动态dynamic</h1>
-
-<p>&nbsp;
-<div>编程语言分为强/弱类型，dynamic是弱类型，此关键字会让编译器不做编译时的类型检查，只做运行时的检查。</div>
-<div></div>
-<div></div></p>
-
-<h2 id="简单用法示例">简单用法示例：</h2>
-
-<p>&nbsp;
-<div>
-<pre lang="cs">dynamic x = &ldquo;c#&rdquo;;
-x++;</pre>
-</div>
-<div>所以上面这行代码可以编译通过，但会产生运行时一场。</div>
-<div></div>
-<div></div></p>
-
-<h2 id="实际用处">实际用处：</h2>
-
-<p>&nbsp;
-<div>最多的就是通过互操作来操作Office组件的时候了</div>
-<div>没有dynamic的时候</div>
-<div>
-<pre lang="cs">/ Before the introduction of dynamic.
-Application excelApplication = new  Application();
-((Excel.Range)excelApp.Cells[1, 1]).Value2 = &ldquo;Name&rdquo;;
-Excel.Range range2008 = (Excel.Range)excelApp.Cells[1, 1];</pre>
-</div>
-<div>有了dynamic之后世界就不一样了</div>
-<div>
-<pre lang="cs">dynamic excelApp = new Application();
-excelApp.Cells[1, 1].Value = &ldquo;Name&rdquo;;
-Excel.Range range2010 = excelApp.Cells[1, 1];</pre>
-</div>
-<div></div></p>
-
-<h1 id="两者的区别和联系呢">两者的区别和联系呢</h1>
-
-<div></div>
-<div></div>
-<div>1.当我们想要在运行时操作一个对象的时候，就会用到这两个</div>
-<div>2.反射可以用来检测对象的元数据，也能在运行时调用对象的方法和属性</div>
-<div>3.dynamic是.net 4.0新出的关键字，知道方法被调用的时候，编译器才会晓得这个方法到底有还是没有。</div>
-<div>4.dynamic内部是使用反射来实现的，它缓存了方法调用来提高性能</div>
-<div>5.反射可以调用公有和私有成员，而dynamic智能调用用公有成员</div>
-<div>6.dynamic是实例相关的，无法访问静态成员，这种情况下使用反射吧。</div>
-<div></div>
-<div></div>
-<div>
-<table>
-<tbody>
-<tr>
-<td width="163"></td>
-<td width="68">**Reflection**</td>
-<td>**Dynamic**</td>
-</tr>
-<tr>
-<td width="163">**Inspect (meta-data) **</td>
-<td width="68">Yes</td>
-<td>No</td>
-</tr>
-<tr>
-<td width="163">**Invoke public members**</td>
-<td width="68">Yes</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td width="163">**Invoke private members**</td>
-<td width="68">Yes</td>
-<td>No</td>
-</tr>
-<tr>
-<td width="163">**Caching**</td>
-<td width="68">No</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td width="163">**Static class **</td>
-<td width="68">Yes</td>
-<td>No</td>
-</tr>
-</tbody>
-</table>
-再来一张图...
-[![](/images/d0e1ec824f1199a847d9a16237673a4a299e0dce.jpg)](http://leaverimage.b0.upaiyun.com/36512_o.jpg)
-
-</div>
-<div></div>
-<div>译自：[http://www.codeproject.com/Articles/593881/What-is-the-difference-between?utm_source=feedly](http://www.codeproject.com/Articles/593881/What-is-the-difference-between?utm_source=feedly)</div>
-<div></div>
+BindingFlags.Instance,null, objMyClass, null);<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<h2 id="heading-2">实际一点的用处呢：</h2>
+<p> </p>
+<!-- raw HTML omitted -->
+<h1 id="dynamic">动态dynamic</h1>
+<p> </p>
+<!-- raw HTML omitted -->
+<h2 id="heading-3">简单用法示例：</h2>
+<p> </p>
+<!-- raw HTML omitted -->
+<h2 id="heading-4">实际用处：</h2>
+<p> </p>
+<!-- raw HTML omitted -->
+<h1 id="heading-5">两者的区别和联系呢</h1>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 
 
         
@@ -560,7 +442,7 @@ Excel.Range range2010 = excelApp.Cells[1, 1];</pre>
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

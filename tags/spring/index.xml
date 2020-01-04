@@ -17,10 +17,11 @@
       <pubDate>Thu, 21 Aug 2014 07:46:26 +0000</pubDate>
       
       <guid>https://leizhiyuan.github.io/2014/08/21/%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%BB%99spring-framework%E8%B4%A1%E7%8C%AE%E4%BB%A3%E7%A0%81/</guid>
-      <description>鲁肃说建议去看Spring框架的代码,之前其实我想看来着,不过一看到还要gradlew,换jdk就好麻烦.这次各种折腾把代码fork下来,然后安装gradlew,然后转换成eclipse支持的,期间升级了eclipse版本和jdk版本到8.否则会有个方法不支持,
+      <description>鲁肃说建议去看Spring框架的代码,之前其实我想看来着,不过一看到还要gradlew,换jdk就好麻烦.这次各种折腾把代码fork下来,然后安装gradlew ,然后转换成eclipse支持的,期间升级了eclipse版本和jdk版本到8.否则会有个方法不支持,
 流程很简单,先fork一下代码,然后自己改好提交上去,再去Spring框架的pull request请求一下.等大牛合并就行了.
-刚开始看测试用例,我当时看到这个方法调用了一个下线的方法.于是改了一下.提交上去之后,**sbrannen ** 回复说: &amp;gt; while you&amp;rsquo;re at it, why don&amp;rsquo;t you go ahead fix the related deprecated issues in all of the test classes in spring-jdbc 于是我把spring-jbdc包下面的几个方法调用都改掉了.记得谁说过,任何事情都不是别人的事情,你发现了你就要去做,不要等着别人去做,不会就去学.于是再次修改提交,sbrannen 问我有没有签CLA,这个坑爹的网站挂了.等了几天,昨天终于ok了.今天代码已经合并.
-截图留念:
+刚开始看测试用例,我当时看到这个方法调用了一个下线的方法.于是改了一下.提交上去之后,**sbrannen ** 回复说:
+ while you&#39;re at it, why don&#39;t you go ahead fix the related deprecated issues in all of the test classes in spring-jdbc 于是我把spring-jbdc包下面的几个方法调用都改掉了.记得谁说过,任何事情都不是别人的事情,你发现了你就要去做,不要等着别人去做,不会就去学.于是再次修改提交,sbrannen 问我有没有签CLA,这个坑爹的网站挂了.等了几天,昨天终于ok了.今天代码已经合并.
+ 截图留念:
 
 https://github.com/spring-projects/spring-framework/commits?author=leizhiyuan
 今天要吃两个煎饼果子.</description>
@@ -32,8 +33,7 @@ https://github.com/spring-projects/spring-framework/commits?author=leizhiyuan
       <pubDate>Sun, 13 Jul 2014 11:26:24 +0000</pubDate>
       
       <guid>https://leizhiyuan.github.io/2014/07/13/spring%E6%8F%AD%E7%A7%98-23%E7%AB%A0spring-mvc%E5%88%9D%E4%BD%93%E9%AA%8C/</guid>
-      <description>&amp;nbsp;鸟瞰Spring MVC与其他请求驱动的Web框架思路类似。org.springframework.web.servlet.DispatcherServlet就是Spring mvC中的Front Controller。负责处理请求，但是不针对具体的处理逻辑。而是委派给下一级的控制器，也就是org.springframework.web.servlet.mvc.Controller去执行。DispatcherServlet的处理流程如下：1.HandlerMappingDispathcherServlet是FrontController，所以他服务于一组Web请求，需要在web.xml中配置。DispathcherServlet需要自己处理请求和处理之前的对应关系，比如根据参数对应到不同的Controller上。为了更加方便的处理映射的匹配，引入HandlerMapping用来获取需要处理请求的对应的Controller类。 2.Controller对应于DispathcherServlet的次级控制器，本身实现了对应某个具体Web请求的处理逻辑，当HandlerMapping查到了Controller之后，DispathcherServlet获得了HandlerMapping的返回结果。然后调用Controller处理请求，处理完成后，返回一个ModelAndView实例，里面包含两部分内容视图的逻辑名称，DispathcherServlet根据名称决定显示哪个视图模型数据，渲染过程中需要将这些模型数据并入视图的显示中 ViewResolver和View我们已经来到了最后一步，要转成最终的JSP视图文件。由于模板引擎很多，Spring提供了一套基于ViewResolver和View的抽象层。 
-[来自为知笔记(Wiz)](http://www.wiz.cn/i/e0140d75 &#34;来自为知笔记(Wiz)&#34;) </description>
+      <description>鸟瞰Spring MVC与其他请求驱动的Web框架思路类似。org.springframework.web.servlet.DispatcherServlet就是Spring mvC中的Front Controller。负责处理请求，但是不针对具体的处理逻辑。而是委派给下一级的控制器，也就是org.</description>
     </item>
     
     <item>
@@ -42,8 +42,7 @@ https://github.com/spring-projects/spring-framework/commits?author=leizhiyuan
       <pubDate>Sun, 13 Jul 2014 11:25:39 +0000</pubDate>
       
       <guid>https://leizhiyuan.github.io/2014/07/13/spring%E6%8F%AD%E7%A7%98-22%E7%AB%A0%E8%BF%88%E5%90%91spring-mvc%E7%9A%84%E6%97%85%E7%A8%8B/</guid>
-      <description>Spring揭秘-22章，迈向Spring MVC的旅程 Servlet导致数据访问逻辑和业务处理逻辑和对应的视图渲染逻辑相互混杂。之后，JSP出现，通过将输出渲染以模板的形式抽取到jsp后缀的模板文件中，jsp开始繁盛，同时要注意，Servlet处理web请求的时候，要在web.xml中，注册相应的请求url和具体的Serlet的映射关系。于是，jsp有开始混合着写代码 于是，我们引入了JavaBean,来封装相关业务逻辑，经过一次升级后， 这个模型就比较清楚了。但是和MVC还是有点差别一个典型的mvc模式应该是这样的 控制器处理请求，模型封装逻辑和状态，视图给用户， Structs以请求/响应框架为基础。 Spring MVC属于请求渠道的WEb框架。框架引入Front Controller做分发之后，就更加好管理了。 
-[来自为知笔记(Wiz)](http://www.wiz.cn/i/e0140d75 &#34;来自为知笔记(Wiz)&#34;) </description>
+      <description>Spring揭秘-22章，迈向Spring MVC的旅程</description>
     </item>
     
     <item>
@@ -52,9 +51,8 @@ https://github.com/spring-projects/spring-framework/commits?author=leizhiyuan
       <pubDate>Sun, 13 Jul 2014 11:25:13 +0000</pubDate>
       
       <guid>https://leizhiyuan.github.io/2014/07/13/spring%E6%8F%AD%E7%A7%98-%E7%AC%AC13%E7%AB%A0-%E7%BB%9F%E4%B8%80%E7%9A%84%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE%E5%BC%82%E5%B8%B8%E5%B1%82%E6%AC%A1%E4%BD%93%E7%B3%BB/</guid>
-      <description>Spring揭秘-第13章 统一的数据访问异常层次体系  DAO可以分离数据哭的访问和存储，屏蔽各种数据访问方式的差异性，下面以访问顾客信息为例，使用DAO模式 首先定义一个数据访问对象接口，如下   public interrface ICustomerDao{ Customer findCustomerByPK(String customerId); void updateCustomerStatus(Customer customer); &amp;nbsp;
- 之后，所有的数据访问都通过该接口进行，不论底层存储机制如何改变，DAO的实现因此会扩展，但客户端代码不需要调整   客户端要用的时候这样使用即可。   publicclassCustomerService { privateICustomerDao customerDao; publicvoid disableCustomerCampain(String customerId) { Customer customer=getCustomerDao().findCustomerByPK(customerId); customer.setCampainStatus(CampainStatus.DISABLE); getCustomerDao().updateCustomerStatus(customer); } publicICustomerDao getCustomerDao() { return customerDao; } publicvoid setCustomerDao(ICustomerDao customerDao) { this.customerDao=customerDao; } &amp;nbsp;
-  我们只要针对不同的数据存储方式实现不同的Dao类即可。  我们开始实现具体的访问数据了。   publicCustomer findCustomerByPK(String customerId) { Connection con=null; try{ con=getDataSource().getConnection(); Customer cust=..; return cust; } catch(SQLException e){ //这里咋办，直接抛出还是直接处理？ } finally{ releaseConnection(con); } } privatevoid releaseConnection(Connection con){ } &amp;nbsp;</description>
+      <description>Spring揭秘-第13章 统一的数据访问异常层次体系
+ &amp;lt;span class=&amp;quot;typ&amp;quot;&amp;gt;Customer&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;pln&amp;quot;&amp;gt; findCustomerByPK&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;pun&amp;quot;&amp;gt;(&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;typ&amp;quot;&amp;gt;String&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;pln&amp;quot;&amp;gt; customerId&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;pun&amp;quot;&amp;gt;)&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;kwd&amp;quot;&amp;gt;throws&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;typ&amp;quot;&amp;gt;SQLExcepiton&amp;lt;/span&amp;gt;&amp;lt;span class=&amp;quot;pun&amp;quot;&amp;gt;;&amp;lt;/span&amp;gt;  </description>
     </item>
     
     <item>
@@ -63,7 +61,7 @@ https://github.com/spring-projects/spring-framework/commits?author=leizhiyuan
       <pubDate>Sun, 13 Jul 2014 11:20:09 +0000</pubDate>
       
       <guid>https://leizhiyuan.github.io/2014/07/13/spring%E6%8F%AD%E7%A7%98-%E7%AC%AC%E5%9B%9B%E7%AB%A0beanfactory%E7%AC%94%E8%AE%B0/</guid>
-      <description>之前说了，IoC容器就是一个IoC Service Provider，但是容器是个啥意思？![](/images/d4d1615a6c1a06895088631c37e3fca7692f0b8a.png) 可以看到IoC容器提供了更多的内容， Spring的IoC容器又分成两种， 1.BeanFactory 。基础类型IoC容器，提供完整的IoC服务支持。如果没有特殊指定，默认采用延 迟初始化策略（lazy-load）。只有当客户端对象需要访问容器中的某个受管对象的时候，才对 该受管对象进行初始化以及依赖注入操作。所以，相对来说，容器启动初期速度较快，所需 要的资源有限。对于资源有限，并且功能要求不是很严格的场景，BeanFactory是比较合适的 IoC容器选择。  2.ApplicationContext。ApplicationContext在BeanFactory的基础上构建，是相对比较高 级的容器实现，除了拥有BeanFactory的所有支持，ApplicationContext还提供了其他高级特性，比如事件发布、国际化信息支持等，这些会在后面详述。ApplicationContext所管理 的对象，在该类型容器启动之后，默认全部初始化并绑定完成。所以，相对于BeanFactory来 说，ApplicationContext要求更多的系统资源，同时，因为在启动时就完成所有初始化，容 器启动时间较之BeanFactory也会长一些。在那些系统资源充足，并且要求更多功能的场景中， ApplicationContext类型的容器是比较合适的选择。   通过 图4-2，我们可以对BeanFactory和ApplicationContext之间的关系有一个更清晰的认识。      ![](/images/f531ea3e11bb391453eb5f763283398c938634b2.png)     Bean工长，就是生成Bean的嘛，每个业务对象被看成Javabean,我们与工厂打交道就简单得多，我们只要告诉他我要什么对象，至于怎么组装，那是他的事情。   工厂提供了一些对外的接口，比如获取Bean，渠道Bean的状态等等。 以xml为例    &amp;lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&amp;gt; &amp;lt;!DOCTYPE beans PUBLIC &#34;-//SPRING//DTD BEAN//EN&#34; &#34;http://www.springframework.org/dtd/spring-beans.dtd&#34;&amp;gt; &amp;lt;beans&amp;gt; &amp;lt;bean id=&#34;djNewsProvider&#34; class=&#34;..FXNewsProvider&#34;&amp;gt; &amp;lt;constructor-arg index=&#34;0&#34;&amp;gt; &amp;lt;ref bean=&#34;djNewsListener&#34;/&amp;gt; &amp;lt;/constructor-arg&amp;gt; &amp;lt;constructor-arg index=&#34;1&#34;&amp;gt; &amp;lt;ref bean=&#34;djNewsPersister&#34;/&amp;gt; &amp;lt;/constructor-arg&amp;gt; &amp;lt;/bean&amp;gt; &amp;lt;bean id=&#34;djNewsListener&#34; class=&#34;..impl.DowJonesNewsListener&#34;&amp;gt; &amp;lt;/bean&amp;gt; &amp;lt;bean id=&#34;</description>
+      <description></description>
     </item>
     
     <item>
@@ -72,9 +70,7 @@ https://github.com/spring-projects/spring-framework/commits?author=leizhiyuan
       <pubDate>Sun, 13 Jul 2014 11:18:02 +0000</pubDate>
       
       <guid>https://leizhiyuan.github.io/2014/07/13/spring%E6%8F%AD%E7%A7%98-%E7%AC%AC%E4%B8%89%E7%AB%A0ioc-service-provider%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid>
-      <description>我们虽然已经通过IoC声明了相应的依赖，但是最终总要有个啥东西将这些依赖对象绑定在一起，这里而IoC Service Provider, 来啦，表示一种绑定的实现方式，可以使一段代码，也可以是一组相关的泪，甚至是框架或容器。  比如前一篇提到的 IFXNewsListener newsListener = new DowJonesNewsListener(); IFXNewsPersister newsPersister = new DowJonesNewsPersister(); FXNewsProvider newsProvider = new FXNewsProvider(newsListener,newsPersister); newsProvider.getAndPersistNews(); &amp;nbsp;
- 就是一个容器，只不过太简单了，不适用于更多的场景，  IoC容器就是Spring提供依赖注入服务的Provider  IoC Service Provider 是干嘛？ 1.业务对象的构建管理，剥离客户端对象的构建的依赖逻辑，比如A引用B，那么A是B的客户端对象，容器需要理清这种关系。 2.业务对象之间的依赖绑定，通过1的实现， 识别各个对象的依赖关系，然后将这些对象依赖的对象注入绑定，用的时候就有了。   那你要问了，这怎么管理对象间的依赖关系呢  IoC Service Provider怎么就能完全领会代码的意图呢？他怎么记住这么多的依赖关系等等，他要这么做 1.元数据方式 2.通过描述性较强的xml来记录对应信息 3.通过编写代码的方式注册这些信息   3.直接编码方式， 明确了依赖关系 IoContainer container = &amp;hellip;; container.register(FXNewsProvider.class,new FXNewsProvider()); container.register(IFXNewsListener.class,new DowJonesNewsListener()); &amp;hellip; FXNewsProvider newsProvider = (FXNewsProvider)container.get(FXNewsProvider.class); newProvider.getAndPersistNews(); &amp;nbsp;
-  2.配置文件方式  最常见的还是xml方式，  &amp;lt;bean id=&amp;ldquo;newsProvider&amp;rdquo; class=&amp;ldquo;.</description>
+      <description>我们虽然已经通过IoC声明了相应的依赖，但是最终总要有个啥东西将这些依赖对象绑定在一起，这里而IoC Service Provider, 来啦，表示一种绑定的实现方式，可以使一段代码，也可以是一组相关的泪，甚至是框架或容器。</description>
     </item>
     
     <item>
@@ -83,23 +79,7 @@ https://github.com/spring-projects/spring-framework/commits?author=leizhiyuan
       <pubDate>Tue, 01 Jul 2014 18:54:17 +0000</pubDate>
       
       <guid>https://leizhiyuan.github.io/2014/07/01/spring%E6%8F%AD%E7%A7%98%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC%E4%BA%8C%E7%AB%A0ioc%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</guid>
-      <description>理念就是让别人为你服务，中文名控制反转，也叫依赖注入DI
-public class FXNewsProvider { private IFXNewsListener newsListener; private IFXNewsPersister newPersistener; public void getAndPersistNews() { String[] newsIds = newsListener.getAvailableNewsIds(); if(ArrayUtils.isEmpty(newsIds)) { return; } for(String newsId : newsIds) { FXNewsBean newsBean = newsListener.getNewsByPK(newsId); newPersistener.persistNews(newsBean); newsListener.postProcessIfNecessary(newsId); } } }  假设这个类用来处理新闻，
-IFXNewsListener 用来获取新闻，
-IFXNewsPersister  用来把获取的新闻持久化
-当我们需要获取不同的新闻源，比如道琼斯的新闻时，我们会写一个 DowJonesNewsListener 类和 DowJonesNewsPersister 类，然后实例化
-public FXNewsProvider()
-{
-newsListener = new DowJonesNewsListener();
-newPersistener = new DowJonesNewsPersister();
-} &amp;nbsp;
-如果我们依赖于某个类或服务，最简单而有效的方式就是直接
-在类的构造函数中新建相应的依赖类。
-注意看， ，我们都是自己主动地去获
-取依赖的对象！
-可是回头想想，我们自己每次用到什么依赖对象都要主动地去获取，这是否真的必要？我们最终
-所要做的，其实就是直接调用依赖对象所提供的某项服务而已
-能不能我们用的时候自动送过来呢？</description>
+      <description>理念就是让别人为你服务，中文名控制反转，也叫依赖注入DI 假设这个类用来处理新闻，IFXNewsListener 用来获取新闻，IFXNewsPersister 用来把获取的新闻持久化当我们需要获取不同的新闻源，比如道琼斯的新闻时，我们会写一个DowJonesNewsListener类和DowJonesNewsPersister类，然后实例化 如果我们依赖于某个类或服务，最简单而有效的方式就是直接在类的构造函数中新建相应的依赖类。注意看，，我们都是自己主动地去获取依赖的对象！可是回头想想，我们自己每次用到什么依赖对象都要主动地去获取，这是否真的必要？我们最终所要做的，其实就是直接调用依赖对象所提供的某项服务而已能不能我们用的时候自动送过来呢？。现在是用什么，让别人直接送过来就成。所以，简单点儿说，IoC的理念就是，让别人为你服务！在图2-1中，也就是让IoC Service Provider来为你服务！这里，被注入对象就是FXNewsProvider，被依赖于对象IFXNewsListener和IFXNewsPersister 通常情况下，被注入对象会直接依赖于被依赖对象。但是，在IoC的场景中，二者之间通过IoC ServiceProvider来打交道，所有的被注入对象和依赖对象现在由IoC Service Provider统一管理。被注入对象需要什么，直接跟IoC Service Provider招呼一声，后者就会把相应的被依赖对象注入到被注入对象中，从而达到IoC Service Provider为被注入对象服务的目的。IoC Service Provider在这里就是通常的IoC容器所充当的角色。从被注入对象的角度看，与之前直接寻求依赖对象相比，依赖对象的取得方式发生了反转，控制也从被注入对象转到了IoC Service Provider那里这里我们想知道的是？怎么跟IoC Service Provider打招呼在IoC模式中，被注入对象又是通过哪些方式来通知IoC Service Provider为其提供适当服务的呢？三种打招呼的方式，即构造方法注入（constructorinjection）、setter方法注入（setter injection）以及接口注入（interface injection）。构造方法注入：  IoC Service Provider会检查被注入对象的构造方法，取得它所需要的依赖对象列表，进而为其注入相应的对象。setter方法注入  外界就可以通过调用setNewsListener和setNewPersistener方法为FXNewsProvider对象注入所依赖的对象了。接口注入，这个基本不用了。接口注入。从注入方式的使用上来说，接口注入是现在不甚提倡的一种方式，基本处于&amp;quot;退役状态&amp;rdquo;。因为它强制被注入对象实现不必要的接口，带有侵入性。而构造方法注入和setter方法注入则不需要如此。8q构造方法注入。这种注入方式的优点就是，对象在构造完成之后，即已进入就绪状态，可以 9马上使用。缺点就是，当依赖对象比较多的时候，构造方法的参数列表会比较长。而通过反射构造对象的时候，对相同类型的参数的处理会比较困难，维护和使用上也比较麻烦。而且在Java中，构造方法无法被继承，无法设置默认值。对于非必须的依赖处理，可能需要引入多个构造方法，而参数数量的变动可能造成维护上的不便。10qsetter方法注入。因为方法可以命名，所以setter方法注入在描述性上要比构造方法注入好一些。 11另外，setter方法可以被继承，允许设置默认值，而且有良好的IDE支持。缺点当然就是对象无法在构造完成后马上进入就绪状态。12综上所述，构造方法注入和setter方法注入因为其侵入性较弱，且易于理解和使用，所以是现在使用最多的注入方式；而接口注入因为侵入性较强，近年来已经不流行了。回到开头的代码  由于这里已经写死了，所以当我们添加了一个新的新闻源，比如M4网站的时候，这个对象不能用了，我们要新写一个M4NewsProvider的类，然后新写新闻获取类，然后重新实现。而使用了IoC之后，  我们只要实现一个MarketWin24NewsListener雷就可以，而且FXNewsProvider 可以重用。而且使用了IoC之后，单元测试变得简单，我们只有写一个MockNewsPersister就可以来测试了。</description>
     </item>
     
     <item>
@@ -131,18 +111,14 @@ Spring 框架之上衍生的产品包括不限于Spring Web Flow,Spring Web Serv
 2)constructor注入(构造器)
 1.Setter注入 是最流行最简单的DI方法，通过一个setter方法来完成依赖。
 例子：
-一个有一个setter方法的Helper类 package com.mkyong.output;
-import com.mkyong.output.IOutputGenerator;
-public class OutputHelper { IOutputGenerator outputGenerator;
-public void setOutputGenerator(IOutputGenerator outputGenerator){ this.outputGenerator = outputGenerator; } } 再写一个bean配合iwenjianshengming这些bean，并且通过property(属性)标签来设置依赖 &amp;lt;beans xmlns=&amp;ldquo;http://www.springframework.org/schema/beans&amp;quot; xmlns:xsi=&amp;ldquo;http://www.w3.org/2001/XMLSchema-instance&amp;quot; xsi:schemaLocation=&amp;ldquo;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd&amp;quot;&amp;gt;
-&amp;amp;lt;bean id=&amp;#34;OutputHelper&amp;#34; class=&amp;#34;com.mkyong.output.OutputHelper&amp;#34;&amp;amp;gt; &amp;amp;lt;property name=&amp;#34;outputGenerator&amp;#34;&amp;amp;gt; &amp;amp;lt;ref bean=&amp;#34;CsvOutputGenerator&amp;#34; /&amp;amp;gt; &amp;amp;lt;/property&amp;amp;gt; &amp;amp;lt;/bean&amp;amp;gt; &amp;lt;bean id=&amp;ldquo;CsvOutputGenerator&amp;rdquo; class=&amp;ldquo;com.mkyong.output.impl.CsvOutputGenerator&amp;rdquo; /&amp;gt; &amp;lt;bean id=&amp;ldquo;JsonOutputGenerator&amp;rdquo; class=&amp;ldquo;com.mkyong.output.impl.JsonOutputGenerator&amp;rdquo; /&amp;gt;
-&amp;lt;/beans&amp;gt; 看到了把。我们只需要一个setter方法把CsvOutputGenerator注入进去就行了
+一个有一个setter方法的Helper类
+再写一个bean配合iwenjianshengming这些bean，并且通过property(属性)标签来设置依赖
+看到了把。我们只需要一个setter方法把CsvOutputGenerator注入进去就行了
 2.Constructor注入 这种方式是通过一个构造函数来完成依赖设置的
 例子：
-一个有着一个构造函数的Helper类 package com.mkyong.output;
-import com.mkyong.output.IOutputGenerator;
-public class OutputHelper { IOutputGenerator outputGenerator;
-OutputHelper(IOutputGenerator outputGenerator){ this.outputGenerator = outputGenerator; } } 然后当然是一个bean配置文件了。通过constructor-arg标签来写依赖 &amp;lt;beans xmlns=&amp;ldquo;http://www.</description>
+一个有着一个构造函数的Helper类
+然后当然是一个bean配置文件了。通过constructor-arg标签来写依赖
+该选哪个？ 没有硬性规定，哪个合适就用那个，由于setter的简单性，一般还是setter用得多。</description>
     </item>
     
     <item>
@@ -152,15 +128,22 @@ OutputHelper(IOutputGenerator outputGenerator){ this.outputGenerator = outputGen
       
       <guid>https://leizhiyuan.github.io/2013/09/20/spring%E6%9D%BE%E8%80%A6%E5%90%88%E7%A4%BA%E4%BE%8B/</guid>
       <description>面向对象设计的理念是把整个系统分成一组可重用的组件，然而，当系统变得越大的时候，尤其是在java中，这最大的对象依赖将会紧紧耦合，以至于非常难以管理和修改，而现在，你可以使用Spring框架扮演一个中间模块的角色，方便高效地管理其他组件依赖
-输出生成的例子 看个例子，假设你的项目有一个方法可以输出内容到csv或者json格式，你可能写出这样的代码 package com.mkyong.output;
-public interface IOutputGenerator { public void generateOutput(); } ，然后是实现接口的类 package com.mkyong.output.impl;
-import com.mkyong.output.IOutputGenerator;
-public class CsvOutputGenerator implements IOutputGenerator { public void generateOutput(){ System.out.println(&amp;ldquo;Csv Output Generator&amp;rdquo;); } } 再写个Json生成的类 package com.mkyong.output.impl;
-import com.mkyong.output.IOutputGenerator;
-public class JsonOutputGenerator implements IOutputGenerator { public void generateOutput(){ System.out.println(&amp;ldquo;Json Output Generator&amp;rdquo;); } } 有好几种方法来调用IOutputGenerator接口，以及我们如何使用Spring来避免对象的过度耦合。
-方法1-直接调用 package com.mkyong.common;
-import com.mkyong.output.IOutputGenerator; import com.mkyong.output.impl.CsvOutputGenerator;
-public class App { public static void main( String[] args ) { IOutputGenerator output = new CsvOutputGenerator(); output.</description>
+输出生成的例子 看个例子，假设你的项目有一个方法可以输出内容到csv或者json格式，你可能写出这样的代码
+，然后是实现接口的类
+再写个Json生成的类
+有好几种方法来调用IOutputGenerator接口，以及我们如何使用Spring来避免对象的过度耦合。
+方法1-直接调用 问题：
+这种方法，output这个对象和CsvOutputGenerator耦合在了一起，每次要改变输出格式的话都要修改代码，如果这类代码遍布项目，那么改起来就跪了
+方法2-通过帮助类调用 也许你会想创建一个Helper类吧所有的output实现都移进去
+然后可以这样调用
+问题：
+看起来似乎更加优雅了，你仅仅需要管理这个Helper类就可以实现不同格式的输出需求改变了，然而，Helper还是和CvsOutputGenerator耦合，每一次要改变输出格式的时候，都要对Helper类做一下微调。
+方法3-Spring Spring依赖注入很合适，可以使不同的格式生成类分离开来
+首先对OutputHelper做一点微调，添加了一个参数
+然后创建一个Spring bean配置文件，并声明所有的Java对象依赖
+然后通过Spring调用
+以后要改Json格式，直接改一下xml配置文件就行了。能够减少错误
+结论 通过Spring框架的依赖注入，可以优雅的管理对象依赖，更大的灵活性，尤其是对于Java项目非常好用。</description>
     </item>
     
     <item>
@@ -170,10 +153,11 @@ public class App { public static void main( String[] args ) { IOutputGenerator o
       
       <guid>https://leizhiyuan.github.io/2013/09/20/spring3%E5%AE%9E%E4%BE%8B%E5%85%A5%E9%97%A8-hello-world/</guid>
       <description>每次看到hello world,都有一种说不出的赶脚，想起了一个程序员，退休后写毛笔字，取笔研磨铺纸，大笔一挥，写下了“hello world”。
-1.使用Maven生成项目结构 mvn archetype:generate -DgroupId=com.mkyong.core -DartifactId=Spring3Example -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false 2.转换成Eclipse项目 mvn eclipse:eclipse 3.添加Spring3.0 依赖 在pom.xml文件里添加Spring 3.0 依赖，然后依赖会从Maven中央仓库自动下载 &amp;lt;project xmlns=&amp;ldquo;http://maven.apache.org/POM/4.0.0&amp;quot; xmlns:xsi=&amp;ldquo;http://www.w3.org/2001/XMLSchema-instance&amp;quot; xsi:schemaLocation=&amp;ldquo;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd&amp;quot;&amp;gt; &amp;lt;modelVersion&amp;gt;4.0.0&amp;lt;/modelVersion&amp;gt; &amp;lt;groupId&amp;gt;com.mkyong.core&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;Spring3Example&amp;lt;/artifactId&amp;gt; &amp;lt;packaging&amp;gt;jar&amp;lt;/packaging&amp;gt; &amp;lt;version&amp;gt;1.0-SNAPSHOT&amp;lt;/version&amp;gt; &amp;lt;name&amp;gt;Spring3Example&amp;lt;/name&amp;gt; &amp;lt;url&amp;gt;http://maven.apache.org&amp;lt;/url&amp;gt;
-&amp;amp;lt;properties&amp;amp;gt; &amp;amp;lt;spring.version&amp;amp;gt;3.0.5.RELEASE&amp;amp;lt;/spring.version&amp;amp;gt; &amp;amp;lt;/properties&amp;amp;gt; &amp;amp;lt;dependencies&amp;amp;gt; &amp;amp;lt;!-- Spring 3 dependencies --&amp;amp;gt; &amp;amp;lt;dependency&amp;amp;gt; &amp;amp;lt;groupId&amp;amp;gt;org.springframework&amp;amp;lt;/groupId&amp;amp;gt; &amp;amp;lt;artifactId&amp;amp;gt;spring-core&amp;amp;lt;/artifactId&amp;amp;gt; &amp;amp;lt;version&amp;amp;gt;${spring.version}&amp;amp;lt;/version&amp;amp;gt; &amp;amp;lt;/dependency&amp;amp;gt; &amp;amp;lt;dependency&amp;amp;gt; &amp;amp;lt;groupId&amp;amp;gt;org.springframework&amp;amp;lt;/groupId&amp;amp;gt; &amp;amp;lt;artifactId&amp;amp;gt;spring-context&amp;amp;lt;/artifactId&amp;amp;gt; &amp;amp;lt;version&amp;amp;gt;${spring.version}&amp;amp;lt;/version&amp;amp;gt; &amp;amp;lt;/dependency&amp;amp;gt; &amp;amp;lt;/dependencies&amp;amp;gt; &amp;lt;/project&amp;gt;
-4.Spring bean 写个简单的bean package com.mkyong.core;
-/** * Spring bean * */ public class HelloWorld { private String name;</description>
+1.使用Maven生成项目结构 2.转换成Eclipse项目 3.添加Spring3.0 依赖 在pom.xml文件里添加Spring 3.0 依赖，然后依赖会从Maven中央仓库自动下载
+4.Spring bean 写个简单的bean
+5.Spring bean配置文件 创建一个配置文件，在里面声明所有可用的Spring beans
+6.最终的目录结构 
+ 7.运行 8.输出 9.Demo下载 Spring3-hello-world-example.zip</description>
     </item>
     
   </channel>

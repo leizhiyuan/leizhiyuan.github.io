@@ -21,8 +21,12 @@
 使用代码 为了模拟外观模式,我们模拟一个小例子.试着实现一个简单的外观对象,该外观对象操作一些WP手机的控制器对象,我们先定义问题
 每天早上我跑步的时候,我都得对我的手机做出以下的事情.. 1. 关闭wifi 2. 切换到移动网络 3. 打开GPS 4. 打开音乐 5. 开始跑步追踪器
 跑完以后.,我又蛋疼的做出以下几件事 1. 在twitter和facebook上分享我的跑步数据 2. 关闭跑步追踪器 3. 关闭音乐 4. 关闭GPS 5. 关闭移动数据 6. 打开wifi
-目前我都是手工做的.,我们来实现这些假想的控制器类吧. class GPSController { bool isSwitchedOn = false;
-public bool IsSwitchedOn { get { return isSwitchedOn; } set { isSwitchedOn = value; DisplayStatus(); } } private void DisplayStatus() { string status = (isSwitchedOn == true) ?">
+目前我都是手工做的.,我们来实现这些假想的控制器类吧.
+其他的像MobileDataController, MusicController, WifiController 代码都是基本的一样的.
+然后模拟一下跑步追踪器这个app
+下面模拟一下我的手工过程
+手工部分模拟完了.运行效果看看 
+好了.我们还是写个外观软件自动做这个吧 该软件对外提供两个接口StartJogging.">
   <meta property="og:description" content="介绍 本文介绍外观模式,并给出简单的实现示例
 背景
 写软件的时候,有时候需要处理一系列的对象来完成一个确定的任务.比如,我们给一个万能遥控器写代码,我们需要关掉所有的设备,那么,我们有这样几种选择.第一个就是手动选择每一个设备,然后一个接一个的关闭,这好傻.那我们为什么不再遥控器上放一个按钮,我们按一下就关掉了.按钮的命令会与设备控制器通信然后关掉他们.
@@ -34,8 +38,12 @@ public bool IsSwitchedOn { get { return isSwitchedOn; } set { isSwitchedOn = val
 使用代码 为了模拟外观模式,我们模拟一个小例子.试着实现一个简单的外观对象,该外观对象操作一些WP手机的控制器对象,我们先定义问题
 每天早上我跑步的时候,我都得对我的手机做出以下的事情.. 1. 关闭wifi 2. 切换到移动网络 3. 打开GPS 4. 打开音乐 5. 开始跑步追踪器
 跑完以后.,我又蛋疼的做出以下几件事 1. 在twitter和facebook上分享我的跑步数据 2. 关闭跑步追踪器 3. 关闭音乐 4. 关闭GPS 5. 关闭移动数据 6. 打开wifi
-目前我都是手工做的.,我们来实现这些假想的控制器类吧. class GPSController { bool isSwitchedOn = false;
-public bool IsSwitchedOn { get { return isSwitchedOn; } set { isSwitchedOn = value; DisplayStatus(); } } private void DisplayStatus() { string status = (isSwitchedOn == true) ?">
+目前我都是手工做的.,我们来实现这些假想的控制器类吧.
+其他的像MobileDataController, MusicController, WifiController 代码都是基本的一样的.
+然后模拟一下跑步追踪器这个app
+下面模拟一下我的手工过程
+手工部分模拟完了.运行效果看看 
+好了.我们还是写个外观软件自动做这个吧 该软件对外提供两个接口StartJogging.">
   <meta name="twitter:description" content="介绍 本文介绍外观模式,并给出简单的实现示例
 背景
 写软件的时候,有时候需要处理一系列的对象来完成一个确定的任务.比如,我们给一个万能遥控器写代码,我们需要关掉所有的设备,那么,我们有这样几种选择.第一个就是手动选择每一个设备,然后一个接一个的关闭,这好傻.那我们为什么不再遥控器上放一个按钮,我们按一下就关掉了.按钮的命令会与设备控制器通信然后关掉他们.
@@ -88,9 +96,9 @@ public bool IsSwitchedOn { get { return isSwitchedOn; } set { isSwitchedOn = val
     "name" : "bystander"
   },
   "headline": "理解并实现外观设计模式",
-  "description" : "介绍 本文介绍外观模式,并给出简单的实现示例\n背景\n写软件的时候,有时候需要处理一系列的对象来完成一个确定的任务.比如,我们给一个万能遥控器写代码,我们需要关掉所有的设备,那么,我们有这样几种选择.第一个就是手动选择每一个设备,然后一个接一个的关闭,这好傻.那我们为什么不再遥控器上放一个按钮,我们按一下就关掉了.按钮的命令会与设备控制器通信然后关掉他们.\n如果我们又想在晚上12的时候自动关闭设备,那么我们就会有一个基于事件的计时器,与设备通信,然后关闭设备,问题是在两种情况下我们都需要与这些对象通信的函数.\n有很多方法解决这个问题,为什么不能有一个对象,该对象的责任就是关闭设备,当我要关闭设备的时候,我调用该对象就行了.这也是外观模式的理念Gof大神定义外观模式 \x26ldquo;Provide a unified interface to a set of interfaces in a subsystem. Façade defines a higher-level interface that makes the subsystem easier to use.\x26rdquo;\n为子系统中的一组接口提供一个一致的界面，外观模式定义了一个高层接口，这个接口使得这一子系统更加容易使用。\n看看模式图 \n注意外观对象仅仅是提供了对函数一起操作,.不能替换子系统的接口.子系统的类仍然可以被系统的其他部分访问.外观为子系统提供了一致的界面.\n使用代码 为了模拟外观模式,我们模拟一个小例子.试着实现一个简单的外观对象,该外观对象操作一些WP手机的控制器对象,我们先定义问题\n每天早上我跑步的时候,我都得对我的手机做出以下的事情.. 1. 关闭wifi 2. 切换到移动网络 3. 打开GPS 4. 打开音乐 5. 开始跑步追踪器\n跑完以后.,我又蛋疼的做出以下几件事 1. 在twitter和facebook上分享我的跑步数据 2. 关闭跑步追踪器 3. 关闭音乐 4. 关闭GPS 5. 关闭移动数据 6. 打开wifi\n目前我都是手工做的.,我们来实现这些假想的控制器类吧. class GPSController { bool isSwitchedOn = false;\npublic bool IsSwitchedOn { get { return isSwitchedOn; } set { isSwitchedOn = value; DisplayStatus(); } } private void DisplayStatus() { string status = (isSwitchedOn == true) ?",
+  "description" : "介绍 本文介绍外观模式,并给出简单的实现示例\n背景\n写软件的时候,有时候需要处理一系列的对象来完成一个确定的任务.比如,我们给一个万能遥控器写代码,我们需要关掉所有的设备,那么,我们有这样几种选择.第一个就是手动选择每一个设备,然后一个接一个的关闭,这好傻.那我们为什么不再遥控器上放一个按钮,我们按一下就关掉了.按钮的命令会与设备控制器通信然后关掉他们.\n如果我们又想在晚上12的时候自动关闭设备,那么我们就会有一个基于事件的计时器,与设备通信,然后关闭设备,问题是在两种情况下我们都需要与这些对象通信的函数.\n有很多方法解决这个问题,为什么不能有一个对象,该对象的责任就是关闭设备,当我要关闭设备的时候,我调用该对象就行了.这也是外观模式的理念Gof大神定义外观模式 \x26ldquo;Provide a unified interface to a set of interfaces in a subsystem. Façade defines a higher-level interface that makes the subsystem easier to use.\x26rdquo;\n为子系统中的一组接口提供一个一致的界面，外观模式定义了一个高层接口，这个接口使得这一子系统更加容易使用。\n看看模式图 \n注意外观对象仅仅是提供了对函数一起操作,.不能替换子系统的接口.子系统的类仍然可以被系统的其他部分访问.外观为子系统提供了一致的界面.\n使用代码 为了模拟外观模式,我们模拟一个小例子.试着实现一个简单的外观对象,该外观对象操作一些WP手机的控制器对象,我们先定义问题\n每天早上我跑步的时候,我都得对我的手机做出以下的事情.. 1. 关闭wifi 2. 切换到移动网络 3. 打开GPS 4. 打开音乐 5. 开始跑步追踪器\n跑完以后.,我又蛋疼的做出以下几件事 1. 在twitter和facebook上分享我的跑步数据 2. 关闭跑步追踪器 3. 关闭音乐 4. 关闭GPS 5. 关闭移动数据 6. 打开wifi\n目前我都是手工做的.,我们来实现这些假想的控制器类吧.\n其他的像MobileDataController, MusicController, WifiController 代码都是基本的一样的.\n然后模拟一下跑步追踪器这个app\n下面模拟一下我的手工过程\n手工部分模拟完了.运行效果看看 \n好了.我们还是写个外观软件自动做这个吧 该软件对外提供两个接口StartJogging.",
   "inLanguage" : "en",
-  "wordCount":  446 ,
+  "wordCount":  83 ,
   "datePublished" : "2012-10-23T18:31:47",
   "dateModified" : "2012-10-23T18:31:47",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -121,8 +129,12 @@ public bool IsSwitchedOn { get { return isSwitchedOn; } set { isSwitchedOn = val
 使用代码 为了模拟外观模式,我们模拟一个小例子.试着实现一个简单的外观对象,该外观对象操作一些WP手机的控制器对象,我们先定义问题
 每天早上我跑步的时候,我都得对我的手机做出以下的事情.. 1. 关闭wifi 2. 切换到移动网络 3. 打开GPS 4. 打开音乐 5. 开始跑步追踪器
 跑完以后.,我又蛋疼的做出以下几件事 1. 在twitter和facebook上分享我的跑步数据 2. 关闭跑步追踪器 3. 关闭音乐 4. 关闭GPS 5. 关闭移动数据 6. 打开wifi
-目前我都是手工做的.,我们来实现这些假想的控制器类吧. class GPSController { bool isSwitchedOn = false;
-public bool IsSwitchedOn { get { return isSwitchedOn; } set { isSwitchedOn = value; DisplayStatus(); } } private void DisplayStatus() { string status = (isSwitchedOn == true) ?">
+目前我都是手工做的.,我们来实现这些假想的控制器类吧.
+其他的像MobileDataController, MusicController, WifiController 代码都是基本的一样的.
+然后模拟一下跑步追踪器这个app
+下面模拟一下我的手工过程
+手工部分模拟完了.运行效果看看 
+好了.我们还是写个外观软件自动做这个吧 该软件对外提供两个接口StartJogging.">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2012/10/23/%E7%90%86%E8%A7%A3%E5%B9%B6%E5%AE%9E%E7%8E%B0%E5%A4%96%E8%A7%82%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" />
 <meta property="og:type" content="website" />
@@ -143,7 +155,7 @@ public bool IsSwitchedOn { get { return isSwitchedOn; } set { isSwitchedOn = val
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -301,7 +313,7 @@ public bool IsSwitchedOn { get { return isSwitchedOn; } set { isSwitchedOn = val
   <i class="fas fa-calendar"></i>&nbsp;Posted on October 23, 2012
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;3&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -329,33 +341,23 @@ public bool IsSwitchedOn { get { return isSwitchedOn; } set { isSwitchedOn = val
       <article role="main" class="blog-post">
         <p><strong>介绍</strong>
 本文介绍外观模式,并给出简单的实现示例</p>
-
 <p><strong>背景</strong></p>
-
 <p>写软件的时候,有时候需要处理一系列的对象来完成一个确定的任务.比如,我们给一个万能遥控器写代码,我们需要关掉所有的设备,那么,我们有这样几种选择.第一个就是手动选择每一个设备,然后一个接一个的关闭,这好傻.那我们为什么不再遥控器上放一个按钮,我们按一下就关掉了.按钮的命令会与设备控制器通信然后关掉他们.</p>
-
 <p>如果我们又想在晚上12的时候自动关闭设备,那么我们就会有一个基于事件的计时器,与设备通信,然后关闭设备,问题是在两种情况下我们都需要与这些对象通信的函数.</p>
-
 <p>有很多方法解决这个问题,为什么不能有一个对象,该对象的责任就是关闭设备,当我要关闭设备的时候,我调用该对象就行了.这也是外观模式的理念Gof大神定义外观模式
 &ldquo;Provide a unified interface to a set of interfaces in a subsystem. Façade defines a higher-level interface that makes the subsystem easier to use.&rdquo;</p>
-
 <p>为子系统中的一组接口提供一个一致的界面，外观模式定义了一个高层接口，这个接口使得这一子系统更加容易使用。</p>
-
 <p>看看模式图
-<a href="http://leaverimage.b0.upaiyun.com/28434_o.jpg"><img src="/images/4699477e818474c6be3dfc63a211c68e6a64c67c.jpg" alt="" title="1" /></a></p>
-
+<a href="http://leaverimage.b0.upaiyun.com/28434_o.jpg"><img src="/images/4699477e818474c6be3dfc63a211c68e6a64c67c.jpg" alt="" title="1"></a></p>
 <p>注意外观对象仅仅是提供了对函数一起操作,.不能替换子系统的接口.子系统的类仍然可以被系统的其他部分访问.外观为子系统提供了一致的界面.</p>
-
 <p>使用代码
 为了模拟外观模式,我们模拟一个小例子.试着实现一个简单的外观对象,该外观对象操作一些WP手机的控制器对象,我们先定义问题</p>
-
 <p>每天早上我跑步的时候,我都得对我的手机做出以下的事情..
 1. 关闭wifi
 2. 切换到移动网络
 3. 打开GPS
 4. 打开音乐
 5. 开始跑步追踪器</p>
-
 <p>跑完以后.,我又蛋疼的做出以下几件事
 1. 在twitter和facebook上分享我的跑步数据
 2. 关闭跑步追踪器
@@ -363,173 +365,35 @@ public bool IsSwitchedOn { get { return isSwitchedOn; } set { isSwitchedOn = val
 4. 关闭GPS
 5. 关闭移动数据
 6. 打开wifi</p>
-
-<p>目前我都是手工做的.,我们来实现这些假想的控制器类吧.
-<pre class="lang:default decode:true">class GPSController
-{
-    bool isSwitchedOn = false;</p>
-<div class="highlight"><pre class="chroma">public bool IsSwitchedOn
-{
-    get
-    {
-        return isSwitchedOn;
-    }
-    set
-    {
-        isSwitchedOn = value;
-        DisplayStatus();
-    }
-}
-
-private void DisplayStatus()
-{
-    string status = (isSwitchedOn == true) ? &#34;ON&#34; : &#34;OFF&#34;;
-    Console.WriteLine(&#34;GPS Switched {0}&#34;, status);
-}</pre></div>
-<p>}</pre>
-其他的像MobileDataController, MusicController, WifiController 代码都是基本的一样的.</p>
-
-<p>然后模拟一下跑步追踪器这个app
-<pre class="lang:default decode:true">class SportsTrackerApp
-{
-    public void Start()
-    {
-        Console.WriteLine(&ldquo;Sports Tracker App STARTED&rdquo;);
-    }</p>
-<div class="highlight"><pre class="chroma">public void Stop()
-{
-    Console.WriteLine(&#34;Sports Tracker App STOPPED&#34;);
-}
-
-public void Share()
-{
-    Console.WriteLine(&#34;Sports Tracker: Stats shared on twitter and facebook.&#34;);
-}</pre></div>
-<p>}</pre>
-下面模拟一下我的手工过程
-<pre class="lang:default decode:true">static void Main(string[] args)
-{
-// 手机启动,所有控制器运行
- GPSController gps = new GPSController();
-    MobileDataController data = new MobileDataController();
-    MusicController zune = new MusicController();
-    WifiController wifi = new WifiController();</p>
-<div class="highlight"><pre class="chroma">///////////// 要跑步了 /////////////////////
-
-// 1\. 关闭wifi
-wifi.IsSwitchedOn = false;
-
-// 2\. 切换 移动数据
-data.IsSwitchedOn = true;
-
-// 3\. 打开 GPS
-gps.IsSwitchedOn = true;
-
-// 4\. 打开音乐
-zune.IsSwitchedOn = true;
-
-// 5\. 开始Sports-Tracker软件
-SportsTrackerApp app = new SportsTrackerApp();
-app.Start();
-
-///////////// 跑步归来 /////////////////////
-Console.WriteLine();
-
-// 0\. 在 twitter 和 facebook分享数据
-app.Share();
-
-// 1\. 停止Sports Tracker软件
-app.Stop();
-
-// 2\. 关闭音乐
-zune.IsSwitchedOn = false;
-
-// 3\. 关闭GPS
-gps.IsSwitchedOn = false;</pre></div>
-<p>// 4. 关闭移动数据
- data.IsSwitchedOn = false;</p>
-<div class="highlight"><pre class="chroma">// 5\. 打开wifi
-wifi.IsSwitchedOn = true;          </pre></div>
-<p>}</pre>
-手工部分模拟完了.运行效果看看
-<a href="http://leaverimage.b0.upaiyun.com/28435_o.jpg"><img src="/images/08da9cbf9432486a9000d026124ca405f1c3f9c6.jpg" alt="" title="2" /></a></p>
-
+<p>目前我都是手工做的.,我们来实现这些假想的控制器类吧.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>其他的像MobileDataController, MusicController, WifiController 代码都是基本的一样的.</p>
+<p>然后模拟一下跑步追踪器这个app</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>下面模拟一下我的手工过程</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>手工部分模拟完了.运行效果看看
+<a href="http://leaverimage.b0.upaiyun.com/28435_o.jpg"><img src="/images/08da9cbf9432486a9000d026124ca405f1c3f9c6.jpg" alt="" title="2"></a></p>
 <p>好了.我们还是写个外观软件自动做这个吧 该软件对外提供两个接口StartJogging.和
-StopJogging 帮我做这些事,(ps:这部分代码中的英文我就不翻译了，和前面的一样)
-<pre class="lang:default decode:true">class MyJoggingFacade
-{
-    // These handles will be passed to this facade in a real application
-    // also on actual device these controllers will be singleton too.
-    GPSController gps = new GPSController();
-    MobileDataController data = new MobileDataController();
-    MusicController zune = new MusicController();
-    WifiController wifi = new WifiController();</p>
-<div class="highlight"><pre class="chroma">SportsTrackerApp app = null;
-
-public void StartJogging()
-{
-    // 1\. Turn off the wifi
-    wifi.IsSwitchedOn = false;
-
-    // 2\. Switch on the Mobile Data
-    data.IsSwitchedOn = true;
-
-    // 3\. Turn on the GPS
-    gps.IsSwitchedOn = true;
-
-    // 4\. Turn on the Music
-    zune.IsSwitchedOn = true;
-
-    // 5\. Start the Sports-Tracker
-    app = new SportsTrackerApp();
-    app.Start();
-}
-
-public void StopJogging()
-{
-    // 0\. Share Sports tracker stats on twitter and facebook
-    app.Share();
-
-    // 1\. Stop the Sports Tracker
-    app.Stop();
-
-    // 2\. Turn off the Music
-    zune.IsSwitchedOn = false;
-
-    // 3\. Turn off the GPS
-    gps.IsSwitchedOn = false;
-
-    // 4\. Turn off the Mobile Data
-    data.IsSwitchedOn = false;
-
-    // 5\. Turn on the wifi
-    wifi.IsSwitchedOn = true;
-}</pre></div>
-<p>}</pre>
-然后用户这样用
-<pre class="lang:default decode:true">static void Main(string[] args)
-{
-    MyJoggingFacade facade = new MyJoggingFacade();</p>
-<div class="highlight"><pre class="chroma">facade.StartJogging();
-Console.WriteLine();
-facade.StopJogging();          </pre></div>
-<p>}</pre>
-结果如图
-<a href="http://leaverimage.b0.upaiyun.com/28436_o.jpg"><img src="/images/dca1b4db3a8188f59eacbab8817a673eb99863c7.jpg" alt="" title="3" /></a></p>
-
+StopJogging 帮我做这些事,(ps:这部分代码中的英文我就不翻译了，和前面的一样)</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>然后用户这样用</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>结果如图
+<a href="http://leaverimage.b0.upaiyun.com/28436_o.jpg"><img src="/images/dca1b4db3a8188f59eacbab8817a673eb99863c7.jpg" alt="" title="3"></a></p>
 <p>总结之前，看看我们这个例子的结构图
-<a href="http://leaverimage.b0.upaiyun.com/28437_o.jpg"><img src="/images/f04346ae19d7325fc934d950c306d233614d92af.jpg" alt="" title="4" /></a></p>
-
+<a href="http://leaverimage.b0.upaiyun.com/28437_o.jpg"><img src="/images/f04346ae19d7325fc934d950c306d233614d92af.jpg" alt="" title="4"></a></p>
 <p>注意，这只是一个例子，和真实情况有差距。理解就好了</p>
-
 <p><strong>亮点何在</strong></p>
-
 <p>本文讨论了外观模式，很容易和适配器模式混淆，事实上，适配器模式也给用户提供了一个接口，之前的接口就不可访问了。而外观模式的之前的接口还是可以访问的。希望对你有帮助。
 <strong>Demo下载</strong>
-[downloadicon href=<a href="http://pan.baidu.com/share/link?shareid=90318&amp;uk=1493685990]FacadeDemo.zip[/downloadicon">http://pan.baidu.com/share/link?shareid=90318&amp;uk=1493685990]FacadeDemo.zip[/downloadicon</a>]</p>
-
+[downloadicon href=http://pan.baidu.com/share/link?shareid=90318&amp;uk=1493685990]FacadeDemo.zip[/downloadicon]</p>
 <p>原文地址：<a href="http://www.codeproject.com/Articles/481297/UnderstandingplusandplusImplementingplusFacadeplus">UnderstandingplusandplusImplementingplusFacadeplus</a></p>
-
 <p>著作权声明：本文由<a href="http://leaver.me/">http://leaver.me</a> 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</p>
 
 
@@ -648,7 +512,7 @@ facade.StopJogging();          </pre></div>
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

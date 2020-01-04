@@ -13,24 +13,24 @@
   <meta name="description" content="看到的一道题，给出答案
 问题：找出整数1~N范围和为N的所有集合，集合里的数不允许重复。
 解答：递归吧
-代码如下： #include &ldquo;stdafx.h&rdquo; #include &lt;iostream&gt; using namespace std;
-void PrintResult(int *log,int index) { for (int i = 0; i &lt;index; &#43;&#43;i) { cout&lt;&lt;log[i]&lt;&lt;&rdquo; &ldquo;; } cout&lt;&lt;endl; }
-void CalCombination(int* log,int startNum,int N,int &amp;index) { if (N==0) { PrintResult(log,index); }
-else { for (int i = startNum; i &amp;lt;= N; &#43;&#43;i) { log[index&#43;&#43;]=i; CalCombination(log,i&#43;1,N-i,index); } } index--; }
-int _tmain(int argc, _TCHAR* argv[]) { cout&lt;&lt;&ldquo;请输入N:&ldquo;; int N=20; cin&gt;&gt;N; int *log=new int[N]; int index=0; CalCombination(log,1,N,index); } 要是允许重复，也简单，将递归中的这句话改为： CalCombination(log,i,N-i,index); 同理，还可以解决类似给定一个数组，让求和为N的元素组合，只需要现将元素排个序，然后思路相同。">
+代码如下：
+要是允许重复，也简单，将递归中的这句话改为：
+同理，还可以解决类似给定一个数组，让求和为N的元素组合，只需要现将元素排个序，然后思路相同。
+ ">
   <meta property="og:description" content="看到的一道题，给出答案
 问题：找出整数1~N范围和为N的所有集合，集合里的数不允许重复。
 解答：递归吧
-代码如下： #include &ldquo;stdafx.h&rdquo; #include &lt;iostream&gt; using namespace std;
-void PrintResult(int *log,int index) { for (int i = 0; i &lt;index; &#43;&#43;i) { cout&lt;&lt;log[i]&lt;&lt;&rdquo; &ldquo;; } cout&lt;&lt;endl; }
-void CalCombination(int* log,int startNum,int N,int &amp;index) { if (N==0) { PrintResult(log,index); }
-else { for (int i = startNum; i &amp;lt;= N; &#43;&#43;i) { log[index&#43;&#43;]=i; CalCombination(log,i&#43;1,N-i,index); } } index--; }
-int _tmain(int argc, _TCHAR* argv[]) { cout&lt;&lt;&ldquo;请输入N:&ldquo;; int N=20; cin&gt;&gt;N; int *log=new int[N]; int index=0; CalCombination(log,1,N,index); } 要是允许重复，也简单，将递归中的这句话改为： CalCombination(log,i,N-i,index); 同理，还可以解决类似给定一个数组，让求和为N的元素组合，只需要现将元素排个序，然后思路相同。">
+代码如下：
+要是允许重复，也简单，将递归中的这句话改为：
+同理，还可以解决类似给定一个数组，让求和为N的元素组合，只需要现将元素排个序，然后思路相同。
+ ">
   <meta name="twitter:description" content="看到的一道题，给出答案
 问题：找出整数1~N范围和为N的所有集合，集合里的数不允许重复。
 解答：递归吧
-代码如下： #include &ldquo;stdafx.h&rdquo; #include &lt;iostream&gt; using namespace std;
-void PrintResult(int *log,int index) { for (int i = 0; i …">
+代码如下：
+要是允许重复，也简单，将递归中的这句话改为：
+同理，还可以解决类似给定一个数组，让求和为N的元素组合，只需要现将元素排个序，然后思路相同。
+ ">
   <meta name="author" content="bystander"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -79,9 +79,9 @@ void PrintResult(int *log,int index) { for (int i = 0; i …">
     "name" : "bystander"
   },
   "headline": "求整数1-N范围和为N的所有组合",
-  "description" : "看到的一道题，给出答案\n问题：找出整数1~N范围和为N的所有集合，集合里的数不允许重复。\n解答：递归吧\n代码如下： #include \x26ldquo;stdafx.h\x26rdquo; #include \x26lt;iostream\x26gt; using namespace std;\nvoid PrintResult(int *log,int index) { for (int i = 0; i \x26lt;index; \x2b\x2bi) { cout\x26lt;\x26lt;log[i]\x26lt;\x26lt;\x26rdquo; \x26ldquo;; } cout\x26lt;\x26lt;endl; }\nvoid CalCombination(int* log,int startNum,int N,int \x26amp;index) { if (N==0) { PrintResult(log,index); }\nelse { for (int i = startNum; i \x26amp;lt;= N; \x2b\x2bi) { log[index\x2b\x2b]=i; CalCombination(log,i\x2b1,N-i,index); } } index--; }\nint _tmain(int argc, _TCHAR* argv[]) { cout\x26lt;\x26lt;\x26ldquo;请输入N:\x26ldquo;; int N=20; cin\x26gt;\x26gt;N; int *log=new int[N]; int index=0; CalCombination(log,1,N,index); } 要是允许重复，也简单，将递归中的这句话改为： CalCombination(log,i,N-i,index); 同理，还可以解决类似给定一个数组，让求和为N的元素组合，只需要现将元素排个序，然后思路相同。",
+  "description" : "看到的一道题，给出答案\n问题：找出整数1~N范围和为N的所有集合，集合里的数不允许重复。\n解答：递归吧\n代码如下：\n要是允许重复，也简单，将递归中的这句话改为：\n同理，还可以解决类似给定一个数组，让求和为N的元素组合，只需要现将元素排个序，然后思路相同。\n ",
   "inLanguage" : "en",
-  "wordCount":  81 ,
+  "wordCount":  6 ,
   "datePublished" : "2013-05-27T10:55:49",
   "dateModified" : "2013-05-27T10:55:49",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -104,11 +104,10 @@ void PrintResult(int *log,int index) { for (int i = 0; i …">
 <meta property="og:description" content="看到的一道题，给出答案
 问题：找出整数1~N范围和为N的所有集合，集合里的数不允许重复。
 解答：递归吧
-代码如下： #include &ldquo;stdafx.h&rdquo; #include &lt;iostream&gt; using namespace std;
-void PrintResult(int *log,int index) { for (int i = 0; i &lt;index; &#43;&#43;i) { cout&lt;&lt;log[i]&lt;&lt;&rdquo; &ldquo;; } cout&lt;&lt;endl; }
-void CalCombination(int* log,int startNum,int N,int &amp;index) { if (N==0) { PrintResult(log,index); }
-else { for (int i = startNum; i &amp;lt;= N; &#43;&#43;i) { log[index&#43;&#43;]=i; CalCombination(log,i&#43;1,N-i,index); } } index--; }
-int _tmain(int argc, _TCHAR* argv[]) { cout&lt;&lt;&ldquo;请输入N:&ldquo;; int N=20; cin&gt;&gt;N; int *log=new int[N]; int index=0; CalCombination(log,1,N,index); } 要是允许重复，也简单，将递归中的这句话改为： CalCombination(log,i,N-i,index); 同理，还可以解决类似给定一个数组，让求和为N的元素组合，只需要现将元素排个序，然后思路相同。">
+代码如下：
+要是允许重复，也简单，将递归中的这句话改为：
+同理，还可以解决类似给定一个数组，让求和为N的元素组合，只需要现将元素排个序，然后思路相同。
+ ">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2013/05/27/%E6%B1%82%E6%95%B4%E6%95%B01-n%E8%8C%83%E5%9B%B4%E5%92%8C%E4%B8%BAn%E7%9A%84%E6%89%80%E6%9C%89%E7%BB%84%E5%90%88/" />
 <meta property="og:type" content="website" />
@@ -118,8 +117,10 @@ int _tmain(int argc, _TCHAR* argv[]) { cout&lt;&lt;&ldquo;请输入N:&ldquo;; in
   <meta name="twitter:description" content="看到的一道题，给出答案
 问题：找出整数1~N范围和为N的所有集合，集合里的数不允许重复。
 解答：递归吧
-代码如下： #include &ldquo;stdafx.h&rdquo; #include &lt;iostream&gt; using namespace std;
-void PrintResult(int *log,int index) { for (int i = 0; i …">
+代码如下：
+要是允许重复，也简单，将递归中的这句话改为：
+同理，还可以解决类似给定一个数组，让求和为N的元素组合，只需要现将元素排个序，然后思路相同。
+ ">
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -130,7 +131,7 @@ void PrintResult(int *log,int index) { for (int i = 0; i …">
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -315,56 +316,15 @@ void PrintResult(int *log,int index) { for (int i = 0; i …">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <p>看到的一道题，给出答案</p>
-
 <p>问题：找出整数1~N范围和为N的所有集合，集合里的数不允许重复。</p>
-
 <p>解答：递归吧</p>
-
-<p>代码如下：
-<pre class="lang:c++ decode:true">#include &ldquo;stdafx.h&rdquo;
-#include &lt;iostream&gt;
-using namespace std;</p>
-
-<p>void PrintResult(int *log,int index)
-{
-    for (int i = 0; i &lt;index; ++i)
-    {
-        cout&lt;&lt;log[i]&lt;&lt;&rdquo; &ldquo;;
-    }
-    cout&lt;&lt;endl;
-}</p>
-
-<p>void CalCombination(int* log,int startNum,int N,int &amp;index)
-{
-    if (N==0)
-    {
-        PrintResult(log,index);
-    }</p>
-<div class="highlight"><pre class="chroma">else
-{
-    for (int i = startNum; i &amp;lt;= N; ++i)
-    {
-        log[index++]=i;
-        CalCombination(log,i+1,N-i,index);
-    }
-}
-index--;</pre></div>
-<p>}</p>
-
-<p>int _tmain(int argc, _TCHAR* argv[])
-{
-    cout&lt;&lt;&ldquo;请输入N:&ldquo;;
-    int N=20;
-    cin&gt;&gt;N;
-    int *log=new int[N];
-    int index=0;
-    CalCombination(log,1,N,index);
-}</pre>
-要是允许重复，也简单，将递归中的这句话改为：
-<pre>CalCombination(log,i,N-i,index);</pre>
-同理，还可以解决类似给定一个数组，让求和为N的元素组合，只需要现将元素排个序，然后思路相同。</p>
-
-<p>&nbsp;</p>
+<p>代码如下：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>要是允许重复，也简单，将递归中的这句话改为：</p>
+<!-- raw HTML omitted -->
+<p>同理，还可以解决类似给定一个数组，让求和为N的元素组合，只需要现将元素排个序，然后思路相同。</p>
+<p> </p>
 
 
         
@@ -480,7 +440,7 @@ index--;</pre></div>
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

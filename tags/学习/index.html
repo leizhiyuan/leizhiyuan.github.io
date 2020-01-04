@@ -51,7 +51,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -253,7 +253,7 @@
 0. 准备 先要安装pssh,expect,ssh-copy-id.
 brew install pssh brew install homebrew/dupes/expect brew install ssh-copy-id 另外安装luit的安装参考这里luit安装
 1. 生成ssh key ,并批量copy 生成ssh key比较简单.ssh-keygen -t rsa -C &quot;your_email@example.com&quot;,直接使用git的ssh key也是可以的.然后保存下面这个脚本为pscopy.sh,
-#!/bin/bash FILE=`cat ~/host.txt` for ip in $FILE;do expect -c &#34; spawn ssh-copy-id $ipexpect { \&#34;*yes/no*\&#34; {send \&#34;yes\r\&#34;;exp_continue} \&#34;*password*\&#34; {send \&#34;pass\r\&#34;;exp_continue} \&#34;*password*\&#34; {send \&#34;pass\r\&#34;;} } &#34; done 然后执行一下sh pscopy.sh,注意,host.txt要保证存在.格式是user@address.一行一个,中间的paas要改成user的密码,这样就会使用指定的用户密码,自动copy ssh key了. 完成上面的步骤之后,ssh user@address 就可以免登了.
+#!/bin/bash FILE=`cat ~/host.txt` for ip in $FILE;do expect -c &#34;spawn ssh-copy-id $ipexpect { \&#34;*yes/no*\&#34; {send \&#34;yes\r\&#34;;exp_continue} \&#34;*password*\&#34; {send \&#34;pass\r\&#34;;exp_continue} \&#34;*password*\&#34; {send \&#34;pass\r\&#34;;} } &#34; done 然后执行一下sh pscopy.sh,注意,host.txt要保证存在.格式是user@address.一行一个,中间的paas要改成user的密码,这样就会使用指定的用户密码,自动copy ssh key了. 完成上面的步骤之后,ssh user@address 就可以免登了.
 2. 写一个简单的pssh脚本 #!/bin/bash  encoding= key= command= file= usage() { echo &#34;Usage: `basename $0` [-f filename] [-c encoding] [-k keyword]&#34; exit 1 } while getopts :f:c:k: opt do case $opt in c) encoding=$OPTARG ;; :) echo &#34;-$OPTARGneeds an argument&#34; ;; k) key=$OPTARG ;; f) file=$OPTARG ;; *) echo &#34;-$optnot recognized&#34; usage ;; esac done if [ -z &#34;$encoding&#34; ]; then #该脚本必须提供-d选项 encoding=&#34;gbk&#34; fi if [ -z &#34;$file&#34; ]; then #该脚本必须提供-d选项 file=&#34;~/hosts.
                   <a href="https://leizhiyuan.github.io/2016/10/05/mac%E6%97%A5%E5%BF%97%E6%89%B9%E9%87%8F%E6%9F%A5%E8%AF%A2%E9%85%8D%E7%BD%AE/" class="post-read-more">[Read More]</a>
                 
@@ -303,33 +303,20 @@ brew install pssh brew install homebrew/dupes/expect brew install ssh-copy-id �
               <div class="post-entry">
                 
                   <p>一旦服务器启动,服务开始提供,并且在配置中心注册了(配置中心可以是本地的地址,也可以是zk,也可以是其他的实现),那么客户端就要开始调用了</p>
-
 <p><a href="/images/service_ref.png">点击看大图</a></p>
-
-<p><img src="/images/service_ref.png" alt="服务引用" /></p>
-
+<p><img src="/images/service_ref.png" alt="服务引用"></p>
 <p>服务引用 RefererConfig.getRef()</p>
-
 <p>先是获取集群支持(先忽略,主要是配置中心相关的)</p>
-
 <p>configHandler.refer(interfaceClass, clusters, proxy)
 开始获取接口代理</p>
-
 <p>1.一旦知道接口名,Class.forName加载接口类,就开始通过proxy工厂来为服务端接口创建代理了</p>
-
 <p>2.jdk的Proxy类,直接来创建代理.同时代理要传入RefererInvocationHandler
 这个类可以看错是真正的stub,封装了rpc调用请求.当在客户端获取到服务接口的bean的时候,实际上调用过程被这个类拦截,进行封装发送rpc</p>
-
 <p>1.当接口被调用的时候,这个拦截器险根据拦截到的请求构造一个rpc请求</p>
-
 <p>2.这里就会存在一个策略.该调用哪个,以FailoverHaStrategy为例</p>
-
 <p>1.选择一个服务提供方</p>
-
 <p>1.如果是jvm服务,那么直接从本地的服务map中取出一个调用就行</p>
-
 <p>2.如果是真正的远程服务,这时候就进入nettyClient部分了</p>
-
 <p>把请求向netty的Channel中写就行了.服务端会从Channel中取进行处理,然后放回来.这样客户端就拿到结果了</p>
 
                 
@@ -379,40 +366,23 @@ brew install pssh brew install homebrew/dupes/expect brew install ssh-copy-id �
               <div class="post-entry">
                 
                   <p>这一篇继续从这个demo开始,分析一下这个服务是怎么发布出去的.关键的代码从<code>motanDemoService.export();</code>开始.</p>
-
 <p>一图胜千言.</p>
-
 <p><a href="/images/serviceConfig_export.png">点击看大图</a></p>
-
-<p><img src="/images/serviceConfig_export.png" alt="服务发布" /></p>
-
+<p><img src="/images/serviceConfig_export.png" alt="服务发布"></p>
 <p>服务发布ServiceConfig.export()</p>
-
 <p>1.加载有的配置中心url列表/新建</p>
-
 <p>2.doExport(ProtocolConfig,port,registryURLs) //配置中心地址列表</p>
-
 <p>2.1导出的时候,会先判断是否存在.其实就是根据协议名,ip,接口,参数来生成一个唯一key.</p>
-
-<p>2.2ConfigHandler.export(Class<T> interfaceClass, T ref, List<URL> registryUrls) //接口.实现.配置中心url列表</p>
-
+<p>2.2ConfigHandler.export(Class<!-- raw HTML omitted --> interfaceClass, T ref, List<!-- raw HTML omitted --> registryUrls) //接口.实现.配置中心url列表</p>
 <p>2.2.1.根据协议名创建协议,这里ProtocolFilterDecorator</p>
-
 <p>2.2.2.根据接口,实现类,serviceUrl,构造一个Provider,用来提供服务</p>
-
-<p>2.2.3.使用协议进行导出Provider,  export(Provider<T> provider, URL url)</p>
-
+<p>2.2.3.使用协议进行导出Provider,  export(Provider<!-- raw HTML omitted --> provider, URL url)</p>
 <p>2.2.3.1创建一个Exporter</p>
-
 <p>2.2.3.1.1.创建的时候会将服务提供方Provider和url有个映射关系,这样当一个url请求过来的时候,就知道改调用谁了.ProviderMessageRouter,讲一个请求路由注册到server上,同时包装了一个心跳包</p>
-
 <p>2.2.3.2进行导出 导出就是一个服务器打开的过程/server.open();</p>
-
 <p>2.2.3.2.1进入nettyServer初始化,主要就是添加handler,编码解码.和一个rpc处理的
 相当于一个请求过来的时候,先进行解码,然后调用业务处理handler进行处理,处理完成后,进行编码,然后返回给客户端</p>
-
 <p>服务器启动后,相当于这个服务就发布了</p>
-
 <p>2.2.4.注册register(registryUrls, serviceUrl) //这一步就是将serviceUrl,向对应的jvm/rpc服务中心注册url,本地注册就是LocalRegistryService类里一个map..zk的.就是向zk写node.等等</p>
 
                 
@@ -463,28 +433,17 @@ brew install pssh brew install homebrew/dupes/expect brew install ssh-copy-id �
                 
                   <p>工作中一直在使用rpc,但是只是对简单的原理比较熟悉.最近看到有motan的一个介绍,代码拉下来看了看,除了测试用例比较少之外.其他还是不错的,和阿里的rpc框架比起来,还是弱了一些,好处就是方便用来学习.
 <a href="https://github.com/weibocom/motan">motan</a> 是weibo的一个rpc框架,据说已经在线上使用了.</p>
-
 <p>在学习rpc框架之前,建议看一个hello world级别的文章<a href="http://javatar.iteye.com/blog/1123915">RPC框架几行代码就够了</a>,写的非常好,看完基本就知道rpc的核心了.</p>
-
 <p><a href="https://www.cs.rutgers.edu/~pxk/417/notes/08-rpc.html">Remote Procedure Calls</a>中最关键的那个图,就能说明了.</p>
-
-<p><img src="/images/rpc-flow.png" alt="rpc的flow" /></p>
-
+<p><img src="/images/rpc-flow.png" alt="rpc的flow"></p>
 <p>本地client调用本地client stub,stub对消息进行封装,通过socket发送,服务端的server stub接收到,然后解包,将里面传递的方法名,方法参数.等等信息,识别出来,调用服务端对应的服务,然后得到结果后,又通过socket返回,本地client又进行解包.就行了.</p>
-
 <p>这里面会涉及到,封装,封装就是吧对象序列化,这样才能在网络中传递.</p>
-
 <p>而生产环境的rpc框架需要考虑的有:</p>
-
 <p>stub怎么生成,序列化怎么最高效,如何统一不同机器之前的调用,(大小端的机器等),如何识别该调用哪个机器,负载均衡.socket通信.等等.</p>
-
 <p>先跑个demo熟悉一下.</p>
-
 <p>下载motan源码,导入ide,然后先启动服务端,MotanApiExportDemo,这个类,然后控制台会打出服务已经启动.然后运行MotanApiClientDemo,会发现一个控制台打出motan,服务端打出hello motan.就说明跑起来了.</p>
-
 <p>如果控制台日志没有.修改对应resources下面的log4j.properties文件.首行添加<code>log4j.rootLogger=debug,stdout</code> ,会设置默认日志级别为debug,并且在控制台输出.
 或者直接fork<a href="https://github.com/leizhiyuan/motan">我这个</a></p>
-
 <p>后面会逐步分析,希望坚持下来.</p>
 
                 
@@ -534,11 +493,8 @@ brew install pssh brew install homebrew/dupes/expect brew install ssh-copy-id �
               <div class="post-entry">
                 
                   <p>本系列希望可以吧motan的源码通读一遍.</p>
-
 <p><a href="/2016/05/29/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E5%85%A5%E9%97%A8%E5%92%8C%E8%BF%90%E8%A1%8Cdemo/">motan源码阅读-入门和运行demo</a></p>
-
 <p><a href="/2016/05/30/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%8F%91%E5%B8%83/">motan源码阅读-服务的发布</a></p>
-
 <p><a href="/2016/05/31/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%BC%95%E7%94%A8/">motan源码阅读-客户端服务引用</a></p>
 
                 
@@ -590,7 +546,7 @@ $ sudo apt-get install software-properties-common $ sudo apt-add-repository ppa:
 sudo: add-apt-repository: command not found 这时候.先执行
 $ sudo add-apt-repository ppa:git-core/ppa $ sudo apt-get update 然后接着执行上面的第二步就行了..
 安装完成后,配置集群
-cat /etc/ansible/hosts[servergroup1] 192.168.1.1 ansible_ssh_user=root ansible_ssh_pass=root [servergroup2] 192.168.2.1 ansible_ssh_user=root ansible_ssh_pass=root 后面的账号和密码,如果你使用ssh key登陆的话就不需要了.但是如果有很多机器,需要加到known_hosts就太多了. 这时候可以参考Batch_key 这个脚本.稍微修改一下,就能批量生成了
+cat /etc/ansible/hosts [servergroup1] 192.168.1.1 ansible_ssh_user=root ansible_ssh_pass=root [servergroup2] 192.168.2.1 ansible_ssh_user=root ansible_ssh_pass=root 后面的账号和密码,如果你使用ssh key登陆的话就不需要了.但是如果有很多机器,需要加到known_hosts就太多了. 这时候可以参考Batch_key 这个脚本.稍微修改一下,就能批量生成了
 然后就是执行命令了
 ansible常见用法为ansible host-pattern -m 模块 -a 命令，host-pattern类似于简化的正则表达式，而模块可以通过ansible-doc -l命令来查询。下面是一些常用模块的使用方法：
 安装软件：ansible servergroup1 -m apt -a 'name=gcc state=present' 或者ansible local -m yum -a &quot;name=nmap state=installed&quot;
@@ -644,11 +600,9 @@ ansible常见用法为ansible host-pattern -m 模块 -a 命令，host-pattern类
                   最近由于一些需求,要搞一下python,于是周末搞了搞.要连接服务器,进行一些服务器的操作,于是安装这个Paramiko包,
 直接pip install paramiko 结果.报错,最关键的一句是:
 error: Unable to find vcvarsall.bat google一圈.最终找到一种最简单地方法.其他的安装vs.安装MinGW都太复杂了.
- 安装PyCrypto 第三方版 因为paramiko依赖PyCrypto,上面那个错就是他报错出来的.安装PyCrypto第三方版
-pip install --use-wheel --no-index --find-links=https://github.com/sfbahr/PyCrypto-Wheels/raw/master/pycrypto-2.6.1-cp35-none-win_amd64.whl pycrypto ````` 安装完成后,再次安装paramiko即可. 2.修改nt.py 安装完上面的步骤,写一个简单的程序测试下 java
-  #-- coding: utf-8 -- #!/usr/bin/python import paramiko import threading
-def ssh2(ip,username,passwd,cmd): try: ssh = paramiko.SSHClient() ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy()) ssh.connect(ip,22,username,passwd,timeout=5) for m in cmd: stdin, stdout, stderr = ssh.exec_command(m) out = stdout.readlines() #屏幕输出 for o in out: print(o) print(&lsquo;%s\tOK\n&rsquo;%(ip)) ssh.close() except : print(&lsquo;%s\tError\n&rsquo;%(ip))
-if name==&rsquo;main&lsquo;: cmd = [&lsquo;find /home/admin/logs/ -mtime +3 -name \&rsquo;.
+ 安装PyCrypto 第三方版 因为paramiko依赖PyCrypto,上面那个错就是他报错出来的.安装PyCrypto第三方版  pip install --use-wheel --no-index --find-links=https://github.com/sfbahr/PyCrypto-Wheels/raw/master/pycrypto-2.6.1-cp35-none-win_amd64.whl pycrypto 安装完成后,再次安装paramiko即可. 2.修改nt.py
+安装完上面的步骤,写一个简单的程序测试下
+#-*- coding: utf-8 -*- #!/usr/bin/python import paramiko import threading def ssh2(ip,username,passwd,cmd): try: ssh = paramiko.SSHClient() ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy()) ssh.connect(ip,22,username,passwd,timeout=5) for m in cmd: stdin, stdout, stderr = ssh.exec_command(m) out = stdout.readlines() #屏幕输出 for o in out: print(o) print(&#39;%s\tOK\n&#39;%(ip)) ssh.close() except : print(&#39;%s\tError\n&#39;%(ip)) if __name__==&#39;__main__&#39;: cmd = [&#39;find /home/admin/logs/ -mtime +3 -name \&#39;*.
                   <a href="https://leizhiyuan.github.io/2015/12/28/python3.5-%E5%AE%89%E8%A3%85-paramiko/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -815,12 +769,13 @@ setlocal call &#34;%~dp0zkEnv.cmd&#34; set ZOOMAIN=org.apache.zookeeper.server.q
               <div class="post-entry">
                 
                   前几天被前辈问到这个可重入锁,结果忘掉了.于是抽空整个了解一下
-目录  什么是可重入锁 为什么要可重入 如何实现可重入锁 有不可重入锁吗 demo代码展示 参考文章  1 . 什么是可重入锁 锁的概念就不用多解释了,当某个线程A已经持有了一个锁,当线程B尝试进入被这个锁保护的代码段的时候.就会被阻塞.而锁的操作粒度是&rdquo;线程&rdquo;,而不是调用(至于为什么要这样,下面解释).同一个线程再次进入同步代码的时候.可以使用自己已经获取到的锁,这就是可重入锁 java里面内置锁(synchronize)和Lock(ReentrantLock)都是可重入的
+目录  什么是可重入锁 为什么要可重入 如何实现可重入锁 有不可重入锁吗 demo代码展示 参考文章  1 . 什么是可重入锁 锁的概念就不用多解释了,当某个线程A已经持有了一个锁,当线程B尝试进入被这个锁保护的代码段的时候.就会被阻塞.而锁的操作粒度是&quot;线程&rdquo;,而不是调用(至于为什么要这样,下面解释).同一个线程再次进入同步代码的时候.可以使用自己已经获取到的锁,这就是可重入锁 java里面内置锁(synchronize)和Lock(ReentrantLock)都是可重入的
 2 . 为什么要可重入 如果线程A继续再次获得这个锁呢?比如一个方法是synchronized,递归调用自己,那么第一次已经获得了锁,第二次调用的时候还能进入吗? 直观上当然需要能进入.这就要求必须是可重入的.可重入锁又叫做递归锁,再举个例子.
 public class Widget { public synchronized void doSomething() { ... } } public class LoggingWidget extends Widget { public synchronized void doSomething() { System.out.println(toString() + &#34;: calling doSomething&#34;); super.doSomething();//若内置锁是不可重入的，则发生死锁 } } 这个例子是java并发编程实战中的例 子.synchronized 是父类Widget的内置锁,当执行子 类的方法的时候,先获取了一次Widget的锁,然后在执行super的时候,就要获取一次,如果不可重入,那么就跪了.
 3 . 如何实现可重入锁 为每个锁关联一个获取计数器和一个所有者线程,当计数值为0的时候,这个所就没有被任何线程只有.当线程请求一个未被持有的锁时,JVM将记下锁的持有者,并且将获取计数值置为1,如果同一个线程再次获取这个锁,技术值将递增,退出一次同步代码块,计算值递减,当计数值为0时,这个锁就被释放. ReentrantLock里面有实现
 4 . 有不可重入锁吗 这个还真有.Linux下的pthread_mutex_t锁是默认是非递归的。可以通过设置PTHREAD_MUTEX_RECURSIVE属性，将pthread_mutex_t锁设置为递归锁。如果要自己实现不可重入锁,同可重入锁,这个计数器只能为1.或者0,再次进入的时候,发现已经是1了,就进行阻塞.jdk里面没有默认的实现类.
 5 . demo代码展示 5.1 内置锁的可重入
+public class ReentrantTest { public void method1() { synchronized (ReentrantTest.
                   <a href="https://leizhiyuan.github.io/2015/11/20/java%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -898,7 +853,7 @@ public class Widget { public synchronized void doSomething() { ... } } public cl
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

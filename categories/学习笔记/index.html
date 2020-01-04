@@ -10,9 +10,9 @@
   <title>Overview of all pages with the category #学习笔记 - bystander&#39;s blog</title>
   <meta property="og:title" content="Overview of all pages with the category #学习笔记" />
   <meta name="twitter:title" content="Overview of all pages with the category #学习笔记" />
-  <meta name="description" content="Overview of all pages with the category #学习笔记, such as: skywalking插件开发的注意事项">
-  <meta property="og:description" content="Overview of all pages with the category #学习笔记, such as: skywalking插件开发的注意事项">
-  <meta name="twitter:description" content="Overview of all pages with the category #学习笔记, such as: skywalking插件开发的注意事项">
+  <meta name="description" content="Overview of all pages with the category #学习笔记, such as: 深入理解Raft协议">
+  <meta property="og:description" content="Overview of all pages with the category #学习笔记, such as: 深入理解Raft协议">
+  <meta name="twitter:description" content="Overview of all pages with the category #学习笔记, such as: 深入理解Raft协议">
   <meta name="author" content="bystander"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -51,7 +51,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -221,6 +221,64 @@
         <div class="posts-list">
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/">
+                <h2 class="post-title">深入理解Raft协议</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on December 30, 2019
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;3&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  本文部分以JRaft为例，来详细介绍Raft。
+Raft 来源 首先，我们介绍 Raft 问题的来源，Raft 实际上是一个一致性算法的一种实现，和Paxos等价，但是在实现上，简化了一些，并且更加易用。
+这里面又引入了两个名字。一个是一致性，一个是Paxos，我们先说一致性，
+一致性是一个可容错的分布式系统重的最基本的一个问题，一致性包含了“多个服务器对同一个值达成共识，一旦对某个值达成共识，这个决定就是不可变了”，通常，一致性算法，当多数服务器可用的时候，才有效，比如5个server，那么2个挂了，是没问题的，但是再挂一个，超过一半，就不能提供服务了。这句话也说明，他不会返回错误的值，因为都不提供服务了。
+一致性通常和 Replicated State Machines（后面简称RSM）相关，最早提出是在图灵奖得主Leslie Lamport的著名论文&quot;Time, clocks, and the ordering of events in a distributed system(1978)&ldquo;论文中，比较系统性的阐述是在Fred Schneider的论文&rdquo; Implementing fault-tolerant services using the state machine approach(1990)&ldquo;中。
+它的基本思想是一个分布式的RSM系统由很多个replica组成，每个replica是一个状态机，它的状态保存在一组状态变量中。状态机的状态通过并且只能通过外部命令（commands)来改变。比如你可以把MySQL服务器想像成一个状态机。它每接收到一条带修改功能的SQL语句（比如update/insert)就会改变它的状态。一组配置好replication的MySQL servers就是典型的RSM。
+RSM能够工作基于这样的假设：
+如果一些状态机具有相同的初始状态，并且他们接收到的命令也相同，处理这些命令的顺序也相同，那么它们处理完这些命令后的状态也应该相同。 因为replica都具有相同的状态，所以坏掉任何一个也没有关系。有了RSM之后理论上可以做到永远不会因为机器的物理故障而丢失数据。
+也就是说，根据论文的指导，比较普遍的构建容错系统的方法是，每个服务器都维持一个状态机和一个Log，状态机就是我们想要实现容错的一个组件实现，比如想实现一个分布式环境下可容错的 Hash Table， 客户端会和这个状态机交互，每个状态机从log中获取input命令，在这个Hash Table 的例子中，这个log 可能是类似 把X 设置成3这样的命令，一致性算法必须确保，如果任何一个状态机在第N个命令中认可了n被设置为了3，那么其他机器上的状态机器就绝对不应该设置为其他值，这就能保证其他所有的机器总是处理相同的命令序列，最终大家都是同样的状态。
+至于Paxos，这里可以先简单理解就是个一致性算法的实现方式，和 Raft 类似。
+总结就一致性是为了解决分布式环境下的容错问题，而Raft 和 Paxos 是其中的一种实现。
+核心怎么实现呢 要实现Raft，根据作者的表述，通过对状态空间的简化，以及问题的分解，实现方只需要实现的就是各个子问题
+状态空间: 状态太多就会增加理解的困难程度。Raft 算法尽可能地确定各个环节的状态。典型地，Raft 算法采用 strong leader 的模型，每个日志的读写均由 Leader 从中主动协调，这样一来，整体系统的数据流将非常简单：从 Leader 流行 Follower。而且每个节点的状态也只有 3 种：Leader，Candidate 和 Follower。
+                  <a href="https://leizhiyuan.github.io/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%90%86%E8%AE%BA/">理论</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2018/05/13/skywalking%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">
                 <h2 class="post-title">skywalking插件开发的注意事项</h2>
 
@@ -250,20 +308,18 @@
               <div class="post-entry">
                 
                   <p>最近蚂蚁金服中间件开源了 sofa 相关的部分组件,比如 <a href="https://github.com/alipay/sofa-rpc">rpc</a>,欢迎大家参与讨论贡献,为 rpc 做链路适配的时候,skywalking 现在快到5.0版本了. 已经不支持 h2暂时,开发过程中了,环境的搭建.以下部分字段不能少.否则外面无法连接 es.</p>
-<div class="highlight"><pre class="chroma">docker run -d -p 9200:9200 -p 9300:9300 -e &#34;network.host=0.0.0.0&#34; -e &#34;transport.host=0.0.0.0&#34;  -e &#34;network.publish_host=0.0.0.0&#34;  -e &#34;xpack.security.enabled=false&#34; -e &#34;network.bind_host=0.0.0.0&#34; -e &#34;discovery.type=single-node&#34; docker.elastic.co/elasticsearch/elasticsearch:5.5.0</pre></div>
-<p>这条命令会搞定.</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker run -d -p 9200:9200 -p 9300:9300 -e &#34;network.host=0.0.0.0&#34; -e &#34;transport.host=0.0.0.0&#34;  -e &#34;network.publish_host=0.0.0.0&#34;  -e &#34;xpack.security.enabled=false&#34; -e &#34;network.bind_host=0.0.0.0&#34; -e &#34;discovery.type=single-node&#34; docker.elastic.co/elasticsearch/elasticsearch:5.5.0
+</code></pre></div><p>这条命令会搞定.</p>
 <p>同时 application.yml 文件中</p>
-<div class="highlight"><pre class="chroma">storage:
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">storage:
   elasticsearch:
     cluster_name: docker-cluster
     cluster_transport_sniffer: false
     cluster_nodes: localhost:9300
     index_shards_number: 2
     index_replicas_number: 0
-    ttl: 70</pre></div>
-<p>这一段改一下.</p>
-
+    ttl: 70
+</code></pre></div><p>这一段改一下.</p>
 <p>其他的一些网上已有的文档,可以看看.<a href="http://www.iocoder.cn/SkyWalking/build-debugging-environment/">SkyWalking 源码分析 —— 调试环境搭建</a></p>
 
                 
@@ -308,43 +364,24 @@
               </p>
               <div class="post-entry">
                 
-                  
-
-<p>今天推荐一个不错的软件.是idea 的插件.名字是Flow, 官方称:A better way to understand your Java applications,原理就是通过 java-agent 修改字节码,配置了拦截器,然后真实地跑一个测试用例,或者启动一下项目,就会生成一个真实的调用关系.官方地址:<a href="http://findtheflow.io/">http://findtheflow.io/</a></p>
-
+                  <p>今天推荐一个不错的软件.是idea 的插件.名字是Flow, 官方称:A better way to understand your Java applications,原理就是通过 java-agent 修改字节码,配置了拦截器,然后真实地跑一个测试用例,或者启动一下项目,就会生成一个真实的调用关系.官方地址:http://findtheflow.io/</p>
 <p>之前阅读源代码,对于抽象类,或者接口,静态阅读代码不太容易确定具体的调用类,因此阅读有一定的阻碍,当然 debug 也行..但是这个可以通过跑用例,或者简单的测试用例,理清调用关系,非常不错.
 可以对代码结构有一个整体关系</p>
-
-<h2 id="安装">安装</h2>
-
-<p>安装比较简单:<a href="https://plugins.jetbrains.com/plugin/8362?pr=idea">https://plugins.jetbrains.com/plugin/8362?pr=idea</a> 直接安装idea 这个插件,然后重新启动 idea, 安装完成后的效果.</p>
-
-<p><img src="/images/flow_install.png" alt="安装结果" /></p>
-
-<h2 id="使用">使用</h2>
-
+<h2 id="heading">安装</h2>
+<p>安装比较简单:https://plugins.jetbrains.com/plugin/8362?pr=idea 直接安装idea 这个插件,然后重新启动 idea, 安装完成后的效果.</p>
+<p><img src="/images/flow_install.png" alt="安装结果"></p>
+<h2 id="heading-1">使用</h2>
 <p>使用更简单,直接点击上图中的按钮,开始跑一下,即可,如果启动成功.控制台会有显示.</p>
-
-<p><img src="/images/flow_start.png" alt="开始启动" /></p>
-
+<p><img src="/images/flow_start.png" alt="开始启动"></p>
 <p>然后,会在本地开启7575的端口,来显示结果.</p>
-
-<h2 id="效果">效果</h2>
-
-<p><img src="/images/flow_common.png" alt="结果" /></p>
-
-<p><img src="/images/flow_detail.png" alt="结果明细" /></p>
-
+<h2 id="heading-2">效果</h2>
+<p><img src="/images/flow_common.png" alt="结果"></p>
+<p><img src="/images/flow_detail.png" alt="结果明细"></p>
 <p>注意,在结果页里,可以和 idea 源码交互,对着方法点右键,可以直接定位到 idea 代码中的源代码,非常方便.</p>
-
-<p><img src="/images/flow_jump.png" alt="跳转" /></p>
-
-<h2 id="其他">其他</h2>
-
+<p><img src="/images/flow_jump.png" alt="跳转"></p>
+<h2 id="heading-3">其他</h2>
 <p>其他,就是 可以在配置里设置根据哪些类,这样一些工具类啥的可以直接忽略了.</p>
-
-<p><img src="/images/flow_conf.png" alt="运行配置" /></p>
-
+<p><img src="/images/flow_conf.png" alt="运行配置"></p>
 <p>使用了一下,还是不错的.但是这个有个问题,如果你的项目自定义了 classloader/ 或者使用了自定义的容易,这个由于没有 mvn 的 jar 包,可能会报错,类找不到.暂时没有好的办法.但是阅读开源代码基本没有问题了.</p>
 
                 
@@ -393,22 +430,16 @@
                 
                   <p>之前有个项目用 jdk6跑运行正常,用 jdk8跑的时候,会报<code>java cannot access ....class file ...as class file not found though it exists.</code>
 虽然可以通过加上报错的类到依赖里解决.但是一直没想明白,为啥 jdk6下没报错.</p>
-
 <p>最近再次遇到,于是想一次性搞清楚.搜了一下,看 so 上有这么个说法.大意就是以前,如果 A 依赖 B,B 实现了 C 接口,编译的时候, 用 jdk8编译的时候, C 必须在 classpath 中,
 <a href="http://stackoverflow.com/questions/40255718/compiling-with-jdk-1-8-java-cannot-access-class-file-class-file-not-found">http://stackoverflow.com/questions/40255718/compiling-with-jdk-1-8-java-cannot-access-class-file-class-file-not-found</a></p>
-
 <p>给出了一个 bug 连接,但是这里跟我们的问题有差异,不过这个点提醒了我.于是我搜索了一下 jdk8的relase note</p>
-
 <p><a href="http://www.oracle.com/technetwork/java/javase/8-compatibility-guide-2156366.html">http://www.oracle.com/technetwork/java/javase/8-compatibility-guide-2156366.html</a></p>
-
 <p>注意观看这一段:</p>
-
 <blockquote>
 <p>Area: Tools / javac
 Synopsis
 Interfaces need to be present when compiling against their implementations</p>
 </blockquote>
-
 <p>好了.也就是说还是乖乖加依赖.但是清楚了原因了</p>
 
                 
@@ -506,7 +537,7 @@ sudo cat /var/log/messages | grep -i&quot;killed process&quot;
               </p>
               <div class="post-entry">
                 
-                  前言 最近使用 graylog在部署日志平台的时候,踩到很多&rdquo;坑&rdquo;,记录一下
+                  前言 最近使用 graylog在部署日志平台的时候,踩到很多&quot;坑&rdquo;,记录一下
 日志采集(nxlog) 1.客户端不要做太多的正则计算 graylog 最早推荐的 nxlog 采集客户端,现在貌似有了 beats 的采集方式,不过我没了解,nxlog 采集的话,需要配置Snippets,就是定义输入,输出,处理器的地方,这个地方, Input 模块是在客户端计算的.所以,一定不要进行太多的正则计算.否则会严重影响客户端的 cpu 资源.降低应用程序的性能.
 2.开多行一定要慎重 graylog 可以通过配置
 &lt;Extension multiline&gt; Module xm_multiline HeaderLine /^\d{0,2}\/\d{0,2}\/\d{0,4}/ EndLine /^\d{0,2}\/\d{0,2}\/\d{0,4}/ &lt;/Extension&gt; &lt;Input pcc-esolutions-log&gt; Module im_file File &#34;*.log&#34; SavePos TRUE InputType multiline &lt;/Input&gt; 来实现对于类似错误栈这样的信息,将多行采集成一行,但是一定要注意.如果这个正则写错了,或者其他原因,导致,未能正确匹配.会导致 nxlog 客户端占用内存暴涨.原因是为了实现多行采集,会再客户端内存中保存日志内容,直到匹配到行尾.如果未能正确匹配.会一直保存.导致内存泄露.
@@ -565,16 +596,16 @@ Exec if $raw_event $raw_event = substr($raw_event, 0, 1040000); 执行类似的�
 mongorestore -h dbhost -d dbname --directoryperdb dbdirectory
 来恢复.相关说明可以参考这里
 之后就可以正式开始了
- 修改集群名字  在/etc/mongod.conf 中,修改这个值.设置集群使用的集群名称是 graylog,几个机器都配置一下.都先不要启动
+  修改集群名字
+在/etc/mongod.conf 中,修改这个值.设置集群使用的集群名称是 graylog,几个机器都配置一下.都先不要启动
 replication: replSetName: graylog
- 然后添加集群配置  启动其中一台,然后通过mongo 命令连接上数据库,依次执行下面的命令.注意,这里有个坑.添加本机的时候,一定要写对外的域名或者 ip.否则会导致无法选主.
+  然后添加集群配置
+  启动其中一台,然后通过mongo 命令连接上数据库,依次执行下面的命令.注意,这里有个坑.添加本机的时候,一定要写对外的域名或者 ip.否则会导致无法选主.
 rs.initiate() rs.add(&#34;&lt;hostname&gt;:27017&#34;) rs.add(&#34;&lt;hostname&gt;:27017&#34;) rs.add(&#34;&lt;hostname&gt;:27017&#34;) rs.conf()  开始启动
 这里启动就不用说了. service mongod start 启动就好了.
- 配置 graylog 集群连接地址
+  配置 graylog 集群连接地址
 在/etc/graylog/server/server.conf 中配置.mongodb_uri = mongodb://host1,host2,host3/graylog
   后面这个 graylog 就是给 graylog 使用的库名,你可以先创建.
-之后mongodb 就开始自行同步了.
-[参考]
                   <a href="https://leizhiyuan.github.io/2016/11/06/graylog%E4%B8%AD%E7%9A%84mongodb%E9%85%8D%E7%BD%AE/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -618,14 +649,9 @@ rs.initiate() rs.add(&#34;&lt;hostname&gt;:27017&#34;) rs.add(&#34;&lt;hostname&
               </p>
               <div class="post-entry">
                 
-                  
-
-<h2 id="关于字段解析">关于字段解析</h2>
-
+                  <h2 id="heading">关于字段解析</h2>
 <p>一旦 graylog 用在了一个分布式系统上,那么采集的日志格式多种多样,涉及到通过 rules.drl来解析具体的字段.之前的同学的方案是用<a href="http://www.jboss.org/drools">drools</a> 来完成的.通过一个统一的界面,来给用户生成一些正则规则这种.然后自己写了个转换器转成 Drools 的文件.更新到 graylog 的服务器上.然后重启gralog 应用完成.</p>
-
 <p>实际上, graylog 2之后的版本提供了rules和 pipeline ,这种不需要重启应用,完成这个解析的动作.但是.注意.这个不完善.所以只支持一些简单的语法,无法实现原有的完全转换.所以放弃.</p>
-
 <p>在此过程中.这个rules 有一个比较强大的功能,自动解析 key value 对.需要添加,但是,需要你的日志文件格式里的 key value有空格,
 也就是要求必须是 key=value 这样,不能紧挨着逗号这样的..比如你的打印日志是 key=value,key2=value2.那么久无法解析了..这个暂时没看到比较好的办法.估计要改代码.如果你恰好符合.那最好了.</p>
 
@@ -677,7 +703,7 @@ rs.initiate() rs.add(&#34;&lt;hostname&gt;:27017&#34;) rs.add(&#34;&lt;hostname&
 0. 准备 先要安装pssh,expect,ssh-copy-id.
 brew install pssh brew install homebrew/dupes/expect brew install ssh-copy-id 另外安装luit的安装参考这里luit安装
 1. 生成ssh key ,并批量copy 生成ssh key比较简单.ssh-keygen -t rsa -C &quot;your_email@example.com&quot;,直接使用git的ssh key也是可以的.然后保存下面这个脚本为pscopy.sh,
-#!/bin/bash FILE=`cat ~/host.txt` for ip in $FILE;do expect -c &#34; spawn ssh-copy-id $ipexpect { \&#34;*yes/no*\&#34; {send \&#34;yes\r\&#34;;exp_continue} \&#34;*password*\&#34; {send \&#34;pass\r\&#34;;exp_continue} \&#34;*password*\&#34; {send \&#34;pass\r\&#34;;} } &#34; done 然后执行一下sh pscopy.sh,注意,host.txt要保证存在.格式是user@address.一行一个,中间的paas要改成user的密码,这样就会使用指定的用户密码,自动copy ssh key了. 完成上面的步骤之后,ssh user@address 就可以免登了.
+#!/bin/bash FILE=`cat ~/host.txt` for ip in $FILE;do expect -c &#34;spawn ssh-copy-id $ipexpect { \&#34;*yes/no*\&#34; {send \&#34;yes\r\&#34;;exp_continue} \&#34;*password*\&#34; {send \&#34;pass\r\&#34;;exp_continue} \&#34;*password*\&#34; {send \&#34;pass\r\&#34;;} } &#34; done 然后执行一下sh pscopy.sh,注意,host.txt要保证存在.格式是user@address.一行一个,中间的paas要改成user的密码,这样就会使用指定的用户密码,自动copy ssh key了. 完成上面的步骤之后,ssh user@address 就可以免登了.
 2. 写一个简单的pssh脚本 #!/bin/bash  encoding= key= command= file= usage() { echo &#34;Usage: `basename $0` [-f filename] [-c encoding] [-k keyword]&#34; exit 1 } while getopts :f:c:k: opt do case $opt in c) encoding=$OPTARG ;; :) echo &#34;-$OPTARGneeds an argument&#34; ;; k) key=$OPTARG ;; f) file=$OPTARG ;; *) echo &#34;-$optnot recognized&#34; usage ;; esac done if [ -z &#34;$encoding&#34; ]; then #该脚本必须提供-d选项 encoding=&#34;gbk&#34; fi if [ -z &#34;$file&#34; ]; then #该脚本必须提供-d选项 file=&#34;~/hosts.
                   <a href="https://leizhiyuan.github.io/2016/10/05/mac%E6%97%A5%E5%BF%97%E6%89%B9%E9%87%8F%E6%9F%A5%E8%AF%A2%E9%85%8D%E7%BD%AE/" class="post-read-more">[Read More]</a>
                 
@@ -728,88 +754,20 @@ brew install pssh brew install homebrew/dupes/expect brew install ssh-copy-id �
                 
                   <p>最近遇到一个问题,公司的 java 服务端应用,启动后,通过 <code>jstack pid |grep nid -c</code>,可以看到大概创建了2044个线程,然后此时应用就会报错,提示无法创建更多线程, jvm 开始抛错.
 查看 mac 的内存,发现还是够的.因为一般认为可创建的线程数=(总内存-其他占用的内存)/线程大小,所以内存够的情况下,应该是能创建的.</p>
-
 <p>google 一圈,发现mac 对单线程创建的线程是有限制的.理由应该是为了保持系统稳定性.主要有两个参数</p>
-
 <p><code>sysctl kern.num_threads</code> 这个可以看一下,说明了系统能够创建的总共的线程,单个应用能够创建的线程是<code>sysctl kern.num_taskthreads</code>,第二个参数就是导致我们创建不出来更多线程的原因,
 因为2044+一些 gc 的线程,基本上刚刚达到这个极限.</p>
-
 <p>那么要么改程序,要么改参数.改程序这是不可能的..因为只有 mac 会有这个问题..该参数尝试通过<code>sudo sysctl -w kern.num_taskthreads=4096</code>,修改,会发现提示是只读属性.google 了一圈,无解.</p>
-
 <p>最终意外解决..</p>
-
 <p>参考这里<a href="https://support.apple.com/en-us/HT202528">开启性能模式</a></p>
-
 <ol>
 <li><code>nvram boot-args</code></li>
 <li><code>sudo nvram boot-args=&quot;serverperfmode=1 $(nvram boot-args 2&gt;/dev/null | cut -f 2-)&quot;</code></li>
 <li>重启</li>
 </ol>
-
 <p>如果想要恢复的话: <code>sudo nvram boot-args=&quot;$(nvram boot-args 2&gt;/dev/null | sed -e $'s/boot-args\t//;s/serverperfmode=1//')&quot;</code></p>
-
 <p>当时各种搜索,加打apple 支持电话.无解.搜索意外看到这个说明,说开启之后,可以支持更多服务应用之类的.猜测应该会改这个值..果然..改完之后,直接重启,这个限制会变成5000..完美解决..理论上,应该通过继续修改这个参数
 是可以自定义这个值的.不过还没尝试.</p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E5%85%B7/">工具</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%AE%B0%E5%BD%95/">记录</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2016/08/07/homebrew%E7%BC%93%E6%85%A2%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
-                <h2 class="post-title">homebrew缓慢解决方案</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on August 7, 2016
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  <p>mac 下使用 homebrew 作为包管理工具是非常好的. brew 用来安装非 gui 界面的程序. cask 用来安装 gui 界面的程序.但是这两个是使用的源在国外.所以你懂得..</p>
-
-<p>1.替换 homebrew 默认源</p>
-<div class="highlight"><pre class="chroma">cd /usr/local
-git remote set-url origin git://mirrors.ustc.edu.cn/brew.git</pre></div>
-<p>这里注意记一下以前的默认源.防止以后想换回来..</p>
-
-<p>默认源是
-<code>https://github.com/Homebrew/brew</code></p>
-
-<p>2.替换homebrew bottles默认源</p>
-<div class="highlight"><pre class="chroma">echo &#39;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles&#39; &gt;&gt; ~/.bashrc</pre></div>
-<p>这里的.bashrc根据自己的情况替换.我是 zsh,就写到.zshrc 文件.</p>
 
                 
               </div>
@@ -887,7 +845,7 @@ git remote set-url origin git://mirrors.ustc.edu.cn/brew.git</pre></div>
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

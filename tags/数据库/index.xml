@@ -24,9 +24,14 @@
 通过ODBC驱动连接到一个CSV文件，然后把文件读到一张表了（基于前面提到的那篇文章） 使用不同的编码和不同的行分隔符（基于前文） 加载CSV文件到DataSet（基于前文） 如何显示对CSV文件的预览（基于前文） 通过SqlBulkCopy的对象向SQL server转移数据，原始数据是DataSet实例
 使用结构表，基于CSV文件，创建一个新表 使用事件来处理批量拷贝的进程 导出
 浏览SQL 数据库中的用户表 使用不同的编码和分隔符 使用SqlDataReader读取数据，使用StreamWriter转移数据到平面文件
- 使用 1. 下载工程 2. 新建一个数据库，或者使用一个存在的数据库 3. 修改软件中的数据库连接字符串，在prop.cs文件中
-public static string sqlConnString = &#34;server=(local); database=Test_CSV_impex;Trusted_Connection=True&#34;;  运行工程  一些代码段 加载CSV到DataSet中 /* *加载CSV到DataSet. * * 如果numberOfRows parameter 是 -1, 就加载所有行, 否则就加载指定数目的行 */
-public DataSet LoadCSV(int numberOfRows) { DataSet ds = new DataSet(); try { // 创建并打开ODBC连接 string strConnString = &amp;ldquo;Driver={Microsoft Text Driver (*.</description>
+ 使用
+ 下载工程 新建一个数据库，或者使用一个存在的数据库 修改软件中的数据库连接字符串，在prop.cs文件中  运行工程  一些代码段 加载CSV到DataSet中
+通过SqlBulkCopy从ODBC连接中转移数据到数据库
+基于结构表创建表
+获取数据库中用户表名
+通过StreamWriter写数据
+Demo下载 CSV_import_export 许可 本文包括源代码和文件在CPOL下授权
+原文地址：C-CSV-Import-Export</description>
     </item>
     
     <item>
@@ -39,8 +44,20 @@ public DataSet LoadCSV(int numberOfRows) { DataSet ds = new DataSet(); try { // 
 因此，本文介绍该异常如何产生。并且我希望未来当我或是你发生这个错误的时候还能有所帮助。。
 背景 存储图片到数据库里面是一个很有效的想法。很多人在一些场合都会这样做。的确，这是一个很好的想法。在图片很小的情况下，或者图片不是太多。在这两种情况下，当你需要图片的时候，你会实时去加载它们。而当你不需要的时候如果从数据库里加载图片会浪费很多带宽。并使得你的程序有一些慢。
 但问题是这种方法也很容易发生错误。&amp;ndash;尤其是你使用字符串连接，然后组合到你的SQL语句里面—并且这个错误只有当你打算使用存储的信息的时候才会发生。然后，看起来似乎是你的读取代码写错了&amp;mdash;不可能—它是正常的。我在其他地方都可以的。。
-从数据库里加载图片 重数据库里读取一张图片然后转换成图片显示是很简单的。 using (SqlConnection con = DBAccess.DBCon) { using (SqlCommand cmd = new SqlCommand(&amp;ldquo;SELECT picture FROM Pictures WHERE Id=@ID&amp;rdquo;, con)) { cmd.Parameters.AddWithValue(&amp;ldquo;@ID&amp;rdquo;, Id); SqlDataReader reader = cmd.ExecuteReader(); if (reader.Read()) { byte[] data = (byte[])reader[&amp;ldquo;Picture&amp;rdquo;]; using (MemoryStream stream = new MemoryStream(bytes)) { myImage = new Bitmap(stream); } } } } 但是-如果data因为一些原因不是有效的图片，那么这一行 myImage = new Bitmap(stream); 将会抛出一个异常—无效的参数
-只有当你真正看了从数据库里返回到data里的数据-而不是简单的瞄了一眼调试器，你才能注意到是什么原因。。 {byte[21]} [0] 83 [1] 121 [2] 115 [3] 116 [4] 101 [5] 109 [6] 46 [7] 68 [8] 114 [9] 97 [10] 119 [11] 105 [12] 110 [13] 103 [14] 46 &amp;hellip; 它看起来不像是错的，所以它可能就是你想要的。-虽然21字节是一个很大的线索：你的图片可能只有21字节长？那图片可真小。。</description>
+从数据库里加载图片 重数据库里读取一张图片然后转换成图片显示是很简单的。
+将会抛出一个异常—无效的参数
+只有当你真正看了从数据库里返回到data里的数据-而不是简单的瞄了一眼调试器，你才能注意到是什么原因。。
+它看起来不像是错的，所以它可能就是你想要的。-虽然21字节是一个很大的线索：你的图片可能只有21字节长？那图片可真小。。
+但是，上面的是可以读懂的。。稍微练习一下。。每个字节是一个ASCII码。。
+简而言之，你从数据库里得到的数据是一个人类可以读懂的字符串，意思是是
+当这个Image类试图把它转换成一个图片的时候，必然是不可能的。抛出异常就是必然的了。。代码是正确的。data才是问题所在。
+保存图片到数据库 这才是引发问题的地方。 通常。这是因为把字符串连接起来构造SQL语句引起的。
+不要在SQL语句中包含image对象—它会调用Image的ToString方法。而这个方法会返回
+因此你的上一条语句其实就相当于
+存储并不会有什么问题—但是事实上只是把Image的类型名保存了。而你傻傻的以为是图片数据本身。
+这还不是唯一的一个不让你直接连接字符串构造SQL语句的原因，如果你想知道其他原因。 使用Google 搜索Bobby Tables，&amp;mdash;这不是闹着玩的。。
+好了。其实把代码写正确也不难，虽然可能得多花一些时间。但是，它可以帮助提高代码的可读性和可靠性。而你要做的就是使用一个参数化的查询。
+首先，把图片转换到一个字节数组里。</description>
     </item>
     
     <item>

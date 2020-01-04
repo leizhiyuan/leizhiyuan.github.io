@@ -14,12 +14,12 @@
 HtmlAgilityPack主要就是解析DOM的。常用的基础类其实不多，对解析DOM来说，就只有HtmlDocument和HtmlNode这两个常用的类，还有一个 HtmlNodeCollection集合类。我给出一个抓取我博客首页文章的例子。看代码可能更清楚一点。你可以去看看压缩包里提供的文档。
 xpath如果自己写表达式比较麻烦。所以我还找到了这个HtmlAgilityPack提供了的一个xpath辅助工具-HAPExplorer。都给出了地址。
 首先看我的例子，抓取我博客的首页文章：
-using System; using System.Collections.Generic; using System.Text; using System.Threading; using System.Diagnostics; using System.Threading.Tasks; using System.IO; using System.Data; using System.Data.SqlClient; using HtmlAgilityPack; namespace leaver { class Program { static void Main(string[] args) { HtmlWeb web = new HtmlWeb(); HtmlDocument doc = web.Load(&#34;http://leaver.me/&#34;); HtmlNode node = doc.GetElementbyId(&#34;content&#34;); StreamWriter sw = File.CreateText(&#34;leaver.txt&#34;); //从根节点选中class=hfeed的节点 string cfeed = node.SelectSingleNode(&#34;/html[1]/body[1]/div[1]/div[1]/div[2]/div[1]/div[1]&#34;).OuterHtml; HtmlNode hfeed = HtmlNode.CreateNode(cfeed); foreach (HtmlNode child in hfeed.ChildNodes) { if (child.Attributes[&#34;id&#34;] == null || child.">
+程序运行结果：  xpath表达式的具体书写都是需要分析你需要解析的网站源码的。。。。 xpath辅助工具的界面：  下载：HtmlAgilityPack 下载：HAPExplorer">
   <meta property="og:description" content="这个工具是在暑假的时候发现的。但是最后没用这个工具。不过，这个工具可是非常强悍的。。
 HtmlAgilityPack主要就是解析DOM的。常用的基础类其实不多，对解析DOM来说，就只有HtmlDocument和HtmlNode这两个常用的类，还有一个 HtmlNodeCollection集合类。我给出一个抓取我博客首页文章的例子。看代码可能更清楚一点。你可以去看看压缩包里提供的文档。
 xpath如果自己写表达式比较麻烦。所以我还找到了这个HtmlAgilityPack提供了的一个xpath辅助工具-HAPExplorer。都给出了地址。
 首先看我的例子，抓取我博客的首页文章：
-using System; using System.Collections.Generic; using System.Text; using System.Threading; using System.Diagnostics; using System.Threading.Tasks; using System.IO; using System.Data; using System.Data.SqlClient; using HtmlAgilityPack; namespace leaver { class Program { static void Main(string[] args) { HtmlWeb web = new HtmlWeb(); HtmlDocument doc = web.Load(&#34;http://leaver.me/&#34;); HtmlNode node = doc.GetElementbyId(&#34;content&#34;); StreamWriter sw = File.CreateText(&#34;leaver.txt&#34;); //从根节点选中class=hfeed的节点 string cfeed = node.SelectSingleNode(&#34;/html[1]/body[1]/div[1]/div[1]/div[2]/div[1]/div[1]&#34;).OuterHtml; HtmlNode hfeed = HtmlNode.CreateNode(cfeed); foreach (HtmlNode child in hfeed.ChildNodes) { if (child.Attributes[&#34;id&#34;] == null || child.">
+程序运行结果：  xpath表达式的具体书写都是需要分析你需要解析的网站源码的。。。。 xpath辅助工具的界面：  下载：HtmlAgilityPack 下载：HAPExplorer">
   <meta name="twitter:description" content="这个工具是在暑假的时候发现的。但是最后没用这个工具。不过，这个工具可是非常强悍的。。
 HtmlAgilityPack主要就是解析DOM的。常用的基础类其实不多，对解析DOM来说，就只有HtmlDocument和HtmlNode这两个常用的类，还有一个 HtmlNodeCollection集合类。我给出一个抓取我博客首页文章的例子。看代码可能更清楚一点。你可以去看看压缩包里提供的文档。
 xpath如 …">
@@ -71,9 +71,9 @@ xpath如 …">
     "name" : "bystander"
   },
   "headline": "Html解析工具-HtmlAgilityPack",
-  "description" : "这个工具是在暑假的时候发现的。但是最后没用这个工具。不过，这个工具可是非常强悍的。。\nHtmlAgilityPack主要就是解析DOM的。常用的基础类其实不多，对解析DOM来说，就只有HtmlDocument和HtmlNode这两个常用的类，还有一个 HtmlNodeCollection集合类。我给出一个抓取我博客首页文章的例子。看代码可能更清楚一点。你可以去看看压缩包里提供的文档。\nxpath如果自己写表达式比较麻烦。所以我还找到了这个HtmlAgilityPack提供了的一个xpath辅助工具-HAPExplorer。都给出了地址。\n首先看我的例子，抓取我博客的首页文章：\nusing System; using System.Collections.Generic; using System.Text; using System.Threading; using System.Diagnostics; using System.Threading.Tasks; using System.IO; using System.Data; using System.Data.SqlClient; using HtmlAgilityPack; namespace leaver { class Program { static void Main(string[] args) { HtmlWeb web = new HtmlWeb(); HtmlDocument doc = web.Load(\x22http:\/\/leaver.me\/\x22); HtmlNode node = doc.GetElementbyId(\x22content\x22); StreamWriter sw = File.CreateText(\x22leaver.txt\x22); \/\/从根节点选中class=hfeed的节点 string cfeed = node.SelectSingleNode(\x22\/html[1]\/body[1]\/div[1]\/div[1]\/div[2]\/div[1]\/div[1]\x22).OuterHtml; HtmlNode hfeed = HtmlNode.CreateNode(cfeed); foreach (HtmlNode child in hfeed.ChildNodes) { if (child.Attributes[\x22id\x22] == null || child.",
+  "description" : "这个工具是在暑假的时候发现的。但是最后没用这个工具。不过，这个工具可是非常强悍的。。\nHtmlAgilityPack主要就是解析DOM的。常用的基础类其实不多，对解析DOM来说，就只有HtmlDocument和HtmlNode这两个常用的类，还有一个 HtmlNodeCollection集合类。我给出一个抓取我博客首页文章的例子。看代码可能更清楚一点。你可以去看看压缩包里提供的文档。\nxpath如果自己写表达式比较麻烦。所以我还找到了这个HtmlAgilityPack提供了的一个xpath辅助工具-HAPExplorer。都给出了地址。\n首先看我的例子，抓取我博客的首页文章：\n程序运行结果：  xpath表达式的具体书写都是需要分析你需要解析的网站源码的。。。。 xpath辅助工具的界面：  下载：HtmlAgilityPack 下载：HAPExplorer",
   "inLanguage" : "en",
-  "wordCount":  114 ,
+  "wordCount":  10 ,
   "datePublished" : "2012-09-22T08:00:14",
   "dateModified" : "2012-09-22T08:00:14",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -97,7 +97,7 @@ xpath如 …">
 HtmlAgilityPack主要就是解析DOM的。常用的基础类其实不多，对解析DOM来说，就只有HtmlDocument和HtmlNode这两个常用的类，还有一个 HtmlNodeCollection集合类。我给出一个抓取我博客首页文章的例子。看代码可能更清楚一点。你可以去看看压缩包里提供的文档。
 xpath如果自己写表达式比较麻烦。所以我还找到了这个HtmlAgilityPack提供了的一个xpath辅助工具-HAPExplorer。都给出了地址。
 首先看我的例子，抓取我博客的首页文章：
-using System; using System.Collections.Generic; using System.Text; using System.Threading; using System.Diagnostics; using System.Threading.Tasks; using System.IO; using System.Data; using System.Data.SqlClient; using HtmlAgilityPack; namespace leaver { class Program { static void Main(string[] args) { HtmlWeb web = new HtmlWeb(); HtmlDocument doc = web.Load(&#34;http://leaver.me/&#34;); HtmlNode node = doc.GetElementbyId(&#34;content&#34;); StreamWriter sw = File.CreateText(&#34;leaver.txt&#34;); //从根节点选中class=hfeed的节点 string cfeed = node.SelectSingleNode(&#34;/html[1]/body[1]/div[1]/div[1]/div[2]/div[1]/div[1]&#34;).OuterHtml; HtmlNode hfeed = HtmlNode.CreateNode(cfeed); foreach (HtmlNode child in hfeed.ChildNodes) { if (child.Attributes[&#34;id&#34;] == null || child.">
+程序运行结果：  xpath表达式的具体书写都是需要分析你需要解析的网站源码的。。。。 xpath辅助工具的界面：  下载：HtmlAgilityPack 下载：HAPExplorer">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2012/09/22/html%E8%A7%A3%E6%9E%90%E5%B7%A5%E5%85%B7-htmlagilitypack/" />
 <meta property="og:type" content="website" />
@@ -117,7 +117,7 @@ xpath如 …">
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -302,68 +302,16 @@ xpath如 …">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <p>这个工具是在暑假的时候发现的。但是最后没用这个工具。不过，这个工具可是非常强悍的。。</p>
-
 <p><a href="http://htmlagilitypack.codeplex.com">HtmlAgilityPack</a>主要就是解析DOM的。常用的基础类其实不多，对解析DOM来说，就只有HtmlDocument和HtmlNode这两个常用的类，还有一个 HtmlNodeCollection集合类。我给出一个抓取我博客首页文章的例子。看代码可能更清楚一点。你可以去看看压缩包里提供的文档。</p>
-
 <p>xpath如果自己写表达式比较麻烦。所以我还找到了这个HtmlAgilityPack提供了的一个xpath辅助工具-HAPExplorer。都给出了地址。</p>
-
 <p>首先看我的例子，抓取我博客的首页文章：</p>
-
-<pre class="lang:c# decode:true " >using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
-using System.Diagnostics;
-using System.Threading.Tasks;
-using System.IO;
-using System.Data;
-using System.Data.SqlClient;
-using HtmlAgilityPack;
-namespace leaver
-{
-    class Program
-    {
-
-        static void Main(string[] args)
-        {
-            HtmlWeb web = new HtmlWeb();
-            HtmlDocument doc = web.Load("http://leaver.me/");
-
-            HtmlNode node = doc.GetElementbyId("content");
-            StreamWriter sw = File.CreateText("leaver.txt");
-            //从根节点选中class=hfeed的节点
-            string cfeed = node.SelectSingleNode("/html[1]/body[1]/div[1]/div[1]/div[2]/div[1]/div[1]").OuterHtml;
-
-            HtmlNode hfeed = HtmlNode.CreateNode(cfeed);
-            foreach (HtmlNode child in hfeed.ChildNodes)
-            {
-                if (child.Attributes["id"] == null || child.Attributes["id"].Value.Substring(0, 2) != "po")
-                    continue;
-                HtmlNode hn = HtmlNode.CreateNode(child.OuterHtml);
-
-                Write(sw, String.Format("标题：{0}", hn.SelectSingleNode("//*[@class=\"entry-title\"]").InnerText));
-                Write(sw, String.Format("日期：{0}", hn.SelectSingleNode("//*[@class=\"byline\"]").InnerText));
-                Write(sw, String.Format("摘要：{0}", hn.SelectSingleNode("//*[@class=\"entry-summary\"]").InnerText));
-                Write(sw, "----------------------------------------");
-
-            }
-            sw.Close();
-            Console.ReadLine();
-        }
-
-        static void Write(StreamWriter writer, string str)
-        {
-            Console.WriteLine(str);
-            writer.WriteLine(str);
-        }
-    }
-}</pre> 
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>程序运行结果：
-<a href="http://leaverimage.b0.upaiyun.com/27392_o.jpg"><img src="/images/d2623dbdf85b9caabedb4336e53e1fd67cfc07d6.jpg" alt="" title="result" /></a>
+<a href="http://leaverimage.b0.upaiyun.com/27392_o.jpg"><img src="/images/d2623dbdf85b9caabedb4336e53e1fd67cfc07d6.jpg" alt="" title="result"></a>
 xpath表达式的具体书写都是需要分析你需要解析的网站源码的。。。。
 xpath辅助工具的界面：
-<a href="http://leaverimage.b0.upaiyun.com/27391_o.jpg"><img src="/images/2387485c54eef302fae5ddba1382b6a2092c4b67.jpg" alt="" title="xpath" /></a>
+<a href="http://leaverimage.b0.upaiyun.com/27391_o.jpg"><img src="/images/2387485c54eef302fae5ddba1382b6a2092c4b67.jpg" alt="" title="xpath"></a>
 下载：<a href="http://pan.baidu.com/share/link?shareid=61130&amp;uk=1493685990">HtmlAgilityPack</a>
 下载：<a href="http://pan.baidu.com/share/link?shareid=61131&amp;uk=1493685990">HAPExplorer</a></p>
 
@@ -483,7 +431,7 @@ xpath辅助工具的界面：
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

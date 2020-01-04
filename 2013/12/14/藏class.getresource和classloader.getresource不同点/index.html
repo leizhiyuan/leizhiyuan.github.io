@@ -12,23 +12,31 @@
   <meta name="twitter:title" content="[藏]Class.getResource和ClassLoader.getResource不同点" />
   <meta name="description" content="有一次遇到了，查了查。原文地址
 Java中取资源时，经常用到Class.getResource和ClassLoader.getResource，这里来看看他们在取资源文件时候的路径问题。
-Class.getResource(String path)  path不以’/&lsquo;开头时，默认是从此类所在的包下取资源； path 以’/&lsquo;开头时，则是从ClassPath根下获取；  什么意思呢？看下面这段代码的输出结果就明白了：  package testpackage; public class TestMain { public static void main(String[] args) { System.out.println(TestMain.class.getResource(&ldquo;&rdquo;)); System.out.println(TestMain.class.getResource(&ldquo;/&rdquo;)); } }  输出结果：  file:/E:/workspace/Test/bin/testpackage/ file:/E:/workspace/Test/bin/  上面说到的【path以’/&lsquo;开头时，则是从ClassPath根下获取；】在这里就是相当于bin目录(Eclipse环境下)。
-再来一个实例，假设有如下Project结构：
+Class.getResource(String path) 再来一个实例，假设有如下Project结构：
 
-如果我们想在TestMain.java中分别取到1~3.properties文件，该怎么写路径呢？代码如下： package testpackage;
-public class TestMain {
-public static void main(String[] args) { // 当前类(class)所在的包目录 System.out.println(TestMain.class.getResource(&#34;&#34;)); // class path根目录 System.out.println(TestMain.class.getResource(&#34;/&#34;)); // TestMain.class在&amp;lt;bin&amp;gt;/testpackage包中 // 2.properties 在&amp;lt;bin&amp;gt;/testpackage包中 System.out.println(TestMain.class.getResource(&#34;2.properties&#34;)); // TestMain.class在&amp;lt;bin&amp;gt;/testpackage包中 // 3.properties 在&amp;lt;bin&amp;gt;/testpackage.subpackage包中 System.out.println(TestMain.class.getResource(&#34;subpackage/3.properties&#34;)); // TestMain.">
+如果我们想在TestMain.java中分别取到1~3.properties文件，该怎么写路径呢？代码如下：
+ ※Class.getResource和Class.getResourceAsStream在使用时，路径选择上是一样的。
+  Class.getClassLoader（）.getResource(String path) 如果有同样的Project结构
+
+使用Class.getClassLoader（）.getResource(String path)可以这么写：
+public class TestMain { public static void main(String[] args) { TestMain t = new TestMain(); System.out.println(t.getClass().getClassLoader().getResource(&quot;&quot;));
+ System.out.println(t.getClass().getClassLoader().getResource(&quot;1.properties&quot;)); System.out.println(t.getClass().getClassLoader().getResource(&quot;testpackage/2.properties&quot;)); System.out.println(t.getClass().getClassLoader().getResource(&quot;testpackage/subpackage/3.properties&quot;)); }  }※Class.getClassLoader（）.getResource和Class.getClassLoader（）.getResourceAsStream在使用时，路径选择上也是一样的。">
   <meta property="og:description" content="有一次遇到了，查了查。原文地址
 Java中取资源时，经常用到Class.getResource和ClassLoader.getResource，这里来看看他们在取资源文件时候的路径问题。
-Class.getResource(String path)  path不以’/&lsquo;开头时，默认是从此类所在的包下取资源； path 以’/&lsquo;开头时，则是从ClassPath根下获取；  什么意思呢？看下面这段代码的输出结果就明白了：  package testpackage; public class TestMain { public static void main(String[] args) { System.out.println(TestMain.class.getResource(&ldquo;&rdquo;)); System.out.println(TestMain.class.getResource(&ldquo;/&rdquo;)); } }  输出结果：  file:/E:/workspace/Test/bin/testpackage/ file:/E:/workspace/Test/bin/  上面说到的【path以’/&lsquo;开头时，则是从ClassPath根下获取；】在这里就是相当于bin目录(Eclipse环境下)。
-再来一个实例，假设有如下Project结构：
+Class.getResource(String path) 再来一个实例，假设有如下Project结构：
 
-如果我们想在TestMain.java中分别取到1~3.properties文件，该怎么写路径呢？代码如下： package testpackage;
-public class TestMain {
-public static void main(String[] args) { // 当前类(class)所在的包目录 System.out.println(TestMain.class.getResource(&#34;&#34;)); // class path根目录 System.out.println(TestMain.class.getResource(&#34;/&#34;)); // TestMain.class在&amp;lt;bin&amp;gt;/testpackage包中 // 2.properties 在&amp;lt;bin&amp;gt;/testpackage包中 System.out.println(TestMain.class.getResource(&#34;2.properties&#34;)); // TestMain.class在&amp;lt;bin&amp;gt;/testpackage包中 // 3.properties 在&amp;lt;bin&amp;gt;/testpackage.subpackage包中 System.out.println(TestMain.class.getResource(&#34;subpackage/3.properties&#34;)); // TestMain.">
+如果我们想在TestMain.java中分别取到1~3.properties文件，该怎么写路径呢？代码如下：
+ ※Class.getResource和Class.getResourceAsStream在使用时，路径选择上是一样的。
+  Class.getClassLoader（）.getResource(String path) 如果有同样的Project结构
+
+使用Class.getClassLoader（）.getResource(String path)可以这么写：
+public class TestMain { public static void main(String[] args) { TestMain t = new TestMain(); System.out.println(t.getClass().getClassLoader().getResource(&quot;&quot;));
+ System.out.println(t.getClass().getClassLoader().getResource(&quot;1.properties&quot;)); System.out.println(t.getClass().getClassLoader().getResource(&quot;testpackage/2.properties&quot;)); System.out.println(t.getClass().getClassLoader().getResource(&quot;testpackage/subpackage/3.properties&quot;)); }  }※Class.getClassLoader（）.getResource和Class.getClassLoader（）.getResourceAsStream在使用时，路径选择上也是一样的。">
   <meta name="twitter:description" content="有一次遇到了，查了查。原文地址
 Java中取资源时，经常用到Class.getResource和ClassLoader.getResource，这里来看看他们在取资源文件时候的路径问题。
-Class.getResource(String path)  path不以’/&lsquo;开头时，默认是从此类所在的包下取资源； path 以’/&lsquo;开头时，则是从ClassPath根下获取；  什 …">
+Class.getResource(String path) 再来一个实例，假设有如下Project结构：
+
+如果我们想在TestMain.java中分别取到1~3.properties文件，该怎么写路径呢？代码 …">
   <meta name="author" content="bystander"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -77,9 +85,9 @@ Class.getResource(String path)  path不以’/&lsquo;开头时，默认是从此
     "name" : "bystander"
   },
   "headline": "[藏]Class.getResource和ClassLoader.getResource不同点",
-  "description" : "有一次遇到了，查了查。原文地址\nJava中取资源时，经常用到Class.getResource和ClassLoader.getResource，这里来看看他们在取资源文件时候的路径问题。\nClass.getResource(String path)  path不以’\/\x26lsquo;开头时，默认是从此类所在的包下取资源； path 以’\/\x26lsquo;开头时，则是从ClassPath根下获取；  什么意思呢？看下面这段代码的输出结果就明白了：  package testpackage; public class TestMain { public static void main(String[] args) { System.out.println(TestMain.class.getResource(\x26ldquo;\x26rdquo;)); System.out.println(TestMain.class.getResource(\x26ldquo;\/\x26rdquo;)); } }  输出结果：  file:\/E:\/workspace\/Test\/bin\/testpackage\/ file:\/E:\/workspace\/Test\/bin\/  上面说到的【path以’\/\x26lsquo;开头时，则是从ClassPath根下获取；】在这里就是相当于bin目录(Eclipse环境下)。\n再来一个实例，假设有如下Project结构：\n\n如果我们想在TestMain.java中分别取到1~3.properties文件，该怎么写路径呢？代码如下： package testpackage;\npublic class TestMain {\npublic static void main(String[] args) { \/\/ 当前类(class)所在的包目录 System.out.println(TestMain.class.getResource(\x26#34;\x26#34;)); \/\/ class path根目录 System.out.println(TestMain.class.getResource(\x26#34;\/\x26#34;)); \/\/ TestMain.class在\x26amp;lt;bin\x26amp;gt;\/testpackage包中 \/\/ 2.properties 在\x26amp;lt;bin\x26amp;gt;\/testpackage包中 System.out.println(TestMain.class.getResource(\x26#34;2.properties\x26#34;)); \/\/ TestMain.class在\x26amp;lt;bin\x26amp;gt;\/testpackage包中 \/\/ 3.properties 在\x26amp;lt;bin\x26amp;gt;\/testpackage.subpackage包中 System.out.println(TestMain.class.getResource(\x26#34;subpackage\/3.properties\x26#34;)); \/\/ TestMain.",
+  "description" : "有一次遇到了，查了查。原文地址\nJava中取资源时，经常用到Class.getResource和ClassLoader.getResource，这里来看看他们在取资源文件时候的路径问题。\nClass.getResource(String path) 再来一个实例，假设有如下Project结构：\n\n如果我们想在TestMain.java中分别取到1~3.properties文件，该怎么写路径呢？代码如下：\n ※Class.getResource和Class.getResourceAsStream在使用时，路径选择上是一样的。\n  Class.getClassLoader（）.getResource(String path) 如果有同样的Project结构\n\n使用Class.getClassLoader（）.getResource(String path)可以这么写：\npublic class TestMain { public static void main(String[] args) { TestMain t = new TestMain(); System.out.println(t.getClass().getClassLoader().getResource(\x26quot;\x26quot;));\n System.out.println(t.getClass().getClassLoader().getResource(\x26quot;1.properties\x26quot;)); System.out.println(t.getClass().getClassLoader().getResource(\x26quot;testpackage\/2.properties\x26quot;)); System.out.println(t.getClass().getClassLoader().getResource(\x26quot;testpackage\/subpackage\/3.properties\x26quot;)); }  }※Class.getClassLoader（）.getResource和Class.getClassLoader（）.getResourceAsStream在使用时，路径选择上也是一样的。",
   "inLanguage" : "en",
-  "wordCount":  138 ,
+  "wordCount":  33 ,
   "datePublished" : "2013-12-14T18:18:53",
   "dateModified" : "2013-12-14T18:18:53",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -101,12 +109,15 @@ Class.getResource(String path)  path不以’/&lsquo;开头时，默认是从此
 <meta property="og:title" content="[藏]Class.getResource和ClassLoader.getResource不同点" />
 <meta property="og:description" content="有一次遇到了，查了查。原文地址
 Java中取资源时，经常用到Class.getResource和ClassLoader.getResource，这里来看看他们在取资源文件时候的路径问题。
-Class.getResource(String path)  path不以’/&lsquo;开头时，默认是从此类所在的包下取资源； path 以’/&lsquo;开头时，则是从ClassPath根下获取；  什么意思呢？看下面这段代码的输出结果就明白了：  package testpackage; public class TestMain { public static void main(String[] args) { System.out.println(TestMain.class.getResource(&ldquo;&rdquo;)); System.out.println(TestMain.class.getResource(&ldquo;/&rdquo;)); } }  输出结果：  file:/E:/workspace/Test/bin/testpackage/ file:/E:/workspace/Test/bin/  上面说到的【path以’/&lsquo;开头时，则是从ClassPath根下获取；】在这里就是相当于bin目录(Eclipse环境下)。
-再来一个实例，假设有如下Project结构：
+Class.getResource(String path) 再来一个实例，假设有如下Project结构：
 
-如果我们想在TestMain.java中分别取到1~3.properties文件，该怎么写路径呢？代码如下： package testpackage;
-public class TestMain {
-public static void main(String[] args) { // 当前类(class)所在的包目录 System.out.println(TestMain.class.getResource(&#34;&#34;)); // class path根目录 System.out.println(TestMain.class.getResource(&#34;/&#34;)); // TestMain.class在&amp;lt;bin&amp;gt;/testpackage包中 // 2.properties 在&amp;lt;bin&amp;gt;/testpackage包中 System.out.println(TestMain.class.getResource(&#34;2.properties&#34;)); // TestMain.class在&amp;lt;bin&amp;gt;/testpackage包中 // 3.properties 在&amp;lt;bin&amp;gt;/testpackage.subpackage包中 System.out.println(TestMain.class.getResource(&#34;subpackage/3.properties&#34;)); // TestMain.">
+如果我们想在TestMain.java中分别取到1~3.properties文件，该怎么写路径呢？代码如下：
+ ※Class.getResource和Class.getResourceAsStream在使用时，路径选择上是一样的。
+  Class.getClassLoader（）.getResource(String path) 如果有同样的Project结构
+
+使用Class.getClassLoader（）.getResource(String path)可以这么写：
+public class TestMain { public static void main(String[] args) { TestMain t = new TestMain(); System.out.println(t.getClass().getClassLoader().getResource(&quot;&quot;));
+ System.out.println(t.getClass().getClassLoader().getResource(&quot;1.properties&quot;)); System.out.println(t.getClass().getClassLoader().getResource(&quot;testpackage/2.properties&quot;)); System.out.println(t.getClass().getClassLoader().getResource(&quot;testpackage/subpackage/3.properties&quot;)); }  }※Class.getClassLoader（）.getResource和Class.getClassLoader（）.getResourceAsStream在使用时，路径选择上也是一样的。">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2013/12/14/%E8%97%8Fclass.getresource%E5%92%8Cclassloader.getresource%E4%B8%8D%E5%90%8C%E7%82%B9/" />
 <meta property="og:type" content="website" />
@@ -115,7 +126,9 @@ public static void main(String[] args) { // 当前类(class)所在的包目录 S
   <meta name="twitter:title" content="[藏]Class.getResource和ClassLoader.getResource不同点" />
   <meta name="twitter:description" content="有一次遇到了，查了查。原文地址
 Java中取资源时，经常用到Class.getResource和ClassLoader.getResource，这里来看看他们在取资源文件时候的路径问题。
-Class.getResource(String path)  path不以’/&lsquo;开头时，默认是从此类所在的包下取资源； path 以’/&lsquo;开头时，则是从ClassPath根下获取；  什 …">
+Class.getResource(String path) 再来一个实例，假设有如下Project结构：
+
+如果我们想在TestMain.java中分别取到1~3.properties文件，该怎么写路径呢？代码 …">
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -126,7 +139,7 @@ Class.getResource(String path)  path不以’/&lsquo;开头时，默认是从此
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -310,118 +323,36 @@ Class.getResource(String path)  path不以’/&lsquo;开头时，默认是从此
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        
-
-<p>有一次遇到了，查了查。<a href="http://www.cnblogs.com/yejg1212/p/3270152.html">原文地址</a></p>
-
+        <p>有一次遇到了，查了查。<a href="http://www.cnblogs.com/yejg1212/p/3270152.html">原文地址</a></p>
 <p>Java中取资源时，经常用到Class.getResource和ClassLoader.getResource，这里来看看他们在取资源文件时候的路径问题。</p>
-
-<h2 id="class-getresource-string-path">Class.getResource(String path)</h2>
-
-<p><div>
-<pre>path不以’/&lsquo;开头时，默认是从此类所在的包下取资源；
-path  以’/&lsquo;开头时，则是从ClassPath根下获取；</pre>
-</div>
-什么意思呢？看下面这段代码的输出结果就明白了：
-<div>
-<pre>package testpackage;
-public class TestMain {
-    public static void main(String[] args) {
-        System.out.println(TestMain.class.getResource(&ldquo;&rdquo;));
-        System.out.println(TestMain.class.getResource(&ldquo;/&rdquo;));
-    }
-}</pre>
-</div>
-输出结果：
-<div>
-<pre>file:/E:/workspace/Test/bin/testpackage/
-file:/E:/workspace/Test/bin/</pre>
-</div>
-上面说到的【path以’/&lsquo;开头时，则是从ClassPath根下获取；】在这里就是相当于bin目录(Eclipse环境下)。</p>
-
+<h2 id="classgetresourcestring-path">Class.getResource(String path)</h2>
+<!-- raw HTML omitted -->
 <p>再来一个实例，假设有如下Project结构：</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/2013/12/o_PackageStructure1.png"><img src="/images/94eb328bce2cf9ff32430cc4075af46091202a22.png" alt="o_PackageStructure1" /></a></p>
-
-<p>如果我们想在TestMain.java中分别取到1~3.properties文件，该怎么写路径呢？代码如下：
-<pre class="lang:default decode:true">package testpackage;</p>
-
-<p>public class TestMain {</p>
-<div class="highlight"><pre class="chroma">public static void main(String[] args) {
-    // 当前类(class)所在的包目录
-    System.out.println(TestMain.class.getResource(&#34;&#34;));
-    // class path根目录
-    System.out.println(TestMain.class.getResource(&#34;/&#34;));
-
-    // TestMain.class在&amp;lt;bin&amp;gt;/testpackage包中
-    // 2.properties  在&amp;lt;bin&amp;gt;/testpackage包中
-    System.out.println(TestMain.class.getResource(&#34;2.properties&#34;));
-
-    // TestMain.class在&amp;lt;bin&amp;gt;/testpackage包中
-    // 3.properties  在&amp;lt;bin&amp;gt;/testpackage.subpackage包中
-    System.out.println(TestMain.class.getResource(&#34;subpackage/3.properties&#34;));
-
-    // TestMain.class在&amp;lt;bin&amp;gt;/testpackage包中
-    // 1.properties  在bin目录（class根目录）
-    System.out.println(TestMain.class.getResource(&#34;/1.properties&#34;));
-}</pre></div>
-<p>}</pre>
-&nbsp;</p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/2013/12/o_PackageStructure1.png"><img src="/images/94eb328bce2cf9ff32430cc4075af46091202a22.png" alt="o_PackageStructure1"></a></p>
+<p>如果我们想在TestMain.java中分别取到1~3.properties文件，该怎么写路径呢？代码如下：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
 <p>※Class.getResource和Class.getResourceAsStream在使用时，路径选择上是一样的。</p>
-
-<p>&nbsp;</p>
-
-<p>&nbsp;</p>
-
-<h2 id="class-getclassloader-getresource-string-path">Class.getClassLoader（）.getResource(String path)</h2>
-
-<p><div>
-<pre>path不能以’/&lsquo;开头时；
-path是从ClassPath根下获取；</pre>
-</div>
-还是先看一下下面这段代码的输出：
-<div>
-<pre>package testpackage;
-public class TestMain {
-    public static void main(String[] args) {
-        TestMain t = new TestMain();
-        System.out.println(t.getClass());
-        System.out.println(t.getClass().getClassLoader());
-        System.out.println(t.getClass().getClassLoader().getResource(&ldquo;&rdquo;));
-        System.out.println(t.getClass().getClassLoader().getResource(&ldquo;/&rdquo;));//null
-    }
-}</pre>
-</div>
-输出结果：
-<div>
-<pre>class testpackage.TestMain
-sun.misc.Launcher$AppClassLoader@1fb8ee3
-file:/E:/workspace/Test/bin/
-null</pre>
-</div>
-从结果来看【TestMain.class.getResource(&ldquo;/&rdquo;) == t.getClass().getClassLoader().getResource(&ldquo;&rdquo;)】</p>
-
+<p> </p>
+<p> </p>
+<h2 id="classgetclassloadergetresourcestring-path">Class.getClassLoader（）.getResource(String path)</h2>
+<!-- raw HTML omitted -->
 <p>如果有同样的Project结构</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/2013/12/o_PackageStructure.png"><img src="/images/46e184c9601d96bbb9fbb19e475c7909c85fe52c.png" alt="o_PackageStructure" /></a></p>
-
-<p>使用Class.getClassLoader（）.getResource(String path)可以这么写：
-<div>
-<pre>package testpackage;</p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/2013/12/o_PackageStructure.png"><img src="/images/46e184c9601d96bbb9fbb19e475c7909c85fe52c.png" alt="o_PackageStructure"></a></p>
+<p>使用Class.getClassLoader（）.getResource(String path)可以这么写：</p>
+<!-- raw HTML omitted -->
 <p>public class TestMain {
-    public static void main(String[] args) {
-        TestMain t = new TestMain();
-        System.out.println(t.getClass().getClassLoader().getResource(&ldquo;&rdquo;));</p>
-<div class="highlight"><pre class="chroma">    System.out.println(t.getClass().getClassLoader().getResource(&#34;1.properties&#34;));
-    System.out.println(t.getClass().getClassLoader().getResource(&#34;testpackage/2.properties&#34;));
-    System.out.println(t.getClass().getClassLoader().getResource(&#34;testpackage/subpackage/3.properties&#34;));
-}</pre></div>
-<p>}</pre>
-</div>
-&nbsp;</p>
-
+public static void main(String[] args) {
+TestMain t = new TestMain();
+System.out.println(t.getClass().getClassLoader().getResource(&quot;&quot;));</p>
+<pre><code>    System.out.println(t.getClass().getClassLoader().getResource(&quot;1.properties&quot;));
+    System.out.println(t.getClass().getClassLoader().getResource(&quot;testpackage/2.properties&quot;));
+    System.out.println(t.getClass().getClassLoader().getResource(&quot;testpackage/subpackage/3.properties&quot;));
+}
+</code></pre>
+<p>}<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
 <p>※Class.getClassLoader（）.getResource和Class.getClassLoader（）.getResourceAsStream在使用时，路径选择上也是一样的。</p>
 
 
@@ -538,7 +469,7 @@ null</pre>
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

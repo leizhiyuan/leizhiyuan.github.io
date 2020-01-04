@@ -51,7 +51,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -307,10 +307,8 @@
               <div class="post-entry">
                 
                   <p>　　今天在网上看到的。就自己制作了一下pdf版本。方便大家。现在比较纠结的是没有一个好网盘。115竟然需要登录才能下载了。。刚才试了下。。更可怕的是，，只有绑定了手机才能分享。霖枫叔疯了么。。
-<a href="http://leaverimage.b0.upaiyun.com/25577_o.jpg"><img src="/images/" alt="" title="pdf" /></a></p>
-
+<a href="http://leaverimage.b0.upaiyun.com/25577_o.jpg"><img src="/images/" alt="" title="pdf"></a></p>
 <p>那还是将就着用华为的吧。其实我也不喜欢华为的。。</p>
-
 <p>下载地址：<a href="http://dl.dbank.com/c09mm555k4">北外英语专业超全面翻译笔记</a></p>
 
                 
@@ -360,16 +358,12 @@
               <div class="post-entry">
                 
                   <p>　　今天在用WCF写服务的时候，服务一直连不上，直接查看svc文件，发现如下错误
-未能加载文件或程序集“&rsquo;App<em>Web</em>*<strong><em>, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null&rdquo;,</em></strong>*是一个随机字符串。</p>
-
+未能加载文件或程序集“&lsquo;App_Web_****, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null&rdquo;,****是一个随机字符串。</p>
 <p>解决方法中：</p>
-
-<p>　　在web.config里配置成这样子：
-<pre class="lang:c# decode:true"> &lt;compilation debug=&ldquo;true&rdquo; batch=&ldquo;false&rdquo;&gt;</pre>
-　　就好了。中午和下午一直在搞javascript连接WCF的demo，总算是晚上搞定了，，还是老样子，，最大的体会就是很多东西就是看着简单，写起来会有各种各样的问题，比如这次，即使照着微软的官方文档来，也会有错误。动手才是王道，不管做什么。这几天忙完了，写篇文章出来。</p>
-
+<p>　　在web.config里配置成这样子：</p>
+<!-- raw HTML omitted -->
+<p>　　就好了。中午和下午一直在搞javascript连接WCF的demo，总算是晚上搞定了，，还是老样子，，最大的体会就是很多东西就是看着简单，写起来会有各种各样的问题，比如这次，即使照着微软的官方文档来，也会有错误。动手才是王道，不管做什么。这几天忙完了，写篇文章出来。</p>
 <p>　　最后分享一下微软官方的<a href="http://www.microsoft.com/china/msdn/events/webcasts/shared/webcast/Series/WCF_Ajax.aspx">WCF与Ajax开发实践系列课程</a>，我只能说WCF这东西没有哪一本书比微软官方的技术培训讲的更好了，非常建议学习。</p>
-
 <p>　　武汉最近下雨了，天气挺凉爽，过几天准备回家吧。。</p>
 
                 
@@ -425,20 +419,15 @@
               <div class="post-entry">
                 
                   <p>　　在最近的一个程序中，因为频繁的操作数据库，莫名的出现了如下的错误：</p>
-
 <p>　　超时时间已到。超时时间已到，但是尚未从池中获取连接。出现这种情况可能是因为所有池连接均在使用，并且达到了最大池大小。</p>
-
 <p>　　说明: 执行当前 Web 请求期间，出现未处理的异常。请检查堆栈跟踪信息，以了解有关该错误以及代码中导致错误的出处的详细信息。</p>
-
 <p>　　异常详细信息: System.InvalidOperationException: 超时时间已到。超时时间已到，但是尚未从池中获取连接。出现这种情况可能是因为所有池连接均在使用，并且达到了最大池大小。</p>
-
 <p>　　按理说这应该是没有关闭数据库连接或者dataset，可是查了一下。发现都关了啊。遂可以表述为原因不明，但是通过在数据库连接字符串中添加max pool size=512  这个数字可以自己设。就可以了</p>
-
 <p>　　这篇文章短是短了点。。好吧。那顺带分享一套非常精美的C#控件。
 <a href="http://115.com/file/dptqnr63#RadControls-WinForms-2012-2-608-Dev.msi">RadControls-For-WinForms 控件2012</a>
-<a href="http://leaverimage.b0.upaiyun.com/24794_o.jpg"><img src="/images/35b3a6023ad34c4bab5564678dffabbcdd53a5da.jpg" alt="" title="wpf" /></a>
+<a href="http://leaverimage.b0.upaiyun.com/24794_o.jpg"><img src="/images/35b3a6023ad34c4bab5564678dffabbcdd53a5da.jpg" alt="" title="wpf"></a>
 <a href="http://115.com/file/e79q6pju#RadControls-for-WPF-2012-2-0607-Dev.msi">RadControls-for-WPF控件2012</a>
-<a href="http://leaverimage.b0.upaiyun.com/24793_o.jpg"><img src="/images/c3f1eeb8b01e38643d7ce0d2e2716bba20285943.jpg" alt="" title="winform" /></a></p>
+<a href="http://leaverimage.b0.upaiyun.com/24793_o.jpg"><img src="/images/c3f1eeb8b01e38643d7ce0d2e2716bba20285943.jpg" alt="" title="winform"></a></p>
 
                 
               </div>
@@ -490,12 +479,8 @@
               </p>
               <div class="post-entry">
                 
-                  
-
-<p>最近在看线程的东西，整理一些文档以便学习。分享。</p>
-
-<h3 id="刚刚-http-www-cnblogs-com-xugang"><a href="http://www.cnblogs.com/xugang">刚刚</a></h3>
-
+                  <p>最近在看线程的东西，整理一些文档以便学习。分享。</p>
+<h3 id="httpwwwcnblogscomxugang"><a href="http://www.cnblogs.com/xugang">刚刚</a></h3>
 <ol>
 <li><a href="http://kb.cnblogs.com/page/42528">C#多线程学习(一) 多线程的相关概念</a></li>
 <li><a href="http://kb.cnblogs.com/page/42529">C#多线程学习(二) 如何操纵一个线程</a></li>
@@ -505,16 +490,12 @@
 <li><a href="http://kb.cnblogs.com/page/42533">C#多线程学习(六) 互斥对象</a></li>
 <li><a href="http://www.cnblogs.com/xugang/archive/2011/03/20/1989782.html">C# 实现多线程的同步方法详解</a></li>
 </ol>
-
-<h3 id="jimmyzheng-http-www-cnblogs-com-jimmyzheng"><a href="http://www.cnblogs.com/JimmyZheng">JimmyZheng</a></h3>
-
+<h3 id="jimmyzhenghttpwwwcnblogscomjimmyzheng"><a href="http://www.cnblogs.com/JimmyZheng">JimmyZheng</a></h3>
 <ol>
 <li><a href="http://www.cnblogs.com/JimmyZheng/archive/2012/06/10/2543143.html">C# 温故而知新： 线程篇(一)</a> <strong>Thread</strong></li>
 <li><a href="http://www.cnblogs.com/JimmyZheng/archive/2012/07/07/2580253.html">C# 温故而知新： 线程篇(二)</a> 线程池和异步线程</li>
 </ol>
-
-<h3 id="zhoufoxcn-http-blog-csdn-net-zhoufoxcn"><a href="http://blog.csdn.net/zhoufoxcn">zhoufoxcn</a></h3>
-
+<h3 id="zhoufoxcnhttpblogcsdnnetzhoufoxcn"><a href="http://blog.csdn.net/zhoufoxcn">zhoufoxcn</a></h3>
 <ol>
 <li><a href="http://blog.csdn.net/zhoufoxcn/article/details/4402999">C#多线程编程（1）：线程的启动</a></li>
 <li><a href="http://blog.csdn.net/zhoufoxcn/article/details/5170815">多线程编程(2)：线程的同步</a></li>
@@ -522,23 +503,17 @@
 <li><a href="http://blog.csdn.net/zhoufoxcn/article/details/5205690">多线程编程(4)：多线程与UI操作</a></li>
 <li><a href="http://blog.csdn.net/zhoufoxcn/article/details/2453803">一个简单的C#多线程间同步的例子</a></li>
 </ol>
-
-<h3 id="老赵-http-www-cnblogs-com-jeffreyzhao"><a href="http://www.cnblogs.com/JeffreyZhao">老赵</a></h3>
-
+<h3 id="httpwwwcnblogscomjeffreyzhao"><a href="http://www.cnblogs.com/JeffreyZhao">老赵</a></h3>
 <ol>
 <li><a href="http://www.cnblogs.com/JeffreyZhao/archive/2009/07/22/thread-pool-1-the-goal-and-the-clr-thread-pool.html">浅谈线程池（上）：线程池的作用及CLR线程池</a></li>
 <li><a href="http://www.cnblogs.com/JeffreyZhao/archive/2009/07/24/thread-pool-2-dedicate-pool-and-io-pool.html">浅谈线程池（中）：独立线程池的作用及IO线程池</a></li>
 <li><a href="http://www.cnblogs.com/JeffreyZhao/archive/2009/10/20/thread-pool-3-lab.html">浅谈线程池（下）：相关试验及注意事项</a></li>
 </ol>
-
-<h3 id="bloodish-http-www-cnblogs-com-bloodish"><a href="http://www.cnblogs.com/bloodish">bloodish</a></h3>
-
+<h3 id="bloodishhttpwwwcnblogscombloodish"><a href="http://www.cnblogs.com/bloodish">bloodish</a></h3>
 <ol>
 <li><a href="http://www.cnblogs.com/bloodish/archive/2011/03/21/1990025.html">C# Tip &ndash; 如何优雅的控制线程状态</a></li>
 </ol>
-
-<h3 id="autumoon-http-www-cnblogs-com-autumoon"><a href="http://www.cnblogs.com/Autumoon">Autumoon</a></h3>
-
+<h3 id="autumoonhttpwwwcnblogscomautumoon"><a href="http://www.cnblogs.com/Autumoon">Autumoon</a></h3>
 <ol>
 <li><a href="http://www.cnblogs.com/Autumoon/archive/2008/06/19/1225684.html">白话多线程</a></li>
 </ol>
@@ -593,31 +568,21 @@
               </p>
               <div class="post-entry">
                 
-                  
-
-<p>　　</p>
-
-<h3 id="什么是class">什么是class?</h3>
-
+                  <p>　　</p>
+<h3 id="class">什么是class?</h3>
 <p>　　class（类）是面向对象编程的基本概念，是一种自定义数据结构类型，通常包含字段、属性、方法、属性、构造函数、索引器、操作符等。.NET中，所有的类都最终继承自System.Object类，因此是一种引用类型，也就是说，new一个类的实例时，对象保存了该实例实际数据的引用地址，而对象的值保存在托管堆（managed heap）中。</p>
-
-<h3 id="什么是struct">什么是struct?</h3>
-
+<h3 id="struct">什么是struct?</h3>
 <p>　　struct（结构）是一种值类型，用于将一组相关的信息变量组织为一个单一的变量实体 。所有的结构都继承自System.ValueType类，因此是一种值类型，也就是说，struct实例分配在线程的堆栈（stack）上，它本身存储了值，而不包含指向该值的指针。所以在使用struct时，我们可以将其当作int、char这样的基本类型类对待。</p>
-
-<h3 id="比较">比较：</h3>
-
+<h3 id="heading">比较：</h3>
 <p>　　相同点：语法类似。</p>
-
 <p>　　不同点：</p>
-
 <blockquote>
 <ul>
 <li>class是引用类型，继承自System.Object类；struct是值类型，继承自System.ValueType类，因此不具多态性。但是注意，System.ValueType是个引用类型。</li>
 <li>从职能观点来看，class更多表现为行为；而struct常用于存储数据。</li>
 <li>class支持继承，可以继承自类和接口；而struct没有继承性，struct不能从class继承，也不能作为class的基类，但struct支持接口继承</li>
-<li>class可以声明无参构造函数，可以声明析构函数；_而struct只能声明带参数构造函数_，且不能声明析构函数。因此，struct没有自定义的默认无参构造函数，默认无参构造器只是简单地把所有值初始化为它们的0等价值</li>
-<li>实例化时，_class要使用new关键字；而struct可以不使用new关键字_，如果不以new来实例化struct，则其所有的字段将处于未分配状态，直到所有字段完成初始化，否则引用未赋值的字段会导致编译错误。</li>
+<li>class可以声明无参构造函数，可以声明析构函数；<em>而struct只能声明带参数构造函数</em>，且不能声明析构函数。因此，struct没有自定义的默认无参构造函数，默认无参构造器只是简单地把所有值初始化为它们的0等价值</li>
+<li>实例化时，<em>class要使用new关键字；而struct可以不使用new关键字</em>，如果不以new来实例化struct，则其所有的字段将处于未分配状态，直到所有字段完成初始化，否则引用未赋值的字段会导致编译错误。</li>
 <li>class可以是抽象类（abstract），可以声明抽象函数；而struct不能为抽象，也不能声明抽象函数。</li>
 <li>class可以声明protected成员、virtual成员、sealed成员和override成员；而struct不可以，struct可以重载System.Object的3个虚方法，Equals()、ToString()和GetHashTable()。</li>
 <li>class的对象复制分为浅拷贝和深拷贝，必须经过特别的方法来完成复制；而struct创建的对象复制简单，可以直接以等号连接即可。</li>
@@ -625,14 +590,16 @@
 <li>作为参数传递时，class变量是以按址方式传递；而struct变量是以按值方式传递的。</li>
 </ul>
 </blockquote>
-
 <p>　　我们可以简单的理解，class是一个可以动的机器，有行为，有多态，有继承；而struct就是个零件箱，组合了不同结构的零件。其实，<strong><em>class和struct最本质的区别就在于class是引用类型</em></strong>，内存分配于托管堆；而struct是值类型，内存分配于线程的堆栈上。由此差异，导致了上述所有的不同点，虽然在某些方面struct有性能方面的优势，但是在面向对象编程里，基本是class横行的天下。</p>
-
-<p>　　那么，既然class几乎可以完全替代struct来实现所有的功能，那么struct还有存在的必要吗？答案是，至少在以下情况下，鉴于性能上的考虑，我们应该考虑使用struct来代替class：　　
-&gt; *   实现一个主要用于存储数据的结构时，可以考虑struct。
-&gt; *   struct变量占有堆栈的空间，因此只适用于数据量相对小的场合。
-&gt; *   结构数组具有更高的效率。
-&gt; *   提供某些和非托管代码通信的兼容性。</p>
+<p>　　那么，既然class几乎可以完全替代struct来实现所有的功能，那么struct还有存在的必要吗？答案是，至少在以下情况下，鉴于性能上的考虑，我们应该考虑使用struct来代替class：　　</p>
+<blockquote>
+<ul>
+<li>实现一个主要用于存储数据的结构时，可以考虑struct。</li>
+<li>struct变量占有堆栈的空间，因此只适用于数据量相对小的场合。</li>
+<li>结构数组具有更高的效率。</li>
+<li>提供某些和非托管代码通信的兼容性。</li>
+</ul>
+</blockquote>
 
                 
               </div>
@@ -683,9 +650,7 @@
               <div class="post-entry">
                 
                   <p>　　本文来自《你必须知道的.NET》这本书，是我看书过程中的笔记整理。</p>
-
 <p>　　不变的量是程序设计中的平衡剂，是系统中恒定不变的量，在.NET中提供哦你了两种方式来实现，const和readonly。其中，const是静态常量，readonly是动态常量。</p>
-
 <ul>
 <li>const，readonly和static readonly定义的常量，一旦初始值指定，（包括在构造函数内指定初始值），将不可更改，可读不可写。</li>
 <li>const必须在声明的时候指定初始值，而readonly和static readonly在在声明时可以指定，也可以不指定初始值，同时也可以在构造函数中指定初始值，如果同时在声明时和构造函数中指定了初始值，以构造函数内指定的值为准。</li>
@@ -696,14 +661,10 @@
 <li>const只能应用在值类型和string类型上，其他引用类型常量只能定义为null，否则以new为const引用类型常量赋值，编译器会引发“只能用null对引用类型（字符串除外）的常量进行初始化”错误提示，原因是构造函数初始化是在运行时，而非编译时，readonly只读字段，可以是任意类型，但是对于引用类型字段来说，readonly不能限制对该对象实例成员的访问控制。
 　　总结：尽可能以只读属性来实现对类型读写特性的控制，而不是只读字段，但是在某些情况下，只读字段更简化些。</li>
 </ul>
-
 <p>　　const是编译时常量，readonly是运行时常量，const较高效，readonly更灵活，在应用上，推荐以static readonly代替const，以平衡const在灵活性上的不足，同时克服编译器优化const性能时，所带来的程序集引用不一致问题。</p>
-
-<p>&nbsp;</p>
-
-<p>&nbsp;</p>
-
-<p>&nbsp;</p>
+<p> </p>
+<p> </p>
+<p> </p>
 
                 
               </div>
@@ -754,70 +715,29 @@
               <div class="post-entry">
                 
                   <p>这几天在想C# winform程序界面实在太单一，而我<a href="http://leaver.me/archives/990.html">C#实现不规则窗体</a>中也说了，如果用背景这种东西来做的话，效果很差，抗锯齿能力基本为0，所以我当时在博客园提问，然后园友有了很给力的回答，比如WPF来做，或者第三方插件，或者深入底层改写ONPaint函数的，今天没事，恰好看到了一篇文章讲这个的，于是，就做一个简单的Demo出来，华丽的效果有木有，先看效果图</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/23622_o.jpg"><img src="/images/ba031241897a97ce5f76970d0787694511d3960a.jpg" alt="" title="效果" /></a>
+<p><a href="http://leaverimage.b0.upaiyun.com/23622_o.jpg"><img src="/images/ba031241897a97ce5f76970d0787694511d3960a.jpg" alt="" title="效果"></a>
 在win 7下使用win+Tab切换效果也很华丽。就不演示了。</p>
-
 <p>做起来还算比较简单，首先使用Microsoft Expression Design 4 设计一个界面，破解版什么的太多了，，软件界面和ps挺像，不过功能弱很多，自己操作操作就好了，我说一个问题，就是我当时想画一个空心的圆，也就是一个圆环，ps里大家都知道，直接选区相减就可以了，但是这个死活没找到，基本上最后这个界面所有的地方被找了一遍，猜了猜，才发现了，</p>
-
 <p>具体操作如下，首先汇出一个圆形，然后在圆里面再绘出一个圆形，这时候选中第二次的这个小圆，点击屏幕右侧的那个箭头会出现高级选项，</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/23623_o.jpg"><img src="/images/7bb961d46945780dd51bf752d4109eb6dfec9583.jpg" alt="" title="高级" /></a></p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/23623_o.jpg"><img src="/images/7bb961d46945780dd51bf752d4109eb6dfec9583.jpg" alt="" title="高级"></a></p>
 <p>然后选择混合模式为橡皮擦，就会擦去这个小圆，于是就只剩下一个圆环了。</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/23624_o.jpg"><img src="/images/47a442eae19c0450c9de4ef532d026c4608439f1.jpg" alt="" title="橡皮擦" /></a></p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/23624_o.jpg"><img src="/images/47a442eae19c0450c9de4ef532d026c4608439f1.jpg" alt="" title="橡皮擦"></a></p>
 <p>画好以后，选择文件-&gt;导出，按如下设置，
-<a href="http://leaverimage.b0.upaiyun.com/23625_o.jpg"><img src="/images/5a4dc13cbe7e3ade5841d175eace74870fd42395.jpg" alt="" title="导出" /></a></p>
-
-<p>&nbsp;</p>
-
+<a href="http://leaverimage.b0.upaiyun.com/23625_o.jpg"><img src="/images/5a4dc13cbe7e3ade5841d175eace74870fd42395.jpg" alt="" title="导出"></a></p>
+<p> </p>
 <p>会得到一个xaml文件，一会用</p>
-
 <p>然后新建wpf项目，然后在解决方案资源管理器视图右键点击项目 导入现有项，把上一步的xaml文件导入</p>
-
-<p>然后需要在app.xaml文件中进行设置，具体在&lt;Application.Resources&gt;标签内添加如下代码，中间那个文件名看情况而定。
-<pre class="lang:default decode:true">        &lt;ResourceDictionary&gt;
-            &lt;ResourceDictionary.MergedDictionaries&gt;
-                &lt;ResourceDictionary Source=&ldquo;bystander.xaml&rdquo;/&gt;
-            &lt;/ResourceDictionary.MergedDictionaries&gt;
-        &lt;/ResourceDictionary&gt;</pre>
-&nbsp;</p>
-
-<p>然后打开“MainWindow.xaml”文件的设计视图，点击窗体边缘以选中窗体，在属性面板中更改AllowsTransparency及WindowStyle属性。
-AllowsTransparency 指示窗体是否支持透明。选中
-WindowStyle指示窗体边框样式，设为 None 为无边框。</p>
-
-<p>然后呢在 MainWindow.xaml文件中添加如下代码，
-<pre class="lang:default decode:true">Background=&ldquo;{StaticResource back}&rdquo;
-MouseDown=&ldquo;Window_MouseDown&rdquo;&gt;</pre>
-最终代码是：
-<pre class="lang:default decode:true">&lt;Window x:Class=&ldquo;WpfDemo.MainWindow&rdquo;
-        xmlns=&ldquo;<a href="http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;">http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;</a>
-        xmlns:x=&ldquo;<a href="http://schemas.microsoft.com/winfx/2006/xaml&quot;">http://schemas.microsoft.com/winfx/2006/xaml&quot;</a>
-        Title=&ldquo;MainWindow&rdquo; Height=&ldquo;350&rdquo; Width=&ldquo;525&rdquo; AllowsTransparency=&ldquo;True&rdquo; WindowStyle=&ldquo;None&rdquo; Background=&ldquo;{StaticResource back}&rdquo; MouseDown=&ldquo;Window_MouseDown&rdquo;&gt;
-&lt;/Window&gt;</pre>
-其中background那个是固定的，而MouseDown是为了给窗体写可以拖动的函数，函数名为Window_MouseDown你也可以自己制定</p>
-
+<p>然后需要在app.xaml文件中进行设置，具体在&lt;Application.Resources&gt;标签内添加如下代码，中间那个文件名看情况而定。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>最终代码是：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>其中background那个是固定的，而MouseDown是为了给窗体写可以拖动的函数，函数名为Window_MouseDown你也可以自己制定</p>
 <p>然后对着那个函数名点右键，如下图</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/23626_o.jpg"><img src="/images/2bda8545e86b4ffc4155d5c63505252bb57506bf.jpg" alt="" title="导航" /></a></p>
-
-<p>导航到事件处理程序，然后在打开的函数里写上
-<pre class="lang:default decode:true">if(e.ChangedButton==MouseButton.Left)
-    this.DragMove();</pre>
-拖动功能就实现了。</p>
-
-<p>至于添加关闭按钮的，我就不写了，很简单，代码里都有。可以参考源文件。</p>
-
-<p>工程源码下载：<a href="http://115.com/file/c2aq7abt#WpfDemo.7z">WPFDemo</a></p>
-
-<p>参考：</p>
-
-<p><a href="http://www.cnblogs.com/SkyD/archive/2008/07/13/1242044.html">http://www.cnblogs.com/SkyD/archive/2008/07/13/1242044.html</a></p>
-
-<p><a href="http://www.cnblogs.com/yinyao/archive/2011/05/23/2054056.html">http://www.cnblogs.com/yinyao/archive/2011/05/23/2054056.html</a></p>
+<p><a href="http://leaverimage.b0.upaiyun.com/23626_o.jpg"><img src="/images/2bda8545e86b4ffc4155d5c63505252bb57506bf.jpg" alt="" title="导航"></a></p>
+<p>导航到事件处理程序，然后在打开的函数里写上</p>
+<!-- raw HTML omitted -->
 
                 
               </div>
@@ -870,35 +790,20 @@ MouseDown=&ldquo;Window_MouseDown&rdquo;&gt;</pre>
               <div class="post-entry">
                 
                   <p>　　科普文，以前看到过，今天又想起来了，所以拿来和大家分享，感谢原作者的努力。</p>
-
 <p>　<strong><em>U盘或硬盘装满资料后，质量会增加吗？</em></strong></p>
-
 <p>　　要回答这个问题，先让我们看看U盘和硬盘的存储原理。</p>
-
 <p>　　U盘又称为闪存(Flash Memory)，其存储介质为flash，简单地说，flash是用浮栅来存储数据的，浮栅就是可以存储电荷的电荷势阱，向flash写入数据的过程就是向这个电荷势阱注入电荷的过程。</p>
-
-<p>　　至于硬盘，如今使用较多的是固态硬盘，其存储介质多为DRAM，简单来说，DRAM是用电容来存取数据的，电容可以充放电，可以储能，有电荷的时候是&rdquo;1&rdquo;，无电荷的时候是&rdquo;0&rdquo;。</p>
-
+<p>　　至于硬盘，如今使用较多的是固态硬盘，其存储介质多为DRAM，简单来说，DRAM是用电容来存取数据的，电容可以充放电，可以储能，有电荷的时候是&quot;1&rdquo;，无电荷的时候是&quot;0&rdquo;。</p>
 <p>　　回到开头的问题，通过上面的分析可以发现，U盘或硬盘装满资料前后，改变的是数字讯号记录的内容，也就是说多了许多电子。</p>
-
 <p>　　电子的质量约为9.10938188E-31 kg，所以说，U盘或硬盘装满资料后，质量是会增加的，只不过增加的量非常的少。</p>
-
 <p>　　<strong><em>同样，我们可以思考这样的问题，每比特的数据有多重？</em></strong></p>
-
-<p>　　众所周知，计算机使用一串串二进制的&rdquo;1&rdquo;和&rdquo;0&rdquo;表示所有种类的信息———电子邮件、文档、视频、网页，一切的一切。</p>
-
-<p>　　我们拿普通电脑的存储器来说，其存储机制就是刚刚提到的DRAM，电容充电后代表&rdquo;1&rdquo;，没充电就代表&rdquo;0&rdquo;。比特&rdquo;0&rdquo;的数据是没有电子的，也就是没有质量的，而比特&rdquo;1&rdquo;的数据是有质量的，虽然轻得微不足道。</p>
-
-<p>　　具体是多少，需要考虑存储器的电容器，估计的值是每个电容器只需要4万个电子就能充满，4万个电子的质量就是3.6E-26 kg，也就是说，比特&rdquo;1&rdquo;的数据质量是3.6E-26 kg。</p>
-
+<p>　　众所周知，计算机使用一串串二进制的&quot;1&quot;和&quot;0&quot;表示所有种类的信息———电子邮件、文档、视频、网页，一切的一切。</p>
+<p>　　我们拿普通电脑的存储器来说，其存储机制就是刚刚提到的DRAM，电容充电后代表&quot;1&rdquo;，没充电就代表&quot;0&rdquo;。比特&quot;0&quot;的数据是没有电子的，也就是没有质量的，而比特&quot;1&quot;的数据是有质量的，虽然轻得微不足道。</p>
+<p>　　具体是多少，需要考虑存储器的电容器，估计的值是每个电容器只需要4万个电子就能充满，4万个电子的质量就是3.6E-26 kg，也就是说，比特&quot;1&quot;的数据质量是3.6E-26 kg。</p>
 <p>　　<strong><em>最后，让我们计算一下全球互联网信息总重量！</em></strong></p>
-
 <p>　　要想得出这个结果，我们需要的数据是互联网上流动的信息总量，这可以从克利福德·霍利迪的著作《互联网发展2006》中找到答案：这个总流量就是……大得令人吃惊的40P字节，即4E16字节———4后面跟着16个0。</p>
-
-<p>　　并不是所有的比特都是&rdquo;1&rdquo;，要不然网络的内容也太无趣了，平均大约有一半的比特是&rdquo;1&rdquo;，另一半是&rdquo;0&rdquo;，也就是有20P的比特&rdquo;1&rdquo;，套用我们计算的比特&rdquo;1&rdquo;数据重量时的公式，于是得到了总数7.2E-9 kg。</p>
-
+<p>　　并不是所有的比特都是&quot;1&rdquo;，要不然网络的内容也太无趣了，平均大约有一半的比特是&quot;1&rdquo;，另一半是&quot;0&rdquo;，也就是有20P的比特&quot;1&rdquo;，套用我们计算的比特&quot;1&quot;数据重量时的公式，于是得到了总数7.2E-9 kg。</p>
 <p>　　在遭罪地写了这么多字之后，我们终于得出了结论：互联网的重量全部加起来大约只有1盎司(1盎司约等于28克)的五百万分之一。</p>
-
 <p>　　原文:<a href="http://www.cnblogs.com/jyaray/archive/2010/12/09/1901610.html">http://www.cnblogs.com/jyaray/archive/2010/12/09/1901610.html</a></p>
 
                 
@@ -947,19 +852,35 @@ MouseDown=&ldquo;Window_MouseDown&rdquo;&gt;</pre>
               </p>
               <div class="post-entry">
                 
-                  这个纯属娱乐，因为其实用的不是太多，因为非主流，非标准的界面不符合用户的体验，不符合可用性功能的某一条HE规则。
-为了完成这个效果，首先需要自己动手画个你需要的界面出来，界面边缘需要是一种可以很好区别的颜色，比如纯蓝色，因为实现不规则窗体是让C#使边缘颜色透明化来实现的，所以需要唯一识别。因为我用的图是一张灰色的图，我然后圈了一个蓝色的边缘。
-刚开始的图；
+                  <p>这个纯属娱乐，因为其实用的不是太多，因为非主流，非标准的界面不符合用户的体验，不符合可用性功能的某一条HE规则。</p>
+<p>为了完成这个效果，首先需要自己动手画个你需要的界面出来，界面边缘需要是一种可以很好区别的颜色，比如纯蓝色，因为实现不规则窗体是让C#使边缘颜色透明化来实现的，所以需要唯一识别。因为我用的图是一张灰色的图，我然后圈了一个蓝色的边缘。</p>
+<p>刚开始的图；</p>
+<p><a href="http://leaverimage.b0.upaiyun.com/23583_o.jpg"><img src="/images/80a3c49a3718c6f180278a86ba73b2a3d0d39966.jpg" alt="" title="form"></a></p>
+<p>然后新建windows应用程序。创建windows窗体并设置窗体基本属性。
+（1）将 FormBorderStyle 属性设置为 None。
+（2）将窗体的 BackgroundImage 属性设置为先前创建的位图文件。不必将文件添加到项目系统中；这将在指定该文件作为背景图像时自动完成。
+（3）将 TransparencyKey 属性设置为位图文件的背景色，本例中为蓝色。（此属性告诉应用程序窗体中的哪些部分需要设置为透明。 ）
+上面两个步骤已经完成了不规则窗体自身显示效果的制作。</p>
+<p>有人说在24位色以下的环境中可以显示正常，但在24位色以上时黄色背景不能消失，所以上述不能胜任24位色以上环境。但我看到了一种解决方法，那就是先将背景图片添加到资源文件，然后在窗体构造时为窗体设置背景图片：</p>
+<p> </p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p>实测是可以的。</p>
+<p>然后<!-- raw HTML omitted --><!-- raw HTML omitted -->就是为窗体添加移动、关闭、最大最小化的事件。代码直接给出<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p>还有其他一些比如关闭按钮的添加，都很简单，直接添加一个button，事件里写，两个选一个。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>我最终的效果是个圆，可以看到，锯齿很明显，我想要效果好的话，那个位图得好好设计。这个只是演示。。所以。。还有一种方法是链接1中提供的，有兴趣的可以试试。</p>
+<p><a href="http://leaverimage.b0.upaiyun.com/23584_o.jpg"><img src="/images/33eb616a6ae722d472de3408f8a03596aaf5baaf.jpg" alt="" title="demo"></a></p>
+<p>工程源码下载：<a href="http://115.com/file/c2ai3t6p#IrregularForm.7z">IrregularForm.7z</a></p>
+<p>参考：</p>
+<p><a href="http://www.cnblogs.com/KissKnife/archive/2006/10/02/520116.html">http://www.cnblogs.com/KissKnife/archive/2006/10/02/520116.html</a></p>
+<p><a href="http://allancandy.cnblogs.com/archive/2005/09/01/227814.html">http://allancandy.cnblogs.com/archive/2005/09/01/227814.html</a></p>
 
-然后新建windows应用程序。创建windows窗体并设置窗体基本属性。 （1）将 FormBorderStyle 属性设置为 None。 （2）将窗体的 BackgroundImage 属性设置为先前创建的位图文件。不必将文件添加到项目系统中；这将在指定该文件作为背景图像时自动完成。 （3）将 TransparencyKey 属性设置为位图文件的背景色，本例中为蓝色。（此属性告诉应用程序窗体中的哪些部分需要设置为透明。 ） 上面两个步骤已经完成了不规则窗体自身显示效果的制作。
-有人说在24位色以下的环境中可以显示正常，但在24位色以上时黄色背景不能消失，所以上述不能胜任24位色以上环境。但我看到了一种解决方法，那就是先将背景图片添加到资源文件，然后在窗体构造时为窗体设置背景图片：
-&nbsp; private void Form1_Load(object sender, EventArgs e){
-Bitmap bmp = Properties.Resources.form2; bmp.MakeTransparent(Color.Blue); // bmp.MakeTransparent(Color.FromArgb(2,2,2));如果rgb则是这样用 this.BackColor = Color.Blue; this.BackgroundImage = bmp; this.TransparencyKey = Color.Blue;
-} &nbsp;
-实测是可以的。
-然后就是为窗体添加移动、关闭、最大最小化的事件。代码直接给出 private bool isMouseDown = false; //记录鼠标是否被按下 private Point position; //记录鼠标位置
-private void Form1_MouseDown(object sender, MouseEventArgs e) { if (e.Button == MouseButtons.Left) { int x = -e.
-                  <a href="https://leizhiyuan.github.io/2012/06/21/c#winform%E5%AE%9E%E7%8E%B0%E4%B8%8D%E8%A7%84%E5%88%99%E7%AA%97%E4%BD%93/" class="post-read-more">[Read More]</a>
                 
               </div>
 
@@ -1046,7 +967,7 @@ private void Form1_MouseDown(object sender, MouseEventArgs e) { if (e.Button == 
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

@@ -38,8 +38,7 @@
 　2.去sourceforge该项目主页下载javaCC压缩包
 　3.下载完成后解压到你的Eclipse根目录。会提示覆盖plugins和features。直接覆盖即可。
 　4.测试一下是否成功。具体步骤就是，打开eclipse，新建一个空java项目。然后对着项目点击右键new-&amp;gt;other-&amp;gt;javaCC-&amp;gt;javaCC template file。然后选择命名空间。包名。和文件名就可以了。这个地方的什么的是由你建立的java项目决定的。所以你可以先把java项目设置好，然后直接选就可以了。。
-　5.点击运行。选择java application。控制台输出　Reading from standard input&amp;hellip;　Enter an expression like &amp;ldquo;1+(2+3)*4;&amp;rdquo;:
-　完成。。。
+　5.点击运行。选择java application。控制台输出　Reading from standard input&amp;hellip;　Enter an expression like &amp;ldquo;1+(2+3)*4;&amp;quot;:　完成。。。
 Update:其实吧。这里安装的是JavaCC的插件。但是已经可以进行开发了。可能你需要一个例子来开始。或者你不喜欢eclipse。那么去JavaCC的项目下载你喜欢的即可。我下的是javacc-5.0.zip 里面有例子。可以参考。</description>
     </item>
     
@@ -69,21 +68,16 @@ Update:其实吧。这里安装的是JavaCC的插件。但是已经可以进行�
 　·语法制导：基于语法分析中用到的文法产生式
 　·翻译：完成语义分析的各项功能，不仅指生成中间代码
 　形式上讲，一个属性文法是一个三元组，A＝（G，V，F），其中G是一个上下文无关文法；V是有穷的属性集，每个属性与文法的一个终结符或非终结符关联，属性加工的过程即是语义处理的过程。F是关于属性的属性断言或一组属性的计算规则（称为语义规则）。断言或语义规则与一个规则式关联，只引用该规则式左端或右端的终结符或非终结符关联的属性。形式化的东西看看就好，后面给出具体例子分析。
-　既然称之为属性文法，那么什么属性呢。这些属性代表与文法符号相关信息，比如它的类型、值、代码序列、符号表内容等等。属性与变量一样，可以进行计算和传递。可以类比我们平时写代码时候一些成员变量。。属性又分为综合属性和继承属性。
-　n在一个属性文法中，对应于每个产生式A→a都有一套与之相关联的语义规则，每条规则的形式为：
-　b:=f(c1,c2,…,ck)，只有在已知 c1-ck 值的基础上，才能计算属性值 b， 称属性 b 依赖于属性 c1-ck，至于c1-ck依赖于哪个，就得看由c1-ck在左侧的规则了。也就是看下面的规则了。
+　既然称之为属性文法，那么什么属性呢。这些属性代表与文法符号相关信息，比如它的类型、值、代码序列、符号表内容等等。属性与变量一样，可以进行计算和传递。可以类比我们平时写代码时候一些成员变量。。属性又分为综合属性和继承属性。　n在一个属性文法中，对应于每个产生式A→a都有一套与之相关联的语义规则，每条规则的形式为：　b:=f(c1,c2,…,ck)，只有在已知 c1-ck 值的基础上，才能计算属性值 b， 称属性 b 依赖于属性 c1-ck，至于c1-ck依赖于哪个，就得看由c1-ck在左侧的规则了。也就是看下面的规则了。
 　这里，f是一个函数，而且或者
 　1. b是A的一个综合属性并且c1,c2,…,ck是产生式右边文法符号的属性，或者
 　2. b是产生式右边某个文法符号的一个继承属性并且c1,c2,…,ck 是A或产生式右边任何文法符号的属性。 属性b依赖于属性c1,c2,…,ck。
 　属性文法中常用记号N·t表示与非终结符号N相关联的属性t。
-　注意：¨终结符只有综合属性，由词法分析器提供
-　¨非终结符既可有综合属性也可有继承属性，文法开始符号的所有继承属性作为属性计算前的初始值
-　¨在语法树中，一个结点的综合属性的值由其子结点的属性值确定。一个结点的继承属性由此结点的父结点和/或兄弟结点的某些属性确定
+　注意：¨终结符只有综合属性，由词法分析器提供　¨非终结符既可有综合属性也可有继承属性，文法开始符号的所有继承属性作为属性计算前的初始值　¨在语法树中，一个结点的综合属性的值由其子结点的属性值确定。一个结点的继承属性由此结点的父结点和/或兄弟结点的某些属性确定
 　根据包含的属性类型，属性文法分为：S-属性文法和L-属性文法
 　S-属性文法是仅包括综合属性的属性文法；L -属性文法是包括综合属性和继承属性的属性文法。
 　给出一个简单的实例说明上面的内容：
-　考虑非终结符A，B和C，其中，A有一个继承属性a和一个综合属性b，B有综合属性c，C有继承属性d。产生式A→BC可能有规则
-　C.d:=B.c+1
+　考虑非终结符A，B和C，其中，A有一个继承属性a和一个综合属性b，B有综合属性c，C有继承属性d。产生式A→BC可能有规则　C.d:=B.c+1
 　A.b:=A.a+B.c
 　而属性A.a和B.c在其它地方计算
 　为什么是这样的，因为此时A就是A，B是X1，C是X2，对于d来说，他是产生式右部C的一个属性，c是右部B的属性，属性d依赖于属性c，和1，所以它是C的继承属性，对于c来说，他是产生式右部B的一个属性，但是c不依赖于d，而是d依赖于c所以c属性类型无法确定，对于b，他是A的一个属性，并且a是A的属性，c是产生式右部的属性，所以b是A的综合属性，而对于a，因为不能确定a属性依赖于那个属性，所以。无法得知。从上面我可以得出一个规律，对于一个属性规则来说，一条规则只能确定其左侧的属性类型，而右侧的属性需要由一个由他在左侧的规则来确定。比如，可以看到上面的规则中，c和a都不能确定，就是因为在规则右侧。
@@ -100,7 +94,7 @@ Update:其实吧。这里安装的是JavaCC的插件。但是已经可以进行�
       
       <guid>https://leizhiyuan.github.io/2012/06/02/lr1%E9%A1%B9%E7%9B%AE%E9%9B%86%E8%A7%84%E8%8C%83%E7%B0%87%E7%9A%84%E6%9E%84%E9%80%A0/</guid>
       <description>首先我们知道LR(0)的项目的形式是[A→α·β ]这样的.而在LR(1)中的项目形式是[A→α·β ，a ]，其中A→α·β 为LR(0)项目，称为心，a为终结符或#，称为向前搜索符。对归约项目[A→α·,a]，仅当前输入符号是a时，才能用A→α进行归约。一会将会看到具体的例子。
-　课本上给出的规则是：我将要对照着规则来说明，这里要强调一下，&amp;rdquo;,&amp;lsquo;在这里是分隔符。不是终结符。他是一个标志，
+　课本上给出的规则是：我将要对照着规则来说明，这里要强调一下，&amp;quot;,&amp;lsquo;在这里是分隔符。不是终结符。他是一个标志，
 　以S′→·S，#属于初始项目集中，把&amp;rsquo;#&amp;lsquo;号作为向前搜索符，表示活前缀为γ(若γ是有关S产生式的某一右部)要归约成S时，必须面临输入符为&amp;rsquo;#&amp;lsquo;号才行。因此对初始项目S′→·S，# 求闭包后再用转换函数逐步求出整个文法的LR(1)项目集族。具体构造步骤如下：
 　(1) 构造LR(1)项目集的闭包函数。
 　a) I 的任何项目都属于CLOSURE(I) b) 若有项目[A→α·Bβ,a ]属于CLOSURE(I)，B→γ是文法中的产生式，β∈V*，b∈FIRST(βa)， 则[B→·γ,b]也属于CLOSURE(I)中。 c) 重复b)直到CLOSURE(I)不再增大为止。
@@ -124,8 +118,12 @@ Update:其实吧。这里安装的是JavaCC的插件。但是已经可以进行�
 2.编译安装
 在D:\Program Files\boost_1_49_0的目录下，有一个bootstrap.bat文件，直接双击运行。就会在同目录生成b2.exe；bjam.exe两个文件。
 3.设定编译环境 修改user-config.jam (D:\Program Files\boost_1_49_0\tools\build\v2\user-config.jam) 的MSVC configuration
-MSVC configuration Configure msvc (default version, searched for in standard locations and PATH). using msvc ; 在上面这段的下面直接添加如下的文字。 using msvc : 10.0 : :/wd4819/D_CRT_SECURE_NO_DEPRECATE/D_SCL_SECURE_NO_DEPRECATE/D_SECURE_SCL=0 ; 保存关闭。
-4.开始编译 点击开始-&amp;gt;所有程序-&amp;gt;“Microsoft Visual Studio 2010”，指向“Visual Studio tools(工具)”，然后单击“Visual Studio 2010 command prompt（命令提示）” 使用cd切换到D:\Program Files\boost_1_49_0目录。这个就不说了 然后输入如下的代码： b2 toolset=msvc-10.0 architecture=x86 instruction-set=i686 address-model=32 link=static variant=debug,release threading=multi runtime-link=shared &amp;ndash;without-python &amp;ndash;without-mpi &amp;ndash;without-wave &amp;ndash;without-graph &amp;ndash;without-math &amp;ndash;without-serialization stage &amp;nbsp;</description>
+MSVC configuration Configure msvc (default version, searched for in standard locations and PATH). using msvc ; 在上面这段的下面直接添加如下的文字。
+保存关闭。
+4.开始编译 点击开始-&amp;gt;所有程序-&amp;gt;“Microsoft Visual Studio 2010”，指向“Visual Studio tools(工具)”，然后单击“Visual Studio 2010 command prompt（命令提示）” 使用cd切换到D:\Program Files\boost_1_49_0目录。这个就不说了 然后输入如下的代码：
+ 解释一下命令的意思： 1.toolset：表示编译器工具，我安装的是VS2010，所以是msvc-10(如果你是VS2005，可以使用msvc-8.0 VS2008是msvc-9.0) 2.architecture：表示架构，也就是你的CPU架构，x86,x64，因为我安装的是win7 32位，所以使用了x86的架构 3.instruction-set：表示指令集，依然是8086指令集 4.address-model：表示地址长度为32位 5.link：表示生成动态/静态链接库，动态链接库是shared，静态链接库是static，一般都会编译成静态库，因为给出程序的时候打包boost的库会非常庞大 6.variant：表示生成的Debug或者release版本，一般情况下会两种版本都会编译出来的 7.threading：表示单/多线程编译，一般我们的程序都会用到多线程，所以选择了multi 8.runtime-link：表示动态/静态链接C/C++运行时库(C/C++ Runtime)，我们选择了动态链接 9.without/with：表示不需要编译/需要编译哪些库，一些自己不用的库可以无需编译 10.stage/install：stage表示只生成库文件(DLL和Lib)，install还会生成包含头文件的include目录，推荐使用stage，因为boost_1_49\boost中就是boost库完整的头文件，所以无需再拷贝一份出来。编译出来的库会放在stage文件夹中 这样一份完整的boost库就生成了，剩下就是直接使用到项目中了。
+其实编译的具体命令都是可以自己写的。如果你需要编译所有。只需要使用下面的这行代码 b2 &amp;ndash;toolset=msvc-10.0 &amp;ndash;build-type=complete 就可以了。
+不出问题的话。就开始编译了。。登个半个多小时吧。就会完成了。 5.</description>
     </item>
     
     <item>
@@ -142,8 +140,7 @@ MSVC configuration Configure msvc (default version, searched for in standard loc
 　(1) S → aAcBe (2) A → b　(3) A → Ab　(4) B → d
 　写出对输入串 abbcde#的LR分析 过程。
 　在分析的时候，因为我们的手工分析，所以还需要一个表来记录我们的步骤。否则记不住啊。该表共需7列。行数不定。做到哪是哪。
-　步骤 符号栈 输入符号栈 动作 状态栈 ACTION GOTO 
-　其中，步骤就是从1向下递增。符号栈用来保存运算中的结果，初始为#，输入符号栈保存输入串，初始值为给定的。动作里面就是用来注释是进行移进，还是规约。状态栈就是保持LR分析表的那个状态了。Action 和Goto同理
+　步骤 符号栈 输入符号栈 动作 状态栈 ACTION GOTO 　其中，步骤就是从1向下递增。符号栈用来保存运算中的结果，初始为#，输入符号栈保存输入串，初始值为给定的。动作里面就是用来注释是进行移进，还是规约。状态栈就是保持LR分析表的那个状态了。Action 和Goto同理
 　通过前两篇文章的步骤，此题可以构造出如下的一张LR分析表</description>
     </item>
     
@@ -156,13 +153,12 @@ MSVC configuration Configure msvc (default version, searched for in standard loc
       <description>上篇文章中，我已经说到了，LR(0)分析表是LR(0)分析器的重要组成部分，它是总控程序分析动作的依据，他是由LR(0)项目集规范族来进行构造的。他的结构主要有两个部分ACTION 和GOTO
 　先看看指导原则，可以直接跳过，看例题的时候可以返回来对照参考。
 　假设已构造出LR(0)项目集规范族为：C={I0,I1, … , In}，其中Ik为项目集的名字，k为状态名，令包含S′→·S项目的集合Ik的下标k为分析器的初始状态。那么分析表的ACTION表和GOTO表构造步骤为：
-　① 若项目A→α·aβ属于Ik且转换函数GO(Ik,a)= Ij，当a为终结符时则置ACTION[k,a]为Sj。　② 若项目A→α· 属于Ik，则对任何终结符a 和&amp;rsquo;#&amp;lsquo;号置ACTION[k,a]和ACTION[k,#]为&amp;rdquo;rj&amp;rdquo;，j为在文法G′中某产生式A→α的序号。 ③ 若GO(Ik,A)＝Ij，则置GOTO[k,A]为&amp;rdquo;j&amp;rdquo;，其中A为非终结符。　④ 若项目S′→S·属于Ik，则置ACTION[k,#]为&amp;rdquo;acc&amp;rdquo;，表示接受。 ⑤ 凡不能用上述方法填入的分析表的元素，均应填上&amp;rdquo;报错标志&amp;rdquo;。为了表的清晰我们仅用空白表示错误标志。
+　① 若项目A→α·aβ属于Ik且转换函数GO(Ik,a)= Ij，当a为终结符时则置ACTION[k,a]为Sj。　② 若项目A→α· 属于Ik，则对任何终结符a 和&amp;rsquo;#&amp;lsquo;号置ACTION[k,a]和ACTION[k,#]为&amp;quot;rj&amp;rdquo;，j为在文法G′中某产生式A→α的序号。 ③ 若GO(Ik,A)＝Ij，则置GOTO[k,A]为&amp;quot;j&amp;rdquo;，其中A为非终结符。　④ 若项目S′→S·属于Ik，则置ACTION[k,#]为&amp;quot;acc&amp;rdquo;，表示接受。 ⑤ 凡不能用上述方法填入的分析表的元素，均应填上&amp;quot;报错标志&amp;rdquo;。为了表的清晰我们仅用空白表示错误标志。
 　上篇文章的例题是这样的：LR（0）项目集规范簇也已经算出来了，共有6个I，从I0-I5，最终构造的LR(0)的分析表共7行，包括标题行，也就是ACTION和GOTO，然后是状态行，状态行和ACTION的交处分割成三列，分别是终结符号，和#终结符。也就是分割多少列取决于终结符的数目，GOTO列是非终结符，分割多少列也取决于非终结符的数目。，然后就是具体的6个状态了，画出表的结构后，如下，先不用管表的内容怎么写。
 　
 　然后对照构造原则来填写表，这时你会发现要一个个从那么多的GO函数和I项目组中找对应的式子实在太难了，看不清楚，这时候，我们用GO函数把LR(0)项目集规范族连成一个识别该文法所产生的活前缀的DFA，有点像流程图了，首先把各个I项目画出来，然后需要把他们的关系表示出来，关系由GO函数确定，比如I5=GO(I2, S)，则在I2和I5之间画一个箭头，由I2指向I5，线上写上S，由括号里的第二个值确定，此题构造的DFA如下图，很简单吧。
 　
-　然后我们正式开始吧。第一条指导规则说到， 若项目A→α·aβ属于Ik且转换函数GO(Ik,a)= Ij，当a为终结符时则置ACTION[k,a]为Sj，我们先考察对于I0，发现S-&amp;gt;·aS属于I0，且GO(I0,a)=I1,所有我们ACTION[0,a]置为S1.同理S-&amp;gt;·bS属于I0，GO(I0,b)=I2，所以ACTION[0,b]置为S2。
-　再来看第二条规则，若项目A→α· 属于Ik，则对任何终结符a 和&amp;rsquo;#&amp;lsquo;号置ACTION[k,a]和ACTION[k,#]为&amp;rdquo;rj&amp;rdquo;，j为在文法G′中某产生式A→α的序号，也就是说这里的j可不是I项目的标号，而是增广文法
+　然后我们正式开始吧。第一条指导规则说到， 若项目A→α·aβ属于Ik且转换函数GO(Ik,a)= Ij，当a为终结符时则置ACTION[k,a]为Sj，我们先考察对于I0，发现S-&amp;gt;·aS属于I0，且GO(I0,a)=I1,所有我们ACTION[0,a]置为S1.同理S-&amp;gt;·bS属于I0，GO(I0,b)=I2，所以ACTION[0,b]置为S2。　再来看第二条规则，若项目A→α· 属于Ik，则对任何终结符a 和&amp;rsquo;#&amp;lsquo;号置ACTION[k,a]和ACTION[k,#]为&amp;quot;rj&amp;rdquo;，j为在文法G′中某产生式A→α的序号，也就是说这里的j可不是I项目的标号，而是增广文法
 　(0)S’→S　(1)S→aS　(2)S→bS (3)S→a
 　的标号，从0-3啦。我们考察I1，发现S→·aS属于I1，且GO(I1,a)=I1，所以应该置1和a的交的格子为S1，但是此时运用第二条规则会发现S-&amp;gt;a·也属于I1，则又应该置ACTION[1,a]为=r3，ACTION[1,#]为r3，这样就发生了冲突。这是因为大多数文法不能满足LR(0)文法的条件，对于此冲突，我们不能确定看到S-&amp;gt;a的时候是规约还是移进，有些文法是可以直接构造的，为此，此处不能够早LR(0)分析表了，我们构造经过改进后得到了一种新的SLR(1)文法，并没有什么太大差别，主要就是解决冲突。
 　解决冲突的指导原则如下：
@@ -217,7 +213,7 @@ MSVC configuration Configure msvc (default version, searched for in standard loc
       
       <guid>https://leizhiyuan.github.io/2012/04/25/%E6%AD%A3%E8%A7%84%E5%BC%8F-%E6%9C%80%E5%B0%8F%E5%8C%96dfa%E8%AF%B4%E6%98%8E/</guid>
       <description>今天早上去图书馆，去看编译原理，想把这部分搞清楚，看着龙书+国产的某一本不知什么的习题与解析，猜过程。。猜原理。。终于是看懂了。。 整体的步骤是三步： 一，先把正规式转换为NFA（非确定有穷自动机）, 二，在把NFA通过“子集构造法”转化为DFA， 三，在把DFA通过“分割法”进行最小化。
-　一步很简单，就是反复运用下图的规则，图1 
+　**一步很简单，就是反复运用下图的规则，**图1 
 　这样就能转换到NFA了。 给出一个例题，来自Google book。本文主要根据这个例题来讲，图2  二.子集构造法。 同样的例题，把转换好的NFA确定化，图3 
 　这个表是从NFA到DFA的时候必须要用到的。第一列第一行I的意思是从NFA的起始节点经过任意个ε所能到达的结点集合。Ia表示从该集合开始经过一个a所能到达的集合，经过一个a的意思是可以略过前后的ε。同样Ib也就是经过一个b，可以略过前后任意个ε。 至于第二行以及后面的I是怎么确定的。我参考了一些题目才明白，原来就是看上面的Ia和Ib哪个还没出现在I列，就拿下来进行运算，该列对应的Ia和Ib就是前面我说的那样推导。
 　如果还不太明白，看图就是了。你会发现I中的几个项目都在Ia和Ib中出现了。而且是完全出现

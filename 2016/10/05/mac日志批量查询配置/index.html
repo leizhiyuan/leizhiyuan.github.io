@@ -14,13 +14,13 @@
 0. 准备 先要安装pssh,expect,ssh-copy-id.
 brew install pssh brew install homebrew/dupes/expect brew install ssh-copy-id 另外安装luit的安装参考这里luit安装
 1. 生成ssh key ,并批量copy 生成ssh key比较简单.ssh-keygen -t rsa -C &quot;your_email@example.com&quot;,直接使用git的ssh key也是可以的.然后保存下面这个脚本为pscopy.sh,
-#!/bin/bash FILE=`cat ~/host.txt` for ip in $FILE;do expect -c &#34; spawn ssh-copy-id $ipexpect { \&#34;*yes/no*\&#34; {send \&#34;yes\r\&#34;;exp_continue} \&#34;*password*\&#34; {send \&#34;pass\r\&#34;;exp_continue} \&#34;*password*\&#34; {send \&#34;pass\r\&#34;;} } &#34; done 然后执行一下sh pscopy.sh,注意,host.txt要保证存在.格式是user@address.一行一个,中间的paas要改成user的密码,这样就会使用指定的用户密码,自动copy ssh key了. 完成上面的步骤之后,ssh user@address 就可以免登了.
+#!/bin/bash FILE=`cat ~/host.txt` for ip in $FILE;do expect -c &#34;spawn ssh-copy-id $ipexpect { \&#34;*yes/no*\&#34; {send \&#34;yes\r\&#34;;exp_continue} \&#34;*password*\&#34; {send \&#34;pass\r\&#34;;exp_continue} \&#34;*password*\&#34; {send \&#34;pass\r\&#34;;} } &#34; done 然后执行一下sh pscopy.sh,注意,host.txt要保证存在.格式是user@address.一行一个,中间的paas要改成user的密码,这样就会使用指定的用户密码,自动copy ssh key了. 完成上面的步骤之后,ssh user@address 就可以免登了.
 2. 写一个简单的pssh脚本 #!/bin/bash  encoding= key= command= file= usage() { echo &#34;Usage: `basename $0` [-f filename] [-c encoding] [-k keyword]&#34; exit 1 } while getopts :f:c:k: opt do case $opt in c) encoding=$OPTARG ;; :) echo &#34;-$OPTARGneeds an argument&#34; ;; k) key=$OPTARG ;; f) file=$OPTARG ;; *) echo &#34;-$optnot recognized&#34; usage ;; esac done if [ -z &#34;$encoding&#34; ]; then #该脚本必须提供-d选项 encoding=&#34;gbk&#34; fi if [ -z &#34;$file&#34; ]; then #该脚本必须提供-d选项 file=&#34;~/hosts.">
   <meta property="og:description" content="由于公司线下机器非常多,导致每次查日志变得非常痛苦.线下的trace平台大部分时候还是可用的.但是有时候需要本机来批量查询.方案就是批量分发ssh key,实现免登.然后luit实现编码转换,这个主要是公司的机器编码有差异.历史原因.
 0. 准备 先要安装pssh,expect,ssh-copy-id.
 brew install pssh brew install homebrew/dupes/expect brew install ssh-copy-id 另外安装luit的安装参考这里luit安装
 1. 生成ssh key ,并批量copy 生成ssh key比较简单.ssh-keygen -t rsa -C &quot;your_email@example.com&quot;,直接使用git的ssh key也是可以的.然后保存下面这个脚本为pscopy.sh,
-#!/bin/bash FILE=`cat ~/host.txt` for ip in $FILE;do expect -c &#34; spawn ssh-copy-id $ipexpect { \&#34;*yes/no*\&#34; {send \&#34;yes\r\&#34;;exp_continue} \&#34;*password*\&#34; {send \&#34;pass\r\&#34;;exp_continue} \&#34;*password*\&#34; {send \&#34;pass\r\&#34;;} } &#34; done 然后执行一下sh pscopy.sh,注意,host.txt要保证存在.格式是user@address.一行一个,中间的paas要改成user的密码,这样就会使用指定的用户密码,自动copy ssh key了. 完成上面的步骤之后,ssh user@address 就可以免登了.
+#!/bin/bash FILE=`cat ~/host.txt` for ip in $FILE;do expect -c &#34;spawn ssh-copy-id $ipexpect { \&#34;*yes/no*\&#34; {send \&#34;yes\r\&#34;;exp_continue} \&#34;*password*\&#34; {send \&#34;pass\r\&#34;;exp_continue} \&#34;*password*\&#34; {send \&#34;pass\r\&#34;;} } &#34; done 然后执行一下sh pscopy.sh,注意,host.txt要保证存在.格式是user@address.一行一个,中间的paas要改成user的密码,这样就会使用指定的用户密码,自动copy ssh key了. 完成上面的步骤之后,ssh user@address 就可以免登了.
 2. 写一个简单的pssh脚本 #!/bin/bash  encoding= key= command= file= usage() { echo &#34;Usage: `basename $0` [-f filename] [-c encoding] [-k keyword]&#34; exit 1 } while getopts :f:c:k: opt do case $opt in c) encoding=$OPTARG ;; :) echo &#34;-$OPTARGneeds an argument&#34; ;; k) key=$OPTARG ;; f) file=$OPTARG ;; *) echo &#34;-$optnot recognized&#34; usage ;; esac done if [ -z &#34;$encoding&#34; ]; then #该脚本必须提供-d选项 encoding=&#34;gbk&#34; fi if [ -z &#34;$file&#34; ]; then #该脚本必须提供-d选项 file=&#34;~/hosts.">
   <meta name="twitter:description" content="由于公司线下机器非常多,导致每次查日志变得非常痛苦.线下的trace平台大部分时候还是可用的.但是有时候需要本机来批量查询.方案就是批量分发ssh key,实现免登.然后luit实现编码转换,这个主要是公司的机器编码有差异.历史原因.
 0. 准备 先要安装pssh,expect,ssh-copy-id.
@@ -73,9 +73,9 @@ brew install pssh brew install …">
     "name" : "bystander"
   },
   "headline": "mac日志批量查询配置",
-  "description" : "由于公司线下机器非常多,导致每次查日志变得非常痛苦.线下的trace平台大部分时候还是可用的.但是有时候需要本机来批量查询.方案就是批量分发ssh key,实现免登.然后luit实现编码转换,这个主要是公司的机器编码有差异.历史原因.\n0. 准备 先要安装pssh,expect,ssh-copy-id.\nbrew install pssh brew install homebrew\/dupes\/expect brew install ssh-copy-id 另外安装luit的安装参考这里luit安装\n1. 生成ssh key ,并批量copy 生成ssh key比较简单.ssh-keygen -t rsa -C \x26quot;your_email@example.com\x26quot;,直接使用git的ssh key也是可以的.然后保存下面这个脚本为pscopy.sh,\n#!\/bin\/bash FILE=`cat ~\/host.txt` for ip in $FILE;do expect -c \x26#34; spawn ssh-copy-id $ipexpect { \\\x26#34;*yes\/no*\\\x26#34; {send \\\x26#34;yes\\r\\\x26#34;;exp_continue} \\\x26#34;*password*\\\x26#34; {send \\\x26#34;pass\\r\\\x26#34;;exp_continue} \\\x26#34;*password*\\\x26#34; {send \\\x26#34;pass\\r\\\x26#34;;} } \x26#34; done 然后执行一下sh pscopy.sh,注意,host.txt要保证存在.格式是user@address.一行一个,中间的paas要改成user的密码,这样就会使用指定的用户密码,自动copy ssh key了. 完成上面的步骤之后,ssh user@address 就可以免登了.\n2. 写一个简单的pssh脚本 #!\/bin\/bash  encoding= key= command= file= usage() { echo \x26#34;Usage: `basename $0` [-f filename] [-c encoding] [-k keyword]\x26#34; exit 1 } while getopts :f:c:k: opt do case $opt in c) encoding=$OPTARG ;; :) echo \x26#34;-$OPTARGneeds an argument\x26#34; ;; k) key=$OPTARG ;; f) file=$OPTARG ;; *) echo \x26#34;-$optnot recognized\x26#34; usage ;; esac done if [ -z \x26#34;$encoding\x26#34; ]; then #该脚本必须提供-d选项 encoding=\x26#34;gbk\x26#34; fi if [ -z \x26#34;$file\x26#34; ]; then #该脚本必须提供-d选项 file=\x26#34;~\/hosts.",
+  "description" : "由于公司线下机器非常多,导致每次查日志变得非常痛苦.线下的trace平台大部分时候还是可用的.但是有时候需要本机来批量查询.方案就是批量分发ssh key,实现免登.然后luit实现编码转换,这个主要是公司的机器编码有差异.历史原因.\n0. 准备 先要安装pssh,expect,ssh-copy-id.\nbrew install pssh brew install homebrew\/dupes\/expect brew install ssh-copy-id 另外安装luit的安装参考这里luit安装\n1. 生成ssh key ,并批量copy 生成ssh key比较简单.ssh-keygen -t rsa -C \x26quot;your_email@example.com\x26quot;,直接使用git的ssh key也是可以的.然后保存下面这个脚本为pscopy.sh,\n#!\/bin\/bash FILE=`cat ~\/host.txt` for ip in $FILE;do expect -c \x26#34;spawn ssh-copy-id $ipexpect { \\\x26#34;*yes\/no*\\\x26#34; {send \\\x26#34;yes\\r\\\x26#34;;exp_continue} \\\x26#34;*password*\\\x26#34; {send \\\x26#34;pass\\r\\\x26#34;;exp_continue} \\\x26#34;*password*\\\x26#34; {send \\\x26#34;pass\\r\\\x26#34;;} } \x26#34; done 然后执行一下sh pscopy.sh,注意,host.txt要保证存在.格式是user@address.一行一个,中间的paas要改成user的密码,这样就会使用指定的用户密码,自动copy ssh key了. 完成上面的步骤之后,ssh user@address 就可以免登了.\n2. 写一个简单的pssh脚本 #!\/bin\/bash  encoding= key= command= file= usage() { echo \x26#34;Usage: `basename $0` [-f filename] [-c encoding] [-k keyword]\x26#34; exit 1 } while getopts :f:c:k: opt do case $opt in c) encoding=$OPTARG ;; :) echo \x26#34;-$OPTARGneeds an argument\x26#34; ;; k) key=$OPTARG ;; f) file=$OPTARG ;; *) echo \x26#34;-$optnot recognized\x26#34; usage ;; esac done if [ -z \x26#34;$encoding\x26#34; ]; then #该脚本必须提供-d选项 encoding=\x26#34;gbk\x26#34; fi if [ -z \x26#34;$file\x26#34; ]; then #该脚本必须提供-d选项 file=\x26#34;~\/hosts.",
   "inLanguage" : "en",
-  "wordCount":  160 ,
+  "wordCount":  159 ,
   "datePublished" : "2016-10-05T10:13:05",
   "dateModified" : "2016-10-05T10:13:05",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -99,7 +99,7 @@ brew install pssh brew install …">
 0. 准备 先要安装pssh,expect,ssh-copy-id.
 brew install pssh brew install homebrew/dupes/expect brew install ssh-copy-id 另外安装luit的安装参考这里luit安装
 1. 生成ssh key ,并批量copy 生成ssh key比较简单.ssh-keygen -t rsa -C &quot;your_email@example.com&quot;,直接使用git的ssh key也是可以的.然后保存下面这个脚本为pscopy.sh,
-#!/bin/bash FILE=`cat ~/host.txt` for ip in $FILE;do expect -c &#34; spawn ssh-copy-id $ipexpect { \&#34;*yes/no*\&#34; {send \&#34;yes\r\&#34;;exp_continue} \&#34;*password*\&#34; {send \&#34;pass\r\&#34;;exp_continue} \&#34;*password*\&#34; {send \&#34;pass\r\&#34;;} } &#34; done 然后执行一下sh pscopy.sh,注意,host.txt要保证存在.格式是user@address.一行一个,中间的paas要改成user的密码,这样就会使用指定的用户密码,自动copy ssh key了. 完成上面的步骤之后,ssh user@address 就可以免登了.
+#!/bin/bash FILE=`cat ~/host.txt` for ip in $FILE;do expect -c &#34;spawn ssh-copy-id $ipexpect { \&#34;*yes/no*\&#34; {send \&#34;yes\r\&#34;;exp_continue} \&#34;*password*\&#34; {send \&#34;pass\r\&#34;;exp_continue} \&#34;*password*\&#34; {send \&#34;pass\r\&#34;;} } &#34; done 然后执行一下sh pscopy.sh,注意,host.txt要保证存在.格式是user@address.一行一个,中间的paas要改成user的密码,这样就会使用指定的用户密码,自动copy ssh key了. 完成上面的步骤之后,ssh user@address 就可以免登了.
 2. 写一个简单的pssh脚本 #!/bin/bash  encoding= key= command= file= usage() { echo &#34;Usage: `basename $0` [-f filename] [-c encoding] [-k keyword]&#34; exit 1 } while getopts :f:c:k: opt do case $opt in c) encoding=$OPTARG ;; :) echo &#34;-$OPTARGneeds an argument&#34; ;; k) key=$OPTARG ;; f) file=$OPTARG ;; *) echo &#34;-$optnot recognized&#34; usage ;; esac done if [ -z &#34;$encoding&#34; ]; then #该脚本必须提供-d选项 encoding=&#34;gbk&#34; fi if [ -z &#34;$file&#34; ]; then #该脚本必须提供-d选项 file=&#34;~/hosts.">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2016/10/05/mac%E6%97%A5%E5%BF%97%E6%89%B9%E9%87%8F%E6%9F%A5%E8%AF%A2%E9%85%8D%E7%BD%AE/" />
@@ -120,7 +120,7 @@ brew install pssh brew install …">
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -304,46 +304,40 @@ brew install pssh brew install …">
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        
-
-<p>由于公司线下机器非常多,导致每次查日志变得非常痛苦.线下的trace平台大部分时候还是可用的.但是有时候需要本机来批量查询.方案就是批量分发ssh key,实现免登.然后luit实现编码转换,这个主要是公司的机器编码有差异.历史原因.</p>
-
-<h2 id="0-准备">0. 准备</h2>
-
+        <p>由于公司线下机器非常多,导致每次查日志变得非常痛苦.线下的trace平台大部分时候还是可用的.但是有时候需要本机来批量查询.方案就是批量分发ssh key,实现免登.然后luit实现编码转换,这个主要是公司的机器编码有差异.历史原因.</p>
+<h2 id="0-">0. 准备</h2>
 <p>先要安装pssh,expect,ssh-copy-id.</p>
-<div class="highlight"><pre class="chroma">	brew install pssh
-	brew install homebrew/dupes/expect
-	brew install ssh-copy-id</pre></div>
-<p>另外安装luit的安装参考这里<a href="http://www.jianshu.com/p/69382cb499db">luit安装</a></p>
-
-<h2 id="1-生成ssh-key-并批量copy">1. 生成ssh key ,并批量copy</h2>
-
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"> brew install pssh
+ brew install homebrew/dupes/expect
+ brew install ssh-copy-id
+</code></pre></div><p>另外安装luit的安装参考这里<a href="http://www.jianshu.com/p/69382cb499db">luit安装</a></p>
+<h2 id="1-ssh-key-copy">1. 生成ssh key ,并批量copy</h2>
 <p>生成ssh key比较简单.<code>ssh-keygen -t rsa -C &quot;your_email@example.com&quot;</code>,直接使用git的ssh key也是可以的.然后保存下面这个脚本为pscopy.sh,</p>
-<div class="highlight"><pre class="chroma"><span class="cp">#!/bin/bash
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
 </span><span class="cp"></span><span class="nv">FILE</span><span class="o">=</span><span class="sb">`</span>cat ~/host.txt<span class="sb">`</span>
 <span class="k">for</span> ip in <span class="nv">$FILE</span><span class="p">;</span><span class="k">do</span>
-expect -c <span class="s2">&#34;
+expect -c <span class="s2">&#34;</span><span class="s2">
 </span><span class="s2">spawn ssh-copy-id </span><span class="nv">$ip</span><span class="s2">
-</span><span class="s2">    expect {
-</span><span class="s2">        \&#34;*yes/no*\&#34; {send \&#34;yes\r\&#34;;exp_continue}
-</span><span class="s2">        \&#34;*password*\&#34; {send \&#34;pass\r\&#34;;exp_continue}
-</span><span class="s2">        \&#34;*password*\&#34; {send \&#34;pass\r\&#34;;}
+</span><span class="s2">   expect {
+</span><span class="s2">       \&#34;*yes/no*\&#34; {send \&#34;yes\r\&#34;;exp_continue}
+</span><span class="s2">       \&#34;*password*\&#34; {send \&#34;pass\r\&#34;;exp_continue}
+</span><span class="s2">       \&#34;*password*\&#34; {send \&#34;pass\r\&#34;;}
 </span><span class="s2">}
-</span><span class="s2">&#34;</span>
-<span class="k">done</span></pre></div>
-<p>然后执行一下sh pscopy.sh,注意,host.txt要保证存在.格式是user@address.一行一个,中间的paas要改成user的密码,这样就会使用指定的用户密码,自动copy ssh key了.
-完成上面的步骤之后,ssh user@address 就可以免登了.</p>
+</span><span class="s2"></span><span class="s2">&#34;</span>
+<span class="k">done</span>
 
-<h2 id="2-写一个简单的pssh脚本">2. 写一个简单的pssh脚本</h2>
-<div class="highlight"><pre class="chroma"><span class="cp">#!/bin/bash
+</code></pre></div><p>然后执行一下sh pscopy.sh,注意,host.txt要保证存在.格式是user@address.一行一个,中间的paas要改成user的密码,这样就会使用指定的用户密码,自动copy ssh key了.
+完成上面的步骤之后,ssh user@address 就可以免登了.</p>
+<h2 id="2-pssh">2. 写一个简单的pssh脚本</h2>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
 </span><span class="cp"></span>
 <span class="nv">encoding</span><span class="o">=</span>
 <span class="nv">key</span><span class="o">=</span>
 <span class="nv">command</span><span class="o">=</span>
 <span class="nv">file</span><span class="o">=</span>
-usage<span class="o">()</span>
+usage<span class="o">(</span><span class="o">)</span>
 <span class="o">{</span>
-    <span class="nb">echo</span> <span class="s2">&#34;Usage: `basename </span><span class="nv">$0</span><span class="s2">` [-f filename]  [-c encoding] [-k keyword]&#34;</span>
+    <span class="nb">echo</span> <span class="s2">&#34;</span><span class="s2">Usage: `basename </span><span class="nv">$0</span><span class="s2">` [-f filename]  [-c encoding] [-k keyword]</span><span class="s2">&#34;</span>
     <span class="nb">exit</span> <span class="m">1</span>
 <span class="o">}</span>
 
@@ -352,20 +346,20 @@ usage<span class="o">()</span>
     <span class="k">case</span> <span class="nv">$opt</span> in
         c<span class="o">)</span>  
             <span class="nv">encoding</span><span class="o">=</span><span class="nv">$OPTARG</span>
-            <span class="p">;;</span>
+            <span class="p">;</span><span class="p">;</span>
         :<span class="o">)</span>
-            <span class="nb">echo</span> <span class="s2">&#34;-</span><span class="nv">$OPTARG</span><span class="s2"> needs an argument&#34;</span>
-            <span class="p">;;</span>
+            <span class="nb">echo</span> <span class="s2">&#34;</span><span class="s2">-</span><span class="nv">$OPTARG</span><span class="s2"> needs an argument</span><span class="s2">&#34;</span>
+            <span class="p">;</span><span class="p">;</span>
         k<span class="o">)</span>  
             <span class="nv">key</span><span class="o">=</span><span class="nv">$OPTARG</span>
-            <span class="p">;;</span>
+            <span class="p">;</span><span class="p">;</span>
         f<span class="o">)</span>
             <span class="nv">file</span><span class="o">=</span><span class="nv">$OPTARG</span>
-            <span class="p">;;</span>
+            <span class="p">;</span><span class="p">;</span>
         *<span class="o">)</span>  
-            <span class="nb">echo</span> <span class="s2">&#34;-</span><span class="nv">$opt</span><span class="s2"> not recognized&#34;</span>
+            <span class="nb">echo</span> <span class="s2">&#34;</span><span class="s2">-</span><span class="nv">$opt</span><span class="s2"> not recognized</span><span class="s2">&#34;</span>
             usage
-            <span class="p">;;</span>
+            <span class="p">;</span><span class="p">;</span>
     <span class="k">esac</span>
 <span class="k">done</span>
 
@@ -379,9 +373,10 @@ usage<span class="o">()</span>
 <span class="k">if</span> <span class="o">[</span> -z <span class="s2">&#34;</span><span class="nv">$key</span><span class="s2">&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>   <span class="c1">#该脚本必须提供-d选项</span>
   usage
 <span class="k">fi</span>
-<span class="nv">command</span><span class="o">=</span><span class="s2">&#34;pssh -h </span><span class="nv">$file</span><span class="s2"> -P \&#34;find /home/admin/logs/ -name &#39;*.log&#39;|xargs grep </span><span class="nv">$key</span><span class="s2"> --col\&#34;&#34;</span>
-luit -encoding <span class="s2">&#34;</span><span class="si">${</span><span class="nv">encoding</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">command</span><span class="si">}</span><span class="s2">&#34;</span></pre></div>
-<p>保存这个脚本为pssh.sh,然后用法如上.之后就可以通过 pssh.sh -f host.txt -c gbk -k keyword来批量查询了</p>
+<span class="nv">command</span><span class="o">=</span><span class="s2">&#34;</span><span class="s2">pssh -h </span><span class="nv">$file</span><span class="s2"> -P \&#34;find /home/admin/logs/ -name &#39;*.log&#39;|xargs grep </span><span class="nv">$key</span><span class="s2"> --col\&#34;</span><span class="s2">&#34;</span>
+luit -encoding <span class="s2">&#34;</span><span class="si">${</span><span class="nv">encoding</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">command</span><span class="si">}</span><span class="s2">&#34;</span>
+
+</code></pre></div><p>保存这个脚本为pssh.sh,然后用法如上.之后就可以通过 pssh.sh -f host.txt -c gbk -k keyword来批量查询了</p>
 
 
         
@@ -495,7 +490,7 @@ luit -encoding <span class="s2">&#34;</span><span class="si">${</span><span clas
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

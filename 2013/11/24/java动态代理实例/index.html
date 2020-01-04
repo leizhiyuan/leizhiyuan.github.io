@@ -10,15 +10,30 @@
   <title>Java动态代理实例 - bystander&#39;s blog</title>
   <meta property="og:title" content="Java动态代理实例" />
   <meta name="twitter:title" content="Java动态代理实例" />
-  <meta name="description" content="首先什么是代理？ 所谓代理呢也就是在调用实现类的方法时，可以在方法执行前后做额外的工作，这个就是代理。  那动态代理呢，官方解释是：  Java 动态代理机制的出现，使得 Java 开发人员不用手工编写代理类，只要简单地指定一组接口及委托类对象，便能动态地获得代理类。代理类会负责将所有的方法调用分派到委托对象上反射执行，在分派执行的过程中，开发人员还可以按需调整委托类对象及其功能，这是一套非常灵活有弹性的代理框架。 老湿，你说的是个毛啊，完全没看懂啊！
-我更喜欢另一种通俗的解释，官方的解释总是高度抽象的，等用了一段时间才能理解体会  动态代理实现了日志和业务的分开，也就是某个类只是要提供了某些业务，比如银行取款业务。这个类实现了取款业务的同时也需要实现日志功能，如果不用动态代理的话，那么由此一来该类代码里面已经额外地添加了自己不该添加的日志功能能代码。所以我们就得使用动态代理把它的业务代码和日志功能代码分开。所以用到了动态代理概念，spring里面的AOP就是一个很好的例子。  不直观啊，老湿，能再给力一点不？ 额，这样的话，我们来看一个例子，要用到的两个类 实现java.lang.reflect.InvocationHandler接口提供一个执行处理器，也就是真正做事的，然后通过java.lang.reflect.Proxy得到一个代理对象，通过这个代理对象来执行业务方法,在业务方法被调用的同时，执行处理器会被自动调用。 记住，动态代理只能对接口 首先业务接口：  public interface HelloWorld { public void sayHelloWorld(); } 然后我们是这样写的实现 public class HelloWorldImpl implements HelloWorld { public void sayHelloWorld() { System.out.println(&ldquo;Hello World!&rdquo;); } } 后来我们觉得执行这个方法前能不能做点其他啥事呢，比如写个日志？见个妹子？啥，这段代码不让改了，改了的话，业务方法和日志混合的一塌糊涂啊，以后想改个日志格式你来写啊
-那我们就得定义一个拦截器/执行处理器了。 public class HelloWorldHandler implements InvocationHandler { //目标对象 private Object targetObject;
-public HelloWorldHandler(Object targetObject){ this.targetObject = targetObject; } public Object invoke(Object proxy, Method method, Object[] args) throws Throwable { System.">
-  <meta property="og:description" content="首先什么是代理？ 所谓代理呢也就是在调用实现类的方法时，可以在方法执行前后做额外的工作，这个就是代理。  那动态代理呢，官方解释是：  Java 动态代理机制的出现，使得 Java 开发人员不用手工编写代理类，只要简单地指定一组接口及委托类对象，便能动态地获得代理类。代理类会负责将所有的方法调用分派到委托对象上反射执行，在分派执行的过程中，开发人员还可以按需调整委托类对象及其功能，这是一套非常灵活有弹性的代理框架。 老湿，你说的是个毛啊，完全没看懂啊！
-我更喜欢另一种通俗的解释，官方的解释总是高度抽象的，等用了一段时间才能理解体会  动态代理实现了日志和业务的分开，也就是某个类只是要提供了某些业务，比如银行取款业务。这个类实现了取款业务的同时也需要实现日志功能，如果不用动态代理的话，那么由此一来该类代码里面已经额外地添加了自己不该添加的日志功能能代码。所以我们就得使用动态代理把它的业务代码和日志功能代码分开。所以用到了动态代理概念，spring里面的AOP就是一个很好的例子。  不直观啊，老湿，能再给力一点不？ 额，这样的话，我们来看一个例子，要用到的两个类 实现java.lang.reflect.InvocationHandler接口提供一个执行处理器，也就是真正做事的，然后通过java.lang.reflect.Proxy得到一个代理对象，通过这个代理对象来执行业务方法,在业务方法被调用的同时，执行处理器会被自动调用。 记住，动态代理只能对接口 首先业务接口：  public interface HelloWorld { public void sayHelloWorld(); } 然后我们是这样写的实现 public class HelloWorldImpl implements HelloWorld { public void sayHelloWorld() { System.out.println(&ldquo;Hello World!&rdquo;); } } 后来我们觉得执行这个方法前能不能做点其他啥事呢，比如写个日志？见个妹子？啥，这段代码不让改了，改了的话，业务方法和日志混合的一塌糊涂啊，以后想改个日志格式你来写啊
-那我们就得定义一个拦截器/执行处理器了。 public class HelloWorldHandler implements InvocationHandler { //目标对象 private Object targetObject;
-public HelloWorldHandler(Object targetObject){ this.targetObject = targetObject; } public Object invoke(Object proxy, Method method, Object[] args) throws Throwable { System.">
-  <meta name="twitter:description" content="首先什么是代理？ 所谓代理呢也就是在调用实现类的方法时，可以在方法执行前后做额外的工作，这个就是代理。  那动态代理呢，官方解释是：  Java 动态代理机制的出现，使得 Java 开发人员不用手工编写代理类，只要简单地指定一组接口及委托类对象，便能动态地获得代理类。代理类会负责将所有的方法调用分派到委托对象上反射执行，在分派执行的过程中，开发人员还可以按需调整委托类对象及其功能，这是一套非常灵活 …">
+  <meta name="description" content="首先什么是代理？
+我更喜欢另一种通俗的解释，官方的解释总是高度抽象的，等用了一段时间才能理解体会
+那我们就得定义一个拦截器/执行处理器了。
+这客户端咋用啊，老湿
+看到没，通过Proxy类的newProxyInstance方法，传入类加载器，类接口，和这个处理器，我们就获得一个代理
+执行结果是这样的
+恩，电脑没死机，是这样的
+ ">
+  <meta property="og:description" content="首先什么是代理？
+我更喜欢另一种通俗的解释，官方的解释总是高度抽象的，等用了一段时间才能理解体会
+那我们就得定义一个拦截器/执行处理器了。
+这客户端咋用啊，老湿
+看到没，通过Proxy类的newProxyInstance方法，传入类加载器，类接口，和这个处理器，我们就获得一个代理
+执行结果是这样的
+恩，电脑没死机，是这样的
+ ">
+  <meta name="twitter:description" content="首先什么是代理？
+我更喜欢另一种通俗的解释，官方的解释总是高度抽象的，等用了一段时间才能理解体会
+那我们就得定义一个拦截器/执行处理器了。
+这客户端咋用啊，老湿
+看到没，通过Proxy类的newProxyInstance方法，传入类加载器，类接口，和这个处理器，我们就获得一个代理
+执行结果是这样的
+恩，电脑没死机，是这样的
+ ">
   <meta name="author" content="bystander"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -67,9 +82,9 @@ public HelloWorldHandler(Object targetObject){ this.targetObject = targetObject;
     "name" : "bystander"
   },
   "headline": "Java动态代理实例",
-  "description" : "首先什么是代理？ 所谓代理呢也就是在调用实现类的方法时，可以在方法执行前后做额外的工作，这个就是代理。  那动态代理呢，官方解释是：  Java 动态代理机制的出现，使得 Java 开发人员不用手工编写代理类，只要简单地指定一组接口及委托类对象，便能动态地获得代理类。代理类会负责将所有的方法调用分派到委托对象上反射执行，在分派执行的过程中，开发人员还可以按需调整委托类对象及其功能，这是一套非常灵活有弹性的代理框架。 老湿，你说的是个毛啊，完全没看懂啊！\n我更喜欢另一种通俗的解释，官方的解释总是高度抽象的，等用了一段时间才能理解体会  动态代理实现了日志和业务的分开，也就是某个类只是要提供了某些业务，比如银行取款业务。这个类实现了取款业务的同时也需要实现日志功能，如果不用动态代理的话，那么由此一来该类代码里面已经额外地添加了自己不该添加的日志功能能代码。所以我们就得使用动态代理把它的业务代码和日志功能代码分开。所以用到了动态代理概念，spring里面的AOP就是一个很好的例子。  不直观啊，老湿，能再给力一点不？ 额，这样的话，我们来看一个例子，要用到的两个类 实现java.lang.reflect.InvocationHandler接口提供一个执行处理器，也就是真正做事的，然后通过java.lang.reflect.Proxy得到一个代理对象，通过这个代理对象来执行业务方法,在业务方法被调用的同时，执行处理器会被自动调用。 记住，动态代理只能对接口 首先业务接口：  public interface HelloWorld { public void sayHelloWorld(); } 然后我们是这样写的实现 public class HelloWorldImpl implements HelloWorld { public void sayHelloWorld() { System.out.println(\x26ldquo;Hello World!\x26rdquo;); } } 后来我们觉得执行这个方法前能不能做点其他啥事呢，比如写个日志？见个妹子？啥，这段代码不让改了，改了的话，业务方法和日志混合的一塌糊涂啊，以后想改个日志格式你来写啊\n那我们就得定义一个拦截器\/执行处理器了。 public class HelloWorldHandler implements InvocationHandler { \/\/目标对象 private Object targetObject;\npublic HelloWorldHandler(Object targetObject){ this.targetObject = targetObject; } public Object invoke(Object proxy, Method method, Object[] args) throws Throwable { System.",
+  "description" : "首先什么是代理？\n我更喜欢另一种通俗的解释，官方的解释总是高度抽象的，等用了一段时间才能理解体会\n那我们就得定义一个拦截器\/执行处理器了。\n这客户端咋用啊，老湿\n看到没，通过Proxy类的newProxyInstance方法，传入类加载器，类接口，和这个处理器，我们就获得一个代理\n执行结果是这样的\n恩，电脑没死机，是这样的\n ",
   "inLanguage" : "en",
-  "wordCount":  122 ,
+  "wordCount":  7 ,
   "datePublished" : "2013-11-24T18:16:31",
   "dateModified" : "2013-11-24T18:16:31",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -89,17 +104,28 @@ public HelloWorldHandler(Object targetObject){ this.targetObject = targetObject;
 </script>
 
 <meta property="og:title" content="Java动态代理实例" />
-<meta property="og:description" content="首先什么是代理？ 所谓代理呢也就是在调用实现类的方法时，可以在方法执行前后做额外的工作，这个就是代理。  那动态代理呢，官方解释是：  Java 动态代理机制的出现，使得 Java 开发人员不用手工编写代理类，只要简单地指定一组接口及委托类对象，便能动态地获得代理类。代理类会负责将所有的方法调用分派到委托对象上反射执行，在分派执行的过程中，开发人员还可以按需调整委托类对象及其功能，这是一套非常灵活有弹性的代理框架。 老湿，你说的是个毛啊，完全没看懂啊！
-我更喜欢另一种通俗的解释，官方的解释总是高度抽象的，等用了一段时间才能理解体会  动态代理实现了日志和业务的分开，也就是某个类只是要提供了某些业务，比如银行取款业务。这个类实现了取款业务的同时也需要实现日志功能，如果不用动态代理的话，那么由此一来该类代码里面已经额外地添加了自己不该添加的日志功能能代码。所以我们就得使用动态代理把它的业务代码和日志功能代码分开。所以用到了动态代理概念，spring里面的AOP就是一个很好的例子。  不直观啊，老湿，能再给力一点不？ 额，这样的话，我们来看一个例子，要用到的两个类 实现java.lang.reflect.InvocationHandler接口提供一个执行处理器，也就是真正做事的，然后通过java.lang.reflect.Proxy得到一个代理对象，通过这个代理对象来执行业务方法,在业务方法被调用的同时，执行处理器会被自动调用。 记住，动态代理只能对接口 首先业务接口：  public interface HelloWorld { public void sayHelloWorld(); } 然后我们是这样写的实现 public class HelloWorldImpl implements HelloWorld { public void sayHelloWorld() { System.out.println(&ldquo;Hello World!&rdquo;); } } 后来我们觉得执行这个方法前能不能做点其他啥事呢，比如写个日志？见个妹子？啥，这段代码不让改了，改了的话，业务方法和日志混合的一塌糊涂啊，以后想改个日志格式你来写啊
-那我们就得定义一个拦截器/执行处理器了。 public class HelloWorldHandler implements InvocationHandler { //目标对象 private Object targetObject;
-public HelloWorldHandler(Object targetObject){ this.targetObject = targetObject; } public Object invoke(Object proxy, Method method, Object[] args) throws Throwable { System.">
+<meta property="og:description" content="首先什么是代理？
+我更喜欢另一种通俗的解释，官方的解释总是高度抽象的，等用了一段时间才能理解体会
+那我们就得定义一个拦截器/执行处理器了。
+这客户端咋用啊，老湿
+看到没，通过Proxy类的newProxyInstance方法，传入类加载器，类接口，和这个处理器，我们就获得一个代理
+执行结果是这样的
+恩，电脑没死机，是这样的
+ ">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2013/11/24/java%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E5%AE%9E%E4%BE%8B/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="bystander&#39;s blog" />
 
   <meta name="twitter:title" content="Java动态代理实例" />
-  <meta name="twitter:description" content="首先什么是代理？ 所谓代理呢也就是在调用实现类的方法时，可以在方法执行前后做额外的工作，这个就是代理。  那动态代理呢，官方解释是：  Java 动态代理机制的出现，使得 Java 开发人员不用手工编写代理类，只要简单地指定一组接口及委托类对象，便能动态地获得代理类。代理类会负责将所有的方法调用分派到委托对象上反射执行，在分派执行的过程中，开发人员还可以按需调整委托类对象及其功能，这是一套非常灵活 …">
+  <meta name="twitter:description" content="首先什么是代理？
+我更喜欢另一种通俗的解释，官方的解释总是高度抽象的，等用了一段时间才能理解体会
+那我们就得定义一个拦截器/执行处理器了。
+这客户端咋用啊，老湿
+看到没，通过Proxy类的newProxyInstance方法，传入类加载器，类接口，和这个处理器，我们就获得一个代理
+执行结果是这样的
+恩，电脑没死机，是这样的
+ ">
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -110,7 +136,7 @@ public HelloWorldHandler(Object targetObject){ this.targetObject = targetObject;
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -294,87 +320,23 @@ public HelloWorldHandler(Object targetObject){ this.targetObject = targetObject;
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <p>首先什么是代理？
-<div>所谓代理呢也就是在调用实现类的方法时，可以在方法执行前后做额外的工作，这个就是代理。</div>
-<div></div>
-<div>那动态代理呢，官方解释是：</div>
-<div>
-<pre class="lang:default decode:true ">Java 动态代理机制的出现，使得 Java 开发人员不用手工编写代理类，只要简单地指定一组接口及委托类对象，便能动态地获得代理类。代理类会负责将所有的方法调用分派到委托对象上反射执行，在分派执行的过程中，开发人员还可以按需调整委托类对象及其功能，这是一套非常灵活有弹性的代理框架。</pre>
-老湿，你说的是个毛啊，完全没看懂啊！</p>
-
-<p>我更喜欢另一种通俗的解释，官方的解释总是高度抽象的，等用了一段时间才能理解体会
-<div>
-<div>动态代理实现了日志和业务的分开，也就是某个类只是要提供了某些业务，比如银行取款业务。这个类实现了取款业务的同时也需要实现日志功能，如果不用动态代理的话，那么由此一来该类代码里面已经额外地添加了自己不该添加的日志功能能代码。所以我们就得使用动态代理把它的业务代码和日志功能代码分开。所以用到了动态代理概念，spring里面的AOP就是一个很好的例子。</div>
-<div></div>
-<div>不直观啊，老湿，能再给力一点不？</div>
-<div>额，这样的话，我们来看一个例子，要用到的两个类
-<div>实现java.lang.reflect.InvocationHandler接口提供一个执行处理器，也就是真正做事的，然后通过java.lang.reflect.Proxy得到一个代理对象，通过这个代理对象来执行业务方法,在业务方法被调用的同时，执行处理器会被自动调用。   记住，动态代理只能对接口</div>
-<div>首先业务接口：</div>
-<div>
-<pre class="lang:default decode:true ">public interface HelloWorld {
-    public void sayHelloWorld();
-}</pre>
-然后我们是这样写的实现
-<pre class="lang:default decode:true">public class HelloWorldImpl implements HelloWorld {
-    public void sayHelloWorld() {
-        System.out.println(&ldquo;Hello World!&rdquo;);
-    }
-}</pre>
-后来我们觉得执行这个方法前能不能做点其他啥事呢，比如写个日志？见个妹子？啥，这段代码不让改了，改了的话，业务方法和日志混合的一塌糊涂啊，以后想改个日志格式你来写啊</p>
-
-<p>那我们就得定义一个拦截器/执行处理器了。
-<pre class="lang:default decode:true">public class HelloWorldHandler implements InvocationHandler {
-    //目标对象
-    private Object targetObject;</p>
-<div class="highlight"><pre class="chroma">public HelloWorldHandler(Object targetObject){
-    this.targetObject = targetObject;
-}
-
-public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-    System.out.println(&#34;方法调用前&#34;);
-
-    Object result = method.invoke(this.targetObject, args);
-
-    System.out.println(&#34;方法调用结束&#34;);
-
-    return result;
-}</pre></div>
-<p>}</pre>
-这客户端咋用啊，老湿
-<pre class="lang:default decode:true">public class HelloWorldTest {
-    public static void main(String[] args) {
-        //业务对象
-        HelloWorld obj = new HelloWorldImpl();</p>
-<div class="highlight"><pre class="chroma">    //拦截器对象
-    HelloWorldHandler handler = new HelloWorldHandler(obj);
-
-    //返回业务对象的代理对象
-    HelloWorld proxy = (HelloWorld)Proxy.newProxyInstance(
-            obj.getClass().getClassLoader(), 
-            obj.getClass().getInterfaces(), 
-            handler);
-
-    //通过代理对象执行业务对象的方法
-    proxy.sayHelloWorld();
-}</pre></div>
-<p>}</pre>
-看到没，通过Proxy类的newProxyInstance方法，传入类加载器，类接口，和这个处理器，我们就获得一个代理</p>
-
-<p>执行结果是这样的
-<pre class="lang:default decode:true">方法调用前
-Hello World!
-方法调用结束</pre>
-恩，电脑没死机，是这样的</p>
-
-<p>&nbsp;</p>
-
-<p></div>
-<div></div>
-</div>
-<div></div>
-<div></div>
-</div>
-</div></p>
+        <p>首先什么是代理？</p>
+<!-- raw HTML omitted -->
+<p>我更喜欢另一种通俗的解释，官方的解释总是高度抽象的，等用了一段时间才能理解体会</p>
+<!-- raw HTML omitted -->
+<p>那我们就得定义一个拦截器/执行处理器了。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这客户端咋用啊，老湿</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>看到没，通过Proxy类的newProxyInstance方法，传入类加载器，类接口，和这个处理器，我们就获得一个代理</p>
+<p>执行结果是这样的</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>恩，电脑没死机，是这样的</p>
+<p> </p>
+<!-- raw HTML omitted -->
 
 
         
@@ -490,7 +452,7 @@ Hello World!
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

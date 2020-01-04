@@ -11,27 +11,44 @@
   <meta property="og:title" content="Spring松耦合示例" />
   <meta name="twitter:title" content="Spring松耦合示例" />
   <meta name="description" content="面向对象设计的理念是把整个系统分成一组可重用的组件，然而，当系统变得越大的时候，尤其是在java中，这最大的对象依赖将会紧紧耦合，以至于非常难以管理和修改，而现在，你可以使用Spring框架扮演一个中间模块的角色，方便高效地管理其他组件依赖
-输出生成的例子 看个例子，假设你的项目有一个方法可以输出内容到csv或者json格式，你可能写出这样的代码 package com.mkyong.output;
-public interface IOutputGenerator { public void generateOutput(); } ，然后是实现接口的类 package com.mkyong.output.impl;
-import com.mkyong.output.IOutputGenerator;
-public class CsvOutputGenerator implements IOutputGenerator { public void generateOutput(){ System.out.println(&ldquo;Csv Output Generator&rdquo;); } } 再写个Json生成的类 package com.mkyong.output.impl;
-import com.mkyong.output.IOutputGenerator;
-public class JsonOutputGenerator implements IOutputGenerator { public void generateOutput(){ System.out.println(&ldquo;Json Output Generator&rdquo;); } } 有好几种方法来调用IOutputGenerator接口，以及我们如何使用Spring来避免对象的过度耦合。
-方法1-直接调用 package com.mkyong.common;
-import com.mkyong.output.IOutputGenerator; import com.mkyong.output.impl.CsvOutputGenerator;
-public class App { public static void main( String[] args ) { IOutputGenerator output = new CsvOutputGenerator(); output.">
+输出生成的例子 看个例子，假设你的项目有一个方法可以输出内容到csv或者json格式，你可能写出这样的代码
+，然后是实现接口的类
+再写个Json生成的类
+有好几种方法来调用IOutputGenerator接口，以及我们如何使用Spring来避免对象的过度耦合。
+方法1-直接调用 问题：
+这种方法，output这个对象和CsvOutputGenerator耦合在了一起，每次要改变输出格式的话都要修改代码，如果这类代码遍布项目，那么改起来就跪了
+方法2-通过帮助类调用 也许你会想创建一个Helper类吧所有的output实现都移进去
+然后可以这样调用
+问题：
+看起来似乎更加优雅了，你仅仅需要管理这个Helper类就可以实现不同格式的输出需求改变了，然而，Helper还是和CvsOutputGenerator耦合，每一次要改变输出格式的时候，都要对Helper类做一下微调。
+方法3-Spring Spring依赖注入很合适，可以使不同的格式生成类分离开来
+首先对OutputHelper做一点微调，添加了一个参数
+然后创建一个Spring bean配置文件，并声明所有的Java对象依赖
+然后通过Spring调用
+以后要改Json格式，直接改一下xml配置文件就行了。能够减少错误
+结论 通过Spring框架的依赖注入，可以优雅的管理对象依赖，更大的灵活性，尤其是对于Java项目非常好用。">
   <meta property="og:description" content="面向对象设计的理念是把整个系统分成一组可重用的组件，然而，当系统变得越大的时候，尤其是在java中，这最大的对象依赖将会紧紧耦合，以至于非常难以管理和修改，而现在，你可以使用Spring框架扮演一个中间模块的角色，方便高效地管理其他组件依赖
-输出生成的例子 看个例子，假设你的项目有一个方法可以输出内容到csv或者json格式，你可能写出这样的代码 package com.mkyong.output;
-public interface IOutputGenerator { public void generateOutput(); } ，然后是实现接口的类 package com.mkyong.output.impl;
-import com.mkyong.output.IOutputGenerator;
-public class CsvOutputGenerator implements IOutputGenerator { public void generateOutput(){ System.out.println(&ldquo;Csv Output Generator&rdquo;); } } 再写个Json生成的类 package com.mkyong.output.impl;
-import com.mkyong.output.IOutputGenerator;
-public class JsonOutputGenerator implements IOutputGenerator { public void generateOutput(){ System.out.println(&ldquo;Json Output Generator&rdquo;); } } 有好几种方法来调用IOutputGenerator接口，以及我们如何使用Spring来避免对象的过度耦合。
-方法1-直接调用 package com.mkyong.common;
-import com.mkyong.output.IOutputGenerator; import com.mkyong.output.impl.CsvOutputGenerator;
-public class App { public static void main( String[] args ) { IOutputGenerator output = new CsvOutputGenerator(); output.">
+输出生成的例子 看个例子，假设你的项目有一个方法可以输出内容到csv或者json格式，你可能写出这样的代码
+，然后是实现接口的类
+再写个Json生成的类
+有好几种方法来调用IOutputGenerator接口，以及我们如何使用Spring来避免对象的过度耦合。
+方法1-直接调用 问题：
+这种方法，output这个对象和CsvOutputGenerator耦合在了一起，每次要改变输出格式的话都要修改代码，如果这类代码遍布项目，那么改起来就跪了
+方法2-通过帮助类调用 也许你会想创建一个Helper类吧所有的output实现都移进去
+然后可以这样调用
+问题：
+看起来似乎更加优雅了，你仅仅需要管理这个Helper类就可以实现不同格式的输出需求改变了，然而，Helper还是和CvsOutputGenerator耦合，每一次要改变输出格式的时候，都要对Helper类做一下微调。
+方法3-Spring Spring依赖注入很合适，可以使不同的格式生成类分离开来
+首先对OutputHelper做一点微调，添加了一个参数
+然后创建一个Spring bean配置文件，并声明所有的Java对象依赖
+然后通过Spring调用
+以后要改Json格式，直接改一下xml配置文件就行了。能够减少错误
+结论 通过Spring框架的依赖注入，可以优雅的管理对象依赖，更大的灵活性，尤其是对于Java项目非常好用。">
   <meta name="twitter:description" content="面向对象设计的理念是把整个系统分成一组可重用的组件，然而，当系统变得越大的时候，尤其是在java中，这最大的对象依赖将会紧紧耦合，以至于非常难以管理和修改，而现在，你可以使用Spring框架扮演一个中间模块的角色，方便高效地管理其他组件依赖
-输出生成的例子 看个例子，假设你的项目有一个方法可以输出内容到csv或者json格式，你可能写出这样的代码 package …">
+输出生成的例子 看个例子，假设你的项目有一个方法可以输出内容到csv或者json格式，你可能写出这样的代码
+，然后是实现接口的类
+再写个Json生成的类
+有好 …">
   <meta name="author" content="bystander"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -80,9 +97,9 @@ public class App { public static void main( String[] args ) { IOutputGenerator o
     "name" : "bystander"
   },
   "headline": "Spring松耦合示例",
-  "description" : "面向对象设计的理念是把整个系统分成一组可重用的组件，然而，当系统变得越大的时候，尤其是在java中，这最大的对象依赖将会紧紧耦合，以至于非常难以管理和修改，而现在，你可以使用Spring框架扮演一个中间模块的角色，方便高效地管理其他组件依赖\n输出生成的例子 看个例子，假设你的项目有一个方法可以输出内容到csv或者json格式，你可能写出这样的代码 package com.mkyong.output;\npublic interface IOutputGenerator { public void generateOutput(); } ，然后是实现接口的类 package com.mkyong.output.impl;\nimport com.mkyong.output.IOutputGenerator;\npublic class CsvOutputGenerator implements IOutputGenerator { public void generateOutput(){ System.out.println(\x26ldquo;Csv Output Generator\x26rdquo;); } } 再写个Json生成的类 package com.mkyong.output.impl;\nimport com.mkyong.output.IOutputGenerator;\npublic class JsonOutputGenerator implements IOutputGenerator { public void generateOutput(){ System.out.println(\x26ldquo;Json Output Generator\x26rdquo;); } } 有好几种方法来调用IOutputGenerator接口，以及我们如何使用Spring来避免对象的过度耦合。\n方法1-直接调用 package com.mkyong.common;\nimport com.mkyong.output.IOutputGenerator; import com.mkyong.output.impl.CsvOutputGenerator;\npublic class App { public static void main( String[] args ) { IOutputGenerator output = new CsvOutputGenerator(); output.",
+  "description" : "面向对象设计的理念是把整个系统分成一组可重用的组件，然而，当系统变得越大的时候，尤其是在java中，这最大的对象依赖将会紧紧耦合，以至于非常难以管理和修改，而现在，你可以使用Spring框架扮演一个中间模块的角色，方便高效地管理其他组件依赖\n输出生成的例子 看个例子，假设你的项目有一个方法可以输出内容到csv或者json格式，你可能写出这样的代码\n，然后是实现接口的类\n再写个Json生成的类\n有好几种方法来调用IOutputGenerator接口，以及我们如何使用Spring来避免对象的过度耦合。\n方法1-直接调用 问题：\n这种方法，output这个对象和CsvOutputGenerator耦合在了一起，每次要改变输出格式的话都要修改代码，如果这类代码遍布项目，那么改起来就跪了\n方法2-通过帮助类调用 也许你会想创建一个Helper类吧所有的output实现都移进去\n然后可以这样调用\n问题：\n看起来似乎更加优雅了，你仅仅需要管理这个Helper类就可以实现不同格式的输出需求改变了，然而，Helper还是和CvsOutputGenerator耦合，每一次要改变输出格式的时候，都要对Helper类做一下微调。\n方法3-Spring Spring依赖注入很合适，可以使不同的格式生成类分离开来\n首先对OutputHelper做一点微调，添加了一个参数\n然后创建一个Spring bean配置文件，并声明所有的Java对象依赖\n然后通过Spring调用\n以后要改Json格式，直接改一下xml配置文件就行了。能够减少错误\n结论 通过Spring框架的依赖注入，可以优雅的管理对象依赖，更大的灵活性，尤其是对于Java项目非常好用。",
   "inLanguage" : "en",
-  "wordCount":  227 ,
+  "wordCount":  23 ,
   "datePublished" : "2013-09-20T15:50:46",
   "dateModified" : "2013-09-20T15:50:46",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -103,15 +120,22 @@ public class App { public static void main( String[] args ) { IOutputGenerator o
 
 <meta property="og:title" content="Spring松耦合示例" />
 <meta property="og:description" content="面向对象设计的理念是把整个系统分成一组可重用的组件，然而，当系统变得越大的时候，尤其是在java中，这最大的对象依赖将会紧紧耦合，以至于非常难以管理和修改，而现在，你可以使用Spring框架扮演一个中间模块的角色，方便高效地管理其他组件依赖
-输出生成的例子 看个例子，假设你的项目有一个方法可以输出内容到csv或者json格式，你可能写出这样的代码 package com.mkyong.output;
-public interface IOutputGenerator { public void generateOutput(); } ，然后是实现接口的类 package com.mkyong.output.impl;
-import com.mkyong.output.IOutputGenerator;
-public class CsvOutputGenerator implements IOutputGenerator { public void generateOutput(){ System.out.println(&ldquo;Csv Output Generator&rdquo;); } } 再写个Json生成的类 package com.mkyong.output.impl;
-import com.mkyong.output.IOutputGenerator;
-public class JsonOutputGenerator implements IOutputGenerator { public void generateOutput(){ System.out.println(&ldquo;Json Output Generator&rdquo;); } } 有好几种方法来调用IOutputGenerator接口，以及我们如何使用Spring来避免对象的过度耦合。
-方法1-直接调用 package com.mkyong.common;
-import com.mkyong.output.IOutputGenerator; import com.mkyong.output.impl.CsvOutputGenerator;
-public class App { public static void main( String[] args ) { IOutputGenerator output = new CsvOutputGenerator(); output.">
+输出生成的例子 看个例子，假设你的项目有一个方法可以输出内容到csv或者json格式，你可能写出这样的代码
+，然后是实现接口的类
+再写个Json生成的类
+有好几种方法来调用IOutputGenerator接口，以及我们如何使用Spring来避免对象的过度耦合。
+方法1-直接调用 问题：
+这种方法，output这个对象和CsvOutputGenerator耦合在了一起，每次要改变输出格式的话都要修改代码，如果这类代码遍布项目，那么改起来就跪了
+方法2-通过帮助类调用 也许你会想创建一个Helper类吧所有的output实现都移进去
+然后可以这样调用
+问题：
+看起来似乎更加优雅了，你仅仅需要管理这个Helper类就可以实现不同格式的输出需求改变了，然而，Helper还是和CvsOutputGenerator耦合，每一次要改变输出格式的时候，都要对Helper类做一下微调。
+方法3-Spring Spring依赖注入很合适，可以使不同的格式生成类分离开来
+首先对OutputHelper做一点微调，添加了一个参数
+然后创建一个Spring bean配置文件，并声明所有的Java对象依赖
+然后通过Spring调用
+以后要改Json格式，直接改一下xml配置文件就行了。能够减少错误
+结论 通过Spring框架的依赖注入，可以优雅的管理对象依赖，更大的灵活性，尤其是对于Java项目非常好用。">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2013/09/20/spring%E6%9D%BE%E8%80%A6%E5%90%88%E7%A4%BA%E4%BE%8B/" />
 <meta property="og:type" content="website" />
@@ -119,7 +143,10 @@ public class App { public static void main( String[] args ) { IOutputGenerator o
 
   <meta name="twitter:title" content="Spring松耦合示例" />
   <meta name="twitter:description" content="面向对象设计的理念是把整个系统分成一组可重用的组件，然而，当系统变得越大的时候，尤其是在java中，这最大的对象依赖将会紧紧耦合，以至于非常难以管理和修改，而现在，你可以使用Spring框架扮演一个中间模块的角色，方便高效地管理其他组件依赖
-输出生成的例子 看个例子，假设你的项目有一个方法可以输出内容到csv或者json格式，你可能写出这样的代码 package …">
+输出生成的例子 看个例子，假设你的项目有一个方法可以输出内容到csv或者json格式，你可能写出这样的代码
+，然后是实现接口的类
+再写个Json生成的类
+有好 …">
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -130,7 +157,7 @@ public class App { public static void main( String[] args ) { IOutputGenerator o
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -288,7 +315,7 @@ public class App { public static void main( String[] args ) { IOutputGenerator o
   <i class="fas fa-calendar"></i>&nbsp;Posted on September 20, 2013
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -314,154 +341,45 @@ public class App { public static void main( String[] args ) { IOutputGenerator o
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        
-
-<p>面向对象设计的理念是把整个系统分成一组可重用的组件，然而，当系统变得越大的时候，尤其是在java中，这最大的对象依赖将会紧紧耦合，以至于非常难以管理和修改，而现在，你可以使用Spring框架扮演一个中间模块的角色，方便高效地管理其他组件依赖</p>
-
-<h2 id="输出生成的例子">输出生成的例子</h2>
-
-<p>看个例子，假设你的项目有一个方法可以输出内容到csv或者json格式，你可能写出这样的代码
-<pre class="lang:default decode:true" title="IOutputGenerator.java 输出生成器接口">package com.mkyong.output;</p>
-
-<p>public interface IOutputGenerator
-{
-    public void generateOutput();
-}</pre>
-，然后是实现接口的类
-<pre class="lang:default decode:true" title="CsvOutputGenerator.java csv生成类">package com.mkyong.output.impl;</p>
-
-<p>import com.mkyong.output.IOutputGenerator;</p>
-
-<p>public class CsvOutputGenerator implements IOutputGenerator
-{
-    public void generateOutput(){
-        System.out.println(&ldquo;Csv Output Generator&rdquo;);
-    }
-}</pre>
-再写个Json生成的类
-<pre class="lang:default decode:true" title="JsonOutputGenerator.java json生成类">package com.mkyong.output.impl;</p>
-
-<p>import com.mkyong.output.IOutputGenerator;</p>
-
-<p>public class JsonOutputGenerator implements IOutputGenerator
-{
-    public void generateOutput(){
-        System.out.println(&ldquo;Json Output Generator&rdquo;);
-    }
-}</pre>
-有好几种方法来调用IOutputGenerator接口，以及我们如何使用Spring来避免对象的过度耦合。</p>
-
-<h2 id="方法1-直接调用">方法1-直接调用</h2>
-
-<p><pre class="lang:default decode:true">package com.mkyong.common;</p>
-
-<p>import com.mkyong.output.IOutputGenerator;
-import com.mkyong.output.impl.CsvOutputGenerator;</p>
-
-<p>public class App
-{
-    public static void main( String[] args )
-    {
-        IOutputGenerator output = new CsvOutputGenerator();
-        output.generateOutput();
-    }
-}</pre>
-问题：</p>
-
+        <p>面向对象设计的理念是把整个系统分成一组可重用的组件，然而，当系统变得越大的时候，尤其是在java中，这最大的对象依赖将会紧紧耦合，以至于非常难以管理和修改，而现在，你可以使用Spring框架扮演一个中间模块的角色，方便高效地管理其他组件依赖</p>
+<h2 id="heading">输出生成的例子</h2>
+<p>看个例子，假设你的项目有一个方法可以输出内容到csv或者json格式，你可能写出这样的代码</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>，然后是实现接口的类</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>再写个Json生成的类</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>有好几种方法来调用IOutputGenerator接口，以及我们如何使用Spring来避免对象的过度耦合。</p>
+<h2 id="1-">方法1-直接调用</h2>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>问题：</p>
 <p>这种方法，output这个对象和CsvOutputGenerator耦合在了一起，每次要改变输出格式的话都要修改代码，如果这类代码遍布项目，那么改起来就跪了</p>
-
-<h2 id="方法2-通过帮助类调用">方法2-通过帮助类调用</h2>
-
-<p>也许你会想创建一个Helper类吧所有的output实现都移进去
-<pre class="lang:default decode:true">package com.mkyong.output;</p>
-
-<p>import com.mkyong.output.IOutputGenerator;
-import com.mkyong.output.impl.CsvOutputGenerator;</p>
-
-<p>public class OutputHelper
-{
-    IOutputGenerator outputGenerator;</p>
-<div class="highlight"><pre class="chroma">public OutputHelper(){
-    outputGenerator = new CsvOutputGenerator();
-}
-
-public void generateOutput(){
-    outputGenerator.generateOutput();
-}</pre></div>
-<p>}</pre>
-然后可以这样调用
-<pre class="lang:default decode:true">package com.mkyong.common;</p>
-
-<p>import com.mkyong.output.OutputHelper;</p>
-
-<p>public class App
-{
-    public static void main( String[] args )
-    {
-        OutputHelper output = new OutputHelper();
-        output.generateOutput();
-    }
-}</pre>
-问题：</p>
-
+<h2 id="2-">方法2-通过帮助类调用</h2>
+<p>也许你会想创建一个Helper类吧所有的output实现都移进去</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>然后可以这样调用</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>问题：</p>
 <p>看起来似乎更加优雅了，你仅仅需要管理这个Helper类就可以实现不同格式的输出需求改变了，然而，Helper还是和CvsOutputGenerator耦合，每一次要改变输出格式的时候，都要对Helper类做一下微调。</p>
-
-<h2 id="方法3-spring">方法3-Spring</h2>
-
+<h2 id="3-spring">方法3-Spring</h2>
 <p>Spring依赖注入很合适，可以使不同的格式生成类分离开来</p>
-
-<p>首先对OutputHelper做一点微调，添加了一个参数
-<pre class="lang:default decode:true">package com.mkyong.output;</p>
-
-<p>import com.mkyong.output.IOutputGenerator;</p>
-
-<p>public class OutputHelper
-{
-    IOutputGenerator outputGenerator;</p>
-<div class="highlight"><pre class="chroma">public void generateOutput(){
-    outputGenerator.generateOutput();
-}
-
-public void setOutputGenerator(IOutputGenerator outputGenerator){
-    this.outputGenerator = outputGenerator;
-}</pre></div>
-<p>}</pre>
-然后创建一个Spring bean配置文件，并声明所有的Java对象依赖
-<pre class="lang:default decode:true">&lt;!&ndash; Spring-Common.xml &ndash;&gt;
-&lt;beans xmlns=&ldquo;<a href="http://www.springframework.org/schema/beans&quot;">http://www.springframework.org/schema/beans&quot;</a>
-xmlns:xsi=&ldquo;<a href="http://www.w3.org/2001/XMLSchema-instance&quot;">http://www.w3.org/2001/XMLSchema-instance&quot;</a>
-xsi:schemaLocation=&ldquo;<a href="http://www.springframework.org/schema/beans">http://www.springframework.org/schema/beans</a>
-<a href="http://www.springframework.org/schema/beans/spring-beans-2.5.xsd&quot;&gt;">http://www.springframework.org/schema/beans/spring-beans-2.5.xsd&quot;&gt;</a></p>
-<div class="highlight"><pre class="chroma">&amp;lt;bean id=&#34;OutputHelper&#34; class=&#34;com.mkyong.output.OutputHelper&#34;&amp;gt;
-    &amp;lt;property name=&#34;outputGenerator&#34; ref=&#34;CsvOutputGenerator&#34; /&amp;gt;
-&amp;lt;/bean&amp;gt;
-
-&amp;lt;bean id=&#34;CsvOutputGenerator&#34; class=&#34;com.mkyong.output.impl.CsvOutputGenerator&#34; /&amp;gt;
-&amp;lt;bean id=&#34;JsonOutputGenerator&#34; class=&#34;com.mkyong.output.impl.JsonOutputGenerator&#34; /&amp;gt;</pre></div>
-<p>&lt;/beans&gt;</pre>
-然后通过Spring调用
-<pre class="lang:default decode:true">package com.mkyong.common;</p>
-
-<p>import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;</p>
-
-<p>import com.mkyong.output.OutputHelper;</p>
-
-<p>public class App
-{
-    public static void main( String[] args )
-    {
-        ApplicationContext context =
-           new ClassPathXmlApplicationContext(new String[] {&ldquo;Spring-Common.xml&rdquo;});</p>
-<div class="highlight"><pre class="chroma">    OutputHelper output = (OutputHelper)context.getBean(&#34;OutputHelper&#34;);
-    output.generateOutput();
-
-}</pre></div>
-<p>}</pre>
-以后要改Json格式，直接改一下xml配置文件就行了。能够减少错误</p>
-
-<h2 id="结论">结论</h2>
-
+<p>首先对OutputHelper做一点微调，添加了一个参数</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>然后创建一个Spring bean配置文件，并声明所有的Java对象依赖</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>然后通过Spring调用</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>以后要改Json格式，直接改一下xml配置文件就行了。能够减少错误</p>
+<h2 id="heading-1">结论</h2>
 <p>通过Spring框架的依赖注入，可以优雅的管理对象依赖，更大的灵活性，尤其是对于Java项目非常好用。</p>
 
 
@@ -578,7 +496,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;</p>
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

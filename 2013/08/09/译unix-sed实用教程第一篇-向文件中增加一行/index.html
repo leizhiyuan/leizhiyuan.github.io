@@ -12,15 +12,32 @@
   <meta name="twitter:title" content="[译]Unix sed实用教程第一篇--向文件中增加一行" />
   <meta name="description" content="Unix sed实用教程第一讲，本系列第一篇，有任何问题欢迎留言讨论。
 sed 是unix中最重要的编辑器之一，注意，有之一..支持多种编辑任务，本文将实现题目的功能实例
-假定我们有一额文本文件，叫做empFile，包含了员工名字和员工id，如下： Hilesh, 1001 Bharti, 1002 Aparna, 1003 Harshal, 1004 Keyur, 1005 1.如何通过sed给文件添加标题行-“Employee, EmpId” $ sed &lsquo;1i Employee, EmpId&rsquo; empFile Employee, EmpId Hilesh, 1001 Bharti, 1002 Aparna, 1003 Harshal, 1004 Keyur, 1005 解释：数字1，是说只对第一行执行操作，i代表在insert（熟悉vim的同学应该知道，i会在当前字符的前面插入，a是在后面插入），因此，1i就表示在将Employee, EmpId插入到第一行之前，
-然后，有了标题行的文件仅仅会输出到标准输出，源文件内容并不会改变，如果需要更新源文件，可以使用重定向输出到一个临时文件，然后移动到原始文件。如果Unix系统的sed是GUN版本的，sed会有一个-i选项，可以直接实现更新源文件，（如何查看版本，终端下输入sed &ndash;version即可看到）下面先执行，再查看文件，发现已经多了标题行了 $ sed -i &lsquo;1i Employee, EmpId&rsquo; empFile $ cat empFile Employee, EmpId Hilesh, 1001 Bharti, 1002 Aparna, 1003 Harshal, 1004 Keyur, 1005 2.如何在标题行之后，也就是原始第一行之前添加一行横线&ndash;“&mdash;&ndash;” $ sed -i &lsquo;1a &mdash;&mdash;&mdash;&mdash;&mdash;&rsquo; empFile $ cat empFile">
+假定我们有一额文本文件，叫做empFile，包含了员工名字和员工id，如下：
+1.如何通过sed给文件添加标题行-“Employee, EmpId”解释：数字1，是说只对第一行执行操作，i代表在insert（熟悉vim的同学应该知道，i会在当前字符的前面插入，a是在后面插入），因此，1i就表示在将Employee, EmpId插入到第一行之前，
+然后，有了标题行的文件仅仅会输出到标准输出，源文件内容并不会改变，如果需要更新源文件，可以使用重定向输出到一个临时文件，然后移动到原始文件。如果Unix系统的sed是GUN版本的，sed会有一个-i选项，可以直接实现更新源文件，（如何查看版本，终端下输入sed &ndash;version即可看到）下面先执行，再查看文件，发现已经多了标题行了
+2.如何在标题行之后，也就是原始第一行之前添加一行横线&ndash;“&mdash;&ndash;”同1，中，1表示第一行，a表示append（附加），也就是说当读入第一行的时候在其之后添加一行，如果你使用2i作为命令也是正确的，就是指当读入第二行的时候，在其之前插入一行。
+3.如何在文件尾部添加一行为了在文件尾部插入一行，如果使用之前的方法就需要知道总共有多少行，而$符号则直接指明了最后一行，因此$a表示在读入最后一行的时候，在后面插入一行
+4.如何在指定的记录之后插入一条新纪录假定我们的例子文件的内容现在是：
+如果我想在Hilesh这个员工之后插入Bharti员工的信息，我这样做：
+注意看，我们这里已经不再使用数字或者其他表示行号的标识了，我们使用了一个模式（了解过正则表达式的朋友会比较熟悉，可以理解为某种规则- /Hilesh/a 这个命令表示对于每一行读入的内容，如果发现 /Hilesh/这个匹配，在该行之后插入一行，也就是说如果文件里有两行都是Hilesh员工，那么执行完上面的命令，将会附加两行内容，这里可以想想sed的工作模式，对每一行执行命令条件检测，发现匹配，就执行。
+5.如何在指定记录之前插入记录呢，比如，我想在Harshal这条记录之前插入Aparna记录呢？
+ ">
   <meta property="og:description" content="Unix sed实用教程第一讲，本系列第一篇，有任何问题欢迎留言讨论。
 sed 是unix中最重要的编辑器之一，注意，有之一..支持多种编辑任务，本文将实现题目的功能实例
-假定我们有一额文本文件，叫做empFile，包含了员工名字和员工id，如下： Hilesh, 1001 Bharti, 1002 Aparna, 1003 Harshal, 1004 Keyur, 1005 1.如何通过sed给文件添加标题行-“Employee, EmpId” $ sed &lsquo;1i Employee, EmpId&rsquo; empFile Employee, EmpId Hilesh, 1001 Bharti, 1002 Aparna, 1003 Harshal, 1004 Keyur, 1005 解释：数字1，是说只对第一行执行操作，i代表在insert（熟悉vim的同学应该知道，i会在当前字符的前面插入，a是在后面插入），因此，1i就表示在将Employee, EmpId插入到第一行之前，
-然后，有了标题行的文件仅仅会输出到标准输出，源文件内容并不会改变，如果需要更新源文件，可以使用重定向输出到一个临时文件，然后移动到原始文件。如果Unix系统的sed是GUN版本的，sed会有一个-i选项，可以直接实现更新源文件，（如何查看版本，终端下输入sed &ndash;version即可看到）下面先执行，再查看文件，发现已经多了标题行了 $ sed -i &lsquo;1i Employee, EmpId&rsquo; empFile $ cat empFile Employee, EmpId Hilesh, 1001 Bharti, 1002 Aparna, 1003 Harshal, 1004 Keyur, 1005 2.如何在标题行之后，也就是原始第一行之前添加一行横线&ndash;“&mdash;&ndash;” $ sed -i &lsquo;1a &mdash;&mdash;&mdash;&mdash;&mdash;&rsquo; empFile $ cat empFile">
+假定我们有一额文本文件，叫做empFile，包含了员工名字和员工id，如下：
+1.如何通过sed给文件添加标题行-“Employee, EmpId”解释：数字1，是说只对第一行执行操作，i代表在insert（熟悉vim的同学应该知道，i会在当前字符的前面插入，a是在后面插入），因此，1i就表示在将Employee, EmpId插入到第一行之前，
+然后，有了标题行的文件仅仅会输出到标准输出，源文件内容并不会改变，如果需要更新源文件，可以使用重定向输出到一个临时文件，然后移动到原始文件。如果Unix系统的sed是GUN版本的，sed会有一个-i选项，可以直接实现更新源文件，（如何查看版本，终端下输入sed &ndash;version即可看到）下面先执行，再查看文件，发现已经多了标题行了
+2.如何在标题行之后，也就是原始第一行之前添加一行横线&ndash;“&mdash;&ndash;”同1，中，1表示第一行，a表示append（附加），也就是说当读入第一行的时候在其之后添加一行，如果你使用2i作为命令也是正确的，就是指当读入第二行的时候，在其之前插入一行。
+3.如何在文件尾部添加一行为了在文件尾部插入一行，如果使用之前的方法就需要知道总共有多少行，而$符号则直接指明了最后一行，因此$a表示在读入最后一行的时候，在后面插入一行
+4.如何在指定的记录之后插入一条新纪录假定我们的例子文件的内容现在是：
+如果我想在Hilesh这个员工之后插入Bharti员工的信息，我这样做：
+注意看，我们这里已经不再使用数字或者其他表示行号的标识了，我们使用了一个模式（了解过正则表达式的朋友会比较熟悉，可以理解为某种规则- /Hilesh/a 这个命令表示对于每一行读入的内容，如果发现 /Hilesh/这个匹配，在该行之后插入一行，也就是说如果文件里有两行都是Hilesh员工，那么执行完上面的命令，将会附加两行内容，这里可以想想sed的工作模式，对每一行执行命令条件检测，发现匹配，就执行。
+5.如何在指定记录之前插入记录呢，比如，我想在Harshal这条记录之前插入Aparna记录呢？
+ ">
   <meta name="twitter:description" content="Unix sed实用教程第一讲，本系列第一篇，有任何问题欢迎留言讨论。
 sed 是unix中最重要的编辑器之一，注意，有之一..支持多种编辑任务，本文将实现题目的功能实例
-假定我们有一额文本文件，叫做empFile，包含了员工名字和员工id，如下： Hilesh, 1001 Bharti, 1002 Aparna, 1003 Harshal, 1004 Keyur, 1005 1.如何通过sed给 …">
+假定我们有一额文本文件，叫做empFile，包含了员工名字和员工id，如下：
+1.如何通过sed给文件添加标题行-“Employee, EmpId”解释：数字1，是说只对第一行执行操作，i代表在insert（熟悉vim的同学应该 …">
   <meta name="author" content="bystander"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -69,9 +86,9 @@ sed 是unix中最重要的编辑器之一，注意，有之一..支持多种编�
     "name" : "bystander"
   },
   "headline": "[译]Unix sed实用教程第一篇--向文件中增加一行",
-  "description" : "Unix sed实用教程第一讲，本系列第一篇，有任何问题欢迎留言讨论。\nsed 是unix中最重要的编辑器之一，注意，有之一..支持多种编辑任务，本文将实现题目的功能实例\n假定我们有一额文本文件，叫做empFile，包含了员工名字和员工id，如下： Hilesh, 1001 Bharti, 1002 Aparna, 1003 Harshal, 1004 Keyur, 1005 1.如何通过sed给文件添加标题行-“Employee, EmpId” $ sed \x26lsquo;1i Employee, EmpId\x26rsquo; empFile Employee, EmpId Hilesh, 1001 Bharti, 1002 Aparna, 1003 Harshal, 1004 Keyur, 1005 解释：数字1，是说只对第一行执行操作，i代表在insert（熟悉vim的同学应该知道，i会在当前字符的前面插入，a是在后面插入），因此，1i就表示在将Employee, EmpId插入到第一行之前，\n然后，有了标题行的文件仅仅会输出到标准输出，源文件内容并不会改变，如果需要更新源文件，可以使用重定向输出到一个临时文件，然后移动到原始文件。如果Unix系统的sed是GUN版本的，sed会有一个-i选项，可以直接实现更新源文件，（如何查看版本，终端下输入sed \x26ndash;version即可看到）下面先执行，再查看文件，发现已经多了标题行了 $ sed -i \x26lsquo;1i Employee, EmpId\x26rsquo; empFile $ cat empFile Employee, EmpId Hilesh, 1001 Bharti, 1002 Aparna, 1003 Harshal, 1004 Keyur, 1005 2.如何在标题行之后，也就是原始第一行之前添加一行横线\x26ndash;“\x26mdash;\x26ndash;” $ sed -i \x26lsquo;1a \x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26mdash;\x26rsquo; empFile $ cat empFile",
+  "description" : "Unix sed实用教程第一讲，本系列第一篇，有任何问题欢迎留言讨论。\nsed 是unix中最重要的编辑器之一，注意，有之一..支持多种编辑任务，本文将实现题目的功能实例\n假定我们有一额文本文件，叫做empFile，包含了员工名字和员工id，如下：\n1.如何通过sed给文件添加标题行-“Employee, EmpId”解释：数字1，是说只对第一行执行操作，i代表在insert（熟悉vim的同学应该知道，i会在当前字符的前面插入，a是在后面插入），因此，1i就表示在将Employee, EmpId插入到第一行之前，\n然后，有了标题行的文件仅仅会输出到标准输出，源文件内容并不会改变，如果需要更新源文件，可以使用重定向输出到一个临时文件，然后移动到原始文件。如果Unix系统的sed是GUN版本的，sed会有一个-i选项，可以直接实现更新源文件，（如何查看版本，终端下输入sed \x26ndash;version即可看到）下面先执行，再查看文件，发现已经多了标题行了\n2.如何在标题行之后，也就是原始第一行之前添加一行横线\x26ndash;“\x26mdash;\x26ndash;”同1，中，1表示第一行，a表示append（附加），也就是说当读入第一行的时候在其之后添加一行，如果你使用2i作为命令也是正确的，就是指当读入第二行的时候，在其之前插入一行。\n3.如何在文件尾部添加一行为了在文件尾部插入一行，如果使用之前的方法就需要知道总共有多少行，而$符号则直接指明了最后一行，因此$a表示在读入最后一行的时候，在后面插入一行\n4.如何在指定的记录之后插入一条新纪录假定我们的例子文件的内容现在是：\n如果我想在Hilesh这个员工之后插入Bharti员工的信息，我这样做：\n注意看，我们这里已经不再使用数字或者其他表示行号的标识了，我们使用了一个模式（了解过正则表达式的朋友会比较熟悉，可以理解为某种规则- \/Hilesh\/a 这个命令表示对于每一行读入的内容，如果发现 \/Hilesh\/这个匹配，在该行之后插入一行，也就是说如果文件里有两行都是Hilesh员工，那么执行完上面的命令，将会附加两行内容，这里可以想想sed的工作模式，对每一行执行命令条件检测，发现匹配，就执行。\n5.如何在指定记录之前插入记录呢，比如，我想在Harshal这条记录之前插入Aparna记录呢？\n ",
   "inLanguage" : "en",
-  "wordCount":  170 ,
+  "wordCount":  19 ,
   "datePublished" : "2013-08-09T14:56:29",
   "dateModified" : "2013-08-09T14:56:29",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -93,8 +110,16 @@ sed 是unix中最重要的编辑器之一，注意，有之一..支持多种编�
 <meta property="og:title" content="[译]Unix sed实用教程第一篇--向文件中增加一行" />
 <meta property="og:description" content="Unix sed实用教程第一讲，本系列第一篇，有任何问题欢迎留言讨论。
 sed 是unix中最重要的编辑器之一，注意，有之一..支持多种编辑任务，本文将实现题目的功能实例
-假定我们有一额文本文件，叫做empFile，包含了员工名字和员工id，如下： Hilesh, 1001 Bharti, 1002 Aparna, 1003 Harshal, 1004 Keyur, 1005 1.如何通过sed给文件添加标题行-“Employee, EmpId” $ sed &lsquo;1i Employee, EmpId&rsquo; empFile Employee, EmpId Hilesh, 1001 Bharti, 1002 Aparna, 1003 Harshal, 1004 Keyur, 1005 解释：数字1，是说只对第一行执行操作，i代表在insert（熟悉vim的同学应该知道，i会在当前字符的前面插入，a是在后面插入），因此，1i就表示在将Employee, EmpId插入到第一行之前，
-然后，有了标题行的文件仅仅会输出到标准输出，源文件内容并不会改变，如果需要更新源文件，可以使用重定向输出到一个临时文件，然后移动到原始文件。如果Unix系统的sed是GUN版本的，sed会有一个-i选项，可以直接实现更新源文件，（如何查看版本，终端下输入sed &ndash;version即可看到）下面先执行，再查看文件，发现已经多了标题行了 $ sed -i &lsquo;1i Employee, EmpId&rsquo; empFile $ cat empFile Employee, EmpId Hilesh, 1001 Bharti, 1002 Aparna, 1003 Harshal, 1004 Keyur, 1005 2.如何在标题行之后，也就是原始第一行之前添加一行横线&ndash;“&mdash;&ndash;” $ sed -i &lsquo;1a &mdash;&mdash;&mdash;&mdash;&mdash;&rsquo; empFile $ cat empFile">
+假定我们有一额文本文件，叫做empFile，包含了员工名字和员工id，如下：
+1.如何通过sed给文件添加标题行-“Employee, EmpId”解释：数字1，是说只对第一行执行操作，i代表在insert（熟悉vim的同学应该知道，i会在当前字符的前面插入，a是在后面插入），因此，1i就表示在将Employee, EmpId插入到第一行之前，
+然后，有了标题行的文件仅仅会输出到标准输出，源文件内容并不会改变，如果需要更新源文件，可以使用重定向输出到一个临时文件，然后移动到原始文件。如果Unix系统的sed是GUN版本的，sed会有一个-i选项，可以直接实现更新源文件，（如何查看版本，终端下输入sed &ndash;version即可看到）下面先执行，再查看文件，发现已经多了标题行了
+2.如何在标题行之后，也就是原始第一行之前添加一行横线&ndash;“&mdash;&ndash;”同1，中，1表示第一行，a表示append（附加），也就是说当读入第一行的时候在其之后添加一行，如果你使用2i作为命令也是正确的，就是指当读入第二行的时候，在其之前插入一行。
+3.如何在文件尾部添加一行为了在文件尾部插入一行，如果使用之前的方法就需要知道总共有多少行，而$符号则直接指明了最后一行，因此$a表示在读入最后一行的时候，在后面插入一行
+4.如何在指定的记录之后插入一条新纪录假定我们的例子文件的内容现在是：
+如果我想在Hilesh这个员工之后插入Bharti员工的信息，我这样做：
+注意看，我们这里已经不再使用数字或者其他表示行号的标识了，我们使用了一个模式（了解过正则表达式的朋友会比较熟悉，可以理解为某种规则- /Hilesh/a 这个命令表示对于每一行读入的内容，如果发现 /Hilesh/这个匹配，在该行之后插入一行，也就是说如果文件里有两行都是Hilesh员工，那么执行完上面的命令，将会附加两行内容，这里可以想想sed的工作模式，对每一行执行命令条件检测，发现匹配，就执行。
+5.如何在指定记录之前插入记录呢，比如，我想在Harshal这条记录之前插入Aparna记录呢？
+ ">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%80%E7%AF%87-%E5%90%91%E6%96%87%E4%BB%B6%E4%B8%AD%E5%A2%9E%E5%8A%A0%E4%B8%80%E8%A1%8C/" />
 <meta property="og:type" content="website" />
@@ -103,7 +128,8 @@ sed 是unix中最重要的编辑器之一，注意，有之一..支持多种编�
   <meta name="twitter:title" content="[译]Unix sed实用教程第一篇--向文件中增加一行" />
   <meta name="twitter:description" content="Unix sed实用教程第一讲，本系列第一篇，有任何问题欢迎留言讨论。
 sed 是unix中最重要的编辑器之一，注意，有之一..支持多种编辑任务，本文将实现题目的功能实例
-假定我们有一额文本文件，叫做empFile，包含了员工名字和员工id，如下： Hilesh, 1001 Bharti, 1002 Aparna, 1003 Harshal, 1004 Keyur, 1005 1.如何通过sed给 …">
+假定我们有一额文本文件，叫做empFile，包含了员工名字和员工id，如下：
+1.如何通过sed给文件添加标题行-“Employee, EmpId”解释：数字1，是说只对第一行执行操作，i代表在insert（熟悉vim的同学应该 …">
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -114,7 +140,7 @@ sed 是unix中最重要的编辑器之一，注意，有之一..支持多种编�
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -298,100 +324,38 @@ sed 是unix中最重要的编辑器之一，注意，有之一..支持多种编�
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        
-
-<p>Unix sed实用教程第一讲，本系列第一篇，有任何问题欢迎留言讨论。</p>
-
+        <p>Unix sed实用教程第一讲，本系列第一篇，有任何问题欢迎留言讨论。</p>
 <p>sed 是unix中最重要的编辑器之一，注意，有之一..支持多种编辑任务，本文将实现题目的功能实例</p>
-
-<p>假定我们有一额文本文件，叫做empFile，包含了员工名字和员工id，如下：
-<pre class="lang:default decode:true">Hilesh, 1001
-Bharti, 1002
-Aparna, 1003
-Harshal, 1004
-Keyur, 1005</pre>
-<span style="color: #3366ff;">1.如何通过sed给文件添加标题行-“Employee, EmpId”</span>
-<pre class="lang:default decode:true">$ sed  &lsquo;1i Employee, EmpId&rsquo;  empFile
-Employee, EmpId
-Hilesh, 1001
-Bharti, 1002
-Aparna, 1003
-Harshal, 1004
-Keyur, 1005</pre>
-解释：数字1，是说只对第一行执行操作，i代表在insert（熟悉vim的同学应该知道，i会在当前字符的前面插入，a是在后面插入），因此，1i就表示在将Employee, EmpId插入到第一行之前，</p>
-
-<p>然后，有了标题行的文件仅仅会输出到标准输出，源文件内容并不会改变，如果需要更新源文件，可以使用重定向输出到一个临时文件，然后移动到原始文件。如果Unix系统的sed是GUN版本的，sed会有一个-i选项，可以直接实现更新源文件，（如何查看版本，终端下输入sed &ndash;version即可看到）下面先执行，再查看文件，发现已经多了标题行了
-<pre class="lang:default decode:true">$ sed -i &lsquo;1i Employee, EmpId&rsquo; empFile
-$ cat empFile
-Employee, EmpId
-Hilesh, 1001
-Bharti, 1002
-Aparna, 1003
-Harshal, 1004
-Keyur, 1005</pre>
-<span style="color: #3366ff;">2.如何在标题行之后，也就是原始第一行之前添加一行横线&ndash;“&mdash;&ndash;”</span>
-<pre class="lang:default decode:true">$ sed -i &lsquo;1a &mdash;&mdash;&mdash;&mdash;&mdash;&rsquo;  empFile
-$ cat empFile</p>
-
-<h2 id="employee-empid">Employee, EmpId</h2>
-
-<p>Hilesh, 1001
-Bharti, 1002
-Aparna, 1003
-Harshal, 1004
-Keyur, 1005</pre>
-同1，中，1表示第一行，a表示append（附加），也就是说当读入第一行的时候在其之后添加一行，如果你使用2i作为命令也是正确的，就是指当读入第二行的时候，在其之前插入一行。</p>
-
-<p><span style="color: #3366ff;">3.如何在文件尾部添加一行</span>
-<pre class="lang:default decode:true">$ sed -i &lsquo;$a &mdash;&mdash;&mdash;&mdash;&mdash;&rsquo; empFile
-$ cat empFile</p>
-
-<h2 id="employee-empid-1">Employee, EmpId</h2>
-
-<p>Hilesh, 1001
-Bharti, 1002
-Aparna, 1003
-Harshal, 1004
-Keyur, 1005
-&mdash;&mdash;&mdash;&mdash;&mdash;</pre>
-为了在文件尾部插入一行，如果使用之前的方法就需要知道总共有多少行，而$符号则直接指明了最后一行，因此$a表示在读入最后一行的时候，在后面插入一行</p>
-
-<p><span style="color: #3366ff;">4.如何在指定的记录之后插入一条新纪录</span></p>
-
+<p>假定我们有一额文本文件，叫做empFile，包含了员工名字和员工id，如下：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->1.如何通过sed给文件添加标题行-“Employee, EmpId”<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>解释：数字1，是说只对第一行执行操作，i代表在insert（熟悉vim的同学应该知道，i会在当前字符的前面插入，a是在后面插入），因此，1i就表示在将Employee, EmpId插入到第一行之前，</p>
+<p>然后，有了标题行的文件仅仅会输出到标准输出，源文件内容并不会改变，如果需要更新源文件，可以使用重定向输出到一个临时文件，然后移动到原始文件。如果Unix系统的sed是GUN版本的，sed会有一个-i选项，可以直接实现更新源文件，（如何查看版本，终端下输入sed &ndash;version即可看到）下面先执行，再查看文件，发现已经多了标题行了</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->2.如何在标题行之后，也就是原始第一行之前添加一行横线&ndash;“&mdash;&ndash;”<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>同1，中，1表示第一行，a表示append（附加），也就是说当读入第一行的时候在其之后添加一行，如果你使用2i作为命令也是正确的，就是指当读入第二行的时候，在其之前插入一行。</p>
+<p><!-- raw HTML omitted -->3.如何在文件尾部添加一行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>为了在文件尾部插入一行，如果使用之前的方法就需要知道总共有多少行，而$符号则直接指明了最后一行，因此$a表示在读入最后一行的时候，在后面插入一行</p>
+<p><!-- raw HTML omitted -->4.如何在指定的记录之后插入一条新纪录<!-- raw HTML omitted --></p>
 <p>假定我们的例子文件的内容现在是：</p>
-
-<h2 id="pre-class-lang-default-decode-true-employee-empid"><pre class="lang:default decode:true">Employee, EmpId</h2>
-
-<p>Hilesh, 1001
-Harshal, 1004
-Keyur, 1005
-&mdash;&mdash;&mdash;&mdash;&mdash;</pre>
-如果我想在Hilesh这个员工之后插入Bharti员工的信息，我这样做：
-<pre class="lang:default decode:true">$ sed -i &lsquo;/Hilesh/a Bharti, 1002&rsquo; empFile
-$ cat empFile</p>
-
-<h2 id="employee-empid-2">Employee, EmpId</h2>
-
-<p>Hilesh, 1001
-Bharti, 1002
-Harshal, 1004
-Keyur, 1005
-&mdash;&mdash;&mdash;&mdash;&mdash;</pre>
-注意看，我们这里已经不再使用数字或者其他表示行号的标识了，我们使用了一个模式（了解过<a href="http://zh.wikipedia.org/zh/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F">正则表达式</a>的朋友会比较熟悉，可以理解为某种规则- /Hilesh/a 这个命令表示对于每一行读入的内容，如果发现 /Hilesh/这个匹配，在该行之后插入一行，也就是说如果文件里有两行都是Hilesh员工，那么执行完上面的命令，将会附加两行内容，这里可以想想<a href="http://leaver.me/archives/3162.html">sed的工作模式</a>，对每一行执行命令条件检测，发现匹配，就执行。</p>
-
-<p>5.如何在指定记录之前插入记录呢，比如，我想在Harshal这条记录之前插入Aparna记录呢？
-<pre class="lang:default decode:true">$ sed -i &lsquo;/Harshal/i Aparna, 1003&rsquo; empFile
-$ cat empFile</p>
-
-<h2 id="employee-empid-3">Employee, EmpId</h2>
-
-<p>Hilesh, 1001
-Bharti, 1002
-Aparna, 1003
-Harshal, 1004
-Keyur, 1005
-&mdash;&mdash;&mdash;&mdash;&mdash;</pre>
-&nbsp;</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>如果我想在Hilesh这个员工之后插入Bharti员工的信息，我这样做：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>注意看，我们这里已经不再使用数字或者其他表示行号的标识了，我们使用了一个模式（了解过<a href="http://zh.wikipedia.org/zh/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F">正则表达式</a>的朋友会比较熟悉，可以理解为某种规则- /Hilesh/a 这个命令表示对于每一行读入的内容，如果发现 /Hilesh/这个匹配，在该行之后插入一行，也就是说如果文件里有两行都是Hilesh员工，那么执行完上面的命令，将会附加两行内容，这里可以想想<a href="http://leaver.me/archives/3162.html">sed的工作模式</a>，对每一行执行命令条件检测，发现匹配，就执行。</p>
+<p>5.如何在指定记录之前插入记录呢，比如，我想在Harshal这条记录之前插入Aparna记录呢？</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
 
 
         
@@ -503,7 +467,7 @@ Keyur, 1005
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

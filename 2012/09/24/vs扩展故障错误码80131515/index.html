@@ -13,14 +13,14 @@
   <meta name="description" content="介绍 如果你给VS安装了Web Search扩展，如果第一次运行就出现了错误代码是80131515的问题。那么本文对你是有用的。。 
 背景 当我远程试图运行Web Search的时候出现了这个错误。我用本文第一种方法解决了。。
 解决方法 这个错误发生在当我远程以dll的方式调用的时候提示我说权限不够。。 为了解决这个问题，我们需要给devenv.exe.config文件添加loadFromRemoteSources 元素 首先使用管理员权限从下面的路径打开devenv.exe.config文件。 具体路径：你的VS安装目录\Common7\IDE\devenv.exe.config 并且添加loadFromRemoteSources 元素，并设为true。如下：
-&lt;configuration&gt; &lt;runtime&gt; &lt;loadFromRemoteSources enabled=&#34;true&#34;/&gt; &lt;/runtime&gt; &lt;/configuration&gt;  有时候windows会把下载的文件标记为“此文件来自一个不同的位置” ，然后对这些文件进行了很多的限制，这部分就是解锁下载的zip或是dll文件
+有时候windows会把下载的文件标记为“此文件来自一个不同的位置” ，然后对这些文件进行了很多的限制，这部分就是解锁下载的zip或是dll文件
 为了解锁这些文件，只要右键点击这些文件，属性，选择常规，然后点击解锁按钮。如下图：  如果你还有其他的解决方法请告诉我哦。
 许可 本文，包括源代码和文件，在CPOL下授权。
 原文地址：Visual-Studio-Add-in-Troubleshooting-Error-Number 著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！">
   <meta property="og:description" content="介绍 如果你给VS安装了Web Search扩展，如果第一次运行就出现了错误代码是80131515的问题。那么本文对你是有用的。。 
 背景 当我远程试图运行Web Search的时候出现了这个错误。我用本文第一种方法解决了。。
 解决方法 这个错误发生在当我远程以dll的方式调用的时候提示我说权限不够。。 为了解决这个问题，我们需要给devenv.exe.config文件添加loadFromRemoteSources 元素 首先使用管理员权限从下面的路径打开devenv.exe.config文件。 具体路径：你的VS安装目录\Common7\IDE\devenv.exe.config 并且添加loadFromRemoteSources 元素，并设为true。如下：
-&lt;configuration&gt; &lt;runtime&gt; &lt;loadFromRemoteSources enabled=&#34;true&#34;/&gt; &lt;/runtime&gt; &lt;/configuration&gt;  有时候windows会把下载的文件标记为“此文件来自一个不同的位置” ，然后对这些文件进行了很多的限制，这部分就是解锁下载的zip或是dll文件
+有时候windows会把下载的文件标记为“此文件来自一个不同的位置” ，然后对这些文件进行了很多的限制，这部分就是解锁下载的zip或是dll文件
 为了解锁这些文件，只要右键点击这些文件，属性，选择常规，然后点击解锁按钮。如下图：  如果你还有其他的解决方法请告诉我哦。
 许可 本文，包括源代码和文件，在CPOL下授权。
 原文地址：Visual-Studio-Add-in-Troubleshooting-Error-Number 著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！">
@@ -75,9 +75,9 @@
     "name" : "bystander"
   },
   "headline": "VS扩展故障,错误码:80131515",
-  "description" : "介绍 如果你给VS安装了Web Search扩展，如果第一次运行就出现了错误代码是80131515的问题。那么本文对你是有用的。。 \n背景 当我远程试图运行Web Search的时候出现了这个错误。我用本文第一种方法解决了。。\n解决方法 这个错误发生在当我远程以dll的方式调用的时候提示我说权限不够。。 为了解决这个问题，我们需要给devenv.exe.config文件添加loadFromRemoteSources 元素 首先使用管理员权限从下面的路径打开devenv.exe.config文件。 具体路径：你的VS安装目录\\Common7\\IDE\\devenv.exe.config 并且添加loadFromRemoteSources 元素，并设为true。如下：\n\x26lt;configuration\x26gt; \x26lt;runtime\x26gt; \x26lt;loadFromRemoteSources enabled=\x22true\x22\/\x26gt; \x26lt;\/runtime\x26gt; \x26lt;\/configuration\x26gt;  有时候windows会把下载的文件标记为“此文件来自一个不同的位置” ，然后对这些文件进行了很多的限制，这部分就是解锁下载的zip或是dll文件\n为了解锁这些文件，只要右键点击这些文件，属性，选择常规，然后点击解锁按钮。如下图：  如果你还有其他的解决方法请告诉我哦。\n许可 本文，包括源代码和文件，在CPOL下授权。\n原文地址：Visual-Studio-Add-in-Troubleshooting-Error-Number 著作权声明：本文由http:\/\/leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！",
+  "description" : "介绍 如果你给VS安装了Web Search扩展，如果第一次运行就出现了错误代码是80131515的问题。那么本文对你是有用的。。 \n背景 当我远程试图运行Web Search的时候出现了这个错误。我用本文第一种方法解决了。。\n解决方法 这个错误发生在当我远程以dll的方式调用的时候提示我说权限不够。。 为了解决这个问题，我们需要给devenv.exe.config文件添加loadFromRemoteSources 元素 首先使用管理员权限从下面的路径打开devenv.exe.config文件。 具体路径：你的VS安装目录\\Common7\\IDE\\devenv.exe.config 并且添加loadFromRemoteSources 元素，并设为true。如下：\n有时候windows会把下载的文件标记为“此文件来自一个不同的位置” ，然后对这些文件进行了很多的限制，这部分就是解锁下载的zip或是dll文件\n为了解锁这些文件，只要右键点击这些文件，属性，选择常规，然后点击解锁按钮。如下图：  如果你还有其他的解决方法请告诉我哦。\n许可 本文，包括源代码和文件，在CPOL下授权。\n原文地址：Visual-Studio-Add-in-Troubleshooting-Error-Number 著作权声明：本文由http:\/\/leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！",
   "inLanguage" : "en",
-  "wordCount":  29 ,
+  "wordCount":  23 ,
   "datePublished" : "2012-09-24T08:04:33",
   "dateModified" : "2012-09-24T08:04:33",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -100,7 +100,7 @@
 <meta property="og:description" content="介绍 如果你给VS安装了Web Search扩展，如果第一次运行就出现了错误代码是80131515的问题。那么本文对你是有用的。。 
 背景 当我远程试图运行Web Search的时候出现了这个错误。我用本文第一种方法解决了。。
 解决方法 这个错误发生在当我远程以dll的方式调用的时候提示我说权限不够。。 为了解决这个问题，我们需要给devenv.exe.config文件添加loadFromRemoteSources 元素 首先使用管理员权限从下面的路径打开devenv.exe.config文件。 具体路径：你的VS安装目录\Common7\IDE\devenv.exe.config 并且添加loadFromRemoteSources 元素，并设为true。如下：
-&lt;configuration&gt; &lt;runtime&gt; &lt;loadFromRemoteSources enabled=&#34;true&#34;/&gt; &lt;/runtime&gt; &lt;/configuration&gt;  有时候windows会把下载的文件标记为“此文件来自一个不同的位置” ，然后对这些文件进行了很多的限制，这部分就是解锁下载的zip或是dll文件
+有时候windows会把下载的文件标记为“此文件来自一个不同的位置” ，然后对这些文件进行了很多的限制，这部分就是解锁下载的zip或是dll文件
 为了解锁这些文件，只要右键点击这些文件，属性，选择常规，然后点击解锁按钮。如下图：  如果你还有其他的解决方法请告诉我哦。
 许可 本文，包括源代码和文件，在CPOL下授权。
 原文地址：Visual-Studio-Add-in-Troubleshooting-Error-Number 著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！">
@@ -123,7 +123,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -307,41 +307,25 @@
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        
-
-<h3 id="介绍">介绍</h3>
-
+        <h3 id="heading">介绍</h3>
 <p>如果你给VS安装了<a href="http://www.codeproject.com/Articles/446955/Web-Search-Visual-Studio-Add-in-Search-Google-Yaho">Web Search</a>扩展，如果第一次运行就出现了错误代码是80131515的问题。那么本文对你是有用的。。
-<a href="http://leaverimage.b0.upaiyun.com/27488_o.png"><img src="/images/31f5dde58ae04aa01469671b23b71a15d328c51c.png" alt="" title="question" /></a></p>
-
-<h3 id="背景">背景</h3>
-
+<a href="http://leaverimage.b0.upaiyun.com/27488_o.png"><img src="/images/31f5dde58ae04aa01469671b23b71a15d328c51c.png" alt="" title="question"></a></p>
+<h3 id="heading-1">背景</h3>
 <p>当我远程试图运行<a href="http://www.codeproject.com/Articles/446955/Web-Search-Visual-Studio-Add-in-Search-Google-Yaho">Web Search</a>的时候出现了这个错误。我用本文第一种方法解决了。。</p>
-
-<h3 id="解决方法">解决方法</h3>
-
+<h3 id="heading-2">解决方法</h3>
 <p>这个错误发生在当我远程以dll的方式调用的时候提示我说权限不够。。
 为了解决这个问题，我们需要给devenv.exe.config文件添加loadFromRemoteSources 元素
 首先使用管理员权限从下面的路径打开devenv.exe.config文件。
 具体路径：你的VS安装目录\Common7\IDE\devenv.exe.config
 并且添加loadFromRemoteSources 元素，并设为true。如下：</p>
-
-<pre class="lang:xhtml decode:true " >&lt;configuration&gt;
-   &lt;runtime&gt;
-      &lt;loadFromRemoteSources enabled="true"/&gt;
-   &lt;/runtime&gt;
-&lt;/configuration&gt; </pre> 
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>有时候windows会把下载的文件标记为“此文件来自一个不同的位置” ，然后对这些文件进行了很多的限制，这部分就是解锁下载的zip或是dll文件</p>
-
 <p>为了解锁这些文件，只要右键点击这些文件，属性，选择常规，然后点击解锁按钮。如下图：
-<a href="http://leaverimage.b0.upaiyun.com/27489_o.png"><img src="/images/c889da920a47f1e60ef6d7140d69f20c61374388.png" alt="" title="answer" /></a>
+<a href="http://leaverimage.b0.upaiyun.com/27489_o.png"><img src="/images/c889da920a47f1e60ef6d7140d69f20c61374388.png" alt="" title="answer"></a>
 如果你还有其他的解决方法请告诉我哦。</p>
-
-<h3 id="许可">许可</h3>
-
+<h3 id="heading-3">许可</h3>
 <p>本文，包括源代码和文件，在CPOL下授权。</p>
-
 <p>原文地址：<a href="http://www.codeproject.com/Tips/463777/Visual-Studio-Add-in-Troubleshooting-Error-Number">Visual-Studio-Add-in-Troubleshooting-Error-Number</a>
 著作权声明：本文由<a href="http://leaver.me">http://leaver.me</a> 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</p>
 
@@ -459,7 +443,7 @@
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

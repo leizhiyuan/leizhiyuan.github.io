@@ -10,9 +10,9 @@
   <title>Overview of all pages with the category #学习笔记 - bystander&#39;s blog</title>
   <meta property="og:title" content="Overview of all pages with the category #学习笔记" />
   <meta name="twitter:title" content="Overview of all pages with the category #学习笔记" />
-  <meta name="description" content="Overview of all pages with the category #学习笔记, such as: skywalking插件开发的注意事项">
-  <meta property="og:description" content="Overview of all pages with the category #学习笔记, such as: skywalking插件开发的注意事项">
-  <meta name="twitter:description" content="Overview of all pages with the category #学习笔记, such as: skywalking插件开发的注意事项">
+  <meta name="description" content="Overview of all pages with the category #学习笔记, such as: 深入理解Raft协议">
+  <meta property="og:description" content="Overview of all pages with the category #学习笔记, such as: 深入理解Raft协议">
+  <meta name="twitter:description" content="Overview of all pages with the category #学习笔记, such as: 深入理解Raft协议">
   <meta name="author" content="bystander"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -51,7 +51,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -221,6 +221,80 @@
         <div class="posts-list">
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2014/04/26/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/">
+                <h2 class="post-title">构建数据库连接的配置方法</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on April 26, 2014
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  <p>以前我在写数据库连接的时候，都是在文件里写死的，或者一个简单地配置文件，只有一个数据库连接嘛，但是最近写一个测试工具的时候，需要很多数据库，而且有些还有分库规则，于是查找资料，完善了两个类，和xml的定义规则，分享出来。仅供参考，有任何指教请回复。不胜感谢</p>
+<p>首先xml的配置格式定义如下</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>然后我们有XmlConfigReader类，用来读取这个配置文件，并且返回对应的jdbcConfig对象。</p>
+<p>这个对象就是一个model类，对应xml的属性</p>
+<p>然后我们的DBUtil类会调用XmlConfigReader，通用的一般是传个</p>
+<!-- raw HTML omitted -->
+<p>值，然后XmlConfigReader来读取返回，对象，然后在DBUtil里用这个对象得知来构造连接，我添加了一个简单的方法</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>就是多传一个数据库名</p>
+<p>然后XmlConfigReader哩对应有这个方法</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<!-- raw HTML omitted -->
+<p>这里会有一个拼接的操作，比较简单。</p>
+<p>这几个类我打包了。由于我是用了maven做包管理，所以org.dom4j这个包自行下载了。。</p>
+<p>下载地址：<a href="http://pan.baidu.com/s/1o617RAy">http://pan.baidu.com/s/1o617RAy</a></p>
+<p> </p>
+<p> </p>
+<p> </p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/maven/">maven</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/sql/">sql</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E4%BD%9C/">工作</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2014/03/29/google%E8%BE%93%E5%85%A5%E6%B3%95%E5%92%8Cjava%E4%B8%8D%E5%85%BC%E5%AE%B9/">
                 <h2 class="post-title">Google输入法和Java不兼容</h2>
 
@@ -249,37 +323,12 @@
               </p>
               <div class="post-entry">
                 
-                  
-
-<p>一直发现自己写的Swing界面无法关闭，症状是点击了界面的关闭按钮后程序会卡住，然后点击无响应最后就挂掉了。</p>
-
+                  <p>一直发现自己写的Swing界面无法关闭，症状是点击了界面的关闭按钮后程序会卡住，然后点击无响应最后就挂掉了。</p>
 <p>最开始以为是自己的资源没释放，但是没理由呀，应该在关闭的时候会自动释放，而且改了代码也没用。</p>
-
-<p>今天再执行另一个Swing的时候，eclipse报错了
-<pre class="lang:default decode:true">#</p>
-
-<h1 id="a-fatal-error-has-been-detected-by-the-java-runtime-environment">A fatal error has been detected by the Java Runtime Environment:</h1>
-
-<p>#</p>
-
-<h1 id="exception-access-violation-0xc0000005-at-pc-0x6d986cc3-pid-700-tid-2280">EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x6d986cc3, pid=700, tid=2280</h1>
-
-<p>#</p>
-
-<h1 id="jre-version-java-tm-se-runtime-environment-7-0-45-b18-build-1-7-0-45-b18">JRE version: Java&trade; SE Runtime Environment (7.0_45-b18) (build 1.7.0_45-b18)</h1>
-
-<h1 id="java-vm-java-hotspot-tm-client-vm-24-45-b08-mixed-mode-sharing-windows-x86">Java VM: Java HotSpot&trade; Client VM (24.45-b08 mixed mode, sharing windows-x86 )</h1>
-
-<h1 id="problematic-frame">Problematic frame:</h1>
-
-<h1 id="c-googlepinyin2-ime-0x96cc3">C  [GOOGLEPINYIN2.IME+0x96cc3]</h1>
-
-<p>#</p>
-
-<h1 id="failed-to-write-core-dump-minidumps-are-not-enabled-by-default-on-client-versions-of-windows-pre">Failed to write core dump. Minidumps are not enabled by default on client versions of Windows</pre></h1>
-
+<p>今天再执行另一个Swing的时候，eclipse报错了</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>看问题说是Google拼音输入法冲突，导致访问禁止，在PChunder里卸载掉javaw的Google拼音模块，javaw马上就关闭了，于是修改系统的默认输入法为其他输入法问题解决。</p>
-
 <p>我了个去，纠结了我好长时间。我说为啥公司电脑和我的电脑都会关不了呢&hellip;</p>
 
                 
@@ -326,20 +375,43 @@
               </p>
               <div class="post-entry">
                 
-                  linux中定时任务用来执行一些周期性的自动化的任务，比如有些人可能用来定期备份，也可能是定期检查一下特殊文件的签名，如果不一致，就报警，检测入侵。
-cron是linux下的定时执行工具
-这个工具的几个命令是这样的 /sbin/service crond start //启动服务
-/sbin/service crond stop //关闭服务
-/sbin/service crond restart //重启服务
-/sbin/service crond reload //重新载入配置 注意，这几个服务都是要以root权限才能运行的，很多时候，只要我们可能只是一个低权限的用户，那么我们要执行一些定时任务的时候，可以这样做
-直接通过这个命令来编辑，无需root用户 crontab 首先添加定时任务 crontab -e 打开之后按如下的格式编写 */1 * * * * ls &gt;&gt; /tmp/ls.txt 从左到右一次表示
-分钟 一小时的第几分 0-59 小时 一天的第几小时 0-23 日期 一个月的的第几天 1-31 月份 一年的第几个月 1-12 周几 一周的第几天 0-6
-/1表示每一天 /2表示每两天，直接*的话就表示每天/每小时这样
-写完之后，wq保存退出
-然后 crontab -l //列出当前的所有调度任务 可以看到自己的定时任务了，然后就不要做什么操作了，操作系统定时会读取配置的，编辑完成之后，我们的定时任务过一会就会生效了。
-有时候，可能还要把结果信息和一些错误信息也写入 30 5 * * * ls &gt;&gt;/result/test 2&gt;&amp;1
-注：2&gt;&amp;1 表示执行结果及错误信息。 这里就是说明天的5点50执行一次ls命令，并把结果追加到文件
-                  <a href="https://leizhiyuan.github.io/2014/03/29/linux%E7%BC%96%E5%86%99%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" class="post-read-more">[Read More]</a>
+                  <p>linux中定时任务用来执行一些周期性的自动化的任务，比如有些人可能用来定期备份，也可能是定期检查一下特殊文件的签名，如果不一致，就报警，检测入侵。</p>
+<p>cron是linux下的定时执行工具</p>
+<p>这个工具的几个命令是这样的</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>注意，这几个服务都是要以root权限才能运行的，很多时候，只要我们可能只是一个低权限的用户，那么我们要执行一些定时任务的时候，可以这样做</p>
+<p>直接通过这个命令来编辑，无需root用户</p>
+<!-- raw HTML omitted -->
+<p>首先添加定时任务</p>
+<!-- raw HTML omitted -->
+<p>打开之后按如下的格式编写</p>
+<!-- raw HTML omitted -->
+<p>从左到右一次表示</p>
+<p>分钟 一小时的第几分 0-59
+小时 一天的第几小时 0-23
+日期 一个月的的第几天 1-31
+月份 一年的第几个月 1-12
+周几 一周的第几天 0-6</p>
+<p>/1表示每一天 /2表示每两天，直接*的话就表示每天/每小时这样</p>
+<p>写完之后，wq保存退出</p>
+<p>然后</p>
+<!-- raw HTML omitted -->
+<p>可以看到自己的定时任务了，然后就不要做什么操作了，操作系统定时会读取配置的，编辑完成之后，我们的定时任务过一会就会生效了。</p>
+<p>有时候，可能还要把结果信息和一些错误信息也写入</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这里就是说明天的5点50执行一次ls命令，并把结果追加到文件</p>
+<p>如果我想每天5点30和17点30都执行一次呢，使用逗号隔开就行了</p>
+<!-- raw HTML omitted -->
+<p>如果是某个时间段呢</p>
+<!-- raw HTML omitted -->
+<p>这样5-17点钟的每个30分到会执行</p>
+<p>如果是一些特殊的时间点，那么有更简单的方法，比如每月0点或者每天0点执行一次</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>使用如上的关键字</p>
+
                 
               </div>
 
@@ -387,37 +459,26 @@ cron是linux下的定时执行工具
               <div class="post-entry">
                 
                   <p>当运行在Linux上的程序有问题之后，我们通常要看一下当前CPU和内存的使用情况来分析一下问题</p>
-
 <p>对于CPU的使用率，通常用Load Average，也就是负载均值来度量</p>
-
 <p><strong>负载均值是啥？</strong></p>
-
 <p>负载是啥，负载就是对CPU使用率的一个计量，均值就是某一段时间内的一个平均值。</p>
-
 <p><strong>怎么看啊？</strong></p>
-
-<p>直接输入w命令
-<pre class="lang:default decode:true"># w
-20:02:51 up 23 days, 8:10, 2 users, load average: 1.20, 1.28, 1.29</pre>
-第一位1.20：表示最近1分钟平均负载
+<p>直接输入w命令</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>第一位1.20：表示最近1分钟平均负载
 第二位1.28：表示最近5分钟平均负载
 第三位1.29：表示最近15分钟平均负载</p>
-
-<p>或者uptime命令
-<pre class="lang:default decode:true">$ uptime
-09:50:21 up 200 days, 15:07, 1 user, load average: 0.27, 0.33, 0.37</pre>
-我们一般认为0.00表示无负载，可以理解为CPU空闲，1.00表示CPU满负载，但是注意，1.00是对于单cpu来说的，也就是说，如果是双核，那么这个满负载显示的值应该是2.00，以此类推。</p>
-
-<p><strong>怎么看我是几核啊</strong>
-<pre class="lang:default decode:true ">grep &lsquo;model name&rsquo; /proc/cpuinfo | wc -l</pre>
-通过统计cpuinfo的model name信息来算的</p>
-
+<p>或者uptime命令</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>我们一般认为0.00表示无负载，可以理解为CPU空闲，1.00表示CPU满负载，但是注意，1.00是对于单cpu来说的，也就是说，如果是双核，那么这个满负载显示的值应该是2.00，以此类推。</p>
+<p><strong>怎么看我是几核啊</strong></p>
+<!-- raw HTML omitted -->
+<p>通过统计cpuinfo的model name信息来算的</p>
 <p><strong>这三个值哪个重要？</strong></p>
-
 <p>一分钟内突然负载很大没关系，当然如果你要排查也没人拦着，如果15分钟的负载均值超过cpu的数目，就要关注了。</p>
-
 <p><strong>那什么就是理想负载呢？</strong></p>
-
 <p>以单个cpu为例，1.00表示cpu满负载运行，没有一点点浪费，实际上，有些管理员认为0.7也许是理想的状态。如果你的经常超过0.7，那么最好查一查。</p>
 
                 
@@ -467,35 +528,20 @@ cron是linux下的定时执行工具
               <div class="post-entry">
                 
                   <p>由于eclipse用的比较多，管理多个workplace很麻烦，经常需要打开以后再切换，简单介绍个方法。</p>
-
 <p>一</p>
-
 <p>1.进入Eclipse的安装目录，鼠标点击eclipse.exe，右键菜单&ndash;&gt;发送到&ndash;&gt;桌面快捷方式</p>
-
 <p>2.到桌面上找到“eclipse.exe - 快捷方式”，鼠标右键点击查看属性，弹出菜单中选择“快捷方式”标签，然后在“目标”中增加内容：-data e:\workspace，保存后即可</p>
-
 <p>3.双击这个快捷方式，eclipse就会使用e:\workspace作为工作空间启动。</p>
-
 <p>这样你多复制几个，就好了。</p>
-
 <p>二</p>
-
 <p>1.找个目录，新建一个文件夹，名称为workspace_aaa</p>
-
 <p>2.然后在当前目录下新建一个txt文件</p>
-
 <p>3.输入内容为：</p>
-
-<pre class="lang:default decode:true">start E:\eclipse\eclipse.exe -data workspace1</pre>
-
+<!-- raw HTML omitted -->
 <p>说明：前面是eclipse的路径，中间加上&rdquo;-data” ，后面为工作空间的路径，start要有，不然打开eclipse之后，命令行窗口不会自动消失的，很是碍眼。</p>
-
 <p>4.将这个txt保存为workspace1.bat</p>
-
 <p>5.双击这个workspace1.bat，eclipse就会使用workspace1.bat 作为工作空间启动。</p>
-
-<p>&nbsp;</p>
-
+<p> </p>
 <p>对launchy党来说，新建个目录，然后创建好多个bat，以后直接快速启动真是太方便了</p>
 
                 
@@ -543,34 +589,25 @@ cron是linux下的定时执行工具
               <div class="post-entry">
                 
                   <p>曾经有报道说JavaFX将使java在桌面开发上大有作为，感觉好像是很高端的样子，今天尝试了一下，界面对于自用的工具来说，本来也不多重要，只是一个简单的尝试</p>
-
 <p>简单说下大致的步骤和一些思路，可能有错误。</p>
-
 <p>javafx需要sdk支持，java7之后的都有的。设计思路是数据和代码分离，界面通过xml或json数据来描述，这样就把业务逻辑代码和界面实现代码分开了</p>
-
 <p>一个简单的开发过程应该是这样的</p>
-
 <p>1.使用JavaFX Scene Builder来绘制界面，保存为xml/json格式</p>
-
 <p>画的话没啥要说的，了解一下基本的整体概念就行。</p>
-
-<p>2.在eclipse里新建工程，可以是普通工程，将1中的文件放到资源目录，在代码里加载，然后界面就加载成功了。
-<pre class="lang:default decode:true">Node topNode = FXMLLoader.load(AFI.class.getResource(&ldquo;/afimain.fxml&rdquo;));</pre>
-逻辑代码，比如一个简单的按钮事件可以通过
-<pre>Node node = topNode.lookup(&ldquo;#paneRightBottom&rdquo;);</pre>
-来查找到id为paneRightBottom的元素，然后就可以通过对node添加事件监听器来完成一些功能了</p>
-
+<p>2.在eclipse里新建工程，可以是普通工程，将1中的文件放到资源目录，在代码里加载，然后界面就加载成功了。</p>
+<!-- raw HTML omitted -->
+<p>逻辑代码，比如一个简单的按钮事件可以通过</p>
+<!-- raw HTML omitted -->
+<p>来查找到id为paneRightBottom的元素，然后就可以通过对node添加事件监听器来完成一些功能了</p>
 <p><em><strong>主要想说的是：</strong></em></p>
-
-<p>JavaFX和WPF其实思路是一模一样的，恰好WPF我也用过，感觉两个都没搞起来，虽然界面炫，然后我去维基看了下：
-&gt; 该产品于2007年5月在JavaOne大会上首次对外公布。JavaFX技术主要应用于创建Rich Internet application（<a href="http://zh.wikipedia.org/wiki/RIA" title="RIA">RIAs</a>）。JavaFX期望能够在桌面应用的开发领域与Adobe公司的AIR、<a href="http://zh.wikipedia.org/w/index.php?title=OpenLaszlo&amp;amp;action=edit&amp;amp;redlink=1" title="OpenLaszlo（页面不存在）">OpenLaszlo</a>以及<a href="http://zh.wikipedia.org/wiki/%E5%BE%AE%E8%BD%AF" title="微软">微软</a>公司的<a href="http://zh.wikipedia.org/wiki/Silverlight" title="Silverlight">Silverlight</a>相竞争
+<p>JavaFX和WPF其实思路是一模一样的，恰好WPF我也用过，感觉两个都没搞起来，虽然界面炫，然后我去维基看了下：</p>
+<blockquote>
+<p>该产品于2007年5月在JavaOne大会上首次对外公布。JavaFX技术主要应用于创建Rich Internet application（<a href="http://zh.wikipedia.org/wiki/RIA" title="RIA">RIAs</a>）。JavaFX期望能够在桌面应用的开发领域与Adobe公司的AIR、<a href="http://zh.wikipedia.org/w/index.php?title=OpenLaszlo&amp;action=edit&amp;redlink=1" title="OpenLaszlo（页面不存在）">OpenLaszlo</a>以及<a href="http://zh.wikipedia.org/wiki/%E5%BE%AE%E8%BD%AF" title="微软">微软</a>公司的<a href="http://zh.wikipedia.org/wiki/Silverlight" title="Silverlight">Silverlight</a>相竞争
 已经7年了，用户数应该是非常少的，<strong>成熟的商业型产品也没几个</strong>，在尝试的过程中，我在stackoverflow，以及一些很不错的java博客上，大量查找基本也没有太多的信息，都是一些很浅的应用，包括stackoverflow上的回答数，基本还是能反映出来的，主要应用于RIA，而当前RIA已经出html5的天下了。SL早都不更新了，这种坑爹的所谓新技术。</p>
-
-<p>&nbsp;</p>
-
+</blockquote>
+<p> </p>
 <p>Oracle还是好好把Swing搞好吧。。不建议尝试。</p>
-
-<p>&nbsp;</p>
+<p> </p>
 
                 
               </div>
@@ -605,7 +642,7 @@ cron是linux下的定时执行工具
   <i class="fas fa-calendar"></i>&nbsp;Posted on February 8, 2014
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;4&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -622,12 +659,32 @@ cron是linux下的定时执行工具
                 
                   本篇是用来填上一篇 挖下的坑的。
 1.java调用webservice
-有一些已有的webservice服务，由xfire生成发布，有些有参数，有些无参数，无参数的直接我直接使用org.codehaus.xfire这个包里的Client来动态生成客户端。然后调用就可以了。非常简单 Client client = null; try { client = new Client( new URL( &ldquo;http://leaver.me/testService?wsdl&quot;)); client.invoke(&ldquo;refreshAllCache&rdquo;, new Object[0]);
-} catch (MalformedURLException e) { e.printStackTrace(); } catch (Exception e) { e.printStackTrace(); }&lt;/pre&gt; 但对于有参的，且是服务器自定义的类作为参数的时候，实在是搞不定。。不管是把自定义的类放到本地，包名一致，在invoke的时候生成这个对象还是其他什么方法。都无法完成。
+有一些已有的webservice服务，由xfire生成发布，有些有参数，有些无参数，无参数的直接我直接使用org.codehaus.xfire这个包里的Client来动态生成客户端。然后调用就可以了。非常简单
+但对于有参的，且是服务器自定义的类作为参数的时候，实在是搞不定。。不管是把自定义的类放到本地，包名一致，在invoke的时候生成这个对象还是其他什么方法。都无法完成。
 最终换了直接发送soap报文来完成。dirty hack啊。如果你有一些好的方法希望不吝赐教。
-解决方案来源自stackoverflow，因为stackoverflow现在国内好像有时候打不开。因此把代码贴过来。有疑问的话留言讨论。 import javax.xml.soap.; import javax.xml.transform.; import javax.xml.transform.stream.*;
-public class SOAPClientSAAJ {
-/** * Starting point for the SAAJ - SOAP Client Testing */ public static void main(String args[]) { try { // Create SOAP Connection SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.
+解决方案来源自stackoverflow，因为stackoverflow现在国内好像有时候打不开。因此把代码贴过来。有疑问的话留言讨论。
+2.Access restriction on class due to restriction on required library rt.jar? 报错
+总么都感觉是环境问题，系统bug。解决如下：
+ 进入project properties的 Build Path 设置里. 移除 JRE System Library 再添加回来，方法是: 选择 &ldquo;Add Library&rdquo; ，然后选择 JRE System Library.   3.SSHManager类报错：com.jcraft.jsch.JSchException: UnknownHostKey
+我使用的一个SSHManager类如下：
+报这个错是因为
+连接这段代码里少了config.put(&ldquo;StrictHostKeyChecking&rdquo;, &ldquo;no&rdquo;);这段设置，这个是去掉了严格的安全检查，一般只用于测试目的。
+4.navicat连接oracle数据库
+之前使用PL/SQL操作Oracle数据库，使用Heidisql操作mysql数据库。。切换麻烦。而且PL/SQL搜索的时候中文有问题。于是打算使用navicat统一管理
+方法是：
+1.首先下载Instant Client 的32位版本和Navicat Premium
+2.然后解压Instant Client，配置navicat
+
+选择oci文件即可
+然后新建oracle配置，选择basic模式，其他的根据你的数据库信息自己填写即可。
+ 5.HttpClient的logger日志实在太多了
+大人，实在太多了。看不过来啊。附赠一篇log4j配置文件详解
+在log4j.properties文件中添加如下配置信息
+log4j.logger.httpclient.wire.header=INFO
+log4j.logger.httpclient.wire.content=INFO
+log4j.logger.org.apache.commons.httpclient = INFO
+最后附赠一些实用的工具
+http://www.freeformatter.com/ 程序员必备。各类转换，包括转义工具，格式校验工具。效果很好。
                   <a href="https://leizhiyuan.github.io/2014/02/08/%E7%AC%94%E8%AE%B0%E5%86%99%E4%BB%A3%E7%A0%81%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB%E4%B8%8B/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -666,7 +723,7 @@ public class SOAPClientSAAJ {
   <i class="fas fa-calendar"></i>&nbsp;Posted on February 4, 2014
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -681,10 +738,45 @@ public class SOAPClientSAAJ {
               </p>
               <div class="post-entry">
                 
-                  今天大雪，天冷，不能出去玩了。把保存在pocket里的一些记录总结一下，太懒了。。下篇等我去了上海用我电脑写吧
-1.java模拟https登陆
-首先我要登陆，然后保存cookie，然后利用cookie来访问后续的网页，发包，处理包这样，然后，为了方便，我选择了 org.apache.http 这个库，典型的一个登陆场景应该是这样的，以后遇到问题一定先要去看官方的例子，别人给出的例子一般要么是不能用，要么是用的方法都是一些过时的，虽然能用，但看到警告还是不舒服。 public static BasicCookieStore cookieStore; //整个过程用一个client public static CloseableHttpClient httpclient; cookieStore = new BasicCookieStore(); httpclient = HttpClients.custom().setDefaultCookieStore(cookieStore).build(); //先访问一下首页，然后cookie、会填充进来 HttpGet httpget = new HttpGet(&ldquo;https://leaver.me/index.htm&quot;); httpclient.execute(httpget); CloseableHttpResponse responseCookie = null; //然后post请求登陆 HttpPost httpost = new HttpPost(&ldquo;https://leaver.me/login.htm&quot;); //通过键值对来作为post参数 List &lt; NameValuePair &gt; nameValuePairs = new ArrayList &lt; NameValuePair &gt; (1); nameValuePairs.add(new BasicNameValuePair(&ldquo;loginType&rdquo;, &ldquo;1&rdquo;)); nameValuePairs.add(new BasicNameValuePair(&ldquo;loginName&rdquo;, username)); nameValuePairs.add(new BasicNameValuePair(&ldquo;Password&rdquo;, password)); httpost.setEntity(new UrlEncodedFormEntity(nameValuePairs, Consts.UTF_8)); CloseableHttpResponse responLogin = null; responLogin = httpclient.execute(httpost); 但是，这个过程报了如下的错 e: sun.
-                  <a href="https://leizhiyuan.github.io/2014/02/04/%E7%AC%94%E8%AE%B0%E5%86%99%E4%BB%A3%E7%A0%81%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB%E4%B8%8A/" class="post-read-more">[Read More]</a>
+                  <p>今天大雪，天冷，不能出去玩了。把保存在pocket里的一些记录总结一下，太懒了。。下篇等我去了上海用我电脑写吧</p>
+<p><em><strong>1.java模拟https登陆</strong></em></p>
+<p>首先我要登陆，然后保存cookie，然后利用cookie来访问后续的网页，发包，处理包这样，然后，为了方便，我选择了 org.apache.http 这个库，典型的一个登陆场景应该是这样的，以后遇到问题一定先要去看官方的例子，别人给出的例子一般要么是不能用，要么是用的方法都是一些过时的，虽然能用，但看到警告还是不舒服。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>但是，这个过程报了如下的错</p>
+<!-- raw HTML omitted -->
+<p>google之，发现时访问https的原因。需要先安装对应站点的证书。这里要用到一个通用的java类，我贴下<a href="http://pan.baidu.com/s/1sjMyvgx">链接</a></p>
+<p>编译这个工具类，然后执行java InstallCert &lt;host&gt;[:port] 会生成一个证书文件</p>
+<p>然后在项目里通过</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>设置即可，你可以吧证书文件放到资源目录，就更好了。</p>
+<p><em><strong>2.java正则替换反斜线</strong></em></p>
+<p>我在某个地方需要把字符串里的所有反斜线替换成两个，我就写了</p>
+<!-- raw HTML omitted -->
+<p>结果发现我还是too young,实际上，</p>
+<p>java replaceAll() 方法要用 4 个反斜杠,表示一个反斜杠 例如</p>
+<!-- raw HTML omitted -->
+<p>要想替换成</p>
+<!-- raw HTML omitted -->
+<p>必须这样替换：</p>
+<!-- raw HTML omitted -->
+<p>原因如下： String 的 replaceAll（） 方法，实际是采用正则表达式的规则去匹配的， \\ ，java解析为\交给正则表达式， 正则表达式再经过一次转换，把\转换成为\ 也就是java里面要用正则来表示一个. 必须写成4个\ 如果要表示\，那就要写8个\ 所以如果写成： str1 = str1.replaceAll(&quot;\&quot;, &ldquo;\\&quot;); 就会报正则表达式的错误。</p>
+<p><em><strong>3.httpClient如何模拟表单上传文件</strong></em></p>
+<p>这个还是要去看官方例子，网上没找到，需要添加</p>
+<p>org.apache.http.entity包</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>其他都和普通的post请求没啥区别了</p>
+<p><em><strong>4.json-lib的一个问题</strong></em></p>
+<p>在maven里添加了json-lib的依赖后，启动报错</p>
+<p>missing net.sf.json-lib，但实际上这个我的确是加载进来了。去了SO，才知道，还需要知道classifier 依赖，把jdk的版本添加上就行。这个应该是我当时添加的时候没有去maven中央库填写造成的</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>然后在工程目录执行</p>
+<!-- raw HTML omitted -->
+<p>就会在target目录生成jar包啦</p>
+
                 
               </div>
 
@@ -731,11 +823,24 @@ public class SOAPClientSAAJ {
               </p>
               <div class="post-entry">
                 
-                  首先什么是代理？ 所谓代理呢也就是在调用实现类的方法时，可以在方法执行前后做额外的工作，这个就是代理。  那动态代理呢，官方解释是：  Java 动态代理机制的出现，使得 Java 开发人员不用手工编写代理类，只要简单地指定一组接口及委托类对象，便能动态地获得代理类。代理类会负责将所有的方法调用分派到委托对象上反射执行，在分派执行的过程中，开发人员还可以按需调整委托类对象及其功能，这是一套非常灵活有弹性的代理框架。 老湿，你说的是个毛啊，完全没看懂啊！
-我更喜欢另一种通俗的解释，官方的解释总是高度抽象的，等用了一段时间才能理解体会  动态代理实现了日志和业务的分开，也就是某个类只是要提供了某些业务，比如银行取款业务。这个类实现了取款业务的同时也需要实现日志功能，如果不用动态代理的话，那么由此一来该类代码里面已经额外地添加了自己不该添加的日志功能能代码。所以我们就得使用动态代理把它的业务代码和日志功能代码分开。所以用到了动态代理概念，spring里面的AOP就是一个很好的例子。  不直观啊，老湿，能再给力一点不？ 额，这样的话，我们来看一个例子，要用到的两个类 实现java.lang.reflect.InvocationHandler接口提供一个执行处理器，也就是真正做事的，然后通过java.lang.reflect.Proxy得到一个代理对象，通过这个代理对象来执行业务方法,在业务方法被调用的同时，执行处理器会被自动调用。 记住，动态代理只能对接口 首先业务接口：  public interface HelloWorld { public void sayHelloWorld(); } 然后我们是这样写的实现 public class HelloWorldImpl implements HelloWorld { public void sayHelloWorld() { System.out.println(&ldquo;Hello World!&rdquo;); } } 后来我们觉得执行这个方法前能不能做点其他啥事呢，比如写个日志？见个妹子？啥，这段代码不让改了，改了的话，业务方法和日志混合的一塌糊涂啊，以后想改个日志格式你来写啊
-那我们就得定义一个拦截器/执行处理器了。 public class HelloWorldHandler implements InvocationHandler { //目标对象 private Object targetObject;
-public HelloWorldHandler(Object targetObject){ this.targetObject = targetObject; } public Object invoke(Object proxy, Method method, Object[] args) throws Throwable { System.
-                  <a href="https://leizhiyuan.github.io/2013/11/24/java%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E5%AE%9E%E4%BE%8B/" class="post-read-more">[Read More]</a>
+                  <p>首先什么是代理？</p>
+<!-- raw HTML omitted -->
+<p>我更喜欢另一种通俗的解释，官方的解释总是高度抽象的，等用了一段时间才能理解体会</p>
+<!-- raw HTML omitted -->
+<p>那我们就得定义一个拦截器/执行处理器了。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这客户端咋用啊，老湿</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>看到没，通过Proxy类的newProxyInstance方法，传入类加载器，类接口，和这个处理器，我们就获得一个代理</p>
+<p>执行结果是这样的</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>恩，电脑没死机，是这样的</p>
+<p> </p>
+<!-- raw HTML omitted -->
+
                 
               </div>
 
@@ -785,11 +890,8 @@ public HelloWorldHandler(Object targetObject){ this.targetObject = targetObject;
               <div class="post-entry">
                 
                   <p>记录一下。</p>
-
 <p>这两天在熟悉Maven，长见识了.后续可能的话会写上一两篇，今天配置的时候提示tools.jar文件。于是使用everything搜了一下，本机的jdk目录还真没有，最后搜了一下，发现是安装jdk时候的问题，具体就是因为安装jdk的时候，后面被让继续安装jre，这个时候，我为了方便，将jre安装在了jdk的目录里，结果导致jre会覆盖到jdk的这两个文件。同时还会覆盖dt.jar这个包，于是，就没了。。这个问题略隐晦了..</p>
-
-<p>&nbsp;</p>
-
+<p> </p>
 <p>重新安装了jdk，将jdk和jre分开目录，然后设置一下jdk的lib目录到classpath就可以了，问题解决。</p>
 
                 
@@ -801,68 +903,6 @@ public HelloWorldHandler(Object targetObject){ this.targetObject = targetObject;
                     <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E7%AC%94%E8%AE%B0/">笔记</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/08/11/unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%B3%BB%E5%88%97%E7%9B%AE%E5%BD%95/">
-                <h2 class="post-title">Unix sed实用教程系列目录</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on August 11, 2013
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  <p>本系列文章已经译完了，译自<a href="http://www.theunixschool.com/p/awk-sed.html">awk-sed@theunixschool</a>,收获颇丰，作者没有将明白的我做了补充，并且尝试讲的更清楚，整理成系列索引，方便学习，开篇非译文,是我为了方便后面的理解写的一篇,感谢原作者的分享.有任何问题欢迎留言讨论.</p>
-
-<ul>
-<li><a href="http://leaver.me/archives/3162.html">Unix sed实用教程开篇</a></li>
-<li><a href="http://leaver.me/archives/3169.html">[译]Unix sed实用教程第一篇–向文件中增加一行</a></li>
-<li><a href="http://leaver.me/archives/3174.html">[译]Unix sed实用教程第二篇–替换文件内容</a></li>
-<li><a href="http://leaver.me/archives/3176.html">[译]Unix sed实用教程第三篇–读写文件</a></li>
-<li><a href="http://leaver.me/archives/3179.html">[译]Unix sed实用教程第四篇–选择性打印</a></li>
-<li><a href="http://leaver.me/archives/3183.html">[译]Unix sed实用教程第五篇–替换文件内容续</a></li>
-<li><a href="http://leaver.me/archives/3186.html">[译]Unix sed实用教程第六篇–删除文件内容</a></li>
-<li><a href="http://leaver.me/archives/3191.html">[译]Unix sed实用教程第七篇–输出文件内容(10 Demo)</a></li>
-<li><a href="http://leaver.me/archives/3194.html">[译]Unix sed实用教程第八篇–CSV文件操作</a></li>
-</ul>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/linux/">linux</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/shell/">shell</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%AD%A6%E6%B1%89/">武汉</a>&nbsp;
                   
                 </div>
               
@@ -932,7 +972,7 @@ public HelloWorldHandler(Object targetObject){ this.targetObject = targetObject;
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

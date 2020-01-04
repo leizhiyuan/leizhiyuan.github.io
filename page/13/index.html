@@ -48,7 +48,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -224,6 +224,62 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2013/05/01/%E5%B7%B2%E5%A4%B1%E6%95%88csdn%E5%85%8D%E7%A7%AF%E5%88%86%E4%B8%8B%E8%BD%BD%E5%99%A8/">
+                <h2 class="post-title">[已失效]Csdn免积分下载器</h2>
+                
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on May 1, 2013
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  <p>作者：bystander</p>
+<p>转载请注明来源:<a href="http://leaver.me">http://leaver.me</a></p>
+<p>原理很简单，目前好像还没有大规模传开，我就不透露了，大家低调使用.为了方便，我写了个客户端，下载地址在文章末尾</p>
+<p><a href="http://leaverimage.b0.upaiyun.com/35412_o.png"><img src="/images/c14131e3f22197232347a8230c51cb661e50f167.png" alt=""></a></p>
+<p> </p>
+<p>使用方法直接把你想下载的地址复制过去，点击下载就会调用ie来下载了.</p>
+<p> </p>
+<p>文章太短了，发两个可乐的吧：</p>
+<!-- raw HTML omitted -->
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E4%BA%92%E8%81%94%E7%BD%91/">互联网</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2013/04/17/%E4%B8%80%E9%81%93%E7%AC%94%E8%AF%95%E6%8C%87%E9%92%88%E9%A2%98%E7%9B%AE%E8%AF%A6%E8%A7%A3/">
                 <h2 class="post-title">一道笔试指针题目详解</h2>
                 
@@ -251,15 +307,34 @@
 
               <div class="post-entry">
                 
-                  看到本题是在搜狗某年的笔试题上,看也没人给出非常详细的讲解,直接给出了答案,我来尝试写一写,
-貌似本题来源自&lt;The C Puzzle Book&gt; ，搜狗也只是换了一下字符串，直接看题吧 #include &lt;stdio.h&gt; char *c[]={&ldquo;ENTNG&rdquo;, &ldquo;NST&rdquo;,&ldquo;AMAZI&rdquo;,&ldquo;FIRBE&rdquo;}; char** cp[]={c+3, c+2, c+1, c}; char *cpp= cp; int main() { printf(&ldquo;%s&rdquo;,++cpp); printf(&ldquo;%s &ldquo;,&ndash;++cpp+3); printf(&ldquo;%s&rdquo;,*cpp[-2]+3); printf(&ldquo;%s&rdquo;,cpp[-1][-1]+1); } &lt;span style=&quot;font-family: Georgia, 'Times New Roman', 'Bitstream Charter', Times, serif; font-size: 13px; line-height: 19px;&quot;&gt;请写出程序的执行结果....&lt;/span&gt;
-首先从左到右看： char *c[]= { &ldquo;ENTNG&rdquo;, &ldquo;NST&rdquo;, &ldquo;AMAZI&rdquo;, &ldquo;FIRBE&rdquo; }; *c[] 是一个字符，因此，c[]是指向该字符，c就是一个数组（数组的内容为指向字符的指针），c已经被初始化了. char** cp[]={c+3, c+2, c+1, c}; 再看第二行，**cp[]是一个字符，*cp[]就是一个指针，指向该字符，cp[]就是一个指针，指向该指针，而cp就成为了指针数组，内容是指向字符的指针的指针。并且通过c的元素进行了初始化 char cpp= cp; 第三行，cpp是一个字符，**cpp指向该字符，*cpp指向该指针，cpp就指向该字符的指针的指针.
-然后我画一张图表示初始的情况看看
+                  <p>看到本题是在搜狗某年的笔试题上,看也没人给出非常详细的讲解,直接给出了答案,我来尝试写一写,</p>
+<p>貌似本题来源自&lt;**The C Puzzle Book&gt; ，**搜狗也只是换了一下字符串，直接看题吧</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><code>&lt;span style=&quot;font-family: Georgia, 'Times New Roman', 'Bitstream Charter', Times, serif; font-size: 13px; line-height: 19px;&quot;&gt;请写出程序的执行结果....&lt;/span&gt;</code></p>
+<p>首先从左到右看：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>再看第二行，**cp[]是一个字符，*cp[]就是一个指针，指向该字符，cp[]就是一个指针，指向该指针，而cp就成为了指针数组，内容是指向字符的指针的指针。并且通过c的元素进行了初始化</p>
+<!-- raw HTML omitted -->
+<p>第三行，***cpp是一个字符，**cpp指向该字符，*cpp指向该指针，cpp就指向该字符的指针的指针.</p>
+<p>然后我画一张图表示初始的情况看看</p>
+<p><a href="http://leaverimage.b0.upaiyun.com/35001_o.png"><img src="/images/ec5c34f9784a9f2a30d7a044ee954099a6e32e78.png" alt=""></a></p>
+<p>然后对于下面的输出语句，通过操作符优先级使用括号来区分一下：</p>
+<!-- raw HTML omitted -->
+<p>这个嘛，就是把cpp后移(注意cpp已经改变了)然后就指向了cp[1]，然后两次取其值即可得到AMAZI</p>
+<p>推导过程如下：</p>
+<!-- raw HTML omitted -->
+<p>最后</p>
+<!-- raw HTML omitted -->
+<p> </p>
+<p>cpp还是之前的cp[2]，cpp[-1][-1]相当于*(*(cpp-1)-1),先减1指向了cp[1],取一次值就是c[2]了，然后c[2]-1就成为c[1]了，然后+1之后就是ST了.</p>
+<p>所以，最后输出就是</p>
+<p>AMAZINGBEST</p>
+<p>错误之处还望指正.</p>
+<p> </p>
+<p> </p>
 
-然后对于下面的输出语句，通过操作符优先级使用括号来区分一下： ((++cpp)); 这个嘛，就是把cpp后移(注意cpp已经改变了)然后就指向了cp[1]，然后两次取其值即可得到AMAZI
-推导过程如下：
- ++cpp -&gt; cp[1] // cp[1] -&gt; c+2 ++cpp = &amp;cp[1] // &amp;(c+2) *++cpp = *(&amp;c+2) // c[2] **++cpp = &amp;c[2] 然后看第二个 ((&ndash;(*(++cpp))))+3; 加括号后如上，cpp再加一，就指向了cp[2],取一次值（也就是号）就变成了c[1],然后&ndash;c[1]就指向了c[0],取值就成了c[0]的地址，然后地址+3，就是NG了 ((cpp[-2]))+3; 上面，cpp指向cp[2]了，然后呢，cpp[-2] 相当于*(cpp-2)，间接引用cp[2]，这样cpp[-2]就指向了cp[0]了，然后，就是FIRBE了,加3就是BE了
-                  <a href="https://leizhiyuan.github.io/2013/04/17/%E4%B8%80%E9%81%93%E7%AC%94%E8%AF%95%E6%8C%87%E9%92%88%E9%A2%98%E7%9B%AE%E8%AF%A6%E8%A7%A3/" class="post-read-more">[Read More]</a>
                 
               </div>
 
@@ -294,7 +369,7 @@
   <i class="fas fa-calendar"></i>&nbsp;Posted on April 16, 2013
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -308,12 +383,15 @@
 
               <div class="post-entry">
                 
-                  模板优先级队列，数组实现，再熟悉一下常用算法，同时简单的堆排序应用
-写了一个是队列自增长，另一个为了演示我还添加了一个叫做FillPq的方法，这个方法可以使用一个数组直接填充到优先级队列里，此时，优先级队列并不优先，然后进行下滤调整，之后建堆完成，输出即可 #include &ldquo;stdafx.h&rdquo;
-template&lt; class T&gt; class PriorityQueue { private: T *pq; int N; int capacity; public: PriorityQueue(void); ~PriorityQueue(void); void Insert(T x); T DelTop(); void Swim(int k); void Sink(int k); bool Less(int i,int j); void Swap(int i,int j); bool Resize(); void FillPq(T arr[],int size); };
-template&lt; class T&gt; void PriorityQueue&lt;T&gt;::FillPq( T arr[],int size ) { N=size; capacity=2*size; for (int i=0;i&lt;size;i++) { pq[i+1]=arr[i]; } }
-template&lt; class T&gt; PriorityQueue&lt;T&gt;::PriorityQueue(void) { pq=new T[10]; N=0; capacity=10; }
-                  <a href="https://leizhiyuan.github.io/2013/04/16/%E6%A8%A1%E6%9D%BF%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97%E5%8F%8A%E5%A0%86%E6%8E%92%E5%BA%8Fc-%E5%AE%9E%E7%8E%B0/" class="post-read-more">[Read More]</a>
+                  <p>模板优先级队列，数组实现，再熟悉一下常用算法，同时简单的堆排序应用</p>
+<p>写了一个是队列自增长，另一个为了演示我还添加了一个叫做FillPq的方法，这个方法可以使用一个数组直接填充到优先级队列里，此时，优先级队列并不优先，然后进行下滤调整，之后建堆完成，输出即可</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>然后是堆排序</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+
                 
               </div>
 
@@ -348,7 +426,7 @@ template&lt; class T&gt; PriorityQueue&lt;T&gt;::PriorityQueue(void) { pq=new T[
   <i class="fas fa-calendar"></i>&nbsp;Posted on April 11, 2013
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -362,23 +440,24 @@ template&lt; class T&gt; PriorityQueue&lt;T&gt;::PriorityQueue(void) { pq=new T[
 
               <div class="post-entry">
                 
-                  栈直接用链表实现，这个比较简单，不多说，不过C++写程序，IDE的错误检测不是很给力。
-至于给定一个中缀表达式，如何不转换成后缀表达式，直接求值，方法就是使用两个栈，一个操作符栈，一个操作数栈，然后从左到右扫描表达式，我这里中缀表达式计算实现的很简单，不完整，大家可以扩展。栈的实现是我想写的，思路如下：
-1.如何是操作数，压入操作数栈
-2.如果是操作符，压入操作符栈
-3.如果是左括号，直接忽略
-4.如果是有括号，弹出操作符栈栈顶元素，然后弹出操作数栈两个元素，进行操作以后结果压入操作数栈
-&nbsp;
-看个图就好了
+                  <p>栈直接用链表实现，这个比较简单，不多说，不过C++写程序，IDE的错误检测不是很给力。</p>
+<p>至于给定一个中缀表达式，如何不转换成后缀表达式，直接求值，方法就是使用两个栈，一个操作符栈，一个操作数栈，然后从左到右扫描表达式，我这里中缀表达式计算实现的很简单，不完整，大家可以扩展。栈的实现是我想写的，思路如下：</p>
+<p>1.如何是操作数，压入操作数栈</p>
+<p>2.如果是操作符，压入操作符栈</p>
+<p>3.如果是左括号，直接忽略</p>
+<p>4.如果是有括号，弹出操作符栈栈顶元素，然后弹出操作数栈两个元素，进行操作以后结果压入操作数栈</p>
+<p> </p>
+<p>看个图就好了</p>
+<p><a href="http://leaverimage.b0.upaiyun.com/34863_o.png"><img src="/images/d0b2eed86d2ba2b987d3e5db380b9a452e8f5f87.png" alt=""></a></p>
+<p> </p>
+<p>最后给出栈顶实现代码</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>然后是main函数代码</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>另外，今天是博客建站一周年.加油！</p>
 
-&nbsp;
-最后给出栈顶实现代码 #include &ldquo;stdafx.h&rdquo; #pragma region Node定义
-template &lt;class T&gt; class Node { template&lt;class T&gt; friend class Stack; private: T m_data; Node *pNextNode; public: Node(); Node(T d); };
-template &lt;class T&gt; Node&lt;T&gt;::Node() { m_data=default(T); pNextNode=NULL; } template &lt;class T&gt; Node&lt;T&gt;::Node(T d) { m_data=d; pNextNode=NULL; } #pragma endregion
-#pragma region Stack定义
-template &lt;class T&gt; class Stack {
-private: Node&lt;T&gt; *m_pTopNode; int m_nNodeCount; public: Stack(); ~Stack(); bool IsEmpty(); bool Push(T e); T Pop(); int Size(); };
-                  <a href="https://leizhiyuan.github.io/2013/04/11/%E6%A8%A1%E6%9D%BF%E6%A0%88%E4%BB%A5%E5%8F%8A%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BCc-%E5%AE%9E%E7%8E%B0/" class="post-read-more">[Read More]</a>
                 
               </div>
 
@@ -429,15 +508,17 @@ private: Node&lt;T&gt; *m_pTopNode; int m_nNodeCount; public: Stack(); ~Stack();
 
               <div class="post-entry">
                 
-                  并查集这个很有意思，并查集是一种树型的数据结构，用于处理一些不相交集合（Disjoint Sets）的合并及查询问题。昨天看书看到了，然后用C++简单实现了下。在Dijkstra算法中，用来判断两个顶点是否在同一个集合里。
-里面定义了两个类，都是并查集，一个是QuickFind，查找很快，一个是QuickUnion，合并较快。写了一些注释，有一些优化的提示.看代码吧，有什么问题指出来吧。
-QuickFind的实现 #include &ldquo;QuickFind.h&rdquo;
-QuickFind::QuickFind(int N) { size=N; id=new int[N]; for(int i=0;i&lt;N;i++) { id[i]=i; } }
-bool QuickFind::Find(int p,int q) { return id[p]==id[q]; }
-void QuickFind::Unite(int p,int q) { int pid=id[p]; for(int i=0;i&lt;size;i++) if(id[i]==pid) id[i]=id[q];
-} QuickFind::~QuickFind(void) { delete []id; } QuickUnion的实现 #include &ldquo;QuickUnion.h&rdquo;
-QuickUnion::QuickUnion(int N) { size=N; id=new int[N]; for(int i=0;i&lt;N;i++) { id[i]=i; } } int QuickUnion::root(int i) { while (i!=id[i]) { //id[i]=id[id[i]]; 若添加这句话则为压缩路径 i=id[i]; } return i; } bool QuickUnion::Find(int p,int q) { return root(p)==root(q); }
-                  <a href="https://leizhiyuan.github.io/2013/04/11/%E5%B9%B6%E6%9F%A5%E9%9B%86c-%E5%AE%9E%E7%8E%B0/" class="post-read-more">[Read More]</a>
+                  <p>并查集这个很有意思，并查集是一种树型的数据结构，用于处理一些不相交集合（Disjoint Sets）的合并及查询问题。昨天看书看到了，然后用C++简单实现了下。在Dijkstra算法中，用来判断两个顶点是否在同一个集合里。</p>
+<p>里面定义了两个类，都是并查集，一个是QuickFind，查找很快，一个是QuickUnion，合并较快。写了一些注释，有一些优化的提示.看代码吧，有什么问题指出来吧。</p>
+<p>QuickFind的实现</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>QuickUnion的实现</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>参考文档(英文)：<a href="http://pan.baidu.com/share/link?shareid=436984&amp;uk=1493685990">UnionFind.pdf</a></p>
+<p>工程代码下载：<a href="http://pan.baidu.com/share/link?shareid=436978&amp;uk=1493685990">并查集Demo</a></p>
+
                 
               </div>
 
@@ -488,49 +569,27 @@ QuickUnion::QuickUnion(int N) { size=N; id=new int[N]; for(int i=0;i&lt;N;i++) {
               <div class="post-entry">
                 
                   <p>这两个转义字符最初学习C++的时候看到了,当时没多想，后来某一天突然想起来，回车不就是换行吗？这不是多此一举吗？今天又看到，索性查了下相关资料，整理一下，留作记录.</p>
-
 <p>关于“回车”（carriage return）和“换行”（line feed）这两个概念的来历和区别。</p>
-
 <p>在计算机还没有出现之前，有一种叫做电传打字机（Teletype Model 33）的玩意，每秒钟可以打10个字符。但是它有一个问题，就是打完一行换行的时候，要用去0.2秒，正好可以打两个字符。要是在这0.2秒里面，又有新的字符传过来，那么这个字符将丢失。</p>
-
 <p>于是，研制人员想了个办法解决这个问题，就是在每行后面加两个表示结束的字符。一个叫做“回车”，告诉打字机把打印头定位在左边界；另一个叫做“换行”，告诉打字机把纸向下移一行（这句的意思是把纸向上拉，然后打印头就定位到了下一行），可以想象一下，这个打印头只能在一个固定的水平线上左右移动，而不能上下移动，我们通过移动纸来完成打印下一行。</p>
-
-<p>不明白的我在youtube上找到一个这种打字机的演示视频，为了方便读者观看，我提供一个<a href="http://pan.baidu.com/share/link?shareid=428006&amp;amp;uk=1493685990">下载地址</a>。</p>
-
+<p>不明白的我在youtube上找到一个这种打字机的演示视频，为了方便读者观看，我提供一个<a href="http://pan.baidu.com/share/link?shareid=428006&amp;uk=1493685990">下载地址</a>。</p>
 <p>后来，计算机发明了，这两个概念也就被般到了计算机上。那时，存储器很贵，一些科学家认为在每行结尾加两个字符太浪费了，加一个就可以。于是，就出现了分歧。</p>
-
-<p>Unix系统里，每行结尾只有&rdquo;&lt;换行&gt;&ldquo;，即&rdquo;\n&rdquo;；</p>
-
-<p>Windows系统里面，每行结尾是&rdquo;&lt;换行&gt;&lt;回车&gt;&ldquo;，即&rdquo;\n\r&rdquo;；</p>
-
-<p>Mac系统里，每行结尾是&rdquo;&lt;回车&gt;&ldquo;，不过mac基于unix，所以换行也应该是可以的。</p>
-
+<p>Unix系统里，每行结尾只有&rdquo;&lt;换行&gt;&quot;，即&rdquo;\n&rdquo;；</p>
+<p>Windows系统里面，每行结尾是&rdquo;&lt;换行&gt;&lt;回车&gt;&quot;，即&rdquo;\n\r&rdquo;；</p>
+<p>Mac系统里，每行结尾是&rdquo;&lt;回车&gt;&quot;，不过mac基于unix，所以换行也应该是可以的。</p>
 <p>一个直接后果是，Unix/Mac系统下的文件在Windows里打开的话，所有文字会变成一行；而Windows里的文件在Unix/Mac下打开的话，在每行的结尾可能会多出一个^M符号。这个如果你在windows下使用vim也会发现这个情况</p>
-
 <p>用C++来说明</p>
-
-<p>如：
-<pre class="lang:default decode:true">int main()
-{
-   cout &lt;&lt; &ldquo;leaver.me&rdquo; &lt;&lt; &ldquo;\r&rdquo; &lt;&lt; &ldquo;bystander&rdquo; ;
-   return 0;
-}</pre>
-&nbsp;</p>
-
+<p>如：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
 <p>最后只显示 bystander 而 leaver.me 背覆盖了</p>
-
-<p>\n 是换行，系统会将其替换成回车＋换行 把光标 先移到 行首 然后换到下一行 也就是 下一行的行首拉
-<pre class="lang:default decode:true">int main()
-{
-   cout &lt;&lt; &ldquo;leaver.me&rdquo; &lt;&lt; &ldquo;\n&rdquo; &lt;&lt; &ldquo;bystander&rdquo; ;
-   return 0;
-}</pre>
-则 显示</p>
-
+<p>\n 是换行，系统会将其替换成回车＋换行 把光标 先移到 行首 然后换到下一行 也就是 下一行的行首拉</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>则 显示</p>
 <p>leaver.me</p>
-
 <p>bystander</p>
-
 <p>一句话，这看起来是一个历史遗留问题&hellip;&hellip;</p>
 
                 
@@ -582,16 +641,11 @@ QuickUnion::QuickUnion(int N) { size=N; id=new int[N]; for(int i=0;i&lt;N;i++) {
               <div class="post-entry">
                 
                   <p>很多人对B树的理解有很多错误，我看的最多的就是有人混淆二叉树（Binary Tree）和B树（B-Tree）,二叉树是不用简称，也就是BT的，而特殊一点的二叉搜索树才会用BST(Binary Search Tree),至于B-树和B树，这两个其实一样的，英文都是(B-Tree)，注意看中间的-号，这个是国内翻译的问题.所以大家不要被误导.</p>
-
 <p>Rudolf Bayer 和 Ed McCreight 于1972年，在Boeing Research Labs 工作时发明了B 树，但是他们没有解释B 代表什么意义（如果有的话）.Douglas Comer 解释说: 两位作者从来都没解释过B树的原始意义。我个人觉得很有可能是他的名字，程序员对其作品的一种情结吧.</p>
-
 <p>这篇文章来自国外,是某大学的CS课程在线的,由于有时候无法访问，我直接提供PDF版,对其构造过程非常清晰.非常非常好的B树教程,图示很多,就不翻译了,强烈推荐阅读！</p>
-
-<p>&nbsp;</p>
-
-<p>下载：<a href="http://pan.baidu.com/share/link?shareid=404077&amp;amp;uk=1493685990">B树讲解</a></p>
-
-<p>&nbsp;</p>
+<p> </p>
+<p>下载：<a href="http://pan.baidu.com/share/link?shareid=404077&amp;uk=1493685990">B树讲解</a></p>
+<p> </p>
 
                 
               </div>
@@ -640,21 +694,13 @@ QuickUnion::QuickUnion(int N) { size=N; id=new int[N]; for(int i=0;i&lt;N;i++) {
               <div class="post-entry">
                 
                   <p>文/冯仑</p>
-
 <p>男孩子最大的问题，30多岁自己还没有成功。</p>
-
 <p>现在社会反差特别大，怎么坚守自己的人生目标就特别难，随波逐流总是成本低，但对自己不负责任，不如设定一个特别大的目标，然后熬，一直熬下去。</p>
-
 <p>熬是个什么概念？</p>
-
 <p>20多岁刚毕业，你是社会的边缘，什么事都是哥哥、姐姐、30多40多的人在做，你得求这些人；等到30多岁，你开始进入到剧场最后一排，有了一张门票可以看别人演；到40、50岁，就是中排靠前一点的观众，看戏你就可以看的清楚了；你如果要出类拔萃就变成第一排了，再出类拔萃你就成演员了，等到你演完了，别人一鼓掌你也就该下场了。</p>
-
 <p>20多岁一定要有一个准备，你就是边缘，边缘是尽快拿到入场券。比如说你到了公司，有了一个稳定的职业，或者一个基本稳定的生活，但是你乘自行车、赶公共汽车，这就是入场券，很正常。</p>
-
 <p>我研究生刚毕业，中间工作八年，每天骑自行车赶到374，然后坐公共汽车，公共汽车下来再走一站地。回头想来不委屈，20多岁肯定是这个过程，如果20岁就跟50岁人一样，那这个戏就乱了，中国十几亿人都这么演的。插队是偶然性，比如像丁磊他是另外一种人生，这种概率极小极小，你可以朝着奋斗。</p>
-
 <p>成功不是设计出来，是靠信念支撑，加上各种机遇偶然蹦出来了。当你成演员，基本上也该谢幕了，接下来又来了人，这个戏才能不断唱。现在70多岁人基本上又退回到场外了，看他儿子演孙子演，就这么一茬一茬。</p>
-
 <p>熬要有耐心，熬不是你一个人熬，而是一代人熬。</p>
 
                 
@@ -706,15 +752,10 @@ QuickUnion::QuickUnion(int N) { size=N; id=new int[N]; for(int i=0;i&lt;N;i++) {
               <div class="post-entry">
                 
                   <p>这是codeproject上的一个系列。我看完了。收获匪浅。可惜作者之后未能更新预想中的总结贴，多少有些可惜，不过。此系列非常非常不错。建议想学习.net多线程的看看。</p>
-
 <p>1.net 多线程介绍 <a href="http://www.codeproject.com/KB/threads/ThreadingDotNet.aspx">Introduction into threading in .NET</a></p>
-
 <p>2.线程周期/线程优势/陷阱 <a href="http://www.codeproject.com/KB/threads/ThreadingDotNet2.aspx">Lifecycle of threads/Threading opportunities/Traps </a></p>
-
 <p>3.线程同步 <a href="http://www.codeproject.com/KB/threads/ThreadingDotNet3.aspx">Synchronization</a></p>
-
 <p>4.线程池 <a href="http://www.codeproject.com/KB/threads/ThreadingDotNet4.aspx">Thread Pools</a></p>
-
 <p>5.UI中的线程应用 <a href="http://www.codeproject.com/KB/threads/ThreadingDotNet5.aspx">Threading in UIs (WinForms / WPF / Silverlight)</a></p>
 
                 
@@ -769,19 +810,25 @@ QuickUnion::QuickUnion(int N) { size=N; id=new int[N]; for(int i=0;i&lt;N;i++) {
 我说双查询很难讲清楚，这次就试着讲一下。读了一些原理性的东西。然后尽量通俗的给大家讲清楚。。
 在此之前，我们理解一下子查询，查询的关键字是select，这个大家都知道。子查询可以简单的理解在一个select语句里还有一个select。里面的这个select语句就是子查询。
 看一个简单的例子：
-Select concat((select database())); 真正执行的时候，先从子查询进行。因此执行select database() 这个语句就会把当前的数据库查出来，然后把结果传入到concat函数。这个函数是用来连接的。比如 concat(‘a’,’b’)那结果就是ab了。
+真正执行的时候，先从子查询进行。因此执行select database() 这个语句就会把当前的数据库查出来，然后把结果传入到concat函数。这个函数是用来连接的。比如 concat(‘a’,’b’)那结果就是ab了。
 原理：
 双注入查询需要理解四个函数/语句 1. Rand() //随机函数 2. Floor() //取整函数 3. Count() //汇总函数 4. Group by clause //分组语句
 简单的一句话原理就是有研究人员发现，当在一个聚合函数，比如count函数后面如果使用分组语句就会把查询的一部分以错误的形式显示出来。
 以本地一个名为Security的数据库为例 首先在bt5下的命令行下输入
-mysql -u root –p toor 就会连接上数据库了。 然后通过use security； 就可以切换到security数据库了。因为一个服务器上可能有多个数据库嘛。 
+就会连接上数据库了。 然后通过use security； 就可以切换到security数据库了。因为一个服务器上可能有多个数据库嘛。 
 然后我们执行一下前面那个简单的子查询的例子
-SELECT concat((select database())); 就能显示security，也就是显示了当前数据库的名字了。 然后我们测试一下concat的用法。输入
-SELECT concat('string1','string2'); 显然结果就是string1string2了
+就能显示security，也就是显示了当前数据库的名字了。 然后我们测试一下concat的用法。输入
+显然结果就是string1string2了
  然后我们测试一下rand()这个随机函数是干嘛的
-Select rand(); 我们多执行几次  可以看到，这个函数就是返回大于0，小于1之间的数 然后看看取整函数
-Select floor(1.1123456); [![](/images/4477acaba79cf1464c028cab96e32534d81af2e5.png)](http://leaverimage.b0.upaiyun.com/33520_o.png) 这个函数就是返回小于等于你输入的数的整数。 然后我们看看双注入查询中的一个简单组合。大家从我的上一篇文章中应该也看到了有一个子查询是 SELECT floor(rand()*2); 我们从里向外看。rand() 返回大于0小于1的小数，乘以2之后就成了小于0小于2了。然后对结果进行取证。就只能是0或1了。也就是这个查询的结果不是1，就是0 我们稍微加大一点难度。看这个查询
-SELECT CONCAT((SELECT database()), FLOOR(RAND()*2)); 不要怕。先看最里面的SELECT database() 这个就返回数据库名，这里就是security了。然后FLOOR(RAND()*2)这个上面说过了。不是0，就是1.
+我们多执行几次  可以看到，这个函数就是返回大于0，小于1之间的数 然后看看取整函数
+ 这个函数就是返回小于等于你输入的数的整数。
+然后我们看看双注入查询中的一个简单组合。大家从我的上一篇文章中应该也看到了有一个子查询是
+我们从里向外看。rand() 返回大于0小于1的小数，乘以2之后就成了小于0小于2了。然后对结果进行取证。就只能是0或1了。也就是这个查询的结果不是1，就是0 我们稍微加大一点难度。看这个查询
+不要怕。先看最里面的SELECT database() 这个就返回数据库名，这里就是security了。然后FLOOR(RAND()*2)这个上面说过了。不是0，就是1.然后把这两个的结果进行concat连接，那么结果不是security0就是security1了。
+ 如果我们把这条语句后面加上from 一个表名。那么一般会返回security0或security1的一个集合。数目是由表本身有几条结果决定的。比如一个管理表里有5个管理员。这个就会返回五条记录，这里users表里有13个用户，所以返回了13条  如果是从information_schema.schemata里，这个表里包含了mysql的所有数据库名。这里本机有三个数据库。所以会返回三个结果
+
+现在我们准备加上Group By 语句了。 我们使用information_schema.tables 或 information_schema.columns者两个表来查询。因为表里面一般数据很多。容易生成很多的随机值，不至于全部是security0，这样就不能查询出结果了。
+这里我先解释一下。我们把concat((select database()), floor(rand()*2)) 这个结果取了一个别名 a ，然后使用他进行分组。这样相同的security0分到一组，security1分到一组。就剩下两个结果了。
                   <a href="https://leizhiyuan.github.io/2013/03/03/%E8%AF%A6%E7%BB%86%E8%AE%B2%E8%A7%A3%E5%8F%8C%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -796,91 +843,6 @@ SELECT CONCAT((SELECT database()), FLOOR(RAND()*2)); 不要怕。先看最里面
                     <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E5%AE%89%E5%85%A8/">安全</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/03/01/c#%E4%B8%AD%E7%9A%84debug%E7%B1%BB/">
-                <h2 class="post-title">C#中的Debug类</h2>
-                
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on March 1, 2013
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  <p>位于命名空间System.Diagnostics中
-1.Debug.Print方法</p>
-
-<pre class="lang:default decode:true " >Debug.Print("Today: {0}", DateTime.Today);</pre> 
-
-<p>2.Debug.WriteLine方法</p>
-
-<pre class="lang:default decode:true " >Debug.WriteLine("Have a nice day");</pre> 
-
-<p>3.TraceListener类</p>
-
-<p>DelimitedListTraceListener创建的时候指定一个文件名，当Flush调用的时候，就被覆写到文件里。</p>
-
-<pre class="lang:default decode:true " >TraceListener listener = new DelimitedListTraceListener(@"C:\debugfile.txt");
-
-        // Add listener.
-        Debug.Listeners.Add(listener);
-
-        // Write and flush.
-        Debug.WriteLine("Welcome");
-        Debug.Flush();</pre> 
-
-<p>4.Debug.Write和WriteIf以及WriteLineIf方法</p>
-
-<pre class="lang:default decode:true " >Debug.WriteLineIf(IsThursday(), "Thursday");
-</pre> 
-
-<p>第一个参数一个bool值，为真则输出。</p>
-
-<p>5.Debug.Assert方法</p>
-
-<pre class="lang:default decode:true " >Debug.Assert(value != -1, "Value must never be -1.");</pre> 
-
-<p>如果表达式为false，则输出。</p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
                   
                 </div>
               
@@ -950,7 +912,7 @@ SELECT CONCAT((SELECT database()), FLOOR(RAND()*2)); 不要怕。先看最里面
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

@@ -12,22 +12,40 @@
   <meta name="twitter:title" content="[译]使用Mockito简单mock入门" />
   <meta name="description" content="我们在写单元测试的时候，面临的一个挑战就是要测试的内容总是依赖于其他组件，要是我们还得先配置好其他组件，未免有点不如意，那么我们可以使用Mocks来代替那些依赖的组件
 本文问了展示这个过程，我会创建一个DAL，数据访问层，这是一个类，提供了一个通用的api来访问和修改数据仓库的数据，然后，我们要测试这个api，而不用配置连接某个本地的数据库，，或者一个远程的数据库，或者是一个文件系统，反正就是任何放数据的东西，DAL层的好处就是隔离开了数据访问和应用程序代码
-首先使用maven来创建一个工程 mvn archetype:generate -DgroupId=info.sanaulla -DartifactId=MockitoDemo -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false 执行之后，本地生成MockitoDemo 文件夹，然后整个工程的目录结构与生成好了。
-然后，我们写这样一个model类，表示book类型 package info.sanaulla.models;
-import java.util.List;
-/** * Model class for the book details. */ public class Book {
-private String isbn; private String title; private List&lt;String&gt; authors; private String publication; private Integer yearOfPublication; private Integer numberOfPages; private String image;
-public Book(String isbn, String title, List&lt;String&gt; authors, String publication, Integer yearOfPublication, Integer numberOfPages, String image){
-this.isbn = isbn; this.title: = title; this.">
+首先使用maven来创建一个工程
+执行之后，本地生成MockitoDemo 文件夹，然后整个工程的目录结构与生成好了。
+然后，我们写这样一个model类，表示book类型
+然后，我们访问Book model的DAL类会如下
+DAL层现在还没啥功能，我们要通过TDD来测试，实际中，DAL可能和ORM来交互，也可能和数据库API交互，但是我们设计DAL的时候，不用关心
+准备测试
+我倾向于用junit做单元测试，而Mockito做mock。首先更新一下pom文件。添加依赖
+下面，我们要测试啦，我们会在单元测试中把mock数据注入到BookDAL中，这样我们就不要依赖任何数据源就可以完成测试
+我们当然对应测试DAL类的每个方法嘛。
+然后我们会在setup（这个方法是在测试类执行测试前执行的，用于准备数据啦）
+在setup()方法中
+1.首先我创建BookDAL的对象
+2.然后stub,存根。。用mock的数据。这样当对应的方法被调用的时候就返回我mock的数据
+然后，我们执行一下
+mvn test就可以看到结果了
+   很简单。。。没有配置任何实际的数据源。">
   <meta property="og:description" content="我们在写单元测试的时候，面临的一个挑战就是要测试的内容总是依赖于其他组件，要是我们还得先配置好其他组件，未免有点不如意，那么我们可以使用Mocks来代替那些依赖的组件
 本文问了展示这个过程，我会创建一个DAL，数据访问层，这是一个类，提供了一个通用的api来访问和修改数据仓库的数据，然后，我们要测试这个api，而不用配置连接某个本地的数据库，，或者一个远程的数据库，或者是一个文件系统，反正就是任何放数据的东西，DAL层的好处就是隔离开了数据访问和应用程序代码
-首先使用maven来创建一个工程 mvn archetype:generate -DgroupId=info.sanaulla -DartifactId=MockitoDemo -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false 执行之后，本地生成MockitoDemo 文件夹，然后整个工程的目录结构与生成好了。
-然后，我们写这样一个model类，表示book类型 package info.sanaulla.models;
-import java.util.List;
-/** * Model class for the book details. */ public class Book {
-private String isbn; private String title; private List&lt;String&gt; authors; private String publication; private Integer yearOfPublication; private Integer numberOfPages; private String image;
-public Book(String isbn, String title, List&lt;String&gt; authors, String publication, Integer yearOfPublication, Integer numberOfPages, String image){
-this.isbn = isbn; this.title: = title; this.">
+首先使用maven来创建一个工程
+执行之后，本地生成MockitoDemo 文件夹，然后整个工程的目录结构与生成好了。
+然后，我们写这样一个model类，表示book类型
+然后，我们访问Book model的DAL类会如下
+DAL层现在还没啥功能，我们要通过TDD来测试，实际中，DAL可能和ORM来交互，也可能和数据库API交互，但是我们设计DAL的时候，不用关心
+准备测试
+我倾向于用junit做单元测试，而Mockito做mock。首先更新一下pom文件。添加依赖
+下面，我们要测试啦，我们会在单元测试中把mock数据注入到BookDAL中，这样我们就不要依赖任何数据源就可以完成测试
+我们当然对应测试DAL类的每个方法嘛。
+然后我们会在setup（这个方法是在测试类执行测试前执行的，用于准备数据啦）
+在setup()方法中
+1.首先我创建BookDAL的对象
+2.然后stub,存根。。用mock的数据。这样当对应的方法被调用的时候就返回我mock的数据
+然后，我们执行一下
+mvn test就可以看到结果了
+   很简单。。。没有配置任何实际的数据源。">
   <meta name="twitter:description" content="我们在写单元测试的时候，面临的一个挑战就是要测试的内容总是依赖于其他组件，要是我们还得先配置好其他组件，未免有点不如意，那么我们可以使用Mocks来代替那些依赖的组件
 本文问了展示这个过程，我会创建一个DAL，数据访问层，这是一个类，提供了一个通用的api来访问和修改数据仓库的数据，然后，我们要测试这个api，而不用配置连接某个本地的数据库，，或者一个远程的数据库，或者是一个文件系统，反正就是任何 …">
   <meta name="author" content="bystander"/><script type="application/ld+json">
@@ -78,9 +96,9 @@ this.isbn = isbn; this.title: = title; this.">
     "name" : "bystander"
   },
   "headline": "[译]使用Mockito简单mock入门",
-  "description" : "我们在写单元测试的时候，面临的一个挑战就是要测试的内容总是依赖于其他组件，要是我们还得先配置好其他组件，未免有点不如意，那么我们可以使用Mocks来代替那些依赖的组件\n本文问了展示这个过程，我会创建一个DAL，数据访问层，这是一个类，提供了一个通用的api来访问和修改数据仓库的数据，然后，我们要测试这个api，而不用配置连接某个本地的数据库，，或者一个远程的数据库，或者是一个文件系统，反正就是任何放数据的东西，DAL层的好处就是隔离开了数据访问和应用程序代码\n首先使用maven来创建一个工程 mvn archetype:generate -DgroupId=info.sanaulla -DartifactId=MockitoDemo -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false 执行之后，本地生成MockitoDemo 文件夹，然后整个工程的目录结构与生成好了。\n然后，我们写这样一个model类，表示book类型 package info.sanaulla.models;\nimport java.util.List;\n\/** * Model class for the book details. *\/ public class Book {\nprivate String isbn; private String title; private List\x26lt;String\x26gt; authors; private String publication; private Integer yearOfPublication; private Integer numberOfPages; private String image;\npublic Book(String isbn, String title, List\x26lt;String\x26gt; authors, String publication, Integer yearOfPublication, Integer numberOfPages, String image){\nthis.isbn = isbn; this.title: = title; this.",
+  "description" : "我们在写单元测试的时候，面临的一个挑战就是要测试的内容总是依赖于其他组件，要是我们还得先配置好其他组件，未免有点不如意，那么我们可以使用Mocks来代替那些依赖的组件\n本文问了展示这个过程，我会创建一个DAL，数据访问层，这是一个类，提供了一个通用的api来访问和修改数据仓库的数据，然后，我们要测试这个api，而不用配置连接某个本地的数据库，，或者一个远程的数据库，或者是一个文件系统，反正就是任何放数据的东西，DAL层的好处就是隔离开了数据访问和应用程序代码\n首先使用maven来创建一个工程\n执行之后，本地生成MockitoDemo 文件夹，然后整个工程的目录结构与生成好了。\n然后，我们写这样一个model类，表示book类型\n然后，我们访问Book model的DAL类会如下\nDAL层现在还没啥功能，我们要通过TDD来测试，实际中，DAL可能和ORM来交互，也可能和数据库API交互，但是我们设计DAL的时候，不用关心\n准备测试\n我倾向于用junit做单元测试，而Mockito做mock。首先更新一下pom文件。添加依赖\n下面，我们要测试啦，我们会在单元测试中把mock数据注入到BookDAL中，这样我们就不要依赖任何数据源就可以完成测试\n我们当然对应测试DAL类的每个方法嘛。\n然后我们会在setup（这个方法是在测试类执行测试前执行的，用于准备数据啦）\n在setup()方法中\n1.首先我创建BookDAL的对象\n2.然后stub,存根。。用mock的数据。这样当对应的方法被调用的时候就返回我mock的数据\n然后，我们执行一下\nmvn test就可以看到结果了\n   很简单。。。没有配置任何实际的数据源。",
   "inLanguage" : "en",
-  "wordCount":  628 ,
+  "wordCount":  21 ,
   "datePublished" : "2014-03-01T10:57:33",
   "dateModified" : "2014-03-01T10:57:33",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -102,13 +120,22 @@ this.isbn = isbn; this.title: = title; this.">
 <meta property="og:title" content="[译]使用Mockito简单mock入门" />
 <meta property="og:description" content="我们在写单元测试的时候，面临的一个挑战就是要测试的内容总是依赖于其他组件，要是我们还得先配置好其他组件，未免有点不如意，那么我们可以使用Mocks来代替那些依赖的组件
 本文问了展示这个过程，我会创建一个DAL，数据访问层，这是一个类，提供了一个通用的api来访问和修改数据仓库的数据，然后，我们要测试这个api，而不用配置连接某个本地的数据库，，或者一个远程的数据库，或者是一个文件系统，反正就是任何放数据的东西，DAL层的好处就是隔离开了数据访问和应用程序代码
-首先使用maven来创建一个工程 mvn archetype:generate -DgroupId=info.sanaulla -DartifactId=MockitoDemo -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false 执行之后，本地生成MockitoDemo 文件夹，然后整个工程的目录结构与生成好了。
-然后，我们写这样一个model类，表示book类型 package info.sanaulla.models;
-import java.util.List;
-/** * Model class for the book details. */ public class Book {
-private String isbn; private String title; private List&lt;String&gt; authors; private String publication; private Integer yearOfPublication; private Integer numberOfPages; private String image;
-public Book(String isbn, String title, List&lt;String&gt; authors, String publication, Integer yearOfPublication, Integer numberOfPages, String image){
-this.isbn = isbn; this.title: = title; this.">
+首先使用maven来创建一个工程
+执行之后，本地生成MockitoDemo 文件夹，然后整个工程的目录结构与生成好了。
+然后，我们写这样一个model类，表示book类型
+然后，我们访问Book model的DAL类会如下
+DAL层现在还没啥功能，我们要通过TDD来测试，实际中，DAL可能和ORM来交互，也可能和数据库API交互，但是我们设计DAL的时候，不用关心
+准备测试
+我倾向于用junit做单元测试，而Mockito做mock。首先更新一下pom文件。添加依赖
+下面，我们要测试啦，我们会在单元测试中把mock数据注入到BookDAL中，这样我们就不要依赖任何数据源就可以完成测试
+我们当然对应测试DAL类的每个方法嘛。
+然后我们会在setup（这个方法是在测试类执行测试前执行的，用于准备数据啦）
+在setup()方法中
+1.首先我创建BookDAL的对象
+2.然后stub,存根。。用mock的数据。这样当对应的方法被调用的时候就返回我mock的数据
+然后，我们执行一下
+mvn test就可以看到结果了
+   很简单。。。没有配置任何实际的数据源。">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2014/03/01/%E8%AF%91%E4%BD%BF%E7%94%A8mockito%E7%AE%80%E5%8D%95mock%E5%85%A5%E9%97%A8/" />
 <meta property="og:type" content="website" />
@@ -127,7 +154,7 @@ this.isbn = isbn; this.title: = title; this.">
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -285,7 +312,7 @@ this.isbn = isbn; this.title: = title; this.">
   <i class="fas fa-calendar"></i>&nbsp;Posted on March 1, 2014
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;3&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -311,313 +338,45 @@ this.isbn = isbn; this.title: = title; this.">
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        
-
-<p>我们在写单元测试的时候，面临的一个挑战就是要测试的内容总是依赖于其他组件，要是我们还得先配置好其他组件，未免有点不如意，那么我们可以使用Mocks来代替那些依赖的组件</p>
-
+        <p>我们在写单元测试的时候，面临的一个挑战就是要测试的内容总是依赖于其他组件，要是我们还得先配置好其他组件，未免有点不如意，那么我们可以使用Mocks来代替那些依赖的组件</p>
 <p>本文问了展示这个过程，我会创建一个DAL，数据访问层，这是一个类，提供了一个通用的api来访问和修改数据仓库的数据，然后，我们要测试这个api，而不用配置连接某个本地的数据库，，或者一个远程的数据库，或者是一个文件系统，反正就是任何放数据的东西，DAL层的好处就是隔离开了数据访问和应用程序代码</p>
-
-<p>首先使用maven来创建一个工程
-<pre class="lang:default decode:true">mvn archetype:generate -DgroupId=info.sanaulla -DartifactId=MockitoDemo -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false</pre>
-执行之后，本地生成MockitoDemo 文件夹，然后整个工程的目录结构与生成好了。</p>
-
-<p>然后，我们写这样一个model类，表示book类型
-<pre class="lang:java decode:true">package info.sanaulla.models;</p>
-
-<p>import java.util.List;</p>
-
-<p>/**
-* Model class for the book details.
-*/
-public class Book {</p>
-
-<p>private String isbn;
-  private String title;
-  private List&lt;String&gt; authors;
-  private String publication;
-  private Integer yearOfPublication;
-  private Integer numberOfPages;
-  private String image;</p>
-
-<p>public Book(String isbn,
-              String title,
-              List&lt;String&gt; authors,
-              String publication,
-              Integer yearOfPublication,
-              Integer numberOfPages,
-              String image){</p>
-<div class="highlight"><pre class="chroma">this.isbn = isbn;
-this.title: = title;
-this.authors = authors;
-this.publication = publication;
-this.yearOfPublication = yearOfPublication;
-this.numberOfPages = numberOfPages;
-this.image = image;</pre></div>
-<p>}</p>
-
-<p>public String getIsbn() {
-    return isbn;
-  }</p>
-
-<p>public String getTitle() {
-    return title;
-  }</p>
-
-<p>public List&lt;String&gt; getAuthors() {
-    return authors;
-  }</p>
-
-<p>public String getPublication() {
-    return publication;
-  }</p>
-
-<p>public Integer getYearOfPublication() {
-    return yearOfPublication;
-  }</p>
-
-<p>public Integer getNumberOfPages() {
-    return numberOfPages;
-  }</p>
-
-<p>public String getImage() {
-    return image;
-  }
-}</pre>
-然后，我们访问Book model的DAL类会如下
-<pre class="lang:java decode:true">package info.sanaulla.dal;</p>
-
-<p>import info.sanaulla.models.Book;</p>
-
-<p>import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;</p>
-
-<p>/**
-* API layer for persisting and retrieving the Book objects.
-*/
-public class BookDAL {</p>
-
-<p>private static BookDAL bookDAL = new BookDAL();</p>
-
-<p>public List&lt;Book&gt; getAllBooks(){
-      return Collections.EMPTY_LIST;
-  }</p>
-
-<p>public Book getBook(String isbn){
-      return null;
-  }</p>
-
-<p>public String addBook(Book book){
-      return book.getIsbn();
-  }</p>
-
-<p>public String updateBook(Book book){
-      return book.getIsbn();
-  }</p>
-
-<p>public static BookDAL getInstance(){
-      return bookDAL;
-  }
-}</pre>
-DAL层现在还没啥功能，我们要通过TDD来测试，实际中，DAL可能和ORM来交互，也可能和数据库API交互，但是我们设计DAL的时候，不用关心</p>
-
+<p>首先使用maven来创建一个工程</p>
+<!-- raw HTML omitted -->
+<p>执行之后，本地生成MockitoDemo 文件夹，然后整个工程的目录结构与生成好了。</p>
+<p>然后，我们写这样一个model类，表示book类型</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>然后，我们访问Book model的DAL类会如下</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>DAL层现在还没啥功能，我们要通过TDD来测试，实际中，DAL可能和ORM来交互，也可能和数据库API交互，但是我们设计DAL的时候，不用关心</p>
 <p>准备测试</p>
-
-<p>我倾向于用junit做单元测试，而Mockito做mock。首先更新一下pom文件。添加依赖
-<pre class="lang:default decode:true">&lt;project xmlns=&ldquo;<a href="http://maven.apache.org/POM/4.0.0&quot;">http://maven.apache.org/POM/4.0.0&quot;</a> xmlns:xsi=&ldquo;<a href="http://www.w3.org/2001/XMLSchema-instance&quot;">http://www.w3.org/2001/XMLSchema-instance&quot;</a>
-       xsi:schemaLocation=&ldquo;<a href="http://maven.apache.org/POM/4.0.0">http://maven.apache.org/POM/4.0.0</a> <a href="http://maven.apache.org/maven-v4_0_0.xsd&quot;&gt;">http://maven.apache.org/maven-v4_0_0.xsd&quot;&gt;</a>
-  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
-  &lt;groupId&gt;info.sanaulla&lt;/groupId&gt;
-  &lt;artifactId&gt;MockitoDemo&lt;/artifactId&gt;
-  &lt;packaging&gt;jar&lt;/packaging&gt;
-  &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
-  &lt;name&gt;MockitoDemo&lt;/name&gt;
-  &lt;url&gt;<a href="http://maven.apache.org&lt;/url&gt;">http://maven.apache.org&lt;/url&gt;</a>
-  &lt;dependencies&gt;
-    &lt;!&ndash; Dependency for JUnit &ndash;&gt;
-    &lt;dependency&gt;
-      &lt;groupId&gt;junit&lt;/groupId&gt;
-      &lt;artifactId&gt;junit&lt;/artifactId&gt;
-      &lt;version&gt;4.10&lt;/version&gt;
-      &lt;scope&gt;test&lt;/scope&gt;
-    &lt;/dependency&gt;
-    &lt;!&ndash; Dependency for Mockito &ndash;&gt;
-    &lt;dependency&gt;
-      &lt;groupId&gt;org.mockito&lt;/groupId&gt;
-      &lt;artifactId&gt;mockito-all&lt;/artifactId&gt;
-      &lt;version&gt;1.9.5&lt;/version&gt;
-      &lt;scope&gt;test&lt;/scope&gt;
-    &lt;/dependency&gt;
-  &lt;/dependencies&gt;
-&lt;/project&gt;</pre>
-下面，我们要测试啦，我们会在单元测试中把mock数据注入到BookDAL中，这样我们就不要依赖任何数据源就可以完成测试
-<pre class="lang:default decode:true">public class BookDALTest {
-  public void setUp() throws Exception {</p>
-
-<p>}</p>
-
-<p>public void testGetAllBooks() throws Exception {</p>
-
-<p>}</p>
-
-<p>public void testGetBook() throws Exception {</p>
-
-<p>}</p>
-
-<p>public void testAddBook() throws Exception {</p>
-
-<p>}</p>
-
-<p>public void testUpdateBook() throws Exception {</p>
-
-<p>}
-}</pre>
-我们当然对应测试DAL类的每个方法嘛。</p>
-
-<p>然后我们会在setup（这个方法是在测试类执行测试前执行的，用于准备数据啦）
-<pre class="lang:default decode:true">public class BookDALTest {</p>
-
-<p>private static BookDAL mockedBookDAL;
-  private static Book book1;
-  private static Book book2;</p>
-
-<p>@BeforeClass
-  public static void setUp(){
-    //创建BookDAL类的一个mock对象
-    mockedBookDAL = mock(BookDAL.class);</p>
-<div class="highlight"><pre class="chroma">//创建Book类.
-book1 = new Book(&#34;8131721019&#34;,&#34;Compilers Principles&#34;,
-        Arrays.asList(&#34;D. Jeffrey Ulman&#34;,&#34;Ravi Sethi&#34;, &#34;Alfred V. Aho&#34;, &#34;Monica S. Lam&#34;),
-        &#34;Pearson Education Singapore Pte Ltd&#34;, 2008,1009,&#34;BOOK_IMAGE&#34;);
-
-book2 = new Book(&#34;9788183331630&#34;,&#34;Let Us C 13th Edition&#34;,
-        Arrays.asList(&#34;Yashavant Kanetkar&#34;),&#34;BPB PUBLICATIONS&#34;, 2012,675,&#34;BOOK_IMAGE&#34;);
-
-//用mock数据来stub对应的方法
-when(mockedBookDAL.getAllBooks()).thenReturn(Arrays.asList(book1, book2));
-when(mockedBookDAL.getBook(&#34;8131721019&#34;)).thenReturn(book1);
-when(mockedBookDAL.addBook(book1)).thenReturn(book1.getIsbn());
-when(mockedBookDAL.updateBook(book1)).thenReturn(book1.getIsbn());</pre></div>
-<p>}</p>
-
-<p>public void testGetAllBooks() throws Exception {}</p>
-
-<p>public void testGetBook() throws Exception {}</p>
-
-<p>public void testAddBook() throws Exception {}</p>
-
-<p>public void testUpdateBook() throws Exception {}
-}</pre>
-在setup()方法中</p>
-
-<p>1.首先我创建BookDAL的对象
-<pre class="lang:default decode:true">BookDAL mockedBookDAL = mock(BookDAL.class);</pre>
-2.然后stub,存根。。用mock的数据。这样当对应的方法被调用的时候就返回我mock的数据
-<pre class="lang:default decode:true">//当被getAllBooks调用的时候就返回我book1，和book2
-when(mockedBookDAL.getAllBooks()).thenReturn(Arrays.asList(book1, book2));
-when(mockedBookDAL.getBook(&ldquo;8131721019&rdquo;)).thenReturn(book1);
-when(mockedBookDAL.addBook(book1)).thenReturn(book1.getIsbn());
-when(mockedBookDAL.updateBook(book1)).thenReturn(book1.getIsbn());</pre>
-然后，我们执行一下</p>
-
-<p>mvn test就可以看到结果了
-<pre class="lang:default decode:true ">&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-</p>
-
-<h2 id="t-e-s-t-s">T E S T S</h2>
-
-<p>Running info.sanaulla.AppTest
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.029 sec
-Running info.sanaulla.dal.BookDALTest
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.209 sec</p>
-
-<p>Results :</p>
-
-<p>Tests run: 5, Failures: 0, Errors: 0, Skipped: 0</pre>
-&nbsp;</p>
-
-<p>&nbsp;</p>
-
-<p>&nbsp;
-<pre class="lang:default decode:true">package info.sanaulla.dal;</p>
-
-<p>import info.sanaulla.models.Book;
-import org.junit.BeforeClass;
-import org.junit.Test;</p>
-
-<p>import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;</p>
-
-<p>import java.util.Arrays;
-import java.util.List;</p>
-
-<p>public class BookDALTest {</p>
-
-<p>private static BookDAL mockedBookDAL;
-  private static Book book1;
-  private static Book book2;</p>
-
-<p>@BeforeClass
-  public static void setUp(){
-    mockedBookDAL = mock(BookDAL.class);
-    book1 = new Book(&ldquo;8131721019&rdquo;,&ldquo;Compilers Principles&rdquo;,
-            Arrays.asList(&ldquo;D. Jeffrey Ulman&rdquo;,&ldquo;Ravi Sethi&rdquo;, &ldquo;Alfred V. Aho&rdquo;, &ldquo;Monica S. Lam&rdquo;),
-            &ldquo;Pearson Education Singapore Pte Ltd&rdquo;, 2008,1009,&ldquo;BOOK_IMAGE&rdquo;);</p>
-<div class="highlight"><pre class="chroma">book2 = new Book(&#34;9788183331630&#34;,&#34;Let Us C 13th Edition&#34;,
-        Arrays.asList(&#34;Yashavant Kanetkar&#34;),&#34;BPB PUBLICATIONS&#34;, 2012,675,&#34;BOOK_IMAGE&#34;);
-
-when(mockedBookDAL.getAllBooks()).thenReturn(Arrays.asList(book1, book2));
-when(mockedBookDAL.getBook(&#34;8131721019&#34;)).thenReturn(book1);
-when(mockedBookDAL.addBook(book1)).thenReturn(book1.getIsbn());
-
-when(mockedBookDAL.updateBook(book1)).thenReturn(book1.getIsbn());</pre></div>
-<p>}</p>
-
-<p>@Test
-  public void testGetAllBooks() throws Exception {</p>
-<div class="highlight"><pre class="chroma">List&amp;lt;Book&amp;gt; allBooks = mockedBookDAL.getAllBooks();
-assertEquals(2, allBooks.size());
-Book myBook = allBooks.get(0);
-assertEquals(&#34;8131721019&#34;, myBook.getIsbn());
-assertEquals(&#34;Compilers Principles&#34;, myBook.getTitle());
-assertEquals(4, myBook.getAuthors().size());
-assertEquals((Integer)2008, myBook.getYearOfPublication());
-assertEquals((Integer) 1009, myBook.getNumberOfPages());
-assertEquals(&#34;Pearson Education Singapore Pte Ltd&#34;, myBook.getPublication());
-assertEquals(&#34;BOOK_IMAGE&#34;, myBook.getImage());</pre></div>
-<p>}</p>
-
-<p>@Test
-  public void testGetBook(){</p>
-<div class="highlight"><pre class="chroma">String isbn = &#34;8131721019&#34;;
-
-Book myBook = mockedBookDAL.getBook(isbn);
-
-assertNotNull(myBook);
-assertEquals(isbn, myBook.getIsbn());
-assertEquals(&#34;Compilers Principles&#34;, myBook.getTitle());
-assertEquals(4, myBook.getAuthors().size());
-assertEquals(&#34;Pearson Education Singapore Pte Ltd&#34;, myBook.getPublication());
-assertEquals((Integer)2008, myBook.getYearOfPublication());
-assertEquals((Integer)1009, myBook.getNumberOfPages());</pre></div>
-<p>}</p>
-
-<p>@Test
-  public void testAddBook(){
-    String isbn = mockedBookDAL.addBook(book1);
-    assertNotNull(isbn);
-    assertEquals(book1.getIsbn(), isbn);
-  }</p>
-
-<p>@Test
-  public void testUpdateBook(){</p>
-<div class="highlight"><pre class="chroma">String isbn = mockedBookDAL.updateBook(book1);
-assertNotNull(isbn);
-assertEquals(book1.getIsbn(), isbn);</pre></div>
-<p>}
-}</pre>
-很简单。。。没有配置任何实际的数据源。</p>
+<p>我倾向于用junit做单元测试，而Mockito做mock。首先更新一下pom文件。添加依赖</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>下面，我们要测试啦，我们会在单元测试中把mock数据注入到BookDAL中，这样我们就不要依赖任何数据源就可以完成测试</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>我们当然对应测试DAL类的每个方法嘛。</p>
+<p>然后我们会在setup（这个方法是在测试类执行测试前执行的，用于准备数据啦）</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>在setup()方法中</p>
+<p>1.首先我创建BookDAL的对象</p>
+<!-- raw HTML omitted -->
+<p>2.然后stub,存根。。用mock的数据。这样当对应的方法被调用的时候就返回我mock的数据</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>然后，我们执行一下</p>
+<p>mvn test就可以看到结果了</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p> </p>
+<p> </p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>很简单。。。没有配置任何实际的数据源。</p>
 
 
         
@@ -733,7 +492,7 @@ assertEquals(book1.getIsbn(), isbn);</pre></div>
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

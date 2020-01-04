@@ -11,13 +11,15 @@
   <meta property="og:title" content="Unable to read file Data_EGCITest解决方法" />
   <meta name="twitter:title" content="Unable to read file Data_EGCITest解决方法" />
   <meta name="description" content="今天做的是使用matlab进行协整检验，好吧。。听起来似乎很厉害的样子，其实，我也不太清楚协整到底是干嘛呢。不过经管的各位很给力。 想来协整检验matlab是可以做的。所以就去查matlab是不是有这个函数，结果是有的。egcitest，但是具体的参数还是景观的朋友看懂的。
-　早上3点多起床，看matlab的书，然后早上看完了。基本上熟悉了matlab的操作。然后就开始写这个。大致的流程和昨天的那篇文章是一致的。但是matlab生成的dll文件在C#里面调用始终会提示这样一个错误。： MWMCR::EvaluateFunction error &hellip; Error using ==&gt; load Unable to read file Data_EGCITest: No such file or directory. Error in =&gt; test.m 组合了几个关键字进行搜索，发现了这篇文章，翻译过来很简单。
+　早上3点多起床，看matlab的书，然后早上看完了。基本上熟悉了matlab的操作。然后就开始写这个。大致的流程和昨天的那篇文章是一致的。但是matlab生成的dll文件在C#里面调用始终会提示这样一个错误。：
+　组合了几个关键字进行搜索，发现了这篇文章，翻译过来很简单。
 　错误提示说的那个Data_EGCITest是一个名为Data_EGCITest.mat的文件，位于$MATLABROOT/toolbox/econ/econ/Data_EGCITest.mat目录下，$MATLABROOT指的是你matlab的安装路径。在你build 工程的时候，在下图中，记得添加这个文件。 
 　然后build生成的dll文件就可以正常在C#里使用了。
 　中间走了很多弯路。因为我想既然matlab都编译生成了dll，那么dll应该没问题。然后我就把精力放在了C#那边。。结果后来折腾了很长时间，才发现是这边的问题。。坑爹。。
 　协整检验的代码就不发了。和题目没关系。。 参考： http://www.mathworks.cn/help/toolbox/econ/egcitest.html">
   <meta property="og:description" content="今天做的是使用matlab进行协整检验，好吧。。听起来似乎很厉害的样子，其实，我也不太清楚协整到底是干嘛呢。不过经管的各位很给力。 想来协整检验matlab是可以做的。所以就去查matlab是不是有这个函数，结果是有的。egcitest，但是具体的参数还是景观的朋友看懂的。
-　早上3点多起床，看matlab的书，然后早上看完了。基本上熟悉了matlab的操作。然后就开始写这个。大致的流程和昨天的那篇文章是一致的。但是matlab生成的dll文件在C#里面调用始终会提示这样一个错误。： MWMCR::EvaluateFunction error &hellip; Error using ==&gt; load Unable to read file Data_EGCITest: No such file or directory. Error in =&gt; test.m 组合了几个关键字进行搜索，发现了这篇文章，翻译过来很简单。
+　早上3点多起床，看matlab的书，然后早上看完了。基本上熟悉了matlab的操作。然后就开始写这个。大致的流程和昨天的那篇文章是一致的。但是matlab生成的dll文件在C#里面调用始终会提示这样一个错误。：
+　组合了几个关键字进行搜索，发现了这篇文章，翻译过来很简单。
 　错误提示说的那个Data_EGCITest是一个名为Data_EGCITest.mat的文件，位于$MATLABROOT/toolbox/econ/econ/Data_EGCITest.mat目录下，$MATLABROOT指的是你matlab的安装路径。在你build 工程的时候，在下图中，记得添加这个文件。 
 　然后build生成的dll文件就可以正常在C#里使用了。
 　中间走了很多弯路。因为我想既然matlab都编译生成了dll，那么dll应该没问题。然后我就把精力放在了C#那边。。结果后来折腾了很长时间，才发现是这边的问题。。坑爹。。
@@ -72,9 +74,9 @@
     "name" : "bystander"
   },
   "headline": "Unable to read file Data_EGCITest解决方法",
-  "description" : "今天做的是使用matlab进行协整检验，好吧。。听起来似乎很厉害的样子，其实，我也不太清楚协整到底是干嘛呢。不过经管的各位很给力。 想来协整检验matlab是可以做的。所以就去查matlab是不是有这个函数，结果是有的。egcitest，但是具体的参数还是景观的朋友看懂的。\n　早上3点多起床，看matlab的书，然后早上看完了。基本上熟悉了matlab的操作。然后就开始写这个。大致的流程和昨天的那篇文章是一致的。但是matlab生成的dll文件在C#里面调用始终会提示这样一个错误。： MWMCR::EvaluateFunction error \x26hellip; Error using ==\x26gt; load Unable to read file Data_EGCITest: No such file or directory. Error in =\x26gt; test.m 组合了几个关键字进行搜索，发现了这篇文章，翻译过来很简单。\n　错误提示说的那个Data_EGCITest是一个名为Data_EGCITest.mat的文件，位于$MATLABROOT\/toolbox\/econ\/econ\/Data_EGCITest.mat目录下，$MATLABROOT指的是你matlab的安装路径。在你build 工程的时候，在下图中，记得添加这个文件。 \n　然后build生成的dll文件就可以正常在C#里使用了。\n　中间走了很多弯路。因为我想既然matlab都编译生成了dll，那么dll应该没问题。然后我就把精力放在了C#那边。。结果后来折腾了很长时间，才发现是这边的问题。。坑爹。。\n　协整检验的代码就不发了。和题目没关系。。 参考： http:\/\/www.mathworks.cn\/help\/toolbox\/econ\/egcitest.html",
+  "description" : "今天做的是使用matlab进行协整检验，好吧。。听起来似乎很厉害的样子，其实，我也不太清楚协整到底是干嘛呢。不过经管的各位很给力。 想来协整检验matlab是可以做的。所以就去查matlab是不是有这个函数，结果是有的。egcitest，但是具体的参数还是景观的朋友看懂的。\n　早上3点多起床，看matlab的书，然后早上看完了。基本上熟悉了matlab的操作。然后就开始写这个。大致的流程和昨天的那篇文章是一致的。但是matlab生成的dll文件在C#里面调用始终会提示这样一个错误。：\n　组合了几个关键字进行搜索，发现了这篇文章，翻译过来很简单。\n　错误提示说的那个Data_EGCITest是一个名为Data_EGCITest.mat的文件，位于$MATLABROOT\/toolbox\/econ\/econ\/Data_EGCITest.mat目录下，$MATLABROOT指的是你matlab的安装路径。在你build 工程的时候，在下图中，记得添加这个文件。 \n　然后build生成的dll文件就可以正常在C#里使用了。\n　中间走了很多弯路。因为我想既然matlab都编译生成了dll，那么dll应该没问题。然后我就把精力放在了C#那边。。结果后来折腾了很长时间，才发现是这边的问题。。坑爹。。\n　协整检验的代码就不发了。和题目没关系。。 参考： http:\/\/www.mathworks.cn\/help\/toolbox\/econ\/egcitest.html",
   "inLanguage" : "en",
-  "wordCount":  32 ,
+  "wordCount":  11 ,
   "datePublished" : "2012-07-03T19:50:19",
   "dateModified" : "2012-07-03T19:50:19",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -95,7 +97,8 @@
 
 <meta property="og:title" content="Unable to read file Data_EGCITest解决方法" />
 <meta property="og:description" content="今天做的是使用matlab进行协整检验，好吧。。听起来似乎很厉害的样子，其实，我也不太清楚协整到底是干嘛呢。不过经管的各位很给力。 想来协整检验matlab是可以做的。所以就去查matlab是不是有这个函数，结果是有的。egcitest，但是具体的参数还是景观的朋友看懂的。
-　早上3点多起床，看matlab的书，然后早上看完了。基本上熟悉了matlab的操作。然后就开始写这个。大致的流程和昨天的那篇文章是一致的。但是matlab生成的dll文件在C#里面调用始终会提示这样一个错误。： MWMCR::EvaluateFunction error &hellip; Error using ==&gt; load Unable to read file Data_EGCITest: No such file or directory. Error in =&gt; test.m 组合了几个关键字进行搜索，发现了这篇文章，翻译过来很简单。
+　早上3点多起床，看matlab的书，然后早上看完了。基本上熟悉了matlab的操作。然后就开始写这个。大致的流程和昨天的那篇文章是一致的。但是matlab生成的dll文件在C#里面调用始终会提示这样一个错误。：
+　组合了几个关键字进行搜索，发现了这篇文章，翻译过来很简单。
 　错误提示说的那个Data_EGCITest是一个名为Data_EGCITest.mat的文件，位于$MATLABROOT/toolbox/econ/econ/Data_EGCITest.mat目录下，$MATLABROOT指的是你matlab的安装路径。在你build 工程的时候，在下图中，记得添加这个文件。 
 　然后build生成的dll文件就可以正常在C#里使用了。
 　中间走了很多弯路。因为我想既然matlab都编译生成了dll，那么dll应该没问题。然后我就把精力放在了C#那边。。结果后来折腾了很长时间，才发现是这边的问题。。坑爹。。
@@ -118,7 +121,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -304,19 +307,14 @@
       <article role="main" class="blog-post">
         <p>　　今天做的是使用matlab进行协整检验，好吧。。听起来似乎很厉害的样子，其实，我也不太清楚协整到底是干嘛呢。不过经管的各位很给力。
 想来协整检验matlab是可以做的。所以就去查matlab是不是有这个函数，结果是有的。egcitest，但是具体的参数还是景观的朋友看懂的。</p>
-
-<p>　　早上3点多起床，看matlab的书，然后早上看完了。基本上熟悉了matlab的操作。然后就开始写这个。大致的流程和昨天的那篇文章是一致的。但是matlab生成的dll文件在C#里面调用始终会提示这样一个错误。：
-<pre class="lang:default decode:true">MWMCR::EvaluateFunction error &hellip; Error using ==&gt;
-load Unable to read file Data_EGCITest: No such file or directory. Error in =&gt; test.m</pre>
-　　组合了几个关键字进行搜索，发现了<a href="http://www.mathworks.cn/matlabcentral/answers/33037-matlab-builder-ne-exception-with-supposedly-toolbox-support">这篇文章</a>，翻译过来很简单。</p>
-
+<p>　　早上3点多起床，看matlab的书，然后早上看完了。基本上熟悉了matlab的操作。然后就开始写这个。大致的流程和昨天的那篇文章是一致的。但是matlab生成的dll文件在C#里面调用始终会提示这样一个错误。：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>　　组合了几个关键字进行搜索，发现了<a href="http://www.mathworks.cn/matlabcentral/answers/33037-matlab-builder-ne-exception-with-supposedly-toolbox-support">这篇文章</a>，翻译过来很简单。</p>
 <p>　　错误提示说的那个Data_EGCITest是一个名为Data_EGCITest.mat的文件，位于$MATLABROOT/toolbox/econ/econ/Data_EGCITest.mat目录下，$MATLABROOT指的是你matlab的安装路径。在你build 工程的时候，在下图中，记得添加这个文件。
-<a href="http://leaverimage.b0.upaiyun.com/24000_o.jpg"><img src="/images/9f98cf04debe57b3ec360a6b3ae27c8995579770.jpg" alt="" title="操作" /></a></p>
-
+<a href="http://leaverimage.b0.upaiyun.com/24000_o.jpg"><img src="/images/9f98cf04debe57b3ec360a6b3ae27c8995579770.jpg" alt="" title="操作"></a></p>
 <p>　　然后build生成的dll文件就可以正常在C#里使用了。</p>
-
 <p>　　中间走了很多弯路。因为我想既然matlab都编译生成了dll，那么dll应该没问题。然后我就把精力放在了C#那边。。结果后来折腾了很长时间，才发现是这边的问题。。坑爹。。</p>
-
 <p>　　协整检验的代码就不发了。和题目没关系。。
 参考：
 　　<a href="http://www.mathworks.cn/help/toolbox/econ/egcitest.html">http://www.mathworks.cn/help/toolbox/econ/egcitest.html</a></p>
@@ -437,7 +435,7 @@ load Unable to read file Data_EGCITest: No such file or directory. Error in =&gt
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

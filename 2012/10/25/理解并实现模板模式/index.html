@@ -14,20 +14,30 @@
 背景 有时候我们需要做很多任务，而做这些任务的算法可能不同，这样可以设计成策略模式，这样。执行该任务的基本的一些代码就是一样的。但程序可可以动态的切换来执行任务的不同部分了。
 现在，真实的情况是有些算法，从实现层面山看，有可能有一些步骤是不一样的，这种情况下。我们可以使用继承来完成。
 当有个算法，而这个算法的一部分却多样的时候。使用模板模式就很好。GoF定义模板模式为：
- &ldquo;Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm&rsquo;s structure.&rdquo;.
+ &ldquo;Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm&#39;s structure.&quot;.
  定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。模板模式使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。
  在上面的类图中： AbstractClass：包含两种方法。第一种就是算法的每一步。另一种就是模板方法。模板方法就是那些可以被用在所有独立方法中。并且提供了算法执行的一个骨架 ConcreteClass：这个类重写了抽象类中每一步的方法，包含对这些步骤的个性化实现。
 使用代码 看一个简单的例子。假想我们有一个类用来读取数据。并且能够为信息管理系统到处数据。
-abstract class DataExporter { // 这个方法都是一致的 public void ReadData() { Console.WriteLine(&#34;Reading the data from SqlServer&#34;); } // 当报表格式顶的时候这个也是定的。 public void FormatData() { Console.WriteLine(&#34;Formating the data as per requriements.">
+ReadData和FormatData 的实现不会变。唯一可变的部分就是ExportData方法。该方法对于不同的导出类型不同。如果我们要导出excel文件。我们要实现一个ConcreteClass的实现。
+同样如果要导出PDF文件。重写这部分即可
+好处就是客户端可以使用DataExporter类，而具体的实现是在派生类中的
+ 运行时。对算法的调用将会执行真正请求的派生类的方法。 看一下我们的类图 
+亮点何在 本文讨论了什么时候模板模式很有用。也简单的实现了。模板模式是一个典型的好莱坞原则： 别给我们打电话,我们会联系你的” 不论什么时候。模板方法总是在调用派生类中的方法。 [downloadicon href=http://pan.baidu.com/share/link?shareid=98214&amp;uk=1493685990]TemplateMethodDemo.zip[/downloadicon]
+原文地址：Understanding-and-Implementing-Template-Method-Des 著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！">
   <meta property="og:description" content="介绍 本文实现模板模式
 背景 有时候我们需要做很多任务，而做这些任务的算法可能不同，这样可以设计成策略模式，这样。执行该任务的基本的一些代码就是一样的。但程序可可以动态的切换来执行任务的不同部分了。
 现在，真实的情况是有些算法，从实现层面山看，有可能有一些步骤是不一样的，这种情况下。我们可以使用继承来完成。
 当有个算法，而这个算法的一部分却多样的时候。使用模板模式就很好。GoF定义模板模式为：
- &ldquo;Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm&rsquo;s structure.&rdquo;.
+ &ldquo;Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm&#39;s structure.&quot;.
  定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。模板模式使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。
  在上面的类图中： AbstractClass：包含两种方法。第一种就是算法的每一步。另一种就是模板方法。模板方法就是那些可以被用在所有独立方法中。并且提供了算法执行的一个骨架 ConcreteClass：这个类重写了抽象类中每一步的方法，包含对这些步骤的个性化实现。
 使用代码 看一个简单的例子。假想我们有一个类用来读取数据。并且能够为信息管理系统到处数据。
-abstract class DataExporter { // 这个方法都是一致的 public void ReadData() { Console.WriteLine(&#34;Reading the data from SqlServer&#34;); } // 当报表格式顶的时候这个也是定的。 public void FormatData() { Console.WriteLine(&#34;Formating the data as per requriements.">
+ReadData和FormatData 的实现不会变。唯一可变的部分就是ExportData方法。该方法对于不同的导出类型不同。如果我们要导出excel文件。我们要实现一个ConcreteClass的实现。
+同样如果要导出PDF文件。重写这部分即可
+好处就是客户端可以使用DataExporter类，而具体的实现是在派生类中的
+ 运行时。对算法的调用将会执行真正请求的派生类的方法。 看一下我们的类图 
+亮点何在 本文讨论了什么时候模板模式很有用。也简单的实现了。模板模式是一个典型的好莱坞原则： 别给我们打电话,我们会联系你的” 不论什么时候。模板方法总是在调用派生类中的方法。 [downloadicon href=http://pan.baidu.com/share/link?shareid=98214&amp;uk=1493685990]TemplateMethodDemo.zip[/downloadicon]
+原文地址：Understanding-and-Implementing-Template-Method-Des 著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！">
   <meta name="twitter:description" content="介绍 本文实现模板模式
 背景 有时候我们需要做很多任务，而做这些任务的算法可能不同，这样可以设计成策略模式，这样。执行该任务的基本的一些代码就是一样的。但程序可可以动态的切换来执行任务的不同部分了。
 现在，真实的情况是有些算法，从实现层面山看，有可能有一些步骤是不一样的，这种情况下。我们可以使用继承来完成。
@@ -80,9 +90,9 @@ abstract class DataExporter { // 这个方法都是一致的 public void ReadDat
     "name" : "bystander"
   },
   "headline": "理解并实现模板模式",
-  "description" : "介绍 本文实现模板模式\n背景 有时候我们需要做很多任务，而做这些任务的算法可能不同，这样可以设计成策略模式，这样。执行该任务的基本的一些代码就是一样的。但程序可可以动态的切换来执行任务的不同部分了。\n现在，真实的情况是有些算法，从实现层面山看，有可能有一些步骤是不一样的，这种情况下。我们可以使用继承来完成。\n当有个算法，而这个算法的一部分却多样的时候。使用模板模式就很好。GoF定义模板模式为：\n \x26ldquo;Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm\x26rsquo;s structure.\x26rdquo;.\n 定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。模板模式使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。\n 在上面的类图中： AbstractClass：包含两种方法。第一种就是算法的每一步。另一种就是模板方法。模板方法就是那些可以被用在所有独立方法中。并且提供了算法执行的一个骨架 ConcreteClass：这个类重写了抽象类中每一步的方法，包含对这些步骤的个性化实现。\n使用代码 看一个简单的例子。假想我们有一个类用来读取数据。并且能够为信息管理系统到处数据。\nabstract class DataExporter { \/\/ 这个方法都是一致的 public void ReadData() { Console.WriteLine(\x22Reading the data from SqlServer\x22); } \/\/ 当报表格式顶的时候这个也是定的。 public void FormatData() { Console.WriteLine(\x22Formating the data as per requriements.",
+  "description" : "介绍 本文实现模板模式\n背景 有时候我们需要做很多任务，而做这些任务的算法可能不同，这样可以设计成策略模式，这样。执行该任务的基本的一些代码就是一样的。但程序可可以动态的切换来执行任务的不同部分了。\n现在，真实的情况是有些算法，从实现层面山看，有可能有一些步骤是不一样的，这种情况下。我们可以使用继承来完成。\n当有个算法，而这个算法的一部分却多样的时候。使用模板模式就很好。GoF定义模板模式为：\n \x26ldquo;Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm\x27s structure.\x26quot;.\n 定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。模板模式使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。\n 在上面的类图中： AbstractClass：包含两种方法。第一种就是算法的每一步。另一种就是模板方法。模板方法就是那些可以被用在所有独立方法中。并且提供了算法执行的一个骨架 ConcreteClass：这个类重写了抽象类中每一步的方法，包含对这些步骤的个性化实现。\n使用代码 看一个简单的例子。假想我们有一个类用来读取数据。并且能够为信息管理系统到处数据。\nReadData和FormatData 的实现不会变。唯一可变的部分就是ExportData方法。该方法对于不同的导出类型不同。如果我们要导出excel文件。我们要实现一个ConcreteClass的实现。\n同样如果要导出PDF文件。重写这部分即可\n好处就是客户端可以使用DataExporter类，而具体的实现是在派生类中的\n 运行时。对算法的调用将会执行真正请求的派生类的方法。 看一下我们的类图 \n亮点何在 本文讨论了什么时候模板模式很有用。也简单的实现了。模板模式是一个典型的好莱坞原则： 别给我们打电话,我们会联系你的” 不论什么时候。模板方法总是在调用派生类中的方法。 [downloadicon href=http:\/\/pan.baidu.com\/share\/link?shareid=98214\x26amp;uk=1493685990]TemplateMethodDemo.zip[\/downloadicon]\n原文地址：Understanding-and-Implementing-Template-Method-Des 著作权声明：本文由http:\/\/leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！",
   "inLanguage" : "en",
-  "wordCount":  167 ,
+  "wordCount":  56 ,
   "datePublished" : "2012-10-25T22:04:15",
   "dateModified" : "2012-10-25T22:04:15",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -106,11 +116,16 @@ abstract class DataExporter { // 这个方法都是一致的 public void ReadDat
 背景 有时候我们需要做很多任务，而做这些任务的算法可能不同，这样可以设计成策略模式，这样。执行该任务的基本的一些代码就是一样的。但程序可可以动态的切换来执行任务的不同部分了。
 现在，真实的情况是有些算法，从实现层面山看，有可能有一些步骤是不一样的，这种情况下。我们可以使用继承来完成。
 当有个算法，而这个算法的一部分却多样的时候。使用模板模式就很好。GoF定义模板模式为：
- &ldquo;Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm&rsquo;s structure.&rdquo;.
+ &ldquo;Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm&#39;s structure.&quot;.
  定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。模板模式使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。
  在上面的类图中： AbstractClass：包含两种方法。第一种就是算法的每一步。另一种就是模板方法。模板方法就是那些可以被用在所有独立方法中。并且提供了算法执行的一个骨架 ConcreteClass：这个类重写了抽象类中每一步的方法，包含对这些步骤的个性化实现。
 使用代码 看一个简单的例子。假想我们有一个类用来读取数据。并且能够为信息管理系统到处数据。
-abstract class DataExporter { // 这个方法都是一致的 public void ReadData() { Console.WriteLine(&#34;Reading the data from SqlServer&#34;); } // 当报表格式顶的时候这个也是定的。 public void FormatData() { Console.WriteLine(&#34;Formating the data as per requriements.">
+ReadData和FormatData 的实现不会变。唯一可变的部分就是ExportData方法。该方法对于不同的导出类型不同。如果我们要导出excel文件。我们要实现一个ConcreteClass的实现。
+同样如果要导出PDF文件。重写这部分即可
+好处就是客户端可以使用DataExporter类，而具体的实现是在派生类中的
+ 运行时。对算法的调用将会执行真正请求的派生类的方法。 看一下我们的类图 
+亮点何在 本文讨论了什么时候模板模式很有用。也简单的实现了。模板模式是一个典型的好莱坞原则： 别给我们打电话,我们会联系你的” 不论什么时候。模板方法总是在调用派生类中的方法。 [downloadicon href=http://pan.baidu.com/share/link?shareid=98214&amp;uk=1493685990]TemplateMethodDemo.zip[/downloadicon]
+原文地址：Understanding-and-Implementing-Template-Method-Des 著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2012/10/25/%E7%90%86%E8%A7%A3%E5%B9%B6%E5%AE%9E%E7%8E%B0%E6%A8%A1%E6%9D%BF%E6%A8%A1%E5%BC%8F/" />
 <meta property="og:type" content="website" />
@@ -131,7 +146,7 @@ abstract class DataExporter { // 这个方法都是一致的 public void ReadDat
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -317,105 +332,41 @@ abstract class DataExporter { // 这个方法都是一致的 public void ReadDat
       <article role="main" class="blog-post">
         <p><strong>介绍</strong>
 本文实现模板模式</p>
-
 <p><strong>背景</strong>
 有时候我们需要做很多任务，而做这些任务的算法可能不同，这样可以设计成策略模式，这样。执行该任务的基本的一些代码就是一样的。但程序可可以动态的切换来执行任务的不同部分了。</p>
-
 <p>现在，真实的情况是有些算法，从实现层面山看，有可能有一些步骤是不一样的，这种情况下。我们可以使用继承来完成。</p>
-
 <p>当有个算法，而这个算法的一部分却多样的时候。使用模板模式就很好。GoF定义模板模式为：</p>
-
 <blockquote>
-<p>&ldquo;Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm&rsquo;s structure.&rdquo;.</p>
+<p>&ldquo;Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm's structure.&quot;.</p>
 </blockquote>
-
 <p>定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。模板模式使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/28596_o.jpg"><img src="/images/013b89f26820a073c2044e0aa42a4d54a089e0b8.jpg" alt="" title="1" /></a>
+<p><a href="http://leaverimage.b0.upaiyun.com/28596_o.jpg"><img src="/images/013b89f26820a073c2044e0aa42a4d54a089e0b8.jpg" alt="" title="1"></a>
 在上面的类图中：
 AbstractClass：包含两种方法。第一种就是算法的每一步。另一种就是模板方法。模板方法就是那些可以被用在所有独立方法中。并且提供了算法执行的一个骨架
 ConcreteClass：这个类重写了抽象类中每一步的方法，包含对这些步骤的个性化实现。</p>
-
 <p><strong>使用代码</strong>
 看一个简单的例子。假想我们有一个类用来读取数据。并且能够为信息管理系统到处数据。</p>
-
-<pre class="lang:default decode:true " >abstract class DataExporter
-{
-    // 这个方法都是一致的
-    public void ReadData()
-    {
-        Console.WriteLine("Reading the data from SqlServer");
-    }
-
-    // 当报表格式顶的时候这个也是定的。
-    public void FormatData()
-    {
-        Console.WriteLine("Formating the data as per requriements.");
-    }
-
-    // 目标文件类型的不同导致该方法不同
-    public abstract void ExportData();        
-
-    // 这是客户端可能使用的模板方法
-    public void ExportFormatedData()
-    {
-        this.ReadData();
-        this.FormatData();
-        this.ExportData();
-    }
-}</pre> 
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>ReadData和FormatData 的实现不会变。唯一可变的部分就是ExportData方法。该方法对于不同的导出类型不同。如果我们要导出excel文件。我们要实现一个ConcreteClass的实现。</p>
-
-<pre class="lang:default decode:true " >class ExcelExporter : DataExporter
-{
-    public override void ExportData()
-    {
-        Console.WriteLine("Exporting the data to an Excel file.");
-    }
-}</pre> 
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>同样如果要导出PDF文件。重写这部分即可</p>
-
-<pre class="lang:default decode:true " >class PDFExporter : DataExporter
-{
-    public override void ExportData()
-    {
-        Console.WriteLine("Exporting the data to a PDF file.");
-    }
-}
-</pre> 
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>好处就是客户端可以使用DataExporter类，而具体的实现是在派生类中的</p>
-
-<pre class="lang:default decode:true " >static void Main(string[] args)
-{
-    DataExporter exporter = null;
-
-    //导出 Excel文件
-    exporter = new ExcelExporter();
-    exporter.ExportFormatedData();
-
-    Console.WriteLine();
-
-    // 导出 PDF 文件
-    exporter = new PDFExporter();
-    exporter.ExportFormatedData();
-}
-</pre> 
-
-<p><a href="http://leaverimage.b0.upaiyun.com/28597_o.jpg"><img src="/images/1bf614457e0728646a9997af084aa990ef0ea3cb.jpg" alt="" title="2" /></a>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><a href="http://leaverimage.b0.upaiyun.com/28597_o.jpg"><img src="/images/1bf614457e0728646a9997af084aa990ef0ea3cb.jpg" alt="" title="2"></a>
 运行时。对算法的调用将会执行真正请求的派生类的方法。
 看一下我们的类图
- <a href="http://leaverimage.b0.upaiyun.com/28598_o.jpg"><img src="/images/1653c7412c7218518495704e23ebaf2ccdd66712.jpg" alt="" title="3" /></a></p>
-
+<a href="http://leaverimage.b0.upaiyun.com/28598_o.jpg"><img src="/images/1653c7412c7218518495704e23ebaf2ccdd66712.jpg" alt="" title="3"></a></p>
 <p><strong>亮点何在</strong>
 本文讨论了什么时候模板模式很有用。也简单的实现了。模板模式是一个典型的好莱坞原则：
 别给我们打电话,我们会联系你的” 不论什么时候。模板方法总是在调用派生类中的方法。
-[downloadicon href=<a href="http://pan.baidu.com/share/link?shareid=98214&amp;uk=1493685990]TemplateMethodDemo.zip[/downloadicon">http://pan.baidu.com/share/link?shareid=98214&amp;uk=1493685990]TemplateMethodDemo.zip[/downloadicon</a>]</p>
-
+[downloadicon href=http://pan.baidu.com/share/link?shareid=98214&amp;uk=1493685990]TemplateMethodDemo.zip[/downloadicon]</p>
 <p>原文地址：<a href="http://www.codeproject.com/Articles/482196/Understanding-and-Implementing-Template-Method-Des">Understanding-and-Implementing-Template-Method-Des</a>
-著作权声明：本文由<a href="http://leaver.me">http://leaver.me</a> 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</p>
+著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</p>
 
 
         
@@ -535,7 +486,7 @@ ConcreteClass：这个类重写了抽象类中每一步的方法，包含对这�
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

@@ -48,7 +48,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -224,6 +224,82 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/05/02/%E4%B8%AD%E6%96%87%E7%BC%96%E7%A0%81%E6%9D%82%E8%B0%88/">
+                <h2 class="post-title">中文编码杂谈</h2>
+                
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on May 2, 2012
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  本文来自http://www.searchtb.com/2012/04/chinese_encode.html,讲的不错。收藏分享。
+编码问题的例子
+在Windows自带的Notepad（记事本）程序中输入“联通”两个字，保存后再次打开，会发现“联通”不见了，代之以“��ͨ”的乱码。这是Windows平台上典型的中文编码问题。即文件保存的时候是按照ANSI编码（其实就是GB2312，后面会详细介绍）保存，打开的时候程序按照UTF-8方式对内容解释，于是就出现了乱码。避免乱码的方式很简单，在“文件”菜单中选择“打开”命令，选择保存的文件，然后选择“ANSI”编码，此时就能看到久违的“联通”两个字了。
+在Linux平台上如果使用cat等命令查看文件中的中文内容时，可能出现乱码。这也是编码的问题。简单的说是文件时按照A编码保存，但是cat命令按照当前Locale设定的B编码去查看，在B和A不兼容的时候就出现了乱码。
+为什么写这篇文章
+中文编码由于历史原因牵扯到不少标准，在不了解的时候感觉一头雾水；但其实理解编码问题并不需要你深入了解各个编码标准，只要你明白了来龙去脉，了解了关键的知识点，就能分析和解决日常开发工作中碰到的大部分编码问题。有感于我看过的资料和文章要么不够全面，要么略显枯燥，所以通过这篇文章记录下笔者在日常工作中碰到的中文编码原理相关问题，目的主要是自我总结，如果能给读者提供一些帮助那就算是意外之喜了。由于严谨的编码标准对我来说是无趣的，枯燥的，难以记忆的，本文尝试用浅显易懂的生活语言解释中文编码相关的（也可能不相关的）一些问题，这也是为什么取名杂谈的原因。本文肯定存在不规范不全面的地方，我会在参考资料里给出官方文档的链接，也欢迎读者在评论中提出更好的表达方式&amp;指出错误，不胜感激。
+对编码问题的理解我认为分为三个层次，第一个层次：概念，知道各个编码标准的应用场景，了解之间的差异，能分析和解决常见的一些编码问题。第二个层次：标准，掌握编码的细节，如编码范围，编码转换规则，知道这些就能自行开发编码转换工具。第三个层次，使用，了解中文的编码二进制存储，在程序开发过程中选择合理的编码并处理中文。为了避免让读者陷入编码标准的黑洞无法脱身（不相信？看看unicode的规范就明白我的意思了），同时由于编码查询&amp;转换工具等都有现成工具可以使用，本文只涉及第一个层次，不涉及第二层次，在第三层次上会做一些尝试。在本文的最后提供了相关链接供对标准细节感兴趣的同学继续学习。最后，本文不涉及具体软件的乱码问题解决，如ssh，shell，vim，screen等，这些话题留给剑豪同学专文阐述。
+一切都是因为电脑不识字
+电脑很聪明，可以帮我们做很多事情，最开始主要是科学计算，这也是为什么电脑别名计算机。电脑又很笨，在她的脑子里只有数字，即所有的数据在存储和运算时都要使用二进制数表示。这在最初电脑主要用来处理大量复杂的科学计算时不是什么大问题，但是当电脑逐步走入普通人的生活时，情况开始变糟了。办公自动化等领域最主要的需求就是文字处理，电脑如何来表示文字呢？这个问题当然难不倒聪明的计算机科学家们，用数字来代表字符呗。这就是“编码”。
+英文的终极解决方案：ASCII
+每个人都可以约定自己的一套编码，只要使用方之间了解就ok了。比如说咱俩约定0×10表示a，0×11表示b。在一开始也的确是这样的，出现了各式各样的编码。这样有两个问题：1. 各个编码的字符集不一样，有的多，有的少。2. 相同字符的编码也不一样。你这里a是0×10，他那里a可能是0×30。于是你保存的文件他就不能直接用，必须要转换编码。随着沟通范围的扩大，采用不同编码的人们互相通信就乱套了，这就是我们常说的：鸡同鸭讲。如果要避免这种混乱，那么大家就必须使用相同的编码规则，于是美国有关的标准化组织就出台了ASCII（American Standard Code for Information Interchange）编码，统一规定了英文常用符号用哪些二进制数来表示。ASCII是标准的单字节字符编码方案，用于基于文本的数据。
+ASCII最初是美国国家标准，供不同计算机在相互通信时用作共同遵守的西文字符编码标准，已被国际标准化组织（International Organization for Standardization, ISO）定为国际标准，称为ISO 646标准。适用于所有拉丁文字字母。ASCII 码使用指定的7位或8位二进制数组合来表示128或256种可能的字符。标准ASCII 码也叫基础ASCII码，使用7位二进制数来表示所有的大写和小写字母，数字0 到9、标点符号， 以及在美式英语中使用的特殊控制字符。而最高位为1的另128个字符（80H—FFH）被称为“扩展ASCII”，一般用来存放英文的制表符、部分音标字符等等的一些其它符号。
+其中：**0～31及127(共33个)****是控制字符或通信专用字符（其余为可显示字符），**32～126(共95个)是字符(32是空格），其中48～57为0到9十个阿拉伯数字，65～90为26个大写英文字母，97～122号为26个小写英文字母，其余为一些标点符号、运算符号等。
+现在所有使用英文的电脑终于可以用同一种编码来交流了。理解了ASCII编码，其他字母型的语言编码方案就触类旁通了。
+一波三折的中文编码
+第一次尝试：GB2312
+ASCII这种字符编码规则显然用来处理英文没有什么问题，它的出现极大的促进了信息在西方尤其是美国的传播和交流。但是对于中文，常用汉字就有6000以上，ASCII 单字节编码显然是不够用。为了粉碎美帝国主义通过编码限制中国人民使用电脑的无耻阴谋，中国国家标准总局发布了GB2312码即中华人民共和国国家汉字信息交换用编码，全称《信息交换用汉字编码字符集——基本集》，1981年5月1日实施，通行于大陆。GB2312字符集中除常用简体汉字字符外还包括希腊字母、日文平假名及片假名字母、俄语西里尔字母等字符，未收录繁体中文汉字和一些生僻字。 EUC-CN可以理解为GB2312的别名，和GB2312完全相同。
+GB2312是基于区位码设计的，在区位码的区号和位号上分别加上A0H就得到了GB2312编码。这里第一次提到了“区位码”，我就连带把下面这几个让人摸不到头脑的XX码一锅端了吧：
+区位码，国标码，交换码，内码，外码
+区位码：就是把中文常用的符号，数字，汉字等分门别类进行编码。区位码把编码表分为94个区，每个区对应94个位，每个位置就放一个字符（汉字，符号，数字都属于字符）。这样每个字符的区号和位号组合起来就成为该汉字的区位码。区位码一般用10进制数来表示，如4907就表示49区7位，对应的字符是“学”。区位码中01-09区是符号、数字区，16-87区是汉字区，10-15和88-94是未定义的空白区。它将收录的汉字分成两级：第一级是常用汉字计3755个，置于16-55区，按汉语拼音字母/笔形顺序排列；第二级汉字是次常用汉字计3008个，置于56-87区，按部首/笔画顺序排列。在网上搜索“区位码查询系统”可以很方便的找到汉字和对应区位码转换的工具。为了避免广告嫌疑和死链，这里就不举例了。
+国标码： 区位码无法用于汉字通信，因为它可能与通信使用的控制码（00H~1FH）（即0~31，还记得ASCII码特殊字符的范围吗？）发生冲突。于是ISO2022规定每个汉字的区号和位号必须分别加上32（即二进制数00100000，16进制20H），得到对应的国标交换码，简称国标码，交换码，因此，“学”字的国标交换码计算为：
+交换码：即国标交换码的简称，等同上面说的国标码。
+内码：由于文本中通常混合使用汉字和西文字符，汉字信息如果不予以特别标识，就会与单字节的ASCII码混淆。此问题的解决方法之一是将一个汉字看成是两个扩展ASCII码，使表示GB2312汉字的两个字节的最高位都为1。即国标码加上128（即二进制数10000000,16进制80H）这种高位为1的双字节汉字编码即为GB2312汉字的机内码，简称为内码。20H+80H=A0H。这也就是常说的在区位码的区号和位号上分别加上A0H就得到了GB2312编码的由来。
+外码：机外码的简称，就是汉字输入码，是为了通过键盘字符把汉字输入计算机而设计的一种编码。 英文输入时，相输入什么字符便按什么键，外码和内码一致。汉字输入时，可能要按几个键才能输入一个汉字。 汉字输入方案有成百上千个，但是这千差万别的外码输入进计算机后都会转换成统一的内码。
+最后总结一下上面的概念。中国国家标准总局把中文常用字符编码为94个区，每个区对应94个位，每个字符的区号和位号组合起来就是该字符的区位码, 区位码用10进制数来表示，如4907就表示49区7位，对应的字符是“学”。 由于区位码的取值范围与通信使用的控制码（00H~1FH）（即0~31）发生冲突。每个汉字的区号和位号分别加上32（即16进制20H）得到国标码，交换码。“学”的国标码为5127H。由于文本中通常混合使用汉字和西文字符，为了让汉字信息不会与单字节的ASCII码混淆，将一个汉字看成是两个扩展ASCII码，即汉字的两个字节的最高位置为1，得到的编码为GB2312汉字的内码。“学”的内码为D1A7H。无论你使用什么输入法，通过什么样的按键组合把“学”输入计算机，“学”在使用GB2312（以及兼容GB2312）编码的计算机里的内码都是D1A7H。
+第二次尝试：GBK
+GB2312的出现基本满足了汉字的计算机处理需要，但由于上面提到未收录繁体字和生僻字，从而不能处理人名、古汉语等方面出现的罕用字，这导致了1995年《汉字编码扩展规范》（GBK）的出现。GBK编码是GB2312编码的超集，向下完全兼容GB2312，兼容的含义是不仅字符兼容，而且相同字符的编码也相同，同时在字汇一级支持ISO/IEC10646—1和GB 13000—1的全部中、日、韩（CJK）汉字，共计20902字。GBK还收录了GB2312不包含的汉字部首符号、竖排标点符号等字符。CP936和GBK的有些许差别，绝大多数情况下可以把CP936当作GBK的别名。
+第三次尝试：GB18030
+GB18030编码向下兼容GBK和GB2312。GB18030收录了所有Unicode3.1中的字符，包括中国少数民族字符，GBK不支持的韩文字符等等，也可以说是世界大多民族的文字符号都被收录在内。GBK和GB2312都是双字节等宽编码，如果算上和ASCII兼容所支持的单字节，也可以理解为是单字节和双字节混合的变长编码。GB18030编码是变长编码，有单字节、双字节和四字节三种方式。
+其实，这三个标准并不需要死记硬背，只需要了解是根据应用需求不断扩展编码范围即可。从GB2312到GBK再到GB18030收录的字符越来越多即可。万幸的是一直是向下兼容的，也就是说一个汉字在这三个编码标准里的编码是一模一样的。这些编码的共性是变长编码，单字节ASCII兼容，对其他字符GB2312和GBK都使用双字节等宽编码，只有GB18030还有四字节编码的方式。这些编码最大的问题是2个。1. 由于低字节的编码范围和ASCII有重合，所以不能根据一个字节的内容判断是中文的一部分还是一个独立的英文字符。2. 如果有两个汉字编码为A1A2B1B2，存在A2B1也是一个有效汉字编码的特殊情况。这样就不能直接使用标准的字符串匹配函数来判断一个字符串里是否包含某一个汉字，而需要先判断字符边界然后才能进行字符匹配判断。
+最后，提一个小插曲，上面讲的都是大陆推行的汉字编码标准，使用繁体的中文社群中最常用的电脑汉字字符集标准叫大五码（Big5），共收录13,060个中文字，其中有二字为重覆编码(实在是不应该)。Big5虽普及于中国的台湾、香港与澳门等繁体中文通行区，但长期以来并非当地的国家标准，而只是业界标准。倚天中文系统、Windows等主要系统的字符集都是以Big5为基准，但厂商又各自增删，衍生成多种不同版本。2003年，Big5被收录到台湾官方标准的附录当中，取得了较正式的地位。这个最新版本被称为Big5-2003。
+天下归一Unicode
+看了上面的多个中文编码是不是有点头晕了呢？如果把这个问题放到全世界n多个国家n多语种呢？各国和各地区自己的文字编码规则互相冲突的情况全球信息交换带来了很大的麻烦。
+要真正彻底解决这个问题，上面介绍的那些通过扩展ASCII修修补补的方式已经走不通了，而必须有一个全新的编码系统，这个系统要可以将中文、日文、法文、德文……等等所有的文字统一起来考虑，为每一个文字都分配一个单独的编码。于是，Unicode诞生了。Unicode（统一码、万国码、单一码）为地球上（以后会包括火星，金星，喵星等）每种语言中的每个字符设定了统一并且唯一的二进制编码，以满足跨语言、跨平台进行文本转换、处理的要求。在Unicode里，所有的字符被一视同仁，汉字不再使用“两个扩展ASCII”，而是使用“1个Unicode”来表示，也就是说，所有的文字都按一个字符来处理，它们都有一个唯一的Unicode码。Unicode用数字0-0x10FFFF来映射这些字符，最多可以容纳1114112个字符，或者说有1114112个码位（码位就是可以分配给字符的数字）。
+提到Unicode不能不提UCS（通用字符集Universal Character Set）。UCS是由ISO制定的ISO 10646（或称ISO/IEC 10646）标准所定义的标准字符集。UCS-2用两个字节编码，UCS-4用4个字节编码。Unicode是由unicode.org制定的编码机制，ISO与unicode.org是两个不同的组织， 虽然最初制定了不同的标准; 但目标是一致的。所以自从Unicode 2.0开始， Unicode采用了与ISO 10646-1相同的字库和字码， ISO也承诺ISO10646将不会给超出0x10FFFF的UCS-4编码赋值， 使得两者保持一致。大家简单认为UCS等同于Unicode就可以了。
+                  <a href="https://leizhiyuan.github.io/2012/05/02/%E4%B8%AD%E6%96%87%E7%BC%96%E7%A0%81%E6%9D%82%E8%B0%88/" class="post-read-more">[Read More]</a>
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%94%B6%E8%97%8F/">收藏</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/04/28/c#-%E6%B8%A9%E6%95%85%E8%80%8C%E7%9F%A5%E6%96%B0stream%E7%AF%87/">
                 <h2 class="post-title">C# 温故而知新：Stream篇</h2>
                 
@@ -252,7 +328,6 @@
               <div class="post-entry">
                 
                   <p>　　　如果你在学习C#，那么对流的操作是非常基础重要的一步，而<a href="http://www.cnblogs.com/JimmyZheng/">JimmyZheng</a>的Stream系列文章估计是流操作最好的文章了。直接转过来，做一个收藏。也希望能够对学习的朋友有所帮助，本文可能会持续更新。</p>
-
 <ul>
 <li><a href="http://www.cnblogs.com/JimmyZheng/archive/2012/03/17/2402814.html">C# 温故而知新：Stream篇（—）Stream简单介绍</a></li>
 <li><a href="http://www.cnblogs.com/JimmyZheng/archive/2012/03/19/2405216.html">C# 温故而知新：Stream篇（二）TextReader 和StreamReader</a></li>
@@ -303,9 +378,13 @@
 
               <div class="post-entry">
                 
-                  这个就不多说了，直接贴代码，使用方法就是把这些代码全部拷贝进你的404.php这个文件。后台点击外观-编辑-选择404.php，开始编辑，
-完成后然后就可以自己测试下效果了，你也可以先访问http://leaver.me/test404查看效果 &lt;title&gt;404&lt;/title&gt; &lt;style type=&ldquo;text/css&rdquo;&gt; body{ margin:0; padding:0; font:14px/1.6 Arial,Sans-serif; background:#fff url(img/body.png) repeat-x; } a:link,a:visited{ color:#007ab7; text-decoration:none; } h1{ position:relative; z-index:2; width:540px; height:0; margin:110px auto 15px; padding:230px 0 0; overflow:hidden; xxxxborder:1px solid; background-image: url(http://leaverimage.b0.upaiyun.com/20346_o.jpg); background-repeat: no-repeat; } h2{ position:absolute; top:17px; left:187px; margin:0; font-size:0; text-indent:-999px; -moz-user-select:none; -webkit-user-select:none; user-select:none; cursor:default; width: 534px; } h2 em{ display:block; font:italic bold 200px/120px &ldquo;Times New Roman&rdquo;,Times,Serif; text-indent:0; letter-spacing:-5px; color:rgba(216,226,244,0.3); } .link a{margin-right:1em;} .link,.texts{ width:540px; margin:0 auto 15px; color:#505050; } .
-                  <a href="https://leizhiyuan.github.io/2012/04/28/wordpress-%E5%AE%9E%E7%8E%B0404%E4%B8%AA%E6%80%A7%E8%B7%B3%E8%BD%AC%E9%A1%B5%E9%9D%A2/" class="post-read-more">[Read More]</a>
+                  <p>这个就不多说了，直接贴代码，使用方法就是把这些代码全部拷贝进你的404.php这个文件。后台点击外观-编辑-选择404.php，开始编辑，</p>
+<p>完成后然后就可以自己测试下效果了，你也可以先访问<a href="http://leaver.me/test404">http://leaver.me/test404</a>查看效果</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<blockquote>
+</blockquote>
+
                 
               </div>
 
@@ -349,57 +428,36 @@
               <div class="post-entry">
                 
                   <p>推荐连接方式选择Host-only Adapter（主机模式）。设置方法是打开vitualbox，然后选中虚拟机，点击设置，找到网络，然后如下图选择</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/20944_o.jpg"><img src="/images/6f75b3ea6509800b51958f720d2e3173390bc0a1.jpg" alt="" title="桥接设置" /></a></p>
-
-<p>设置完成后，启动ubuntu，然后执行
-<pre lang="php">ifconfig -a</pre>
-找到下面这行，可以看到虚拟机分配到的ip地址为192.168.56.101</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/20945_o.jpg"><img src="/images/a57df08f6538afb4deebab8a4e08564bda4528e0.jpg" alt="" title="IP地址" /></a></p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/20944_o.jpg"><img src="/images/6f75b3ea6509800b51958f720d2e3173390bc0a1.jpg" alt="" title="桥接设置"></a></p>
+<p>设置完成后，启动ubuntu，然后执行</p>
+<!-- raw HTML omitted -->
+<p>找到下面这行，可以看到虚拟机分配到的ip地址为192.168.56.101</p>
+<p><a href="http://leaverimage.b0.upaiyun.com/20945_o.jpg"><img src="/images/a57df08f6538afb4deebab8a4e08564bda4528e0.jpg" alt="" title="IP地址"></a></p>
 <p>然后呢，可以在win7的cmd下 ping 192.168.56.101，看看可不可以ping通，</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/20948_o.jpg"><img src="/images/b38276de90d54e82042a95ae97e40e658753d1d5.jpg" alt="" title="ping" /></a></p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/20948_o.jpg"><img src="/images/b38276de90d54e82042a95ae97e40e658753d1d5.jpg" alt="" title="ping"></a></p>
 <p>有返回所以是通的，</p>
-
-<p>然后在ubuntu下需要执行
-<pre lang="php">sudo apt-get install openssh-server</pre>
-Ubuntu缺省安装了openssh-client（用于ubuntu连接其他服务器）,所以在这里就不安装了，只安装server，用于其它电脑连接ubuntu，如果你的系统没有安装的话，再用apt-get安装上即可。</p>
-
-<p>然后确认sshserver是否启动了：
-<pre lang="php">ps -e |grep ssh</pre>
-如果只有ssh-agent行那ssh-server还没有启动，需要执行
-<pre lang="php">service sshd start</pre>
-，启动ssh服务器
+<p>然后在ubuntu下需要执行</p>
+<!-- raw HTML omitted -->
+<p>Ubuntu缺省安装了openssh-client（用于ubuntu连接其他服务器）,所以在这里就不安装了，只安装server，用于其它电脑连接ubuntu，如果你的系统没有安装的话，再用apt-get安装上即可。</p>
+<p>然后确认sshserver是否启动了：</p>
+<!-- raw HTML omitted -->
+<p>如果只有ssh-agent行那ssh-server还没有启动，需要执行</p>
+<!-- raw HTML omitted -->
+<p>，启动ssh服务器
 如果看到sshd那说明ssh-server已经启动了。</p>
-
 <p>然后下载putty，推荐去<a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">官方下载</a>，下载完成后发现是单文件，直接执行即可。</p>
-
 <p>输入ubuntu的ip点击open即可</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/20950_o.jpg"><img src="/images/9901f47b9a70d8c61d8ea28aeb41985e4b92be9d.jpg" alt="" title="登录设置" /></a></p>
-
-<p>登录上以后执行命令会发现有乱码，鼠标右键点击putty窗口的标题栏，选择，&rdquo;Change Settings&rdquo;，&rdquo;Translation&rdquo;，在&rdquo;Received data assumed to be in which character set&rdquo;的下拉菜单里选择&rdquo;UTF-8&rdquo;。如下图</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/20951_o.png"><img src="/images/6d08c4a6755cd31c3dc560f681162e46c797c02d.png" alt="" title="utf-8" /></a></p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/20950_o.jpg"><img src="/images/9901f47b9a70d8c61d8ea28aeb41985e4b92be9d.jpg" alt="" title="登录设置"></a></p>
+<p>登录上以后执行命令会发现有乱码，鼠标右键点击putty窗口的标题栏，选择，&ldquo;Change Settings&rdquo;，&ldquo;Translation&rdquo;，在&quot;Received data assumed to be in which character set&quot;的下拉菜单里选择&quot;UTF-8&rdquo;。如下图</p>
+<p><a href="http://leaverimage.b0.upaiyun.com/20951_o.png"><img src="/images/6d08c4a6755cd31c3dc560f681162e46c797c02d.png" alt="" title="utf-8"></a></p>
 <p>这样，下次又得重复同样的工作，为了保持配置，继续在上图选择左边的session</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/20952_o.jpg"><img src="/images/d0111c6b9386937d97e77046d84dbd510a062982.jpg" alt="" title="session" /></a></p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/20952_o.jpg"><img src="/images/d0111c6b9386937d97e77046d84dbd510a062982.jpg" alt="" title="session"></a></p>
 <p>在saved session输入个名字，save即可，下次直接连这个就可以了</p>
-
-<p>参考：<a href="http://www.linuxidc.com/Linux/2011-12/49325.htm">http://www.linuxidc.com/Linux/2011-<sup>12</sup>&frasl;<sub>49325</sub>.htm</a></p>
-
+<p>参考：<a href="http://www.linuxidc.com/Linux/2011-12/49325.htm">http://www.linuxidc.com/Linux/2011-12/49325.htm</a></p>
 <p><a href="http://spark10000.blog.51cto.com/955100/547211">http://spark10000.blog.51cto.com/955100/547211</a></p>
-
 <p>至于putty的使用不在本文的计划范围内，以后有机会再写吧。</p>
-
 <p>每次遇到问题就体会到网络的信息实在太杂了。掌握搜索技术和对数据的快速筛选很重要。</p>
-
-<p>&nbsp;</p>
+<p> </p>
 
                 
               </div>
@@ -443,50 +501,31 @@ Ubuntu缺省安装了openssh-client（用于ubuntu连接其他服务器）,所�
                 
                   <p>　　看到有关奋斗的文章，放在一起别有一种感觉，我还是很认同第三种的，第二种太理想化了。当然你会有自己的看法的，有需要的直接前往原文观看。
 第一篇很出名，叫做<a href="http://www.zreading.cn/archives/2533.html">《你必须非常努力，才能看起来毫不费力》</a></p>
-
 <blockquote>
 <p>有一群人，他们积极自律，每天按计划行事，有条不紊；他们不张扬，把自己当成最卑微的小草，等待着人生开出花朵的那天。他们早晨5点多起来健身，你在睡觉；7点开始享受丰盛的早餐，蛋白质维生素淀粉粗纤维样样俱全，为新的一天起了一个好头，当他们收拾妥当准备开始一整天的工作时，你还在睡觉。</p>
 </blockquote>
-
 <p>第二篇针锋相对，是<a href="http://blog.renren.com/blog/44432371/811862152">《我始终不信努力奋斗的意义》</a></p>
-
 <blockquote>
 <p>“奋斗”这个词的英文表示更能彰显其本来面目，叫做“struggle for”，奋力斗争。Struggle的含义是，你之所以奋力斗争，正是为摆脱你目前所处的状态——你不是想着追求，而是想着逃离。你之所以现在做你讨厌的事情，为的是以后再也不做这种事情。那么，为什么不在此刻停下来呢？
 　　子曰：富而可求也，虽执鞭之士，吾亦为之。如不可求，从吾所好。</p>
 </blockquote>
-
 <p>第三篇我想把全文贴出来：《第三只眼：做你认为对的你》
 人人6分</p>
-
 <p>　　　读完《你必须非常努力，才能看起来毫不费力》，再读《我始终不信努力奋斗的意义》，或许你会发生这样的惊叹：啊，原来思想可以这样，相互对立，可是看似又相互正确。</p>
-
 <p>　　　当然这是好事，你发现思维就是这样有趣，它们各自站在自己的立场上去博弈厮杀，它们都企图把你拉到自己一边，而你四处打听考察，想要分清谁是谁非，正义和邪恶，却最后发现，它们说得都好有道理啊……多读这类观点相斥的文章，你会发现一个新的天地——原来思维的广度和宇宙一般，没有边界。</p>
-
 <p>　　　你去看这两篇文章后面读者的评论，你会发现有太多的人都没有自己独立的思考。看罢《你必须非常努力，才能看起来毫不费力》，就有人会说：对啊对啊，这不正是颓废的我吗，我须奋斗才行，不然我就会成为被踩在脚底的小职工。看罢《我始终不信努力奋斗的意义》，就会有人说：“对啊对啊，我为什么要奋斗呢。有人苦苦奋斗三十年还熬不出头，及时行乐才好。”</p>
-
 <p>　　　如果你没有自己的立场，就很容易陷入人云亦云的沼泽，成为它们的牺牲品，你的脑袋就是他人思维的跑场，谁在上面跑，你就听谁的。这当然是可悲的，终其一生，你听从所有人，模仿所有人，可是，你独独没有真正做一回自己。</p>
-
 <p>　　　我之所以说这么多，是为下面我的观点进行铺垫——我说的对也罢，错也罢，你认同也好，批评也好，它只是一种观点，你要不要相信无所谓，重要的是你要保持自己独立思考的能力。</p>
-
 <p>　　　对于“奋斗与否”，我认为这完全是因人而异的事。其实，“奋斗与否”的核心问题是“人生意义”——到底奋斗了才能体现自我价值，还是享受当下才是生命的本质？人与人之间是不同的，有的人将金钱排在第一，有的人觉得帮助他人才能让自己感到愉快，有的人说找到我爱的就是爱我的人，此生还有何求呢！有的人通过非常的努力虽不能达到别人一生出来就有的优越，却真切体验到人生奋斗的乐趣！有的人……</p>
-
 <p>　　　你可以不相信奋斗。有的人孜孜不倦，奋斗了一生，得到了什么？所谓的金钱？成功？地位？更多的甚至什么都没得到，空累了一身病，人财两空。还不如今点上烟，喝点茶，悠哉地过着小日子。</p>
-
 <p>　　　你可以相信奋斗。富人和渔夫的故事广泛被用来告诫人们：你终极一生的奋斗，不过是为了有一天能坐在海边，惬意地看着潮涨潮落，那奋斗何用！可是，人们往往忽略了虽然同样坐在沙滩上，渔夫和富人能一样吗？富人享受完了可以继续享受，而渔夫想要这样的话，早被他妻子骂个狗血淋头——家都掀不开锅了，你还有这份闲心！</p>
-
 <p>　　　要不要奋斗，归根结底，取决于你想做什么样的人，过什么样的人生。其实这是个伪命题，讨论它是没有意义的。因为如果你认为对的，喜欢的事，就去做，去实现，是感觉不到奋斗的挣扎，而是享受。如果你觉得你在很努力地奋斗，那你一定是在做你不喜欢的事情。</p>
-
 <p>　　　我最不喜欢的是这样一种人：总是抱怨自己的生活，却从不试着做些努力去改变。我有个同学，一天到晚都在打着网游，却也自得其乐。我不认为他这样有什么不好，做自己喜欢的事，尽管我们认为那是在浪费时间，但他能从中得到快乐，那还苛求什么呢？而我的另一个同学，读书的时候心不在焉，玩得时候又觉得虚度年华，然后总是抱怨没学到一点能力以后工作要怎么办啊。</p>
-
 <p>　　　老子的逍遥之道和孔夫子的出仕之思，本就没有好坏之分，你认同谁就坚定地站在谁那边，万万不要羽世独立，悠然见南山的时候还在叹息男儿何不带吴钩。做你认为对的那个你，你才会开心，不郁结。</p>
-
 <p>行文有些乱，因为来回穿插了两个论点——</p>
-
 <blockquote>
 <p>一．不在乎是否奋斗，而在于你是否找到了认同，然后去做你认为对的你。</p>
-
 <p>二．推翻我的观点，当你发现这是一堆废话的时候，你就是你自己的思想了。</p>
-
 <p><strong>世界上最大的真理就是：这个世界没有真理。这真是个精妙悖论。</strong></p>
 </blockquote>
 
@@ -535,68 +574,44 @@ Ubuntu缺省安装了openssh-client（用于ubuntu连接其他服务器）,所�
 一，先把正规式转换为NFA（非确定有穷自动机）,
 二，在把NFA通过“子集构造法”转化为DFA，
 三，在把DFA通过“分割法”进行最小化。</p>
-
-<p>　　　<strong>一步很简单，就是反复运用下图的规则，</strong>图1
-<a href="http://leaverimage.b0.upaiyun.com/20920_o.png"><img src="/images/6807123f3c419d9d4ae9c8bc7833f940ddd2cd83.png" alt="" /></a></p>
-
+<p>　　　**一步很简单，就是反复运用下图的规则，**图1
+<a href="http://leaverimage.b0.upaiyun.com/20920_o.png"><img src="/images/6807123f3c419d9d4ae9c8bc7833f940ddd2cd83.png" alt=""></a></p>
 <p>　　这样就能转换到NFA了。
 给出一个例题，来自Google book。本文主要根据这个例题来讲，图2
-<a href="http://leaverimage.b0.upaiyun.com/20924_o.jpg"><img src="/images/1816f6c4b5eac34b7a8ee5a44400ea8ace103722.jpg" alt="" /></a>
+<a href="http://leaverimage.b0.upaiyun.com/20924_o.jpg"><img src="/images/1816f6c4b5eac34b7a8ee5a44400ea8ace103722.jpg" alt=""></a>
 　　　<strong>二.子集构造法。</strong>
 同样的例题，把转换好的NFA确定化，图3
-<a href="http://leaverimage.b0.upaiyun.com/20921_o.jpg"><img src="/images/29683c76cbf62ad4420a384cdb4a6902818d49db.jpg" alt="" /></a></p>
-
+<a href="http://leaverimage.b0.upaiyun.com/20921_o.jpg"><img src="/images/29683c76cbf62ad4420a384cdb4a6902818d49db.jpg" alt=""></a></p>
 <p>　　这个表是从NFA到DFA的时候必须要用到的。第一列第一行I的意思是从NFA的起始节点经过任意个ε所能到达的结点集合。Ia表示从该集合开始经过一个a所能到达的集合，经过一个a的意思是可以略过前后的ε。同样Ib也就是经过一个b，可以略过前后任意个ε。
 至于第二行以及后面的I是怎么确定的。我参考了一些题目才明白，原来就是看上面的Ia和Ib哪个还没出现在I列，就拿下来进行运算，该列对应的Ia和Ib就是前面我说的那样推导。</p>
-
 <p>　　如果还不太明白，看图就是了。你会发现I中的几个项目都在Ia和Ib中出现了。而且是完全出现</p>
-
 <p>　　这步做完以后，为了画出最后的DFA，那么肯定得标出一些号来，比如1.2.3.。或者A。 B。c，我一般标的方法是先把I列全部标上1.2.3.递增。然后看1表示的集合和Ia和Ib中的哪个集合一样，就把那个集合也表示为1.继续向下做。最后会得到这样一个表格。图4
-<a href="http://leaverimage.b0.upaiyun.com/20922_o.jpg"><img src="/images/cfd89b33da236d53885bb7ff781a33633c15e072.jpg" alt="" /></a></p>
-
+<a href="http://leaverimage.b0.upaiyun.com/20922_o.jpg"><img src="/images/cfd89b33da236d53885bb7ff781a33633c15e072.jpg" alt=""></a></p>
 <p>　　至此，就可以表示出DFA了。就对照上面那个表，从0节点开始经过a到1.经过b到2，就这样画就行了。。</p>
-
 <p>　　最后的DFA如下图，图5
-<a href="http://leaverimage.b0.upaiyun.com/20925_o.jpg"><img src="/images/26ef020ce54f209ce93f988ab6af15e1daf0f131.jpg" alt="" /></a></p>
-
+<a href="http://leaverimage.b0.upaiyun.com/20925_o.jpg"><img src="/images/26ef020ce54f209ce93f988ab6af15e1daf0f131.jpg" alt=""></a></p>
 <p>　　双圈的表示终态，这个是怎么来的呢。去看看图4，会发现有些项之前有双圈标志，这个是因为在NFA图2中，9为终态，所以所有包含9的集合都被认为是终态集，改成1.2.3.。。方便画节点后就需要把这些点作为终态了。。</p>
-
 <p>　　　<strong>三.最小化，分割法。</strong></p>
-
 <p>FA的最小化就是寻求最小状态DFA</p>
-
 <p>　　最小状态DFA的含义:
 1.没有多余状态(死状态)2. 没有两个状态是互相等价（不可区别）
 两个状态s和t等价的条件：
 兼容性（一致性）条件——同是终态或同是非终态
 传播性（蔓延性）条件——从s出发读入某个a和从t出发经过某个a并且经过某个b到达的状态等价。就是相同。</p>
-
 <p>　　DFA的最小化—例子，第一步都是固定的。分成终态和非终态</p>
-
 <p>１．将Ｍ的状态分为两个子集一个由终态k1=｛Ｃ，Ｄ，Ｅ，Ｆ｝组成，一个由非终态k2=｛Ｓ，Ａ，Ｂ｝组成，</p>
-
 <p>２．考察｛Ｓ，Ａ，Ｂ｝是否可分．</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/20927_o.jpg"><img src="/images/4bf93ce8a42fb3161b1d288da5697a5745effc23.jpg" alt="" /></a></p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/20927_o.jpg"><img src="/images/4bf93ce8a42fb3161b1d288da5697a5745effc23.jpg" alt=""></a></p>
 <p>因为Ａ经过a到达C属于k1.而S经过a到达A属于k2.B经过a到达A属于k2，所以K2继续划分为{S，B},{A},</p>
-
 <p>３．考察｛Ｓ，Ｂ｝是否可再分：</p>
-
 <p>B经过b到达D属于k1.S经过b到达B属于k2，所以S，B可以划分。划分为{S},{B}</p>
-
 <p>４．考察｛Ｃ，Ｄ，Ｅ，Ｆ｝是否可再分：
 因为Ｃ，Ｄ，Ｅ，Ｆ经过a和b到达的状态都属于｛Ｃ，Ｄ，Ｅ，Ｆ｝=k1所以相同，所以不可再分：</p>
-
 <p>５．｛Ｃ，Ｄ，Ｅ，Ｆ｝以｛Ｄ｝来代替则，因为CDEF相同，你也可以用C来代替。无所谓的最小化的ＤＦＡ如图，：
-<a href="http://leaverimage.b0.upaiyun.com/20928_o.jpg"><img src="/images/573e265f308413f9398a0f05b240403b07cff10f.jpg" alt="" /></a></p>
-
+<a href="http://leaverimage.b0.upaiyun.com/20928_o.jpg"><img src="/images/573e265f308413f9398a0f05b240403b07cff10f.jpg" alt=""></a></p>
 <p>真麻烦啊。。心里清楚，还得找些图来说明。。额。。基本上感觉自己讲清楚了。。。不清楚的地方。。请留言互相讨论。。谢谢。。</p>
-
 <p>参考：</p>
-
 <p><a href="http://www.worldcat.org/title/bian-yi-yuan-li-xue-xi-fu-dao/oclc/302301738">http://www.worldcat.org/title/bian-yi-yuan-li-xue-xi-fu-dao/oclc/302301738</a></p>
-
 <p><a href="http://metc.gdut.edu.cn/compile/cmpl3/3-3.htm">http://metc.gdut.edu.cn/compile/cmpl3/3-3.htm</a></p>
 
                 
@@ -639,12 +654,28 @@ Ubuntu缺省安装了openssh-client（用于ubuntu连接其他服务器）,所�
 
               <div class="post-entry">
                 
-                  朋友今天上网突然网络连接出现了这个问题，也就是无法加载远程访问连接服务。Google了一下，第一种方法就是查看如下的服务是否启动，如果没有，自行启动。 服务名称:eventlog 显示名称: Windows Event Log 启动类型:自动 服务名称:TapiSrv 显示名称: Telephony 启动类型:手动 服务名称:SstpSvc 显示名称: Secure Socket Tunneling Protocol Service 启动类型:手动 服务名称:Netman 显示名称: Network Connections 启动类型:手动 服务名称:nsi 显示名称: Network Store Inte***ce Service 启动类型: 自动 服务名称:RasMan 显示名称: Remote Access Connection Manager 启动类型:手动
-　启动方法：对着我的电脑点右键-》管理-》服务和应用-》服务 找到对应的服务后，右键属性，启动类型就可以了 但是如上操作有时并不可以，会提示有些服务不能启动，这种情况下，
-　用管理员账号登陆，再打开 c:\windows\system32\logfiles 如果看到 wmi文件夹，在wmi文件夹上点右键，点 获取管理员权限 ,后重启即可修复。 
-　附上Win7下添加右键获取管理员权限的方法：
-在Win7下经常要用到管理员权限,为了方便可以添加一个右键菜单,方法如下: 新建一个“记事本”文件，复制以下内容： Windows Registry Editor Version 5.00 [HKEY_CLASSES_ROOT*\shell\runas] @=&ldquo;获取管理员权限&rdquo; &ldquo;NoWorkingDirectory&rdquo;=&ldquo;&rdquo; [HKEY_CLASSES_ROOT*\shell\runas\command] @=&ldquo;cmd.exe /c takeown /f \&ldquo;%1\&rdquo; &amp;&amp; icacls \&ldquo;%1\&rdquo; /grant administrators:F&rdquo; &ldquo;IsolatedCommand&rdquo;=&ldquo;cmd.
-                  <a href="https://leizhiyuan.github.io/2012/04/23/win7%E4%B8%8A%E7%BD%91%E6%8F%90%E7%A4%BA711%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3/" class="post-read-more">[Read More]</a>
+                  <p>　　朋友今天上网突然网络连接出现了这个问题，也就是无法加载远程访问连接服务。Google了一下，第一种方法就是查看如下的服务是否启动，如果没有，自行启动。
+服务名称:eventlog 显示名称: Windows Event Log 启动类型:自动
+服务名称:TapiSrv 显示名称: Telephony 启动类型:手动
+服务名称:SstpSvc 显示名称: Secure Socket Tunneling Protocol Service 启动类型:手动
+服务名称:Netman 显示名称: Network Connections 启动类型:手动
+服务名称:nsi 显示名称: Network Store Inte***ce Service 启动类型: 自动
+服务名称:RasMan 显示名称: Remote Access Connection Manager 启动类型:手动</p>
+<p>　　启动方法：对着我的电脑点右键-》管理-》服务和应用-》服务 找到对应的服务后，右键属性，启动类型就可以了
+　　但是如上操作有时并不可以，会提示有些服务不能启动，这种情况下，</p>
+<p>　　用管理员账号登陆，再打开 c:\windows\system32\logfiles 如果看到 wmi文件夹，在wmi文件夹上点右键，点 获取管理员权限 ,后重启即可修复。
+<a href="http://leaverimage.b0.upaiyun.com/20868_o.jpg"><img src="/images/8c81734100537494754fe25960feac29d5d469fc.jpg" alt=""></a></p>
+<p>　　　附上Win7下添加右键获取管理员权限的方法：</p>
+<p>在Win7下经常要用到管理员权限,为了方便可以添加一个右键菜单,方法如下:
+新建一个“记事本”文件，复制以下内容：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>复制好后选文件-另存为,保存类型选&quot;所有文件&rdquo;,文件扩展名为reg 然后运行即可。</p>
+<p>Win7下取消右键获取管理员权限方法：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>同样的保存上面内容为reg格式文件即可。</p>
+
                 
               </div>
 
@@ -690,19 +721,17 @@ Ubuntu缺省安装了openssh-client（用于ubuntu连接其他服务器）,所�
               <div class="post-entry">
                 
                   <p>在<a href="http://leaver.me/archives/196.html">lamp环境搭建</a>这篇文章中，使用apt-get安装了lamp环境，可能你会发现mysql命令行操作不方便。那么需要安装web版的phpmyadmin来辅助了。两步；
-1.打开终端 输入
-<pre lang="c">
-sudo apt-get install phpmyadmin
-</pre>
-执行过程中我记得会让输入msql的密码。和设置phpmyadmin的密码。phpmyadmin的用户名是root
-然后直接访问 <a href="http://localhost/phpmyadmin，会发现不能用。因为phpmyadmin被安装在了/usr/share/phpmyadmin/目录。">http://localhost/phpmyadmin，会发现不能用。因为phpmyadmin被安装在了/usr/share/phpmyadmin/目录。</a></p>
-
-<p>2.
-<pre lang="c">sudo ln -s /usr/share/phpmyadmin/ /var/www/</pre></p>
-
+1.打开终端 输入</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>执行过程中我记得会让输入msql的密码。和设置phpmyadmin的密码。phpmyadmin的用户名是root
+然后直接访问 http://localhost/phpmyadmin，会发现不能用。因为phpmyadmin被安装在了/usr/share/phpmyadmin/目录。</p>
+<ol start="2">
+<li></li>
+</ol>
+<!-- raw HTML omitted -->
 <p>建立一个软连接，不喜欢的话，你也把phpmyadmin直接复制到 /var/www/的文件夹下面也可以。</p>
-
-<p>在Ubuntu下面就可以通过<a href="http://localhost/phpmyadmin正常使用phpmyadmin了。">http://localhost/phpmyadmin正常使用phpmyadmin了。</a></p>
+<p>在Ubuntu下面就可以通过http://localhost/phpmyadmin正常使用phpmyadmin了。</p>
 
                 
               </div>
@@ -744,17 +773,13 @@ sudo apt-get install phpmyadmin
 
               <div class="post-entry">
                 
-                  <p>昨天在lamp环境下写sql语句的时候，其中有一条语句是这样的，看着没什么错啊。。然后执行会报ERROR 1064这个错误。
-<pre lang="php">create table book
-(id unsigned primary key  auto_increment);
-</pre>
-后来解决了原来是是类型不全。必须写成
-<pre lang="php">
-create table book
-(id int unsigned primary key auto_increment);</pre></p>
-
+                  <p>昨天在lamp环境下写sql语句的时候，其中有一条语句是这样的，看着没什么错啊。。然后执行会报ERROR 1064这个错误。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>后来解决了原来是是类型不全。必须写成</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>很诡异。。因为理论上unsigned应该是被识别成int unsigned。。还有其他一些情况，反正就是只要报1064.可能语法错误。可能是拼写。或者是分号，mysql的错误提示是很差的。如果把 auto_increment 自增属性加到非主键上。也会报1064的诡异错误。。</p>
-
 <p>参考：<a href="http://stackoverflow.com/questions/2758649/unable-create-a-table-error-1064-42000-you-have-an-error-in-your-sql-syntax">stackoverflow</a></p>
 
                 
@@ -797,12 +822,19 @@ create table book
 
               <div class="post-entry">
                 
-                  昨天看到了李劼杰的检索一个域名下属所有子域名的两种方法很受启发。想用C#实现一些东西，本来是打算做的相对完整一点的，结果发现Google 开放的api貌似是有限制，段时间内不同提交太多。所以就简单实现一下，有需要的朋友自己扩展
-　刚开始的思路是想Google应该是有开放的api吧。。于是先Google C# 收集 Google搜索结果。翻了一会，看到了 此文 ，一看我去，返回的竟然是json格式。。只听过，从来没有接触过。。。不做总是不会的，试试。
-思路；访问该页面，得到字符串-》去掉多余部分-》解析成对象-》提取对象的字段 1.访问该http://ajax.googleapis.com/ajax/services/search/web?v=1.0&amp;q=hello，其实hello部分就是需要查找的字串，对于查找二级域名这种事，应用到Google的一个语法就是site:leaver.me。类似这样的，可以获取到所有leaver.me上的子站和内容。。 然后分析json数据。直接访问会发现格式很乱。使用http://jsonformatter.curiousconcept.com/这个工具进行格式化。最终结果如图  可以很清楚的看出json的结构，results是结果集，我需要的是需要的是[]之间的部分，包括[]，我理解的是这样。默认给出4个结果。
-　2.要去掉多余部分，得用正则表达式了， json = &ldquo;[&rdquo; + Regex.Match(json, @&ldquo;(?&lt;=[).+?(?=])&ldquo;, RegexOptions.IgnoreCase).Value + &ldquo;]&rdquo;; //得到一个数组[]中间的部分 json解析我在外国找到了json.net这个解析器，导入什么的就不说了，至于用法我是看的他的文档
-　3.List results = JsonConvert.DeserializeObject&gt;(json); //list 存放解析的结果，result为对应自写类 就是将一个json格式的字符串解析成一个list组，组内元素为一个对应的类，就是先分析json的格式。发现每个结果都有如下的格式 public string GsearchResultClass{ get; set; } public string unescapedUrl{ get; set; } public string url{ get; set; } public string visibleUrl{ get; set; } public string cacheUrl { get; set; } public string title: { get; set; } public string titleNoFormatting { get; set; } public string content { get; set; } 所以写一个类，来用于json数据的反序列号，其实就是解析啦。。这样通过对解析器的调用就能对应着吧json里面的值赋值给类对象了。
-                  <a href="https://leizhiyuan.github.io/2012/04/20/%E4%BA%8C%E7%BA%A7%E5%9F%9F%E5%90%8D%E6%9F%A5%E6%89%BE-%E5%AE%9E%E7%8E%B0%E6%BC%94%E7%A4%BAgapi-json-c/" class="post-read-more">[Read More]</a>
+                  <p>　　　　昨天看到了李劼杰的<a href="http://www.lijiejie.com/index.php/2-ways-to-get-subdomains/">检索一个域名下属所有子域名的两种方法</a>很受启发。想用C#实现一些东西，本来是打算做的相对完整一点的，结果发现Google 开放的api貌似是有限制，段时间内不同提交太多。所以就简单实现一下，有需要的朋友自己扩展</p>
+<p>　　　　刚开始的思路是想Google应该是有开放的api吧。。于是先Google C# 收集 Google搜索结果。翻了一会，看到了 <a href="http://zhidao.baidu.com/question/143797250.html">此文</a> ，一看我去，返回的竟然是json格式。。只听过，从来没有接触过。。。不做总是不会的，试试。</p>
+<p>思路；访问该页面，得到字符串-》去掉多余部分-》解析成对象-》提取对象的字段
+　　　　1.访问该&lt;pre lang]&ldquo;C#&ldquo;&gt;http://ajax.googleapis.com/ajax/services/search/web?v=1.0&amp;q=hello<!-- raw HTML omitted -->，其实hello部分就是需要查找的字串，对于查找二级域名这种事，应用到Google的一个语法就是site:leaver.me。类似这样的，可以获取到所有leaver.me上的子站和内容。。
+然后分析json数据。直接访问会发现格式很乱。使用http://jsonformatter.curiousconcept.com/这个工具进行格式化。最终结果如图
+<a href="http://leaverimage.b0.upaiyun.com/20804_z.jpg"><img src="/images/06ed49d2b62047555b3287b29255a3fcaa71d845.jpg" alt=""></a>
+可以很清楚的看出json的结构，results是结果集，我需要的是需要的是[]之间的部分，包括[]，我理解的是这样。默认给出4个结果。</p>
+<p>　　　　2.要去掉多余部分，得用正则表达式了，</p>
+<!-- raw HTML omitted -->
+<p>json解析我在外国找到了<a href="https://json.codeplex.com/">json.net</a>这个解析器，导入什么的就不说了，至于用法我是看的他的文档</p>
+<p>　　　　3.<!-- raw HTML omitted -->List<!-- raw HTML omitted --> results = JsonConvert.DeserializeObject&lt;List<!-- raw HTML omitted -->&gt;(json); //list 存放解析的结果，result为对应自写类<!-- raw HTML omitted --> 就是将一个json格式的字符串解析成一个list组，组内元素为一个对应的类，就是先分析json的格式。发现每个结果都有如下的格式</p>
+<!-- raw HTML omitted -->
+
                 
               </div>
 
@@ -810,68 +842,6 @@ create table book
                 <div class="blog-tags">
                   
                     <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/04/18/wwwscan-gui%E7%89%88-webscan/">
-                <h2 class="post-title">WWWScan GUI版--WebScan</h2>
-                
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on April 18, 2012
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  <p>　　网上一直有个版本是Wscan Gui Beta6，首先感谢作者的无私奉献，写代码不容易啊。但是这个我不知道为什么在我的电脑上总是有一些错误。很多功能虽然加上了，但是其实对我有点多余。毕竟，我只是用这个扫描一下。于是，决定自己用C#做个GUI版，模仿实现一下。</p>
-
-<p>　　然后我看了一下目录结构。如下图所知
-<a href="http://leaverimage.b0.upaiyun.com/20741_o.jpg"><img src="/images/1ab70fd66fde9efa08507a1d3930a4c4c9c4e53f.jpg" alt="" /></a>
-　　貌似作者只是简单写了。然后对应着调用扫描器。我想了下，可以通过修改文件名来实现，因为wwwscan默认只能识别cgi.list，那么我想的是当我选中一种扫描类型后。将对应的字典，比如asp.list改成cgi.list。当然为了保护原文件，复制。。然后调用。这样就不用有这么多exe了。。</p>
-
-<p>　　第二个我想实现作者的检测网站的脚本类型的功能，想到了两种方法。一种是循环访问index.xxx文件，xxx对asp jsp等，然后判断http状态码，200的话就可以对应判断出来网站脚本了。但是这样测试了一会没成功，还是算了，，然后想了一种猥琐流的方法，就是直接访问首页。然后把源码下载下来，然后搜索&rdquo;.xxx&rdquo;字符串，找到就行了，，当然这两种方法都是不完善的。。我也没想到什么完美的。。希望有人知道的话留言指教。</p>
-
-<p>　　最后的目录就清爽多了
-<a href="http://leaverimage.b0.upaiyun.com/20742_o.jpg"><img src="/images/5a2532b3507acd9c4ddd6787249e87f588554c46.jpg" alt="" /></a></p>
-
-<p>　　那个4p啊，，就是盲扫描了。。不知道网站脚本的时候采用。。。</p>
-
-<p>　　界面基本完全模仿了作者的UI，进行了略微调整，希望作者不介意。
-<a href="http://leaverimage.b0.upaiyun.com/20743_o.jpg"><img src="/images/d099861e804d120c52b106989f63254908490533.jpg" alt="" /></a></p>
-
-<p>　　程序需要.net framework 3.5。。win7默认都有。不用担心。xp用户可以下载环境后使用。毕竟是扫描工具，国内那些2b杀软会报毒，不放心的去世界杀毒网自己扫描吧。千万不要用来干坏事，遵守我国相关法律法规。</p>
-
-<p>[downloadicon href=<a href="http://pan.baidu.com/share/link?shareid=83803&amp;uk=1493685990]WebScan下载[/downloadicon">http://pan.baidu.com/share/link?shareid=83803&amp;uk=1493685990]WebScan下载[/downloadicon</a>]</p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%8E%9F%E5%88%9B/">原创</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AE%89%E5%85%A8/">安全</a>&nbsp;
                   
                 </div>
               
@@ -941,7 +911,7 @@ create table book
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

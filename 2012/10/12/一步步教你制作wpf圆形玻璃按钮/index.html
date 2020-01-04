@@ -20,11 +20,26 @@
 3.1背景层
 第一层是一个椭圆。其实是一个canvas，一会在上面画反射和折射层，填充的颜色和按钮的背景（Background）关联。
 下面是Blend中的截图
-图2  &lt;!&ndash; Background Layer &ndash;&gt; &lt;Ellipse Fill=&ldquo;{TemplateBinding Background}&rdquo;/&gt; 3.1.1折射层
-第二层模拟了光从上到下的折射。被放在反射层之前是因为，要达到反光玻璃的效果，反射层必须在按钮的中间某处有一个硬边缘。这一层实际上是另一个椭圆。但是这次。我们使用一个径向渐变（白色-透明）的填充。来模拟光的折射。渐变开始于第一层底部的中央。结束于上面的中间。然而。为了降低折射光的强度。渐变还是开始于椭圆的底部再下一点为好。可以从图上和代码里清晰的看到。  &lt;!&ndash; Refraction Layer &ndash;&gt; &lt;Ellipse x:Name=&ldquo;RefractionLayer&rdquo;&gt; &lt;Ellipse.Fill&gt; &lt;RadialGradientBrush GradientOrigin=&ldquo;0.496,1.052&rdquo;&gt; &lt;RadialGradientBrush.RelativeTransform&gt; &lt;TransformGroup&gt; &lt;ScaleTransform CenterX=&ldquo;0.5&rdquo; CenterY=&ldquo;0.5&rdquo; ScaleX=&ldquo;1.5&rdquo; ScaleY=&ldquo;1.5&rdquo;/&gt; &lt;TranslateTransform X=&ldquo;0.02&rdquo; Y=&ldquo;0.3&rdquo;/&gt; &lt;/TransformGroup&gt; &lt;/RadialGradientBrush.RelativeTransform&gt; &lt;GradientStop Offset=&ldquo;1&rdquo; Color=&ldquo;#00000000&rdquo;/&gt; &lt;GradientStop Offset=&ldquo;0.4&rdquo; Color=&ldquo;#FFFFFFFF&rdquo;/&gt; &lt;/RadialGradientBrush&gt; &lt;/Ellipse.Fill&gt; &lt;/Ellipse&gt; &nbsp;
-3.1.2反射层
-第三层是光的反射层。是最难的部分。问题是反射效果不能使用任何标准的形状来画。因此。使用路径（Path）来画反射区域。当时。手工画也是可以的。但老实说。手工画图实在没什么可享受的（除非你是一个艺术家，或者有一个数位板），无论如何。我现在MS Blend中华好一个椭圆并转换成一个路径，然后我使用贝塞尔曲线点调整得到平滑的路径，你可以添加渐变到一个复杂的Path对象上。就像你对其他与定义的图形，比如椭圆，矩形所做的一样。为了得到光泽反射。我额每年需要一个透明-白色的径向渐变填充，从路径的底部开始（也就是按钮的中间某处），结束在顶部。我想如果我是一个艺术家。我会让渐变更准一点。可是我不是。因此。就这样。因为我们要把我们的按钮放在一个Grid里。所有我们设置VerticalAlignment=&ldquo;Top&rdquo; 这样反射区域在按钮的中间的结束了。
-图三  &lt;!&ndash; Reflection Layer &ndash;&gt; &lt;Path x:Name=&ldquo;ReflectionLayer&rdquo; VerticalAlignment=&ldquo;Top&rdquo; Stretch=&ldquo;Fill&rdquo;&gt; &lt;Path.">
+图2 
+3.1.1折射层
+第二层模拟了光从上到下的折射。被放在反射层之前是因为，要达到反光玻璃的效果，反射层必须在按钮的中间某处有一个硬边缘。这一层实际上是另一个椭圆。但是这次。我们使用一个径向渐变（白色-透明）的填充。来模拟光的折射。渐变开始于第一层底部的中央。结束于上面的中间。然而。为了降低折射光的强度。渐变还是开始于椭圆的底部再下一点为好。可以从图上和代码里清晰的看到。 
+ 3.1.2反射层
+第三层是光的反射层。是最难的部分。问题是反射效果不能使用任何标准的形状来画。因此。使用路径（Path）来画反射区域。当时。手工画也是可以的。但老实说。手工画图实在没什么可享受的（除非你是一个艺术家，或者有一个数位板），无论如何。我现在MS Blend中华好一个椭圆并转换成一个路径，然后我使用贝塞尔曲线点调整得到平滑的路径，你可以添加渐变到一个复杂的Path对象上。就像你对其他与定义的图形，比如椭圆，矩形所做的一样。为了得到光泽反射。我额每年需要一个透明-白色的径向渐变填充，从路径的底部开始（也就是按钮的中间某处），结束在顶部。我想如果我是一个艺术家。我会让渐变更准一点。可是我不是。因此。就这样。因为我们要把我们的按钮放在一个Grid里。所有我们设置VerticalAlignment=&quot;Top&rdquo; 这样反射区域在按钮的中间的结束了。
+图三 
+ 最后。我添加一个ContentPresenter 到按钮中间。经验告诉我，内容区域再向下一个像素会使得按钮看起来更漂亮。因此，在这里我用了margin属性（注意。因为内容区域在Grid的中间（Center）。所以2个像素的top实际上是向下移动了一个像素 ）
+好了。最后在Blend中看起来大概是这样
+图4 
+4.添加一些交互性
+4.1鼠标悬停效果
+为了有鼠标悬停效果，我们需要增加光源的亮度。因此。我们为IsMouseOver 事件定义一个触发器，复制并且粘贴反射和折射层的渐变设置代码。对于折射层。我仅仅移动了渐变的起点向上了一点。在反射层中。我改变了渐变停止点。使不透明的白色多一点。
+ 4.2鼠标点击效果 对于IsPressed 事件，需要降低光。因此。反向操作即可。折射层中光源下一点。反射层中渐变停止点更加透明一些。
+ 再说一次。渐变停止点的值靠经验选的。我也不能给出精确的值。
+5.使用代码
+为了使用这个样式。把定义在GlassButton.xaml 里的样式资源文件并不到你的窗体/页里。然后设置按钮的样式为{StaticResource GlassButton}. 为了设置按钮的颜色。使用Background属性即可。
+  6.Demo下载 [downloadicon href=http://pan.baidu.com/share/link?shareid=81378&amp;uk=1493685990]Demo与源代码下载[/downloadicon] 7.许可
+本文包括源代码和文件在CPOL下授权。
+原文地址：a-style-for-round-glassy-wpf-buttons
+ 著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！">
   <meta property="og:description" content="1.介绍
 从我开始使用vista的时候，我就非常喜欢它的圆形玻璃按钮。WPF最好的一个方面就是允许自定义任何控件的样式。用了一段时间的Microsoft Expression Blend后。我做出了这个样式。我觉得做的还行。因为。我决定分享。如我所说。我使用Microsoft Expression Blend来做。但是。我也是用XAML编辑器&ndash;Kaxaml。
 2.概述
@@ -35,11 +50,26 @@
 3.1背景层
 第一层是一个椭圆。其实是一个canvas，一会在上面画反射和折射层，填充的颜色和按钮的背景（Background）关联。
 下面是Blend中的截图
-图2  &lt;!&ndash; Background Layer &ndash;&gt; &lt;Ellipse Fill=&ldquo;{TemplateBinding Background}&rdquo;/&gt; 3.1.1折射层
-第二层模拟了光从上到下的折射。被放在反射层之前是因为，要达到反光玻璃的效果，反射层必须在按钮的中间某处有一个硬边缘。这一层实际上是另一个椭圆。但是这次。我们使用一个径向渐变（白色-透明）的填充。来模拟光的折射。渐变开始于第一层底部的中央。结束于上面的中间。然而。为了降低折射光的强度。渐变还是开始于椭圆的底部再下一点为好。可以从图上和代码里清晰的看到。  &lt;!&ndash; Refraction Layer &ndash;&gt; &lt;Ellipse x:Name=&ldquo;RefractionLayer&rdquo;&gt; &lt;Ellipse.Fill&gt; &lt;RadialGradientBrush GradientOrigin=&ldquo;0.496,1.052&rdquo;&gt; &lt;RadialGradientBrush.RelativeTransform&gt; &lt;TransformGroup&gt; &lt;ScaleTransform CenterX=&ldquo;0.5&rdquo; CenterY=&ldquo;0.5&rdquo; ScaleX=&ldquo;1.5&rdquo; ScaleY=&ldquo;1.5&rdquo;/&gt; &lt;TranslateTransform X=&ldquo;0.02&rdquo; Y=&ldquo;0.3&rdquo;/&gt; &lt;/TransformGroup&gt; &lt;/RadialGradientBrush.RelativeTransform&gt; &lt;GradientStop Offset=&ldquo;1&rdquo; Color=&ldquo;#00000000&rdquo;/&gt; &lt;GradientStop Offset=&ldquo;0.4&rdquo; Color=&ldquo;#FFFFFFFF&rdquo;/&gt; &lt;/RadialGradientBrush&gt; &lt;/Ellipse.Fill&gt; &lt;/Ellipse&gt; &nbsp;
-3.1.2反射层
-第三层是光的反射层。是最难的部分。问题是反射效果不能使用任何标准的形状来画。因此。使用路径（Path）来画反射区域。当时。手工画也是可以的。但老实说。手工画图实在没什么可享受的（除非你是一个艺术家，或者有一个数位板），无论如何。我现在MS Blend中华好一个椭圆并转换成一个路径，然后我使用贝塞尔曲线点调整得到平滑的路径，你可以添加渐变到一个复杂的Path对象上。就像你对其他与定义的图形，比如椭圆，矩形所做的一样。为了得到光泽反射。我额每年需要一个透明-白色的径向渐变填充，从路径的底部开始（也就是按钮的中间某处），结束在顶部。我想如果我是一个艺术家。我会让渐变更准一点。可是我不是。因此。就这样。因为我们要把我们的按钮放在一个Grid里。所有我们设置VerticalAlignment=&ldquo;Top&rdquo; 这样反射区域在按钮的中间的结束了。
-图三  &lt;!&ndash; Reflection Layer &ndash;&gt; &lt;Path x:Name=&ldquo;ReflectionLayer&rdquo; VerticalAlignment=&ldquo;Top&rdquo; Stretch=&ldquo;Fill&rdquo;&gt; &lt;Path.">
+图2 
+3.1.1折射层
+第二层模拟了光从上到下的折射。被放在反射层之前是因为，要达到反光玻璃的效果，反射层必须在按钮的中间某处有一个硬边缘。这一层实际上是另一个椭圆。但是这次。我们使用一个径向渐变（白色-透明）的填充。来模拟光的折射。渐变开始于第一层底部的中央。结束于上面的中间。然而。为了降低折射光的强度。渐变还是开始于椭圆的底部再下一点为好。可以从图上和代码里清晰的看到。 
+ 3.1.2反射层
+第三层是光的反射层。是最难的部分。问题是反射效果不能使用任何标准的形状来画。因此。使用路径（Path）来画反射区域。当时。手工画也是可以的。但老实说。手工画图实在没什么可享受的（除非你是一个艺术家，或者有一个数位板），无论如何。我现在MS Blend中华好一个椭圆并转换成一个路径，然后我使用贝塞尔曲线点调整得到平滑的路径，你可以添加渐变到一个复杂的Path对象上。就像你对其他与定义的图形，比如椭圆，矩形所做的一样。为了得到光泽反射。我额每年需要一个透明-白色的径向渐变填充，从路径的底部开始（也就是按钮的中间某处），结束在顶部。我想如果我是一个艺术家。我会让渐变更准一点。可是我不是。因此。就这样。因为我们要把我们的按钮放在一个Grid里。所有我们设置VerticalAlignment=&quot;Top&rdquo; 这样反射区域在按钮的中间的结束了。
+图三 
+ 最后。我添加一个ContentPresenter 到按钮中间。经验告诉我，内容区域再向下一个像素会使得按钮看起来更漂亮。因此，在这里我用了margin属性（注意。因为内容区域在Grid的中间（Center）。所以2个像素的top实际上是向下移动了一个像素 ）
+好了。最后在Blend中看起来大概是这样
+图4 
+4.添加一些交互性
+4.1鼠标悬停效果
+为了有鼠标悬停效果，我们需要增加光源的亮度。因此。我们为IsMouseOver 事件定义一个触发器，复制并且粘贴反射和折射层的渐变设置代码。对于折射层。我仅仅移动了渐变的起点向上了一点。在反射层中。我改变了渐变停止点。使不透明的白色多一点。
+ 4.2鼠标点击效果 对于IsPressed 事件，需要降低光。因此。反向操作即可。折射层中光源下一点。反射层中渐变停止点更加透明一些。
+ 再说一次。渐变停止点的值靠经验选的。我也不能给出精确的值。
+5.使用代码
+为了使用这个样式。把定义在GlassButton.xaml 里的样式资源文件并不到你的窗体/页里。然后设置按钮的样式为{StaticResource GlassButton}. 为了设置按钮的颜色。使用Background属性即可。
+  6.Demo下载 [downloadicon href=http://pan.baidu.com/share/link?shareid=81378&amp;uk=1493685990]Demo与源代码下载[/downloadicon] 7.许可
+本文包括源代码和文件在CPOL下授权。
+原文地址：a-style-for-round-glassy-wpf-buttons
+ 著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！">
   <meta name="twitter:description" content="1.介绍
 从我开始使用vista的时候，我就非常喜欢它的圆形玻璃按钮。WPF最好的一个方面就是允许自定义任何控件的样式。用了一段时间的Microsoft Expression Blend后。我做出了这个样式。我觉得做的还行。因为。我决定分享。如我所说。我使用Microsoft Expression Blend来做。但是。我也是用XAML编辑器&ndash;Kaxaml。
 2.概述
@@ -92,9 +122,9 @@
     "name" : "bystander"
   },
   "headline": "一步步教你制作WPF圆形玻璃按钮",
-  "description" : "1.介绍\n从我开始使用vista的时候，我就非常喜欢它的圆形玻璃按钮。WPF最好的一个方面就是允许自定义任何控件的样式。用了一段时间的Microsoft Expression Blend后。我做出了这个样式。我觉得做的还行。因为。我决定分享。如我所说。我使用Microsoft Expression Blend来做。但是。我也是用XAML编辑器\x26ndash;Kaxaml。\n2.概述\n玻璃按钮样式包含了三层。组织了玻璃效果（Glass Effect）和一个ContentPresenter 来存储按钮的内容。所有的这些层都在一个最外层的Grid里。当鼠标放到按钮上，按下去的时候也定义了一些触发器（Triggers），来增加一些交互。\n我把这个样式做成了资源文件。但是这个Key可以删除，来使得所有的按钮都是这个效果。\n好我们来看一下这些层次。这些被广泛应用在微软产品中的按钮。\n**3.按钮层次 **\n3.1背景层\n第一层是一个椭圆。其实是一个canvas，一会在上面画反射和折射层，填充的颜色和按钮的背景（Background）关联。\n下面是Blend中的截图\n图2  \x26lt;!\x26ndash; Background Layer \x26ndash;\x26gt; \x26lt;Ellipse Fill=\x26ldquo;{TemplateBinding Background}\x26rdquo;\/\x26gt; 3.1.1折射层\n第二层模拟了光从上到下的折射。被放在反射层之前是因为，要达到反光玻璃的效果，反射层必须在按钮的中间某处有一个硬边缘。这一层实际上是另一个椭圆。但是这次。我们使用一个径向渐变（白色-透明）的填充。来模拟光的折射。渐变开始于第一层底部的中央。结束于上面的中间。然而。为了降低折射光的强度。渐变还是开始于椭圆的底部再下一点为好。可以从图上和代码里清晰的看到。  \x26lt;!\x26ndash; Refraction Layer \x26ndash;\x26gt; \x26lt;Ellipse x:Name=\x26ldquo;RefractionLayer\x26rdquo;\x26gt; \x26lt;Ellipse.Fill\x26gt; \x26lt;RadialGradientBrush GradientOrigin=\x26ldquo;0.496,1.052\x26rdquo;\x26gt; \x26lt;RadialGradientBrush.RelativeTransform\x26gt; \x26lt;TransformGroup\x26gt; \x26lt;ScaleTransform CenterX=\x26ldquo;0.5\x26rdquo; CenterY=\x26ldquo;0.5\x26rdquo; ScaleX=\x26ldquo;1.5\x26rdquo; ScaleY=\x26ldquo;1.5\x26rdquo;\/\x26gt; \x26lt;TranslateTransform X=\x26ldquo;0.02\x26rdquo; Y=\x26ldquo;0.3\x26rdquo;\/\x26gt; \x26lt;\/TransformGroup\x26gt; \x26lt;\/RadialGradientBrush.RelativeTransform\x26gt; \x26lt;GradientStop Offset=\x26ldquo;1\x26rdquo; Color=\x26ldquo;#00000000\x26rdquo;\/\x26gt; \x26lt;GradientStop Offset=\x26ldquo;0.4\x26rdquo; Color=\x26ldquo;#FFFFFFFF\x26rdquo;\/\x26gt; \x26lt;\/RadialGradientBrush\x26gt; \x26lt;\/Ellipse.Fill\x26gt; \x26lt;\/Ellipse\x26gt; \x26nbsp;\n3.1.2反射层\n第三层是光的反射层。是最难的部分。问题是反射效果不能使用任何标准的形状来画。因此。使用路径（Path）来画反射区域。当时。手工画也是可以的。但老实说。手工画图实在没什么可享受的（除非你是一个艺术家，或者有一个数位板），无论如何。我现在MS Blend中华好一个椭圆并转换成一个路径，然后我使用贝塞尔曲线点调整得到平滑的路径，你可以添加渐变到一个复杂的Path对象上。就像你对其他与定义的图形，比如椭圆，矩形所做的一样。为了得到光泽反射。我额每年需要一个透明-白色的径向渐变填充，从路径的底部开始（也就是按钮的中间某处），结束在顶部。我想如果我是一个艺术家。我会让渐变更准一点。可是我不是。因此。就这样。因为我们要把我们的按钮放在一个Grid里。所有我们设置VerticalAlignment=\x26ldquo;Top\x26rdquo; 这样反射区域在按钮的中间的结束了。\n图三  \x26lt;!\x26ndash; Reflection Layer \x26ndash;\x26gt; \x26lt;Path x:Name=\x26ldquo;ReflectionLayer\x26rdquo; VerticalAlignment=\x26ldquo;Top\x26rdquo; Stretch=\x26ldquo;Fill\x26rdquo;\x26gt; \x26lt;Path.",
+  "description" : "1.介绍\n从我开始使用vista的时候，我就非常喜欢它的圆形玻璃按钮。WPF最好的一个方面就是允许自定义任何控件的样式。用了一段时间的Microsoft Expression Blend后。我做出了这个样式。我觉得做的还行。因为。我决定分享。如我所说。我使用Microsoft Expression Blend来做。但是。我也是用XAML编辑器\x26ndash;Kaxaml。\n2.概述\n玻璃按钮样式包含了三层。组织了玻璃效果（Glass Effect）和一个ContentPresenter 来存储按钮的内容。所有的这些层都在一个最外层的Grid里。当鼠标放到按钮上，按下去的时候也定义了一些触发器（Triggers），来增加一些交互。\n我把这个样式做成了资源文件。但是这个Key可以删除，来使得所有的按钮都是这个效果。\n好我们来看一下这些层次。这些被广泛应用在微软产品中的按钮。\n**3.按钮层次 **\n3.1背景层\n第一层是一个椭圆。其实是一个canvas，一会在上面画反射和折射层，填充的颜色和按钮的背景（Background）关联。\n下面是Blend中的截图\n图2 \n3.1.1折射层\n第二层模拟了光从上到下的折射。被放在反射层之前是因为，要达到反光玻璃的效果，反射层必须在按钮的中间某处有一个硬边缘。这一层实际上是另一个椭圆。但是这次。我们使用一个径向渐变（白色-透明）的填充。来模拟光的折射。渐变开始于第一层底部的中央。结束于上面的中间。然而。为了降低折射光的强度。渐变还是开始于椭圆的底部再下一点为好。可以从图上和代码里清晰的看到。 \n 3.1.2反射层\n第三层是光的反射层。是最难的部分。问题是反射效果不能使用任何标准的形状来画。因此。使用路径（Path）来画反射区域。当时。手工画也是可以的。但老实说。手工画图实在没什么可享受的（除非你是一个艺术家，或者有一个数位板），无论如何。我现在MS Blend中华好一个椭圆并转换成一个路径，然后我使用贝塞尔曲线点调整得到平滑的路径，你可以添加渐变到一个复杂的Path对象上。就像你对其他与定义的图形，比如椭圆，矩形所做的一样。为了得到光泽反射。我额每年需要一个透明-白色的径向渐变填充，从路径的底部开始（也就是按钮的中间某处），结束在顶部。我想如果我是一个艺术家。我会让渐变更准一点。可是我不是。因此。就这样。因为我们要把我们的按钮放在一个Grid里。所有我们设置VerticalAlignment=\x26quot;Top\x26rdquo; 这样反射区域在按钮的中间的结束了。\n图三 \n 最后。我添加一个ContentPresenter 到按钮中间。经验告诉我，内容区域再向下一个像素会使得按钮看起来更漂亮。因此，在这里我用了margin属性（注意。因为内容区域在Grid的中间（Center）。所以2个像素的top实际上是向下移动了一个像素 ）\n好了。最后在Blend中看起来大概是这样\n图4 \n4.添加一些交互性\n4.1鼠标悬停效果\n为了有鼠标悬停效果，我们需要增加光源的亮度。因此。我们为IsMouseOver 事件定义一个触发器，复制并且粘贴反射和折射层的渐变设置代码。对于折射层。我仅仅移动了渐变的起点向上了一点。在反射层中。我改变了渐变停止点。使不透明的白色多一点。\n 4.2鼠标点击效果 对于IsPressed 事件，需要降低光。因此。反向操作即可。折射层中光源下一点。反射层中渐变停止点更加透明一些。\n 再说一次。渐变停止点的值靠经验选的。我也不能给出精确的值。\n5.使用代码\n为了使用这个样式。把定义在GlassButton.xaml 里的样式资源文件并不到你的窗体\/页里。然后设置按钮的样式为{StaticResource GlassButton}. 为了设置按钮的颜色。使用Background属性即可。\n  6.Demo下载 [downloadicon href=http:\/\/pan.baidu.com\/share\/link?shareid=81378\x26amp;uk=1493685990]Demo与源代码下载[\/downloadicon] 7.许可\n本文包括源代码和文件在CPOL下授权。\n原文地址：a-style-for-round-glassy-wpf-buttons\n 著作权声明：本文由http:\/\/leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！",
   "inLanguage" : "en",
-  "wordCount":  327 ,
+  "wordCount":  51 ,
   "datePublished" : "2012-10-12T09:31:00",
   "dateModified" : "2012-10-12T09:31:00",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -124,11 +154,26 @@
 3.1背景层
 第一层是一个椭圆。其实是一个canvas，一会在上面画反射和折射层，填充的颜色和按钮的背景（Background）关联。
 下面是Blend中的截图
-图2  &lt;!&ndash; Background Layer &ndash;&gt; &lt;Ellipse Fill=&ldquo;{TemplateBinding Background}&rdquo;/&gt; 3.1.1折射层
-第二层模拟了光从上到下的折射。被放在反射层之前是因为，要达到反光玻璃的效果，反射层必须在按钮的中间某处有一个硬边缘。这一层实际上是另一个椭圆。但是这次。我们使用一个径向渐变（白色-透明）的填充。来模拟光的折射。渐变开始于第一层底部的中央。结束于上面的中间。然而。为了降低折射光的强度。渐变还是开始于椭圆的底部再下一点为好。可以从图上和代码里清晰的看到。  &lt;!&ndash; Refraction Layer &ndash;&gt; &lt;Ellipse x:Name=&ldquo;RefractionLayer&rdquo;&gt; &lt;Ellipse.Fill&gt; &lt;RadialGradientBrush GradientOrigin=&ldquo;0.496,1.052&rdquo;&gt; &lt;RadialGradientBrush.RelativeTransform&gt; &lt;TransformGroup&gt; &lt;ScaleTransform CenterX=&ldquo;0.5&rdquo; CenterY=&ldquo;0.5&rdquo; ScaleX=&ldquo;1.5&rdquo; ScaleY=&ldquo;1.5&rdquo;/&gt; &lt;TranslateTransform X=&ldquo;0.02&rdquo; Y=&ldquo;0.3&rdquo;/&gt; &lt;/TransformGroup&gt; &lt;/RadialGradientBrush.RelativeTransform&gt; &lt;GradientStop Offset=&ldquo;1&rdquo; Color=&ldquo;#00000000&rdquo;/&gt; &lt;GradientStop Offset=&ldquo;0.4&rdquo; Color=&ldquo;#FFFFFFFF&rdquo;/&gt; &lt;/RadialGradientBrush&gt; &lt;/Ellipse.Fill&gt; &lt;/Ellipse&gt; &nbsp;
-3.1.2反射层
-第三层是光的反射层。是最难的部分。问题是反射效果不能使用任何标准的形状来画。因此。使用路径（Path）来画反射区域。当时。手工画也是可以的。但老实说。手工画图实在没什么可享受的（除非你是一个艺术家，或者有一个数位板），无论如何。我现在MS Blend中华好一个椭圆并转换成一个路径，然后我使用贝塞尔曲线点调整得到平滑的路径，你可以添加渐变到一个复杂的Path对象上。就像你对其他与定义的图形，比如椭圆，矩形所做的一样。为了得到光泽反射。我额每年需要一个透明-白色的径向渐变填充，从路径的底部开始（也就是按钮的中间某处），结束在顶部。我想如果我是一个艺术家。我会让渐变更准一点。可是我不是。因此。就这样。因为我们要把我们的按钮放在一个Grid里。所有我们设置VerticalAlignment=&ldquo;Top&rdquo; 这样反射区域在按钮的中间的结束了。
-图三  &lt;!&ndash; Reflection Layer &ndash;&gt; &lt;Path x:Name=&ldquo;ReflectionLayer&rdquo; VerticalAlignment=&ldquo;Top&rdquo; Stretch=&ldquo;Fill&rdquo;&gt; &lt;Path.">
+图2 
+3.1.1折射层
+第二层模拟了光从上到下的折射。被放在反射层之前是因为，要达到反光玻璃的效果，反射层必须在按钮的中间某处有一个硬边缘。这一层实际上是另一个椭圆。但是这次。我们使用一个径向渐变（白色-透明）的填充。来模拟光的折射。渐变开始于第一层底部的中央。结束于上面的中间。然而。为了降低折射光的强度。渐变还是开始于椭圆的底部再下一点为好。可以从图上和代码里清晰的看到。 
+ 3.1.2反射层
+第三层是光的反射层。是最难的部分。问题是反射效果不能使用任何标准的形状来画。因此。使用路径（Path）来画反射区域。当时。手工画也是可以的。但老实说。手工画图实在没什么可享受的（除非你是一个艺术家，或者有一个数位板），无论如何。我现在MS Blend中华好一个椭圆并转换成一个路径，然后我使用贝塞尔曲线点调整得到平滑的路径，你可以添加渐变到一个复杂的Path对象上。就像你对其他与定义的图形，比如椭圆，矩形所做的一样。为了得到光泽反射。我额每年需要一个透明-白色的径向渐变填充，从路径的底部开始（也就是按钮的中间某处），结束在顶部。我想如果我是一个艺术家。我会让渐变更准一点。可是我不是。因此。就这样。因为我们要把我们的按钮放在一个Grid里。所有我们设置VerticalAlignment=&quot;Top&rdquo; 这样反射区域在按钮的中间的结束了。
+图三 
+ 最后。我添加一个ContentPresenter 到按钮中间。经验告诉我，内容区域再向下一个像素会使得按钮看起来更漂亮。因此，在这里我用了margin属性（注意。因为内容区域在Grid的中间（Center）。所以2个像素的top实际上是向下移动了一个像素 ）
+好了。最后在Blend中看起来大概是这样
+图4 
+4.添加一些交互性
+4.1鼠标悬停效果
+为了有鼠标悬停效果，我们需要增加光源的亮度。因此。我们为IsMouseOver 事件定义一个触发器，复制并且粘贴反射和折射层的渐变设置代码。对于折射层。我仅仅移动了渐变的起点向上了一点。在反射层中。我改变了渐变停止点。使不透明的白色多一点。
+ 4.2鼠标点击效果 对于IsPressed 事件，需要降低光。因此。反向操作即可。折射层中光源下一点。反射层中渐变停止点更加透明一些。
+ 再说一次。渐变停止点的值靠经验选的。我也不能给出精确的值。
+5.使用代码
+为了使用这个样式。把定义在GlassButton.xaml 里的样式资源文件并不到你的窗体/页里。然后设置按钮的样式为{StaticResource GlassButton}. 为了设置按钮的颜色。使用Background属性即可。
+  6.Demo下载 [downloadicon href=http://pan.baidu.com/share/link?shareid=81378&amp;uk=1493685990]Demo与源代码下载[/downloadicon] 7.许可
+本文包括源代码和文件在CPOL下授权。
+原文地址：a-style-for-round-glassy-wpf-buttons
+ 著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2012/10/12/%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%95%99%E4%BD%A0%E5%88%B6%E4%BD%9Cwpf%E5%9C%86%E5%BD%A2%E7%8E%BB%E7%92%83%E6%8C%89%E9%92%AE/" />
 <meta property="og:type" content="website" />
@@ -149,7 +194,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -307,7 +352,7 @@
   <i class="fas fa-calendar"></i>&nbsp;Posted on October 12, 2012
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -333,229 +378,65 @@
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <p><a href="http://leaverimage.b0.upaiyun.com/28015_o.jpg"><img src="/images/491dd2dbc974b8c78aee2f36006e65ad3e5533f2.jpg" alt="" title="1" /></a>
+        <p><a href="http://leaverimage.b0.upaiyun.com/28015_o.jpg"><img src="/images/491dd2dbc974b8c78aee2f36006e65ad3e5533f2.jpg" alt="" title="1"></a>
 <strong>1.介绍</strong></p>
-
 <p>从我开始使用vista的时候，我就非常喜欢它的圆形玻璃按钮。WPF最好的一个方面就是允许自定义任何控件的样式。用了一段时间的Microsoft Expression Blend后。我做出了这个样式。我觉得做的还行。因为。我决定分享。如我所说。我使用Microsoft Expression Blend来做。但是。我也是用XAML编辑器&ndash;Kaxaml。</p>
-
 <p><strong>2.概述</strong></p>
-
 <p>玻璃按钮样式包含了三层。组织了玻璃效果（Glass Effect）和一个ContentPresenter 来存储按钮的内容。所有的这些层都在一个最外层的Grid里。当鼠标放到按钮上，按下去的时候也定义了一些触发器（Triggers），来增加一些交互。</p>
-
 <p>我把这个样式做成了资源文件。但是这个Key可以删除，来使得所有的按钮都是这个效果。</p>
-
 <p>好我们来看一下这些层次。这些被广泛应用在微软产品中的按钮。</p>
-
 <p>**3.按钮层次 **</p>
-
 <p><strong>3.1背景层</strong></p>
-
 <p>第一层是一个椭圆。其实是一个canvas，一会在上面画反射和折射层，填充的颜色和按钮的背景（Background）关联。</p>
-
 <p>下面是Blend中的截图</p>
-
 <p>图2
-<a href="http://leaverimage.b0.upaiyun.com/28012_o.png"><img src="/images/2443ed6bf6b648418ee018a527c9a76eaf277716.png" alt="" title="2" /></a>
-<pre class="lang:default decode:true">&lt;!&ndash; Background Layer &ndash;&gt;
-&lt;Ellipse Fill=&ldquo;{TemplateBinding Background}&rdquo;/&gt;</pre>
-<!-- Background Layer -->
-<strong>3.1.1折射层</strong></p>
-
+<a href="http://leaverimage.b0.upaiyun.com/28012_o.png"><img src="/images/2443ed6bf6b648418ee018a527c9a76eaf277716.png" alt="" title="2"></a></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><strong>3.1.1折射层</strong></p>
 <p>第二层模拟了光从上到下的折射。被放在反射层之前是因为，要达到反光玻璃的效果，反射层必须在按钮的中间某处有一个硬边缘。这一层实际上是另一个椭圆。但是这次。我们使用一个径向渐变（白色-透明）的填充。来模拟光的折射。渐变开始于第一层底部的中央。结束于上面的中间。然而。为了降低折射光的强度。渐变还是开始于椭圆的底部再下一点为好。可以从图上和代码里清晰的看到。
-<a href="http://leaverimage.b0.upaiyun.com/28013_o.png"><img src="/images/9d0d815903ff370933cfca9fcd669ae09996e045.png" alt="" title="3" /></a>
-<pre class="lang:default decode:true ">&lt;!&ndash; Refraction Layer &ndash;&gt;
-&lt;Ellipse x:Name=&ldquo;RefractionLayer&rdquo;&gt;
-  &lt;Ellipse.Fill&gt;
-  &lt;RadialGradientBrush GradientOrigin=&ldquo;0.496,1.052&rdquo;&gt;
-    &lt;RadialGradientBrush.RelativeTransform&gt;
-      &lt;TransformGroup&gt;
-        &lt;ScaleTransform CenterX=&ldquo;0.5&rdquo;
-          CenterY=&ldquo;0.5&rdquo; ScaleX=&ldquo;1.5&rdquo; ScaleY=&ldquo;1.5&rdquo;/&gt;
-        &lt;TranslateTransform X=&ldquo;0.02&rdquo; Y=&ldquo;0.3&rdquo;/&gt;
-      &lt;/TransformGroup&gt;
-    &lt;/RadialGradientBrush.RelativeTransform&gt;
-    &lt;GradientStop Offset=&ldquo;1&rdquo; Color=&ldquo;#00000000&rdquo;/&gt;
-    &lt;GradientStop Offset=&ldquo;0.4&rdquo; Color=&ldquo;#FFFFFFFF&rdquo;/&gt;
-    &lt;/RadialGradientBrush&gt;
-  &lt;/Ellipse.Fill&gt;
-&lt;/Ellipse&gt;</pre>
-&nbsp;</p>
-
-<!-- Refraction Layer -->
-
+<a href="http://leaverimage.b0.upaiyun.com/28013_o.png"><img src="/images/9d0d815903ff370933cfca9fcd669ae09996e045.png" alt="" title="3"></a></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<!-- raw HTML omitted -->
 <p><strong>3.1.2反射层</strong></p>
-
-<p>第三层是光的反射层。是最难的部分。问题是反射效果不能使用任何标准的形状来画。因此。使用路径（Path）来画反射区域。当时。手工画也是可以的。但老实说。手工画图实在没什么可享受的（除非你是一个艺术家，或者有一个数位板），无论如何。我现在MS Blend中华好一个椭圆并转换成一个路径，然后我使用贝塞尔曲线点调整得到平滑的路径，你可以添加渐变到一个复杂的Path对象上。就像你对其他与定义的图形，比如椭圆，矩形所做的一样。为了得到光泽反射。我额每年需要一个透明-白色的径向渐变填充，从路径的底部开始（也就是按钮的中间某处），结束在顶部。我想如果我是一个艺术家。我会让渐变更准一点。可是我不是。因此。就这样。因为我们要把我们的按钮放在一个Grid里。所有我们设置VerticalAlignment=&ldquo;Top&rdquo; 这样反射区域在按钮的中间的结束了。</p>
-
+<p>第三层是光的反射层。是最难的部分。问题是反射效果不能使用任何标准的形状来画。因此。使用路径（Path）来画反射区域。当时。手工画也是可以的。但老实说。手工画图实在没什么可享受的（除非你是一个艺术家，或者有一个数位板），无论如何。我现在MS Blend中华好一个椭圆并转换成一个路径，然后我使用贝塞尔曲线点调整得到平滑的路径，你可以添加渐变到一个复杂的Path对象上。就像你对其他与定义的图形，比如椭圆，矩形所做的一样。为了得到光泽反射。我额每年需要一个透明-白色的径向渐变填充，从路径的底部开始（也就是按钮的中间某处），结束在顶部。我想如果我是一个艺术家。我会让渐变更准一点。可是我不是。因此。就这样。因为我们要把我们的按钮放在一个Grid里。所有我们设置VerticalAlignment=&quot;Top&rdquo; 这样反射区域在按钮的中间的结束了。</p>
 <p>图三
-<a href="http://leaverimage.b0.upaiyun.com/28014_o.png"><img src="/images/a837470f0822bf1b924293855638d696dc4dba4a.png" alt="" title="3" /></a>
-<pre class="lang:default decode:true ">&lt;!&ndash; Reflection Layer &ndash;&gt;
-&lt;Path x:Name=&ldquo;ReflectionLayer&rdquo; VerticalAlignment=&ldquo;Top&rdquo; Stretch=&ldquo;Fill&rdquo;&gt;
-  &lt;Path.RenderTransform&gt;
-    &lt;ScaleTransform ScaleY=&ldquo;0.5&rdquo; /&gt;
-  &lt;/Path.RenderTransform&gt;
-  &lt;Path.Data&gt;
-    &lt;PathGeometry&gt;
-      &lt;PathFigure IsClosed=&ldquo;True&rdquo; StartPoint=&ldquo;98.999,45.499&rdquo;&gt;
-        &lt;BezierSegment Point1=&ldquo;98.999,54.170&rdquo; Point2=&ldquo;89.046,52.258&rdquo;
-           Point3=&ldquo;85.502,51.029&rdquo;/&gt;
-        &lt;BezierSegment IsSmoothJoin=&ldquo;True&rdquo; Point1=&ldquo;75.860,47.685&rdquo;
-           Point2=&ldquo;69.111,45.196&rdquo; Point3=&ldquo;50.167,45.196&rdquo;/&gt;
-        &lt;BezierSegment Point1=&ldquo;30.805,45.196&rdquo; Point2=&ldquo;20.173,47.741&rdquo;
-           Point3=&ldquo;10.665,51.363&rdquo;/&gt;
-        &lt;BezierSegment IsSmoothJoin=&ldquo;True&rdquo; Point1=&ldquo;7.469,52.580&rdquo;
-           Point2=&ldquo;1.000,53.252&rdquo; Point3=&ldquo;1.000,44.999&rdquo;/&gt;
-        &lt;BezierSegment Point1=&ldquo;1.000,39.510&rdquo; Point2=&ldquo;0.884,39.227&rdquo;
-           Point3=&ldquo;2.519,34.286&rdquo;/&gt;
-        &lt;BezierSegment IsSmoothJoin=&ldquo;True&rdquo; Point1=&ldquo;9.106,14.370&rdquo;
-           Point2=&ldquo;27.875,0&rdquo; Point3=&ldquo;50,0&rdquo;/&gt;
-        &lt;BezierSegment Point1=&ldquo;72.198,0&rdquo; Point2=&ldquo;91.018,14.466&rdquo;
-           Point3=&ldquo;97.546,34.485&rdquo;/&gt;
-        &lt;BezierSegment IsSmoothJoin=&ldquo;True&rdquo; Point1=&ldquo;99.139,39.369&rdquo;
-           Point2=&ldquo;98.999,40.084&rdquo; Point3=&ldquo;98.999,45.499&rdquo;/&gt;
-      &lt;/PathFigure&gt;
-    &lt;/PathGeometry&gt;
-  &lt;/Path.Data&gt;
-  &lt;Path.Fill&gt;
-    &lt;RadialGradientBrush GradientOrigin=&ldquo;0.498,0.526&rdquo;&gt;
-      &lt;RadialGradientBrush.RelativeTransform&gt;
-        &lt;TransformGroup&gt;
-          &lt;ScaleTransform CenterX=&ldquo;0.5&rdquo;
-            CenterY=&ldquo;0.5&rdquo; ScaleX=&ldquo;1&rdquo; ScaleY=&ldquo;1.997&rdquo;/&gt;
-          &lt;TranslateTransform X=&ldquo;0&rdquo; Y=&ldquo;0.5&rdquo;/&gt;
-        &lt;/TransformGroup&gt;
-      &lt;/RadialGradientBrush.RelativeTransform&gt;
-      &lt;GradientStop Offset=&ldquo;1&rdquo; Color=&ldquo;#FFFFFFFF&rdquo;/&gt;
-      &lt;GradientStop Offset=&ldquo;0.85&rdquo; Color=&ldquo;#92FFFFFF&rdquo;/&gt;
-      &lt;GradientStop Offset=&ldquo;0&rdquo; Color=&ldquo;#00000000&rdquo;/&gt;
-    &lt;/RadialGradientBrush&gt;
-  &lt;/Path.Fill&gt;
-&lt;/Path&gt;</pre>
-&nbsp;</p>
-
-<!-- Reflection Layer -->
-
+<a href="http://leaverimage.b0.upaiyun.com/28014_o.png"><img src="/images/a837470f0822bf1b924293855638d696dc4dba4a.png" alt="" title="3"></a></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<!-- raw HTML omitted -->
 <p>最后。我添加一个ContentPresenter 到按钮中间。经验告诉我，内容区域再向下一个像素会使得按钮看起来更漂亮。因此，在这里我用了margin属性（注意。因为内容区域在Grid的中间（Center）。所以2个像素的top实际上是向下移动了一个像素 ）</p>
-
 <p>好了。最后在Blend中看起来大概是这样</p>
-
 <p>图4
-<a href="http://leaverimage.b0.upaiyun.com/28011_o.png"><img src="/images/19fbafa7ad1cde09eafc0f6a70ac27b576e6302c.png" alt="" title="4" /></a></p>
-
+<a href="http://leaverimage.b0.upaiyun.com/28011_o.png"><img src="/images/19fbafa7ad1cde09eafc0f6a70ac27b576e6302c.png" alt="" title="4"></a></p>
 <p><strong>4.添加一些交互性</strong></p>
-
 <p><strong>4.1鼠标悬停效果</strong></p>
-
-<p>为了有鼠标悬停效果，我们需要增加光源的亮度。因此。我们为IsMouseOver 事件定义一个触发器，复制并且粘贴反射和折射层的渐变设置代码。对于折射层。我仅仅移动了渐变的起点向上了一点。在反射层中。我改变了渐变停止点。使不透明的白色多一点。
-<pre class="lang:default decode:true">&lt;Trigger Property=&ldquo;IsMouseOver&rdquo; Value=&ldquo;True&rdquo;&gt;
-  &lt;Setter TargetName=&ldquo;RefractionLayer&rdquo; Property=&ldquo;Fill&rdquo;&gt;
-    &lt;Setter.Value&gt;
-      &lt;RadialGradientBrush GradientOrigin=&ldquo;0.496,1.052&rdquo;&gt;
-        &lt;RadialGradientBrush.RelativeTransform&gt;
-          &lt;TransformGroup&gt;
-            &lt;ScaleTransform CenterX=&ldquo;0.5&rdquo; CenterY=&ldquo;0.5&rdquo;
-               ScaleX=&ldquo;1.5&rdquo; ScaleY=&ldquo;1.5&rdquo;/&gt;
-            &lt;TranslateTransform X=&ldquo;0.02&rdquo; Y=&ldquo;0.3&rdquo;/&gt;
-          &lt;/TransformGroup&gt;
-        &lt;/RadialGradientBrush.RelativeTransform&gt;
-      &lt;GradientStop Offset=&ldquo;1&rdquo; Color=&ldquo;#00000000&rdquo;/&gt;
-      &lt;GradientStop Offset=&ldquo;0.45&rdquo; Color=&ldquo;#FFFFFFFF&rdquo;/&gt;
-      &lt;/RadialGradientBrush&gt;
-    &lt;/Setter.Value&gt;
-  &lt;/Setter&gt;
-  &lt;Setter TargetName=&ldquo;ReflectionLayer&rdquo; Property=&ldquo;Fill&rdquo;&gt;
-    &lt;Setter.Value&gt;
-      &lt;RadialGradientBrush GradientOrigin=&ldquo;0.498,0.526&rdquo;&gt;
-        &lt;RadialGradientBrush.RelativeTransform&gt;
-          &lt;TransformGroup&gt;
-            &lt;ScaleTransform CenterX=&ldquo;0.5&rdquo; CenterY=&ldquo;0.5&rdquo;
-               ScaleX=&ldquo;1&rdquo; ScaleY=&ldquo;1.997&rdquo;/&gt;
-            &lt;TranslateTransform X=&ldquo;0&rdquo; Y=&ldquo;0.5&rdquo;/&gt;
-          &lt;/TransformGroup&gt;
-        &lt;/RadialGradientBrush.RelativeTransform&gt;
-        &lt;GradientStop Offset=&ldquo;1&rdquo; Color=&ldquo;#FFFFFFFF&rdquo;/&gt;
-        &lt;GradientStop Offset=&ldquo;0.85&rdquo; Color=&ldquo;#BBFFFFFF&rdquo;/&gt;
-        &lt;GradientStop Offset=&ldquo;0&rdquo; Color=&ldquo;#00000000&rdquo;/&gt;
-      &lt;/RadialGradientBrush&gt;
-    &lt;/Setter.Value&gt;
-  &lt;/Setter&gt;
-&lt;/Trigger&gt;</pre>
-&nbsp;</p>
-
+<p>为了有鼠标悬停效果，我们需要增加光源的亮度。因此。我们为IsMouseOver 事件定义一个触发器，复制并且粘贴反射和折射层的渐变设置代码。对于折射层。我仅仅移动了渐变的起点向上了一点。在反射层中。我改变了渐变停止点。使不透明的白色多一点。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
 <p><strong>4.2鼠标点击效果</strong>
-对于IsPressed 事件，需要降低光。因此。反向操作即可。折射层中光源下一点。反射层中渐变停止点更加透明一些。
-<pre class="lang:default decode:true ">&lt;Trigger Property=&ldquo;IsPressed&rdquo; Value=&ldquo;True&rdquo;&gt;
-  &lt;Setter TargetName=&ldquo;RefractionLayer&rdquo; Property=&ldquo;Fill&rdquo;&gt;
-    &lt;Setter.Value&gt;
-      &lt;RadialGradientBrush GradientOrigin=&ldquo;0.496,1.052&rdquo;&gt;
-        &lt;RadialGradientBrush.RelativeTransform&gt;
-          &lt;TransformGroup&gt;
-            &lt;ScaleTransform CenterX=&ldquo;0.5&rdquo; CenterY=&ldquo;0.5&rdquo;
-               ScaleX=&ldquo;1.5&rdquo; ScaleY=&ldquo;1.5&rdquo;/&gt;
-            &lt;TranslateTransform X=&ldquo;0.02&rdquo; Y=&ldquo;0.3&rdquo;/&gt;
-          &lt;/TransformGroup&gt;
-        &lt;/RadialGradientBrush.RelativeTransform&gt;
-        &lt;GradientStop Offset=&ldquo;1&rdquo; Color=&ldquo;#00000000&rdquo;/&gt;
-        &lt;GradientStop Offset=&ldquo;0.3&rdquo; Color=&ldquo;#FFFFFFFF&rdquo;/&gt;
-      &lt;/RadialGradientBrush&gt;
-    &lt;/Setter.Value&gt;
-  &lt;/Setter&gt;
-  &lt;Setter TargetName=&ldquo;ReflectionLayer&rdquo; Property=&ldquo;Fill&rdquo;&gt;
-    &lt;Setter.Value&gt;
-      &lt;RadialGradientBrush GradientOrigin=&ldquo;0.498,0.526&rdquo;&gt;
-        &lt;RadialGradientBrush.RelativeTransform&gt;
-          &lt;TransformGroup&gt;
-            &lt;ScaleTransform CenterX=&ldquo;0.5&rdquo; CenterY=&ldquo;0.5&rdquo;
-               ScaleX=&ldquo;1&rdquo; ScaleY=&ldquo;1.997&rdquo;/&gt;
-            &lt;TranslateTransform X=&ldquo;0&rdquo; Y=&ldquo;0.5&rdquo;/&gt;
-          &lt;/TransformGroup&gt;
-        &lt;/RadialGradientBrush.RelativeTransform&gt;
-        &lt;GradientStop Offset=&ldquo;1&rdquo; Color=&ldquo;#CCFFFFFF&rdquo;/&gt;
-        &lt;GradientStop Offset=&ldquo;0.85&rdquo; Color=&ldquo;#66FFFFFF&rdquo;/&gt;
-        &lt;GradientStop Offset=&ldquo;0&rdquo; Color=&ldquo;#00000000&rdquo;/&gt;
-      &lt;/RadialGradientBrush&gt;
-    &lt;/Setter.Value&gt;
-  &lt;/Setter&gt;
-&lt;/Trigger&gt;</pre>
-&nbsp;</p>
-
+对于IsPressed 事件，需要降低光。因此。反向操作即可。折射层中光源下一点。反射层中渐变停止点更加透明一些。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
 <p>再说一次。渐变停止点的值靠经验选的。我也不能给出精确的值。</p>
-
 <p>5.使用代码</p>
-
 <p>为了使用这个样式。把定义在GlassButton.xaml 里的样式资源文件并不到你的窗体/页里。然后设置按钮的样式为{StaticResource GlassButton}. 为了设置按钮的颜色。使用Background属性即可。</p>
-
-<p>&nbsp;
-<pre class="lang:default decode:true ">&lt;Window x:Class=&ldquo;GlassButton.Window1&rdquo;
-    xmlns=&ldquo;<a href="http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;">http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;</a>
-    xmlns:x=&ldquo;<a href="http://schemas.microsoft.com/winfx/2006/xaml&quot;">http://schemas.microsoft.com/winfx/2006/xaml&quot;</a>
-    Title=&ldquo;Glass Buttons&rdquo; Height=&ldquo;228&rdquo; Width=&ldquo;272&rdquo;&gt;</p>
-
-<p>&lt;Window.Resources&gt;
-    &lt;ResourceDictionary&gt;
-      &lt;ResourceDictionary.MergedDictionaries&gt;
-        &lt;ResourceDictionary Source=&ldquo;Resources\GlassButton.xaml&rdquo;/&gt;
-      &lt;/ResourceDictionary.MergedDictionaries&gt;
-    &lt;/ResourceDictionary&gt;
-  &lt;/Window.Resources&gt;</p>
-
-<p>&lt;Grid&gt;
-    &lt;Button Style=&ldquo;{StaticResource GlassButton}&rdquo; Width=&ldquo;50&rdquo;
-       Height=&ldquo;50&rdquo; Background=&ldquo;#FF660707&rdquo; Margin=&ldquo;10&rdquo;/&gt;
-  &lt;/Grid&gt;
-&lt;/Window&gt;</pre>
-&nbsp;</p>
-
+<p> </p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
 <p><strong>6.Demo下载</strong>
-[downloadicon href=<a href="http://pan.baidu.com/share/link?shareid=81378&amp;uk=1493685990]Demo与源代码下载[/downloadicon">http://pan.baidu.com/share/link?shareid=81378&amp;uk=1493685990]Demo与源代码下载[/downloadicon</a>]
+[downloadicon href=http://pan.baidu.com/share/link?shareid=81378&amp;uk=1493685990]Demo与源代码下载[/downloadicon]
 <strong>7.许可</strong></p>
-
 <p>本文包括源代码和文件在CPOL下授权。</p>
-
 <p>原文地址：<a href="http://www.codeproject.com/articles/32257/a-style-for-round-glassy-wpf-buttons">a-style-for-round-glassy-wpf-buttons</a></p>
-
-<p>&nbsp;</p>
-
+<p> </p>
 <p>著作权声明：本文由<a href="http://leaver.me/">http://leaver.me</a> 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</p>
 
 
@@ -678,7 +559,7 @@
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

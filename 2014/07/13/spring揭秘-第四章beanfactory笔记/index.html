@@ -10,9 +10,6 @@
   <title>Spring揭秘-第四章BeanFactory笔记 - bystander&#39;s blog</title>
   <meta property="og:title" content="Spring揭秘-第四章BeanFactory笔记" />
   <meta name="twitter:title" content="Spring揭秘-第四章BeanFactory笔记" />
-  <meta name="description" content="之前说了，IoC容器就是一个IoC Service Provider，但是容器是个啥意思？![](/images/d4d1615a6c1a06895088631c37e3fca7692f0b8a.png) 可以看到IoC容器提供了更多的内容， Spring的IoC容器又分成两种， 1.BeanFactory 。基础类型IoC容器，提供完整的IoC服务支持。如果没有特殊指定，默认采用延 迟初始化策略（lazy-load）。只有当客户端对象需要访问容器中的某个受管对象的时候，才对 该受管对象进行初始化以及依赖注入操作。所以，相对来说，容器启动初期速度较快，所需 要的资源有限。对于资源有限，并且功能要求不是很严格的场景，BeanFactory是比较合适的 IoC容器选择。  2.ApplicationContext。ApplicationContext在BeanFactory的基础上构建，是相对比较高 级的容器实现，除了拥有BeanFactory的所有支持，ApplicationContext还提供了其他高级特性，比如事件发布、国际化信息支持等，这些会在后面详述。ApplicationContext所管理 的对象，在该类型容器启动之后，默认全部初始化并绑定完成。所以，相对于BeanFactory来 说，ApplicationContext要求更多的系统资源，同时，因为在启动时就完成所有初始化，容 器启动时间较之BeanFactory也会长一些。在那些系统资源充足，并且要求更多功能的场景中， ApplicationContext类型的容器是比较合适的选择。   通过 图4-2，我们可以对BeanFactory和ApplicationContext之间的关系有一个更清晰的认识。      ![](/images/f531ea3e11bb391453eb5f763283398c938634b2.png)     Bean工长，就是生成Bean的嘛，每个业务对象被看成Javabean,我们与工厂打交道就简单得多，我们只要告诉他我要什么对象，至于怎么组装，那是他的事情。   工厂提供了一些对外的接口，比如获取Bean，渠道Bean的状态等等。 以xml为例    &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt; &lt;!DOCTYPE beans PUBLIC &#34;-//SPRING//DTD BEAN//EN&#34; &#34;http://www.springframework.org/dtd/spring-beans.dtd&#34;&gt; &lt;beans&gt; &lt;bean id=&#34;djNewsProvider&#34; class=&#34;..FXNewsProvider&#34;&gt; &lt;constructor-arg index=&#34;0&#34;&gt; &lt;ref bean=&#34;djNewsListener&#34;/&gt; &lt;/constructor-arg&gt; &lt;constructor-arg index=&#34;1&#34;&gt; &lt;ref bean=&#34;djNewsPersister&#34;/&gt; &lt;/constructor-arg&gt; &lt;/bean&gt; &lt;bean id=&#34;djNewsListener&#34; class=&#34;..impl.DowJonesNewsListener&#34;&gt; &lt;/bean&gt; &lt;bean id=&#34;">
-  <meta property="og:description" content="之前说了，IoC容器就是一个IoC Service Provider，但是容器是个啥意思？![](/images/d4d1615a6c1a06895088631c37e3fca7692f0b8a.png) 可以看到IoC容器提供了更多的内容， Spring的IoC容器又分成两种， 1.BeanFactory 。基础类型IoC容器，提供完整的IoC服务支持。如果没有特殊指定，默认采用延 迟初始化策略（lazy-load）。只有当客户端对象需要访问容器中的某个受管对象的时候，才对 该受管对象进行初始化以及依赖注入操作。所以，相对来说，容器启动初期速度较快，所需 要的资源有限。对于资源有限，并且功能要求不是很严格的场景，BeanFactory是比较合适的 IoC容器选择。  2.ApplicationContext。ApplicationContext在BeanFactory的基础上构建，是相对比较高 级的容器实现，除了拥有BeanFactory的所有支持，ApplicationContext还提供了其他高级特性，比如事件发布、国际化信息支持等，这些会在后面详述。ApplicationContext所管理 的对象，在该类型容器启动之后，默认全部初始化并绑定完成。所以，相对于BeanFactory来 说，ApplicationContext要求更多的系统资源，同时，因为在启动时就完成所有初始化，容 器启动时间较之BeanFactory也会长一些。在那些系统资源充足，并且要求更多功能的场景中， ApplicationContext类型的容器是比较合适的选择。   通过 图4-2，我们可以对BeanFactory和ApplicationContext之间的关系有一个更清晰的认识。      ![](/images/f531ea3e11bb391453eb5f763283398c938634b2.png)     Bean工长，就是生成Bean的嘛，每个业务对象被看成Javabean,我们与工厂打交道就简单得多，我们只要告诉他我要什么对象，至于怎么组装，那是他的事情。   工厂提供了一些对外的接口，比如获取Bean，渠道Bean的状态等等。 以xml为例    &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt; &lt;!DOCTYPE beans PUBLIC &#34;-//SPRING//DTD BEAN//EN&#34; &#34;http://www.springframework.org/dtd/spring-beans.dtd&#34;&gt; &lt;beans&gt; &lt;bean id=&#34;djNewsProvider&#34; class=&#34;..FXNewsProvider&#34;&gt; &lt;constructor-arg index=&#34;0&#34;&gt; &lt;ref bean=&#34;djNewsListener&#34;/&gt; &lt;/constructor-arg&gt; &lt;constructor-arg index=&#34;1&#34;&gt; &lt;ref bean=&#34;djNewsPersister&#34;/&gt; &lt;/constructor-arg&gt; &lt;/bean&gt; &lt;bean id=&#34;djNewsListener&#34; class=&#34;..impl.DowJonesNewsListener&#34;&gt; &lt;/bean&gt; &lt;bean id=&#34;">
-  <meta name="twitter:description" content="之前说了，IoC容器就是一个IoC Service Provider，但是容器是个啥意思？![](/images/d4d1615a6c1a06895088631c37e3fca7692f0b8a.png) 可以看到IoC容器提供了更多的内容， Spring的IoC容器又分成两种， 1.BeanFactory 。基础类型IoC容器，提供完整的IoC服务支持。如果没有特殊指定，默认采用延 迟初始化策 …">
   <meta name="author" content="bystander"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -61,9 +58,9 @@
     "name" : "bystander"
   },
   "headline": "Spring揭秘-第四章BeanFactory笔记",
-  "description" : "之前说了，IoC容器就是一个IoC Service Provider，但是容器是个啥意思？![](\/images\/d4d1615a6c1a06895088631c37e3fca7692f0b8a.png) 可以看到IoC容器提供了更多的内容， Spring的IoC容器又分成两种， 1.BeanFactory 。基础类型IoC容器，提供完整的IoC服务支持。如果没有特殊指定，默认采用延 迟初始化策略（lazy-load）。只有当客户端对象需要访问容器中的某个受管对象的时候，才对 该受管对象进行初始化以及依赖注入操作。所以，相对来说，容器启动初期速度较快，所需 要的资源有限。对于资源有限，并且功能要求不是很严格的场景，BeanFactory是比较合适的 IoC容器选择。  2.ApplicationContext。ApplicationContext在BeanFactory的基础上构建，是相对比较高 级的容器实现，除了拥有BeanFactory的所有支持，ApplicationContext还提供了其他高级特性，比如事件发布、国际化信息支持等，这些会在后面详述。ApplicationContext所管理 的对象，在该类型容器启动之后，默认全部初始化并绑定完成。所以，相对于BeanFactory来 说，ApplicationContext要求更多的系统资源，同时，因为在启动时就完成所有初始化，容 器启动时间较之BeanFactory也会长一些。在那些系统资源充足，并且要求更多功能的场景中， ApplicationContext类型的容器是比较合适的选择。   通过 图4-2，我们可以对BeanFactory和ApplicationContext之间的关系有一个更清晰的认识。      ![](\/images\/f531ea3e11bb391453eb5f763283398c938634b2.png)     Bean工长，就是生成Bean的嘛，每个业务对象被看成Javabean,我们与工厂打交道就简单得多，我们只要告诉他我要什么对象，至于怎么组装，那是他的事情。   工厂提供了一些对外的接口，比如获取Bean，渠道Bean的状态等等。 以xml为例    \x26lt;?xml version=\x221.0\x22 encoding=\x22UTF-8\x22?\x26gt; \x26lt;!DOCTYPE beans PUBLIC \x22-\/\/SPRING\/\/DTD BEAN\/\/EN\x22 \x22http:\/\/www.springframework.org\/dtd\/spring-beans.dtd\x22\x26gt; \x26lt;beans\x26gt; \x26lt;bean id=\x22djNewsProvider\x22 class=\x22..FXNewsProvider\x22\x26gt; \x26lt;constructor-arg index=\x220\x22\x26gt; \x26lt;ref bean=\x22djNewsListener\x22\/\x26gt; \x26lt;\/constructor-arg\x26gt; \x26lt;constructor-arg index=\x221\x22\x26gt; \x26lt;ref bean=\x22djNewsPersister\x22\/\x26gt; \x26lt;\/constructor-arg\x26gt; \x26lt;\/bean\x26gt; \x26lt;bean id=\x22djNewsListener\x22 class=\x22..impl.DowJonesNewsListener\x22\x26gt; \x26lt;\/bean\x26gt; \x26lt;bean id=\x22",
+  "description" : "",
   "inLanguage" : "en",
-  "wordCount":  100 ,
+  "wordCount":  0 ,
   "datePublished" : "2014-07-13T11:20:09",
   "dateModified" : "2014-07-13T11:20:09",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -83,14 +80,12 @@
 </script>
 
 <meta property="og:title" content="Spring揭秘-第四章BeanFactory笔记" />
-<meta property="og:description" content="之前说了，IoC容器就是一个IoC Service Provider，但是容器是个啥意思？![](/images/d4d1615a6c1a06895088631c37e3fca7692f0b8a.png) 可以看到IoC容器提供了更多的内容， Spring的IoC容器又分成两种， 1.BeanFactory 。基础类型IoC容器，提供完整的IoC服务支持。如果没有特殊指定，默认采用延 迟初始化策略（lazy-load）。只有当客户端对象需要访问容器中的某个受管对象的时候，才对 该受管对象进行初始化以及依赖注入操作。所以，相对来说，容器启动初期速度较快，所需 要的资源有限。对于资源有限，并且功能要求不是很严格的场景，BeanFactory是比较合适的 IoC容器选择。  2.ApplicationContext。ApplicationContext在BeanFactory的基础上构建，是相对比较高 级的容器实现，除了拥有BeanFactory的所有支持，ApplicationContext还提供了其他高级特性，比如事件发布、国际化信息支持等，这些会在后面详述。ApplicationContext所管理 的对象，在该类型容器启动之后，默认全部初始化并绑定完成。所以，相对于BeanFactory来 说，ApplicationContext要求更多的系统资源，同时，因为在启动时就完成所有初始化，容 器启动时间较之BeanFactory也会长一些。在那些系统资源充足，并且要求更多功能的场景中， ApplicationContext类型的容器是比较合适的选择。   通过 图4-2，我们可以对BeanFactory和ApplicationContext之间的关系有一个更清晰的认识。      ![](/images/f531ea3e11bb391453eb5f763283398c938634b2.png)     Bean工长，就是生成Bean的嘛，每个业务对象被看成Javabean,我们与工厂打交道就简单得多，我们只要告诉他我要什么对象，至于怎么组装，那是他的事情。   工厂提供了一些对外的接口，比如获取Bean，渠道Bean的状态等等。 以xml为例    &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt; &lt;!DOCTYPE beans PUBLIC &#34;-//SPRING//DTD BEAN//EN&#34; &#34;http://www.springframework.org/dtd/spring-beans.dtd&#34;&gt; &lt;beans&gt; &lt;bean id=&#34;djNewsProvider&#34; class=&#34;..FXNewsProvider&#34;&gt; &lt;constructor-arg index=&#34;0&#34;&gt; &lt;ref bean=&#34;djNewsListener&#34;/&gt; &lt;/constructor-arg&gt; &lt;constructor-arg index=&#34;1&#34;&gt; &lt;ref bean=&#34;djNewsPersister&#34;/&gt; &lt;/constructor-arg&gt; &lt;/bean&gt; &lt;bean id=&#34;djNewsListener&#34; class=&#34;..impl.DowJonesNewsListener&#34;&gt; &lt;/bean&gt; &lt;bean id=&#34;">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2014/07/13/spring%E6%8F%AD%E7%A7%98-%E7%AC%AC%E5%9B%9B%E7%AB%A0beanfactory%E7%AC%94%E8%AE%B0/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="bystander&#39;s blog" />
 
   <meta name="twitter:title" content="Spring揭秘-第四章BeanFactory笔记" />
-  <meta name="twitter:description" content="之前说了，IoC容器就是一个IoC Service Provider，但是容器是个啥意思？![](/images/d4d1615a6c1a06895088631c37e3fca7692f0b8a.png) 可以看到IoC容器提供了更多的内容， Spring的IoC容器又分成两种， 1.BeanFactory 。基础类型IoC容器，提供完整的IoC服务支持。如果没有特殊指定，默认采用延 迟初始化策 …">
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -101,7 +96,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -259,7 +254,7 @@
   <i class="fas fa-calendar"></i>&nbsp;Posted on July 13, 2014
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;0&nbsp;minutes
   
   
   
@@ -285,67 +280,7 @@
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <div></div>
-<div>之前说了，IoC容器就是一个IoC Service Provider，但是容器是个啥意思？![](/images/d4d1615a6c1a06895088631c37e3fca7692f0b8a.png)</div>
-<div>可以看到IoC容器提供了更多的内容，</div>
-<div>Spring的IoC容器又分成两种，</div>
-<div>1.BeanFactory</div>
-<div>。基础类型IoC容器，提供完整的IoC服务支持。如果没有特殊指定，默认采用延 迟初始化策略（lazy-load）。只有当客户端对象需要访问容器中的某个受管对象的时候，才对 该受管对象进行初始化以及依赖注入操作。所以，相对来说，容器启动初期速度较快，所需 要的资源有限。对于资源有限，并且功能要求不是很严格的场景，BeanFactory是比较合适的 IoC容器选择。</div>
-<div></div>
-<div>2.ApplicationContext。ApplicationContext在BeanFactory的基础上构建，是相对比较高 级的容器实现，除了拥有BeanFactory的所有支持，ApplicationContext还提供了其他高级<span style="font-size: 10.5pt; line-height: 1.5;">特性，比如事件发布、国际化信息支持等，这些会在后面详述。ApplicationContext所管理 的对象，在该类型容器启动之后，默认全部初始化并绑定完成。所以，相对于BeanFactory来 说，ApplicationContext要求更多的系统资源，同时，因为在启动时就完成所有初始化，容 器启动时间较之BeanFactory也会长一些。在那些系统资源充足，并且要求更多功能的场景中， ApplicationContext类型的容器是比较合适的选择。 </span></div>
-<div> 通过 图4-2，我们可以对BeanFactory和ApplicationContext之间的关系有一个更清晰的认识。</div>
-<div></div>
-<div></div>
-<div></div>
-<div></div>
-<div></div>
-<div>![](/images/f531ea3e11bb391453eb5f763283398c938634b2.png)</div>
-<div></div>
-<div></div>
-<div></div>
-<div></div>
-<div>Bean工长，就是生成Bean的嘛，每个业务对象被看成Javabean,我们与工厂打交道就简单得多，我们只要告诉他我要什么对象，至于怎么组装，那是他的事情。</div>
-<div></div>
-<div></div>
-<div>工厂提供了一些对外的接口，比如获取Bean，渠道Bean的状态等等。</div>
-<div>以xml为例</div>
-<div></div>
-<div>
-<div>
-<pre class="lang:default decode:true ">&lt;?xml version="1.0" encoding="UTF-8"?&gt; 
-&lt;!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd"&gt;  
-&lt;beans&gt;  
- &lt;bean id="djNewsProvider" class="..FXNewsProvider"&gt;   
-    &lt;constructor-arg index="0"&gt;    
-       &lt;ref bean="djNewsListener"/&gt;   
-     &lt;/constructor-arg&gt;   
-   &lt;constructor-arg index="1"&gt;    
-       &lt;ref bean="djNewsPersister"/&gt;   
-   &lt;/constructor-arg&gt;  
- &lt;/bean&gt;    
- &lt;bean id="djNewsListener" class="..impl.DowJonesNewsListener"&gt;  
- &lt;/bean&gt;  
- &lt;bean id="djNewsPersister" class="..impl.DowJonesNewsPersister"&gt;  
- &lt;/bean&gt; 
-&lt;/beans&gt;</pre>
-</div>
-</div>
-<div>然后</div>
-<pre class="lang:default decode:true">public static void main(String[] args)  {
-   DefaultListableBeanFactory beanRegistry = new DefaultListableBeanFactory();     
-   BeanFactory container = (BeanFactory)bindViaXMLFile(beanRegistry);  
-   FXNewsProvider newsProvider = (FXNewsProvider)container.getBean("djNewsProvider"); 
-   newsProvider.getAndPersistNews(); 
-}  
-public static BeanFactory bindViaXMLFile(BeanDefinitionRegistry registry)  
-{  
-XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(registry);  
-reader.loadBeanDefinitions("classpath:../news-config.xml");   
-return (BeanFactory)registry;  // 或者直接  
-//return new XmlBeanFactory(new ClassPathResource("../news-config.xml"));
- }</pre>
-<div></div>
-<div>人生好像就美好</div>
+        <!-- raw HTML omitted -->
 
 
         
@@ -457,7 +392,7 @@ return (BeanFactory)registry;  // 或者直接
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

@@ -14,17 +14,26 @@
 我没有使用任何第三方的库来完成这段代码，你所要做的仅仅是把两个.cs文件整合进你的项目里。
 使用代码 这个工程里有两个主要的类
 YouTubeVideoQuality Class（youtube视频质量类）
-public class YouTubeVideoQuality { /// &lt;summary&gt; /// Gets or Sets 文件名 /// &lt;/summary&gt; public string Videotitle: { get; set; } /// &lt;summary&gt; /// Gets or Sets 文件扩展 /// &lt;/summary&gt; public string Extention { get; set; } /// &lt;summary&gt; /// Gets or Sets 文件地址 /// &lt;/summary&gt; public string DownloadUrl { get; set; } /// &lt;summary&gt; /// Gets or Sets 视频地址 /// &lt;/summary&gt; public string VideoUrl { get; set; } /// &lt;summary&gt; /// Gets or Sets 文件大小 /// &lt;/summary&gt; public Size Dimension { get; set; } public override string ToString() { return Extention &#43; &#34;">
+YouTubeDownloader Class(youtube下载类)
+有趣的地方 使用这个代码，你可以根据你的网速来选择不同品质的视频来下载
+许多人网速很慢他们不能在线看youtube，因为我写了这个代码帮助这些人来下载视频到他们的PC上。这样，他们就能离线看了。。
+许可 本文。包括源代码和文件，在CPOL下授权。
+原文地址：YouTube-Downloader-Using-Csharp-NET 著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！">
   <meta property="og:description" content="介绍 本文将会暂时如何仅仅使用C#来下载youtub视频，代码简单也容易理解，每个人都可以把它整合到自己的工程项目里。
 我没有使用任何第三方的库来完成这段代码，你所要做的仅仅是把两个.cs文件整合进你的项目里。
 使用代码 这个工程里有两个主要的类
 YouTubeVideoQuality Class（youtube视频质量类）
-public class YouTubeVideoQuality { /// &lt;summary&gt; /// Gets or Sets 文件名 /// &lt;/summary&gt; public string Videotitle: { get; set; } /// &lt;summary&gt; /// Gets or Sets 文件扩展 /// &lt;/summary&gt; public string Extention { get; set; } /// &lt;summary&gt; /// Gets or Sets 文件地址 /// &lt;/summary&gt; public string DownloadUrl { get; set; } /// &lt;summary&gt; /// Gets or Sets 视频地址 /// &lt;/summary&gt; public string VideoUrl { get; set; } /// &lt;summary&gt; /// Gets or Sets 文件大小 /// &lt;/summary&gt; public Size Dimension { get; set; } public override string ToString() { return Extention &#43; &#34;">
+YouTubeDownloader Class(youtube下载类)
+有趣的地方 使用这个代码，你可以根据你的网速来选择不同品质的视频来下载
+许多人网速很慢他们不能在线看youtube，因为我写了这个代码帮助这些人来下载视频到他们的PC上。这样，他们就能离线看了。。
+许可 本文。包括源代码和文件，在CPOL下授权。
+原文地址：YouTube-Downloader-Using-Csharp-NET 著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！">
   <meta name="twitter:description" content="介绍 本文将会暂时如何仅仅使用C#来下载youtub视频，代码简单也容易理解，每个人都可以把它整合到自己的工程项目里。
 我没有使用任何第三方的库来完成这段代码，你所要做的仅仅是把两个.cs文件整合进你的项目里。
 使用代码 这个工程里有两个主要的类
 YouTubeVideoQuality Class（youtube视频质量类）
-public class YouTubeVideoQuality { …">
+YouTubeDownloader Class(youtube下载类)
+ …">
   <meta name="author" content="bystander"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -73,9 +82,9 @@ public class YouTubeVideoQuality { …">
     "name" : "bystander"
   },
   "headline": "C#编写youtube下载器",
-  "description" : "介绍 本文将会暂时如何仅仅使用C#来下载youtub视频，代码简单也容易理解，每个人都可以把它整合到自己的工程项目里。\n我没有使用任何第三方的库来完成这段代码，你所要做的仅仅是把两个.cs文件整合进你的项目里。\n使用代码 这个工程里有两个主要的类\nYouTubeVideoQuality Class（youtube视频质量类）\npublic class YouTubeVideoQuality { \/\/\/ \x26lt;summary\x26gt; \/\/\/ Gets or Sets 文件名 \/\/\/ \x26lt;\/summary\x26gt; public string Videotitle: { get; set; } \/\/\/ \x26lt;summary\x26gt; \/\/\/ Gets or Sets 文件扩展 \/\/\/ \x26lt;\/summary\x26gt; public string Extention { get; set; } \/\/\/ \x26lt;summary\x26gt; \/\/\/ Gets or Sets 文件地址 \/\/\/ \x26lt;\/summary\x26gt; public string DownloadUrl { get; set; } \/\/\/ \x26lt;summary\x26gt; \/\/\/ Gets or Sets 视频地址 \/\/\/ \x26lt;\/summary\x26gt; public string VideoUrl { get; set; } \/\/\/ \x26lt;summary\x26gt; \/\/\/ Gets or Sets 文件大小 \/\/\/ \x26lt;\/summary\x26gt; public Size Dimension { get; set; } public override string ToString() { return Extention \x2b \x22",
+  "description" : "介绍 本文将会暂时如何仅仅使用C#来下载youtub视频，代码简单也容易理解，每个人都可以把它整合到自己的工程项目里。\n我没有使用任何第三方的库来完成这段代码，你所要做的仅仅是把两个.cs文件整合进你的项目里。\n使用代码 这个工程里有两个主要的类\nYouTubeVideoQuality Class（youtube视频质量类）\nYouTubeDownloader Class(youtube下载类)\n有趣的地方 使用这个代码，你可以根据你的网速来选择不同品质的视频来下载\n许多人网速很慢他们不能在线看youtube，因为我写了这个代码帮助这些人来下载视频到他们的PC上。这样，他们就能离线看了。。\n许可 本文。包括源代码和文件，在CPOL下授权。\n原文地址：YouTube-Downloader-Using-Csharp-NET 著作权声明：本文由http:\/\/leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！",
   "inLanguage" : "en",
-  "wordCount":  372 ,
+  "wordCount":  17 ,
   "datePublished" : "2012-09-25T09:33:12",
   "dateModified" : "2012-09-25T09:33:12",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -99,7 +108,11 @@ public class YouTubeVideoQuality { …">
 我没有使用任何第三方的库来完成这段代码，你所要做的仅仅是把两个.cs文件整合进你的项目里。
 使用代码 这个工程里有两个主要的类
 YouTubeVideoQuality Class（youtube视频质量类）
-public class YouTubeVideoQuality { /// &lt;summary&gt; /// Gets or Sets 文件名 /// &lt;/summary&gt; public string Videotitle: { get; set; } /// &lt;summary&gt; /// Gets or Sets 文件扩展 /// &lt;/summary&gt; public string Extention { get; set; } /// &lt;summary&gt; /// Gets or Sets 文件地址 /// &lt;/summary&gt; public string DownloadUrl { get; set; } /// &lt;summary&gt; /// Gets or Sets 视频地址 /// &lt;/summary&gt; public string VideoUrl { get; set; } /// &lt;summary&gt; /// Gets or Sets 文件大小 /// &lt;/summary&gt; public Size Dimension { get; set; } public override string ToString() { return Extention &#43; &#34;">
+YouTubeDownloader Class(youtube下载类)
+有趣的地方 使用这个代码，你可以根据你的网速来选择不同品质的视频来下载
+许多人网速很慢他们不能在线看youtube，因为我写了这个代码帮助这些人来下载视频到他们的PC上。这样，他们就能离线看了。。
+许可 本文。包括源代码和文件，在CPOL下授权。
+原文地址：YouTube-Downloader-Using-Csharp-NET 著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2012/09/25/c#%E7%BC%96%E5%86%99youtube%E4%B8%8B%E8%BD%BD%E5%99%A8/" />
 <meta property="og:type" content="website" />
@@ -110,7 +123,8 @@ public class YouTubeVideoQuality { /// &lt;summary&gt; /// Gets or Sets 文件�
 我没有使用任何第三方的库来完成这段代码，你所要做的仅仅是把两个.cs文件整合进你的项目里。
 使用代码 这个工程里有两个主要的类
 YouTubeVideoQuality Class（youtube视频质量类）
-public class YouTubeVideoQuality { …">
+YouTubeDownloader Class(youtube下载类)
+ …">
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -121,7 +135,7 @@ public class YouTubeVideoQuality { …">
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -279,7 +293,7 @@ public class YouTubeVideoQuality { …">
   <i class="fas fa-calendar"></i>&nbsp;Posted on September 25, 2012
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -305,146 +319,22 @@ public class YouTubeVideoQuality { …">
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        
-
-<h3 id="介绍">介绍</h3>
-
+        <h3 id="heading">介绍</h3>
 <p>本文将会暂时如何仅仅使用C#来下载youtub视频，代码简单也容易理解，每个人都可以把它整合到自己的工程项目里。</p>
-
 <p>我没有使用任何第三方的库来完成这段代码，你所要做的仅仅是把两个.cs文件整合进你的项目里。</p>
-
-<h3 id="使用代码">使用代码</h3>
-
+<h3 id="heading-1">使用代码</h3>
 <p>这个工程里有两个主要的类</p>
-
 <p>YouTubeVideoQuality Class（youtube视频质量类）</p>
-
-<pre class="lang:c# decode:true " >public class YouTubeVideoQuality 
-{
-    /// &lt;summary&gt;
-    /// Gets or Sets 文件名
-    /// &lt;/summary&gt;
-    public string Videotitle: { get; set; }
-    /// &lt;summary&gt;
-    /// Gets or Sets 文件扩展
-    /// &lt;/summary&gt;
-    public string Extention { get; set; }
-    /// &lt;summary&gt;
-    /// Gets or Sets 文件地址
-    /// &lt;/summary&gt;
-    public string DownloadUrl { get; set; }
-    /// &lt;summary&gt;
-    /// Gets or Sets 视频地址
-    /// &lt;/summary&gt;
-    public string VideoUrl { get; set; }
-    /// &lt;summary&gt;
-    /// Gets or Sets 文件大小
-    /// &lt;/summary&gt;
-    public Size Dimension { get; set; }
-
-    public override string ToString()
-    {
-        return Extention + " File " + Dimension.Width + 
-                           "x" + Dimension.Height;
-    }
-
-    public void SetQuality(string Extention, Size Dimension)
-    {
-        this.Extention = Extention;
-        this.Dimension = Dimension;
-    }
-}</pre> 
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>YouTubeDownloader Class(youtube下载类)</p>
-
-<pre class="lang:c# decode:true " >public class YouTubeDownloader
-{
-    public static List&lt;YouTubeVideoQuality&gt; GetYouTubeVideoUrls(params string[] VideoUrls)
-    {
-        List&lt;YouTubeVideoQuality&gt; urls = new List&lt;YouTubeVideoQuality&gt;();
-        foreach (var VideoUrl in VideoUrls)
-        {
-            string html = Helper.DownloadWebPage(VideoUrl);
-            string title: = GetTitle(html);
-            foreach (var videoLink in ExtractUrls(html))
-            {
-                YouTubeVideoQuality q = new YouTubeVideoQuality();
-                q.VideoUrl = VideoUrl;
-                q.Videotitle: = title;
-                q.DownloadUrl = videoLink + "&amp;title=" + title;
-                if (getQuality(q))
-                    urls.Add(q);
-            }
-        }
-        return urls;
-    }
-
-    private static string GetTitle(string RssDoc)
-    {
-        string str14 = Helper.GetTxtBtwn(RssDoc, "'VIDEO_TITLE': '", "'", 0);
-        if (str14 == "") str14 = Helper.GetTxtBtwn(RssDoc, "\"title\" content=\"", "\"", 0);
-        if (str14 == "") str14 = Helper.GetTxtBtwn(RssDoc, "&amp;title=", "&amp;", 0);
-        str14 = str14.Replace(@"\", "").Replace("'", "'").Replace(
-                "\"", """).Replace("&lt;", "&lt;").Replace(
-                "&gt;", "&gt;").Replace("+", " ");
-        return str14;
-    }
-
-    private static List&lt;string&gt; ExtractUrls(string html)
-    {
-        html = Uri.UnescapeDataString(Regex.Match(html, "url_encoded_fmt_stream_map=(.+?)&amp;", 
-                                      RegexOptions.Singleline).Groups[1].ToString());
-        MatchCollection matchs = Regex.Matches(html, 
-          "url=(.+?)&amp;quality=(.+?)&amp;fallback_host=(.+?)&amp;type=(.+?)&amp;itag=(.+?),", 
-          RegexOptions.Singleline);
-        bool firstTry = matchs.Count &gt; 0;
-        if (!firstTry)
-            matchs = Regex.Matches(html, 
-                     "itag=(.+?)&amp;url=(.+?)&amp;type=(.+?)&amp;fallback_host=(.+?)&amp;sig=(.+?)&amp;quality=(.+?),{0,1}", 
-                     RegexOptions.Singleline);
-        List&lt;string&gt; urls = new List&lt;string&gt;();
-        foreach (Match match in matchs)
-        {
-            if (firstTry)
-                urls.Add(Uri.UnescapeDataString(match.Groups[1] + ""));
-            else urls.Add(Uri.UnescapeDataString(match.Groups[2] + "") + "&amp;signature=" + match.Groups[5]);
-        }
-        return urls;
-    }
-
-    private static bool getQuality(YouTubeVideoQuality q)
-    {
-        if (q.DownloadUrl.Contains("itag=5"))
-            q.SetQuality("flv", new Size(320, 240));
-        else if (q.DownloadUrl.Contains("itag=34"))
-            q.SetQuality("flv", new Size(400, 226));
-        else if (q.DownloadUrl.Contains("itag=6"))
-            q.SetQuality("flv", new Size(480, 360));
-        else if (q.DownloadUrl.Contains("itag=35"))
-            q.SetQuality("flv", new Size(640, 380));
-        else if (q.DownloadUrl.Contains("itag=18"))
-            q.SetQuality("mp4", new Size(480, 360));
-        else if (q.DownloadUrl.Contains("itag=22"))
-            q.SetQuality("mp4", new Size(1280, 720));
-        else if (q.DownloadUrl.Contains("itag=37"))
-            q.SetQuality("mp4", new Size(1920, 1280));
-        else if (q.DownloadUrl.Contains("itag=38"))
-            q.SetQuality("mp4", new Size(4096, 72304));
-        else return false;
-        return true;
-    }
-}</pre> 
-
-<h3 id="有趣的地方">有趣的地方</h3>
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h3 id="heading-2">有趣的地方</h3>
 <p>使用这个代码，你可以根据你的网速来选择不同品质的视频来下载</p>
-
 <p>许多人网速很慢他们不能在线看youtube，因为我写了这个代码帮助这些人来下载视频到他们的PC上。这样，他们就能离线看了。。</p>
-
-<h3 id="许可">许可</h3>
-
+<h3 id="heading-3">许可</h3>
 <p>本文。包括源代码和文件，在CPOL下授权。</p>
-
 <p>原文地址：<a href="http://www.codeproject.com/Tips/323771/YouTube-Downloader-Using-Csharp-NET">YouTube-Downloader-Using-Csharp-NET</a>
 著作权声明：本文由<a href="http://leaver.me">http://leaver.me</a> 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</p>
 
@@ -562,7 +452,7 @@ public class YouTubeVideoQuality { …">
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

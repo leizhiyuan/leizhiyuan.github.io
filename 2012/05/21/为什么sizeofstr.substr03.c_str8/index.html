@@ -12,11 +12,11 @@
   <meta name="twitter:title" content="为什么sizeof(str.substr(0,3).c_str())=8?" />
   <meta name="description" content="问题： string str = &quot;abcdefgdcb&quot;; cout &amp;lt; &amp;lt; sizeof(str.substr(0,3).c_str()); For some reason, the above string is giving me 8. I assumed c_str() returns a null string, 由于某些原因，上面的这个字符串得到的结果是8，我估计c_str()返回了一个null，
 and sizeof uses the null to determine the size of the string. 并且sizeof函数使用这个null来定义这个字符串的大小。
-答案： Because sizeof doesn&rsquo;t give you the length of a string, 因为sizeof给你的不是一个字符串的长度，
+答案： Because sizeof doesn&#39;t give you the length of a string, 因为sizeof给你的不是一个字符串的长度，
 it gives you the size of the type (const char * in this case). Try strlen. 他给你的是这个类型的大小（这种情况下的类型是c_str()返回的const char*类型），想要得到正确的结果，试试strlen函数吧。">
   <meta property="og:description" content="问题： string str = &quot;abcdefgdcb&quot;; cout &amp;lt; &amp;lt; sizeof(str.substr(0,3).c_str()); For some reason, the above string is giving me 8. I assumed c_str() returns a null string, 由于某些原因，上面的这个字符串得到的结果是8，我估计c_str()返回了一个null，
 and sizeof uses the null to determine the size of the string. 并且sizeof函数使用这个null来定义这个字符串的大小。
-答案： Because sizeof doesn&rsquo;t give you the length of a string, 因为sizeof给你的不是一个字符串的长度，
+答案： Because sizeof doesn&#39;t give you the length of a string, 因为sizeof给你的不是一个字符串的长度，
 it gives you the size of the type (const char * in this case). Try strlen. 他给你的是这个类型的大小（这种情况下的类型是c_str()返回的const char*类型），想要得到正确的结果，试试strlen函数吧。">
   <meta name="twitter:description" content="问题： string str = &quot;abcdefgdcb&quot;; cout &amp;lt; &amp;lt; sizeof(str.substr(0,3).c_str()); For some reason, the above string is giving me 8. I assumed c_str() returns a null string, 由于某些原因，上面的这个 …">
   <meta name="author" content="bystander"/><script type="application/ld+json">
@@ -67,7 +67,7 @@ it gives you the size of the type (const char * in this case). Try strlen. 他�
     "name" : "bystander"
   },
   "headline": "为什么sizeof(str.substr(0,3).c_str())=8?",
-  "description" : "问题： string str = \x26quot;abcdefgdcb\x26quot;; cout \x26amp;lt; \x26amp;lt; sizeof(str.substr(0,3).c_str()); For some reason, the above string is giving me 8. I assumed c_str() returns a null string, 由于某些原因，上面的这个字符串得到的结果是8，我估计c_str()返回了一个null，\nand sizeof uses the null to determine the size of the string. 并且sizeof函数使用这个null来定义这个字符串的大小。\n答案： Because sizeof doesn\x26rsquo;t give you the length of a string, 因为sizeof给你的不是一个字符串的长度，\nit gives you the size of the type (const char * in this case). Try strlen. 他给你的是这个类型的大小（这种情况下的类型是c_str()返回的const char*类型），想要得到正确的结果，试试strlen函数吧。",
+  "description" : "问题： string str = \x26quot;abcdefgdcb\x26quot;; cout \x26amp;lt; \x26amp;lt; sizeof(str.substr(0,3).c_str()); For some reason, the above string is giving me 8. I assumed c_str() returns a null string, 由于某些原因，上面的这个字符串得到的结果是8，我估计c_str()返回了一个null，\nand sizeof uses the null to determine the size of the string. 并且sizeof函数使用这个null来定义这个字符串的大小。\n答案： Because sizeof doesn\x27t give you the length of a string, 因为sizeof给你的不是一个字符串的长度，\nit gives you the size of the type (const char * in this case). Try strlen. 他给你的是这个类型的大小（这种情况下的类型是c_str()返回的const char*类型），想要得到正确的结果，试试strlen函数吧。",
   "inLanguage" : "en",
   "wordCount":  123 ,
   "datePublished" : "2012-05-21T06:59:09",
@@ -91,7 +91,7 @@ it gives you the size of the type (const char * in this case). Try strlen. 他�
 <meta property="og:title" content="为什么sizeof(str.substr(0,3).c_str())=8?" />
 <meta property="og:description" content="问题： string str = &quot;abcdefgdcb&quot;; cout &amp;lt; &amp;lt; sizeof(str.substr(0,3).c_str()); For some reason, the above string is giving me 8. I assumed c_str() returns a null string, 由于某些原因，上面的这个字符串得到的结果是8，我估计c_str()返回了一个null，
 and sizeof uses the null to determine the size of the string. 并且sizeof函数使用这个null来定义这个字符串的大小。
-答案： Because sizeof doesn&rsquo;t give you the length of a string, 因为sizeof给你的不是一个字符串的长度，
+答案： Because sizeof doesn&#39;t give you the length of a string, 因为sizeof给你的不是一个字符串的长度，
 it gives you the size of the type (const char * in this case). Try strlen. 他给你的是这个类型的大小（这种情况下的类型是c_str()返回的const char*类型），想要得到正确的结果，试试strlen函数吧。">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2012/05/21/%E4%B8%BA%E4%BB%80%E4%B9%88sizeofstr.substr03.c_str8/" />
@@ -110,7 +110,7 @@ it gives you the size of the type (const char * in this case). Try strlen. 他�
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -295,33 +295,24 @@ it gives you the size of the type (const char * in this case). Try strlen. 他�
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <p>问题：
-<code>string str = &quot;abcdefgdcb&quot;;
-cout &amp;lt; &amp;lt; sizeof(str.substr(0,3).c_str());</code>
+<code>string str = &quot;abcdefgdcb&quot;; cout &amp;lt; &amp;lt; sizeof(str.substr(0,3).c_str());</code>
 For some reason, the above string is giving me 8. I assumed c_str() returns a null string,
 由于某些原因，上面的这个字符串得到的结果是8，我估计c_str()返回了一个null，</p>
-
 <p>and sizeof uses the null to determine the size of the string.
 并且sizeof函数使用这个null来定义这个字符串的大小。</p>
-
 <p>答案：
-Because sizeof doesn&rsquo;t give you the length of a string,
+Because sizeof doesn't give you the length of a string,
 因为sizeof给你的不是一个字符串的长度，</p>
-
 <p>it gives you the size of the type (const char * in this case). Try strlen.
 他给你的是这个类型的大小（这种情况下的类型是c_str()返回的const char*类型），想要得到正确的结果，试试strlen函数吧。</p>
-
 <p>On your system, sizeof (const char <em>) == 8, like any other pointer.
 在你的系统上，sizeof(const char</em>)=8,和其他所有的指针类型一样。</p>
-
 <p>8 is the size of a pointer on your machine (64-bit)
 8是在你的64位电脑上一个指针的大小</p>
-
-<p>There&rsquo;s your problem. sizeof tells you the size of a variable,
+<p>There's your problem. sizeof tells you the size of a variable,
 别乱假设，sizeof告诉你一个变量的大小，</p>
-
 <p>which has nothing to do with the value inside the variable, ever.
 他不会进入变量里面对变量做任何改变的。。永远不会。</p>
-
 <p>问题:<a href="http://stackoverflow.com/q/10668764/764869">http://stackoverflow.com/q/10668764/764869</a></p>
 
 
@@ -438,7 +429,7 @@ Because sizeof doesn&rsquo;t give you the length of a string,
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

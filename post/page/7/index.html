@@ -48,7 +48,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -203,7 +203,7 @@
                 <span class="post-meta">
   
   
-  <i class="fas fa-calendar"></i>&nbsp;Posted on October 27, 2019
+  <i class="fas fa-calendar"></i>&nbsp;Posted on December 30, 2019
   
   
     &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;0&nbsp;minutes
@@ -235,6 +235,54 @@
         <div class="posts-list">
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2014/07/13/spring%E6%8F%AD%E7%A7%98-22%E7%AB%A0%E8%BF%88%E5%90%91spring-mvc%E7%9A%84%E6%97%85%E7%A8%8B/">
+                <h2 class="post-title">Spring揭秘-22章，迈向Spring MVC的旅程</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on July 13, 2014
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  <p>Spring揭秘-22章，迈向Spring MVC的旅程<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/spring/">spring</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2014/07/13/spring%E6%8F%AD%E7%A7%98-%E7%AC%AC13%E7%AB%A0-%E7%BB%9F%E4%B8%80%E7%9A%84%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE%E5%BC%82%E5%B8%B8%E5%B1%82%E6%AC%A1%E4%BD%93%E7%B3%BB/">
                 <h2 class="post-title">Spring揭秘-第13章 统一的数据访问异常层次体系</h2>
 
@@ -263,10 +311,16 @@
               </p>
               <div class="post-entry">
                 
-                  Spring揭秘-第13章 统一的数据访问异常层次体系  DAO可以分离数据哭的访问和存储，屏蔽各种数据访问方式的差异性，下面以访问顾客信息为例，使用DAO模式 首先定义一个数据访问对象接口，如下   public interrface ICustomerDao{ Customer findCustomerByPK(String customerId); void updateCustomerStatus(Customer customer); &nbsp;
- 之后，所有的数据访问都通过该接口进行，不论底层存储机制如何改变，DAO的实现因此会扩展，但客户端代码不需要调整   客户端要用的时候这样使用即可。   publicclassCustomerService { privateICustomerDao customerDao; publicvoid disableCustomerCampain(String customerId) { Customer customer=getCustomerDao().findCustomerByPK(customerId); customer.setCampainStatus(CampainStatus.DISABLE); getCustomerDao().updateCustomerStatus(customer); } publicICustomerDao getCustomerDao() { return customerDao; } publicvoid setCustomerDao(ICustomerDao customerDao) { this.customerDao=customerDao; } &nbsp;
-  我们只要针对不同的数据存储方式实现不同的Dao类即可。  我们开始实现具体的访问数据了。   publicCustomer findCustomerByPK(String customerId) { Connection con=null; try{ con=getDataSource().getConnection(); Customer cust=..; return cust; } catch(SQLException e){ //这里咋办，直接抛出还是直接处理？ } finally{ releaseConnection(con); } } privatevoid releaseConnection(Connection con){ } &nbsp;
-                  <a href="https://leizhiyuan.github.io/2014/07/13/spring%E6%8F%AD%E7%A7%98-%E7%AC%AC13%E7%AB%A0-%E7%BB%9F%E4%B8%80%E7%9A%84%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE%E5%BC%82%E5%B8%B8%E5%B1%82%E6%AC%A1%E4%BD%93%E7%B3%BB/" class="post-read-more">[Read More]</a>
+                  <p>Spring揭秘-第13章 统一的数据访问异常层次体系</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<ol>
+<li><code>&lt;span class=&quot;typ&quot;&gt;Customer&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt; findCustomerByPK&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;typ&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt; customerId&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;kwd&quot;&gt;throws&lt;/span&gt;&lt;span class=&quot;typ&quot;&gt;SQLExcepiton&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;;&lt;/span&gt;</code></li>
+</ol>
+<!-- raw HTML omitted -->
+
                 
               </div>
 
@@ -296,7 +350,7 @@
   <i class="fas fa-calendar"></i>&nbsp;Posted on July 13, 2014
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;0&nbsp;minutes
   
   
   
@@ -311,8 +365,8 @@
               </p>
               <div class="post-entry">
                 
-                  之前说了，IoC容器就是一个IoC Service Provider，但是容器是个啥意思？![](/images/d4d1615a6c1a06895088631c37e3fca7692f0b8a.png) 可以看到IoC容器提供了更多的内容， Spring的IoC容器又分成两种， 1.BeanFactory 。基础类型IoC容器，提供完整的IoC服务支持。如果没有特殊指定，默认采用延 迟初始化策略（lazy-load）。只有当客户端对象需要访问容器中的某个受管对象的时候，才对 该受管对象进行初始化以及依赖注入操作。所以，相对来说，容器启动初期速度较快，所需 要的资源有限。对于资源有限，并且功能要求不是很严格的场景，BeanFactory是比较合适的 IoC容器选择。  2.ApplicationContext。ApplicationContext在BeanFactory的基础上构建，是相对比较高 级的容器实现，除了拥有BeanFactory的所有支持，ApplicationContext还提供了其他高级特性，比如事件发布、国际化信息支持等，这些会在后面详述。ApplicationContext所管理 的对象，在该类型容器启动之后，默认全部初始化并绑定完成。所以，相对于BeanFactory来 说，ApplicationContext要求更多的系统资源，同时，因为在启动时就完成所有初始化，容 器启动时间较之BeanFactory也会长一些。在那些系统资源充足，并且要求更多功能的场景中， ApplicationContext类型的容器是比较合适的选择。   通过 图4-2，我们可以对BeanFactory和ApplicationContext之间的关系有一个更清晰的认识。      ![](/images/f531ea3e11bb391453eb5f763283398c938634b2.png)     Bean工长，就是生成Bean的嘛，每个业务对象被看成Javabean,我们与工厂打交道就简单得多，我们只要告诉他我要什么对象，至于怎么组装，那是他的事情。   工厂提供了一些对外的接口，比如获取Bean，渠道Bean的状态等等。 以xml为例    &lt;?xml version="1.0" encoding="UTF-8"?&gt; &lt;!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd"&gt; &lt;beans&gt; &lt;bean id="djNewsProvider" class="..FXNewsProvider"&gt; &lt;constructor-arg index="0"&gt; &lt;ref bean="djNewsListener"/&gt; &lt;/constructor-arg&gt; &lt;constructor-arg index="1"&gt; &lt;ref bean="djNewsPersister"/&gt; &lt;/constructor-arg&gt; &lt;/bean&gt; &lt;bean id="djNewsListener" class="..impl.DowJonesNewsListener"&gt; &lt;/bean&gt; &lt;bean id="
-                  <a href="https://leizhiyuan.github.io/2014/07/13/spring%E6%8F%AD%E7%A7%98-%E7%AC%AC%E5%9B%9B%E7%AB%A0beanfactory%E7%AC%94%E8%AE%B0/" class="post-read-more">[Read More]</a>
+                  <!-- raw HTML omitted -->
+
                 
               </div>
 
@@ -357,10 +411,12 @@
               </p>
               <div class="post-entry">
                 
-                  我们虽然已经通过IoC声明了相应的依赖，但是最终总要有个啥东西将这些依赖对象绑定在一起，这里而IoC Service Provider, 来啦，表示一种绑定的实现方式，可以使一段代码，也可以是一组相关的泪，甚至是框架或容器。  比如前一篇提到的 IFXNewsListener newsListener = new DowJonesNewsListener(); IFXNewsPersister newsPersister = new DowJonesNewsPersister(); FXNewsProvider newsProvider = new FXNewsProvider(newsListener,newsPersister); newsProvider.getAndPersistNews(); &nbsp;
- 就是一个容器，只不过太简单了，不适用于更多的场景，  IoC容器就是Spring提供依赖注入服务的Provider  IoC Service Provider 是干嘛？ 1.业务对象的构建管理，剥离客户端对象的构建的依赖逻辑，比如A引用B，那么A是B的客户端对象，容器需要理清这种关系。 2.业务对象之间的依赖绑定，通过1的实现， 识别各个对象的依赖关系，然后将这些对象依赖的对象注入绑定，用的时候就有了。   那你要问了，这怎么管理对象间的依赖关系呢  IoC Service Provider怎么就能完全领会代码的意图呢？他怎么记住这么多的依赖关系等等，他要这么做 1.元数据方式 2.通过描述性较强的xml来记录对应信息 3.通过编写代码的方式注册这些信息   3.直接编码方式， 明确了依赖关系 IoContainer container = &hellip;; container.register(FXNewsProvider.class,new FXNewsProvider()); container.register(IFXNewsListener.class,new DowJonesNewsListener()); &hellip; FXNewsProvider newsProvider = (FXNewsProvider)container.get(FXNewsProvider.class); newProvider.getAndPersistNews(); &nbsp;
-  2.配置文件方式  最常见的还是xml方式，  &lt;bean id=&ldquo;newsProvider&rdquo; class=&ldquo;.
-                  <a href="https://leizhiyuan.github.io/2014/07/13/spring%E6%8F%AD%E7%A7%98-%E7%AC%AC%E4%B8%89%E7%AB%A0ioc-service-provider%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="post-read-more">[Read More]</a>
+                  <p><!-- raw HTML omitted -->我们虽然已经通过IoC声明了相应的依赖，但是最终总要有个啥东西将这些依赖对象绑定在一起，这里而IoC Service Provider, 来啦，表示一种绑定的实现方式，可以使一段代码，也可以是一组相关的泪，甚至是框架或容器。<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+
                 
               </div>
 
@@ -390,7 +446,7 @@
   <i class="fas fa-calendar"></i>&nbsp;Posted on July 1, 2014
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -405,24 +461,81 @@
               </p>
               <div class="post-entry">
                 
-                  理念就是让别人为你服务，中文名控制反转，也叫依赖注入DI
-public class FXNewsProvider { private IFXNewsListener newsListener; private IFXNewsPersister newPersistener; public void getAndPersistNews() { String[] newsIds = newsListener.getAvailableNewsIds(); if(ArrayUtils.isEmpty(newsIds)) { return; } for(String newsId : newsIds) { FXNewsBean newsBean = newsListener.getNewsByPK(newsId); newPersistener.persistNews(newsBean); newsListener.postProcessIfNecessary(newsId); } } }  假设这个类用来处理新闻，
-IFXNewsListener 用来获取新闻，
-IFXNewsPersister  用来把获取的新闻持久化
-当我们需要获取不同的新闻源，比如道琼斯的新闻时，我们会写一个 DowJonesNewsListener 类和 DowJonesNewsPersister 类，然后实例化
-public FXNewsProvider()
-{
-newsListener = new DowJonesNewsListener();
-newPersistener = new DowJonesNewsPersister();
-} &nbsp;
-如果我们依赖于某个类或服务，最简单而有效的方式就是直接
-在类的构造函数中新建相应的依赖类。
-注意看， ，我们都是自己主动地去获
-取依赖的对象！
-可是回头想想，我们自己每次用到什么依赖对象都要主动地去获取，这是否真的必要？我们最终
-所要做的，其实就是直接调用依赖对象所提供的某项服务而已
-能不能我们用的时候自动送过来呢？
-                  <a href="https://leizhiyuan.github.io/2014/07/01/spring%E6%8F%AD%E7%A7%98%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC%E4%BA%8C%E7%AB%A0ioc%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" class="post-read-more">[Read More]</a>
+                  <p><!-- raw HTML omitted -->理念就是让别人为你服务，中文名控制反转，也叫依赖注入DI<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> <!-- raw HTML omitted -->假设这个类用来处理新闻，<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->IFXNewsListener <!-- raw HTML omitted --><!-- raw HTML omitted -->用来获取新闻，<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->IFXNewsPersister  <!-- raw HTML omitted --> <!-- raw HTML omitted -->用来把获取的新闻持久化<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->当我们需要获取不同的新闻源，比如道琼斯的新闻时，我们会写一个<!-- raw HTML omitted --> <!-- raw HTML omitted -->DowJonesNewsListener<!-- raw HTML omitted --> <!-- raw HTML omitted -->类和<!-- raw HTML omitted --> <!-- raw HTML omitted -->DowJonesNewsPersister<!-- raw HTML omitted --> <!-- raw HTML omitted -->类，然后实例化<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p><!-- raw HTML omitted -->如果我们依赖于某个类或服务，最简单而有效的方式就是直接<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->在类的构造函数中新建相应的依赖类。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->注意看，<!-- raw HTML omitted --> <!-- raw HTML omitted -->，我们都是自己主动地去获<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->取依赖的对象！<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->可是回头想想，我们自己每次用到什么依赖对象都要主动地去获取，这是否真的必要？我们最终<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->所要做的，其实就是直接调用依赖对象所提供的某项服务而已<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->能不能我们用的时候自动送过来呢？<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->。现在是用什么，让别人直接送过来就成。所以，简单点儿说，<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC<!-- raw HTML omitted --> <!-- raw HTML omitted -->的理念就是，<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->让别人为你服务！在图<!-- raw HTML omitted --> <!-- raw HTML omitted -->2-1<!-- raw HTML omitted --> <!-- raw HTML omitted -->中，也就是让<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->来为你服务！<!-- raw HTML omitted --></p>
+<p><img src="/images/45ddcfa8929fe85603c18852a59afac715fa4c7f.bmp" alt=""></p>
+<p><!-- raw HTML omitted -->这里，被注入对象就是<!-- raw HTML omitted --> <!-- raw HTML omitted -->FXNewsProvider<!-- raw HTML omitted --> <!-- raw HTML omitted -->，被依赖于对象<!-- raw HTML omitted --> <!-- raw HTML omitted -->IFXNewsListener<!-- raw HTML omitted --> <!-- raw HTML omitted -->和<!-- raw HTML omitted --> <!-- raw HTML omitted -->IFXNewsPersister  <!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->通常情况下，被注入对象会直接依赖于被依赖对象。但是，在<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC<!-- raw HTML omitted --> <!-- raw HTML omitted -->的场景中，二者之间通过<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->来打交道，所有的被注入对象和依赖对象现在由<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->统一管理。被注入对象需要<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->什么，直接跟<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->招呼一声，后者就会把相应的被依赖对象注入到被注入对象中，从而<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->达到<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->为被注入对象服务的目的。<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->在这里就是通常的<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC<!-- raw HTML omitted --> <!-- raw HTML omitted -->容器所充<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->当的角色。从被注入对象的角度看，与之前直接寻求依赖对象相比，依赖对象的取得方式发生了反转，<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->控制也从被注入对象转到了<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->那里<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->这里我们想知道的是？怎么跟<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->打招呼<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->在<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC<!-- raw HTML omitted --> <!-- raw HTML omitted -->模式中，被注入对象又是通过哪些方式来通知<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->为其提供适当服务的呢？三种打招呼的方式<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->，即构造方法注入（<!-- raw HTML omitted --> <!-- raw HTML omitted -->constructor<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->injection<!-- raw HTML omitted --> <!-- raw HTML omitted -->）、<!-- raw HTML omitted --> <!-- raw HTML omitted -->setter<!-- raw HTML omitted --> <!-- raw HTML omitted -->方法注入（<!-- raw HTML omitted --> <!-- raw HTML omitted -->setter injection<!-- raw HTML omitted --> <!-- raw HTML omitted -->）以及接口注入（<!-- raw HTML omitted --> <!-- raw HTML omitted -->interface injection<!-- raw HTML omitted --> <!-- raw HTML omitted -->）。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->构造方法注入：<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p> </p>
+<p><!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->会检查被注入对象的构造方法，取得它所需要的依赖对象列表，进而为其注<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->入相应的对象。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->setter方法注入<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p> </p>
+<p><!-- raw HTML omitted -->外界就可以通过调用<!-- raw HTML omitted --> <!-- raw HTML omitted -->setNewsListener<!-- raw HTML omitted --> <!-- raw HTML omitted -->和<!-- raw HTML omitted --> <!-- raw HTML omitted -->setNewPersistener<!-- raw HTML omitted --> <!-- raw HTML omitted -->方法为<!-- raw HTML omitted --> <!-- raw HTML omitted -->FXNewsProvider<!-- raw HTML omitted --> <!-- raw HTML omitted -->对<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->象注入所依赖的对象了。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->接口注入，这个基本不用了。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->接口注入<!-- raw HTML omitted --> <!-- raw HTML omitted -->。从注入方式的使用上来说，接口注入是现在不甚提倡的一种方式，基本处于&quot;退<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->役状态&rdquo;。因为它强制被注入对象实现不必要的接口，带有侵入性。而构造方法注入和<!-- raw HTML omitted --> <!-- raw HTML omitted -->setter<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->方法注入则不需要如此。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->8<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->q<!-- raw HTML omitted --> <!-- raw HTML omitted -->构造方法注入。<!-- raw HTML omitted --> <!-- raw HTML omitted -->这种注入方式的优点就是，对象在构造完成之后，即已进入就绪状态，可以 <!-- raw HTML omitted --><!-- raw HTML omitted -->9<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->马上使用。缺点就是，当依赖对象比较多的时候，构造方法的参数列表会比较长。而通过反<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->射构造对象的时候，对相同类型的参数的处理会比较困难，维护和使用上也比较麻烦。而且<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->在<!-- raw HTML omitted --> <!-- raw HTML omitted -->Java<!-- raw HTML omitted --> <!-- raw HTML omitted -->中，构造方法无法被继承，无法设置默认值。对于非必须的依赖处理，可能需要引入多<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->个构造方法，而参数数量的变动可能造成维护上的不便。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->10<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->q<!-- raw HTML omitted --> <!-- raw HTML omitted -->setter<!-- raw HTML omitted --> <!-- raw HTML omitted -->方法注入<!-- raw HTML omitted --> <!-- raw HTML omitted -->。因为方法可以命名，所以<!-- raw HTML omitted --> <!-- raw HTML omitted -->setter<!-- raw HTML omitted --> <!-- raw HTML omitted -->方法注入在描述性上要比构造方法注入好一些。 <!-- raw HTML omitted --><!-- raw HTML omitted -->11<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->另外，<!-- raw HTML omitted --> <!-- raw HTML omitted -->setter<!-- raw HTML omitted --> <!-- raw HTML omitted -->方法可以被继承，允许设置默认值，而且有良好的<!-- raw HTML omitted --> <!-- raw HTML omitted -->IDE<!-- raw HTML omitted --> <!-- raw HTML omitted -->支持。缺点当然就是对象无<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->法在构造完成后马上进入就绪状态。<!-- raw HTML omitted --> <!-- raw HTML omitted -->12<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->综上所述，构造方法注入和<!-- raw HTML omitted --> <!-- raw HTML omitted -->setter<!-- raw HTML omitted --> <!-- raw HTML omitted -->方法注入因为其侵入性较弱，且易于理解和使用，所以是现在使<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->用最多的注入方式；而接口注入因为侵入性较强，近年来已经不流行了。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->回到开头的代码<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p> </p>
+<p><!-- raw HTML omitted -->由于这里已经写死了，所以当我们添加了一个新的新闻源，比如M4网站的时候，这个对象不能用了，我们要新写一个<!-- raw HTML omitted --> <!-- raw HTML omitted -->M4<!-- raw HTML omitted --> <!-- raw HTML omitted -->NewsProvider<!-- raw HTML omitted --> <!-- raw HTML omitted -->的类，然后新写新闻获取类，然后重新实现。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->而使用了IoC之后，<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p> </p>
+<p><!-- raw HTML omitted -->我们只要实现一个<!-- raw HTML omitted --> <!-- raw HTML omitted -->MarketWin24NewsListener<!-- raw HTML omitted --> <!-- raw HTML omitted -->雷就可以，而且<!-- raw HTML omitted --> <!-- raw HTML omitted -->FXNewsProvider <!-- raw HTML omitted --><!-- raw HTML omitted -->可以重用。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->而且使用了IoC之后，单元测试变得简单，我们只有写一个Mock<!-- raw HTML omitted --> <!-- raw HTML omitted -->NewsPersister<!-- raw HTML omitted --> <!-- raw HTML omitted -->就可以来测试了。<!-- raw HTML omitted --></p>
+
                 
               </div>
 
@@ -470,24 +583,15 @@ newPersistener = new DowJonesNewsPersister();
               <div class="post-entry">
                 
                   <p>1.框架的由来</p>
-
 <p>倡导J2EE轻量级应用解决方案</p>
-
 <p>框架总结结构</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/2014/06/Spring-Framework.jpg"><img src="/images/8775d9e40dbc29240061edd2b9b6f76990f39cad.jpg" alt="Spring Framework" /></a>
+<p><a href="http://leaverimage.b0.upaiyun.com/2014/06/Spring-Framework.jpg"><img src="/images/8775d9e40dbc29240061edd2b9b6f76990f39cad.jpg" alt="Spring Framework"></a>
 整个Spring架构建立在Core核心模块上，是基础，该模块中，有一个IoC容器的实现，用来以依赖注入的方式管理对象之间的依赖关系。Core中还有一些气筒工具类，比如IO工具类</p>
-
 <p>从图中看到，AOP模块，提供了轻便二强大的AOP框架，一AOP的形式增强POJO的能力，弥补OOP/OOSD的不足，采用Proxy模式，与IoC容器相结合</p>
-
 <p>继续向上看，在Core和AOP之上，提供了完毕的数据访问和事务管理的抽象，其中，对JDBC API的最佳实践简化了API的使用，还未ORM产品提供了统一的支持，</p>
-
 <p>为了简化Java EE的服务，比如JNDI，JMS等等，Spring还提供了这些的集成服务，</p>
-
 <p>最后就是Web模块，提供了一套自己的Web MVC框架，上层模块依赖于下层模块，水平之间的模块彼此基本可以认为独立。</p>
-
 <p>Spring不仅仅是容器，更是开发任何Java应用的框架，</p>
-
 <p>Spring 框架之上衍生的产品包括不限于Spring Web Flow,Spring Web Services,Spring Security,Spring Integration，Spring Rich Client 等等等等</p>
 
                 
@@ -539,34 +643,20 @@ newPersistener = new DowJonesNewsPersister();
               <div class="post-entry">
                 
                   <p>最近工作需要，需要burpsuite抓下https的包</p>
-
 <p>burpsuite抓包https的时候，如果是https协议，火狐会不信任证书</p>
-
-<p>&nbsp;</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/2014/06/untrust.jpg"><img src="/images/14c5d2aedaa02e325fe21c03758796234ed83576.jpg" alt="untrust" /></a></p>
-
+<p> </p>
+<p><a href="http://leaverimage.b0.upaiyun.com/2014/06/untrust.jpg"><img src="/images/14c5d2aedaa02e325fe21c03758796234ed83576.jpg" alt="untrust"></a></p>
 <p>这个时候点击我已充分了解可能的风险，然后添加例外，弹出图中的对话框</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/2014/06/step.jpg"><img src="/images/4adf7f8902f07ea98a728a2d71270906208bfea6.jpg" alt="step" /></a></p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/2014/06/step.jpg"><img src="/images/4adf7f8902f07ea98a728a2d71270906208bfea6.jpg" alt="step"></a></p>
 <p>点击查看，进入证书管理企业免，选择图中的PortSwigger CA根证书，选择导出，保存一下这个证书</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/2014/06/export.jpg"><img src="/images/6e81972ac7283935e22a260f92ab4a582780eb73.jpg" alt="export" /></a></p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/2014/06/export.jpg"><img src="/images/6e81972ac7283935e22a260f92ab4a582780eb73.jpg" alt="export"></a></p>
 <p>然后打开火狐的选项，进入高级-&gt;证书-&gt;查看证书-&gt;证书机构-&gt;导入，选择刚才的证书</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/2014/06/import.jpg"><img src="/images/3e43de2ca0a2c88519035a3d39a60fb8757c4da9.jpg" alt="import" /></a></p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/2014/06/import.jpg"><img src="/images/3e43de2ca0a2c88519035a3d39a60fb8757c4da9.jpg" alt="import"></a></p>
 <p>，最后，记住选中信任此CA证书标识的网站，ok</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/2014/06/finish.jpg"><img src="/images/070d8695abea24e9e8bf11e162f12afccaa5385f.jpg" alt="finish" /></a></p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/2014/06/finish.jpg"><img src="/images/070d8695abea24e9e8bf11e162f12afccaa5385f.jpg" alt="finish"></a></p>
 <p>现在再抓包，可以看到https也抓到了。</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/2014/06/capture.jpg"><img src="/images/cf1f9324b8934ba12cab8ea0a19a530897e206e3.jpg" alt="capture" /></a></p>
-
-<p>&nbsp;</p>
+<p><a href="http://leaverimage.b0.upaiyun.com/2014/06/capture.jpg"><img src="/images/cf1f9324b8934ba12cab8ea0a19a530897e206e3.jpg" alt="capture"></a></p>
+<p> </p>
 
                 
               </div>
@@ -612,35 +702,20 @@ newPersistener = new DowJonesNewsPersister();
               </p>
               <div class="post-entry">
                 
-                  
-
-<p>以下是我在学习的时候发现的好的资料，都是非常有帮助的。</p>
-
+                  <p>以下是我在学习的时候发现的好的资料，都是非常有帮助的。</p>
 <p>如果你想知道原理，看完下面这篇就会了</p>
-
-<h2 id="藏-轻松掌握iso8583报文协议原理-http-leaver-me-archives-3663-html"><a href="http://leaver.me/archives/3663.html">[藏]轻松掌握ISO8583报文协议原理</a></h2>
-
+<h2 id="iso8583httpleavermearchives3663html"><a href="http://leaver.me/archives/3663.html">[藏]轻松掌握ISO8583报文协议原理</a></h2>
 <p>看了原理之后还想知道怎么来的。手工联系一下</p>
-
-<h2 id="谈谈8583报文的使用及测试-http-blog-sina-com-cn-s-blog-4c925dca010178pt-html"><a href="http://blog.sina.com.cn/s/blog_4c925dca010178pt.html">谈谈8583报文的使用及测试</a></h2>
-
+<h2 id="8583httpblogsinacomcnsblog-4c925dca010178pthtml"><a href="http://blog.sina.com.cn/s/blog_4c925dca010178pt.html">谈谈8583报文的使用及测试</a></h2>
 <p>这篇文章不错</p>
-
 <p>看完了想写代码了，可以看看这篇文章，基本上不能直接拿来用，但是可以参考实现</p>
-
-<h2 id="span-class-link-title-iso8583报文工具类-组装和解析报文-http-blog-csdn-net-lushuaiyin-article-details-14390725-span"><span class="link_title"><a href="http://blog.csdn.net/lushuaiyin/article/details/14390725"> ISO8583报文工具类（组装和解析报文） </a></span></h2>
-
+<h2 id="span-classlink-title-iso8583-httpblogcsdnnetlushuaiyinarticledetails14390725span"><!-- raw HTML omitted --><a href="http://blog.csdn.net/lushuaiyin/article/details/14390725"> ISO8583报文工具类（组装和解析报文） </a><!-- raw HTML omitted --></h2>
 <p>看完之后这里还有一些补充</p>
-
-<h2 id="iso-8583协议的简要说明-http-blog-sina-com-cn-s-blog-6182547f01014p02-html"><a href="http://blog.sina.com.cn/s/blog_6182547f01014p02.html">ISO-8583协议的简要说明</a></h2>
-
-<p>&nbsp;</p>
-
-<p>最后，<a href="http://www.jpos.org/这个库基本可以用来做这个事情。">http://www.jpos.org/这个库基本可以用来做这个事情。</a></p>
-
+<h2 id="iso-8583httpblogsinacomcnsblog-6182547f01014p02html"><a href="http://blog.sina.com.cn/s/blog_6182547f01014p02.html">ISO-8583协议的简要说明</a></h2>
+<p> </p>
+<p>最后，http://www.jpos.org/这个库基本可以用来做这个事情。</p>
 <p>Jimmy写了一个例子非常好，<a href="http://jimmod.com/blog/2011/07/jimmys-blog-iso-8583-tutorial-build-and-parse-iso-message-using-jpos-library/">iso-8583-tutorial-build-and-parse-iso-message-using-jpos-library</a>，至于银联的那个规范搜一下。</p>
-
-<p>&nbsp;</p>
+<p> </p>
 
                 
               </div>
@@ -688,53 +763,32 @@ newPersistener = new DowJonesNewsPersister();
               </p>
               <div class="post-entry">
                 
-                  <div id="article_content" class="article_content">
-
-感谢@<span style="font-size: 14px;"><span id="text2969839" class="javascript">[<span style="font-family: Verdana;">lysheng</span>](http://blog.csdn.net/lysheng/archive/2005/03/03/309914.aspx)<span style="font-family: Verdana;">，</span><span style="font-family: Verdana;">可惜原文已经删除了，因此全文备份。作者提到的<span style="font-size: 14px;"><span id="text2969839" class="javascript"><span style="font-family: Verdana;">“全面掌握ISO8583报文”和“符合CEN/XFS（即WOSA/XFS）规范的SP编写</span></span></span>，这两篇文章我能找到的话也会备份在本博客。</span></span></span>
-
-<span style="font-size: 14px;"><span id="text2969839" class="javascript"><span style="font-family: Verdana;">我 刚进入金融行业时，就知道了IS08583报文协议，我想可能我还没进入这个行业都已经听过了，可知ISO8583的影响力有多大了。最初刚接触它时，确 实对其中的一些细节概念不是很清晰，对有些地方比较迷惑。鉴于此，我想很多同行也必然会经历同样得阶段，所以我写下本文，以便大家能够少走一些弯路。同 时，我在网上</span><span style="font-family: Verdana;">写下我要写“全面掌握ISO8583报文”和“符合CEN/XFS（即WOSA/XFS）规范的SP编写”两篇文章时，很多人都询问我什么时候能够写出来，可知许多人是需要了解这方面的知识的，即使我时间不是很多，也得尽量将这两篇文章写出来，给需要的人提供一些参考。</span></span></span>
-
-如果单纯的讲IS08583那些字段的定义，我觉得没有什么意思，标准中已经对每个字段解释的非常详细了，如果你觉得理解英文版的ISO8583规范有些 困难，网上也有同行为我们翻译好的中文版ISO8583规范，所以我的目的是达到阅读本文后能够对ISO8583知其然，亦知其所以然，使以前基本没有接 触它的人也能够达到掌握ISO8583报文规范。<span style="font-size: 14px;">
-<span style="font-family: Verdana;">好了，我们该转入正题了。</span></span>
-
-最开始时，金融系统只有IBM这些大的公司来提供设备，象各种主机与终端等。在各个计算机设备之间，需要交换数据。我们知道数据是通过网络来传送的，而在 网络上传送的数据都是基于0或1这样的二进制数据，如果没有对数据进行编码，则这些数据没有人能够理解，属于没有用的数据。起初的X.25、SDLC以及 现在流行的TCP/IP网络协议都提供底层的通讯编码协议，它们解决了最底层的通讯问题，能够将一串字符从一个地方传送到另一个地方。但是，仅仅传送字符 串是没有太大意义的，怎样来解析字符串代表什么内容是非常重要的，否则传送一些“0123abcd”的字符串也是无用的乱码。
-
-让我们随着时光回到几十年前的某个时刻，假设我们被推到历史的舞台上，由我们来设计一个通用报文协议，来解决金融系统之间的报文交换，暂且称该协议叫做 ISO8583协议。此时，技术是在不断的前行，当初IBM一支独秀的局面好像已经不妙了，各种大小不一的公司都进入金融行业以求能有所斩获，呈一片百花 齐放的局面。我们怎样来设计一个报文协议，能够将这些如雨后春笋般出现的所有公司都纳入进来，其实也不是一件很简单的事。
-
-我们还是先一步步的来考虑吧。金融行业其实涉及到的数据内容并不是成千上万，无法统计，恰恰相反，是比较少的。我们都可以在心底数得过来，象交易类型、帐 号、帐户类型、密码、交易金额、交易手续费、日期时间、商户代码、2磁3磁数据、交易序列号等，把所有能够总结出来的都总结起来不过100个左右的数据。 那我们可以首先简单的设计ISO8583，定义128个字段，将所有能够考虑到的类似上面提到的“帐号”等金融数据类型，按照一个顺序排起来，分别对应 128个字段中的一个字段。每个数据类型占固定的长度，这个顺序和长度我们都事先定义好。这样就简单了，要发送一个报文时，就将128个字段按照顺序接起 来，然后将接起来的整串数据包发送出去。
-
-任何金融软件收到ISO8583包后，直接按照我们定义的规范解包即可，因为整个报文的128个字段从哪一位到哪一位代表什么，大家都知道，只要知道你的 数据包是ISO8583包即可，我们都已经定义好了。比如第1个字段是“交易类型”，长度为4位，第2个字段位是“帐号”，为19位等等。接收方就可以先 取4位，再取接着的19位，依次类推，直到整个数据包128个字段都解完为止。
-
-其实这种做法真是简单直接，基本上就可以满足需要了。不过我们有几个问题要思考下：
+                  <!-- raw HTML omitted -->
+<p>感谢@<!-- raw HTML omitted --><!-- raw HTML omitted --><a href="http://blog.csdn.net/lysheng/archive/2005/03/03/309914.aspx"><!-- raw HTML omitted -->lysheng<!-- raw HTML omitted --></a><!-- raw HTML omitted -->，<!-- raw HTML omitted --><!-- raw HTML omitted -->可惜原文已经删除了，因此全文备份。作者提到的<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted -->“全面掌握ISO8583报文”和“符合CEN/XFS（即WOSA/XFS）规范的SP编写<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted -->，这两篇文章我能找到的话也会备份在本博客。<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted -->我 刚进入金融行业时，就知道了IS08583报文协议，我想可能我还没进入这个行业都已经听过了，可知ISO8583的影响力有多大了。最初刚接触它时，确 实对其中的一些细节概念不是很清晰，对有些地方比较迷惑。鉴于此，我想很多同行也必然会经历同样得阶段，所以我写下本文，以便大家能够少走一些弯路。同 时，我在网上<!-- raw HTML omitted --><!-- raw HTML omitted -->写下我要写“全面掌握ISO8583报文”和“符合CEN/XFS（即WOSA/XFS）规范的SP编写”两篇文章时，很多人都询问我什么时候能够写出来，可知许多人是需要了解这方面的知识的，即使我时间不是很多，也得尽量将这两篇文章写出来，给需要的人提供一些参考。<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>如果单纯的讲IS08583那些字段的定义，我觉得没有什么意思，标准中已经对每个字段解释的非常详细了，如果你觉得理解英文版的ISO8583规范有些 困难，网上也有同行为我们翻译好的中文版ISO8583规范，所以我的目的是达到阅读本文后能够对ISO8583知其然，亦知其所以然，使以前基本没有接 触它的人也能够达到掌握ISO8583报文规范。<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->好了，我们该转入正题了。<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>最开始时，金融系统只有IBM这些大的公司来提供设备，象各种主机与终端等。在各个计算机设备之间，需要交换数据。我们知道数据是通过网络来传送的，而在 网络上传送的数据都是基于0或1这样的二进制数据，如果没有对数据进行编码，则这些数据没有人能够理解，属于没有用的数据。起初的X.25、SDLC以及 现在流行的TCP/IP网络协议都提供底层的通讯编码协议，它们解决了最底层的通讯问题，能够将一串字符从一个地方传送到另一个地方。但是，仅仅传送字符 串是没有太大意义的，怎样来解析字符串代表什么内容是非常重要的，否则传送一些“0123abcd”的字符串也是无用的乱码。</p>
+<p>让我们随着时光回到几十年前的某个时刻，假设我们被推到历史的舞台上，由我们来设计一个通用报文协议，来解决金融系统之间的报文交换，暂且称该协议叫做 ISO8583协议。此时，技术是在不断的前行，当初IBM一支独秀的局面好像已经不妙了，各种大小不一的公司都进入金融行业以求能有所斩获，呈一片百花 齐放的局面。我们怎样来设计一个报文协议，能够将这些如雨后春笋般出现的所有公司都纳入进来，其实也不是一件很简单的事。</p>
+<p>我们还是先一步步的来考虑吧。金融行业其实涉及到的数据内容并不是成千上万，无法统计，恰恰相反，是比较少的。我们都可以在心底数得过来，象交易类型、帐 号、帐户类型、密码、交易金额、交易手续费、日期时间、商户代码、2磁3磁数据、交易序列号等，把所有能够总结出来的都总结起来不过100个左右的数据。 那我们可以首先简单的设计ISO8583，定义128个字段，将所有能够考虑到的类似上面提到的“帐号”等金融数据类型，按照一个顺序排起来，分别对应 128个字段中的一个字段。每个数据类型占固定的长度，这个顺序和长度我们都事先定义好。这样就简单了，要发送一个报文时，就将128个字段按照顺序接起 来，然后将接起来的整串数据包发送出去。</p>
+<p>任何金融软件收到ISO8583包后，直接按照我们定义的规范解包即可，因为整个报文的128个字段从哪一位到哪一位代表什么，大家都知道，只要知道你的 数据包是ISO8583包即可，我们都已经定义好了。比如第1个字段是“交易类型”，长度为4位，第2个字段位是“帐号”，为19位等等。接收方就可以先 取4位，再取接着的19位，依次类推，直到整个数据包128个字段都解完为止。</p>
+<p>其实这种做法真是简单直接，基本上就可以满足需要了。不过我们有几个问题要思考下：
 1、 我怎么知道每个字段的数据类型呢，是数字还是字符？
 2、 每个传送的报文都把128个字段都传过去，那网络带宽能够承受得了，有时候我可能只需要其中5个字段，结果多收到了123个无用的字段。
-3、 如果我某些字段的长度不固定，属于变长怎么办，因为你现在解包是当作数据包每个字段都是固定的，用C语言解包时直接依靠指针取固定长度的一串字符做为一个字段。
-
-我们来一一解决这些问题。
-
-第一个问题简单，我在定义ISO8583时除了定义每个字段表示什么，还规定其内容是数字或是字符等即可。考虑可能出现的类型不过有以下几种：字母、数 字、特殊字符、年月日等时间、二进制数据。比如我对128个字段中的“商户类型”字段定义其长度是15，同时定义其类型为字母。再精细点，如果“商户类 型”里面的数据同时包括数字和字母呢？那我们就定义其类型为字母也可，为数字也可，即一个字段可以同时属于多个类型。
-
-第二个问题稍微复杂点。其本质就是如果我只传128个字段的5个字段，接收方怎么知道我传了哪几个字段给它了。要是我们把剩下的123全部填成0或其他特殊标识，标明该字段不需要使用？这种处理方法没有半点用处，没有解决网络带宽的本质问题，还是要传128个字段。
-
-换个思路，我在报文前面加上个包头，包头里面包含的信息能够让别人知道只传了5个字段。怎样设计这个包头，可以这样，我们用16个字节，即128个 bit（一个字节等于8bit）来表示128个字段中的某个字段是否存在。每个bit在计算机的二进制里面不是1就是0，如果是1就表示对应的字段在本次 报文中存在，如果是0就是不存在。这样好了，如果别人接收到了ISO8583报文，可以先根据最前面的报文头，就知道紧接着报文头后面的报文有哪些字段， 没有哪些字段了。比如，我要发送5个字段，分别属于128个字段中的第2、3、6、8、9字段，我就可以将128bit的报文头填成 011001011000000000………..，一共128个bit，后面就全是0了。注意其中第2、3、6、8、9位为1，其他都为0。
-
-有了这个128bit的报文头，我们就可以只发送需要的5个字段了。怎样组织报文？先放上这128bit，即16个字节的头，然后在头后面放2、3、6、 8、9字段，这些字段紧挨在一起，3和6之间也不需要填上4、5这两个字段了。接收方收到这个报文，它会根据128bit的报文头来解包，它自然知道把第 3个字段取出后，就直接在第3字段的后面取第6个字段，每个字段的长度在ISO8583里面都定义好了，很轻松就把数据包解出来了。
-
-这下好了，为了解决上面的第二问题，我们只是在报文中增加了16个字节的数据，就轻松搞定了，我们把这16个字节称为bit map，即位图，用来表示某个位是否存在。不过我们再稍微优化一下，考虑到很多时候报文不需要128个字段这么多，其一半64个字段都不一定能够用完。那 我可以将报文头由128bit减到64bit，只有在需要的时候才把剩下的64bit放到报文里面，这样报文长度不又少了8个字节吗？
-
-是个好主意。我们把ISO8583的128个字段中最常见的都放到前64个字段中，那我们可以将处理缩小一倍。这样我一般发送报文时只需发送64bit， 即一个字节的报文头，再加上需要的几个字段就可以了。如果有些报文用到64到128之间的字段呢？这个也好办，我把64bit报文头的第一位bit用来代 表特殊含义，如果该bit为1，则表示64bit后面跟了剩下的64bit报文头；如果第一位bit为0，则表示64bit后面没有跟剩下的64bit报 文头，直接是128个字段中的报文了。那们，接收方会判断一下报头的第一个bit是1还是0，从而知道报文头是64bit还是128bit了，就可以做相 应处理。因为报文头第二个64bit属于有时候有，所以我们叫它Extended bit map扩展位图，相应的报文头最开始的64bit我们叫它Primary bit map主位图。我们直接把扩展位图固定放到128个字段的第一个字段，而主位图每个数据包都有，就强制性放在所有128个字段的前面，并不归入128个字 段中去。
-
-第三个问题可以考虑这样解决。比如第2个字段是“帐号”，是不定长的，可能有的银行帐号是19位，有的是17位等。我们定ISO8583规范时可以规定第 2个字段是25位，这下足够将19和17的情况都包含进来，但是如果以后出现了30位的怎么办？那我们现在将字段定为100位。以后超过100位怎么办， 况且如果你只有19位的帐号，我们定义了100位，那81位的数据不是浪费了网络的带宽。看来预先定义一个我们认为比较大的位数是不太好的。
-
-我们这样，对于第2个字段“帐号”，在字段的开头加上“帐号”的长度。比如帐号是0123456789，一共10位，我们变成100123456789， 注意前面多了个10，表示后面的10位为帐号。如果你接触过COM里面的BSTR，应该对这种处理比较熟悉了。接收方收到该字段后，它知道ISO8583 规定第2个字段“帐号”是变长的，所以会先取前面的2位出来，获取其值，此时为长度，然后根据该长度值知道应该拷贝该字段后面哪几位数据，才是真正的帐 号。如果你觉得长度如果只有两位最多只能表示99位长，不太够，我们也定义可以允许前面3位都为长度的变长字段，这样就有999位长，应该够了吧。在规范 里面如果我定义某个字段的属性是“LLVAR”，你注意了，其中的LL表示长度，VAR表示后面的数据，两个LL表示两位长，最大是99，如果是三位就是 “LLLVAR”，最大是999。这样看我们定义的ISO8583规范文档时直接根据这几个字母就理解某个变长字段的意思了。
-
-该解决的几个问题到这里都解决了，我们来回顾下自己设计的ISO8583规范。其实没有什么，无非是把金融行业可能出现的数据分门别类，排好顺序，接着把 它们连接起来，组成一个报文发送出去而已。其中针对该报文的设计进行了一些优化，引入了bit map位图的概念，也算是一个不错的想法。
-
-剩下的工作就简单了，我们就直接收集金融行业可能出现的数据字段类型，分成128个字段类型，如果没有到128个这么多就先保留一些下来，另外考虑到有些人有特殊的要求，我们规定可以将128个字段中的几个字段你自己来定义其内容，也算是一种扩展了。
-
-这样，最后我们就得到了ISO8583规范的那张字段描述表了。想要详细的知道每个字段的含义直接对着表看就可以，比较简单。
-
-</div>
+3、 如果我某些字段的长度不固定，属于变长怎么办，因为你现在解包是当作数据包每个字段都是固定的，用C语言解包时直接依靠指针取固定长度的一串字符做为一个字段。</p>
+<p>我们来一一解决这些问题。</p>
+<p>第一个问题简单，我在定义ISO8583时除了定义每个字段表示什么，还规定其内容是数字或是字符等即可。考虑可能出现的类型不过有以下几种：字母、数 字、特殊字符、年月日等时间、二进制数据。比如我对128个字段中的“商户类型”字段定义其长度是15，同时定义其类型为字母。再精细点，如果“商户类 型”里面的数据同时包括数字和字母呢？那我们就定义其类型为字母也可，为数字也可，即一个字段可以同时属于多个类型。</p>
+<p>第二个问题稍微复杂点。其本质就是如果我只传128个字段的5个字段，接收方怎么知道我传了哪几个字段给它了。要是我们把剩下的123全部填成0或其他特殊标识，标明该字段不需要使用？这种处理方法没有半点用处，没有解决网络带宽的本质问题，还是要传128个字段。</p>
+<p>换个思路，我在报文前面加上个包头，包头里面包含的信息能够让别人知道只传了5个字段。怎样设计这个包头，可以这样，我们用16个字节，即128个 bit（一个字节等于8bit）来表示128个字段中的某个字段是否存在。每个bit在计算机的二进制里面不是1就是0，如果是1就表示对应的字段在本次 报文中存在，如果是0就是不存在。这样好了，如果别人接收到了ISO8583报文，可以先根据最前面的报文头，就知道紧接着报文头后面的报文有哪些字段， 没有哪些字段了。比如，我要发送5个字段，分别属于128个字段中的第2、3、6、8、9字段，我就可以将128bit的报文头填成 011001011000000000………..，一共128个bit，后面就全是0了。注意其中第2、3、6、8、9位为1，其他都为0。</p>
+<p>有了这个128bit的报文头，我们就可以只发送需要的5个字段了。怎样组织报文？先放上这128bit，即16个字节的头，然后在头后面放2、3、6、 8、9字段，这些字段紧挨在一起，3和6之间也不需要填上4、5这两个字段了。接收方收到这个报文，它会根据128bit的报文头来解包，它自然知道把第 3个字段取出后，就直接在第3字段的后面取第6个字段，每个字段的长度在ISO8583里面都定义好了，很轻松就把数据包解出来了。</p>
+<p>这下好了，为了解决上面的第二问题，我们只是在报文中增加了16个字节的数据，就轻松搞定了，我们把这16个字节称为bit map，即位图，用来表示某个位是否存在。不过我们再稍微优化一下，考虑到很多时候报文不需要128个字段这么多，其一半64个字段都不一定能够用完。那 我可以将报文头由128bit减到64bit，只有在需要的时候才把剩下的64bit放到报文里面，这样报文长度不又少了8个字节吗？</p>
+<p>是个好主意。我们把ISO8583的128个字段中最常见的都放到前64个字段中，那我们可以将处理缩小一倍。这样我一般发送报文时只需发送64bit， 即一个字节的报文头，再加上需要的几个字段就可以了。如果有些报文用到64到128之间的字段呢？这个也好办，我把64bit报文头的第一位bit用来代 表特殊含义，如果该bit为1，则表示64bit后面跟了剩下的64bit报文头；如果第一位bit为0，则表示64bit后面没有跟剩下的64bit报 文头，直接是128个字段中的报文了。那们，接收方会判断一下报头的第一个bit是1还是0，从而知道报文头是64bit还是128bit了，就可以做相 应处理。因为报文头第二个64bit属于有时候有，所以我们叫它Extended bit map扩展位图，相应的报文头最开始的64bit我们叫它Primary bit map主位图。我们直接把扩展位图固定放到128个字段的第一个字段，而主位图每个数据包都有，就强制性放在所有128个字段的前面，并不归入128个字 段中去。</p>
+<p>第三个问题可以考虑这样解决。比如第2个字段是“帐号”，是不定长的，可能有的银行帐号是19位，有的是17位等。我们定ISO8583规范时可以规定第 2个字段是25位，这下足够将19和17的情况都包含进来，但是如果以后出现了30位的怎么办？那我们现在将字段定为100位。以后超过100位怎么办， 况且如果你只有19位的帐号，我们定义了100位，那81位的数据不是浪费了网络的带宽。看来预先定义一个我们认为比较大的位数是不太好的。</p>
+<p>我们这样，对于第2个字段“帐号”，在字段的开头加上“帐号”的长度。比如帐号是0123456789，一共10位，我们变成100123456789， 注意前面多了个10，表示后面的10位为帐号。如果你接触过COM里面的BSTR，应该对这种处理比较熟悉了。接收方收到该字段后，它知道ISO8583 规定第2个字段“帐号”是变长的，所以会先取前面的2位出来，获取其值，此时为长度，然后根据该长度值知道应该拷贝该字段后面哪几位数据，才是真正的帐 号。如果你觉得长度如果只有两位最多只能表示99位长，不太够，我们也定义可以允许前面3位都为长度的变长字段，这样就有999位长，应该够了吧。在规范 里面如果我定义某个字段的属性是“LLVAR”，你注意了，其中的LL表示长度，VAR表示后面的数据，两个LL表示两位长，最大是99，如果是三位就是 “LLLVAR”，最大是999。这样看我们定义的ISO8583规范文档时直接根据这几个字母就理解某个变长字段的意思了。</p>
+<p>该解决的几个问题到这里都解决了，我们来回顾下自己设计的ISO8583规范。其实没有什么，无非是把金融行业可能出现的数据分门别类，排好顺序，接着把 它们连接起来，组成一个报文发送出去而已。其中针对该报文的设计进行了一些优化，引入了bit map位图的概念，也算是一个不错的想法。</p>
+<p>剩下的工作就简单了，我们就直接收集金融行业可能出现的数据字段类型，分成128个字段类型，如果没有到128个这么多就先保留一些下来，另外考虑到有些人有特殊的要求，我们规定可以将128个字段中的几个字段你自己来定义其内容，也算是一种扩展了。</p>
+<p>这样，最后我们就得到了ISO8583规范的那张字段描述表了。想要详细的知道每个字段的含义直接对着表看就可以，比较简单。</p>
+<!-- raw HTML omitted -->
 
                 
               </div>
@@ -782,25 +836,30 @@ newPersistener = new DowJonesNewsPersister();
               </p>
               <div class="post-entry">
                 
-                  以前我在写数据库连接的时候，都是在文件里写死的，或者一个简单地配置文件，只有一个数据库连接嘛，但是最近写一个测试工具的时候，需要很多数据库，而且有些还有分库规则，于是查找资料，完善了两个类，和xml的定义规则，分享出来。仅供参考，有任何指教请回复。不胜感谢
-首先xml的配置格式定义如下 &lt;?xml version=&ldquo;1.0&rdquo; encoding=&ldquo;UTF-8&rdquo;?&gt;
-&lt;config&gt;
-&lt;db-info&gt; &lt;id&gt;oracle-test&lt;/id&gt;
-&lt;driver-name&gt;oracle.jdbc.driver.OracleDriver&lt;/driver-name&gt;
-&lt;url&gt;jdbc:oracle:thin:@127.0.0.1:1521:test&lt;/url&gt;
-&lt;user-name&gt;admin&lt;/user-name&gt;
-&lt;password&gt;admin&lt;/password&gt;
-&lt;/db-info&gt;
-&lt;db-info&gt; &lt;id&gt;mysql-test&lt;/id&gt;
-&lt;driver-name&gt;com.mysql.jdbc.Driver&lt;/driver-name&gt;
-&lt;url&gt;jdbc:mysql://127.0.0.1:3306&lt;/url&gt;
-&lt;user-name&gt;root&lt;/user-name&gt;
-&lt;password&gt;root&lt;/password&gt;
-&lt;/db-info&gt; &lt;/config&gt; 然后我们有XmlConfigReader类，用来读取这个配置文件，并且返回对应的jdbcConfig对象。
-这个对象就是一个model类，对应xml的属性
-然后我们的DBUtil类会调用XmlConfigReader，通用的一般是传个 &lt;id&gt;mysql-test&lt;/id&gt; 值，然后XmlConfigReader来读取返回，对象，然后在DBUtil里用这个对象得知来构造连接，我添加了一个简单的方法 public static Connection getConnection(String dbId,String dbName) throws ClassNotFoundException { Connection conn = null;
-try { //新建jdbc配置类。 XmlConfigReader xcr=new XmlConfigReader(); JdbcConfig jdbcconfig = xcr.getConnection(dbId,dbName); Class.forName(jdbcconfig.getDriverName()); //取得连接对象。 conn = DriverManager.getConnection(jdbcconfig.getUrl(), jdbcconfig.getUserName(), jdbcconfig.getPassword()); } catch (ClassNotFoundException e) { // 抛出 exception e.printStackTrace(); }catch(SQLException e) { e.printStackTrace(); } return conn; }&lt;/pre&gt; 就是多传一个数据库名
-                  <a href="https://leizhiyuan.github.io/2014/04/26/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/" class="post-read-more">[Read More]</a>
+                  <p>以前我在写数据库连接的时候，都是在文件里写死的，或者一个简单地配置文件，只有一个数据库连接嘛，但是最近写一个测试工具的时候，需要很多数据库，而且有些还有分库规则，于是查找资料，完善了两个类，和xml的定义规则，分享出来。仅供参考，有任何指教请回复。不胜感谢</p>
+<p>首先xml的配置格式定义如下</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>然后我们有XmlConfigReader类，用来读取这个配置文件，并且返回对应的jdbcConfig对象。</p>
+<p>这个对象就是一个model类，对应xml的属性</p>
+<p>然后我们的DBUtil类会调用XmlConfigReader，通用的一般是传个</p>
+<!-- raw HTML omitted -->
+<p>值，然后XmlConfigReader来读取返回，对象，然后在DBUtil里用这个对象得知来构造连接，我添加了一个简单的方法</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>就是多传一个数据库名</p>
+<p>然后XmlConfigReader哩对应有这个方法</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<!-- raw HTML omitted -->
+<p>这里会有一个拼接的操作，比较简单。</p>
+<p>这几个类我打包了。由于我是用了maven做包管理，所以org.dom4j这个包自行下载了。。</p>
+<p>下载地址：<a href="http://pan.baidu.com/s/1o617RAy">http://pan.baidu.com/s/1o617RAy</a></p>
+<p> </p>
+<p> </p>
+<p> </p>
+
                 
               </div>
 
@@ -816,63 +875,6 @@ try { //新建jdbc配置类。 XmlConfigReader xcr=new XmlConfigReader(); JdbcCo
                     <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E4%BD%9C/">工作</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2014/04/26/%E8%97%8F%E5%86%8D%E8%B0%88javascript%E4%B8%AD%E7%9A%84%E9%97%AD%E5%8C%85/">
-                <h2 class="post-title">[藏]再谈JavaScript中的闭包</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on April 26, 2014
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;6&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  之前读js的时候总是感觉不清楚，近日决定重新攻读，看到这篇文章之后，我明白了某大神说的那句话，如果你不能向一个6岁的小朋友讲明白。那么这件事情你一定不明白。还有就是如果你必须理解一个闭包才会使用它，那么这个闭包设计本身就是失败的。情赏析本文。相当精彩。
-JavaScript中函数的重要性毋庸置疑。在理解了JavaScript中的函数之后，非常重要的地点就是理解我们怎样使用函数来创建闭包。一直以来，闭包都是JavaScript新手学习时的一个难点所在，它位于JavaScript函数与变量作用域交叉的一个灰色地带：
-
-本文将尽可能简单的方法讲述关于JavaScript闭包的那些事情，使用的代码也非常的简单。如果一开始就讲述闭包的概念，只会使得你更加的困惑。所以我们就从一个我们熟悉的领域开始，慢慢的向闭包的邪恶领域前进，看看我们在那里能发现什么。
-下面开始我们的冒险之旅吧！
-函数中的函数 我们要做的第一件事情是理解当你在函数中创建了函数并且从函数内部返回一个函数时究竟发生了什么。首先我们来快速的回顾一下函数。
-看下面的代码：
-&lt;span class=&#34;token keyword&#34; style=&#34;color: #0077aa;&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;calculateRectangleArea&lt;span class=&#34;token punctuation&#34; style=&#34;color: #999999;&#34;&gt;(&lt;/span&gt;&lt;/span&gt;length&lt;span class=&#34;token punctuation&#34; style=&#34;color: #999999;&#34;&gt;,&lt;/span&gt;width&lt;span class=&#34;token punctuation&#34; style=&#34;color: #999999;&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34; style=&#34;color: #999999;&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;token keyword&#34; style=&#34;color: #0077aa;&#34;&gt;return&lt;/span&gt; length&lt;span class=&#34;token operator&#34; style=&#34;color: #a67f59;&#34;&gt;*&lt;/span&gt;width&lt;span class=&#34;token punctuation&#34; style=&#34;color: #999999;&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34; style=&#34;color: #999999;&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;token keyword&#34; style=&#34;color: #0077aa;&#34;&gt;var&lt;/span&gt; roomArea &lt;span class=&#34;token operator&#34; style=&#34;color: #a67f59;&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;calculateRectangleArea&lt;span class=&#34;token punctuation&#34; style=&#34;color: #999999;&#34;&gt;(&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token number&#34; style=&#34;color: #990055;&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;token punctuation&#34; style=&#34;color: #999999;&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token number&#34; style=&#34;color: #990055;&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;token punctuation&#34; style=&#34;color: #999999;&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34; style=&#34;color: #999999;&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;alert&lt;span class=&#34;token punctuation&#34; style=&#34;color: #999999;&#34;&gt;(&lt;/span&gt;&lt;/span&gt;roomArea&lt;span class=&#34;token punctuation&#34; style=&#34;color: #999999;&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34; style=&#34;color: #999999;&#34;&gt;;&lt;/span&gt; `&lt;/pre&gt; calculateRectangleArea函数接收两个参数并且返回这两个参数的乘积。在这个例子中没我们将返回的数赋值给了变量roomArea。 当代码运行之后，roomArea变量包含了10乘10的结果，也就是100： [!
-                  <a href="https://leizhiyuan.github.io/2014/04/26/%E8%97%8F%E5%86%8D%E8%B0%88javascript%E4%B8%AD%E7%9A%84%E9%97%AD%E5%8C%85/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/javascript/">javascript</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/web/">web</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%94%B6%E8%97%8F/">收藏</a>&nbsp;
                   
                 </div>
               
@@ -942,7 +944,7 @@ JavaScript中函数的重要性毋庸置疑。在理解了JavaScript中的函数
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

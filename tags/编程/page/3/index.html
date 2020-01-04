@@ -51,7 +51,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -234,7 +234,7 @@
   <i class="fas fa-calendar"></i>&nbsp;Posted on September 30, 2012
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;3&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -249,17 +249,56 @@
               </p>
               <div class="post-entry">
                 
-                  介绍
-本文介绍并且实现了在平面文件CSV和SQL server之间的导入导出功能。使用VS2005写的。使用了.net 2.0
-本文基于前一篇文章：从CSV导入数据并存储到数据库，本文包含了新功能，比如，导出功能，在数据库创建表，批量拷贝。接下来的例子中有很多注释。
-导入
-通过ODBC驱动连接到一个CSV文件，然后把文件读到一张表了（基于前面提到的那篇文章） 使用不同的编码和不同的行分隔符（基于前文） 加载CSV文件到DataSet（基于前文） 如何显示对CSV文件的预览（基于前文） 通过SqlBulkCopy的对象向SQL server转移数据，原始数据是DataSet实例
-使用结构表，基于CSV文件，创建一个新表 使用事件来处理批量拷贝的进程 导出
-浏览SQL 数据库中的用户表 使用不同的编码和分隔符 使用SqlDataReader读取数据，使用StreamWriter转移数据到平面文件
- 使用 1. 下载工程 2. 新建一个数据库，或者使用一个存在的数据库 3. 修改软件中的数据库连接字符串，在prop.cs文件中
-public static string sqlConnString = "server=(local); database=Test_CSV_impex;Trusted_Connection=True";  运行工程  一些代码段 加载CSV到DataSet中 /* *加载CSV到DataSet. * * 如果numberOfRows parameter 是 -1, 就加载所有行, 否则就加载指定数目的行 */
-public DataSet LoadCSV(int numberOfRows) { DataSet ds = new DataSet(); try { // 创建并打开ODBC连接 string strConnString = &ldquo;Driver={Microsoft Text Driver (*.
-                  <a href="https://leizhiyuan.github.io/2012/09/30/csv%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E5%B7%A5%E5%85%B7/" class="post-read-more">[Read More]</a>
+                  <p><a href="http://leaverimage.b0.upaiyun.com/27639_o.png"><img src="/images/650890bebf13c4d041d3113af4b40fb93a2cc0c5.png" alt="" title="form1"></a>
+<strong>介绍</strong></p>
+<p>本文介绍并且实现了在平面文件CSV和SQL server之间的导入导出功能。使用VS2005写的。使用了.net 2.0</p>
+<p>本文基于前一篇文章：<a href="http://www.codeproject.com/KB/database/FinalCSVReader.aspx">从CSV导入数据并存储到数据库</a>，本文包含了新功能，比如，导出功能，在数据库创建表，批量拷贝。接下来的例子中有很多注释。</p>
+<p><strong>导入</strong></p>
+<p>通过ODBC驱动连接到一个CSV文件，然后把文件读到一张表了（基于前面提到的那篇文章）
+使用不同的编码和不同的行分隔符（基于前文）
+加载CSV文件到DataSet（基于前文）
+如何显示对CSV文件的预览（基于前文）
+通过SqlBulkCopy的对象向SQL server转移数据，原始数据是DataSet实例</p>
+<p>使用结构表，基于CSV文件，创建一个新表
+使用事件来处理批量拷贝的进程
+<strong>导出</strong></p>
+<p>浏览SQL 数据库中的用户表
+使用不同的编码和分隔符
+使用SqlDataReader读取数据，使用StreamWriter转移数据到平面文件</p>
+<p><a href="http://leaverimage.b0.upaiyun.com/27640_o.png"><img src="/images/b131fd0af27287ab9270df33d1a313ab957dfb12.png" alt="" title="form2"></a>
+使用</p>
+<ol>
+<li>下载工程</li>
+<li>新建一个数据库，或者使用一个存在的数据库</li>
+<li>修改软件中的数据库连接字符串，在prop.cs文件中</li>
+</ol>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<ol start="4">
+<li>运行工程</li>
+</ol>
+<p><strong>一些代码段</strong>
+加载CSV到DataSet中</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>通过SqlBulkCopy从ODBC连接中转移数据到数据库</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>基于结构表创建表</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>获取数据库中用户表名</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>通过StreamWriter写数据</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Demo下载
+<a href="http://pan.baidu.com/share/link?shareid=68408&amp;uk=1493685990">CSV_import_export</a>
+许可
+本文包括源代码和文件在CPOL下授权</p>
+<p>原文地址：<a href="http://www.codeproject.com/Articles/30705/C-CSV-Import-Export">C-CSV-Import-Export</a></p>
+
                 
               </div>
 
@@ -297,7 +336,7 @@ public DataSet LoadCSV(int numberOfRows) { DataSet ds = new DataSet(); try { // 
   <i class="fas fa-calendar"></i>&nbsp;Posted on September 29, 2012
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;3&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -312,17 +351,30 @@ public DataSet LoadCSV(int numberOfRows) { DataSet ds = new DataSet(); try { // 
               </p>
               <div class="post-entry">
                 
-                  介绍 使用ListViewLayoutManager 可以控制ListView/GridView列的布局 1. 固定列宽：有着固定列宽的列 2. 范围列宽：有着最小最大宽度的列 3. 比例列宽：成比例的列宽
-范围列宽可以限制列的宽度，也包括填充列的剩余可视区域。
+                  介绍 使用ListViewLayoutManager 可以控制ListView/GridView列的布局
+ 固定列宽：有着固定列宽的列 范围列宽：有着最小最大宽度的列 比例列宽：成比例的列宽  范围列宽可以限制列的宽度，也包括填充列的剩余可视区域。
 据我们了解的Html中的表格和Grid空间。比例列以一个百分比来定义列宽，以下几个因素共同确定了比例列的宽度。
  垂直ListView滚动条的可视与否 ListView控件宽度的改变 非比例列宽度的改变  本程序支持通过XAML或是后台代码来控制ListView。如果通过XAML来控制。则允许ListViewLayoutManager 被附加到一个存在的ListView控件上。
 ConverterGridColumn 类通过接口IValueConverter 提供了对象绑定。使用ImageGridViewColumn 类则允许通过DataTemplate（数据模板）将列显示成图片等。
 在 User Setting Applied中，我展示了如何固定ListViewlieder顺序和大小
 XAML中ListView/GridView布局 固定列 下面的例子展示了通过XAML使用固定列宽控制列
-&lt;ListView Name="MyListView" ctrl:ListViewLayoutManager.Enabled="true"&gt; &lt;ListView.View&gt; &lt;GridView&gt; &lt;GridViewColumn DisplayMemberBinding="{Binding Path=Name}" ctrl:FixedColumn.Width="100" Header="Name" /&gt; &lt;GridViewColumn DisplayMemberBinding="{Binding Path=City}" ctrl:FixedColumn.Width="300" Header="City" /&gt; &lt;/GridView&gt; &lt;/ListView.View&gt; &lt;/ListView&gt;  设置附加到ListView控件上的ListViewLayoutManager 的Enabled属性为True。然后FixedColumn.Width 就会阻止鼠标拖动改变列的宽度。
+设置附加到ListView控件上的ListViewLayoutManager 的Enabled属性为True。然后FixedColumn.Width 就会阻止鼠标拖动改变列的宽度。
 比例列
-下面的例子展示了使用XAML通过比例来控制列 
-&lt;GridView&gt; &lt;GridViewColumn DisplayMemberBinding=&#34;{Binding Path=Name}&#34; ctrl:ProportionalColumn.Width=&#34;1&#34; Header=&#34;Name&#34; /&gt; &lt;GridViewColumn DisplayMemberBinding=&#34;{Binding Path=City}&#34; ctrl:ProportionalColumn.Width=&#34;3&#34; Header=&#34;City&#34; /&gt; &lt;/GridView&gt; &lt;/ListView.
+下面的例子展示了使用XAML通过比例来控制列
+对比Grid控件的RowDefinition.Width 属性，ProportionalColumn.Width会计算百分比。简单来说，就是上面的例子中Name列会占到总宽度的25%，而City列占到75%。 与固定列相似。鼠标将不能改变列的宽度。
+范围列
+下面的例子展示了使用XAML通过最小/最小宽度来控制列
+第一个范围列的IsFillColumn 属性被设置为True，因此将会自动改变大小来填满剩余的空间，而如果ListView包含一个比例列的话，范围列将不会填充
+通过鼠标可以拖动范围列的宽度。鼠标指针会有一些提示。。
+组合使用
+在真实的世界里。组合使用很普遍。他们的顺序可以多种多样。
+使用后台代码控制ListView/GridView布局 定制列的效果 类ConverterGridColumn 作为一个基类，用来绑定列到独立的对象。
+列以图片展示 ImageGridColumn 作为一个基类，用来绑定列到图片
+有意思的地方 作为ListView控件的核心部件- ListViewLayoutManager 有以下的功能 阻止改变固定列和比例列的宽度 强制了范围列的范围 随着ListView控件的改变而更新列布局 随着某一列的改变而更新布局
+为了正确的接收到请求的信息，分析ListView控件的可视树是很有必要的,Thumb对象提供了列宽改变的事件。而为了正确的展示鼠标指针，PreviewMouseMove 和PreviewMouseLeftButtonDown 事件都会被处理
+当Viewport控件大小改变（ScrollChangedEventArgs.ViewportWidthChange）的时候，会触发ScrollViewer 控件的ScrollChanged 事件 通过使用DependencyPropertyDescriptor 可以追踪 GridViewColumn的宽度改变。并发出通知。
+为了可以集成进已有的系统，列数据被放置在附加属性里。使用DependencyProperty.ReadLocalValue()方法会检测当前的属性是否在同一个对象里。
+类ConverterGridViewColumn 同时使用一个简单的绑定。展示数据转换（IValueConverter接口）
                   <a href="https://leizhiyuan.github.io/2012/09/29/listview%E5%B8%83%E5%B1%80%E7%AE%A1%E7%90%86%E5%99%A8/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -363,7 +415,7 @@ XAML中ListView/GridView布局 固定列 下面的例子展示了通过XAML使�
   <i class="fas fa-calendar"></i>&nbsp;Posted on September 25, 2012
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -378,12 +430,25 @@ XAML中ListView/GridView布局 固定列 下面的例子展示了通过XAML使�
               </p>
               <div class="post-entry">
                 
-                  介绍 本文将会暂时如何仅仅使用C#来下载youtub视频，代码简单也容易理解，每个人都可以把它整合到自己的工程项目里。
-我没有使用任何第三方的库来完成这段代码，你所要做的仅仅是把两个.cs文件整合进你的项目里。
-使用代码 这个工程里有两个主要的类
-YouTubeVideoQuality Class（youtube视频质量类）
-public class YouTubeVideoQuality { /// &lt;summary&gt; /// Gets or Sets 文件名 /// &lt;/summary&gt; public string Videotitle: { get; set; } /// &lt;summary&gt; /// Gets or Sets 文件扩展 /// &lt;/summary&gt; public string Extention { get; set; } /// &lt;summary&gt; /// Gets or Sets 文件地址 /// &lt;/summary&gt; public string DownloadUrl { get; set; } /// &lt;summary&gt; /// Gets or Sets 视频地址 /// &lt;/summary&gt; public string VideoUrl { get; set; } /// &lt;summary&gt; /// Gets or Sets 文件大小 /// &lt;/summary&gt; public Size Dimension { get; set; } public override string ToString() { return Extention + "
-                  <a href="https://leizhiyuan.github.io/2012/09/25/c#%E7%BC%96%E5%86%99youtube%E4%B8%8B%E8%BD%BD%E5%99%A8/" class="post-read-more">[Read More]</a>
+                  <h3 id="heading">介绍</h3>
+<p>本文将会暂时如何仅仅使用C#来下载youtub视频，代码简单也容易理解，每个人都可以把它整合到自己的工程项目里。</p>
+<p>我没有使用任何第三方的库来完成这段代码，你所要做的仅仅是把两个.cs文件整合进你的项目里。</p>
+<h3 id="heading-1">使用代码</h3>
+<p>这个工程里有两个主要的类</p>
+<p>YouTubeVideoQuality Class（youtube视频质量类）</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>YouTubeDownloader Class(youtube下载类)</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h3 id="heading-2">有趣的地方</h3>
+<p>使用这个代码，你可以根据你的网速来选择不同品质的视频来下载</p>
+<p>许多人网速很慢他们不能在线看youtube，因为我写了这个代码帮助这些人来下载视频到他们的PC上。这样，他们就能离线看了。。</p>
+<h3 id="heading-3">许可</h3>
+<p>本文。包括源代码和文件，在CPOL下授权。</p>
+<p>原文地址：<a href="http://www.codeproject.com/Tips/323771/YouTube-Downloader-Using-Csharp-NET">YouTube-Downloader-Using-Csharp-NET</a>
+著作权声明：本文由<a href="http://leaver.me">http://leaver.me</a> 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</p>
+
                 
               </div>
 
@@ -433,36 +498,11 @@ public class YouTubeVideoQuality { /// &lt;summary&gt; /// Gets or Sets 文件�
               <div class="post-entry">
                 
                   <p>如果使用C#代码来删除文件或是文件夹。会将文件和文件夹直接删除，而不是删除到回收站。可以调用Microsoft.VisualBasic.dll提供的方法。</p>
-
 <p>首先对项目添加名为Microsoft.VisualBasic.dll的引用，然后添加命名空间</p>
-
-<pre class="lang:default decode:true " >using Microsoft.VisualBasic.FileIO;</pre> 
-
+<!-- raw HTML omitted -->
 <p>最后示例代码如下：</p>
-
-<pre class="lang:c# decode:true " >using System;
-using Microsoft.VisualBasic.FileIO;
-namespace leaver
-{
-    class Program
-    {
-
-        static void Main(string[] args)
-        {
-
-            Console.WriteLine("删除文件到回收站");
-            string filepath = "leaver.txt";
-            FileSystem.DeleteFile(filepath, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
-            Console.WriteLine("删除文件完成");
-
-            Console.WriteLine("删除文件夹到回收站");
-            string dirpath = "leaver";
-            FileSystem.DeleteDirectory(dirpath, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
-            Console.WriteLine("删除文件夹完成");
-        }
-    }
-}</pre> 
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>很简单。。就不多说了。。</p>
 
                 
@@ -516,25 +556,15 @@ namespace leaver
               <div class="post-entry">
                 
                   <p>　　在前段时间使用WCF的时候。部署到服务器上一直不得要领。出现各种问题。最终搞定。原文图很多，我给个摘要，大家还是原文看。因为原文写于2010年。自动部署工具已经更新至第3版。所以有些按钮得好好找找。不过相信对大家都不是难事。</p>
-
 <p>　　本篇文章将提供一个循序渐进的教程，教你如何在一台Web服务期上安装和启用Web Deploy。接着我们演示如何使用Visual Studio通过Web Deploy直接（将文件）发布到服务器上，以及如何使用Visual Studio创建自动部署你的应用程序的安装包。</p>
-
 <p>　　<strong>Web Deploy—为什么你会喜欢它</strong></p>
-
 <p>　　部署一个Web应用程序或站点包含好几个步骤。您通常需要：</p>
-
 <p>　　1. 拷贝文件和文件夹；</p>
-
 <p>　　2. 提供数据库结构，或许还要生成一些数据库数据；</p>
-
 <p>　　3. 在文件和文件夹上设置相应的读写和安全访问控制列表；</p>
-
 <p>　　4. 安装和配置SSL认证；</p>
-
 <p>　　5. 部署其它杂七杂八的依赖项（事件日志，GAC库，COM对象等等）。</p>
-
 <p>　　手工执行上面的步骤又累又慢又危险（因为手工部署总是容易出错）。使用自动化流程，可以让你在一台服务器上快速维护和部署应用程序，减少出错的几率，并极大加快你在应用程序上的改动放到作业服务器上的周期。</p>
-
 <p>　　去原文看看吧。<a href="http://blog.joycode.com/scottgu/archives/2010/11/03/116148.joy">使用Microsoft Web Deploy技术自动部署</a></p>
 
                 
@@ -588,23 +618,14 @@ namespace leaver
               <div class="post-entry">
                 
                   <p>　　前段时间数据库的时候，出现这个问题。一般是读到20多万条的时候。会出现这个问题。</p>
-
 <p>　　找了一下。主要是这两个问题：</p>
-
 <p>　　一、看所有open的连接是否都close了。</p>
-
 <p>　　二、如果访问量很大，加上Max   Pool   Size=512这一句，当然这是要以损失系统性能为代价的！</p>
-
 <p>　　我查了一下。数据库连接所有的open都关闭了。 max pool size也确实加上了。但是。问题依旧。。</p>
-
 <p>　　哦，还有的说在数据库连接字串中添加Connect Timeout=500，也就是设置连接超时更长一些。问题依旧。。</p>
-
 <p>　　后来看到一篇文章中说：</p>
-
 <p>　　DataReader是独占连接 的，每个DataReader都要占用一个连接。当然这个情况是偶尔出现的，所以会很长时间出现一次，因为只有同时有超过连接池最大连接数量的并发操作才 会发生。而且你加大并发数量只能暂时缓解问题。</p>
-
 <p>　　文中建议用使用dataset来读取。然后我就把读取数据中使用DataReader的地方全部用DataAdapter和DataSet来获取数据库数据，因为DataSet非独占。会将数据保存在内存中，一次连接后释放，问题解决。</p>
-
 <p>　　记录一下。</p>
 
                 
@@ -715,33 +736,17 @@ namespace leaver
               <div class="post-entry">
                 
                   <p>　　最近在使用matlab的时候。求多元函数取得最小值的时候。变量的值。于是就用到了sym符号。结果在C#中调用时总是出错。后来Google了N久发现是符号工具箱是无法编译的。。后来找到了替代方法。就是调用matlab 引擎。当然要稍微麻烦一点。因为调用引擎这种方法参数传递比较麻烦。我只想到了通过C#把需要计算的值保存到文本中。然后matlab中load进来。计算完成后 save出去。。</p>
-
 <p>　　调用matlab引擎类似于在C#中新开了一个进程。然后执行一些命令。之前需要引用Matlab Application Type Library。这是个com组件</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/25657_o.jpg"><img src="/images/b938768405ede59db17f36bdc27e700bf3cbf1dc.jpg" alt="" title="type" /></a>
+<p><a href="http://leaverimage.b0.upaiyun.com/25657_o.jpg"><img src="/images/b938768405ede59db17f36bdc27e700bf3cbf1dc.jpg" alt="" title="type"></a>
 然后在程序里使用 using语句</p>
-
-<pre class="lang:c# decode:true " >using MLApp;</pre> 
-然后就可以正常使用了。使用我试过的有两种方法
-
-<pre class="lang:default decode:true " >MLApp.MLAppClass matlab = new MLApp.MLAppClass();  
-matlab.Visible = 1;  
-string command="figure(1)";
-matlab.Execute(command);  
-matlab.Quit();</pre> 
-
+<!-- raw HTML omitted -->
+<p>然后就可以正常使用了。使用我试过的有两种方法</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>很简单。Visible设置可见性。。command表示要执行的命令。</p>
-
 <p>另一种是</p>
-
-<pre class="lang:c# decode:true " >MLApp.DIMLApp matlab = null;  
-Type matlabAppType = System.Type.GetTypeFromProgID("Matlab.Application");  
-matlab = System.Activator.CreateInstance(matlabAppType) as MLApp.DIMLApp;  
-matlab.Visible = 1;  
-string command="figure(2)";
-matlab.Execute(command);  
-matlab.Quit();</pre> 
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>不知什么原因，第一种方法我没有调用成功。第二种调用成功。欢迎讨论。</p>
 
                 
@@ -793,31 +798,11 @@ matlab.Quit();</pre>
               <div class="post-entry">
                 
                   <p>首先很简单，当然是去添加两个控件了，这里我添加了两个控件，都是label，然后我想实现的是将label1拖动到label2上的时候，label1的内容会被复制到label2上。</p>
-
-<pre class="lang:c# decode:true " > &lt;Label Content="TestDrop" 
-Height ="28" HorizontalAlignment="Left" Margin="70,35,0,0" Name ="label1" 
-VerticalAlignment="Top" MouseDown="label1_MouseDown"  /&gt;
-
-&lt;Label Content ="ToHere" Height="28" HorizontalAlignment="Left" 
-Margin ="342,107,0,0" Name="label2" VerticalAlignment="Top" AllowDrop ="True"
- Drop="tagert_drop"   /&gt;</pre> 
-
-<p>需要注意的代码是label1中的MouseDown事件。和label2中的AllowDrop =&ldquo;True&rdquo;  Drop=&ldquo;tagert_drop&rdquo;</p>
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>需要注意的代码是label1中的MouseDown事件。和label2中的AllowDrop =&quot;True&rdquo;  Drop=&quot;tagert_drop&rdquo;</p>
 <p>然后对应的处理事件</p>
-
-<pre class="lang:c# decode:true " >     private void label1_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            Label lbl = (Label )sender;
-            DragDrop.DoDragDrop(lbl, lbl.Content, DragDropEffects .Copy);
-        }
-
-        private void tagert_drop(object sender, DragEventArgs e)
-        {
-            (( Label)sender).Content = e.Data.GetData(DataFormats.Text);
-        }</pre> 
-
-<p>其他的效果可以仿照这个来做。比如拖动以后的效果可以DragDropEffects来设置。。</p>
+<!-- raw HTML omitted -->
 
                 
               </div>
@@ -869,13 +854,11 @@ Margin ="342,107,0,0" Name="label2" VerticalAlignment="Top" AllowDrop ="True"
               </p>
               <div class="post-entry">
                 
-                  <p>　　因为要用到wpf开发软件，而作为一个审美能力和制作美的能力完全不匹配的人。。需要有一个基本的主题框架来作为基础进行开发。。于是我找了找。。刚开始找的是<a href="http://www.telerik.com/这个商业库，不过这个用的不太顺手，于是还是试试DevExpress，，果断很不错，找到了破解补丁。">http://www.telerik.com/这个商业库，不过这个用的不太顺手，于是还是试试DevExpress，，果断很不错，找到了破解补丁。</a>
+                  <p>　　因为要用到wpf开发软件，而作为一个审美能力和制作美的能力完全不匹配的人。。需要有一个基本的主题框架来作为基础进行开发。。于是我找了找。。刚开始找的是http://www.telerik.com/这个商业库，不过这个用的不太顺手，于是还是试试DevExpress，，果断很不错，找到了破解补丁。
 给一个官方的Demo示例图：
-<a href="http://leaverimage.b0.upaiyun.com/25025_o.jpg"><img src="/images/5de045da9ce167999bd9e8df93580d0c93579daf.jpg" alt="" title="Demo" /></a>
+<a href="http://leaverimage.b0.upaiyun.com/25025_o.jpg"><img src="/images/5de045da9ce167999bd9e8df93580d0c93579daf.jpg" alt="" title="Demo"></a>
 安装文件：<a href="http://downloads.devexpress.com/d0577ccc-5137-4622-b397-a128d153f2aa/0.0.0.0/DXperience/2012.1/5/DXperience-12.1.5.exe">DXperience-12.1.5安装包</a></p>
-
 <p>帮助文档：<a href="http://downloads.devexpress.com/24614371-d026-41ab-89c8-b2c3769f9059/0.0.0.0/DXperience/2012.1/Help/DXperienceHelp2010-12.1.5.exe">DXperience 12.1.5 Universal 帮助文档</a>：</p>
-
 <p>破解补丁：<a href="http://pan.baidu.com/share/link?shareid=34831&amp;uk=1493685990">DevExpress.Registration.Setup.v12.1.5.E3.msi</a></p>
 
                 
@@ -960,7 +943,7 @@ Margin ="342,107,0,0" Name="label2" VerticalAlignment="Top" AllowDrop ="True"
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

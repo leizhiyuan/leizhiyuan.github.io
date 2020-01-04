@@ -10,23 +10,25 @@
   <title>第一次给Spring-Framework贡献代码 - bystander&#39;s blog</title>
   <meta property="og:title" content="第一次给Spring-Framework贡献代码" />
   <meta name="twitter:title" content="第一次给Spring-Framework贡献代码" />
-  <meta name="description" content="鲁肃说建议去看Spring框架的代码,之前其实我想看来着,不过一看到还要gradlew,换jdk就好麻烦.这次各种折腾把代码fork下来,然后安装gradlew,然后转换成eclipse支持的,期间升级了eclipse版本和jdk版本到8.否则会有个方法不支持,
+  <meta name="description" content="鲁肃说建议去看Spring框架的代码,之前其实我想看来着,不过一看到还要gradlew,换jdk就好麻烦.这次各种折腾把代码fork下来,然后安装gradlew ,然后转换成eclipse支持的,期间升级了eclipse版本和jdk版本到8.否则会有个方法不支持,
 流程很简单,先fork一下代码,然后自己改好提交上去,再去Spring框架的pull request请求一下.等大牛合并就行了.
-刚开始看测试用例,我当时看到这个方法调用了一个下线的方法.于是改了一下.提交上去之后,**sbrannen ** 回复说: &gt; while you&rsquo;re at it, why don&rsquo;t you go ahead fix the related deprecated issues in all of the test classes in spring-jdbc 于是我把spring-jbdc包下面的几个方法调用都改掉了.记得谁说过,任何事情都不是别人的事情,你发现了你就要去做,不要等着别人去做,不会就去学.于是再次修改提交,sbrannen 问我有没有签CLA,这个坑爹的网站挂了.等了几天,昨天终于ok了.今天代码已经合并.
-截图留念:
+刚开始看测试用例,我当时看到这个方法调用了一个下线的方法.于是改了一下.提交上去之后,**sbrannen ** 回复说:
+ while you&#39;re at it, why don&#39;t you go ahead fix the related deprecated issues in all of the test classes in spring-jdbc 于是我把spring-jbdc包下面的几个方法调用都改掉了.记得谁说过,任何事情都不是别人的事情,你发现了你就要去做,不要等着别人去做,不会就去学.于是再次修改提交,sbrannen 问我有没有签CLA,这个坑爹的网站挂了.等了几天,昨天终于ok了.今天代码已经合并.
+ 截图留念:
 
 https://github.com/spring-projects/spring-framework/commits?author=leizhiyuan
 今天要吃两个煎饼果子.">
-  <meta property="og:description" content="鲁肃说建议去看Spring框架的代码,之前其实我想看来着,不过一看到还要gradlew,换jdk就好麻烦.这次各种折腾把代码fork下来,然后安装gradlew,然后转换成eclipse支持的,期间升级了eclipse版本和jdk版本到8.否则会有个方法不支持,
+  <meta property="og:description" content="鲁肃说建议去看Spring框架的代码,之前其实我想看来着,不过一看到还要gradlew,换jdk就好麻烦.这次各种折腾把代码fork下来,然后安装gradlew ,然后转换成eclipse支持的,期间升级了eclipse版本和jdk版本到8.否则会有个方法不支持,
 流程很简单,先fork一下代码,然后自己改好提交上去,再去Spring框架的pull request请求一下.等大牛合并就行了.
-刚开始看测试用例,我当时看到这个方法调用了一个下线的方法.于是改了一下.提交上去之后,**sbrannen ** 回复说: &gt; while you&rsquo;re at it, why don&rsquo;t you go ahead fix the related deprecated issues in all of the test classes in spring-jdbc 于是我把spring-jbdc包下面的几个方法调用都改掉了.记得谁说过,任何事情都不是别人的事情,你发现了你就要去做,不要等着别人去做,不会就去学.于是再次修改提交,sbrannen 问我有没有签CLA,这个坑爹的网站挂了.等了几天,昨天终于ok了.今天代码已经合并.
-截图留念:
+刚开始看测试用例,我当时看到这个方法调用了一个下线的方法.于是改了一下.提交上去之后,**sbrannen ** 回复说:
+ while you&#39;re at it, why don&#39;t you go ahead fix the related deprecated issues in all of the test classes in spring-jdbc 于是我把spring-jbdc包下面的几个方法调用都改掉了.记得谁说过,任何事情都不是别人的事情,你发现了你就要去做,不要等着别人去做,不会就去学.于是再次修改提交,sbrannen 问我有没有签CLA,这个坑爹的网站挂了.等了几天,昨天终于ok了.今天代码已经合并.
+ 截图留念:
 
 https://github.com/spring-projects/spring-framework/commits?author=leizhiyuan
 今天要吃两个煎饼果子.">
-  <meta name="twitter:description" content="鲁肃说建议去看Spring框架的代码,之前其实我想看来着,不过一看到还要gradlew,换jdk就好麻烦.这次各种折腾把代码fork下来,然后安装gradlew,然后转换成eclipse支持的,期间升级了eclipse版本和jdk版本到8.否则会有个方法不支持,
+  <meta name="twitter:description" content="鲁肃说建议去看Spring框架的代码,之前其实我想看来着,不过一看到还要gradlew,换jdk就好麻烦.这次各种折腾把代码fork下来,然后安装gradlew ,然后转换成eclipse支持的,期间升级了eclipse版本和jdk版本到8.否则会有个方法不支持,
 流程很简单,先fork一下代码,然后自己改好提交上去,再去Spring框架的pull request请求一下.等大牛合并就行了.
-刚开始 …">
+刚开 …">
   <meta name="author" content="bystander"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -75,7 +77,7 @@ https://github.com/spring-projects/spring-framework/commits?author=leizhiyuan
     "name" : "bystander"
   },
   "headline": "第一次给Spring-Framework贡献代码",
-  "description" : "鲁肃说建议去看Spring框架的代码,之前其实我想看来着,不过一看到还要gradlew,换jdk就好麻烦.这次各种折腾把代码fork下来,然后安装gradlew,然后转换成eclipse支持的,期间升级了eclipse版本和jdk版本到8.否则会有个方法不支持,\n流程很简单,先fork一下代码,然后自己改好提交上去,再去Spring框架的pull request请求一下.等大牛合并就行了.\n刚开始看测试用例,我当时看到这个方法调用了一个下线的方法.于是改了一下.提交上去之后,**sbrannen ** 回复说: \x26gt; while you\x26rsquo;re at it, why don\x26rsquo;t you go ahead fix the related deprecated issues in all of the test classes in spring-jdbc 于是我把spring-jbdc包下面的几个方法调用都改掉了.记得谁说过,任何事情都不是别人的事情,你发现了你就要去做,不要等着别人去做,不会就去学.于是再次修改提交,sbrannen 问我有没有签CLA,这个坑爹的网站挂了.等了几天,昨天终于ok了.今天代码已经合并.\n截图留念:\n\nhttps:\/\/github.com\/spring-projects\/spring-framework\/commits?author=leizhiyuan\n今天要吃两个煎饼果子.",
+  "description" : "鲁肃说建议去看Spring框架的代码,之前其实我想看来着,不过一看到还要gradlew,换jdk就好麻烦.这次各种折腾把代码fork下来,然后安装gradlew ,然后转换成eclipse支持的,期间升级了eclipse版本和jdk版本到8.否则会有个方法不支持,\n流程很简单,先fork一下代码,然后自己改好提交上去,再去Spring框架的pull request请求一下.等大牛合并就行了.\n刚开始看测试用例,我当时看到这个方法调用了一个下线的方法.于是改了一下.提交上去之后,**sbrannen ** 回复说:\n while you\x27re at it, why don\x27t you go ahead fix the related deprecated issues in all of the test classes in spring-jdbc 于是我把spring-jbdc包下面的几个方法调用都改掉了.记得谁说过,任何事情都不是别人的事情,你发现了你就要去做,不要等着别人去做,不会就去学.于是再次修改提交,sbrannen 问我有没有签CLA,这个坑爹的网站挂了.等了几天,昨天终于ok了.今天代码已经合并.\n 截图留念:\n\nhttps:\/\/github.com\/spring-projects\/spring-framework\/commits?author=leizhiyuan\n今天要吃两个煎饼果子.",
   "inLanguage" : "en",
   "wordCount":  34 ,
   "datePublished" : "2014-08-21T07:46:26",
@@ -97,10 +99,11 @@ https://github.com/spring-projects/spring-framework/commits?author=leizhiyuan
 </script>
 
 <meta property="og:title" content="第一次给Spring-Framework贡献代码" />
-<meta property="og:description" content="鲁肃说建议去看Spring框架的代码,之前其实我想看来着,不过一看到还要gradlew,换jdk就好麻烦.这次各种折腾把代码fork下来,然后安装gradlew,然后转换成eclipse支持的,期间升级了eclipse版本和jdk版本到8.否则会有个方法不支持,
+<meta property="og:description" content="鲁肃说建议去看Spring框架的代码,之前其实我想看来着,不过一看到还要gradlew,换jdk就好麻烦.这次各种折腾把代码fork下来,然后安装gradlew ,然后转换成eclipse支持的,期间升级了eclipse版本和jdk版本到8.否则会有个方法不支持,
 流程很简单,先fork一下代码,然后自己改好提交上去,再去Spring框架的pull request请求一下.等大牛合并就行了.
-刚开始看测试用例,我当时看到这个方法调用了一个下线的方法.于是改了一下.提交上去之后,**sbrannen ** 回复说: &gt; while you&rsquo;re at it, why don&rsquo;t you go ahead fix the related deprecated issues in all of the test classes in spring-jdbc 于是我把spring-jbdc包下面的几个方法调用都改掉了.记得谁说过,任何事情都不是别人的事情,你发现了你就要去做,不要等着别人去做,不会就去学.于是再次修改提交,sbrannen 问我有没有签CLA,这个坑爹的网站挂了.等了几天,昨天终于ok了.今天代码已经合并.
-截图留念:
+刚开始看测试用例,我当时看到这个方法调用了一个下线的方法.于是改了一下.提交上去之后,**sbrannen ** 回复说:
+ while you&#39;re at it, why don&#39;t you go ahead fix the related deprecated issues in all of the test classes in spring-jdbc 于是我把spring-jbdc包下面的几个方法调用都改掉了.记得谁说过,任何事情都不是别人的事情,你发现了你就要去做,不要等着别人去做,不会就去学.于是再次修改提交,sbrannen 问我有没有签CLA,这个坑爹的网站挂了.等了几天,昨天终于ok了.今天代码已经合并.
+ 截图留念:
 
 https://github.com/spring-projects/spring-framework/commits?author=leizhiyuan
 今天要吃两个煎饼果子.">
@@ -110,9 +113,9 @@ https://github.com/spring-projects/spring-framework/commits?author=leizhiyuan
 <meta property="og:site_name" content="bystander&#39;s blog" />
 
   <meta name="twitter:title" content="第一次给Spring-Framework贡献代码" />
-  <meta name="twitter:description" content="鲁肃说建议去看Spring框架的代码,之前其实我想看来着,不过一看到还要gradlew,换jdk就好麻烦.这次各种折腾把代码fork下来,然后安装gradlew,然后转换成eclipse支持的,期间升级了eclipse版本和jdk版本到8.否则会有个方法不支持,
+  <meta name="twitter:description" content="鲁肃说建议去看Spring框架的代码,之前其实我想看来着,不过一看到还要gradlew,换jdk就好麻烦.这次各种折腾把代码fork下来,然后安装gradlew ,然后转换成eclipse支持的,期间升级了eclipse版本和jdk版本到8.否则会有个方法不支持,
 流程很简单,先fork一下代码,然后自己改好提交上去,再去Spring框架的pull request请求一下.等大牛合并就行了.
-刚开始 …">
+刚开 …">
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -123,7 +126,7 @@ https://github.com/spring-projects/spring-framework/commits?author=leizhiyuan
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -307,20 +310,16 @@ https://github.com/spring-projects/spring-framework/commits?author=leizhiyuan
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <p>鲁肃说建议去看Spring框架的代码,之前其实我想看来着,不过一看到还要gradlew,换jdk就好麻烦.这次各种折腾把代码fork下来,然后安装<code>gradlew</code>,然后转换成eclipse支持的,期间升级了eclipse版本和jdk版本到8.否则会有个方法不支持,</p>
-
+        <p>鲁肃说建议去看Spring框架的代码,之前其实我想看来着,不过一看到还要gradlew,换jdk就好麻烦.这次各种折腾把代码fork下来,然后安装<code>gradlew </code>,然后转换成eclipse支持的,期间升级了eclipse版本和jdk版本到8.否则会有个方法不支持,</p>
 <p>流程很简单,先fork一下代码,然后自己改好提交上去,再去Spring框架的pull request请求一下.等大牛合并就行了.</p>
-
-<p>刚开始看测试用例,我当时看到这个方法调用了一个下线的方法.于是改了一下.提交上去之后,**<a href="https://github.com/sbrannen">sbrannen</a> ** 回复说:
-&gt; while you&rsquo;re at it, why don&rsquo;t you go ahead fix the related deprecated issues in all of the test classes in <code>spring-jdbc</code>
+<p>刚开始看测试用例,我当时看到这个方法调用了一个下线的方法.于是改了一下.提交上去之后,**<a href="https://github.com/sbrannen">sbrannen</a> ** 回复说:</p>
+<blockquote>
+<p>while you're at it, why don't you go ahead fix the related deprecated issues in all of the test classes in <code>spring-jdbc</code>
 于是我把spring-jbdc包下面的几个方法调用都改掉了.记得谁说过,任何事情都不是别人的事情,你发现了你就要去做,不要等着别人去做,不会就去学.于是再次修改提交,sbrannen 问我有没有签<a href="https://support.springsource.com/spring_committer_signup.">CLA</a>,这个坑爹的网站挂了.等了几天,昨天终于ok了.今天代码已经合并.</p>
-
+</blockquote>
 <p>截图留念:</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/2014/08/spring.png"><img src="/images/56d25e223f79e6ffdb3162ac7658124363f1d82e.png" alt="spring" /></a></p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/2014/08/spring.png"><img src="/images/56d25e223f79e6ffdb3162ac7658124363f1d82e.png" alt="spring"></a></p>
 <p><a href="https://github.com/spring-projects/spring-framework/commits?author=leizhiyuan">https://github.com/spring-projects/spring-framework/commits?author=leizhiyuan</a></p>
-
 <p>今天要吃两个煎饼果子.</p>
 
 
@@ -435,7 +434,7 @@ https://github.com/spring-projects/spring-framework/commits?author=leizhiyuan
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

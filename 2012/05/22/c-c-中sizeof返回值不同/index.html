@@ -11,9 +11,15 @@
   <meta property="og:title" content="c &amp; c&#43;&#43;中sizeof返回值不同?" />
   <meta name="twitter:title" content="c &amp; c&#43;&#43;中sizeof返回值不同?" />
   <meta name="description" content="问题: A character array is defined globally and a structure with same name is defined within a function. 一个字符数组被定义为全局变量，一个相同名字的结构体被定义在一个函数内部。
-Why sizeof operator returns different values for c &amp; c&#43;&#43; ? 为什么sizeof操作符对于C和C&#43;&#43;返回了不同的值呢？ char S[13]; void fun() { struct S { int v; }; int v1 = sizeof(S); } // returns 4 in C&#43;&#43; and 13 in C 答案： Because in C&#43;&#43;, the struct you defined is named S, while in C, 因为在C&#43;&#43;中，你定义的结构体的名称是S，而在C中，">
+Why sizeof operator returns different values for c &amp; c&#43;&#43; ? 为什么sizeof操作符对于C和C&#43;&#43;返回了不同的值呢？
+答案： Because in C&#43;&#43;, the struct you defined is named S, while in C, 因为在C&#43;&#43;中，你定义的结构体的名称是S，而在C中，
+it&#39;s named struct S (which is why you often see typedef struct used in C code). 他叫做struct S（这也是为什么我们可以经常看到typedef struct 被用在C代码中）。
+In C, to refer to the struct type, you need to say struct S.">
   <meta property="og:description" content="问题: A character array is defined globally and a structure with same name is defined within a function. 一个字符数组被定义为全局变量，一个相同名字的结构体被定义在一个函数内部。
-Why sizeof operator returns different values for c &amp; c&#43;&#43; ? 为什么sizeof操作符对于C和C&#43;&#43;返回了不同的值呢？ char S[13]; void fun() { struct S { int v; }; int v1 = sizeof(S); } // returns 4 in C&#43;&#43; and 13 in C 答案： Because in C&#43;&#43;, the struct you defined is named S, while in C, 因为在C&#43;&#43;中，你定义的结构体的名称是S，而在C中，">
+Why sizeof operator returns different values for c &amp; c&#43;&#43; ? 为什么sizeof操作符对于C和C&#43;&#43;返回了不同的值呢？
+答案： Because in C&#43;&#43;, the struct you defined is named S, while in C, 因为在C&#43;&#43;中，你定义的结构体的名称是S，而在C中，
+it&#39;s named struct S (which is why you often see typedef struct used in C code). 他叫做struct S（这也是为什么我们可以经常看到typedef struct 被用在C代码中）。
+In C, to refer to the struct type, you need to say struct S.">
   <meta name="twitter:description" content="问题: A character array is defined globally and a structure with same name is defined within a function. 一个字符数组被定义为全局变量，一个相同名字的结构体被定义在一个函数内部。
 Why sizeof operator returns different values for c &amp; c&#43;&#43; …">
   <meta name="author" content="bystander"/><script type="application/ld+json">
@@ -64,9 +70,9 @@ Why sizeof operator returns different values for c &amp; c&#43;&#43; …">
     "name" : "bystander"
   },
   "headline": "c \x26 c\x2b\x2b中sizeof返回值不同?",
-  "description" : "问题: A character array is defined globally and a structure with same name is defined within a function. 一个字符数组被定义为全局变量，一个相同名字的结构体被定义在一个函数内部。\nWhy sizeof operator returns different values for c \x26amp; c\x2b\x2b ? 为什么sizeof操作符对于C和C\x2b\x2b返回了不同的值呢？ char S[13]; void fun() { struct S { int v; }; int v1 = sizeof(S); } \/\/ returns 4 in C\x2b\x2b and 13 in C 答案： Because in C\x2b\x2b, the struct you defined is named S, while in C, 因为在C\x2b\x2b中，你定义的结构体的名称是S，而在C中，",
+  "description" : "问题: A character array is defined globally and a structure with same name is defined within a function. 一个字符数组被定义为全局变量，一个相同名字的结构体被定义在一个函数内部。\nWhy sizeof operator returns different values for c \x26amp; c\x2b\x2b ? 为什么sizeof操作符对于C和C\x2b\x2b返回了不同的值呢？\n答案： Because in C\x2b\x2b, the struct you defined is named S, while in C, 因为在C\x2b\x2b中，你定义的结构体的名称是S，而在C中，\nit\x27s named struct S (which is why you often see typedef struct used in C code). 他叫做struct S（这也是为什么我们可以经常看到typedef struct 被用在C代码中）。\nIn C, to refer to the struct type, you need to say struct S.",
   "inLanguage" : "en",
-  "wordCount":  163 ,
+  "wordCount":  120 ,
   "datePublished" : "2012-05-22T11:28:27",
   "dateModified" : "2012-05-22T11:28:27",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -87,7 +93,10 @@ Why sizeof operator returns different values for c &amp; c&#43;&#43; …">
 
 <meta property="og:title" content="c &amp; c&#43;&#43;中sizeof返回值不同?" />
 <meta property="og:description" content="问题: A character array is defined globally and a structure with same name is defined within a function. 一个字符数组被定义为全局变量，一个相同名字的结构体被定义在一个函数内部。
-Why sizeof operator returns different values for c &amp; c&#43;&#43; ? 为什么sizeof操作符对于C和C&#43;&#43;返回了不同的值呢？ char S[13]; void fun() { struct S { int v; }; int v1 = sizeof(S); } // returns 4 in C&#43;&#43; and 13 in C 答案： Because in C&#43;&#43;, the struct you defined is named S, while in C, 因为在C&#43;&#43;中，你定义的结构体的名称是S，而在C中，">
+Why sizeof operator returns different values for c &amp; c&#43;&#43; ? 为什么sizeof操作符对于C和C&#43;&#43;返回了不同的值呢？
+答案： Because in C&#43;&#43;, the struct you defined is named S, while in C, 因为在C&#43;&#43;中，你定义的结构体的名称是S，而在C中，
+it&#39;s named struct S (which is why you often see typedef struct used in C code). 他叫做struct S（这也是为什么我们可以经常看到typedef struct 被用在C代码中）。
+In C, to refer to the struct type, you need to say struct S.">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2012/05/22/c-c-%E4%B8%ADsizeof%E8%BF%94%E5%9B%9E%E5%80%BC%E4%B8%8D%E5%90%8C/" />
 <meta property="og:type" content="website" />
@@ -106,7 +115,7 @@ Why sizeof operator returns different values for c &amp; c&#43;&#43; …">
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -293,46 +302,23 @@ Why sizeof operator returns different values for c &amp; c&#43;&#43; …">
         <p>问题:
 A character array is defined globally and a structure with same name is defined within a function.
 一个字符数组被定义为全局变量，一个相同名字的结构体被定义在一个函数内部。</p>
-
 <p>Why sizeof operator returns different values for c &amp; c++ ?
-为什么sizeof操作符对于C和C++返回了不同的值呢？
-<pre lang="c">char S[13];
-void fun()
-{
-    struct S
-    {
-        int v;
-    };
-    int v1 = sizeof(S);
-}
-// returns 4 in C++ and 13 in C</pre>
-答案：
+为什么sizeof操作符对于C和C++返回了不同的值呢？</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>答案：
 Because in C++, the struct you defined is named S, while in C,
 因为在C++中，你定义的结构体的名称是S，而在C中，</p>
-
-<p>it&rsquo;s named struct S (which is why you often see typedef struct used in C code).
+<p>it's named struct S (which is why you often see typedef struct used in C code).
 他叫做struct S（这也是为什么我们可以经常看到typedef struct 被用在C代码中）。</p>
-
 <p>In C, to refer to the struct type, you need to say struct S. Therefore, sizeof(S) refers to the array.
 在C中，引用一个结构类型的时候，你必须说struct S，因此，sizeof（S）调用的是数组S。</p>
-
 <p>In C++, struct is unnecessary. So the local S hides the global S.
 在C++中，struct这个字不是必需的，所以局部变量S隐藏了全局变量S。</p>
-
 <p>If you were to change the code to the following, you would get the expected results:
-如果你把代码改成下面的样子，你就能得到你期望的结果了。
-<pre lang="c">
-char S[13];
-void fun()
-{
-    typedef struct _S
-    {
-        int v;
-    } S;
-    int v1 = sizeof(S);
-}
-</pre></p>
-
+如果你把代码改成下面的样子，你就能得到你期望的结果了。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>原文:<a href="http://stackoverflow.com/q/10670261/764869">http://stackoverflow.com/q/10670261/764869</a></p>
 
 
@@ -451,7 +437,7 @@ void fun()
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

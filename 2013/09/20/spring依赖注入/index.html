@@ -15,42 +15,34 @@
 2)constructor注入(构造器)
 1.Setter注入 是最流行最简单的DI方法，通过一个setter方法来完成依赖。
 例子：
-一个有一个setter方法的Helper类 package com.mkyong.output;
-import com.mkyong.output.IOutputGenerator;
-public class OutputHelper { IOutputGenerator outputGenerator;
-public void setOutputGenerator(IOutputGenerator outputGenerator){ this.outputGenerator = outputGenerator; } } 再写一个bean配合iwenjianshengming这些bean，并且通过property(属性)标签来设置依赖 &lt;beans xmlns=&ldquo;http://www.springframework.org/schema/beans&quot; xmlns:xsi=&ldquo;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&ldquo;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd&quot;&gt;
-&amp;lt;bean id=&#34;OutputHelper&#34; class=&#34;com.mkyong.output.OutputHelper&#34;&amp;gt; &amp;lt;property name=&#34;outputGenerator&#34;&amp;gt; &amp;lt;ref bean=&#34;CsvOutputGenerator&#34; /&amp;gt; &amp;lt;/property&amp;gt; &amp;lt;/bean&amp;gt; &lt;bean id=&ldquo;CsvOutputGenerator&rdquo; class=&ldquo;com.mkyong.output.impl.CsvOutputGenerator&rdquo; /&gt; &lt;bean id=&ldquo;JsonOutputGenerator&rdquo; class=&ldquo;com.mkyong.output.impl.JsonOutputGenerator&rdquo; /&gt;
-&lt;/beans&gt; 看到了把。我们只需要一个setter方法把CsvOutputGenerator注入进去就行了
+一个有一个setter方法的Helper类
+再写一个bean配合iwenjianshengming这些bean，并且通过property(属性)标签来设置依赖
+看到了把。我们只需要一个setter方法把CsvOutputGenerator注入进去就行了
 2.Constructor注入 这种方式是通过一个构造函数来完成依赖设置的
 例子：
-一个有着一个构造函数的Helper类 package com.mkyong.output;
-import com.mkyong.output.IOutputGenerator;
-public class OutputHelper { IOutputGenerator outputGenerator;
-OutputHelper(IOutputGenerator outputGenerator){ this.outputGenerator = outputGenerator; } } 然后当然是一个bean配置文件了。通过constructor-arg标签来写依赖 &lt;beans xmlns=&ldquo;http://www.">
+一个有着一个构造函数的Helper类
+然后当然是一个bean配置文件了。通过constructor-arg标签来写依赖
+该选哪个？ 没有硬性规定，哪个合适就用那个，由于setter的简单性，一般还是setter用得多。">
   <meta property="og:description" content="在Spring框架中，依赖注入设计模式主要用来定义对象之间的依赖，存在两种主要类型
 1)setter注入(设置器)
 2)constructor注入(构造器)
 1.Setter注入 是最流行最简单的DI方法，通过一个setter方法来完成依赖。
 例子：
-一个有一个setter方法的Helper类 package com.mkyong.output;
-import com.mkyong.output.IOutputGenerator;
-public class OutputHelper { IOutputGenerator outputGenerator;
-public void setOutputGenerator(IOutputGenerator outputGenerator){ this.outputGenerator = outputGenerator; } } 再写一个bean配合iwenjianshengming这些bean，并且通过property(属性)标签来设置依赖 &lt;beans xmlns=&ldquo;http://www.springframework.org/schema/beans&quot; xmlns:xsi=&ldquo;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&ldquo;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd&quot;&gt;
-&amp;lt;bean id=&#34;OutputHelper&#34; class=&#34;com.mkyong.output.OutputHelper&#34;&amp;gt; &amp;lt;property name=&#34;outputGenerator&#34;&amp;gt; &amp;lt;ref bean=&#34;CsvOutputGenerator&#34; /&amp;gt; &amp;lt;/property&amp;gt; &amp;lt;/bean&amp;gt; &lt;bean id=&ldquo;CsvOutputGenerator&rdquo; class=&ldquo;com.mkyong.output.impl.CsvOutputGenerator&rdquo; /&gt; &lt;bean id=&ldquo;JsonOutputGenerator&rdquo; class=&ldquo;com.mkyong.output.impl.JsonOutputGenerator&rdquo; /&gt;
-&lt;/beans&gt; 看到了把。我们只需要一个setter方法把CsvOutputGenerator注入进去就行了
+一个有一个setter方法的Helper类
+再写一个bean配合iwenjianshengming这些bean，并且通过property(属性)标签来设置依赖
+看到了把。我们只需要一个setter方法把CsvOutputGenerator注入进去就行了
 2.Constructor注入 这种方式是通过一个构造函数来完成依赖设置的
 例子：
-一个有着一个构造函数的Helper类 package com.mkyong.output;
-import com.mkyong.output.IOutputGenerator;
-public class OutputHelper { IOutputGenerator outputGenerator;
-OutputHelper(IOutputGenerator outputGenerator){ this.outputGenerator = outputGenerator; } } 然后当然是一个bean配置文件了。通过constructor-arg标签来写依赖 &lt;beans xmlns=&ldquo;http://www.">
+一个有着一个构造函数的Helper类
+然后当然是一个bean配置文件了。通过constructor-arg标签来写依赖
+该选哪个？ 没有硬性规定，哪个合适就用那个，由于setter的简单性，一般还是setter用得多。">
   <meta name="twitter:description" content="在Spring框架中，依赖注入设计模式主要用来定义对象之间的依赖，存在两种主要类型
 1)setter注入(设置器)
 2)constructor注入(构造器)
 1.Setter注入 是最流行最简单的DI方法，通过一个setter方法来完成依赖。
 例子：
-一个有一个setter方法的Helper类 package com.mkyong.output;
-import …">
+一个有一个setter方法的Helper类
+再写一个bean配合iwenjianshengming这些bean，并且通过property(属性)标签 …">
   <meta name="author" content="bystander"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -99,9 +91,9 @@ import …">
     "name" : "bystander"
   },
   "headline": "Spring依赖注入",
-  "description" : "在Spring框架中，依赖注入设计模式主要用来定义对象之间的依赖，存在两种主要类型\n1)setter注入(设置器)\n2)constructor注入(构造器)\n1.Setter注入 是最流行最简单的DI方法，通过一个setter方法来完成依赖。\n例子：\n一个有一个setter方法的Helper类 package com.mkyong.output;\nimport com.mkyong.output.IOutputGenerator;\npublic class OutputHelper { IOutputGenerator outputGenerator;\npublic void setOutputGenerator(IOutputGenerator outputGenerator){ this.outputGenerator = outputGenerator; } } 再写一个bean配合iwenjianshengming这些bean，并且通过property(属性)标签来设置依赖 \x26lt;beans xmlns=\x26ldquo;http:\/\/www.springframework.org\/schema\/beans\x26quot; xmlns:xsi=\x26ldquo;http:\/\/www.w3.org\/2001\/XMLSchema-instance\x26quot; xsi:schemaLocation=\x26ldquo;http:\/\/www.springframework.org\/schema\/beans http:\/\/www.springframework.org\/schema\/beans\/spring-beans-2.5.xsd\x26quot;\x26gt;\n\x26amp;lt;bean id=\x26#34;OutputHelper\x26#34; class=\x26#34;com.mkyong.output.OutputHelper\x26#34;\x26amp;gt; \x26amp;lt;property name=\x26#34;outputGenerator\x26#34;\x26amp;gt; \x26amp;lt;ref bean=\x26#34;CsvOutputGenerator\x26#34; \/\x26amp;gt; \x26amp;lt;\/property\x26amp;gt; \x26amp;lt;\/bean\x26amp;gt; \x26lt;bean id=\x26ldquo;CsvOutputGenerator\x26rdquo; class=\x26ldquo;com.mkyong.output.impl.CsvOutputGenerator\x26rdquo; \/\x26gt; \x26lt;bean id=\x26ldquo;JsonOutputGenerator\x26rdquo; class=\x26ldquo;com.mkyong.output.impl.JsonOutputGenerator\x26rdquo; \/\x26gt;\n\x26lt;\/beans\x26gt; 看到了把。我们只需要一个setter方法把CsvOutputGenerator注入进去就行了\n2.Constructor注入 这种方式是通过一个构造函数来完成依赖设置的\n例子：\n一个有着一个构造函数的Helper类 package com.mkyong.output;\nimport com.mkyong.output.IOutputGenerator;\npublic class OutputHelper { IOutputGenerator outputGenerator;\nOutputHelper(IOutputGenerator outputGenerator){ this.outputGenerator = outputGenerator; } } 然后当然是一个bean配置文件了。通过constructor-arg标签来写依赖 \x26lt;beans xmlns=\x26ldquo;http:\/\/www.",
+  "description" : "在Spring框架中，依赖注入设计模式主要用来定义对象之间的依赖，存在两种主要类型\n1)setter注入(设置器)\n2)constructor注入(构造器)\n1.Setter注入 是最流行最简单的DI方法，通过一个setter方法来完成依赖。\n例子：\n一个有一个setter方法的Helper类\n再写一个bean配合iwenjianshengming这些bean，并且通过property(属性)标签来设置依赖\n看到了把。我们只需要一个setter方法把CsvOutputGenerator注入进去就行了\n2.Constructor注入 这种方式是通过一个构造函数来完成依赖设置的\n例子：\n一个有着一个构造函数的Helper类\n然后当然是一个bean配置文件了。通过constructor-arg标签来写依赖\n该选哪个？ 没有硬性规定，哪个合适就用那个，由于setter的简单性，一般还是setter用得多。",
   "inLanguage" : "en",
-  "wordCount":  99 ,
+  "wordCount":  16 ,
   "datePublished" : "2013-09-20T19:06:00",
   "dateModified" : "2013-09-20T19:06:00",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -126,18 +118,14 @@ import …">
 2)constructor注入(构造器)
 1.Setter注入 是最流行最简单的DI方法，通过一个setter方法来完成依赖。
 例子：
-一个有一个setter方法的Helper类 package com.mkyong.output;
-import com.mkyong.output.IOutputGenerator;
-public class OutputHelper { IOutputGenerator outputGenerator;
-public void setOutputGenerator(IOutputGenerator outputGenerator){ this.outputGenerator = outputGenerator; } } 再写一个bean配合iwenjianshengming这些bean，并且通过property(属性)标签来设置依赖 &lt;beans xmlns=&ldquo;http://www.springframework.org/schema/beans&quot; xmlns:xsi=&ldquo;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&ldquo;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd&quot;&gt;
-&amp;lt;bean id=&#34;OutputHelper&#34; class=&#34;com.mkyong.output.OutputHelper&#34;&amp;gt; &amp;lt;property name=&#34;outputGenerator&#34;&amp;gt; &amp;lt;ref bean=&#34;CsvOutputGenerator&#34; /&amp;gt; &amp;lt;/property&amp;gt; &amp;lt;/bean&amp;gt; &lt;bean id=&ldquo;CsvOutputGenerator&rdquo; class=&ldquo;com.mkyong.output.impl.CsvOutputGenerator&rdquo; /&gt; &lt;bean id=&ldquo;JsonOutputGenerator&rdquo; class=&ldquo;com.mkyong.output.impl.JsonOutputGenerator&rdquo; /&gt;
-&lt;/beans&gt; 看到了把。我们只需要一个setter方法把CsvOutputGenerator注入进去就行了
+一个有一个setter方法的Helper类
+再写一个bean配合iwenjianshengming这些bean，并且通过property(属性)标签来设置依赖
+看到了把。我们只需要一个setter方法把CsvOutputGenerator注入进去就行了
 2.Constructor注入 这种方式是通过一个构造函数来完成依赖设置的
 例子：
-一个有着一个构造函数的Helper类 package com.mkyong.output;
-import com.mkyong.output.IOutputGenerator;
-public class OutputHelper { IOutputGenerator outputGenerator;
-OutputHelper(IOutputGenerator outputGenerator){ this.outputGenerator = outputGenerator; } } 然后当然是一个bean配置文件了。通过constructor-arg标签来写依赖 &lt;beans xmlns=&ldquo;http://www.">
+一个有着一个构造函数的Helper类
+然后当然是一个bean配置文件了。通过constructor-arg标签来写依赖
+该选哪个？ 没有硬性规定，哪个合适就用那个，由于setter的简单性，一般还是setter用得多。">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2013/09/20/spring%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/" />
 <meta property="og:type" content="website" />
@@ -149,8 +137,8 @@ OutputHelper(IOutputGenerator outputGenerator){ this.outputGenerator = outputGen
 2)constructor注入(构造器)
 1.Setter注入 是最流行最简单的DI方法，通过一个setter方法来完成依赖。
 例子：
-一个有一个setter方法的Helper类 package com.mkyong.output;
-import …">
+一个有一个setter方法的Helper类
+再写一个bean配合iwenjianshengming这些bean，并且通过property(属性)标签 …">
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -161,7 +149,7 @@ import …">
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -345,82 +333,29 @@ import …">
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        
-
-<p>在Spring框架中，依赖注入设计模式主要用来定义对象之间的依赖，存在两种主要类型</p>
-
+        <p>在Spring框架中，依赖注入设计模式主要用来定义对象之间的依赖，存在两种主要类型</p>
 <p>1)setter注入(设置器)</p>
-
 <p>2)constructor注入(构造器)</p>
-
-<h2 id="1-setter注入">1.Setter注入</h2>
-
+<h2 id="1setter">1.Setter注入</h2>
 <p>是最流行最简单的DI方法，通过一个setter方法来完成依赖。</p>
-
 <p>例子：</p>
-
-<p>一个有一个setter方法的Helper类
-<pre class="lang:default decode:true">package com.mkyong.output;</p>
-
-<p>import com.mkyong.output.IOutputGenerator;</p>
-
-<p>public class OutputHelper
-{
-    IOutputGenerator outputGenerator;</p>
-<div class="highlight"><pre class="chroma">public void setOutputGenerator(IOutputGenerator outputGenerator){
-    this.outputGenerator = outputGenerator;
-}</pre></div>
-<p>}</pre>
-再写一个bean配合iwenjianshengming这些bean，并且通过property(属性)标签来设置依赖
-<pre class="lang:default decode:true">&lt;beans xmlns=&ldquo;<a href="http://www.springframework.org/schema/beans&quot;">http://www.springframework.org/schema/beans&quot;</a>
-xmlns:xsi=&ldquo;<a href="http://www.w3.org/2001/XMLSchema-instance&quot;">http://www.w3.org/2001/XMLSchema-instance&quot;</a>
-xsi:schemaLocation=&ldquo;<a href="http://www.springframework.org/schema/beans">http://www.springframework.org/schema/beans</a>
-<a href="http://www.springframework.org/schema/beans/spring-beans-2.5.xsd&quot;&gt;">http://www.springframework.org/schema/beans/spring-beans-2.5.xsd&quot;&gt;</a></p>
-<div class="highlight"><pre class="chroma">&amp;lt;bean id=&#34;OutputHelper&#34; class=&#34;com.mkyong.output.OutputHelper&#34;&amp;gt;
-    &amp;lt;property name=&#34;outputGenerator&#34;&amp;gt;
-        &amp;lt;ref bean=&#34;CsvOutputGenerator&#34; /&amp;gt;
-    &amp;lt;/property&amp;gt;
-&amp;lt;/bean&amp;gt;</pre></div>
-<p>&lt;bean id=&ldquo;CsvOutputGenerator&rdquo; class=&ldquo;com.mkyong.output.impl.CsvOutputGenerator&rdquo; /&gt;
-&lt;bean id=&ldquo;JsonOutputGenerator&rdquo; class=&ldquo;com.mkyong.output.impl.JsonOutputGenerator&rdquo; /&gt;</p>
-
-<p>&lt;/beans&gt;</pre>
-看到了把。我们只需要一个setter方法把CsvOutputGenerator注入进去就行了</p>
-
-<h2 id="2-constructor注入">2.Constructor注入</h2>
-
+<p>一个有一个setter方法的Helper类</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>再写一个bean配合iwenjianshengming这些bean，并且通过property(属性)标签来设置依赖</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>看到了把。我们只需要一个setter方法把CsvOutputGenerator注入进去就行了</p>
+<h2 id="2constructor">2.Constructor注入</h2>
 <p>这种方式是通过一个构造函数来完成依赖设置的</p>
-
 <p>例子：</p>
-
-<p>一个有着一个构造函数的Helper类
-<pre class="lang:default decode:true">package com.mkyong.output;</p>
-
-<p>import com.mkyong.output.IOutputGenerator;</p>
-
-<p>public class OutputHelper
-{
-    IOutputGenerator outputGenerator;</p>
-<div class="highlight"><pre class="chroma">    OutputHelper(IOutputGenerator outputGenerator){
-    this.outputGenerator = outputGenerator;
-}</pre></div>
-<p>}</pre>
-然后当然是一个bean配置文件了。通过constructor-arg标签来写依赖
-<pre class="lang:default decode:true">&lt;beans xmlns=&ldquo;<a href="http://www.springframework.org/schema/beans&quot;">http://www.springframework.org/schema/beans&quot;</a>
-xmlns:xsi=&ldquo;<a href="http://www.w3.org/2001/XMLSchema-instance&quot;">http://www.w3.org/2001/XMLSchema-instance&quot;</a>
-xsi:schemaLocation=&ldquo;<a href="http://www.springframework.org/schema/beans">http://www.springframework.org/schema/beans</a>
-<a href="http://www.springframework.org/schema/beans/spring-beans-2.5.xsd&quot;&gt;">http://www.springframework.org/schema/beans/spring-beans-2.5.xsd&quot;&gt;</a></p>
-<div class="highlight"><pre class="chroma">&amp;lt;bean id=&#34;OutputHelper&#34; class=&#34;com.mkyong.output.OutputHelper&#34;&amp;gt;
-    &amp;lt;constructor-arg&amp;gt;
-                 &amp;lt;ref bean=&#34;JsonOutputGenerator&#34; /&amp;gt;
-             &amp;lt;/constructor-arg&amp;gt; 
-   &amp;lt;/bean&amp;gt; 
-   &amp;lt;bean id=&#34;CsvOutputGenerator&#34; class=&#34;com.mkyong.output.impl.CsvOutputGenerator&#34; /&amp;gt; 
-   &amp;lt;bean id=&#34;JsonOutputGenerator&#34; class=&#34;com.mkyong.output.impl.JsonOutputGenerator&#34; /&amp;gt; </pre></div>
-<p>&lt;/beans&gt;</pre></p>
-
-<h2 id="该选哪个">该选哪个？</h2>
-
+<p>一个有着一个构造函数的Helper类</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>然后当然是一个bean配置文件了。通过constructor-arg标签来写依赖</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="heading">该选哪个？</h2>
 <p>没有硬性规定，哪个合适就用那个，由于setter的简单性，一般还是setter用得多。</p>
 
 
@@ -537,7 +472,7 @@ xsi:schemaLocation=&ldquo;<a href="http://www.springframework.org/schema/beans">
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

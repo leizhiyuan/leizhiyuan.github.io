@@ -75,7 +75,7 @@ sudo ln -s /Library/Developer/CommandLineTools/Library/Perl/5.18/darwin-thread-m
       <pubDate>Sun, 12 Jul 2015 19:36:22 +0000</pubDate>
       
       <guid>https://leizhiyuan.github.io/2015/07/12/%E6%89%A7%E8%A1%8C%E7%AE%80%E5%8D%95sql%E7%9A%84%E5%B0%8F%E5%B7%A5%E5%85%B7/</guid>
-      <description> 工作过程中,有时候需要在本地执行一些简单的sql,但是不想下载太大的mysql这类客户端.恰好看到https://code.google.com/p/java-ascii-table/,完美辅助,于是写个了简单的工具.应该是支持sqlserver,oracle,和mysql的.mysql的测试了.其他的没有测试.还要继续完善.已经放在了github上.
+      <description>工作过程中,有时候需要在本地执行一些简单的sql,但是不想下载太大的mysql这类客户端.恰好看到https://code.google.com/p/java-ascii-table/,完美辅助,于是写个了简单的工具.应该是支持sqlserver,oracle,和mysql的.mysql的测试了.其他的没有测试.还要继续完善.已经放在了github上.
 代码很简单.就不贴了.
 使用说明 先打包,然后https://github.com/leizhiyuan/sqlclient/blob/master/README.md 根据不同的情况写几个简单的bat就可以了.
  mysql java -jar sqlclient.jar -u &amp;quot;jdbc:mysql://localhost:3306/mysql&amp;quot; -n &amp;quot;name&amp;quot; -p &amp;quot;pass&amp;quot; -d &amp;quot;com.mysql.jdbc.Driver&amp;quot; oracle java -jar sqlclient.jar -u &amp;quot;jdbc:oracle:thin:@127.0.0.1:1521:XE&amp;quot; -n &amp;quot;name&amp;quot; -p &amp;quot;pass&amp;quot; -d &amp;quot;oracle.jdbc.driver.OracleDriver&amp;quot; sqlserver java -jar sqlclient.jar -u &amp;quot;jdbc:jtds:sqlserver://localhost:1433/sqlserver&amp;quot; -n &amp;quot;name&amp;quot; -p &amp;quot;pass&amp;quot; -d &amp;quot;net.sourceforge.jtds.jdbc.Driver&amp;quot;  截图 交互式执行截图 普通执行截图 引用  java-ascii-table项目 commons-cli命令行解析  </description>

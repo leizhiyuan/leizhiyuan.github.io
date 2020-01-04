@@ -16,16 +16,48 @@
  通过一个模态对话框来让用户等待操作完成 能让用户看到进度。 能让用户随时取消。 我搜了好久也没找到拿来就能用的窗体控件，也许是我没找到。于是我自己写。。 图1  背景
 BackgroundWorker 类包含了我需要完成任务的所有东西。我只需要给他提供一个对话框。
 使用代码
-ProgressForm 包含了一个BackgroundWorker ，你要做的仅仅就是提供了一个完成工作的方法。 ProgressForm form = new ProgressForm(); form.DoWork &#43;= new ProgressForm.DoWorkEventHandler(form_DoWork); //如果想为后台任务提供参数的话 form.Argument = something; 为了开始BackgroundWorker，只需要调用ShowDialog 方法。返回值则取决于任务是怎么完成的。 DialogResult result = form.ShowDialog(); if (result == DialogResult.Cancel) { //用户点击了取消 } else if (result == DialogResult.Abort) { /未处理的异常抛出 //你可以得到异常信息 MessageBox.Show(form.Result.Error.Message); } else if (result == DialogResult.OK) { //正常完成 //结果存储在 form.Result里 } &nbsp;
-最后。任务方法看起来是这样的。 void form_DoWork(ProgressForm sender, DoWorkEventArgs e) { //得到参数 object myArgument = e.">
+ProgressForm 包含了一个BackgroundWorker ，你要做的仅仅就是提供了一个完成工作的方法。
+为了开始BackgroundWorker，只需要调用ShowDialog 方法。返回值则取决于任务是怎么完成的。
+ 最后。任务方法看起来是这样的。
+如果你想要改改进度条，或者进度条显示的文本。SetProgress 有一些重载的方法
+最后一个可自定义的字符串是：有两个预定义的字符串CancellingText 和DefaultStatusText. CancellingText ，这两个字符串，当用户点击取消的时候显示
+如何实现 ProgressForm 紧紧嵌入了一个BackgroundWorker ，并包装进了主函数。
+首先。我设计了如图所示的一个窗体，然后。添加了BackgroundWorker。
+我们必须把DoWork事件暴露给用户。我添加了一个委托。这样。我可以很容易的访问窗体成员
+ 好。我们已经有了任务和事件。先爱。我们希望当窗体显示的时候。后台任务尽可能开始。我们在Load事件中写代码
+现在写一个方法通知进度。添加代码到ProgressChanged 事件处理程序中
+我们快做好了。现在我们添加取消按钮
+最后一件事是我们想要当worker完成的时候自动关闭窗体，因为我们的worker通过ShowDialog 方法启动。如果直接接收返回结果会很好
+主要的工作就完成了。我添加了一些预定义的字符串啊。如果正在取消。保护状态不会改变。还有传递参数啊。 完整的代码如下：
+结论 窗体简单，我通常用。希望对你们也有用
+Demo下载
+源码和测试下载
+许可 本文，包括源代码和文件在CPOL下授权。
+ 原文地址：ProgressForm-A-simple-form-linked-to-a-BackgroundW 著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！">
   <meta property="og:description" content="介绍
 这是我在CodeProject上的第一篇文章。我希望对你有用
 当我开发软件的时候。我通常因为一个很耗时是任务需要完成。而请求让用户等待，并且通过也允许用户取消。不论我做何种操作（比如下载文件。保存大文件等等）。我都需要做下面几件事：
  通过一个模态对话框来让用户等待操作完成 能让用户看到进度。 能让用户随时取消。 我搜了好久也没找到拿来就能用的窗体控件，也许是我没找到。于是我自己写。。 图1  背景
 BackgroundWorker 类包含了我需要完成任务的所有东西。我只需要给他提供一个对话框。
 使用代码
-ProgressForm 包含了一个BackgroundWorker ，你要做的仅仅就是提供了一个完成工作的方法。 ProgressForm form = new ProgressForm(); form.DoWork &#43;= new ProgressForm.DoWorkEventHandler(form_DoWork); //如果想为后台任务提供参数的话 form.Argument = something; 为了开始BackgroundWorker，只需要调用ShowDialog 方法。返回值则取决于任务是怎么完成的。 DialogResult result = form.ShowDialog(); if (result == DialogResult.Cancel) { //用户点击了取消 } else if (result == DialogResult.Abort) { /未处理的异常抛出 //你可以得到异常信息 MessageBox.Show(form.Result.Error.Message); } else if (result == DialogResult.OK) { //正常完成 //结果存储在 form.Result里 } &nbsp;
-最后。任务方法看起来是这样的。 void form_DoWork(ProgressForm sender, DoWorkEventArgs e) { //得到参数 object myArgument = e.">
+ProgressForm 包含了一个BackgroundWorker ，你要做的仅仅就是提供了一个完成工作的方法。
+为了开始BackgroundWorker，只需要调用ShowDialog 方法。返回值则取决于任务是怎么完成的。
+ 最后。任务方法看起来是这样的。
+如果你想要改改进度条，或者进度条显示的文本。SetProgress 有一些重载的方法
+最后一个可自定义的字符串是：有两个预定义的字符串CancellingText 和DefaultStatusText. CancellingText ，这两个字符串，当用户点击取消的时候显示
+如何实现 ProgressForm 紧紧嵌入了一个BackgroundWorker ，并包装进了主函数。
+首先。我设计了如图所示的一个窗体，然后。添加了BackgroundWorker。
+我们必须把DoWork事件暴露给用户。我添加了一个委托。这样。我可以很容易的访问窗体成员
+ 好。我们已经有了任务和事件。先爱。我们希望当窗体显示的时候。后台任务尽可能开始。我们在Load事件中写代码
+现在写一个方法通知进度。添加代码到ProgressChanged 事件处理程序中
+我们快做好了。现在我们添加取消按钮
+最后一件事是我们想要当worker完成的时候自动关闭窗体，因为我们的worker通过ShowDialog 方法启动。如果直接接收返回结果会很好
+主要的工作就完成了。我添加了一些预定义的字符串啊。如果正在取消。保护状态不会改变。还有传递参数啊。 完整的代码如下：
+结论 窗体简单，我通常用。希望对你们也有用
+Demo下载
+源码和测试下载
+许可 本文，包括源代码和文件在CPOL下授权。
+ 原文地址：ProgressForm-A-simple-form-linked-to-a-BackgroundW 著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！">
   <meta name="twitter:description" content="介绍
 这是我在CodeProject上的第一篇文章。我希望对你有用
 当我开发软件的时候。我通常因为一个很耗时是任务需要完成。而请求让用户等待，并且通过也允许用户取消。不论我做何种操作（比如下载文件。保存大文件等等）。我都需要做下面几件事：
@@ -78,9 +110,9 @@ ProgressForm 包含了一个BackgroundWorker ，你要做的仅仅就是提供�
     "name" : "bystander"
   },
   "headline": "C#制作进度窗体",
-  "description" : "介绍\n这是我在CodeProject上的第一篇文章。我希望对你有用\n当我开发软件的时候。我通常因为一个很耗时是任务需要完成。而请求让用户等待，并且通过也允许用户取消。不论我做何种操作（比如下载文件。保存大文件等等）。我都需要做下面几件事：\n 通过一个模态对话框来让用户等待操作完成 能让用户看到进度。 能让用户随时取消。 我搜了好久也没找到拿来就能用的窗体控件，也许是我没找到。于是我自己写。。 图1  背景\nBackgroundWorker 类包含了我需要完成任务的所有东西。我只需要给他提供一个对话框。\n使用代码\nProgressForm 包含了一个BackgroundWorker ，你要做的仅仅就是提供了一个完成工作的方法。 ProgressForm form = new ProgressForm(); form.DoWork \x2b= new ProgressForm.DoWorkEventHandler(form_DoWork); \/\/如果想为后台任务提供参数的话 form.Argument = something; 为了开始BackgroundWorker，只需要调用ShowDialog 方法。返回值则取决于任务是怎么完成的。 DialogResult result = form.ShowDialog(); if (result == DialogResult.Cancel) { \/\/用户点击了取消 } else if (result == DialogResult.Abort) { \/未处理的异常抛出 \/\/你可以得到异常信息 MessageBox.Show(form.Result.Error.Message); } else if (result == DialogResult.OK) { \/\/正常完成 \/\/结果存储在 form.Result里 } \x26nbsp;\n最后。任务方法看起来是这样的。 void form_DoWork(ProgressForm sender, DoWorkEventArgs e) { \/\/得到参数 object myArgument = e.",
+  "description" : "介绍\n这是我在CodeProject上的第一篇文章。我希望对你有用\n当我开发软件的时候。我通常因为一个很耗时是任务需要完成。而请求让用户等待，并且通过也允许用户取消。不论我做何种操作（比如下载文件。保存大文件等等）。我都需要做下面几件事：\n 通过一个模态对话框来让用户等待操作完成 能让用户看到进度。 能让用户随时取消。 我搜了好久也没找到拿来就能用的窗体控件，也许是我没找到。于是我自己写。。 图1  背景\nBackgroundWorker 类包含了我需要完成任务的所有东西。我只需要给他提供一个对话框。\n使用代码\nProgressForm 包含了一个BackgroundWorker ，你要做的仅仅就是提供了一个完成工作的方法。\n为了开始BackgroundWorker，只需要调用ShowDialog 方法。返回值则取决于任务是怎么完成的。\n 最后。任务方法看起来是这样的。\n如果你想要改改进度条，或者进度条显示的文本。SetProgress 有一些重载的方法\n最后一个可自定义的字符串是：有两个预定义的字符串CancellingText 和DefaultStatusText. CancellingText ，这两个字符串，当用户点击取消的时候显示\n如何实现 ProgressForm 紧紧嵌入了一个BackgroundWorker ，并包装进了主函数。\n首先。我设计了如图所示的一个窗体，然后。添加了BackgroundWorker。\n我们必须把DoWork事件暴露给用户。我添加了一个委托。这样。我可以很容易的访问窗体成员\n 好。我们已经有了任务和事件。先爱。我们希望当窗体显示的时候。后台任务尽可能开始。我们在Load事件中写代码\n现在写一个方法通知进度。添加代码到ProgressChanged 事件处理程序中\n我们快做好了。现在我们添加取消按钮\n最后一件事是我们想要当worker完成的时候自动关闭窗体，因为我们的worker通过ShowDialog 方法启动。如果直接接收返回结果会很好\n主要的工作就完成了。我添加了一些预定义的字符串啊。如果正在取消。保护状态不会改变。还有传递参数啊。 完整的代码如下：\n结论 窗体简单，我通常用。希望对你们也有用\nDemo下载\n源码和测试下载\n许可 本文，包括源代码和文件在CPOL下授权。\n 原文地址：ProgressForm-A-simple-form-linked-to-a-BackgroundW 著作权声明：本文由http:\/\/leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！",
   "inLanguage" : "en",
-  "wordCount":  729 ,
+  "wordCount":  47 ,
   "datePublished" : "2012-10-10T09:07:41",
   "dateModified" : "2012-10-10T09:07:41",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -106,8 +138,24 @@ ProgressForm 包含了一个BackgroundWorker ，你要做的仅仅就是提供�
  通过一个模态对话框来让用户等待操作完成 能让用户看到进度。 能让用户随时取消。 我搜了好久也没找到拿来就能用的窗体控件，也许是我没找到。于是我自己写。。 图1  背景
 BackgroundWorker 类包含了我需要完成任务的所有东西。我只需要给他提供一个对话框。
 使用代码
-ProgressForm 包含了一个BackgroundWorker ，你要做的仅仅就是提供了一个完成工作的方法。 ProgressForm form = new ProgressForm(); form.DoWork &#43;= new ProgressForm.DoWorkEventHandler(form_DoWork); //如果想为后台任务提供参数的话 form.Argument = something; 为了开始BackgroundWorker，只需要调用ShowDialog 方法。返回值则取决于任务是怎么完成的。 DialogResult result = form.ShowDialog(); if (result == DialogResult.Cancel) { //用户点击了取消 } else if (result == DialogResult.Abort) { /未处理的异常抛出 //你可以得到异常信息 MessageBox.Show(form.Result.Error.Message); } else if (result == DialogResult.OK) { //正常完成 //结果存储在 form.Result里 } &nbsp;
-最后。任务方法看起来是这样的。 void form_DoWork(ProgressForm sender, DoWorkEventArgs e) { //得到参数 object myArgument = e.">
+ProgressForm 包含了一个BackgroundWorker ，你要做的仅仅就是提供了一个完成工作的方法。
+为了开始BackgroundWorker，只需要调用ShowDialog 方法。返回值则取决于任务是怎么完成的。
+ 最后。任务方法看起来是这样的。
+如果你想要改改进度条，或者进度条显示的文本。SetProgress 有一些重载的方法
+最后一个可自定义的字符串是：有两个预定义的字符串CancellingText 和DefaultStatusText. CancellingText ，这两个字符串，当用户点击取消的时候显示
+如何实现 ProgressForm 紧紧嵌入了一个BackgroundWorker ，并包装进了主函数。
+首先。我设计了如图所示的一个窗体，然后。添加了BackgroundWorker。
+我们必须把DoWork事件暴露给用户。我添加了一个委托。这样。我可以很容易的访问窗体成员
+ 好。我们已经有了任务和事件。先爱。我们希望当窗体显示的时候。后台任务尽可能开始。我们在Load事件中写代码
+现在写一个方法通知进度。添加代码到ProgressChanged 事件处理程序中
+我们快做好了。现在我们添加取消按钮
+最后一件事是我们想要当worker完成的时候自动关闭窗体，因为我们的worker通过ShowDialog 方法启动。如果直接接收返回结果会很好
+主要的工作就完成了。我添加了一些预定义的字符串啊。如果正在取消。保护状态不会改变。还有传递参数啊。 完整的代码如下：
+结论 窗体简单，我通常用。希望对你们也有用
+Demo下载
+源码和测试下载
+许可 本文，包括源代码和文件在CPOL下授权。
+ 原文地址：ProgressForm-A-simple-form-linked-to-a-BackgroundW 著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2012/10/10/c#%E5%88%B6%E4%BD%9C%E8%BF%9B%E5%BA%A6%E7%AA%97%E4%BD%93/" />
 <meta property="og:type" content="website" />
@@ -128,7 +176,7 @@ ProgressForm 包含了一个BackgroundWorker ，你要做的仅仅就是提供�
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -286,7 +334,7 @@ ProgressForm 包含了一个BackgroundWorker ，你要做的仅仅就是提供�
   <i class="fas fa-calendar"></i>&nbsp;Posted on October 10, 2012
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;4&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -313,11 +361,8 @@ ProgressForm 包含了一个BackgroundWorker ，你要做的仅仅就是提供�
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <p><strong>介绍</strong></p>
-
 <p>这是我在CodeProject上的第一篇文章。我希望对你有用</p>
-
 <p>当我开发软件的时候。我通常因为一个很耗时是任务需要完成。而请求让用户等待，并且通过也允许用户取消。不论我做何种操作（比如下载文件。保存大文件等等）。我都需要做下面几件事：</p>
-
 <ul>
 <li>通过一个模态对话框来让用户等待操作完成</li>
 <li>能让用户看到进度。</li>
@@ -325,339 +370,56 @@ ProgressForm 包含了一个BackgroundWorker ，你要做的仅仅就是提供�
 我搜了好久也没找到拿来就能用的窗体控件，也许是我没找到。于是我自己写。。
 图1</li>
 </ul>
-
-<p><img src="/images/9f46aad8d865255936532f68d592d8ffd45b8b3d.jpg" alt="" title="progress" /></p>
-
+<p><img src="/images/9f46aad8d865255936532f68d592d8ffd45b8b3d.jpg" alt="" title="progress"></p>
 <p><strong>背景</strong></p>
-
 <p>BackgroundWorker 类包含了我需要完成任务的所有东西。我只需要给他提供一个对话框。</p>
-
 <p><strong>使用代码</strong></p>
-
-<p>ProgressForm 包含了一个BackgroundWorker ，你要做的仅仅就是提供了一个完成工作的方法。
-<pre class="lang:default decode:true">ProgressForm form = new ProgressForm();
-form.DoWork += new ProgressForm.DoWorkEventHandler(form_DoWork);
-//如果想为后台任务提供参数的话
-form.Argument = something;</pre>
-为了开始BackgroundWorker，只需要调用ShowDialog 方法。返回值则取决于任务是怎么完成的。
-<pre class="lang:default decode:true">DialogResult result = form.ShowDialog();
-if (result == DialogResult.Cancel)
-{
-//用户点击了取消
-}
-else if (result == DialogResult.Abort)
-{
-/未处理的异常抛出
-//你可以得到异常信息
-MessageBox.Show(form.Result.Error.Message);
-}
-else if (result == DialogResult.OK)
-{
-//正常完成
-//结果存储在 form.Result里
-}</pre>
-&nbsp;</p>
-
-<p>最后。任务方法看起来是这样的。
-<pre class="lang:default decode:true">void form_DoWork(ProgressForm sender, DoWorkEventArgs e)
-{
-//得到参数
-object myArgument = e.Argument;</p>
-
-<p>//做一些耗时的任务&hellip;
-for (int i = 0; i &lt; 100; i++)
-{
-//通知进度
-sender.SetProgress(i, &ldquo;Step &rdquo; + i.ToString() + &ldquo; / 100&hellip;&rdquo;);</p>
-
-<p>//&hellip;</p>
-
-<p>//检查是否点击了取消
-if (sender.CancellationPending)
-{
-e.Cancel = true;
-return;
-}
-}
-}</pre>
-如果你想要改改进度条，或者进度条显示的文本。SetProgress 有一些重载的方法
-<pre class="lang:default decode:true">public void SetProgress(string status);
-public void SetProgress(int percent);
-public void SetProgress(int percent, string status);</pre>
-最后一个可自定义的字符串是：有两个预定义的字符串CancellingText 和DefaultStatusText. CancellingText ，这两个字符串，当用户点击取消的时候显示</p>
-
+<p>ProgressForm 包含了一个BackgroundWorker ，你要做的仅仅就是提供了一个完成工作的方法。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>为了开始BackgroundWorker，只需要调用ShowDialog 方法。返回值则取决于任务是怎么完成的。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p>最后。任务方法看起来是这样的。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>如果你想要改改进度条，或者进度条显示的文本。SetProgress 有一些重载的方法</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>最后一个可自定义的字符串是：有两个预定义的字符串CancellingText 和DefaultStatusText. CancellingText ，这两个字符串，当用户点击取消的时候显示</p>
 <p><strong>如何实现</strong>
 ProgressForm 紧紧嵌入了一个BackgroundWorker ，并包装进了主函数。</p>
-
-<p>首先。我设计了如图所示的一个窗体，然后。添加了BackgroundWorker。
-<pre class="lang:default decode:true">public partial class ProgressForm : Form
-{
-public ProgressForm()
-{
-InitializeComponent();</p>
-
-<p>worker = new BackgroundWorker();
-worker.WorkerReportsProgress = true;
-worker.WorkerSupportsCancellation = true;
-worker.DoWork += new System.ComponentModel.DoWorkEventHandler(worker_DoWork);
-worker.ProgressChanged += new ProgressChangedEventHandler(
-worker_ProgressChanged);
-worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(
-worker_RunWorkerCompleted);
-}
-void worker_DoWork(object sender, DoWorkEventArgs e)
-{
-}
-void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-{
-}
-void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-{
-}
-BackgroundWorker worker;
-}</pre>
-我们必须把DoWork事件暴露给用户。我添加了一个委托。这样。我可以很容易的访问窗体成员
-<pre class="lang:default decode:true">public delegate void DoWorkEventHandler(ProgressForm sender, DoWorkEventArgs e);
-public event DoWorkEventHandler DoWork;</p>
-
-<p>void worker_DoWork(object sender, DoWorkEventArgs e)
-{
-//后台任务开始
-//调用用户的事件处理程序
-if (DoWork != null)
-DoWork(this, e);
-}</pre>
-&nbsp;</p>
-
-<p>好。我们已经有了任务和事件。先爱。我们希望当窗体显示的时候。后台任务尽可能开始。我们在Load事件中写代码
-<pre class="lang:default decode:true">void ProgressForm_Load(object sender, EventArgs e)
-{
-worker.RunWorkerAsync();
-}</pre>
-现在写一个方法通知进度。添加代码到ProgressChanged 事件处理程序中
-<pre class="lang:default decode:true">public void SetProgress(int percent, string status)
-{
-worker.ReportProgress(percent, status);
-}
-void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-{
-if (e.ProgressPercentage &gt;= progressBar.Minimum &amp;&amp;
-e.ProgressPercentage &lt;= progressBar.Maximum)
-{
-progressBar.Value = e.ProgressPercentage;
-}
-if (e.UserState != null)
-labelStatus.Text = e.UserState.ToString();
-}</pre>
-我们快做好了。现在我们添加取消按钮
-<pre class="lang:default decode:true">void buttonCancel_Click(object sender, EventArgs e)
-{
-//通过worker我们要取消
-worker.CancelAsync();
-//使取消按钮不可用，改变状态文本
-buttonCancel.Enabled = false;
-labelStatus.Text = &ldquo;Cancelling&hellip;&rdquo;
-}</pre>
-最后一件事是我们想要当worker完成的时候自动关闭窗体，因为我们的worker通过ShowDialog 方法启动。如果直接接收返回结果会很好
-<pre class="lang:default decode:true">void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-{
-//ShowDialog返回值会指示worker是不是正确完成了
-if (e.Error != null)
-DialogResult = DialogResult.Abort;
-else if (e.Cancelled)
-DialogResult = DialogResult.Cancel;
-else
-DialogResult = DialogResult.OK;
-//关闭窗体
-Close();
-}</pre>
-主要的工作就完成了。我添加了一些预定义的字符串啊。如果正在取消。保护状态不会改变。还有传递参数啊。
-完整的代码如下：
-<pre class="lang:default decode:true">/// &lt;summary&gt;
-/// 简单的进度窗体
-/// &lt;/summary&gt;
-public partial class ProgressForm : Form
-{
-/// &lt;summary&gt;
-/// 获得进度条以对他自定义
-/// 在显示窗体之前.
-/// 不要在后台任务中直接使用 !
-/// &lt;/summary&gt;
-public ProgressBar ProgressBar { get { return progressBar; } }
-/// &lt;summary&gt;
-/// 传递给后台任务的参数.
-/// &lt;/summary&gt;
-public object Argument { get; set; }
-/// &lt;summary&gt;
-/// 后台任务的结果.
-///也可以检查ShowDialog返回值
-///来看看是不是正确完成了.
-/// &lt;/summary&gt;</p>
-
-<p>public RunWorkerCompletedEventArgs Result { get; private set; }
-/// &lt;summary&gt;
-/// 如果点击了取消按钮则为true
-///后台任务还在执行
-/// &lt;/summary&gt;
-public bool CancellationPending
-{
-get { return worker.CancellationPending; }
-}</p>
-
-<p>/// &lt;summary&gt;
-/// 取消按钮被点击之后的显示文本
-/// &lt;/summary&gt;
-public string CancellingText { get; set; }
-/// &lt;summary&gt;
-/// 缺省状态文本.
-/// &lt;/summary&gt;
-public string DefaultStatusText { get; set; }
-/// &lt;summary&gt;
-/// DoWork事件的委托.
-/// &lt;/summary&gt;
-/// &lt;param name=&ldquo;sender&rdquo;&gt;T事件源.&lt;/param&gt;
-/// &lt;param name=&ldquo;e&rdquo;&gt;包含事件数据.&lt;/param&gt;
-public delegate void DoWorkEventHandler(ProgressForm sender, DoWorkEventArgs e);
-/// &lt;summary&gt;
-/// 当后台任务开始的时候发生.
-/// &lt;/summary&gt;
-public event DoWorkEventHandler DoWork;</p>
-
-<p>/// &lt;summary&gt;
-/// 构造函数.
-/// &lt;/summary&gt;
-public ProgressForm()
-{
-InitializeComponent();</p>
-
-<p>DefaultStatusText = &ldquo;Please wait&hellip;&rdquo;;
-CancellingText = &ldquo;Cancelling operation&hellip;&rdquo;;</p>
-
-<p>worker = new BackgroundWorker();
-worker.WorkerReportsProgress = true;
-worker.WorkerSupportsCancellation = true;
-worker.DoWork += new System.ComponentModel.DoWorkEventHandler(worker_DoWork);
-worker.ProgressChanged += new ProgressChangedEventHandler(worker_ProgressChanged);
-worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(
-worker_RunWorkerCompleted);
-}</p>
-
-<p>/// &lt;summary&gt;
-/// 改变状态文本.
-/// &lt;/summary&gt;
-/// &lt;param name=&ldquo;status&rdquo;&gt;新状态文本.&lt;/param&gt;
-public void SetProgress(string status)
-{
-//如果没有改变
-//或者取消请求还在处理就不改变状态文本
-if (status != lastStatus &amp;&amp; !worker.CancellationPending)
-{
-lastStatus = status;
-worker.ReportProgress(progressBar.Minimum - 1, status);
-}
-}
-/// &lt;summary&gt;
-///改变进度条的值
-/// &lt;/summary&gt;
-/// &lt;param name=&ldquo;percent&rdquo;&gt;新值.&lt;/param&gt;
-public void SetProgress(int percent)
-{
-//如果值没有改变就不要更新进度条
-if (percent != lastPercent)
-{
-lastPercent = percent;
-worker.ReportProgress(percent);
-}
-}
-/// &lt;summary&gt;
-///改变进度条值和文本.
-/// &lt;/summary&gt;
-/// &lt;param name=&ldquo;percent&rdquo;&gt;N新值.&lt;/param&gt;
-/// &lt;param name=&ldquo;status&rdquo;&gt;新文本.&lt;/param&gt;
-public void SetProgress(int percent, string status)
-{
-//如果至少一个改变就调用
-if (percent != lastPercent || (status != lastStatus &amp;&amp; !worker.CancellationPending))
-{
-lastPercent = percent;
-lastStatus = status;
-worker.ReportProgress(percent, status);
-}
-}</p>
-
-<p>private void ProgressForm_Load(object sender, EventArgs e)
-{
-//重用窗体，恢复缺省值
-Result = null;
-buttonCancel.Enabled = true;
-progressBar.Value = progressBar.Minimum;
-labelStatus.Text = DefaultStatusText;
-lastStatus = DefaultStatusText;
-lastPercent = progressBar.Minimum;
-//窗体已载入就开始后台任务
-worker.RunWorkerAsync(Argument);
-}</p>
-
-<p>private void buttonCancel_Click(object sender, EventArgs e)
-{
-//通知后台任务，我们要取消
-worker.CancelAsync();
-//取消按钮不可用，改变文本
-buttonCancel.Enabled = false;
-labelStatus.Text = CancellingText;
-}</p>
-
-<p>void worker_DoWork(object sender, DoWorkEventArgs e)
-{
-//后台任务开始
-//调用用户的处理程序
-if (DoWork != null)
-DoWork(this, e);
-}</p>
-
-<p>void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-{
-//确保新值可用并更新
-if (e.ProgressPercentage &gt;= progressBar.Minimum &amp;&amp;
-e.ProgressPercentage &lt;= progressBar.Maximum)
-{
-progressBar.Value = e.ProgressPercentage;
-}
-//如果取消请求正在处理就不要更新
-if (e.UserState != null &amp;&amp; !worker.CancellationPending)
-labelStatus.Text = e.UserState.ToString();
-}</p>
-
-<p>void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-{
-//后台任务完成
-//保持结果，关闭窗体
-Result = e;
-if (e.Error != null)
-DialogResult = DialogResult.Abort;
-else if (e.Cancelled)
-DialogResult = DialogResult.Cancel;
-else
-DialogResult = DialogResult.OK;
-Close();
-}</p>
-
-<p>BackgroundWorker worker;
-int lastPercent;
-string lastStatus;
-}</pre>
-<strong>结论</strong>
+<p>首先。我设计了如图所示的一个窗体，然后。添加了BackgroundWorker。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>我们必须把DoWork事件暴露给用户。我添加了一个委托。这样。我可以很容易的访问窗体成员</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p>好。我们已经有了任务和事件。先爱。我们希望当窗体显示的时候。后台任务尽可能开始。我们在Load事件中写代码</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>现在写一个方法通知进度。添加代码到ProgressChanged 事件处理程序中</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>我们快做好了。现在我们添加取消按钮</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>最后一件事是我们想要当worker完成的时候自动关闭窗体，因为我们的worker通过ShowDialog 方法启动。如果直接接收返回结果会很好</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>主要的工作就完成了。我添加了一些预定义的字符串啊。如果正在取消。保护状态不会改变。还有传递参数啊。
+完整的代码如下：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><strong>结论</strong>
 窗体简单，我通常用。希望对你们也有用</p>
-
 <p><strong>Demo下载</strong></p>
-
-<p><a href="http://pan.baidu.com/share/link?shareid=79426&amp;amp;uk=1493685990">源码和测试下载</a></p>
-
+<p><a href="http://pan.baidu.com/share/link?shareid=79426&amp;uk=1493685990">源码和测试下载</a></p>
 <p><strong>许可</strong>
 本文，包括源代码和文件在CPOL下授权。</p>
-
-<p>&nbsp;</p>
-
+<p> </p>
 <p>原文地址：<a href="http://www.codeproject.com/Articles/160219/ProgressForm-A-simple-form-linked-to-a-BackgroundW">ProgressForm-A-simple-form-linked-to-a-BackgroundW</a>
 著作权声明：本文由<a href="http://leaver.me">http://leaver.me</a> 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</p>
 
@@ -779,7 +541,7 @@ string lastStatus;
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

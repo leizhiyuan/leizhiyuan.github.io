@@ -16,32 +16,22 @@
 2.如果是操作符，压入操作符栈
 3.如果是左括号，直接忽略
 4.如果是有括号，弹出操作符栈栈顶元素，然后弹出操作数栈两个元素，进行操作以后结果压入操作数栈
-&nbsp;
-看个图就好了
+ 看个图就好了
 
-&nbsp;
-最后给出栈顶实现代码 #include &ldquo;stdafx.h&rdquo; #pragma region Node定义
-template &lt;class T&gt; class Node { template&lt;class T&gt; friend class Stack; private: T m_data; Node *pNextNode; public: Node(); Node(T d); };
-template &lt;class T&gt; Node&lt;T&gt;::Node() { m_data=default(T); pNextNode=NULL; } template &lt;class T&gt; Node&lt;T&gt;::Node(T d) { m_data=d; pNextNode=NULL; } #pragma endregion
-#pragma region Stack定义
-template &lt;class T&gt; class Stack {
-private: Node&lt;T&gt; *m_pTopNode; int m_nNodeCount; public: Stack(); ~Stack(); bool IsEmpty(); bool Push(T e); T Pop(); int Size(); };">
+ 最后给出栈顶实现代码
+然后是main函数代码
+另外，今天是博客建站一周年.加油！">
   <meta property="og:description" content="栈直接用链表实现，这个比较简单，不多说，不过C&#43;&#43;写程序，IDE的错误检测不是很给力。
 至于给定一个中缀表达式，如何不转换成后缀表达式，直接求值，方法就是使用两个栈，一个操作符栈，一个操作数栈，然后从左到右扫描表达式，我这里中缀表达式计算实现的很简单，不完整，大家可以扩展。栈的实现是我想写的，思路如下：
 1.如何是操作数，压入操作数栈
 2.如果是操作符，压入操作符栈
 3.如果是左括号，直接忽略
 4.如果是有括号，弹出操作符栈栈顶元素，然后弹出操作数栈两个元素，进行操作以后结果压入操作数栈
-&nbsp;
-看个图就好了
+ 看个图就好了
 
-&nbsp;
-最后给出栈顶实现代码 #include &ldquo;stdafx.h&rdquo; #pragma region Node定义
-template &lt;class T&gt; class Node { template&lt;class T&gt; friend class Stack; private: T m_data; Node *pNextNode; public: Node(); Node(T d); };
-template &lt;class T&gt; Node&lt;T&gt;::Node() { m_data=default(T); pNextNode=NULL; } template &lt;class T&gt; Node&lt;T&gt;::Node(T d) { m_data=d; pNextNode=NULL; } #pragma endregion
-#pragma region Stack定义
-template &lt;class T&gt; class Stack {
-private: Node&lt;T&gt; *m_pTopNode; int m_nNodeCount; public: Stack(); ~Stack(); bool IsEmpty(); bool Push(T e); T Pop(); int Size(); };">
+ 最后给出栈顶实现代码
+然后是main函数代码
+另外，今天是博客建站一周年.加油！">
   <meta name="twitter:description" content="栈直接用链表实现，这个比较简单，不多说，不过C&#43;&#43;写程序，IDE的错误检测不是很给力。
 至于给定一个中缀表达式，如何不转换成后缀表达式，直接求值，方法就是使用两个栈，一个操作符栈，一个操作数栈，然后从左到右扫描表达式，我这里中缀表达式计算实现的很简单，不完整，大家可以扩展。栈的实现是我想写的，思路如下：
 1.如何是操作数，压入操作数栈
@@ -95,9 +85,9 @@ private: Node&lt;T&gt; *m_pTopNode; int m_nNodeCount; public: Stack(); ~Stack();
     "name" : "bystander"
   },
   "headline": "模板栈以及中缀表达式求值(C\x2b\x2b实现)",
-  "description" : "栈直接用链表实现，这个比较简单，不多说，不过C\x2b\x2b写程序，IDE的错误检测不是很给力。\n至于给定一个中缀表达式，如何不转换成后缀表达式，直接求值，方法就是使用两个栈，一个操作符栈，一个操作数栈，然后从左到右扫描表达式，我这里中缀表达式计算实现的很简单，不完整，大家可以扩展。栈的实现是我想写的，思路如下：\n1.如何是操作数，压入操作数栈\n2.如果是操作符，压入操作符栈\n3.如果是左括号，直接忽略\n4.如果是有括号，弹出操作符栈栈顶元素，然后弹出操作数栈两个元素，进行操作以后结果压入操作数栈\n\x26nbsp;\n看个图就好了\n\n\x26nbsp;\n最后给出栈顶实现代码 #include \x26ldquo;stdafx.h\x26rdquo; #pragma region Node定义\ntemplate \x26lt;class T\x26gt; class Node { template\x26lt;class T\x26gt; friend class Stack; private: T m_data; Node *pNextNode; public: Node(); Node(T d); };\ntemplate \x26lt;class T\x26gt; Node\x26lt;T\x26gt;::Node() { m_data=default(T); pNextNode=NULL; } template \x26lt;class T\x26gt; Node\x26lt;T\x26gt;::Node(T d) { m_data=d; pNextNode=NULL; } #pragma endregion\n#pragma region Stack定义\ntemplate \x26lt;class T\x26gt; class Stack {\nprivate: Node\x26lt;T\x26gt; *m_pTopNode; int m_nNodeCount; public: Stack(); ~Stack(); bool IsEmpty(); bool Push(T e); T Pop(); int Size(); };",
+  "description" : "栈直接用链表实现，这个比较简单，不多说，不过C\x2b\x2b写程序，IDE的错误检测不是很给力。\n至于给定一个中缀表达式，如何不转换成后缀表达式，直接求值，方法就是使用两个栈，一个操作符栈，一个操作数栈，然后从左到右扫描表达式，我这里中缀表达式计算实现的很简单，不完整，大家可以扩展。栈的实现是我想写的，思路如下：\n1.如何是操作数，压入操作数栈\n2.如果是操作符，压入操作符栈\n3.如果是左括号，直接忽略\n4.如果是有括号，弹出操作符栈栈顶元素，然后弹出操作数栈两个元素，进行操作以后结果压入操作数栈\n 看个图就好了\n\n 最后给出栈顶实现代码\n然后是main函数代码\n另外，今天是博客建站一周年.加油！",
   "inLanguage" : "en",
-  "wordCount":  260 ,
+  "wordCount":  10 ,
   "datePublished" : "2013-04-11T18:50:25",
   "dateModified" : "2013-04-11T18:50:25",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -123,16 +113,11 @@ private: Node&lt;T&gt; *m_pTopNode; int m_nNodeCount; public: Stack(); ~Stack();
 2.如果是操作符，压入操作符栈
 3.如果是左括号，直接忽略
 4.如果是有括号，弹出操作符栈栈顶元素，然后弹出操作数栈两个元素，进行操作以后结果压入操作数栈
-&nbsp;
-看个图就好了
+ 看个图就好了
 
-&nbsp;
-最后给出栈顶实现代码 #include &ldquo;stdafx.h&rdquo; #pragma region Node定义
-template &lt;class T&gt; class Node { template&lt;class T&gt; friend class Stack; private: T m_data; Node *pNextNode; public: Node(); Node(T d); };
-template &lt;class T&gt; Node&lt;T&gt;::Node() { m_data=default(T); pNextNode=NULL; } template &lt;class T&gt; Node&lt;T&gt;::Node(T d) { m_data=d; pNextNode=NULL; } #pragma endregion
-#pragma region Stack定义
-template &lt;class T&gt; class Stack {
-private: Node&lt;T&gt; *m_pTopNode; int m_nNodeCount; public: Stack(); ~Stack(); bool IsEmpty(); bool Push(T e); T Pop(); int Size(); };">
+ 最后给出栈顶实现代码
+然后是main函数代码
+另外，今天是博客建站一周年.加油！">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2013/04/11/%E6%A8%A1%E6%9D%BF%E6%A0%88%E4%BB%A5%E5%8F%8A%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BCc-%E5%AE%9E%E7%8E%B0/" />
 <meta property="og:type" content="website" />
@@ -154,7 +139,7 @@ private: Node&lt;T&gt; *m_pTopNode; int m_nNodeCount; public: Stack(); ~Stack();
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -312,7 +297,7 @@ private: Node&lt;T&gt; *m_pTopNode; int m_nNodeCount; public: Stack(); ~Stack();
   <i class="fas fa-calendar"></i>&nbsp;Posted on April 11, 2013
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -339,162 +324,22 @@ private: Node&lt;T&gt; *m_pTopNode; int m_nNodeCount; public: Stack(); ~Stack();
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <p>栈直接用链表实现，这个比较简单，不多说，不过C++写程序，IDE的错误检测不是很给力。</p>
-
 <p>至于给定一个中缀表达式，如何不转换成后缀表达式，直接求值，方法就是使用两个栈，一个操作符栈，一个操作数栈，然后从左到右扫描表达式，我这里中缀表达式计算实现的很简单，不完整，大家可以扩展。栈的实现是我想写的，思路如下：</p>
-
 <p>1.如何是操作数，压入操作数栈</p>
-
 <p>2.如果是操作符，压入操作符栈</p>
-
 <p>3.如果是左括号，直接忽略</p>
-
 <p>4.如果是有括号，弹出操作符栈栈顶元素，然后弹出操作数栈两个元素，进行操作以后结果压入操作数栈</p>
-
-<p>&nbsp;</p>
-
+<p> </p>
 <p>看个图就好了</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/34863_o.png"><img src="/images/d0b2eed86d2ba2b987d3e5db380b9a452e8f5f87.png" alt="" /></a></p>
-
-<p>&nbsp;</p>
-
-<p>最后给出栈顶实现代码
-<pre class="lang:default decode:true">#include &ldquo;stdafx.h&rdquo;
-#pragma region Node定义</p>
-
-<p>template &lt;class T&gt;
-class Node
-{
-    template&lt;class T&gt;
-    friend class Stack;
-private:
-    T m_data;
-    Node *pNextNode;
-public:
-    Node();
-    Node(T d);
-};</p>
-
-<p>template &lt;class T&gt;
-Node&lt;T&gt;::Node()
-{
-    m_data=default(T);
-    pNextNode=NULL;
-}
-template &lt;class T&gt;
-Node&lt;T&gt;::Node(T d)
-{
-    m_data=d;
-    pNextNode=NULL;
-}
-#pragma endregion</p>
-
-<p>#pragma region Stack定义</p>
-
-<p>template &lt;class T&gt;
-class Stack
-{</p>
-
-<p>private:
-    Node&lt;T&gt; *m_pTopNode;
-    int m_nNodeCount;
-public:
-    Stack();
-    ~Stack();
-    bool IsEmpty();
-    bool Push(T e);
-    T Pop();
-    int Size();
-};</p>
-
-<p>template &lt;class T&gt;
-Stack&lt;T&gt;::Stack() : m_pTopNode(NULL),m_nNodeCount(0)
-{
-}</p>
-
-<p>template &lt;class T&gt;
-Stack&lt;T&gt;::~Stack()
-{
-    while (!IsEmpty())
-    {
-        Node&lt;T&gt; *pTempNode = m_pTopNode;
-        m_pTopNode = m_pTopNode-&gt;pNextNode;
-        delete (pTempNode);
-        pTempNode = NULL;
-    }
-    m_nNodeCount = 0;
-    m_pTopNode = NULL;
-}</p>
-
-<p>template &lt;class T&gt;
-bool Stack&lt;T&gt;::IsEmpty()
-{
-    return (m_pTopNode == NULL);
-}</p>
-
-<p>template &lt;class T&gt;
-bool Stack&lt;T&gt;::Push(T e )
-{
-    Node&lt;T&gt; *pNewNode = new Node&lt;T&gt;(e);
-    if (NULL == pNewNode)     {
-        return false;
-    }</p>
-<div class="highlight"><pre class="chroma">if(! IsEmpty()) {
-    pNewNode-&amp;gt;pNextNode = m_pTopNode;
-}
-m_pTopNode = pNewNode;
-m_nNodeCount ++;
-
-return true;</pre></div>
-<p>}</p>
-
-<p>template &lt;class T&gt;
-T Stack&lt;T&gt;::Pop()
-{
-    if(IsEmpty()) {
-        return T(-1);
-    }
-    T e;
-    e = m_pTopNode-&gt;m_data;
-    Node&lt;T&gt; *pNode = m_pTopNode;
-    m_pTopNode = m_pTopNode-&gt;pNextNode;
-    delete (pNode);
-    m_nNodeCount&ndash;;</p>
-<div class="highlight"><pre class="chroma">return e;</pre></div>
-<p>}</p>
-
-<p>template &lt;class T&gt;
-int Stack&lt;T&gt;::Size()
-{
-    return m_nNodeCount;
-}
-#pragma endregion</pre>
-然后是main函数代码
-<pre class="lang:default decode:true">int _tmain(int argc, _TCHAR* argv[])
-{
-    string str;
-    str=&ldquo;(1+((2+3)*(4<em>5)))&ldquo;;
-    for (int i=0;i&lt;str.length();i++)
-    {
-        char s=str[i];
-        if (s==&lsquo;(&rsquo;) ;
-        else if (s==&lsquo;+&rsquo;) ops.Push(s);
-        else if (s==&rsquo;</em>&rsquo;) ops.Push(s);
-        else if (s==&lsquo;)&rsquo;)
-        {
-            char op = ops.Pop();
-            if (op==&lsquo;+&rsquo;)
-                vals.Push(vals.Pop() + vals.Pop());
-            else if (op==&rsquo;*&lsquo;)
-                vals.Push(vals.Pop() * vals.Pop());
-        }
-        else
-            vals.Push(s-&lsquo;0&rsquo;);
-    }
-    cout&lt;&lt;(vals.Pop());
-    return 0;
-}</pre>
-另外，今天是博客建站一周年.加油！</p>
+<p><a href="http://leaverimage.b0.upaiyun.com/34863_o.png"><img src="/images/d0b2eed86d2ba2b987d3e5db380b9a452e8f5f87.png" alt=""></a></p>
+<p> </p>
+<p>最后给出栈顶实现代码</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>然后是main函数代码</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>另外，今天是博客建站一周年.加油！</p>
 
 
         
@@ -614,7 +459,7 @@ int Stack&lt;T&gt;::Size()
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

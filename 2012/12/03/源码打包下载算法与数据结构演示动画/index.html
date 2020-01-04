@@ -14,22 +14,22 @@
 第一种方法就是手工了。。嘎嘎。你敢么。一个个下载。。。一个个改名。。
 第二种就是用整站下载的软件了。。但是我看了一下swf的命名。我就知道下载下来意义不大。因为名字不好理解。
 第三种就是自己写个程序吧。。
-&nbsp;
-整体思路，首先访问课程页面，解析得到每一章的标题和内容，然后创立章节文件夹，得到每个动画对应的html页面，然后对html页面解析，提取swf地址。然后下载就行了。
-比较疼的地方是那个页面用的是gb2312编码。而解析神器HtmlAgilityPack，不能指定编码。只能想办法绕过了。 WebClient client = new WebClient(); MemoryStream ms = new MemoryStream(client.DownloadData(url)); HtmlDocument doc = new HtmlDocument(); doc.Load(ms, Encoding.GetEncoding(&ldquo;gb2312&rdquo;)); 绕过方法就是先使用内置类得到内存流。然后从内存中加载。
-然后呢。涉及的技术就是xpath了。参考着xpath的文档。搞定了不少。中间还有一个地方就是我没注意看。这个页面有两个文件是一样名字。。调试了几次才发现。。 using System; using System.Collections.Generic; using System.Linq; using System.Text; using HtmlAgilityPack; using System.IO; using System.Threading; using System.Net;
-namespace FzuSwf { class Program { static void Main(string[] args) { DoWork(); }
-//执行任务 static void DoWork() { HtmlWeb web = new HtmlWeb(); HtmlDocument doc = web.Load(&#34;http://ds.fzu.edu.cn/fine/resources/&#34;); HtmlNode divResource = doc.">
+ 整体思路，首先访问课程页面，解析得到每一章的标题和内容，然后创立章节文件夹，得到每个动画对应的html页面，然后对html页面解析，提取swf地址。然后下载就行了。
+比较疼的地方是那个页面用的是gb2312编码。而解析神器HtmlAgilityPack，不能指定编码。只能想办法绕过了。
+ 写完运行。看着如下这个界面。。这个我只是为了让我看到进度。同时后台也在下载。
+我的心是冰凉的。但脖子是僵硬的。。。
+
+ 运行完成后。文件夹和文件自动命名完成是这样的。。">
   <meta property="og:description" content="很早的时候，学习数据结构的时候。收集了一下演示的动画。帮助理解。但是不全。今天在看KMP算法的时候。看到了福州大学的一个精品课程。。81个演示动画呢。。想打包下载收藏。话说福州大学这才是好样的。踏踏实实搞学术。
 第一种方法就是手工了。。嘎嘎。你敢么。一个个下载。。。一个个改名。。
 第二种就是用整站下载的软件了。。但是我看了一下swf的命名。我就知道下载下来意义不大。因为名字不好理解。
 第三种就是自己写个程序吧。。
-&nbsp;
-整体思路，首先访问课程页面，解析得到每一章的标题和内容，然后创立章节文件夹，得到每个动画对应的html页面，然后对html页面解析，提取swf地址。然后下载就行了。
-比较疼的地方是那个页面用的是gb2312编码。而解析神器HtmlAgilityPack，不能指定编码。只能想办法绕过了。 WebClient client = new WebClient(); MemoryStream ms = new MemoryStream(client.DownloadData(url)); HtmlDocument doc = new HtmlDocument(); doc.Load(ms, Encoding.GetEncoding(&ldquo;gb2312&rdquo;)); 绕过方法就是先使用内置类得到内存流。然后从内存中加载。
-然后呢。涉及的技术就是xpath了。参考着xpath的文档。搞定了不少。中间还有一个地方就是我没注意看。这个页面有两个文件是一样名字。。调试了几次才发现。。 using System; using System.Collections.Generic; using System.Linq; using System.Text; using HtmlAgilityPack; using System.IO; using System.Threading; using System.Net;
-namespace FzuSwf { class Program { static void Main(string[] args) { DoWork(); }
-//执行任务 static void DoWork() { HtmlWeb web = new HtmlWeb(); HtmlDocument doc = web.Load(&#34;http://ds.fzu.edu.cn/fine/resources/&#34;); HtmlNode divResource = doc.">
+ 整体思路，首先访问课程页面，解析得到每一章的标题和内容，然后创立章节文件夹，得到每个动画对应的html页面，然后对html页面解析，提取swf地址。然后下载就行了。
+比较疼的地方是那个页面用的是gb2312编码。而解析神器HtmlAgilityPack，不能指定编码。只能想办法绕过了。
+ 写完运行。看着如下这个界面。。这个我只是为了让我看到进度。同时后台也在下载。
+我的心是冰凉的。但脖子是僵硬的。。。
+
+ 运行完成后。文件夹和文件自动命名完成是这样的。。">
   <meta name="twitter:description" content="很早的时候，学习数据结构的时候。收集了一下演示的动画。帮助理解。但是不全。今天在看KMP算法的时候。看到了福州大学的一个精品课程。。81个演示动画呢。。想打包下载收藏。话说福州大学这才是好样的。踏踏实实搞学术。
 第一种方法就是手工了。。嘎嘎。你敢么。一个个下载。。。一个个改名。。
 第二种就是用整站下载的软件了。。但是我看了一下swf的命名。我就知道下载下来意义不大。因为名字不好理解。
@@ -82,9 +82,9 @@ namespace FzuSwf { class Program { static void Main(string[] args) { DoWork(); }
     "name" : "bystander"
   },
   "headline": "[源码]打包下载算法与数据结构演示动画",
-  "description" : "很早的时候，学习数据结构的时候。收集了一下演示的动画。帮助理解。但是不全。今天在看KMP算法的时候。看到了福州大学的一个精品课程。。81个演示动画呢。。想打包下载收藏。话说福州大学这才是好样的。踏踏实实搞学术。\n第一种方法就是手工了。。嘎嘎。你敢么。一个个下载。。。一个个改名。。\n第二种就是用整站下载的软件了。。但是我看了一下swf的命名。我就知道下载下来意义不大。因为名字不好理解。\n第三种就是自己写个程序吧。。\n\x26nbsp;\n整体思路，首先访问课程页面，解析得到每一章的标题和内容，然后创立章节文件夹，得到每个动画对应的html页面，然后对html页面解析，提取swf地址。然后下载就行了。\n比较疼的地方是那个页面用的是gb2312编码。而解析神器HtmlAgilityPack，不能指定编码。只能想办法绕过了。 WebClient client = new WebClient(); MemoryStream ms = new MemoryStream(client.DownloadData(url)); HtmlDocument doc = new HtmlDocument(); doc.Load(ms, Encoding.GetEncoding(\x26ldquo;gb2312\x26rdquo;)); 绕过方法就是先使用内置类得到内存流。然后从内存中加载。\n然后呢。涉及的技术就是xpath了。参考着xpath的文档。搞定了不少。中间还有一个地方就是我没注意看。这个页面有两个文件是一样名字。。调试了几次才发现。。 using System; using System.Collections.Generic; using System.Linq; using System.Text; using HtmlAgilityPack; using System.IO; using System.Threading; using System.Net;\nnamespace FzuSwf { class Program { static void Main(string[] args) { DoWork(); }\n\/\/执行任务 static void DoWork() { HtmlWeb web = new HtmlWeb(); HtmlDocument doc = web.Load(\x26#34;http:\/\/ds.fzu.edu.cn\/fine\/resources\/\x26#34;); HtmlNode divResource = doc.",
+  "description" : "很早的时候，学习数据结构的时候。收集了一下演示的动画。帮助理解。但是不全。今天在看KMP算法的时候。看到了福州大学的一个精品课程。。81个演示动画呢。。想打包下载收藏。话说福州大学这才是好样的。踏踏实实搞学术。\n第一种方法就是手工了。。嘎嘎。你敢么。一个个下载。。。一个个改名。。\n第二种就是用整站下载的软件了。。但是我看了一下swf的命名。我就知道下载下来意义不大。因为名字不好理解。\n第三种就是自己写个程序吧。。\n 整体思路，首先访问课程页面，解析得到每一章的标题和内容，然后创立章节文件夹，得到每个动画对应的html页面，然后对html页面解析，提取swf地址。然后下载就行了。\n比较疼的地方是那个页面用的是gb2312编码。而解析神器HtmlAgilityPack，不能指定编码。只能想办法绕过了。\n 写完运行。看着如下这个界面。。这个我只是为了让我看到进度。同时后台也在下载。\n我的心是冰凉的。但脖子是僵硬的。。。\n\n 运行完成后。文件夹和文件自动命名完成是这样的。。",
   "inLanguage" : "en",
-  "wordCount":  214 ,
+  "wordCount":  9 ,
   "datePublished" : "2012-12-03T18:51:47",
   "dateModified" : "2012-12-03T18:51:47",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -108,12 +108,12 @@ namespace FzuSwf { class Program { static void Main(string[] args) { DoWork(); }
 第一种方法就是手工了。。嘎嘎。你敢么。一个个下载。。。一个个改名。。
 第二种就是用整站下载的软件了。。但是我看了一下swf的命名。我就知道下载下来意义不大。因为名字不好理解。
 第三种就是自己写个程序吧。。
-&nbsp;
-整体思路，首先访问课程页面，解析得到每一章的标题和内容，然后创立章节文件夹，得到每个动画对应的html页面，然后对html页面解析，提取swf地址。然后下载就行了。
-比较疼的地方是那个页面用的是gb2312编码。而解析神器HtmlAgilityPack，不能指定编码。只能想办法绕过了。 WebClient client = new WebClient(); MemoryStream ms = new MemoryStream(client.DownloadData(url)); HtmlDocument doc = new HtmlDocument(); doc.Load(ms, Encoding.GetEncoding(&ldquo;gb2312&rdquo;)); 绕过方法就是先使用内置类得到内存流。然后从内存中加载。
-然后呢。涉及的技术就是xpath了。参考着xpath的文档。搞定了不少。中间还有一个地方就是我没注意看。这个页面有两个文件是一样名字。。调试了几次才发现。。 using System; using System.Collections.Generic; using System.Linq; using System.Text; using HtmlAgilityPack; using System.IO; using System.Threading; using System.Net;
-namespace FzuSwf { class Program { static void Main(string[] args) { DoWork(); }
-//执行任务 static void DoWork() { HtmlWeb web = new HtmlWeb(); HtmlDocument doc = web.Load(&#34;http://ds.fzu.edu.cn/fine/resources/&#34;); HtmlNode divResource = doc.">
+ 整体思路，首先访问课程页面，解析得到每一章的标题和内容，然后创立章节文件夹，得到每个动画对应的html页面，然后对html页面解析，提取swf地址。然后下载就行了。
+比较疼的地方是那个页面用的是gb2312编码。而解析神器HtmlAgilityPack，不能指定编码。只能想办法绕过了。
+ 写完运行。看着如下这个界面。。这个我只是为了让我看到进度。同时后台也在下载。
+我的心是冰凉的。但脖子是僵硬的。。。
+
+ 运行完成后。文件夹和文件自动命名完成是这样的。。">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2012/12/03/%E6%BA%90%E7%A0%81%E6%89%93%E5%8C%85%E4%B8%8B%E8%BD%BD%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%BC%94%E7%A4%BA%E5%8A%A8%E7%94%BB/" />
 <meta property="og:type" content="website" />
@@ -134,7 +134,7 @@ namespace FzuSwf { class Program { static void Main(string[] args) { DoWork(); }
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -292,7 +292,7 @@ namespace FzuSwf { class Program { static void Main(string[] args) { DoWork(); }
   <i class="fas fa-calendar"></i>&nbsp;Posted on December 3, 2012
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -319,123 +319,22 @@ namespace FzuSwf { class Program { static void Main(string[] args) { DoWork(); }
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <p>很早的时候，学习数据结构的时候。收集了一下演示的动画。帮助理解。但是不全。今天在看KMP算法的时候。看到了福州大学的一个精品课程。。81个演示动画呢。。想打包下载收藏。话说福州大学这才是好样的。踏踏实实搞学术。</p>
-
 <p>第一种方法就是手工了。。嘎嘎。你敢么。一个个下载。。。一个个改名。。</p>
-
 <p>第二种就是用整站下载的软件了。。但是我看了一下swf的命名。我就知道下载下来意义不大。因为名字不好理解。</p>
-
 <p>第三种就是自己写个程序吧。。</p>
-
-<p>&nbsp;</p>
-
+<p> </p>
 <p>整体思路，首先访问课程页面，解析得到每一章的标题和内容，然后创立章节文件夹，得到每个动画对应的html页面，然后对html页面解析，提取swf地址。然后下载就行了。</p>
-
-<p>比较疼的地方是那个页面用的是gb2312编码。而解析神器HtmlAgilityPack，不能指定编码。只能想办法绕过了。
-<pre class="lang:default decode:true">            WebClient client = new WebClient();
-            MemoryStream ms = new MemoryStream(client.DownloadData(url));
-            HtmlDocument doc = new HtmlDocument();
-            doc.Load(ms, Encoding.GetEncoding(&ldquo;gb2312&rdquo;));</pre>
-绕过方法就是先使用内置类得到内存流。然后从内存中加载。</p>
-
-<p>然后呢。涉及的技术就是xpath了。参考着xpath的文档。搞定了不少。中间还有一个地方就是我没注意看。这个页面有两个文件是一样名字。。调试了几次才发现。。
-<pre class="lang:default decode:true">using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using HtmlAgilityPack;
-using System.IO;
-using System.Threading;
-using System.Net;</p>
-
-<p>namespace FzuSwf
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            DoWork();
-        }</p>
-<div class="highlight"><pre class="chroma">    //执行任务
-    static void DoWork()
-    {
-        HtmlWeb web = new HtmlWeb();
-        HtmlDocument doc = web.Load(&#34;http://ds.fzu.edu.cn/fine/resources/&#34;);
-        HtmlNode divResource = doc.GetElementbyId(&#34;divResource&#34;);
-        foreach (HtmlNode child in divResource.ChildNodes)
-        {
-            if (child.Name == &#34;table&#34;)
-            {
-                HtmlNode ptile = child.SelectSingleNode(&#34;tr[1]&#34;);
-
-                Directory.CreateDirectory(ptile.InnerText.Trim());
-                int i = 0;
-                HtmlNodeCollection pcontents = child.SelectNodes(&#34;tr[position()&amp;gt;1]&#34;);
-                Console.WriteLine(ptile.InnerText.Trim());
-                foreach (HtmlNode one in pcontents)
-                {
-                    string link = one.SelectSingleNode(&#34;./td[1]/p[1]/a[@href]&#34;).Attributes[&#34;href&#34;].Value;
-
-                    link = @&#34;http://ds.fzu.edu.cn/fine/resources/&#34; + link;
-
-                    string filename;
-
-                    filename = one.InnerText.Trim();
-                    if (one.InnerText.Trim() == &#34;二叉树的顺序存储表示&#34;)
-                    {
-                        filename += i;
-                        i++;
-                    }
-                    string swfLink = getSwfName(link);
-                    Console.WriteLine(&#34;--&#34; + filename + swfLink);
-                    DownSwf(swfLink, ptile.InnerText.Trim() + @&#34;/&#34; + filename + &#34;.swf&#34;);
-
-                    Thread.Sleep(1000);
-
-                }
-            }
-
-        }
-    }
-
-    //下载指定的swf
-    static void DownSwf(string url, string desname)
-    {
-        Uri u = new Uri(url);
-        WebClient myWebClient = new WebClient();
-        myWebClient.DownloadFileAsync(u, desname);
-    }
-
-    //获取指定页面的那个swf名称
-    static string getSwfName(string url)
-    {
-        WebClient client = new WebClient();
-        MemoryStream ms = new MemoryStream(client.DownloadData(url));
-        HtmlDocument doc = new HtmlDocument();
-        doc.Load(ms, Encoding.GetEncoding(&#34;gb2312&#34;));
-        HtmlNode hd = doc.DocumentNode;
-
-        string str = hd.SelectSingleNode(&#34;//a[@href]&#34;).Attributes[&#34;href&#34;].Value;
-
-        return @&#34;http://ds.fzu.edu.cn/fine/resources/&#34; + str;
-    }
-
-}</pre></div>
-<p>}</pre>
-&nbsp;</p>
-
+<p>比较疼的地方是那个页面用的是gb2312编码。而解析神器HtmlAgilityPack，不能指定编码。只能想办法绕过了。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
 <p>写完运行。看着如下这个界面。。这个我只是为了让我看到进度。同时后台也在下载。</p>
-
 <p>我的心是冰凉的。但脖子是僵硬的。。。</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/30019_o.jpg"><img src="/images/47c983d3cf2aa0922d81db29b98b67805aca39b1.jpg" alt="" title="界面" /></a></p>
-
-<p>&nbsp;</p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/30019_o.jpg"><img src="/images/47c983d3cf2aa0922d81db29b98b67805aca39b1.jpg" alt="" title="界面"></a></p>
+<p> </p>
 <p>运行完成后。文件夹和文件自动命名完成是这样的。。</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/30020_o.jpg"><img src="/images/abf22883b37a85d6c963ea74373a3f7b42b85135.jpg" alt="" title="文件夹" /></a></p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/30021_o.jpg"><img src="/images/8ab02bde3050cecc1c5ad8e635b537ace60d0c2a.jpg" alt="" title="文件" /></a></p>
+<p><a href="http://leaverimage.b0.upaiyun.com/30020_o.jpg"><img src="/images/abf22883b37a85d6c963ea74373a3f7b42b85135.jpg" alt="" title="文件夹"></a></p>
+<p><a href="http://leaverimage.b0.upaiyun.com/30021_o.jpg"><img src="/images/8ab02bde3050cecc1c5ad8e635b537ace60d0c2a.jpg" alt="" title="文件"></a></p>
 
 
         
@@ -551,7 +450,7 @@ using System.Net;</p>
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

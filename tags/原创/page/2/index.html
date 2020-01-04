@@ -51,7 +51,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -249,12 +249,16 @@
               </p>
               <div class="post-entry">
                 
-                  首先看下效果图：  然后是两张gif的对比  //原本图是正着走的  //处理后是倒着走的
-gif是动态的嘛。然后我昨天和一个朋友聊天的时候发了一串相同的gif图，然后看着千篇一律的东西。我想能不能写个程序实现gif的初始状态不同呢。什么意思呢。我们知道，gif是由帧构成的，我想实现的功能是比如一个gif共有十帧，那么我写出来的程序能够生成10个gif文件，分别对应不同的初始状态来进行循环。后来一想，gif帧太多的话，比较慢，而且也不实用，于是决定简化一下，只做一个反转工具，比如一个gif是从左到右播放的，通过这个成功可以生成一个相同的gif图，不过是倒着播放的。
-思路很简单，就是先把gif分解成很多帧，然后对帧进行合并，合并帧之前把帧的位置反转一下就可以了。因为我自己对图像处理的知识不懂，只想到了思路，所以这些功能都要找些资料，然后修改，测试。
-分割帧的代码如下 //解码gif图片 public List&lt;string&gt; GetFrames(string pPath, string pSavedPath) { Image gif = Image.FromFile(pPath); FrameDimension fd = new FrameDimension(gif.FrameDimensionsList[0]);
-//获取帧数(gif图片可能包含多帧，其它格式图片一般仅一帧) int count = gif.GetFrameCount(fd); List&amp;lt;string&amp;gt; gifList=new List&amp;lt;string&amp;gt;(); //以Jpeg格式保存各帧 for (int i = 0; i &amp;lt; count; i++) { gif.SelectActiveFrame(fd, i); gif.Save(pSavedPath + &#34;\\frame_&#34; + i + &#34;.png&#34;, ImageFormat.Png); gifList.Add(pSavedPath + &#34;\\frame_&#34; + i + &#34;.png&#34;); } return gifList; }&lt;/pre&gt; 可以看到，返回了一个包含所有生成的帧地址的list列表。然后就是使用gifList作为参数来合并了。 //获取系统临时目录存放解码后的png图片 string temppath = System.
-                  <a href="https://leizhiyuan.github.io/2012/06/15/gif%E5%8F%8D%E8%BD%AC%E5%B7%A5%E5%85%B7/" class="post-read-more">[Read More]</a>
+                  <p>首先看下效果图：
+<a href="http://leaverimage.b0.upaiyun.com/23424_o.jpg"><img src="/images/b38ddf634b3f63f7f6e7f6016218ba55907c67b5.jpg" alt="" title="gif反转工具"></a>
+然后是两张gif的对比
+<a href="http://leaverimage.b0.upaiyun.com/23425_o.gif"><img src="/images/3b7f81c3127dc8ebb3eb51d13a29d45751861ea7.gif" alt="" title="旧图"></a>   //原本图是正着走的
+<a href="http://leaverimage.b0.upaiyun.com/23426_o.gif"><img src="/images/576d8c2f7990984cd6927c59d24684f2ae94fcb4.gif" alt="" title="新图"></a>   //处理后是倒着走的</p>
+<p>gif是动态的嘛。然后我昨天和一个朋友聊天的时候发了一串相同的gif图，然后看着千篇一律的东西。我想能不能写个程序实现gif的初始状态不同呢。什么意思呢。我们知道，gif是由帧构成的，我想实现的功能是比如一个gif共有十帧，那么我写出来的程序能够生成10个gif文件，分别对应不同的初始状态来进行循环。后来一想，gif帧太多的话，比较慢，而且也不实用，于是决定简化一下，只做一个反转工具，比如一个gif是从左到右播放的，通过这个成功可以生成一个相同的gif图，不过是倒着播放的。</p>
+<p>思路很简单，就是先把gif分解成很多帧，然后对帧进行合并，合并帧之前把帧的位置反转一下就可以了。因为我自己对图像处理的知识不懂，只想到了思路，所以这些功能都要找些资料，然后修改，测试。</p>
+<p>分割帧的代码如下</p>
+<!-- raw HTML omitted -->
+
                 
               </div>
 
@@ -309,8 +313,12 @@ gif是动态的嘛。然后我昨天和一个朋友聊天的时候发了一串�
 2.编译安装
 在D:\Program Files\boost_1_49_0的目录下，有一个bootstrap.bat文件，直接双击运行。就会在同目录生成b2.exe；bjam.exe两个文件。
 3.设定编译环境 修改user-config.jam (D:\Program Files\boost_1_49_0\tools\build\v2\user-config.jam) 的MSVC configuration
-MSVC configuration Configure msvc (default version, searched for in standard locations and PATH). using msvc ; 在上面这段的下面直接添加如下的文字。 using msvc : 10.0 : :/wd4819/D_CRT_SECURE_NO_DEPRECATE/D_SCL_SECURE_NO_DEPRECATE/D_SECURE_SCL=0 ; 保存关闭。
-4.开始编译 点击开始-&gt;所有程序-&gt;“Microsoft Visual Studio 2010”，指向“Visual Studio tools(工具)”，然后单击“Visual Studio 2010 command prompt（命令提示）” 使用cd切换到D:\Program Files\boost_1_49_0目录。这个就不说了 然后输入如下的代码： b2 toolset=msvc-10.0 architecture=x86 instruction-set=i686 address-model=32 link=static variant=debug,release threading=multi runtime-link=shared &ndash;without-python &ndash;without-mpi &ndash;without-wave &ndash;without-graph &ndash;without-math &ndash;without-serialization stage &nbsp;
+MSVC configuration Configure msvc (default version, searched for in standard locations and PATH). using msvc ; 在上面这段的下面直接添加如下的文字。
+保存关闭。
+4.开始编译 点击开始-&gt;所有程序-&gt;“Microsoft Visual Studio 2010”，指向“Visual Studio tools(工具)”，然后单击“Visual Studio 2010 command prompt（命令提示）” 使用cd切换到D:\Program Files\boost_1_49_0目录。这个就不说了 然后输入如下的代码：
+ 解释一下命令的意思： 1.toolset：表示编译器工具，我安装的是VS2010，所以是msvc-10(如果你是VS2005，可以使用msvc-8.0 VS2008是msvc-9.0) 2.architecture：表示架构，也就是你的CPU架构，x86,x64，因为我安装的是win7 32位，所以使用了x86的架构 3.instruction-set：表示指令集，依然是8086指令集 4.address-model：表示地址长度为32位 5.link：表示生成动态/静态链接库，动态链接库是shared，静态链接库是static，一般都会编译成静态库，因为给出程序的时候打包boost的库会非常庞大 6.variant：表示生成的Debug或者release版本，一般情况下会两种版本都会编译出来的 7.threading：表示单/多线程编译，一般我们的程序都会用到多线程，所以选择了multi 8.runtime-link：表示动态/静态链接C/C++运行时库(C/C++ Runtime)，我们选择了动态链接 9.without/with：表示不需要编译/需要编译哪些库，一些自己不用的库可以无需编译 10.stage/install：stage表示只生成库文件(DLL和Lib)，install还会生成包含头文件的include目录，推荐使用stage，因为boost_1_49\boost中就是boost库完整的头文件，所以无需再拷贝一份出来。编译出来的库会放在stage文件夹中 这样一份完整的boost库就生成了，剩下就是直接使用到项目中了。
+其实编译的具体命令都是可以自己写的。如果你需要编译所有。只需要使用下面的这行代码 b2 &ndash;toolset=msvc-10.0 &ndash;build-type=complete 就可以了。
+不出问题的话。就开始编译了。。登个半个多小时吧。就会完成了。 5.
                   <a href="https://leizhiyuan.github.io/2012/05/24/vs2010-%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85boost%E5%BA%93/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -363,7 +371,10 @@ MSVC configuration Configure msvc (default version, searched for in standard loc
               <div class="post-entry">
                 
                   问题: A character array is defined globally and a structure with same name is defined within a function. 一个字符数组被定义为全局变量，一个相同名字的结构体被定义在一个函数内部。
-Why sizeof operator returns different values for c &amp; c++ ? 为什么sizeof操作符对于C和C++返回了不同的值呢？ char S[13]; void fun() { struct S { int v; }; int v1 = sizeof(S); } // returns 4 in C++ and 13 in C 答案： Because in C++, the struct you defined is named S, while in C, 因为在C++中，你定义的结构体的名称是S，而在C中，
+Why sizeof operator returns different values for c &amp; c++ ? 为什么sizeof操作符对于C和C++返回了不同的值呢？
+答案： Because in C++, the struct you defined is named S, while in C, 因为在C++中，你定义的结构体的名称是S，而在C中，
+it's named struct S (which is why you often see typedef struct used in C code). 他叫做struct S（这也是为什么我们可以经常看到typedef struct 被用在C代码中）。
+In C, to refer to the struct type, you need to say struct S.
                   <a href="https://leizhiyuan.github.io/2012/05/22/c-c-%E4%B8%ADsizeof%E8%BF%94%E5%9B%9E%E5%80%BC%E4%B8%8D%E5%90%8C/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -417,7 +428,7 @@ Why sizeof operator returns different values for c &amp; c++ ? 为什么sizeof�
                 
                   问题： string str = &quot;abcdefgdcb&quot;; cout &amp;lt; &amp;lt; sizeof(str.substr(0,3).c_str()); For some reason, the above string is giving me 8. I assumed c_str() returns a null string, 由于某些原因，上面的这个字符串得到的结果是8，我估计c_str()返回了一个null，
 and sizeof uses the null to determine the size of the string. 并且sizeof函数使用这个null来定义这个字符串的大小。
-答案： Because sizeof doesn&rsquo;t give you the length of a string, 因为sizeof给你的不是一个字符串的长度，
+答案： Because sizeof doesn't give you the length of a string, 因为sizeof给你的不是一个字符串的长度，
 it gives you the size of the type (const char * in this case). Try strlen. 他给你的是这个类型的大小（这种情况下的类型是c_str()返回的const char*类型），想要得到正确的结果，试试strlen函数吧。
                   <a href="https://leizhiyuan.github.io/2012/05/21/%E4%B8%BA%E4%BB%80%E4%B9%88sizeofstr.substr03.c_str8/" class="post-read-more">[Read More]</a>
                 
@@ -468,11 +479,15 @@ it gives you the size of the type (const char * in this case). Try strlen. 他�
               </p>
               <div class="post-entry">
                 
-                  使用Serialization来进行序列化和反序列化，因此需要引入System.Xml.Serialization；命名空间。
-为什么要做序列化和反序列化？ .Net程序执行时，对象都驻留在内存中；内存中的对象如果需要传递给其他系统使用；或者在关机时需要保存下来以便下次再次启动程序使用就需要序列化和反序列化。
-本文的原始例子在参考文中，但是参考文中没有给出反序列化的例子，且xml文件不清晰。于是修改了代码，同时实现对象数组序列化和反序列化。
-using System; using System.Collections.Generic; using System.Linq; using System.Text; using System.Xml.Serialization; using System.IO; namespace UseXmlSerialization { class Program { static void Main(string[] args) { //声明一个猫对象 var cWhite = new Cat { Color = "White", Speed = 10, Saying = "I am a good WHITE cat" }; var cBlack = new Cat { Color = "Black", Speed = 10, Saying = "I am a good BLACK cat" }; CatCollection cc = new CatCollection { Cats = new Cat[] { cWhite, cBlack } }; //序列化这个对象 XmlSerializer serializer = new XmlSerializer(typeof(CatCollection)); StringWriter sw = new StringWriter(); serializer.
-                  <a href="https://leizhiyuan.github.io/2012/05/18/%E5%AF%B9%E8%B1%A1%E6%95%B0%E7%BB%84%E7%9A%84xml%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" class="post-read-more">[Read More]</a>
+                  <p>使用Serialization来进行序列化和反序列化，因此需要引入System.Xml.Serialization；命名空间。</p>
+<p>为什么要做序列化和反序列化？
+.Net程序执行时，对象都驻留在内存中；内存中的对象如果需要传递给其他系统使用；或者在关机时需要保存下来以便下次再次启动程序使用就需要序列化和反序列化。</p>
+<p>本文的原始例子在参考文中，但是参考文中没有给出反序列化的例子，且xml文件不清晰。于是修改了代码，同时实现对象数组序列化和反序列化。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>参考：
+　　<a href="http://www.cnblogs.com/yukaizhao/archive/2011/07/22/xml-serialization.html">http://www.cnblogs.com/yukaizhao/archive/2011/07/22/xml-serialization.html</a></p>
+
                 
               </div>
 
@@ -609,29 +624,20 @@ using System; using System.Collections.Generic; using System.Linq; using System.
               </p>
               <div class="post-entry">
                 
-                  回调函数就是一个通过函数指针调用的函数。如果你把函数的指针(地址)作为参数传递给另一个函数，当这个指针被用为调用它所指向的函数时，我们就说这是回调函数。
-　也就是说，回调函数它首先是一个函数，然后有一个指针指向它（该指针称为函数指针），在别的代码块中，通过这个函数指针调用了这个函数，仅此而已。
-　下面给出一个例子，我写出了比较详细的注释。希望足够清晰。这个例子说明了，回调函数可以把调用者和被调用者分开，对于调用者来说，只需要知道自己要调用一个函数，该函数有一个string类型的参数，至于具体调用哪个，被调用的函数到底怎么执行，怎么解释该参数，是完全不用关心的。 #include 
-#include 
-using namespace std;
-typedef void (*PF)(string s); //定义一个名为PF的函数指针，该指针指向一类函数，该类函数有一个string类型的参数，返回值为void。
-void funcOne(string s) //回调函数1
-{
-cout &lt;&lt; s+&rdquo; One&rdquo;&lt;&lt; endl;
-}
-void funcTwo(string s) //回调函数2 {
-cout &lt;&lt; s+&rdquo; Two&rdquo;&lt;&lt; endl;
-}
-void caller( PF pf, string s) //调用函数
-{
-cout &lt;&lt; &ldquo;I am Caller Function&rdquo; &lt;&lt; endl;
-pf(s);
-}
-int main()
-{
-string str = &ldquo;Test CallBack Function&rdquo;;
-PF pf1 = funcOne; //实例化一个函数指针，指向func函数
-                  <a href="https://leizhiyuan.github.io/2012/05/09/c-%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/" class="post-read-more">[Read More]</a>
+                  <p>　　回调函数就是一个通过函数指针调用的函数。如果你把函数的指针(地址)作为参数传递给另一个函数，当这个指针被用为调用它所指向的函数时，我们就说这是回调函数。</p>
+<p>　　也就是说，回调函数它首先是一个函数，然后有一个指针指向它（该指针称为函数指针），在别的代码块中，通过这个函数指针调用了这个函数，仅此而已。</p>
+<p>　　下面给出一个例子，我写出了比较详细的注释。希望足够清晰。这个例子说明了，回调函数可以把调用者和被调用者分开，对于调用者来说，只需要知道自己要调用一个函数，该函数有一个string类型的参数，至于具体调用哪个，被调用的函数到底怎么执行，怎么解释该参数，是完全不用关心的。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>　　回调函数的一个很实用的例子就是泛型算法中的max算法，具体可以参见本文末尾的第一篇参考文档，
+如果你在自行写代码中发生了
+error C2679: 二进制“&laquo;”: 没有找到接受“std::string”类型的右操作数的运算符(或没有可接受的转换)错误
+　　说明你没有把string头文件导入，导入即可
+　　个人能力有限，错误之处请留言指正，不胜感激。
+参考：
+<a href="http://learn.akae.cn/media/ch24s05.html">http://learn.akae.cn/media/ch24s05.html</a>
+<a href="http://baike.baidu.com/view/414773.htm">http://baike.baidu.com/view/414773.htm</a></p>
+
                 
               </div>
 
@@ -683,32 +689,19 @@ PF pf1 = funcOne; //实例化一个函数指针，指向func函数
               <div class="post-entry">
                 
                   <p>　　今天早上在用windows自带的计算器转换进制的时候，看到了下图所示的按钮。MS MR之类的。
-<a href="http://leaverimage.b0.upaiyun.com/21157_o.jpg"><img src="/images/94b98df6f3d241859ae7ea4e2f869ede69eca33a.jpg" alt="" /></a></p>
-
+<a href="http://leaverimage.b0.upaiyun.com/21157_o.jpg"><img src="/images/94b98df6f3d241859ae7ea4e2f869ede69eca33a.jpg" alt=""></a></p>
 <p>　　这些个按钮在简单的计算器上也有。我从小时候到现在都没搞清楚。当然也没搞过。。不学总是不会的。于是，找找资料。学会了也分享一下，英文是我猜的。。不过估计差不多</p>
-
 <p>　　首先明确的一点是这类计算器内部有一个小的记忆芯片，可以用来存储一个数，类似于内存吧。所以M的意思就是Memory，下面先给出这几个的总体说明</p>
-
 <p>　　“MS”，英文 Memory Store，用来存储输入栏显示的数字。</p>
-
 <p>　　“MR”，英文 Memory Read， 再次显示调用存储的数字。</p>
-
 <p>　　“M+”，英文 Memory Plus， 存储器里的值加上输入栏的值，结果又存入存储器</p>
-
 <p>　　“M+”，英文 Memory Minus， 存储器里的值减去输入栏的值，结果又存入存储器</p>
-
 <p>　　“MC”，英文 Memory Clear，用于清除存储器中的数值，默认为0</p>
-
 <p>　　“C”， 英文 Cancel，就是全部撤销；</p>
-
 <p>　　“CE”，  英文 Cancel Error，也就是撤销错误输入。</p>
-
-<p>　　现在来说个例子，比如我要计算100*2+11*3因为一些计算器不支持整个式子输入。也是为了演示这些功能。我们可以这样输入，</p>
-
+<p>　　现在来说个例子，比如我要计算100<em>2+11</em>3因为一些计算器不支持整个式子输入。也是为了演示这些功能。我们可以这样输入，</p>
 <p>　　先输入100，然后 * ，然后 2 ，按下等号，这时候输入栏变成了200，我们按下MS 或者M+，按下MS的话把200存到了存储器，而按下M+呢，因为存储器默认是0，所以就相当于0+200，存储器里就是200了。然后我们继续输入11 ，输入 +，输入3 ，按下等号，输入栏变成了33.我们按下M+，这时候输入栏并没有改变。因为M+将存储器里的200加上了33.则存储器里变成了233.我们按下MR就是读取存储器的值，这样输入栏就可以看到233了。我们就可以继续用233来运算了。MC就是清除233.恢复为0.</p>
-
 <p>　　例如：想要9*6，如果按6按错按成5了， 按C就是从头来过， 这时就要重新按9了， 但是如果你按CE的话， 就只要输入6就行了， 不必输入前面的了。</p>
-
 <p>　　我个人感觉M存储器就相当于一个草稿。吧计算中的一些临时值存储起来，就不用手记了。我记得我那时候有时候算值还得先把一些临时值写在纸上，后面重新输入。没文化真可怕。</p>
 
                 
@@ -760,24 +753,17 @@ PF pf1 = funcOne; //实例化一个函数指针，指向func函数
               <div class="post-entry">
                 
                   <p>　　网上一直有个版本是Wscan Gui Beta6，首先感谢作者的无私奉献，写代码不容易啊。但是这个我不知道为什么在我的电脑上总是有一些错误。很多功能虽然加上了，但是其实对我有点多余。毕竟，我只是用这个扫描一下。于是，决定自己用C#做个GUI版，模仿实现一下。</p>
-
 <p>　　然后我看了一下目录结构。如下图所知
-<a href="http://leaverimage.b0.upaiyun.com/20741_o.jpg"><img src="/images/1ab70fd66fde9efa08507a1d3930a4c4c9c4e53f.jpg" alt="" /></a>
+<a href="http://leaverimage.b0.upaiyun.com/20741_o.jpg"><img src="/images/1ab70fd66fde9efa08507a1d3930a4c4c9c4e53f.jpg" alt=""></a>
 　　貌似作者只是简单写了。然后对应着调用扫描器。我想了下，可以通过修改文件名来实现，因为wwwscan默认只能识别cgi.list，那么我想的是当我选中一种扫描类型后。将对应的字典，比如asp.list改成cgi.list。当然为了保护原文件，复制。。然后调用。这样就不用有这么多exe了。。</p>
-
-<p>　　第二个我想实现作者的检测网站的脚本类型的功能，想到了两种方法。一种是循环访问index.xxx文件，xxx对asp jsp等，然后判断http状态码，200的话就可以对应判断出来网站脚本了。但是这样测试了一会没成功，还是算了，，然后想了一种猥琐流的方法，就是直接访问首页。然后把源码下载下来，然后搜索&rdquo;.xxx&rdquo;字符串，找到就行了，，当然这两种方法都是不完善的。。我也没想到什么完美的。。希望有人知道的话留言指教。</p>
-
+<p>　　第二个我想实现作者的检测网站的脚本类型的功能，想到了两种方法。一种是循环访问index.xxx文件，xxx对asp jsp等，然后判断http状态码，200的话就可以对应判断出来网站脚本了。但是这样测试了一会没成功，还是算了，，然后想了一种猥琐流的方法，就是直接访问首页。然后把源码下载下来，然后搜索&rdquo;.xxx&quot;字符串，找到就行了，，当然这两种方法都是不完善的。。我也没想到什么完美的。。希望有人知道的话留言指教。</p>
 <p>　　最后的目录就清爽多了
-<a href="http://leaverimage.b0.upaiyun.com/20742_o.jpg"><img src="/images/5a2532b3507acd9c4ddd6787249e87f588554c46.jpg" alt="" /></a></p>
-
+<a href="http://leaverimage.b0.upaiyun.com/20742_o.jpg"><img src="/images/5a2532b3507acd9c4ddd6787249e87f588554c46.jpg" alt=""></a></p>
 <p>　　那个4p啊，，就是盲扫描了。。不知道网站脚本的时候采用。。。</p>
-
 <p>　　界面基本完全模仿了作者的UI，进行了略微调整，希望作者不介意。
-<a href="http://leaverimage.b0.upaiyun.com/20743_o.jpg"><img src="/images/d099861e804d120c52b106989f63254908490533.jpg" alt="" /></a></p>
-
+<a href="http://leaverimage.b0.upaiyun.com/20743_o.jpg"><img src="/images/d099861e804d120c52b106989f63254908490533.jpg" alt=""></a></p>
 <p>　　程序需要.net framework 3.5。。win7默认都有。不用担心。xp用户可以下载环境后使用。毕竟是扫描工具，国内那些2b杀软会报毒，不放心的去世界杀毒网自己扫描吧。千万不要用来干坏事，遵守我国相关法律法规。</p>
-
-<p>[downloadicon href=<a href="http://pan.baidu.com/share/link?shareid=83803&amp;uk=1493685990]WebScan下载[/downloadicon">http://pan.baidu.com/share/link?shareid=83803&amp;uk=1493685990]WebScan下载[/downloadicon</a>]</p>
+<p>[downloadicon href=http://pan.baidu.com/share/link?shareid=83803&amp;uk=1493685990]WebScan下载[/downloadicon]</p>
 
                 
               </div>
@@ -853,7 +839,7 @@ PF pf1 = funcOne; //实例化一个函数指针，指向func函数
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

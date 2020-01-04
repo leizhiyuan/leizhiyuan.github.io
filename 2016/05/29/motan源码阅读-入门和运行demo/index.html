@@ -133,7 +133,7 @@ stub怎么生成,序列化怎么最高效,如何统一不同机器之前的调�
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -319,28 +319,17 @@ stub怎么生成,序列化怎么最高效,如何统一不同机器之前的调�
       <article role="main" class="blog-post">
         <p>工作中一直在使用rpc,但是只是对简单的原理比较熟悉.最近看到有motan的一个介绍,代码拉下来看了看,除了测试用例比较少之外.其他还是不错的,和阿里的rpc框架比起来,还是弱了一些,好处就是方便用来学习.
 <a href="https://github.com/weibocom/motan">motan</a> 是weibo的一个rpc框架,据说已经在线上使用了.</p>
-
 <p>在学习rpc框架之前,建议看一个hello world级别的文章<a href="http://javatar.iteye.com/blog/1123915">RPC框架几行代码就够了</a>,写的非常好,看完基本就知道rpc的核心了.</p>
-
 <p><a href="https://www.cs.rutgers.edu/~pxk/417/notes/08-rpc.html">Remote Procedure Calls</a>中最关键的那个图,就能说明了.</p>
-
-<p><img src="/images/rpc-flow.png" alt="rpc的flow" /></p>
-
+<p><img src="/images/rpc-flow.png" alt="rpc的flow"></p>
 <p>本地client调用本地client stub,stub对消息进行封装,通过socket发送,服务端的server stub接收到,然后解包,将里面传递的方法名,方法参数.等等信息,识别出来,调用服务端对应的服务,然后得到结果后,又通过socket返回,本地client又进行解包.就行了.</p>
-
 <p>这里面会涉及到,封装,封装就是吧对象序列化,这样才能在网络中传递.</p>
-
 <p>而生产环境的rpc框架需要考虑的有:</p>
-
 <p>stub怎么生成,序列化怎么最高效,如何统一不同机器之前的调用,(大小端的机器等),如何识别该调用哪个机器,负载均衡.socket通信.等等.</p>
-
 <p>先跑个demo熟悉一下.</p>
-
 <p>下载motan源码,导入ide,然后先启动服务端,MotanApiExportDemo,这个类,然后控制台会打出服务已经启动.然后运行MotanApiClientDemo,会发现一个控制台打出motan,服务端打出hello motan.就说明跑起来了.</p>
-
 <p>如果控制台日志没有.修改对应resources下面的log4j.properties文件.首行添加<code>log4j.rootLogger=debug,stdout</code> ,会设置默认日志级别为debug,并且在控制台输出.
 或者直接fork<a href="https://github.com/leizhiyuan/motan">我这个</a></p>
-
 <p>后面会逐步分析,希望坚持下来.</p>
 
 
@@ -455,7 +444,7 @@ stub怎么生成,序列化怎么最高效,如何统一不同机器之前的调�
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

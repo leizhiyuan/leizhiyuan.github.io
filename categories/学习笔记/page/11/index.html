@@ -10,9 +10,9 @@
   <title>Overview of all pages with the category #学习笔记 - bystander&#39;s blog</title>
   <meta property="og:title" content="Overview of all pages with the category #学习笔记" />
   <meta name="twitter:title" content="Overview of all pages with the category #学习笔记" />
-  <meta name="description" content="Overview of all pages with the category #学习笔记, such as: skywalking插件开发的注意事项">
-  <meta property="og:description" content="Overview of all pages with the category #学习笔记, such as: skywalking插件开发的注意事项">
-  <meta name="twitter:description" content="Overview of all pages with the category #学习笔记, such as: skywalking插件开发的注意事项">
+  <meta name="description" content="Overview of all pages with the category #学习笔记, such as: 深入理解Raft协议">
+  <meta property="og:description" content="Overview of all pages with the category #学习笔记, such as: 深入理解Raft协议">
+  <meta name="twitter:description" content="Overview of all pages with the category #学习笔记, such as: 深入理解Raft协议">
   <meta name="author" content="bystander"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -51,7 +51,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -221,6 +221,98 @@
         <div class="posts-list">
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/10/04/%E5%85%B3%E4%BA%8E%E6%BA%90%E4%BB%A3%E7%A0%81%E6%8E%A7%E5%88%B6%E7%9A%84%E4%BA%94%E4%B8%AA%E8%AF%AF%E5%8C%BA/">
+                <h2 class="post-title">关于源代码控制的五个误区</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on October 4, 2012
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  <p>上周，在Red Gate好朋友的帮助下。我发起了一个名为小竞赛赢得优秀的SQL  Source Control 5份授权的活动。参加的方式很简单-分享你使用源代码控制过程中，本可以避免的最痛苦的经历</p>
+<p>许多痛苦的故事都出现了。但是我认为这五个获奖者的故事值得分享，并且我都做了评论，因为我觉得随着时间的流逝，这些故事依然对我们有所启发。那么，开始享受这些故事吧，我希望这些知识中的闪光点能够帮助你以后不会掉进相同的陷阱里。</p>
+<p>给获奖者：希望那些授权可以帮助抚慰你们关于那些已经过去的痛苦记忆。不久我会联系你们关于奖项颁发的相关事宜。</p>
+<p> </p>
+<p>1.通过Ctrl-Z来进行源代码控制</p>
+<p>第一个故事来自 <a href="http://www.troyhunt.com/2012/09/life-without-source-control-share-your.html#comment-661870477">courtesy of MyChickenNinja</a> ，仅仅文字就看得我头疼。在这个特殊的故事里。应用程序被前员工破坏了。。这非常头疼。但是至少还是有很多方法可以恢复代码的。如果不要求数据的话。。</p>
+<p>第一个问题是备份，最近的备份已经是3周前的。这绝对是一个教训—你的环境真的备份了吗？一会我会在另一个故事里简单的再说到这个问题。故事的核心部分是通过Ctrl-Z来进行伪源代码控制</p>
+<p>他们运行他们的代码，并且不断地更新，也包括开发环境，并且使用Ctrl-Z来撤销坏的改变</p>
+<p>好吧。这实在令人难以置信-如果你的应用程序已经做了一些编辑。然后被关闭了。怎么办？或者PC关机了？等等—他还说他们在哪写代码，哪儿就是开发环境？记住！撤销不是源代码控制！</p>
+<p> </p>
+<p>2。多个数据库和集成问题</p>
+<p>第二个故事来自<a href="http://www.troyhunt.com/2012/09/life-without-source-control-share-your.html#comment-661017718">Brandon Thompson</a>，他极度不开心，因为他工作在一个有着很多数据库源的环境里，并且，这些数据库都在正在进行的开发项目下面，数据库集成非常困难，这就意味着处理多个数据库备份可能还有个在海外。。</p>
+<p>我们的开发团队在海外，因为他们有他们自己的数据库集，这些数据库我从没看到过。但是他们会把改变的文件发给我们来适应我们的开发环境</p>
+<p>我发现最痛苦的是简单重复的手工劳动仅仅是使得大家能够协同的更好。这是没有一点创新并且没有任何增值的行为，比如增加新的特性，这就导致除了干这些。没什么时间真正在写代码了。</p>
+<p>源代码控制是为了能够保证团队之间平稳尽量无摩擦的一起工作。它是项目的一个润滑剂，和持续集成开发还有自动部署都属于同一类。这些都是软件开发中的“面包和黄油”，是任何成功团队编写代码的基础。</p>
+<p> </p>
+<p>3. 依赖未测试的备份</p>
+<p>下一个是<a href="http://www.troyhunt.com/2012/09/life-without-source-control-share-your.html#comment-660761685">Barry Anderson</a>，他写了一个我们都曾经经历过的痛苦：不能从备份恢复了！事实上在Barry的故事里。几个月都没备份了。之前备份本身还是坏的。这太糟糕了。但是，对于那些依赖备份的人来说这是一个严重的疏忽。</p>
+<p>当然对于这个疏忽也有自己的借口。Barry解释道：</p>
+<p>我们的经理（不是存储团队的）后来告诉我们既没时间也没空间来测试备份了。。。</p>
+<p>备份是一件很重要的事情。但从备份可以恢复也是同等重要，我最近在配置大量的新环境的时候，备份本应该发生的但是就是没有发生。只有当我坚持要进行恢复测试的时候，问题才浮出水面，对于很多人来说。只有当他们真的需要从一系列的数据丢失中恢复数据的时候，才发现不能恢复了。。测试你的备份，恢复他们，不要相信任何人的说辞.</p>
+<p> </p>
+<p>4.人工合并工具</p>
+<p>来自<a href="http://www.troyhunt.com/2012/09/life-without-source-control-share-your.html#comment-660732156">Graham Sutherland</a>的故事讲了一个人来做机器工作的故事</p>
+<p>我们有一些开发人员，每一个在他们的硬盘上的都有整个项目的一个副本，每一次一个改变发生的时候，我们就会下载技术老大改变的源代码，然后使用diff工具来查看改变。然后手工更新他们。一行一行。。全靠双手。。</p>
+<p>这个故事比听起来还要不可思议，在源代码控制工具出现以前这确实是存在的。一个海外开发团队成员就是这样干的。随后他们这样解释：带头的开发者需要在提交前检查其他开发人员的工作进度。</p>
+<p>这确实是类似于之前的观点,在有多个数据库集成的情况下;我们有技术来解决这些问题!每当一个人在软件开发中从事任何劳动密集型,重复的过程,你真的不得不停下来问:“有没有更好的方法?”通常是有的。</p>
+<p> </p>
+<p>5.剪切和粘贴版本控制</p>
+<p><a href="http://www.troyhunt.com/2012/09/life-without-source-control-share-your.html#comment-660687452">Robin Vessey</a> 让我产生了共鸣，因为它真的是伪VCS（Version Control System）最普遍的方式。剪切或者复制，然后粘贴到新的位置，通过这种方式会包含重复的目录或者文件。因此一般这些文件会被以日期或者其他标识符来标识时间帧。</p>
+<p>在Robin的故事里，他打算通过网络移动一个目录结构。</p>
+<p>他很简单但高效，我剪贴然后粘贴了一个完整的目录树，任何东西，通过网络发送。但这些文件留在了我这一边。却没有到达另一边。我仍然不知道为什么。</p>
+<p>我必须承认,我对任何剪切和粘贴文件的操作的态度是非常谨慎的,因为我看到这种情况在一个本地文件系统中发生了很多次，更不用说通过网络了，在上面的的Robin的故事,就是没有备份被恢复,因为他们一段时间后会停止备份，“因为我们没有更多的空间”。是不是感觉好像和前面某一方法很像。。</p>
+<p> </p>
+<p>总结</p>
+<p>工作在一个没有源代码控制的环境下是很可怕的。现在就停止吧。伙计们，我们是很优秀，但在在源代码控制下工作是很专业的。并且现在有很多的VCS产品。托管服务，集成工具，真心是没有任何理由不把代码-包括数据库，部署在源代码控制下。</p>
+<p> </p>
+<p>原文地址:<a href="http://www.troyhunt.com/2012/10/5-ways-to-do-source-control-really.html">5-ways-to-do-source-control-really</a></p>
+<p>著作权声明：本文由<a href="http://leaver.me/">http://leaver.me</a> 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%AD%A6%E6%B1%89/">武汉</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%AC%94%E8%AE%B0/">笔记</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/10/01/c#%E7%BC%96%E5%86%99%E6%96%87%E4%BB%B6%E6%90%9C%E7%B4%A2%E5%99%A8/">
                 <h2 class="post-title">C#编写文件搜索器</h2>
 
@@ -249,21 +341,41 @@
               </p>
               <div class="post-entry">
                 
-                  介绍 在装有Vista的机器上。我想通过一个给定的字符串来搜索我硬盘上的一个文件，该文件内容包含这个字符串序列，资源管理器是做不到的。因此，我就决定自己写吧。然后就写成这样了。。
-我做了什么
-你必须输入一个选择一个搜索目录，这样程序才知道在哪搜索文件/目录，如果你选上了“包含子目录”复选框，程序就会递归地搜索指定目录的子目录，指定的文件名可以是像 &ldquo;.wav;.mp3;Christma??ree.*&rdquo; 这样的字符串，程序将会列出所有的文件/目录匹配这些文件名
-你也可以使用一些限制条件来限制找到的项目，每一个限制条件可以通过选上复选框来激活，限制条件的参数可以在右边选中就行了。
-1. “Files newer than”将会列出LastWriteTime（上次修改时间）晚于指定时间的文件 2. “Files newer than”将会列出LastWriteTime（上次修改时间）早于指定时间的文件 3. &ldquo;Files containing the string&rdquo;仅仅列出包含字符串参数的文件。
-程序将会把字符串转换成字节序列，可以使用ASCII或者Unicode编码，取决于你的选择，然后搜索每一个出现这个字节序列的文件。
-点击Start（开始）按钮就开始搜索了。找到的项目会列在下面，如果搜索时间太长了。你可以点击Stop（停止）来停止搜索。
-如果你双击下面的一个文件。不是文件夹哦，程序将会根据关联程序打开该文件 如果你邮件一个项目，然后选择“Open Containing Folder”（打开包含文件夹）将会在资源管理器里打开包含该项目的文件夹
-如果你想要把搜索结果保存到一个文本文件。输入个分隔符分隔项目，然后点击“Write results to text file…”（保存结果到文本…）
-使用代码 1. MainWindow处理所有的界面事务 2. Searcher类提供了业务逻辑，用来搜索FileSystemInfo对象
-当用户点击Start（开始）按钮，Searcher.Start 方法就会执行，该方法开启了一个名为SearchThread 的新线程，这个线程搜索文件/目录，匹配用户输入的参数，如果找到了一个匹配的FileSystemInfo对象，它就出发一个异步的FoundInfo 事件，然后MainWindow就可以从FoundInfoEventArgs中解出FileSystemInfo对象，然后更新结果列表，当线程结束的时候，将m_thread成员对象设置为null，每一次Searcher.Start 执行的时候都会检测m_thread是否为null，因此同时不会有两个线程在运行。
-当用户点击Stop(停止)按钮的时候Searcher.Stop 方法被执行，然后设置m_stop 成员为true， Searchthread会注意到这个改变。注意本操作是线程安全的。因为布尔变量只需要一步就操作完成了
-重要：在Searcher_FoundInfo 事件处理中，MainWindow使用Invoke方法通过代理来调用this_FoundInfo 方法。通过这个方法，MainWindow是的更新结果列表的代码在MainWindow的线程里执行，而不是在Searcher的线程里，直接调用this_FoundInfo 方法会引发程序崩溃，因为Searcher_FoundInfo 事件处理和图形界面控件不同步。
-private delegate void FoundInfoSyncHandler(FoundInfoEventArgs e); private FoundInfoSyncHandler FoundInfo; ... private void MainWindow_Load(object sender, EventArgs e) { ... this.FoundInfo += new FoundInfoSyncHandler(this_FoundInfo); .
-                  <a href="https://leizhiyuan.github.io/2012/10/01/c#%E7%BC%96%E5%86%99%E6%96%87%E4%BB%B6%E6%90%9C%E7%B4%A2%E5%99%A8/" class="post-read-more">[Read More]</a>
+                  <p><a href="http://leaverimage.b0.upaiyun.com/27654_o.jpg"><img src="/images/6d2217ea2873cc4f559cc605fc38f29dade4aef8.jpg" alt="" title="filesearcher"></a></p>
+<p><strong>介绍</strong>
+在装有Vista的机器上。我想通过一个给定的字符串来搜索我硬盘上的一个文件，该文件内容包含这个字符串序列，资源管理器是做不到的。因此，我就决定自己写吧。然后就写成这样了。。</p>
+<p><strong>我做了什么</strong></p>
+<p>你必须输入一个选择一个搜索目录，这样程序才知道在哪搜索文件/目录，如果你选上了“包含子目录”复选框，程序就会递归地搜索指定目录的子目录，指定的文件名可以是像 &ldquo;<em>.wav;</em>.mp3;Christma??ree.*&rdquo; 这样的字符串，程序将会列出所有的文件/目录匹配这些文件名</p>
+<p>你也可以使用一些限制条件来限制找到的项目，每一个限制条件可以通过选上复选框来激活，限制条件的参数可以在右边选中就行了。</p>
+<p>1. “Files newer than”将会列出LastWriteTime（上次修改时间）晚于指定时间的文件
+2. “Files newer than”将会列出LastWriteTime（上次修改时间）早于指定时间的文件
+3. &ldquo;Files containing the string&quot;仅仅列出包含字符串参数的文件。</p>
+<p>程序将会把字符串转换成字节序列，可以使用ASCII或者Unicode编码，取决于你的选择，然后搜索每一个出现这个字节序列的文件。</p>
+<p>点击Start（开始）按钮就开始搜索了。找到的项目会列在下面，如果搜索时间太长了。你可以点击Stop（停止）来停止搜索。</p>
+<p>如果你双击下面的一个文件。不是文件夹哦，程序将会根据关联程序打开该文件
+如果你邮件一个项目，然后选择“Open Containing Folder”（打开包含文件夹）将会在资源管理器里打开包含该项目的文件夹</p>
+<p>如果你想要把搜索结果保存到一个文本文件。输入个分隔符分隔项目，然后点击“Write results to text file…”（保存结果到文本…）</p>
+<p><strong>使用代码</strong>
+1. MainWindow处理所有的界面事务
+2. Searcher类提供了业务逻辑，用来搜索FileSystemInfo对象</p>
+<p>当用户点击Start（开始）按钮，Searcher.Start 方法就会执行，该方法开启了一个名为SearchThread 的新线程，这个线程搜索文件/目录，匹配用户输入的参数，如果找到了一个匹配的FileSystemInfo对象，它就出发一个异步的FoundInfo 事件，然后MainWindow就可以从FoundInfoEventArgs中解出FileSystemInfo对象，然后更新结果列表，当线程结束的时候，将m_thread成员对象设置为null，每一次Searcher.Start 执行的时候都会检测m_thread是否为null，因此同时不会有两个线程在运行。</p>
+<p>当用户点击Stop(停止)按钮的时候Searcher.Stop 方法被执行，然后设置m_stop 成员为true， Searchthread会注意到这个改变。注意本操作是线程安全的。因为布尔变量只需要一步就操作完成了</p>
+<p>重要：在Searcher_FoundInfo 事件处理中，MainWindow使用Invoke方法通过代理来调用this_FoundInfo 方法。通过这个方法，MainWindow是的更新结果列表的代码在MainWindow的线程里执行，而不是在Searcher的线程里，直接调用this_FoundInfo 方法会引发程序崩溃，因为Searcher_FoundInfo 事件处理和图形界面控件不同步。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>CreateResultsListItem 方法创建并添加一个ListViewItem 到结果列表中，然后展示FilesystemInfo 对象包含的数据，FileSystemInfo 可以是FileInfo 或是DirectoryInfo ，取决于Searcher 找到的结果， is操作符可以用来判断对象的类型，如果是FileInfo独享，列表还会以KB为单位显示文件大小</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>当Searcher 线程结束的时候，触发ThreadEnded 事件，因此，MainWindow可以注意到搜索结束，Searcher_ThreadEnded 事件处理句柄使用和Searcher_FoundInfo一样的方式调用Invoke方法。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Demo下载
+<a href="http://pan.baidu.com/share/link?shareid=68747&amp;uk=1493685990">FileSearcher</a>
+许可
+本文包括源代码和文件在CPOL下授权</p>
+<p>原文地址：<a href="http://www.codeproject.com/Articles/35044/File-Searcher-in-C">File-Searcher-in-C</a></p>
+<p>著作权声明：本文由<a href="http://leaver.me">http://leaver.me</a> 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</p>
+
                 
               </div>
 
@@ -315,19 +427,12 @@ private delegate void FoundInfoSyncHandler(FoundInfoEventArgs e); private FoundI
               <div class="post-entry">
                 
                   <p>今天下午翻译了一篇简单的文章后。就去看JavaCC的东西了。。然后就找到了一篇<a href="http://www.engr.mun.ca/~theo/JavaCC-Tutorial/javacc-tutorial.pdf">入门教程</a></p>
-
 <p>然后之前我是找到了一篇翻译过来的的<a href="https://sites.google.com/site/beariceshome/the-javacc-tutorial">某熊的战略储备基地</a></p>
-
 <p>从头到尾读了一遍英文的。感觉还是英文的写的要好一些。建议对照着翻译看英文。JavaCC也就那么回事。。</p>
-
 <p>同时在在这目测百慕大群岛的什么工程与应用科学学院找到了一些其他的文档。其中一篇是<a href="http://www.engr.mun.ca/~theo/JavaCC-FAQ/javacc-screen-faq.pdf">JavaCC-FAQ</a>很好。基本上有关JavaCC的问题都有解释。</p>
-
 <p>在FAQ里，看到了一个关于<a href="http://www.j-paine.org/jjtree.html">JJTree</a>的介绍，写的不错。建议看看。</p>
-
 <p>还有一个是国外某学校的编译原理课程的<a href="http://scg.unibe.ch/download/lectures/cc/">ppt下载</a>，好象是以JavaCC作为工具的。还没认真看。</p>
-
 <p>还有一篇<a href="http://www.cnblogs.com/Gavin_Liu/archive/2009/03/07/1405029.html">JavaCC 研究与应用</a>    ，写的平常。不过是中文版的。</p>
-
 <p>最后。千万不要忘了<a href="http://javacc.java.net/doc/">官方文档</a>。也包括你下载的JavaCC里面的Demo。。</p>
 
                 
@@ -381,36 +486,11 @@ private delegate void FoundInfoSyncHandler(FoundInfoEventArgs e); private FoundI
               <div class="post-entry">
                 
                   <p>如果使用C#代码来删除文件或是文件夹。会将文件和文件夹直接删除，而不是删除到回收站。可以调用Microsoft.VisualBasic.dll提供的方法。</p>
-
 <p>首先对项目添加名为Microsoft.VisualBasic.dll的引用，然后添加命名空间</p>
-
-<pre class="lang:default decode:true " >using Microsoft.VisualBasic.FileIO;</pre> 
-
+<!-- raw HTML omitted -->
 <p>最后示例代码如下：</p>
-
-<pre class="lang:c# decode:true " >using System;
-using Microsoft.VisualBasic.FileIO;
-namespace leaver
-{
-    class Program
-    {
-
-        static void Main(string[] args)
-        {
-
-            Console.WriteLine("删除文件到回收站");
-            string filepath = "leaver.txt";
-            FileSystem.DeleteFile(filepath, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
-            Console.WriteLine("删除文件完成");
-
-            Console.WriteLine("删除文件夹到回收站");
-            string dirpath = "leaver";
-            FileSystem.DeleteDirectory(dirpath, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
-            Console.WriteLine("删除文件夹完成");
-        }
-    }
-}</pre> 
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>很简单。。就不多说了。。</p>
 
                 
@@ -464,24 +544,11 @@ namespace leaver
               <div class="post-entry">
                 
                   <p>　　那天看到WPF书上讲的毛玻璃效果，就去找了下效果。。忘了例子是从哪发现得了。。先看下效果，</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/27420_o.jpg"><img src="/images/638a69761205e3d5c16a5bd34a2f775de190d137.jpg" alt="" title="glass" /></a>
+<p><a href="http://leaverimage.b0.upaiyun.com/27420_o.jpg"><img src="/images/638a69761205e3d5c16a5bd34a2f775de190d137.jpg" alt="" title="glass"></a>
 　　但是这不是重点，作者给出的代码有一个设计时错误。。错误提示为：
 无法将类型为“Microsoft.Expression.Platform.WPF.InstanceBuilders.WindowInstance”的对象强制转换为类型“System.Windows.Window”，，</p>
-
 <p>　　中文搜了一下。没有发现有人解决过。目测。。。然后又拿英文搜了下。几经辗转。。终于是解决了。。原文在<a href="http://social.msdn.microsoft.com/Forums/is/wpf/thread/931e75a8-cab6-492d-89cd-b7ca291fa273">Unable to cast XAML error</a>。其实就是将原作者这个函数修改如下的</p>
-
-<p><pre class="lang:c# decode:true " >public static void OnIsEnabledChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
-        {</p>
-<div class="highlight"><pre class="chroma">        if ((bool)args.NewValue == true)
-        {
-            Window wnd = obj as Window;
-            if (wnd != null) wnd.Loaded += new RoutedEventHandler(wnd_Loaded);
-        }
-    }&lt;/pre&gt; </pre></div>
-<p>　　也就是验证了一下转换是否成功。</p>
-
-<p>下载：<a href="http://pan.baidu.com/share/link?shareid=61615&amp;uk=1493685990">修改后的RGSamples</a></p>
+<!-- raw HTML omitted -->
 
                 
               </div>
@@ -540,7 +607,13 @@ namespace leaver
                   今天实在看WPF揭秘的时候看到TaskDialog这个控件的。然后就去找了一下开源的代码。在codeproject上发现了这个，非常给力。。另外codeproject改版后很漂亮哦。 
 介绍： 这是用WPF实现Vista上TaskDialog效果的代码。
 Messagbox消息框 通过调用重写的静态Show方法。TaskDialog就会表现的像一个Messagebox。他有四个文本类型的属性：Header（头部）, Content（内容）, Detail（更多）, 和 Footer（底部），其实Detail是一个折叠的区域， 而Header和Footer还有一个icon属性（HeaderIcon和FooterIcon），除此之外，Header还有Background（背景）和Foreground（前景）属性
-// TaskDialog.Show方法签名 public static TaskDialogResult Show( string title, string header, string content, string detail, string footer, TaskDialogButton button, TaskDialogResult defaultResult, TaskDialogIcon headerIcon, TaskDialogIcon footerIcon, Brush headerBackground, Brush headerForeground) // TaskDialog.Show 方法的一个例子 TaskDialog.Show("Task Dialog 测试", "消息框的标题文字", "消息框的内容部分. " + " 可以自适应内容.", "消息框的细节部分 " + "可以自适应内容", "消息框的底部.", TaskDialogButton.Ok, TaskDialogResult.None, TaskDialogIcon.Information, TaskDialogIcon.Shield, Brushes.White, Brushes.Navy); 定制TaskDialog 使用静态的Show方法。Header, Content, Detail, 和Footer 就限制了只能传递字符串作为值了。 为了定义这个对话框，你先创建TaskDialog类的一个对象，然后分别设置一下各个属性，最后调用Show方法就可以了
+TaskDialog控件派生自HeaderedContentControl类，因为从HeaderedContentControl类可以获得Header和Content属性，TaskDialog仅仅是添加了Detail和Footer属性，这些属性是Object类型，并且有他们自己的template（模板）属性HeaderTemplate, ContentTemplate, DetailTemplate, 和 FooterTemplate)，TaskDialog类对于文本内容有着缺省的数据模板，当然你也可以用那四个模板来替换，这样你就可以以你喜欢的任何方式来格式化文本了。下面这个图展示了通过斜体和下划线来格式化文本。
+ 图2
+因为Header，Content，Detail和Footer是object类型，因此不再受到只能是文本的限制了，你可以防止你喜欢的任何类型到TaskDialog，下面这个例子中的TaskDialog是不是很像UAC的提示呢。这里Content属性是一个UserControl类型，放置了一个图片和一些文本还有两个CommandButtons（都是普通的按钮。。不过添加了一些定制的样式，再加了Header属性）
+ 图三
+一个模拟vista的文件拷贝窗口的TaskDialog。。
+ 图四
+额外的一些有意思的属性 下面是TaskDialog暴露的属性列表（按字母表排序） Button1Text: string类型，当TaskDialogButton属性被设置为Custom的时候，用来设置按钮的文字 Button2Text: 同上 Button3Text: 同上 DefaultResult: TaskDialogResult类型. 设置缺省的按钮 IsButton1Enabled: bool类型. 获取或设置按钮的Enabled状态 IsButton2Enabled: 同上 IsButton3Enabled: 同上 IsCloseButtonEnabled: bool类型. 获取或设置窗口关闭按钮的Enabled状态 (缺省为false) IsExpanded: bool类型，获取或是设置Detail部分的可见性。 IsModal: bool类型，获取或是设置对话框是不是模态的 ShowInTaskBar: bool类型，获取或是设置对话框是不是显示在任务栏中 SystemSound: TaskDialogSound类型. 设置当对话框显示的时候播放的声音 TaskDialogButton: TaskDialogButton类型. 显示在对话框上的按钮可以是None, Ok, OkCancel, YesNo, YesNoCancel, or Custom (查看上面提到的按钮设置) title: string类型，对话框的标题 ToggleButtonTexts: TaskDialogToggleButtonTexts提供了两个属性来设置toggle按钮的这个属性，当toggle 按钮折叠或是展开的时候 (缺省是'Show Details&rsquo; 和'Hide Details&rsquo;).
                   <a href="https://leizhiyuan.github.io/2012/09/24/%E4%B8%80%E4%B8%AA%E5%8F%AF%E5%AE%9A%E5%88%B6%E7%9A%84wpf%E4%BB%BB%E5%8A%A1%E5%AF%B9%E8%AF%9D%E6%A1%86/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -594,12 +667,20 @@ Messagbox消息框 通过调用重写的静态Show方法。TaskDialog就会表�
               </p>
               <div class="post-entry">
                 
-                  这个工具是在暑假的时候发现的。但是最后没用这个工具。不过，这个工具可是非常强悍的。。
-HtmlAgilityPack主要就是解析DOM的。常用的基础类其实不多，对解析DOM来说，就只有HtmlDocument和HtmlNode这两个常用的类，还有一个 HtmlNodeCollection集合类。我给出一个抓取我博客首页文章的例子。看代码可能更清楚一点。你可以去看看压缩包里提供的文档。
-xpath如果自己写表达式比较麻烦。所以我还找到了这个HtmlAgilityPack提供了的一个xpath辅助工具-HAPExplorer。都给出了地址。
-首先看我的例子，抓取我博客的首页文章：
-using System; using System.Collections.Generic; using System.Text; using System.Threading; using System.Diagnostics; using System.Threading.Tasks; using System.IO; using System.Data; using System.Data.SqlClient; using HtmlAgilityPack; namespace leaver { class Program { static void Main(string[] args) { HtmlWeb web = new HtmlWeb(); HtmlDocument doc = web.Load("http://leaver.me/"); HtmlNode node = doc.GetElementbyId("content"); StreamWriter sw = File.CreateText("leaver.txt"); //从根节点选中class=hfeed的节点 string cfeed = node.SelectSingleNode("/html[1]/body[1]/div[1]/div[1]/div[2]/div[1]/div[1]").OuterHtml; HtmlNode hfeed = HtmlNode.CreateNode(cfeed); foreach (HtmlNode child in hfeed.ChildNodes) { if (child.Attributes["id"] == null || child.
-                  <a href="https://leizhiyuan.github.io/2012/09/22/html%E8%A7%A3%E6%9E%90%E5%B7%A5%E5%85%B7-htmlagilitypack/" class="post-read-more">[Read More]</a>
+                  <p>这个工具是在暑假的时候发现的。但是最后没用这个工具。不过，这个工具可是非常强悍的。。</p>
+<p><a href="http://htmlagilitypack.codeplex.com">HtmlAgilityPack</a>主要就是解析DOM的。常用的基础类其实不多，对解析DOM来说，就只有HtmlDocument和HtmlNode这两个常用的类，还有一个 HtmlNodeCollection集合类。我给出一个抓取我博客首页文章的例子。看代码可能更清楚一点。你可以去看看压缩包里提供的文档。</p>
+<p>xpath如果自己写表达式比较麻烦。所以我还找到了这个HtmlAgilityPack提供了的一个xpath辅助工具-HAPExplorer。都给出了地址。</p>
+<p>首先看我的例子，抓取我博客的首页文章：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>程序运行结果：
+<a href="http://leaverimage.b0.upaiyun.com/27392_o.jpg"><img src="/images/d2623dbdf85b9caabedb4336e53e1fd67cfc07d6.jpg" alt="" title="result"></a>
+xpath表达式的具体书写都是需要分析你需要解析的网站源码的。。。。
+xpath辅助工具的界面：
+<a href="http://leaverimage.b0.upaiyun.com/27391_o.jpg"><img src="/images/2387485c54eef302fae5ddba1382b6a2092c4b67.jpg" alt="" title="xpath"></a>
+下载：<a href="http://pan.baidu.com/share/link?shareid=61130&amp;uk=1493685990">HtmlAgilityPack</a>
+下载：<a href="http://pan.baidu.com/share/link?shareid=61131&amp;uk=1493685990">HAPExplorer</a></p>
+
                 
               </div>
 
@@ -728,41 +809,23 @@ using System; using System.Collections.Generic; using System.Text; using System.
               <div class="post-entry">
                 
                   <p><strong>2.数据仓库</strong></p>
-
 <p>　　数据仓库名字上来看是很好理解的。他与传统的数据库的不同在于。传统的数据库是未经整理后的一大堆数据集。而数据仓库是从数据库中萃取出来。经过整理，规划，建构而成的一个有系统的数据库的子集合。</p>
-
 <p><strong>2.1数据仓库特点：</strong></p>
-
 <p>　　数据仓库的四个特点。</p>
-
 <p>　　1.面向主题（Subject Orient）。数据建立的着重点就是在于以重要的主题组件作为核心。作为建构的方向。数据需求者只要把谣言觉得相关主题数据，从数据库中攫取，整合之后就可以做研究之用。</p>
-
 <p>　　2.整合性（Integrated）各应用系统的数据需经过整合。以便利执行相关分析操作</p>
-
 <p>　　3.长期性（Time Variance） 为了执行趋势的分析。数据仓库系统需保留1-10年的历史数据。这与数据库为日常性的数据有所不同。</p>
-
 <p>　　4.稳定性（Non-Volatile）数据库可以被随时修改，但数据仓库基本上不会大动。只有内部人员会定期修改。但频率不会太多。也不允许用户做更新的动作。</p>
-
 <p>　　由于以上的几个特点。数据仓库必须通过一连串的程序才可建立。而不是说即买即用。。</p>
-
 <p><strong>2.2数据仓库架构</strong></p>
-
 <p>　　数据源-&gt;整体数据仓库-&gt;部门性数据仓库-&gt;查询工具-&gt;终端用户</p>
-
 <p>　　数据仓库的建设过程：</p>
-
 <p>　　专业顾问通过与企业进行需求访谈，建立数据仓库的model，然后将企业内各种数据整合到数据库中，并建立前端分析数据的工具以及管理工具，这样的过程即为建立数据仓库的基本过程。</p>
-
 <p>　　1.设计（Design） 即数据仓库的数据Model设计，这部分是最重要的，若Model设计的不够周全或布里希那个，不管之后的报表设计如何精美，也可能跑出错误的信息。这也是需要有经验的专业顾问建立数据仓库的一个重要原因。</p>
-
 <p>　　2.整合（Integrate）即数据的整合转换过程，包含数据解释（Data Extraction） ，数据转换（Data Transformation）数据清理（Data Cleaning），数据加载（Data Loading）将各种来源的数据整理，转换并加载数据仓库中，程序编写较为繁杂，自动化处理困难，经常需要人工参与操作，大约占掉该项目60-70%的时间和人力。</p>
-
 <p>　　3.可视化（Visualize）即前端呈现给用户看的形式，例如数据挖掘（Data Mining） 即OLAP工具，用以呈现分析过的数据形式。</p>
-
 <p>　　4.调度（Administration）为管理的工具。</p>
-
 <p><strong>2.3建立数据仓库的原因和目的</strong></p>
-
 <p>　　提高企业的竞争能力，降低成本，提高客户满意度。创造利润。</p>
 
                 
@@ -816,27 +879,16 @@ using System; using System.Collections.Generic; using System.Text; using System.
               <div class="post-entry">
                 
                   <p>　　1.绪论</p>
-
 <p>　　商务智能的含义就是指通过企业所拥有的数据和数据仓库的汇总，结合联机分析及数据挖掘技术挖掘出潜藏在数据库中的有用信息，并将其提供给决策者或部门主管作为平时运营的决策依据。而当企业面临危机时或必须立即做出重大决策时，也能依据数据仓库所提供的正确数据及时作出正确的决策。协助企业顺利解决问题。化危机为转机。更可见商务智能的重要性。</p>
-
 <p>　　商务智能应用的几个方面</p>
-
 <p>　　对于一般企业来说，商务智能主要应用在以下几个方面。1.了解运营状况，2.衡量绩效。3.改善关系。4.创造获利机会。</p>
-
 <p>　　企业引用商务智能的流程</p>
-
-<p>　　<a href="http://leaverimage.b0.upaiyun.com/27358_o.jpg"><img src="/images/" alt="" title="流程图" /></a></p>
-
+<p>　　<a href="http://leaverimage.b0.upaiyun.com/27358_o.jpg"><img src="/images/" alt="" title="流程图"></a></p>
 <p>　　商务智能的核心：根据企业数据库整合成可以作为分析用的数据仓库。再进一步通过分析技术来探索数据。</p>
-
 <p>　　《Building the Data Warehouse》的作者William Inmon认为数据仓库必须具有面对主题，整合性，时间转化，不易变化四个特性。</p>
-
 <p>　　联机分析简单来说就是能让用户根据本身决策需求来浏览数据。动态且实时的产生其所需的报表，以提高分析效率的技术。事实上，他除了能提供在线实时数据分析模块外，更重要的是能展示多维度的数据。</p>
-
 <p>　　商务智能的另一项重要技术：数据挖掘：是指在大量数据库中寻找有意义或是有价值的信息的过程。通过机器学习技术或是统计分析方法论。根据整合的数据加以分析探索，发掘出隐含在数据中的特性。通过专业领域知识整合及分析。从中找出合理且有用的信息，经过相关部门针对该模型的评估后，再提供给相关决策单位加以运用。</p>
-
 <p>　　企业间的竞争模式，从传统的“红海策略”，即采取压低成本与价格的杀价流血竞争。到近来倡导以创新为核心竞争力的“蓝海策略”，不论哪一种策略模式，都是不断地从研发，制造，营销，客服或资源配置等运营的相关问题上。寻求问题的发生原因，并尝试找出解决方案，而运营阶段中，陆续积累的庞大数据，往往就是答案的隐身之处。这也是数据挖掘的目的。</p>
-
 <p>　　数据库仓库强大而实用，但有一个局限性。就是他实质上反映的过去的历史，由于数据仓库经常在特定周期或时间点进行加载和处理。因此他只是表示一个时间点上的快照。即使构建了实时或是近似实时的数据仓库，其数据仍然只表示当前和历史的数据。无法达到预测的需要。与传统的统计分析方法不同的是，数据挖掘不是让人提出假设。然后据此去找相关数据。而是让数据仓库确定数据相关性。并允许采用与以往不同的模式对数据进行分析。</p>
 
                 
@@ -852,74 +904,6 @@ using System; using System.Collections.Generic; using System.Text; using System.
                     <a href="https://leizhiyuan.github.io//tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">数据挖掘</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/09/17/eclipse%E5%AE%89%E8%A3%85javacc/">
-                <h2 class="post-title">Eclipse安装JavaCC</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on September 17, 2012
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  <p>　　今年的编译原理课程上机实践是讲这个的。。要求用JavaCC来做一个简单的解释器。今天总算是有点时间找找文档先把这个安装了。安装过程很简单。。</p>
-
-<p>　　1.希望你已经安装了Eclipse。。。</p>
-
-<p>　　2.去<a href="http://sourceforge.net/projects/eclipse-javacc/">sourceforge</a>该项目主页下载javaCC压缩包</p>
-
-<p>　　3.下载完成后解压到你的Eclipse根目录。会提示覆盖plugins和features。直接覆盖即可。</p>
-
-<p>　　4.测试一下是否成功。具体步骤就是，打开eclipse，新建一个空java项目。然后对着项目点击右键new-&gt;other-&gt;javaCC-&gt;javaCC template file。然后选择命名空间。包名。和文件名就可以了。这个地方的什么的是由你建立的java项目决定的。所以你可以先把java项目设置好，然后直接选就可以了。。</p>
-
-<p>　　5.点击运行。选择java application。控制台输出　　
-　　<pre class="lang:java decode:true " >Reading from standard input&hellip;　　
-　　Enter an expression like &ldquo;1+(2+3)*4;&rdquo;:</pre></p>
-
-<p>　　完成。。。</p>
-
-<p>Update:其实吧。这里安装的是JavaCC的插件。但是已经可以进行开发了。可能你需要一个例子来开始。或者你不喜欢eclipse。那么去<a href="http://javacc.java.net">JavaCC</a>的项目下载你喜欢的即可。我下的是javacc-5.0.zip 里面有例子。可以参考。</p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/java/">java</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E8%AF%91/">编译</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
                   
                 </div>
               
@@ -989,7 +973,7 @@ using System; using System.Collections.Generic; using System.Text; using System.
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

@@ -51,7 +51,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -249,43 +249,24 @@
               </p>
               <div class="post-entry">
                 
-                  
-
-<p>今天推荐一个不错的软件.是idea 的插件.名字是Flow, 官方称:A better way to understand your Java applications,原理就是通过 java-agent 修改字节码,配置了拦截器,然后真实地跑一个测试用例,或者启动一下项目,就会生成一个真实的调用关系.官方地址:<a href="http://findtheflow.io/">http://findtheflow.io/</a></p>
-
+                  <p>今天推荐一个不错的软件.是idea 的插件.名字是Flow, 官方称:A better way to understand your Java applications,原理就是通过 java-agent 修改字节码,配置了拦截器,然后真实地跑一个测试用例,或者启动一下项目,就会生成一个真实的调用关系.官方地址:http://findtheflow.io/</p>
 <p>之前阅读源代码,对于抽象类,或者接口,静态阅读代码不太容易确定具体的调用类,因此阅读有一定的阻碍,当然 debug 也行..但是这个可以通过跑用例,或者简单的测试用例,理清调用关系,非常不错.
 可以对代码结构有一个整体关系</p>
-
-<h2 id="安装">安装</h2>
-
-<p>安装比较简单:<a href="https://plugins.jetbrains.com/plugin/8362?pr=idea">https://plugins.jetbrains.com/plugin/8362?pr=idea</a> 直接安装idea 这个插件,然后重新启动 idea, 安装完成后的效果.</p>
-
-<p><img src="/images/flow_install.png" alt="安装结果" /></p>
-
-<h2 id="使用">使用</h2>
-
+<h2 id="heading">安装</h2>
+<p>安装比较简单:https://plugins.jetbrains.com/plugin/8362?pr=idea 直接安装idea 这个插件,然后重新启动 idea, 安装完成后的效果.</p>
+<p><img src="/images/flow_install.png" alt="安装结果"></p>
+<h2 id="heading-1">使用</h2>
 <p>使用更简单,直接点击上图中的按钮,开始跑一下,即可,如果启动成功.控制台会有显示.</p>
-
-<p><img src="/images/flow_start.png" alt="开始启动" /></p>
-
+<p><img src="/images/flow_start.png" alt="开始启动"></p>
 <p>然后,会在本地开启7575的端口,来显示结果.</p>
-
-<h2 id="效果">效果</h2>
-
-<p><img src="/images/flow_common.png" alt="结果" /></p>
-
-<p><img src="/images/flow_detail.png" alt="结果明细" /></p>
-
+<h2 id="heading-2">效果</h2>
+<p><img src="/images/flow_common.png" alt="结果"></p>
+<p><img src="/images/flow_detail.png" alt="结果明细"></p>
 <p>注意,在结果页里,可以和 idea 源码交互,对着方法点右键,可以直接定位到 idea 代码中的源代码,非常方便.</p>
-
-<p><img src="/images/flow_jump.png" alt="跳转" /></p>
-
-<h2 id="其他">其他</h2>
-
+<p><img src="/images/flow_jump.png" alt="跳转"></p>
+<h2 id="heading-3">其他</h2>
 <p>其他,就是 可以在配置里设置根据哪些类,这样一些工具类啥的可以直接忽略了.</p>
-
-<p><img src="/images/flow_conf.png" alt="运行配置" /></p>
-
+<p><img src="/images/flow_conf.png" alt="运行配置"></p>
 <p>使用了一下,还是不错的.但是这个有个问题,如果你的项目自定义了 classloader/ 或者使用了自定义的容易,这个由于没有 mvn 的 jar 包,可能会报错,类找不到.暂时没有好的办法.但是阅读开源代码基本没有问题了.</p>
 
                 
@@ -334,22 +315,16 @@
                 
                   <p>之前有个项目用 jdk6跑运行正常,用 jdk8跑的时候,会报<code>java cannot access ....class file ...as class file not found though it exists.</code>
 虽然可以通过加上报错的类到依赖里解决.但是一直没想明白,为啥 jdk6下没报错.</p>
-
 <p>最近再次遇到,于是想一次性搞清楚.搜了一下,看 so 上有这么个说法.大意就是以前,如果 A 依赖 B,B 实现了 C 接口,编译的时候, 用 jdk8编译的时候, C 必须在 classpath 中,
 <a href="http://stackoverflow.com/questions/40255718/compiling-with-jdk-1-8-java-cannot-access-class-file-class-file-not-found">http://stackoverflow.com/questions/40255718/compiling-with-jdk-1-8-java-cannot-access-class-file-class-file-not-found</a></p>
-
 <p>给出了一个 bug 连接,但是这里跟我们的问题有差异,不过这个点提醒了我.于是我搜索了一下 jdk8的relase note</p>
-
 <p><a href="http://www.oracle.com/technetwork/java/javase/8-compatibility-guide-2156366.html">http://www.oracle.com/technetwork/java/javase/8-compatibility-guide-2156366.html</a></p>
-
 <p>注意观看这一段:</p>
-
 <blockquote>
 <p>Area: Tools / javac
 Synopsis
 Interfaces need to be present when compiling against their implementations</p>
 </blockquote>
-
 <p>好了.也就是说还是乖乖加依赖.但是清楚了原因了</p>
 
                 
@@ -447,7 +422,7 @@ sudo cat /var/log/messages | grep -i&quot;killed process&quot;
               </p>
               <div class="post-entry">
                 
-                  前言 最近使用 graylog在部署日志平台的时候,踩到很多&rdquo;坑&rdquo;,记录一下
+                  前言 最近使用 graylog在部署日志平台的时候,踩到很多&quot;坑&rdquo;,记录一下
 日志采集(nxlog) 1.客户端不要做太多的正则计算 graylog 最早推荐的 nxlog 采集客户端,现在貌似有了 beats 的采集方式,不过我没了解,nxlog 采集的话,需要配置Snippets,就是定义输入,输出,处理器的地方,这个地方, Input 模块是在客户端计算的.所以,一定不要进行太多的正则计算.否则会严重影响客户端的 cpu 资源.降低应用程序的性能.
 2.开多行一定要慎重 graylog 可以通过配置
 &lt;Extension multiline&gt; Module xm_multiline HeaderLine /^\d{0,2}\/\d{0,2}\/\d{0,4}/ EndLine /^\d{0,2}\/\d{0,2}\/\d{0,4}/ &lt;/Extension&gt; &lt;Input pcc-esolutions-log&gt; Module im_file File &#34;*.log&#34; SavePos TRUE InputType multiline &lt;/Input&gt; 来实现对于类似错误栈这样的信息,将多行采集成一行,但是一定要注意.如果这个正则写错了,或者其他原因,导致,未能正确匹配.会导致 nxlog 客户端占用内存暴涨.原因是为了实现多行采集,会再客户端内存中保存日志内容,直到匹配到行尾.如果未能正确匹配.会一直保存.导致内存泄露.
@@ -500,14 +475,9 @@ Exec if $raw_event $raw_event = substr($raw_event, 0, 1040000); 执行类似的�
               </p>
               <div class="post-entry">
                 
-                  
-
-<h2 id="关于字段解析">关于字段解析</h2>
-
+                  <h2 id="heading">关于字段解析</h2>
 <p>一旦 graylog 用在了一个分布式系统上,那么采集的日志格式多种多样,涉及到通过 rules.drl来解析具体的字段.之前的同学的方案是用<a href="http://www.jboss.org/drools">drools</a> 来完成的.通过一个统一的界面,来给用户生成一些正则规则这种.然后自己写了个转换器转成 Drools 的文件.更新到 graylog 的服务器上.然后重启gralog 应用完成.</p>
-
 <p>实际上, graylog 2之后的版本提供了rules和 pipeline ,这种不需要重启应用,完成这个解析的动作.但是.注意.这个不完善.所以只支持一些简单的语法,无法实现原有的完全转换.所以放弃.</p>
-
 <p>在此过程中.这个rules 有一个比较强大的功能,自动解析 key value 对.需要添加,但是,需要你的日志文件格式里的 key value有空格,
 也就是要求必须是 key=value 这样,不能紧挨着逗号这样的..比如你的打印日志是 key=value,key2=value2.那么久无法解析了..这个暂时没看到比较好的办法.估计要改代码.如果你恰好符合.那最好了.</p>
 
@@ -559,7 +529,7 @@ Exec if $raw_event $raw_event = substr($raw_event, 0, 1040000); 执行类似的�
 0. 准备 先要安装pssh,expect,ssh-copy-id.
 brew install pssh brew install homebrew/dupes/expect brew install ssh-copy-id 另外安装luit的安装参考这里luit安装
 1. 生成ssh key ,并批量copy 生成ssh key比较简单.ssh-keygen -t rsa -C &quot;your_email@example.com&quot;,直接使用git的ssh key也是可以的.然后保存下面这个脚本为pscopy.sh,
-#!/bin/bash FILE=`cat ~/host.txt` for ip in $FILE;do expect -c &#34; spawn ssh-copy-id $ipexpect { \&#34;*yes/no*\&#34; {send \&#34;yes\r\&#34;;exp_continue} \&#34;*password*\&#34; {send \&#34;pass\r\&#34;;exp_continue} \&#34;*password*\&#34; {send \&#34;pass\r\&#34;;} } &#34; done 然后执行一下sh pscopy.sh,注意,host.txt要保证存在.格式是user@address.一行一个,中间的paas要改成user的密码,这样就会使用指定的用户密码,自动copy ssh key了. 完成上面的步骤之后,ssh user@address 就可以免登了.
+#!/bin/bash FILE=`cat ~/host.txt` for ip in $FILE;do expect -c &#34;spawn ssh-copy-id $ipexpect { \&#34;*yes/no*\&#34; {send \&#34;yes\r\&#34;;exp_continue} \&#34;*password*\&#34; {send \&#34;pass\r\&#34;;exp_continue} \&#34;*password*\&#34; {send \&#34;pass\r\&#34;;} } &#34; done 然后执行一下sh pscopy.sh,注意,host.txt要保证存在.格式是user@address.一行一个,中间的paas要改成user的密码,这样就会使用指定的用户密码,自动copy ssh key了. 完成上面的步骤之后,ssh user@address 就可以免登了.
 2. 写一个简单的pssh脚本 #!/bin/bash  encoding= key= command= file= usage() { echo &#34;Usage: `basename $0` [-f filename] [-c encoding] [-k keyword]&#34; exit 1 } while getopts :f:c:k: opt do case $opt in c) encoding=$OPTARG ;; :) echo &#34;-$OPTARGneeds an argument&#34; ;; k) key=$OPTARG ;; f) file=$OPTARG ;; *) echo &#34;-$optnot recognized&#34; usage ;; esac done if [ -z &#34;$encoding&#34; ]; then #该脚本必须提供-d选项 encoding=&#34;gbk&#34; fi if [ -z &#34;$file&#34; ]; then #该脚本必须提供-d选项 file=&#34;~/hosts.
                   <a href="https://leizhiyuan.github.io/2016/10/05/mac%E6%97%A5%E5%BF%97%E6%89%B9%E9%87%8F%E6%9F%A5%E8%AF%A2%E9%85%8D%E7%BD%AE/" class="post-read-more">[Read More]</a>
                 
@@ -609,33 +579,20 @@ brew install pssh brew install homebrew/dupes/expect brew install ssh-copy-id �
               <div class="post-entry">
                 
                   <p>一旦服务器启动,服务开始提供,并且在配置中心注册了(配置中心可以是本地的地址,也可以是zk,也可以是其他的实现),那么客户端就要开始调用了</p>
-
 <p><a href="/images/service_ref.png">点击看大图</a></p>
-
-<p><img src="/images/service_ref.png" alt="服务引用" /></p>
-
+<p><img src="/images/service_ref.png" alt="服务引用"></p>
 <p>服务引用 RefererConfig.getRef()</p>
-
 <p>先是获取集群支持(先忽略,主要是配置中心相关的)</p>
-
 <p>configHandler.refer(interfaceClass, clusters, proxy)
 开始获取接口代理</p>
-
 <p>1.一旦知道接口名,Class.forName加载接口类,就开始通过proxy工厂来为服务端接口创建代理了</p>
-
 <p>2.jdk的Proxy类,直接来创建代理.同时代理要传入RefererInvocationHandler
 这个类可以看错是真正的stub,封装了rpc调用请求.当在客户端获取到服务接口的bean的时候,实际上调用过程被这个类拦截,进行封装发送rpc</p>
-
 <p>1.当接口被调用的时候,这个拦截器险根据拦截到的请求构造一个rpc请求</p>
-
 <p>2.这里就会存在一个策略.该调用哪个,以FailoverHaStrategy为例</p>
-
 <p>1.选择一个服务提供方</p>
-
 <p>1.如果是jvm服务,那么直接从本地的服务map中取出一个调用就行</p>
-
 <p>2.如果是真正的远程服务,这时候就进入nettyClient部分了</p>
-
 <p>把请求向netty的Channel中写就行了.服务端会从Channel中取进行处理,然后放回来.这样客户端就拿到结果了</p>
 
                 
@@ -685,40 +642,23 @@ brew install pssh brew install homebrew/dupes/expect brew install ssh-copy-id �
               <div class="post-entry">
                 
                   <p>这一篇继续从这个demo开始,分析一下这个服务是怎么发布出去的.关键的代码从<code>motanDemoService.export();</code>开始.</p>
-
 <p>一图胜千言.</p>
-
 <p><a href="/images/serviceConfig_export.png">点击看大图</a></p>
-
-<p><img src="/images/serviceConfig_export.png" alt="服务发布" /></p>
-
+<p><img src="/images/serviceConfig_export.png" alt="服务发布"></p>
 <p>服务发布ServiceConfig.export()</p>
-
 <p>1.加载有的配置中心url列表/新建</p>
-
 <p>2.doExport(ProtocolConfig,port,registryURLs) //配置中心地址列表</p>
-
 <p>2.1导出的时候,会先判断是否存在.其实就是根据协议名,ip,接口,参数来生成一个唯一key.</p>
-
-<p>2.2ConfigHandler.export(Class<T> interfaceClass, T ref, List<URL> registryUrls) //接口.实现.配置中心url列表</p>
-
+<p>2.2ConfigHandler.export(Class<!-- raw HTML omitted --> interfaceClass, T ref, List<!-- raw HTML omitted --> registryUrls) //接口.实现.配置中心url列表</p>
 <p>2.2.1.根据协议名创建协议,这里ProtocolFilterDecorator</p>
-
 <p>2.2.2.根据接口,实现类,serviceUrl,构造一个Provider,用来提供服务</p>
-
-<p>2.2.3.使用协议进行导出Provider,  export(Provider<T> provider, URL url)</p>
-
+<p>2.2.3.使用协议进行导出Provider,  export(Provider<!-- raw HTML omitted --> provider, URL url)</p>
 <p>2.2.3.1创建一个Exporter</p>
-
 <p>2.2.3.1.1.创建的时候会将服务提供方Provider和url有个映射关系,这样当一个url请求过来的时候,就知道改调用谁了.ProviderMessageRouter,讲一个请求路由注册到server上,同时包装了一个心跳包</p>
-
 <p>2.2.3.2进行导出 导出就是一个服务器打开的过程/server.open();</p>
-
 <p>2.2.3.2.1进入nettyServer初始化,主要就是添加handler,编码解码.和一个rpc处理的
 相当于一个请求过来的时候,先进行解码,然后调用业务处理handler进行处理,处理完成后,进行编码,然后返回给客户端</p>
-
 <p>服务器启动后,相当于这个服务就发布了</p>
-
 <p>2.2.4.注册register(registryUrls, serviceUrl) //这一步就是将serviceUrl,向对应的jvm/rpc服务中心注册url,本地注册就是LocalRegistryService类里一个map..zk的.就是向zk写node.等等</p>
 
                 
@@ -769,28 +709,17 @@ brew install pssh brew install homebrew/dupes/expect brew install ssh-copy-id �
                 
                   <p>工作中一直在使用rpc,但是只是对简单的原理比较熟悉.最近看到有motan的一个介绍,代码拉下来看了看,除了测试用例比较少之外.其他还是不错的,和阿里的rpc框架比起来,还是弱了一些,好处就是方便用来学习.
 <a href="https://github.com/weibocom/motan">motan</a> 是weibo的一个rpc框架,据说已经在线上使用了.</p>
-
 <p>在学习rpc框架之前,建议看一个hello world级别的文章<a href="http://javatar.iteye.com/blog/1123915">RPC框架几行代码就够了</a>,写的非常好,看完基本就知道rpc的核心了.</p>
-
 <p><a href="https://www.cs.rutgers.edu/~pxk/417/notes/08-rpc.html">Remote Procedure Calls</a>中最关键的那个图,就能说明了.</p>
-
-<p><img src="/images/rpc-flow.png" alt="rpc的flow" /></p>
-
+<p><img src="/images/rpc-flow.png" alt="rpc的flow"></p>
 <p>本地client调用本地client stub,stub对消息进行封装,通过socket发送,服务端的server stub接收到,然后解包,将里面传递的方法名,方法参数.等等信息,识别出来,调用服务端对应的服务,然后得到结果后,又通过socket返回,本地client又进行解包.就行了.</p>
-
 <p>这里面会涉及到,封装,封装就是吧对象序列化,这样才能在网络中传递.</p>
-
 <p>而生产环境的rpc框架需要考虑的有:</p>
-
 <p>stub怎么生成,序列化怎么最高效,如何统一不同机器之前的调用,(大小端的机器等),如何识别该调用哪个机器,负载均衡.socket通信.等等.</p>
-
 <p>先跑个demo熟悉一下.</p>
-
 <p>下载motan源码,导入ide,然后先启动服务端,MotanApiExportDemo,这个类,然后控制台会打出服务已经启动.然后运行MotanApiClientDemo,会发现一个控制台打出motan,服务端打出hello motan.就说明跑起来了.</p>
-
 <p>如果控制台日志没有.修改对应resources下面的log4j.properties文件.首行添加<code>log4j.rootLogger=debug,stdout</code> ,会设置默认日志级别为debug,并且在控制台输出.
 或者直接fork<a href="https://github.com/leizhiyuan/motan">我这个</a></p>
-
 <p>后面会逐步分析,希望坚持下来.</p>
 
                 
@@ -842,11 +771,9 @@ brew install pssh brew install homebrew/dupes/expect brew install ssh-copy-id �
                   最近由于一些需求,要搞一下python,于是周末搞了搞.要连接服务器,进行一些服务器的操作,于是安装这个Paramiko包,
 直接pip install paramiko 结果.报错,最关键的一句是:
 error: Unable to find vcvarsall.bat google一圈.最终找到一种最简单地方法.其他的安装vs.安装MinGW都太复杂了.
- 安装PyCrypto 第三方版 因为paramiko依赖PyCrypto,上面那个错就是他报错出来的.安装PyCrypto第三方版
-pip install --use-wheel --no-index --find-links=https://github.com/sfbahr/PyCrypto-Wheels/raw/master/pycrypto-2.6.1-cp35-none-win_amd64.whl pycrypto ````` 安装完成后,再次安装paramiko即可. 2.修改nt.py 安装完上面的步骤,写一个简单的程序测试下 java
-  #-- coding: utf-8 -- #!/usr/bin/python import paramiko import threading
-def ssh2(ip,username,passwd,cmd): try: ssh = paramiko.SSHClient() ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy()) ssh.connect(ip,22,username,passwd,timeout=5) for m in cmd: stdin, stdout, stderr = ssh.exec_command(m) out = stdout.readlines() #屏幕输出 for o in out: print(o) print(&lsquo;%s\tOK\n&rsquo;%(ip)) ssh.close() except : print(&lsquo;%s\tError\n&rsquo;%(ip))
-if name==&rsquo;main&lsquo;: cmd = [&lsquo;find /home/admin/logs/ -mtime +3 -name \&rsquo;.
+ 安装PyCrypto 第三方版 因为paramiko依赖PyCrypto,上面那个错就是他报错出来的.安装PyCrypto第三方版  pip install --use-wheel --no-index --find-links=https://github.com/sfbahr/PyCrypto-Wheels/raw/master/pycrypto-2.6.1-cp35-none-win_amd64.whl pycrypto 安装完成后,再次安装paramiko即可. 2.修改nt.py
+安装完上面的步骤,写一个简单的程序测试下
+#-*- coding: utf-8 -*- #!/usr/bin/python import paramiko import threading def ssh2(ip,username,passwd,cmd): try: ssh = paramiko.SSHClient() ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy()) ssh.connect(ip,22,username,passwd,timeout=5) for m in cmd: stdin, stdout, stderr = ssh.exec_command(m) out = stdout.readlines() #屏幕输出 for o in out: print(o) print(&#39;%s\tOK\n&#39;%(ip)) ssh.close() except : print(&#39;%s\tError\n&#39;%(ip)) if __name__==&#39;__main__&#39;: cmd = [&#39;find /home/admin/logs/ -mtime +3 -name \&#39;*.
                   <a href="https://leizhiyuan.github.io/2015/12/28/python3.5-%E5%AE%89%E8%A3%85-paramiko/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -924,7 +851,7 @@ if name==&rsquo;main&lsquo;: cmd = [&lsquo;find /home/admin/logs/ -mtime +3 -nam
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

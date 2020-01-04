@@ -73,7 +73,7 @@ deploy: type: git repo: github: git@github.com:yourname/yourname.github.io.git,m
   "headline": "hexo建立博客过程中的问题",
   "description" : "最近博客越来越慢了.然后一直也有markdown写文章的想法.于是花了点时间把博客迁到了hexo\x2bgithub\x2bgitcafe的组合上. ##安装Git## 下载 msysgit 并执行即可完成安装。 ##安装Node.js## 在 Windows 环境下安装 Node.js 非常简单，仅须下载安装文件并执行即可完成安装。 ##安装hexo## 利用 npm 命令即可安装。（在任意位置点击鼠标右键，选择Git bash）\nnpm install -g hexo\n安装完成后,找个目录,比如d:\/blog下面.右键,git bash,然后执行 hexo init 这样就会自动生成所有的目录结构了然后在安装一下依赖包: npm install 然后执行 hexo generate 用来根据md文件生成对应的html文件.执行 hexo server 则启动本地服务器.打开 127.0.0.1:4000端口查看\n本地查看没啥问题.就需要部署到git上了.先配置一下. 在d:\/blog下面的_config.xml中配置远程git的服务器.现在已经支持同时部署到github和gitcafe.在末尾添加\ndeploy: type: git repo: github: git@github.com:yourname\/yourname.github.io.git,master gitcafe: git@gitcafe.com:yourname\/yourname.git,gitcafe-pages 其中的yourname就是你的名字\n然后执行 hexo deploy 即可.让输入啥就输入啥. 下面是命令的简写 hexo g == hexo generate hexo d == hexo deploy hexo s == hexo server hexo n == hexo new",
   "inLanguage" : "en",
-  "wordCount":  110 ,
+  "wordCount":  106 ,
   "datePublished" : "2015-01-13T23:21:04",
   "dateModified" : "2015-01-13T23:21:04",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -116,7 +116,7 @@ deploy: type: git repo: github: git@github.com:yourname/yourname.github.io.git,m
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -307,9 +307,7 @@ deploy: type: git repo: github: git@github.com:yourname/yourname.github.io.git,m
 在 Windows 环境下安装 Node.js 非常简单，仅须下载安装文件并执行即可完成安装。
 ##安装hexo##
 利用 npm 命令即可安装。（在任意位置点击鼠标右键，选择Git bash）</p>
-
 <p><code>npm install -g hexo</code></p>
-
 <p>安装完成后,找个目录,比如d:/blog下面.右键,git bash,然后执行
 <code>hexo init</code>
 这样就会自动生成所有的目录结构了然后在安装一下依赖包:
@@ -318,16 +316,15 @@ deploy: type: git repo: github: git@github.com:yourname/yourname.github.io.git,m
 <code>hexo generate</code> 用来根据md文件生成对应的html文件.执行
 <code>hexo server</code> 则启动本地服务器.打开
 127.0.0.1:4000端口查看</p>
-
 <p>本地查看没啥问题.就需要部署到git上了.先配置一下.
 在d:/blog下面的_config.xml中配置远程git的服务器.现在已经支持同时部署到github和gitcafe.在末尾添加</p>
-<div class="highlight"><pre class="chroma">deploy:
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">deploy:
   type: git
   repo:
     github: git@github.com:yourname/yourname.github.io.git,master
-    gitcafe: git@gitcafe.com:yourname/yourname.git,gitcafe-pages</pre></div>
-<p>其中的yourname就是你的名字</p>
+    gitcafe: git@gitcafe.com:yourname/yourname.git,gitcafe-pages
 
+</code></pre></div><p>其中的yourname就是你的名字</p>
 <p>然后执行
 <code>hexo deploy</code>
 即可.让输入啥就输入啥.
@@ -336,7 +333,6 @@ deploy: type: git repo: github: git@github.com:yourname/yourname.github.io.git,m
 <code>hexo d</code> == <code>hexo deploy</code>
 <code>hexo s</code> == <code>hexo server</code>
 <code>hexo n</code> == <code>hexo new</code></p>
-
 <p>##网站主题配置##
 同样的,在d:/blog下面执行
 <code>git clone https://github.com/wuchong/jacman.git themes/jacman</code>
@@ -344,17 +340,17 @@ deploy: type: git repo: github: git@github.com:yourname/yourname.github.io.git,m
 然后修改_config.xml文件.在里面找到theme 设置为
 <code>theme: jacman</code>
 注意冒号后面有空格</p>
-
-<p>##wordpress迁移##
-1. 导出文章
- 登录wordpress管理控制台，选择工具-&gt;导出，再选择文章。点击下载导出的文件，就可以得到一个名称类似wordpress.2015-01-12.xml的文件。
-2. 安装迁移插件
- <code>npm install hexo-migrator-wordpress --save</code>执行安装
-3. 导入文章
-  <code>hexo migrate wordpress source</code> 这里source就是刚才那个文件的地址,绝对路径或者相对路径都行.导出的中文可能有编码.手动改一下,或者写个脚本简单转换一下.
-4. 导入图片
- 经过上面的步骤,会发现图片还是原来的连接.这里看这个<a href="http://catx.me/2014/03/07/hexo-migrator-image/" title="导入图片">导入图片插件</a>使用</p>
-
+<p>##wordpress迁移##</p>
+<ol>
+<li>导出文章
+登录wordpress管理控制台，选择工具-&gt;导出，再选择文章。点击下载导出的文件，就可以得到一个名称类似wordpress.2015-01-12.xml的文件。</li>
+<li>安装迁移插件
+<code>npm install hexo-migrator-wordpress --save</code>执行安装</li>
+<li>导入文章
+<code>hexo migrate wordpress source</code> 这里source就是刚才那个文件的地址,绝对路径或者相对路径都行.导出的中文可能有编码.手动改一下,或者写个脚本简单转换一下.</li>
+<li>导入图片
+经过上面的步骤,会发现图片还是原来的连接.这里看这个<a href="http://catx.me/2014/03/07/hexo-migrator-image/" title="导入图片">导入图片插件</a>使用</li>
+</ol>
 <p>##其他问题##
 <a href="http://rangercyh.blog.51cto.com/1444712/749490">github连接出现Bad file number问题</a>
 <a href="http://wuchong.me/blog/2014/01/17/use-github-to-manage-hexo-source/">使用GitHub来管理博客源文件</a>
@@ -469,7 +465,7 @@ deploy: type: git repo: github: git@github.com:yourname/yourname.github.io.git,m
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

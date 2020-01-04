@@ -48,7 +48,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -224,6 +224,69 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2013/06/25/%E5%A7%94%E6%89%98%E5%92%8C%E4%BA%8B%E4%BB%B6%E7%A4%BA%E4%BE%8B/">
+                <h2 class="post-title">委托和事件示例</h2>
+                
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on June 25, 2013
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  <p>C#中委托和事件的例子比较多，讲得好的非常好，就不瞎凑热闹了，推荐博客园大牛的一篇：</p>
+<p><a href="http://www.tracefact.net/csharp-programming/delegates-and-events-in-csharp.aspx">C# 中的委托和事件</a> ，如果你已经有了相应的基础，但没写过相关的例子，那我这里提供一个，首先看一下规范</p>
+<p>.Net Framework的编码规范：</p>
+<ul>
+<li>委托类型的名称都应该以EventHandler结束。</li>
+<li>委托的原型定义：有一个void返回值，并接受两个输入参数：一个Object 类型，一个 EventArgs类型(或继承自EventArgs)。</li>
+<li>事件的命名为 委托去掉 EventHandler之后剩余的部分。</li>
+<li>继承自EventArgs的类型应该以EventArgs结尾。
+然后描述一下流程：</li>
+</ul>
+<p>老板监视时间变动（ComputerOffWorkTime方法），当工作时间满50后，通知员工时间到（OnNotifyOffWork方法，并传递OffWorkEventArgs参数），可以下班了，（OnNotifyOffWork方法内部调用事件NotifyOffWork），正式员工收到通知后，则下班，其他员工则清扫一下办公室</p>
+<p> </p>
+<p>然后给出例子：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2013/06/11/dmp%E7%89%88%E6%9C%AC%E4%BF%AE%E6%94%B9%E5%B7%A5%E5%85%B7c/">
                 <h2 class="post-title">DMP版本修改工具(C#)</h2>
                 
@@ -252,19 +315,14 @@
               <div class="post-entry">
                 
                   <p>最近在使用oracle导入一个dmp文件的时候，由于不知道dmp文件是如何导出的，是使用exp还是expdp导出的，所以纠结了比较长的时间，最后想到是否可以查看dmp文件的一些辅助信息呢，于是有了这个工具。</p>
-
-<p>在使用dmp导入的时候报如下错误
-<pre class="lang:default decode:true">IMP-00010: 不是有效的导出文件，标题验证失败
-IMP-00000: 未成功终止导入</pre>
-据说有两个可能，1个是文件本身损坏，另一个是版本问题，多出现在高版本导出的数据向低版本导入。解决方法就是修改一下dmp文件就行了。dmp文件头部大概9个字节处标识了版本号用来头部验证。对于非常大的dmp我们不能直接用文本编辑器打开，因此找找资料，写个工具。本机一个12GB的文件已测试。</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/37341_o.png"><img src="/images/71a2a354a4dd2867eb60f08548a9da16870e4949.png" alt="" /></a></p>
-
+<p>在使用dmp导入的时候报如下错误</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>据说有两个可能，1个是文件本身损坏，另一个是版本问题，多出现在高版本导出的数据向低版本导入。解决方法就是修改一下dmp文件就行了。dmp文件头部大概9个字节处标识了版本号用来头部验证。对于非常大的dmp我们不能直接用文本编辑器打开，因此找找资料，写个工具。本机一个12GB的文件已测试。</p>
+<p><a href="http://leaverimage.b0.upaiyun.com/37341_o.png"><img src="/images/71a2a354a4dd2867eb60f08548a9da16870e4949.png" alt=""></a></p>
 <p>工具使用很简单，选择文件，识别出来版本，按格式改成导入端oracle的版本值，然后即可正常导入11G-10G测试成功。</p>
-
-<p>下载地址：<a href="http://pan.baidu.com/share/link?shareid=2717736101&amp;amp;uk=1493685990">DMP版本修改工具</a></p>
-
-<p>&nbsp;</p>
+<p>下载地址：<a href="http://pan.baidu.com/share/link?shareid=2717736101&amp;uk=1493685990">DMP版本修改工具</a></p>
+<p> </p>
 
                 
               </div>
@@ -314,20 +372,43 @@ IMP-00000: 未成功终止导入</pre>
 
               <div class="post-entry">
                 
-                  之前参加了阿里的笔试和电面，让后天那个敏感的日子去参加现场面，就去看了一下那天笔试的最后一道综合题，看着网上清一色最后一道题不知道从哪转的答案，不忍直视，一看代码就是错的，最直接的就是求中位数连奇偶性都不判断，直接处以2..这，另外当在无法整除的情况下，数据结果错误。
-&nbsp;
-这道题的大意是：有一个淘宝商户，在某城市有n个仓库，每个仓库的储货量不同，现在要通过货物运输，将每次仓库的储货量变成一致的，n个仓库之间的运输线路围城一个圈，即1-&gt;2-&gt;3-&gt;4-&gt;&hellip;-&gt;n-&gt;1-&gt;&hellip;，货物只能通过连接的仓库运输，设计最小的运送成本（运货量*路程）达到淘宝商户的要求，并写出代码。
-解题思路：
-假设n个仓库的初始储货量分别为warehouse[1],warehouse[2],&hellip;,warehouse[n] 计算平均储货量 average = （warehouse[1]+warehouse[2]+&hellip;+warehouse[n])/n 就算出来了最终的结果中，每个仓库应该有的存量 首先，从仓库1向仓库n运送k； 然后，从1到n-1，依次向下运送某一特定值，使得每一个仓库的余量都为average，剩下的问题就是求总代价的最小值了。
-设第0步从1仓库向n仓库（注意因为是圆圈，所以路径长度是1）运出k存量，k可以为负，如果为负数，意味着从n向1运输|k|存量，然后从循环，从（1到n-1）,从i仓库向i+1仓库运输，运输的量需要保证i仓库在运输完毕后等于average
- 第0步（从仓库1向仓库n运送k）:花费代价为 |k|， 第1步（确保仓库1的余量为average）：需要花费代价为 |warehouse[1]-average-k| 也就是从1向2伙从2向1运输 第2步（确保仓库2的余量为average）：代价为 |warehouse[2]+warehouse[1]-average-k-average|=|warehouse[1]+warehouse[2]-2*average-k| &hellip; n-1.第n-1步：代价为 |warehouse[1]+warehouse[2]+&hellip;+warehouse[n-1]-(n-1)*average-k| 此时，仓库n剩下的货物量： (warehouse[n]+k)+warehouse[1]+warehouse[2]+&hellip;+warehouse[n-1]-(n-1)*average-k=(warehouse[1]+warehouse[2]+&hellip;+warehouse[n])-(n-1)*average=average 刚好也满足，其实这里不用推导，因为平均值是算好的，所以最胡一定是刚好完成的。  总的代价为： |k|+|warehouse[1]-average-k|+|warehouse[1]+a[2]-2*average-k|+&hellip;+|warehouse[1]+warehouse[2]+&hellip;+warehouse[n-1]-(n-1)*average-k| 不妨令sum[i] = warehouse[1]+warehouse[2]+&hellip;+warehouse[i]-i*average 则，总代价可表示为：|k|+|sum[1]-k|+|sum[2]-k|+&hellip;+|sum[n-1]-k| 这个式子可以看成在水平数轴上寻找一个点k，使得点k到点0,sum[1],sum[2],sum[3],&hellip;,sum[n-1]的距离之和最小，显然k应该取这n个数的中位数。至此问题解决。
-给出详细注释代码：
-&nbsp; #include &ldquo;stdafx.h&rdquo; #include &lt;iostream&gt; #include &lt;algorithm&gt; #include&lt;string&gt;
-using namespace std;
-const int X = 100000; double sum[X],warehouse[X]; int n;
-double Abs(double x) { return max(x,-x); }
-int _tmain(int argc, _TCHAR* argv[]) { while(true) { double total = 0; double mid=0; cout&lt;&lt;&ldquo;请输入仓库数目：&rdquo;; cin&gt;&gt;n; //读入n个仓库的值，并计算总数 for(int i=1;i&lt;=n;i++) { cout&lt;&lt;&ldquo;请输入第&rdquo;&lt;&lt;i&lt;&lt;&ldquo;个仓库的存量：&rdquo;; cin&gt;&gt;warehouse[i]; total += warehouse[i]; } //计算每个仓库应该最终存储的值 double average = total/n; //计算sum数组 for(int i=1;i&lt;n;i++) sum[i] = warehouse[i]+sum[i-1]-average; //排序后打算去中位数 //sort采用半开半闭区间，所以排序为0～n-1 sort(sum,sum+n); //这个可以自己举个数字就知道了 if(n%2!
-                  <a href="https://leizhiyuan.github.io/2013/06/02/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B45%E6%9C%885%E6%97%A5%E7%BB%BC%E5%90%88%E7%AE%97%E6%B3%95%E9%A2%98%E8%AF%A6%E8%A7%A3/" class="post-read-more">[Read More]</a>
+                  <p>之前参加了阿里的笔试和电面，让后天那个敏感的日子去参加现场面，就去看了一下那天笔试的最后一道综合题，看着网上清一色最后一道题不知道从哪转的答案，不忍直视，一看代码就是错的，最直接的就是求中位数连奇偶性都不判断，直接处以2..这，另外当在无法整除的情况下，数据结果错误。</p>
+<p> </p>
+<p>这道题的大意是：有一个淘宝商户，在某城市有n个仓库，每个仓库的储货量不同，现在要通过货物运输，将每次仓库的储货量变成一致的，n个仓库之间的运输线路围城一个圈，即1-&gt;2-&gt;3-&gt;4-&gt;&hellip;-&gt;n-&gt;1-&gt;&hellip;，货物只能通过连接的仓库运输，设计最小的运送成本（运货量*路程）达到淘宝商户的要求，并写出代码。</p>
+<p><strong>解题思路：</strong></p>
+<p>假设n个仓库的初始储货量分别为warehouse[1],warehouse[2],&hellip;,warehouse[n]
+计算平均储货量</p>
+<!-- raw HTML omitted -->
+<p>就算出来了最终的结果中，每个仓库应该有的存量
+首先，从仓库1向仓库n运送k；
+然后，从1到n-1，依次向下运送某一特定值，使得每一个仓库的余量都为average，剩下的问题就是求总代价的最小值了。</p>
+<p>设第0步从1仓库向n仓库（注意因为是圆圈，所以路径长度是1）运出k存量，k可以为负，如果为负数，意味着从n向1运输|k|存量，然后从循环，从（1到n-1）,从i仓库向i+1仓库运输，运输的量需要保证i仓库在运输完毕后等于average</p>
+<ol>
+<li>第0步（从仓库1向仓库n运送k）:花费代价为 |k|，</li>
+<li>第1步（确保仓库1的余量为average）：需要花费代价为</li>
+</ol>
+<!-- raw HTML omitted -->
+<p>也就是从1向2伙从2向1运输
+3.  第2步（确保仓库2的余量为average）：代价为</p>
+<!-- raw HTML omitted -->
+<p>&hellip;
+n-1.第n-1步：代价为</p>
+<!-- raw HTML omitted -->
+<p>此时，仓库n剩下的货物量：</p>
+<!-- raw HTML omitted -->
+<p>刚好也满足，其实这里不用推导，因为平均值是算好的，所以最胡一定是刚好完成的。</p>
+<p><strong>总的代价为</strong>：</p>
+<!-- raw HTML omitted -->
+<p>不妨令sum[i] = warehouse[1]+warehouse[2]+&hellip;+warehouse[i]-i*average
+则，总代价可表示为：|k|+|sum[1]-k|+|sum[2]-k|+&hellip;+|sum[n-1]-k|
+这个式子可以看成在水平数轴上寻找一个点k，使得点k到点0,sum[1],sum[2],sum[3],&hellip;,sum[n-1]的距离之和最小，显然k应该取这n个数的中位数。至此问题解决。</p>
+<p>给出详细注释代码：</p>
+<p> </p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>思路借鉴了：<a href="http://hi.baidu.com/hujunjiehit/item/54204f01931ee6c49157184c">http://hi.baidu.com/hujunjiehit/item/54204f01931ee6c49157184c</a></p>
+<p>错误之处欢迎留言指出..</p>
+
                 
               </div>
 
@@ -378,13 +459,15 @@ int _tmain(int argc, _TCHAR* argv[]) { while(true) { double total = 0; double mi
 
               <div class="post-entry">
                 
-                  很早以前写的代码了，贴出来做个备份吧。用向量来存储一条邻接链表，存储可连通值。实现了判断是否连通，添加边，添加顶点的功能。
-UnDirectGraph.h #pragma once
-#include &ldquo;stdafx.h&rdquo; #include &lt;vector&gt; using namespace std; class UnDirectGraph { private: int vCount; vector&lt;int&gt; *adj; public: int GetVCount(); UnDirectGraph(int vCount); void AddEdge(int v,int w); vector&lt;int&gt; &amp;Vadj(int v); bool IsConnected(int v,int w); }; UnDirectGraph.cpp #pragma once
-#include &ldquo;stdafx.h&rdquo; #include &ldquo;UnDirectGraph.h&rdquo; using namespace std; UnDirectGraph::UnDirectGraph(int _vCount) { this-&gt;vCount=_vCount; adj=new vector&lt;int&gt;[vCount];
-for (int i=0;i&amp;lt;vCount;i++) { adj[i].clear(); } } void UnDirectGraph::AddEdge(int v,int w) { adj[v].push_back(w); adj[w].push_back(v); }
-vector&lt;int&gt;&amp; UnDirectGraph::Vadj(int v) { return adj[v]; }
-                  <a href="https://leizhiyuan.github.io/2013/05/31/%E9%82%BB%E6%8E%A5%E8%A1%A8%E5%AE%9E%E7%8E%B0%E6%97%A0%E5%90%91%E5%9B%BEc-/" class="post-read-more">[Read More]</a>
+                  <p>很早以前写的代码了，贴出来做个备份吧。用向量来存储一条邻接链表，存储可连通值。实现了判断是否连通，添加边，添加顶点的功能。</p>
+<p>UnDirectGraph.h</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>UnDirectGraph.cpp</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>代码还算清晰，就不解释了，有问题留言反馈。谢谢。</p>
+
                 
               </div>
 
@@ -429,15 +512,17 @@ vector&lt;int&gt;&amp; UnDirectGraph::Vadj(int v) { return adj[v]; }
 
               <div class="post-entry">
                 
-                  看到的一道题，给出答案
-问题：找出整数1~N范围和为N的所有集合，集合里的数不允许重复。
-解答：递归吧
-代码如下： #include &ldquo;stdafx.h&rdquo; #include &lt;iostream&gt; using namespace std;
-void PrintResult(int *log,int index) { for (int i = 0; i &lt;index; ++i) { cout&lt;&lt;log[i]&lt;&lt;&rdquo; &ldquo;; } cout&lt;&lt;endl; }
-void CalCombination(int* log,int startNum,int N,int &amp;index) { if (N==0) { PrintResult(log,index); }
-else { for (int i = startNum; i &amp;lt;= N; ++i) { log[index++]=i; CalCombination(log,i+1,N-i,index); } } index--; }
-int _tmain(int argc, _TCHAR* argv[]) { cout&lt;&lt;&ldquo;请输入N:&ldquo;; int N=20; cin&gt;&gt;N; int *log=new int[N]; int index=0; CalCombination(log,1,N,index); } 要是允许重复，也简单，将递归中的这句话改为： CalCombination(log,i,N-i,index); 同理，还可以解决类似给定一个数组，让求和为N的元素组合，只需要现将元素排个序，然后思路相同。
-                  <a href="https://leizhiyuan.github.io/2013/05/27/%E6%B1%82%E6%95%B4%E6%95%B01-n%E8%8C%83%E5%9B%B4%E5%92%8C%E4%B8%BAn%E7%9A%84%E6%89%80%E6%9C%89%E7%BB%84%E5%90%88/" class="post-read-more">[Read More]</a>
+                  <p>看到的一道题，给出答案</p>
+<p>问题：找出整数1~N范围和为N的所有集合，集合里的数不允许重复。</p>
+<p>解答：递归吧</p>
+<p>代码如下：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>要是允许重复，也简单，将递归中的这句话改为：</p>
+<!-- raw HTML omitted -->
+<p>同理，还可以解决类似给定一个数组，让求和为N的元素组合，只需要现将元素排个序，然后思路相同。</p>
+<p> </p>
+
                 
               </div>
 
@@ -484,15 +569,39 @@ int _tmain(int argc, _TCHAR* argv[]) { cout&lt;&lt;&ldquo;请输入N:&ldquo;; in
 
               <div class="post-entry">
                 
-                  反射 &nbsp; 当我们需要检查，调用一个程序集的内容的时候，用反射，比如，当VS给智能提示的时候，就应用了反射。  
-简单用法实例： &nbsp;  var myAssembly = Assembly.LoadFile(@&ldquo;C:\ClassLibrary1.dll&rdquo;); var myType = myAssembly.GetType(&ldquo;ClassLibrary1.Class1&rdquo;); dynamic objMyClass = Activator.CreateInstance(myType); // 获取类的类型信息 Type parameterType = objMyClass.GetType();
-// 浏览方法 foreach (MemberInfo objMemberInfo in parameterType.GetMembers()) {Console.WriteLine(objMemberInfo.Name);}
-// 浏览属性. foreach (PropertyInfo objPropertyInfo in parameterType.GetProperties()) {Console.WriteLine(objPropertyInfo.Name);}
-//开始调用 parameterType.InvokeMember(&ldquo;Display&rdquo;,BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.InvokeMethod | BindingFlags.Instance,null, objMyClass, null);   
-实际一点的用处呢： &nbsp; 1.当你也要开发一个类似VS的编辑器的时候，要提供智能提示就需要反射 2.当创建单元测试框架的时候，为了测试需要动态调用方法和属性的时候 3.有时候我们想把类型的属性，方法等全部导出的时候  
-动态dynamic &nbsp; 编程语言分为强/弱类型，dynamic是弱类型，此关键字会让编译器不做编译时的类型检查，只做运行时的检查。  
-简单用法示例： &nbsp;  dynamic x = &ldquo;c#&rdquo;; x++;  所以上面这行代码可以编译通过，但会产生运行时一场。
-                  <a href="https://leizhiyuan.github.io/2013/05/27/%E8%AF%91%E5%8F%8D%E5%B0%84reflection%E5%92%8C%E5%8A%A8%E6%80%81dynamic/" class="post-read-more">[Read More]</a>
+                  <h1 id="heading">反射</h1>
+<p> </p>
+<!-- raw HTML omitted -->
+<h2 id="heading-1">简单用法实例：</h2>
+<p> </p>
+<!-- raw HTML omitted -->
+<p>// 浏览方法
+foreach (MemberInfo objMemberInfo in parameterType.GetMembers())
+{Console.WriteLine(objMemberInfo.Name);}</p>
+<p>// 浏览属性.
+foreach (PropertyInfo objPropertyInfo in parameterType.GetProperties())
+{Console.WriteLine(objPropertyInfo.Name);}</p>
+<p>//开始调用
+parameterType.InvokeMember(&ldquo;Display&rdquo;,BindingFlags.Public | 
+BindingFlags.NonPublic | BindingFlags.InvokeMethod | 
+BindingFlags.Instance,null, objMyClass, null);<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<h2 id="heading-2">实际一点的用处呢：</h2>
+<p> </p>
+<!-- raw HTML omitted -->
+<h1 id="dynamic">动态dynamic</h1>
+<p> </p>
+<!-- raw HTML omitted -->
+<h2 id="heading-3">简单用法示例：</h2>
+<p> </p>
+<!-- raw HTML omitted -->
+<h2 id="heading-4">实际用处：</h2>
+<p> </p>
+<!-- raw HTML omitted -->
+<h1 id="heading-5">两者的区别和联系呢</h1>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+
                 
               </div>
 
@@ -542,24 +651,15 @@ int _tmain(int argc, _TCHAR* argv[]) { cout&lt;&lt;&ldquo;请输入N:&ldquo;; in
               <div class="post-entry">
                 
                   <p>每次写论文报告什么的，最头疼的就是参考文献的，本来打算写一个论文格式生成工具的，不过，一想起代码量，就有点吓人，所以分而治之，先写参考文献生成工具.</p>
-
 <p>本工具生成的文献格式符合武汉大学本科生论文的格式要求，因此，放心使用，填写内容都是必填，页码什么的要是不知道就随便填一个..你懂的..有问题请留言反馈。</p>
-
 <p>程序提供8种参考文献类型，第9种电子文献，没有实现，因为感觉在论文中参考文献要是网址的话很难看.而且用的不多..其实主要还是懒..每种文献类型需要填写的信息都不一样，8种&hellip;8种&hellip;</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/36356_o.png"><img src="/images/0a81d82d86007c82e327e9c0bbce1e32bb637f0e.png" alt="" /></a></p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/36356_o.png"><img src="/images/0a81d82d86007c82e327e9c0bbce1e32bb637f0e.png" alt=""></a></p>
 <p>使用方法：</p>
-
 <p>1.在界面右侧选择参考文献类型，然后填写。添加，左侧将会出现</p>
-
 <p>2.如果填写错误，双击左侧条目，即可删除</p>
-
 <p>3.完成后导出，即可在本目录生成docx文档</p>
-
-<p>下载地址：<a href="http://pan.baidu.com/share/link?shareid=510063&amp;amp;uk=1493685990">武汉大学论文参考文献格式生成工具</a></p>
-
-<p>&nbsp;</p>
+<p>下载地址：<a href="http://pan.baidu.com/share/link?shareid=510063&amp;uk=1493685990">武汉大学论文参考文献格式生成工具</a></p>
+<p> </p>
 
                 
               </div>
@@ -595,7 +695,7 @@ int _tmain(int argc, _TCHAR* argv[]) { cout&lt;&lt;&ldquo;请输入N:&ldquo;; in
   <i class="fas fa-calendar"></i>&nbsp;Posted on May 22, 2013
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -609,12 +709,34 @@ int _tmain(int argc, _TCHAR* argv[]) { cout&lt;&lt;&ldquo;请输入N:&ldquo;; in
 
               <div class="post-entry">
                 
-                  今天在整理收藏夹的时候，又看到了这两篇非常不错的文章，关于指针和引用的，我就不翻译了，文章很简单，不过把其中我觉得很有意思的两部分结合我的理解希望说的更清楚,假定你读这篇文章之前已经知道指针，但是不是很清楚其中的部分。
-首先是关于指针的一个直观的一个认识. #include &lt;iostream&gt;
-int main() { using namespace std;
-// 声明并初始化指针. unsigned short int * pPointer = 0; // 定义一个unsigned short int 变量 值为35698 unsigned short int twoInt = 35698; // 定义一个unsigned short int 变量 值为 77 unsigned short int oneInt = 77; // 使用&amp;操作符将twoInt的地址赋给指针 pPointer = &amp;twoInt; // pPointer 现在的值就是twoInt的地址了
-// 打印 cout &lt;&lt; &ldquo;pPointer的内存地址:\t\t&rdquo; &lt;&lt; &amp;pPointer &lt;&lt; endl; cout &lt;&lt; &ldquo;oneInt的内存地址:\t&rdquo; &lt;&lt; &amp;oneInt &lt;&lt; &ldquo;\t整数值:\t&rdquo; &lt;&lt; oneInt &lt;&lt; endl; cout &lt;&lt; &ldquo;twoInt的内存地址:\t&rdquo; &lt;&lt; &amp;twoInt &lt;&lt; &ldquo;\t整数值:\t&rdquo; &lt;&lt; twoInt &lt;&lt; endl; cout &lt;&lt; &ldquo;pPointer所指向的地址(也就是pPoint的值):\t&rdquo; &lt;&lt; pPointer &lt;&lt; &ldquo;\t整数值:\t&rdquo; &lt;&lt; *pPointer &lt;&lt; endl;
-                  <a href="https://leizhiyuan.github.io/2013/05/22/%E5%BC%95%E7%94%A8%E5%92%8C%E6%8C%87%E9%92%88c-/" class="post-read-more">[Read More]</a>
+                  <p>今天在整理收藏夹的时候，又看到了这两篇非常不错的文章，关于指针和引用的，我就不翻译了，文章很简单，不过把其中我觉得很有意思的两部分结合我的理解希望说的更清楚,假定你读这篇文章之前已经知道指针，但是不是很清楚其中的部分。</p>
+<p>首先是关于指针的一个直观的一个认识.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>上面这段代码，声明了一个指针，和两个整数，指针指向第一个整数，然后输出结果（每个人的输出结果不一样）是：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><a href="http://leaverimage.b0.upaiyun.com/36294_o.png"><img src="/images/ef97273d51f6843eb062463a3091a8edb177b30e.png" alt=""></a></p>
+<p>这张图是这几个变量的内存分布图，上面一排是内存地址编号，正对我们的是该处的值</p>
+<p>指针pPointer这个变量从最左边0xbff43314这个内存位置开始，占用了四个字节，这个一个指针占四个字节，大家都知道的，这个变量的值是一个地址，也就是他的指向地址。</p>
+<p>pPointer 所指向的地址呢，是一个short int 类型的值所在的位置，在这里就是我们的twoint，twoint在内存中呢，是从0xbff4331a开始的，也就是说，我们的pPointer指向了twoint所在的地址，</p>
+<p>注意，看一下左边四个方块前面的二进制数，转换成16进制就是0xbff4331a了</p>
+<p>因此，取指针所指向的值就是35698了。指针本身的值则是0xbff4331a，指针所在的位置是0xbff43314。</p>
+<p>参考文章：<a href="http://linuxconfig.org/c-understanding-pointers">C++ : Understanding pointers</a></p>
+<p> </p>
+<p>另一个呢是关于引用的实现原理</p>
+<p>大家都知道，引用就是别名，比如下面这段代码</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>输出结果肯定一目了然，其中的原理想过没</p>
+<p>其实，引用和指针的工作原理类似，引用变量存储了其引用变量的地址，看图</p>
+<p><a href="http://leaverimage.b0.upaiyun.com/36295_o.png"><img src="/images/4bfa9483e34045214dcefa4a6a383a8d189cc7fa.png" alt=""></a></p>
+<p> </p>
+<p>refNumber这个引用变量在内存中的值就是number这个被引用变量的地址.但和指针不同的是，引用是对一个地址的命名常量，因此，必须在声明引用的时候初始化。并且取值的时候，也不需要像指针一样加*，而是当作一个普通变量，直接用就行了。</p>
+<p>参考文章：<a href="http://www.ntu.edu.sg/home/ehchua/programming/cpp/cp4_PointerReference.html">Pointers, References and Dynamic Memory Allocation</a></p>
+<p> </p>
+<p> </p>
+
                 
               </div>
 
@@ -647,7 +769,7 @@ int main() { using namespace std;
   <i class="fas fa-calendar"></i>&nbsp;Posted on May 15, 2013
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -671,9 +793,11 @@ Q = A * x + B * y Q =目标值.
 Q必须是 Gcd(A,B)(也就是A,B的最大公约数)的倍数,否则无解,如果 Gcd(A,B) == 1, 任何Q都是可解的
 最简单的方法就是把A的水不断的向B中倒(B向A中倒也行),知道得到最终结果,如果桶满了,就清空该桶.举个例子
 A = 3, B = 4 并且 Q = 2 重复得从 A-&gt;B
-A B ###### 0 0 4 0 1 3 1 0 0 1 4 1 2 3 &lt;-A桶中得到2了
+A B
+ 0 0 4 0 1 3 1 0 0 1 4 1 2 3 &lt;-A桶中得到2了
 试试从 B-&gt;A
-A B ##### 0 0 0 3 3 0 3 3 4 2 &lt;- B中也得到了2 但是注意,从 B-&gt;A 比从 A-&gt;B快哦
+A B
+ 0 0 0 3 3 0 3 3 4 2 &lt;- B中也得到了2 但是注意,从 B-&gt;A 比从 A-&gt;B快哦
                   <a href="https://leizhiyuan.github.io/2013/05/15/%E5%80%92%E6%B0%B4%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3c-/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -724,25 +848,15 @@ A B ##### 0 0 0 3 3 0 3 3 4 2 &lt;- B中也得到了2 但是注意,从 B-&gt;A �
               <div class="post-entry">
                 
                   <p>作者:<a href="http://www.zhihu.com/people/fu-er">负二</a></p>
-
 <p>bystander:本文回答了你刷社交网络的内在因素.希望读到的人不只是读到那么简单.</p>
-
 <p>大家在互相打招呼之前，先各自拿出手机，其中几个人用手机“签到”，然后把“签到”信息转发给在场的每一个人，而另一些人则用手机给饭桌上的菜肴拍照，然后同样转发给在场的每一个人，直到各种提示音消失之后，大家开始一边动筷子，一边心不在焉地聊八卦，如果没有爆炸性的话题出现，吸引在场的每一个人的注意力，那么大家的注意力都会被自己的手机虏获——比如我会收到坐在对面的那人发来的一张用手指画的拙劣的涂鸦，然后让我根据此图猜一个单词。</p>
-
 <p>现在，一次聚餐的情景差不多就是这样，把一盘菜的照片转发给就坐在你身边和你一起吃饭的那个人，这种事说起来真是要多蠢有多蠢，但人们仍是乐此不疲——当一台饮水机都拥有一个微博账号时，我们意识到任何事情都已经无法阻止网络社交了，无论是美食还是同学聚会。</p>
-
 <p>大多数热衷于用手机刷新SNS网站的人并不认为对网络社交上瘾是什么问题——他们有种幻觉：需要的时候，我肯定能够克制自己，那肯定比戒烟容易。但事实并非如此，网络社交上瘾与烟瘾截然不同，如果你对它背后的机制有所了解，一定会对它能够利用人类心理的弱点到如此地步深感惊讶——一个正常人只要掉进这个圈套，就几乎不可能不对这玩意上瘾。</p>
-
 <p>如果你有过在泡论坛时不断刷新页面的经历，你就会明白社交网站的通知系统是一个多么精巧的引人上钩的设计——人们难以容忍等待，他们需要新状态的刺激，现代化的机场都将下飞机口到取行李处的距离设计得要多漫长有多漫长，就是为了避免旅客在取行李处叉着双手等行李，因为“走”比“等”更容易让人接受——而创造通知系统的产品经理们显然深谙此道，只要通知系统不断地给出状态更新的通知，就能够让人每天乖乖地登录，然后长时间地留在你的社交网站上，这一招就像用香肠逗狗一样好用。</p>
-
 <p>许多人认为社交网站降低了人与人之间交流的成本，促进了信息流动和世界大同——他们显然是被Facebook、新浪微薄之类的网站给蒙骗了；而对人类社会的本质有所了解的人则会同意窥私欲是支撑社交网站的动力之一——有一定道理，人们总是有无穷的动力想去瞧瞧多年不见的老朋友、老同学，或是初恋情人，看他们是不是过得比自己更差，我的表弟曾向我坦白，在他听说前女友离婚的消息后，他曾连续一个月关注她的微博和开心网账号，并且觉得很爽——巴菲特说，竞争并不是推动人类前进的动力，嫉妒才是。</p>
-
 <p>但实际上，窥私欲在社交网络这盘大菜中顶多只能算是几滴酱油——如果你对人性有更透彻的认识，你会从“把一盘菜的照片转发给和你一起吃饭的每一个人”这一举动上看到更深层次的动机。只有够自恋的人才会认为“我在吃这盘菜”这件事很重要，重要到有必要让每个人知道的地步——不幸的是，这世界上除了抑郁症患者，每个人都够自恋，你只要稍加注意就会发现，社交网络中的大多数信息都与“交流”没半毛钱关系，只是某人发布的“自以为很重要”的自我推销信息而已。根据“人类自我表现理论”，人们的自我表现往往根据相互关系中对方的特点而采取某种相应的对策，人们会不断地调节和控制呈现给其他人的信息，特别是有关自我的信息，以便建立起有利于自己的形象——所以人们会狂热地维护自己的微博形象，对隐私泄露视而不见，而对爱你的家人恶言相向。</p>
-
 <p>最新的研究表明，热衷社交网络，也很有可能是你不够成功的表现——美国人4个中有3个是Facebook用户，但在可支配财产超过100万美元的人群中，这一比例只有26%，而百万富翁中上Twitter的比例更是只有可怜的3%——心理学家指出，原因可能是财富给予人更多的独立意识，对他人的依赖越少，对他人就越少在意，产生自我关注的倾向。想必扎克伯格自己也不会一天到晚泡在自己的网站上——而这世界上大多数人都“不够成功”，毫无疑问。</p>
-
 <p>只要看透这一切，你就会明白，社交网络热潮，根本不是什么科技革命，它只不过是人性弱点的一次集中爆发而已，并且在它不为人所见的屁股后面，多多少少都能闻出一丝阴谋家的味道——自由软件基金会主席Richard Stallman认为，基于实名制的Facebook是一个国际寄生项目，而Jonathan Nolan（《盗梦空间》编剧）则在他的新剧中直接说，Facebook的幕后金主其实是CIA，自从全世界的人们都那么乐意泄露隐私后，CIA的工作简单了不少。</p>
-
 <p>现在看来，远离通知提示音的诱惑，从社交网络那里为自己“赎身”，才是人生正途。</p>
 
                 
@@ -758,83 +872,6 @@ A B ##### 0 0 0 3 3 0 3 3 4 2 &lt;- B中也得到了2 但是注意,从 B-&gt;A �
                     <a href="https://leizhiyuan.github.io//tags/%E5%BF%83%E7%90%86/">心理</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E6%94%B6%E8%97%8F/">收藏</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/05/01/%E5%B7%B2%E5%A4%B1%E6%95%88csdn%E5%85%8D%E7%A7%AF%E5%88%86%E4%B8%8B%E8%BD%BD%E5%99%A8/">
-                <h2 class="post-title">[已失效]Csdn免积分下载器</h2>
-                
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on May 1, 2013
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  <p>作者：bystander</p>
-
-<p>转载请注明来源:<a href="http://leaver.me">http://leaver.me</a></p>
-
-<p>原理很简单，目前好像还没有大规模传开，我就不透露了，大家低调使用.为了方便，我写了个客户端，下载地址在文章末尾</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/35412_o.png"><img src="/images/c14131e3f22197232347a8230c51cb661e50f167.png" alt="" /></a></p>
-
-<p>&nbsp;</p>
-
-<p>使用方法直接把你想下载的地址复制过去，点击下载就会调用ie来下载了.</p>
-
-<p>&nbsp;</p>
-
-<p>文章太短了，发两个可乐的吧：
-<div><span><span>第一个是：</span></span></div>
-<div><span><span>＂网上发言，请不要随便自称笔者，毕竟有没有在用笔在写一目了然。这个词汇已经要汇入历史长河了，虽然曾经的那么疯狂存在过，但至少在互联网上该消失了。＂</span></span>
-<span><span>＂那以后自称什么？＂</span></span>
-<span><span>＂键人。＂</span></span></div>
-<div>&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-</div>
-<div>第二个：</div>
-<div>
-<div>&mdash;光棍君：五一快到了，你还是一个人吗？</div>
-<div>
-<div>  &mdash;你MB，难道我会变成狗吗？</div>
-<div>&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-</div>
-<div>第一个冷笑话，第二个是热笑话，冷暖自知。一个成语瞬间提升了整篇文章的境界。</div>
-</div>
-</div>
-下载地址：<a href="http://pan.baidu.com/share/link?shareid=468747&amp;amp;uk=1493685990">Csdn下载器</a></p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E4%BA%92%E8%81%94%E7%BD%91/">互联网</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
                   
                 </div>
               
@@ -904,7 +941,7 @@ A B ##### 0 0 0 3 3 0 3 3 4 2 &lt;- B中也得到了2 但是注意,从 B-&gt;A �
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

@@ -48,7 +48,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -224,6 +224,77 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2013/02/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/">
+                <h2 class="post-title">操作系统中的输入输出</h2>
+                
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on February 1, 2013
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  <p><strong>输入输出</strong>
+<strong>I/O硬件：</strong>
+I/O设备分为两类：块设备和字符设备，块设备吧信息存储在固定大小的块中，每个块有自己的地址，传输以块为单位，每个块都能独立于其他块读写，硬盘，CD-ROM和USB盘都是常见的块设备。字符设备是以字符为单位发送和接收一个字符流，而不考虑任何块结构，字符设备不可寻址，也不寻道，打印机，网络几口，鼠标，以及大多数与磁盘不同的设备都可看作是字符设备。</p>
+<p>I/O设备一般由机械部件和电子部件两部分组成，通常分开处理，实现模块化和通用设计，电子部件称作设备控制器/适配器，在个人计算机上，通常以主板上的芯片的形式出现，或者以插入PCI的印刷电路板的形式出现。控制器卡上通常有一个连接器，通向设备本身的电缆可以插入到这个连接器中，
+控制器的任务是吧串行的位流转换成字节块，并进行必要的错误校正工作，字节块通常首先在控制器内部的一个缓冲区中按位进行组装，然后再对校验和进行校验并证明字节块没有错误后再将它复制到主存中。</p>
+<p>每个控制器都有几个寄存器用来和cpu通信，通过写入这些寄存器，操作系统可以命令设备发送数据等等操作。
+1.内存映射io
+将所有控制寄存器映射到内存空间中，每个寄存器被分配一个唯一的内存地址，并且不会有内存被分配这一地址，这样的系统称为内存映射I/O，通常位于地址空间的顶端。使用内存映射io，设备控制器只是内存中的变量，c语言可以和其他变量一样寻址，这样，I/O设备驱动程序就可以采用c语言编写。
+2.DMA
+无论CPU是否具有内存映射I/O,他都需要寻址设备控制器以便和他们交换数据，但浪费eficpu时间，所以经常使用直接存储器存储。可独立于cpu访问地址总线。</p>
+<p>没有DMA的时候，首先控制器从磁盘驱动器串行的一位一位的读一个块，直到将整块信息放入控制器的内存缓冲区中，接着，他计算校验和，以保证没有读错误发生，然后控制器产生一个中断，当操作系统开始运行时，它重复地从控制器的缓冲区中一次一个字节/一个字的读取该块的信息，并将其放入内存中。
+当有DMA的时候，首先CPU通过设置DMA控制器的寄存器对它进行编程，所以DMA控制器知道将什么数据传送到什么地方，(第1步)DMA控制器还要向磁盘控制器发送一个命令，通知他从磁盘读数据到其内部的缓冲区中，并且对校验和进行检验，如果磁盘控制器中的缓冲区中的数据是有效的的。那么DMA开始
+DMA控制器通过在总线上发出一个读请求到磁盘控制器而发起DMA传送（第2步），这一读请求和其他一样，并且磁盘控制器并不关心是来自DMA还是CPU，一般情况下，要写的内存地址在总线的地址线上，所以磁盘控制器从内部缓冲区中读取下一个字的时候，她知道要写的什么地方，写到内存是另一个标准总线周期，（第3步）
+当写操作完成时，磁盘控制器在总线上发起一个应答信号到DMA（第4步），于是DMA控制器部增要使用的内存地址，并且步减字节计数，如果字节计数仍然大于0，则从父2-4步。完成后产生中断告诉cpu，操作系统开始工作时，数据已经在内存中了。
+<strong>中断：</strong>
+将机器留在一个明确状态的中断称为精确中断，四个特征，1.PC保存在一个已知的地方。2.PC所指向的指令之前的所有指令都已经完全执行。3.PC所指向的指令之后的所有指令都没有执行。4.PC所指向的指令的执行状态是已知的。注意，对于PC所指向的指令以后的指令，并没有禁止他们开始执行，而只是要求在中断发生之前必须撤销他们对寄存器或内存所做的任何修改。
+<strong>I/O软件：</strong>
+设计I/O软件时一个关键的点就是设备独立性，意思是我们可以访问任意I/O设备而无需事先指定设备。也就是对于不同的I/O硬件。同一段程序是可以的。</p>
+<p>具有标准接口的驱动程序的工作方式如下：对于每一种设备类型，例如磁盘和打印机。操作系统定义一组驱动程序必须支持的函数，对于磁盘而言，这些函数自然的包含读和写，除此之外还包含开启和关闭电源，格式化以及其他与磁盘有关的事情。驱动程序通常包含一张表格，这张表格具有针对这些函数指向驱动程序自身的指针。当驱动程序装载时，操作系统记录下这张函数指针表的地址。所以当操作系统需要调用一个函数时，可以通过表格发出间接调用。这张函数指针表定义了驱动程序与操作系统其他部分之间的接口。</p>
+<p>**双缓冲：**当第二个缓冲区正在复制用户空间的时候，第一个缓冲区用来接收新的字符。以这样的方法。两个缓冲区轮流使用。称为双缓冲。</p>
+<p><strong>磁盘臂调度算法：</strong>
+读/写一个磁盘块需要时间：1.寻道时间（将磁盘臂移动到适当的柱面上所需的时间）2.旋转延迟（等待适当扇区旋转到磁头下所需的时间）。3.实际数据传输时间。</p>
+<p>一个磁盘子系统具有如下特性：当一个写命令发给它时，磁盘要么正确地写数据，要么什么也不做，让现有的数据完整无缺的留下，这样的系统称为稳定存储器，并且是在软件中实现的。目标是不惜一切代价保持磁盘的一致性。</p>
+<p>**时钟：**两种。1种是直接接到电源线上。就可以每个电压周期产生一个终端。现在比较少。另一种是由晶体振荡器，计数器和存储寄存器三个构成。当把一块石英晶体适当的切割并且安装到一定的压力之下时就可以产生非常精确的周期性信号。时钟启动时，存储寄存器的值被复制到计数器中，每一个脉冲使计数器-1，直到为0，产生中断。</p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2013/01/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/">
                 <h2 class="post-title">操作系统中的文件系统</h2>
                 
@@ -254,28 +325,22 @@
                   <p><strong>文件系统</strong>
 进程，地址空间，文件这些抽象概念均是操作系统中的重要概念，如果理解了这三个概念，就迈上了成为一个操作系统专家的道路。
 文件系统存放在磁盘上，多数磁盘划分为一个/多个分区，每个分区有一个独立的文件系统，磁盘的0号扇区称为主引导记录，也就是MBR，用来引导计算机，MBR的结尾就是分区表了。该表给出了每个分区的起始和结束地址。表中的一个分区被标记为活动分区。在计算机被引导时，BIOS读入并执行MBR，MBR做的第一件事就是确定活动分区，读入他的第一个块，称为引导块，并执行之，引导块中的程度将装载该分区中的操作系统，为统一起见，每个分区都从一个启动块开始，即使它不含有一个可以启动的操作系统。
-<a href="http://leaverimage.b0.upaiyun.com/32257_o.png"><img src="/images/2e6edaf72b3ff2b35c5e98e4a1538ae14d74d858.png" alt="" /></a>
+<a href="http://leaverimage.b0.upaiyun.com/32257_o.png"><img src="/images/2e6edaf72b3ff2b35c5e98e4a1538ae14d74d858.png" alt=""></a>
 <strong>文件的实现：</strong>
 1.连续分配，每个文件作为一连串连续数据存储在磁盘上。实现简单，读操作性能好，一次就可以了。但不足是删除之后不能移动，因为成本太高，使得空块增多。碎片化严重。更诡异的是对于文件编辑软件，实现无法准确预测大小，如果预测错了。。就跪了。
 //研究那些具有清晰和简洁概念的老式系统和思想是很重要的，因为他们可能以一种令人吃惊的方式在未来系统中获得应用。</p>
-
 <p>2.链表分配
 为每个文件构造磁盘块链表，一个文件分为N个文件块，N个文件块构成一个链表，存储在物理上的多个地方。顺序读取很方便，但随机读取则相当缓慢，由于指针的存在，每个磁盘块存储数据的字节不再是2的整数次幂，导致系统运行效率降低，因为很多程序都是以2的整数次幂来读写磁盘的。</p>
-
 <p>3.在内存中采用表的链表分配
 去除每个文件块在磁盘上的指针字，放入内存的一个表上，就可以解决上一个分配的不足。直观的例子如图。
 文件A使用了磁盘块4，7，2，10，12</p>
-
 <p>内存中这样的表格称为文件分配表，也就是FAT了。主要缺点是对于大磁盘的小块，这种表需要的内存占用太大。。不太适用。
-<a href="http://leaverimage.b0.upaiyun.com/32256_o.png"><img src="/images/b3afb8b5bedaaa50b38292cd6eb90a388d5081d1.png" alt="" /></a></p>
-
+<a href="http://leaverimage.b0.upaiyun.com/32256_o.png"><img src="/images/b3afb8b5bedaaa50b38292cd6eb90a388d5081d1.png" alt=""></a></p>
 <p>4.i节点
 记录各个文件包含哪些磁盘块的方法是给每个文件赋予一个称为i节点的数据结构,其中类除了文件属性和文件块的磁盘地址.相对于在内存中采用表的方式,这种机制的优势在于只有对应文件打开时,其i节点才进入内存.</p>
-
 <p>文件系统的一致性检查分为两种:块的一致性检查和文件的一致性检查.构造两张表,一张跟踪块在文件中的出现次数,另一张跟踪该块在空闲表中的出现次数,如果一致,则某一块必然在两个表中1/2中为1,如果某一块没有出现在任何一张表中,则称为块丢失,浪费了磁盘空间.解决方法是让文件系统检验程序把他们加入到空闲表中
 如果在空闲表中出现了两次.则重新建议建议空闲表即可.
 如果在文件表中出现了两次.则比较麻烦.</p>
-
 <p><strong>文件系统性能</strong>
 1.高速缓存,最常用,指的是一系列的块,逻辑上属于磁盘.但实际上被保存在内存上.基本算法是检查全部的读请求,查看在高速缓存中是否有所需要的块,如果存在,就读,否则读入高速缓存在复制到其他地方.
 2.块提前读,在需要用到块之前,试图提前将其写入高速缓存,从而提高命中率.比如某个文件有n个块,则请求k块的时候,则同时预读k+1块.只适用于顺序读取的文件,对随机读取文件,则没有效果/反效果.
@@ -330,28 +395,9 @@
 
               <div class="post-entry">
                 
-                  <p><div>最近读完了《现代操作系统》。页面置换算法的读书笔记。其他的笔记慢慢整理一下在博客做个备份。</div>
-<div></div>
-<div>虚拟内存的基本思想：每个程序都拥有自己的内存空间，这个空间被分割成很多块，每一块称为一页/页面，每一页有连续的地址范围，这些页被映射到物理内。</div>
-页面置换算法
-1.最优页面置换算法，每个页面都可以用在该页面首次被访问前所需要执行的指令数作为标记。因此我们选择标记最大的页面，也就是把不愉快的事情往后拖延。但是，唯一的问题是无法实现。
-2.最近未使用页面置换算法。系统每一个页面设置两个状态位，当页面被访问时设置R位，当被修改时设置M位，包含在页表项中，初始时，都被设置0，R被定期地清零，以区别最近没有被访问和被访问的页面。NRU算法随机的从类编号最小的非空类中挑选一个页面淘汰之，
-根据R和W可以将页面分为4类
-0没有被访问，没有被修改/1没有被访问，被修改/2已被访问，没有被修改/3已被访问，已被修改。第一类只有在定期清R的时候才会出现。
-隐含的意思是，淘汰一个没有被访问的已修改页面要比淘汰一个被频繁使用的干净页面要好。
-3.先进先出置换，找出最先进入的替换掉，很少单独使用
-4.第二次机会页面置换算法。FIFO可能将经常使用的页面置换出来。为此，检查最老页面的r位，如果R为0，则既老又没有被使用，则就置换掉，如果是1，就清0，放在链表尾，修改装入时间为最新。继续搜索。
-5.时钟页面置换算法，第二次机会算法经常要在链表中移动页面，更好的方法是将页面保存在一个类似钟面的环形链表中，表针指向最老的页面。发生缺页时，如果R是0就
-淘汰该页面，并插入新页面，然后表针前移，如果是1，就清除R并前移，直到找到一个R位为0的页面。这也是时钟的由来
-<a href="http://leaverimage.b0.upaiyun.com/32235_o.jpg"><img src="/images/e198f5889716b00f06a452789f0c413474927e87.jpg" alt="" /></a>
-6.最近最少使用页面置换算法。在发生缺页时，置换未使用时间最长的页面，这个策略称为LRU，最简单的一个实现策略是有一个64位计数器，每条指令执行完加1.每个页表项必须有一个足够容纳这个计数器值的域，每次访问内存后，将C值保存到被访问页面的页表项，一旦中断，检查所有页面项的计数器值，找到最小的即可。
-7.NFU最不常用算法，是LRU的软件模拟实现。每个页面与一个软件计数器管理。初值为0，每次时钟中断时，操作系统扫描内存中的所有页面，将每个页面中的R位值加到他的计数器上，计数器的值即为访问的频繁程度。该算法的问题是记住的事情太多，如果第一次执行扫描的时间最长。比如第一次某个页面的值很大。这个很大的值会影响到下一次扫描，结果操作系统将置换有用的页面而不是不再使用的页面。
-8.修改一下NFU：R位被加进之前，将计数器右移一位，同时将R加到计数器的左端。即为老化算法
-9.工作集页面置换算法。一个进程当前正在使用的页面的集合称作他的工作集。基本思路是找出一个不在工作集中的页面并淘汰它。
-10.工作集时钟页面置换算法。基于时钟算法，并且使用了工作集信息。</p>
-
+                  <!-- raw HTML omitted -->
 <p>页面调度算法总结；
-<a href="http://leaverimage.b0.upaiyun.com/32236_o.jpg"><img src="/images/8aeb6656133389828c802b546823152810700003.jpg" alt="" /></a>
+<a href="http://leaverimage.b0.upaiyun.com/32236_o.jpg"><img src="/images/8aeb6656133389828c802b546823152810700003.jpg" alt=""></a>
 最好的两种算法是老化算法和工作集时钟算法，分别基于LRU和工作集。具有良好的页面调度性能。</p>
 
                 
@@ -403,57 +449,31 @@
               <div class="post-entry">
                 
                   <p>清理GR的加星标项目。分享来自博客园 <a href="http://www.cnblogs.com/zhili">zhili</a> 的C#基础系列文章。</p>
-
 <p>C#基础知识系列终于告了一个段落了, 本系列中主要和大家介绍了C#1.0到C# 4.0中一些重要的特性，刚开始写这个专题的初衷主要是我觉得掌握了C#这些基础知识之后，对于其他任何的一门语言都是差不多的，这样可以提高朋友们对其他语言的掌握，以及可以让大家更加迅速地掌握.NET的新特性， 并且相信这个系列对于找工作的朋友也是很有帮助的，因为很多公司面试都很看重基础知识是否扎实，是否对C#有一个全面的认识和理解，所以很多公司面试都会问到一些C#基础概念的问题，例如，经常面试会问：你是如何理解委托的，如何理解匿名函数等问题。</p>
-
 <p>然而这个系列中并没有介绍COM互操作性的内容以及.Net 4.5中的一些新特性，所以后面将会对这两个方面的内容进行补充，由于这个系列托的太久了(大概也有3个月吧)，所以就先告一段落的，后面将会带来.NET互操作性系列的介绍。下面就为这个系列文章做一个索引，方便大家收藏和查找。</p>
-
 <p>C#基础知识系列索引</p>
-
 <p>C#1.0</p>
-
 <p>1. <a href="http://www.cnblogs.com/zhili/archive/2012/10/22/Delegate.html">深入解析委托——C#中为什么要引入委托</a></p>
-
 <p>2. <a href="http://www.cnblogs.com/zhili/archive/2012/10/25/DeepDelegate.html">委托本质论</a></p>
-
 <p>3. <a href="http://www.cnblogs.com/zhili/archive/2012/10/27/MulticastDelegate.html">如何用委托包装多个方法——委托链</a></p>
-
 <p>4. <a href="http://www.cnblogs.com/zhili/archive/2012/10/27/Event.html">事件揭秘</a></p>
-
 <p>5. <a href="http://www.cnblogs.com/zhili/archive/2012/10/29/ButtonClickEvent.html">当点击按钮时触发Click事件背后发生的事情</a></p>
-
 <p>C# 2.0</p>
-
 <p>6. <a href="http://www.cnblogs.com/zhili/archive/2012/11/03/GenericType.html">泛型基础篇——为什么引入泛型</a></p>
-
 <p>7. <a href="http://www.cnblogs.com/zhili/archive/2012/11/08/Generic_1.html">泛型深入理解(一)</a></p>
-
 <p>8. <a href="http://www.cnblogs.com/zhili/archive/2012/11/08/Generic_2.html">泛型深入理解(二)</a></p>
-
 <p>9. <a href="http://www.cnblogs.com/zhili/archive/2012/11/12/GenericVari.html">深入理解泛型可变性</a></p>
-
 <p>10. <a href="http://www.cnblogs.com/zhili/archive/2012/11/23/Nullable.html">全面解析可空类型</a></p>
-
 <p>11. <a href="http://www.cnblogs.com/zhili/archive/2012/12/01/anonymousmethod.html">匿名方法解析</a></p>
-
 <p>12. <a href="http://www.cnblogs.com/zhili/archive/2012/12/02/Interator.html">迭代器</a></p>
-
 <p>C# 3.0</p>
-
 <p>13. <a href="http://www.cnblogs.com/zhili/archive/2012/12/11/basicfeatures.html">全面解析对象集合初始化器、匿名类型和隐式类型</a></p>
-
 <p>14. <a href="http://www.cnblogs.com/zhili/archive/2012/12/12/LambdaExpression.html">深入理解Lambda表达式</a></p>
-
 <p>15. <a href="http://www.cnblogs.com/zhili/archive/2012/12/17/ExtensionMethod.html">全面解析扩展方法</a></p>
-
 <p>16. <a href="http://www.cnblogs.com/zhili/archive/2012/12/24/Linq.html">Linq介绍</a></p>
-
 <p>C# 4.0</p>
-
 <p>17. <a href="http://www.cnblogs.com/zhili/archive/2013/01/07/DynamicType.html">深入理解动态类型</a></p>
-
-<p>&nbsp;</p>
-
+<p> </p>
 <p>从C#的所有特性可以看出,C#中提出的每个新特性都是建立在原来特性的基础上,并且是对原来特性的一个改进, 做这么多的改进主要是为了方便开发人员更好地使用C#来编写程序,是让我们写更少的代码来实现我们的程序,把一些额外的工作交给编译器去帮我们做,也就是很多人说微软很喜欢搞语法糖的意思(语法糖即让编译器帮我们做一些额外的事情，减少开发人员所考虑的事情，使开发人员放更多的精力放在系统的业务逻辑上面。)，大家从C# 3中提出的特性中可以很好的看出这点(指的是玩语法糖)，C#3中几乎大部分特性都是C#提供的语法糖，从CLR层面来说(指的是增加新的IL指令)，C# 3并没有更新什么，C# 4中提出的动态类型又是建立在表达式树的基础上，包括Linq也是建立在表达式树的基础上，所以每个特性都是层层递进的一个关系。相信C#后面提出的新特性将会更加方便我们开发程序，感觉所有语言的一个统一的思想都是——写更少的代码，却可以做更多的事情。但是我们不能仅仅停住于知道怎么使用它，我们还应该深入研究它的背后的故事，知道新特性是如何实现的和原理。用一句说就是——我们要知其然之气所以然，学习知识应该抱着刨根问底的态度去学习,<strong>相信这样的学习方式也可以让大家不感到心虚,写出的程序将会更加自信。</strong></p>
 
                 
@@ -509,41 +529,29 @@
               <div class="post-entry">
                 
                   <p>这几天在读《现代操作系统》，想起当时学这门课的时候，并没有感觉那么爽，现在通读这本书，知识的过渡性和结构性令我叹服。感受操作系统的魅力吧。</p>
-
 <p><strong>批处理系统中的调度：</strong>
 1.先来先服务</p>
-
 <p>2.最短作业优先
 只有在所有的作业都可以同时运行(也即同时到达)的情况下，最短作业优先算法才是最优化的。</p>
-
 <p>3.最短剩余时间优先-最短作业优先的抢占式版本。调度算法总是选择剩余时间最短的那个进程运行，注意，运行时间必须提前掌握，当一个新的作业到达时，其整个时间同当前进程的剩余时间做比较，如果更少。就运行新进程。可以使新的短作业获得良好的服务。</p>
-
 <p><strong>交互式系统的调度</strong>
 1.轮转调度。
 最古老，最简单，最公平切使用最广，每个进程被分配一个时间片。如果进程在时间片结束之前阻塞或结束，则CPU立即切换。调度程序只是维护一张可运行进程列表，当进程用完它的时间片后，就被移到队列的末尾。时间片太短会导致进程切换过多，降低CPU效率，设置的太长又引起对短的交互请求的响应时间变长。通常20-50ms算合理。</p>
-
 <p>2.优先级调度
 为了防止高优先级进程无休止的运行下去，可以在一个时钟中断里降低当前进程的优先级，如果这导致该进程的优先级低于次高优先级的进程，则切换或者也可以赋予每个进程一个时间片。可以和轮转调度一起工作，设置每个优先级上有多个进程。优先运行高优先级，并未高优先级上的进程按照轮转换着运行，如果高优先级没了。就进入到较低优先级。。。问题是如果不偶尔对优先级进行调整，则可能发生饥饿现象。</p>
-
 <p>3.多级队列
 CTSS的设计者发现为CPU密集型进程设置较长的时间片比频繁的分给他们很短的时间片更为高效（减少了交换次数），但长时间的进程又会影响响应时间，方法是设立优先级类，最高优先级类里的进程运行1个时间片。次高运行2个。以此类推。当一个进程用完分配的时间片后，被移动到下一类。大致算法都是用于讨好交互用户和进程，而不惜牺牲后台进程
 //故事：可以采用只要终端上有Enter键按下，就将该终端上的进程移到最高优先级类。假设当前进程急需交互，但是。一个人发现了。大家都开始用。。。理论和实际差异太大。。哈哈</p>
-
 <p>4.最短进程优先
-这个很好立即，但难点在于如何找出最短的那个。一种方法是根据过去的行为推测。假设每个命令执行时间为T0，下一次运行时间为T1，则可以根据aT0+(1-a)T1来估计时间。。a被用来决定尽快忘掉老的运行时间还是记住它。这种算法成为老化算法。通常选a=<sup>1</sup>&frasl;<sub>2</sub></p>
-
+这个很好立即，但难点在于如何找出最短的那个。一种方法是根据过去的行为推测。假设每个命令执行时间为T0，下一次运行时间为T1，则可以根据aT0+(1-a)T1来估计时间。。a被用来决定尽快忘掉老的运行时间还是记住它。这种算法成为老化算法。通常选a=1/2</p>
 <p>5.保证调度
 就是保证每个用户获得cpu的1/n，系统需要跟踪进程的cpu时间，他实际获得如果多于应该获得的。则转向实际获得小于应该获得的。</p>
-
 <p>6.彩票调度
 保证调度很难实现，而彩票调度算法是向进程提供各种系统资源的彩票。一旦需要做出一项调度决策时，就随机抽出一张彩票。谁获得谁就上。比如视频服务器，可以为不同的帧速率提供不同的彩票。然后分配cpu</p>
-
 <p>7.公平分享调度
 这个就考虑到了进程的所有者。需要我们定义公平的含义。是保证每个用户只占用的时间相等还是其他了。</p>
-
 <p><strong>实时系统的调度：</strong>
 可以分为硬实时和软实时，前者必须满足绝对的截止时间，后者则可以容忍一些。用户级线程系统是不知道的。用户级和内核级的差异主要在性能，用户级需少量的机器指令，而内核级需要很多的。过程。采用轮转和优先级调度更常见一些。</p>
-
 <p>//操作系统的大神们太强大了。哲学家进餐问题居然可以通过拿起左边叉子以后，检测右边是否可用，如果不可用，则等待一个随机的时间。这种方案是可行的。在极少的情况下不可用。。</p>
 
                 
@@ -593,51 +601,37 @@ CTSS的设计者发现为CPU密集型进程设置较长的时间片比频繁的�
               <div class="post-entry">
                 
                   <p>本文来自<a href="http://www.xjp.cc/2013-log/01/5379.html">xjp的碎碎念</a>，我很喜欢的一个博主。博客已被伟大的GFW屏蔽。和文章的主题类似，我有时候会在G+上会纠正一些人的谣言，并且给出澄清，可是，往往效果不大。我的态度很简单，你要反对一样东西，请你不要是那样的东西。或用那样的东西去反对。不要为任何主义所迷惑，你要做好一个人。</p>
-
 <p>今天看到一篇来自《新京报》的报道，称时事评论员<a href="http://weiba.weibo.com/10015/t/zfCUGgdhj">@周筱赟爆料</a>称，根据铁道部的两份采购合同显示，推测铁道部12306订票网站实际投入已经超过5亿元，而不是之前曾披露的3.2亿元。</p>
-
 <p>首先我很赞同周筱赟所做的事情，在国内目前民众获取信息渠道有限的情况下，有这样的热心人士去披露政府部门行政行为中值得讨论的部分，对于整个社会的公正与透明都有极大的推动作用。</p>
-
-<p>但我注意的是另一群人，他们典型的回复是：
-&gt; 1、花5个多亿做成这么垃圾的网站，铁道部公然贪污多少钱？臭不要脸的！二逼的网站和系统归功于傻逼造就！
-&gt;
-&gt; 2、卧槽，里面有4.5亿是贪污款吧
-&gt;
-&gt; 3、习总说反腐，最大的蛀虫在这里，敢反否？
-&gt;
-&gt; 4、3亿建站为什么这些年一直没有工商部去追查12306的贪污问题。你懂我懂大家懂。
-&gt;
-&gt; 5、中央纪委、监察部和各级纪检监察机关要加大检查监督力度，执好纪、问好责、把好关。
-&gt;
-&gt; 6、太极集团是做医药的呀，怎么也搞起软件来了。我想说，有没经验都不要紧，要紧的是有钱。咱就撒都能做！
-&gt;
-&gt; 7、五亿······· 用了个500的模版 月薪5000水平的制作团队
-&gt;
-&gt; 8、三億各單位部門宣傳費，一億三公支出，五千萬采購合同草擬費用，四千萬給媒體掩口費, 九百九十萬信息產業部備案費用，最後十萬才是網站制作費用… 這五億基本上都使對了地方，沒有錯啊!
+<p>但我注意的是另一群人，他们典型的回复是：</p>
+<blockquote>
+<p>1、花5个多亿做成这么垃圾的网站，铁道部公然贪污多少钱？臭不要脸的！二逼的网站和系统归功于傻逼造就！</p>
+<p>2、卧槽，里面有4.5亿是贪污款吧</p>
+<p>3、习总说反腐，最大的蛀虫在这里，敢反否？</p>
+<p>4、3亿建站为什么这些年一直没有工商部去追查12306的贪污问题。你懂我懂大家懂。</p>
+<p>5、中央纪委、监察部和各级纪检监察机关要加大检查监督力度，执好纪、问好责、把好关。</p>
+<p>6、太极集团是做医药的呀，怎么也搞起软件来了。我想说，有没经验都不要紧，要紧的是有钱。咱就撒都能做！</p>
+<p>7、五亿······· 用了个500的模版 月薪5000水平的制作团队</p>
+<p>8、三億各單位部門宣傳費，一億三公支出，五千萬采購合同草擬費用，四千萬給媒體掩口費, 九百九十萬信息產業部備案費用，最後十萬才是網站制作費用… 這五億基本上都使對了地方，沒有錯啊!
 其它的评论都是诸如此类，某一些理性的评论都被深埋其中。</p>
-
+</blockquote>
 <p>我不是铁道部、太极的任何一方，我不能拍着胸脯说这些问题一定不存在，但真正让我恐惧的是，有大量网友没有认真去研究文章的内容与事实，只是单纯下意识地做出了判断，然后开喷。</p>
-
-<p>我们仔细去看我们讨厌的那些五毛与政府宣传部门，他们的日常做法都是：
-&gt; 1、戴帽子
-&gt;
-&gt; 2、站在道德高度，说正确的废话
-&gt;
-&gt; 3、自说自话，完全不管别人在说什么
-&gt;
-&gt; 4、预设立场
-&gt;
-&gt; 5、我永远是对的，反对我的都是错的
-&gt;
-&gt; 6、你们站在人民的对立面
+<p>我们仔细去看我们讨厌的那些五毛与政府宣传部门，他们的日常做法都是：</p>
+<blockquote>
+<p>1、戴帽子</p>
+<p>2、站在道德高度，说正确的废话</p>
+<p>3、自说自话，完全不管别人在说什么</p>
+<p>4、预设立场</p>
+<p>5、我永远是对的，反对我的都是错的</p>
+<p>6、你们站在人民的对立面
 然后有一个微博网友在评论里跟我说，他只需要一万元就能够搞定12306的网站外包开发。听到这样的话，我不由地一阵颤抖，如果这话来自一名所谓的业内人士，那我真的不知道应该怎么说了。</p>
-
-<p>引用某网友的评论：
-&gt; 从专业角度来说，投入不算多，只是透明度不够，民众才疑惑！全国各地还需要再多些大型机房，才能满足高峰期分流排队和并发操作！
+</blockquote>
+<p>引用某网友的评论：</p>
+<blockquote>
+<p>从专业角度来说，投入不算多，只是透明度不够，民众才疑惑！全国各地还需要再多些大型机房，才能满足高峰期分流排队和并发操作！
 我的看法是，不否认铁道部的开发、架构设计存在一定问题，如果没有实际的大型系统设计经验的团队，可能会造成很多理论与实际脱节问题，事实上今年的12306已经比去年好太多了，他们也在吸取教训。当然，我也赞成他们向互联网公司取经，吸收现有经验。</p>
-
+</blockquote>
 <p>建议大家不要单纯喷，5亿这个数字可能略高，但比起数千万的静态网站好多了，至于具体审计是国家审计局的事情，我支持惩处贪腐。做一个覆盖数千万用户，承受刷票插件5秒一次的并发，服务器、带宽、配套都是成本。而售票数字化几乎是必经之路，铁道部走出这一步是好的，买不到票有基础运力的问题，跟网络售票无关。</p>
-
 <p>不要一叶障目，买不到票人人都会烦心，诚然铁道部是一个不错的发泄口，但如果只是为了喷而喷。借用我之前的一句话，铁道部如何做你们才满意？</p>
 
                 
@@ -685,57 +679,16 @@ CTSS的设计者发现为CPU密集型进程设置较长的时间片比频繁的�
               <div class="post-entry">
                 
                   <p>在家无聊写了这个工具，主要是为了防止自己这一直写随笔把本行忘了。。也熟悉一下代码。。暂时不放源代码了。以后改的好一点再发吧。</p>
-
 <p>作者：bystander</p>
-
-<p>博客：<a href="http://leaver.me">http://leaver.me</a></p>
-
+<p>博客：http://leaver.me</p>
 <p>转载请注明出处！</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/31971_o.png"><img src="/images/a46e1099507677947d020ad1fc0251a2fe9fca27.png" alt="" /></a></p>
-
-<p>&nbsp;</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/31972_o.png"><img src="/images/674f4d21632e17d90688202f0e06717fbeba54c8.png" alt="" /></a></p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/31971_o.png"><img src="/images/a46e1099507677947d020ad1fc0251a2fe9fca27.png" alt=""></a></p>
+<p> </p>
+<p><a href="http://leaverimage.b0.upaiyun.com/31972_o.png"><img src="/images/674f4d21632e17d90688202f0e06717fbeba54c8.png" alt=""></a></p>
 <p>涉及到的东西有：</p>
-
 <p>1.C#隐藏TabControl的header部分，前面的文章有介绍</p>
-
-<p>2.获取窗体全部的某一类控件（这个无聊的话抽象出一个通用的方法出来，以后就可以直接用了）
-<pre class="lang:default decode:true">  /// &lt;summary&gt;
-        /// 获取所有的文本框控件
-        /// &lt;/summary&gt;
-        /// &lt;param name=&ldquo;control&rdquo;&gt;&lt;/param&gt;
-        /// &lt;returns&gt;&lt;/returns&gt;
-        private List&lt;TextBox&gt; GetAllControls(Control control)
-        {
-            foreach (Control con in control.Controls)
-            {
-                if (con.Controls.Count &gt; 0)
-                {
-                    GetAllControls(con);
-                }
-                else if (con is TextBox)
-                {
-                    tBoxList.Add(con as TextBox);
-                }
-            }
-            return tBoxList;
-        }</pre>
-&nbsp;</p>
-
-<p>3.文件操作</p>
-
-<p>4.字符串操作</p>
-
-<p>反正很简单，主要就是写的时候思路要清晰。知道大部分使用密码的规则。处理一下生日格式。否则后面很麻烦。。相应的验证也比较少。界面依然毫无美感。。</p>
-
-<p>总结：</p>
-
-<p>现在发现在控件命名上越来越顺利了。自我感觉良好。后面慢慢的要开始尝试使用学到的一些新的技术点。。</p>
-
-<p>下载：<a href="http://pan.baidu.com/share/link?shareid=244748&amp;amp;uk=1493685990">社工字典生成工具</a></p>
+<p>2.获取窗体全部的某一类控件（这个无聊的话抽象出一个通用的方法出来，以后就可以直接用了）</p>
+<!-- raw HTML omitted -->
 
                 
               </div>
@@ -788,28 +741,17 @@ CTSS的设计者发现为CPU密集型进程设置较长的时间片比频繁的�
               <div class="post-entry">
                 
                   <p>今天考过了微软的那个70-562和70-536的考试。然后下午把软件体系结构的作业做了。然后看了一下栈溢出，我博客首页右侧的那个就是我的栈溢出id了。。</p>
-
-<p>然后就看到了这个问题。这个问题。我曾经遇到过。貌似大家知道比较多的是两种。第一种就是设置大小。
-<pre class="lang:default decode:true">tabControl1.SizeMode = TabSizeMode.Fixed;
-tabControl1.ItemSize = new Size(0, 1);</pre>
-<a href="http://leaverimage.b0.upaiyun.com/31378_o.jpg"><img src="/images/3070c473ca2d01dd23741af3e13d2f4328b9d89d.jpg" alt="" /></a></p>
-
+<p>然后就看到了这个问题。这个问题。我曾经遇到过。貌似大家知道比较多的是两种。第一种就是设置大小。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><a href="http://leaverimage.b0.upaiyun.com/31378_o.jpg"><img src="/images/3070c473ca2d01dd23741af3e13d2f4328b9d89d.jpg" alt=""></a></p>
 <p>但是这样你注意看的话，左上角有个小的瑕疵。这个没办法的。。还有一种比较低级但还算有效的方法就是在设计的时候将TabControl向上移动。运行以后就会遮住了。</p>
-
-<p>我当时不过取巧了。好像就用的第二种。。今天看到这个题目的时候，就做了下标记。刚才去看。大牛已经给出答案了。就是自己继承一个TabControl控件。重写
-<pre>void WndProc(ref Message m)</pre>
-方法，在方法里拦截系统消息。
-<pre class="lang:default decode:true">using System;
-using System.Windows.Forms;</p>
-
-<p>class TablessControl : TabControl {
-  protected override void WndProc(ref Message m) {
-    // Hide tabs by trapping the TCM_ADJUSTRECT message
-    if (m.Msg == 0x1328 &amp;&amp; !DesignMode) m.Result = (IntPtr)1;
-    else base.WndProc(ref m);
-  }
-}</pre>
-具体用法。就是在你的项目里新建一个类文件。然后把上面的代码拷进去。然后编译一下。就会在工具箱里多出一个TablessControl控件。拖进来即可使用。当然你也可以自定义一个用户控件。都不是事。这个控件设计时标签页可见。运行时由于拦截了信息消息。标签栏就不可见了。堪称完美。。</p>
+<p>我当时不过取巧了。好像就用的第二种。。今天看到这个题目的时候，就做了下标记。刚才去看。大牛已经给出答案了。就是自己继承一个TabControl控件。重写</p>
+<!-- raw HTML omitted -->
+<p>方法，在方法里拦截系统消息。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>具体用法。就是在你的项目里新建一个类文件。然后把上面的代码拷进去。然后编译一下。就会在工具箱里多出一个TablessControl控件。拖进来即可使用。当然你也可以自定义一个用户控件。都不是事。这个控件设计时标签页可见。运行时由于拦截了信息消息。标签栏就不可见了。堪称完美。。</p>
 
                 
               </div>
@@ -843,7 +785,7 @@ using System.Windows.Forms;</p>
   <i class="fas fa-calendar"></i>&nbsp;Posted on January 6, 2013
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;4&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -863,10 +805,27 @@ using System.Windows.Forms;</p>
  图8.10所示的是无向图的邻接矩阵表示法，可以观察到，矩阵延对角线对称，即A(i，j)= A(j，i)。无向图邻接矩阵的第i行或第i列非零元素的个数其实就是第i个顶点的度。这表示无向图邻接矩阵存在一定的数据冗余。
 图8.11所示的是有向图邻接矩阵表示法，矩阵并不延对角线对称，A(i，j)=1表示顶点Vi邻接到顶点Vj；A(j，i)=1则表示顶点Vi邻接自顶点Vj。两者并不象无向图邻接矩阵那样表示相同的意思。有向图邻接矩阵的第i行非零元素的个数其实就是第i个顶点的出度，而第i列非零元素的个数是第i个顶点的入度，即第i个顶点的度是第i行和第i列非零元素个数之和。
 由于存在n个顶点的图需要n2个数组元素进行存储，当图为稀疏图时，使用邻接矩阵存储方法将出现大量零元素，照成极大地空间浪费，这时应该使用邻接表表示法存储图中的数据。
-8.2.2 邻接表表示法 图的邻接矩阵存储方法跟树的孩子链表示法相类似，是一种顺序分配和链式分配相结合的存储结构。邻接表由表头结点和表结点两部分组成，其中图中每个顶点均对应一个存储在数组中的表头结点。如这个表头结点所对应的顶点存在相邻顶点，则把相邻顶点依次存放于表头结点所指向的单向链表中。如图8.12所示，表结点存放的是邻接顶点在数组中的索引。对于无向图来说，使用邻接表进行存储也会出现数据冗余，表头结点A所指链表中存在一个指向C的表结点的同时，表头结点C所指链表也会存在一个指向A的表结点。  有向图的邻接表有出边表和入边表（又称逆邻接表）之分。出边表的表结点存放的是从表头结点出发的有向边所指的尾顶点；入边表的表结点存放的则是指向表头结点的某个头顶点。如图8.13所示，图(b)和&copy;分别为有向图(a)的出边表和入边表。  以上所讨论的邻接表所表示的都是不带权的图，如果要表示带权图，可以在表结点中增加一个存放权的字段，其效果如图8.14所示。
+8.2.2 邻接表表示法 图的邻接矩阵存储方法跟树的孩子链表示法相类似，是一种顺序分配和链式分配相结合的存储结构。邻接表由表头结点和表结点两部分组成，其中图中每个顶点均对应一个存储在数组中的表头结点。如这个表头结点所对应的顶点存在相邻顶点，则把相邻顶点依次存放于表头结点所指向的单向链表中。如图8.12所示，表结点存放的是邻接顶点在数组中的索引。对于无向图来说，使用邻接表进行存储也会出现数据冗余，表头结点A所指链表中存在一个指向C的表结点的同时，表头结点C所指链表也会存在一个指向A的表结点。  有向图的邻接表有出边表和入边表（又称逆邻接表）之分。出边表的表结点存放的是从表头结点出发的有向边所指的尾顶点；入边表的表结点存放的则是指向表头结点的某个头顶点。如图8.13所示，图(b)和(c)分别为有向图(a)的出边表和入边表。  以上所讨论的邻接表所表示的都是不带权的图，如果要表示带权图，可以在表结点中增加一个存放权的字段，其效果如图8.14所示。
 
 【注意】：观察图8.14可以发现，当删除存储表头结点的数组中的某一元素，有可能使部分表头结点索引号的改变，从而导致大面积修改表结点的情况发生。可以在表结点中直接存放指向表头结点的指针以解决这个问题（在链表中存放类实例即是存放指针，但必须要保证表头结点是类而不是结构体）。在实际创建邻接表时，甚至可以使用链表代替数组存放表头结点或使用顺序表存代替链表存放表结点。对所学的数据结构知识应当根据实际情况及所使用语言的特点灵活应用，切不可生搬硬套。
-【例8-1 AdjacencyList.cs】图的邻接表存储结构  using System; using System.Collections.Generic; public class AdjacencyList&lt;T&gt; { List&lt;Vertex&lt;T&gt;&gt; items; //图的顶点集合 public AdjacencyList() : this(10) { } //构造方法 public AdjacencyList(int capacity) //指定容量的构造方法 { items = new List&lt;Vertex&lt;T&gt;&gt;(capacity); } public void AddVertex(T item) //添加一个顶点 { //不允许插入重复值 if (Contains(item)) { throw new ArgumentException(&ldquo;插入了重复顶点！&rdquo;); } items.Add(new Vertex&lt;T&gt;(item)); } public void AddEdge(T from, T to) //添加无向边 { Vertex&lt;T&gt; fromVer = Find(from); //找到起始顶点 if (fromVer == null) { throw new ArgumentException(&ldquo;头顶点并不存在！&rdquo;); } Vertex&lt;T&gt; toVer = Find(to); //找到结束顶点 if (toVer == null) { throw new ArgumentException(&ldquo;尾顶点并不存在！&rdquo;); } //无向边的两个顶点都需记录边信息 AddDirectedEdge(fromVer, toVer); AddDirectedEdge(toVer, fromVer); } public bool Contains(T item) //查找图中是否包含某项 { foreach (Vertex&lt;T&gt; v in items) { if (v.
+【例8-1 AdjacencyList.cs】图的邻接表存储结构
+l Vertex类中包含了一个visited成员，它的作用是在图遍历时标识当前节点是否被访问过，这一点在稍后会讲到。
+l 邻接点指针域adjvex直接指向某个表头结点，而不是表头结点在数组中的索引。
+AdjacencyList&lt;T&gt;类中使用了一个泛型List代替数组来保存表头结点信息（第5行代码），从而不再考虑数组存储空间不够的情况发生，简化了操作。
+由于一条无向边的信息需要在边的两个顶点分别存储信息，即添加两个有向边，所以58～78行代码的私有方法AddDirectedEdge()方法用于添加一个有向边。新的邻接点信息即可以添加到链表的头部也可以添加到尾部，添加到链表头部可以简化操作，但考虑到要检查是否添加了重复边，需要遍历整个链表，所以最终把邻接点信息添加到链表尾部。
+【例8-1 Demo8-1.cs】图的邻接表存储结构测试
+B：AD
+C：A
+D：AB
+ 本例存储的表如图8.12所示，结果中，冒号前面的是表头结点，冒号后面的是链表中的表结点。
+8.3 图的遍历 和树的遍历类似，在此，我们希望从图中某一顶点出发访遍图中其余顶点，且使每一个顶点仅被访问一次，这一过程就叫做图的遍历(TraversingGraph)。如果只访问图的顶点而不关注边的信息，那么图的遍历十分简单，使用一个foreach语句遍历存放顶点信息的数组即可。但如果为了实现特定算法，就需要根据边的信息按照一定顺序进行遍历。图的遍历算法是求解图的连通性问题、拓扑排序和求关键路径等算法的基础。
+图的遍历要比树的遍历复杂得多，由于图的任一顶点都可能和其余顶点相邻接，故在访问了某顶点之后，可能顺着某条边又访问到了已访问过的顶点，因此，在图的遍历过程中，必须记下每个访问过的顶点，以免同一个顶点被访问多次。为此给顶点附设访问标志visited，其初值为false，一旦某个顶点被访问，则其visited标志置为true。
+图的遍历方法有两种：一种是深度优先搜索遍历（Depth-First Search 简称DFS）；另一种是广度优先搜索遍历（Breadth_First Search 简称BFS）。
+8.3.1 深度优先搜索遍历 图的深度优先搜索遍历类似于二叉树的深度优先搜索遍历。其基本思想如下：假定以图中某个顶点Vi为出发点，首先访问出发点，然后选择一个Vi的未访问过的邻接点Vj，以Vj为新的出发点继续进行深度优先搜索，直至图中所有顶点都被访问过。显然，这是一个递归的搜索过程。
+现以图8.15为例说明深度优先搜索过程。假定V1是出发点，首先访问V1。因V1有两个邻接点V2、V3均末被访问过，可以选择V2作为新的出发点，访问V2之后，再找V2的末访问过的邻接点。同V2邻接的有V1、V4和V5，其中V1已被访问过，而V4、V5尚未被访问过，可以选择V4作为新的出发点。重复上述搜索过程，继续依次访问V8、V5。访问V5之后，由于与V5相邻的顶点均已被访问过，搜索退回到V8，访问V8的另一个邻接点V6。接下来依次访问V3和V7，最后得到的的顶点的访问序列为：V1→ V2→ V4→ V8→ V5→ V6→ V3→V7。  下面根据上一节创建的邻接表存储结构添加深度优先搜索遍历代码。
+【例8-2 DFSTraverse.cs】深度优先搜索遍历
+打开【例8-1 AdjacencyList.cs】，在AdjacencyList&lt;T&gt;类中添加以下代码后，将文件另存为DFSTraverse.cs。
+private void InitVisited() //初始化visited标志 { foreach (Vertex&amp;lt;T&amp;gt; v in items) { v.
                   <a href="https://leizhiyuan.github.io/2013/01/06/%E5%9B%BE%E7%9A%84%E9%81%8D%E5%8E%86c/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -920,25 +879,55 @@ using System.Windows.Forms;</p>
 
               <div class="post-entry">
                 
-                  作者：bystander 博客：http://leaver.me 论坛：法克论坛
-目录
-1.大小写绕过
-2.简单编码绕过
-3.注释绕过
-4.分隔重写绕过
-5.Http参数污染(HPP)
-6.使用逻辑运算符 or /and绕过
-7.比较操作符替换
-8.同功能函数替换
-9.盲注无需or和and
-10.加括号
-11.缓冲区溢出绕过
-1. 大小写绕过 这个大家都很熟悉，对于一些太垃圾的WAF效果显著，比如拦截了union,那就使用Union UnIoN等等。绕过
-2. 简单编码绕过 比如WAF检测关键字，那么我们让他检测不到就可以了。比如检测union,那么我们就用%55 也就是U的16进制编码来代替U, union写成 %55nION，结合大小写也可以绕过一些WAF，你可以随意替换一个或几个都可以。。
-也还有大家在Mysql注入中比如表名或是load文件的时候，会把文件名或是表明用16进制编码来绕过WAF都是属于这类。
-3. 注释绕过 这种情况比较少，适用于WAF只是过滤了一次危险的语句，而没有阻断我们的整个查询  &gt; /?id=1+union+select+1,2,3/*  比如对于上面这条查询，WAF过滤了一次union和select，那么我们在之前在写一个注释的语句，让他把注释里面的过滤掉，，并不影响我们的查询。。 所以绕过语句就是：  &gt; /?id=1/union/union/select/select+1,2,3/*  还有一种和注释有关的绕过： 比如  &gt; index.php?page_id=-15 /!UNION/ /!SELECT/ 1,2,3,4….  可以看到，只要我们把敏感词放到注释里面，注意，前面要加一个！
-4. 分隔重写绕过 还是上面的例子，适用于那种WAF采用了正则表达式的情况，会检测所有的敏感字，而不在乎你写在哪里，有几个就过滤几个。。 我们可以通过注释分开敏感字,这样WAF的正则不起作用了，而带入查询的时候并不影响我们的结果  &gt; /?id=1+un//ion+sel//ect+1,2,3&ndash;  至于重写绕过，适用于WAF过滤了一次的情况，和我们上传aaspsp马的原理一样，我们可以写出类似Ununionion这样的。过滤一次union后就会执行我们的查询了  &gt; ?id=1 ununionion select 1,2,3&ndash;  5. Http参数污染(HPP) 比如我们有这样的语句：  &gt; /?
-                  <a href="https://leizhiyuan.github.io/2013/01/06/sql%E6%B3%A8%E5%85%A5%E4%B8%AD%E7%9A%84waf%E7%BB%95%E8%BF%87%E6%8A%80%E6%9C%AF/" class="post-read-more">[Read More]</a>
+                  <p>作者：bystander
+博客：<a href="http://leaver.me/">http://leaver.me</a>
+论坛：法克论坛</p>
+<p>目录</p>
+<p>1.<!-- raw HTML omitted -->大小写绕过<!-- raw HTML omitted --></p>
+<p>2.<!-- raw HTML omitted -->简单编码绕过<!-- raw HTML omitted --></p>
+<p>3.<!-- raw HTML omitted -->注释绕过<!-- raw HTML omitted --></p>
+<p>4.<!-- raw HTML omitted -->分隔重写绕过<!-- raw HTML omitted --></p>
+<p>5.Http<!-- raw HTML omitted -->参数污染<!-- raw HTML omitted -->(HPP)</p>
+<p>6.<!-- raw HTML omitted -->使用逻辑运算符<!-- raw HTML omitted --> or /and<!-- raw HTML omitted -->绕过<!-- raw HTML omitted --></p>
+<p>7.<!-- raw HTML omitted -->比较操作符替换<!-- raw HTML omitted --></p>
+<p>8.<!-- raw HTML omitted -->同功能函数替换<!-- raw HTML omitted --></p>
+<p>9.<!-- raw HTML omitted -->盲注无需<!-- raw HTML omitted -->or<!-- raw HTML omitted -->和<!-- raw HTML omitted -->and</p>
+<p>10.<!-- raw HTML omitted -->加括号<!-- raw HTML omitted --></p>
+<p>11.缓冲区溢出绕过</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->1. 大小写绕过<!-- raw HTML omitted --><!-- raw HTML omitted -->
+这个大家都很熟悉，对于一些太垃圾的WAF效果显著，比如拦截了union,那就使用Union UnIoN等等。绕过</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->2.  简单编码绕过<!-- raw HTML omitted --><!-- raw HTML omitted -->
+比如WAF检测关键字，那么我们让他检测不到就可以了。比如检测union,那么我们就用%55 也就是U的16进制编码来代替U, union写成 %55nION，结合大小写也可以绕过一些WAF，你可以随意替换一个或几个都可以。。</p>
+<p>也还有大家在Mysql注入中比如表名或是load文件的时候，会把文件名或是表明用16进制编码来绕过WAF都是属于这类。</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->3.  注释绕过<!-- raw HTML omitted --><!-- raw HTML omitted -->
+这种情况比较少，适用于WAF只是过滤了一次危险的语句，而没有阻断我们的整个查询</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->4.   分隔重写绕过<!-- raw HTML omitted --><!-- raw HTML omitted -->
+还是上面的例子，适用于那种WAF采用了正则表达式的情况，会检测所有的敏感字，而不在乎你写在哪里，有几个就过滤几个。。
+我们可以通过注释分开敏感字,这样WAF的正则不起作用了，而带入查询的时候并不影响我们的结果</p>
+<!-- raw HTML omitted -->
+<p>再给出一个例子说明用法</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->6. 使用逻辑运算符 or /and绕过<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->7.  比较操作符替换<!-- raw HTML omitted --><!-- raw HTML omitted -->
+包括!= 不等于，&lt;&gt;不等于，&lt; 小于，&gt;大于，这些都可以用来替换=来绕过，
+比如上一个例子，要判断是不是74，假设=被过滤，那么我们可以判断是不是大于73，是不是小于75，然后就知道是74了。。很多WAF都会忘了这个。</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->8.  同功能函数替换<!-- raw HTML omitted --><!-- raw HTML omitted -->
+Substring()可以用mid(),substr()这些函数来替换，都是用来取字符串的某一位字符的。
+Ascii()编码可以用hex(),bin(),也就是16进制和二进制编码替换
+Benchmark() 可以用sleep()来替换，这两个使用在基于延时的盲注中，有机会给大家介绍
+如果连这些都屏蔽了，还有一种新的方法</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->9.    盲注无需or和and<!-- raw HTML omitted --><!-- raw HTML omitted -->
+比如有这样一个注入点：</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->10. 加括号<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->11.缓冲区溢出绕过<!-- raw HTML omitted --><!-- raw HTML omitted -->
+刚刚写着把这个给忘了。这个是从国外一个博客看到的。</p>
+<!-- raw HTML omitted -->
+
                 
               </div>
 
@@ -948,62 +937,6 @@ using System.Windows.Forms;</p>
                     <a href="https://leizhiyuan.github.io//tags/php/">php</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E5%AE%89%E5%85%A8/">安全</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2013/01/04/%E8%BF%9C%E7%A8%8B%E7%AE%A1%E7%90%86democ/">
-                <h2 class="post-title">远程管理Demo(C#)</h2>
-                
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on January 4, 2013
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  一个C#的通信的例子
-
-1.服务端，服务端通过ip和端口生成客户端之后，点击开始监听后，便开启监听线程持续监听，同时注册断开连接和收到信息的事件。收到来自TcpClient 流中的信息后，解析之，如果是连接信息，就添加到连接列表，这样服务端就可以显示多个客户端了。如果是断开信息，就删掉。如果服务端想要给客户端发消息，就选中该客户，然后填写信息，就会调用连接类的发送方法。
-&nbsp;
-2.客户端，也就是被控端，被控端通过tcp连接到远端ip，然后发送连接成功状态，随后异步读取。读取到信息后调用解析方式。然后处理。。
-3.服务端如何生成客户端。其实也比较简单。就是写好客户端以后，保存为文本。然后通过CodeDomProvider的相关方法来编译即可。代码如下： public static bool Compile(string EXE_Name, string Source) { CodeDomProvider Compiler = CodeDomProvider.CreateProvider(&ldquo;CSharp&rdquo;); CompilerParameters Parameters = new CompilerParameters(); CompilerResults cResults = default(CompilerResults);
-Parameters.GenerateExecutable = true; Parameters.OutputAssembly = EXE_Name; Parameters.ReferencedAssemblies.Add(&#34;System.dll&#34;); Parameters.CompilerOptions = &#34; /target:winexe&#34;; Parameters.TreatWarningsAsErrors = false; cResults = Compiler.CompileAssemblyFromSource(Parameters, Source); if (cResults.Errors.Count &amp;gt; 0) { foreach (CompilerError CompilerError_loopVariable in cResults.Errors) { CompilerError error = CompilerError_loopVariable; MessageBox.Show(&#34;Error: &#34; + error.ErrorText, &#34;&#34;, MessageBoxButtons.OK, MessageBoxIcon.Error); } return false; } else if (cResults.
-                  <a href="https://leizhiyuan.github.io/2013/01/04/%E8%BF%9C%E7%A8%8B%E7%AE%A1%E7%90%86democ/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%AE%BE%E8%AE%A1/">设计</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
                   
@@ -1075,7 +1008,7 @@ Parameters.GenerateExecutable = true; Parameters.OutputAssembly = EXE_Name; Para
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

@@ -51,7 +51,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -249,16 +249,55 @@
               </p>
               <div class="post-entry">
                 
-                  本文转自：http://my.oschina.net/colorleaf/blog/176569
-这个算说的比较清楚的了，虽然简单但是很有用。收藏一下。
-详解Eclipse断点
-大家肯定都用过Eclipse的调试的功能，在调试的过程中自然也无法避免要使用断点(breakpoint)，但不知是否对Eclipse中各类断点都有所了解。本篇图文并茂地介绍了Eclipse中全部类型的断点，及其设置，希望对大家有所帮助。(2011.11.20)
-1. 示例程序 BreakpointDemo是一个臆造的应用程序，只是为了便于讲解Eclipse中各类断点的使用罢了。其代码如下图所示，  BreakpointDemo主要包含两个方法： [1]setValue，该方法根据指定的次数(count)，对成员变量value进行赋值，值的范围为0-9的随机整数。 [2]printValue，该方法会调用setValue()对value进行赋值，并打印出value的值；但，如果value能被3整除，那么就会抛出IllegalArgumentException异常。
-2. Line Breakpoint Line Breakpoin是最简单的Eclipse断点，只要双击某行代码对应的左侧栏，就对该行设置上断点。此处，对第20行代码设置上Line Breakpoint，如下图所示，  可以为Line Breakpoint设置一个条件，那么当程序运行到该断点时，只有满足设定的条件，才会被中断。右键点击第20行的断点，选择&rdquo;Breakpoint Properties&hellip;&rdquo;  在弹出的属性对话框中，勾选上&rdquo;Conditional&rdquo;，然后在文本框中输入&rdquo;count % 2 == 0&rdquo;。  该条件表示，当程序运行到第20行时，只有当count为偶数时，程序才会被中断。细心地话，你会发现该断点的图标发生了改变，多了一个问号。 
-3. Watchpoint Line Breakpoint关注于程序运行的&rdquo;过程&rdquo;，大家也常把使用这种断点的调试称为单步调试。但有时候，我们对程序的运行过程不太了解，可能也不太关心，不能确定在什么地方设置断点比较合适，而可能比较关注某个关键变量的变化或使用。此时，就可以为该变量设置一种特殊的断点&ndash;Watchpoint。在此示例，我们最关心的就是成员变量value的值，那么就可以为它设置一个Watchpoint，双击第9行代码对应的左侧栏就可以了。  使用在2中所提及的方法，查看该断点的属性，  默认地，当该变量被访问或它的值被修改时，程序都会被中断。但在本示例中，只希望当对value的值进行修改时程序才需要被中断，所以取消对&rdquo;Access&rdquo;的勾选。  这时，我们会发现原来的Watchpoin图标也有变化了。 
-4. Method Breakpoint 与关注对某个变量的访问与修改一样，我们也可以关注程序对某个方法的调用情况，即，可以设置Method Breakpoint。在此处，设置针对方法setValue的Method Breakpoint。同理，双击第11行代码对应的左侧栏即可。  仍然要查看该断点的属性。默认地，只勾选了&rdquo;Entry&rdquo;，而没有勾选&rdquo;Exit&rdquo;。  这表示，当刚进入该方法(调用开始)时，程序会被中断；而，离开该方法(调用结束)时，程序并不会被中断。在本示例中，需要同时勾选上&rdquo;Exit&rdquo;。  点击OK之后，可以看到该断点的图标也有所改变。  根据这里的设置，当程序运行到第20行后会在第12行被中断，尽管这里没有显式的断点，但这就是setValue()方法的入口(Entry)。必须注意地是，程序在运行到第16行时不会被中断，尽管它看起来像是setValue()方法的出口(Exit)。实际上，程序会在第17行被中断，这里才是setValue()调用结束的地方。
-5. Exception Breakpoint 如果，我们期望某个特定异常发生时程序能够被中断，以方便查看当时程序所处的状态。通过设置Exception Breakpoint就能达到这一目标。本示例故意在第23行抛出了IllegalArgumentException异常，我们期望程序运行到此处时会被中断。但我们不直接为此行代码设置Line Breakpoint，而是为IllegalArgumentException设置Exception Breakpoint。设置Exception Breakpoint的方法与其它类型断点都不同，它不能通过双击左侧栏的方式在代码编辑器上直接进行设置。点击Breakpoints视图右上角形如Ji的图标，  会弹出如下所示的对话框，  在其中选中IllegalArgumentException，并点击OK，这时一个Exception Breakpoint就设置好了。  当value为3的倍数时，程序会在第23行被中断，这时我们就能使用调试器来看看value具体是等于0，3或6。 6.
-                  <a href="https://leizhiyuan.github.io/2013/11/16/%E8%97%8F%E5%9B%BE%E6%96%87%E5%B9%B6%E8%8C%82%E8%AF%A6%E8%A7%A3eclipse%E6%96%AD%E7%82%B9/" class="post-read-more">[Read More]</a>
+                  <p>本文转自：<a href="http://my.oschina.net/colorleaf/blog/176569">http://my.oschina.net/colorleaf/blog/176569</a></p>
+<p>这个算说的比较清楚的了，虽然简单但是很有用。收藏一下。</p>
+<p><strong>详解Eclipse断点</strong></p>
+<p>大家肯定都用过Eclipse的调试的功能，在调试的过程中自然也无法避免要使用断点(breakpoint)，但不知是否对Eclipse中各类断点都有所了解。本篇图文并茂地介绍了Eclipse中全部类型的断点，及其设置，希望对大家有所帮助。(2011.11.20)</p>
+<p><strong>1. 示例程序</strong>
+BreakpointDemo是一个臆造的应用程序，只是为了便于讲解Eclipse中各类断点的使用罢了。其代码如下图所示，
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153245_BTUJ.png"><img src="/images/abd1d53612eeef8d1feccdf17a894d3e71d41941.png" alt="15153245_BTUJ"></a>
+BreakpointDemo主要包含两个方法：
+[1]setValue，该方法根据指定的次数(count)，对成员变量value进行赋值，值的范围为0-9的随机整数。
+[2]printValue，该方法会调用setValue()对value进行赋值，并打印出value的值；但，如果value能被3整除，那么就会抛出IllegalArgumentException异常。</p>
+<p><strong>2. Line Breakpoint</strong>
+Line Breakpoin是最简单的Eclipse断点，只要双击某行代码对应的左侧栏，就对该行设置上断点。此处，对第20行代码设置上Line Breakpoint，如下图所示，
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153245_zkOp.png"><img src="/images/ca7da4e9038334e0603072298cbaf834326da937.png" alt="15153245_zkOp"></a>
+可以为Line Breakpoint设置一个条件，那么当程序运行到该断点时，只有满足设定的条件，才会被中断。右键点击第20行的断点，选择&quot;Breakpoint Properties&hellip;&rdquo;
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153245_I2Pe.png"><img src="/images/ff95dcb0130a35d3e293a52487e4109316cba1f8.png" alt="15153245_I2Pe"></a>
+在弹出的属性对话框中，勾选上&quot;Conditional&rdquo;，然后在文本框中输入&quot;count % 2 == 0&rdquo;。
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153246_rJtm.png"><img src="/images/4f5d2d716473a55f1e3b96a59ac07f700657452a.png" alt="15153246_rJtm"></a>
+该条件表示，当程序运行到第20行时，只有当count为偶数时，程序才会被中断。细心地话，你会发现该断点的图标发生了改变，多了一个问号。
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153246_5APe.png"><img src="/images/e3d69e5d5b31edbf729ce4522f9b21e2f5024f17.png" alt="15153246_5APe"></a></p>
+<p><strong>3. Watchpoint</strong>
+Line Breakpoint关注于程序运行的&quot;过程&rdquo;，大家也常把使用这种断点的调试称为单步调试。但有时候，我们对程序的运行过程不太了解，可能也不太关心，不能确定在什么地方设置断点比较合适，而可能比较关注某个关键变量的变化或使用。此时，就可以为该变量设置一种特殊的断点&ndash;Watchpoint。在此示例，我们最关心的就是成员变量value的值，那么就可以为它设置一个Watchpoint，双击第9行代码对应的左侧栏就可以了。
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153246_zzEM.png"><img src="/images/082e1647ca341b0f3549dcfc136ce278d73f4acb.png" alt="15153246_zzEM"></a>
+使用在2中所提及的方法，查看该断点的属性，
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153246_e1gH.png"><img src="/images/f268f9ed80a672eeb51d164658a971d6777989b9.png" alt="15153246_e1gH"></a>
+默认地，当该变量被访问或它的值被修改时，程序都会被中断。但在本示例中，只希望当对value的值进行修改时程序才需要被中断，所以取消对&quot;Access&quot;的勾选。
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153246_evtw.png"><img src="/images/1deb043f0baa72b61a76e794f7acf9d25762112c.png" alt="15153246_evtw"></a>
+这时，我们会发现原来的Watchpoin图标也有变化了。
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153246_Sw8K.png"><img src="/images/d2dff57a03768ac00b84dd9bb651e99031d94cdc.png" alt="15153246_Sw8K"></a></p>
+<p><strong>4. Method Breakpoint</strong>
+与关注对某个变量的访问与修改一样，我们也可以关注程序对某个方法的调用情况，即，可以设置Method Breakpoint。在此处，设置针对方法setValue的Method Breakpoint。同理，双击第11行代码对应的左侧栏即可。
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153247_xdH4.png"><img src="/images/bd49da0a82d0dc044a917e5b53107b05b36f6378.png" alt="15153247_xdH4"></a>
+仍然要查看该断点的属性。默认地，只勾选了&quot;Entry&rdquo;，而没有勾选&quot;Exit&rdquo;。
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153247_W1oy.png"><img src="/images/7294186aaa782865383feb3a4e375a5a3b628c27.png" alt="15153247_W1oy"></a>
+这表示，当刚进入该方法(调用开始)时，程序会被中断；而，离开该方法(调用结束)时，程序并不会被中断。在本示例中，需要同时勾选上&quot;Exit&rdquo;。
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153247_QVwz.png"><img src="/images/39f23217e1d0ead7061f1d636b97f52b6ee886fd.png" alt="15153247_QVwz"></a>
+点击OK之后，可以看到该断点的图标也有所改变。
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153247_YRMh.png"><img src="/images/bdeda47c131aefb575366c4d23b16b3e0ee59321.png" alt="15153247_YRMh"></a>
+根据这里的设置，当程序运行到第20行后会在第12行被中断，尽管这里没有显式的断点，但这就是setValue()方法的入口(Entry)。必须注意地是，程序在运行到第16行时不会被中断，尽管它看起来像是setValue()方法的出口(Exit)。实际上，程序会在第17行被中断，这里才是setValue()调用结束的地方。</p>
+<p><strong>5. Exception Breakpoint</strong>
+如果，我们期望某个特定异常发生时程序能够被中断，以方便查看当时程序所处的状态。通过设置Exception Breakpoint就能达到这一目标。本示例故意在第23行抛出了IllegalArgumentException异常，我们期望程序运行到此处时会被中断。但我们不直接为此行代码设置Line Breakpoint，而是为IllegalArgumentException设置Exception Breakpoint。设置Exception Breakpoint的方法与其它类型断点都不同，它不能通过双击左侧栏的方式在代码编辑器上直接进行设置。点击Breakpoints视图右上角形如Ji的图标，
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153247_Wm2U.png"><img src="/images/d4f298befa3d1c0100aef36797c56bbc1d2a423c.png" alt="15153247_Wm2U"></a>
+会弹出如下所示的对话框，
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153248_WgLd.png"><img src="/images/04e45e47d1e4248fd2ec8db8b13252e1c196e525.png" alt="15153248_WgLd"></a>
+在其中选中IllegalArgumentException，并点击OK，这时一个Exception Breakpoint就设置好了。
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153248_kE2O.png"><img src="/images/fd555622458bbb34ad01929c6a7483768f6b37a8.png" alt="15153248_kE2O"></a></p>
+<!-- raw HTML omitted -->
+<p><strong>小结</strong>
+上述的Eclipse断点，我们在现实工作中肯定都有意或无意地使用过其中的几种，只是不一定十分了解内情罢了。使用好Eclipse的各种断点，可以把很好地帮助我们分析程序，定位问题。</p>
+
                 
               </div>
 
@@ -294,7 +333,7 @@
   <i class="fas fa-calendar"></i>&nbsp;Posted on September 19, 2013
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -309,15 +348,77 @@
               </p>
               <div class="post-entry">
                 
-                  看了很多个例子，发现这个最好，译文中会带有我的一些了理解，有问题欢迎指出。
-0.Maven是什么？ Apache Maven，是一个软件（特别是Java软件）项目管理及自动构建工具，由Apache软件基金会所提供。基于项目对象模型（缩写：POM）概念，Maven利用一个中央信息片断能管理一个项目的构建、报告和文档等步骤。
-可以看到，核心就是项目管理和自动构建了，从例子中将会体会更深。本例创建一个随机数生成程序。
-1.从Maven模板创建项目 Maven的环境变量配置和java类似，直接添加系统变量MAVEN_HOME指向你下载的maven目录，然后将bin目录添加到path环境变量里。
-在命令行下，进入到你想存储项目的位置，比如，我自己有个叫work的目录，那么我就cd到work目录，然后按下面的格式输入命令 mvn archetype:generate -DgroupId={project-packaging} -DartifactId={project-name} -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false 这是告诉Maven从**maven-archetype-quickstart **创建一个java项目，如果你这个参数不填，那么会列出一个列表，让你选择你想创建什么类型，比如web项目啊，啥的。
-友情提示：是不是太难记了..好吧，直接输入 mvn archetype:generate 根据向导来创建把。。
-比如 &gt;mvn archetype:generate -DgroupId=com.mkyong -DartifactId=NumberGenerator -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false [INFO] Scanning for projects&hellip; [INFO]
-[INFO] &ndash; omitted for readability [INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;- [INFO] Using following parameters for creating project from Old (1.x) Archetype: maven-archetype-quickstart:1.0 [INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;- [INFO] Parameter: groupId, Value: com.mkyong [INFO] Parameter: packageName, Value: com.mkyong [INFO] Parameter: package, Value: com.mkyong [INFO] Parameter: artifactId, Value: NumberGenerator [INFO] Parameter: basedir, Value: /Users/mkyong/Documents/workspace [INFO] Parameter: version, Value: 1.
-                  <a href="https://leizhiyuan.github.io/2013/09/19/maven%E5%AE%9E%E4%BE%8B%E5%85%A5%E9%97%A8-%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90/" class="post-read-more">[Read More]</a>
+                  <p>看了很多个例子，发现这个最好，译文中会带有我的一些了理解，有问题欢迎指出。</p>
+<h2 id="0maven">0.Maven是什么？</h2>
+<p>Apache Maven，是一个软件（特别是Java软件）项目管理及自动构建工具，由Apache软件基金会所提供。基于项目对象模型（缩写：POM）概念，Maven利用一个中央信息片断能管理一个项目的构建、报告和文档等步骤。</p>
+<p>可以看到，核心就是项目管理和自动构建了，从例子中将会体会更深。本例创建一个随机数生成程序。</p>
+<h2 id="1maven">1.从Maven模板创建项目</h2>
+<p>Maven的环境变量配置和java类似，直接添加系统变量MAVEN_HOME指向你下载的maven目录，然后将bin目录添加到path环境变量里。</p>
+<p>在命令行下，进入到你想存储项目的位置，比如，我自己有个叫work的目录，那么我就cd到work目录，然后按下面的格式输入命令</p>
+<!-- raw HTML omitted -->
+<p>这是告诉Maven从**maven-archetype-quickstart **创建一个java项目，如果你这个参数不填，那么会列出一个列表，让你选择你想创建什么类型，比如web项目啊，啥的。</p>
+<p>友情提示：是不是太难记了..好吧，直接输入</p>
+<!-- raw HTML omitted -->
+<p>根据向导来创建把。。</p>
+<p>比如</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这里的groupId就是包名，artifactId就是类名，以后具体的一些其他参数我希望有时间可以跟大家分享。</p>
+<h2 id="2maven">2.Maven目录结构</h2>
+<p>上面的命令第一次执行的时候会从apache网站下载maven的一些其他东西，所以务必保持联网。执行成功后，会生成一个这样的目录结构</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这里main目录是我们的程序住代码目录。源代码会放在/src/main/java/包名 目录里，而单元测试代码会放在/src/test/java/包名 目录里。当然还有一个标准的pom.xml文件会生成。这个pom文件其实类似于Ant的build.xml文件，它包含了项目的信息，从目录结构到项目插件到项目依赖，都有了。。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="3eclipse">3.用Eclipse写代码</h2>
+<p>maven已经生成了一个完整的工程了，为了能够导入到eclipse里来编辑代码，我们可以把这个项目转换成eclipse可用的。</p>
+<p>首先命令行进入NumberGenerator目录，然后输入</p>
+<!-- raw HTML omitted -->
+<p>然后就会生成Eclipse需要的所有项目文件里</p>
+<p>图1.导入eclipse之后的效果</p>
+<p><a href="http://leaverimage.b0.upaiyun.com/2013/09/maven-single-java-project.png"><img src="/images/a6c0fbb8d5b17d6afc6d6fb110de27cf98be1715.png" alt="maven-single-java-project"></a></p>
+<h2 id="4pom">4.更新pom文件</h2>
+<p>默认的pom文件太简单了。通常我们需要添加编译插件来告诉Maven我们打算使用哪个版本的jdk来编译项目，有时候默认的版本太低了</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>我们把source和target改成了1.6.</p>
+<p>然后更新JUnit到4.1.1</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>最终我们的pom文件如下</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="5">5.更新业务逻辑</h2>
+<p>TDD开发的理念告诉我们先写测试，我们打开AppTest.java文件。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>然后修改App.java的代码</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="6maven">6.Maven打包</h2>
+<p>现在，我们要使用Maven来编译我们的项目，并且打包成一个jar文件，记得pom.xml文件吗？在这个文件里我们定义了打包的类型</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>在项目目录(也就是NumberGenerator目录)的命令行下，输入</p>
+<!-- raw HTML omitted -->
+<p>然后就会看到：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>程序开始编译，并且执行了单元测试，然后在target目录下生成了jar包，最后，程序目录结构如下：</p>
+<p><a href="http://leaverimage.b0.upaiyun.com/2013/09/maven-single-java-project-final.png"><img src="/images/5a515167b36d7c7b74b5643e421cea11097736eb.png" alt="maven-single-java-project-final"></a></p>
+<h2 id="7demo">7.执行Demo</h2>
+<p>运行生成的jar文件，还在在NumberGenerator目录下，输入如下命令</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>后面的com.mkyong.App就是包名+类名，也就是类的全名了</p>
+<h2 id="8demo">8.Demo下载</h2>
+<p><a href="http://pan.baidu.com/share/link?shareid=846280173&amp;uk=1493685990"> Maven-NumberGenerator.zip</a></p>
+<p> </p>
+<p>基本上一个完整的的示例就做完了，希望你有所收获，后续会更新一些Maven的的东西。欢迎支持。中秋快乐。</p>
+<p> </p>
+<p> </p>
+
                 
               </div>
 
@@ -367,43 +468,8 @@
               <div class="post-entry">
                 
                   <p>这两天在读《软件测试》，书不厚，也就300页，有些观念还是挺诧异的，比如软件功能超出产品说明书也算作软件缺陷&hellip;想想也能明白，只是猛然看到还是很惊异..简单记录一下读书过程中一些重要的笔记.留作备份.</p>
-
-<p>软件缺陷：
-<div>1.软件为达到产品说明书表明的功能</div>
-<div>2.软件出现了产品说明书指明不会出现的错误.</div>
-<div>3.软件功能超出产品说明书指明范围</div>
-<div>4.软件未达到产品说明书虽未指出但应达到的目标</div>
-<div>5.软件测试员认为软件难以理解，不易使用，运行速度缓慢，或者最终用户认为不好.</div>
-<div></div>
-<div></div>
-<div>为什么会出现软件缺陷</div>
-<div>最大的原因是产品说明书.而并非编程错误，第二大来源是设计方案</div>
-<div></div>
-<div>软件测试员的目标是发现软件缺陷，进可能早一些，确保其得到修复</div>
-<div></div>
-<div>完全测试程序是不可能的</div>
-<div></div>
-<div>不要总是报告坏消息，如果软件没有错误，就夸他们，和他们聊天</div>
-<div></div>
-<div>可靠性只是质量的一个方面，可能还包括功能齐全，技术制裁，包括色彩等</div>
-<div></div>
-<div>在设计和执行测试案例时，首先进行通过测试，在破坏性试验之前看看软件基本功能是否实现是很重要的，否则在正常使用软件时就会奇怪为什么有这么多软件缺陷</div>
-<div></div>
-<div>软件测试员必须测试程序的状态及其转换</div>
-<div></div>
-<div>动态白盒测试的目标是寻找软件缺陷，调试则是为了修复他们</div>
-<div></div>
-<div>静态黑盒子（审查设计说明书），动态黑盒子，静态白盒子，动态白盒子</div>
-<div></div>
-<div>进行白盒测试前，一定要根据说明书建立黑盒测试案例</div>
-<div></div>
-<div>语句覆盖是程序的所有语句执行，分支覆盖则是所有分支都被执行，条件覆盖则要保证IF语句的每一种可能性都被覆盖</div>
-<div></div>
-<div>优秀UI的七个要素：</div>
-<div>1.符合标准和规范，2.灵活性，3.正确性。4.直观性。5.舒适性，6.实用性。7.一致性</div>
-<div></div>
-<div></div>
-<div>测试存根用于自顶向下的测试，清查到低级模块或者把自己替换为低级模块，主要测试高级模块，外表和行为就像是低级模块</div></p>
+<p>软件缺陷：</p>
+<!-- raw HTML omitted -->
 
                 
               </div>
@@ -453,15 +519,34 @@
               </p>
               <div class="post-entry">
                 
-                  看到本题是在搜狗某年的笔试题上,看也没人给出非常详细的讲解,直接给出了答案,我来尝试写一写,
-貌似本题来源自&lt;The C Puzzle Book&gt; ，搜狗也只是换了一下字符串，直接看题吧 #include &lt;stdio.h&gt; char *c[]={&ldquo;ENTNG&rdquo;, &ldquo;NST&rdquo;,&ldquo;AMAZI&rdquo;,&ldquo;FIRBE&rdquo;}; char** cp[]={c+3, c+2, c+1, c}; char *cpp= cp; int main() { printf(&ldquo;%s&rdquo;,++cpp); printf(&ldquo;%s &ldquo;,&ndash;++cpp+3); printf(&ldquo;%s&rdquo;,*cpp[-2]+3); printf(&ldquo;%s&rdquo;,cpp[-1][-1]+1); } &lt;span style=&quot;font-family: Georgia, 'Times New Roman', 'Bitstream Charter', Times, serif; font-size: 13px; line-height: 19px;&quot;&gt;请写出程序的执行结果....&lt;/span&gt;
-首先从左到右看： char *c[]= { &ldquo;ENTNG&rdquo;, &ldquo;NST&rdquo;, &ldquo;AMAZI&rdquo;, &ldquo;FIRBE&rdquo; }; *c[] 是一个字符，因此，c[]是指向该字符，c就是一个数组（数组的内容为指向字符的指针），c已经被初始化了. char** cp[]={c+3, c+2, c+1, c}; 再看第二行，**cp[]是一个字符，*cp[]就是一个指针，指向该字符，cp[]就是一个指针，指向该指针，而cp就成为了指针数组，内容是指向字符的指针的指针。并且通过c的元素进行了初始化 char cpp= cp; 第三行，cpp是一个字符，**cpp指向该字符，*cpp指向该指针，cpp就指向该字符的指针的指针.
-然后我画一张图表示初始的情况看看
+                  <p>看到本题是在搜狗某年的笔试题上,看也没人给出非常详细的讲解,直接给出了答案,我来尝试写一写,</p>
+<p>貌似本题来源自&lt;**The C Puzzle Book&gt; ，**搜狗也只是换了一下字符串，直接看题吧</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><code>&lt;span style=&quot;font-family: Georgia, 'Times New Roman', 'Bitstream Charter', Times, serif; font-size: 13px; line-height: 19px;&quot;&gt;请写出程序的执行结果....&lt;/span&gt;</code></p>
+<p>首先从左到右看：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>再看第二行，**cp[]是一个字符，*cp[]就是一个指针，指向该字符，cp[]就是一个指针，指向该指针，而cp就成为了指针数组，内容是指向字符的指针的指针。并且通过c的元素进行了初始化</p>
+<!-- raw HTML omitted -->
+<p>第三行，***cpp是一个字符，**cpp指向该字符，*cpp指向该指针，cpp就指向该字符的指针的指针.</p>
+<p>然后我画一张图表示初始的情况看看</p>
+<p><a href="http://leaverimage.b0.upaiyun.com/35001_o.png"><img src="/images/ec5c34f9784a9f2a30d7a044ee954099a6e32e78.png" alt=""></a></p>
+<p>然后对于下面的输出语句，通过操作符优先级使用括号来区分一下：</p>
+<!-- raw HTML omitted -->
+<p>这个嘛，就是把cpp后移(注意cpp已经改变了)然后就指向了cp[1]，然后两次取其值即可得到AMAZI</p>
+<p>推导过程如下：</p>
+<!-- raw HTML omitted -->
+<p>最后</p>
+<!-- raw HTML omitted -->
+<p> </p>
+<p>cpp还是之前的cp[2]，cpp[-1][-1]相当于*(*(cpp-1)-1),先减1指向了cp[1],取一次值就是c[2]了，然后c[2]-1就成为c[1]了，然后+1之后就是ST了.</p>
+<p>所以，最后输出就是</p>
+<p>AMAZINGBEST</p>
+<p>错误之处还望指正.</p>
+<p> </p>
+<p> </p>
 
-然后对于下面的输出语句，通过操作符优先级使用括号来区分一下： ((++cpp)); 这个嘛，就是把cpp后移(注意cpp已经改变了)然后就指向了cp[1]，然后两次取其值即可得到AMAZI
-推导过程如下：
- ++cpp -&gt; cp[1] // cp[1] -&gt; c+2 ++cpp = &amp;cp[1] // &amp;(c+2) *++cpp = *(&amp;c+2) // c[2] **++cpp = &amp;c[2] 然后看第二个 ((&ndash;(*(++cpp))))+3; 加括号后如上，cpp再加一，就指向了cp[2],取一次值（也就是号）就变成了c[1],然后&ndash;c[1]就指向了c[0],取值就成了c[0]的地址，然后地址+3，就是NG了 ((cpp[-2]))+3; 上面，cpp指向cp[2]了，然后呢，cpp[-2] 相当于*(cpp-2)，间接引用cp[2]，这样cpp[-2]就指向了cp[0]了，然后，就是FIRBE了,加3就是BE了
-                  <a href="https://leizhiyuan.github.io/2013/04/17/%E4%B8%80%E9%81%93%E7%AC%94%E8%AF%95%E6%8C%87%E9%92%88%E9%A2%98%E7%9B%AE%E8%AF%A6%E8%A7%A3/" class="post-read-more">[Read More]</a>
                 
               </div>
 
@@ -514,37 +599,16 @@
                 
                   <p>位于命名空间System.Diagnostics中
 1.Debug.Print方法</p>
-
-<pre class="lang:default decode:true " >Debug.Print("Today: {0}", DateTime.Today);</pre> 
-
+<!-- raw HTML omitted -->
 <p>2.Debug.WriteLine方法</p>
-
-<pre class="lang:default decode:true " >Debug.WriteLine("Have a nice day");</pre> 
-
+<!-- raw HTML omitted -->
 <p>3.TraceListener类</p>
-
 <p>DelimitedListTraceListener创建的时候指定一个文件名，当Flush调用的时候，就被覆写到文件里。</p>
-
-<pre class="lang:default decode:true " >TraceListener listener = new DelimitedListTraceListener(@"C:\debugfile.txt");
-
-        // Add listener.
-        Debug.Listeners.Add(listener);
-
-        // Write and flush.
-        Debug.WriteLine("Welcome");
-        Debug.Flush();</pre> 
-
-<p>4.Debug.Write和WriteIf以及WriteLineIf方法</p>
-
-<pre class="lang:default decode:true " >Debug.WriteLineIf(IsThursday(), "Thursday");
-</pre> 
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>第一个参数一个bool值，为真则输出。</p>
-
 <p>5.Debug.Assert方法</p>
-
-<pre class="lang:default decode:true " >Debug.Assert(value != -1, "Value must never be -1.");</pre> 
-
+<!-- raw HTML omitted -->
 <p>如果表达式为false，则输出。</p>
 
                 
@@ -600,41 +664,29 @@
               <div class="post-entry">
                 
                   <p>这几天在读《现代操作系统》，想起当时学这门课的时候，并没有感觉那么爽，现在通读这本书，知识的过渡性和结构性令我叹服。感受操作系统的魅力吧。</p>
-
 <p><strong>批处理系统中的调度：</strong>
 1.先来先服务</p>
-
 <p>2.最短作业优先
 只有在所有的作业都可以同时运行(也即同时到达)的情况下，最短作业优先算法才是最优化的。</p>
-
 <p>3.最短剩余时间优先-最短作业优先的抢占式版本。调度算法总是选择剩余时间最短的那个进程运行，注意，运行时间必须提前掌握，当一个新的作业到达时，其整个时间同当前进程的剩余时间做比较，如果更少。就运行新进程。可以使新的短作业获得良好的服务。</p>
-
 <p><strong>交互式系统的调度</strong>
 1.轮转调度。
 最古老，最简单，最公平切使用最广，每个进程被分配一个时间片。如果进程在时间片结束之前阻塞或结束，则CPU立即切换。调度程序只是维护一张可运行进程列表，当进程用完它的时间片后，就被移到队列的末尾。时间片太短会导致进程切换过多，降低CPU效率，设置的太长又引起对短的交互请求的响应时间变长。通常20-50ms算合理。</p>
-
 <p>2.优先级调度
 为了防止高优先级进程无休止的运行下去，可以在一个时钟中断里降低当前进程的优先级，如果这导致该进程的优先级低于次高优先级的进程，则切换或者也可以赋予每个进程一个时间片。可以和轮转调度一起工作，设置每个优先级上有多个进程。优先运行高优先级，并未高优先级上的进程按照轮转换着运行，如果高优先级没了。就进入到较低优先级。。。问题是如果不偶尔对优先级进行调整，则可能发生饥饿现象。</p>
-
 <p>3.多级队列
 CTSS的设计者发现为CPU密集型进程设置较长的时间片比频繁的分给他们很短的时间片更为高效（减少了交换次数），但长时间的进程又会影响响应时间，方法是设立优先级类，最高优先级类里的进程运行1个时间片。次高运行2个。以此类推。当一个进程用完分配的时间片后，被移动到下一类。大致算法都是用于讨好交互用户和进程，而不惜牺牲后台进程
 //故事：可以采用只要终端上有Enter键按下，就将该终端上的进程移到最高优先级类。假设当前进程急需交互，但是。一个人发现了。大家都开始用。。。理论和实际差异太大。。哈哈</p>
-
 <p>4.最短进程优先
-这个很好立即，但难点在于如何找出最短的那个。一种方法是根据过去的行为推测。假设每个命令执行时间为T0，下一次运行时间为T1，则可以根据aT0+(1-a)T1来估计时间。。a被用来决定尽快忘掉老的运行时间还是记住它。这种算法成为老化算法。通常选a=<sup>1</sup>&frasl;<sub>2</sub></p>
-
+这个很好立即，但难点在于如何找出最短的那个。一种方法是根据过去的行为推测。假设每个命令执行时间为T0，下一次运行时间为T1，则可以根据aT0+(1-a)T1来估计时间。。a被用来决定尽快忘掉老的运行时间还是记住它。这种算法成为老化算法。通常选a=1/2</p>
 <p>5.保证调度
 就是保证每个用户获得cpu的1/n，系统需要跟踪进程的cpu时间，他实际获得如果多于应该获得的。则转向实际获得小于应该获得的。</p>
-
 <p>6.彩票调度
 保证调度很难实现，而彩票调度算法是向进程提供各种系统资源的彩票。一旦需要做出一项调度决策时，就随机抽出一张彩票。谁获得谁就上。比如视频服务器，可以为不同的帧速率提供不同的彩票。然后分配cpu</p>
-
 <p>7.公平分享调度
 这个就考虑到了进程的所有者。需要我们定义公平的含义。是保证每个用户只占用的时间相等还是其他了。</p>
-
 <p><strong>实时系统的调度：</strong>
 可以分为硬实时和软实时，前者必须满足绝对的截止时间，后者则可以容忍一些。用户级线程系统是不知道的。用户级和内核级的差异主要在性能，用户级需少量的机器指令，而内核级需要很多的。过程。采用轮转和优先级调度更常见一些。</p>
-
 <p>//操作系统的大神们太强大了。哲学家进餐问题居然可以通过拿起左边叉子以后，检测右边是否可用，如果不可用，则等待一个随机的时间。这种方案是可行的。在极少的情况下不可用。。</p>
 
                 
@@ -686,57 +738,16 @@ CTSS的设计者发现为CPU密集型进程设置较长的时间片比频繁的�
               <div class="post-entry">
                 
                   <p>在家无聊写了这个工具，主要是为了防止自己这一直写随笔把本行忘了。。也熟悉一下代码。。暂时不放源代码了。以后改的好一点再发吧。</p>
-
 <p>作者：bystander</p>
-
-<p>博客：<a href="http://leaver.me">http://leaver.me</a></p>
-
+<p>博客：http://leaver.me</p>
 <p>转载请注明出处！</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/31971_o.png"><img src="/images/a46e1099507677947d020ad1fc0251a2fe9fca27.png" alt="" /></a></p>
-
-<p>&nbsp;</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/31972_o.png"><img src="/images/674f4d21632e17d90688202f0e06717fbeba54c8.png" alt="" /></a></p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/31971_o.png"><img src="/images/a46e1099507677947d020ad1fc0251a2fe9fca27.png" alt=""></a></p>
+<p> </p>
+<p><a href="http://leaverimage.b0.upaiyun.com/31972_o.png"><img src="/images/674f4d21632e17d90688202f0e06717fbeba54c8.png" alt=""></a></p>
 <p>涉及到的东西有：</p>
-
 <p>1.C#隐藏TabControl的header部分，前面的文章有介绍</p>
-
-<p>2.获取窗体全部的某一类控件（这个无聊的话抽象出一个通用的方法出来，以后就可以直接用了）
-<pre class="lang:default decode:true">  /// &lt;summary&gt;
-        /// 获取所有的文本框控件
-        /// &lt;/summary&gt;
-        /// &lt;param name=&ldquo;control&rdquo;&gt;&lt;/param&gt;
-        /// &lt;returns&gt;&lt;/returns&gt;
-        private List&lt;TextBox&gt; GetAllControls(Control control)
-        {
-            foreach (Control con in control.Controls)
-            {
-                if (con.Controls.Count &gt; 0)
-                {
-                    GetAllControls(con);
-                }
-                else if (con is TextBox)
-                {
-                    tBoxList.Add(con as TextBox);
-                }
-            }
-            return tBoxList;
-        }</pre>
-&nbsp;</p>
-
-<p>3.文件操作</p>
-
-<p>4.字符串操作</p>
-
-<p>反正很简单，主要就是写的时候思路要清晰。知道大部分使用密码的规则。处理一下生日格式。否则后面很麻烦。。相应的验证也比较少。界面依然毫无美感。。</p>
-
-<p>总结：</p>
-
-<p>现在发现在控件命名上越来越顺利了。自我感觉良好。后面慢慢的要开始尝试使用学到的一些新的技术点。。</p>
-
-<p>下载：<a href="http://pan.baidu.com/share/link?shareid=244748&amp;amp;uk=1493685990">社工字典生成工具</a></p>
+<p>2.获取窗体全部的某一类控件（这个无聊的话抽象出一个通用的方法出来，以后就可以直接用了）</p>
+<!-- raw HTML omitted -->
 
                 
               </div>
@@ -775,7 +786,7 @@ CTSS的设计者发现为CPU密集型进程设置较长的时间片比频繁的�
   <i class="fas fa-calendar"></i>&nbsp;Posted on December 24, 2012
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;3&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -790,16 +801,75 @@ CTSS的设计者发现为CPU密集型进程设置较长的时间片比频繁的�
               </p>
               <div class="post-entry">
                 
-                  首先祝大家平安夜快乐。本篇介绍一些流行的JavaScript模式。为下一篇打基础
-使用/了解JavaScript的一个好处就是函数的高级用法。。在JavaScript里。函数仅仅是对象。他们可以有赋给他们的属性。而在C#中。我们不能做我们可以在JavaScript的全部事情。但是我们仍然可以做些事情。一个原因是JavaScript在函数里给变量以作用域。因此，不得不通过创建函数，大多数情况是匿名的来定位变量。而在C#中。通过使用块，通过花括号来创建作用域
-当然，换种方式来说。C#中，函数也会给变量作用域。通过使用Lambda表达式。我们通过花括号在其里面创建了一个变量。然而。我们也可以局部的创建作用域。
-我们来看看通过使用Lambda表达式可以实现一些在JavaScript里面有用的模式把。
-回调模式
-这个模式是个老的模式。事实上。回调模式从.net 的第一版就开始使用了。但是是以一种很简单的方式实现的。而现在。通过使用Lambda表达式。闭包，捕获变量等特性能够允许我们写出如下的代码来。
-void CreateTextBox() { var tb = new TextBox(); tb.IsReadOnly = true; tb.Text = "Please wait ..."; DoSomeStuff(() =&gt; { tb.Text = string.Empty; tb.IsReadOnly = false; }); } void DoSomeStuff(Action callback) { // Do some stuff - asynchronous would be helpful ... callback(); } 对于JavaScript程序员会觉得这没什么啊。他们使用这个模式太多了。然而，它非常有用。因为我们可以使用参数作为Ajax相关事件的事件处理器（比如oncompleted，onsuccess），等等。如果你使用LINQ，那么你可能也会用到回调模式的一些东西。举个例子。LINQ的where子句将会在每一次迭代中回调你的查询语句。这只是回调函数的一个例子。在.net的世界里。事件如它名字所暗示的那样。通常是事件处理的首选方法。这有时候很像一个回调。他有两个参数。有一个特殊的关键字和一个类型模式（两个参数分别是sender和arguments，sender通常是object类型。Arguments通常继承自EventArgs） 可以通过+= 和-=给事件添加/删除事件处理程序。
-返回方法 和普通的方法比较。Lambda表达式也可以返回一个方法指针（就是一个委托实例），这意味着我们可以使用Lambda表达式创建/返回一个lambda表达式（或者今年仅是一个已定义好的方法的委托实例），大量的情况下。这个模式也很有用。首先看一下例子。
-Func&lt;string, string&gt; SayMyName(string language) { switch(language.ToLower()) { case "fr": return name =&gt; { return "Je m'appelle "
-                  <a href="https://leizhiyuan.github.io/2012/12/24/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E5%9B%9B%E9%83%A8%E5%88%86/" class="post-read-more">[Read More]</a>
+                  <p>首先祝大家平安夜快乐。本篇介绍一些流行的JavaScript模式。为下一篇打基础</p>
+<p>使用/了解JavaScript的一个好处就是函数的高级用法。。在JavaScript里。函数仅仅是对象。他们可以有赋给他们的属性。而在C#中。我们不能做我们可以在JavaScript的全部事情。但是我们仍然可以做些事情。一个原因是JavaScript在函数里给变量以作用域。因此，不得不通过创建函数，大多数情况是匿名的来定位变量。而在C#中。通过使用块，通过花括号来创建作用域</p>
+<p>当然，换种方式来说。C#中，函数也会给变量作用域。通过使用Lambda表达式。我们通过花括号在其里面创建了一个变量。然而。我们也可以局部的创建作用域。</p>
+<p>我们来看看通过使用Lambda表达式可以实现一些在JavaScript里面有用的模式把。</p>
+<p><strong>回调模式</strong></p>
+<p>这个模式是个老的模式。事实上。回调模式从.net 的第一版就开始使用了。但是是以一种很简单的方式实现的。而现在。通过使用Lambda表达式。闭包，捕获变量等特性能够允许我们写出如下的代码来。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>对于JavaScript程序员会觉得这没什么啊。他们使用这个模式太多了。然而，它非常有用。因为我们可以使用参数作为Ajax相关事件的事件处理器（比如oncompleted，onsuccess），等等。如果你使用LINQ，那么你可能也会用到回调模式的一些东西。举个例子。LINQ的where子句将会在每一次迭代中回调你的查询语句。这只是回调函数的一个例子。在.net的世界里。事件如它名字所暗示的那样。通常是事件处理的首选方法。这有时候很像一个回调。他有两个参数。有一个特殊的关键字和一个类型模式（两个参数分别是sender和arguments，sender通常是object类型。Arguments通常继承自EventArgs）
+可以通过+= 和-=给事件添加/删除事件处理程序。</p>
+<p><strong>返回方法</strong>
+和普通的方法比较。Lambda表达式也可以返回一个方法指针（就是一个委托实例），这意味着我们可以使用Lambda表达式创建/返回一个lambda表达式（或者今年仅是一个已定义好的方法的委托实例），大量的情况下。这个模式也很有用。首先看一下例子。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>代码本应该更短些。我们可以让default如果请求的语言没有找到。只是抛出一个异常即可。不过。这个例子展示了这是一种方法工厂。另一种同等效果的方法是包含一个Hashtable。或者更好的话用Dictionary&lt;K, V&gt;</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>即使这看起来似乎有点过度工程化了。但是也许这是方法工厂最好的例子了。毕竟方法简单易扩展，可以被用在很多情况下。这中模式和反射的组合可以是的程序代码更松耦合，更易使用。并且代码更健壮。下图展示了模式的工作流程
+<a href="http://leaverimage.b0.upaiyun.com/30815_o.png"><img src="/images/e6a03db9751c4ebd13b63fd2880f2267e3af2b44.png" alt=""></a></p>
+<p><strong>自定义方法</strong>
+自定义方法模式一个JavaScript中普遍的技术。可以用在代码中提高性能和健壮性，这种模式的背后思想是方法被设置为一个属性。于是可以和其他方法非常方便的交换。我们看一下具体的代码</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这段代码做了什么？好吧。第一种情况下，我们得到第一个素数。也就是2.虽然这很显而易见。我们可以体征我们的算法默认来排除掉所有的偶数。这就加速我们的算法。但是我们依然能够得到开始的偶素数2.我们就可以通过调用NextPrime方法来获得素数了。我们就可以在第二部分里有话我们的算了。</p>
+<p>我们已经看到这种写法可以优化性能。我们可能一下这个例子</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这里我们有了两根分开的区域。一个是为钱1000个数准备的。其他的则留在了另一个区域。通常我们可能需要区分这两种情况。这就是我们为什么使用了自定义方法，当小区域执行完后，自定义函数就会改变了。来执行大的区域了。</p>
+<p><strong>即时执行方法表达式</strong></p>
+<p>在JavaScript中即时执行方法表达式也叫做IIFEs,也相当普遍。这是因为在JavaScript中，不像C#中的花括号可以构造一个局部变量。因此一个变狼可能会污染一个全局对象。（最有可能就是一个window对象），由于很多原因，这种情况很不好。。</p>
+<p>解决方法也很简单，当花括号不能给一个作用域的时候，方法却可以。因此，定义在方法里面的变量就被限制在这个方法里。就像是他的孩子一样。因此，通常JavaScript用户想让那些方法立刻执行。否则，是对变量名和语句行的浪费。另一个原因就是这个方法只执行一次。</p>
+<p>在C#中我们也可以写出类似的方法。我们也会得到一个新的作用域。但这不是我们主要关心的。因为我们可以随心所欲创建新的作用域，我们看些例子</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这段代码很容易理解。然后，如果我们想要传一些参数时候。我们需要定义他们的类型你个，我们看一下如何给即时执行方法传递参数</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>看上去似乎没做什么。然而。我们可以和async关键字组合起来。我们看</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Ok了。</p>
+<p><strong>即时对象初始化</strong></p>
+<p>我把这个模式放在关于Lambda表达式的文章里是因为匿名对象比我们刚刚的一些简单的例子能表达的要多得多。其中一个就是匿名对象也可以包含Lambda表达式。这可以作为我写在本文里的理由。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>如果你想要运行这个模式，你可能会看到一个异常。。至少我看到了。。这难以理解的理由是Lambda表达式不能被赋给匿名对象。如果你也没明白。。那我们看来是坐在一条船上的。
+幸运的是，编译器已经告诉我们了。“哥们，我不知道我该为你的那个Lambda表达式创建哪种类型的委托啊”我们可以帮一下编译器。如下所示。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>一个问题就产生了。方法（这里是Ask）存活的作用域是什么？答案是他存活在创建匿名对象的类里面，或者如果他使用了捕获变量，就在他自己的作用域里面。因此，编译器仍然创建了一个匿名对象（包含对编译器生成的类的元数据，实例化了一个有着类信息的新的对象），但是只是设置了委托对象Ask属性</p>
+<p>注意：你应该避免使用这个模式，当你真的想要访问一个匿名对象的所有属性的时候。理由如下：C#编译器请求在你使用每一个对象之前，应该首先声明他。因此，用的地方一定在声明之后，但是编译器怎么知道？在编译器看来。Person变量还没声明完呢。就开始使用了。
+所以，在上面那个Lambda表达式里并不能直接访问person的Name和Age属性
+有一个方法跳出这个陷阱（事实上有很多种，但我只喜欢这一种最优雅的，考虑下面这段代码</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>现在因为我们之前已经声明了，我们也可以说明person为object对象。但是这样的话我们就要用到反射机制了（可能还需要一些漂亮的包装器），来访问匿名对象的属性，在这种情况下，我们依赖于DLR，他会对这种情况出现一个最漂亮的包装器，现在这段代码就非常JavaScript化了，我也不知道是好还是坏，这也就是为什么我说这个是一个注意点。。</p>
+<p><strong>初始时间分支</strong></p>
+<p>这个模式事实上和自定义方法非常接近，唯一的不同，这种情况下，该方法并不定义自己，而是包含其他方法。显然是可能的。如果这个“其他方法”不是通过传统的方式定义，而是通过属性，（成员变量）</p>
+<p>这种模式的别名也叫做加载时分支，是一个优化模式，这个模式用来避免switch-case或if-else语句等控制结构的大量使用。也可以理解为这个模式为代码永久性的创建了确定分支之间的连接。
+考虑下面这个例子</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>我们都做了什么呢？首先我们有一个方法读取用户配置（由一个配置Setting类来保存），如果我们发现启用了自动设置。我们就给AutoSave这个属性赋上全部的代码，否则我们就放一个空方法在这里，而们就可以通过调用AutoSave（）一次就行了，不再需要检查配置设置或其他的什么情况了。我们也不需要保存一个特殊的布尔变量，因为对应的方法已经被动态的设置了。</p>
+<p>有人也许认为这不是一个巨大的性能提高，但是这仅仅是一个小例子，在一些复杂的代码里，这会节省很多时间，尤其是代码越来越复杂的情况下。</p>
+<p>另外（我认为这是最主要的原因），代码更加容易维护（如果你了解这个模式的话）没有了不必要的控制逻辑，程序员可以更加专注于重要的东西—调用这个自动保存的具体操作</p>
+<p>在JavaScript中，像初始时间分支模式被用在很多性能检测上（比如浏览器检测）不去管浏览器检测实际上是很邪恶的，并且不应该在任何网页上检测用户的浏览器，
+性能检测非常有用，通常和这种模式一起组合使用，这也是Jquery用来对Ajax请求检测需要的正确对象的方法。</p>
+<p>下一部分介绍Lambda表达式超级有用的情况，同样圣诞节快乐。</p>
+
                 
               </div>
 
@@ -835,7 +905,7 @@ Func&lt;string, string&gt; SayMyName(string language) { switch(language.ToLower(
   <i class="fas fa-calendar"></i>&nbsp;Posted on December 18, 2012
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -850,28 +920,68 @@ Func&lt;string, string&gt; SayMyName(string language) { switch(language.ToLower(
               </p>
               <div class="post-entry">
                 
-                  好长时间没发技术文章了，恰好看到一篇非常详细的Lambda文章。一边翻译一边学习。题目好像有点霸气。。
-介绍 Lambda表达式是使代码更加动态，易于扩展并且更加快速（看完本文你就知道原因了）的强有力的工具。也可以用来降低潜在的错误。同时可以利用静态输入和智能提示，就像VS里一样。
-&nbsp;
-Lambda表达式在.net framework 3.5中提出来。并且在LINQ和ASP.NET MVC内部的一些技术中扮演了相当重要的角色。如果你考虑一下ASP.NET MVC中各类控件的实现。你就发现。奥妙就是他们大多使用了Lambda表达式。和Lambda表达式一起，使用Html扩展方法将会使得在后台创建模型成为可能。
-本文会讲到如下的知识。
-1.简短的介绍-Lambda表达式是什么，以及为什么和匿名方法不同（之前我们使用的） 2.走近Lambda表达式的性能-在哪些情况下比起标准方法，Lambda会提高/损失性能 3.深入-Lambda表达式在MSIL代码中是什么样 4.一些来自JS世界的模式映射到C#中 5.那些能够提高性能，并且代码看起来相当舒服的使用Lambda的情况。 6.一些我提出的新模式-当然有可能别人也提出来了。但这是我的思考结果。
-&nbsp;
-如果你期望本文是一篇入门教程我可能要让你失望了，除非你真的很优秀并且很聪明，当然我不是这种人，所以我也想提前声明一下：为了读懂这篇文章你可能需要C#的一些高级知识，并且对C#比较了解。
-&nbsp;
-你应该期望本文试着解释一些事情给你，也会解释一些有趣的问题，至少对我来说是这样的。最后我会展示一些实际的例子和模式，如我所说，Lambda表达式简化了很多情况。因此写显式的模式很有用。
-背景知识-什么是Lambda表达式 在C#1.0中，委托被提出了，它使得传递函数成为可能，一句话就是委托就是强类型的函数指针，但委托比指针更强大。一般传递一个函数需要如下几步。 1. 写一个委托（就像一个类）包含返回类型和参数类型 2. 使用委托作为某一个函数的参数类型，这样，该函数就可以接受和委托描述的有着相同签名的函数了 3. 将一个委托类型的函数传递给委托，创建一个委托实例。
-&nbsp;
-如果听起来很复杂，确实本来很复杂，但这是必需的。（虽然不是造火箭，但是比你认为的要更多的代码），然而步骤三不是必需的，编译器会为你做他，但是步骤1和2却是必不可少的。
-&nbsp;
-幸运的是C#2.0出现了泛型，现在我们也可以写泛型类，方法，更重要的是，泛型委托，然而，直到.net framework 3.5的时候。微软意识到实际上只有两种泛型委托（当然有一些不同的重载），会覆盖99%的使用情况：
-1.Action 没有任何输入参数，也没有输出参数。 2.Action&lt;t1,…t16&gt; 需要1-16个参数，没有输出参数。 3.Func&lt;t1….t16,tout&gt;需要0-16个参数，一个输出参数
-&nbsp;
-Action和其对应的泛型版本（仅仅是一个动作，执行一些事情）返回void的时候。Func则可以返回最后一个参数指定的类型，通过这两个委托类型，我们事实上，大部分情况下。前面提到的三步中的第一部就不用写的。而第二步仍然需要。
-&nbsp;
-那么如果我们想要运行代码的时候怎么做呢。在C#2.0中问题已经可以解决了。在这个版本里。我们可以创建委托方法，也就是一个匿名方法，然后这个语法一直未能流行起来，一个相当简化的匿名方法的版本类似这样： Func&lt;double, double&gt; square = delegate (double x) { return x * x; } 为了提高这种语法，欢迎来到Lambda表达式的国度。首先，这个Lambda名字怎么来的？事实上。来自于数学上的λ演算，更准确的说他是数学中一个正式的系统。用于通过变量绑定和替换来进行表达式计算，所以我们有0-N个输入参数和一个返回值，而在编程中，也可以没有返回值
-我们看一下Lambda表达式的一些例子 //编译器可以识别，然后就可以通过dummyLambda();来调用了 var dummyLambda = () =&gt; { Console.WriteLine(&ldquo;Hallo World from a Lambda expression!
-                  <a href="https://leizhiyuan.github.io/2012/12/18/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86/" class="post-read-more">[Read More]</a>
+                  <p>好长时间没发技术文章了，恰好看到一篇非常详细的Lambda文章。一边翻译一边学习。题目好像有点霸气。。</p>
+<h1 id="span-stylecolor-0000ffspan"><!-- raw HTML omitted --><strong>介绍</strong><!-- raw HTML omitted --></h1>
+<p>Lambda表达式是使代码更加动态，易于扩展并且更加快速（看完本文你就知道原因了）的强有力的工具。也可以用来降低潜在的错误。同时可以利用静态输入和智能提示，就像VS里一样。</p>
+<p> </p>
+<p>Lambda表达式在.net framework 3.5中提出来。并且在LINQ和ASP.NET MVC内部的一些技术中扮演了相当重要的角色。如果你考虑一下ASP.NET MVC中各类控件的实现。你就发现。奥妙就是他们大多使用了Lambda表达式。和Lambda表达式一起，使用Html扩展方法将会使得在后台创建模型成为可能。</p>
+<p>本文会讲到如下的知识。</p>
+<p>1.简短的介绍-Lambda表达式是什么，以及为什么和匿名方法不同（之前我们使用的）
+2.走近Lambda表达式的性能-在哪些情况下比起标准方法，Lambda会提高/损失性能
+3.深入-Lambda表达式在MSIL代码中是什么样
+4.一些来自JS世界的模式映射到C#中
+5.那些能够提高性能，并且代码看起来相当舒服的使用Lambda的情况。
+6.一些我提出的新模式-当然有可能别人也提出来了。但这是我的思考结果。</p>
+<p> </p>
+<p>如果你期望本文是一篇入门教程我可能要让你失望了，除非你真的很优秀并且很聪明，当然我不是这种人，所以我也想提前声明一下：为了读懂这篇文章你可能需要C#的一些高级知识，并且对C#比较了解。</p>
+<p> </p>
+<p>你应该期望本文试着解释一些事情给你，也会解释一些有趣的问题，至少对我来说是这样的。最后我会展示一些实际的例子和模式，如我所说，Lambda表达式简化了很多情况。因此写显式的模式很有用。</p>
+<h1 id="span-stylecolor-0000ff-lambdaspan"><!-- raw HTML omitted --><strong>背景知识-什么是Lambda表达式</strong><!-- raw HTML omitted --></h1>
+<p>在C#1.0中，委托被提出了，它使得传递函数成为可能，一句话就是委托就是强类型的函数指针，但委托比指针更强大。一般传递一个函数需要如下几步。
+1. 写一个委托（就像一个类）包含返回类型和参数类型
+2. 使用委托作为某一个函数的参数类型，这样，该函数就可以接受和委托描述的有着相同签名的函数了
+3. 将一个委托类型的函数传递给委托，创建一个委托实例。</p>
+<p> </p>
+<p>如果听起来很复杂，确实本来很复杂，但这是必需的。（虽然不是造火箭，但是比你认为的要更多的代码），然而步骤三不是必需的，编译器会为你做他，但是步骤1和2却是必不可少的。</p>
+<p> </p>
+<p>幸运的是C#2.0出现了泛型，现在我们也可以写泛型类，方法，更重要的是，泛型委托，然而，直到.net framework 3.5的时候。微软意识到实际上只有两种泛型委托（当然有一些不同的重载），会覆盖99%的使用情况：</p>
+<p>1.Action 没有任何输入参数，也没有输出参数。
+2.Action&lt;t1,…t16&gt; 需要1-16个参数，没有输出参数。
+3.Func&lt;t1….t16,tout&gt;需要0-16个参数，一个输出参数</p>
+<p> </p>
+<p>Action和其对应的泛型版本（仅仅是一个动作，执行一些事情）返回void的时候。Func则可以返回最后一个参数指定的类型，通过这两个委托类型，我们事实上，大部分情况下。前面提到的三步中的第一部就不用写的。而第二步仍然需要。</p>
+<p> </p>
+<p>那么如果我们想要运行代码的时候怎么做呢。在C#2.0中问题已经可以解决了。在这个版本里。我们可以创建委托方法，也就是一个匿名方法，然后这个语法一直未能流行起来，一个相当简化的匿名方法的版本类似这样：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>为了提高这种语法，欢迎来到Lambda表达式的国度。首先，这个Lambda名字怎么来的？事实上。来自于数学上的λ演算，更准确的说他是数学中一个正式的系统。用于通过变量绑定和替换来进行表达式计算，所以我们有0-N个输入参数和一个返回值，而在编程中，也可以没有返回值</p>
+<h1 id="span-stylecolor-0000fflambdaspan"><!-- raw HTML omitted -->我们看一下Lambda表达式的一些例子<!-- raw HTML omitted --></h1>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>从上面的代码段里我们可以学到一些东西</p>
+<ul>
+<li>如果我们只有一个输入参数，我们可以省略()</li>
+<li>如果我们有一个输入参数，并且向返回一个，那么我们可以省略{}和return关键字</li>
+<li>我们可以让我们的Lambda表达式异步执行，只要加上async关键字就可以了</li>
+<li>Var关键字一般都不可以用，只有在极少的情况下有才可以。
+当然我们可以使用像平常那样使用var，如果我们指定了参数类型，这是可选的。因为类型可以从委托的类型中推断出来。而下面的情况都是错误的。请看下面的例子</li>
+</ul>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p>大部分基本情况我们都知道。但是有些相当cool的东西（这使得他们在很多情况下很有用），我们考虑下面的代码片段</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p>这是可以的。因此你可以使用其他的变量。这比你想象的要更特殊。因为这里出现了捕获变量。这使得出现了一个闭包，考虑下面的情况。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p>猜猜看这段代码会发生什么。首先我们创建了一个局部变量。和两个lambda表达式，第一额Lambda表达式展示在其他局部区域里访问局部变量是可以的。这已经很让人难以置信了。这意味着我们想要保护一个变量，但事实上他仍然可以在其他方法里被访问。而不论方法是被定义在内部还是其他类的里。</p>
+<p> </p>
+<p>而第二个Lambda表达式则模拟了一个Lambda表达式可以修改外部域变量。这意味着我们可以在其他方法里修改我们的局部变量，仅仅需要传一个在对应域里创建好的Lambda表达式就可以了。因此，我认为闭包有点魔幻的色彩了。就像并行编程一样。可能导致未期望的结果。就像在并行编程中的竞争情况。</p>
+<p>为了展示一下未期望的结果。欢迎期待下一篇。。</p>
+
                 
               </div>
 
@@ -924,26 +1034,37 @@ Action和其对应的泛型版本（仅仅是一个动作，执行一些事情�
               </p>
               <div class="post-entry">
                 
-                  这是前几天读的书。书不难。10-13章跳过了。以后再看。
-以前，一个应用程序对应一个进程。并且为该进程指定虚拟内存，这样。进程会消耗很多资源，而且进程之间的通信业比较麻烦
-应用程序域可以理解为很多应用程序域都可以运行在同一个.net 进程中，降低内存消耗。同时不同的域之间隔离。安全有保证。通信也简单。
-程序集是指包含编译好的。面向.net framework的代码的逻辑单元。是完全自我描述性的一个逻辑单元。可以存储在多个文件中。简单来说，程序集就是几个彼此有关联程序文件的集合。程序集会包含程序的元数据。描述了对应代码中定义的方法和类型。
-装箱和拆箱：装箱转换是将一个值类型显式或隐式的转换成一个object对象。并且把这个对象转换成一个被该值类型应用的的接口类型。装箱后的object对象中的数据位于堆中。一般应该避免这种运算。 CLR将值类型的数据包裹到匿名的托管对象中，并将托管对象的引用放在Object类型的变量中。这个过程称为装箱。一般还是使用泛型来代替多好。
-值类型和引用类型：值类型实例通常分配在线程的栈上。并且不包含指向任何实例数据的指针。引用类型实例分配在托管堆上。变量保存了实例数据的内存引用。引用类型复制的话会导致引用同一个内存地址。
-C#预处理指令是在编译时调用的。预处理指令通知C#编译器要编译哪些代码。并指出如何处理特定的错误和异常。比如用在一些调试的时候。在顶部define一个debug 内部的测试部分写上测试用例。具体示例 //定义条件变量，注意条件变量的定义要在代码的最前面 #define Debug using System; namespace MyConsole { class Preprocesor { public static void Main() { //如果条件变量是Debug则运行单元调试代码，再运行功能模块返回运行结果 #if Debug Console.WriteLine(&ldquo;运行单元测试模块&rdquo;); Console.WriteLine(&ldquo;运行功能模块，返回输出结果&rdquo;); Console.Read(); #elif Release //如果条件变量是Release，则直接运行功能模块返回运行结果 Console.WriteLine(&ldquo;运行功能模块，返回输出结果&rdquo;); Console.Read(); #endif } } } C#中的指针 指针是一个无符号整数。是以当前系统寻址范围为取值范围的整数，CLR支持三种指针类型：受托管指针，非托管指针，非托管函数指针，受托管指针存储在堆上的托管块的引用，一个非托管指针就是传统意义上的指针，要放在unsafe中使用，C#中指针并不继承自Object
-String 是CLR的类型名称。而string是C#的关键字。其实C#编译时。。会增下如下代码： using string=System.String
-Array 到ArrayList的转换 1.使用ArrayList.Adapter(ArrayName) 可以直接得到ArrayList 2.使用遍历逐个添加到ArrayList里。 反向的话直接使用(Array[])ArrayListName.ToArray(typeof(Array));即可
-checked和unchecked语句用于控制整形算术运算和显示转换的溢出检查上下文。checked关键字用于对整型算术运算和转换显式启用溢出检查。因为默认情况下。如果表达式产生的值超过了类型的范围。则常数表达式将会导致编译时错误。而非常数表达式则在运行时计算并将引发异常。
-Asp.Net 中的Request对象主要功能是从客户端得到数据信息。他的属性比较多。比如UserLanguage，TotalBytes，Path，ApplicationPath
-ViewState是其的一个重要特性。用于把生成页面要用的状态值保存到一个隐藏域里。而不是用cookie/内存
-SOAP是Web Service应用的基础协议。他是一种轻量的简单的。基于xml的协议。被设计成在wEb上交换结构化的和固有的信息。 WSDL是一种用于描述web服务和说明如何与Web服务通信的XML语言。WSDL是一种符合XML语法规范的语言。它的设计完全基于Soap协议的实现。当一个WEb Service 服务器期望为使用者提供服务说明时，WSDL语言是最好的选择之一。
-&nbsp;
-对企业的一些认识 
-千万不要说自己未来的打算是做到管理层，首先对管理层的定义不清楚。职务不清楚。所以保险的答案是我会努力钻研技术。使得能够达到业内的专业人士。深刻理解公司和行业
-我是为了找一份长期性的工作。我不喜欢频繁的跳槽我希望在这个利于发展自己的事业。深入学习。向专业人士请教。那。该我想问这个职务是长期的吗？
-不要把公司想像成慈善机构。工作的运作方面应该是尽可能快的实现盈利。树立品牌，赢得客户。我的工作就是完成企业的良性运作。
-如果被问到是否需要考虑看分数。应该说用人单位确实需要全面考量。也要考虑应聘者的工作积极性/服从性。实际经验/对开发的理解诶。这些也许比分数更有价值。
-                  <a href="https://leizhiyuan.github.io/2012/11/28/c#%E4%B8%8E.net-%E7%A8%8B%E5%BA%8F%E5%91%98%E9%9D%A2%E8%AF%95%E7%AC%94%E8%AE%B0/" class="post-read-more">[Read More]</a>
+                  <p>这是前几天读的书。书不难。10-13章跳过了。以后再看。</p>
+<p>以前，一个应用程序对应一个进程。并且为该进程指定虚拟内存，这样。进程会消耗很多资源，而且进程之间的通信业比较麻烦</p>
+<p><strong>应用程序域</strong>可以理解为很多应用程序域都可以运行在同一个.net 进程中，降低内存消耗。同时不同的域之间隔离。安全有保证。通信也简单。</p>
+<p><strong>程序集</strong>是指包含编译好的。面向.net framework的代码的逻辑单元。是完全自我描述性的一个逻辑单元。可以存储在多个文件中。简单来说，程序集就是几个彼此有关联程序文件的集合。程序集会包含程序的元数据。描述了对应代码中定义的方法和类型。</p>
+<p><strong>装箱和拆箱</strong>：装箱转换是将一个值类型显式或隐式的转换成一个object对象。并且把这个对象转换成一个被该值类型应用的的接口类型。装箱后的object对象中的数据位于堆中。一般应该避免这种运算。
+CLR将值类型的数据包裹到匿名的托管对象中，并将托管对象的引用放在Object类型的变量中。这个过程称为装箱。一般还是使用泛型来代替多好。</p>
+<p><strong>值类型和引用类型</strong>：值类型实例通常分配在线程的栈上。并且不包含指向任何实例数据的指针。引用类型实例分配在托管堆上。变量保存了实例数据的内存引用。引用类型复制的话会导致引用同一个内存地址。</p>
+<p><strong>C#预处理指令</strong>是在编译时调用的。预处理指令通知C#编译器要编译哪些代码。并指出如何处理特定的错误和异常。比如用在一些调试的时候。在顶部define一个debug 内部的测试部分写上测试用例。具体示例</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><strong>C#中的指针</strong>
+指针是一个无符号整数。是以当前系统寻址范围为取值范围的整数，CLR支持三种指针类型：受托管指针，非托管指针，非托管函数指针，受托管指针存储在堆上的托管块的引用，一个非托管指针就是传统意义上的指针，要放在unsafe中使用，C#中指针并不继承自Object</p>
+<p>String 是CLR的类型名称。而string是C#的关键字。其实C#编译时。。会增下如下代码：
+using string=System.String</p>
+<p><strong>Array 到ArrayList的转换</strong>
+1.使用ArrayList.Adapter(ArrayName) 可以直接得到ArrayList
+2.使用遍历逐个添加到ArrayList里。
+反向的话直接使用(Array[])ArrayListName.ToArray(typeof(Array));即可</p>
+<p><strong>checked和unchecked</strong>语句用于控制整形算术运算和显示转换的溢出检查上下文。checked关键字用于对整型算术运算和转换显式启用溢出检查。因为默认情况下。如果表达式产生的值超过了类型的范围。则常数表达式将会导致编译时错误。而非常数表达式则在运行时计算并将引发异常。</p>
+<p>Asp.Net 中的<strong>Request对象</strong>主要功能是从客户端得到数据信息。他的属性比较多。比如UserLanguage，TotalBytes，Path，ApplicationPath</p>
+<p><strong>ViewState</strong>是其的一个重要特性。用于把生成页面要用的状态值保存到一个隐藏域里。而不是用cookie/内存</p>
+<p><strong>SOAP</strong>是Web Service应用的基础协议。他是一种轻量的简单的。基于xml的协议。被设计成在wEb上交换结构化的和固有的信息。
+WSDL是一种用于描述web服务和说明如何与Web服务通信的XML语言。WSDL是一种符合XML语法规范的语言。它的设计完全基于Soap协议的实现。当一个WEb Service 服务器期望为使用者提供服务说明时，WSDL语言是最好的选择之一。</p>
+<p> </p>
+<p>**对企业的一些认识 **</p>
+<p>千万不要说自己未来的打算是做到管理层，首先对管理层的定义不清楚。职务不清楚。所以保险的答案是我会努力钻研技术。使得能够达到业内的专业人士。深刻理解公司和行业</p>
+<p>我是为了找一份长期性的工作。我不喜欢频繁的跳槽我希望在这个利于发展自己的事业。深入学习。向专业人士请教。那。该我想问这个职务是长期的吗？</p>
+<p>不要把公司想像成慈善机构。工作的运作方面应该是尽可能快的实现盈利。树立品牌，赢得客户。我的工作就是完成企业的良性运作。</p>
+<p>如果被问到是否需要考虑看分数。应该说用人单位确实需要全面考量。也要考虑应聘者的工作积极性/服从性。实际经验/对开发的理解诶。这些也许比分数更有价值。</p>
+<p>应届生的优缺点应该是足够的理论知识和专业能力。缺点是工作和社会经验不足。</p>
+
                 
               </div>
 
@@ -1022,7 +1143,7 @@ SOAP是Web Service应用的基础协议。他是一种轻量的简单的。基�
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

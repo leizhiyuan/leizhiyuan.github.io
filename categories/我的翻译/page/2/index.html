@@ -51,7 +51,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -234,7 +234,7 @@
   <i class="fas fa-calendar"></i>&nbsp;Posted on September 15, 2013
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -249,16 +249,33 @@
               </p>
               <div class="post-entry">
                 
-                  本文译自官方文档，有细微改动，Java多线程的时候，看了好多文档，还是官方说的最清楚。结合自己的理解，译之。
-CountDownLatch 字面意思就是倒计数闩，后面会讲到，这里的同步允许一个或多个线程等待，，知道其他线程进行的一系列操作完成。而CountDownLatch通过一个参数count（数目）来构造，而await（）则阻塞当前线程，直到countDown()将count减为了0，然后，所有的阻塞线程被释放，也就是那些调用了await方法的线程立即返回，注意，这是一次性的，也就是说count不能被自动重置，如果你想这么做，CyclicBarrier是可以的。
-CountDownLatch用处很多，当用count=1来构造的时候，这就相当于一个开关，所有调用了await方法的线程都在等待，直到有一个线程调用了countDown()，CountDownLatch通过count=N构造的话，就可以使一个线程等待其他N个线程完成操作，或者一个操作被做N次。
-简单的demo：
-一组worker（工人）线程使用两个CountDownLatch
-第一个是开始信号，用来阻止工人提前操作，直到(driver)传送带准备好了才允许开始
-第二个是完成信号，他使传送带等待直到所有的worker都完成 class Driver { // &hellip; void main() throws InterruptedException { CountDownLatch startSignal = new CountDownLatch(1); CountDownLatch doneSignal = new CountDownLatch(N);
-for (int i = 0; i &amp;lt; N; ++i) // 创建并启动线程 new Thread(new Worker(startSignal, doneSignal)).start(); doSomethingElse(); // 传送带做点准备工作 startSignal.countDown(); // 减为0，工人可以开始了 doSomethingElse(); doneSignal.await(); // 等待直到所有的工人完成任务 } }
-class Worker implements Runnable { private final CountDownLatch startSignal; private final CountDownLatch doneSignal; Worker(CountDownLatch startSignal, CountDownLatch doneSignal) { this.
-                  <a href="https://leizhiyuan.github.io/2013/09/15/%E8%AF%91java%E4%B8%AD%E7%9A%84countdownlatch%E5%92%8Ccyclicbarrier/" class="post-read-more">[Read More]</a>
+                  <p>本文译自官方文档，有细微改动，Java多线程的时候，看了好多文档，还是官方说的最清楚。结合自己的理解，译之。</p>
+<h2 id="countdownlatch">CountDownLatch</h2>
+<p>字面意思就是倒计数闩，后面会讲到，这里的同步允许一个或多个线程等待，，知道其他线程进行的一系列操作完成。而CountDownLatch通过一个参数count（数目）来构造，而await（）则阻塞当前线程，直到countDown()将count减为了0，然后，所有的阻塞线程被释放，也就是那些调用了await方法的线程立即返回，注意，这是一次性的，也就是说count不能被自动重置，如果你想这么做，CyclicBarrier是可以的。</p>
+<p>CountDownLatch用处很多，当用count=1来构造的时候，这就相当于一个开关，所有调用了await方法的线程都在等待，直到有一个线程调用了countDown()，CountDownLatch通过count=N构造的话，就可以使一个线程等待其他N个线程完成操作，或者一个操作被做N次。</p>
+<p>简单的demo：</p>
+<p>一组worker（工人）线程使用两个CountDownLatch</p>
+<p>第一个是开始信号，用来阻止工人提前操作，直到(driver)传送带准备好了才允许开始</p>
+<p>第二个是完成信号，他使传送带等待直到所有的worker都完成</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>另一个典型的例子就是把问题分成N部分，通过线程执行每一部分，具体的话是将线程入队到一个Executor对象里。然后调用execute方法。当执行完毕一部分，就并给latch 减去1，当减到0的时候调用await的方法就可以继续运行了，当需要重复计数的话，用CyclicBarrier代替</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<h2 id="cyclicbarrier">CyclicBarrier</h2>
+<p>字面意思回环栅栏。这里的同步是允许一系列的线程互相等待直到大家都来到一个barrier前面，当程序中有互相等待的情况的时候，非常有用，叫做回环是因为当所有等待线程都被释放以后，cyclicBarrier可以被重用</p>
+<p>同时，CyclicBarrier支持一个可选的Runnable参数，当所有的线程都来到barrier前面的时候，程序开始执行runable线程动作，当需要更新所有线程共享的某个状态的时候，该动作非常有用。例子是一个并行分解的例子</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这里每一个worker线程处理矩阵的一行，然后在barrier前面等待，直到所有的行都处理完成，当所有的都完成以后，这里</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>改为</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>如果一个线程由于中断，失败或者超时过早的离开了barrier，那么所有的线程都会通过BrokenBarrierException引发异常。</p>
+
                 
               </div>
 
@@ -305,14 +322,77 @@ class Worker implements Runnable { private final CountDownLatch startSignal; pri
               </p>
               <div class="post-entry">
                 
-                  本文作为sed使用教程的最后一篇，将比较全面的讲解如何操作csv文件，csv文件通过逗号分隔
-示例文件如下： cat file Solaris,25,11 Ubuntu,31,2 Fedora,21,3 LinuxMint,45,4 RedHat,12,5 1.删除第一列 $ sed &rsquo;s/[^,]*,//&rsquo; file 25,11 31,2 21,3 45,4 12,5 s开启替换模式，当^符号在中括号里的时候，就是非的意思，也就是说[^,]匹配了所有不是逗号的一个字符，然后后面的星号表示0个或多个，然后是一个逗号，也就是匹配&rdquo;xxxx,&ldquo;替换为空
-2.删除除过最后一列的其他所有 $ sed &rsquo;s/.*,//&rsquo; file 11 2 3 4 5 sed先匹配任意多个字符，然后匹配最后一个“,”这就直接把前面的都匹配完了。替换为空即可。
-3.输出第一列 $ sed &rsquo;s/,.*//&rsquo; file Solaris Ubuntu Fedora LinuxMint RedHat 好理解把，先匹配第一列之后的逗号，然后是多个字符，然后替换为空
-4.删除第二列 $ sed &rsquo;s/,[^,]*,/,/&rsquo; file Solaris,11 Ubuntu,2 Fedora,3 LinuxMint,4 RedHat,5 先匹配第一列之后的逗号，然后匹配一个或多个非逗号字符，这样就匹配了第二列的内容，然后再匹配一个逗号，我简化一下，比如该列是1，2，3，4，那么这一个匹配就是&rdquo;,2,&ldquo;，替换成一个逗号，就是1，3，4了
-5.输出第二列 $ sed &rsquo;s/[^,],([^,])./\1/&rsquo; file 25 31 21 45 12 我们可以分析前两个斜线之间的内容 [^,],([^,]). 两个右斜线转移了括号，所以括号不是简单的符号，而是正则里的组的意义，圆括号的作用是对字符进行分组，并保存匹配的文本。这里先匹配非逗号的多个字符，然后一个逗号，然后再匹配第二列，并且第二列的匹配用括号括起来，然后匹配其他列，然后里面用\1来引用这个括号的内容，如果前面有两个括号，就可以使用\1或\2这样，分别表示第一个括号或第二个括号的匹配
-6.输出最后一列是一位数字的行 $ sed -n &lsquo;/.
-                  <a href="https://leizhiyuan.github.io/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AB%E7%AF%87csv%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" class="post-read-more">[Read More]</a>
+                  <p>本文作为sed使用教程的最后一篇，将比较全面的讲解如何操作csv文件，csv文件通过逗号分隔</p>
+<p>示例文件如下：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->1.删除第一列<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>s开启替换模式，当^符号在中括号里的时候，就是非的意思，也就是说[^,]匹配了所有不是逗号的一个字符，然后后面的星号表示0个或多个，然后是一个逗号，也就是匹配&quot;xxxx,&ldquo;替换为空</p>
+<p><!-- raw HTML omitted -->2.删除除过最后一列的其他所有<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>sed先匹配任意多个字符，然后匹配最后一个“,”这就直接把前面的都匹配完了。替换为空即可。</p>
+<p><!-- raw HTML omitted -->3.输出第一列<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>好理解把，先匹配第一列之后的逗号，然后是多个字符，然后替换为空</p>
+<p><!-- raw HTML omitted -->4.删除第二列<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>先匹配第一列之后的逗号，然后匹配一个或多个非逗号字符，这样就匹配了第二列的内容，然后再匹配一个逗号，我简化一下，比如该列是1，2，3，4，那么这一个匹配就是&rdquo;,2,&quot;，替换成一个逗号，就是1，3，4了</p>
+<p><!-- raw HTML omitted -->5.输出第二列<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>我们可以分析前两个斜线之间的内容</p>
+<!-- raw HTML omitted -->
+<p>两个右斜线转移了括号，所以括号不是简单的符号，而是正则里的组的意义，圆括号的作用是对字符进行分组，并保存匹配的文本。这里先匹配非逗号的多个字符，然后一个逗号，然后再匹配第二列，并且第二列的匹配用括号括起来，然后匹配其他列，然后里面用\1来引用这个括号的内容，如果前面有两个括号，就可以使用\1或\2这样，分别表示第一个括号或第二个括号的匹配</p>
+<p><!-- raw HTML omitted -->6.输出最后一列是一位数字的行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>.*匹配了前面的所有字符，然后,匹配了最后一个逗号，sed的贪婪原则。。然后[0-9]匹配一个数字$表示行尾.ok</p>
+<p><!-- raw HTML omitted -->7.给每一行自动添加行号<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这个和cat -n file的效果是一样的。awk也可以很简单的做，这里使用一个=命令会在每一行之前添加一个行号，也就是是，如果执行</p>
+<!-- raw HTML omitted -->
+<p>文件会是：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>然后我们通过管道再执行</p>
+<!-- raw HTML omitted -->
+<p>N表示读入并合并下一行，然后将两行之间的换行符替换为空即可了</p>
+<p><!-- raw HTML omitted -->8.如果第一列是Ubuntu，就把最后一列替换成99<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>中间的</p>
+<!-- raw HTML omitted -->
+<p>匹配“Ubuntu,任意个字符,任意个字符”,也就是将行分成几组，将本行替换成第一组的内容第一组的内容，第二组的内容，但最后的一列被替换成99，就这样。</p>
+<p><!-- raw HTML omitted -->9.如果第一列是RedHat就删除第二列<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>也好理解嘛。将要保留的用括号分组，然后用\1和\2分别引用第一组和第二组，然后中间的匹配就被删除了</p>
+<p><!-- raw HTML omitted -->10.在末尾插入一列<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>正则首先匹配了整行字符，然后使用&amp;来引用该匹配，然后添加了一个逗号和一个A</p>
+<p>11.在头部添加一列</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>很简单不是么&hellip;</p>
+<p>比预计的要快，两天翻译完了.体会到了理解原理对学习sed的好处，希望对想学的人有帮助.</p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+
                 
               </div>
 
@@ -357,16 +437,56 @@ class Worker implements Runnable { private final CountDownLatch startSignal; pri
               </p>
               <div class="post-entry">
                 
-                  之前已经学习过选择性打印输出了，本文将通过10个例子全面讲解文件输出的一些方法，主打p命令
-首先看一下将使用的示例文件 $ cat file AIX Solaris Unix Linux HPUX 1.打印文件首行 $ sed -n &lsquo;1p&rsquo; file AIX 之前讲过了，-n取消默认的全部打印，p表示print，1就是行号了
-2.输出最后一行 $ sed -n &lsquo;$p&rsquo; file HPUX 3.输出不匹配X的那些行 $ sed -n &lsquo;/X/!p&rsquo; file Solaris Unix Linux 也好理解，！表示非，就是说包含X匹配的不打印输出
-4.输出包含u/x的那些行 $ sed -n &lsquo;/[ux]/p&rsquo; file Unix Linux 正则是强大的，这样就匹配了u/x
-5.输出以x/X结尾的那些行 $ sed -n &lsquo;/[xX]$/p&rsquo; file AIX Unix Linux HPUX 这里$符号不再是匹配文件尾部，而是行尾，这是正则的规则
-6.输出以A/L开头的行 $ sed -n &lsquo;/^A|^L/p&rsquo; file AIX Linux 前面也说过，^匹配了行首，A表示A匹配，然而|则是或者的意思，为什么要加\转义，是为了避免被解析成pipe管道，后面的就不解释了
-7.隔行打印
-n命令是输出当前行，然后读入下一行到pattern space的意思，这句命令是这么执行的，首先读入一行，然后通过n命令输出，然后通过n命令再读一行，然后把这行删除，就出现了隔行输出的效果
-8.如何两行输出，隔两行再输出 $ sed &rsquo;n;n;N;d&rsquo; file AIX Solaris HPUX n;n; 命令呢输出了前两行，然后读入第三行到pattern space，N命令则对如下一行并与第三行合并，然后d命令删除pattern space中的内容，于是三四行被清空，然后读入56行，继续重复。就这样。作者这里给出的例子不直观，我举个例子，我的文件内容是 $ cat test.
-                  <a href="https://leizhiyuan.github.io/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%83%E7%AF%87%E8%BE%93%E5%87%BA%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B910-demo/" class="post-read-more">[Read More]</a>
+                  <p>之前已经学习过<a href="http://leaver.me/archives/3179.html">选择性打印输出</a>了，本文将通过10个例子全面讲解文件输出的一些方法，主打p命令</p>
+<p>首先看一下将使用的示例文件</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->1.打印文件首行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>之前讲过了，-n取消默认的全部打印，p表示print，1就是行号了</p>
+<p><!-- raw HTML omitted -->2.输出最后一行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->3.输出不匹配X的那些行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>也好理解，！表示非，就是说包含X匹配的不打印输出</p>
+<p><!-- raw HTML omitted -->4.输出包含u/x的那些行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>正则是强大的，这样就匹配了u/x</p>
+<p><!-- raw HTML omitted -->5.输出以x/X结尾的那些行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这里$符号不再是匹配文件尾部，而是行尾，这是正则的规则</p>
+<p><!-- raw HTML omitted -->6.输出以A/L开头的行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>前面也说过，^匹配了行首，A表示A匹配，然而|则是或者的意思，为什么要加\转义，是为了避免被解析成pipe管道，后面的就不解释了</p>
+<p><!-- raw HTML omitted -->7.隔行打印<!-- raw HTML omitted --></p>
+<p>n命令是输出当前行，然后读入下一行到pattern space的意思，这句命令是这么执行的，首先读入一行，然后通过n命令输出，然后通过n命令再读一行，然后把这行删除，就出现了隔行输出的效果</p>
+<p><!-- raw HTML omitted -->8.如何两行输出，隔两行再输出<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>n;n; 命令呢输出了前两行，然后读入第三行到pattern space，N命令则对如下一行并与第三行合并，然后d命令删除pattern space中的内容，于是三四行被清空，然后读入56行，继续重复。就这样。作者这里给出的例子不直观，我举个例子，我的文件内容是</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>执行上面的命令后，会输出</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>明白了吧</p>
+<p><!-- raw HTML omitted -->9.输出某个范围行内以X结果的那些行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这里首先制定了从/Unix/匹配开始到文件尾部的这些行，然后呢，在这些之间的行，如果以X结果，就输出。</p>
+<p><!-- raw HTML omitted -->10.输出不包括开始和结尾的那些行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这个命令就会只输出/Solaris/和/HPUX/之间的行，不包括他们两个。</p>
+<p>这里要说一下//这个，当匹配了Solaris的时候就进入了花括号，因为这个里面没有提供任何匹配，所以就考虑最后一次匹配模式，也就是相当于是考虑Solaris这一行，他不被打印，当到了HPUX这一匹配，//又代表了HPUX匹配，这一行也不打印。</p>
+<p>Demo完了，你懂了么。</p>
+
                 
               </div>
 
@@ -396,7 +516,7 @@ n命令是输出当前行，然后读入下一行到pattern space的意思，这
   <i class="fas fa-calendar"></i>&nbsp;Posted on August 10, 2013
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -411,10 +531,112 @@ n命令是输出当前行，然后读入下一行到pattern space的意思，这
               </p>
               <div class="post-entry">
                 
-                  其实，删除和替换是由一些相同的，不过，这里我们单独列出来，通过25个例子穿插讲解sed删除文件的一些方法，使用的示例文件如下： $ cat file Cygwin Unix Linux Solaris AIX 1.删除第一行 $ sed &lsquo;1d&rsquo; file Unix Linux Solaris AIX d就是删除，1就是指第1行，记得哦，这不会影响到源文件，一般，做删除的时候一般要加-i参数，前面说过了 sed -i &lsquo;1d&rsquo; file 2.删除指定行，这里删除第3行 $ sed &lsquo;3d&rsquo; file Cygwin Unix Solaris AIX 3.删除最后一行 $ sed &lsquo;$d&rsquo; file Cygwin Unix Linux Solaris 4.删除范围行，这里删除2-4行 $ sed &lsquo;2,4d&rsquo; file Cygwin AIX 5.保留指定的行，这里保留2-4行 $ sed &lsquo;2,4!d&rsquo; file Unix Linux Solaris ！这个是对前面的2,4来操作，是非的意思，也就是不是2-4行的行，这样除去2-4行，其他的都删除了
-6.删除第一行和最后一行 $ sed &lsquo;1d;$d&rsquo; file Unix Linux Solaris 分号隔开两个命令，你懂的，也可以删除第二行和第三行等等. &rsquo;2d;3d&rsquo;
-7.删除以指定字符开头的行 $ sed &lsquo;/^L/d&rsquo; file Cygwin Unix Solaris AIX 这里就把以L开头的Linux这一行删除了
-                  <a href="https://leizhiyuan.github.io/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AD%E7%AF%87%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/" class="post-read-more">[Read More]</a>
+                  <p>其实，删除和替换是由一些相同的，不过，这里我们单独列出来，通过25个例子穿插讲解sed删除文件的一些方法，使用的示例文件如下：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->1.删除第一行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>d就是删除，1就是指第1行，记得哦，这不会影响到源文件，一般，做删除的时候一般要加-i参数，前面说过了</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->2.删除指定行，这里删除第3行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->3.删除最后一行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->4.删除范围行，这里删除2-4行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->5.保留指定的行，这里保留2-4行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>！这个是对前面的2,4来操作，是非的意思，也就是不是2-4行的行，这样除去2-4行，其他的都删除了</p>
+<p><!-- raw HTML omitted -->6.删除第一行和最后一行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>分号隔开两个命令，你懂的，也可以删除第二行和第三行等等. &lsquo;2d;3d&rsquo;</p>
+<p><!-- raw HTML omitted -->7.删除以指定字符开头的行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这里就把以L开头的Linux这一行删除了</p>
+<p><!-- raw HTML omitted -->8.删除以指定字符结尾的行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这里就删除了，可以看到AIX没有删除，unix区分大小写你懂的</p>
+<p><!-- raw HTML omitted -->9.忽略大小写，都删除<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>[xX]匹配x或X，所以就成功了嘛</p>
+<p><!-- raw HTML omitted -->10.删除文件中的空行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>^匹配开头，$匹配结果，中间啥都没有，这样就匹配了空行，但是注意哦，如果某一行全是空格，这个命令是不会删除这一行的。</p>
+<p><!-- raw HTML omitted -->11.删除空行或是仅仅包含空格的行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>如果你看我前面的文章，这个就不用我说了吧，0个或多个空格就是匹配了所有的空行了</p>
+<p><!-- raw HTML omitted -->12.删除完全是大写字母的行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>[A-Z]就匹配了26个大写字母的任意一个</p>
+<p><!-- raw HTML omitted -->13.删除包含Unix匹配的行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->14.删除不包含Unix的行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->15.删除包含Unix或Linux匹配的行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这里要说的是|，这个本来是表示or，或的意思，但是在终端下，为了防止被认为是管道，所以要用\来转义</p>
+<p><!-- raw HTML omitted -->16.删除从第一行到满足匹配的行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>可以通过行号到模式，模式到行号等等组合来匹配</p>
+<p><!-- raw HTML omitted -->17.删除从Linux匹配到末尾的行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->18.如果最后一行匹配AIX就删除，否则就不删除<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>$匹配了最后一行，也可以是行号，比如1，后面的大括号里就是条件和处理方式了，这样就在sed里实现了if条件了，再看一遍这个例子，熟悉一下这个规则</p>
+<p><!-- raw HTML omitted -->19.所处最后一行如果满足两个匹配<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->20.如果1-4行满足Solaris匹配就删除<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->21.删除包含Unix匹配的行，同时删除下一行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>N命令将下一行读入pattern space，什么。你忘了，看<a href="http://leaver.me/archives/3162.html">开篇</a>去，这个命令就删除了两行</p>
+<p><!-- raw HTML omitted -->22.删除包含Unix的下一行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>作者这里没有说清楚，我讲一下，N读入了下一行，然后这时候pattern space里就相当于两行并作了一行，中间有一个换行符，所以pattern space里现在就是：</p>
+<!-- raw HTML omitted -->
+<p>然后通过s命令匹配了\nLinux，并且替换为空，就ok了哦。</p>
+<p><!-- raw HTML omitted -->23.删除包含Linux模式的行，也包含上一行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>少年，不要怕，我们一步步来</p>
+<p>首先，要知道，为了删除某一匹配的前一行，我们需要将文件的每一行放入到hold space里，一旦发现匹配，我们就开始删除连个缓冲区的内容，其中pattern space存储了当前行，hold space 存储了前一行</p>
+<p>而x;p;这是啥呢，这两个命令是对每一行都会执行的，x表示exchange，即是交换hold space 和pattern space中的内容，p则是print，打印pattern space中的内容，因此，每次当前行被存入hold space，然后打印出了前一行的内容</p>
+<p>当/Linux/匹配之后，我们使用s/.//来清空当前行，也就是pattern space为空了，当前行相当于被删了，然后使用x和hold space来交换，这样，就导致hold space为空了，然后使用d来删除pattern space的内容（此时pattern space里是交换过来的前一行的内容），因此，匹配Linnx的当前行和前一行都被删除了，</p>
+<p>然后呢${x;p;}表示如果最后一行还在hold space里，就把他换出来，打印出来。</p>
+<p>而后面的管道之后的命令呢，是吧第一部分sed命令之后产生的空行给删掉。</p>
+<p>再理解一下</p>
+<p><!-- raw HTML omitted -->24.仅删除匹配Linux的前一行，不删除当前行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>和23类似，当匹配到Linux的时候，hold space 存储了前一行的内容，所以我们交换一下他们，然后前一行就进入了pattern space，然后一个d，这样就把前一行删掉了。别急，还没完，这样，当前行就被留在hold space了。就无法被输出了</p>
+<p>1h;1!{x;p;}  1h是说，如果将第1行移动到hold space，也就是1h只对第一行操作，而后面的1!{x;p;}是说对于其他的行执行x;p;命令，</p>
+<p><!-- raw HTML omitted -->25.删除匹配模式的前后两行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>有了前面两个例子，自己试试理解一下，有问题留言讨论吧。</p>
+
                 
               </div>
 
@@ -459,13 +681,77 @@ n命令是输出当前行，然后读入下一行到pattern space的意思，这
               </p>
               <div class="post-entry">
                 
-                  前面已经学习过替换文件内容了，本文我们学习一些更频繁使用的搜索替换操作.
-示例文件使用： $ cat file RE01:EMP1:25:2500 RE02:EMP2:26:2650 RE03:EMP3:24:3500 RE04:EMP4:27:2900 1.替换每行开始的两个字母，这里用XX来替换 $ sed &rsquo;s/^../XX/&rsquo; file XX01:EMP1:25:2500 XX02:EMP2:26:2650 XX03:EMP3:24:3500 XX04:EMP4:27:2900 s代表substitute，前面说过了，^用来匹配行开头，.表示任意一个字符，两个..就是你懂的，
-其实，不要^符号也是可以的，因为默认就是从开头开始匹配，如下也可以实现 sed &rsquo;s/../XX/&rsquo; file 2.删除每行开头的两个字符 $ sed &rsquo;s/^..//&rsquo; file 01:EMP1:25:2500 02:EMP2:26:2650 03:EMP3:24:3500 04:EMP4:27:2900 看到没有，后两个斜线之间没有内容，也就是用空字符来替换开头的两个字符，就实现了删除
-3.要是想删除每行最后的两个字符呢 $ sed &rsquo;s/..$//&rsquo; file RE01:EMP1:25:25 RE02:EMP2:26:26 RE03:EMP3:24:35 RE04:EMP4:27:29 再次强调，$在不同的情况下表示不同的意思，这里匹配行尾，有时候也匹配文件尾部
-4.向每行末尾添加内容 $ sed &rsquo;s/$/.Rs/&rsquo; file RE01:EMP1:25:2500.Rs RE02:EMP2:26:2650.Rs RE03:EMP3:24:3500.Rs RE04:EMP4:27:2900.Rs 这里，先匹配行尾，然后把&rdquo;.Rs&rdquo;添加到行尾
-5.在每行开头添加空格 $ sed &rsquo;s/^/ /&rsquo; file RE01:EMP1:25:Rs.2500 RE02:EMP2:26:Rs.2650 RE03:EMP3:24:Rs.3500 RE04:EMP4:27:Rs.2900 还记得前面说过的么，sed默认不影响原始文件，要是想更新原始文件，请加-i参数 $ sed -i &rsquo;s/^/ /&rsquo; file $ cat file RE01:EMP1:25:Rs.
-                  <a href="https://leizhiyuan.github.io/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%BA%94%E7%AF%87%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E7%BB%AD/" class="post-read-more">[Read More]</a>
+                  <p>前面已经学习过<a href="http://leaver.me/archives/3174.html">替换文件内容</a>了，本文我们学习一些更频繁使用的搜索替换操作.</p>
+<p>示例文件使用：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->1.替换每行开始的两个字母，这里用XX来替换<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>s代表substitute，前面说过了，^用来匹配行开头，.表示任意一个字符，两个..就是你懂的，</p>
+<p>其实，不要^符号也是可以的，因为默认就是从开头开始匹配，如下也可以实现</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->2.删除每行开头的两个字符<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>看到没有，后两个斜线之间没有内容，也就是用空字符来替换开头的两个字符，就实现了删除</p>
+<p><!-- raw HTML omitted -->3.要是想删除每行最后的两个字符呢<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>再次强调，$在不同的情况下表示不同的意思，这里匹配行尾，有时候也匹配文件尾部</p>
+<p><!-- raw HTML omitted -->4.向每行末尾添加内容<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这里，先匹配行尾，然后把&rdquo;.Rs&quot;添加到行尾</p>
+<p><!-- raw HTML omitted -->5.在每行开头添加空格<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>还记得前面说过的么，sed默认不影响原始文件，要是想更新原始文件，请加-i参数</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->6.移除开始的空格<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>^匹配行首，然后是一个空格，然后是*，表示一个或多个空格嘛，然后替换为空字符</p>
+<p><!-- raw HTML omitted -->7.移除行首和行尾的空格<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>不要怕，从分号处分开，就是两条命令啦，一个做行首的，一个做行尾的，前面说过的，可以使用-e参数来分开</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->8.如何在一个字符串前后添加一些其他字符呢，可以用来字符串转义<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>前两个斜线匹配了所有字符，也就是本行，然后后面两个斜线是替换的内容，注意里面的&amp;符号，之前也说过的，表示匹配到的字符，也就是本行了。所有就这样啦</p>
+<p><!-- raw HTML omitted -->9.移除行首和行尾的一个字符（多个你也会的啦）<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>分开看看，你可以的</p>
+<p><!-- raw HTML omitted -->10.删除第一个数字之前的所有字符<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这条命令略复杂，请先回头看一下我们的示例文件，然后我们开始分析这个表达式，地一个^表示匹配行首，然后[^0-9]* 是一个典型的正则，匹配非数字的多个字符，简单说一下[0-9]表示匹配0,1,2,3,4,5,6,7,8,9任意一个字符，前面加个一个^，表示非，也就是不匹配这些数字，然后最后是一个*，表示匹配非数字的连续多个字符，有机会的话我会推荐一个正则系列，或者自己写一篇文章。这里就先这样理解吧。</p>
+<p>那猜猜这个是干嘛的</p>
+<!-- raw HTML omitted -->
+<p>是的，你猜对了，删除开头的所有非字母字符。</p>
+<p><!-- raw HTML omitted -->11.删除行尾的数字<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>看看前面的你就知道了</p>
+<p><!-- raw HTML omitted -->12.通过分隔符得到文件最后一列<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>可能你你预想的不一样，是不是，你可能认为会是第一列被删除，其他的列都在，不对的，sed是很贪心的，当我们指定&rsquo;.*:&lsquo;时，他会一直向后查找，尽量匹配更多，所以，就匹配到最后一个列之前了</p>
+<p><!-- raw HTML omitted -->13.转换整行字符为小写<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>\L是sed的一个命令，Lowercase嘛。\L之后的内容被毁转换，而&amp;表示前面匹配道德内容，所以就实现了转换</p>
+<p><!-- raw HTML omitted -->14.转换大写<!-- raw HTML omitted --></p>
+<p>\U你懂的，Uppercase</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<blockquote>
+</blockquote>
+
                 
               </div>
 
@@ -510,12 +796,60 @@ n命令是输出当前行，然后读入下一行到pattern space的意思，这
               </p>
               <div class="post-entry">
                 
-                  本文，我们将会学习如何选择性的打印（其实，这里的打印是print，也就是输出到标准输出的意思），用到的示例文件是： $ cat file Gmail 10 Yahoo 20 Redif 18 1.打印所有内容 $ sed &ldquo; file Gmail 10 Yahoo 20 Redif 18 一对单引号，没有任何参数即可
-2.如何打印包含Gmail的那一行.(grep也可以实现这个功能) $ sed &lsquo;/Gmail/p&rsquo; file Gmail 10 Gmail 10 Yahoo 20 Redif 18 在斜线里面，我们指定正则匹配模式，p的意思呢，就是print，打印的意思，也就是打印包含Gmail这一行，但是我们看到Gmail打印了两次，为什么，因为sed的默认行为是在解析完一行之后就把他输出出来，也就是对于Gmail这一行，先执行p解析，解析完成后再默认打印一次，就打印了两次，而其他的，没有命令解析，直接读入完成后输出即可。
-如果得到期望的结果呢？ $ sed -n &lsquo;/Gmail/p&rsquo; file Gmail 10 -n参数会取消sed的默认打印行为，所以就ok了
-3.删除包含Gmail的那一行。（grep -v也有同样的效果） $ sed &rsquo;/Gmail/d&rsquo; file Yahoo 20 Redif 18 d就是delete的意思，不多解释，
-同样，要想删除某一指定的行 $ sed &lsquo;1d&rsquo; file Yahoo 20 Redif 18 4.打印直到模式匹配，这里我们从头一直打印到Yahoo $ sed &rsquo;/Yahoo/q&rsquo; file Gmail 10 Yahoo 20 q就是quit的意思，这条命令就是对于前面的行都没啥可解析的，执行默认的打印即可，一到碰到Yahoo这一行，打印完成，就停止，退出，因此，就是上面的了
-                  <a href="https://leizhiyuan.github.io/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%9B%9B%E7%AF%87%E9%80%89%E6%8B%A9%E6%80%A7%E6%89%93%E5%8D%B0/" class="post-read-more">[Read More]</a>
+                  <p>本文，我们将会学习如何选择性的打印（其实，这里的打印是print，也就是输出到标准输出的意思），用到的示例文件是：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->1.打印所有内容<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>一对单引号，没有任何参数即可</p>
+<p><!-- raw HTML omitted -->2.如何打印包含Gmail的那一行.(grep也可以实现这个功能)<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>在斜线里面，我们指定正则匹配模式，p的意思呢，就是print，打印的意思，也就是打印包含Gmail这一行，但是我们看到Gmail打印了两次，为什么，因为sed的默认行为是在解析完一行之后就把他输出出来，也就是对于Gmail这一行，先执行p解析，解析完成后再默认打印一次，就打印了两次，而其他的，没有命令解析，直接读入完成后输出即可。</p>
+<p>如果得到期望的结果呢？</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>-n参数会取消sed的默认打印行为，所以就ok了</p>
+<p><!-- raw HTML omitted -->3.删除包含Gmail的那一行。（grep -v也有同样的效果）<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>d就是delete的意思，不多解释，</p>
+<p>同样，要想删除某一指定的行</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->4.打印直到模式匹配，这里我们从头一直打印到Yahoo<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>q就是quit的意思，这条命令就是对于前面的行都没啥可解析的，执行默认的打印即可，一到碰到Yahoo这一行，打印完成，就停止，退出，因此，就是上面的了</p>
+<p>打印某一指定范围行</p>
+<p>到此，我们一直在学习基于一个条件取一行或多行，现在，我们来学习打印指定范围行</p>
+<p>使用的示例文件如下：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->5.打印前三行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>-n先取消默认打印，然后1,3指定行范围，p表示打印，你想一下我们前面的q命令，就知道下面这个命令效果是一样的</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>执行默认打印，到第三行的时候退出</p>
+<p><!-- raw HTML omitted -->6.通过模式指定范围，这里我打印从Yahoo到Live之间的行，包括本身<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>不用多解释了</p>
+<p><!-- raw HTML omitted -->7.从指定模式到文件尾部，这里是从Redif到文件尾<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>回忆一下$符号吧.少年</p>
+<p><!-- raw HTML omitted -->8.从开头到匹配模式<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>相信你懂的&hellip;</p>
+<p>对于数字不需要斜线包围，对于匹配需要斜线.就这样..</p>
+<p> </p>
+<p> </p>
+
                 
               </div>
 
@@ -560,14 +894,53 @@ n命令是输出当前行，然后读入下一行到pattern space的意思，这
               </p>
               <div class="post-entry">
                 
-                  本文将展示如何将文件内容读入到sed输出，同时包含如何将一个文件的部分内容写入到另一文件
-一.文件读取
-假定有两个文件，file1和file2，内容分别如下： $ cat file1 1apple 1banana 1mango $ cat file2 2orange 2strawberry sed有两个选项用来读写文件 r filename : 读取filename指定的文件内容 w filename : 将内容写入filename指定的文件 看例子：
-1.在file1的每一行读完之后读取file2的内容 $ sed &lsquo;r file2&rsquo; file1 1apple 2orange 2strawberry 1banana 2orange 2strawberry 1mango 2orange 2strawberry r file2读取file2的所有内容，因此r之前没有知道那个行号或匹配，因此有了上面的输出，记住，sed的工作机制，每次读file1的一行，然后执行命令
-2.如何在读取了file1的第一行之后将file2读入 $ sed &lsquo;1r file2&rsquo; file1 1apple 2orange 2strawberry 1banana 1mango r前面加个1就行了
-3.当file1某行匹配了模式之后，读入file2 $ sed &lsquo;/banana/r file2&rsquo; file1 1apple 1banana 2orange 2strawberry 1mango sed逐行读入file1，然后判断该行是否匹配banana，如果匹配，就读入file2
-4.当file1读取完成后读入file2，其实就是合并两个文件 $ sed &lsquo;$r file2&rsquo; file1 1apple 1banana 1mango 2orange 2strawberry 这里只是演示一下，其实cat file1 file2就可以完成合并
-                  <a href="https://leizhiyuan.github.io/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%89%E7%AF%87%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/" class="post-read-more">[Read More]</a>
+                  <p>本文将展示如何将文件内容读入到sed输出，同时包含如何将一个文件的部分内容写入到另一文件</p>
+<p><em><strong><!-- raw HTML omitted -->一.文件读取<!-- raw HTML omitted --></strong></em></p>
+<p>假定有两个文件，file1和file2，内容分别如下：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>sed有两个选项用来读写文件</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>看例子：</p>
+<p><!-- raw HTML omitted -->1.在file1的每一行读完之后读取file2的内容<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>r file2读取file2的所有内容，因此r之前没有知道那个行号或匹配，因此有了上面的输出，记住，sed的工作机制，每次读file1的一行，然后执行命令</p>
+<p><!-- raw HTML omitted -->2.如何在读取了file1的第一行之后将file2读入<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>r前面加个1就行了</p>
+<p><!-- raw HTML omitted -->3.当file1某行匹配了模式之后，读入file2<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>sed逐行读入file1，然后判断该行是否匹配banana，如果匹配，就读入file2</p>
+<p><!-- raw HTML omitted -->4.当file1读取完成后读入file2，其实就是合并两个文件<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这里只是演示一下，其实cat file1 file2就可以完成合并</p>
+<p><!-- raw HTML omitted -->_**二.文件写入**_<!-- raw HTML omitted --></p>
+<p>使用一个file1文件，内容如下：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted --> 1.将file1的2-4行写入到file2<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<p>2,4w就是写2-4行的意思，那-n呢？默认情况下sed会把读入的文件处理的结果输出到标准输出，也就是终端，而为了不使用默认输出，-n就派上用场了，执行该命令终端不会有任何输出</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>查看file2内容，发现已经写入成功了</p>
+<p><!-- raw HTML omitted -->2.从第三行开始全部写入file2<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>就不多解释了</p>
+<p><!-- raw HTML omitted -->3.如果是用正则呢？<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>该命令将逐行读入file1，然后判断该行是否匹配apple，如果匹配，则作为起始行，然后继续读入，判断是否匹配mango，如果是，则作为终止行，然后将中间的内容写入到file2</p>
+<p> </p>
+
                 
               </div>
 
@@ -612,14 +985,58 @@ n命令是输出当前行，然后读入下一行到pattern space的意思，这
               </p>
               <div class="post-entry">
                 
-                  上一节中-Unix sed实用教程第一篇–向文件中增加一行 学习了添加文件，本节讲解数据内容替换.
-本节将使用sample1.txt文件作为示例，文件内容如下，都是些水果..： apple orange banana pappaya 1.向每一行的开头添加内容，这里我们添加“Fruit：” $ sed &rsquo;s/^/Fruit: /&rsquo; sample1.txt Fruit: apple Fruit: orange Fruit: banana Fruit: pappaya 解析：s代表substitution，也就是替换，s之后是要替换/匹配的内容，斜线/用来分隔s以及要替换的原始内容还有要替换的最终内容，而&rsquo;^&lsquo;符号是说一个正则，用来匹配每一行的开头，匹配成功后在开头加上&rsquo;Fruit:&lsquo;。
-2.向每一行的行尾添加内容 $ sed &rsquo;s/$/ Fruit/&rsquo; sample1.txt apple Fruit orange Fruit banana Fruit pappaya Fruit 注意，这里的$和上一节的$符号表示的意义不同，这里则是表示行尾.
-3.如何替换指定的字符，这里将小写a替换成大写A $ sed &rsquo;s/a/A/&rsquo; sample1.txt Apple orAnge bAnana pAppaya 注意，仅仅将每一行的第一个a替换了，不是所有，本例表示替换单个字符，你可以替换一个单词都是可以的.
-4.如何替换行内所有的字符，用A替换a $ sed &rsquo;s/a/A/g&rsquo; sample1.txt Apple orAnge bAnAnA pAppAyA 注意，只是加了一个g选项，g为global的简写，就是全局，全部的意思。
-5.如何替换第二次出现的a? $ sed &rsquo;s/a/A/2&rsquo; sample1.txt apple orange banAna pappAya 不使用g，而是使用数字来表示行内第几次出现的a，结果如上
-6.如何替换第二次之后的所有a呢？ $ sed &rsquo;s/a/A/2g&rsquo; sample1.
-                  <a href="https://leizhiyuan.github.io/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%BA%8C%E7%AF%87%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/" class="post-read-more">[Read More]</a>
+                  <p>上一节中-<a href="http://leaver.me/archives/3169.html">Unix sed实用教程第一篇–向文件中增加一行</a> 学习了添加文件，本节讲解数据内容替换.</p>
+<p>本节将使用sample1.txt文件作为示例，文件内容如下，都是些水果..：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>1.向每一行的开头添加内容，这里我们添加“Fruit：”</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>解析：s代表substitution，也就是替换，s之后是要替换/匹配的内容，斜线/用来分隔s以及要替换的原始内容还有要替换的最终内容，而'^'符号是说一个正则，用来匹配每一行的开头，匹配成功后在开头加上'Fruit:'。</p>
+<p>2.向每一行的行尾添加内容</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>注意，这里的$和上一节的$符号表示的意义不同，这里则是表示行尾.</p>
+<p>3.如何替换指定的字符，这里将小写a替换成大写A</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>注意，仅仅将每一行的第一个a替换了，不是所有，本例表示替换单个字符，你可以替换一个单词都是可以的.</p>
+<p>4.如何替换行内所有的字符，用A替换a</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>注意，只是加了一个g选项，g为global的简写，就是全局，全部的意思。</p>
+<p>5.如何替换第二次出现的a?</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>不使用g，而是使用数字来表示行内第几次出现的a，结果如上</p>
+<p>6.如何替换第二次之后的所有a呢？</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>很好理解对吧。</p>
+<p>7.如果只想替换第三行的a呢？</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>回想一下第一节，在执行命令之前，会判断当前address是否满足条件，3就是地址</p>
+<p>8.想替换一个范围行内的数据呢</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>逗号隔开，即可</p>
+<p>9.如何替换整行呢？比如用apple is a Fruit替换apple</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这里‘&amp;’符号标识了模式匹配到的内容，而.*匹配了正行，.表示任意字符，*表示一个或多个，也就是匹配了整行,&amp;因此就是整行内容，用来重命名一组文件的时候非常有用.</p>
+<p>10.如何进行多个替换，比如用A替换a，用P替换p</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>也就是用分号分开即可。或者也可以通过-e参数来做</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>-e 选项就是当需要替换多个的时候来用的。</p>
+<p>另外，要是替换的太多。也可以通过右斜线来分成多行</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>相信通过本文实例分析，平时的文件内容替换就很简单了</p>
+
                 
               </div>
 
@@ -664,11 +1081,39 @@ n命令是输出当前行，然后读入下一行到pattern space的意思，这
               </p>
               <div class="post-entry">
                 
-                  Unix sed实用教程第一讲，本系列第一篇，有任何问题欢迎留言讨论。
-sed 是unix中最重要的编辑器之一，注意，有之一..支持多种编辑任务，本文将实现题目的功能实例
-假定我们有一额文本文件，叫做empFile，包含了员工名字和员工id，如下： Hilesh, 1001 Bharti, 1002 Aparna, 1003 Harshal, 1004 Keyur, 1005 1.如何通过sed给文件添加标题行-“Employee, EmpId” $ sed &lsquo;1i Employee, EmpId&rsquo; empFile Employee, EmpId Hilesh, 1001 Bharti, 1002 Aparna, 1003 Harshal, 1004 Keyur, 1005 解释：数字1，是说只对第一行执行操作，i代表在insert（熟悉vim的同学应该知道，i会在当前字符的前面插入，a是在后面插入），因此，1i就表示在将Employee, EmpId插入到第一行之前，
-然后，有了标题行的文件仅仅会输出到标准输出，源文件内容并不会改变，如果需要更新源文件，可以使用重定向输出到一个临时文件，然后移动到原始文件。如果Unix系统的sed是GUN版本的，sed会有一个-i选项，可以直接实现更新源文件，（如何查看版本，终端下输入sed &ndash;version即可看到）下面先执行，再查看文件，发现已经多了标题行了 $ sed -i &lsquo;1i Employee, EmpId&rsquo; empFile $ cat empFile Employee, EmpId Hilesh, 1001 Bharti, 1002 Aparna, 1003 Harshal, 1004 Keyur, 1005 2.如何在标题行之后，也就是原始第一行之前添加一行横线&ndash;“&mdash;&ndash;” $ sed -i &lsquo;1a &mdash;&mdash;&mdash;&mdash;&mdash;&rsquo; empFile $ cat empFile
-                  <a href="https://leizhiyuan.github.io/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%80%E7%AF%87-%E5%90%91%E6%96%87%E4%BB%B6%E4%B8%AD%E5%A2%9E%E5%8A%A0%E4%B8%80%E8%A1%8C/" class="post-read-more">[Read More]</a>
+                  <p>Unix sed实用教程第一讲，本系列第一篇，有任何问题欢迎留言讨论。</p>
+<p>sed 是unix中最重要的编辑器之一，注意，有之一..支持多种编辑任务，本文将实现题目的功能实例</p>
+<p>假定我们有一额文本文件，叫做empFile，包含了员工名字和员工id，如下：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->1.如何通过sed给文件添加标题行-“Employee, EmpId”<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>解释：数字1，是说只对第一行执行操作，i代表在insert（熟悉vim的同学应该知道，i会在当前字符的前面插入，a是在后面插入），因此，1i就表示在将Employee, EmpId插入到第一行之前，</p>
+<p>然后，有了标题行的文件仅仅会输出到标准输出，源文件内容并不会改变，如果需要更新源文件，可以使用重定向输出到一个临时文件，然后移动到原始文件。如果Unix系统的sed是GUN版本的，sed会有一个-i选项，可以直接实现更新源文件，（如何查看版本，终端下输入sed &ndash;version即可看到）下面先执行，再查看文件，发现已经多了标题行了</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->2.如何在标题行之后，也就是原始第一行之前添加一行横线&ndash;“&mdash;&ndash;”<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>同1，中，1表示第一行，a表示append（附加），也就是说当读入第一行的时候在其之后添加一行，如果你使用2i作为命令也是正确的，就是指当读入第二行的时候，在其之前插入一行。</p>
+<p><!-- raw HTML omitted -->3.如何在文件尾部添加一行<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>为了在文件尾部插入一行，如果使用之前的方法就需要知道总共有多少行，而$符号则直接指明了最后一行，因此$a表示在读入最后一行的时候，在后面插入一行</p>
+<p><!-- raw HTML omitted -->4.如何在指定的记录之后插入一条新纪录<!-- raw HTML omitted --></p>
+<p>假定我们的例子文件的内容现在是：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>如果我想在Hilesh这个员工之后插入Bharti员工的信息，我这样做：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>注意看，我们这里已经不再使用数字或者其他表示行号的标识了，我们使用了一个模式（了解过<a href="http://zh.wikipedia.org/zh/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F">正则表达式</a>的朋友会比较熟悉，可以理解为某种规则- /Hilesh/a 这个命令表示对于每一行读入的内容，如果发现 /Hilesh/这个匹配，在该行之后插入一行，也就是说如果文件里有两行都是Hilesh员工，那么执行完上面的命令，将会附加两行内容，这里可以想想<a href="http://leaver.me/archives/3162.html">sed的工作模式</a>，对每一行执行命令条件检测，发现匹配，就执行。</p>
+<p>5.如何在指定记录之前插入记录呢，比如，我想在Harshal这条记录之前插入Aparna记录呢？</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+
                 
               </div>
 
@@ -713,15 +1158,39 @@ sed 是unix中最重要的编辑器之一，注意，有之一..支持多种编�
               </p>
               <div class="post-entry">
                 
-                  反射 &nbsp; 当我们需要检查，调用一个程序集的内容的时候，用反射，比如，当VS给智能提示的时候，就应用了反射。  
-简单用法实例： &nbsp;  var myAssembly = Assembly.LoadFile(@&ldquo;C:\ClassLibrary1.dll&rdquo;); var myType = myAssembly.GetType(&ldquo;ClassLibrary1.Class1&rdquo;); dynamic objMyClass = Activator.CreateInstance(myType); // 获取类的类型信息 Type parameterType = objMyClass.GetType();
-// 浏览方法 foreach (MemberInfo objMemberInfo in parameterType.GetMembers()) {Console.WriteLine(objMemberInfo.Name);}
-// 浏览属性. foreach (PropertyInfo objPropertyInfo in parameterType.GetProperties()) {Console.WriteLine(objPropertyInfo.Name);}
-//开始调用 parameterType.InvokeMember(&ldquo;Display&rdquo;,BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.InvokeMethod | BindingFlags.Instance,null, objMyClass, null);   
-实际一点的用处呢： &nbsp; 1.当你也要开发一个类似VS的编辑器的时候，要提供智能提示就需要反射 2.当创建单元测试框架的时候，为了测试需要动态调用方法和属性的时候 3.有时候我们想把类型的属性，方法等全部导出的时候  
-动态dynamic &nbsp; 编程语言分为强/弱类型，dynamic是弱类型，此关键字会让编译器不做编译时的类型检查，只做运行时的检查。  
-简单用法示例： &nbsp;  dynamic x = &ldquo;c#&rdquo;; x++;  所以上面这行代码可以编译通过，但会产生运行时一场。
-                  <a href="https://leizhiyuan.github.io/2013/05/27/%E8%AF%91%E5%8F%8D%E5%B0%84reflection%E5%92%8C%E5%8A%A8%E6%80%81dynamic/" class="post-read-more">[Read More]</a>
+                  <h1 id="heading">反射</h1>
+<p> </p>
+<!-- raw HTML omitted -->
+<h2 id="heading-1">简单用法实例：</h2>
+<p> </p>
+<!-- raw HTML omitted -->
+<p>// 浏览方法
+foreach (MemberInfo objMemberInfo in parameterType.GetMembers())
+{Console.WriteLine(objMemberInfo.Name);}</p>
+<p>// 浏览属性.
+foreach (PropertyInfo objPropertyInfo in parameterType.GetProperties())
+{Console.WriteLine(objPropertyInfo.Name);}</p>
+<p>//开始调用
+parameterType.InvokeMember(&ldquo;Display&rdquo;,BindingFlags.Public | 
+BindingFlags.NonPublic | BindingFlags.InvokeMethod | 
+BindingFlags.Instance,null, objMyClass, null);<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<h2 id="heading-2">实际一点的用处呢：</h2>
+<p> </p>
+<!-- raw HTML omitted -->
+<h1 id="dynamic">动态dynamic</h1>
+<p> </p>
+<!-- raw HTML omitted -->
+<h2 id="heading-3">简单用法示例：</h2>
+<p> </p>
+<!-- raw HTML omitted -->
+<h2 id="heading-4">实际用处：</h2>
+<p> </p>
+<!-- raw HTML omitted -->
+<h1 id="heading-5">两者的区别和联系呢</h1>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+
                 
               </div>
 
@@ -806,7 +1275,7 @@ sed 是unix中最重要的编辑器之一，注意，有之一..支持多种编�
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

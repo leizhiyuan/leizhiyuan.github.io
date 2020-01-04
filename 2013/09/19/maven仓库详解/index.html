@@ -13,8 +13,7 @@
   <meta name="description" content="本文由我翻译合并了多篇文章，整理成一篇。
 一.本地仓库(Local Repository) 本地仓库就是一个本机的目录，这个目录被用来存储我们项目的所有依赖（插件的jar包还有一些其他的文件），简单的说，当你build一个Maven项目的时候，所有的依赖文件都会放在本地仓库里，仓库供所有项目都可以使用
 默认情况下，本地仓库在.m2目录，windows下的话就是你的用户名目录下的.m2目录
-1.更新本地仓库目录 找到你的MAVEN_HOME目录下的conf/setting.xml文件，更新localRepository节点 &lt;settings&gt; &lt;!&ndash; localRepository | The path to the local repository maven will use to store artifacts. | | Default: ~/.m2/repository &lt;localRepository&gt;/path/to/local/repo&lt;/localRepository&gt; &ndash;&gt;
-&lt;localRepository&gt;D:/maven/repo&lt;/localRepository&gt;
+1.更新本地仓库目录 找到你的MAVEN_HOME目录下的conf/setting.xml文件，更新localRepository节点
 2.保存一下 完成了。新的本地仓库被放在了D:/maven/repo
 看一下这个目录
 
@@ -22,20 +21,14 @@
 http://search.maven.org/#browse
 看起来是这样的
 
-&nbsp;
-注意啊，虽然这个是新的中央仓库，但有时候还是会从_“http://repo1.maven.org/maven/_这个旧仓库下载东西，不过不要紧，理解就行了
+ 注意啊，虽然这个是新的中央仓库，但有时候还是会从_“**http://repo1.maven.org/maven/**_这个旧仓库下载东西，不过不要紧，理解就行了
 三.远程仓库(Remote Respository) 在Maven中，当你在pom.xml中生命的依赖既不在本地库，也不在中央库的时候，就会报错。
-1.例子 org.jvnet.localizer这个包仅在java.net的仓库里有(以前是，现在中央仓库也有了。但理解就行) &lt;dependency&gt; &lt;groupId&gt;org.jvnet.localizer&lt;/groupId&gt; &lt;artifactId&gt;localizer&lt;/artifactId&gt; &lt;version&gt;1.8&lt;/version&gt; &lt;/dependency&gt; 当我们build的时候，会失败，并输出未找到错误信息
-2.声明java.net仓库 为了告诉Maven从远程仓库里获取依赖，我们需要声明一个远程仓库，在pom.xml里这样写 &lt;repositories&gt; &lt;repository&gt; &lt;id&gt;java.net&lt;/id&gt; &lt;url&gt;https://maven.java.net/content/repositories/public/&lt;/url&gt; &lt;/repository&gt; &lt;/repositories&gt; 这样，Maven搜索依赖的顺序就是：
-1）搜索本地仓库，没有找到，就去第2步，否则退出
-2）搜索中央仓库，没有找到，就去第3步，否则退出
-3）去java.net远程仓库获取，没有找到，就报错，否则退出
-补充：JBoss也有个远程仓库，可以如下配置： &lt;project &hellip;&gt; &lt;repositories&gt; &lt;repository&gt; &lt;id&gt;JBoss repository&lt;/id&gt; &lt;url&gt;http://repository.">
+1.例子 org.jvnet.localizer这个包仅在java.net的仓库里有(以前是，现在中央仓库也有了。但理解就行)
+  ">
   <meta property="og:description" content="本文由我翻译合并了多篇文章，整理成一篇。
 一.本地仓库(Local Repository) 本地仓库就是一个本机的目录，这个目录被用来存储我们项目的所有依赖（插件的jar包还有一些其他的文件），简单的说，当你build一个Maven项目的时候，所有的依赖文件都会放在本地仓库里，仓库供所有项目都可以使用
 默认情况下，本地仓库在.m2目录，windows下的话就是你的用户名目录下的.m2目录
-1.更新本地仓库目录 找到你的MAVEN_HOME目录下的conf/setting.xml文件，更新localRepository节点 &lt;settings&gt; &lt;!&ndash; localRepository | The path to the local repository maven will use to store artifacts. | | Default: ~/.m2/repository &lt;localRepository&gt;/path/to/local/repo&lt;/localRepository&gt; &ndash;&gt;
-&lt;localRepository&gt;D:/maven/repo&lt;/localRepository&gt;
+1.更新本地仓库目录 找到你的MAVEN_HOME目录下的conf/setting.xml文件，更新localRepository节点
 2.保存一下 完成了。新的本地仓库被放在了D:/maven/repo
 看一下这个目录
 
@@ -43,15 +36,10 @@ http://search.maven.org/#browse
 http://search.maven.org/#browse
 看起来是这样的
 
-&nbsp;
-注意啊，虽然这个是新的中央仓库，但有时候还是会从_“http://repo1.maven.org/maven/_这个旧仓库下载东西，不过不要紧，理解就行了
+ 注意啊，虽然这个是新的中央仓库，但有时候还是会从_“**http://repo1.maven.org/maven/**_这个旧仓库下载东西，不过不要紧，理解就行了
 三.远程仓库(Remote Respository) 在Maven中，当你在pom.xml中生命的依赖既不在本地库，也不在中央库的时候，就会报错。
-1.例子 org.jvnet.localizer这个包仅在java.net的仓库里有(以前是，现在中央仓库也有了。但理解就行) &lt;dependency&gt; &lt;groupId&gt;org.jvnet.localizer&lt;/groupId&gt; &lt;artifactId&gt;localizer&lt;/artifactId&gt; &lt;version&gt;1.8&lt;/version&gt; &lt;/dependency&gt; 当我们build的时候，会失败，并输出未找到错误信息
-2.声明java.net仓库 为了告诉Maven从远程仓库里获取依赖，我们需要声明一个远程仓库，在pom.xml里这样写 &lt;repositories&gt; &lt;repository&gt; &lt;id&gt;java.net&lt;/id&gt; &lt;url&gt;https://maven.java.net/content/repositories/public/&lt;/url&gt; &lt;/repository&gt; &lt;/repositories&gt; 这样，Maven搜索依赖的顺序就是：
-1）搜索本地仓库，没有找到，就去第2步，否则退出
-2）搜索中央仓库，没有找到，就去第3步，否则退出
-3）去java.net远程仓库获取，没有找到，就报错，否则退出
-补充：JBoss也有个远程仓库，可以如下配置： &lt;project &hellip;&gt; &lt;repositories&gt; &lt;repository&gt; &lt;id&gt;JBoss repository&lt;/id&gt; &lt;url&gt;http://repository.">
+1.例子 org.jvnet.localizer这个包仅在java.net的仓库里有(以前是，现在中央仓库也有了。但理解就行)
+  ">
   <meta name="twitter:description" content="本文由我翻译合并了多篇文章，整理成一篇。
 一.本地仓库(Local Repository) 本地仓库就是一个本机的目录，这个目录被用来存储我们项目的所有依赖（插件的jar包还有一些其他的文件），简单的说，当你build一个Maven项目的时候，所有的依赖文件都会放在本地仓库里，仓库供所有项目都可以使用
 默认情况下，本地仓库在.m2目录，windows下的话就是你的用户名目录下的.m2目录
@@ -104,9 +92,9 @@ http://search.maven.org/#browse
     "name" : "bystander"
   },
   "headline": "Maven仓库详解",
-  "description" : "本文由我翻译合并了多篇文章，整理成一篇。\n一.本地仓库(Local Repository) 本地仓库就是一个本机的目录，这个目录被用来存储我们项目的所有依赖（插件的jar包还有一些其他的文件），简单的说，当你build一个Maven项目的时候，所有的依赖文件都会放在本地仓库里，仓库供所有项目都可以使用\n默认情况下，本地仓库在.m2目录，windows下的话就是你的用户名目录下的.m2目录\n1.更新本地仓库目录 找到你的MAVEN_HOME目录下的conf\/setting.xml文件，更新localRepository节点 \x26lt;settings\x26gt; \x26lt;!\x26ndash; localRepository | The path to the local repository maven will use to store artifacts. | | Default: ~\/.m2\/repository \x26lt;localRepository\x26gt;\/path\/to\/local\/repo\x26lt;\/localRepository\x26gt; \x26ndash;\x26gt;\n\x26lt;localRepository\x26gt;D:\/maven\/repo\x26lt;\/localRepository\x26gt;\n2.保存一下 完成了。新的本地仓库被放在了D:\/maven\/repo\n看一下这个目录\n\n二.中央仓库(central repository) 当我们build一个Maven项目的时候，Maven会检查我们的pom.xml文件，来定义项目的依赖，然后Maven会在本地仓库里查找，如果没有找到，就去maven的中央库去下载，地址是\nhttp:\/\/search.maven.org\/#browse\n看起来是这样的\n\n\x26nbsp;\n注意啊，虽然这个是新的中央仓库，但有时候还是会从_“http:\/\/repo1.maven.org\/maven\/_这个旧仓库下载东西，不过不要紧，理解就行了\n三.远程仓库(Remote Respository) 在Maven中，当你在pom.xml中生命的依赖既不在本地库，也不在中央库的时候，就会报错。\n1.例子 org.jvnet.localizer这个包仅在java.net的仓库里有(以前是，现在中央仓库也有了。但理解就行) \x26lt;dependency\x26gt; \x26lt;groupId\x26gt;org.jvnet.localizer\x26lt;\/groupId\x26gt; \x26lt;artifactId\x26gt;localizer\x26lt;\/artifactId\x26gt; \x26lt;version\x26gt;1.8\x26lt;\/version\x26gt; \x26lt;\/dependency\x26gt; 当我们build的时候，会失败，并输出未找到错误信息\n2.声明java.net仓库 为了告诉Maven从远程仓库里获取依赖，我们需要声明一个远程仓库，在pom.xml里这样写 \x26lt;repositories\x26gt; \x26lt;repository\x26gt; \x26lt;id\x26gt;java.net\x26lt;\/id\x26gt; \x26lt;url\x26gt;https:\/\/maven.java.net\/content\/repositories\/public\/\x26lt;\/url\x26gt; \x26lt;\/repository\x26gt; \x26lt;\/repositories\x26gt; 这样，Maven搜索依赖的顺序就是：\n1）搜索本地仓库，没有找到，就去第2步，否则退出\n2）搜索中央仓库，没有找到，就去第3步，否则退出\n3）去java.net远程仓库获取，没有找到，就报错，否则退出\n补充：JBoss也有个远程仓库，可以如下配置： \x26lt;project \x26hellip;\x26gt; \x26lt;repositories\x26gt; \x26lt;repository\x26gt; \x26lt;id\x26gt;JBoss repository\x26lt;\/id\x26gt; \x26lt;url\x26gt;http:\/\/repository.",
+  "description" : "本文由我翻译合并了多篇文章，整理成一篇。\n一.本地仓库(Local Repository) 本地仓库就是一个本机的目录，这个目录被用来存储我们项目的所有依赖（插件的jar包还有一些其他的文件），简单的说，当你build一个Maven项目的时候，所有的依赖文件都会放在本地仓库里，仓库供所有项目都可以使用\n默认情况下，本地仓库在.m2目录，windows下的话就是你的用户名目录下的.m2目录\n1.更新本地仓库目录 找到你的MAVEN_HOME目录下的conf\/setting.xml文件，更新localRepository节点\n2.保存一下 完成了。新的本地仓库被放在了D:\/maven\/repo\n看一下这个目录\n\n二.中央仓库(central repository) 当我们build一个Maven项目的时候，Maven会检查我们的pom.xml文件，来定义项目的依赖，然后Maven会在本地仓库里查找，如果没有找到，就去maven的中央库去下载，地址是\nhttp:\/\/search.maven.org\/#browse\n看起来是这样的\n\n 注意啊，虽然这个是新的中央仓库，但有时候还是会从_“**http:\/\/repo1.maven.org\/maven\/**_这个旧仓库下载东西，不过不要紧，理解就行了\n三.远程仓库(Remote Respository) 在Maven中，当你在pom.xml中生命的依赖既不在本地库，也不在中央库的时候，就会报错。\n1.例子 org.jvnet.localizer这个包仅在java.net的仓库里有(以前是，现在中央仓库也有了。但理解就行)\n  ",
   "inLanguage" : "en",
-  "wordCount":  74 ,
+  "wordCount":  21 ,
   "datePublished" : "2013-09-19T22:05:10",
   "dateModified" : "2013-09-19T22:05:10",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -129,8 +117,7 @@ http://search.maven.org/#browse
 <meta property="og:description" content="本文由我翻译合并了多篇文章，整理成一篇。
 一.本地仓库(Local Repository) 本地仓库就是一个本机的目录，这个目录被用来存储我们项目的所有依赖（插件的jar包还有一些其他的文件），简单的说，当你build一个Maven项目的时候，所有的依赖文件都会放在本地仓库里，仓库供所有项目都可以使用
 默认情况下，本地仓库在.m2目录，windows下的话就是你的用户名目录下的.m2目录
-1.更新本地仓库目录 找到你的MAVEN_HOME目录下的conf/setting.xml文件，更新localRepository节点 &lt;settings&gt; &lt;!&ndash; localRepository | The path to the local repository maven will use to store artifacts. | | Default: ~/.m2/repository &lt;localRepository&gt;/path/to/local/repo&lt;/localRepository&gt; &ndash;&gt;
-&lt;localRepository&gt;D:/maven/repo&lt;/localRepository&gt;
+1.更新本地仓库目录 找到你的MAVEN_HOME目录下的conf/setting.xml文件，更新localRepository节点
 2.保存一下 完成了。新的本地仓库被放在了D:/maven/repo
 看一下这个目录
 
@@ -138,15 +125,10 @@ http://search.maven.org/#browse
 http://search.maven.org/#browse
 看起来是这样的
 
-&nbsp;
-注意啊，虽然这个是新的中央仓库，但有时候还是会从_“http://repo1.maven.org/maven/_这个旧仓库下载东西，不过不要紧，理解就行了
+ 注意啊，虽然这个是新的中央仓库，但有时候还是会从_“**http://repo1.maven.org/maven/**_这个旧仓库下载东西，不过不要紧，理解就行了
 三.远程仓库(Remote Respository) 在Maven中，当你在pom.xml中生命的依赖既不在本地库，也不在中央库的时候，就会报错。
-1.例子 org.jvnet.localizer这个包仅在java.net的仓库里有(以前是，现在中央仓库也有了。但理解就行) &lt;dependency&gt; &lt;groupId&gt;org.jvnet.localizer&lt;/groupId&gt; &lt;artifactId&gt;localizer&lt;/artifactId&gt; &lt;version&gt;1.8&lt;/version&gt; &lt;/dependency&gt; 当我们build的时候，会失败，并输出未找到错误信息
-2.声明java.net仓库 为了告诉Maven从远程仓库里获取依赖，我们需要声明一个远程仓库，在pom.xml里这样写 &lt;repositories&gt; &lt;repository&gt; &lt;id&gt;java.net&lt;/id&gt; &lt;url&gt;https://maven.java.net/content/repositories/public/&lt;/url&gt; &lt;/repository&gt; &lt;/repositories&gt; 这样，Maven搜索依赖的顺序就是：
-1）搜索本地仓库，没有找到，就去第2步，否则退出
-2）搜索中央仓库，没有找到，就去第3步，否则退出
-3）去java.net远程仓库获取，没有找到，就报错，否则退出
-补充：JBoss也有个远程仓库，可以如下配置： &lt;project &hellip;&gt; &lt;repositories&gt; &lt;repository&gt; &lt;id&gt;JBoss repository&lt;/id&gt; &lt;url&gt;http://repository.">
+1.例子 org.jvnet.localizer这个包仅在java.net的仓库里有(以前是，现在中央仓库也有了。但理解就行)
+  ">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2013/09/19/maven%E4%BB%93%E5%BA%93%E8%AF%A6%E8%A7%A3/" />
 <meta property="og:type" content="website" />
@@ -167,7 +149,7 @@ http://search.maven.org/#browse
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -351,91 +333,33 @@ http://search.maven.org/#browse
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        
-
-<p>本文由我翻译合并了多篇文章，整理成一篇。</p>
-
-<h1 id="一-本地仓库-local-repository">一.本地仓库(Local Repository)</h1>
-
+        <p>本文由我翻译合并了多篇文章，整理成一篇。</p>
+<h1 id="local-repository">一.本地仓库(Local Repository)</h1>
 <p>本地仓库就是一个本机的目录，这个目录被用来存储我们项目的所有依赖（插件的jar包还有一些其他的文件），简单的说，当你build一个Maven项目的时候，所有的依赖文件都会放在本地仓库里，仓库供所有项目都可以使用</p>
-
 <p>默认情况下，本地仓库在.m2目录，windows下的话就是你的用户名目录下的.m2目录</p>
-
-<h2 id="1-更新本地仓库目录">1.更新本地仓库目录</h2>
-
-<p>找到你的MAVEN_HOME目录下的conf/setting.xml文件，更新localRepository节点
-<pre class="lang:default decode:true" title="maven_home/conf/setting.xml">&lt;settings&gt;
-  &lt;!&ndash; localRepository
-   | The path to the local repository maven will use to store artifacts.
-   |
-   | Default: ~/.m2/repository
-  &lt;localRepository&gt;/path/to/local/repo&lt;/localRepository&gt;
-  &ndash;&gt;</p>
-
-<p>&lt;localRepository&gt;D:/maven/repo&lt;/localRepository&gt;</pre></p>
-
-<h2 id="2-保存一下"> 2.保存一下</h2>
-
+<h2 id="1">1.更新本地仓库目录</h2>
+<p>找到你的MAVEN_HOME目录下的conf/setting.xml文件，更新localRepository节点</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="2"> 2.保存一下</h2>
 <p>完成了。新的本地仓库被放在了D:/maven/repo</p>
-
 <p>看一下这个目录</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/2013/09/maven-local-repo.png"><img src="/images/4bc19a12bd7d869d840c872a9c3bdbfbd55d339c.png" alt="maven-local-repo" /></a></p>
-
-<h1 id="二-中央仓库-central-repository"> 二.中央仓库(central repository)</h1>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/2013/09/maven-local-repo.png"><img src="/images/4bc19a12bd7d869d840c872a9c3bdbfbd55d339c.png" alt="maven-local-repo"></a></p>
+<h1 id="central-repository"> 二.中央仓库(central repository)</h1>
 <p>当我们build一个Maven项目的时候，Maven会检查我们的pom.xml文件，来定义项目的依赖，然后Maven会在本地仓库里查找，如果没有找到，就去maven的中央库去下载，地址是</p>
-
 <p><a href="http://search.maven.org/#browse">http://search.maven.org/#browse</a></p>
-
 <p>看起来是这样的</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/2013/09/maven-center-repository-search.png"><img src="/images/1b90bc7c3b841d566a18777d661d40b159a29b16.png" alt="maven-center-repository-search" /></a></p>
-
-<p>&nbsp;</p>
-
-<p>注意啊，虽然这个是新的中央仓库，但有时候还是会从_“<strong><a href="http://repo1.maven.org/maven/">http://repo1.maven.org/maven/</a></strong>_这个旧仓库下载东西，不过不要紧，理解就行了</p>
-
-<h1 id="三-远程仓库-remote-respository">三.远程仓库(Remote Respository)</h1>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/2013/09/maven-center-repository-search.png"><img src="/images/1b90bc7c3b841d566a18777d661d40b159a29b16.png" alt="maven-center-repository-search"></a></p>
+<p> </p>
+<p>注意啊，虽然这个是新的中央仓库，但有时候还是会从_“**<a href="http://repo1.maven.org/maven/">http://repo1.maven.org/maven/</a>**_这个旧仓库下载东西，不过不要紧，理解就行了</p>
+<h1 id="remote-respository">三.远程仓库(Remote Respository)</h1>
 <p>在Maven中，当你在pom.xml中生命的依赖既不在本地库，也不在中央库的时候，就会报错。</p>
-
-<h2 id="1-例子">1.例子</h2>
-
-<p>org.jvnet.localizer这个包仅在<a href="https://maven.java.net/content/repositories/public/">java.net的仓库里</a>有(以前是，现在中央仓库也有了。但理解就行)
-<pre class="lang:default decode:true" title="pom.xml">   &lt;dependency&gt;
-        &lt;groupId&gt;org.jvnet.localizer&lt;/groupId&gt;
-        &lt;artifactId&gt;localizer&lt;/artifactId&gt;
-        &lt;version&gt;1.8&lt;/version&gt;
-    &lt;/dependency&gt;</pre>
-当我们build的时候，会失败，并输出未找到错误信息</p>
-
-<h2 id="2-声明java-net仓库">2.声明java.net仓库</h2>
-
-<p>为了告诉Maven从远程仓库里获取依赖，我们需要声明一个远程仓库，在pom.xml里这样写
-<pre class="lang:default decode:true">  &lt;repositories&gt;
-    &lt;repository&gt;
-        &lt;id&gt;java.net&lt;/id&gt;
-        &lt;url&gt;<a href="https://maven.java.net/content/repositories/public/&lt;/url&gt;">https://maven.java.net/content/repositories/public/&lt;/url&gt;</a>
-    &lt;/repository&gt;
-    &lt;/repositories&gt;</pre>
-这样，Maven搜索依赖的顺序就是：</p>
-
-<p>1）搜索本地仓库，没有找到，就去第2步，否则退出</p>
-
-<p>2）搜索中央仓库，没有找到，就去第3步，否则退出</p>
-
-<p>3）去java.net远程仓库获取，没有找到，就报错，否则退出</p>
-
-<p>补充：JBoss也有个远程仓库，可以如下配置：
-<pre class="lang:default decode:true">&lt;project &hellip;&gt;
-    &lt;repositories&gt;
-      &lt;repository&gt;
-    &lt;id&gt;JBoss repository&lt;/id&gt;
-    &lt;url&gt;<a href="http://repository.jboss.org/nexus/content/groups/public/&lt;/url&gt;">http://repository.jboss.org/nexus/content/groups/public/&lt;/url&gt;</a>
-      &lt;/repository&gt;
-    &lt;/repositories&gt;
-&lt;/project&gt;</pre></p>
+<h2 id="1-1">1.例子</h2>
+<p>org.jvnet.localizer这个包仅在<a href="https://maven.java.net/content/repositories/public/">java.net的仓库里</a>有(以前是，现在中央仓库也有了。但理解就行)</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<blockquote>
+</blockquote>
 
 
         
@@ -549,7 +473,7 @@ http://search.maven.org/#browse
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

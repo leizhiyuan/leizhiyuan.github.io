@@ -10,15 +10,18 @@
   <title>图片压缩工具源码（C#） - bystander&#39;s blog</title>
   <meta property="og:title" content="图片压缩工具源码（C#）" />
   <meta name="twitter:title" content="图片压缩工具源码（C#）" />
-  <meta name="description" content="以前在用一个破解版的图片压缩工具。今天早上想想自己也试着做一个吧。查了一些资料。参考了一些代码。总算是写出来了。其实关键代码很简单。主要还是画界面，处理边界。。 看下效果图  处理图像的关键代码是这样的： bmp = new Bitmap(width, height); //创建一张空白画布 grap = Graphics.FromImage(bmp); //以该画布创建一个绘图对象 //平滑的高品质，抗锯齿 grap.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality; //HighQualityBicubic 是质量最好的绘图模式 grap.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic; grap.DrawImage(img, new Rectangle(0, 0, width, height)); //用选中的原图在画布上绘图 bmp.Save(topath, System.Drawing.Imaging.ImageFormat.Jpeg); //对图像压缩后保存 
-另外一个就是空间的tip功能，vs2010中貌似已经不支持直接使用属性来设置tip了。所以用到了ToolTip类，使用方法如下，你也可以先导入库，然后简写，ToolTip对象可以给窗体的控件设置提示。主要是第二句话，第一个参数是控件名，第二个参数是提示文本，最好将这两句放入窗体的Load方法中 ToolTip toolTip = new System.Windows.Forms.ToolTip(); toolTip.SetToolTip(this.lboxPicPath, &ldquo;双击可删除不需要的图片&rdquo;);  
+  <meta name="description" content="以前在用一个破解版的图片压缩工具。今天早上想想自己也试着做一个吧。查了一些资料。参考了一些代码。总算是写出来了。其实关键代码很简单。主要还是画界面，处理边界。。 看下效果图  处理图像的关键代码是这样的：
+另外一个就是空间的tip功能，vs2010中貌似已经不支持直接使用属性来设置tip了。所以用到了ToolTip类，使用方法如下，你也可以先导入库，然后简写，ToolTip对象可以给窗体的控件设置提示。主要是第二句话，第一个参数是控件名，第二个参数是提示文本，最好将这两句放入窗体的Load方法中
+
 还有一些边界，比如只接受数字数字之类的，我在代码里给出了详细的说明。实用工具的效果自行测试。对大图片效果最好。
 源码下载：图片压缩工具源码">
-  <meta property="og:description" content="以前在用一个破解版的图片压缩工具。今天早上想想自己也试着做一个吧。查了一些资料。参考了一些代码。总算是写出来了。其实关键代码很简单。主要还是画界面，处理边界。。 看下效果图  处理图像的关键代码是这样的： bmp = new Bitmap(width, height); //创建一张空白画布 grap = Graphics.FromImage(bmp); //以该画布创建一个绘图对象 //平滑的高品质，抗锯齿 grap.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality; //HighQualityBicubic 是质量最好的绘图模式 grap.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic; grap.DrawImage(img, new Rectangle(0, 0, width, height)); //用选中的原图在画布上绘图 bmp.Save(topath, System.Drawing.Imaging.ImageFormat.Jpeg); //对图像压缩后保存 
-另外一个就是空间的tip功能，vs2010中貌似已经不支持直接使用属性来设置tip了。所以用到了ToolTip类，使用方法如下，你也可以先导入库，然后简写，ToolTip对象可以给窗体的控件设置提示。主要是第二句话，第一个参数是控件名，第二个参数是提示文本，最好将这两句放入窗体的Load方法中 ToolTip toolTip = new System.Windows.Forms.ToolTip(); toolTip.SetToolTip(this.lboxPicPath, &ldquo;双击可删除不需要的图片&rdquo;);  
+  <meta property="og:description" content="以前在用一个破解版的图片压缩工具。今天早上想想自己也试着做一个吧。查了一些资料。参考了一些代码。总算是写出来了。其实关键代码很简单。主要还是画界面，处理边界。。 看下效果图  处理图像的关键代码是这样的：
+另外一个就是空间的tip功能，vs2010中貌似已经不支持直接使用属性来设置tip了。所以用到了ToolTip类，使用方法如下，你也可以先导入库，然后简写，ToolTip对象可以给窗体的控件设置提示。主要是第二句话，第一个参数是控件名，第二个参数是提示文本，最好将这两句放入窗体的Load方法中
+
 还有一些边界，比如只接受数字数字之类的，我在代码里给出了详细的说明。实用工具的效果自行测试。对大图片效果最好。
 源码下载：图片压缩工具源码">
-  <meta name="twitter:description" content="以前在用一个破解版的图片压缩工具。今天早上想想自己也试着做一个吧。查了一些资料。参考了一些代码。总算是写出来了。其实关键代码很简单。主要还是画界面，处理边界。。 看下效果图  处理图像的关键代码是这样的： bmp = new Bitmap(width, height); //创建一张空白画布 grap = Graphics.FromImage(bmp); //以该画布创建一个绘图对象 //平滑的高 …">
+  <meta name="twitter:description" content="以前在用一个破解版的图片压缩工具。今天早上想想自己也试着做一个吧。查了一些资料。参考了一些代码。总算是写出来了。其实关键代码很简单。主要还是画界面，处理边界。。 看下效果图  处理图像的关键代码是这样的：
+另外一个就是空间的tip功能，vs2010中貌似已经不支持直接使用属性来设置tip了。所以用到了ToolTip类，使用方法如下，你也可以先导入库，然后简写，ToolTip对象可以给窗体的控件设置 …">
   <meta name="author" content="bystander"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -67,9 +70,9 @@
     "name" : "bystander"
   },
   "headline": "图片压缩工具源码（C#）",
-  "description" : "以前在用一个破解版的图片压缩工具。今天早上想想自己也试着做一个吧。查了一些资料。参考了一些代码。总算是写出来了。其实关键代码很简单。主要还是画界面，处理边界。。 看下效果图  处理图像的关键代码是这样的： bmp = new Bitmap(width, height); \/\/创建一张空白画布 grap = Graphics.FromImage(bmp); \/\/以该画布创建一个绘图对象 \/\/平滑的高品质，抗锯齿 grap.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality; \/\/HighQualityBicubic 是质量最好的绘图模式 grap.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic; grap.DrawImage(img, new Rectangle(0, 0, width, height)); \/\/用选中的原图在画布上绘图 bmp.Save(topath, System.Drawing.Imaging.ImageFormat.Jpeg); \/\/对图像压缩后保存 \n另外一个就是空间的tip功能，vs2010中貌似已经不支持直接使用属性来设置tip了。所以用到了ToolTip类，使用方法如下，你也可以先导入库，然后简写，ToolTip对象可以给窗体的控件设置提示。主要是第二句话，第一个参数是控件名，第二个参数是提示文本，最好将这两句放入窗体的Load方法中 ToolTip toolTip = new System.Windows.Forms.ToolTip(); toolTip.SetToolTip(this.lboxPicPath, \x26ldquo;双击可删除不需要的图片\x26rdquo;);  \n还有一些边界，比如只接受数字数字之类的，我在代码里给出了详细的说明。实用工具的效果自行测试。对大图片效果最好。\n源码下载：图片压缩工具源码",
+  "description" : "以前在用一个破解版的图片压缩工具。今天早上想想自己也试着做一个吧。查了一些资料。参考了一些代码。总算是写出来了。其实关键代码很简单。主要还是画界面，处理边界。。 看下效果图  处理图像的关键代码是这样的：\n另外一个就是空间的tip功能，vs2010中貌似已经不支持直接使用属性来设置tip了。所以用到了ToolTip类，使用方法如下，你也可以先导入库，然后简写，ToolTip对象可以给窗体的控件设置提示。主要是第二句话，第一个参数是控件名，第二个参数是提示文本，最好将这两句放入窗体的Load方法中\n\n还有一些边界，比如只接受数字数字之类的，我在代码里给出了详细的说明。实用工具的效果自行测试。对大图片效果最好。\n源码下载：图片压缩工具源码",
   "inLanguage" : "en",
-  "wordCount":  42 ,
+  "wordCount":  6 ,
   "datePublished" : "2012-05-04T08:17:30",
   "dateModified" : "2012-05-04T08:17:30",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -89,8 +92,9 @@
 </script>
 
 <meta property="og:title" content="图片压缩工具源码（C#）" />
-<meta property="og:description" content="以前在用一个破解版的图片压缩工具。今天早上想想自己也试着做一个吧。查了一些资料。参考了一些代码。总算是写出来了。其实关键代码很简单。主要还是画界面，处理边界。。 看下效果图  处理图像的关键代码是这样的： bmp = new Bitmap(width, height); //创建一张空白画布 grap = Graphics.FromImage(bmp); //以该画布创建一个绘图对象 //平滑的高品质，抗锯齿 grap.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality; //HighQualityBicubic 是质量最好的绘图模式 grap.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic; grap.DrawImage(img, new Rectangle(0, 0, width, height)); //用选中的原图在画布上绘图 bmp.Save(topath, System.Drawing.Imaging.ImageFormat.Jpeg); //对图像压缩后保存 
-另外一个就是空间的tip功能，vs2010中貌似已经不支持直接使用属性来设置tip了。所以用到了ToolTip类，使用方法如下，你也可以先导入库，然后简写，ToolTip对象可以给窗体的控件设置提示。主要是第二句话，第一个参数是控件名，第二个参数是提示文本，最好将这两句放入窗体的Load方法中 ToolTip toolTip = new System.Windows.Forms.ToolTip(); toolTip.SetToolTip(this.lboxPicPath, &ldquo;双击可删除不需要的图片&rdquo;);  
+<meta property="og:description" content="以前在用一个破解版的图片压缩工具。今天早上想想自己也试着做一个吧。查了一些资料。参考了一些代码。总算是写出来了。其实关键代码很简单。主要还是画界面，处理边界。。 看下效果图  处理图像的关键代码是这样的：
+另外一个就是空间的tip功能，vs2010中貌似已经不支持直接使用属性来设置tip了。所以用到了ToolTip类，使用方法如下，你也可以先导入库，然后简写，ToolTip对象可以给窗体的控件设置提示。主要是第二句话，第一个参数是控件名，第二个参数是提示文本，最好将这两句放入窗体的Load方法中
+
 还有一些边界，比如只接受数字数字之类的，我在代码里给出了详细的说明。实用工具的效果自行测试。对大图片效果最好。
 源码下载：图片压缩工具源码">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
@@ -99,7 +103,8 @@
 <meta property="og:site_name" content="bystander&#39;s blog" />
 
   <meta name="twitter:title" content="图片压缩工具源码（C#）" />
-  <meta name="twitter:description" content="以前在用一个破解版的图片压缩工具。今天早上想想自己也试着做一个吧。查了一些资料。参考了一些代码。总算是写出来了。其实关键代码很简单。主要还是画界面，处理边界。。 看下效果图  处理图像的关键代码是这样的： bmp = new Bitmap(width, height); //创建一张空白画布 grap = Graphics.FromImage(bmp); //以该画布创建一个绘图对象 //平滑的高 …">
+  <meta name="twitter:description" content="以前在用一个破解版的图片压缩工具。今天早上想想自己也试着做一个吧。查了一些资料。参考了一些代码。总算是写出来了。其实关键代码很简单。主要还是画界面，处理边界。。 看下效果图  处理图像的关键代码是这样的：
+另外一个就是空间的tip功能，vs2010中貌似已经不支持直接使用属性来设置tip了。所以用到了ToolTip类，使用方法如下，你也可以先导入库，然后简写，ToolTip对象可以给窗体的控件设置 …">
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -110,7 +115,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -296,28 +301,15 @@
       <article role="main" class="blog-post">
         <p>以前在用一个破解版的图片压缩工具。今天早上想想自己也试着做一个吧。查了一些资料。参考了一些代码。总算是写出来了。其实关键代码很简单。主要还是画界面，处理边界。。
 看下效果图
-<a href="http://leaverimage.b0.upaiyun.com/21131_o.jpg"><img src="/images/00f5221099dd3a813d09fbb95fe9a36e5268d652.jpg" alt="" /></a>
-处理图像的关键代码是这样的：
-<pre lang="java">
-    bmp = new Bitmap(width, height);  //创建一张空白画布
-    grap = Graphics.FromImage(bmp);  //以该画布创建一个绘图对象
- //平滑的高品质，抗锯齿
-    grap.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
- //HighQualityBicubic 是质量最好的绘图模式
-    grap.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-    grap.DrawImage(img, new Rectangle(0, 0, width, height)); //用选中的原图在画布上绘图
-    bmp.Save(topath, System.Drawing.Imaging.ImageFormat.Jpeg);  //对图像压缩后保存
-</pre></p>
-
-<p>另外一个就是空间的tip功能，vs2010中貌似已经不支持直接使用属性来设置tip了。所以用到了ToolTip类，使用方法如下，你也可以先导入库，然后简写，ToolTip对象可以给窗体的控件设置提示。主要是第二句话，第一个参数是控件名，第二个参数是提示文本，最好将这两句放入窗体的Load方法中
-<pre lang="java">
-ToolTip toolTip = new System.Windows.Forms.ToolTip();
-toolTip.SetToolTip(this.lboxPicPath, &ldquo;双击可删除不需要的图片&rdquo;);
-</pre>
-<a href="http://leaverimage.b0.upaiyun.com/21132_o.jpg"><img src="/images/516b951c5df12c7569b3cfefd817a894d380c063.jpg" alt="" /></a></p>
-
+<a href="http://leaverimage.b0.upaiyun.com/21131_o.jpg"><img src="/images/00f5221099dd3a813d09fbb95fe9a36e5268d652.jpg" alt=""></a>
+处理图像的关键代码是这样的：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>另外一个就是空间的tip功能，vs2010中貌似已经不支持直接使用属性来设置tip了。所以用到了ToolTip类，使用方法如下，你也可以先导入库，然后简写，ToolTip对象可以给窗体的控件设置提示。主要是第二句话，第一个参数是控件名，第二个参数是提示文本，最好将这两句放入窗体的Load方法中</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><a href="http://leaverimage.b0.upaiyun.com/21132_o.jpg"><img src="/images/516b951c5df12c7569b3cfefd817a894d380c063.jpg" alt=""></a></p>
 <p>还有一些边界，比如只接受数字数字之类的，我在代码里给出了详细的说明。实用工具的效果自行测试。对大图片效果最好。</p>
-
 <p>源码下载：<a href="http://pan.baidu.com/share/link?shareid=62101&amp;uk=1493685990">图片压缩工具源码</a></p>
 
 
@@ -430,7 +422,7 @@ toolTip.SetToolTip(this.lboxPicPath, &ldquo;双击可删除不需要的图片&rd
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

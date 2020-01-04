@@ -14,14 +14,38 @@
 因此，本文介绍该异常如何产生。并且我希望未来当我或是你发生这个错误的时候还能有所帮助。。
 背景 存储图片到数据库里面是一个很有效的想法。很多人在一些场合都会这样做。的确，这是一个很好的想法。在图片很小的情况下，或者图片不是太多。在这两种情况下，当你需要图片的时候，你会实时去加载它们。而当你不需要的时候如果从数据库里加载图片会浪费很多带宽。并使得你的程序有一些慢。
 但问题是这种方法也很容易发生错误。&ndash;尤其是你使用字符串连接，然后组合到你的SQL语句里面—并且这个错误只有当你打算使用存储的信息的时候才会发生。然后，看起来似乎是你的读取代码写错了&mdash;不可能—它是正常的。我在其他地方都可以的。。
-从数据库里加载图片 重数据库里读取一张图片然后转换成图片显示是很简单的。 using (SqlConnection con = DBAccess.DBCon) { using (SqlCommand cmd = new SqlCommand(&ldquo;SELECT picture FROM Pictures WHERE Id=@ID&rdquo;, con)) { cmd.Parameters.AddWithValue(&ldquo;@ID&rdquo;, Id); SqlDataReader reader = cmd.ExecuteReader(); if (reader.Read()) { byte[] data = (byte[])reader[&ldquo;Picture&rdquo;]; using (MemoryStream stream = new MemoryStream(bytes)) { myImage = new Bitmap(stream); } } } } 但是-如果data因为一些原因不是有效的图片，那么这一行 myImage = new Bitmap(stream); 将会抛出一个异常—无效的参数
-只有当你真正看了从数据库里返回到data里的数据-而不是简单的瞄了一眼调试器，你才能注意到是什么原因。。 {byte[21]} [0] 83 [1] 121 [2] 115 [3] 116 [4] 101 [5] 109 [6] 46 [7] 68 [8] 114 [9] 97 [10] 119 [11] 105 [12] 110 [13] 103 [14] 46 &hellip; 它看起来不像是错的，所以它可能就是你想要的。-虽然21字节是一个很大的线索：你的图片可能只有21字节长？那图片可真小。。">
+从数据库里加载图片 重数据库里读取一张图片然后转换成图片显示是很简单的。
+将会抛出一个异常—无效的参数
+只有当你真正看了从数据库里返回到data里的数据-而不是简单的瞄了一眼调试器，你才能注意到是什么原因。。
+它看起来不像是错的，所以它可能就是你想要的。-虽然21字节是一个很大的线索：你的图片可能只有21字节长？那图片可真小。。
+但是，上面的是可以读懂的。。稍微练习一下。。每个字节是一个ASCII码。。
+简而言之，你从数据库里得到的数据是一个人类可以读懂的字符串，意思是是
+当这个Image类试图把它转换成一个图片的时候，必然是不可能的。抛出异常就是必然的了。。代码是正确的。data才是问题所在。
+保存图片到数据库 这才是引发问题的地方。 通常。这是因为把字符串连接起来构造SQL语句引起的。
+不要在SQL语句中包含image对象—它会调用Image的ToString方法。而这个方法会返回
+因此你的上一条语句其实就相当于
+存储并不会有什么问题—但是事实上只是把Image的类型名保存了。而你傻傻的以为是图片数据本身。
+这还不是唯一的一个不让你直接连接字符串构造SQL语句的原因，如果你想知道其他原因。 使用Google 搜索Bobby Tables，&mdash;这不是闹着玩的。。
+好了。其实把代码写正确也不难，虽然可能得多花一些时间。但是，它可以帮助提高代码的可读性和可靠性。而你要做的就是使用一个参数化的查询。
+首先，把图片转换到一个字节数组里。">
   <meta property="og:description" content="介绍 我发现对于很多人来说，当从数据库里载入一张图片然后重新创建成一张图片显示的话会有这样一个问题&mdash;-当他们尝试重新创建新的图片的时候，会抛出一个“无效的参数”异常
 因此，本文介绍该异常如何产生。并且我希望未来当我或是你发生这个错误的时候还能有所帮助。。
 背景 存储图片到数据库里面是一个很有效的想法。很多人在一些场合都会这样做。的确，这是一个很好的想法。在图片很小的情况下，或者图片不是太多。在这两种情况下，当你需要图片的时候，你会实时去加载它们。而当你不需要的时候如果从数据库里加载图片会浪费很多带宽。并使得你的程序有一些慢。
 但问题是这种方法也很容易发生错误。&ndash;尤其是你使用字符串连接，然后组合到你的SQL语句里面—并且这个错误只有当你打算使用存储的信息的时候才会发生。然后，看起来似乎是你的读取代码写错了&mdash;不可能—它是正常的。我在其他地方都可以的。。
-从数据库里加载图片 重数据库里读取一张图片然后转换成图片显示是很简单的。 using (SqlConnection con = DBAccess.DBCon) { using (SqlCommand cmd = new SqlCommand(&ldquo;SELECT picture FROM Pictures WHERE Id=@ID&rdquo;, con)) { cmd.Parameters.AddWithValue(&ldquo;@ID&rdquo;, Id); SqlDataReader reader = cmd.ExecuteReader(); if (reader.Read()) { byte[] data = (byte[])reader[&ldquo;Picture&rdquo;]; using (MemoryStream stream = new MemoryStream(bytes)) { myImage = new Bitmap(stream); } } } } 但是-如果data因为一些原因不是有效的图片，那么这一行 myImage = new Bitmap(stream); 将会抛出一个异常—无效的参数
-只有当你真正看了从数据库里返回到data里的数据-而不是简单的瞄了一眼调试器，你才能注意到是什么原因。。 {byte[21]} [0] 83 [1] 121 [2] 115 [3] 116 [4] 101 [5] 109 [6] 46 [7] 68 [8] 114 [9] 97 [10] 119 [11] 105 [12] 110 [13] 103 [14] 46 &hellip; 它看起来不像是错的，所以它可能就是你想要的。-虽然21字节是一个很大的线索：你的图片可能只有21字节长？那图片可真小。。">
+从数据库里加载图片 重数据库里读取一张图片然后转换成图片显示是很简单的。
+将会抛出一个异常—无效的参数
+只有当你真正看了从数据库里返回到data里的数据-而不是简单的瞄了一眼调试器，你才能注意到是什么原因。。
+它看起来不像是错的，所以它可能就是你想要的。-虽然21字节是一个很大的线索：你的图片可能只有21字节长？那图片可真小。。
+但是，上面的是可以读懂的。。稍微练习一下。。每个字节是一个ASCII码。。
+简而言之，你从数据库里得到的数据是一个人类可以读懂的字符串，意思是是
+当这个Image类试图把它转换成一个图片的时候，必然是不可能的。抛出异常就是必然的了。。代码是正确的。data才是问题所在。
+保存图片到数据库 这才是引发问题的地方。 通常。这是因为把字符串连接起来构造SQL语句引起的。
+不要在SQL语句中包含image对象—它会调用Image的ToString方法。而这个方法会返回
+因此你的上一条语句其实就相当于
+存储并不会有什么问题—但是事实上只是把Image的类型名保存了。而你傻傻的以为是图片数据本身。
+这还不是唯一的一个不让你直接连接字符串构造SQL语句的原因，如果你想知道其他原因。 使用Google 搜索Bobby Tables，&mdash;这不是闹着玩的。。
+好了。其实把代码写正确也不难，虽然可能得多花一些时间。但是，它可以帮助提高代码的可读性和可靠性。而你要做的就是使用一个参数化的查询。
+首先，把图片转换到一个字节数组里。">
   <meta name="twitter:description" content="介绍 我发现对于很多人来说，当从数据库里载入一张图片然后重新创建成一张图片显示的话会有这样一个问题&mdash;-当他们尝试重新创建新的图片的时候，会抛出一个“无效的参数”异常
 因此，本文介绍该异常如何产生。并且我希望未来当我或是你发生这个错误的时候还能有所帮助。。
 背景 存储图片到数据库里面是一个很有效的想法。很多人在一些场合都会这样做。的确，这是一个很好的想法。在图片很小的情况下，或者图片不是 …">
@@ -73,9 +97,9 @@
     "name" : "bystander"
   },
   "headline": "从数据库读取图片发生“无效的参数”异常",
-  "description" : "介绍 我发现对于很多人来说，当从数据库里载入一张图片然后重新创建成一张图片显示的话会有这样一个问题\x26mdash;-当他们尝试重新创建新的图片的时候，会抛出一个“无效的参数”异常\n因此，本文介绍该异常如何产生。并且我希望未来当我或是你发生这个错误的时候还能有所帮助。。\n背景 存储图片到数据库里面是一个很有效的想法。很多人在一些场合都会这样做。的确，这是一个很好的想法。在图片很小的情况下，或者图片不是太多。在这两种情况下，当你需要图片的时候，你会实时去加载它们。而当你不需要的时候如果从数据库里加载图片会浪费很多带宽。并使得你的程序有一些慢。\n但问题是这种方法也很容易发生错误。\x26ndash;尤其是你使用字符串连接，然后组合到你的SQL语句里面—并且这个错误只有当你打算使用存储的信息的时候才会发生。然后，看起来似乎是你的读取代码写错了\x26mdash;不可能—它是正常的。我在其他地方都可以的。。\n从数据库里加载图片 重数据库里读取一张图片然后转换成图片显示是很简单的。 using (SqlConnection con = DBAccess.DBCon) { using (SqlCommand cmd = new SqlCommand(\x26ldquo;SELECT picture FROM Pictures WHERE Id=@ID\x26rdquo;, con)) { cmd.Parameters.AddWithValue(\x26ldquo;@ID\x26rdquo;, Id); SqlDataReader reader = cmd.ExecuteReader(); if (reader.Read()) { byte[] data = (byte[])reader[\x26ldquo;Picture\x26rdquo;]; using (MemoryStream stream = new MemoryStream(bytes)) { myImage = new Bitmap(stream); } } } } 但是-如果data因为一些原因不是有效的图片，那么这一行 myImage = new Bitmap(stream); 将会抛出一个异常—无效的参数\n只有当你真正看了从数据库里返回到data里的数据-而不是简单的瞄了一眼调试器，你才能注意到是什么原因。。 {byte[21]} [0] 83 [1] 121 [2] 115 [3] 116 [4] 101 [5] 109 [6] 46 [7] 68 [8] 114 [9] 97 [10] 119 [11] 105 [12] 110 [13] 103 [14] 46 \x26hellip; 它看起来不像是错的，所以它可能就是你想要的。-虽然21字节是一个很大的线索：你的图片可能只有21字节长？那图片可真小。。",
+  "description" : "介绍 我发现对于很多人来说，当从数据库里载入一张图片然后重新创建成一张图片显示的话会有这样一个问题\x26mdash;-当他们尝试重新创建新的图片的时候，会抛出一个“无效的参数”异常\n因此，本文介绍该异常如何产生。并且我希望未来当我或是你发生这个错误的时候还能有所帮助。。\n背景 存储图片到数据库里面是一个很有效的想法。很多人在一些场合都会这样做。的确，这是一个很好的想法。在图片很小的情况下，或者图片不是太多。在这两种情况下，当你需要图片的时候，你会实时去加载它们。而当你不需要的时候如果从数据库里加载图片会浪费很多带宽。并使得你的程序有一些慢。\n但问题是这种方法也很容易发生错误。\x26ndash;尤其是你使用字符串连接，然后组合到你的SQL语句里面—并且这个错误只有当你打算使用存储的信息的时候才会发生。然后，看起来似乎是你的读取代码写错了\x26mdash;不可能—它是正常的。我在其他地方都可以的。。\n从数据库里加载图片 重数据库里读取一张图片然后转换成图片显示是很简单的。\n将会抛出一个异常—无效的参数\n只有当你真正看了从数据库里返回到data里的数据-而不是简单的瞄了一眼调试器，你才能注意到是什么原因。。\n它看起来不像是错的，所以它可能就是你想要的。-虽然21字节是一个很大的线索：你的图片可能只有21字节长？那图片可真小。。\n但是，上面的是可以读懂的。。稍微练习一下。。每个字节是一个ASCII码。。\n简而言之，你从数据库里得到的数据是一个人类可以读懂的字符串，意思是是\n当这个Image类试图把它转换成一个图片的时候，必然是不可能的。抛出异常就是必然的了。。代码是正确的。data才是问题所在。\n保存图片到数据库 这才是引发问题的地方。 通常。这是因为把字符串连接起来构造SQL语句引起的。\n不要在SQL语句中包含image对象—它会调用Image的ToString方法。而这个方法会返回\n因此你的上一条语句其实就相当于\n存储并不会有什么问题—但是事实上只是把Image的类型名保存了。而你傻傻的以为是图片数据本身。\n这还不是唯一的一个不让你直接连接字符串构造SQL语句的原因，如果你想知道其他原因。 使用Google 搜索Bobby Tables，\x26mdash;这不是闹着玩的。。\n好了。其实把代码写正确也不难，虽然可能得多花一些时间。但是，它可以帮助提高代码的可读性和可靠性。而你要做的就是使用一个参数化的查询。\n首先，把图片转换到一个字节数组里。",
   "inLanguage" : "en",
-  "wordCount":  260 ,
+  "wordCount":  26 ,
   "datePublished" : "2012-09-27T19:47:39",
   "dateModified" : "2012-09-27T19:47:39",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -99,8 +123,20 @@
 因此，本文介绍该异常如何产生。并且我希望未来当我或是你发生这个错误的时候还能有所帮助。。
 背景 存储图片到数据库里面是一个很有效的想法。很多人在一些场合都会这样做。的确，这是一个很好的想法。在图片很小的情况下，或者图片不是太多。在这两种情况下，当你需要图片的时候，你会实时去加载它们。而当你不需要的时候如果从数据库里加载图片会浪费很多带宽。并使得你的程序有一些慢。
 但问题是这种方法也很容易发生错误。&ndash;尤其是你使用字符串连接，然后组合到你的SQL语句里面—并且这个错误只有当你打算使用存储的信息的时候才会发生。然后，看起来似乎是你的读取代码写错了&mdash;不可能—它是正常的。我在其他地方都可以的。。
-从数据库里加载图片 重数据库里读取一张图片然后转换成图片显示是很简单的。 using (SqlConnection con = DBAccess.DBCon) { using (SqlCommand cmd = new SqlCommand(&ldquo;SELECT picture FROM Pictures WHERE Id=@ID&rdquo;, con)) { cmd.Parameters.AddWithValue(&ldquo;@ID&rdquo;, Id); SqlDataReader reader = cmd.ExecuteReader(); if (reader.Read()) { byte[] data = (byte[])reader[&ldquo;Picture&rdquo;]; using (MemoryStream stream = new MemoryStream(bytes)) { myImage = new Bitmap(stream); } } } } 但是-如果data因为一些原因不是有效的图片，那么这一行 myImage = new Bitmap(stream); 将会抛出一个异常—无效的参数
-只有当你真正看了从数据库里返回到data里的数据-而不是简单的瞄了一眼调试器，你才能注意到是什么原因。。 {byte[21]} [0] 83 [1] 121 [2] 115 [3] 116 [4] 101 [5] 109 [6] 46 [7] 68 [8] 114 [9] 97 [10] 119 [11] 105 [12] 110 [13] 103 [14] 46 &hellip; 它看起来不像是错的，所以它可能就是你想要的。-虽然21字节是一个很大的线索：你的图片可能只有21字节长？那图片可真小。。">
+从数据库里加载图片 重数据库里读取一张图片然后转换成图片显示是很简单的。
+将会抛出一个异常—无效的参数
+只有当你真正看了从数据库里返回到data里的数据-而不是简单的瞄了一眼调试器，你才能注意到是什么原因。。
+它看起来不像是错的，所以它可能就是你想要的。-虽然21字节是一个很大的线索：你的图片可能只有21字节长？那图片可真小。。
+但是，上面的是可以读懂的。。稍微练习一下。。每个字节是一个ASCII码。。
+简而言之，你从数据库里得到的数据是一个人类可以读懂的字符串，意思是是
+当这个Image类试图把它转换成一个图片的时候，必然是不可能的。抛出异常就是必然的了。。代码是正确的。data才是问题所在。
+保存图片到数据库 这才是引发问题的地方。 通常。这是因为把字符串连接起来构造SQL语句引起的。
+不要在SQL语句中包含image对象—它会调用Image的ToString方法。而这个方法会返回
+因此你的上一条语句其实就相当于
+存储并不会有什么问题—但是事实上只是把Image的类型名保存了。而你傻傻的以为是图片数据本身。
+这还不是唯一的一个不让你直接连接字符串构造SQL语句的原因，如果你想知道其他原因。 使用Google 搜索Bobby Tables，&mdash;这不是闹着玩的。。
+好了。其实把代码写正确也不难，虽然可能得多花一些时间。但是，它可以帮助提高代码的可读性和可靠性。而你要做的就是使用一个参数化的查询。
+首先，把图片转换到一个字节数组里。">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2012/09/27/%E4%BB%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%BB%E5%8F%96%E5%9B%BE%E7%89%87%E5%8F%91%E7%94%9F%E6%97%A0%E6%95%88%E7%9A%84%E5%8F%82%E6%95%B0%E5%BC%82%E5%B8%B8/" />
 <meta property="og:type" content="website" />
@@ -120,7 +156,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -278,7 +314,7 @@
   <i class="fas fa-calendar"></i>&nbsp;Posted on September 27, 2012
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -304,131 +340,41 @@
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        
-
-<h3 id="介绍">介绍</h3>
-
+        <h3 id="heading">介绍</h3>
 <p>我发现对于很多人来说，当从数据库里载入一张图片然后重新创建成一张图片显示的话会有这样一个问题&mdash;-当他们尝试重新创建新的图片的时候，会抛出一个“无效的参数”异常</p>
-
 <p>因此，本文介绍该异常如何产生。并且我希望未来当我或是你发生这个错误的时候还能有所帮助。。</p>
-
-<h3 id="背景">背景</h3>
-
+<h3 id="heading-1">背景</h3>
 <p>存储图片到数据库里面是一个很有效的想法。很多人在一些场合都会这样做。的确，这是一个很好的想法。在图片很小的情况下，或者图片不是太多。在这两种情况下，当你需要图片的时候，你会实时去加载它们。而当你不需要的时候如果从数据库里加载图片会浪费很多带宽。并使得你的程序有一些慢。</p>
-
 <p>但问题是这种方法也很容易发生错误。&ndash;尤其是你使用字符串连接，然后组合到你的SQL语句里面—并且这个错误只有当你打算使用存储的信息的时候才会发生。然后，看起来似乎是你的读取代码写错了&mdash;不可能—它是正常的。我在其他地方都可以的。。</p>
-
-<h3 id="从数据库里加载图片">从数据库里加载图片</h3>
-
-<p>重数据库里读取一张图片然后转换成图片显示是很简单的。
-<pre class="lang:c# decode:true">using (SqlConnection con = DBAccess.DBCon)
-                        {
-                        using (SqlCommand cmd = new SqlCommand(&ldquo;SELECT picture FROM Pictures WHERE Id=@ID&rdquo;, con))
-                            {
-                            cmd.Parameters.AddWithValue(&ldquo;@ID&rdquo;, Id);
-                            SqlDataReader reader = cmd.ExecuteReader();
-                            if (reader.Read())
-                                {
-                                byte[] data = (byte[])reader[&ldquo;Picture&rdquo;];
-                                using (MemoryStream stream = new MemoryStream(bytes))
-                                    {
-                                    myImage = new Bitmap(stream);
-                                    }
-                                }
-                            }
-                        }</pre>
-但是-如果data因为一些原因不是有效的图片，那么这一行
-<pre class="lang:c# decode:true">myImage = new Bitmap(stream);</pre>
-将会抛出一个异常—无效的参数</p>
-
-<p>只有当你真正看了从数据库里返回到data里的数据-而不是简单的瞄了一眼调试器，你才能注意到是什么原因。。
-<pre class="lang:c# decode:true">{byte[21]}
-[0] 83
-[1] 121
-[2] 115
-[3] 116
-[4] 101
-[5] 109
-[6] 46
-[7] 68
-[8] 114
-[9] 97
-[10] 119
-[11] 105
-[12] 110
-[13] 103
-[14] 46
-&hellip;</pre>
-它看起来不像是错的，所以它可能就是你想要的。-虽然21字节是一个很大的线索：你的图片可能只有21字节长？那图片可真小。。</p>
-
-<p>但是，上面的是可以读懂的。。稍微练习一下。。每个字节是一个ASCII码。。
-<pre class="lang:c# decode:true">&ldquo;83&rdquo; is an uppercase &rsquo;S&rsquo;
-&ldquo;121&rdquo; is an lowercase &lsquo;y&rsquo;
-&ldquo;115&rdquo; is an lowercase &rsquo;s&rsquo;
-&ldquo;116&rdquo; is an lowercase &rsquo;t&rsquo;
-&ldquo;101&rdquo; is an lowercase &lsquo;e&rsquo;
-&ldquo;109&rdquo; is an lowercase &rsquo;m&rsquo;
-&ldquo;46&rdquo; is a &lsquo;.&rsquo;
-&ldquo;68&rdquo; is an uppercase &rsquo;D&rsquo;
-&ldquo;114&rdquo; is an lowercase &lsquo;r&rsquo;
-&ldquo;97&rdquo; is an lowercase &lsquo;a&rsquo;
-&ldquo;119&rdquo; is an lowercase &lsquo;w&rsquo;
-&ldquo;105&rdquo; is an lowercase &lsquo;i&rsquo;
-&ldquo;110&rdquo; is an lowercase &lsquo;n&rsquo;
-&ldquo;103&rdquo; is an lowercase &lsquo;g&rsquo;
-&ldquo;46&rdquo; is an lowercase &lsquo;.&rsquo;
-&hellip;</pre>
-简而言之，你从数据库里得到的数据是一个人类可以读懂的字符串，意思是是
-<pre class="lang:c# decode:true">&ldquo;System.Drawing.Bitmap&rdquo;</pre>
-当这个Image类试图把它转换成一个图片的时候，必然是不可能的。抛出异常就是必然的了。。代码是正确的。data才是问题所在。</p>
-
-<h3 id="保存图片到数据库">保存图片到数据库</h3>
-
+<h3 id="heading-2">从数据库里加载图片</h3>
+<p>重数据库里读取一张图片然后转换成图片显示是很简单的。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>将会抛出一个异常—无效的参数</p>
+<p>只有当你真正看了从数据库里返回到data里的数据-而不是简单的瞄了一眼调试器，你才能注意到是什么原因。。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>它看起来不像是错的，所以它可能就是你想要的。-虽然21字节是一个很大的线索：你的图片可能只有21字节长？那图片可真小。。</p>
+<p>但是，上面的是可以读懂的。。稍微练习一下。。每个字节是一个ASCII码。。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>简而言之，你从数据库里得到的数据是一个人类可以读懂的字符串，意思是是</p>
+<!-- raw HTML omitted -->
+<p>当这个Image类试图把它转换成一个图片的时候，必然是不可能的。抛出异常就是必然的了。。代码是正确的。data才是问题所在。</p>
+<h3 id="heading-3">保存图片到数据库</h3>
 <p>这才是引发问题的地方。
-通常。这是因为把字符串连接起来构造SQL语句引起的。
-<pre class="lang:c# decode:true">string sql = &ldquo;INSERT INTO myTable (imageData) VALUES (&lsquo;&rdquo; + myImage + &ldquo;&rsquo;)&rdquo;;</pre>
-不要在SQL语句中包含image对象—它会调用Image的ToString方法。而这个方法会返回
-<pre class="lang:c# decode:true">&ldquo;System.Drawing.Bitmap&rdquo;</pre>
-因此你的上一条语句其实就相当于
-<pre class="lang:c# decode:true">INSERT INTO myTable (imageData) VALUES (&lsquo;System.Drawing.Bitmap&rsquo;)</pre>
-存储并不会有什么问题—但是事实上只是把Image的类型名保存了。而你傻傻的以为是图片数据本身。</p>
-
+通常。这是因为把字符串连接起来构造SQL语句引起的。</p>
+<!-- raw HTML omitted -->
+<p>不要在SQL语句中包含image对象—它会调用Image的ToString方法。而这个方法会返回</p>
+<!-- raw HTML omitted -->
+<p>因此你的上一条语句其实就相当于</p>
+<!-- raw HTML omitted -->
+<p>存储并不会有什么问题—但是事实上只是把Image的类型名保存了。而你傻傻的以为是图片数据本身。</p>
 <p>这还不是唯一的一个不让你直接连接字符串构造SQL语句的原因，如果你想知道其他原因。
 使用Google 搜索Bobby Tables，&mdash;这不是闹着玩的。。</p>
-
 <p>好了。其实把代码写正确也不难，虽然可能得多花一些时间。但是，它可以帮助提高代码的可读性和可靠性。而你要做的就是使用一个参数化的查询。</p>
-
-<p>首先，把图片转换到一个字节数组里。
-<pre class="lang:c# decode:true">Image myImage = Image.FromFile(@&ldquo;D:\Temp\MyPic.jpg&rdquo;);
-            byte[] data;
-            using (MemoryStream ms = new MemoryStream())
-                {
-                myImage.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
-                data = ms.ToArray();
-                }</pre>
-然后在SqlCommand对象里使用这些字节
-<pre class="lang:c# decode:true">using (SqlConnection con = new SqlConnection(strConnect))
-                {
-                con.Open();
-                using (SqlCommand com = new SqlCommand(&ldquo;INSERT INTO Pictures (Picture) VALUES (@IM)&rdquo;, con))
-                    {
-                    com.Parameters.AddWithValue(&ldquo;@IM&rdquo;, data);
-                    com.ExecuteNonQuery();
-                    }
-                }</pre></p>
-
-<h3 id="结束之前">结束之前</h3>
-
-<p>不。。你不能取回那些你已经错误的存在数据库的信息。。所以。。全部删掉把。然后重新存一遍。</p>
-
-<h3 id="许可">许可</h3>
-
-<p>本文包括代码和源文件，在CPOL下授权</p>
-
-<p>&nbsp;</p>
-
-<p>原文地址：<a href="http://www.codeproject.com/Tips/465950/Why-do-I-get-a-Parameter-is-not-valid-exception-wh">Why-do-I-get-a-Parameter-is-not-valid-exception-wh</a>
-著作权声明：本文由<a href="http://leaver.me/">http://leaver.me</a> 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</p>
+<p>首先，把图片转换到一个字节数组里。</p>
+<!-- raw HTML omitted -->
 
 
         
@@ -546,7 +492,7 @@
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

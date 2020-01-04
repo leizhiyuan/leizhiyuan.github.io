@@ -16,24 +16,28 @@ javafx需要sdk支持，java7之后的都有的。设计思路是数据和代码
 一个简单的开发过程应该是这样的
 1.使用JavaFX Scene Builder来绘制界面，保存为xml/json格式
 画的话没啥要说的，了解一下基本的整体概念就行。
-2.在eclipse里新建工程，可以是普通工程，将1中的文件放到资源目录，在代码里加载，然后界面就加载成功了。 Node topNode = FXMLLoader.load(AFI.class.getResource(&ldquo;/afimain.fxml&rdquo;)); 逻辑代码，比如一个简单的按钮事件可以通过 Node node = topNode.lookup(&ldquo;#paneRightBottom&rdquo;); 来查找到id为paneRightBottom的元素，然后就可以通过对node添加事件监听器来完成一些功能了
+2.在eclipse里新建工程，可以是普通工程，将1中的文件放到资源目录，在代码里加载，然后界面就加载成功了。
+逻辑代码，比如一个简单的按钮事件可以通过
+来查找到id为paneRightBottom的元素，然后就可以通过对node添加事件监听器来完成一些功能了
 主要想说的是：
-JavaFX和WPF其实思路是一模一样的，恰好WPF我也用过，感觉两个都没搞起来，虽然界面炫，然后我去维基看了下： &gt; 该产品于2007年5月在JavaOne大会上首次对外公布。JavaFX技术主要应用于创建Rich Internet application（RIAs）。JavaFX期望能够在桌面应用的开发领域与Adobe公司的AIR、OpenLaszlo以及微软公司的Silverlight相竞争 已经7年了，用户数应该是非常少的，成熟的商业型产品也没几个，在尝试的过程中，我在stackoverflow，以及一些很不错的java博客上，大量查找基本也没有太多的信息，都是一些很浅的应用，包括stackoverflow上的回答数，基本还是能反映出来的，主要应用于RIA，而当前RIA已经出html5的天下了。SL早都不更新了，这种坑爹的所谓新技术。
-&nbsp;
-Oracle还是好好把Swing搞好吧。。不建议尝试。
-&nbsp;">
+JavaFX和WPF其实思路是一模一样的，恰好WPF我也用过，感觉两个都没搞起来，虽然界面炫，然后我去维基看了下：
+ 该产品于2007年5月在JavaOne大会上首次对外公布。JavaFX技术主要应用于创建Rich Internet application（RIAs）。JavaFX期望能够在桌面应用的开发领域与Adobe公司的AIR、OpenLaszlo以及微软公司的Silverlight相竞争 已经7年了，用户数应该是非常少的，成熟的商业型产品也没几个，在尝试的过程中，我在stackoverflow，以及一些很不错的java博客上，大量查找基本也没有太多的信息，都是一些很浅的应用，包括stackoverflow上的回答数，基本还是能反映出来的，主要应用于RIA，而当前RIA已经出html5的天下了。SL早都不更新了，这种坑爹的所谓新技术。
+  Oracle还是好好把Swing搞好吧。。不建议尝试。
+ ">
   <meta property="og:description" content="曾经有报道说JavaFX将使java在桌面开发上大有作为，感觉好像是很高端的样子，今天尝试了一下，界面对于自用的工具来说，本来也不多重要，只是一个简单的尝试
 简单说下大致的步骤和一些思路，可能有错误。
 javafx需要sdk支持，java7之后的都有的。设计思路是数据和代码分离，界面通过xml或json数据来描述，这样就把业务逻辑代码和界面实现代码分开了
 一个简单的开发过程应该是这样的
 1.使用JavaFX Scene Builder来绘制界面，保存为xml/json格式
 画的话没啥要说的，了解一下基本的整体概念就行。
-2.在eclipse里新建工程，可以是普通工程，将1中的文件放到资源目录，在代码里加载，然后界面就加载成功了。 Node topNode = FXMLLoader.load(AFI.class.getResource(&ldquo;/afimain.fxml&rdquo;)); 逻辑代码，比如一个简单的按钮事件可以通过 Node node = topNode.lookup(&ldquo;#paneRightBottom&rdquo;); 来查找到id为paneRightBottom的元素，然后就可以通过对node添加事件监听器来完成一些功能了
+2.在eclipse里新建工程，可以是普通工程，将1中的文件放到资源目录，在代码里加载，然后界面就加载成功了。
+逻辑代码，比如一个简单的按钮事件可以通过
+来查找到id为paneRightBottom的元素，然后就可以通过对node添加事件监听器来完成一些功能了
 主要想说的是：
-JavaFX和WPF其实思路是一模一样的，恰好WPF我也用过，感觉两个都没搞起来，虽然界面炫，然后我去维基看了下： &gt; 该产品于2007年5月在JavaOne大会上首次对外公布。JavaFX技术主要应用于创建Rich Internet application（RIAs）。JavaFX期望能够在桌面应用的开发领域与Adobe公司的AIR、OpenLaszlo以及微软公司的Silverlight相竞争 已经7年了，用户数应该是非常少的，成熟的商业型产品也没几个，在尝试的过程中，我在stackoverflow，以及一些很不错的java博客上，大量查找基本也没有太多的信息，都是一些很浅的应用，包括stackoverflow上的回答数，基本还是能反映出来的，主要应用于RIA，而当前RIA已经出html5的天下了。SL早都不更新了，这种坑爹的所谓新技术。
-&nbsp;
-Oracle还是好好把Swing搞好吧。。不建议尝试。
-&nbsp;">
+JavaFX和WPF其实思路是一模一样的，恰好WPF我也用过，感觉两个都没搞起来，虽然界面炫，然后我去维基看了下：
+ 该产品于2007年5月在JavaOne大会上首次对外公布。JavaFX技术主要应用于创建Rich Internet application（RIAs）。JavaFX期望能够在桌面应用的开发领域与Adobe公司的AIR、OpenLaszlo以及微软公司的Silverlight相竞争 已经7年了，用户数应该是非常少的，成熟的商业型产品也没几个，在尝试的过程中，我在stackoverflow，以及一些很不错的java博客上，大量查找基本也没有太多的信息，都是一些很浅的应用，包括stackoverflow上的回答数，基本还是能反映出来的，主要应用于RIA，而当前RIA已经出html5的天下了。SL早都不更新了，这种坑爹的所谓新技术。
+  Oracle还是好好把Swing搞好吧。。不建议尝试。
+ ">
   <meta name="twitter:description" content="曾经有报道说JavaFX将使java在桌面开发上大有作为，感觉好像是很高端的样子，今天尝试了一下，界面对于自用的工具来说，本来也不多重要，只是一个简单的尝试
 简单说下大致的步骤和一些思路，可能有错误。
 javafx需要sdk支持，java7之后的都有的。设计思路是数据和代码分离，界面通过xml或json数据来描述，这样就把业务逻辑代码和界面实现代码分开了
@@ -87,9 +91,9 @@ javafx需要sdk支持，java7之后的都有的。设计思路是数据和代码
     "name" : "bystander"
   },
   "headline": "尝试JavaFX开发",
-  "description" : "曾经有报道说JavaFX将使java在桌面开发上大有作为，感觉好像是很高端的样子，今天尝试了一下，界面对于自用的工具来说，本来也不多重要，只是一个简单的尝试\n简单说下大致的步骤和一些思路，可能有错误。\njavafx需要sdk支持，java7之后的都有的。设计思路是数据和代码分离，界面通过xml或json数据来描述，这样就把业务逻辑代码和界面实现代码分开了\n一个简单的开发过程应该是这样的\n1.使用JavaFX Scene Builder来绘制界面，保存为xml\/json格式\n画的话没啥要说的，了解一下基本的整体概念就行。\n2.在eclipse里新建工程，可以是普通工程，将1中的文件放到资源目录，在代码里加载，然后界面就加载成功了。 Node topNode = FXMLLoader.load(AFI.class.getResource(\x26ldquo;\/afimain.fxml\x26rdquo;)); 逻辑代码，比如一个简单的按钮事件可以通过 Node node = topNode.lookup(\x26ldquo;#paneRightBottom\x26rdquo;); 来查找到id为paneRightBottom的元素，然后就可以通过对node添加事件监听器来完成一些功能了\n主要想说的是：\nJavaFX和WPF其实思路是一模一样的，恰好WPF我也用过，感觉两个都没搞起来，虽然界面炫，然后我去维基看了下： \x26gt; 该产品于2007年5月在JavaOne大会上首次对外公布。JavaFX技术主要应用于创建Rich Internet application（RIAs）。JavaFX期望能够在桌面应用的开发领域与Adobe公司的AIR、OpenLaszlo以及微软公司的Silverlight相竞争 已经7年了，用户数应该是非常少的，成熟的商业型产品也没几个，在尝试的过程中，我在stackoverflow，以及一些很不错的java博客上，大量查找基本也没有太多的信息，都是一些很浅的应用，包括stackoverflow上的回答数，基本还是能反映出来的，主要应用于RIA，而当前RIA已经出html5的天下了。SL早都不更新了，这种坑爹的所谓新技术。\n\x26nbsp;\nOracle还是好好把Swing搞好吧。。不建议尝试。\n\x26nbsp;",
+  "description" : "曾经有报道说JavaFX将使java在桌面开发上大有作为，感觉好像是很高端的样子，今天尝试了一下，界面对于自用的工具来说，本来也不多重要，只是一个简单的尝试\n简单说下大致的步骤和一些思路，可能有错误。\njavafx需要sdk支持，java7之后的都有的。设计思路是数据和代码分离，界面通过xml或json数据来描述，这样就把业务逻辑代码和界面实现代码分开了\n一个简单的开发过程应该是这样的\n1.使用JavaFX Scene Builder来绘制界面，保存为xml\/json格式\n画的话没啥要说的，了解一下基本的整体概念就行。\n2.在eclipse里新建工程，可以是普通工程，将1中的文件放到资源目录，在代码里加载，然后界面就加载成功了。\n逻辑代码，比如一个简单的按钮事件可以通过\n来查找到id为paneRightBottom的元素，然后就可以通过对node添加事件监听器来完成一些功能了\n主要想说的是：\nJavaFX和WPF其实思路是一模一样的，恰好WPF我也用过，感觉两个都没搞起来，虽然界面炫，然后我去维基看了下：\n 该产品于2007年5月在JavaOne大会上首次对外公布。JavaFX技术主要应用于创建Rich Internet application（RIAs）。JavaFX期望能够在桌面应用的开发领域与Adobe公司的AIR、OpenLaszlo以及微软公司的Silverlight相竞争 已经7年了，用户数应该是非常少的，成熟的商业型产品也没几个，在尝试的过程中，我在stackoverflow，以及一些很不错的java博客上，大量查找基本也没有太多的信息，都是一些很浅的应用，包括stackoverflow上的回答数，基本还是能反映出来的，主要应用于RIA，而当前RIA已经出html5的天下了。SL早都不更新了，这种坑爹的所谓新技术。\n  Oracle还是好好把Swing搞好吧。。不建议尝试。\n ",
   "inLanguage" : "en",
-  "wordCount":  29 ,
+  "wordCount":  18 ,
   "datePublished" : "2014-02-11T20:40:12",
   "dateModified" : "2014-02-11T20:40:12",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -115,12 +119,14 @@ javafx需要sdk支持，java7之后的都有的。设计思路是数据和代码
 一个简单的开发过程应该是这样的
 1.使用JavaFX Scene Builder来绘制界面，保存为xml/json格式
 画的话没啥要说的，了解一下基本的整体概念就行。
-2.在eclipse里新建工程，可以是普通工程，将1中的文件放到资源目录，在代码里加载，然后界面就加载成功了。 Node topNode = FXMLLoader.load(AFI.class.getResource(&ldquo;/afimain.fxml&rdquo;)); 逻辑代码，比如一个简单的按钮事件可以通过 Node node = topNode.lookup(&ldquo;#paneRightBottom&rdquo;); 来查找到id为paneRightBottom的元素，然后就可以通过对node添加事件监听器来完成一些功能了
+2.在eclipse里新建工程，可以是普通工程，将1中的文件放到资源目录，在代码里加载，然后界面就加载成功了。
+逻辑代码，比如一个简单的按钮事件可以通过
+来查找到id为paneRightBottom的元素，然后就可以通过对node添加事件监听器来完成一些功能了
 主要想说的是：
-JavaFX和WPF其实思路是一模一样的，恰好WPF我也用过，感觉两个都没搞起来，虽然界面炫，然后我去维基看了下： &gt; 该产品于2007年5月在JavaOne大会上首次对外公布。JavaFX技术主要应用于创建Rich Internet application（RIAs）。JavaFX期望能够在桌面应用的开发领域与Adobe公司的AIR、OpenLaszlo以及微软公司的Silverlight相竞争 已经7年了，用户数应该是非常少的，成熟的商业型产品也没几个，在尝试的过程中，我在stackoverflow，以及一些很不错的java博客上，大量查找基本也没有太多的信息，都是一些很浅的应用，包括stackoverflow上的回答数，基本还是能反映出来的，主要应用于RIA，而当前RIA已经出html5的天下了。SL早都不更新了，这种坑爹的所谓新技术。
-&nbsp;
-Oracle还是好好把Swing搞好吧。。不建议尝试。
-&nbsp;">
+JavaFX和WPF其实思路是一模一样的，恰好WPF我也用过，感觉两个都没搞起来，虽然界面炫，然后我去维基看了下：
+ 该产品于2007年5月在JavaOne大会上首次对外公布。JavaFX技术主要应用于创建Rich Internet application（RIAs）。JavaFX期望能够在桌面应用的开发领域与Adobe公司的AIR、OpenLaszlo以及微软公司的Silverlight相竞争 已经7年了，用户数应该是非常少的，成熟的商业型产品也没几个，在尝试的过程中，我在stackoverflow，以及一些很不错的java博客上，大量查找基本也没有太多的信息，都是一些很浅的应用，包括stackoverflow上的回答数，基本还是能反映出来的，主要应用于RIA，而当前RIA已经出html5的天下了。SL早都不更新了，这种坑爹的所谓新技术。
+  Oracle还是好好把Swing搞好吧。。不建议尝试。
+ ">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2014/02/11/%E5%B0%9D%E8%AF%95javafx%E5%BC%80%E5%8F%91/" />
 <meta property="og:type" content="website" />
@@ -142,7 +148,7 @@ javafx需要sdk支持，java7之后的都有的。设计思路是数据和代码
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -327,34 +333,25 @@ javafx需要sdk支持，java7之后的都有的。设计思路是数据和代码
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <p>曾经有报道说JavaFX将使java在桌面开发上大有作为，感觉好像是很高端的样子，今天尝试了一下，界面对于自用的工具来说，本来也不多重要，只是一个简单的尝试</p>
-
 <p>简单说下大致的步骤和一些思路，可能有错误。</p>
-
 <p>javafx需要sdk支持，java7之后的都有的。设计思路是数据和代码分离，界面通过xml或json数据来描述，这样就把业务逻辑代码和界面实现代码分开了</p>
-
 <p>一个简单的开发过程应该是这样的</p>
-
 <p>1.使用JavaFX Scene Builder来绘制界面，保存为xml/json格式</p>
-
 <p>画的话没啥要说的，了解一下基本的整体概念就行。</p>
-
-<p>2.在eclipse里新建工程，可以是普通工程，将1中的文件放到资源目录，在代码里加载，然后界面就加载成功了。
-<pre class="lang:default decode:true">Node topNode = FXMLLoader.load(AFI.class.getResource(&ldquo;/afimain.fxml&rdquo;));</pre>
-逻辑代码，比如一个简单的按钮事件可以通过
-<pre>Node node = topNode.lookup(&ldquo;#paneRightBottom&rdquo;);</pre>
-来查找到id为paneRightBottom的元素，然后就可以通过对node添加事件监听器来完成一些功能了</p>
-
+<p>2.在eclipse里新建工程，可以是普通工程，将1中的文件放到资源目录，在代码里加载，然后界面就加载成功了。</p>
+<!-- raw HTML omitted -->
+<p>逻辑代码，比如一个简单的按钮事件可以通过</p>
+<!-- raw HTML omitted -->
+<p>来查找到id为paneRightBottom的元素，然后就可以通过对node添加事件监听器来完成一些功能了</p>
 <p><em><strong>主要想说的是：</strong></em></p>
-
-<p>JavaFX和WPF其实思路是一模一样的，恰好WPF我也用过，感觉两个都没搞起来，虽然界面炫，然后我去维基看了下：
-&gt; 该产品于2007年5月在JavaOne大会上首次对外公布。JavaFX技术主要应用于创建Rich Internet application（<a href="http://zh.wikipedia.org/wiki/RIA" title="RIA">RIAs</a>）。JavaFX期望能够在桌面应用的开发领域与Adobe公司的AIR、<a href="http://zh.wikipedia.org/w/index.php?title=OpenLaszlo&amp;amp;action=edit&amp;amp;redlink=1" title="OpenLaszlo（页面不存在）">OpenLaszlo</a>以及<a href="http://zh.wikipedia.org/wiki/%E5%BE%AE%E8%BD%AF" title="微软">微软</a>公司的<a href="http://zh.wikipedia.org/wiki/Silverlight" title="Silverlight">Silverlight</a>相竞争
+<p>JavaFX和WPF其实思路是一模一样的，恰好WPF我也用过，感觉两个都没搞起来，虽然界面炫，然后我去维基看了下：</p>
+<blockquote>
+<p>该产品于2007年5月在JavaOne大会上首次对外公布。JavaFX技术主要应用于创建Rich Internet application（<a href="http://zh.wikipedia.org/wiki/RIA" title="RIA">RIAs</a>）。JavaFX期望能够在桌面应用的开发领域与Adobe公司的AIR、<a href="http://zh.wikipedia.org/w/index.php?title=OpenLaszlo&amp;action=edit&amp;redlink=1" title="OpenLaszlo（页面不存在）">OpenLaszlo</a>以及<a href="http://zh.wikipedia.org/wiki/%E5%BE%AE%E8%BD%AF" title="微软">微软</a>公司的<a href="http://zh.wikipedia.org/wiki/Silverlight" title="Silverlight">Silverlight</a>相竞争
 已经7年了，用户数应该是非常少的，<strong>成熟的商业型产品也没几个</strong>，在尝试的过程中，我在stackoverflow，以及一些很不错的java博客上，大量查找基本也没有太多的信息，都是一些很浅的应用，包括stackoverflow上的回答数，基本还是能反映出来的，主要应用于RIA，而当前RIA已经出html5的天下了。SL早都不更新了，这种坑爹的所谓新技术。</p>
-
-<p>&nbsp;</p>
-
+</blockquote>
+<p> </p>
 <p>Oracle还是好好把Swing搞好吧。。不建议尝试。</p>
-
-<p>&nbsp;</p>
+<p> </p>
 
 
         
@@ -470,7 +467,7 @@ javafx需要sdk支持，java7之后的都有的。设计思路是数据和代码
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

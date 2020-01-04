@@ -18,7 +18,10 @@
       
       <guid>https://leizhiyuan.github.io/2012/05/22/c-c-%E4%B8%ADsizeof%E8%BF%94%E5%9B%9E%E5%80%BC%E4%B8%8D%E5%90%8C/</guid>
       <description>问题: A character array is defined globally and a structure with same name is defined within a function. 一个字符数组被定义为全局变量，一个相同名字的结构体被定义在一个函数内部。
-Why sizeof operator returns different values for c &amp;amp; c++ ? 为什么sizeof操作符对于C和C++返回了不同的值呢？ char S[13]; void fun() { struct S { int v; }; int v1 = sizeof(S); } // returns 4 in C++ and 13 in C 答案： Because in C++, the struct you defined is named S, while in C, 因为在C++中，你定义的结构体的名称是S，而在C中，</description>
+Why sizeof operator returns different values for c &amp;amp; c++ ? 为什么sizeof操作符对于C和C++返回了不同的值呢？
+答案： Because in C++, the struct you defined is named S, while in C, 因为在C++中，你定义的结构体的名称是S，而在C中，
+it&#39;s named struct S (which is why you often see typedef struct used in C code). 他叫做struct S（这也是为什么我们可以经常看到typedef struct 被用在C代码中）。
+In C, to refer to the struct type, you need to say struct S.</description>
     </item>
     
   </channel>

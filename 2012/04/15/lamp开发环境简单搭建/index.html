@@ -13,23 +13,31 @@
   <meta name="description" content="因为一些事情，要去学习php开发。所以呢。今天就先搭建一下php开发环境，其实windows下搭建相对比较简单，也有一键安装包。比如AppServ，但是因为考虑到以后的一些事情，于是还是采用LAMP开发环境。
 　我是用Ubuntu来做，本地刚好有Ubuntu的镜像。。虚拟里面来测试。首先就是在虚拟机里安装Ubuntu。这个不多说。大家都会。安装好以后。登陆进来。命令行或是图形界面都可以。
 　新版本的Ubuntu貌似是没了新立得管理器。所以使用命令来安装更简单。打开终端。切换到root。如果不能切换到root。参考此文。切换到root后。输入
-apt-get install apache2 mysql-server mysql-client php5 php5-gd php5-mysql 　回车后就开始自动下载了。大概几分钟后就会出现MySql的安装设置界面
+　回车后就开始自动下载了。大概几分钟后就会出现MySql的安装设置界面
  输入你想设置的mysql的登录密码。然后需要再输入一遍
  ok。等会就安装完成了。。就这么简单。。 然后进行一些后续的设置
 　默认网站的目录在/usr/www.这个目录的权限如下图。 
-　为了以后方便。设置为777会更好一些。。执行如下命令： sudo chmod 777 /var/www 
- 然后是启用 apache的 mod_rewrite 模块 输入如下命令： sudo a2enmod rewrite 然后继续输入如下命令来重启 Apache服务器： sudo /etc/init.d/apache2 restart Apache重启后我们可以测试一下，在 /var/www目录下新建文件 test.php，写入代码： &lt;?php phpinfo(); ?&gt; 保存，在地址栏输入 http://127.0.0.1/test.php 或 http://localhost/test.php ，如果正确出现了如下 php 配置信息则表明 LAMP Apache已经正常工作了 
-　还可以测试一下mysql是否正常。这个直接在终端下输入 mysql -u root -p 然后根据提示输入密码就出现如下的图  表示已经登录到mysql了。说明mysql可以了。可以继续输入 show databases;来显示所有的数据库。">
+　为了以后方便。设置为777会更好一些。。执行如下命令：
+ 然后是启用 apache的 mod_rewrite 模块 输入如下命令：
+　然后继续输入如下命令来重启 Apache服务器：
+　Apache重启后我们可以测试一下，在 /var/www目录下新建文件 test.php，写入代码： 保存，在地址栏输入 http://127.0.0.1/test.php 或 http://localhost/test.php ，如果正确出现了如下 php 配置信息则表明 LAMP Apache已经正常工作了 
+　还可以测试一下mysql是否正常。这个直接在终端下输入
+　然后根据提示输入密码就出现如下的图  表示已经登录到mysql了。说明mysql可以了。可以继续输入 show databases;来显示所有的数据库。 
+参考文章：http://blog.csdn.net/xiaojianpitt/article/details/6326834">
   <meta property="og:description" content="因为一些事情，要去学习php开发。所以呢。今天就先搭建一下php开发环境，其实windows下搭建相对比较简单，也有一键安装包。比如AppServ，但是因为考虑到以后的一些事情，于是还是采用LAMP开发环境。
 　我是用Ubuntu来做，本地刚好有Ubuntu的镜像。。虚拟里面来测试。首先就是在虚拟机里安装Ubuntu。这个不多说。大家都会。安装好以后。登陆进来。命令行或是图形界面都可以。
 　新版本的Ubuntu貌似是没了新立得管理器。所以使用命令来安装更简单。打开终端。切换到root。如果不能切换到root。参考此文。切换到root后。输入
-apt-get install apache2 mysql-server mysql-client php5 php5-gd php5-mysql 　回车后就开始自动下载了。大概几分钟后就会出现MySql的安装设置界面
+　回车后就开始自动下载了。大概几分钟后就会出现MySql的安装设置界面
  输入你想设置的mysql的登录密码。然后需要再输入一遍
  ok。等会就安装完成了。。就这么简单。。 然后进行一些后续的设置
 　默认网站的目录在/usr/www.这个目录的权限如下图。 
-　为了以后方便。设置为777会更好一些。。执行如下命令： sudo chmod 777 /var/www 
- 然后是启用 apache的 mod_rewrite 模块 输入如下命令： sudo a2enmod rewrite 然后继续输入如下命令来重启 Apache服务器： sudo /etc/init.d/apache2 restart Apache重启后我们可以测试一下，在 /var/www目录下新建文件 test.php，写入代码： &lt;?php phpinfo(); ?&gt; 保存，在地址栏输入 http://127.0.0.1/test.php 或 http://localhost/test.php ，如果正确出现了如下 php 配置信息则表明 LAMP Apache已经正常工作了 
-　还可以测试一下mysql是否正常。这个直接在终端下输入 mysql -u root -p 然后根据提示输入密码就出现如下的图  表示已经登录到mysql了。说明mysql可以了。可以继续输入 show databases;来显示所有的数据库。">
+　为了以后方便。设置为777会更好一些。。执行如下命令：
+ 然后是启用 apache的 mod_rewrite 模块 输入如下命令：
+　然后继续输入如下命令来重启 Apache服务器：
+　Apache重启后我们可以测试一下，在 /var/www目录下新建文件 test.php，写入代码： 保存，在地址栏输入 http://127.0.0.1/test.php 或 http://localhost/test.php ，如果正确出现了如下 php 配置信息则表明 LAMP Apache已经正常工作了 
+　还可以测试一下mysql是否正常。这个直接在终端下输入
+　然后根据提示输入密码就出现如下的图  表示已经登录到mysql了。说明mysql可以了。可以继续输入 show databases;来显示所有的数据库。 
+参考文章：http://blog.csdn.net/xiaojianpitt/article/details/6326834">
   <meta name="twitter:description" content="因为一些事情，要去学习php开发。所以呢。今天就先搭建一下php开发环境，其实windows下搭建相对比较简单，也有一键安装包。比如AppServ，但是因为考虑到以后的一些事情，于是还是采用LAMP开发环境。
 　我是用Ubuntu来做，本地刚好有Ubuntu的镜像。。虚拟里面来测试。首先就是在虚拟机里安装Ubuntu。这个不多说。大家都会。安装好以后。登陆进来。命令行或是图形界面都可以。
 　新版本 …">
@@ -81,9 +89,9 @@ apt-get install apache2 mysql-server mysql-client php5 php5-gd php5-mysql 　回
     "name" : "bystander"
   },
   "headline": "lamp开发环境简单搭建",
-  "description" : "因为一些事情，要去学习php开发。所以呢。今天就先搭建一下php开发环境，其实windows下搭建相对比较简单，也有一键安装包。比如AppServ，但是因为考虑到以后的一些事情，于是还是采用LAMP开发环境。\n　我是用Ubuntu来做，本地刚好有Ubuntu的镜像。。虚拟里面来测试。首先就是在虚拟机里安装Ubuntu。这个不多说。大家都会。安装好以后。登陆进来。命令行或是图形界面都可以。\n　新版本的Ubuntu貌似是没了新立得管理器。所以使用命令来安装更简单。打开终端。切换到root。如果不能切换到root。参考此文。切换到root后。输入\napt-get install apache2 mysql-server mysql-client php5 php5-gd php5-mysql 　回车后就开始自动下载了。大概几分钟后就会出现MySql的安装设置界面\n 输入你想设置的mysql的登录密码。然后需要再输入一遍\n ok。等会就安装完成了。。就这么简单。。 然后进行一些后续的设置\n　默认网站的目录在\/usr\/www.这个目录的权限如下图。 \n　为了以后方便。设置为777会更好一些。。执行如下命令： sudo chmod 777 \/var\/www \n 然后是启用 apache的 mod_rewrite 模块 输入如下命令： sudo a2enmod rewrite 然后继续输入如下命令来重启 Apache服务器： sudo \/etc\/init.d\/apache2 restart Apache重启后我们可以测试一下，在 \/var\/www目录下新建文件 test.php，写入代码： \x26lt;?php phpinfo(); ?\x26gt; 保存，在地址栏输入 http:\/\/127.0.0.1\/test.php 或 http:\/\/localhost\/test.php ，如果正确出现了如下 php 配置信息则表明 LAMP Apache已经正常工作了 \n　还可以测试一下mysql是否正常。这个直接在终端下输入 mysql -u root -p 然后根据提示输入密码就出现如下的图  表示已经登录到mysql了。说明mysql可以了。可以继续输入 show databases;来显示所有的数据库。",
+  "description" : "因为一些事情，要去学习php开发。所以呢。今天就先搭建一下php开发环境，其实windows下搭建相对比较简单，也有一键安装包。比如AppServ，但是因为考虑到以后的一些事情，于是还是采用LAMP开发环境。\n　我是用Ubuntu来做，本地刚好有Ubuntu的镜像。。虚拟里面来测试。首先就是在虚拟机里安装Ubuntu。这个不多说。大家都会。安装好以后。登陆进来。命令行或是图形界面都可以。\n　新版本的Ubuntu貌似是没了新立得管理器。所以使用命令来安装更简单。打开终端。切换到root。如果不能切换到root。参考此文。切换到root后。输入\n　回车后就开始自动下载了。大概几分钟后就会出现MySql的安装设置界面\n 输入你想设置的mysql的登录密码。然后需要再输入一遍\n ok。等会就安装完成了。。就这么简单。。 然后进行一些后续的设置\n　默认网站的目录在\/usr\/www.这个目录的权限如下图。 \n　为了以后方便。设置为777会更好一些。。执行如下命令：\n 然后是启用 apache的 mod_rewrite 模块 输入如下命令：\n　然后继续输入如下命令来重启 Apache服务器：\n　Apache重启后我们可以测试一下，在 \/var\/www目录下新建文件 test.php，写入代码： 保存，在地址栏输入 http:\/\/127.0.0.1\/test.php 或 http:\/\/localhost\/test.php ，如果正确出现了如下 php 配置信息则表明 LAMP Apache已经正常工作了 \n　还可以测试一下mysql是否正常。这个直接在终端下输入\n　然后根据提示输入密码就出现如下的图  表示已经登录到mysql了。说明mysql可以了。可以继续输入 show databases;来显示所有的数据库。 \n参考文章：http:\/\/blog.csdn.net\/xiaojianpitt\/article\/details\/6326834",
   "inLanguage" : "en",
-  "wordCount":  59 ,
+  "wordCount":  34 ,
   "datePublished" : "2012-04-15T17:54:27",
   "dateModified" : "2012-04-15T17:54:27",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -106,13 +114,17 @@ apt-get install apache2 mysql-server mysql-client php5 php5-gd php5-mysql 　回
 <meta property="og:description" content="因为一些事情，要去学习php开发。所以呢。今天就先搭建一下php开发环境，其实windows下搭建相对比较简单，也有一键安装包。比如AppServ，但是因为考虑到以后的一些事情，于是还是采用LAMP开发环境。
 　我是用Ubuntu来做，本地刚好有Ubuntu的镜像。。虚拟里面来测试。首先就是在虚拟机里安装Ubuntu。这个不多说。大家都会。安装好以后。登陆进来。命令行或是图形界面都可以。
 　新版本的Ubuntu貌似是没了新立得管理器。所以使用命令来安装更简单。打开终端。切换到root。如果不能切换到root。参考此文。切换到root后。输入
-apt-get install apache2 mysql-server mysql-client php5 php5-gd php5-mysql 　回车后就开始自动下载了。大概几分钟后就会出现MySql的安装设置界面
+　回车后就开始自动下载了。大概几分钟后就会出现MySql的安装设置界面
  输入你想设置的mysql的登录密码。然后需要再输入一遍
  ok。等会就安装完成了。。就这么简单。。 然后进行一些后续的设置
 　默认网站的目录在/usr/www.这个目录的权限如下图。 
-　为了以后方便。设置为777会更好一些。。执行如下命令： sudo chmod 777 /var/www 
- 然后是启用 apache的 mod_rewrite 模块 输入如下命令： sudo a2enmod rewrite 然后继续输入如下命令来重启 Apache服务器： sudo /etc/init.d/apache2 restart Apache重启后我们可以测试一下，在 /var/www目录下新建文件 test.php，写入代码： &lt;?php phpinfo(); ?&gt; 保存，在地址栏输入 http://127.0.0.1/test.php 或 http://localhost/test.php ，如果正确出现了如下 php 配置信息则表明 LAMP Apache已经正常工作了 
-　还可以测试一下mysql是否正常。这个直接在终端下输入 mysql -u root -p 然后根据提示输入密码就出现如下的图  表示已经登录到mysql了。说明mysql可以了。可以继续输入 show databases;来显示所有的数据库。">
+　为了以后方便。设置为777会更好一些。。执行如下命令：
+ 然后是启用 apache的 mod_rewrite 模块 输入如下命令：
+　然后继续输入如下命令来重启 Apache服务器：
+　Apache重启后我们可以测试一下，在 /var/www目录下新建文件 test.php，写入代码： 保存，在地址栏输入 http://127.0.0.1/test.php 或 http://localhost/test.php ，如果正确出现了如下 php 配置信息则表明 LAMP Apache已经正常工作了 
+　还可以测试一下mysql是否正常。这个直接在终端下输入
+　然后根据提示输入密码就出现如下的图  表示已经登录到mysql了。说明mysql可以了。可以继续输入 show databases;来显示所有的数据库。 
+参考文章：http://blog.csdn.net/xiaojianpitt/article/details/6326834">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2012/04/15/lamp%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA/" />
 <meta property="og:type" content="website" />
@@ -132,7 +144,7 @@ apt-get install apache2 mysql-server mysql-client php5 php5-gd php5-mysql 　回
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -317,44 +329,33 @@ apt-get install apache2 mysql-server mysql-client php5 php5-gd php5-mysql 　回
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <p>　　因为一些事情，要去学习php开发。所以呢。今天就先搭建一下php开发环境，其实windows下搭建相对比较简单，也有一键安装包。比如<a href="http://www.appservnetwork.com/">AppServ</a>，但是因为考虑到以后的一些事情，于是还是采用LAMP开发环境。</p>
-
 <p>　　我是用Ubuntu来做，本地刚好有Ubuntu的镜像。。虚拟里面来测试。首先就是在虚拟机里安装Ubuntu。这个不多说。大家都会。安装好以后。登陆进来。命令行或是图形界面都可以。</p>
-
 <p>　　新版本的Ubuntu貌似是没了新立得管理器。所以使用命令来安装更简单。打开终端。切换到root。如果不能切换到root。<a href="http://leaver.me/archives/205.html">参考此文</a>。切换到root后。输入</p>
-
-<pre lang="php">apt-get install apache2 mysql-server mysql-client php5 php5-gd php5-mysql</pre>
-
+<!-- raw HTML omitted -->
 <p>　　回车后就开始自动下载了。大概几分钟后就会出现MySql的安装设置界面</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/20538_o.png"><img src="/images/" alt="" /></a>
+<p><a href="http://leaverimage.b0.upaiyun.com/20538_o.png"><img src="/images/" alt=""></a>
 　　输入你想设置的mysql的登录密码。然后需要再输入一遍</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/20539_o.png"><img src="/images/" alt="" /></a>
+<p><a href="http://leaverimage.b0.upaiyun.com/20539_o.png"><img src="/images/" alt=""></a>
 ok。等会就安装完成了。。就这么简单。。
 然后进行一些后续的设置</p>
-
 <p>　　默认网站的目录在/usr/www.这个目录的权限如下图。
-<a href="http://leaverimage.b0.upaiyun.com/20541_o.png"><img src="/images/" alt="" /></a></p>
-
-<p>　　为了以后方便。设置为777会更好一些。。执行如下命令：
-<pre lang="php">sudo chmod 777 /var/www </pre></p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/20542_o.png"><img src="/images/" alt="" /></a>
+<a href="http://leaverimage.b0.upaiyun.com/20541_o.png"><img src="/images/" alt=""></a></p>
+<p>　　为了以后方便。设置为777会更好一些。。执行如下命令：</p>
+<!-- raw HTML omitted -->
+<p><a href="http://leaverimage.b0.upaiyun.com/20542_o.png"><img src="/images/" alt=""></a>
 　　然后是启用 apache的 mod_rewrite 模块
-输入如下命令：
-<pre lang="php">sudo a2enmod rewrite</pre>
-　　然后继续输入如下命令来重启 Apache服务器：
-<pre lang="php">sudo /etc/init.d/apache2 restart</pre>
-　　Apache重启后我们可以测试一下，在 /var/www目录下新建文件 test.php，写入代码： <pre lang="php"> &lt;?php phpinfo(); ?&gt; </pre>保存，在地址栏输入 <a href="http://127.0.0.1/test.php">http://127.0.0.1/test.php</a> 或 <a href="http://localhost/test.php">http://localhost/test.php</a> ，如果正确出现了如下 php 配置信息则表明 LAMP Apache已经正常工作了
-<a href="http://leaverimage.b0.upaiyun.com/20543_o.png"><img src="/images/" alt="" /></a></p>
-
-<p>　　还可以测试一下mysql是否正常。这个直接在终端下输入
-<pre lang="php">mysql -u root -p</pre>
-　　然后根据提示输入密码就出现如下的图
-<a href="http://leaverimage.b0.upaiyun.com/20544_o.png"><img src="/images/" alt="" /></a>
-　　表示已经登录到mysql了。说明mysql可以了。可以继续输入 <pre lang="php">show databases;</pre>来显示所有的数据库。
-<a href="http://leaverimage.b0.upaiyun.com/20547_o.png"><img src="/images/" alt="" /></a></p>
-
+输入如下命令：</p>
+<!-- raw HTML omitted -->
+<p>　　然后继续输入如下命令来重启 Apache服务器：</p>
+<!-- raw HTML omitted -->
+<p>　　Apache重启后我们可以测试一下，在 /var/www目录下新建文件 test.php，写入代码： <!-- raw HTML omitted --> <!-- raw HTML omitted --> <!-- raw HTML omitted -->保存，在地址栏输入 http://127.0.0.1/test.php 或 http://localhost/test.php ，如果正确出现了如下 php 配置信息则表明 LAMP Apache已经正常工作了
+<a href="http://leaverimage.b0.upaiyun.com/20543_o.png"><img src="/images/" alt=""></a></p>
+<p>　　还可以测试一下mysql是否正常。这个直接在终端下输入</p>
+<!-- raw HTML omitted -->
+<p>　　然后根据提示输入密码就出现如下的图
+<a href="http://leaverimage.b0.upaiyun.com/20544_o.png"><img src="/images/" alt=""></a>
+　　表示已经登录到mysql了。说明mysql可以了。可以继续输入 <!-- raw HTML omitted -->show databases;<!-- raw HTML omitted -->来显示所有的数据库。
+<a href="http://leaverimage.b0.upaiyun.com/20547_o.png"><img src="/images/" alt=""></a></p>
 <p>参考文章：<a href="http://blog.csdn.net/xiaojianpitt/article/details/6326834">http://blog.csdn.net/xiaojianpitt/article/details/6326834</a></p>
 
 
@@ -467,7 +468,7 @@ ok。等会就安装完成了。。就这么简单。。
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

@@ -49,7 +49,8 @@ kafka集群(cluster) 一台机器不够,那就多搞几台,首先,启动zookeepe
 其他的就不用解释了.这里选出了2是leader,也就是说2这个节点会给消费者提供服务.
 然后我们测试一条信息. kafka-console-producer.bat --broker-list localhost:7777,localhost:8888,localhost:9999 --topic replicationtest 上面的7777是server1.properties 中设置的.根据个人情况.改改.然后在控制台发发消息.
 然后消费一下. kafka-console-consumer.bat --zookeeper localhost:2181 --topic replicationtest 这里的2181是zookeeper的端口,不用改. 然后.我们开始关掉一个broker,在3的控制台里CTRL,C.然后是否终止操作,输入Y. 再发一条消息 一切正常.我们看一下集群信息 发现Isr中存活的机器少了3.因为3挂了. 然后我们关掉broker2.这时候,会触发新的leader选举.期望值1变成leader,再发一条消息 可以看到生产者发消息过程中,产生了异常,因为和2的连接断开了.但是注意,消息并没有丢,因为触发了新的选举.可以看到,消费者还是接到了正常的消息.集群情况如下 至此,kafka的broker集群测试完毕,那么剩下的问题来了.消费者启动的时候连接的是zookeeper的地址,如果这台zookeeper挂了呢. 那么我们需要zookeeper集群部署.
-zookeeper集群 这就包括两部分. 1.</description>
+zookeeper集群 这就包括两部分.
+ 是broker本来要能知道这些zookeeper集群的地址,当一个宕机的时候,才会切换到另一个zookeeper 消费者要知道这些zookeeper的地址,理由同上.</description>
     </item>
     
     <item>
@@ -58,7 +59,7 @@ zookeeper集群 这就包括两部分. 1.</description>
       <pubDate>Fri, 04 Sep 2015 00:01:21 +0000</pubDate>
       
       <guid>https://leizhiyuan.github.io/2015/09/04/kafka%E4%B8%AD%E7%9A%84partition%E5%92%8Coffset/</guid>
-      <description> 在kafka快速上手中,留下的问题是关于partition和offset,这篇文章主要解释这个.
+      <description>在kafka快速上手中,留下的问题是关于partition和offset,这篇文章主要解释这个.
 Log机制 说到分区,就要说kafka对消息的存储.在官方文档中. 首先,kafka是通过log(日志)来记录消息发布的.每当产生一个消息,kafka会记录到本地的log文件中,这个log和我们平时的log有一定的区别.这里可以参考一下The Log,不多解释.
 这个log文件默认的位置在config/server.properties中指定的.默认的位置是log.dirs=/tmp/kafka-logs,linux不用说,windows的话就在你对应磁盘的根目录下.我这里是D盘.
 #分区partition# kafka是为分布式环境设计的,因此如果日志文件,其实也可以理解成消息数据库,放在同一个地方,那么必然会带来可用性的下降,一挂全挂,如果全量拷贝到所有的机器上,那么数据又存在过多的冗余,而且由于每台机器的磁盘大小是有限的,所以即使有再多的机器,可处理的消息还是被磁盘所限制,无法超越当前磁盘大小.因此有了partition的概念.
@@ -80,7 +81,7 @@ kafka对消息进行一定的计算,通过hash来进行分区.这样,就把一�
       <pubDate>Thu, 03 Sep 2015 22:29:57 +0000</pubDate>
       
       <guid>https://leizhiyuan.github.io/2015/09/03/kafka%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/</guid>
-      <description> 简单介绍 kafka是一个分布式消息中间件,在kafka中主要涉及到四个基本名词: Topic Kafka将消息种子分门别类， 每一类的消息称之为一个主题(Topic).
+      <description>简单介绍 kafka是一个分布式消息中间件,在kafka中主要涉及到四个基本名词: Topic Kafka将消息种子分门别类， 每一类的消息称之为一个主题(Topic).
 Producer 发布消息的对象称之为主题生产者.
 Consumer 订阅消息并处理消息的对象称之为主题消费者
 Broker 已发布的消息保存在一组服务器中，称之为Kafka集群。集群中的每一个服务器称为一个代理(Broker). 消费者可以订阅一个或多个主题，并从Broker拉数据(注意是拉,不是pull,)，从而消费这些已发布的消息。

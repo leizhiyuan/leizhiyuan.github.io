@@ -18,7 +18,7 @@ WCF服务调用的两种典型方式
 　1.是借助代码生成工具svcUtil.exe导入元数据生成客户端代码和配置，添加服务引用采用的就是这种方式，工具会创建一个继承自Client的服务代理类型。
 　2.是通过ChannelFactory直接创建服务代理对象进行服务调用。
 　如果客户端已经进行了终结点的配置
-　那么通过信道工厂进行调用的代码大致如下：　using(Channel&lt;IService&gt; channelFactory=new ChannelFactory&lt;IService&gt;(&#34;Service&#34;))　{　IService ise=channelFactory.CreateChannel();　using(ise as IDisposable)　{ ise.MethodName(); }　} 　WCF处理的是跨应用程序域，跨机器，跨网络的通信，所以WCF大多数时间进行网络传俗这样的IO操作，IO绑定的操作是采用异步编程（APM【Asynchronous Programming Model】）
+　那么通过信道工厂进行调用的代码大致如下：　　WCF处理的是跨应用程序域，跨机器，跨网络的通信，所以WCF大多数时间进行网络传俗这样的IO操作，IO绑定的操作是采用异步编程（APM【Asynchronous Programming Model】）
 消息交换模式MEP（Message Exchange Pattern）
 　MEP定义了参与者进行消息交换的模板，代表一系列的模板，他们定了消息的发送者和接收者，相互进行消息传递的次序，比较典型的三种
 　1.Datagram 数据包模式，嘴尖的SEND/FORGET模式也叫One-Way模式，基于从一个源到另一个或多个目的地的单向消息传输，并不期待回复
@@ -35,7 +35,7 @@ WCF服务调用的两种典型方式
 　1.是借助代码生成工具svcUtil.exe导入元数据生成客户端代码和配置，添加服务引用采用的就是这种方式，工具会创建一个继承自Client的服务代理类型。
 　2.是通过ChannelFactory直接创建服务代理对象进行服务调用。
 　如果客户端已经进行了终结点的配置
-　那么通过信道工厂进行调用的代码大致如下：　using(Channel&lt;IService&gt; channelFactory=new ChannelFactory&lt;IService&gt;(&#34;Service&#34;))　{　IService ise=channelFactory.CreateChannel();　using(ise as IDisposable)　{ ise.MethodName(); }　} 　WCF处理的是跨应用程序域，跨机器，跨网络的通信，所以WCF大多数时间进行网络传俗这样的IO操作，IO绑定的操作是采用异步编程（APM【Asynchronous Programming Model】）
+　那么通过信道工厂进行调用的代码大致如下：　　WCF处理的是跨应用程序域，跨机器，跨网络的通信，所以WCF大多数时间进行网络传俗这样的IO操作，IO绑定的操作是采用异步编程（APM【Asynchronous Programming Model】）
 消息交换模式MEP（Message Exchange Pattern）
 　MEP定义了参与者进行消息交换的模板，代表一系列的模板，他们定了消息的发送者和接收者，相互进行消息传递的次序，比较典型的三种
 　1.Datagram 数据包模式，嘴尖的SEND/FORGET模式也叫One-Way模式，基于从一个源到另一个或多个目的地的单向消息传输，并不期待回复
@@ -98,9 +98,9 @@ WCF服务调用的两种典型方式
     "name" : "bystander"
   },
   "headline": "WCF读书笔记(1)",
-  "description" : "信道的分类：Transport Channel 信道\n　1.Message Encording Channel　2.Protocol Channel\n信道管理器（Channel Manager）,信道管理器用于信道栈的创建和生命周期的管理\n　1.ChannelListener　2.ChannelFactory\nWCF服务调用的两种典型方式\n　1.是借助代码生成工具svcUtil.exe导入元数据生成客户端代码和配置，添加服务引用采用的就是这种方式，工具会创建一个继承自Client的服务代理类型。\n　2.是通过ChannelFactory直接创建服务代理对象进行服务调用。\n　如果客户端已经进行了终结点的配置\n　那么通过信道工厂进行调用的代码大致如下：　using(Channel\x26lt;IService\x26gt; channelFactory=new ChannelFactory\x26lt;IService\x26gt;(\x22Service\x22))　{　IService ise=channelFactory.CreateChannel();　using(ise as IDisposable)　{ ise.MethodName(); }　} 　WCF处理的是跨应用程序域，跨机器，跨网络的通信，所以WCF大多数时间进行网络传俗这样的IO操作，IO绑定的操作是采用异步编程（APM【Asynchronous Programming Model】）\n消息交换模式MEP（Message Exchange Pattern）\n　MEP定义了参与者进行消息交换的模板，代表一系列的模板，他们定了消息的发送者和接收者，相互进行消息传递的次序，比较典型的三种\n　1.Datagram 数据包模式，嘴尖的SEND\/FORGET模式也叫One-Way模式，基于从一个源到另一个或多个目的地的单向消息传输，并不期待回复\n　消息报的发送可以分成三个模式，分别是单目的地模式，多投模式，广播模式。 依次接受方更强大。。\n　2.Request\/Reply模式\n　使用最多的一种模式，请求期待回复。采用同步通信方式，但也可用于异步通信\n　3.Duplex 双工模式\n　双方可以互发消息，实现服务器回调客户端。订阅\/发布是其中一种典型的实例，TCP可以提供原生的双工通信，WCF通过WSDualHttpBinding实现了基于Http的双工通信，实际上是采用两个HTTP通道实现",
+  "description" : "信道的分类：Transport Channel 信道\n　1.Message Encording Channel　2.Protocol Channel\n信道管理器（Channel Manager）,信道管理器用于信道栈的创建和生命周期的管理\n　1.ChannelListener　2.ChannelFactory\nWCF服务调用的两种典型方式\n　1.是借助代码生成工具svcUtil.exe导入元数据生成客户端代码和配置，添加服务引用采用的就是这种方式，工具会创建一个继承自Client的服务代理类型。\n　2.是通过ChannelFactory直接创建服务代理对象进行服务调用。\n　如果客户端已经进行了终结点的配置\n　那么通过信道工厂进行调用的代码大致如下：　　WCF处理的是跨应用程序域，跨机器，跨网络的通信，所以WCF大多数时间进行网络传俗这样的IO操作，IO绑定的操作是采用异步编程（APM【Asynchronous Programming Model】）\n消息交换模式MEP（Message Exchange Pattern）\n　MEP定义了参与者进行消息交换的模板，代表一系列的模板，他们定了消息的发送者和接收者，相互进行消息传递的次序，比较典型的三种\n　1.Datagram 数据包模式，嘴尖的SEND\/FORGET模式也叫One-Way模式，基于从一个源到另一个或多个目的地的单向消息传输，并不期待回复\n　消息报的发送可以分成三个模式，分别是单目的地模式，多投模式，广播模式。 依次接受方更强大。。\n　2.Request\/Reply模式\n　使用最多的一种模式，请求期待回复。采用同步通信方式，但也可用于异步通信\n　3.Duplex 双工模式\n　双方可以互发消息，实现服务器回调客户端。订阅\/发布是其中一种典型的实例，TCP可以提供原生的双工通信，WCF通过WSDualHttpBinding实现了基于Http的双工通信，实际上是采用两个HTTP通道实现",
   "inLanguage" : "en",
-  "wordCount":  46 ,
+  "wordCount":  33 ,
   "datePublished" : "2012-09-05T19:29:14",
   "dateModified" : "2012-09-05T19:29:14",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -128,7 +128,7 @@ WCF服务调用的两种典型方式
 　1.是借助代码生成工具svcUtil.exe导入元数据生成客户端代码和配置，添加服务引用采用的就是这种方式，工具会创建一个继承自Client的服务代理类型。
 　2.是通过ChannelFactory直接创建服务代理对象进行服务调用。
 　如果客户端已经进行了终结点的配置
-　那么通过信道工厂进行调用的代码大致如下：　using(Channel&lt;IService&gt; channelFactory=new ChannelFactory&lt;IService&gt;(&#34;Service&#34;))　{　IService ise=channelFactory.CreateChannel();　using(ise as IDisposable)　{ ise.MethodName(); }　} 　WCF处理的是跨应用程序域，跨机器，跨网络的通信，所以WCF大多数时间进行网络传俗这样的IO操作，IO绑定的操作是采用异步编程（APM【Asynchronous Programming Model】）
+　那么通过信道工厂进行调用的代码大致如下：　　WCF处理的是跨应用程序域，跨机器，跨网络的通信，所以WCF大多数时间进行网络传俗这样的IO操作，IO绑定的操作是采用异步编程（APM【Asynchronous Programming Model】）
 消息交换模式MEP（Message Exchange Pattern）
 　MEP定义了参与者进行消息交换的模板，代表一系列的模板，他们定了消息的发送者和接收者，相互进行消息传递的次序，比较典型的三种
 　1.Datagram 数据包模式，嘴尖的SEND/FORGET模式也叫One-Way模式，基于从一个源到另一个或多个目的地的单向消息传输，并不期待回复
@@ -159,7 +159,7 @@ WCF服务调用的两种典型方式
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -344,50 +344,26 @@ WCF服务调用的两种典型方式
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <p><strong>信道的分类：Transport Channel 信道</strong></p>
-
 <p>　　1.Message Encording Channel　　
 　　2.Protocol Channel</p>
-
 <p><strong>信道管理器（Channel Manager）,信道管理器用于信道栈的创建和生命周期的管理</strong></p>
-
 <p>　　1.ChannelListener　　
 　　2.ChannelFactory</p>
-
 <p><strong>WCF服务调用的两种典型方式</strong></p>
-
-<p>　　1.是借助代码生成工具svcUtil.exe导入元数据生成客户端代码和配置，添加服务引用采用的就是这种方式，工具会创建一个继承自Client<TChannel>的服务代理类型。</p>
-
+<p>　　1.是借助代码生成工具svcUtil.exe导入元数据生成客户端代码和配置，添加服务引用采用的就是这种方式，工具会创建一个继承自Client<!-- raw HTML omitted -->的服务代理类型。</p>
 <p>　　2.是通过ChannelFactory直接创建服务代理对象进行服务调用。</p>
-
 <p>　　如果客户端已经进行了终结点的配置</p>
-
 <p>　　那么通过信道工厂进行调用的代码大致如下：　</p>
-
-<pre class="lang:c# decode:true " >using(Channel&lt;IService&gt; channelFactory=new ChannelFactory&lt;IService&gt;("Service"))　　
-{　　
-　　IService ise=channelFactory.CreateChannel();　　
-　　using(ise as IDisposable)　　
-　　{
-　    　ise.MethodName();
-　　}　
-}</pre> 
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>　　WCF处理的是跨应用程序域，跨机器，跨网络的通信，所以WCF大多数时间进行网络传俗这样的IO操作，IO绑定的操作是采用异步编程（APM【Asynchronous Programming Model】）</p>
-
 <p><strong>消息交换模式MEP（Message Exchange Pattern）</strong></p>
-
 <p>　　MEP定义了参与者进行消息交换的模板，代表一系列的模板，他们定了消息的发送者和接收者，相互进行消息传递的次序，比较典型的三种</p>
-
 <p>　　1.Datagram 数据包模式，嘴尖的SEND/FORGET模式也叫One-Way模式，基于从一个源到另一个或多个目的地的单向消息传输，并不期待回复</p>
-
 <p>　　消息报的发送可以分成三个模式，分别是单目的地模式，多投模式，广播模式。 依次接受方更强大。。</p>
-
 <p>　　2.Request/Reply模式</p>
-
 <p>　　使用最多的一种模式，请求期待回复。采用同步通信方式，但也可用于异步通信</p>
-
 <p>　　3.Duplex 双工模式</p>
-
 <p>　　双方可以互发消息，实现服务器回调客户端。订阅/发布是其中一种典型的实例，TCP可以提供原生的双工通信，WCF通过WSDualHttpBinding实现了基于Http的双工通信，实际上是采用两个HTTP通道实现</p>
 
 
@@ -506,7 +482,7 @@ WCF服务调用的两种典型方式
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

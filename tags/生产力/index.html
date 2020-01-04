@@ -51,7 +51,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -251,26 +251,18 @@
                 
                   <p>最近遇到一个问题,公司的 java 服务端应用,启动后,通过 <code>jstack pid |grep nid -c</code>,可以看到大概创建了2044个线程,然后此时应用就会报错,提示无法创建更多线程, jvm 开始抛错.
 查看 mac 的内存,发现还是够的.因为一般认为可创建的线程数=(总内存-其他占用的内存)/线程大小,所以内存够的情况下,应该是能创建的.</p>
-
 <p>google 一圈,发现mac 对单线程创建的线程是有限制的.理由应该是为了保持系统稳定性.主要有两个参数</p>
-
 <p><code>sysctl kern.num_threads</code> 这个可以看一下,说明了系统能够创建的总共的线程,单个应用能够创建的线程是<code>sysctl kern.num_taskthreads</code>,第二个参数就是导致我们创建不出来更多线程的原因,
 因为2044+一些 gc 的线程,基本上刚刚达到这个极限.</p>
-
 <p>那么要么改程序,要么改参数.改程序这是不可能的..因为只有 mac 会有这个问题..该参数尝试通过<code>sudo sysctl -w kern.num_taskthreads=4096</code>,修改,会发现提示是只读属性.google 了一圈,无解.</p>
-
 <p>最终意外解决..</p>
-
 <p>参考这里<a href="https://support.apple.com/en-us/HT202528">开启性能模式</a></p>
-
 <ol>
 <li><code>nvram boot-args</code></li>
 <li><code>sudo nvram boot-args=&quot;serverperfmode=1 $(nvram boot-args 2&gt;/dev/null | cut -f 2-)&quot;</code></li>
 <li>重启</li>
 </ol>
-
 <p>如果想要恢复的话: <code>sudo nvram boot-args=&quot;$(nvram boot-args 2&gt;/dev/null | sed -e $'s/boot-args\t//;s/serverperfmode=1//')&quot;</code></p>
-
 <p>当时各种搜索,加打apple 支持电话.无解.搜索意外看到这个说明,说开启之后,可以支持更多服务应用之类的.猜测应该会改这个值..果然..改完之后,直接重启,这个限制会变成5000..完美解决..理论上,应该通过继续修改这个参数
 是可以自定义这个值的.不过还没尝试.</p>
 
@@ -321,18 +313,15 @@
               <div class="post-entry">
                 
                   <p>mac 下使用 homebrew 作为包管理工具是非常好的. brew 用来安装非 gui 界面的程序. cask 用来安装 gui 界面的程序.但是这两个是使用的源在国外.所以你懂得..</p>
-
 <p>1.替换 homebrew 默认源</p>
-<div class="highlight"><pre class="chroma">cd /usr/local
-git remote set-url origin git://mirrors.ustc.edu.cn/brew.git</pre></div>
-<p>这里注意记一下以前的默认源.防止以后想换回来..</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">cd /usr/local
+git remote set-url origin git://mirrors.ustc.edu.cn/brew.git
+</code></pre></div><p>这里注意记一下以前的默认源.防止以后想换回来..</p>
 <p>默认源是
 <code>https://github.com/Homebrew/brew</code></p>
-
 <p>2.替换homebrew bottles默认源</p>
-<div class="highlight"><pre class="chroma">echo &#39;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles&#39; &gt;&gt; ~/.bashrc</pre></div>
-<p>这里的.bashrc根据自己的情况替换.我是 zsh,就写到.zshrc 文件.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">echo &#39;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles&#39; &gt;&gt; ~/.bashrc
+</code></pre></div><p>这里的.bashrc根据自己的情况替换.我是 zsh,就写到.zshrc 文件.</p>
 
                 
               </div>
@@ -381,16 +370,12 @@ git remote set-url origin git://mirrors.ustc.edu.cn/brew.git</pre></div>
               <div class="post-entry">
                 
                   <p>自从入了 hexo 的坑.这玩意折腾的我不要不要的.各种诡异的问题,不过也顺便搞了搞其他的东西.看了很多相关的代理设置方案.最终沿用 windows 下的策略.最简单高效.</p>
-
 <p>mac 下的 ss 代理是只能设置浏览器代理的.对于一些不走 http 代理的.比如终端.或者其他软件.那么就需要将 ss 代理指定给其他软件或者终端使用.</p>
-
 <p>1.有一个 ss 代理
 2.安装proxifier,直接 <code>brew cask install proxifier</code>
 3.安装好之后,添加Proxies 里面,把 ssh 的信息添加进入
 4.添加 Rules, 我为了简单..直接将default 设置成走代理.这样,就啥也不用管了.等 hexo deploy 结束.再关闭proxifier 就行了.</p>
-
 <p>实际使用中.可以先开全局代理.然后知道哪个程序走了代理.需要走代理.然后单独设置即可.软件很好使用.</p>
-
 <p>不得不说, wall 越来越令人难受与不安.</p>
 
                 
@@ -514,7 +499,7 @@ sudo ln -s /Library/Developer/CommandLineTools/Library/Perl/5.18/darwin-thread-m
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

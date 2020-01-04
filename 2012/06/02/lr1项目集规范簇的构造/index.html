@@ -11,7 +11,7 @@
   <meta property="og:title" content="LR(1)项目集规范簇的构造" />
   <meta name="twitter:title" content="LR(1)项目集规范簇的构造" />
   <meta name="description" content="首先我们知道LR(0)的项目的形式是[A→α·β ]这样的.而在LR(1)中的项目形式是[A→α·β ，a ]，其中A→α·β 为LR(0)项目，称为心，a为终结符或#，称为向前搜索符。对归约项目[A→α·,a]，仅当前输入符号是a时，才能用A→α进行归约。一会将会看到具体的例子。
-　课本上给出的规则是：我将要对照着规则来说明，这里要强调一下，&rdquo;,&lsquo;在这里是分隔符。不是终结符。他是一个标志，
+　课本上给出的规则是：我将要对照着规则来说明，这里要强调一下，&quot;,&lsquo;在这里是分隔符。不是终结符。他是一个标志，
 　以S′→·S，#属于初始项目集中，把&rsquo;#&lsquo;号作为向前搜索符，表示活前缀为γ(若γ是有关S产生式的某一右部)要归约成S时，必须面临输入符为&rsquo;#&lsquo;号才行。因此对初始项目S′→·S，# 求闭包后再用转换函数逐步求出整个文法的LR(1)项目集族。具体构造步骤如下：
 　(1) 构造LR(1)项目集的闭包函数。
 　a) I 的任何项目都属于CLOSURE(I) b) 若有项目[A→α·Bβ,a ]属于CLOSURE(I)，B→γ是文法中的产生式，β∈V*，b∈FIRST(βa)， 则[B→·γ,b]也属于CLOSURE(I)中。 c) 重复b)直到CLOSURE(I)不再增大为止。
@@ -24,7 +24,7 @@
 　然后使用GO函数来构造I1，从J={任何形如[A→αX·β,a]的项目 | [A→α·Xβ,a]∈I}我们可以知道I1的核（最初的产生式）就是这里的J，然后呢。X是I（也就是我们的I0）中的·后面的符号，也就是输入符。。可以看到在I0中，X可以为S，a，b，我们先以I1=GO(I0,S)=CLOSURE( S′→S·,# )，注意，·号已经前进了。因为J是I输入进一的项目，求I1，发现·后面没符号了，所以闭包就是他自己了。最终求得的I1的项目集为：
 　{S′→S·,# }">
   <meta property="og:description" content="首先我们知道LR(0)的项目的形式是[A→α·β ]这样的.而在LR(1)中的项目形式是[A→α·β ，a ]，其中A→α·β 为LR(0)项目，称为心，a为终结符或#，称为向前搜索符。对归约项目[A→α·,a]，仅当前输入符号是a时，才能用A→α进行归约。一会将会看到具体的例子。
-　课本上给出的规则是：我将要对照着规则来说明，这里要强调一下，&rdquo;,&lsquo;在这里是分隔符。不是终结符。他是一个标志，
+　课本上给出的规则是：我将要对照着规则来说明，这里要强调一下，&quot;,&lsquo;在这里是分隔符。不是终结符。他是一个标志，
 　以S′→·S，#属于初始项目集中，把&rsquo;#&lsquo;号作为向前搜索符，表示活前缀为γ(若γ是有关S产生式的某一右部)要归约成S时，必须面临输入符为&rsquo;#&lsquo;号才行。因此对初始项目S′→·S，# 求闭包后再用转换函数逐步求出整个文法的LR(1)项目集族。具体构造步骤如下：
 　(1) 构造LR(1)项目集的闭包函数。
 　a) I 的任何项目都属于CLOSURE(I) b) 若有项目[A→α·Bβ,a ]属于CLOSURE(I)，B→γ是文法中的产生式，β∈V*，b∈FIRST(βa)， 则[B→·γ,b]也属于CLOSURE(I)中。 c) 重复b)直到CLOSURE(I)不再增大为止。
@@ -37,7 +37,7 @@
 　然后使用GO函数来构造I1，从J={任何形如[A→αX·β,a]的项目 | [A→α·Xβ,a]∈I}我们可以知道I1的核（最初的产生式）就是这里的J，然后呢。X是I（也就是我们的I0）中的·后面的符号，也就是输入符。。可以看到在I0中，X可以为S，a，b，我们先以I1=GO(I0,S)=CLOSURE( S′→S·,# )，注意，·号已经前进了。因为J是I输入进一的项目，求I1，发现·后面没符号了，所以闭包就是他自己了。最终求得的I1的项目集为：
 　{S′→S·,# }">
   <meta name="twitter:description" content="首先我们知道LR(0)的项目的形式是[A→α·β ]这样的.而在LR(1)中的项目形式是[A→α·β ，a ]，其中A→α·β 为LR(0)项目，称为心，a为终结符或#，称为向前搜索符。对归约项目[A→α·,a]，仅当前输入符号是a时，才能用A→α进行归约。一会将会看到具体的例子。
-　课本上给出的规则是：我将要对照着规则来说明，这里要强调一下，&rdquo;,&lsquo;在这里是分隔符。不是终结 …">
+　课本上给出的规则是：我将要对照着规则来说明，这里要强调一下，&quot;,&lsquo;在这里是分隔符。不是终结 …">
   <meta name="author" content="bystander"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -86,9 +86,9 @@
     "name" : "bystander"
   },
   "headline": "LR(1)项目集规范簇的构造",
-  "description" : "首先我们知道LR(0)的项目的形式是[A→α·β ]这样的.而在LR(1)中的项目形式是[A→α·β ，a ]，其中A→α·β 为LR(0)项目，称为心，a为终结符或#，称为向前搜索符。对归约项目[A→α·,a]，仅当前输入符号是a时，才能用A→α进行归约。一会将会看到具体的例子。\n　课本上给出的规则是：我将要对照着规则来说明，这里要强调一下，\x26rdquo;,\x26lsquo;在这里是分隔符。不是终结符。他是一个标志，\n　以S′→·S，#属于初始项目集中，把\x26rsquo;#\x26lsquo;号作为向前搜索符，表示活前缀为γ(若γ是有关S产生式的某一右部)要归约成S时，必须面临输入符为\x26rsquo;#\x26lsquo;号才行。因此对初始项目S′→·S，# 求闭包后再用转换函数逐步求出整个文法的LR(1)项目集族。具体构造步骤如下：\n　(1) 构造LR(1)项目集的闭包函数。\n　a) I 的任何项目都属于CLOSURE(I) b) 若有项目[A→α·Bβ,a ]属于CLOSURE(I)，B→γ是文法中的产生式，β∈V*，b∈FIRST(βa)， 则[B→·γ,b]也属于CLOSURE(I)中。 c) 重复b)直到CLOSURE(I)不再增大为止。\n　(2) 转换函数的构造\n　LR(1)转换函数的构造与LR(0)的相似，GO(I,X)＝CLOSURE(J)　其中I是LR(1)的项目集，X是文法符号： J={任何形如[A→αX·β,a]的项目 | [A→α·Xβ,a]∈I}\n　例如下列文法G′为：\n　(0) S′→S (1) S→aAd　(2) S→bAc　(3) S→aec (4) S→bed (5) A→e　构造他的LR(1)项目集规范簇。\n　以I0=CLOSURE（S′→·S，#）开始。运算。若有项目[A→α·Bβ,a ]属于CLOSURE(I)，B→γ是文法中的产生式，β∈V*，b∈FIRST(βa)， 则[B→·γ,b]也属于CLOSURE(I)中。此时，我们可以把S看成B，#看成a，然后需要求FIRST集合，此时没有β，a为#，所以FIRST（#）中只有一个b=#，而S有四个产生式。所有四个产生式加上#都是在I0中，最终求得的I0项目集为\n　{　S′→·S,#　S→·aAd,#　S→·bAc,#　S→·aec,#　S→·bed,#　}\n　然后使用GO函数来构造I1，从J={任何形如[A→αX·β,a]的项目 | [A→α·Xβ,a]∈I}我们可以知道I1的核（最初的产生式）就是这里的J，然后呢。X是I（也就是我们的I0）中的·后面的符号，也就是输入符。。可以看到在I0中，X可以为S，a，b，我们先以I1=GO(I0,S)=CLOSURE( S′→S·,# )，注意，·号已经前进了。因为J是I输入进一的项目，求I1，发现·后面没符号了，所以闭包就是他自己了。最终求得的I1的项目集为：\n　{S′→S·,# }",
+  "description" : "首先我们知道LR(0)的项目的形式是[A→α·β ]这样的.而在LR(1)中的项目形式是[A→α·β ，a ]，其中A→α·β 为LR(0)项目，称为心，a为终结符或#，称为向前搜索符。对归约项目[A→α·,a]，仅当前输入符号是a时，才能用A→α进行归约。一会将会看到具体的例子。\n　课本上给出的规则是：我将要对照着规则来说明，这里要强调一下，\x26quot;,\x26lsquo;在这里是分隔符。不是终结符。他是一个标志，\n　以S′→·S，#属于初始项目集中，把\x26rsquo;#\x26lsquo;号作为向前搜索符，表示活前缀为γ(若γ是有关S产生式的某一右部)要归约成S时，必须面临输入符为\x26rsquo;#\x26lsquo;号才行。因此对初始项目S′→·S，# 求闭包后再用转换函数逐步求出整个文法的LR(1)项目集族。具体构造步骤如下：\n　(1) 构造LR(1)项目集的闭包函数。\n　a) I 的任何项目都属于CLOSURE(I) b) 若有项目[A→α·Bβ,a ]属于CLOSURE(I)，B→γ是文法中的产生式，β∈V*，b∈FIRST(βa)， 则[B→·γ,b]也属于CLOSURE(I)中。 c) 重复b)直到CLOSURE(I)不再增大为止。\n　(2) 转换函数的构造\n　LR(1)转换函数的构造与LR(0)的相似，GO(I,X)＝CLOSURE(J)　其中I是LR(1)的项目集，X是文法符号： J={任何形如[A→αX·β,a]的项目 | [A→α·Xβ,a]∈I}\n　例如下列文法G′为：\n　(0) S′→S (1) S→aAd　(2) S→bAc　(3) S→aec (4) S→bed (5) A→e　构造他的LR(1)项目集规范簇。\n　以I0=CLOSURE（S′→·S，#）开始。运算。若有项目[A→α·Bβ,a ]属于CLOSURE(I)，B→γ是文法中的产生式，β∈V*，b∈FIRST(βa)， 则[B→·γ,b]也属于CLOSURE(I)中。此时，我们可以把S看成B，#看成a，然后需要求FIRST集合，此时没有β，a为#，所以FIRST（#）中只有一个b=#，而S有四个产生式。所有四个产生式加上#都是在I0中，最终求得的I0项目集为\n　{　S′→·S,#　S→·aAd,#　S→·bAc,#　S→·aec,#　S→·bed,#　}\n　然后使用GO函数来构造I1，从J={任何形如[A→αX·β,a]的项目 | [A→α·Xβ,a]∈I}我们可以知道I1的核（最初的产生式）就是这里的J，然后呢。X是I（也就是我们的I0）中的·后面的符号，也就是输入符。。可以看到在I0中，X可以为S，a，b，我们先以I1=GO(I0,S)=CLOSURE( S′→S·,# )，注意，·号已经前进了。因为J是I输入进一的项目，求I1，发现·后面没符号了，所以闭包就是他自己了。最终求得的I1的项目集为：\n　{S′→S·,# }",
   "inLanguage" : "en",
-  "wordCount":  104 ,
+  "wordCount":  99 ,
   "datePublished" : "2012-06-02T03:50:48",
   "dateModified" : "2012-06-02T03:50:48",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -109,7 +109,7 @@
 
 <meta property="og:title" content="LR(1)项目集规范簇的构造" />
 <meta property="og:description" content="首先我们知道LR(0)的项目的形式是[A→α·β ]这样的.而在LR(1)中的项目形式是[A→α·β ，a ]，其中A→α·β 为LR(0)项目，称为心，a为终结符或#，称为向前搜索符。对归约项目[A→α·,a]，仅当前输入符号是a时，才能用A→α进行归约。一会将会看到具体的例子。
-　课本上给出的规则是：我将要对照着规则来说明，这里要强调一下，&rdquo;,&lsquo;在这里是分隔符。不是终结符。他是一个标志，
+　课本上给出的规则是：我将要对照着规则来说明，这里要强调一下，&quot;,&lsquo;在这里是分隔符。不是终结符。他是一个标志，
 　以S′→·S，#属于初始项目集中，把&rsquo;#&lsquo;号作为向前搜索符，表示活前缀为γ(若γ是有关S产生式的某一右部)要归约成S时，必须面临输入符为&rsquo;#&lsquo;号才行。因此对初始项目S′→·S，# 求闭包后再用转换函数逐步求出整个文法的LR(1)项目集族。具体构造步骤如下：
 　(1) 构造LR(1)项目集的闭包函数。
 　a) I 的任何项目都属于CLOSURE(I) b) 若有项目[A→α·Bβ,a ]属于CLOSURE(I)，B→γ是文法中的产生式，β∈V*，b∈FIRST(βa)， 则[B→·γ,b]也属于CLOSURE(I)中。 c) 重复b)直到CLOSURE(I)不再增大为止。
@@ -128,7 +128,7 @@
 
   <meta name="twitter:title" content="LR(1)项目集规范簇的构造" />
   <meta name="twitter:description" content="首先我们知道LR(0)的项目的形式是[A→α·β ]这样的.而在LR(1)中的项目形式是[A→α·β ，a ]，其中A→α·β 为LR(0)项目，称为心，a为终结符或#，称为向前搜索符。对归约项目[A→α·,a]，仅当前输入符号是a时，才能用A→α进行归约。一会将会看到具体的例子。
-　课本上给出的规则是：我将要对照着规则来说明，这里要强调一下，&rdquo;,&lsquo;在这里是分隔符。不是终结 …">
+　课本上给出的规则是：我将要对照着规则来说明，这里要强调一下，&quot;,&lsquo;在这里是分隔符。不是终结 …">
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -139,7 +139,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -324,24 +324,16 @@
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <p>　　首先我们知道LR(0)的项目的形式是[A→α·β ]这样的.而在LR(1)中的项目形式是[A→α·β ，a ]，其中A→α·β 为LR(0)项目，称为心，a为终结符或#，称为向前搜索符。对归约项目[A→α·,a]，仅当前输入符号是a时，才能用A→α进行归约。一会将会看到具体的例子。</p>
-
-<p>　　课本上给出的规则是：我将要对照着规则来说明，这里要强调一下，&rdquo;,&lsquo;在这里是分隔符。不是终结符。他是一个标志，</p>
-
+<p>　　课本上给出的规则是：我将要对照着规则来说明，这里要强调一下，&quot;,&lsquo;在这里是分隔符。不是终结符。他是一个标志，</p>
 <p>　　以S′→·S，#属于初始项目集中，把&rsquo;#&lsquo;号作为向前搜索符，表示活前缀为γ(若γ是有关S产生式的某一右部)要归约成S时，必须面临输入符为&rsquo;#&lsquo;号才行。因此对初始项目S′→·S，# 求闭包后再用转换函数逐步求出整个文法的LR(1)项目集族。具体构造步骤如下：</p>
-
 <p>　(1) 构造LR(1)项目集的闭包函数。</p>
-
 <p>　　a) I 的任何项目都属于CLOSURE(I)
 　　b) 若有项目[A→α·Bβ,a ]属于CLOSURE(I)，B→γ是文法中的产生式，β∈V*，b∈FIRST(βa)， 则[B→·γ,b]也属于CLOSURE(I)中。
 　　c) 重复b)直到CLOSURE(I)不再增大为止。</p>
-
 <p>　　(2) 转换函数的构造</p>
-
 <p>　　LR(1)转换函数的构造与LR(0)的相似，GO(I,X)＝CLOSURE(J)　其中I是LR(1)的项目集，X是文法符号：
 　　J={任何形如[A→αX·β,a]的项目 | [A→α·Xβ,a]∈I}</p>
-
 <p>　　例如下列文法G′为：</p>
-
 <p>　　(0) S′→S
 　　(1) S→aAd　　
 　　(2) S→bAc　　
@@ -349,9 +341,7 @@
 　　(4) S→bed
 　　(5) A→e　
 　　构造他的LR(1)项目集规范簇。</p>
-
 <p>　　以I0=CLOSURE（S′→·S，#）开始。运算。若有项目[A→α·Bβ,a ]属于CLOSURE(I)，B→γ是文法中的产生式，β∈V*，b∈FIRST(βa)， 则[B→·γ,b]也属于CLOSURE(I)中。此时，我们可以把S看成B，#看成a，然后需要求FIRST集合，此时没有β，a为#，所以FIRST（#）中只有一个b=#，而S有四个产生式。所有四个产生式加上#都是在I0中，最终求得的I0项目集为</p>
-
 <p>　　{　
 　　S′→·S,#　　
 　　S→·aAd,#　　
@@ -359,52 +349,42 @@
 　　S→·aec,#　　
 　　S→·bed,#　　
 　　}</p>
-
 <p>　　然后使用GO函数来构造I1，从J={任何形如[A→αX·β,a]的项目 | [A→α·Xβ,a]∈I}我们可以知道I1的核（最初的产生式）就是这里的J，然后呢。X是I（也就是我们的I0）中的·后面的符号，也就是输入符。。可以看到在I0中，X可以为S，a，b，我们先以I1=GO(I0,S)=CLOSURE( S′→S·,# )，注意，·号已经前进了。因为J是I输入进一的项目，求I1，发现·后面没符号了，所以闭包就是他自己了。最终求得的I1的项目集为：</p>
-
 <p>　　{S′→S·,# }</p>
-
 <p>　　我们上一步是用的I1=GO(I0,S)来求得，我们求I2的时候使用GO（I0，a）来求，此时X就是a了。然后我们吧I0中符合的项目中的·后移一位得到J然后对J求闭包，就是I2了。此处J=S→a·Ad,# 和S→a·ec,#</p>
-
 <p>　　I2=GO(I0,a)=CLOSURE(S→a·Ad,# S→a·ec,#)，然后又回到了求闭包了。</p>
-
 <p>　　对于S→a·ec,#，因为输入符下一位是一个终结符，也就是说没有B→γ这样的产生式，所以这个就不用继续向下求闭包了，闭包就是他自己嘛。然后关键是S→a·Ad,# 此处的A相当于规则中的B，d相当于规则中的β，A→e存在。为了确定这个心的向前搜索符，我们根据规则需要求b∈FIRST(βa)，这里也就是求First(d#),显然结果为b=d，规则中指出[B→·γ,b]也属于CLOSURE(I)，所以可以确定A→·e,d也在I2中。。</p>
-
 <p>　　最终I2的项目集为</p>
-
 <p>　　{
 　　S→a·Ad,#　　
 　　S→a·ec,#　　
 　　A→·e,d　　
 　　}</p>
-
 <p>　　到这里，关键点就说完了。只需要继续求GO(I0,b)，然后求GO（I1，X），GO（I2，X）等等。X的确定前面已经说了，就是I1，I2的·后面的符号。就行了。。当然像此处的I1，·后面已经没付好了，所以GO（I1，X）就不用求了。。</p>
-
 <p>　　这种东西还是要自己手动练习的。所以我给出最终的全部项目集规范簇，大家按照这个步骤来做一做。看看结果对不对吧。
-　　<table border="1px"  rules=all><tr><td>
+　　<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted -->
 　  I0： S′→·S,#
 　　　 　S→·aAd,#
 　　　 　S→·bAc,#
 　　　 　S→·aec,#
-　　　 　S→·bed,#</td><td>
-　　I1： S′→S·,#</td><td>
+　　　 　S→·bed,#<!-- raw HTML omitted --><!-- raw HTML omitted -->
+　　I1： S′→S·,#<!-- raw HTML omitted --><!-- raw HTML omitted -->
 　　I2： S→a·Ad,#
 　　　 　S→a·ec,#
-　　　 　A→·e,d</td><td>
+　　　 　A→·e,d<!-- raw HTML omitted --><!-- raw HTML omitted -->
 　　I3： S→b·Ac,#
 　 　　　S→b·ed,#
-　 　　　A→·e,c</td><tr><td>
-　　I4： S→aA·d,#</td><td>
-   I5： S→ae·c,#
-　 　    A→e·,d </td><td>
-   I6： S→bA·c,# </td><td>
-   I7： S→be·d,#
-　 　   A→e·,c </td></tr><tr><td>
-   I8： S→aAd·,# </td><td>
-   I9： S→aec·,# </td><td>
-   I10：S→bAc·,# </td><td>
-   I11：S→bed·,# </td></tr></table></p>
-
+　 　　　A→·e,c<!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted -->
+　　I4： S→aA·d,#<!-- raw HTML omitted --><!-- raw HTML omitted -->
+I5： S→ae·c,#
+　 　    A→e·,d <!-- raw HTML omitted --><!-- raw HTML omitted -->
+I6： S→bA·c,# <!-- raw HTML omitted --><!-- raw HTML omitted -->
+I7： S→be·d,#
+　 　   A→e·,c <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted -->
+I8： S→aAd·,# <!-- raw HTML omitted --><!-- raw HTML omitted -->
+I9： S→aec·,# <!-- raw HTML omitted --><!-- raw HTML omitted -->
+I10：S→bAc·,# <!-- raw HTML omitted --><!-- raw HTML omitted -->
+I11：S→bed·,# <!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <p>　　构造的过程很繁琐。有点暴力计算的意思。不过，真正算起来步骤还是比较少的。</p>
 
 
@@ -521,7 +501,7 @@
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

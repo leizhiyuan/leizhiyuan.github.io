@@ -16,18 +16,26 @@ CountDownLatch用处很多，当用count=1来构造的时候，这就相当于�
 简单的demo：
 一组worker（工人）线程使用两个CountDownLatch
 第一个是开始信号，用来阻止工人提前操作，直到(driver)传送带准备好了才允许开始
-第二个是完成信号，他使传送带等待直到所有的worker都完成 class Driver { // &hellip; void main() throws InterruptedException { CountDownLatch startSignal = new CountDownLatch(1); CountDownLatch doneSignal = new CountDownLatch(N);
-for (int i = 0; i &amp;lt; N; &#43;&#43;i) // 创建并启动线程 new Thread(new Worker(startSignal, doneSignal)).start(); doSomethingElse(); // 传送带做点准备工作 startSignal.countDown(); // 减为0，工人可以开始了 doSomethingElse(); doneSignal.await(); // 等待直到所有的工人完成任务 } }
-class Worker implements Runnable { private final CountDownLatch startSignal; private final CountDownLatch doneSignal; Worker(CountDownLatch startSignal, CountDownLatch doneSignal) { this.">
+第二个是完成信号，他使传送带等待直到所有的worker都完成
+另一个典型的例子就是把问题分成N部分，通过线程执行每一部分，具体的话是将线程入队到一个Executor对象里。然后调用execute方法。当执行完毕一部分，就并给latch 减去1，当减到0的时候调用await的方法就可以继续运行了，当需要重复计数的话，用CyclicBarrier代替
+ CyclicBarrier 字面意思回环栅栏。这里的同步是允许一系列的线程互相等待直到大家都来到一个barrier前面，当程序中有互相等待的情况的时候，非常有用，叫做回环是因为当所有等待线程都被释放以后，cyclicBarrier可以被重用
+同时，CyclicBarrier支持一个可选的Runnable参数，当所有的线程都来到barrier前面的时候，程序开始执行runable线程动作，当需要更新所有线程共享的某个状态的时候，该动作非常有用。例子是一个并行分解的例子
+这里每一个worker线程处理矩阵的一行，然后在barrier前面等待，直到所有的行都处理完成，当所有的都完成以后，这里
+改为
+如果一个线程由于中断，失败或者超时过早的离开了barrier，那么所有的线程都会通过BrokenBarrierException引发异常。">
   <meta property="og:description" content="本文译自官方文档，有细微改动，Java多线程的时候，看了好多文档，还是官方说的最清楚。结合自己的理解，译之。
 CountDownLatch 字面意思就是倒计数闩，后面会讲到，这里的同步允许一个或多个线程等待，，知道其他线程进行的一系列操作完成。而CountDownLatch通过一个参数count（数目）来构造，而await（）则阻塞当前线程，直到countDown()将count减为了0，然后，所有的阻塞线程被释放，也就是那些调用了await方法的线程立即返回，注意，这是一次性的，也就是说count不能被自动重置，如果你想这么做，CyclicBarrier是可以的。
 CountDownLatch用处很多，当用count=1来构造的时候，这就相当于一个开关，所有调用了await方法的线程都在等待，直到有一个线程调用了countDown()，CountDownLatch通过count=N构造的话，就可以使一个线程等待其他N个线程完成操作，或者一个操作被做N次。
 简单的demo：
 一组worker（工人）线程使用两个CountDownLatch
 第一个是开始信号，用来阻止工人提前操作，直到(driver)传送带准备好了才允许开始
-第二个是完成信号，他使传送带等待直到所有的worker都完成 class Driver { // &hellip; void main() throws InterruptedException { CountDownLatch startSignal = new CountDownLatch(1); CountDownLatch doneSignal = new CountDownLatch(N);
-for (int i = 0; i &amp;lt; N; &#43;&#43;i) // 创建并启动线程 new Thread(new Worker(startSignal, doneSignal)).start(); doSomethingElse(); // 传送带做点准备工作 startSignal.countDown(); // 减为0，工人可以开始了 doSomethingElse(); doneSignal.await(); // 等待直到所有的工人完成任务 } }
-class Worker implements Runnable { private final CountDownLatch startSignal; private final CountDownLatch doneSignal; Worker(CountDownLatch startSignal, CountDownLatch doneSignal) { this.">
+第二个是完成信号，他使传送带等待直到所有的worker都完成
+另一个典型的例子就是把问题分成N部分，通过线程执行每一部分，具体的话是将线程入队到一个Executor对象里。然后调用execute方法。当执行完毕一部分，就并给latch 减去1，当减到0的时候调用await的方法就可以继续运行了，当需要重复计数的话，用CyclicBarrier代替
+ CyclicBarrier 字面意思回环栅栏。这里的同步是允许一系列的线程互相等待直到大家都来到一个barrier前面，当程序中有互相等待的情况的时候，非常有用，叫做回环是因为当所有等待线程都被释放以后，cyclicBarrier可以被重用
+同时，CyclicBarrier支持一个可选的Runnable参数，当所有的线程都来到barrier前面的时候，程序开始执行runable线程动作，当需要更新所有线程共享的某个状态的时候，该动作非常有用。例子是一个并行分解的例子
+这里每一个worker线程处理矩阵的一行，然后在barrier前面等待，直到所有的行都处理完成，当所有的都完成以后，这里
+改为
+如果一个线程由于中断，失败或者超时过早的离开了barrier，那么所有的线程都会通过BrokenBarrierException引发异常。">
   <meta name="twitter:description" content="本文译自官方文档，有细微改动，Java多线程的时候，看了好多文档，还是官方说的最清楚。结合自己的理解，译之。
 CountDownLatch 字面意思就是倒计数闩，后面会讲到，这里的同步允许一个或多个线程等待，，知道其他线程进行的一系列操作完成。而CountDownLatch通过一个参数count（数目）来构造，而await（）则阻塞当前线程，直到countDown()将count减为了0，然后，所 …">
   <meta name="author" content="bystander"/><script type="application/ld+json">
@@ -78,9 +86,9 @@ CountDownLatch 字面意思就是倒计数闩，后面会讲到，这里的同�
     "name" : "bystander"
   },
   "headline": "[译]Java中的CountDownLatch和CyclicBarrier",
-  "description" : "本文译自官方文档，有细微改动，Java多线程的时候，看了好多文档，还是官方说的最清楚。结合自己的理解，译之。\nCountDownLatch 字面意思就是倒计数闩，后面会讲到，这里的同步允许一个或多个线程等待，，知道其他线程进行的一系列操作完成。而CountDownLatch通过一个参数count（数目）来构造，而await（）则阻塞当前线程，直到countDown()将count减为了0，然后，所有的阻塞线程被释放，也就是那些调用了await方法的线程立即返回，注意，这是一次性的，也就是说count不能被自动重置，如果你想这么做，CyclicBarrier是可以的。\nCountDownLatch用处很多，当用count=1来构造的时候，这就相当于一个开关，所有调用了await方法的线程都在等待，直到有一个线程调用了countDown()，CountDownLatch通过count=N构造的话，就可以使一个线程等待其他N个线程完成操作，或者一个操作被做N次。\n简单的demo：\n一组worker（工人）线程使用两个CountDownLatch\n第一个是开始信号，用来阻止工人提前操作，直到(driver)传送带准备好了才允许开始\n第二个是完成信号，他使传送带等待直到所有的worker都完成 class Driver { \/\/ \x26hellip; void main() throws InterruptedException { CountDownLatch startSignal = new CountDownLatch(1); CountDownLatch doneSignal = new CountDownLatch(N);\nfor (int i = 0; i \x26amp;lt; N; \x2b\x2bi) \/\/ 创建并启动线程 new Thread(new Worker(startSignal, doneSignal)).start(); doSomethingElse(); \/\/ 传送带做点准备工作 startSignal.countDown(); \/\/ 减为0，工人可以开始了 doSomethingElse(); doneSignal.await(); \/\/ 等待直到所有的工人完成任务 } }\nclass Worker implements Runnable { private final CountDownLatch startSignal; private final CountDownLatch doneSignal; Worker(CountDownLatch startSignal, CountDownLatch doneSignal) { this.",
+  "description" : "本文译自官方文档，有细微改动，Java多线程的时候，看了好多文档，还是官方说的最清楚。结合自己的理解，译之。\nCountDownLatch 字面意思就是倒计数闩，后面会讲到，这里的同步允许一个或多个线程等待，，知道其他线程进行的一系列操作完成。而CountDownLatch通过一个参数count（数目）来构造，而await（）则阻塞当前线程，直到countDown()将count减为了0，然后，所有的阻塞线程被释放，也就是那些调用了await方法的线程立即返回，注意，这是一次性的，也就是说count不能被自动重置，如果你想这么做，CyclicBarrier是可以的。\nCountDownLatch用处很多，当用count=1来构造的时候，这就相当于一个开关，所有调用了await方法的线程都在等待，直到有一个线程调用了countDown()，CountDownLatch通过count=N构造的话，就可以使一个线程等待其他N个线程完成操作，或者一个操作被做N次。\n简单的demo：\n一组worker（工人）线程使用两个CountDownLatch\n第一个是开始信号，用来阻止工人提前操作，直到(driver)传送带准备好了才允许开始\n第二个是完成信号，他使传送带等待直到所有的worker都完成\n另一个典型的例子就是把问题分成N部分，通过线程执行每一部分，具体的话是将线程入队到一个Executor对象里。然后调用execute方法。当执行完毕一部分，就并给latch 减去1，当减到0的时候调用await的方法就可以继续运行了，当需要重复计数的话，用CyclicBarrier代替\n CyclicBarrier 字面意思回环栅栏。这里的同步是允许一系列的线程互相等待直到大家都来到一个barrier前面，当程序中有互相等待的情况的时候，非常有用，叫做回环是因为当所有等待线程都被释放以后，cyclicBarrier可以被重用\n同时，CyclicBarrier支持一个可选的Runnable参数，当所有的线程都来到barrier前面的时候，程序开始执行runable线程动作，当需要更新所有线程共享的某个状态的时候，该动作非常有用。例子是一个并行分解的例子\n这里每一个worker线程处理矩阵的一行，然后在barrier前面等待，直到所有的行都处理完成，当所有的都完成以后，这里\n改为\n如果一个线程由于中断，失败或者超时过早的离开了barrier，那么所有的线程都会通过BrokenBarrierException引发异常。",
   "inLanguage" : "en",
-  "wordCount":  317 ,
+  "wordCount":  16 ,
   "datePublished" : "2013-09-15T08:03:09",
   "dateModified" : "2013-09-15T08:03:09",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -106,9 +114,13 @@ CountDownLatch用处很多，当用count=1来构造的时候，这就相当于�
 简单的demo：
 一组worker（工人）线程使用两个CountDownLatch
 第一个是开始信号，用来阻止工人提前操作，直到(driver)传送带准备好了才允许开始
-第二个是完成信号，他使传送带等待直到所有的worker都完成 class Driver { // &hellip; void main() throws InterruptedException { CountDownLatch startSignal = new CountDownLatch(1); CountDownLatch doneSignal = new CountDownLatch(N);
-for (int i = 0; i &amp;lt; N; &#43;&#43;i) // 创建并启动线程 new Thread(new Worker(startSignal, doneSignal)).start(); doSomethingElse(); // 传送带做点准备工作 startSignal.countDown(); // 减为0，工人可以开始了 doSomethingElse(); doneSignal.await(); // 等待直到所有的工人完成任务 } }
-class Worker implements Runnable { private final CountDownLatch startSignal; private final CountDownLatch doneSignal; Worker(CountDownLatch startSignal, CountDownLatch doneSignal) { this.">
+第二个是完成信号，他使传送带等待直到所有的worker都完成
+另一个典型的例子就是把问题分成N部分，通过线程执行每一部分，具体的话是将线程入队到一个Executor对象里。然后调用execute方法。当执行完毕一部分，就并给latch 减去1，当减到0的时候调用await的方法就可以继续运行了，当需要重复计数的话，用CyclicBarrier代替
+ CyclicBarrier 字面意思回环栅栏。这里的同步是允许一系列的线程互相等待直到大家都来到一个barrier前面，当程序中有互相等待的情况的时候，非常有用，叫做回环是因为当所有等待线程都被释放以后，cyclicBarrier可以被重用
+同时，CyclicBarrier支持一个可选的Runnable参数，当所有的线程都来到barrier前面的时候，程序开始执行runable线程动作，当需要更新所有线程共享的某个状态的时候，该动作非常有用。例子是一个并行分解的例子
+这里每一个worker线程处理矩阵的一行，然后在barrier前面等待，直到所有的行都处理完成，当所有的都完成以后，这里
+改为
+如果一个线程由于中断，失败或者超时过早的离开了barrier，那么所有的线程都会通过BrokenBarrierException引发异常。">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2013/09/15/%E8%AF%91java%E4%B8%AD%E7%9A%84countdownlatch%E5%92%8Ccyclicbarrier/" />
 <meta property="og:type" content="website" />
@@ -127,7 +139,7 @@ CountDownLatch 字面意思就是倒计数闩，后面会讲到，这里的同�
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -285,7 +297,7 @@ CountDownLatch 字面意思就是倒计数闩，后面会讲到，这里的同�
   <i class="fas fa-calendar"></i>&nbsp;Posted on September 15, 2013
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -311,141 +323,32 @@ CountDownLatch 字面意思就是倒计数闩，后面会讲到，这里的同�
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        
-
-<p>本文译自官方文档，有细微改动，Java多线程的时候，看了好多文档，还是官方说的最清楚。结合自己的理解，译之。</p>
-
+        <p>本文译自官方文档，有细微改动，Java多线程的时候，看了好多文档，还是官方说的最清楚。结合自己的理解，译之。</p>
 <h2 id="countdownlatch">CountDownLatch</h2>
-
 <p>字面意思就是倒计数闩，后面会讲到，这里的同步允许一个或多个线程等待，，知道其他线程进行的一系列操作完成。而CountDownLatch通过一个参数count（数目）来构造，而await（）则阻塞当前线程，直到countDown()将count减为了0，然后，所有的阻塞线程被释放，也就是那些调用了await方法的线程立即返回，注意，这是一次性的，也就是说count不能被自动重置，如果你想这么做，CyclicBarrier是可以的。</p>
-
 <p>CountDownLatch用处很多，当用count=1来构造的时候，这就相当于一个开关，所有调用了await方法的线程都在等待，直到有一个线程调用了countDown()，CountDownLatch通过count=N构造的话，就可以使一个线程等待其他N个线程完成操作，或者一个操作被做N次。</p>
-
 <p>简单的demo：</p>
-
 <p>一组worker（工人）线程使用两个CountDownLatch</p>
-
 <p>第一个是开始信号，用来阻止工人提前操作，直到(driver)传送带准备好了才允许开始</p>
-
-<p>第二个是完成信号，他使传送带等待直到所有的worker都完成
-<pre class="lang:default decode:true"> class Driver { // &hellip;
-   void main() throws InterruptedException {
-     CountDownLatch startSignal = new CountDownLatch(1);
-     CountDownLatch doneSignal = new CountDownLatch(N);</p>
-<div class="highlight"><pre class="chroma"> for (int i = 0; i &amp;lt; N; ++i) // 创建并启动线程
-   new Thread(new Worker(startSignal, doneSignal)).start();
-
- doSomethingElse();            // 传送带做点准备工作
- startSignal.countDown();      // 减为0，工人可以开始了
- doSomethingElse();
- doneSignal.await();           // 等待直到所有的工人完成任务</pre></div>
-<p>}
- }</p>
-
-<p>class Worker implements Runnable {
-   private final CountDownLatch startSignal;
-   private final CountDownLatch doneSignal;
-   Worker(CountDownLatch startSignal, CountDownLatch doneSignal) {
-      this.startSignal = startSignal;
-      this.doneSignal = doneSignal;
-   }
-   public void run() {
-      try {
-        startSignal.await();//工人们等待开关打开
-        doWork();              //做事
-        doneSignal.countDown(); //做完了就给countdownlatch 减去1
-      } catch (InterruptedException ex) {} // return;
-   }</p>
-
-<p>void doWork() { &hellip; }
- }</pre>
-另一个典型的例子就是把问题分成N部分，通过线程执行每一部分，具体的话是将线程入队到一个Executor对象里。然后调用execute方法。当执行完毕一部分，就并给latch 减去1，当减到0的时候调用await的方法就可以继续运行了，当需要重复计数的话，用CyclicBarrier代替
-<pre>class Driver2 { // &hellip;
-   void main() throws InterruptedException {
-     CountDownLatch doneSignal = new CountDownLatch(N);
-     Executor e = &hellip;</p>
-<div class="highlight"><pre class="chroma"> for (int i = 0; i &amp;lt; N; ++i) // 创建并开始线程
-   e.execute(new WorkerRunnable(doneSignal, i));
-
- doneSignal.await();           // 等待所有的线程完成</pre></div>
-<p>}
- }</p>
-
-<p>class WorkerRunnable implements Runnable {
-   private final CountDownLatch doneSignal;
-   private final int i;
-   WorkerRunnable(CountDownLatch doneSignal, int i) {
-      this.doneSignal = doneSignal;
-      this.i = i;
-   }
-   public void run() {
-      try {
-        doWork(i);
-        doneSignal.countDown();
-      } catch (InterruptedException ex) {} // 返回;
-   }</p>
-
-<p>void doWork() { &hellip; }
- }</pre>
-&nbsp;</p>
-
+<p>第二个是完成信号，他使传送带等待直到所有的worker都完成</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>另一个典型的例子就是把问题分成N部分，通过线程执行每一部分，具体的话是将线程入队到一个Executor对象里。然后调用execute方法。当执行完毕一部分，就并给latch 减去1，当减到0的时候调用await的方法就可以继续运行了，当需要重复计数的话，用CyclicBarrier代替</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
 <h2 id="cyclicbarrier">CyclicBarrier</h2>
-
 <p>字面意思回环栅栏。这里的同步是允许一系列的线程互相等待直到大家都来到一个barrier前面，当程序中有互相等待的情况的时候，非常有用，叫做回环是因为当所有等待线程都被释放以后，cyclicBarrier可以被重用</p>
-
-<p>同时，CyclicBarrier支持一个可选的Runnable参数，当所有的线程都来到barrier前面的时候，程序开始执行runable线程动作，当需要更新所有线程共享的某个状态的时候，该动作非常有用。例子是一个并行分解的例子
-<pre>class Solver {
-   final int N;
-   final float[][] data;
-   final CyclicBarrier barrier;</p>
-
-<p>class Worker implements Runnable {
-     int myRow;
-     Worker(int row) { myRow = row; }
-     public void run() {
-       while (!done()) {
-         processRow(myRow);</p>
-<div class="highlight"><pre class="chroma">     try {
-       barrier.await(); 
-     } catch (InterruptedException ex) { 
-       return; 
-     } catch (BrokenBarrierException ex) { 
-       return; 
-     }
-   }
- }</pre></div>
-<p>}</p>
-
-<p>public Solver(float[][] matrix) {
-     data = matrix;
-     N = matrix.length;
-     barrier = new CyclicBarrier(N,
-                                 new Runnable() {
-                                   public void run() {
-                                     mergeRows(&hellip;);
-                                   }
-                                 });
-     for (int i = 0; i &lt; N; ++i)
-       new Thread(new Worker(i)).start();</p>
-<div class="highlight"><pre class="chroma"> waitUntilDone();</pre></div>
-<p>}
- }</pre>
-这里每一个worker线程处理矩阵的一行，然后在barrier前面等待，直到所有的行都处理完成，当所有的都完成以后，这里
-<pre> barrier = new CyclicBarrier(N,
-                                 new Runnable() {
-                                   public void run() {
-                                     mergeRows(&hellip;);
-                                   }
-                                 });</pre>
-的Runnable参数执行来合并这些行，一旦有了正确的结果waitUntilDown（）就返回true，然后所有的线程终止。</p>
-
-<p>如果barrier执行的这个动作没有对那些等待的线程做出回应，以使的这些线程做一些别的操作，我们可以这么写，将
-<pre>barrier.await()</pre>
-改为
-<pre> if (barrier.await() == 0) {
-     // 记录本次迭代的位置
-   }</pre>
-如果一个线程由于中断，失败或者超时过早的离开了barrier，那么所有的线程都会通过BrokenBarrierException引发异常。</p>
+<p>同时，CyclicBarrier支持一个可选的Runnable参数，当所有的线程都来到barrier前面的时候，程序开始执行runable线程动作，当需要更新所有线程共享的某个状态的时候，该动作非常有用。例子是一个并行分解的例子</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这里每一个worker线程处理矩阵的一行，然后在barrier前面等待，直到所有的行都处理完成，当所有的都完成以后，这里</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>改为</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>如果一个线程由于中断，失败或者超时过早的离开了barrier，那么所有的线程都会通过BrokenBarrierException引发异常。</p>
 
 
         
@@ -559,7 +462,7 @@ CountDownLatch 字面意思就是倒计数闩，后面会讲到，这里的同�
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

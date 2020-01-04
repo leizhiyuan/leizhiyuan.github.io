@@ -48,7 +48,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -203,7 +203,7 @@
                 <span class="post-meta">
   
   
-  <i class="fas fa-calendar"></i>&nbsp;Posted on October 27, 2019
+  <i class="fas fa-calendar"></i>&nbsp;Posted on December 30, 2019
   
   
     &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;0&nbsp;minutes
@@ -235,8 +235,8 @@
         <div class="posts-list">
           
             <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/09/30/csv%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E5%B7%A5%E5%85%B7/">
-                <h2 class="post-title">CSV导入导出工具</h2>
+              <a href="https://leizhiyuan.github.io/2012/10/01/c#%E7%BC%96%E5%86%99%E6%96%87%E4%BB%B6%E6%90%9C%E7%B4%A2%E5%99%A8/">
+                <h2 class="post-title">C#编写文件搜索器</h2>
 
                 
               </a>
@@ -245,10 +245,10 @@
                 <span class="post-meta">
   
   
-  <i class="fas fa-calendar"></i>&nbsp;Posted on September 30, 2012
+  <i class="fas fa-calendar"></i>&nbsp;Posted on October 1, 2012
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;3&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -263,17 +263,141 @@
               </p>
               <div class="post-entry">
                 
-                  介绍
-本文介绍并且实现了在平面文件CSV和SQL server之间的导入导出功能。使用VS2005写的。使用了.net 2.0
-本文基于前一篇文章：从CSV导入数据并存储到数据库，本文包含了新功能，比如，导出功能，在数据库创建表，批量拷贝。接下来的例子中有很多注释。
-导入
-通过ODBC驱动连接到一个CSV文件，然后把文件读到一张表了（基于前面提到的那篇文章） 使用不同的编码和不同的行分隔符（基于前文） 加载CSV文件到DataSet（基于前文） 如何显示对CSV文件的预览（基于前文） 通过SqlBulkCopy的对象向SQL server转移数据，原始数据是DataSet实例
-使用结构表，基于CSV文件，创建一个新表 使用事件来处理批量拷贝的进程 导出
-浏览SQL 数据库中的用户表 使用不同的编码和分隔符 使用SqlDataReader读取数据，使用StreamWriter转移数据到平面文件
- 使用 1. 下载工程 2. 新建一个数据库，或者使用一个存在的数据库 3. 修改软件中的数据库连接字符串，在prop.cs文件中
-public static string sqlConnString = "server=(local); database=Test_CSV_impex;Trusted_Connection=True";  运行工程  一些代码段 加载CSV到DataSet中 /* *加载CSV到DataSet. * * 如果numberOfRows parameter 是 -1, 就加载所有行, 否则就加载指定数目的行 */
-public DataSet LoadCSV(int numberOfRows) { DataSet ds = new DataSet(); try { // 创建并打开ODBC连接 string strConnString = &ldquo;Driver={Microsoft Text Driver (*.
-                  <a href="https://leizhiyuan.github.io/2012/09/30/csv%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E5%B7%A5%E5%85%B7/" class="post-read-more">[Read More]</a>
+                  <p><a href="http://leaverimage.b0.upaiyun.com/27654_o.jpg"><img src="/images/6d2217ea2873cc4f559cc605fc38f29dade4aef8.jpg" alt="" title="filesearcher"></a></p>
+<p><strong>介绍</strong>
+在装有Vista的机器上。我想通过一个给定的字符串来搜索我硬盘上的一个文件，该文件内容包含这个字符串序列，资源管理器是做不到的。因此，我就决定自己写吧。然后就写成这样了。。</p>
+<p><strong>我做了什么</strong></p>
+<p>你必须输入一个选择一个搜索目录，这样程序才知道在哪搜索文件/目录，如果你选上了“包含子目录”复选框，程序就会递归地搜索指定目录的子目录，指定的文件名可以是像 &ldquo;<em>.wav;</em>.mp3;Christma??ree.*&rdquo; 这样的字符串，程序将会列出所有的文件/目录匹配这些文件名</p>
+<p>你也可以使用一些限制条件来限制找到的项目，每一个限制条件可以通过选上复选框来激活，限制条件的参数可以在右边选中就行了。</p>
+<p>1. “Files newer than”将会列出LastWriteTime（上次修改时间）晚于指定时间的文件
+2. “Files newer than”将会列出LastWriteTime（上次修改时间）早于指定时间的文件
+3. &ldquo;Files containing the string&quot;仅仅列出包含字符串参数的文件。</p>
+<p>程序将会把字符串转换成字节序列，可以使用ASCII或者Unicode编码，取决于你的选择，然后搜索每一个出现这个字节序列的文件。</p>
+<p>点击Start（开始）按钮就开始搜索了。找到的项目会列在下面，如果搜索时间太长了。你可以点击Stop（停止）来停止搜索。</p>
+<p>如果你双击下面的一个文件。不是文件夹哦，程序将会根据关联程序打开该文件
+如果你邮件一个项目，然后选择“Open Containing Folder”（打开包含文件夹）将会在资源管理器里打开包含该项目的文件夹</p>
+<p>如果你想要把搜索结果保存到一个文本文件。输入个分隔符分隔项目，然后点击“Write results to text file…”（保存结果到文本…）</p>
+<p><strong>使用代码</strong>
+1. MainWindow处理所有的界面事务
+2. Searcher类提供了业务逻辑，用来搜索FileSystemInfo对象</p>
+<p>当用户点击Start（开始）按钮，Searcher.Start 方法就会执行，该方法开启了一个名为SearchThread 的新线程，这个线程搜索文件/目录，匹配用户输入的参数，如果找到了一个匹配的FileSystemInfo对象，它就出发一个异步的FoundInfo 事件，然后MainWindow就可以从FoundInfoEventArgs中解出FileSystemInfo对象，然后更新结果列表，当线程结束的时候，将m_thread成员对象设置为null，每一次Searcher.Start 执行的时候都会检测m_thread是否为null，因此同时不会有两个线程在运行。</p>
+<p>当用户点击Stop(停止)按钮的时候Searcher.Stop 方法被执行，然后设置m_stop 成员为true， Searchthread会注意到这个改变。注意本操作是线程安全的。因为布尔变量只需要一步就操作完成了</p>
+<p>重要：在Searcher_FoundInfo 事件处理中，MainWindow使用Invoke方法通过代理来调用this_FoundInfo 方法。通过这个方法，MainWindow是的更新结果列表的代码在MainWindow的线程里执行，而不是在Searcher的线程里，直接调用this_FoundInfo 方法会引发程序崩溃，因为Searcher_FoundInfo 事件处理和图形界面控件不同步。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>CreateResultsListItem 方法创建并添加一个ListViewItem 到结果列表中，然后展示FilesystemInfo 对象包含的数据，FileSystemInfo 可以是FileInfo 或是DirectoryInfo ，取决于Searcher 找到的结果， is操作符可以用来判断对象的类型，如果是FileInfo独享，列表还会以KB为单位显示文件大小</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>当Searcher 线程结束的时候，触发ThreadEnded 事件，因此，MainWindow可以注意到搜索结束，Searcher_ThreadEnded 事件处理句柄使用和Searcher_FoundInfo一样的方式调用Invoke方法。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Demo下载
+<a href="http://pan.baidu.com/share/link?shareid=68747&amp;uk=1493685990">FileSearcher</a>
+许可
+本文包括源代码和文件在CPOL下授权</p>
+<p>原文地址：<a href="http://www.codeproject.com/Articles/35044/File-Searcher-in-C">File-Searcher-in-C</a></p>
+<p>著作权声明：本文由<a href="http://leaver.me">http://leaver.me</a> 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/wpf/">WPF</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
+                  
+                </div>
+              
+
+            </article>
+          
+            <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/09/30/csv%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E5%B7%A5%E5%85%B7/">
+                <h2 class="post-title">CSV导入导出工具</h2>
+
+                
+              </a>
+
+              <p class="post-meta">
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on September 30, 2012
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              </p>
+              <div class="post-entry">
+                
+                  <p><a href="http://leaverimage.b0.upaiyun.com/27639_o.png"><img src="/images/650890bebf13c4d041d3113af4b40fb93a2cc0c5.png" alt="" title="form1"></a>
+<strong>介绍</strong></p>
+<p>本文介绍并且实现了在平面文件CSV和SQL server之间的导入导出功能。使用VS2005写的。使用了.net 2.0</p>
+<p>本文基于前一篇文章：<a href="http://www.codeproject.com/KB/database/FinalCSVReader.aspx">从CSV导入数据并存储到数据库</a>，本文包含了新功能，比如，导出功能，在数据库创建表，批量拷贝。接下来的例子中有很多注释。</p>
+<p><strong>导入</strong></p>
+<p>通过ODBC驱动连接到一个CSV文件，然后把文件读到一张表了（基于前面提到的那篇文章）
+使用不同的编码和不同的行分隔符（基于前文）
+加载CSV文件到DataSet（基于前文）
+如何显示对CSV文件的预览（基于前文）
+通过SqlBulkCopy的对象向SQL server转移数据，原始数据是DataSet实例</p>
+<p>使用结构表，基于CSV文件，创建一个新表
+使用事件来处理批量拷贝的进程
+<strong>导出</strong></p>
+<p>浏览SQL 数据库中的用户表
+使用不同的编码和分隔符
+使用SqlDataReader读取数据，使用StreamWriter转移数据到平面文件</p>
+<p><a href="http://leaverimage.b0.upaiyun.com/27640_o.png"><img src="/images/b131fd0af27287ab9270df33d1a313ab957dfb12.png" alt="" title="form2"></a>
+使用</p>
+<ol>
+<li>下载工程</li>
+<li>新建一个数据库，或者使用一个存在的数据库</li>
+<li>修改软件中的数据库连接字符串，在prop.cs文件中</li>
+</ol>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<ol start="4">
+<li>运行工程</li>
+</ol>
+<p><strong>一些代码段</strong>
+加载CSV到DataSet中</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>通过SqlBulkCopy从ODBC连接中转移数据到数据库</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>基于结构表创建表</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>获取数据库中用户表名</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>通过StreamWriter写数据</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Demo下载
+<a href="http://pan.baidu.com/share/link?shareid=68408&amp;uk=1493685990">CSV_import_export</a>
+许可
+本文包括源代码和文件在CPOL下授权</p>
+<p>原文地址：<a href="http://www.codeproject.com/Articles/30705/C-CSV-Import-Export">C-CSV-Import-Export</a></p>
+
                 
               </div>
 
@@ -311,7 +435,7 @@ public DataSet LoadCSV(int numberOfRows) { DataSet ds = new DataSet(); try { // 
   <i class="fas fa-calendar"></i>&nbsp;Posted on September 29, 2012
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;3&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -326,17 +450,30 @@ public DataSet LoadCSV(int numberOfRows) { DataSet ds = new DataSet(); try { // 
               </p>
               <div class="post-entry">
                 
-                  介绍 使用ListViewLayoutManager 可以控制ListView/GridView列的布局 1. 固定列宽：有着固定列宽的列 2. 范围列宽：有着最小最大宽度的列 3. 比例列宽：成比例的列宽
-范围列宽可以限制列的宽度，也包括填充列的剩余可视区域。
+                  介绍 使用ListViewLayoutManager 可以控制ListView/GridView列的布局
+ 固定列宽：有着固定列宽的列 范围列宽：有着最小最大宽度的列 比例列宽：成比例的列宽  范围列宽可以限制列的宽度，也包括填充列的剩余可视区域。
 据我们了解的Html中的表格和Grid空间。比例列以一个百分比来定义列宽，以下几个因素共同确定了比例列的宽度。
  垂直ListView滚动条的可视与否 ListView控件宽度的改变 非比例列宽度的改变  本程序支持通过XAML或是后台代码来控制ListView。如果通过XAML来控制。则允许ListViewLayoutManager 被附加到一个存在的ListView控件上。
 ConverterGridColumn 类通过接口IValueConverter 提供了对象绑定。使用ImageGridViewColumn 类则允许通过DataTemplate（数据模板）将列显示成图片等。
 在 User Setting Applied中，我展示了如何固定ListViewlieder顺序和大小
 XAML中ListView/GridView布局 固定列 下面的例子展示了通过XAML使用固定列宽控制列
-&lt;ListView Name="MyListView" ctrl:ListViewLayoutManager.Enabled="true"&gt; &lt;ListView.View&gt; &lt;GridView&gt; &lt;GridViewColumn DisplayMemberBinding="{Binding Path=Name}" ctrl:FixedColumn.Width="100" Header="Name" /&gt; &lt;GridViewColumn DisplayMemberBinding="{Binding Path=City}" ctrl:FixedColumn.Width="300" Header="City" /&gt; &lt;/GridView&gt; &lt;/ListView.View&gt; &lt;/ListView&gt;  设置附加到ListView控件上的ListViewLayoutManager 的Enabled属性为True。然后FixedColumn.Width 就会阻止鼠标拖动改变列的宽度。
+设置附加到ListView控件上的ListViewLayoutManager 的Enabled属性为True。然后FixedColumn.Width 就会阻止鼠标拖动改变列的宽度。
 比例列
-下面的例子展示了使用XAML通过比例来控制列 
-&lt;GridView&gt; &lt;GridViewColumn DisplayMemberBinding=&#34;{Binding Path=Name}&#34; ctrl:ProportionalColumn.Width=&#34;1&#34; Header=&#34;Name&#34; /&gt; &lt;GridViewColumn DisplayMemberBinding=&#34;{Binding Path=City}&#34; ctrl:ProportionalColumn.Width=&#34;3&#34; Header=&#34;City&#34; /&gt; &lt;/GridView&gt; &lt;/ListView.
+下面的例子展示了使用XAML通过比例来控制列
+对比Grid控件的RowDefinition.Width 属性，ProportionalColumn.Width会计算百分比。简单来说，就是上面的例子中Name列会占到总宽度的25%，而City列占到75%。 与固定列相似。鼠标将不能改变列的宽度。
+范围列
+下面的例子展示了使用XAML通过最小/最小宽度来控制列
+第一个范围列的IsFillColumn 属性被设置为True，因此将会自动改变大小来填满剩余的空间，而如果ListView包含一个比例列的话，范围列将不会填充
+通过鼠标可以拖动范围列的宽度。鼠标指针会有一些提示。。
+组合使用
+在真实的世界里。组合使用很普遍。他们的顺序可以多种多样。
+使用后台代码控制ListView/GridView布局 定制列的效果 类ConverterGridColumn 作为一个基类，用来绑定列到独立的对象。
+列以图片展示 ImageGridColumn 作为一个基类，用来绑定列到图片
+有意思的地方 作为ListView控件的核心部件- ListViewLayoutManager 有以下的功能 阻止改变固定列和比例列的宽度 强制了范围列的范围 随着ListView控件的改变而更新列布局 随着某一列的改变而更新布局
+为了正确的接收到请求的信息，分析ListView控件的可视树是很有必要的,Thumb对象提供了列宽改变的事件。而为了正确的展示鼠标指针，PreviewMouseMove 和PreviewMouseLeftButtonDown 事件都会被处理
+当Viewport控件大小改变（ScrollChangedEventArgs.ViewportWidthChange）的时候，会触发ScrollViewer 控件的ScrollChanged 事件 通过使用DependencyPropertyDescriptor 可以追踪 GridViewColumn的宽度改变。并发出通知。
+为了可以集成进已有的系统，列数据被放置在附加属性里。使用DependencyProperty.ReadLocalValue()方法会检测当前的属性是否在同一个对象里。
+类ConverterGridViewColumn 同时使用一个简单的绑定。展示数据转换（IValueConverter接口）
                   <a href="https://leizhiyuan.github.io/2012/09/29/listview%E5%B8%83%E5%B1%80%E7%AE%A1%E7%90%86%E5%99%A8/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -377,7 +514,7 @@ XAML中ListView/GridView布局 固定列 下面的例子展示了通过XAML使�
   <i class="fas fa-calendar"></i>&nbsp;Posted on September 27, 2012
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -392,13 +529,42 @@ XAML中ListView/GridView布局 固定列 下面的例子展示了通过XAML使�
               </p>
               <div class="post-entry">
                 
-                  介绍 我发现对于很多人来说，当从数据库里载入一张图片然后重新创建成一张图片显示的话会有这样一个问题&mdash;-当他们尝试重新创建新的图片的时候，会抛出一个“无效的参数”异常
-因此，本文介绍该异常如何产生。并且我希望未来当我或是你发生这个错误的时候还能有所帮助。。
-背景 存储图片到数据库里面是一个很有效的想法。很多人在一些场合都会这样做。的确，这是一个很好的想法。在图片很小的情况下，或者图片不是太多。在这两种情况下，当你需要图片的时候，你会实时去加载它们。而当你不需要的时候如果从数据库里加载图片会浪费很多带宽。并使得你的程序有一些慢。
-但问题是这种方法也很容易发生错误。&ndash;尤其是你使用字符串连接，然后组合到你的SQL语句里面—并且这个错误只有当你打算使用存储的信息的时候才会发生。然后，看起来似乎是你的读取代码写错了&mdash;不可能—它是正常的。我在其他地方都可以的。。
-从数据库里加载图片 重数据库里读取一张图片然后转换成图片显示是很简单的。 using (SqlConnection con = DBAccess.DBCon) { using (SqlCommand cmd = new SqlCommand(&ldquo;SELECT picture FROM Pictures WHERE Id=@ID&rdquo;, con)) { cmd.Parameters.AddWithValue(&ldquo;@ID&rdquo;, Id); SqlDataReader reader = cmd.ExecuteReader(); if (reader.Read()) { byte[] data = (byte[])reader[&ldquo;Picture&rdquo;]; using (MemoryStream stream = new MemoryStream(bytes)) { myImage = new Bitmap(stream); } } } } 但是-如果data因为一些原因不是有效的图片，那么这一行 myImage = new Bitmap(stream); 将会抛出一个异常—无效的参数
-只有当你真正看了从数据库里返回到data里的数据-而不是简单的瞄了一眼调试器，你才能注意到是什么原因。。 {byte[21]} [0] 83 [1] 121 [2] 115 [3] 116 [4] 101 [5] 109 [6] 46 [7] 68 [8] 114 [9] 97 [10] 119 [11] 105 [12] 110 [13] 103 [14] 46 &hellip; 它看起来不像是错的，所以它可能就是你想要的。-虽然21字节是一个很大的线索：你的图片可能只有21字节长？那图片可真小。。
-                  <a href="https://leizhiyuan.github.io/2012/09/27/%E4%BB%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%BB%E5%8F%96%E5%9B%BE%E7%89%87%E5%8F%91%E7%94%9F%E6%97%A0%E6%95%88%E7%9A%84%E5%8F%82%E6%95%B0%E5%BC%82%E5%B8%B8/" class="post-read-more">[Read More]</a>
+                  <h3 id="heading">介绍</h3>
+<p>我发现对于很多人来说，当从数据库里载入一张图片然后重新创建成一张图片显示的话会有这样一个问题&mdash;-当他们尝试重新创建新的图片的时候，会抛出一个“无效的参数”异常</p>
+<p>因此，本文介绍该异常如何产生。并且我希望未来当我或是你发生这个错误的时候还能有所帮助。。</p>
+<h3 id="heading-1">背景</h3>
+<p>存储图片到数据库里面是一个很有效的想法。很多人在一些场合都会这样做。的确，这是一个很好的想法。在图片很小的情况下，或者图片不是太多。在这两种情况下，当你需要图片的时候，你会实时去加载它们。而当你不需要的时候如果从数据库里加载图片会浪费很多带宽。并使得你的程序有一些慢。</p>
+<p>但问题是这种方法也很容易发生错误。&ndash;尤其是你使用字符串连接，然后组合到你的SQL语句里面—并且这个错误只有当你打算使用存储的信息的时候才会发生。然后，看起来似乎是你的读取代码写错了&mdash;不可能—它是正常的。我在其他地方都可以的。。</p>
+<h3 id="heading-2">从数据库里加载图片</h3>
+<p>重数据库里读取一张图片然后转换成图片显示是很简单的。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>将会抛出一个异常—无效的参数</p>
+<p>只有当你真正看了从数据库里返回到data里的数据-而不是简单的瞄了一眼调试器，你才能注意到是什么原因。。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>它看起来不像是错的，所以它可能就是你想要的。-虽然21字节是一个很大的线索：你的图片可能只有21字节长？那图片可真小。。</p>
+<p>但是，上面的是可以读懂的。。稍微练习一下。。每个字节是一个ASCII码。。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>简而言之，你从数据库里得到的数据是一个人类可以读懂的字符串，意思是是</p>
+<!-- raw HTML omitted -->
+<p>当这个Image类试图把它转换成一个图片的时候，必然是不可能的。抛出异常就是必然的了。。代码是正确的。data才是问题所在。</p>
+<h3 id="heading-3">保存图片到数据库</h3>
+<p>这才是引发问题的地方。
+通常。这是因为把字符串连接起来构造SQL语句引起的。</p>
+<!-- raw HTML omitted -->
+<p>不要在SQL语句中包含image对象—它会调用Image的ToString方法。而这个方法会返回</p>
+<!-- raw HTML omitted -->
+<p>因此你的上一条语句其实就相当于</p>
+<!-- raw HTML omitted -->
+<p>存储并不会有什么问题—但是事实上只是把Image的类型名保存了。而你傻傻的以为是图片数据本身。</p>
+<p>这还不是唯一的一个不让你直接连接字符串构造SQL语句的原因，如果你想知道其他原因。
+使用Google 搜索Bobby Tables，&mdash;这不是闹着玩的。。</p>
+<p>好了。其实把代码写正确也不难，虽然可能得多花一些时间。但是，它可以帮助提高代码的可读性和可靠性。而你要做的就是使用一个参数化的查询。</p>
+<p>首先，把图片转换到一个字节数组里。</p>
+<!-- raw HTML omitted -->
+
                 
               </div>
 
@@ -450,19 +616,12 @@ XAML中ListView/GridView布局 固定列 下面的例子展示了通过XAML使�
               <div class="post-entry">
                 
                   <p>今天下午翻译了一篇简单的文章后。就去看JavaCC的东西了。。然后就找到了一篇<a href="http://www.engr.mun.ca/~theo/JavaCC-Tutorial/javacc-tutorial.pdf">入门教程</a></p>
-
 <p>然后之前我是找到了一篇翻译过来的的<a href="https://sites.google.com/site/beariceshome/the-javacc-tutorial">某熊的战略储备基地</a></p>
-
 <p>从头到尾读了一遍英文的。感觉还是英文的写的要好一些。建议对照着翻译看英文。JavaCC也就那么回事。。</p>
-
 <p>同时在在这目测百慕大群岛的什么工程与应用科学学院找到了一些其他的文档。其中一篇是<a href="http://www.engr.mun.ca/~theo/JavaCC-FAQ/javacc-screen-faq.pdf">JavaCC-FAQ</a>很好。基本上有关JavaCC的问题都有解释。</p>
-
 <p>在FAQ里，看到了一个关于<a href="http://www.j-paine.org/jjtree.html">JJTree</a>的介绍，写的不错。建议看看。</p>
-
 <p>还有一个是国外某学校的编译原理课程的<a href="http://scg.unibe.ch/download/lectures/cc/">ppt下载</a>，好象是以JavaCC作为工具的。还没认真看。</p>
-
 <p>还有一篇<a href="http://www.cnblogs.com/Gavin_Liu/archive/2009/03/07/1405029.html">JavaCC 研究与应用</a>    ，写的平常。不过是中文版的。</p>
-
 <p>最后。千万不要忘了<a href="http://javacc.java.net/doc/">官方文档</a>。也包括你下载的JavaCC里面的Demo。。</p>
 
                 
@@ -515,14 +674,50 @@ XAML中ListView/GridView布局 固定列 下面的例子展示了通过XAML使�
               </p>
               <div class="post-entry">
                 
-                  介绍 这个程序是使用C#中的Graphics来创建一个饼图的，我已经尽我所能写的很好了。如果你有任何建议可以分享给我，这样我也能从中学习。
-使用代码 最近我迷上了Graphics类。我仅仅体验了一下Graphics的DrawPie() 和FillPie() 方法。
-最为一个简单的Demo，我创建一个有着五个文本框的窗体，一个按钮，一个图片框。一会我就把饼图画在图片框里
- 在创建一个饼图之前，我们头脑里要有这个意识。我们不能创建一个不符合常规的圆，创建圆我们需要度数信息。
-为了转换度数。我们首先把给定的值做个求和。然后得出文本框里所有值的和。然后呢。用每个值除以总值再乘以360度。 代码如下： int i1 = Int32.Parse(textBox1.Text); int i2 = Int32.Parse(textBox2.Text); int i3 = Int32.Parse(textBox3.Text); int i4 = Int32.Parse(textBox4.Text); int i5 = Int32.Parse(textBox5.Text);
-float total = i1 + i2 + i3 + i4 + i5 ;
-float deg1 = (i1 / total) * 360; float deg2 = (i2 / total) * 360; float deg3 = (i3 / total) * 360; float deg4 = (i4 / total) * 360; float deg5 = (i5 / total) * 360; 值转换完毕后。我们可以创建Graphics类的实例了。
-                  <a href="https://leizhiyuan.github.io/2012/09/27/c#%E4%BD%BF%E7%94%A8graphics%E5%88%9B%E5%BB%BA%E9%A5%BC%E5%9B%BE/" class="post-read-more">[Read More]</a>
+                  <h3 id="heading">介绍</h3>
+<p>这个程序是使用C#中的Graphics来创建一个饼图的，我已经尽我所能写的很好了。如果你有任何建议可以分享给我，这样我也能从中学习。</p>
+<h3 id="heading-1">使用代码</h3>
+<p>最近我迷上了Graphics类。我仅仅体验了一下Graphics的DrawPie() 和FillPie() 方法。</p>
+<p>最为一个简单的Demo，我创建一个有着五个文本框的窗体，一个按钮，一个图片框。一会我就把饼图画在图片框里</p>
+<p><a href="http://leaverimage.b0.upaiyun.com/27557_o.png"><img src="/images/f3681994ca4fce2b724886db9d7a958d854c8e39.png" alt="" title="client"></a>
+在创建一个饼图之前，我们头脑里要有这个意识。我们不能创建一个不符合常规的圆，创建圆我们需要度数信息。</p>
+<p>为了转换度数。我们首先把给定的值做个求和。然后得出文本框里所有值的和。然后呢。用每个值除以总值再乘以360度。
+代码如下：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>值转换完毕后。我们可以创建Graphics类的实例了。</p>
+<!-- raw HTML omitted -->
+<p>然后我们需要创建一个矩形区域，在这个矩形区域里绘制饼图。</p>
+<!-- raw HTML omitted -->
+<p>前两个参数定义了矩形左上角的坐标，后两个分别定义了举行的宽和高。</p>
+<p>为了能够比较清晰的看出饼图各部分的比例。我们需要创建五个笔刷。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>现在我们可以开始创建我们的饼图了。graphics.FillPie();方法接受四个参数</p>
+<ol>
+<li>笔刷，用来填充扇形</li>
+<li>矩形：饼图将被创建的区域。</li>
+<li>开始角度：饼部分的开始角度</li>
+<li>覆盖角度：饼部分扫过的角度</li>
+</ol>
+<p>一般来说graphics.FillPie();方法并不是创建一个完全的饼图，而是创建饼图的一个扇形部分，我们会创建一系列的扇形最终看起来像是一个饼图。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>上面代码的第一行将会创建第一个红色的扇形。起点是0度，并且创建一个计算好的扇面。
+之后，在第二行，我们的扇面的起点就会接着上一步的结束的位置，也就是deg1 ，第二行，我们的起点就会是 deg1+deg2</p>
+<p>这段代码如你所见，可能不是最优的。我们创建了五个不同的笔刷。和不同的浮点数，而这些操作可以用循环完成。。</p>
+<p>我故意没有这样做。因为，这样做了就可能使问题复杂化。下面是使用循环和数组完成相同的工作。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><a href="http://leaverimage.b0.upaiyun.com/27558_o.png"><img src="/images/341f6010ffe346f8245bdae48986ae61c6dfe90f.png" alt="" title="listbox"></a>
+首先我创建一个整型数组，数组元素个数等于列表框里的数目。然后我使用一个循环计算了所有值的和。
+然后。我创建了一个颜色的数组，这里我建议不要创建一个多于6个扇形。。不然看起来就连在一起了。。
+第三步呢。。我再次使用循环去把值转换成度数。fDegValue 用来保存每次计算的度数。在我们前面的例子里。我们需要把前面几个值加起来作为下一个扇形的开始。而这里。我们使用fDegSum 来保存前面的和就很好了。</p>
+<p>本文很简单，也就使用Graphics创建一个饼图而已。如果是要创建一些专业的图表就要用到.net提供的图表控件了。</p>
+<p>下载：<a href="http://pan.baidu.com/share/link?shareid=63681&amp;uk=1493685990">源代码和Demo</a></p>
+<p>原文地址：<a href="http://www.codeproject.com/Articles/463284/Create-Pie-Chart-Using-Graphics-in-Csharp-NET">Create-Pie-Chart-Using-Graphics-in-Csharp-NET</a>
+著作权声明：本文由<a href="http://leaver.me">http://leaver.me</a> 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</p>
+
                 
               </div>
 
@@ -577,7 +772,7 @@ AvalonDock是一个组合的布局模型，很多的控件都在视图上显示�
 从下面这个截图中我们可以理解AvalonDock组件
  DockingManager 这是AvalonDock中的核心控件，它将包含的窗格排序，处理飞出的窗格，还有浮动的窗口。在上面这个图中，DockingManager 对象包含了所有空间（WPF控件），从顶部的工具栏到底部的状态栏都算。同时。DockingManager 也可以处理保存和恢复布局。
 LayoutPanel 这个面板用来管理在一个方向上的子窗口（通过Orientation属性来选择方向），并且在它们之间添加了一个大小调节控件，在一个Orientation属性是Horizontal（水平）的LayoutPanel 上，排列了三个窗格。一个LayoutAnchorablePane在左，一个LayoutDocumentPane在中间。一个LayoutDockablePane在右边。
-LayoutDockablePane 这个布局元素包含一个LayoutAnchorable对象的集合。通过它用来管理想TabControl这样的控件，在上面的截图中，LayoutDockablePanes是在左边的&rsquo;Strumenti&rsquo; 和 &lsquo;Progetti&rsquo; (工具和项目) 和在右边的&rsquo;Classi&rsquo; 和 &lsquo;Proprieta&rdquo; (类视图和属性视图)的容器，一个LayoutDockablePane可以自动隐藏，就像&rsquo;Errori&rsquo;(错误)和&rsquo;Lista Azioni&rsquo;(操作列表) and &lsquo;Uscita&rsquo;(输出)。并且LayoutDockablePane可以被拖动到DockingManager上，成为一个浮动窗口或者附着到它的父控件DockingManager的边缘上。
+LayoutDockablePane 这个布局元素包含一个LayoutAnchorable对象的集合。通过它用来管理想TabControl这样的控件，在上面的截图中，LayoutDockablePanes是在左边的'Strumenti&rsquo; 和 &lsquo;Progetti&rsquo; (工具和项目) 和在右边的'Classi&rsquo; 和 &lsquo;Proprieta&rsquo;&rsquo; (类视图和属性视图)的容器，一个LayoutDockablePane可以自动隐藏，就像'Errori&rsquo;(错误)和'Lista Azioni&rsquo;(操作列表) and &lsquo;Uscita&rsquo;(输出)。并且LayoutDockablePane可以被拖动到DockingManager上，成为一个浮动窗口或者附着到它的父控件DockingManager的边缘上。
 LayoutDocumentPane 通常包含文档（DocumentContent类型）的一种窗格，但是其实也可以包含像上面提到的工具视图和类视图这样的DockableContents。在一个文档里。LayoutDocumentPane 被放置在ResizingPanel（水平方向）里。ResizingPanel则是上卖弄提到的在两个DockablePane中间的区域。注意。文档窗格是不能被移动的。
 LayoutAnchorable 一个停靠内容，是软件控件的容器，总是被包含在一个窗格里（LayoutAnchorablePane或是LayoutDocumentPane），在截图里。LayoutAnchorable是一类对象（包含一个SharpDevelop对象），工具对象，但是错误窗口（它处于自动隐藏状态，被好办在一个自动隐藏窗格里）不是。LayoutAnchorable就像它名字所暗示的那样。可以被从他的容器窗格里拖走。然后重新放置在一个存在的窗格里。或者是放置在父DockingManager的边缘，或者是放置在一个浮动窗口里（LayoutAnchorableFloatingWindow）。
 LayoutDocument 是一个仅可以被寄宿到LayoutDocumentPane的内容。它是一个特殊的内容，因为不能被停靠到边缘。仅能被放置到LayoutDocumentPane里。或者浮动在一个LayoutDocumentFloatingWindow窗口里。在途中，DocumentContent对象是program.cs&rsquo; 或 &lsquo;MainForm.cs&rsquo; 文件视图
@@ -588,7 +783,15 @@ LayoutContent 是LayoutAnchorable 和LayoutAnchorable类的父类。提供了共
 每一个被创建的视图控件总是有着Model属性的布局元素。因此，重新设计一个相关视图控件的样式是可以的。
 为了开始创建一个新的.net 4/.net 4.5的解决方案。并且添加对AvalonDock.dll的引用（可以直接添加也可以使用NuGet），然后添加AD命名空间到MainWindow.xaml中。
 在根Grid下放置DockingManager组件和一个简单的布局。
-&lt;Window x:Class="MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:avalonDock="http://avalondock.codeplex.com" Title="MainWindow" Height="434" Width="684"&gt; &lt;Grid&gt; &lt;avalonDock:DockingManager x:Name="dockingManager"&gt; &lt;avalonDock:LayoutRoot&gt; &lt;avalonDock:LayoutPanel Orientation="Horizontal"&gt; &lt;avalonDock:LayoutDocumentPane/&gt; &lt;avalonDock:LayoutAnchorablePane DockWidth="150"&gt; &lt;avalonDock:LayoutAnchorable Title="
+DockingManager是AvalonDock的核心类，他的责任就是创建管理布局。布局被定义成一个ILayoutElement的树。树的根由LayoutRoot类指定。LayoutRoot由一些基本的子树来构成。。
+1.根面板的 根属性指向主 LayoutPanel，也是LayoutRoot的内容属性。
+2.大体上讲，RightSide/LeftSide/TopSide/BottonSide是LayoutAnchorGroup对象的集合属性，他们表示了停靠管理器的四个边。停靠管理器的锚通常是隐藏的。当用户移动鼠标到这些区域的时候。就会在自动隐藏的窗口里显示出来。
+3.FloatingWindows属性是FloatingWindow的集合。一个浮动窗口当用户拖动一个窗格（LayoutAnchorable或是LayoutDocument）的时候就被创建出来，这个集合可以被AvalonDock自动更新，但是用户依然可以通过调用LayoutContent的Float()方法来创建一个浮动窗口。
+Hidden是一个Anchorable（停靠）对象的集合。默认情况下，当用户点击一个LayoutAnchorable对象的关闭按钮，AvalonDock隐藏它：通过从布局里移除停靠元素，并且把他放入Hidden集合，当用户想要再一次显示的时候，AD又把这个内容从隐藏集合里删除重新显示在他被隐藏的那个窗格里。
+当使用布局树的时候，程序员可以创建任何复杂的界面，LayoutAnchorablePane的DockWidth和DockHeight属性可以被用来设置窗格的初始宽度和高度。而LayoutDocumentPane类通常则填满可用的空间。AvalonDock管理内容元素的宽度和高度以使得可以使用所有的可用空间。因此如果一个LayoutAnchorablePane被放置在一个LayoutPanel里，为LayoutAnchorablePane使用一个固定尺寸而为LayoutDocumentPane使用一个比例长度。也就是说为停靠对象使用了比例长度。
+一个LayoutDocumentGroup/ LayoutAnchorableGroup类可以被用来包含更多的LayoutDocumentPane/ LayoutAnchorablePane，举个例子，让我们来改变上面的例子来实现更复杂的例子。
+运行这个工程你就可以重新排列内容了。移动他们到浮动窗口。为了更加熟悉AvalonDock，我建议你多试几次，然后重新排列内容实现更复杂的布局。
+在入门指南的第二部分。我将演示我们如何保存布局。附加事件像DocumentClose/ DocumentClosing 或者ActiveContent 改变的事件。 原文地址：AvalonDock 2.0 getting started guide PART 1 著作权声明：本文由http://leaver.
                   <a href="https://leizhiyuan.github.io/2012/09/26/avalondock-2.0%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -641,7 +844,6 @@ LayoutContent 是LayoutAnchorable 和LayoutAnchorable类的父类。提供了共
               <div class="post-entry">
                 
                   <p>本系列来自博客园的<a href="http://www.cnblogs.com/zhili/">Learning hard</a>园友。每个博主都不容易，我这里只是给出一个索引，希望更多热爱技术的人能够看到。给分享者更多的鼓励和支持。</p>
-
 <p><a href="http://www.cnblogs.com/zhili/archive/2012/08/11/NetWorkProgramming.html">专题一：网络协议简介</a>
 <a href="http://www.cnblogs.com/zhili/archive/2012/08/18/HTTP.html">专题二：HTTP协议详解</a>
 <a href="http://www.cnblogs.com/zhili/archive/2012/08/23/WebServer.html">专题三：自定义Web服务器</a>
@@ -688,7 +890,7 @@ LayoutContent 是LayoutAnchorable 和LayoutAnchorable类的父类。提供了共
   <i class="fas fa-calendar"></i>&nbsp;Posted on September 25, 2012
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -703,12 +905,25 @@ LayoutContent 是LayoutAnchorable 和LayoutAnchorable类的父类。提供了共
               </p>
               <div class="post-entry">
                 
-                  介绍 本文将会暂时如何仅仅使用C#来下载youtub视频，代码简单也容易理解，每个人都可以把它整合到自己的工程项目里。
-我没有使用任何第三方的库来完成这段代码，你所要做的仅仅是把两个.cs文件整合进你的项目里。
-使用代码 这个工程里有两个主要的类
-YouTubeVideoQuality Class（youtube视频质量类）
-public class YouTubeVideoQuality { /// &lt;summary&gt; /// Gets or Sets 文件名 /// &lt;/summary&gt; public string Videotitle: { get; set; } /// &lt;summary&gt; /// Gets or Sets 文件扩展 /// &lt;/summary&gt; public string Extention { get; set; } /// &lt;summary&gt; /// Gets or Sets 文件地址 /// &lt;/summary&gt; public string DownloadUrl { get; set; } /// &lt;summary&gt; /// Gets or Sets 视频地址 /// &lt;/summary&gt; public string VideoUrl { get; set; } /// &lt;summary&gt; /// Gets or Sets 文件大小 /// &lt;/summary&gt; public Size Dimension { get; set; } public override string ToString() { return Extention + "
-                  <a href="https://leizhiyuan.github.io/2012/09/25/c#%E7%BC%96%E5%86%99youtube%E4%B8%8B%E8%BD%BD%E5%99%A8/" class="post-read-more">[Read More]</a>
+                  <h3 id="heading">介绍</h3>
+<p>本文将会暂时如何仅仅使用C#来下载youtub视频，代码简单也容易理解，每个人都可以把它整合到自己的工程项目里。</p>
+<p>我没有使用任何第三方的库来完成这段代码，你所要做的仅仅是把两个.cs文件整合进你的项目里。</p>
+<h3 id="heading-1">使用代码</h3>
+<p>这个工程里有两个主要的类</p>
+<p>YouTubeVideoQuality Class（youtube视频质量类）</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>YouTubeDownloader Class(youtube下载类)</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h3 id="heading-2">有趣的地方</h3>
+<p>使用这个代码，你可以根据你的网速来选择不同品质的视频来下载</p>
+<p>许多人网速很慢他们不能在线看youtube，因为我写了这个代码帮助这些人来下载视频到他们的PC上。这样，他们就能离线看了。。</p>
+<h3 id="heading-3">许可</h3>
+<p>本文。包括源代码和文件，在CPOL下授权。</p>
+<p>原文地址：<a href="http://www.codeproject.com/Tips/323771/YouTube-Downloader-Using-Csharp-NET">YouTube-Downloader-Using-Csharp-NET</a>
+著作权声明：本文由<a href="http://leaver.me">http://leaver.me</a> 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</p>
+
                 
               </div>
 
@@ -758,36 +973,11 @@ public class YouTubeVideoQuality { /// &lt;summary&gt; /// Gets or Sets 文件�
               <div class="post-entry">
                 
                   <p>如果使用C#代码来删除文件或是文件夹。会将文件和文件夹直接删除，而不是删除到回收站。可以调用Microsoft.VisualBasic.dll提供的方法。</p>
-
 <p>首先对项目添加名为Microsoft.VisualBasic.dll的引用，然后添加命名空间</p>
-
-<pre class="lang:default decode:true " >using Microsoft.VisualBasic.FileIO;</pre> 
-
+<!-- raw HTML omitted -->
 <p>最后示例代码如下：</p>
-
-<pre class="lang:c# decode:true " >using System;
-using Microsoft.VisualBasic.FileIO;
-namespace leaver
-{
-    class Program
-    {
-
-        static void Main(string[] args)
-        {
-
-            Console.WriteLine("删除文件到回收站");
-            string filepath = "leaver.txt";
-            FileSystem.DeleteFile(filepath, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
-            Console.WriteLine("删除文件完成");
-
-            Console.WriteLine("删除文件夹到回收站");
-            string dirpath = "leaver";
-            FileSystem.DeleteDirectory(dirpath, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin);
-            Console.WriteLine("删除文件夹完成");
-        }
-    }
-}</pre> 
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>很简单。。就不多说了。。</p>
 
                 
@@ -805,92 +995,6 @@ namespace leaver
                     <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/09/24/vs%E6%89%A9%E5%B1%95%E6%95%85%E9%9A%9C%E9%94%99%E8%AF%AF%E7%A0%8180131515/">
-                <h2 class="post-title">VS扩展故障,错误码:80131515</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on September 24, 2012
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  
-
-<h3 id="介绍">介绍</h3>
-
-<p>如果你给VS安装了<a href="http://www.codeproject.com/Articles/446955/Web-Search-Visual-Studio-Add-in-Search-Google-Yaho">Web Search</a>扩展，如果第一次运行就出现了错误代码是80131515的问题。那么本文对你是有用的。。
-<a href="http://leaverimage.b0.upaiyun.com/27488_o.png"><img src="/images/31f5dde58ae04aa01469671b23b71a15d328c51c.png" alt="" title="question" /></a></p>
-
-<h3 id="背景">背景</h3>
-
-<p>当我远程试图运行<a href="http://www.codeproject.com/Articles/446955/Web-Search-Visual-Studio-Add-in-Search-Google-Yaho">Web Search</a>的时候出现了这个错误。我用本文第一种方法解决了。。</p>
-
-<h3 id="解决方法">解决方法</h3>
-
-<p>这个错误发生在当我远程以dll的方式调用的时候提示我说权限不够。。
-为了解决这个问题，我们需要给devenv.exe.config文件添加loadFromRemoteSources 元素
-首先使用管理员权限从下面的路径打开devenv.exe.config文件。
-具体路径：你的VS安装目录\Common7\IDE\devenv.exe.config
-并且添加loadFromRemoteSources 元素，并设为true。如下：</p>
-
-<pre class="lang:xhtml decode:true " >&lt;configuration&gt;
-   &lt;runtime&gt;
-      &lt;loadFromRemoteSources enabled="true"/&gt;
-   &lt;/runtime&gt;
-&lt;/configuration&gt; </pre> 
-
-<p>有时候windows会把下载的文件标记为“此文件来自一个不同的位置” ，然后对这些文件进行了很多的限制，这部分就是解锁下载的zip或是dll文件</p>
-
-<p>为了解锁这些文件，只要右键点击这些文件，属性，选择常规，然后点击解锁按钮。如下图：
-<a href="http://leaverimage.b0.upaiyun.com/27489_o.png"><img src="/images/c889da920a47f1e60ef6d7140d69f20c61374388.png" alt="" title="answer" /></a>
-如果你还有其他的解决方法请告诉我哦。</p>
-
-<h3 id="许可">许可</h3>
-
-<p>本文，包括源代码和文件，在CPOL下授权。</p>
-
-<p>原文地址：<a href="http://www.codeproject.com/Tips/463777/Visual-Studio-Add-in-Troubleshooting-Error-Number">Visual-Studio-Add-in-Troubleshooting-Error-Number</a>
-著作权声明：本文由<a href="http://leaver.me">http://leaver.me</a> 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%AD%A6%E6%B1%89/">武汉</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
                   
                 </div>
               
@@ -960,7 +1064,7 @@ namespace leaver
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

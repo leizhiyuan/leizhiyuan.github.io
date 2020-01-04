@@ -18,23 +18,17 @@
       
       <guid>https://leizhiyuan.github.io/2014/04/26/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/</guid>
       <description>以前我在写数据库连接的时候，都是在文件里写死的，或者一个简单地配置文件，只有一个数据库连接嘛，但是最近写一个测试工具的时候，需要很多数据库，而且有些还有分库规则，于是查找资料，完善了两个类，和xml的定义规则，分享出来。仅供参考，有任何指教请回复。不胜感谢
-首先xml的配置格式定义如下 &amp;lt;?xml version=&amp;ldquo;1.0&amp;rdquo; encoding=&amp;ldquo;UTF-8&amp;rdquo;?&amp;gt;
-&amp;lt;config&amp;gt;
-&amp;lt;db-info&amp;gt; &amp;lt;id&amp;gt;oracle-test&amp;lt;/id&amp;gt;
-&amp;lt;driver-name&amp;gt;oracle.jdbc.driver.OracleDriver&amp;lt;/driver-name&amp;gt;
-&amp;lt;url&amp;gt;jdbc:oracle:thin:@127.0.0.1:1521:test&amp;lt;/url&amp;gt;
-&amp;lt;user-name&amp;gt;admin&amp;lt;/user-name&amp;gt;
-&amp;lt;password&amp;gt;admin&amp;lt;/password&amp;gt;
-&amp;lt;/db-info&amp;gt;
-&amp;lt;db-info&amp;gt; &amp;lt;id&amp;gt;mysql-test&amp;lt;/id&amp;gt;
-&amp;lt;driver-name&amp;gt;com.mysql.jdbc.Driver&amp;lt;/driver-name&amp;gt;
-&amp;lt;url&amp;gt;jdbc:mysql://127.0.0.1:3306&amp;lt;/url&amp;gt;
-&amp;lt;user-name&amp;gt;root&amp;lt;/user-name&amp;gt;
-&amp;lt;password&amp;gt;root&amp;lt;/password&amp;gt;
-&amp;lt;/db-info&amp;gt; &amp;lt;/config&amp;gt; 然后我们有XmlConfigReader类，用来读取这个配置文件，并且返回对应的jdbcConfig对象。
+首先xml的配置格式定义如下
+然后我们有XmlConfigReader类，用来读取这个配置文件，并且返回对应的jdbcConfig对象。
 这个对象就是一个model类，对应xml的属性
-然后我们的DBUtil类会调用XmlConfigReader，通用的一般是传个 &amp;lt;id&amp;gt;mysql-test&amp;lt;/id&amp;gt; 值，然后XmlConfigReader来读取返回，对象，然后在DBUtil里用这个对象得知来构造连接，我添加了一个简单的方法 public static Connection getConnection(String dbId,String dbName) throws ClassNotFoundException { Connection conn = null;
-try { //新建jdbc配置类。 XmlConfigReader xcr=new XmlConfigReader(); JdbcConfig jdbcconfig = xcr.getConnection(dbId,dbName); Class.forName(jdbcconfig.getDriverName()); //取得连接对象。 conn = DriverManager.getConnection(jdbcconfig.getUrl(), jdbcconfig.getUserName(), jdbcconfig.getPassword()); } catch (ClassNotFoundException e) { // 抛出 exception e.printStackTrace(); }catch(SQLException e) { e.printStackTrace(); } return conn; }&amp;lt;/pre&amp;gt; 就是多传一个数据库名</description>
+然后我们的DBUtil类会调用XmlConfigReader，通用的一般是传个
+值，然后XmlConfigReader来读取返回，对象，然后在DBUtil里用这个对象得知来构造连接，我添加了一个简单的方法
+就是多传一个数据库名
+然后XmlConfigReader哩对应有这个方法
+ 这里会有一个拼接的操作，比较简单。
+这几个类我打包了。由于我是用了maven做包管理，所以org.dom4j这个包自行下载了。。
+下载地址：http://pan.baidu.com/s/1o617RAy
+   </description>
     </item>
     
     <item>
@@ -44,10 +38,11 @@ try { //新建jdbc配置类。 XmlConfigReader xcr=new XmlConfigReader(); JdbcCo
       
       <guid>https://leizhiyuan.github.io/2013/09/20/spring3%E5%AE%9E%E4%BE%8B%E5%85%A5%E9%97%A8-hello-world/</guid>
       <description>每次看到hello world,都有一种说不出的赶脚，想起了一个程序员，退休后写毛笔字，取笔研磨铺纸，大笔一挥，写下了“hello world”。
-1.使用Maven生成项目结构 mvn archetype:generate -DgroupId=com.mkyong.core -DartifactId=Spring3Example -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false 2.转换成Eclipse项目 mvn eclipse:eclipse 3.添加Spring3.0 依赖 在pom.xml文件里添加Spring 3.0 依赖，然后依赖会从Maven中央仓库自动下载 &amp;lt;project xmlns=&amp;ldquo;http://maven.apache.org/POM/4.0.0&amp;quot; xmlns:xsi=&amp;ldquo;http://www.w3.org/2001/XMLSchema-instance&amp;quot; xsi:schemaLocation=&amp;ldquo;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd&amp;quot;&amp;gt; &amp;lt;modelVersion&amp;gt;4.0.0&amp;lt;/modelVersion&amp;gt; &amp;lt;groupId&amp;gt;com.mkyong.core&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;Spring3Example&amp;lt;/artifactId&amp;gt; &amp;lt;packaging&amp;gt;jar&amp;lt;/packaging&amp;gt; &amp;lt;version&amp;gt;1.0-SNAPSHOT&amp;lt;/version&amp;gt; &amp;lt;name&amp;gt;Spring3Example&amp;lt;/name&amp;gt; &amp;lt;url&amp;gt;http://maven.apache.org&amp;lt;/url&amp;gt;
-&amp;amp;lt;properties&amp;amp;gt; &amp;amp;lt;spring.version&amp;amp;gt;3.0.5.RELEASE&amp;amp;lt;/spring.version&amp;amp;gt; &amp;amp;lt;/properties&amp;amp;gt; &amp;amp;lt;dependencies&amp;amp;gt; &amp;amp;lt;!-- Spring 3 dependencies --&amp;amp;gt; &amp;amp;lt;dependency&amp;amp;gt; &amp;amp;lt;groupId&amp;amp;gt;org.springframework&amp;amp;lt;/groupId&amp;amp;gt; &amp;amp;lt;artifactId&amp;amp;gt;spring-core&amp;amp;lt;/artifactId&amp;amp;gt; &amp;amp;lt;version&amp;amp;gt;${spring.version}&amp;amp;lt;/version&amp;amp;gt; &amp;amp;lt;/dependency&amp;amp;gt; &amp;amp;lt;dependency&amp;amp;gt; &amp;amp;lt;groupId&amp;amp;gt;org.springframework&amp;amp;lt;/groupId&amp;amp;gt; &amp;amp;lt;artifactId&amp;amp;gt;spring-context&amp;amp;lt;/artifactId&amp;amp;gt; &amp;amp;lt;version&amp;amp;gt;${spring.version}&amp;amp;lt;/version&amp;amp;gt; &amp;amp;lt;/dependency&amp;amp;gt; &amp;amp;lt;/dependencies&amp;amp;gt; &amp;lt;/project&amp;gt;
-4.Spring bean 写个简单的bean package com.mkyong.core;
-/** * Spring bean * */ public class HelloWorld { private String name;</description>
+1.使用Maven生成项目结构 2.转换成Eclipse项目 3.添加Spring3.0 依赖 在pom.xml文件里添加Spring 3.0 依赖，然后依赖会从Maven中央仓库自动下载
+4.Spring bean 写个简单的bean
+5.Spring bean配置文件 创建一个配置文件，在里面声明所有可用的Spring beans
+6.最终的目录结构 
+ 7.运行 8.输出 9.Demo下载 Spring3-hello-world-example.zip</description>
     </item>
     
     <item>
@@ -57,10 +52,59 @@ try { //新建jdbc配置类。 XmlConfigReader xcr=new XmlConfigReader(); JdbcCo
       
       <guid>https://leizhiyuan.github.io/2013/09/20/%E4%BD%BF%E7%94%A8maven%E5%88%9B%E5%BB%BAweb%E9%A1%B9%E7%9B%AE/</guid>
       <description>本文通过Maven完成一个简单的Web项目（注意，Spring配置不是重点，看看就行）
-1.从Maven模板创建Web应用程序 命令格式如下： mvn archetype:generate -DgroupId={project-packaging} -DartifactId={project-name} -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false 这就告诉Maven从**maven-archetype-webapp **这个模板来创建
-友情提示：是不是太难记了..好吧，直接输入 mvn archetype:generate 根据向导来创建把。。
-比如我这样写： &amp;gt; mvn archetype:generate -DgroupId=com.mkyong -DartifactId=CounterWebApp -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false [INFO] Scanning for projects&amp;hellip; [INFO]
-[INFO] &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash; [INFO] Building Maven Stub Project (No POM) 1 [INFO] &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash; [INFO] [INFO] Generating project in Batch mode [INFO] &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;- [INFO] Using following parameters for creating project from Old (1.x) Archetype: maven-archetype-webapp:1.0 [INFO] &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;- [INFO] Parameter: groupId, Value: com.mkyong [INFO] Parameter: packageName, Value: com.</description>
+1.从Maven模板创建Web应用程序 命令格式如下：
+这就告诉Maven从**maven-archetype-webapp **这个模板来创建
+友情提示：是不是太难记了..好吧，直接输入
+根据向导来创建把。。
+比如我这样写：
+就创建了一个包名为com.mkyong,类名为CounterWebApp的项目了
+2.Maven的Web程序目录结构 标准的web.xml部署描述文件生成了
+对结构有疑问的去这里
+生成的pom.xml文件如下
+没啥疑问的。web.xml文件则如下：
+index.jsp内容是：
+3.转换以支持Eclipse 为了使Maven的web项目支持Eclipse，在命令行下，cd到CounterWebApp目录下，然后输入这个命令
+-Dwtpversion=2.0参数是必需的，这个参数指明了是web项目，然后导入到eclipse里就行了。从导入的工程ico可以看出是个web项目
+图一
+  
+不要迷惑，如果我们只输入
+会转换成java项目，而不是web项目的。
+好了，现在项目已经准备好部署了，eclipse里的tomcat server插件装好，然后启动项目
+图二
+
+可以通过_http://localhost:8080/CounterWebApp/_地址来访问
+4.更新pom文件 为了使Maven项目支持Spring MVC框架，我们需要修改pom.xml文件
+1.添加编译插件指定jdk6来编译
+2.添加Spring框架依赖
+3.升级JUnit到4.1.1
+5.Spring MVC 松耦合 创建Spring MVC控制器类，有两个方法，打印信息
+然后，创建Spring配置文件，定义视图解析器
+然后更新一下web.xml文件，通过Spring的监听器ContextLoaderListener把Spring框架集成进去
+然移动index.jsp到WEB-INF目录里，以防用户直接访问他，同时我们编辑，增加${message}变量，也就是controller控制器传过来的值到页面
+最终的页面结构是：
+图三
+
+6.Eclipse+Tomcat 为了通过Eclipse的Tomcat插件开始/调试项目，需要再执行一次下面的命令，使得所有的依赖附加完成
+在没执行以前，项目依赖是空的
+图四
+
+执行完以后，就都有了
+图五
+
+重要！许多人就是没有第二次执行这个命令导致无法开始/调试，如果有问题，右击你的项目属性，看看依赖是否为空
+7.Maven打包 web项目打包成war。放在target目录
+进入项目目录，执行一下就可以了
+然后把target目录的CountWebApp.war文件拷贝，并部署到你的web容器里就行了
+8.Demo演示 打开_http://localhost:8080/CounterWebApp/welcome_
+可以看到
+图六
+
+我们传个参数进去
+http://localhost:8080/CounterWebApp/welcome/mkyong
+就可以看到效果了
+图七
+
+9.Demo下载</description>
     </item>
     
     <item>
@@ -76,8 +120,10 @@ try { //新建jdbc配置类。 XmlConfigReader xcr=new XmlConfigReader(); JdbcCo
 3）复制进项目的classpath里
 4）手工包含到项目的依赖里
 看到没，你要从头做到尾，如果Log4J更新了，你得再来一遍。。
-2.Maven的方式 1）需要知道Log4J的Maven坐标(coordinates,这个暂时没想到好名字)，就是这样的东西 &amp;lt;groupId&amp;gt;log4j&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;log4j&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.2.14&amp;lt;/version&amp;gt; 然后Maven就会自动下载1.2.14版本的Log4J了。如果version这个元素没有，那么如果有了新版本，Maven会自动下载新版本的。
-2）在pom.xml里声明这个Maven坐标 &amp;lt;dependencies&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;log4j&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;log4j&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.2.14&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;/dependencies&amp;gt; 3）当Maven编译或者build的时候，Log4J会自动下载，放入本地仓库里
+2.Maven的方式 1）需要知道Log4J的Maven坐标(coordinates,这个暂时没想到好名字)，就是这样的东西
+然后Maven就会自动下载1.2.14版本的Log4J了。如果version这个元素没有，那么如果有了新版本，Maven会自动下载新版本的。
+2）在pom.xml里声明这个Maven坐标
+3）当Maven编译或者build的时候，Log4J会自动下载，放入本地仓库里
 4）Maven全部接管
 3.解释 搜索顺序前面说过了。本地-》中央-》远程仓库
 Maven坐标咋来的，当然去中央仓库搜索之了，搜索结果清晰的令人发指
@@ -86,7 +132,10 @@ Maven坐标咋来的，当然去中央仓库搜索之了，搜索结果清晰的
 2是你创建了一个自定义的jar包，需要另一个项目使用这个jar
 比如，kaptche，一个第三方的java库，生成验证码，现在中央仓库没有了。
 我们想要加到本地仓库里
-1.mvn安装 下载kaptche，解压并且拷贝kaptcha-version.jar到其他任何你喜欢的地方，比如c盘，然后输入如下格式的命令 mvn install:install-file -Dfile=c:\kaptcha-{version}.jar -DgroupId=com.google.code -DartifactId=kaptcha -Dversion={version} -Dpackaging=jar 这里我这样输入 D:&amp;amp;gt;mvn install:install-file -Dfile=c:\kaptcha-2.3.jar -DgroupId=com.google.code -DartifactId=kaptcha -Dversion=2.3 -Dpackaging=jar [INFO] Scanning for projects&amp;hellip; [INFO] Searching repository for plugin with prefix: &amp;lsquo;install&amp;rsquo;. [INFO] &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash; [INFO] Building Maven Default Project [INFO] task-segment: install:install-file [INFO] &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash; [INFO] [install:install-file] [INFO] Installing c:\kaptcha-2.</description>
+1.mvn安装 下载kaptche，解压并且拷贝kaptcha-version.jar到其他任何你喜欢的地方，比如c盘，然后输入如下格式的命令
+这里我这样输入
+这样完成了。kaptcha已经存在本地库了
+2.pom.xml配置一下 这个前面说过了，Maven坐标嘛</description>
     </item>
     
     <item>
@@ -98,8 +147,7 @@ Maven坐标咋来的，当然去中央仓库搜索之了，搜索结果清晰的
       <description>本文由我翻译合并了多篇文章，整理成一篇。
 一.本地仓库(Local Repository) 本地仓库就是一个本机的目录，这个目录被用来存储我们项目的所有依赖（插件的jar包还有一些其他的文件），简单的说，当你build一个Maven项目的时候，所有的依赖文件都会放在本地仓库里，仓库供所有项目都可以使用
 默认情况下，本地仓库在.m2目录，windows下的话就是你的用户名目录下的.m2目录
-1.更新本地仓库目录 找到你的MAVEN_HOME目录下的conf/setting.xml文件，更新localRepository节点 &amp;lt;settings&amp;gt; &amp;lt;!&amp;ndash; localRepository | The path to the local repository maven will use to store artifacts. | | Default: ~/.m2/repository &amp;lt;localRepository&amp;gt;/path/to/local/repo&amp;lt;/localRepository&amp;gt; &amp;ndash;&amp;gt;
-&amp;lt;localRepository&amp;gt;D:/maven/repo&amp;lt;/localRepository&amp;gt;
+1.更新本地仓库目录 找到你的MAVEN_HOME目录下的conf/setting.xml文件，更新localRepository节点
 2.保存一下 完成了。新的本地仓库被放在了D:/maven/repo
 看一下这个目录
 
@@ -107,15 +155,10 @@ Maven坐标咋来的，当然去中央仓库搜索之了，搜索结果清晰的
 http://search.maven.org/#browse
 看起来是这样的
 
-&amp;nbsp;
-注意啊，虽然这个是新的中央仓库，但有时候还是会从_“http://repo1.maven.org/maven/_这个旧仓库下载东西，不过不要紧，理解就行了
+ 注意啊，虽然这个是新的中央仓库，但有时候还是会从_“**http://repo1.maven.org/maven/**_这个旧仓库下载东西，不过不要紧，理解就行了
 三.远程仓库(Remote Respository) 在Maven中，当你在pom.xml中生命的依赖既不在本地库，也不在中央库的时候，就会报错。
-1.例子 org.jvnet.localizer这个包仅在java.net的仓库里有(以前是，现在中央仓库也有了。但理解就行) &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.jvnet.localizer&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;localizer&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;1.8&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; 当我们build的时候，会失败，并输出未找到错误信息
-2.声明java.net仓库 为了告诉Maven从远程仓库里获取依赖，我们需要声明一个远程仓库，在pom.xml里这样写 &amp;lt;repositories&amp;gt; &amp;lt;repository&amp;gt; &amp;lt;id&amp;gt;java.net&amp;lt;/id&amp;gt; &amp;lt;url&amp;gt;https://maven.java.net/content/repositories/public/&amp;lt;/url&amp;gt; &amp;lt;/repository&amp;gt; &amp;lt;/repositories&amp;gt; 这样，Maven搜索依赖的顺序就是：
-1）搜索本地仓库，没有找到，就去第2步，否则退出
-2）搜索中央仓库，没有找到，就去第3步，否则退出
-3）去java.net远程仓库获取，没有找到，就报错，否则退出
-补充：JBoss也有个远程仓库，可以如下配置： &amp;lt;project &amp;hellip;&amp;gt; &amp;lt;repositories&amp;gt; &amp;lt;repository&amp;gt; &amp;lt;id&amp;gt;JBoss repository&amp;lt;/id&amp;gt; &amp;lt;url&amp;gt;http://repository.</description>
+1.例子 org.jvnet.localizer这个包仅在java.net的仓库里有(以前是，现在中央仓库也有了。但理解就行)
+  </description>
     </item>
     
     <item>
@@ -127,18 +170,17 @@ http://search.maven.org/#browse
       <description>Maven不需要作为服务组件安装到windows上，仅仅需要下载，解压，然后配置一下环境变量就行了
 1.JDK和JAVA_HOME 确保JDK已经安装，同时JAVA_HOME变量已经添加到了windows环境变量里，指向jdk目录
 
-&amp;nbsp;
-2.下载Maven 去Maven主页,选个版本，点击下载
+ 2.下载Maven 去Maven主页,选个版本，点击下载
 3.解压 解压下载的zip文件，重命名，比如我放到D盘的Maven目录
 4.添加MAVEN_HOME环境变量 添加一个新的环境变量MAVEN_HOME到环境变量，指向Maven目录
 
-&amp;nbsp;
-5.添加path变量 更新Path变量，把Maven的bin目录添加进去，这样就可以在任何地方执行mvn命令了
+ 5.添加path变量 更新Path变量，把Maven的bin目录添加进去，这样就可以在任何地方执行mvn命令了
 
-&amp;nbsp;
-6.验证 打开命令行，输入 mvn -version 如果看到类似下面的 C:\Documents and Settings\mkyong&amp;gt;mvn -version Apache Maven 2.2.1 (r801777; 2009-08-07 03:16:01+0800) Java version: 1.6.0_13 Java home: C:\Program Files\Java\jdk1.6.0_13\jre Default locale: en_US, platform encoding: Cp1252 OS name: &amp;ldquo;windows xp&amp;rdquo; version: &amp;ldquo;5.1&amp;rdquo; arch: &amp;ldquo;x86&amp;rdquo; Family: &amp;ldquo;windows&amp;rdquo; Maven已经成功的安装配置了。
+ 6.验证 打开命令行，输入
+如果看到类似下面的
+Maven已经成功的安装配置了。
 老外写的太详细了。。。
-&amp;nbsp;</description>
+ </description>
     </item>
     
   </channel>

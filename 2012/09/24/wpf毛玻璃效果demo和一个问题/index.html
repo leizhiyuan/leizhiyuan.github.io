@@ -12,16 +12,10 @@
   <meta name="twitter:title" content="WPF毛玻璃效果Demo和一个问题" />
   <meta name="description" content="那天看到WPF书上讲的毛玻璃效果，就去找了下效果。。忘了例子是从哪发现得了。。先看下效果，
  但是这不是重点，作者给出的代码有一个设计时错误。。错误提示为： 无法将类型为“Microsoft.Expression.Platform.WPF.InstanceBuilders.WindowInstance”的对象强制转换为类型“System.Windows.Window”，，
-　中文搜了一下。没有发现有人解决过。目测。。。然后又拿英文搜了下。几经辗转。。终于是解决了。。原文在Unable to cast XAML error。其实就是将原作者这个函数修改如下的
-public static void OnIsEnabledChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args) {
-if ((bool)args.NewValue == true) { Window wnd = obj as Window; if (wnd != null) wnd.Loaded &#43;= new RoutedEventHandler(wnd_Loaded); } }&lt;/pre&gt;  　也就是验证了一下转换是否成功。
-下载：修改后的RGSamples">
+　中文搜了一下。没有发现有人解决过。目测。。。然后又拿英文搜了下。几经辗转。。终于是解决了。。原文在Unable to cast XAML error。其实就是将原作者这个函数修改如下的">
   <meta property="og:description" content="那天看到WPF书上讲的毛玻璃效果，就去找了下效果。。忘了例子是从哪发现得了。。先看下效果，
  但是这不是重点，作者给出的代码有一个设计时错误。。错误提示为： 无法将类型为“Microsoft.Expression.Platform.WPF.InstanceBuilders.WindowInstance”的对象强制转换为类型“System.Windows.Window”，，
-　中文搜了一下。没有发现有人解决过。目测。。。然后又拿英文搜了下。几经辗转。。终于是解决了。。原文在Unable to cast XAML error。其实就是将原作者这个函数修改如下的
-public static void OnIsEnabledChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args) {
-if ((bool)args.NewValue == true) { Window wnd = obj as Window; if (wnd != null) wnd.Loaded &#43;= new RoutedEventHandler(wnd_Loaded); } }&lt;/pre&gt;  　也就是验证了一下转换是否成功。
-下载：修改后的RGSamples">
+　中文搜了一下。没有发现有人解决过。目测。。。然后又拿英文搜了下。几经辗转。。终于是解决了。。原文在Unable to cast XAML error。其实就是将原作者这个函数修改如下的">
   <meta name="twitter:description" content="那天看到WPF书上讲的毛玻璃效果，就去找了下效果。。忘了例子是从哪发现得了。。先看下效果，
  但是这不是重点，作者给出的代码有一个设计时错误。。错误提示为： 无法将类型为“Microsoft.Expression.Platform.WPF.InstanceBuilders.WindowInstance”的对象强制转换为类型“System.Windows.Window”，，
 　中文搜了一下。没有发现 …">
@@ -73,9 +67,9 @@ if ((bool)args.NewValue == true) { Window wnd = obj as Window; if (wnd != null) 
     "name" : "bystander"
   },
   "headline": "WPF毛玻璃效果Demo和一个问题",
-  "description" : "那天看到WPF书上讲的毛玻璃效果，就去找了下效果。。忘了例子是从哪发现得了。。先看下效果，\n 但是这不是重点，作者给出的代码有一个设计时错误。。错误提示为： 无法将类型为“Microsoft.Expression.Platform.WPF.InstanceBuilders.WindowInstance”的对象强制转换为类型“System.Windows.Window”，，\n　中文搜了一下。没有发现有人解决过。目测。。。然后又拿英文搜了下。几经辗转。。终于是解决了。。原文在Unable to cast XAML error。其实就是将原作者这个函数修改如下的\npublic static void OnIsEnabledChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args) {\nif ((bool)args.NewValue == true) { Window wnd = obj as Window; if (wnd != null) wnd.Loaded \x2b= new RoutedEventHandler(wnd_Loaded); } }\x26lt;\/pre\x26gt;  　也就是验证了一下转换是否成功。\n下载：修改后的RGSamples",
+  "description" : "那天看到WPF书上讲的毛玻璃效果，就去找了下效果。。忘了例子是从哪发现得了。。先看下效果，\n 但是这不是重点，作者给出的代码有一个设计时错误。。错误提示为： 无法将类型为“Microsoft.Expression.Platform.WPF.InstanceBuilders.WindowInstance”的对象强制转换为类型“System.Windows.Window”，，\n　中文搜了一下。没有发现有人解决过。目测。。。然后又拿英文搜了下。几经辗转。。终于是解决了。。原文在Unable to cast XAML error。其实就是将原作者这个函数修改如下的",
   "inLanguage" : "en",
-  "wordCount":  39 ,
+  "wordCount":  8 ,
   "datePublished" : "2012-09-24T08:04:25",
   "dateModified" : "2012-09-24T08:04:25",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -97,10 +91,7 @@ if ((bool)args.NewValue == true) { Window wnd = obj as Window; if (wnd != null) 
 <meta property="og:title" content="WPF毛玻璃效果Demo和一个问题" />
 <meta property="og:description" content="那天看到WPF书上讲的毛玻璃效果，就去找了下效果。。忘了例子是从哪发现得了。。先看下效果，
  但是这不是重点，作者给出的代码有一个设计时错误。。错误提示为： 无法将类型为“Microsoft.Expression.Platform.WPF.InstanceBuilders.WindowInstance”的对象强制转换为类型“System.Windows.Window”，，
-　中文搜了一下。没有发现有人解决过。目测。。。然后又拿英文搜了下。几经辗转。。终于是解决了。。原文在Unable to cast XAML error。其实就是将原作者这个函数修改如下的
-public static void OnIsEnabledChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args) {
-if ((bool)args.NewValue == true) { Window wnd = obj as Window; if (wnd != null) wnd.Loaded &#43;= new RoutedEventHandler(wnd_Loaded); } }&lt;/pre&gt;  　也就是验证了一下转换是否成功。
-下载：修改后的RGSamples">
+　中文搜了一下。没有发现有人解决过。目测。。。然后又拿英文搜了下。几经辗转。。终于是解决了。。原文在Unable to cast XAML error。其实就是将原作者这个函数修改如下的">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2012/09/24/wpf%E6%AF%9B%E7%8E%BB%E7%92%83%E6%95%88%E6%9E%9Cdemo%E5%92%8C%E4%B8%80%E4%B8%AA%E9%97%AE%E9%A2%98/" />
 <meta property="og:type" content="website" />
@@ -120,7 +111,7 @@ if ((bool)args.NewValue == true) { Window wnd = obj as Window; if (wnd != null) 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -305,24 +296,11 @@ if ((bool)args.NewValue == true) { Window wnd = obj as Window; if (wnd != null) 
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <p>　　那天看到WPF书上讲的毛玻璃效果，就去找了下效果。。忘了例子是从哪发现得了。。先看下效果，</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/27420_o.jpg"><img src="/images/638a69761205e3d5c16a5bd34a2f775de190d137.jpg" alt="" title="glass" /></a>
+<p><a href="http://leaverimage.b0.upaiyun.com/27420_o.jpg"><img src="/images/638a69761205e3d5c16a5bd34a2f775de190d137.jpg" alt="" title="glass"></a>
 　　但是这不是重点，作者给出的代码有一个设计时错误。。错误提示为：
 无法将类型为“Microsoft.Expression.Platform.WPF.InstanceBuilders.WindowInstance”的对象强制转换为类型“System.Windows.Window”，，</p>
-
 <p>　　中文搜了一下。没有发现有人解决过。目测。。。然后又拿英文搜了下。几经辗转。。终于是解决了。。原文在<a href="http://social.msdn.microsoft.com/Forums/is/wpf/thread/931e75a8-cab6-492d-89cd-b7ca291fa273">Unable to cast XAML error</a>。其实就是将原作者这个函数修改如下的</p>
-
-<p><pre class="lang:c# decode:true " >public static void OnIsEnabledChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args)
-        {</p>
-<div class="highlight"><pre class="chroma">        if ((bool)args.NewValue == true)
-        {
-            Window wnd = obj as Window;
-            if (wnd != null) wnd.Loaded += new RoutedEventHandler(wnd_Loaded);
-        }
-    }&lt;/pre&gt; </pre></div>
-<p>　　也就是验证了一下转换是否成功。</p>
-
-<p>下载：<a href="http://pan.baidu.com/share/link?shareid=61615&amp;uk=1493685990">修改后的RGSamples</a></p>
+<!-- raw HTML omitted -->
 
 
         
@@ -444,7 +422,7 @@ if ((bool)args.NewValue == true) { Window wnd = obj as Window; if (wnd != null) 
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

@@ -51,7 +51,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -250,22 +250,14 @@
               <div class="post-entry">
                 
                   <p>那天在群里，rich大牛提了一个问题，一个直径为10cm的球内最多能够填充直径为1cm的球多少个.</p>
-
 <p>之前看到过一个类似的简单说明，就像是在一个盒子里装乒乓球，如果装满了，想继续装，如何办？经验告诉我们，摇一摇盒子。。这个问题看上去简单，其实是个NP难问题&hellip;于是，查找了一些资料，比较有意思，分享一下。</p>
-
-<p>&nbsp;</p>
-
+<p> </p>
 <p>首先是stetson大学efriedma教授的网页，收集了各类填充（英文是packing）问题的图示，欢迎移步：<a href="http://www2.stetson.edu/~efriedma/packing.html">packing center</a> ，不过这里面恰好没有球体填充（SpherePacking）的问题，然后继续查找，进入了一个可以演示球体填充问题的页面：<a href="http://www.randomwalk.de/sphere/insphr/ylspheresinsphr.html">sphere packing demo</a> 感谢网站作者<a href="http://www.pfoertner.org/">Hugo Pfoertner</a>，这里作者解出了1-72个球的问题，但是，作者说对于n&gt;10的情况无法证明最优化.不过这个页面的演示太帅了，推荐看看。</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/37791_o.png"><img src="/images/b6b2a692820197a3aab3f59f8e9b8e6821acf744.png" alt="" /></a></p>
-
-<p>&nbsp;</p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/37791_o.png"><img src="/images/b6b2a692820197a3aab3f59f8e9b8e6821acf744.png" alt=""></a></p>
+<p> </p>
 <p>可以鼠标拖动旋转3D视角。</p>
-
 <p>然后在数学世界看到了一球体填充问题的证明结果，见：<a href="http://mathworld.wolfram.com/SpherePacking.html">SpherePacking</a>，当然，下面一大堆引用我都没看..看文章里的意思是说这个填充问题填充率已经被证明最大是77.9%，但是这个上限可能还能提高，因为貌似根据这个情况，rich大牛提出的这个问题应该数量在779左右..</p>
-
-<p>&nbsp;</p>
+<p> </p>
 
                 
               </div>
@@ -317,20 +309,43 @@
               </p>
               <div class="post-entry">
                 
-                  之前参加了阿里的笔试和电面，让后天那个敏感的日子去参加现场面，就去看了一下那天笔试的最后一道综合题，看着网上清一色最后一道题不知道从哪转的答案，不忍直视，一看代码就是错的，最直接的就是求中位数连奇偶性都不判断，直接处以2..这，另外当在无法整除的情况下，数据结果错误。
-&nbsp;
-这道题的大意是：有一个淘宝商户，在某城市有n个仓库，每个仓库的储货量不同，现在要通过货物运输，将每次仓库的储货量变成一致的，n个仓库之间的运输线路围城一个圈，即1-&gt;2-&gt;3-&gt;4-&gt;&hellip;-&gt;n-&gt;1-&gt;&hellip;，货物只能通过连接的仓库运输，设计最小的运送成本（运货量*路程）达到淘宝商户的要求，并写出代码。
-解题思路：
-假设n个仓库的初始储货量分别为warehouse[1],warehouse[2],&hellip;,warehouse[n] 计算平均储货量 average = （warehouse[1]+warehouse[2]+&hellip;+warehouse[n])/n 就算出来了最终的结果中，每个仓库应该有的存量 首先，从仓库1向仓库n运送k； 然后，从1到n-1，依次向下运送某一特定值，使得每一个仓库的余量都为average，剩下的问题就是求总代价的最小值了。
-设第0步从1仓库向n仓库（注意因为是圆圈，所以路径长度是1）运出k存量，k可以为负，如果为负数，意味着从n向1运输|k|存量，然后从循环，从（1到n-1）,从i仓库向i+1仓库运输，运输的量需要保证i仓库在运输完毕后等于average
- 第0步（从仓库1向仓库n运送k）:花费代价为 |k|， 第1步（确保仓库1的余量为average）：需要花费代价为 |warehouse[1]-average-k| 也就是从1向2伙从2向1运输 第2步（确保仓库2的余量为average）：代价为 |warehouse[2]+warehouse[1]-average-k-average|=|warehouse[1]+warehouse[2]-2*average-k| &hellip; n-1.第n-1步：代价为 |warehouse[1]+warehouse[2]+&hellip;+warehouse[n-1]-(n-1)*average-k| 此时，仓库n剩下的货物量： (warehouse[n]+k)+warehouse[1]+warehouse[2]+&hellip;+warehouse[n-1]-(n-1)*average-k=(warehouse[1]+warehouse[2]+&hellip;+warehouse[n])-(n-1)*average=average 刚好也满足，其实这里不用推导，因为平均值是算好的，所以最胡一定是刚好完成的。  总的代价为： |k|+|warehouse[1]-average-k|+|warehouse[1]+a[2]-2*average-k|+&hellip;+|warehouse[1]+warehouse[2]+&hellip;+warehouse[n-1]-(n-1)*average-k| 不妨令sum[i] = warehouse[1]+warehouse[2]+&hellip;+warehouse[i]-i*average 则，总代价可表示为：|k|+|sum[1]-k|+|sum[2]-k|+&hellip;+|sum[n-1]-k| 这个式子可以看成在水平数轴上寻找一个点k，使得点k到点0,sum[1],sum[2],sum[3],&hellip;,sum[n-1]的距离之和最小，显然k应该取这n个数的中位数。至此问题解决。
-给出详细注释代码：
-&nbsp; #include &ldquo;stdafx.h&rdquo; #include &lt;iostream&gt; #include &lt;algorithm&gt; #include&lt;string&gt;
-using namespace std;
-const int X = 100000; double sum[X],warehouse[X]; int n;
-double Abs(double x) { return max(x,-x); }
-int _tmain(int argc, _TCHAR* argv[]) { while(true) { double total = 0; double mid=0; cout&lt;&lt;&ldquo;请输入仓库数目：&rdquo;; cin&gt;&gt;n; //读入n个仓库的值，并计算总数 for(int i=1;i&lt;=n;i++) { cout&lt;&lt;&ldquo;请输入第&rdquo;&lt;&lt;i&lt;&lt;&ldquo;个仓库的存量：&rdquo;; cin&gt;&gt;warehouse[i]; total += warehouse[i]; } //计算每个仓库应该最终存储的值 double average = total/n; //计算sum数组 for(int i=1;i&lt;n;i++) sum[i] = warehouse[i]+sum[i-1]-average; //排序后打算去中位数 //sort采用半开半闭区间，所以排序为0～n-1 sort(sum,sum+n); //这个可以自己举个数字就知道了 if(n%2!
-                  <a href="https://leizhiyuan.github.io/2013/06/02/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B45%E6%9C%885%E6%97%A5%E7%BB%BC%E5%90%88%E7%AE%97%E6%B3%95%E9%A2%98%E8%AF%A6%E8%A7%A3/" class="post-read-more">[Read More]</a>
+                  <p>之前参加了阿里的笔试和电面，让后天那个敏感的日子去参加现场面，就去看了一下那天笔试的最后一道综合题，看着网上清一色最后一道题不知道从哪转的答案，不忍直视，一看代码就是错的，最直接的就是求中位数连奇偶性都不判断，直接处以2..这，另外当在无法整除的情况下，数据结果错误。</p>
+<p> </p>
+<p>这道题的大意是：有一个淘宝商户，在某城市有n个仓库，每个仓库的储货量不同，现在要通过货物运输，将每次仓库的储货量变成一致的，n个仓库之间的运输线路围城一个圈，即1-&gt;2-&gt;3-&gt;4-&gt;&hellip;-&gt;n-&gt;1-&gt;&hellip;，货物只能通过连接的仓库运输，设计最小的运送成本（运货量*路程）达到淘宝商户的要求，并写出代码。</p>
+<p><strong>解题思路：</strong></p>
+<p>假设n个仓库的初始储货量分别为warehouse[1],warehouse[2],&hellip;,warehouse[n]
+计算平均储货量</p>
+<!-- raw HTML omitted -->
+<p>就算出来了最终的结果中，每个仓库应该有的存量
+首先，从仓库1向仓库n运送k；
+然后，从1到n-1，依次向下运送某一特定值，使得每一个仓库的余量都为average，剩下的问题就是求总代价的最小值了。</p>
+<p>设第0步从1仓库向n仓库（注意因为是圆圈，所以路径长度是1）运出k存量，k可以为负，如果为负数，意味着从n向1运输|k|存量，然后从循环，从（1到n-1）,从i仓库向i+1仓库运输，运输的量需要保证i仓库在运输完毕后等于average</p>
+<ol>
+<li>第0步（从仓库1向仓库n运送k）:花费代价为 |k|，</li>
+<li>第1步（确保仓库1的余量为average）：需要花费代价为</li>
+</ol>
+<!-- raw HTML omitted -->
+<p>也就是从1向2伙从2向1运输
+3.  第2步（确保仓库2的余量为average）：代价为</p>
+<!-- raw HTML omitted -->
+<p>&hellip;
+n-1.第n-1步：代价为</p>
+<!-- raw HTML omitted -->
+<p>此时，仓库n剩下的货物量：</p>
+<!-- raw HTML omitted -->
+<p>刚好也满足，其实这里不用推导，因为平均值是算好的，所以最胡一定是刚好完成的。</p>
+<p><strong>总的代价为</strong>：</p>
+<!-- raw HTML omitted -->
+<p>不妨令sum[i] = warehouse[1]+warehouse[2]+&hellip;+warehouse[i]-i*average
+则，总代价可表示为：|k|+|sum[1]-k|+|sum[2]-k|+&hellip;+|sum[n-1]-k|
+这个式子可以看成在水平数轴上寻找一个点k，使得点k到点0,sum[1],sum[2],sum[3],&hellip;,sum[n-1]的距离之和最小，显然k应该取这n个数的中位数。至此问题解决。</p>
+<p>给出详细注释代码：</p>
+<p> </p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>思路借鉴了：<a href="http://hi.baidu.com/hujunjiehit/item/54204f01931ee6c49157184c">http://hi.baidu.com/hujunjiehit/item/54204f01931ee6c49157184c</a></p>
+<p>错误之处欢迎留言指出..</p>
+
                 
               </div>
 
@@ -383,13 +398,15 @@ int _tmain(int argc, _TCHAR* argv[]) { while(true) { double total = 0; double mi
               </p>
               <div class="post-entry">
                 
-                  很早以前写的代码了，贴出来做个备份吧。用向量来存储一条邻接链表，存储可连通值。实现了判断是否连通，添加边，添加顶点的功能。
-UnDirectGraph.h #pragma once
-#include &ldquo;stdafx.h&rdquo; #include &lt;vector&gt; using namespace std; class UnDirectGraph { private: int vCount; vector&lt;int&gt; *adj; public: int GetVCount(); UnDirectGraph(int vCount); void AddEdge(int v,int w); vector&lt;int&gt; &amp;Vadj(int v); bool IsConnected(int v,int w); }; UnDirectGraph.cpp #pragma once
-#include &ldquo;stdafx.h&rdquo; #include &ldquo;UnDirectGraph.h&rdquo; using namespace std; UnDirectGraph::UnDirectGraph(int _vCount) { this-&gt;vCount=_vCount; adj=new vector&lt;int&gt;[vCount];
-for (int i=0;i&amp;lt;vCount;i++) { adj[i].clear(); } } void UnDirectGraph::AddEdge(int v,int w) { adj[v].push_back(w); adj[w].push_back(v); }
-vector&lt;int&gt;&amp; UnDirectGraph::Vadj(int v) { return adj[v]; }
-                  <a href="https://leizhiyuan.github.io/2013/05/31/%E9%82%BB%E6%8E%A5%E8%A1%A8%E5%AE%9E%E7%8E%B0%E6%97%A0%E5%90%91%E5%9B%BEc-/" class="post-read-more">[Read More]</a>
+                  <p>很早以前写的代码了，贴出来做个备份吧。用向量来存储一条邻接链表，存储可连通值。实现了判断是否连通，添加边，添加顶点的功能。</p>
+<p>UnDirectGraph.h</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>UnDirectGraph.cpp</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>代码还算清晰，就不解释了，有问题留言反馈。谢谢。</p>
+
                 
               </div>
 
@@ -436,15 +453,17 @@ vector&lt;int&gt;&amp; UnDirectGraph::Vadj(int v) { return adj[v]; }
               </p>
               <div class="post-entry">
                 
-                  看到的一道题，给出答案
-问题：找出整数1~N范围和为N的所有集合，集合里的数不允许重复。
-解答：递归吧
-代码如下： #include &ldquo;stdafx.h&rdquo; #include &lt;iostream&gt; using namespace std;
-void PrintResult(int *log,int index) { for (int i = 0; i &lt;index; ++i) { cout&lt;&lt;log[i]&lt;&lt;&rdquo; &ldquo;; } cout&lt;&lt;endl; }
-void CalCombination(int* log,int startNum,int N,int &amp;index) { if (N==0) { PrintResult(log,index); }
-else { for (int i = startNum; i &amp;lt;= N; ++i) { log[index++]=i; CalCombination(log,i+1,N-i,index); } } index--; }
-int _tmain(int argc, _TCHAR* argv[]) { cout&lt;&lt;&ldquo;请输入N:&ldquo;; int N=20; cin&gt;&gt;N; int *log=new int[N]; int index=0; CalCombination(log,1,N,index); } 要是允许重复，也简单，将递归中的这句话改为： CalCombination(log,i,N-i,index); 同理，还可以解决类似给定一个数组，让求和为N的元素组合，只需要现将元素排个序，然后思路相同。
-                  <a href="https://leizhiyuan.github.io/2013/05/27/%E6%B1%82%E6%95%B4%E6%95%B01-n%E8%8C%83%E5%9B%B4%E5%92%8C%E4%B8%BAn%E7%9A%84%E6%89%80%E6%9C%89%E7%BB%84%E5%90%88/" class="post-read-more">[Read More]</a>
+                  <p>看到的一道题，给出答案</p>
+<p>问题：找出整数1~N范围和为N的所有集合，集合里的数不允许重复。</p>
+<p>解答：递归吧</p>
+<p>代码如下：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>要是允许重复，也简单，将递归中的这句话改为：</p>
+<!-- raw HTML omitted -->
+<p>同理，还可以解决类似给定一个数组，让求和为N的元素组合，只需要现将元素排个序，然后思路相同。</p>
+<p> </p>
+
                 
               </div>
 
@@ -478,7 +497,7 @@ int _tmain(int argc, _TCHAR* argv[]) { cout&lt;&lt;&ldquo;请输入N:&ldquo;; in
   <i class="fas fa-calendar"></i>&nbsp;Posted on May 15, 2013
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -503,9 +522,11 @@ Q = A * x + B * y Q =目标值.
 Q必须是 Gcd(A,B)(也就是A,B的最大公约数)的倍数,否则无解,如果 Gcd(A,B) == 1, 任何Q都是可解的
 最简单的方法就是把A的水不断的向B中倒(B向A中倒也行),知道得到最终结果,如果桶满了,就清空该桶.举个例子
 A = 3, B = 4 并且 Q = 2 重复得从 A-&gt;B
-A B ###### 0 0 4 0 1 3 1 0 0 1 4 1 2 3 &lt;-A桶中得到2了
+A B
+ 0 0 4 0 1 3 1 0 0 1 4 1 2 3 &lt;-A桶中得到2了
 试试从 B-&gt;A
-A B ##### 0 0 0 3 3 0 3 3 4 2 &lt;- B中也得到了2 但是注意,从 B-&gt;A 比从 A-&gt;B快哦
+A B
+ 0 0 0 3 3 0 3 3 4 2 &lt;- B中也得到了2 但是注意,从 B-&gt;A 比从 A-&gt;B快哦
                   <a href="https://leizhiyuan.github.io/2013/05/15/%E5%80%92%E6%B0%B4%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3c-/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -542,7 +563,7 @@ A B ##### 0 0 0 3 3 0 3 3 4 2 &lt;- B中也得到了2 但是注意,从 B-&gt;A �
   <i class="fas fa-calendar"></i>&nbsp;Posted on April 16, 2013
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -557,12 +578,15 @@ A B ##### 0 0 0 3 3 0 3 3 4 2 &lt;- B中也得到了2 但是注意,从 B-&gt;A �
               </p>
               <div class="post-entry">
                 
-                  模板优先级队列，数组实现，再熟悉一下常用算法，同时简单的堆排序应用
-写了一个是队列自增长，另一个为了演示我还添加了一个叫做FillPq的方法，这个方法可以使用一个数组直接填充到优先级队列里，此时，优先级队列并不优先，然后进行下滤调整，之后建堆完成，输出即可 #include &ldquo;stdafx.h&rdquo;
-template&lt; class T&gt; class PriorityQueue { private: T *pq; int N; int capacity; public: PriorityQueue(void); ~PriorityQueue(void); void Insert(T x); T DelTop(); void Swim(int k); void Sink(int k); bool Less(int i,int j); void Swap(int i,int j); bool Resize(); void FillPq(T arr[],int size); };
-template&lt; class T&gt; void PriorityQueue&lt;T&gt;::FillPq( T arr[],int size ) { N=size; capacity=2*size; for (int i=0;i&lt;size;i++) { pq[i+1]=arr[i]; } }
-template&lt; class T&gt; PriorityQueue&lt;T&gt;::PriorityQueue(void) { pq=new T[10]; N=0; capacity=10; }
-                  <a href="https://leizhiyuan.github.io/2013/04/16/%E6%A8%A1%E6%9D%BF%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97%E5%8F%8A%E5%A0%86%E6%8E%92%E5%BA%8Fc-%E5%AE%9E%E7%8E%B0/" class="post-read-more">[Read More]</a>
+                  <p>模板优先级队列，数组实现，再熟悉一下常用算法，同时简单的堆排序应用</p>
+<p>写了一个是队列自增长，另一个为了演示我还添加了一个叫做FillPq的方法，这个方法可以使用一个数组直接填充到优先级队列里，此时，优先级队列并不优先，然后进行下滤调整，之后建堆完成，输出即可</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>然后是堆排序</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+
                 
               </div>
 
@@ -598,7 +622,7 @@ template&lt; class T&gt; PriorityQueue&lt;T&gt;::PriorityQueue(void) { pq=new T[
   <i class="fas fa-calendar"></i>&nbsp;Posted on April 11, 2013
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -613,23 +637,24 @@ template&lt; class T&gt; PriorityQueue&lt;T&gt;::PriorityQueue(void) { pq=new T[
               </p>
               <div class="post-entry">
                 
-                  栈直接用链表实现，这个比较简单，不多说，不过C++写程序，IDE的错误检测不是很给力。
-至于给定一个中缀表达式，如何不转换成后缀表达式，直接求值，方法就是使用两个栈，一个操作符栈，一个操作数栈，然后从左到右扫描表达式，我这里中缀表达式计算实现的很简单，不完整，大家可以扩展。栈的实现是我想写的，思路如下：
-1.如何是操作数，压入操作数栈
-2.如果是操作符，压入操作符栈
-3.如果是左括号，直接忽略
-4.如果是有括号，弹出操作符栈栈顶元素，然后弹出操作数栈两个元素，进行操作以后结果压入操作数栈
-&nbsp;
-看个图就好了
+                  <p>栈直接用链表实现，这个比较简单，不多说，不过C++写程序，IDE的错误检测不是很给力。</p>
+<p>至于给定一个中缀表达式，如何不转换成后缀表达式，直接求值，方法就是使用两个栈，一个操作符栈，一个操作数栈，然后从左到右扫描表达式，我这里中缀表达式计算实现的很简单，不完整，大家可以扩展。栈的实现是我想写的，思路如下：</p>
+<p>1.如何是操作数，压入操作数栈</p>
+<p>2.如果是操作符，压入操作符栈</p>
+<p>3.如果是左括号，直接忽略</p>
+<p>4.如果是有括号，弹出操作符栈栈顶元素，然后弹出操作数栈两个元素，进行操作以后结果压入操作数栈</p>
+<p> </p>
+<p>看个图就好了</p>
+<p><a href="http://leaverimage.b0.upaiyun.com/34863_o.png"><img src="/images/d0b2eed86d2ba2b987d3e5db380b9a452e8f5f87.png" alt=""></a></p>
+<p> </p>
+<p>最后给出栈顶实现代码</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>然后是main函数代码</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>另外，今天是博客建站一周年.加油！</p>
 
-&nbsp;
-最后给出栈顶实现代码 #include &ldquo;stdafx.h&rdquo; #pragma region Node定义
-template &lt;class T&gt; class Node { template&lt;class T&gt; friend class Stack; private: T m_data; Node *pNextNode; public: Node(); Node(T d); };
-template &lt;class T&gt; Node&lt;T&gt;::Node() { m_data=default(T); pNextNode=NULL; } template &lt;class T&gt; Node&lt;T&gt;::Node(T d) { m_data=d; pNextNode=NULL; } #pragma endregion
-#pragma region Stack定义
-template &lt;class T&gt; class Stack {
-private: Node&lt;T&gt; *m_pTopNode; int m_nNodeCount; public: Stack(); ~Stack(); bool IsEmpty(); bool Push(T e); T Pop(); int Size(); };
-                  <a href="https://leizhiyuan.github.io/2013/04/11/%E6%A8%A1%E6%9D%BF%E6%A0%88%E4%BB%A5%E5%8F%8A%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BCc-%E5%AE%9E%E7%8E%B0/" class="post-read-more">[Read More]</a>
                 
               </div>
 
@@ -683,16 +708,11 @@ private: Node&lt;T&gt; *m_pTopNode; int m_nNodeCount; public: Stack(); ~Stack();
               <div class="post-entry">
                 
                   <p>很多人对B树的理解有很多错误，我看的最多的就是有人混淆二叉树（Binary Tree）和B树（B-Tree）,二叉树是不用简称，也就是BT的，而特殊一点的二叉搜索树才会用BST(Binary Search Tree),至于B-树和B树，这两个其实一样的，英文都是(B-Tree)，注意看中间的-号，这个是国内翻译的问题.所以大家不要被误导.</p>
-
 <p>Rudolf Bayer 和 Ed McCreight 于1972年，在Boeing Research Labs 工作时发明了B 树，但是他们没有解释B 代表什么意义（如果有的话）.Douglas Comer 解释说: 两位作者从来都没解释过B树的原始意义。我个人觉得很有可能是他的名字，程序员对其作品的一种情结吧.</p>
-
 <p>这篇文章来自国外,是某大学的CS课程在线的,由于有时候无法访问，我直接提供PDF版,对其构造过程非常清晰.非常非常好的B树教程,图示很多,就不翻译了,强烈推荐阅读！</p>
-
-<p>&nbsp;</p>
-
-<p>下载：<a href="http://pan.baidu.com/share/link?shareid=404077&amp;amp;uk=1493685990">B树讲解</a></p>
-
-<p>&nbsp;</p>
+<p> </p>
+<p>下载：<a href="http://pan.baidu.com/share/link?shareid=404077&amp;uk=1493685990">B树讲解</a></p>
+<p> </p>
 
                 
               </div>
@@ -763,7 +783,7 @@ private: Node&lt;T&gt; *m_pTopNode; int m_nNodeCount; public: Stack(); ~Stack();
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

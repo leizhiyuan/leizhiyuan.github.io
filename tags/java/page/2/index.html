@@ -51,7 +51,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -368,12 +368,13 @@ setlocal call &#34;%~dp0zkEnv.cmd&#34; set ZOOMAIN=org.apache.zookeeper.server.q
               <div class="post-entry">
                 
                   前几天被前辈问到这个可重入锁,结果忘掉了.于是抽空整个了解一下
-目录  什么是可重入锁 为什么要可重入 如何实现可重入锁 有不可重入锁吗 demo代码展示 参考文章  1 . 什么是可重入锁 锁的概念就不用多解释了,当某个线程A已经持有了一个锁,当线程B尝试进入被这个锁保护的代码段的时候.就会被阻塞.而锁的操作粒度是&rdquo;线程&rdquo;,而不是调用(至于为什么要这样,下面解释).同一个线程再次进入同步代码的时候.可以使用自己已经获取到的锁,这就是可重入锁 java里面内置锁(synchronize)和Lock(ReentrantLock)都是可重入的
+目录  什么是可重入锁 为什么要可重入 如何实现可重入锁 有不可重入锁吗 demo代码展示 参考文章  1 . 什么是可重入锁 锁的概念就不用多解释了,当某个线程A已经持有了一个锁,当线程B尝试进入被这个锁保护的代码段的时候.就会被阻塞.而锁的操作粒度是&quot;线程&rdquo;,而不是调用(至于为什么要这样,下面解释).同一个线程再次进入同步代码的时候.可以使用自己已经获取到的锁,这就是可重入锁 java里面内置锁(synchronize)和Lock(ReentrantLock)都是可重入的
 2 . 为什么要可重入 如果线程A继续再次获得这个锁呢?比如一个方法是synchronized,递归调用自己,那么第一次已经获得了锁,第二次调用的时候还能进入吗? 直观上当然需要能进入.这就要求必须是可重入的.可重入锁又叫做递归锁,再举个例子.
 public class Widget { public synchronized void doSomething() { ... } } public class LoggingWidget extends Widget { public synchronized void doSomething() { System.out.println(toString() + &#34;: calling doSomething&#34;); super.doSomething();//若内置锁是不可重入的，则发生死锁 } } 这个例子是java并发编程实战中的例 子.synchronized 是父类Widget的内置锁,当执行子 类的方法的时候,先获取了一次Widget的锁,然后在执行super的时候,就要获取一次,如果不可重入,那么就跪了.
 3 . 如何实现可重入锁 为每个锁关联一个获取计数器和一个所有者线程,当计数值为0的时候,这个所就没有被任何线程只有.当线程请求一个未被持有的锁时,JVM将记下锁的持有者,并且将获取计数值置为1,如果同一个线程再次获取这个锁,技术值将递增,退出一次同步代码块,计算值递减,当计数值为0时,这个锁就被释放. ReentrantLock里面有实现
 4 . 有不可重入锁吗 这个还真有.Linux下的pthread_mutex_t锁是默认是非递归的。可以通过设置PTHREAD_MUTEX_RECURSIVE属性，将pthread_mutex_t锁设置为递归锁。如果要自己实现不可重入锁,同可重入锁,这个计数器只能为1.或者0,再次进入的时候,发现已经是1了,就进行阻塞.jdk里面没有默认的实现类.
 5 . demo代码展示 5.1 内置锁的可重入
+public class ReentrantTest { public void method1() { synchronized (ReentrantTest.
                   <a href="https://leizhiyuan.github.io/2015/11/20/java%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -421,21 +422,13 @@ public class Widget { public synchronized void doSomething() { ... } } public cl
               </p>
               <div class="post-entry">
                 
-                  
-
-<h1 id="jenkins相关资料">jenkins相关资料</h1>
-
+                  <h1 id="jenkins">jenkins相关资料</h1>
 <p>jenkins的前身是hudson,是为了做持续集成测试而诞生的框架.</p>
-
 <p>简单说就是把代码流配置上去,然后该框架就能根据设定的时间或其他方式不间断的执行测试用例.并给出报告.这样就可以随时掌控代码质量.支持执行shell命令.支持短信通知等等.</p>
-
 <p>jenkins,首先从<a href="http://jenkins-ci.org/%E5%AE%98%E6%96%B9%E4%B8%8B%E8%BD%BDwar%E5%8C%85,%E7%84%B6%E5%90%8E%E6%9C%89%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F%E5%8F%AF%E4%BB%A5%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2,%E4%B8%80%E7%A7%8D%E7%9B%B4%E6%8E%A5%E6%89%A7%E8%A1%8C">http://jenkins-ci.org/官方下载war包,然后有两种方式可以本地部署,一种直接执行</a>
 <code>java -jar hudson.war</code>,然后在本地的8080端口访问就可以了.另一种是我们希望部署在容器上,那么可以部署到tomcat,jetty等等.直接拷贝war包到对应的目录即可.</p>
-
 <p>部署成功后,可以新建job,然后配置svn流,配置build时间,配置一下build之前的动作,配置一下各种命令,执行完成后通知等等就可以了.</p>
-
 <p>最近因为有个功能感觉通过开发jenkins插件的方式会更加方便,周末大量读了一些文档,能找到的都是helloworl.摸索了一下,已经写出一个小的demo了,后面改进一下,.就ok了.先简单把这个过程中收集的资料整理一下.基本都看过觉得还不错的,官方文档不给力.下周希望可以写完,然后分享出来.</p>
-
 <ol>
 <li><a href="http://pan.baidu.com/s/1wBp06">jenkins入门文档</a></li>
 <li><a href="http://pan.baidu.com/s/1pJySAMn">The hudson book</a></li>
@@ -494,15 +487,8 @@ public class Widget { public synchronized void doSomething() { ... } } public cl
               </p>
               <div class="post-entry">
                 
-                  <p>&nbsp;鸟瞰Spring MVC<div>与其他请求驱动的Web框架思路类似。org.springframework.web.servlet.DispatcherServlet就是Spring mvC中的Front Controller。负责处理请求，但是不针对具体的处理逻辑。而是委派给下一级的控制器，也就是<span style="font-size: 10.5pt; line-height: 1.5;">org.springframework.web.servlet.mvc.Controller</span><span style="font-size: 10.5pt; line-height: 1.5;">去执行。</span></div><div><span style="font-size: 10.5pt; line-height: 1.5;">
-</span></div><div>DispatcherServlet的处理流程如下：</div><div>1.HandlerMapping</div><div>DispathcherServlet是FrontController，所以他服务于一组Web请求，需要在web.xml中配置。</div><div>DispathcherServlet需要自己处理请求和处理之前的对应关系，比如根据参数对应到不同的Controller上。为了更加方便的处理映射的匹配，引入<span style="font-size: 10.5pt; line-height: 1.5;">HandlerMapping用来获取需要处理请求的对应的Controller类。</span>
-</div><div><span style="font-size: 10.5pt; line-height: 1.5;">2.Controller</span></div><div>对应于<span style="font-size: 10.5pt; line-height: 1.5;">DispathcherServlet的次级控制器，本身实现了对应某个具体Web请求的处理逻辑，当</span><span style="font-size: 10.5pt; line-height: 1.5;">HandlerMapping查到了Controller之后，</span><span style="font-size: 10.5pt; line-height: 1.5;">DispathcherServlet获得了</span><span style="font-size: 10.5pt; line-height: 1.5;">HandlerMapping的返回结果。然后调用Controller处理请求，处理完成后，返回一个ModelAndView实例，里面包含两部分内容</span></div><div>视图的逻辑名称，<span style="font-size: 10.5pt; line-height: 1.5;">DispathcherServlet根据名称决定显示哪个视图</span></div><div>模型数据，渲染过程中需要将这些模型数据并入视图的显示中</div><div>
-</div><div>ViewResolver和View</div><div>我们已经来到了最后一步，要转成最终的JSP视图文件。由于模板引擎很多，Spring提供了一套基于ViewResolver和View的抽象层。</div><div>
-</div><div><img src="/images/fc45dedeba68b31c39383776fc7a7a35eba30a5a.jpg" alt="" />
-</div></p>
-
-<div>[来自为知笔记(Wiz)](http://www.wiz.cn/i/e0140d75 "来自为知笔记(Wiz)")</div>
-
+                  鸟瞰Spring MVC与其他请求驱动的Web框架思路类似。org.springframework.web.servlet.DispatcherServlet就是Spring mvC中的Front Controller。负责处理请求，但是不针对具体的处理逻辑。而是委派给下一级的控制器，也就是org.
+                  <a href="https://leizhiyuan.github.io/2014/07/13/spring%E6%8F%AD%E7%A7%98-23%E7%AB%A0spring-mvc%E5%88%9D%E4%BD%93%E9%AA%8C/" class="post-read-more">[Read More]</a>
                 
               </div>
 
@@ -547,19 +533,9 @@ public class Widget { public synchronized void doSomething() { ... } } public cl
               </p>
               <div class="post-entry">
                 
-                  <p>Spring揭秘-22章，迈向Spring MVC的旅程<div>
-</div><div>Servlet导致数据访问逻辑和业务处理逻辑和对应的视图渲染逻辑相互混杂。之后，JSP出现，通过将输出渲染以模板的形式抽取到jsp后缀的模板文件中，jsp开始繁盛，同时要注意，Servlet处理web请求的时候，要在web.xml中，注册相应的请求url和具体的Serlet的映射关系。于是，jsp有开始混合着写代码</div><div>
-</div><div>于是，我们引入了JavaBean,来封装相关业务逻辑，经过一次升级后，</div><div>
-</div><div><img src="/images/e6af173baae0c480b8dddc398ce8dd3078b260e4.jpg" alt="" />
-</div><div>这个模型就比较清楚了。但是和MVC还是有点差别</div><div>一个典型的mvc模式应该是这样的</div><div><img src="/images/4bcce41a42b7cc021f4b726da1c3533cc5371a21.jpg" alt="" />
-</div><div>
-</div><div>控制器处理请求，模型封装逻辑和状态，视图给用户，</div><div>
-</div><div>Structs以请求/响应框架为基础。</div><div>
-</div><div>Spring MVC属于请求渠道的WEb框架。框架引入Front Controller做分发之后，就更加好管理了。</div><div>
-</div><div><img src="/images/131d593fd9a36cfc8180a4b86495208a356ae563.jpg" alt="" />
-</div></p>
-
-<div>[来自为知笔记(Wiz)](http://www.wiz.cn/i/e0140d75 "来自为知笔记(Wiz)")</div>
+                  <p>Spring揭秘-22章，迈向Spring MVC的旅程<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 
                 
               </div>
@@ -605,10 +581,16 @@ public class Widget { public synchronized void doSomething() { ... } } public cl
               </p>
               <div class="post-entry">
                 
-                  Spring揭秘-第13章 统一的数据访问异常层次体系  DAO可以分离数据哭的访问和存储，屏蔽各种数据访问方式的差异性，下面以访问顾客信息为例，使用DAO模式 首先定义一个数据访问对象接口，如下   public interrface ICustomerDao{ Customer findCustomerByPK(String customerId); void updateCustomerStatus(Customer customer); &nbsp;
- 之后，所有的数据访问都通过该接口进行，不论底层存储机制如何改变，DAO的实现因此会扩展，但客户端代码不需要调整   客户端要用的时候这样使用即可。   publicclassCustomerService { privateICustomerDao customerDao; publicvoid disableCustomerCampain(String customerId) { Customer customer=getCustomerDao().findCustomerByPK(customerId); customer.setCampainStatus(CampainStatus.DISABLE); getCustomerDao().updateCustomerStatus(customer); } publicICustomerDao getCustomerDao() { return customerDao; } publicvoid setCustomerDao(ICustomerDao customerDao) { this.customerDao=customerDao; } &nbsp;
-  我们只要针对不同的数据存储方式实现不同的Dao类即可。  我们开始实现具体的访问数据了。   publicCustomer findCustomerByPK(String customerId) { Connection con=null; try{ con=getDataSource().getConnection(); Customer cust=..; return cust; } catch(SQLException e){ //这里咋办，直接抛出还是直接处理？ } finally{ releaseConnection(con); } } privatevoid releaseConnection(Connection con){ } &nbsp;
-                  <a href="https://leizhiyuan.github.io/2014/07/13/spring%E6%8F%AD%E7%A7%98-%E7%AC%AC13%E7%AB%A0-%E7%BB%9F%E4%B8%80%E7%9A%84%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE%E5%BC%82%E5%B8%B8%E5%B1%82%E6%AC%A1%E4%BD%93%E7%B3%BB/" class="post-read-more">[Read More]</a>
+                  <p>Spring揭秘-第13章 统一的数据访问异常层次体系</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<ol>
+<li><code>&lt;span class=&quot;typ&quot;&gt;Customer&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt; findCustomerByPK&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;typ&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;pln&quot;&gt; customerId&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;kwd&quot;&gt;throws&lt;/span&gt;&lt;span class=&quot;typ&quot;&gt;SQLExcepiton&lt;/span&gt;&lt;span class=&quot;pun&quot;&gt;;&lt;/span&gt;</code></li>
+</ol>
+<!-- raw HTML omitted -->
+
                 
               </div>
 
@@ -638,7 +620,7 @@ public class Widget { public synchronized void doSomething() { ... } } public cl
   <i class="fas fa-calendar"></i>&nbsp;Posted on July 13, 2014
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;0&nbsp;minutes
   
   
   
@@ -653,8 +635,8 @@ public class Widget { public synchronized void doSomething() { ... } } public cl
               </p>
               <div class="post-entry">
                 
-                  之前说了，IoC容器就是一个IoC Service Provider，但是容器是个啥意思？![](/images/d4d1615a6c1a06895088631c37e3fca7692f0b8a.png) 可以看到IoC容器提供了更多的内容， Spring的IoC容器又分成两种， 1.BeanFactory 。基础类型IoC容器，提供完整的IoC服务支持。如果没有特殊指定，默认采用延 迟初始化策略（lazy-load）。只有当客户端对象需要访问容器中的某个受管对象的时候，才对 该受管对象进行初始化以及依赖注入操作。所以，相对来说，容器启动初期速度较快，所需 要的资源有限。对于资源有限，并且功能要求不是很严格的场景，BeanFactory是比较合适的 IoC容器选择。  2.ApplicationContext。ApplicationContext在BeanFactory的基础上构建，是相对比较高 级的容器实现，除了拥有BeanFactory的所有支持，ApplicationContext还提供了其他高级特性，比如事件发布、国际化信息支持等，这些会在后面详述。ApplicationContext所管理 的对象，在该类型容器启动之后，默认全部初始化并绑定完成。所以，相对于BeanFactory来 说，ApplicationContext要求更多的系统资源，同时，因为在启动时就完成所有初始化，容 器启动时间较之BeanFactory也会长一些。在那些系统资源充足，并且要求更多功能的场景中， ApplicationContext类型的容器是比较合适的选择。   通过 图4-2，我们可以对BeanFactory和ApplicationContext之间的关系有一个更清晰的认识。      ![](/images/f531ea3e11bb391453eb5f763283398c938634b2.png)     Bean工长，就是生成Bean的嘛，每个业务对象被看成Javabean,我们与工厂打交道就简单得多，我们只要告诉他我要什么对象，至于怎么组装，那是他的事情。   工厂提供了一些对外的接口，比如获取Bean，渠道Bean的状态等等。 以xml为例    &lt;?xml version="1.0" encoding="UTF-8"?&gt; &lt;!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd"&gt; &lt;beans&gt; &lt;bean id="djNewsProvider" class="..FXNewsProvider"&gt; &lt;constructor-arg index="0"&gt; &lt;ref bean="djNewsListener"/&gt; &lt;/constructor-arg&gt; &lt;constructor-arg index="1"&gt; &lt;ref bean="djNewsPersister"/&gt; &lt;/constructor-arg&gt; &lt;/bean&gt; &lt;bean id="djNewsListener" class="..impl.DowJonesNewsListener"&gt; &lt;/bean&gt; &lt;bean id="
-                  <a href="https://leizhiyuan.github.io/2014/07/13/spring%E6%8F%AD%E7%A7%98-%E7%AC%AC%E5%9B%9B%E7%AB%A0beanfactory%E7%AC%94%E8%AE%B0/" class="post-read-more">[Read More]</a>
+                  <!-- raw HTML omitted -->
+
                 
               </div>
 
@@ -699,10 +681,12 @@ public class Widget { public synchronized void doSomething() { ... } } public cl
               </p>
               <div class="post-entry">
                 
-                  我们虽然已经通过IoC声明了相应的依赖，但是最终总要有个啥东西将这些依赖对象绑定在一起，这里而IoC Service Provider, 来啦，表示一种绑定的实现方式，可以使一段代码，也可以是一组相关的泪，甚至是框架或容器。  比如前一篇提到的 IFXNewsListener newsListener = new DowJonesNewsListener(); IFXNewsPersister newsPersister = new DowJonesNewsPersister(); FXNewsProvider newsProvider = new FXNewsProvider(newsListener,newsPersister); newsProvider.getAndPersistNews(); &nbsp;
- 就是一个容器，只不过太简单了，不适用于更多的场景，  IoC容器就是Spring提供依赖注入服务的Provider  IoC Service Provider 是干嘛？ 1.业务对象的构建管理，剥离客户端对象的构建的依赖逻辑，比如A引用B，那么A是B的客户端对象，容器需要理清这种关系。 2.业务对象之间的依赖绑定，通过1的实现， 识别各个对象的依赖关系，然后将这些对象依赖的对象注入绑定，用的时候就有了。   那你要问了，这怎么管理对象间的依赖关系呢  IoC Service Provider怎么就能完全领会代码的意图呢？他怎么记住这么多的依赖关系等等，他要这么做 1.元数据方式 2.通过描述性较强的xml来记录对应信息 3.通过编写代码的方式注册这些信息   3.直接编码方式， 明确了依赖关系 IoContainer container = &hellip;; container.register(FXNewsProvider.class,new FXNewsProvider()); container.register(IFXNewsListener.class,new DowJonesNewsListener()); &hellip; FXNewsProvider newsProvider = (FXNewsProvider)container.get(FXNewsProvider.class); newProvider.getAndPersistNews(); &nbsp;
-  2.配置文件方式  最常见的还是xml方式，  &lt;bean id=&ldquo;newsProvider&rdquo; class=&ldquo;.
-                  <a href="https://leizhiyuan.github.io/2014/07/13/spring%E6%8F%AD%E7%A7%98-%E7%AC%AC%E4%B8%89%E7%AB%A0ioc-service-provider%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="post-read-more">[Read More]</a>
+                  <p><!-- raw HTML omitted -->我们虽然已经通过IoC声明了相应的依赖，但是最终总要有个啥东西将这些依赖对象绑定在一起，这里而IoC Service Provider, 来啦，表示一种绑定的实现方式，可以使一段代码，也可以是一组相关的泪，甚至是框架或容器。<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+
                 
               </div>
 
@@ -732,7 +716,7 @@ public class Widget { public synchronized void doSomething() { ... } } public cl
   <i class="fas fa-calendar"></i>&nbsp;Posted on July 1, 2014
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -747,24 +731,81 @@ public class Widget { public synchronized void doSomething() { ... } } public cl
               </p>
               <div class="post-entry">
                 
-                  理念就是让别人为你服务，中文名控制反转，也叫依赖注入DI
-public class FXNewsProvider { private IFXNewsListener newsListener; private IFXNewsPersister newPersistener; public void getAndPersistNews() { String[] newsIds = newsListener.getAvailableNewsIds(); if(ArrayUtils.isEmpty(newsIds)) { return; } for(String newsId : newsIds) { FXNewsBean newsBean = newsListener.getNewsByPK(newsId); newPersistener.persistNews(newsBean); newsListener.postProcessIfNecessary(newsId); } } }  假设这个类用来处理新闻，
-IFXNewsListener 用来获取新闻，
-IFXNewsPersister  用来把获取的新闻持久化
-当我们需要获取不同的新闻源，比如道琼斯的新闻时，我们会写一个 DowJonesNewsListener 类和 DowJonesNewsPersister 类，然后实例化
-public FXNewsProvider()
-{
-newsListener = new DowJonesNewsListener();
-newPersistener = new DowJonesNewsPersister();
-} &nbsp;
-如果我们依赖于某个类或服务，最简单而有效的方式就是直接
-在类的构造函数中新建相应的依赖类。
-注意看， ，我们都是自己主动地去获
-取依赖的对象！
-可是回头想想，我们自己每次用到什么依赖对象都要主动地去获取，这是否真的必要？我们最终
-所要做的，其实就是直接调用依赖对象所提供的某项服务而已
-能不能我们用的时候自动送过来呢？
-                  <a href="https://leizhiyuan.github.io/2014/07/01/spring%E6%8F%AD%E7%A7%98%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC%E4%BA%8C%E7%AB%A0ioc%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" class="post-read-more">[Read More]</a>
+                  <p><!-- raw HTML omitted -->理念就是让别人为你服务，中文名控制反转，也叫依赖注入DI<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> <!-- raw HTML omitted -->假设这个类用来处理新闻，<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->IFXNewsListener <!-- raw HTML omitted --><!-- raw HTML omitted -->用来获取新闻，<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->IFXNewsPersister  <!-- raw HTML omitted --> <!-- raw HTML omitted -->用来把获取的新闻持久化<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->当我们需要获取不同的新闻源，比如道琼斯的新闻时，我们会写一个<!-- raw HTML omitted --> <!-- raw HTML omitted -->DowJonesNewsListener<!-- raw HTML omitted --> <!-- raw HTML omitted -->类和<!-- raw HTML omitted --> <!-- raw HTML omitted -->DowJonesNewsPersister<!-- raw HTML omitted --> <!-- raw HTML omitted -->类，然后实例化<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p><!-- raw HTML omitted -->如果我们依赖于某个类或服务，最简单而有效的方式就是直接<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->在类的构造函数中新建相应的依赖类。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->注意看，<!-- raw HTML omitted --> <!-- raw HTML omitted -->，我们都是自己主动地去获<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->取依赖的对象！<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->可是回头想想，我们自己每次用到什么依赖对象都要主动地去获取，这是否真的必要？我们最终<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->所要做的，其实就是直接调用依赖对象所提供的某项服务而已<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->能不能我们用的时候自动送过来呢？<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->。现在是用什么，让别人直接送过来就成。所以，简单点儿说，<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC<!-- raw HTML omitted --> <!-- raw HTML omitted -->的理念就是，<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->让别人为你服务！在图<!-- raw HTML omitted --> <!-- raw HTML omitted -->2-1<!-- raw HTML omitted --> <!-- raw HTML omitted -->中，也就是让<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->来为你服务！<!-- raw HTML omitted --></p>
+<p><img src="/images/45ddcfa8929fe85603c18852a59afac715fa4c7f.bmp" alt=""></p>
+<p><!-- raw HTML omitted -->这里，被注入对象就是<!-- raw HTML omitted --> <!-- raw HTML omitted -->FXNewsProvider<!-- raw HTML omitted --> <!-- raw HTML omitted -->，被依赖于对象<!-- raw HTML omitted --> <!-- raw HTML omitted -->IFXNewsListener<!-- raw HTML omitted --> <!-- raw HTML omitted -->和<!-- raw HTML omitted --> <!-- raw HTML omitted -->IFXNewsPersister  <!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->通常情况下，被注入对象会直接依赖于被依赖对象。但是，在<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC<!-- raw HTML omitted --> <!-- raw HTML omitted -->的场景中，二者之间通过<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->来打交道，所有的被注入对象和依赖对象现在由<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->统一管理。被注入对象需要<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->什么，直接跟<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->招呼一声，后者就会把相应的被依赖对象注入到被注入对象中，从而<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->达到<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->为被注入对象服务的目的。<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->在这里就是通常的<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC<!-- raw HTML omitted --> <!-- raw HTML omitted -->容器所充<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->当的角色。从被注入对象的角度看，与之前直接寻求依赖对象相比，依赖对象的取得方式发生了反转，<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->控制也从被注入对象转到了<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->那里<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->这里我们想知道的是？怎么跟<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->打招呼<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->在<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC<!-- raw HTML omitted --> <!-- raw HTML omitted -->模式中，被注入对象又是通过哪些方式来通知<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->为其提供适当服务的呢？三种打招呼的方式<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->，即构造方法注入（<!-- raw HTML omitted --> <!-- raw HTML omitted -->constructor<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->injection<!-- raw HTML omitted --> <!-- raw HTML omitted -->）、<!-- raw HTML omitted --> <!-- raw HTML omitted -->setter<!-- raw HTML omitted --> <!-- raw HTML omitted -->方法注入（<!-- raw HTML omitted --> <!-- raw HTML omitted -->setter injection<!-- raw HTML omitted --> <!-- raw HTML omitted -->）以及接口注入（<!-- raw HTML omitted --> <!-- raw HTML omitted -->interface injection<!-- raw HTML omitted --> <!-- raw HTML omitted -->）。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->构造方法注入：<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p> </p>
+<p><!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->会检查被注入对象的构造方法，取得它所需要的依赖对象列表，进而为其注<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->入相应的对象。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->setter方法注入<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p> </p>
+<p><!-- raw HTML omitted -->外界就可以通过调用<!-- raw HTML omitted --> <!-- raw HTML omitted -->setNewsListener<!-- raw HTML omitted --> <!-- raw HTML omitted -->和<!-- raw HTML omitted --> <!-- raw HTML omitted -->setNewPersistener<!-- raw HTML omitted --> <!-- raw HTML omitted -->方法为<!-- raw HTML omitted --> <!-- raw HTML omitted -->FXNewsProvider<!-- raw HTML omitted --> <!-- raw HTML omitted -->对<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->象注入所依赖的对象了。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->接口注入，这个基本不用了。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->接口注入<!-- raw HTML omitted --> <!-- raw HTML omitted -->。从注入方式的使用上来说，接口注入是现在不甚提倡的一种方式，基本处于&quot;退<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->役状态&rdquo;。因为它强制被注入对象实现不必要的接口，带有侵入性。而构造方法注入和<!-- raw HTML omitted --> <!-- raw HTML omitted -->setter<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->方法注入则不需要如此。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->8<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->q<!-- raw HTML omitted --> <!-- raw HTML omitted -->构造方法注入。<!-- raw HTML omitted --> <!-- raw HTML omitted -->这种注入方式的优点就是，对象在构造完成之后，即已进入就绪状态，可以 <!-- raw HTML omitted --><!-- raw HTML omitted -->9<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->马上使用。缺点就是，当依赖对象比较多的时候，构造方法的参数列表会比较长。而通过反<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->射构造对象的时候，对相同类型的参数的处理会比较困难，维护和使用上也比较麻烦。而且<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->在<!-- raw HTML omitted --> <!-- raw HTML omitted -->Java<!-- raw HTML omitted --> <!-- raw HTML omitted -->中，构造方法无法被继承，无法设置默认值。对于非必须的依赖处理，可能需要引入多<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->个构造方法，而参数数量的变动可能造成维护上的不便。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->10<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->q<!-- raw HTML omitted --> <!-- raw HTML omitted -->setter<!-- raw HTML omitted --> <!-- raw HTML omitted -->方法注入<!-- raw HTML omitted --> <!-- raw HTML omitted -->。因为方法可以命名，所以<!-- raw HTML omitted --> <!-- raw HTML omitted -->setter<!-- raw HTML omitted --> <!-- raw HTML omitted -->方法注入在描述性上要比构造方法注入好一些。 <!-- raw HTML omitted --><!-- raw HTML omitted -->11<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->另外，<!-- raw HTML omitted --> <!-- raw HTML omitted -->setter<!-- raw HTML omitted --> <!-- raw HTML omitted -->方法可以被继承，允许设置默认值，而且有良好的<!-- raw HTML omitted --> <!-- raw HTML omitted -->IDE<!-- raw HTML omitted --> <!-- raw HTML omitted -->支持。缺点当然就是对象无<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->法在构造完成后马上进入就绪状态。<!-- raw HTML omitted --> <!-- raw HTML omitted -->12<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->综上所述，构造方法注入和<!-- raw HTML omitted --> <!-- raw HTML omitted -->setter<!-- raw HTML omitted --> <!-- raw HTML omitted -->方法注入因为其侵入性较弱，且易于理解和使用，所以是现在使<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->用最多的注入方式；而接口注入因为侵入性较强，近年来已经不流行了。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->回到开头的代码<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p> </p>
+<p><!-- raw HTML omitted -->由于这里已经写死了，所以当我们添加了一个新的新闻源，比如M4网站的时候，这个对象不能用了，我们要新写一个<!-- raw HTML omitted --> <!-- raw HTML omitted -->M4<!-- raw HTML omitted --> <!-- raw HTML omitted -->NewsProvider<!-- raw HTML omitted --> <!-- raw HTML omitted -->的类，然后新写新闻获取类，然后重新实现。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->而使用了IoC之后，<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p> </p>
+<p><!-- raw HTML omitted -->我们只要实现一个<!-- raw HTML omitted --> <!-- raw HTML omitted -->MarketWin24NewsListener<!-- raw HTML omitted --> <!-- raw HTML omitted -->雷就可以，而且<!-- raw HTML omitted --> <!-- raw HTML omitted -->FXNewsProvider <!-- raw HTML omitted --><!-- raw HTML omitted -->可以重用。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->而且使用了IoC之后，单元测试变得简单，我们只有写一个Mock<!-- raw HTML omitted --> <!-- raw HTML omitted -->NewsPersister<!-- raw HTML omitted --> <!-- raw HTML omitted -->就可以来测试了。<!-- raw HTML omitted --></p>
+
                 
               </div>
 
@@ -845,7 +886,7 @@ newPersistener = new DowJonesNewsPersister();
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

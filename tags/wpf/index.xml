@@ -18,15 +18,24 @@
       
       <guid>https://leizhiyuan.github.io/2012/10/17/%E6%A8%A1%E6%8B%9Foffice2010%E6%96%87%E4%BB%B6%E8%8F%9C%E5%8D%95%E7%9A%84tabcontrol%E6%A8%A1%E6%9D%BF/</guid>
       <description>这是Office2010中的文件菜单点开后的效果。本文我将以强大的WPF来实现类似的效果。希望你能有所收获。而不是只拷贝/粘贴代码而已。
-&amp;nbsp;
-开始之前。先把TabControl找个地方放着。 &amp;lt;Window x:Class=&amp;ldquo;TestClient.MainWindow&amp;rdquo;
-xmlns=&amp;#34;http://schemas.microsoft.com/winfx/2006/xaml/presentation&amp;#34; xmlns:x=&amp;#34;http://schemas.microsoft.com/winfx/2006/xaml&amp;#34; Title=&amp;#34;MainWindow&amp;#34; Height=&amp;#34;350&amp;#34; Width=&amp;#34;525&amp;#34;&amp;amp;gt; &amp;amp;lt;TabControl Name=&amp;#34;tabSteps&amp;#34;&amp;amp;gt; &amp;amp;lt;TabItem Header=&amp;#34;Info&amp;#34; IsSelected=&amp;#34;True&amp;#34;&amp;amp;gt; &amp;amp;lt;TextBlock&amp;amp;gt;Info content&amp;amp;lt;/TextBlock&amp;amp;gt; &amp;amp;lt;/TabItem&amp;amp;gt; &amp;amp;lt;TabItem Header=&amp;#34;Recent&amp;#34;&amp;amp;gt; &amp;amp;lt;TextBlock&amp;amp;gt;Recent content tab&amp;amp;lt;/TextBlock&amp;amp;gt; &amp;amp;lt;/TabItem&amp;amp;gt; &amp;amp;lt;TabItem Header=&amp;#34;New&amp;#34;&amp;amp;gt; &amp;amp;lt;TextBlock&amp;amp;gt;New content tab&amp;amp;lt;/TextBlock&amp;amp;gt; &amp;amp;lt;/TabItem&amp;amp;gt; &amp;amp;lt;TabItem Header=&amp;#34;Print&amp;#34;&amp;amp;gt; &amp;amp;lt;TextBlock&amp;amp;gt;Print content tab&amp;amp;lt;/TextBlock&amp;amp;gt; &amp;amp;lt;/TabItem&amp;amp;gt; &amp;amp;lt;TabItem Header=&amp;#34;Save &amp;amp;amp;amp; Send&amp;#34;&amp;amp;gt; &amp;amp;lt;TextBlock&amp;amp;gt;Save &amp;amp;amp;amp; send content tab&amp;amp;lt;/TextBlock&amp;amp;gt; &amp;amp;lt;/TabItem&amp;amp;gt; &amp;amp;lt;TabItem Header=&amp;#34;Help&amp;#34;&amp;amp;gt; &amp;amp;lt;TextBlock&amp;amp;gt;Help tab&amp;amp;lt;/TextBlock&amp;amp;gt; &amp;amp;lt;/TabItem&amp;amp;gt; &amp;amp;lt;/TabControl&amp;amp;gt; &amp;lt;/Window&amp;gt; &amp;nbsp;
-然后会大概是这个效果
+ 开始之前。先把TabControl找个地方放着。
+ 然后会大概是这个效果
 
 为了改变TabControl的显示效果。我们使用模板机制，我们把模板写进一个资源字典里。这样就可以重用了。添加一个资源字典的步骤如下
 右键点击工程-添加-资源字典
-然后在资源字典里添加一些代码。 &amp;lt;ControlTemplate x:Key=&amp;ldquo;OfficeTabControl&amp;rdquo; TargetType=&amp;ldquo;{x:Type TabControl}&amp;rdquo;&amp;gt;
-&amp;amp;lt;Grid&amp;amp;gt; &amp;amp;lt;Grid.ColumnDefinitions&amp;amp;gt; &amp;amp;lt;ColumnDefinition Width=&amp;#34;160&amp;#34; /&amp;amp;gt; &amp;amp;lt;ColumnDefinition/&amp;amp;gt; &amp;amp;lt;/Grid.</description>
+然后在资源字典里添加一些代码。
+ 之后，我们为VisualState创建故事板，一个是正常状态。会使得hoverShape的透明度为0.另一个是鼠标悬停的状态。透明度会变成1
+ 当你运行的时候你会发现没什么变化。我们还要定义被选中标签的VisualState
+当添加如下代码的时候 添加一个VisualState组。也就是 SelectionStates ，然后给选中/为选中的状态添加行为/故事板。.这里通过修改透明度来实现一些效果
+ 现在再运行会发现效果更好了
+
+ 还有个小问题，就是那个陷进入的小三角形的背景颜色依然还在。通过在下面添加一个白色的形状。，并且对故事板的选中和为选中状态改变一下透明度就可以了。
+ 最终效果如下:
+
+源代码地址： [downloadicon href=http://pan.baidu.com/share/link?shareid=85332&amp;amp;uk=1493685990]OfficeTab.7z[/downloadicon]
+许可
+本文包括源代码和文件在CPOL下授权
+著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</description>
     </item>
     
     <item>
@@ -43,8 +52,24 @@ xmlns=&amp;#34;http://schemas.microsoft.com/winfx/2006/xaml/presentation&amp;#34
 使用代码
 开始。首先，我们创建一个用户控件。因此，我们选择新建WPF用户控件类库（WPF User Control Library）。
 
-现在。我们可以创建或者编辑XAML代码来创建自定义的用户控件了。我使用XAML来创建自定义的ToolTip。你想做什么随你。 &amp;lt;UserControl Name=&amp;ldquo;UserControlToolTip&amp;rdquo; x:Class=&amp;ldquo;CustomToolTip.UserControl1&amp;rdquo; xmlns=&amp;ldquo;http://schemas.microsoft.com/winfx/2006/xaml/presentation&amp;quot; xmlns:x=&amp;ldquo;http://schemas.microsoft.com/winfx/2006/xaml&amp;quot; xmlns:d=&amp;ldquo;http://schemas.microsoft.com/expression/blend/2008&amp;quot; xmlns:mc=&amp;ldquo;http://schemas.openxmlformats.org/markup-compatibility/2006&amp;quot; mc:Ignorable=&amp;ldquo;d&amp;rdquo; RenderTransformOrigin=&amp;ldquo;0,0&amp;rdquo; HorizontalAlignment=&amp;ldquo;Left&amp;rdquo; VerticalAlignment=&amp;ldquo;Top&amp;rdquo; &amp;gt;
-&amp;amp;lt;UserControl.RenderTransform&amp;amp;gt; &amp;amp;lt;TransformGroup&amp;amp;gt; &amp;amp;lt;ScaleTransform ScaleX=&amp;#34;1&amp;#34; ScaleY=&amp;#34;1&amp;#34;/&amp;amp;gt; &amp;amp;lt;SkewTransform AngleX=&amp;#34;0&amp;#34; AngleY=&amp;#34;0&amp;#34;/&amp;amp;gt; &amp;amp;lt;RotateTransform Angle=&amp;#34;0&amp;#34;/&amp;amp;gt; &amp;amp;lt;TranslateTransform x:Name=&amp;#34;UserControlToolTipXY&amp;#34; X=&amp;#34;0&amp;#34; Y=&amp;#34;0&amp;#34;/&amp;amp;gt; &amp;amp;lt;/TransformGroup&amp;amp;gt; &amp;amp;lt;/UserControl.RenderTransform&amp;amp;gt; &amp;amp;lt;Grid HorizontalAlignment=&amp;#34;Center&amp;#34; VerticalAlignment=&amp;#34;Center&amp;#34; MinWidth=&amp;#34;200&amp;#34; MinHeight=&amp;#34;120&amp;#34;&amp;amp;gt; &amp;amp;lt;Grid.RowDefinitions&amp;amp;gt; &amp;amp;lt;RowDefinition Height=&amp;#34;0.333*&amp;#34;/&amp;amp;gt; &amp;amp;lt;RowDefinition Height=&amp;#34;0.667*&amp;#34;/&amp;amp;gt; &amp;amp;lt;/Grid.RowDefinitions&amp;amp;gt; &amp;amp;lt;Rectangle Fill=&amp;#34;#FFFBFBFB&amp;#34; Stroke=&amp;#34;#FF000000&amp;#34; RadiusX=&amp;#34;10&amp;#34; RadiusY=&amp;#34;10&amp;#34; RenderTransformOrigin=&amp;#34;0.139,0.012&amp;#34; StrokeThickness=&amp;#34;1&amp;#34; Grid.RowSpan=&amp;#34;2&amp;#34;&amp;amp;gt; &amp;amp;lt;Rectangle.BitmapEffect&amp;amp;gt; &amp;amp;lt;DropShadowBitmapEffect Opacity=&amp;#34;0.8&amp;#34;/&amp;amp;gt; &amp;amp;lt;/Rectangle.BitmapEffect&amp;amp;gt; &amp;amp;lt;/Rectangle&amp;amp;gt; &amp;amp;lt;Rectangle RadiusX=&amp;#34;10&amp;#34; RadiusY=&amp;#34;10&amp;#34; RenderTransformOrigin=&amp;#34;0.139,0.012&amp;#34; StrokeThickness=&amp;#34;10&amp;#34; Stroke=&amp;#34;{x:Null}&amp;#34; Margin=&amp;#34;1,1,1,1&amp;#34; Grid.</description>
+现在。我们可以创建或者编辑XAML代码来创建自定义的用户控件了。我使用XAML来创建自定义的ToolTip。你想做什么随你。
+ 同时。我们需要添加一些方法和属性来控制这些元素。
+ 完成之后。我们按Shift+F6快捷键来生成dll文件。现在可以创建WPF项目并且使用我们的控件了。我们选择WPF应用程序项目
+
+然后。我们添加对我们的控件生成dll的引用（注意。其实还可以把这两个项目放在同一个解决方案里。然后此处添加对项目的引用就可以 –译者）
+
+我们将会在XAML窗体里使用自定义的用户控件。因此我们需要添加一些额外的XAML代码。我们在Window元素里添加下面一行。
+
+至少。我们必须有一个Window 元素。。
+好。现在我们在XAML中像这样使用控件
+
+最后。我创建了如下的XAML代码：
+ 再写一些方法来显示/隐藏我们的自定义ToolTip
+完了。
+Demo下载 [downloadicon href=http://pan.baidu.com/share/link?shareid=83438&amp;amp;uk=1493685990]CustomToolTipDemo[/downloadicon]
+许可 本文包括源代码和文件在CPOL下授权。
+ 原文地址：How-to-Creating-a-WPF-User-Control-using-it-in-a-W
+著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</description>
     </item>
     
     <item>
@@ -62,11 +87,28 @@ xmlns=&amp;#34;http://schemas.microsoft.com/winfx/2006/xaml/presentation&amp;#34
 
 背景 多边形可以被认为是沿着一个给定半径的圆的边缘和一些指定点/边。所构成的点的集合。
  在WPF中。你可以给Polygon对象的Points属性添加一系列的点来制作多边形。
-XAML方式 &amp;lt;Canvas&amp;gt; &amp;lt;Polygon Points=&amp;ldquo;10,50 180,50 180,150 10,150&amp;rdquo; StrokeThickness=&amp;ldquo;1&amp;rdquo; Stroke=&amp;ldquo;Black&amp;rdquo; /&amp;gt; &amp;lt;/Canvas&amp;gt; C#方式 var cnv = new Canvas(); var polygon = new Polygon {StrokeThickness = 1, Fill = Brushes.Black}; polygon.Points.Add(new Point(10, 50)); polygon.Points.Add(new Point(180, 50)); polygon.Points.Add(new Point(180, 150)); polygon.Points.Add(new Point(10, 150)); cnv.Children.Add(polygon); this.Content = cnv; &amp;nbsp;
-上面两个例子会输出下面的矩形
+XAML方式
+C#方式
+ 上面两个例子会输出下面的矩形
 
 使用代码 我写的RoundedCornersPolygon 类和普通的多边形类很相似。但是有更多的属性来控制圆角。首先。看一个例子。展示一下圆角矩形类的使用
-XAML方式 &amp;lt;Canvas&amp;gt; &amp;lt;CustomRoundedCornersPolygon:RoundedCornersPolygon Points=&amp;ldquo;10,50 180,50 180,150 10,150&amp;rdquo; StrokeThickness=&amp;ldquo;1&amp;rdquo; Stroke=&amp;ldquo;Black&amp;rdquo; ArcRoundness=&amp;ldquo;25&amp;rdquo; UseAnglePercentage=&amp;ldquo;False&amp;rdquo; IsClosed=&amp;ldquo;True&amp;rdquo;/&amp;gt; &amp;lt;Canvas&amp;gt; C#方式 var cnv = new Canvas();</description>
+XAML方式
+C#方式
+输出如下：
+
+多边形有四个主要属性 ArcRoundness 属性指定了从距离LineSegment终点多远的距离开始弯曲，通常和UseRoundnessPercentage 一起使用。UseRoundnessPercentage属性指定了ArcRoundness 值是百分比还是一个固定的值。
+举个例子。ArcRoundness 被设置成10，而且UseRoundnessPercentage 被设置成false，那么弯曲将会在距离线段终点10的地方开始。而如果UseRoundnessPercentage 被设置成ture。则会是从线段终点10%的地方开始弯曲。
+IsClosed 指定多边形的最后一个点是否和第一个点闭合。为了成为一个多边形。一般应该被设置为true
+ Points属性则代表了多边形点的集合。
+ 如何实现 控件实现了Shape 类，被用来画多边形的形状是一个Path对象。我们会往Path对象里添加LineSegment 和QuadraticBezierSegment 对象。QuadraticBezierSegment 对象表示一个贝塞尔曲线。由三个点定义。更多的信息请查看
+对于一个普通的多边形，只有LineSegment是必须的，但是为了设计圆角多边形。就需要贝塞尔曲线了。每一次一个点被添加/一个属性被修改。形状会重绘。做圆角的关键方式就是ConnectLinePoints 方法。
+ 还有两个方法计算弯曲部分开始的点GetPointAtDistance 和GetPointAtDistancePercent，第一个是以值计算，第二个是以百分比计算。
+ 结论 依然有很多细节应该完善的。但这仅仅是圆角多边形的一个尝试。比如。在其他情况。每个角应该有不同晚景的圆角，WPF使得一切皆有可能。本文的目的是创建一个大家可以用的圆角多边形，他们可以扩展来满足他们的需求。
+Demo下载
+[downloadicon href=http://pan.baidu.com/share/link?shareid=82217&amp;amp;uk=1493685990]圆角多边形[/downloadicon]
+许可 本文包括源代码和文件在CPOL下授权。
+原文地址：WPF-rounded-corners-polygon
+著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</description>
     </item>
     
     <item>
@@ -85,11 +127,26 @@ XAML方式 &amp;lt;Canvas&amp;gt; &amp;lt;CustomRoundedCornersPolygon:RoundedCor
 3.1背景层
 第一层是一个椭圆。其实是一个canvas，一会在上面画反射和折射层，填充的颜色和按钮的背景（Background）关联。
 下面是Blend中的截图
-图2  &amp;lt;!&amp;ndash; Background Layer &amp;ndash;&amp;gt; &amp;lt;Ellipse Fill=&amp;ldquo;{TemplateBinding Background}&amp;rdquo;/&amp;gt; 3.1.1折射层
-第二层模拟了光从上到下的折射。被放在反射层之前是因为，要达到反光玻璃的效果，反射层必须在按钮的中间某处有一个硬边缘。这一层实际上是另一个椭圆。但是这次。我们使用一个径向渐变（白色-透明）的填充。来模拟光的折射。渐变开始于第一层底部的中央。结束于上面的中间。然而。为了降低折射光的强度。渐变还是开始于椭圆的底部再下一点为好。可以从图上和代码里清晰的看到。  &amp;lt;!&amp;ndash; Refraction Layer &amp;ndash;&amp;gt; &amp;lt;Ellipse x:Name=&amp;ldquo;RefractionLayer&amp;rdquo;&amp;gt; &amp;lt;Ellipse.Fill&amp;gt; &amp;lt;RadialGradientBrush GradientOrigin=&amp;ldquo;0.496,1.052&amp;rdquo;&amp;gt; &amp;lt;RadialGradientBrush.RelativeTransform&amp;gt; &amp;lt;TransformGroup&amp;gt; &amp;lt;ScaleTransform CenterX=&amp;ldquo;0.5&amp;rdquo; CenterY=&amp;ldquo;0.5&amp;rdquo; ScaleX=&amp;ldquo;1.5&amp;rdquo; ScaleY=&amp;ldquo;1.5&amp;rdquo;/&amp;gt; &amp;lt;TranslateTransform X=&amp;ldquo;0.02&amp;rdquo; Y=&amp;ldquo;0.3&amp;rdquo;/&amp;gt; &amp;lt;/TransformGroup&amp;gt; &amp;lt;/RadialGradientBrush.RelativeTransform&amp;gt; &amp;lt;GradientStop Offset=&amp;ldquo;1&amp;rdquo; Color=&amp;ldquo;#00000000&amp;rdquo;/&amp;gt; &amp;lt;GradientStop Offset=&amp;ldquo;0.4&amp;rdquo; Color=&amp;ldquo;#FFFFFFFF&amp;rdquo;/&amp;gt; &amp;lt;/RadialGradientBrush&amp;gt; &amp;lt;/Ellipse.Fill&amp;gt; &amp;lt;/Ellipse&amp;gt; &amp;nbsp;
-3.1.2反射层
-第三层是光的反射层。是最难的部分。问题是反射效果不能使用任何标准的形状来画。因此。使用路径（Path）来画反射区域。当时。手工画也是可以的。但老实说。手工画图实在没什么可享受的（除非你是一个艺术家，或者有一个数位板），无论如何。我现在MS Blend中华好一个椭圆并转换成一个路径，然后我使用贝塞尔曲线点调整得到平滑的路径，你可以添加渐变到一个复杂的Path对象上。就像你对其他与定义的图形，比如椭圆，矩形所做的一样。为了得到光泽反射。我额每年需要一个透明-白色的径向渐变填充，从路径的底部开始（也就是按钮的中间某处），结束在顶部。我想如果我是一个艺术家。我会让渐变更准一点。可是我不是。因此。就这样。因为我们要把我们的按钮放在一个Grid里。所有我们设置VerticalAlignment=&amp;ldquo;Top&amp;rdquo; 这样反射区域在按钮的中间的结束了。
-图三  &amp;lt;!&amp;ndash; Reflection Layer &amp;ndash;&amp;gt; &amp;lt;Path x:Name=&amp;ldquo;ReflectionLayer&amp;rdquo; VerticalAlignment=&amp;ldquo;Top&amp;rdquo; Stretch=&amp;ldquo;Fill&amp;rdquo;&amp;gt; &amp;lt;Path.</description>
+图2 
+3.1.1折射层
+第二层模拟了光从上到下的折射。被放在反射层之前是因为，要达到反光玻璃的效果，反射层必须在按钮的中间某处有一个硬边缘。这一层实际上是另一个椭圆。但是这次。我们使用一个径向渐变（白色-透明）的填充。来模拟光的折射。渐变开始于第一层底部的中央。结束于上面的中间。然而。为了降低折射光的强度。渐变还是开始于椭圆的底部再下一点为好。可以从图上和代码里清晰的看到。 
+ 3.1.2反射层
+第三层是光的反射层。是最难的部分。问题是反射效果不能使用任何标准的形状来画。因此。使用路径（Path）来画反射区域。当时。手工画也是可以的。但老实说。手工画图实在没什么可享受的（除非你是一个艺术家，或者有一个数位板），无论如何。我现在MS Blend中华好一个椭圆并转换成一个路径，然后我使用贝塞尔曲线点调整得到平滑的路径，你可以添加渐变到一个复杂的Path对象上。就像你对其他与定义的图形，比如椭圆，矩形所做的一样。为了得到光泽反射。我额每年需要一个透明-白色的径向渐变填充，从路径的底部开始（也就是按钮的中间某处），结束在顶部。我想如果我是一个艺术家。我会让渐变更准一点。可是我不是。因此。就这样。因为我们要把我们的按钮放在一个Grid里。所有我们设置VerticalAlignment=&amp;quot;Top&amp;rdquo; 这样反射区域在按钮的中间的结束了。
+图三 
+ 最后。我添加一个ContentPresenter 到按钮中间。经验告诉我，内容区域再向下一个像素会使得按钮看起来更漂亮。因此，在这里我用了margin属性（注意。因为内容区域在Grid的中间（Center）。所以2个像素的top实际上是向下移动了一个像素 ）
+好了。最后在Blend中看起来大概是这样
+图4 
+4.添加一些交互性
+4.1鼠标悬停效果
+为了有鼠标悬停效果，我们需要增加光源的亮度。因此。我们为IsMouseOver 事件定义一个触发器，复制并且粘贴反射和折射层的渐变设置代码。对于折射层。我仅仅移动了渐变的起点向上了一点。在反射层中。我改变了渐变停止点。使不透明的白色多一点。
+ 4.2鼠标点击效果 对于IsPressed 事件，需要降低光。因此。反向操作即可。折射层中光源下一点。反射层中渐变停止点更加透明一些。
+ 再说一次。渐变停止点的值靠经验选的。我也不能给出精确的值。
+5.使用代码
+为了使用这个样式。把定义在GlassButton.xaml 里的样式资源文件并不到你的窗体/页里。然后设置按钮的样式为{StaticResource GlassButton}. 为了设置按钮的颜色。使用Background属性即可。
+  6.Demo下载 [downloadicon href=http://pan.baidu.com/share/link?shareid=81378&amp;amp;uk=1493685990]Demo与源代码下载[/downloadicon] 7.许可
+本文包括源代码和文件在CPOL下授权。
+原文地址：a-style-for-round-glassy-wpf-buttons
+ 著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</description>
     </item>
     
     <item>
@@ -99,14 +156,14 @@ XAML方式 &amp;lt;Canvas&amp;gt; &amp;lt;CustomRoundedCornersPolygon:RoundedCor
       
       <guid>https://leizhiyuan.github.io/2012/10/11/%E8%87%AA%E5%AE%9A%E4%B9%89wpf-linklabel-%E6%8E%A7%E4%BB%B6/</guid>
       <description>WPF里是没有LinkLabel控件的。因此我自己写一个。首先。我们看一下WPF中什么类似的组件可以实现这个链接功能
-如果你想要模拟一个LinkLabel控件。你可以在TextBlock里使用内联的Hyperlink。像下面这样 &amp;lt;TextBlock&amp;gt; &amp;lt;Hyperlink&amp;gt; &amp;lt;Run Text=&amp;ldquo;Test link&amp;rdquo;/&amp;gt; &amp;lt;/Hyperlink&amp;gt; &amp;lt;/TextBlock&amp;gt; 你可以使用Label控件。加一个内联的HyperLink，但是我认为TextBlock更好。因为你可以在Expression Blend 中通过InlineCollection 编辑所有子元素的属性
+如果你想要模拟一个LinkLabel控件。你可以在TextBlock里使用内联的Hyperlink。像下面这样
+你可以使用Label控件。加一个内联的HyperLink，但是我认为TextBlock更好。因为你可以在Expression Blend 中通过InlineCollection 编辑所有子元素的属性
 图1
  虽然这种方法也行，但是我还是不太喜欢。因为我觉得我还是写一个类似windows窗体程序中的LinkLabel控件。然后我就做了。首先看一下控件的样子
 图2
 
 第一个是默认的LinkLabel控件。第二个是LinkLabelBehavior 属性被设置为HoverUnderline ，第三个的Foreground和 HoverForeground 属性都使用了自定的颜色。
-&amp;nbsp;
-LinkLabel控件支持的属性
+ LinkLabel控件支持的属性
 1.Foreground和 HoverForeground属性
 允许自定义这两个属性的值
 2.LinkLabelBehavior 属性
@@ -115,9 +172,16 @@ LinkLabel控件支持的属性
 你可以使用这个属性给超链接设置自定义的样式。如果你已经自定了Foreground和 HoverForeground。则会被覆盖。
 Url 超链接的目标
 所有这些属性都继承自标准的System.Windows.Controls.Label 控件
-通过Blend/Xaml设置这些属性很简单 &amp;lt;ThemedControlLibrary:LinkLabel Content=&amp;ldquo;Link Label&amp;rdquo; FontSize=&amp;ldquo;22&amp;rdquo;/&amp;gt; &amp;lt;ThemedControlLibrary:LinkLabel Content=&amp;ldquo;Link Label&amp;rdquo; LinkLabelBehavour=&amp;ldquo;HoverUnderline&amp;rdquo; /&amp;gt; &amp;lt;ThemedControlLibrary:LinkLabel Foreground=&amp;ldquo;#FF847901&amp;rdquo; HoverForeground=&amp;ldquo;#FF06C8F2&amp;rdquo; Content=&amp;ldquo;Link Label&amp;rdquo; LinkLabelBehavour=&amp;ldquo;NeverUnderline&amp;rdquo;/&amp;gt; 图三
+通过Blend/Xaml设置这些属性很简单
+图三
 
-然后是控件的使用方法。仅仅添加命名空间到xaml中。然后使用就行了。 &amp;lt;Window xmlns=&amp;ldquo;http://schemas.microsoft.com/winfx/2006/xaml/presentation&amp;quot; xmlns:x=&amp;ldquo;http://schemas.microsoft.com/winfx/2006/xaml&amp;quot; x:Class=&amp;ldquo;DemoApplication.Window1&amp;rdquo; Title=&amp;ldquo;DemoApplication&amp;rdquo; Height=&amp;ldquo;300&amp;rdquo; Width=&amp;ldquo;300&amp;rdquo; xmlns:ThemedControlsLibrary=&amp;ldquo;clr-namespace:ThemedControlsLibrary;assembly=ThemedControlsLibrary&amp;rdquo; &amp;gt; &amp;lt;Grid&amp;gt; &amp;lt;ThemedControlsLibrary:LinkLabel HorizontalAlignment=&amp;ldquo;Left&amp;rdquo; VerticalAlignment=&amp;ldquo;Top&amp;rdquo; Content=&amp;ldquo;LinkLabel&amp;rdquo;/&amp;gt; &amp;lt;/Grid&amp;gt; &amp;lt;/Window&amp;gt; &amp;nbsp;</description>
+然后是控件的使用方法。仅仅添加命名空间到xaml中。然后使用就行了。
+ 控件的完整代码很简单。就定义一下需要的属性，和控制这些属性应该显示在Blend中的（category）目录位置就行了。
+  为了使得内容可以绑定。我使用了Filipe Fortes 实现的BindableRun 我添加BindableRun 到控件模板中
+ 为了支持主题显示。应该在工程里有个Themes文件夹。包含控件的样式。LinkLabel只有一个样式文件Generic.xaml，因为超链接样式不管当前主题是什么。都是一样的。我不会包含LinkLabel 的模板。
+ 多看源代码。下载并且开始使用吧。
+示例和源码下载
+http://www.blagoev.com/blog/post/building-a-wpf-linklabel-control.aspx</description>
     </item>
     
     <item>
@@ -130,7 +194,7 @@ Url 超链接的目标
 我做了什么
 你必须输入一个选择一个搜索目录，这样程序才知道在哪搜索文件/目录，如果你选上了“包含子目录”复选框，程序就会递归地搜索指定目录的子目录，指定的文件名可以是像 &amp;ldquo;.wav;.mp3;Christma??ree.*&amp;rdquo; 这样的字符串，程序将会列出所有的文件/目录匹配这些文件名
 你也可以使用一些限制条件来限制找到的项目，每一个限制条件可以通过选上复选框来激活，限制条件的参数可以在右边选中就行了。
-1. “Files newer than”将会列出LastWriteTime（上次修改时间）晚于指定时间的文件 2. “Files newer than”将会列出LastWriteTime（上次修改时间）早于指定时间的文件 3. &amp;ldquo;Files containing the string&amp;rdquo;仅仅列出包含字符串参数的文件。
+1. “Files newer than”将会列出LastWriteTime（上次修改时间）晚于指定时间的文件 2. “Files newer than”将会列出LastWriteTime（上次修改时间）早于指定时间的文件 3. &amp;ldquo;Files containing the string&amp;quot;仅仅列出包含字符串参数的文件。
 程序将会把字符串转换成字节序列，可以使用ASCII或者Unicode编码，取决于你的选择，然后搜索每一个出现这个字节序列的文件。
 点击Start（开始）按钮就开始搜索了。找到的项目会列在下面，如果搜索时间太长了。你可以点击Stop（停止）来停止搜索。
 如果你双击下面的一个文件。不是文件夹哦，程序将会根据关联程序打开该文件 如果你邮件一个项目，然后选择“Open Containing Folder”（打开包含文件夹）将会在资源管理器里打开包含该项目的文件夹
@@ -139,7 +203,11 @@ Url 超链接的目标
 当用户点击Start（开始）按钮，Searcher.Start 方法就会执行，该方法开启了一个名为SearchThread 的新线程，这个线程搜索文件/目录，匹配用户输入的参数，如果找到了一个匹配的FileSystemInfo对象，它就出发一个异步的FoundInfo 事件，然后MainWindow就可以从FoundInfoEventArgs中解出FileSystemInfo对象，然后更新结果列表，当线程结束的时候，将m_thread成员对象设置为null，每一次Searcher.Start 执行的时候都会检测m_thread是否为null，因此同时不会有两个线程在运行。
 当用户点击Stop(停止)按钮的时候Searcher.Stop 方法被执行，然后设置m_stop 成员为true， Searchthread会注意到这个改变。注意本操作是线程安全的。因为布尔变量只需要一步就操作完成了
 重要：在Searcher_FoundInfo 事件处理中，MainWindow使用Invoke方法通过代理来调用this_FoundInfo 方法。通过这个方法，MainWindow是的更新结果列表的代码在MainWindow的线程里执行，而不是在Searcher的线程里，直接调用this_FoundInfo 方法会引发程序崩溃，因为Searcher_FoundInfo 事件处理和图形界面控件不同步。
-private delegate void FoundInfoSyncHandler(FoundInfoEventArgs e); private FoundInfoSyncHandler FoundInfo; ... private void MainWindow_Load(object sender, EventArgs e) { ... this.FoundInfo += new FoundInfoSyncHandler(this_FoundInfo); .</description>
+CreateResultsListItem 方法创建并添加一个ListViewItem 到结果列表中，然后展示FilesystemInfo 对象包含的数据，FileSystemInfo 可以是FileInfo 或是DirectoryInfo ，取决于Searcher 找到的结果， is操作符可以用来判断对象的类型，如果是FileInfo独享，列表还会以KB为单位显示文件大小
+当Searcher 线程结束的时候，触发ThreadEnded 事件，因此，MainWindow可以注意到搜索结束，Searcher_ThreadEnded 事件处理句柄使用和Searcher_FoundInfo一样的方式调用Invoke方法。
+Demo下载 FileSearcher 许可 本文包括源代码和文件在CPOL下授权
+原文地址：File-Searcher-in-C
+著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</description>
     </item>
     
     <item>
@@ -148,17 +216,30 @@ private delegate void FoundInfoSyncHandler(FoundInfoEventArgs e); private FoundI
       <pubDate>Sat, 29 Sep 2012 10:14:54 +0000</pubDate>
       
       <guid>https://leizhiyuan.github.io/2012/09/29/listview%E5%B8%83%E5%B1%80%E7%AE%A1%E7%90%86%E5%99%A8/</guid>
-      <description>介绍 使用ListViewLayoutManager 可以控制ListView/GridView列的布局 1. 固定列宽：有着固定列宽的列 2. 范围列宽：有着最小最大宽度的列 3. 比例列宽：成比例的列宽
-范围列宽可以限制列的宽度，也包括填充列的剩余可视区域。
+      <description>介绍 使用ListViewLayoutManager 可以控制ListView/GridView列的布局
+ 固定列宽：有着固定列宽的列 范围列宽：有着最小最大宽度的列 比例列宽：成比例的列宽  范围列宽可以限制列的宽度，也包括填充列的剩余可视区域。
 据我们了解的Html中的表格和Grid空间。比例列以一个百分比来定义列宽，以下几个因素共同确定了比例列的宽度。
  垂直ListView滚动条的可视与否 ListView控件宽度的改变 非比例列宽度的改变  本程序支持通过XAML或是后台代码来控制ListView。如果通过XAML来控制。则允许ListViewLayoutManager 被附加到一个存在的ListView控件上。
 ConverterGridColumn 类通过接口IValueConverter 提供了对象绑定。使用ImageGridViewColumn 类则允许通过DataTemplate（数据模板）将列显示成图片等。
 在 User Setting Applied中，我展示了如何固定ListViewlieder顺序和大小
 XAML中ListView/GridView布局 固定列 下面的例子展示了通过XAML使用固定列宽控制列
-&amp;lt;ListView Name=&#34;MyListView&#34; ctrl:ListViewLayoutManager.Enabled=&#34;true&#34;&amp;gt; &amp;lt;ListView.View&amp;gt; &amp;lt;GridView&amp;gt; &amp;lt;GridViewColumn DisplayMemberBinding=&#34;{Binding Path=Name}&#34; ctrl:FixedColumn.Width=&#34;100&#34; Header=&#34;Name&#34; /&amp;gt; &amp;lt;GridViewColumn DisplayMemberBinding=&#34;{Binding Path=City}&#34; ctrl:FixedColumn.Width=&#34;300&#34; Header=&#34;City&#34; /&amp;gt; &amp;lt;/GridView&amp;gt; &amp;lt;/ListView.View&amp;gt; &amp;lt;/ListView&amp;gt;  设置附加到ListView控件上的ListViewLayoutManager 的Enabled属性为True。然后FixedColumn.Width 就会阻止鼠标拖动改变列的宽度。
+设置附加到ListView控件上的ListViewLayoutManager 的Enabled属性为True。然后FixedColumn.Width 就会阻止鼠标拖动改变列的宽度。
 比例列
-下面的例子展示了使用XAML通过比例来控制列 
-&amp;lt;GridView&amp;gt; &amp;lt;GridViewColumn DisplayMemberBinding=&amp;#34;{Binding Path=Name}&amp;#34; ctrl:ProportionalColumn.Width=&amp;#34;1&amp;#34; Header=&amp;#34;Name&amp;#34; /&amp;gt; &amp;lt;GridViewColumn DisplayMemberBinding=&amp;#34;{Binding Path=City}&amp;#34; ctrl:ProportionalColumn.Width=&amp;#34;3&amp;#34; Header=&amp;#34;City&amp;#34; /&amp;gt; &amp;lt;/GridView&amp;gt; &amp;lt;/ListView.</description>
+下面的例子展示了使用XAML通过比例来控制列
+对比Grid控件的RowDefinition.Width 属性，ProportionalColumn.Width会计算百分比。简单来说，就是上面的例子中Name列会占到总宽度的25%，而City列占到75%。 与固定列相似。鼠标将不能改变列的宽度。
+范围列
+下面的例子展示了使用XAML通过最小/最小宽度来控制列
+第一个范围列的IsFillColumn 属性被设置为True，因此将会自动改变大小来填满剩余的空间，而如果ListView包含一个比例列的话，范围列将不会填充
+通过鼠标可以拖动范围列的宽度。鼠标指针会有一些提示。。
+组合使用
+在真实的世界里。组合使用很普遍。他们的顺序可以多种多样。
+使用后台代码控制ListView/GridView布局 定制列的效果 类ConverterGridColumn 作为一个基类，用来绑定列到独立的对象。
+列以图片展示 ImageGridColumn 作为一个基类，用来绑定列到图片
+有意思的地方 作为ListView控件的核心部件- ListViewLayoutManager 有以下的功能 阻止改变固定列和比例列的宽度 强制了范围列的范围 随着ListView控件的改变而更新列布局 随着某一列的改变而更新布局
+为了正确的接收到请求的信息，分析ListView控件的可视树是很有必要的,Thumb对象提供了列宽改变的事件。而为了正确的展示鼠标指针，PreviewMouseMove 和PreviewMouseLeftButtonDown 事件都会被处理
+当Viewport控件大小改变（ScrollChangedEventArgs.ViewportWidthChange）的时候，会触发ScrollViewer 控件的ScrollChanged 事件 通过使用DependencyPropertyDescriptor 可以追踪 GridViewColumn的宽度改变。并发出通知。
+为了可以集成进已有的系统，列数据被放置在附加属性里。使用DependencyProperty.ReadLocalValue()方法会检测当前的属性是否在同一个对象里。
+类ConverterGridViewColumn 同时使用一个简单的绑定。展示数据转换（IValueConverter接口）</description>
     </item>
     
     <item>
@@ -173,7 +254,7 @@ AvalonDock是一个组合的布局模型，很多的控件都在视图上显示�
 从下面这个截图中我们可以理解AvalonDock组件
  DockingManager 这是AvalonDock中的核心控件，它将包含的窗格排序，处理飞出的窗格，还有浮动的窗口。在上面这个图中，DockingManager 对象包含了所有空间（WPF控件），从顶部的工具栏到底部的状态栏都算。同时。DockingManager 也可以处理保存和恢复布局。
 LayoutPanel 这个面板用来管理在一个方向上的子窗口（通过Orientation属性来选择方向），并且在它们之间添加了一个大小调节控件，在一个Orientation属性是Horizontal（水平）的LayoutPanel 上，排列了三个窗格。一个LayoutAnchorablePane在左，一个LayoutDocumentPane在中间。一个LayoutDockablePane在右边。
-LayoutDockablePane 这个布局元素包含一个LayoutAnchorable对象的集合。通过它用来管理想TabControl这样的控件，在上面的截图中，LayoutDockablePanes是在左边的&amp;rsquo;Strumenti&amp;rsquo; 和 &amp;lsquo;Progetti&amp;rsquo; (工具和项目) 和在右边的&amp;rsquo;Classi&amp;rsquo; 和 &amp;lsquo;Proprieta&amp;rdquo; (类视图和属性视图)的容器，一个LayoutDockablePane可以自动隐藏，就像&amp;rsquo;Errori&amp;rsquo;(错误)和&amp;rsquo;Lista Azioni&amp;rsquo;(操作列表) and &amp;lsquo;Uscita&amp;rsquo;(输出)。并且LayoutDockablePane可以被拖动到DockingManager上，成为一个浮动窗口或者附着到它的父控件DockingManager的边缘上。
+LayoutDockablePane 这个布局元素包含一个LayoutAnchorable对象的集合。通过它用来管理想TabControl这样的控件，在上面的截图中，LayoutDockablePanes是在左边的&#39;Strumenti&amp;rsquo; 和 &amp;lsquo;Progetti&amp;rsquo; (工具和项目) 和在右边的&#39;Classi&amp;rsquo; 和 &amp;lsquo;Proprieta&amp;rsquo;&amp;rsquo; (类视图和属性视图)的容器，一个LayoutDockablePane可以自动隐藏，就像&#39;Errori&amp;rsquo;(错误)和&#39;Lista Azioni&amp;rsquo;(操作列表) and &amp;lsquo;Uscita&amp;rsquo;(输出)。并且LayoutDockablePane可以被拖动到DockingManager上，成为一个浮动窗口或者附着到它的父控件DockingManager的边缘上。
 LayoutDocumentPane 通常包含文档（DocumentContent类型）的一种窗格，但是其实也可以包含像上面提到的工具视图和类视图这样的DockableContents。在一个文档里。LayoutDocumentPane 被放置在ResizingPanel（水平方向）里。ResizingPanel则是上卖弄提到的在两个DockablePane中间的区域。注意。文档窗格是不能被移动的。
 LayoutAnchorable 一个停靠内容，是软件控件的容器，总是被包含在一个窗格里（LayoutAnchorablePane或是LayoutDocumentPane），在截图里。LayoutAnchorable是一类对象（包含一个SharpDevelop对象），工具对象，但是错误窗口（它处于自动隐藏状态，被好办在一个自动隐藏窗格里）不是。LayoutAnchorable就像它名字所暗示的那样。可以被从他的容器窗格里拖走。然后重新放置在一个存在的窗格里。或者是放置在父DockingManager的边缘，或者是放置在一个浮动窗口里（LayoutAnchorableFloatingWindow）。
 LayoutDocument 是一个仅可以被寄宿到LayoutDocumentPane的内容。它是一个特殊的内容，因为不能被停靠到边缘。仅能被放置到LayoutDocumentPane里。或者浮动在一个LayoutDocumentFloatingWindow窗口里。在途中，DocumentContent对象是program.cs&amp;rsquo; 或 &amp;lsquo;MainForm.cs&amp;rsquo; 文件视图
@@ -184,7 +265,15 @@ LayoutContent 是LayoutAnchorable 和LayoutAnchorable类的父类。提供了共
 每一个被创建的视图控件总是有着Model属性的布局元素。因此，重新设计一个相关视图控件的样式是可以的。
 为了开始创建一个新的.net 4/.net 4.5的解决方案。并且添加对AvalonDock.dll的引用（可以直接添加也可以使用NuGet），然后添加AD命名空间到MainWindow.xaml中。
 在根Grid下放置DockingManager组件和一个简单的布局。
-&amp;lt;Window x:Class=&#34;MainWindow&#34; xmlns=&#34;http://schemas.microsoft.com/winfx/2006/xaml/presentation&#34; xmlns:x=&#34;http://schemas.microsoft.com/winfx/2006/xaml&#34; xmlns:avalonDock=&#34;http://avalondock.codeplex.com&#34; Title=&#34;MainWindow&#34; Height=&#34;434&#34; Width=&#34;684&#34;&amp;gt; &amp;lt;Grid&amp;gt; &amp;lt;avalonDock:DockingManager x:Name=&#34;dockingManager&#34;&amp;gt; &amp;lt;avalonDock:LayoutRoot&amp;gt; &amp;lt;avalonDock:LayoutPanel Orientation=&#34;Horizontal&#34;&amp;gt; &amp;lt;avalonDock:LayoutDocumentPane/&amp;gt; &amp;lt;avalonDock:LayoutAnchorablePane DockWidth=&#34;150&#34;&amp;gt; &amp;lt;avalonDock:LayoutAnchorable Title=&#34;</description>
+DockingManager是AvalonDock的核心类，他的责任就是创建管理布局。布局被定义成一个ILayoutElement的树。树的根由LayoutRoot类指定。LayoutRoot由一些基本的子树来构成。。
+1.根面板的 根属性指向主 LayoutPanel，也是LayoutRoot的内容属性。
+2.大体上讲，RightSide/LeftSide/TopSide/BottonSide是LayoutAnchorGroup对象的集合属性，他们表示了停靠管理器的四个边。停靠管理器的锚通常是隐藏的。当用户移动鼠标到这些区域的时候。就会在自动隐藏的窗口里显示出来。
+3.FloatingWindows属性是FloatingWindow的集合。一个浮动窗口当用户拖动一个窗格（LayoutAnchorable或是LayoutDocument）的时候就被创建出来，这个集合可以被AvalonDock自动更新，但是用户依然可以通过调用LayoutContent的Float()方法来创建一个浮动窗口。
+Hidden是一个Anchorable（停靠）对象的集合。默认情况下，当用户点击一个LayoutAnchorable对象的关闭按钮，AvalonDock隐藏它：通过从布局里移除停靠元素，并且把他放入Hidden集合，当用户想要再一次显示的时候，AD又把这个内容从隐藏集合里删除重新显示在他被隐藏的那个窗格里。
+当使用布局树的时候，程序员可以创建任何复杂的界面，LayoutAnchorablePane的DockWidth和DockHeight属性可以被用来设置窗格的初始宽度和高度。而LayoutDocumentPane类通常则填满可用的空间。AvalonDock管理内容元素的宽度和高度以使得可以使用所有的可用空间。因此如果一个LayoutAnchorablePane被放置在一个LayoutPanel里，为LayoutAnchorablePane使用一个固定尺寸而为LayoutDocumentPane使用一个比例长度。也就是说为停靠对象使用了比例长度。
+一个LayoutDocumentGroup/ LayoutAnchorableGroup类可以被用来包含更多的LayoutDocumentPane/ LayoutAnchorablePane，举个例子，让我们来改变上面的例子来实现更复杂的例子。
+运行这个工程你就可以重新排列内容了。移动他们到浮动窗口。为了更加熟悉AvalonDock，我建议你多试几次，然后重新排列内容实现更复杂的布局。
+在入门指南的第二部分。我将演示我们如何保存布局。附加事件像DocumentClose/ DocumentClosing 或者ActiveContent 改变的事件。 原文地址：AvalonDock 2.0 getting started guide PART 1 著作权声明：本文由http://leaver.</description>
     </item>
     
     <item>
@@ -195,10 +284,7 @@ LayoutContent 是LayoutAnchorable 和LayoutAnchorable类的父类。提供了共
       <guid>https://leizhiyuan.github.io/2012/09/24/wpf%E6%AF%9B%E7%8E%BB%E7%92%83%E6%95%88%E6%9E%9Cdemo%E5%92%8C%E4%B8%80%E4%B8%AA%E9%97%AE%E9%A2%98/</guid>
       <description>那天看到WPF书上讲的毛玻璃效果，就去找了下效果。。忘了例子是从哪发现得了。。先看下效果，
  但是这不是重点，作者给出的代码有一个设计时错误。。错误提示为： 无法将类型为“Microsoft.Expression.Platform.WPF.InstanceBuilders.WindowInstance”的对象强制转换为类型“System.Windows.Window”，，
-　中文搜了一下。没有发现有人解决过。目测。。。然后又拿英文搜了下。几经辗转。。终于是解决了。。原文在Unable to cast XAML error。其实就是将原作者这个函数修改如下的
-public static void OnIsEnabledChanged(DependencyObject obj, DependencyPropertyChangedEventArgs args) {
-if ((bool)args.NewValue == true) { Window wnd = obj as Window; if (wnd != null) wnd.Loaded += new RoutedEventHandler(wnd_Loaded); } }&amp;lt;/pre&amp;gt;  　也就是验证了一下转换是否成功。
-下载：修改后的RGSamples</description>
+　中文搜了一下。没有发现有人解决过。目测。。。然后又拿英文搜了下。几经辗转。。终于是解决了。。原文在Unable to cast XAML error。其实就是将原作者这个函数修改如下的</description>
     </item>
     
     <item>
@@ -210,7 +296,13 @@ if ((bool)args.NewValue == true) { Window wnd = obj as Window; if (wnd != null) 
       <description>今天实在看WPF揭秘的时候看到TaskDialog这个控件的。然后就去找了一下开源的代码。在codeproject上发现了这个，非常给力。。另外codeproject改版后很漂亮哦。 
 介绍： 这是用WPF实现Vista上TaskDialog效果的代码。
 Messagbox消息框 通过调用重写的静态Show方法。TaskDialog就会表现的像一个Messagebox。他有四个文本类型的属性：Header（头部）, Content（内容）, Detail（更多）, 和 Footer（底部），其实Detail是一个折叠的区域， 而Header和Footer还有一个icon属性（HeaderIcon和FooterIcon），除此之外，Header还有Background（背景）和Foreground（前景）属性
-// TaskDialog.Show方法签名 public static TaskDialogResult Show( string title, string header, string content, string detail, string footer, TaskDialogButton button, TaskDialogResult defaultResult, TaskDialogIcon headerIcon, TaskDialogIcon footerIcon, Brush headerBackground, Brush headerForeground) // TaskDialog.Show 方法的一个例子 TaskDialog.Show(&#34;Task Dialog 测试&#34;, &#34;消息框的标题文字&#34;, &#34;消息框的内容部分. &#34; + &#34; 可以自适应内容.&#34;, &#34;消息框的细节部分 &#34; + &#34;可以自适应内容&#34;, &#34;消息框的底部.&#34;, TaskDialogButton.Ok, TaskDialogResult.None, TaskDialogIcon.Information, TaskDialogIcon.Shield, Brushes.White, Brushes.Navy); 定制TaskDialog 使用静态的Show方法。Header, Content, Detail, 和Footer 就限制了只能传递字符串作为值了。 为了定义这个对话框，你先创建TaskDialog类的一个对象，然后分别设置一下各个属性，最后调用Show方法就可以了</description>
+TaskDialog控件派生自HeaderedContentControl类，因为从HeaderedContentControl类可以获得Header和Content属性，TaskDialog仅仅是添加了Detail和Footer属性，这些属性是Object类型，并且有他们自己的template（模板）属性HeaderTemplate, ContentTemplate, DetailTemplate, 和 FooterTemplate)，TaskDialog类对于文本内容有着缺省的数据模板，当然你也可以用那四个模板来替换，这样你就可以以你喜欢的任何方式来格式化文本了。下面这个图展示了通过斜体和下划线来格式化文本。
+ 图2
+因为Header，Content，Detail和Footer是object类型，因此不再受到只能是文本的限制了，你可以防止你喜欢的任何类型到TaskDialog，下面这个例子中的TaskDialog是不是很像UAC的提示呢。这里Content属性是一个UserControl类型，放置了一个图片和一些文本还有两个CommandButtons（都是普通的按钮。。不过添加了一些定制的样式，再加了Header属性）
+ 图三
+一个模拟vista的文件拷贝窗口的TaskDialog。。
+ 图四
+额外的一些有意思的属性 下面是TaskDialog暴露的属性列表（按字母表排序） Button1Text: string类型，当TaskDialogButton属性被设置为Custom的时候，用来设置按钮的文字 Button2Text: 同上 Button3Text: 同上 DefaultResult: TaskDialogResult类型. 设置缺省的按钮 IsButton1Enabled: bool类型. 获取或设置按钮的Enabled状态 IsButton2Enabled: 同上 IsButton3Enabled: 同上 IsCloseButtonEnabled: bool类型. 获取或设置窗口关闭按钮的Enabled状态 (缺省为false) IsExpanded: bool类型，获取或是设置Detail部分的可见性。 IsModal: bool类型，获取或是设置对话框是不是模态的 ShowInTaskBar: bool类型，获取或是设置对话框是不是显示在任务栏中 SystemSound: TaskDialogSound类型. 设置当对话框显示的时候播放的声音 TaskDialogButton: TaskDialogButton类型. 显示在对话框上的按钮可以是None, Ok, OkCancel, YesNo, YesNoCancel, or Custom (查看上面提到的按钮设置) title: string类型，对话框的标题 ToggleButtonTexts: TaskDialogToggleButtonTexts提供了两个属性来设置toggle按钮的这个属性，当toggle 按钮折叠或是展开的时候 (缺省是&#39;Show Details&amp;rsquo; 和&#39;Hide Details&amp;rsquo;).</description>
     </item>
     
     <item>

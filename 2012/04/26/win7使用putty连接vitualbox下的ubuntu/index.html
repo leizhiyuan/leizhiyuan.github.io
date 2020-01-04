@@ -12,55 +12,65 @@
   <meta name="twitter:title" content="Win7使用Putty连接VitualBox下的Ubuntu" />
   <meta name="description" content="推荐连接方式选择Host-only Adapter（主机模式）。设置方法是打开vitualbox，然后选中虚拟机，点击设置，找到网络，然后如下图选择
 
-设置完成后，启动ubuntu，然后执行 ifconfig -a 找到下面这行，可以看到虚拟机分配到的ip地址为192.168.56.101
+设置完成后，启动ubuntu，然后执行
+找到下面这行，可以看到虚拟机分配到的ip地址为192.168.56.101
 
 然后呢，可以在win7的cmd下 ping 192.168.56.101，看看可不可以ping通，
 
 有返回所以是通的，
-然后在ubuntu下需要执行 sudo apt-get install openssh-server Ubuntu缺省安装了openssh-client（用于ubuntu连接其他服务器）,所以在这里就不安装了，只安装server，用于其它电脑连接ubuntu，如果你的系统没有安装的话，再用apt-get安装上即可。
-然后确认sshserver是否启动了： ps -e |grep ssh 如果只有ssh-agent行那ssh-server还没有启动，需要执行 service sshd start ，启动ssh服务器 如果看到sshd那说明ssh-server已经启动了。
+然后在ubuntu下需要执行
+Ubuntu缺省安装了openssh-client（用于ubuntu连接其他服务器）,所以在这里就不安装了，只安装server，用于其它电脑连接ubuntu，如果你的系统没有安装的话，再用apt-get安装上即可。
+然后确认sshserver是否启动了：
+如果只有ssh-agent行那ssh-server还没有启动，需要执行
+，启动ssh服务器 如果看到sshd那说明ssh-server已经启动了。
 然后下载putty，推荐去官方下载，下载完成后发现是单文件，直接执行即可。
 输入ubuntu的ip点击open即可
 
-登录上以后执行命令会发现有乱码，鼠标右键点击putty窗口的标题栏，选择，&rdquo;Change Settings&rdquo;，&rdquo;Translation&rdquo;，在&rdquo;Received data assumed to be in which character set&rdquo;的下拉菜单里选择&rdquo;UTF-8&rdquo;。如下图
+登录上以后执行命令会发现有乱码，鼠标右键点击putty窗口的标题栏，选择，&ldquo;Change Settings&rdquo;，&ldquo;Translation&rdquo;，在&quot;Received data assumed to be in which character set&quot;的下拉菜单里选择&quot;UTF-8&rdquo;。如下图
 
 这样，下次又得重复同样的工作，为了保持配置，继续在上图选择左边的session
 
 在saved session输入个名字，save即可，下次直接连这个就可以了
-参考：http://www.linuxidc.com/Linux/2011-12&frasl;49325.htm
+参考：http://www.linuxidc.com/Linux/2011-12/49325.htm
 http://spark10000.blog.51cto.com/955100/547211
 至于putty的使用不在本文的计划范围内，以后有机会再写吧。
 每次遇到问题就体会到网络的信息实在太杂了。掌握搜索技术和对数据的快速筛选很重要。
-&nbsp;">
+ ">
   <meta property="og:description" content="推荐连接方式选择Host-only Adapter（主机模式）。设置方法是打开vitualbox，然后选中虚拟机，点击设置，找到网络，然后如下图选择
 
-设置完成后，启动ubuntu，然后执行 ifconfig -a 找到下面这行，可以看到虚拟机分配到的ip地址为192.168.56.101
+设置完成后，启动ubuntu，然后执行
+找到下面这行，可以看到虚拟机分配到的ip地址为192.168.56.101
 
 然后呢，可以在win7的cmd下 ping 192.168.56.101，看看可不可以ping通，
 
 有返回所以是通的，
-然后在ubuntu下需要执行 sudo apt-get install openssh-server Ubuntu缺省安装了openssh-client（用于ubuntu连接其他服务器）,所以在这里就不安装了，只安装server，用于其它电脑连接ubuntu，如果你的系统没有安装的话，再用apt-get安装上即可。
-然后确认sshserver是否启动了： ps -e |grep ssh 如果只有ssh-agent行那ssh-server还没有启动，需要执行 service sshd start ，启动ssh服务器 如果看到sshd那说明ssh-server已经启动了。
+然后在ubuntu下需要执行
+Ubuntu缺省安装了openssh-client（用于ubuntu连接其他服务器）,所以在这里就不安装了，只安装server，用于其它电脑连接ubuntu，如果你的系统没有安装的话，再用apt-get安装上即可。
+然后确认sshserver是否启动了：
+如果只有ssh-agent行那ssh-server还没有启动，需要执行
+，启动ssh服务器 如果看到sshd那说明ssh-server已经启动了。
 然后下载putty，推荐去官方下载，下载完成后发现是单文件，直接执行即可。
 输入ubuntu的ip点击open即可
 
-登录上以后执行命令会发现有乱码，鼠标右键点击putty窗口的标题栏，选择，&rdquo;Change Settings&rdquo;，&rdquo;Translation&rdquo;，在&rdquo;Received data assumed to be in which character set&rdquo;的下拉菜单里选择&rdquo;UTF-8&rdquo;。如下图
+登录上以后执行命令会发现有乱码，鼠标右键点击putty窗口的标题栏，选择，&ldquo;Change Settings&rdquo;，&ldquo;Translation&rdquo;，在&quot;Received data assumed to be in which character set&quot;的下拉菜单里选择&quot;UTF-8&rdquo;。如下图
 
 这样，下次又得重复同样的工作，为了保持配置，继续在上图选择左边的session
 
 在saved session输入个名字，save即可，下次直接连这个就可以了
-参考：http://www.linuxidc.com/Linux/2011-12&frasl;49325.htm
+参考：http://www.linuxidc.com/Linux/2011-12/49325.htm
 http://spark10000.blog.51cto.com/955100/547211
 至于putty的使用不在本文的计划范围内，以后有机会再写吧。
 每次遇到问题就体会到网络的信息实在太杂了。掌握搜索技术和对数据的快速筛选很重要。
-&nbsp;">
+ ">
   <meta name="twitter:description" content="推荐连接方式选择Host-only Adapter（主机模式）。设置方法是打开vitualbox，然后选中虚拟机，点击设置，找到网络，然后如下图选择
 
-设置完成后，启动ubuntu，然后执行 ifconfig -a 找到下面这行，可以看到虚拟机分配到的ip地址为192.168.56.101
+设置完成后，启动ubuntu，然后执行
+找到下面这行，可以看到虚拟机分配到的ip地址为192.168.56.101
 
 然后呢，可以在win7的cmd下 ping 192.168.56.101，看看可不可以ping通，
 
-有返 …">
+有返回所以是通的，
+然后 …">
   <meta name="author" content="bystander"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -109,9 +119,9 @@ http://spark10000.blog.51cto.com/955100/547211
     "name" : "bystander"
   },
   "headline": "Win7使用Putty连接VitualBox下的Ubuntu",
-  "description" : "推荐连接方式选择Host-only Adapter（主机模式）。设置方法是打开vitualbox，然后选中虚拟机，点击设置，找到网络，然后如下图选择\n\n设置完成后，启动ubuntu，然后执行 ifconfig -a 找到下面这行，可以看到虚拟机分配到的ip地址为192.168.56.101\n\n然后呢，可以在win7的cmd下 ping 192.168.56.101，看看可不可以ping通，\n\n有返回所以是通的，\n然后在ubuntu下需要执行 sudo apt-get install openssh-server Ubuntu缺省安装了openssh-client（用于ubuntu连接其他服务器）,所以在这里就不安装了，只安装server，用于其它电脑连接ubuntu，如果你的系统没有安装的话，再用apt-get安装上即可。\n然后确认sshserver是否启动了： ps -e |grep ssh 如果只有ssh-agent行那ssh-server还没有启动，需要执行 service sshd start ，启动ssh服务器 如果看到sshd那说明ssh-server已经启动了。\n然后下载putty，推荐去官方下载，下载完成后发现是单文件，直接执行即可。\n输入ubuntu的ip点击open即可\n\n登录上以后执行命令会发现有乱码，鼠标右键点击putty窗口的标题栏，选择，\x26rdquo;Change Settings\x26rdquo;，\x26rdquo;Translation\x26rdquo;，在\x26rdquo;Received data assumed to be in which character set\x26rdquo;的下拉菜单里选择\x26rdquo;UTF-8\x26rdquo;。如下图\n\n这样，下次又得重复同样的工作，为了保持配置，继续在上图选择左边的session\n\n在saved session输入个名字，save即可，下次直接连这个就可以了\n参考：http:\/\/www.linuxidc.com\/Linux\/2011-12\x26frasl;49325.htm\nhttp:\/\/spark10000.blog.51cto.com\/955100\/547211\n至于putty的使用不在本文的计划范围内，以后有机会再写吧。\n每次遇到问题就体会到网络的信息实在太杂了。掌握搜索技术和对数据的快速筛选很重要。\n\x26nbsp;",
+  "description" : "推荐连接方式选择Host-only Adapter（主机模式）。设置方法是打开vitualbox，然后选中虚拟机，点击设置，找到网络，然后如下图选择\n\n设置完成后，启动ubuntu，然后执行\n找到下面这行，可以看到虚拟机分配到的ip地址为192.168.56.101\n\n然后呢，可以在win7的cmd下 ping 192.168.56.101，看看可不可以ping通，\n\n有返回所以是通的，\n然后在ubuntu下需要执行\nUbuntu缺省安装了openssh-client（用于ubuntu连接其他服务器）,所以在这里就不安装了，只安装server，用于其它电脑连接ubuntu，如果你的系统没有安装的话，再用apt-get安装上即可。\n然后确认sshserver是否启动了：\n如果只有ssh-agent行那ssh-server还没有启动，需要执行\n，启动ssh服务器 如果看到sshd那说明ssh-server已经启动了。\n然后下载putty，推荐去官方下载，下载完成后发现是单文件，直接执行即可。\n输入ubuntu的ip点击open即可\n\n登录上以后执行命令会发现有乱码，鼠标右键点击putty窗口的标题栏，选择，\x26ldquo;Change Settings\x26rdquo;，\x26ldquo;Translation\x26rdquo;，在\x26quot;Received data assumed to be in which character set\x26quot;的下拉菜单里选择\x26quot;UTF-8\x26rdquo;。如下图\n\n这样，下次又得重复同样的工作，为了保持配置，继续在上图选择左边的session\n\n在saved session输入个名字，save即可，下次直接连这个就可以了\n参考：http:\/\/www.linuxidc.com\/Linux\/2011-12\/49325.htm\nhttp:\/\/spark10000.blog.51cto.com\/955100\/547211\n至于putty的使用不在本文的计划范围内，以后有机会再写吧。\n每次遇到问题就体会到网络的信息实在太杂了。掌握搜索技术和对数据的快速筛选很重要。\n ",
   "inLanguage" : "en",
-  "wordCount":  47 ,
+  "wordCount":  33 ,
   "datePublished" : "2012-04-26T22:40:27",
   "dateModified" : "2012-04-26T22:40:27",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -133,26 +143,30 @@ http://spark10000.blog.51cto.com/955100/547211
 <meta property="og:title" content="Win7使用Putty连接VitualBox下的Ubuntu" />
 <meta property="og:description" content="推荐连接方式选择Host-only Adapter（主机模式）。设置方法是打开vitualbox，然后选中虚拟机，点击设置，找到网络，然后如下图选择
 
-设置完成后，启动ubuntu，然后执行 ifconfig -a 找到下面这行，可以看到虚拟机分配到的ip地址为192.168.56.101
+设置完成后，启动ubuntu，然后执行
+找到下面这行，可以看到虚拟机分配到的ip地址为192.168.56.101
 
 然后呢，可以在win7的cmd下 ping 192.168.56.101，看看可不可以ping通，
 
 有返回所以是通的，
-然后在ubuntu下需要执行 sudo apt-get install openssh-server Ubuntu缺省安装了openssh-client（用于ubuntu连接其他服务器）,所以在这里就不安装了，只安装server，用于其它电脑连接ubuntu，如果你的系统没有安装的话，再用apt-get安装上即可。
-然后确认sshserver是否启动了： ps -e |grep ssh 如果只有ssh-agent行那ssh-server还没有启动，需要执行 service sshd start ，启动ssh服务器 如果看到sshd那说明ssh-server已经启动了。
+然后在ubuntu下需要执行
+Ubuntu缺省安装了openssh-client（用于ubuntu连接其他服务器）,所以在这里就不安装了，只安装server，用于其它电脑连接ubuntu，如果你的系统没有安装的话，再用apt-get安装上即可。
+然后确认sshserver是否启动了：
+如果只有ssh-agent行那ssh-server还没有启动，需要执行
+，启动ssh服务器 如果看到sshd那说明ssh-server已经启动了。
 然后下载putty，推荐去官方下载，下载完成后发现是单文件，直接执行即可。
 输入ubuntu的ip点击open即可
 
-登录上以后执行命令会发现有乱码，鼠标右键点击putty窗口的标题栏，选择，&rdquo;Change Settings&rdquo;，&rdquo;Translation&rdquo;，在&rdquo;Received data assumed to be in which character set&rdquo;的下拉菜单里选择&rdquo;UTF-8&rdquo;。如下图
+登录上以后执行命令会发现有乱码，鼠标右键点击putty窗口的标题栏，选择，&ldquo;Change Settings&rdquo;，&ldquo;Translation&rdquo;，在&quot;Received data assumed to be in which character set&quot;的下拉菜单里选择&quot;UTF-8&rdquo;。如下图
 
 这样，下次又得重复同样的工作，为了保持配置，继续在上图选择左边的session
 
 在saved session输入个名字，save即可，下次直接连这个就可以了
-参考：http://www.linuxidc.com/Linux/2011-12&frasl;49325.htm
+参考：http://www.linuxidc.com/Linux/2011-12/49325.htm
 http://spark10000.blog.51cto.com/955100/547211
 至于putty的使用不在本文的计划范围内，以后有机会再写吧。
 每次遇到问题就体会到网络的信息实在太杂了。掌握搜索技术和对数据的快速筛选很重要。
-&nbsp;">
+ ">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2012/04/26/win7%E4%BD%BF%E7%94%A8putty%E8%BF%9E%E6%8E%A5vitualbox%E4%B8%8B%E7%9A%84ubuntu/" />
 <meta property="og:type" content="website" />
@@ -161,11 +175,13 @@ http://spark10000.blog.51cto.com/955100/547211
   <meta name="twitter:title" content="Win7使用Putty连接VitualBox下的Ubuntu" />
   <meta name="twitter:description" content="推荐连接方式选择Host-only Adapter（主机模式）。设置方法是打开vitualbox，然后选中虚拟机，点击设置，找到网络，然后如下图选择
 
-设置完成后，启动ubuntu，然后执行 ifconfig -a 找到下面这行，可以看到虚拟机分配到的ip地址为192.168.56.101
+设置完成后，启动ubuntu，然后执行
+找到下面这行，可以看到虚拟机分配到的ip地址为192.168.56.101
 
 然后呢，可以在win7的cmd下 ping 192.168.56.101，看看可不可以ping通，
 
-有返 …">
+有返回所以是通的，
+然后 …">
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -176,7 +192,7 @@ http://spark10000.blog.51cto.com/955100/547211
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -361,57 +377,36 @@ http://spark10000.blog.51cto.com/955100/547211
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <p>推荐连接方式选择Host-only Adapter（主机模式）。设置方法是打开vitualbox，然后选中虚拟机，点击设置，找到网络，然后如下图选择</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/20944_o.jpg"><img src="/images/6f75b3ea6509800b51958f720d2e3173390bc0a1.jpg" alt="" title="桥接设置" /></a></p>
-
-<p>设置完成后，启动ubuntu，然后执行
-<pre lang="php">ifconfig -a</pre>
-找到下面这行，可以看到虚拟机分配到的ip地址为192.168.56.101</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/20945_o.jpg"><img src="/images/a57df08f6538afb4deebab8a4e08564bda4528e0.jpg" alt="" title="IP地址" /></a></p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/20944_o.jpg"><img src="/images/6f75b3ea6509800b51958f720d2e3173390bc0a1.jpg" alt="" title="桥接设置"></a></p>
+<p>设置完成后，启动ubuntu，然后执行</p>
+<!-- raw HTML omitted -->
+<p>找到下面这行，可以看到虚拟机分配到的ip地址为192.168.56.101</p>
+<p><a href="http://leaverimage.b0.upaiyun.com/20945_o.jpg"><img src="/images/a57df08f6538afb4deebab8a4e08564bda4528e0.jpg" alt="" title="IP地址"></a></p>
 <p>然后呢，可以在win7的cmd下 ping 192.168.56.101，看看可不可以ping通，</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/20948_o.jpg"><img src="/images/b38276de90d54e82042a95ae97e40e658753d1d5.jpg" alt="" title="ping" /></a></p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/20948_o.jpg"><img src="/images/b38276de90d54e82042a95ae97e40e658753d1d5.jpg" alt="" title="ping"></a></p>
 <p>有返回所以是通的，</p>
-
-<p>然后在ubuntu下需要执行
-<pre lang="php">sudo apt-get install openssh-server</pre>
-Ubuntu缺省安装了openssh-client（用于ubuntu连接其他服务器）,所以在这里就不安装了，只安装server，用于其它电脑连接ubuntu，如果你的系统没有安装的话，再用apt-get安装上即可。</p>
-
-<p>然后确认sshserver是否启动了：
-<pre lang="php">ps -e |grep ssh</pre>
-如果只有ssh-agent行那ssh-server还没有启动，需要执行
-<pre lang="php">service sshd start</pre>
-，启动ssh服务器
+<p>然后在ubuntu下需要执行</p>
+<!-- raw HTML omitted -->
+<p>Ubuntu缺省安装了openssh-client（用于ubuntu连接其他服务器）,所以在这里就不安装了，只安装server，用于其它电脑连接ubuntu，如果你的系统没有安装的话，再用apt-get安装上即可。</p>
+<p>然后确认sshserver是否启动了：</p>
+<!-- raw HTML omitted -->
+<p>如果只有ssh-agent行那ssh-server还没有启动，需要执行</p>
+<!-- raw HTML omitted -->
+<p>，启动ssh服务器
 如果看到sshd那说明ssh-server已经启动了。</p>
-
 <p>然后下载putty，推荐去<a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">官方下载</a>，下载完成后发现是单文件，直接执行即可。</p>
-
 <p>输入ubuntu的ip点击open即可</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/20950_o.jpg"><img src="/images/9901f47b9a70d8c61d8ea28aeb41985e4b92be9d.jpg" alt="" title="登录设置" /></a></p>
-
-<p>登录上以后执行命令会发现有乱码，鼠标右键点击putty窗口的标题栏，选择，&rdquo;Change Settings&rdquo;，&rdquo;Translation&rdquo;，在&rdquo;Received data assumed to be in which character set&rdquo;的下拉菜单里选择&rdquo;UTF-8&rdquo;。如下图</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/20951_o.png"><img src="/images/6d08c4a6755cd31c3dc560f681162e46c797c02d.png" alt="" title="utf-8" /></a></p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/20950_o.jpg"><img src="/images/9901f47b9a70d8c61d8ea28aeb41985e4b92be9d.jpg" alt="" title="登录设置"></a></p>
+<p>登录上以后执行命令会发现有乱码，鼠标右键点击putty窗口的标题栏，选择，&ldquo;Change Settings&rdquo;，&ldquo;Translation&rdquo;，在&quot;Received data assumed to be in which character set&quot;的下拉菜单里选择&quot;UTF-8&rdquo;。如下图</p>
+<p><a href="http://leaverimage.b0.upaiyun.com/20951_o.png"><img src="/images/6d08c4a6755cd31c3dc560f681162e46c797c02d.png" alt="" title="utf-8"></a></p>
 <p>这样，下次又得重复同样的工作，为了保持配置，继续在上图选择左边的session</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/20952_o.jpg"><img src="/images/d0111c6b9386937d97e77046d84dbd510a062982.jpg" alt="" title="session" /></a></p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/20952_o.jpg"><img src="/images/d0111c6b9386937d97e77046d84dbd510a062982.jpg" alt="" title="session"></a></p>
 <p>在saved session输入个名字，save即可，下次直接连这个就可以了</p>
-
-<p>参考：<a href="http://www.linuxidc.com/Linux/2011-12/49325.htm">http://www.linuxidc.com/Linux/2011-<sup>12</sup>&frasl;<sub>49325</sub>.htm</a></p>
-
+<p>参考：<a href="http://www.linuxidc.com/Linux/2011-12/49325.htm">http://www.linuxidc.com/Linux/2011-12/49325.htm</a></p>
 <p><a href="http://spark10000.blog.51cto.com/955100/547211">http://spark10000.blog.51cto.com/955100/547211</a></p>
-
 <p>至于putty的使用不在本文的计划范围内，以后有机会再写吧。</p>
-
 <p>每次遇到问题就体会到网络的信息实在太杂了。掌握搜索技术和对数据的快速筛选很重要。</p>
-
-<p>&nbsp;</p>
+<p> </p>
 
 
         
@@ -521,7 +516,7 @@ Ubuntu缺省安装了openssh-client（用于ubuntu连接其他服务器）,所�
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

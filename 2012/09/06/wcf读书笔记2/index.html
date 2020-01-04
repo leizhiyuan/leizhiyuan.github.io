@@ -155,7 +155,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -340,37 +340,21 @@
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <p><strong>信道形状（Channel Shape）</strong></p>
-
 <p>　　用来表述不同的消息交换模式对消息交换双方信道（信息交换的管道）的不同要求，有什么IOutputChannel IReplyChannel IDuplexChannel之类的。。</p>
-
 <p>　　对于IReplyChannel，服务器返回一个RequestContext类型，作为请求和回复之间的一道桥梁，可以获取也可以返回消息。</p>
-
 <p><strong>会话信道（Session Channel）</strong></p>
-
 <p>　　从状态保持的角度，信道可以分为两种类型，Datagram Channel和Session Channel，前者不和客户端绑定，后者可以识别客户端。</p>
-
 <p>　　对于WCF的信道层来说，信道管理器在客户端和服务端扮演不同的角色。服务端的信道管理器用于监听来自客户端的请求，而客户端的信道仅仅是单纯创建用于请求发送和回复接收的信道，因此服务端的消息管理器又称为信道监听器（Channel Listener），客户端的信道管理器则称之为信道工厂（Channel Factory）</p>
-
 <p><strong>绑定元素（Binding Element）</strong></p>
-
 <p>　　构成一个绑定对象的元素，绑定实现了通信的所有细节，通过创建信道栈实现对消息的交换，系统绑定是指服务于某种类型场景的绑定元素的有序集合。 包括什么BaseHttpBinding之类的。</p>
-
 <p>　　<strong>一个程序集</strong>包括元数据，中间语言代码，和资源。程序集已经加载，将一直保存在内存中，直到应用程序域卸载。最好摒弃添加服务引用的服务调用方式，而是直接将包含服务契约的程序集部署到客户端。客户端以直接创建代理的方式进行调用。</p>
-
 <p>　　WCF可以看成是适配器，是CLR类型和XML两个不同世界的纽带。</p>
-
 <p>　　<strong>依赖倒置原则</strong>：即抽象不应该依赖细节，细节应该依赖于抽象；即要针对接口编程，不要对实现编程。高层模块不应该依赖低层模块。两个都应该依赖抽象。</p>
-
 <p>　　契约关心的是我能做到。而不在于我如何做到。</p>
-
 <p><strong>封送（Marshaling）</strong></p>
-
 <p>　　解决跨应用程序域对象访问的问题，需要采用一种特别的机制，那就是封送。分为按值封送和按引用封送</p>
-
 <p>　　按值封送实现了跨应用程序域的数据共享</p>
-
 <p>　　按引用封送则实现了跨应用程序域的远程调用。</p>
-
 <p>　　如果一个程序员频繁的使用复制粘贴编程。那就意味着设计需要重构</p>
 
 
@@ -493,7 +477,7 @@
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

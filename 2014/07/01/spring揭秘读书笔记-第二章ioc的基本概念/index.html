@@ -10,42 +10,9 @@
   <title>《Spring揭秘》读书笔记-第二章IoC的基本概念 - bystander&#39;s blog</title>
   <meta property="og:title" content="《Spring揭秘》读书笔记-第二章IoC的基本概念" />
   <meta name="twitter:title" content="《Spring揭秘》读书笔记-第二章IoC的基本概念" />
-  <meta name="description" content="理念就是让别人为你服务，中文名控制反转，也叫依赖注入DI
-public class FXNewsProvider { private IFXNewsListener newsListener; private IFXNewsPersister newPersistener; public void getAndPersistNews() { String[] newsIds = newsListener.getAvailableNewsIds(); if(ArrayUtils.isEmpty(newsIds)) { return; } for(String newsId : newsIds) { FXNewsBean newsBean = newsListener.getNewsByPK(newsId); newPersistener.persistNews(newsBean); newsListener.postProcessIfNecessary(newsId); } } }  假设这个类用来处理新闻，
-IFXNewsListener 用来获取新闻，
-IFXNewsPersister  用来把获取的新闻持久化
-当我们需要获取不同的新闻源，比如道琼斯的新闻时，我们会写一个 DowJonesNewsListener 类和 DowJonesNewsPersister 类，然后实例化
-public FXNewsProvider()
-{
-newsListener = new DowJonesNewsListener();
-newPersistener = new DowJonesNewsPersister();
-} &nbsp;
-如果我们依赖于某个类或服务，最简单而有效的方式就是直接
-在类的构造函数中新建相应的依赖类。
-注意看， ，我们都是自己主动地去获
-取依赖的对象！
-可是回头想想，我们自己每次用到什么依赖对象都要主动地去获取，这是否真的必要？我们最终
-所要做的，其实就是直接调用依赖对象所提供的某项服务而已
-能不能我们用的时候自动送过来呢？">
-  <meta property="og:description" content="理念就是让别人为你服务，中文名控制反转，也叫依赖注入DI
-public class FXNewsProvider { private IFXNewsListener newsListener; private IFXNewsPersister newPersistener; public void getAndPersistNews() { String[] newsIds = newsListener.getAvailableNewsIds(); if(ArrayUtils.isEmpty(newsIds)) { return; } for(String newsId : newsIds) { FXNewsBean newsBean = newsListener.getNewsByPK(newsId); newPersistener.persistNews(newsBean); newsListener.postProcessIfNecessary(newsId); } } }  假设这个类用来处理新闻，
-IFXNewsListener 用来获取新闻，
-IFXNewsPersister  用来把获取的新闻持久化
-当我们需要获取不同的新闻源，比如道琼斯的新闻时，我们会写一个 DowJonesNewsListener 类和 DowJonesNewsPersister 类，然后实例化
-public FXNewsProvider()
-{
-newsListener = new DowJonesNewsListener();
-newPersistener = new DowJonesNewsPersister();
-} &nbsp;
-如果我们依赖于某个类或服务，最简单而有效的方式就是直接
-在类的构造函数中新建相应的依赖类。
-注意看， ，我们都是自己主动地去获
-取依赖的对象！
-可是回头想想，我们自己每次用到什么依赖对象都要主动地去获取，这是否真的必要？我们最终
-所要做的，其实就是直接调用依赖对象所提供的某项服务而已
-能不能我们用的时候自动送过来呢？">
-  <meta name="twitter:description" content="理念就是让别人为你服务，中文名控制反转，也叫依赖注入DI
-public class FXNewsProvider { private IFXNewsListener newsListener; private IFXNewsPersister newPersistener; public void getAndPersistNews() { String[] newsIds = …">
+  <meta name="description" content="理念就是让别人为你服务，中文名控制反转，也叫依赖注入DI 假设这个类用来处理新闻，IFXNewsListener 用来获取新闻，IFXNewsPersister 用来把获取的新闻持久化当我们需要获取不同的新闻源，比如道琼斯的新闻时，我们会写一个DowJonesNewsListener类和DowJonesNewsPersister类，然后实例化 如果我们依赖于某个类或服务，最简单而有效的方式就是直接在类的构造函数中新建相应的依赖类。注意看，，我们都是自己主动地去获取依赖的对象！可是回头想想，我们自己每次用到什么依赖对象都要主动地去获取，这是否真的必要？我们最终所要做的，其实就是直接调用依赖对象所提供的某项服务而已能不能我们用的时候自动送过来呢？。现在是用什么，让别人直接送过来就成。所以，简单点儿说，IoC的理念就是，让别人为你服务！在图2-1中，也就是让IoC Service Provider来为你服务！这里，被注入对象就是FXNewsProvider，被依赖于对象IFXNewsListener和IFXNewsPersister 通常情况下，被注入对象会直接依赖于被依赖对象。但是，在IoC的场景中，二者之间通过IoC ServiceProvider来打交道，所有的被注入对象和依赖对象现在由IoC Service Provider统一管理。被注入对象需要什么，直接跟IoC Service Provider招呼一声，后者就会把相应的被依赖对象注入到被注入对象中，从而达到IoC Service Provider为被注入对象服务的目的。IoC Service Provider在这里就是通常的IoC容器所充当的角色。从被注入对象的角度看，与之前直接寻求依赖对象相比，依赖对象的取得方式发生了反转，控制也从被注入对象转到了IoC Service Provider那里这里我们想知道的是？怎么跟IoC Service Provider打招呼在IoC模式中，被注入对象又是通过哪些方式来通知IoC Service Provider为其提供适当服务的呢？三种打招呼的方式，即构造方法注入（constructorinjection）、setter方法注入（setter injection）以及接口注入（interface injection）。构造方法注入：  IoC Service Provider会检查被注入对象的构造方法，取得它所需要的依赖对象列表，进而为其注入相应的对象。setter方法注入  外界就可以通过调用setNewsListener和setNewPersistener方法为FXNewsProvider对象注入所依赖的对象了。接口注入，这个基本不用了。接口注入。从注入方式的使用上来说，接口注入是现在不甚提倡的一种方式，基本处于&quot;退役状态&rdquo;。因为它强制被注入对象实现不必要的接口，带有侵入性。而构造方法注入和setter方法注入则不需要如此。8q构造方法注入。这种注入方式的优点就是，对象在构造完成之后，即已进入就绪状态，可以 9马上使用。缺点就是，当依赖对象比较多的时候，构造方法的参数列表会比较长。而通过反射构造对象的时候，对相同类型的参数的处理会比较困难，维护和使用上也比较麻烦。而且在Java中，构造方法无法被继承，无法设置默认值。对于非必须的依赖处理，可能需要引入多个构造方法，而参数数量的变动可能造成维护上的不便。10qsetter方法注入。因为方法可以命名，所以setter方法注入在描述性上要比构造方法注入好一些。 11另外，setter方法可以被继承，允许设置默认值，而且有良好的IDE支持。缺点当然就是对象无法在构造完成后马上进入就绪状态。12综上所述，构造方法注入和setter方法注入因为其侵入性较弱，且易于理解和使用，所以是现在使用最多的注入方式；而接口注入因为侵入性较强，近年来已经不流行了。回到开头的代码  由于这里已经写死了，所以当我们添加了一个新的新闻源，比如M4网站的时候，这个对象不能用了，我们要新写一个M4NewsProvider的类，然后新写新闻获取类，然后重新实现。而使用了IoC之后，  我们只要实现一个MarketWin24NewsListener雷就可以，而且FXNewsProvider 可以重用。而且使用了IoC之后，单元测试变得简单，我们只有写一个MockNewsPersister就可以来测试了。">
+  <meta property="og:description" content="理念就是让别人为你服务，中文名控制反转，也叫依赖注入DI 假设这个类用来处理新闻，IFXNewsListener 用来获取新闻，IFXNewsPersister 用来把获取的新闻持久化当我们需要获取不同的新闻源，比如道琼斯的新闻时，我们会写一个DowJonesNewsListener类和DowJonesNewsPersister类，然后实例化 如果我们依赖于某个类或服务，最简单而有效的方式就是直接在类的构造函数中新建相应的依赖类。注意看，，我们都是自己主动地去获取依赖的对象！可是回头想想，我们自己每次用到什么依赖对象都要主动地去获取，这是否真的必要？我们最终所要做的，其实就是直接调用依赖对象所提供的某项服务而已能不能我们用的时候自动送过来呢？。现在是用什么，让别人直接送过来就成。所以，简单点儿说，IoC的理念就是，让别人为你服务！在图2-1中，也就是让IoC Service Provider来为你服务！这里，被注入对象就是FXNewsProvider，被依赖于对象IFXNewsListener和IFXNewsPersister 通常情况下，被注入对象会直接依赖于被依赖对象。但是，在IoC的场景中，二者之间通过IoC ServiceProvider来打交道，所有的被注入对象和依赖对象现在由IoC Service Provider统一管理。被注入对象需要什么，直接跟IoC Service Provider招呼一声，后者就会把相应的被依赖对象注入到被注入对象中，从而达到IoC Service Provider为被注入对象服务的目的。IoC Service Provider在这里就是通常的IoC容器所充当的角色。从被注入对象的角度看，与之前直接寻求依赖对象相比，依赖对象的取得方式发生了反转，控制也从被注入对象转到了IoC Service Provider那里这里我们想知道的是？怎么跟IoC Service Provider打招呼在IoC模式中，被注入对象又是通过哪些方式来通知IoC Service Provider为其提供适当服务的呢？三种打招呼的方式，即构造方法注入（constructorinjection）、setter方法注入（setter injection）以及接口注入（interface injection）。构造方法注入：  IoC Service Provider会检查被注入对象的构造方法，取得它所需要的依赖对象列表，进而为其注入相应的对象。setter方法注入  外界就可以通过调用setNewsListener和setNewPersistener方法为FXNewsProvider对象注入所依赖的对象了。接口注入，这个基本不用了。接口注入。从注入方式的使用上来说，接口注入是现在不甚提倡的一种方式，基本处于&quot;退役状态&rdquo;。因为它强制被注入对象实现不必要的接口，带有侵入性。而构造方法注入和setter方法注入则不需要如此。8q构造方法注入。这种注入方式的优点就是，对象在构造完成之后，即已进入就绪状态，可以 9马上使用。缺点就是，当依赖对象比较多的时候，构造方法的参数列表会比较长。而通过反射构造对象的时候，对相同类型的参数的处理会比较困难，维护和使用上也比较麻烦。而且在Java中，构造方法无法被继承，无法设置默认值。对于非必须的依赖处理，可能需要引入多个构造方法，而参数数量的变动可能造成维护上的不便。10qsetter方法注入。因为方法可以命名，所以setter方法注入在描述性上要比构造方法注入好一些。 11另外，setter方法可以被继承，允许设置默认值，而且有良好的IDE支持。缺点当然就是对象无法在构造完成后马上进入就绪状态。12综上所述，构造方法注入和setter方法注入因为其侵入性较弱，且易于理解和使用，所以是现在使用最多的注入方式；而接口注入因为侵入性较强，近年来已经不流行了。回到开头的代码  由于这里已经写死了，所以当我们添加了一个新的新闻源，比如M4网站的时候，这个对象不能用了，我们要新写一个M4NewsProvider的类，然后新写新闻获取类，然后重新实现。而使用了IoC之后，  我们只要实现一个MarketWin24NewsListener雷就可以，而且FXNewsProvider 可以重用。而且使用了IoC之后，单元测试变得简单，我们只有写一个MockNewsPersister就可以来测试了。">
+  <meta name="twitter:description" content="理念就是让别人为你服务，中文名控制反转，也叫依赖注入DI 假设这个类用来处理新闻，IFXNewsListener 用来获取新闻，IFXNewsPersister 用来把获取的新闻持久化当我们需要获取不同的新闻源，比如道琼斯的新闻时，我们会写一个DowJonesNewsListener类和DowJonesNewsPersister类，然后实例化 如果我们依赖于某个类或服务，最简单而有效的方式就是直接 …">
   <meta name="author" content="bystander"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -94,9 +61,9 @@ public class FXNewsProvider { private IFXNewsListener newsListener; private IFXN
     "name" : "bystander"
   },
   "headline": "《Spring揭秘》读书笔记-第二章IoC的基本概念",
-  "description" : "理念就是让别人为你服务，中文名控制反转，也叫依赖注入DI\npublic class FXNewsProvider { private IFXNewsListener newsListener; private IFXNewsPersister newPersistener; public void getAndPersistNews() { String[] newsIds = newsListener.getAvailableNewsIds(); if(ArrayUtils.isEmpty(newsIds)) { return; } for(String newsId : newsIds) { FXNewsBean newsBean = newsListener.getNewsByPK(newsId); newPersistener.persistNews(newsBean); newsListener.postProcessIfNecessary(newsId); } } }  假设这个类用来处理新闻，\nIFXNewsListener 用来获取新闻，\nIFXNewsPersister  用来把获取的新闻持久化\n当我们需要获取不同的新闻源，比如道琼斯的新闻时，我们会写一个 DowJonesNewsListener 类和 DowJonesNewsPersister 类，然后实例化\npublic FXNewsProvider()\n{\nnewsListener = new DowJonesNewsListener();\nnewPersistener = new DowJonesNewsPersister();\n} \x26nbsp;\n如果我们依赖于某个类或服务，最简单而有效的方式就是直接\n在类的构造函数中新建相应的依赖类。\n注意看， ，我们都是自己主动地去获\n取依赖的对象！\n可是回头想想，我们自己每次用到什么依赖对象都要主动地去获取，这是否真的必要？我们最终\n所要做的，其实就是直接调用依赖对象所提供的某项服务而已\n能不能我们用的时候自动送过来呢？",
+  "description" : "理念就是让别人为你服务，中文名控制反转，也叫依赖注入DI 假设这个类用来处理新闻，IFXNewsListener 用来获取新闻，IFXNewsPersister 用来把获取的新闻持久化当我们需要获取不同的新闻源，比如道琼斯的新闻时，我们会写一个DowJonesNewsListener类和DowJonesNewsPersister类，然后实例化 如果我们依赖于某个类或服务，最简单而有效的方式就是直接在类的构造函数中新建相应的依赖类。注意看，，我们都是自己主动地去获取依赖的对象！可是回头想想，我们自己每次用到什么依赖对象都要主动地去获取，这是否真的必要？我们最终所要做的，其实就是直接调用依赖对象所提供的某项服务而已能不能我们用的时候自动送过来呢？。现在是用什么，让别人直接送过来就成。所以，简单点儿说，IoC的理念就是，让别人为你服务！在图2-1中，也就是让IoC Service Provider来为你服务！这里，被注入对象就是FXNewsProvider，被依赖于对象IFXNewsListener和IFXNewsPersister 通常情况下，被注入对象会直接依赖于被依赖对象。但是，在IoC的场景中，二者之间通过IoC ServiceProvider来打交道，所有的被注入对象和依赖对象现在由IoC Service Provider统一管理。被注入对象需要什么，直接跟IoC Service Provider招呼一声，后者就会把相应的被依赖对象注入到被注入对象中，从而达到IoC Service Provider为被注入对象服务的目的。IoC Service Provider在这里就是通常的IoC容器所充当的角色。从被注入对象的角度看，与之前直接寻求依赖对象相比，依赖对象的取得方式发生了反转，控制也从被注入对象转到了IoC Service Provider那里这里我们想知道的是？怎么跟IoC Service Provider打招呼在IoC模式中，被注入对象又是通过哪些方式来通知IoC Service Provider为其提供适当服务的呢？三种打招呼的方式，即构造方法注入（constructorinjection）、setter方法注入（setter injection）以及接口注入（interface injection）。构造方法注入：  IoC Service Provider会检查被注入对象的构造方法，取得它所需要的依赖对象列表，进而为其注入相应的对象。setter方法注入  外界就可以通过调用setNewsListener和setNewPersistener方法为FXNewsProvider对象注入所依赖的对象了。接口注入，这个基本不用了。接口注入。从注入方式的使用上来说，接口注入是现在不甚提倡的一种方式，基本处于\x26quot;退役状态\x26rdquo;。因为它强制被注入对象实现不必要的接口，带有侵入性。而构造方法注入和setter方法注入则不需要如此。8q构造方法注入。这种注入方式的优点就是，对象在构造完成之后，即已进入就绪状态，可以 9马上使用。缺点就是，当依赖对象比较多的时候，构造方法的参数列表会比较长。而通过反射构造对象的时候，对相同类型的参数的处理会比较困难，维护和使用上也比较麻烦。而且在Java中，构造方法无法被继承，无法设置默认值。对于非必须的依赖处理，可能需要引入多个构造方法，而参数数量的变动可能造成维护上的不便。10qsetter方法注入。因为方法可以命名，所以setter方法注入在描述性上要比构造方法注入好一些。 11另外，setter方法可以被继承，允许设置默认值，而且有良好的IDE支持。缺点当然就是对象无法在构造完成后马上进入就绪状态。12综上所述，构造方法注入和setter方法注入因为其侵入性较弱，且易于理解和使用，所以是现在使用最多的注入方式；而接口注入因为侵入性较强，近年来已经不流行了。回到开头的代码  由于这里已经写死了，所以当我们添加了一个新的新闻源，比如M4网站的时候，这个对象不能用了，我们要新写一个M4NewsProvider的类，然后新写新闻获取类，然后重新实现。而使用了IoC之后，  我们只要实现一个MarketWin24NewsListener雷就可以，而且FXNewsProvider 可以重用。而且使用了IoC之后，单元测试变得简单，我们只有写一个MockNewsPersister就可以来测试了。",
   "inLanguage" : "en",
-  "wordCount":  296 ,
+  "wordCount":  34 ,
   "datePublished" : "2014-07-01T18:54:17",
   "dateModified" : "2014-07-01T18:54:17",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -116,31 +83,14 @@ public class FXNewsProvider { private IFXNewsListener newsListener; private IFXN
 </script>
 
 <meta property="og:title" content="《Spring揭秘》读书笔记-第二章IoC的基本概念" />
-<meta property="og:description" content="理念就是让别人为你服务，中文名控制反转，也叫依赖注入DI
-public class FXNewsProvider { private IFXNewsListener newsListener; private IFXNewsPersister newPersistener; public void getAndPersistNews() { String[] newsIds = newsListener.getAvailableNewsIds(); if(ArrayUtils.isEmpty(newsIds)) { return; } for(String newsId : newsIds) { FXNewsBean newsBean = newsListener.getNewsByPK(newsId); newPersistener.persistNews(newsBean); newsListener.postProcessIfNecessary(newsId); } } }  假设这个类用来处理新闻，
-IFXNewsListener 用来获取新闻，
-IFXNewsPersister  用来把获取的新闻持久化
-当我们需要获取不同的新闻源，比如道琼斯的新闻时，我们会写一个 DowJonesNewsListener 类和 DowJonesNewsPersister 类，然后实例化
-public FXNewsProvider()
-{
-newsListener = new DowJonesNewsListener();
-newPersistener = new DowJonesNewsPersister();
-} &nbsp;
-如果我们依赖于某个类或服务，最简单而有效的方式就是直接
-在类的构造函数中新建相应的依赖类。
-注意看， ，我们都是自己主动地去获
-取依赖的对象！
-可是回头想想，我们自己每次用到什么依赖对象都要主动地去获取，这是否真的必要？我们最终
-所要做的，其实就是直接调用依赖对象所提供的某项服务而已
-能不能我们用的时候自动送过来呢？">
+<meta property="og:description" content="理念就是让别人为你服务，中文名控制反转，也叫依赖注入DI 假设这个类用来处理新闻，IFXNewsListener 用来获取新闻，IFXNewsPersister 用来把获取的新闻持久化当我们需要获取不同的新闻源，比如道琼斯的新闻时，我们会写一个DowJonesNewsListener类和DowJonesNewsPersister类，然后实例化 如果我们依赖于某个类或服务，最简单而有效的方式就是直接在类的构造函数中新建相应的依赖类。注意看，，我们都是自己主动地去获取依赖的对象！可是回头想想，我们自己每次用到什么依赖对象都要主动地去获取，这是否真的必要？我们最终所要做的，其实就是直接调用依赖对象所提供的某项服务而已能不能我们用的时候自动送过来呢？。现在是用什么，让别人直接送过来就成。所以，简单点儿说，IoC的理念就是，让别人为你服务！在图2-1中，也就是让IoC Service Provider来为你服务！这里，被注入对象就是FXNewsProvider，被依赖于对象IFXNewsListener和IFXNewsPersister 通常情况下，被注入对象会直接依赖于被依赖对象。但是，在IoC的场景中，二者之间通过IoC ServiceProvider来打交道，所有的被注入对象和依赖对象现在由IoC Service Provider统一管理。被注入对象需要什么，直接跟IoC Service Provider招呼一声，后者就会把相应的被依赖对象注入到被注入对象中，从而达到IoC Service Provider为被注入对象服务的目的。IoC Service Provider在这里就是通常的IoC容器所充当的角色。从被注入对象的角度看，与之前直接寻求依赖对象相比，依赖对象的取得方式发生了反转，控制也从被注入对象转到了IoC Service Provider那里这里我们想知道的是？怎么跟IoC Service Provider打招呼在IoC模式中，被注入对象又是通过哪些方式来通知IoC Service Provider为其提供适当服务的呢？三种打招呼的方式，即构造方法注入（constructorinjection）、setter方法注入（setter injection）以及接口注入（interface injection）。构造方法注入：  IoC Service Provider会检查被注入对象的构造方法，取得它所需要的依赖对象列表，进而为其注入相应的对象。setter方法注入  外界就可以通过调用setNewsListener和setNewPersistener方法为FXNewsProvider对象注入所依赖的对象了。接口注入，这个基本不用了。接口注入。从注入方式的使用上来说，接口注入是现在不甚提倡的一种方式，基本处于&quot;退役状态&rdquo;。因为它强制被注入对象实现不必要的接口，带有侵入性。而构造方法注入和setter方法注入则不需要如此。8q构造方法注入。这种注入方式的优点就是，对象在构造完成之后，即已进入就绪状态，可以 9马上使用。缺点就是，当依赖对象比较多的时候，构造方法的参数列表会比较长。而通过反射构造对象的时候，对相同类型的参数的处理会比较困难，维护和使用上也比较麻烦。而且在Java中，构造方法无法被继承，无法设置默认值。对于非必须的依赖处理，可能需要引入多个构造方法，而参数数量的变动可能造成维护上的不便。10qsetter方法注入。因为方法可以命名，所以setter方法注入在描述性上要比构造方法注入好一些。 11另外，setter方法可以被继承，允许设置默认值，而且有良好的IDE支持。缺点当然就是对象无法在构造完成后马上进入就绪状态。12综上所述，构造方法注入和setter方法注入因为其侵入性较弱，且易于理解和使用，所以是现在使用最多的注入方式；而接口注入因为侵入性较强，近年来已经不流行了。回到开头的代码  由于这里已经写死了，所以当我们添加了一个新的新闻源，比如M4网站的时候，这个对象不能用了，我们要新写一个M4NewsProvider的类，然后新写新闻获取类，然后重新实现。而使用了IoC之后，  我们只要实现一个MarketWin24NewsListener雷就可以，而且FXNewsProvider 可以重用。而且使用了IoC之后，单元测试变得简单，我们只有写一个MockNewsPersister就可以来测试了。">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2014/07/01/spring%E6%8F%AD%E7%A7%98%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC%E4%BA%8C%E7%AB%A0ioc%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="bystander&#39;s blog" />
 
   <meta name="twitter:title" content="《Spring揭秘》读书笔记-第二章IoC的基本概念" />
-  <meta name="twitter:description" content="理念就是让别人为你服务，中文名控制反转，也叫依赖注入DI
-public class FXNewsProvider { private IFXNewsListener newsListener; private IFXNewsPersister newPersistener; public void getAndPersistNews() { String[] newsIds = …">
+  <meta name="twitter:description" content="理念就是让别人为你服务，中文名控制反转，也叫依赖注入DI 假设这个类用来处理新闻，IFXNewsListener 用来获取新闻，IFXNewsPersister 用来把获取的新闻持久化当我们需要获取不同的新闻源，比如道琼斯的新闻时，我们会写一个DowJonesNewsListener类和DowJonesNewsPersister类，然后实例化 如果我们依赖于某个类或服务，最简单而有效的方式就是直接 …">
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -151,7 +101,7 @@ public class FXNewsProvider { private IFXNewsListener newsListener; private IFXN
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -309,7 +259,7 @@ public class FXNewsProvider { private IFXNewsListener newsListener; private IFXN
   <i class="fas fa-calendar"></i>&nbsp;Posted on July 1, 2014
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -335,231 +285,80 @@ public class FXNewsProvider { private IFXNewsListener newsListener; private IFXN
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <p><span style="font-family: 宋体; font-size: 10pt;">理念就是让别人为你服务，中文名控制反转，也叫依赖注入DI</span></p>
-
-<pre class="lang:default decode:true">public class FXNewsProvider
-
-{
-
-  private IFXNewsListener newsListener;
-
-  private IFXNewsPersister newPersistener;
-
-  public void getAndPersistNews()
-
-{
-
-String[] newsIds = newsListener.getAvailableNewsIds();
-
-if(ArrayUtils.isEmpty(newsIds))
-
-{
-   return;
-} 
-
-for(String newsId : newsIds)
-
-{ FXNewsBean newsBean = newsListener.getNewsByPK(newsId); 
-
-newPersistener.persistNews(newsBean);
-
-newsListener.postProcessIfNecessary(newsId);
-
-}
-
-}
-
-}</pre>
-
-<p> <span style="font-family: 宋体; font-size: 10pt;">假设这个类用来处理新闻，</span></p>
-
-<p><span style="font-family: Courier; font-size: 8pt;">IFXNewsListener </span><span style="font-family: 宋体; font-size: 8pt;">用来获取新闻，</span></p>
-
-<p><span style="font-family: Courier; font-size: 8pt;">IFXNewsPersister  </span> <span style="font-family: 宋体; font-size: 8pt;">用来把获取的新闻持久化</span></p>
-
-<p><span style="font-family: 宋体; font-size: 10pt;">当我们需要获取不同的新闻源，比如道琼斯的新闻时，我们会写一个</span> <span style="font-family: Courier; font-size: 8pt;">DowJonesNewsListener</span> <span style="font-family: 宋体; font-size: 8pt;">类和</span> <span style="font-family: Courier; font-size: 8pt;">DowJonesNewsPersister</span> <span style="font-family: 宋体; font-size: 8pt;">类，然后实例化</span></p>
-
-<p><pre class="lang:default decode:true">public FXNewsProvider()</p>
-
-<p>{</p>
-
-<p>newsListener = new DowJonesNewsListener();</p>
-
-<p>newPersistener = new DowJonesNewsPersister();</p>
-
-<p>}</pre>
-&nbsp;</p>
-
-<p><span style="font-family: SimSun; font-size: 9pt;">如果我们依赖于某个类或服务，最简单而有效的方式就是直接</span></p>
-
-<p><span style="font-family: SimSun; font-size: 9pt;">在类的构造函数中新建相应的依赖类。</span></p>
-
-<p><span style="font-family: 宋体; font-size: 10pt;">注意看，</span> <span style="font-family: SimSun; font-size: 9pt;">，我们都是自己主动地去获</span></p>
-
-<p><span style="font-family: SimSun; font-size: 9pt;">取依赖的对象！</span></p>
-
-<p><span style="font-family: SimSun; font-size: 9pt;">可是回头想想，我们自己每次用到什么依赖对象都要主动地去获取，这是否真的必要？我们最终</span></p>
-
-<p><span style="font-family: SimSun; font-size: 9pt;">所要做的，其实就是直接调用依赖对象所提供的某项服务而已</span></p>
-
-<p><span style="font-family: SimSun; font-size: 9pt;">能不能我们用的时候自动送过来呢？</span></p>
-
-<p><span style="font-family: SimSun; font-size: 9pt;">。现在是用什么，让别人直接送过来就成。所以，简单点儿说，</span> <span style="font-family: 'Times New Roman'; font-size: 9pt;">IoC</span> <span style="font-family: SimSun; font-size: 9pt;">的理念就是，</span></p>
-
-<p><span style="font-family: SimSun; font-size: 9pt;">让别人为你服务！在图</span> <span style="font-family: 'Times New Roman'; font-size: 9pt;">2-1</span> <span style="font-family: SimSun; font-size: 9pt;">中，也就是让</span> <span style="font-family: 'Times New Roman'; font-size: 9pt;">IoC Service Provider</span> <span style="font-family: SimSun; font-size: 9pt;">来为你服务！</span></p>
-
-<p><img src="/images/45ddcfa8929fe85603c18852a59afac715fa4c7f.bmp" alt="" /></p>
-
-<p><span style="font-family: 宋体; font-size: 10pt;">这里，被注入对象就是</span> <span style="font-family: Courier; font-size: 8pt;">FXNewsProvider</span> <span style="font-family: 宋体; font-size: 8pt;">，被依赖于对象</span> <span style="font-family: Courier; font-size: 8pt;">IFXNewsListener</span> <span style="font-family: 宋体; font-size: 8pt;">和</span> <span style="font-family: Courier; font-size: 8pt;">IFXNewsPersister  </span></p>
-
-<p><span style="font-family: SimSun; font-size: 9pt;">通常情况下，被注入对象会直接依赖于被依赖对象。但是，在</span> <span style="font-family: 'Times New Roman'; font-size: 9pt;">IoC</span> <span style="font-family: SimSun; font-size: 9pt;">的场景中，二者之间通过</span> <span style="font-family: 'Times New Roman'; font-size: 9pt;">IoC Service</span></p>
-
-<p><span style="font-family: 'Times New Roman'; font-size: 9pt;">Provider</span> <span style="font-family: SimSun; font-size: 9pt;">来打交道，所有的被注入对象和依赖对象现在由</span> <span style="font-family: 'Times New Roman'; font-size: 9pt;">IoC Service Provider</span> <span style="font-family: SimSun; font-size: 9pt;">统一管理。被注入对象需要</span></p>
-
-<p><span style="font-family: SimSun; font-size: 9pt;">什么，直接跟</span> <span style="font-family: 'Times New Roman'; font-size: 9pt;">IoC Service Provider</span> <span style="font-family: SimSun; font-size: 9pt;">招呼一声，后者就会把相应的被依赖对象注入到被注入对象中，从而</span></p>
-
-<p><span style="font-family: SimSun; font-size: 9pt;">达到</span> <span style="font-family: 'Times New Roman'; font-size: 9pt;">IoC Service Provider</span> <span style="font-family: SimSun; font-size: 9pt;">为被注入对象服务的目的。</span> <span style="font-family: 'Times New Roman'; font-size: 9pt;">IoC Service Provider</span> <span style="font-family: SimSun; font-size: 9pt;">在这里就是通常的</span> <span style="font-family: 'Times New Roman'; font-size: 9pt;">IoC</span> <span style="font-family: SimSun; font-size: 9pt;">容器所充</span></p>
-
-<p><span style="font-family: SimSun; font-size: 9pt;">当的角色。从被注入对象的角度看，与之前直接寻求依赖对象相比，依赖对象的取得方式发生了反转，</span></p>
-
-<p><span style="font-family: SimSun; font-size: 9pt;">控制也从被注入对象转到了</span> <span style="font-family: 'Times New Roman'; font-size: 9pt;">IoC Service Provider</span> <span style="font-family: SimSun; font-size: 9pt;">那里</span></p>
-
-<p><span style="font-family: SimSun; font-size: 9pt;">这里我们想知道的是？怎么跟</span> <span style="font-family: 'Times New Roman'; font-size: 9pt;">IoC Service Provider</span> <span style="font-family: SimSun; font-size: 9pt;">打招呼</span></p>
-
-<p><span style="font-family: SimSun; font-size: 9pt;">在</span> <span style="font-family: 'Times New Roman'; font-size: 9pt;">IoC</span> <span style="font-family: SimSun; font-size: 9pt;">模式中，被注入对象又是通过哪些方式来通知</span> <span style="font-family: 'Times New Roman'; font-size: 9pt;">IoC Service Provider</span> <span style="font-family: SimSun; font-size: 9pt;">为其提供适当服务的呢？三种打招呼的方式</span></p>
-
-<p><span style="font-family: SimSun; font-size: 9pt;">，即构造方法注入（</span> <span style="font-family: 'Times New Roman'; font-size: 9pt;">constructor</span></p>
-
-<p><span style="font-family: 'Times New Roman'; font-size: 9pt;">injection</span> <span style="font-family: SimSun; font-size: 9pt;">）、</span> <span style="font-family: 'Times New Roman'; font-size: 9pt;">setter</span> <span style="font-family: SimSun; font-size: 9pt;">方法注入（</span> <span style="font-family: 'Times New Roman'; font-size: 9pt;">setter injection</span> <span style="font-family: SimSun; font-size: 9pt;">）以及接口注入（</span> <span style="font-family: 'Times New Roman'; font-size: 9pt;">interface injection</span> <span style="font-family: SimSun; font-size: 9pt;">）。</span></p>
-
-<p><span style="font-family: SimSun; font-size: 9pt;">构造方法注入：</span></p>
-
-<p><pre class="lang:default decode:true">public FXNewsProvider(IFXNewsListener newsListner,IFXNewsPersister newsPersister)</p>
-
-<p>{</p>
-
-<p>this.newsListener = newsListner;</p>
-
-<p>this.newPersistener = newsPersister;
- }</pre>
-&nbsp;</p>
-
-<p>&nbsp;</p>
-
-<p><span style="font-family: 'Times New Roman'; font-size: 9pt;">IoC Service Provider</span> <span style="font-family: SimSun; font-size: 9pt;">会检查被注入对象的构造方法，取得它所需要的依赖对象列表，进而为其注</span></p>
-
-<p><span style="font-family: SimSun; font-size: 9pt;">入相应的对象。</span></p>
-
-<p><span style="font-family: SimSun; font-size: 9pt;">setter方法注入</span></p>
-
-<p><pre class="lang:default decode:true">public class FXNewsProvider</p>
-
-<p>{</p>
-
-<p>private IFXNewsListener newsListener;</p>
-
-<p>private IFXNewsPersister newPersistener;</p>
-
-<p>public IFXNewsListener getNewsListener() {</p>
-
-<p>return newsListener;</p>
-
-<p>}</p>
-
-<p>public void setNewsListener(IFXNewsListener newsListener) {</p>
-
-<p>this.newsListener = newsListener;</p>
-
-<p>}</p>
-
-<p>public IFXNewsPersister getNewPersistener() {</p>
-
-<p>return newPersistener;</p>
-
-<p>}</p>
-
-<p>public void setNewPersistener(IFXNewsPersister newPersistener) {</p>
-
-<p>this.newPersistener = newPersistener;</p>
-
-<p>}</p>
-
-<p>}</pre>
-&nbsp;</p>
-
-<p>&nbsp;</p>
-
-<p><span style="font-family: SimSun; font-size: 9pt;">外界就可以通过调用</span> <span style="font-family: Courier; font-size: 9pt;">setNewsListener</span> <span style="font-family: SimSun; font-size: 9pt;">和</span> <span style="font-family: Courier; font-size: 9pt;">setNewPersistener</span> <span style="font-family: SimSun; font-size: 9pt;">方法为</span> <span style="font-family: Courier; font-size: 9pt;">FXNewsProvider</span> <span style="font-family: SimSun; font-size: 9pt;">对</span></p>
-
-<p><span style="font-family: SimSun; font-size: 9pt;">象注入所依赖的对象了。</span></p>
-
-<p><span style="font-family: 宋体; font-size: 10pt;">接口注入，这个基本不用了。</span></p>
-
-<p><span style="font-family: SimHei; font-size: 9pt;">接口注入</span> <span style="font-family: SimSun; font-size: 9pt;">。从注入方式的使用上来说，接口注入是现在不甚提倡的一种方式，基本处于&rdquo;退</span></p>
-
-<p><span style="font-family: SimSun; font-size: 9pt;">役状态&rdquo;。因为它强制被注入对象实现不必要的接口，带有侵入性。而构造方法注入和</span> <span style="font-family: 'Times New Roman'; font-size: 9pt;">setter</span></p>
-
-<p><span style="font-family: SimSun; font-size: 9pt;">方法注入则不需要如此。</span></p>
-
-<p><span style="font-family: Arial; font-size: 14pt; font-weight: bold; color: #ffffff;">8</span></p>
-
-<p><span style="font-family: Wingdings; font-size: 7pt;">q</span> <span style="font-family: SimHei; font-size: 9pt;">构造方法注入。</span> <span style="font-family: SimSun; font-size: 9pt;">这种注入方式的优点就是，对象在构造完成之后，即已进入就绪状态，可以 </span><span style="font-family: Arial; font-size: 14pt; font-weight: bold; color: #ffffff;">9</span></p>
-
-<p><span style="font-family: SimSun; font-size: 9pt;">马上使用。缺点就是，当依赖对象比较多的时候，构造方法的参数列表会比较长。而通过反</span></p>
-
-<p><span style="font-family: SimSun; font-size: 9pt;">射构造对象的时候，对相同类型的参数的处理会比较困难，维护和使用上也比较麻烦。而且</span></p>
-
-<p><span style="font-family: SimSun; font-size: 9pt;">在</span> <span style="font-family: 'Times New Roman'; font-size: 9pt;">Java</span> <span style="font-family: SimSun; font-size: 9pt;">中，构造方法无法被继承，无法设置默认值。对于非必须的依赖处理，可能需要引入多</span></p>
-
-<p><span style="font-family: SimSun; font-size: 9pt;">个构造方法，而参数数量的变动可能造成维护上的不便。</span></p>
-
-<p><span style="font-family: Arial; font-size: 14pt; font-weight: bold; color: #ffffff;">10</span></p>
-
-<p><span style="font-family: Wingdings; font-size: 7pt;">q</span> <span style="font-family: Arial; font-size: 9pt;">setter</span> <span style="font-family: SimHei; font-size: 9pt;">方法注入</span> <span style="font-family: SimSun; font-size: 9pt;">。因为方法可以命名，所以</span> <span style="font-family: 'Times New Roman'; font-size: 9pt;">setter</span> <span style="font-family: SimSun; font-size: 9pt;">方法注入在描述性上要比构造方法注入好一些。 </span><span style="font-family: Arial; font-size: 14pt; font-weight: bold; color: #ffffff;">11</span></p>
-
-<p><span style="font-family: SimSun; font-size: 9pt;">另外，</span> <span style="font-family: 'Times New Roman'; font-size: 9pt;">setter</span> <span style="font-family: SimSun; font-size: 9pt;">方法可以被继承，允许设置默认值，而且有良好的</span> <span style="font-family: 'Times New Roman'; font-size: 9pt;">IDE</span> <span style="font-family: SimSun; font-size: 9pt;">支持。缺点当然就是对象无</span></p>
-
-<p><span style="font-family: SimSun; font-size: 9pt;">法在构造完成后马上进入就绪状态。</span> <span style="font-family: Arial; font-size: 14pt; font-weight: bold; color: #ffffff;">12</span></p>
-
-<p><span style="font-family: SimSun; font-size: 9pt;">综上所述，构造方法注入和</span> <span style="font-family: 'Times New Roman'; font-size: 9pt;">setter</span> <span style="font-family: SimSun; font-size: 9pt;">方法注入因为其侵入性较弱，且易于理解和使用，所以是现在使</span></p>
-
-<p><span style="font-family: SimSun; font-size: 9pt;">用最多的注入方式；而接口注入因为侵入性较强，近年来已经不流行了。</span></p>
-
-<p><span style="font-family: 宋体; font-size: 10pt;">回到开头的代码</span></p>
-
-<p><pre class="lang:default decode:true  ">public FXNewsProvider()</p>
-
-<p>{</p>
-
-<p>newsListener = new DowJonesNewsListener();</p>
-
-<p>newPersistener = new DowJonesNewsPersister();</p>
-
-<p>}</pre>
-&nbsp;</p>
-
-<p>&nbsp;</p>
-
-<p><span style="font-family: 宋体; font-size: 10pt;">由于这里已经写死了，所以当我们添加了一个新的新闻源，比如M4网站的时候，这个对象不能用了，我们要新写一个</span> <span style="font-family: 宋体; font-size: 8pt;">M4</span> <span style="font-family: Courier; font-size: 8pt;">NewsProvider</span> <span style="font-family: 宋体; font-size: 8pt;">的类，然后新写新闻获取类，然后重新实现。</span></p>
-
-<p><span style="font-family: 宋体; font-size: 8pt;">而使用了IoC之后，</span></p>
-
-<p><pre class="lang:default decode:true ">FXNewsProvider dowJonesNewsProvider =</p>
-
-<p>new FXNewsProvider(new DowJonesNewsListener(),new DowJonesNewsPersister());</p>
-
-<p>&hellip;</p>
-
-<p>FXNewsPrivider marketWin24NewsProvider =</p>
-
-<p>new FXNewsProvider(new MarketWin24NewsListener(),new DowJonesNewsPersister());</pre>
-&nbsp;</p>
-
-<p>&nbsp;</p>
-
-<p><span style="font-family: 宋体; font-size: 10pt;">我们只要实现一个</span> <span style="font-family: Courier; font-size: 8pt;">MarketWin24NewsListener</span> <span style="font-family: 宋体; font-size: 8pt;">雷就可以，而且</span> <span style="font-family: Courier; font-size: 8pt;">FXNewsProvider </span><span style="font-family: 宋体; font-size: 8pt;">可以重用。</span></p>
-
-<p><span style="font-family: 宋体; font-size: 8pt;">而且使用了IoC之后，单元测试变得简单，我们只有写一个Mock</span> <span style="font-family: Courier; font-size: 8pt;">NewsPersister</span> <span style="font-family: 宋体; font-size: 8pt;">就可以来测试了。</span></p>
+        <p><!-- raw HTML omitted -->理念就是让别人为你服务，中文名控制反转，也叫依赖注入DI<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> <!-- raw HTML omitted -->假设这个类用来处理新闻，<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->IFXNewsListener <!-- raw HTML omitted --><!-- raw HTML omitted -->用来获取新闻，<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->IFXNewsPersister  <!-- raw HTML omitted --> <!-- raw HTML omitted -->用来把获取的新闻持久化<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->当我们需要获取不同的新闻源，比如道琼斯的新闻时，我们会写一个<!-- raw HTML omitted --> <!-- raw HTML omitted -->DowJonesNewsListener<!-- raw HTML omitted --> <!-- raw HTML omitted -->类和<!-- raw HTML omitted --> <!-- raw HTML omitted -->DowJonesNewsPersister<!-- raw HTML omitted --> <!-- raw HTML omitted -->类，然后实例化<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p><!-- raw HTML omitted -->如果我们依赖于某个类或服务，最简单而有效的方式就是直接<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->在类的构造函数中新建相应的依赖类。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->注意看，<!-- raw HTML omitted --> <!-- raw HTML omitted -->，我们都是自己主动地去获<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->取依赖的对象！<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->可是回头想想，我们自己每次用到什么依赖对象都要主动地去获取，这是否真的必要？我们最终<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->所要做的，其实就是直接调用依赖对象所提供的某项服务而已<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->能不能我们用的时候自动送过来呢？<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->。现在是用什么，让别人直接送过来就成。所以，简单点儿说，<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC<!-- raw HTML omitted --> <!-- raw HTML omitted -->的理念就是，<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->让别人为你服务！在图<!-- raw HTML omitted --> <!-- raw HTML omitted -->2-1<!-- raw HTML omitted --> <!-- raw HTML omitted -->中，也就是让<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->来为你服务！<!-- raw HTML omitted --></p>
+<p><img src="/images/45ddcfa8929fe85603c18852a59afac715fa4c7f.bmp" alt=""></p>
+<p><!-- raw HTML omitted -->这里，被注入对象就是<!-- raw HTML omitted --> <!-- raw HTML omitted -->FXNewsProvider<!-- raw HTML omitted --> <!-- raw HTML omitted -->，被依赖于对象<!-- raw HTML omitted --> <!-- raw HTML omitted -->IFXNewsListener<!-- raw HTML omitted --> <!-- raw HTML omitted -->和<!-- raw HTML omitted --> <!-- raw HTML omitted -->IFXNewsPersister  <!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->通常情况下，被注入对象会直接依赖于被依赖对象。但是，在<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC<!-- raw HTML omitted --> <!-- raw HTML omitted -->的场景中，二者之间通过<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->来打交道，所有的被注入对象和依赖对象现在由<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->统一管理。被注入对象需要<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->什么，直接跟<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->招呼一声，后者就会把相应的被依赖对象注入到被注入对象中，从而<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->达到<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->为被注入对象服务的目的。<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->在这里就是通常的<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC<!-- raw HTML omitted --> <!-- raw HTML omitted -->容器所充<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->当的角色。从被注入对象的角度看，与之前直接寻求依赖对象相比，依赖对象的取得方式发生了反转，<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->控制也从被注入对象转到了<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->那里<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->这里我们想知道的是？怎么跟<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->打招呼<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->在<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC<!-- raw HTML omitted --> <!-- raw HTML omitted -->模式中，被注入对象又是通过哪些方式来通知<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->为其提供适当服务的呢？三种打招呼的方式<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->，即构造方法注入（<!-- raw HTML omitted --> <!-- raw HTML omitted -->constructor<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->injection<!-- raw HTML omitted --> <!-- raw HTML omitted -->）、<!-- raw HTML omitted --> <!-- raw HTML omitted -->setter<!-- raw HTML omitted --> <!-- raw HTML omitted -->方法注入（<!-- raw HTML omitted --> <!-- raw HTML omitted -->setter injection<!-- raw HTML omitted --> <!-- raw HTML omitted -->）以及接口注入（<!-- raw HTML omitted --> <!-- raw HTML omitted -->interface injection<!-- raw HTML omitted --> <!-- raw HTML omitted -->）。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->构造方法注入：<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p> </p>
+<p><!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->会检查被注入对象的构造方法，取得它所需要的依赖对象列表，进而为其注<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->入相应的对象。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->setter方法注入<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p> </p>
+<p><!-- raw HTML omitted -->外界就可以通过调用<!-- raw HTML omitted --> <!-- raw HTML omitted -->setNewsListener<!-- raw HTML omitted --> <!-- raw HTML omitted -->和<!-- raw HTML omitted --> <!-- raw HTML omitted -->setNewPersistener<!-- raw HTML omitted --> <!-- raw HTML omitted -->方法为<!-- raw HTML omitted --> <!-- raw HTML omitted -->FXNewsProvider<!-- raw HTML omitted --> <!-- raw HTML omitted -->对<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->象注入所依赖的对象了。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->接口注入，这个基本不用了。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->接口注入<!-- raw HTML omitted --> <!-- raw HTML omitted -->。从注入方式的使用上来说，接口注入是现在不甚提倡的一种方式，基本处于&quot;退<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->役状态&rdquo;。因为它强制被注入对象实现不必要的接口，带有侵入性。而构造方法注入和<!-- raw HTML omitted --> <!-- raw HTML omitted -->setter<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->方法注入则不需要如此。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->8<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->q<!-- raw HTML omitted --> <!-- raw HTML omitted -->构造方法注入。<!-- raw HTML omitted --> <!-- raw HTML omitted -->这种注入方式的优点就是，对象在构造完成之后，即已进入就绪状态，可以 <!-- raw HTML omitted --><!-- raw HTML omitted -->9<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->马上使用。缺点就是，当依赖对象比较多的时候，构造方法的参数列表会比较长。而通过反<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->射构造对象的时候，对相同类型的参数的处理会比较困难，维护和使用上也比较麻烦。而且<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->在<!-- raw HTML omitted --> <!-- raw HTML omitted -->Java<!-- raw HTML omitted --> <!-- raw HTML omitted -->中，构造方法无法被继承，无法设置默认值。对于非必须的依赖处理，可能需要引入多<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->个构造方法，而参数数量的变动可能造成维护上的不便。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->10<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->q<!-- raw HTML omitted --> <!-- raw HTML omitted -->setter<!-- raw HTML omitted --> <!-- raw HTML omitted -->方法注入<!-- raw HTML omitted --> <!-- raw HTML omitted -->。因为方法可以命名，所以<!-- raw HTML omitted --> <!-- raw HTML omitted -->setter<!-- raw HTML omitted --> <!-- raw HTML omitted -->方法注入在描述性上要比构造方法注入好一些。 <!-- raw HTML omitted --><!-- raw HTML omitted -->11<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->另外，<!-- raw HTML omitted --> <!-- raw HTML omitted -->setter<!-- raw HTML omitted --> <!-- raw HTML omitted -->方法可以被继承，允许设置默认值，而且有良好的<!-- raw HTML omitted --> <!-- raw HTML omitted -->IDE<!-- raw HTML omitted --> <!-- raw HTML omitted -->支持。缺点当然就是对象无<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->法在构造完成后马上进入就绪状态。<!-- raw HTML omitted --> <!-- raw HTML omitted -->12<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->综上所述，构造方法注入和<!-- raw HTML omitted --> <!-- raw HTML omitted -->setter<!-- raw HTML omitted --> <!-- raw HTML omitted -->方法注入因为其侵入性较弱，且易于理解和使用，所以是现在使<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->用最多的注入方式；而接口注入因为侵入性较强，近年来已经不流行了。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->回到开头的代码<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p> </p>
+<p><!-- raw HTML omitted -->由于这里已经写死了，所以当我们添加了一个新的新闻源，比如M4网站的时候，这个对象不能用了，我们要新写一个<!-- raw HTML omitted --> <!-- raw HTML omitted -->M4<!-- raw HTML omitted --> <!-- raw HTML omitted -->NewsProvider<!-- raw HTML omitted --> <!-- raw HTML omitted -->的类，然后新写新闻获取类，然后重新实现。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->而使用了IoC之后，<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p> </p>
+<p><!-- raw HTML omitted -->我们只要实现一个<!-- raw HTML omitted --> <!-- raw HTML omitted -->MarketWin24NewsListener<!-- raw HTML omitted --> <!-- raw HTML omitted -->雷就可以，而且<!-- raw HTML omitted --> <!-- raw HTML omitted -->FXNewsProvider <!-- raw HTML omitted --><!-- raw HTML omitted -->可以重用。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->而且使用了IoC之后，单元测试变得简单，我们只有写一个Mock<!-- raw HTML omitted --> <!-- raw HTML omitted -->NewsPersister<!-- raw HTML omitted --> <!-- raw HTML omitted -->就可以来测试了。<!-- raw HTML omitted --></p>
 
 
         
@@ -673,7 +472,7 @@ newsListener.postProcessIfNecessary(newsId);
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

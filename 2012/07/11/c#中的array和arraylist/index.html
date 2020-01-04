@@ -10,15 +10,15 @@
   <title>C#中的Array和ArrayList - bystander&#39;s blog</title>
   <meta property="og:title" content="C#中的Array和ArrayList" />
   <meta name="twitter:title" content="C#中的Array和ArrayList" />
-  <meta name="description" content=" 数组是最基础的数据结构。ArrayList可以看作是Array的复杂版本。下面比较两者的异同
+  <meta name="description" content="数组是最基础的数据结构。ArrayList可以看作是Array的复杂版本。下面比较两者的异同
 比较：  相同点：  Array和ArrayList均实现了相同的接口，因此具有许多相同的操作方法，例如对自身进行枚举，能够以foreach语句遍历。 Array和ArrayList创建的对象均保存在托管堆中。
  不同点：   Array只能存储同构对象，当然，声明为Object类型的数组除外，因为任何类型都可以隐式转换成Object类型。ArrayList可以存储异构对象，这是因为本质上ArrayList内部维护着一个object[] items类型的字段，在应用ArrayList时，应该考虑装箱和拆箱所带来的性能损失。一般情况下，Array的性能高于ArrayList。 Array可以是一维的，也可以是多维的，而ArrayList只能是一维的。 Array的容量是固定的。一旦声明，不可更改，而ArrayList容量动态增加，当添加元素超过初始容量时，ArrayList会根据需要重新分配。而且可以通过TrimToSize删除空项来压缩体积。其实，除了Array外，其他集合类都是可以动态增加的。 Array的下限可以设置，而ArrayList下限只能是0. Array只有简单的方法来获取或设置元素值，不能随意增加或删除数组元素，而ArrayList提供了更多的方法来操作元素，可以方便的插入或删除指定位置上的元素。一般可以用ArrayList代替Array. tip：List泛型类对应于ArrayList。    ">
-  <meta property="og:description" content=" 数组是最基础的数据结构。ArrayList可以看作是Array的复杂版本。下面比较两者的异同
+  <meta property="og:description" content="数组是最基础的数据结构。ArrayList可以看作是Array的复杂版本。下面比较两者的异同
 比较：  相同点：  Array和ArrayList均实现了相同的接口，因此具有许多相同的操作方法，例如对自身进行枚举，能够以foreach语句遍历。 Array和ArrayList创建的对象均保存在托管堆中。
  不同点：   Array只能存储同构对象，当然，声明为Object类型的数组除外，因为任何类型都可以隐式转换成Object类型。ArrayList可以存储异构对象，这是因为本质上ArrayList内部维护着一个object[] items类型的字段，在应用ArrayList时，应该考虑装箱和拆箱所带来的性能损失。一般情况下，Array的性能高于ArrayList。 Array可以是一维的，也可以是多维的，而ArrayList只能是一维的。 Array的容量是固定的。一旦声明，不可更改，而ArrayList容量动态增加，当添加元素超过初始容量时，ArrayList会根据需要重新分配。而且可以通过TrimToSize删除空项来压缩体积。其实，除了Array外，其他集合类都是可以动态增加的。 Array的下限可以设置，而ArrayList下限只能是0. Array只有简单的方法来获取或设置元素值，不能随意增加或删除数组元素，而ArrayList提供了更多的方法来操作元素，可以方便的插入或删除指定位置上的元素。一般可以用ArrayList代替Array. tip：List泛型类对应于ArrayList。    ">
-  <meta name="twitter:description" content=" 数组是最基础的数据结构。ArrayList可以看作是Array的复杂版本。下面比较两者的异同
+  <meta name="twitter:description" content="数组是最基础的数据结构。ArrayList可以看作是Array的复杂版本。下面比较两者的异同
 比较：  相同点：  Array和ArrayList均实现了相同的接口，因此具有许多相同的操作方法，例如对自身进行枚举，能够以foreach语句遍历。 Array和ArrayList创建的对象均保存在托管堆中。
- 不同点：   Array只能存储同构对象，当然，声明为Object类型的数组除外，因为任何 …">
+ 不同点：   Array只能存储同构对象，当然，声明为Object类型的数组除外，因为任何类 …">
   <meta name="author" content="bystander"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -67,7 +67,7 @@
     "name" : "bystander"
   },
   "headline": "C#中的Array和ArrayList",
-  "description" : " 数组是最基础的数据结构。ArrayList可以看作是Array的复杂版本。下面比较两者的异同\n比较：  相同点：  Array和ArrayList均实现了相同的接口，因此具有许多相同的操作方法，例如对自身进行枚举，能够以foreach语句遍历。 Array和ArrayList创建的对象均保存在托管堆中。\n 不同点：   Array只能存储同构对象，当然，声明为Object类型的数组除外，因为任何类型都可以隐式转换成Object类型。ArrayList可以存储异构对象，这是因为本质上ArrayList内部维护着一个object[] items类型的字段，在应用ArrayList时，应该考虑装箱和拆箱所带来的性能损失。一般情况下，Array的性能高于ArrayList。 Array可以是一维的，也可以是多维的，而ArrayList只能是一维的。 Array的容量是固定的。一旦声明，不可更改，而ArrayList容量动态增加，当添加元素超过初始容量时，ArrayList会根据需要重新分配。而且可以通过TrimToSize删除空项来压缩体积。其实，除了Array外，其他集合类都是可以动态增加的。 Array的下限可以设置，而ArrayList下限只能是0. Array只有简单的方法来获取或设置元素值，不能随意增加或删除数组元素，而ArrayList提供了更多的方法来操作元素，可以方便的插入或删除指定位置上的元素。一般可以用ArrayList代替Array. tip：List泛型类对应于ArrayList。    ",
+  "description" : "数组是最基础的数据结构。ArrayList可以看作是Array的复杂版本。下面比较两者的异同\n比较：  相同点：  Array和ArrayList均实现了相同的接口，因此具有许多相同的操作方法，例如对自身进行枚举，能够以foreach语句遍历。 Array和ArrayList创建的对象均保存在托管堆中。\n 不同点：   Array只能存储同构对象，当然，声明为Object类型的数组除外，因为任何类型都可以隐式转换成Object类型。ArrayList可以存储异构对象，这是因为本质上ArrayList内部维护着一个object[] items类型的字段，在应用ArrayList时，应该考虑装箱和拆箱所带来的性能损失。一般情况下，Array的性能高于ArrayList。 Array可以是一维的，也可以是多维的，而ArrayList只能是一维的。 Array的容量是固定的。一旦声明，不可更改，而ArrayList容量动态增加，当添加元素超过初始容量时，ArrayList会根据需要重新分配。而且可以通过TrimToSize删除空项来压缩体积。其实，除了Array外，其他集合类都是可以动态增加的。 Array的下限可以设置，而ArrayList下限只能是0. Array只有简单的方法来获取或设置元素值，不能随意增加或删除数组元素，而ArrayList提供了更多的方法来操作元素，可以方便的插入或删除指定位置上的元素。一般可以用ArrayList代替Array. tip：List泛型类对应于ArrayList。    ",
   "inLanguage" : "en",
   "wordCount":  13 ,
   "datePublished" : "2012-07-11T12:51:03",
@@ -89,7 +89,7 @@
 </script>
 
 <meta property="og:title" content="C#中的Array和ArrayList" />
-<meta property="og:description" content=" 数组是最基础的数据结构。ArrayList可以看作是Array的复杂版本。下面比较两者的异同
+<meta property="og:description" content="数组是最基础的数据结构。ArrayList可以看作是Array的复杂版本。下面比较两者的异同
 比较：  相同点：  Array和ArrayList均实现了相同的接口，因此具有许多相同的操作方法，例如对自身进行枚举，能够以foreach语句遍历。 Array和ArrayList创建的对象均保存在托管堆中。
  不同点：   Array只能存储同构对象，当然，声明为Object类型的数组除外，因为任何类型都可以隐式转换成Object类型。ArrayList可以存储异构对象，这是因为本质上ArrayList内部维护着一个object[] items类型的字段，在应用ArrayList时，应该考虑装箱和拆箱所带来的性能损失。一般情况下，Array的性能高于ArrayList。 Array可以是一维的，也可以是多维的，而ArrayList只能是一维的。 Array的容量是固定的。一旦声明，不可更改，而ArrayList容量动态增加，当添加元素超过初始容量时，ArrayList会根据需要重新分配。而且可以通过TrimToSize删除空项来压缩体积。其实，除了Array外，其他集合类都是可以动态增加的。 Array的下限可以设置，而ArrayList下限只能是0. Array只有简单的方法来获取或设置元素值，不能随意增加或删除数组元素，而ArrayList提供了更多的方法来操作元素，可以方便的插入或删除指定位置上的元素。一般可以用ArrayList代替Array. tip：List泛型类对应于ArrayList。    ">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
@@ -98,9 +98,9 @@
 <meta property="og:site_name" content="bystander&#39;s blog" />
 
   <meta name="twitter:title" content="C#中的Array和ArrayList" />
-  <meta name="twitter:description" content=" 数组是最基础的数据结构。ArrayList可以看作是Array的复杂版本。下面比较两者的异同
+  <meta name="twitter:description" content="数组是最基础的数据结构。ArrayList可以看作是Array的复杂版本。下面比较两者的异同
 比较：  相同点：  Array和ArrayList均实现了相同的接口，因此具有许多相同的操作方法，例如对自身进行枚举，能够以foreach语句遍历。 Array和ArrayList创建的对象均保存在托管堆中。
- 不同点：   Array只能存储同构对象，当然，声明为Object类型的数组除外，因为任何 …">
+ 不同点：   Array只能存储同构对象，当然，声明为Object类型的数组除外，因为任何类 …">
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -111,7 +111,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -295,22 +295,15 @@
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        
-
-<p>数组是最基础的数据结构。ArrayList可以看作是Array的复杂版本。下面比较两者的异同</p>
-
-<h3 id="比较">比较：</h3>
-
+        <p>数组是最基础的数据结构。ArrayList可以看作是Array的复杂版本。下面比较两者的异同</p>
+<h3 id="heading">比较：</h3>
 <blockquote>
-<h3 id="相同点">相同点：</h3>
-
+<h3 id="heading-1">相同点：</h3>
 <blockquote>
 <p>Array和ArrayList均实现了相同的接口，因此具有许多相同的操作方法，例如对自身进行枚举，能够以foreach语句遍历。
 Array和ArrayList创建的对象均保存在托管堆中。</p>
 </blockquote>
-
-<h3 id="不同点">不同点：</h3>
-
+<h3 id="heading-2">不同点：</h3>
 <blockquote>
 <ol>
 <li>Array只能存储同构对象，当然，声明为Object类型的数组除外，因为任何类型都可以隐式转换成Object类型。ArrayList可以存储异构对象，这是因为本质上ArrayList内部维护着一个object[] items类型的字段，在应用ArrayList时，应该考虑装箱和拆箱所带来的性能损失。一般情况下，Array的性能高于ArrayList。</li>
@@ -437,7 +430,7 @@ tip：List泛型类对应于ArrayList。</li>
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

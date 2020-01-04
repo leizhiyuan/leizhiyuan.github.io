@@ -51,7 +51,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -250,7 +250,6 @@
               <div class="post-entry">
                 
                   <p>本系列文章已经译完了，译自<a href="http://www.theunixschool.com/p/awk-sed.html">awk-sed@theunixschool</a>,收获颇丰，作者没有将明白的我做了补充，并且尝试讲的更清楚，整理成系列索引，方便学习，开篇非译文,是我为了方便后面的理解写的一篇,感谢原作者的分享.有任何问题欢迎留言讨论.</p>
-
 <ul>
 <li><a href="http://leaver.me/archives/3162.html">Unix sed实用教程开篇</a></li>
 <li><a href="http://leaver.me/archives/3169.html">[译]Unix sed实用教程第一篇–向文件中增加一行</a></li>
@@ -312,45 +311,21 @@
               <div class="post-entry">
                 
                   <p>之前看到一些设计师的主题的字体很美，下载下来发现使用了css3的自定义字体，可以用来显示服务器上的字体，非常方便，学习了一下</p>
-
 <p>1.首先得到字体</p>
-
 <p>这个方法很多，本机的字体，一些国外的免费网站，比如这个：<a href="http://www.dafont.com/">http://www.dafont.com</a>，下载后的字体一般为ttf格式，ttf字体被很多浏览器支持，但是，IE不支持，为了兼容性，需要为IE单独设置字体文件，格式必须为eot，所以我们需要转换字体，使用在线工具，比如<a href="http://www.kirsle.net/wizards/ttf2eot.cgi">http://www.kirsle.net/wizards/ttf2eot.cgi</a>，当然类似的网站有很多，根据个人爱好，随意。</p>
-
-<p>&nbsp;</p>
-
+<p> </p>
 <p>2.添加内容</p>
-
-<p>这里，我写一个简单的html文件，内容为
-<pre class="lang:default decode:true">&lt;body&gt;
-&lt;p class=&ldquo;test&rdquo;&gt;bystander&lt;/p&gt;
-&lt;/body&gt;</pre>
-在没有设置customFont这个类的css之前，字体就是默认的字体了。</p>
-
-<p>&nbsp;</p>
-
-<p>3.设置css样式
-<pre class="lang:default decode:true">@font-face
-{
-font-family:myFont;/<em>主流浏览器可用</em>/
-src:url(&ldquo;PONCTUATION.ttf&rdquo;);
-}
-@font-face
-{
-font-family:myFont;/<em>兼容IE</em>/
-src:url(&ldquo;PONCTUATION.eot&rdquo;);
-}
-.test
-{
-font-family:myFont;
-font-size:40px;
-}</pre>
-显示效果就是这样的了&hellip;只是用来演示的一个字体。</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/38421_o.png"><img src="/images/0aa0db5ed4bc986d61cfbb9e1e421a2226c94f9b.png" alt="" /></a></p>
-
-<p>&nbsp;</p>
-
+<p>这里，我写一个简单的html文件，内容为</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>在没有设置customFont这个类的css之前，字体就是默认的字体了。</p>
+<p> </p>
+<p>3.设置css样式</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>显示效果就是这样的了&hellip;只是用来演示的一个字体。</p>
+<p><a href="http://leaverimage.b0.upaiyun.com/38421_o.png"><img src="/images/0aa0db5ed4bc986d61cfbb9e1e421a2226c94f9b.png" alt=""></a></p>
+<p> </p>
 <p>因为浏览器是要自动下载这个字体文件的，所以对于英文字体没啥问题，英文字体一般这个字体文件在100k左右，和一张图片比起来，基本算不是问题，但是对于中文字体，包一般在10M-20M左右，这样是不现实的，我的想法是，可以自己制作字体包，这样只需要满足常用的一些汉字就行了，大大减少包的大小，然后去找了一下，发现了<a href="http://www.high-logic.com/font-editor/fontcreator.html">http://www.high-logic.com/font-editor/fontcreator.html</a>这个软件，是可以直接编辑字体包的，也可以创建字体包，有空了用来试试.</p>
 
                 
@@ -404,22 +379,14 @@ font-size:40px;
               <div class="post-entry">
                 
                   <p>那天在群里，rich大牛提了一个问题，一个直径为10cm的球内最多能够填充直径为1cm的球多少个.</p>
-
 <p>之前看到过一个类似的简单说明，就像是在一个盒子里装乒乓球，如果装满了，想继续装，如何办？经验告诉我们，摇一摇盒子。。这个问题看上去简单，其实是个NP难问题&hellip;于是，查找了一些资料，比较有意思，分享一下。</p>
-
-<p>&nbsp;</p>
-
+<p> </p>
 <p>首先是stetson大学efriedma教授的网页，收集了各类填充（英文是packing）问题的图示，欢迎移步：<a href="http://www2.stetson.edu/~efriedma/packing.html">packing center</a> ，不过这里面恰好没有球体填充（SpherePacking）的问题，然后继续查找，进入了一个可以演示球体填充问题的页面：<a href="http://www.randomwalk.de/sphere/insphr/ylspheresinsphr.html">sphere packing demo</a> 感谢网站作者<a href="http://www.pfoertner.org/">Hugo Pfoertner</a>，这里作者解出了1-72个球的问题，但是，作者说对于n&gt;10的情况无法证明最优化.不过这个页面的演示太帅了，推荐看看。</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/37791_o.png"><img src="/images/b6b2a692820197a3aab3f59f8e9b8e6821acf744.png" alt="" /></a></p>
-
-<p>&nbsp;</p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/37791_o.png"><img src="/images/b6b2a692820197a3aab3f59f8e9b8e6821acf744.png" alt=""></a></p>
+<p> </p>
 <p>可以鼠标拖动旋转3D视角。</p>
-
 <p>然后在数学世界看到了一球体填充问题的证明结果，见：<a href="http://mathworld.wolfram.com/SpherePacking.html">SpherePacking</a>，当然，下面一大堆引用我都没看..看文章里的意思是说这个填充问题填充率已经被证明最大是77.9%，但是这个上限可能还能提高，因为貌似根据这个情况，rich大牛提出的这个问题应该数量在779左右..</p>
-
-<p>&nbsp;</p>
+<p> </p>
 
                 
               </div>
@@ -471,15 +438,23 @@ font-size:40px;
               </p>
               <div class="post-entry">
                 
-                  C#中委托和事件的例子比较多，讲得好的非常好，就不瞎凑热闹了，推荐博客园大牛的一篇：
-C# 中的委托和事件 ，如果你已经有了相应的基础，但没写过相关的例子，那我这里提供一个，首先看一下规范
-.Net Framework的编码规范：
- 委托类型的名称都应该以EventHandler结束。 委托的原型定义：有一个void返回值，并接受两个输入参数：一个Object 类型，一个 EventArgs类型(或继承自EventArgs)。 事件的命名为 委托去掉 EventHandler之后剩余的部分。 继承自EventArgs的类型应该以EventArgs结尾。 然后描述一下流程：  老板监视时间变动（ComputerOffWorkTime方法），当工作时间满50后，通知员工时间到（OnNotifyOffWork方法，并传递OffWorkEventArgs参数），可以下班了，（OnNotifyOffWork方法内部调用事件NotifyOffWork），正式员工收到通知后，则下班，其他员工则清扫一下办公室
-&nbsp;
-然后给出例子： using System; using System.Collections.Generic; using System.IO; using System.Linq; using System.Security.Cryptography; using System.Text;
-namespace DelegateAndEvent {
-public class Boss { //表示工作时间 private int virTime; //下班时老板说的话 public String SaidWords { get { return &#34;Boss:时间到，下班了&#34;; } } //委托定义 public delegate void NotifyOffWorkEventHandler(Object sender, OffWorkEventArgs e); //事件 public event NotifyOffWorkEventHandler NotifyOffWork; //事件参数 public class OffWorkEventArgs:EventArgs { public readonly int virTime; public OffWorkEventArgs(int virTime) { this.
-                  <a href="https://leizhiyuan.github.io/2013/06/25/%E5%A7%94%E6%89%98%E5%92%8C%E4%BA%8B%E4%BB%B6%E7%A4%BA%E4%BE%8B/" class="post-read-more">[Read More]</a>
+                  <p>C#中委托和事件的例子比较多，讲得好的非常好，就不瞎凑热闹了，推荐博客园大牛的一篇：</p>
+<p><a href="http://www.tracefact.net/csharp-programming/delegates-and-events-in-csharp.aspx">C# 中的委托和事件</a> ，如果你已经有了相应的基础，但没写过相关的例子，那我这里提供一个，首先看一下规范</p>
+<p>.Net Framework的编码规范：</p>
+<ul>
+<li>委托类型的名称都应该以EventHandler结束。</li>
+<li>委托的原型定义：有一个void返回值，并接受两个输入参数：一个Object 类型，一个 EventArgs类型(或继承自EventArgs)。</li>
+<li>事件的命名为 委托去掉 EventHandler之后剩余的部分。</li>
+<li>继承自EventArgs的类型应该以EventArgs结尾。
+然后描述一下流程：</li>
+</ul>
+<p>老板监视时间变动（ComputerOffWorkTime方法），当工作时间满50后，通知员工时间到（OnNotifyOffWork方法，并传递OffWorkEventArgs参数），可以下班了，（OnNotifyOffWork方法内部调用事件NotifyOffWork），正式员工收到通知后，则下班，其他员工则清扫一下办公室</p>
+<p> </p>
+<p>然后给出例子：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+
                 
               </div>
 
@@ -529,19 +504,14 @@ public class Boss { //表示工作时间 private int virTime; //下班时老板�
               <div class="post-entry">
                 
                   <p>最近在使用oracle导入一个dmp文件的时候，由于不知道dmp文件是如何导出的，是使用exp还是expdp导出的，所以纠结了比较长的时间，最后想到是否可以查看dmp文件的一些辅助信息呢，于是有了这个工具。</p>
-
-<p>在使用dmp导入的时候报如下错误
-<pre class="lang:default decode:true">IMP-00010: 不是有效的导出文件，标题验证失败
-IMP-00000: 未成功终止导入</pre>
-据说有两个可能，1个是文件本身损坏，另一个是版本问题，多出现在高版本导出的数据向低版本导入。解决方法就是修改一下dmp文件就行了。dmp文件头部大概9个字节处标识了版本号用来头部验证。对于非常大的dmp我们不能直接用文本编辑器打开，因此找找资料，写个工具。本机一个12GB的文件已测试。</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/37341_o.png"><img src="/images/71a2a354a4dd2867eb60f08548a9da16870e4949.png" alt="" /></a></p>
-
+<p>在使用dmp导入的时候报如下错误</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>据说有两个可能，1个是文件本身损坏，另一个是版本问题，多出现在高版本导出的数据向低版本导入。解决方法就是修改一下dmp文件就行了。dmp文件头部大概9个字节处标识了版本号用来头部验证。对于非常大的dmp我们不能直接用文本编辑器打开，因此找找资料，写个工具。本机一个12GB的文件已测试。</p>
+<p><a href="http://leaverimage.b0.upaiyun.com/37341_o.png"><img src="/images/71a2a354a4dd2867eb60f08548a9da16870e4949.png" alt=""></a></p>
 <p>工具使用很简单，选择文件，识别出来版本，按格式改成导入端oracle的版本值，然后即可正常导入11G-10G测试成功。</p>
-
-<p>下载地址：<a href="http://pan.baidu.com/share/link?shareid=2717736101&amp;amp;uk=1493685990">DMP版本修改工具</a></p>
-
-<p>&nbsp;</p>
+<p>下载地址：<a href="http://pan.baidu.com/share/link?shareid=2717736101&amp;uk=1493685990">DMP版本修改工具</a></p>
+<p> </p>
 
                 
               </div>
@@ -593,20 +563,43 @@ IMP-00000: 未成功终止导入</pre>
               </p>
               <div class="post-entry">
                 
-                  之前参加了阿里的笔试和电面，让后天那个敏感的日子去参加现场面，就去看了一下那天笔试的最后一道综合题，看着网上清一色最后一道题不知道从哪转的答案，不忍直视，一看代码就是错的，最直接的就是求中位数连奇偶性都不判断，直接处以2..这，另外当在无法整除的情况下，数据结果错误。
-&nbsp;
-这道题的大意是：有一个淘宝商户，在某城市有n个仓库，每个仓库的储货量不同，现在要通过货物运输，将每次仓库的储货量变成一致的，n个仓库之间的运输线路围城一个圈，即1-&gt;2-&gt;3-&gt;4-&gt;&hellip;-&gt;n-&gt;1-&gt;&hellip;，货物只能通过连接的仓库运输，设计最小的运送成本（运货量*路程）达到淘宝商户的要求，并写出代码。
-解题思路：
-假设n个仓库的初始储货量分别为warehouse[1],warehouse[2],&hellip;,warehouse[n] 计算平均储货量 average = （warehouse[1]+warehouse[2]+&hellip;+warehouse[n])/n 就算出来了最终的结果中，每个仓库应该有的存量 首先，从仓库1向仓库n运送k； 然后，从1到n-1，依次向下运送某一特定值，使得每一个仓库的余量都为average，剩下的问题就是求总代价的最小值了。
-设第0步从1仓库向n仓库（注意因为是圆圈，所以路径长度是1）运出k存量，k可以为负，如果为负数，意味着从n向1运输|k|存量，然后从循环，从（1到n-1）,从i仓库向i+1仓库运输，运输的量需要保证i仓库在运输完毕后等于average
- 第0步（从仓库1向仓库n运送k）:花费代价为 |k|， 第1步（确保仓库1的余量为average）：需要花费代价为 |warehouse[1]-average-k| 也就是从1向2伙从2向1运输 第2步（确保仓库2的余量为average）：代价为 |warehouse[2]+warehouse[1]-average-k-average|=|warehouse[1]+warehouse[2]-2*average-k| &hellip; n-1.第n-1步：代价为 |warehouse[1]+warehouse[2]+&hellip;+warehouse[n-1]-(n-1)*average-k| 此时，仓库n剩下的货物量： (warehouse[n]+k)+warehouse[1]+warehouse[2]+&hellip;+warehouse[n-1]-(n-1)*average-k=(warehouse[1]+warehouse[2]+&hellip;+warehouse[n])-(n-1)*average=average 刚好也满足，其实这里不用推导，因为平均值是算好的，所以最胡一定是刚好完成的。  总的代价为： |k|+|warehouse[1]-average-k|+|warehouse[1]+a[2]-2*average-k|+&hellip;+|warehouse[1]+warehouse[2]+&hellip;+warehouse[n-1]-(n-1)*average-k| 不妨令sum[i] = warehouse[1]+warehouse[2]+&hellip;+warehouse[i]-i*average 则，总代价可表示为：|k|+|sum[1]-k|+|sum[2]-k|+&hellip;+|sum[n-1]-k| 这个式子可以看成在水平数轴上寻找一个点k，使得点k到点0,sum[1],sum[2],sum[3],&hellip;,sum[n-1]的距离之和最小，显然k应该取这n个数的中位数。至此问题解决。
-给出详细注释代码：
-&nbsp; #include &ldquo;stdafx.h&rdquo; #include &lt;iostream&gt; #include &lt;algorithm&gt; #include&lt;string&gt;
-using namespace std;
-const int X = 100000; double sum[X],warehouse[X]; int n;
-double Abs(double x) { return max(x,-x); }
-int _tmain(int argc, _TCHAR* argv[]) { while(true) { double total = 0; double mid=0; cout&lt;&lt;&ldquo;请输入仓库数目：&rdquo;; cin&gt;&gt;n; //读入n个仓库的值，并计算总数 for(int i=1;i&lt;=n;i++) { cout&lt;&lt;&ldquo;请输入第&rdquo;&lt;&lt;i&lt;&lt;&ldquo;个仓库的存量：&rdquo;; cin&gt;&gt;warehouse[i]; total += warehouse[i]; } //计算每个仓库应该最终存储的值 double average = total/n; //计算sum数组 for(int i=1;i&lt;n;i++) sum[i] = warehouse[i]+sum[i-1]-average; //排序后打算去中位数 //sort采用半开半闭区间，所以排序为0～n-1 sort(sum,sum+n); //这个可以自己举个数字就知道了 if(n%2!
-                  <a href="https://leizhiyuan.github.io/2013/06/02/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B45%E6%9C%885%E6%97%A5%E7%BB%BC%E5%90%88%E7%AE%97%E6%B3%95%E9%A2%98%E8%AF%A6%E8%A7%A3/" class="post-read-more">[Read More]</a>
+                  <p>之前参加了阿里的笔试和电面，让后天那个敏感的日子去参加现场面，就去看了一下那天笔试的最后一道综合题，看着网上清一色最后一道题不知道从哪转的答案，不忍直视，一看代码就是错的，最直接的就是求中位数连奇偶性都不判断，直接处以2..这，另外当在无法整除的情况下，数据结果错误。</p>
+<p> </p>
+<p>这道题的大意是：有一个淘宝商户，在某城市有n个仓库，每个仓库的储货量不同，现在要通过货物运输，将每次仓库的储货量变成一致的，n个仓库之间的运输线路围城一个圈，即1-&gt;2-&gt;3-&gt;4-&gt;&hellip;-&gt;n-&gt;1-&gt;&hellip;，货物只能通过连接的仓库运输，设计最小的运送成本（运货量*路程）达到淘宝商户的要求，并写出代码。</p>
+<p><strong>解题思路：</strong></p>
+<p>假设n个仓库的初始储货量分别为warehouse[1],warehouse[2],&hellip;,warehouse[n]
+计算平均储货量</p>
+<!-- raw HTML omitted -->
+<p>就算出来了最终的结果中，每个仓库应该有的存量
+首先，从仓库1向仓库n运送k；
+然后，从1到n-1，依次向下运送某一特定值，使得每一个仓库的余量都为average，剩下的问题就是求总代价的最小值了。</p>
+<p>设第0步从1仓库向n仓库（注意因为是圆圈，所以路径长度是1）运出k存量，k可以为负，如果为负数，意味着从n向1运输|k|存量，然后从循环，从（1到n-1）,从i仓库向i+1仓库运输，运输的量需要保证i仓库在运输完毕后等于average</p>
+<ol>
+<li>第0步（从仓库1向仓库n运送k）:花费代价为 |k|，</li>
+<li>第1步（确保仓库1的余量为average）：需要花费代价为</li>
+</ol>
+<!-- raw HTML omitted -->
+<p>也就是从1向2伙从2向1运输
+3.  第2步（确保仓库2的余量为average）：代价为</p>
+<!-- raw HTML omitted -->
+<p>&hellip;
+n-1.第n-1步：代价为</p>
+<!-- raw HTML omitted -->
+<p>此时，仓库n剩下的货物量：</p>
+<!-- raw HTML omitted -->
+<p>刚好也满足，其实这里不用推导，因为平均值是算好的，所以最胡一定是刚好完成的。</p>
+<p><strong>总的代价为</strong>：</p>
+<!-- raw HTML omitted -->
+<p>不妨令sum[i] = warehouse[1]+warehouse[2]+&hellip;+warehouse[i]-i*average
+则，总代价可表示为：|k|+|sum[1]-k|+|sum[2]-k|+&hellip;+|sum[n-1]-k|
+这个式子可以看成在水平数轴上寻找一个点k，使得点k到点0,sum[1],sum[2],sum[3],&hellip;,sum[n-1]的距离之和最小，显然k应该取这n个数的中位数。至此问题解决。</p>
+<p>给出详细注释代码：</p>
+<p> </p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>思路借鉴了：<a href="http://hi.baidu.com/hujunjiehit/item/54204f01931ee6c49157184c">http://hi.baidu.com/hujunjiehit/item/54204f01931ee6c49157184c</a></p>
+<p>错误之处欢迎留言指出..</p>
+
                 
               </div>
 
@@ -659,15 +652,17 @@ int _tmain(int argc, _TCHAR* argv[]) { while(true) { double total = 0; double mi
               </p>
               <div class="post-entry">
                 
-                  看到的一道题，给出答案
-问题：找出整数1~N范围和为N的所有集合，集合里的数不允许重复。
-解答：递归吧
-代码如下： #include &ldquo;stdafx.h&rdquo; #include &lt;iostream&gt; using namespace std;
-void PrintResult(int *log,int index) { for (int i = 0; i &lt;index; ++i) { cout&lt;&lt;log[i]&lt;&lt;&rdquo; &ldquo;; } cout&lt;&lt;endl; }
-void CalCombination(int* log,int startNum,int N,int &amp;index) { if (N==0) { PrintResult(log,index); }
-else { for (int i = startNum; i &amp;lt;= N; ++i) { log[index++]=i; CalCombination(log,i+1,N-i,index); } } index--; }
-int _tmain(int argc, _TCHAR* argv[]) { cout&lt;&lt;&ldquo;请输入N:&ldquo;; int N=20; cin&gt;&gt;N; int *log=new int[N]; int index=0; CalCombination(log,1,N,index); } 要是允许重复，也简单，将递归中的这句话改为： CalCombination(log,i,N-i,index); 同理，还可以解决类似给定一个数组，让求和为N的元素组合，只需要现将元素排个序，然后思路相同。
-                  <a href="https://leizhiyuan.github.io/2013/05/27/%E6%B1%82%E6%95%B4%E6%95%B01-n%E8%8C%83%E5%9B%B4%E5%92%8C%E4%B8%BAn%E7%9A%84%E6%89%80%E6%9C%89%E7%BB%84%E5%90%88/" class="post-read-more">[Read More]</a>
+                  <p>看到的一道题，给出答案</p>
+<p>问题：找出整数1~N范围和为N的所有集合，集合里的数不允许重复。</p>
+<p>解答：递归吧</p>
+<p>代码如下：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>要是允许重复，也简单，将递归中的这句话改为：</p>
+<!-- raw HTML omitted -->
+<p>同理，还可以解决类似给定一个数组，让求和为N的元素组合，只需要现将元素排个序，然后思路相同。</p>
+<p> </p>
+
                 
               </div>
 
@@ -716,15 +711,39 @@ int _tmain(int argc, _TCHAR* argv[]) { cout&lt;&lt;&ldquo;请输入N:&ldquo;; in
               </p>
               <div class="post-entry">
                 
-                  反射 &nbsp; 当我们需要检查，调用一个程序集的内容的时候，用反射，比如，当VS给智能提示的时候，就应用了反射。  
-简单用法实例： &nbsp;  var myAssembly = Assembly.LoadFile(@&ldquo;C:\ClassLibrary1.dll&rdquo;); var myType = myAssembly.GetType(&ldquo;ClassLibrary1.Class1&rdquo;); dynamic objMyClass = Activator.CreateInstance(myType); // 获取类的类型信息 Type parameterType = objMyClass.GetType();
-// 浏览方法 foreach (MemberInfo objMemberInfo in parameterType.GetMembers()) {Console.WriteLine(objMemberInfo.Name);}
-// 浏览属性. foreach (PropertyInfo objPropertyInfo in parameterType.GetProperties()) {Console.WriteLine(objPropertyInfo.Name);}
-//开始调用 parameterType.InvokeMember(&ldquo;Display&rdquo;,BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.InvokeMethod | BindingFlags.Instance,null, objMyClass, null);   
-实际一点的用处呢： &nbsp; 1.当你也要开发一个类似VS的编辑器的时候，要提供智能提示就需要反射 2.当创建单元测试框架的时候，为了测试需要动态调用方法和属性的时候 3.有时候我们想把类型的属性，方法等全部导出的时候  
-动态dynamic &nbsp; 编程语言分为强/弱类型，dynamic是弱类型，此关键字会让编译器不做编译时的类型检查，只做运行时的检查。  
-简单用法示例： &nbsp;  dynamic x = &ldquo;c#&rdquo;; x++;  所以上面这行代码可以编译通过，但会产生运行时一场。
-                  <a href="https://leizhiyuan.github.io/2013/05/27/%E8%AF%91%E5%8F%8D%E5%B0%84reflection%E5%92%8C%E5%8A%A8%E6%80%81dynamic/" class="post-read-more">[Read More]</a>
+                  <h1 id="heading">反射</h1>
+<p> </p>
+<!-- raw HTML omitted -->
+<h2 id="heading-1">简单用法实例：</h2>
+<p> </p>
+<!-- raw HTML omitted -->
+<p>// 浏览方法
+foreach (MemberInfo objMemberInfo in parameterType.GetMembers())
+{Console.WriteLine(objMemberInfo.Name);}</p>
+<p>// 浏览属性.
+foreach (PropertyInfo objPropertyInfo in parameterType.GetProperties())
+{Console.WriteLine(objPropertyInfo.Name);}</p>
+<p>//开始调用
+parameterType.InvokeMember(&ldquo;Display&rdquo;,BindingFlags.Public | 
+BindingFlags.NonPublic | BindingFlags.InvokeMethod | 
+BindingFlags.Instance,null, objMyClass, null);<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<h2 id="heading-2">实际一点的用处呢：</h2>
+<p> </p>
+<!-- raw HTML omitted -->
+<h1 id="dynamic">动态dynamic</h1>
+<p> </p>
+<!-- raw HTML omitted -->
+<h2 id="heading-3">简单用法示例：</h2>
+<p> </p>
+<!-- raw HTML omitted -->
+<h2 id="heading-4">实际用处：</h2>
+<p> </p>
+<!-- raw HTML omitted -->
+<h1 id="heading-5">两者的区别和联系呢</h1>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+
                 
               </div>
 
@@ -776,24 +795,15 @@ int _tmain(int argc, _TCHAR* argv[]) { cout&lt;&lt;&ldquo;请输入N:&ldquo;; in
               <div class="post-entry">
                 
                   <p>每次写论文报告什么的，最头疼的就是参考文献的，本来打算写一个论文格式生成工具的，不过，一想起代码量，就有点吓人，所以分而治之，先写参考文献生成工具.</p>
-
 <p>本工具生成的文献格式符合武汉大学本科生论文的格式要求，因此，放心使用，填写内容都是必填，页码什么的要是不知道就随便填一个..你懂的..有问题请留言反馈。</p>
-
 <p>程序提供8种参考文献类型，第9种电子文献，没有实现，因为感觉在论文中参考文献要是网址的话很难看.而且用的不多..其实主要还是懒..每种文献类型需要填写的信息都不一样，8种&hellip;8种&hellip;</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/36356_o.png"><img src="/images/0a81d82d86007c82e327e9c0bbce1e32bb637f0e.png" alt="" /></a></p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/36356_o.png"><img src="/images/0a81d82d86007c82e327e9c0bbce1e32bb637f0e.png" alt=""></a></p>
 <p>使用方法：</p>
-
 <p>1.在界面右侧选择参考文献类型，然后填写。添加，左侧将会出现</p>
-
 <p>2.如果填写错误，双击左侧条目，即可删除</p>
-
 <p>3.完成后导出，即可在本目录生成docx文档</p>
-
-<p>下载地址：<a href="http://pan.baidu.com/share/link?shareid=510063&amp;amp;uk=1493685990">武汉大学论文参考文献格式生成工具</a></p>
-
-<p>&nbsp;</p>
+<p>下载地址：<a href="http://pan.baidu.com/share/link?shareid=510063&amp;uk=1493685990">武汉大学论文参考文献格式生成工具</a></p>
+<p> </p>
 
                 
               </div>
@@ -830,7 +840,7 @@ int _tmain(int argc, _TCHAR* argv[]) { cout&lt;&lt;&ldquo;请输入N:&ldquo;; in
   <i class="fas fa-calendar"></i>&nbsp;Posted on May 15, 2013
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -855,9 +865,11 @@ Q = A * x + B * y Q =目标值.
 Q必须是 Gcd(A,B)(也就是A,B的最大公约数)的倍数,否则无解,如果 Gcd(A,B) == 1, 任何Q都是可解的
 最简单的方法就是把A的水不断的向B中倒(B向A中倒也行),知道得到最终结果,如果桶满了,就清空该桶.举个例子
 A = 3, B = 4 并且 Q = 2 重复得从 A-&gt;B
-A B ###### 0 0 4 0 1 3 1 0 0 1 4 1 2 3 &lt;-A桶中得到2了
+A B
+ 0 0 4 0 1 3 1 0 0 1 4 1 2 3 &lt;-A桶中得到2了
 试试从 B-&gt;A
-A B ##### 0 0 0 3 3 0 3 3 4 2 &lt;- B中也得到了2 但是注意,从 B-&gt;A 比从 A-&gt;B快哦
+A B
+ 0 0 0 3 3 0 3 3 4 2 &lt;- B中也得到了2 但是注意,从 B-&gt;A 比从 A-&gt;B快哦
                   <a href="https://leizhiyuan.github.io/2013/05/15/%E5%80%92%E6%B0%B4%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3c-/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -939,7 +951,7 @@ A B ##### 0 0 0 3 3 0 3 3 4 2 &lt;- B中也得到了2 但是注意,从 B-&gt;A �
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

@@ -10,14 +10,50 @@
   <title>Lambda高手之路第二部分 - bystander&#39;s blog</title>
   <meta property="og:title" content="Lambda高手之路第二部分" />
   <meta name="twitter:title" content="Lambda高手之路第二部分" />
-  <meta name="description" content="闭包的影响 为了展示闭包的影响，我们看下面这个例子。 var buttons = new Button[10];
-for(var i = 0; i &lt; buttons.Length; i&#43;&#43;) { var button = new Button(); button.Text = (i &#43; 1) &#43; &ldquo;. Button - Click for Index!&rdquo;; button.OnClick &#43;= (s, e) =&gt; { Messagebox.Show(i.ToString()); }; buttons[i] = button; } //如果我们点击按钮会发生什么 这个问题很怪，我在我的JavaScript课程上经常问我的学生。95%的学生会说。显然按钮0显示0，按钮1显示1，等等。而不足5%的学生学习了闭包之后会明白。所有的按钮都会显示10.
-局部变量i的值改变了。并且等于buttons.Length。也就是10了。想要避免这个诡异的情况也很简单。如下就行了。 var button = new Button(); var index = i; button.Text = (i &#43; 1) &#43; &ldquo;. Button - Click for Index!&rdquo;; button.">
-  <meta property="og:description" content="闭包的影响 为了展示闭包的影响，我们看下面这个例子。 var buttons = new Button[10];
-for(var i = 0; i &lt; buttons.Length; i&#43;&#43;) { var button = new Button(); button.Text = (i &#43; 1) &#43; &ldquo;. Button - Click for Index!&rdquo;; button.OnClick &#43;= (s, e) =&gt; { Messagebox.Show(i.ToString()); }; buttons[i] = button; } //如果我们点击按钮会发生什么 这个问题很怪，我在我的JavaScript课程上经常问我的学生。95%的学生会说。显然按钮0显示0，按钮1显示1，等等。而不足5%的学生学习了闭包之后会明白。所有的按钮都会显示10.
-局部变量i的值改变了。并且等于buttons.Length。也就是10了。想要避免这个诡异的情况也很简单。如下就行了。 var button = new Button(); var index = i; button.Text = (i &#43; 1) &#43; &ldquo;. Button - Click for Index!&rdquo;; button.">
-  <meta name="twitter:description" content="闭包的影响 为了展示闭包的影响，我们看下面这个例子。 var buttons = new Button[10];
-for(var i = 0; i &lt; buttons.Length; i&#43;&#43;) { var button = new Button(); button.Text = (i &#43; 1) &#43; &ldquo;. Button - Click for Index!&rdquo;; …">
+  <meta name="description" content="闭包的影响 为了展示闭包的影响，我们看下面这个例子。
+这个问题很怪，我在我的JavaScript课程上经常问我的学生。95%的学生会说。显然按钮0显示0，按钮1显示1，等等。而不足5%的学生学习了闭包之后会明白。所有的按钮都会显示10.
+局部变量i的值改变了。并且等于buttons.Length。也就是10了。想要避免这个诡异的情况也很简单。如下就行了。
+问题解决了，但是index变量是一个值类型，因此保留了“全局”i的一个拷贝
+最后一个话题是一个叫做表达式树的东西，他和Lambda表达式协作。并且，他会使得在ASP.NET MVC中的Html扩展方法发生一些很奇妙的东西。关键的问题是：如何发现目标函数
+1. 传递进去的变量的名称是什么 2. 方法的主体是什么 3. 函数体里使用了什么类型
+Expression 解决了这些问题，他允许我们挖掘生成的表达式树，我们也可以执行传递给Func和Action委托的函数，而且，可以在运行时解析Lambda表达式
+我们看一下如何使用Expression 类型的例子
+这是Expression最简单的用法了。规则也相当直接。通过构建一个Expression类型的对象。编译器为生成的解释树生成一些元数据。这个解释树包含所有相关的信息，比如参数和方法体。
+方法体包含完整的解释树，我们可以访问这些操作。就像完整的语句一样。也可以操作返回指和类型。当然，返回可以为null，无论如此。大多数情况下。我们对表达式很感兴趣。这和ASP.NET MVC中处理Expression类型的方法是很相似的—可以得到使用的参数的名字，而好处是显而易见的。不会出现名称拼写错误了。也就不会出现因此而出现的编译错误了。
+注意：当程序员仅仅对调用的属性的名字感兴趣的时候。有一个更简单，更优雅的解决方案，那就是参数特性CallerMemberName 这个特性可以得到调用方法/属性的名称。而字段被编译器自动填充。因此，如果我们仅仅想知道名字，而不想知道其他更多的信息，那么我我们只需要写出像下面这个例子里的代码就行了。通过调用WhatsMyName() 方法可以返回方法的名字
+Lambda表达式的性能 有一个很大的问题：Lambda表达式有多快？好吧。首先，我们期望他们能和我们一般的函数一样快。下一节里。我们会看到Lambda的MSIL代码和普通的函数没有太大的不同。
+最有趣的一个讨论是如果Lambda表达式产生了闭包，将会和使用全局变量的方法一样快。这就产生了一个有趣的问题，和一个区域内局部变量的数目多少会有关系吗？
+我们看看测试代码，通过4个不同的指标，我们可以看到普通方法和Lambda方法的不同。
+本来用Lambda表达式我们可以把代码写的更好。最终我没有这样做。是为了防止影响看最后的结果。因此，本质上。上述代码里有三个方法 1个是Lambda测试，一个是普通测试，还有一个是在普通测试里调用的方法。而没有的第四个方法其实是我们的lambda表达式。在第一个方法里已经创建了。计算过程很简单，我们随机取数字防止编译器做任何优化。最后我们对普通方法和Lambda方法的不同很有兴趣。
+如果我们运行这个测试程序。我们会发现Lambda表达式并不总是比普通方法差。我们惊奇的是有时候甚至Lambda表达式更快一些。然而，在有闭包的情况下，，就不对了。这就是说大多数情况下我们可以毫不犹豫的使用lambda表达式。当使用闭包的时候会出现一点点的性能损失，不过还好，下一节会讲述性能损失的几个原因。 下面是测试输出的结果表
+Test Lambda [ms] Normal [ms] 0 45&#43;-1 46&#43;-1 1 44&#43;-1 46&#43;-2 2 49&#43;-3 45&#43;-2 3 48&#43;-2 45&#43;-2
+下图是上表的结果，我们可以看得到普通的方法和Lambda表达式基本上限差不多。当使用Lambda表达式的时候没有太大的性能损失。
+
+第三部分会介绍背后的秘密-MSIL">
+  <meta property="og:description" content="闭包的影响 为了展示闭包的影响，我们看下面这个例子。
+这个问题很怪，我在我的JavaScript课程上经常问我的学生。95%的学生会说。显然按钮0显示0，按钮1显示1，等等。而不足5%的学生学习了闭包之后会明白。所有的按钮都会显示10.
+局部变量i的值改变了。并且等于buttons.Length。也就是10了。想要避免这个诡异的情况也很简单。如下就行了。
+问题解决了，但是index变量是一个值类型，因此保留了“全局”i的一个拷贝
+最后一个话题是一个叫做表达式树的东西，他和Lambda表达式协作。并且，他会使得在ASP.NET MVC中的Html扩展方法发生一些很奇妙的东西。关键的问题是：如何发现目标函数
+1. 传递进去的变量的名称是什么 2. 方法的主体是什么 3. 函数体里使用了什么类型
+Expression 解决了这些问题，他允许我们挖掘生成的表达式树，我们也可以执行传递给Func和Action委托的函数，而且，可以在运行时解析Lambda表达式
+我们看一下如何使用Expression 类型的例子
+这是Expression最简单的用法了。规则也相当直接。通过构建一个Expression类型的对象。编译器为生成的解释树生成一些元数据。这个解释树包含所有相关的信息，比如参数和方法体。
+方法体包含完整的解释树，我们可以访问这些操作。就像完整的语句一样。也可以操作返回指和类型。当然，返回可以为null，无论如此。大多数情况下。我们对表达式很感兴趣。这和ASP.NET MVC中处理Expression类型的方法是很相似的—可以得到使用的参数的名字，而好处是显而易见的。不会出现名称拼写错误了。也就不会出现因此而出现的编译错误了。
+注意：当程序员仅仅对调用的属性的名字感兴趣的时候。有一个更简单，更优雅的解决方案，那就是参数特性CallerMemberName 这个特性可以得到调用方法/属性的名称。而字段被编译器自动填充。因此，如果我们仅仅想知道名字，而不想知道其他更多的信息，那么我我们只需要写出像下面这个例子里的代码就行了。通过调用WhatsMyName() 方法可以返回方法的名字
+Lambda表达式的性能 有一个很大的问题：Lambda表达式有多快？好吧。首先，我们期望他们能和我们一般的函数一样快。下一节里。我们会看到Lambda的MSIL代码和普通的函数没有太大的不同。
+最有趣的一个讨论是如果Lambda表达式产生了闭包，将会和使用全局变量的方法一样快。这就产生了一个有趣的问题，和一个区域内局部变量的数目多少会有关系吗？
+我们看看测试代码，通过4个不同的指标，我们可以看到普通方法和Lambda方法的不同。
+本来用Lambda表达式我们可以把代码写的更好。最终我没有这样做。是为了防止影响看最后的结果。因此，本质上。上述代码里有三个方法 1个是Lambda测试，一个是普通测试，还有一个是在普通测试里调用的方法。而没有的第四个方法其实是我们的lambda表达式。在第一个方法里已经创建了。计算过程很简单，我们随机取数字防止编译器做任何优化。最后我们对普通方法和Lambda方法的不同很有兴趣。
+如果我们运行这个测试程序。我们会发现Lambda表达式并不总是比普通方法差。我们惊奇的是有时候甚至Lambda表达式更快一些。然而，在有闭包的情况下，，就不对了。这就是说大多数情况下我们可以毫不犹豫的使用lambda表达式。当使用闭包的时候会出现一点点的性能损失，不过还好，下一节会讲述性能损失的几个原因。 下面是测试输出的结果表
+Test Lambda [ms] Normal [ms] 0 45&#43;-1 46&#43;-1 1 44&#43;-1 46&#43;-2 2 49&#43;-3 45&#43;-2 3 48&#43;-2 45&#43;-2
+下图是上表的结果，我们可以看得到普通的方法和Lambda表达式基本上限差不多。当使用Lambda表达式的时候没有太大的性能损失。
+
+第三部分会介绍背后的秘密-MSIL">
+  <meta name="twitter:description" content="闭包的影响 为了展示闭包的影响，我们看下面这个例子。
+这个问题很怪，我在我的JavaScript课程上经常问我的学生。95%的学生会说。显然按钮0显示0，按钮1显示1，等等。而不足5%的学生学习了闭包之后会明白。所有的按钮都会显示10.
+局部变量i的值改变了。并且等于buttons.Length。也就是10了。想要避免这个诡异的情况也很简单。如下就行了。
+问题解决了，但是index变量是一个值类 …">
   <meta name="author" content="bystander"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -66,9 +102,9 @@ for(var i = 0; i &lt; buttons.Length; i&#43;&#43;) { var button = new Button(); 
     "name" : "bystander"
   },
   "headline": "Lambda高手之路第二部分",
-  "description" : "闭包的影响 为了展示闭包的影响，我们看下面这个例子。 var buttons = new Button[10];\nfor(var i = 0; i \x26lt; buttons.Length; i\x2b\x2b) { var button = new Button(); button.Text = (i \x2b 1) \x2b \x26ldquo;. Button - Click for Index!\x26rdquo;; button.OnClick \x2b= (s, e) =\x26gt; { Messagebox.Show(i.ToString()); }; buttons[i] = button; } \/\/如果我们点击按钮会发生什么 这个问题很怪，我在我的JavaScript课程上经常问我的学生。95%的学生会说。显然按钮0显示0，按钮1显示1，等等。而不足5%的学生学习了闭包之后会明白。所有的按钮都会显示10.\n局部变量i的值改变了。并且等于buttons.Length。也就是10了。想要避免这个诡异的情况也很简单。如下就行了。 var button = new Button(); var index = i; button.Text = (i \x2b 1) \x2b \x26ldquo;. Button - Click for Index!\x26rdquo;; button.",
+  "description" : "闭包的影响 为了展示闭包的影响，我们看下面这个例子。\n这个问题很怪，我在我的JavaScript课程上经常问我的学生。95%的学生会说。显然按钮0显示0，按钮1显示1，等等。而不足5%的学生学习了闭包之后会明白。所有的按钮都会显示10.\n局部变量i的值改变了。并且等于buttons.Length。也就是10了。想要避免这个诡异的情况也很简单。如下就行了。\n问题解决了，但是index变量是一个值类型，因此保留了“全局”i的一个拷贝\n最后一个话题是一个叫做表达式树的东西，他和Lambda表达式协作。并且，他会使得在ASP.NET MVC中的Html扩展方法发生一些很奇妙的东西。关键的问题是：如何发现目标函数\n1. 传递进去的变量的名称是什么 2. 方法的主体是什么 3. 函数体里使用了什么类型\nExpression 解决了这些问题，他允许我们挖掘生成的表达式树，我们也可以执行传递给Func和Action委托的函数，而且，可以在运行时解析Lambda表达式\n我们看一下如何使用Expression 类型的例子\n这是Expression最简单的用法了。规则也相当直接。通过构建一个Expression类型的对象。编译器为生成的解释树生成一些元数据。这个解释树包含所有相关的信息，比如参数和方法体。\n方法体包含完整的解释树，我们可以访问这些操作。就像完整的语句一样。也可以操作返回指和类型。当然，返回可以为null，无论如此。大多数情况下。我们对表达式很感兴趣。这和ASP.NET MVC中处理Expression类型的方法是很相似的—可以得到使用的参数的名字，而好处是显而易见的。不会出现名称拼写错误了。也就不会出现因此而出现的编译错误了。\n注意：当程序员仅仅对调用的属性的名字感兴趣的时候。有一个更简单，更优雅的解决方案，那就是参数特性CallerMemberName 这个特性可以得到调用方法\/属性的名称。而字段被编译器自动填充。因此，如果我们仅仅想知道名字，而不想知道其他更多的信息，那么我我们只需要写出像下面这个例子里的代码就行了。通过调用WhatsMyName() 方法可以返回方法的名字\nLambda表达式的性能 有一个很大的问题：Lambda表达式有多快？好吧。首先，我们期望他们能和我们一般的函数一样快。下一节里。我们会看到Lambda的MSIL代码和普通的函数没有太大的不同。\n最有趣的一个讨论是如果Lambda表达式产生了闭包，将会和使用全局变量的方法一样快。这就产生了一个有趣的问题，和一个区域内局部变量的数目多少会有关系吗？\n我们看看测试代码，通过4个不同的指标，我们可以看到普通方法和Lambda方法的不同。\n本来用Lambda表达式我们可以把代码写的更好。最终我没有这样做。是为了防止影响看最后的结果。因此，本质上。上述代码里有三个方法 1个是Lambda测试，一个是普通测试，还有一个是在普通测试里调用的方法。而没有的第四个方法其实是我们的lambda表达式。在第一个方法里已经创建了。计算过程很简单，我们随机取数字防止编译器做任何优化。最后我们对普通方法和Lambda方法的不同很有兴趣。\n如果我们运行这个测试程序。我们会发现Lambda表达式并不总是比普通方法差。我们惊奇的是有时候甚至Lambda表达式更快一些。然而，在有闭包的情况下，，就不对了。这就是说大多数情况下我们可以毫不犹豫的使用lambda表达式。当使用闭包的时候会出现一点点的性能损失，不过还好，下一节会讲述性能损失的几个原因。 下面是测试输出的结果表\nTest Lambda [ms] Normal [ms] 0 45\x2b-1 46\x2b-1 1 44\x2b-1 46\x2b-2 2 49\x2b-3 45\x2b-2 3 48\x2b-2 45\x2b-2\n下图是上表的结果，我们可以看得到普通的方法和Lambda表达式基本上限差不多。当使用Lambda表达式的时候没有太大的性能损失。\n\n第三部分会介绍背后的秘密-MSIL",
   "inLanguage" : "en",
-  "wordCount":  346 ,
+  "wordCount":  50 ,
   "datePublished" : "2012-12-19T20:03:20",
   "dateModified" : "2012-12-19T20:03:20",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -88,17 +124,36 @@ for(var i = 0; i &lt; buttons.Length; i&#43;&#43;) { var button = new Button(); 
 </script>
 
 <meta property="og:title" content="Lambda高手之路第二部分" />
-<meta property="og:description" content="闭包的影响 为了展示闭包的影响，我们看下面这个例子。 var buttons = new Button[10];
-for(var i = 0; i &lt; buttons.Length; i&#43;&#43;) { var button = new Button(); button.Text = (i &#43; 1) &#43; &ldquo;. Button - Click for Index!&rdquo;; button.OnClick &#43;= (s, e) =&gt; { Messagebox.Show(i.ToString()); }; buttons[i] = button; } //如果我们点击按钮会发生什么 这个问题很怪，我在我的JavaScript课程上经常问我的学生。95%的学生会说。显然按钮0显示0，按钮1显示1，等等。而不足5%的学生学习了闭包之后会明白。所有的按钮都会显示10.
-局部变量i的值改变了。并且等于buttons.Length。也就是10了。想要避免这个诡异的情况也很简单。如下就行了。 var button = new Button(); var index = i; button.Text = (i &#43; 1) &#43; &ldquo;. Button - Click for Index!&rdquo;; button.">
+<meta property="og:description" content="闭包的影响 为了展示闭包的影响，我们看下面这个例子。
+这个问题很怪，我在我的JavaScript课程上经常问我的学生。95%的学生会说。显然按钮0显示0，按钮1显示1，等等。而不足5%的学生学习了闭包之后会明白。所有的按钮都会显示10.
+局部变量i的值改变了。并且等于buttons.Length。也就是10了。想要避免这个诡异的情况也很简单。如下就行了。
+问题解决了，但是index变量是一个值类型，因此保留了“全局”i的一个拷贝
+最后一个话题是一个叫做表达式树的东西，他和Lambda表达式协作。并且，他会使得在ASP.NET MVC中的Html扩展方法发生一些很奇妙的东西。关键的问题是：如何发现目标函数
+1. 传递进去的变量的名称是什么 2. 方法的主体是什么 3. 函数体里使用了什么类型
+Expression 解决了这些问题，他允许我们挖掘生成的表达式树，我们也可以执行传递给Func和Action委托的函数，而且，可以在运行时解析Lambda表达式
+我们看一下如何使用Expression 类型的例子
+这是Expression最简单的用法了。规则也相当直接。通过构建一个Expression类型的对象。编译器为生成的解释树生成一些元数据。这个解释树包含所有相关的信息，比如参数和方法体。
+方法体包含完整的解释树，我们可以访问这些操作。就像完整的语句一样。也可以操作返回指和类型。当然，返回可以为null，无论如此。大多数情况下。我们对表达式很感兴趣。这和ASP.NET MVC中处理Expression类型的方法是很相似的—可以得到使用的参数的名字，而好处是显而易见的。不会出现名称拼写错误了。也就不会出现因此而出现的编译错误了。
+注意：当程序员仅仅对调用的属性的名字感兴趣的时候。有一个更简单，更优雅的解决方案，那就是参数特性CallerMemberName 这个特性可以得到调用方法/属性的名称。而字段被编译器自动填充。因此，如果我们仅仅想知道名字，而不想知道其他更多的信息，那么我我们只需要写出像下面这个例子里的代码就行了。通过调用WhatsMyName() 方法可以返回方法的名字
+Lambda表达式的性能 有一个很大的问题：Lambda表达式有多快？好吧。首先，我们期望他们能和我们一般的函数一样快。下一节里。我们会看到Lambda的MSIL代码和普通的函数没有太大的不同。
+最有趣的一个讨论是如果Lambda表达式产生了闭包，将会和使用全局变量的方法一样快。这就产生了一个有趣的问题，和一个区域内局部变量的数目多少会有关系吗？
+我们看看测试代码，通过4个不同的指标，我们可以看到普通方法和Lambda方法的不同。
+本来用Lambda表达式我们可以把代码写的更好。最终我没有这样做。是为了防止影响看最后的结果。因此，本质上。上述代码里有三个方法 1个是Lambda测试，一个是普通测试，还有一个是在普通测试里调用的方法。而没有的第四个方法其实是我们的lambda表达式。在第一个方法里已经创建了。计算过程很简单，我们随机取数字防止编译器做任何优化。最后我们对普通方法和Lambda方法的不同很有兴趣。
+如果我们运行这个测试程序。我们会发现Lambda表达式并不总是比普通方法差。我们惊奇的是有时候甚至Lambda表达式更快一些。然而，在有闭包的情况下，，就不对了。这就是说大多数情况下我们可以毫不犹豫的使用lambda表达式。当使用闭包的时候会出现一点点的性能损失，不过还好，下一节会讲述性能损失的几个原因。 下面是测试输出的结果表
+Test Lambda [ms] Normal [ms] 0 45&#43;-1 46&#43;-1 1 44&#43;-1 46&#43;-2 2 49&#43;-3 45&#43;-2 3 48&#43;-2 45&#43;-2
+下图是上表的结果，我们可以看得到普通的方法和Lambda表达式基本上限差不多。当使用Lambda表达式的时候没有太大的性能损失。
+
+第三部分会介绍背后的秘密-MSIL">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2012/12/19/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="bystander&#39;s blog" />
 
   <meta name="twitter:title" content="Lambda高手之路第二部分" />
-  <meta name="twitter:description" content="闭包的影响 为了展示闭包的影响，我们看下面这个例子。 var buttons = new Button[10];
-for(var i = 0; i &lt; buttons.Length; i&#43;&#43;) { var button = new Button(); button.Text = (i &#43; 1) &#43; &ldquo;. Button - Click for Index!&rdquo;; …">
+  <meta name="twitter:description" content="闭包的影响 为了展示闭包的影响，我们看下面这个例子。
+这个问题很怪，我在我的JavaScript课程上经常问我的学生。95%的学生会说。显然按钮0显示0，按钮1显示1，等等。而不足5%的学生学习了闭包之后会明白。所有的按钮都会显示10.
+局部变量i的值改变了。并且等于buttons.Length。也就是10了。想要避免这个诡异的情况也很简单。如下就行了。
+问题解决了，但是index变量是一个值类 …">
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -109,7 +164,7 @@ for(var i = 0; i &lt; buttons.Length; i&#43;&#43;) { var button = new Button(); 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -267,7 +322,7 @@ for(var i = 0; i &lt; buttons.Length; i&#43;&#43;) { var button = new Button(); 
   <i class="fas fa-calendar"></i>&nbsp;Posted on December 19, 2012
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -293,148 +348,45 @@ for(var i = 0; i &lt; buttons.Length; i&#43;&#43;) { var button = new Button(); 
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        
-
-<h1 id="span-style-color-0000ff-闭包的影响-span"><span style="color: #0000ff;">闭包的影响</span></h1>
-
-<p>为了展示闭包的影响，我们看下面这个例子。
-<pre class="lang:default decode:true">var buttons = new Button[10];</p>
-
-<p>for(var i = 0; i &lt; buttons.Length; i++)
-{
-    var button = new Button();
-    button.Text = (i + 1) + &ldquo;. Button - Click for Index!&rdquo;;
-    button.OnClick += (s, e) =&gt; { Messagebox.Show(i.ToString()); };
-    buttons[i] = button;
-}
-//如果我们点击按钮会发生什么</pre>
-这个问题很怪，我在我的JavaScript课程上经常问我的学生。95%的学生会说。显然按钮0显示0，按钮1显示1，等等。而不足5%的学生学习了闭包之后会明白。所有的按钮都会显示10.</p>
-
-<p>局部变量i的值改变了。并且等于buttons.Length。也就是10了。想要避免这个诡异的情况也很简单。如下就行了。
-<pre class="lang:default decode:true">var button = new Button();
-var index = i;
-button.Text = (i + 1) + &ldquo;. Button - Click for Index!&rdquo;;
-button.OnClick += (s, e) =&gt; { Messagebox.Show(index.ToString()); };
-buttons[i] = button;</pre>
-问题解决了，但是index变量是一个值类型，因此保留了“全局”i的一个拷贝</p>
-
+        <h1 id="span-stylecolor-0000ffspan"><!-- raw HTML omitted -->闭包的影响<!-- raw HTML omitted --></h1>
+<p>为了展示闭包的影响，我们看下面这个例子。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这个问题很怪，我在我的JavaScript课程上经常问我的学生。95%的学生会说。显然按钮0显示0，按钮1显示1，等等。而不足5%的学生学习了闭包之后会明白。所有的按钮都会显示10.</p>
+<p>局部变量i的值改变了。并且等于buttons.Length。也就是10了。想要避免这个诡异的情况也很简单。如下就行了。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>问题解决了，但是index变量是一个值类型，因此保留了“全局”i的一个拷贝</p>
 <p>最后一个话题是一个叫做表达式树的东西，他和Lambda表达式协作。并且，他会使得在ASP.NET MVC中的Html扩展方法发生一些很奇妙的东西。关键的问题是：如何发现目标函数</p>
-
 <p>1. 传递进去的变量的名称是什么
 2. 方法的主体是什么
 3. 函数体里使用了什么类型</p>
-
 <p>Expression 解决了这些问题，他允许我们挖掘生成的表达式树，我们也可以执行传递给Func和Action委托的函数，而且，可以在运行时解析Lambda表达式</p>
-
-<p>我们看一下如何使用Expression 类型的例子
-<pre class="lang:default decode:true">Expression&lt;Func&lt;MyModel, int&gt;&gt; expr = model =&gt; model.MyProperty;
-var member = expr.Body as MemberExpression;
-var propertyName = memberExpression.Member.Name; //当 member != null的时候执行  &hellip;</pre>
-这是Expression最简单的用法了。规则也相当直接。通过构建一个Expression类型的对象。编译器为生成的解释树生成一些元数据。这个解释树包含所有相关的信息，比如参数和方法体。</p>
-
+<p>我们看一下如何使用Expression 类型的例子</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这是Expression最简单的用法了。规则也相当直接。通过构建一个Expression类型的对象。编译器为生成的解释树生成一些元数据。这个解释树包含所有相关的信息，比如参数和方法体。</p>
 <p>方法体包含完整的解释树，我们可以访问这些操作。就像完整的语句一样。也可以操作返回指和类型。当然，返回可以为null，无论如此。大多数情况下。我们对表达式很感兴趣。这和ASP.NET MVC中处理Expression类型的方法是很相似的—可以得到使用的参数的名字，而好处是显而易见的。不会出现名称拼写错误了。也就不会出现因此而出现的编译错误了。</p>
-
-<p>注意：当程序员仅仅对调用的属性的名字感兴趣的时候。有一个更简单，更优雅的解决方案，那就是参数特性CallerMemberName 这个特性可以得到调用方法/属性的名称。而字段被编译器自动填充。因此，如果我们仅仅想知道名字，而不想知道其他更多的信息，那么我我们只需要写出像下面这个例子里的代码就行了。通过调用WhatsMyName() 方法可以返回方法的名字
-<pre class="lang:default decode:true">string WhatsMyName([CallerMemberName] string callingName = null)
-{
-    return callingName;
-}</pre></p>
-
-<h1 id="span-style-color-0000ff-lambda表达式的性能-span"><span style="color: #0000ff;">Lambda表达式的性能</span></h1>
-
+<p>注意：当程序员仅仅对调用的属性的名字感兴趣的时候。有一个更简单，更优雅的解决方案，那就是参数特性CallerMemberName 这个特性可以得到调用方法/属性的名称。而字段被编译器自动填充。因此，如果我们仅仅想知道名字，而不想知道其他更多的信息，那么我我们只需要写出像下面这个例子里的代码就行了。通过调用WhatsMyName() 方法可以返回方法的名字</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h1 id="span-stylecolor-0000fflambdaspan"><!-- raw HTML omitted -->Lambda表达式的性能<!-- raw HTML omitted --></h1>
 <p>有一个很大的问题：Lambda表达式有多快？好吧。首先，我们期望他们能和我们一般的函数一样快。下一节里。我们会看到Lambda的MSIL代码和普通的函数没有太大的不同。</p>
-
 <p>最有趣的一个讨论是如果Lambda表达式产生了闭包，将会和使用全局变量的方法一样快。这就产生了一个有趣的问题，和一个区域内局部变量的数目多少会有关系吗？</p>
-
-<p>我们看看测试代码，通过4个不同的指标，我们可以看到普通方法和Lambda方法的不同。
-<pre class="lang:default decode:true">using System;
-using System.Collections.Generic;
-using System.Diagnostics;</p>
-
-<p>namespace LambdaTests
-{
-    class StandardBenchmark : Benchmark
-    {
-        const int LENGTH = 100000;
-        static double[] A;
-        static double[] B;</p>
-<div class="highlight"><pre class="chroma">    static void Init()
-    {
-        var r = new Random();
-        A = new double[LENGTH];
-        B = new double[LENGTH];
-
-        for (var i = 0; i &amp;lt; LENGTH; i++)
-        {
-            A[i] = r.NextDouble();
-            B[i] = r.NextDouble();
-        }
-    }
-
-    static long LambdaBenchmark()
-    {
-        Func&amp;lt;double&amp;gt; Perform = () =&amp;gt;
-        {
-            var sum = 0.0;
-
-            for (var i = 0; i &amp;lt; LENGTH; i++)
-                sum += A[i] * B[i];
-
-            return sum;
-        };
-        var iterations = new double[100];
-        var timing = new Stopwatch();
-        timing.Start();
-
-        for (var j = 0; j &amp;lt; iterations.Length; j++)
-            iterations[j] = Perform();
-
-        timing.Stop();
-        Console.WriteLine(&#34;Time for Lambda-Benchmark: \t {0}ms&#34;, timing.ElapsedMilliseconds);
-        return timing.ElapsedMilliseconds;
-    }
-
-    static long NormalBenchmark()
-    {
-        var iterations = new double[100];
-        var timing = new Stopwatch();
-        timing.Start();
-
-        for (var j = 0; j &amp;lt; iterations.Length; j++)
-            iterations[j] = NormalPerform();
-
-        timing.Stop();
-        Console.WriteLine(&#34;Time for Normal-Benchmark: \t {0}ms&#34;, timing.ElapsedMilliseconds);
-        return timing.ElapsedMilliseconds;
-    }
-
-    static double NormalPerform()
-    {
-        var sum = 0.0;
-
-        for (var i = 0; i &amp;lt; LENGTH; i++)
-            sum += A[i] * B[i];
-
-        return sum;
-    }
-}</pre></div>
-<p>}</pre>
-本来用Lambda表达式我们可以把代码写的更好。最终我没有这样做。是为了防止影响看最后的结果。因此，本质上。上述代码里有三个方法
+<p>我们看看测试代码，通过4个不同的指标，我们可以看到普通方法和Lambda方法的不同。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>本来用Lambda表达式我们可以把代码写的更好。最终我没有这样做。是为了防止影响看最后的结果。因此，本质上。上述代码里有三个方法
 1个是Lambda测试，一个是普通测试，还有一个是在普通测试里调用的方法。而没有的第四个方法其实是我们的lambda表达式。在第一个方法里已经创建了。计算过程很简单，我们随机取数字防止编译器做任何优化。最后我们对普通方法和Lambda方法的不同很有兴趣。</p>
-
 <p>如果我们运行这个测试程序。我们会发现Lambda表达式并不总是比普通方法差。我们惊奇的是有时候甚至Lambda表达式更快一些。然而，在有闭包的情况下，，就不对了。这就是说大多数情况下我们可以毫不犹豫的使用lambda表达式。当使用闭包的时候会出现一点点的性能损失，不过还好，下一节会讲述性能损失的几个原因。
 下面是测试输出的结果表</p>
-
 <p>Test Lambda [ms] Normal [ms]
 0 45+-1                       46+-1
 1 44+-1                       46+-2
 2 49+-3                      45+-2
 3 48+-2                      45+-2</p>
-
 <p>下图是上表的结果，我们可以看得到普通的方法和Lambda表达式基本上限差不多。当使用Lambda表达式的时候没有太大的性能损失。</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/30616_o.png"><img src="/images/b4702d953670f850f72d24daf0aefd146eb33227.png" alt="" /></a></p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/30616_o.png"><img src="/images/b4702d953670f850f72d24daf0aefd146eb33227.png" alt=""></a></p>
 <p>第三部分会介绍背后的秘密-MSIL</p>
 
 
@@ -551,7 +503,7 @@ using System.Diagnostics;</p>
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

@@ -17,8 +17,24 @@ GoF 定义原型模式为用原型实例指定创建对象的种类，并且通�
 主要的参与者有 • Prototype: 抽象类或接口，定义了方法来拷贝自己 • ConcretePrototype: 克隆的具体类. • Client: 需要执行拷贝对象的软件对象 然后实现吧
 使用代码
 为了简化。我以一个著名的偷车游戏作为例子 我们说游戏里有一个注脚。这个主要有着一些定义游戏数据的统计量。保存游戏的时候我们就需要拷贝这个对象，然后序列化到文件中。（仅仅是举个例子，真实的游戏里很少这样做）
-下面这个类抽象类就是概念中的Prototype public abstract class AProtagonist { int m_health; int m_felony; double m_money;
-public int Health { get { return m_health; } set { m_health = value; } } public int Felony { get { return m_felony; } set { m_felony = value; } } public double Money { get { return m_money; } set { m_money = value; } } public abstract AProtagonist Clone(); } &nbsp;">
+下面这个类抽象类就是概念中的Prototype
+ 接口定义了玩家重要的信息，然后定义了一个Clone方法。然后我们定义一个具体的玩家类CJ。这样我们可以克隆当前对象，然后异步的进行序列化
+这个类就是概念中的ConcretePrototype 。这里为了简化也没有其他一些方法了。
+现在看看客户端软件的写法
+
+理解深浅拷贝
+上面的代码就模拟了原型模式，有一个问题就是我们使用了MemberwiseCopy 方法。而这个方法是创建浅拷贝的。如果对象里包含引用类型，引用类型的地址就会被从前者拷贝到后者。这样。两个就指向了同样的对象。
+为了说明情况。我们让主角类包含更多的，叫做AdditionalDetails
+ 然后抽象类将会一个AdditionalDetails 对象
+ 具体类既然使用MemberwiseCopy实现拷贝
+ 问题来了。两份拷贝会指向同一个AdditionalDetials 对象
+
+画个图。看得清楚些
+ 为了避免这种期刊。我们需要在堆上创建引用类型的拷贝，然后对应赋值
+ 这样就可以了
+
+注意。当执行深拷贝的时候，可能引用类型来包括引用类型，因此好的做法是用反射。并且递归的拷贝。直到没有引用类型，具体可参考另一文
+实现ICloneable接口 ICloneable接口提供了定义拷贝方法的接口。我们可以使用ICloneable 作为概念中的Prototype，我们看一下如果实现ConcretePrototype">
   <meta property="og:description" content="本文用C#实现原型模式,也会讨论深浅拷贝,已经如何在.net中高效实现ICloneable 接口 介绍 有时候我们需要从上下文得到一个对象的拷贝，然后通过一些独立的操作来处理他。原型模式在这种情况下很适用
 GoF 定义原型模式为用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的对象。 Specify the kind of objects to create using a prototypical instance, and create new objects by copying this prototype.&rdquo;
 看一下类图
@@ -26,8 +42,24 @@ GoF 定义原型模式为用原型实例指定创建对象的种类，并且通�
 主要的参与者有 • Prototype: 抽象类或接口，定义了方法来拷贝自己 • ConcretePrototype: 克隆的具体类. • Client: 需要执行拷贝对象的软件对象 然后实现吧
 使用代码
 为了简化。我以一个著名的偷车游戏作为例子 我们说游戏里有一个注脚。这个主要有着一些定义游戏数据的统计量。保存游戏的时候我们就需要拷贝这个对象，然后序列化到文件中。（仅仅是举个例子，真实的游戏里很少这样做）
-下面这个类抽象类就是概念中的Prototype public abstract class AProtagonist { int m_health; int m_felony; double m_money;
-public int Health { get { return m_health; } set { m_health = value; } } public int Felony { get { return m_felony; } set { m_felony = value; } } public double Money { get { return m_money; } set { m_money = value; } } public abstract AProtagonist Clone(); } &nbsp;">
+下面这个类抽象类就是概念中的Prototype
+ 接口定义了玩家重要的信息，然后定义了一个Clone方法。然后我们定义一个具体的玩家类CJ。这样我们可以克隆当前对象，然后异步的进行序列化
+这个类就是概念中的ConcretePrototype 。这里为了简化也没有其他一些方法了。
+现在看看客户端软件的写法
+
+理解深浅拷贝
+上面的代码就模拟了原型模式，有一个问题就是我们使用了MemberwiseCopy 方法。而这个方法是创建浅拷贝的。如果对象里包含引用类型，引用类型的地址就会被从前者拷贝到后者。这样。两个就指向了同样的对象。
+为了说明情况。我们让主角类包含更多的，叫做AdditionalDetails
+ 然后抽象类将会一个AdditionalDetails 对象
+ 具体类既然使用MemberwiseCopy实现拷贝
+ 问题来了。两份拷贝会指向同一个AdditionalDetials 对象
+
+画个图。看得清楚些
+ 为了避免这种期刊。我们需要在堆上创建引用类型的拷贝，然后对应赋值
+ 这样就可以了
+
+注意。当执行深拷贝的时候，可能引用类型来包括引用类型，因此好的做法是用反射。并且递归的拷贝。直到没有引用类型，具体可参考另一文
+实现ICloneable接口 ICloneable接口提供了定义拷贝方法的接口。我们可以使用ICloneable 作为概念中的Prototype，我们看一下如果实现ConcretePrototype">
   <meta name="twitter:description" content="本文用C#实现原型模式,也会讨论深浅拷贝,已经如何在.net中高效实现ICloneable 接口 介绍 有时候我们需要从上下文得到一个对象的拷贝，然后通过一些独立的操作来处理他。原型模式在这种情况下很适用
 GoF 定义原型模式为用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的对象。 Specify the kind of objects to create using a …">
   <meta name="author" content="bystander"/><script type="application/ld+json">
@@ -78,9 +110,9 @@ GoF 定义原型模式为用原型实例指定创建对象的种类，并且通�
     "name" : "bystander"
   },
   "headline": "理解并实现原型模式-实现ICloneable接口.理解深浅拷贝",
-  "description" : "本文用C#实现原型模式,也会讨论深浅拷贝,已经如何在.net中高效实现ICloneable 接口 介绍 有时候我们需要从上下文得到一个对象的拷贝，然后通过一些独立的操作来处理他。原型模式在这种情况下很适用\nGoF 定义原型模式为用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的对象。 Specify the kind of objects to create using a prototypical instance, and create new objects by copying this prototype.\x26rdquo;\n看一下类图\n\n主要的参与者有 • Prototype: 抽象类或接口，定义了方法来拷贝自己 • ConcretePrototype: 克隆的具体类. • Client: 需要执行拷贝对象的软件对象 然后实现吧\n使用代码\n为了简化。我以一个著名的偷车游戏作为例子 我们说游戏里有一个注脚。这个主要有着一些定义游戏数据的统计量。保存游戏的时候我们就需要拷贝这个对象，然后序列化到文件中。（仅仅是举个例子，真实的游戏里很少这样做）\n下面这个类抽象类就是概念中的Prototype public abstract class AProtagonist { int m_health; int m_felony; double m_money;\npublic int Health { get { return m_health; } set { m_health = value; } } public int Felony { get { return m_felony; } set { m_felony = value; } } public double Money { get { return m_money; } set { m_money = value; } } public abstract AProtagonist Clone(); } \x26nbsp;",
+  "description" : "本文用C#实现原型模式,也会讨论深浅拷贝,已经如何在.net中高效实现ICloneable 接口 介绍 有时候我们需要从上下文得到一个对象的拷贝，然后通过一些独立的操作来处理他。原型模式在这种情况下很适用\nGoF 定义原型模式为用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的对象。 Specify the kind of objects to create using a prototypical instance, and create new objects by copying this prototype.\x26rdquo;\n看一下类图\n\n主要的参与者有 • Prototype: 抽象类或接口，定义了方法来拷贝自己 • ConcretePrototype: 克隆的具体类. • Client: 需要执行拷贝对象的软件对象 然后实现吧\n使用代码\n为了简化。我以一个著名的偷车游戏作为例子 我们说游戏里有一个注脚。这个主要有着一些定义游戏数据的统计量。保存游戏的时候我们就需要拷贝这个对象，然后序列化到文件中。（仅仅是举个例子，真实的游戏里很少这样做）\n下面这个类抽象类就是概念中的Prototype\n 接口定义了玩家重要的信息，然后定义了一个Clone方法。然后我们定义一个具体的玩家类CJ。这样我们可以克隆当前对象，然后异步的进行序列化\n这个类就是概念中的ConcretePrototype 。这里为了简化也没有其他一些方法了。\n现在看看客户端软件的写法\n\n理解深浅拷贝\n上面的代码就模拟了原型模式，有一个问题就是我们使用了MemberwiseCopy 方法。而这个方法是创建浅拷贝的。如果对象里包含引用类型，引用类型的地址就会被从前者拷贝到后者。这样。两个就指向了同样的对象。\n为了说明情况。我们让主角类包含更多的，叫做AdditionalDetails\n 然后抽象类将会一个AdditionalDetails 对象\n 具体类既然使用MemberwiseCopy实现拷贝\n 问题来了。两份拷贝会指向同一个AdditionalDetials 对象\n\n画个图。看得清楚些\n 为了避免这种期刊。我们需要在堆上创建引用类型的拷贝，然后对应赋值\n 这样就可以了\n\n注意。当执行深拷贝的时候，可能引用类型来包括引用类型，因此好的做法是用反射。并且递归的拷贝。直到没有引用类型，具体可参考另一文\n实现ICloneable接口 ICloneable接口提供了定义拷贝方法的接口。我们可以使用ICloneable 作为概念中的Prototype，我们看一下如果实现ConcretePrototype",
   "inLanguage" : "en",
-  "wordCount":  633 ,
+  "wordCount":  68 ,
   "datePublished" : "2012-10-19T09:27:21",
   "dateModified" : "2012-10-19T09:27:21",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -107,8 +139,24 @@ GoF 定义原型模式为用原型实例指定创建对象的种类，并且通�
 主要的参与者有 • Prototype: 抽象类或接口，定义了方法来拷贝自己 • ConcretePrototype: 克隆的具体类. • Client: 需要执行拷贝对象的软件对象 然后实现吧
 使用代码
 为了简化。我以一个著名的偷车游戏作为例子 我们说游戏里有一个注脚。这个主要有着一些定义游戏数据的统计量。保存游戏的时候我们就需要拷贝这个对象，然后序列化到文件中。（仅仅是举个例子，真实的游戏里很少这样做）
-下面这个类抽象类就是概念中的Prototype public abstract class AProtagonist { int m_health; int m_felony; double m_money;
-public int Health { get { return m_health; } set { m_health = value; } } public int Felony { get { return m_felony; } set { m_felony = value; } } public double Money { get { return m_money; } set { m_money = value; } } public abstract AProtagonist Clone(); } &nbsp;">
+下面这个类抽象类就是概念中的Prototype
+ 接口定义了玩家重要的信息，然后定义了一个Clone方法。然后我们定义一个具体的玩家类CJ。这样我们可以克隆当前对象，然后异步的进行序列化
+这个类就是概念中的ConcretePrototype 。这里为了简化也没有其他一些方法了。
+现在看看客户端软件的写法
+
+理解深浅拷贝
+上面的代码就模拟了原型模式，有一个问题就是我们使用了MemberwiseCopy 方法。而这个方法是创建浅拷贝的。如果对象里包含引用类型，引用类型的地址就会被从前者拷贝到后者。这样。两个就指向了同样的对象。
+为了说明情况。我们让主角类包含更多的，叫做AdditionalDetails
+ 然后抽象类将会一个AdditionalDetails 对象
+ 具体类既然使用MemberwiseCopy实现拷贝
+ 问题来了。两份拷贝会指向同一个AdditionalDetials 对象
+
+画个图。看得清楚些
+ 为了避免这种期刊。我们需要在堆上创建引用类型的拷贝，然后对应赋值
+ 这样就可以了
+
+注意。当执行深拷贝的时候，可能引用类型来包括引用类型，因此好的做法是用反射。并且递归的拷贝。直到没有引用类型，具体可参考另一文
+实现ICloneable接口 ICloneable接口提供了定义拷贝方法的接口。我们可以使用ICloneable 作为概念中的Prototype，我们看一下如果实现ConcretePrototype">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2012/10/19/%E7%90%86%E8%A7%A3%E5%B9%B6%E5%AE%9E%E7%8E%B0%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E5%AE%9E%E7%8E%B0icloneable%E6%8E%A5%E5%8F%A3.%E7%90%86%E8%A7%A3%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/" />
 <meta property="og:type" content="website" />
@@ -127,7 +175,7 @@ GoF 定义原型模式为用原型实例指定创建对象的种类，并且通�
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -285,7 +333,7 @@ GoF 定义原型模式为用原型实例指定创建对象的种类，并且通�
   <i class="fas fa-calendar"></i>&nbsp;Posted on October 19, 2012
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;3&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -314,297 +362,69 @@ GoF 定义原型模式为用原型实例指定创建对象的种类，并且通�
         <p>本文用C#实现原型模式,也会讨论深浅拷贝,已经如何在.net中高效实现ICloneable 接口
 <strong>介绍</strong>
 有时候我们需要从上下文得到一个对象的拷贝，然后通过一些独立的操作来处理他。原型模式在这种情况下很适用</p>
-
 <p>GoF 定义原型模式为用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的对象。
 Specify the kind of objects to create using a prototypical instance, and create new objects by copying this prototype.&rdquo;</p>
-
 <p>看一下类图</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/28239_o.jpg"><img src="/images/e7e0d35a2192ac4360d169e4e1cb8fdb6a1113da.jpg" alt="" title="1" /></a></p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/28239_o.jpg"><img src="/images/e7e0d35a2192ac4360d169e4e1cb8fdb6a1113da.jpg" alt="" title="1"></a></p>
 <p>主要的参与者有
 • Prototype: 抽象类或接口，定义了方法来拷贝自己
 • ConcretePrototype: 克隆的具体类.
 • Client: 需要执行拷贝对象的软件对象
 然后实现吧</p>
-
 <p>使用代码</p>
-
 <p>为了简化。我以一个著名的偷车游戏作为例子
 我们说游戏里有一个注脚。这个主要有着一些定义游戏数据的统计量。保存游戏的时候我们就需要拷贝这个对象，然后序列化到文件中。（仅仅是举个例子，真实的游戏里很少这样做）</p>
-
-<p>下面这个类抽象类就是概念中的Prototype
-<pre class="lang:default decode:true">public abstract class AProtagonist
-{
-    int m_health;
-    int m_felony;
-    double m_money;</p>
-<div class="highlight"><pre class="chroma">public int Health
-{
-    get { return m_health; }
-    set { m_health = value; }
-}
-
-public int Felony
-{
-    get { return m_felony; }
-    set { m_felony = value; }
-}
-
-public double Money
-{
-    get { return m_money; }
-    set { m_money = value; }
-}
-
-public abstract AProtagonist Clone();</pre></div>
-<p>}</pre>
-&nbsp;</p>
-
-<p>接口定义了玩家重要的信息，然后定义了一个Clone方法。然后我们定义一个具体的玩家类CJ。这样我们可以克隆当前对象，然后异步的进行序列化
-<pre class="lang:default decode:true">class CJ : AProtagonist
-{
-    public override AProtagonist Clone()
-    {
-        return this.MemberwiseClone() as AProtagonist;
-    }
-}</pre>
-这个类就是概念中的ConcretePrototype 。这里为了简化也没有其他一些方法了。</p>
-
-<p>现在看看客户端软件的写法
-<pre class="lang:default decode:true">static void Main(string[] args)
-{
-    // 演示原型模式
-    CJ player = new CJ();
-    player.Health = 1;
-    player.Felony = 10;
-    player.Money = 2.0;</p>
-<div class="highlight"><pre class="chroma">Console.WriteLine(&#34;Original Player stats:&#34;);
-Console.WriteLine(&#34;Health: {0}, Felony: {1}, Money: {2}&#34;, 
-    player.Health.ToString(), 
-    player.Felony.ToString(), 
-    player.Money.ToString());
-
-// 这里是拷贝部分.
-CJ playerToSave = player.Clone() as CJ;            
-
-Console.WriteLine(&#34;\nCopy of player to save on disk:&#34;);
-Console.WriteLine(&#34;Health: {0}, Felony: {1}, Money: {2}&#34;, 
-    playerToSave.Health.ToString(), 
-    playerToSave.Felony.ToString(), 
-    playerToSave.Money.ToString());</pre></div>
-<p>}</pre>
-<a href="http://leaverimage.b0.upaiyun.com/28245_o.jpg"><img src="/images/ab28ca0c722912c55072bc471d50cb94d9ee8bb8.jpg" alt="" title="2" /></a></p>
-
+<p>下面这个类抽象类就是概念中的Prototype</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p>接口定义了玩家重要的信息，然后定义了一个Clone方法。然后我们定义一个具体的玩家类CJ。这样我们可以克隆当前对象，然后异步的进行序列化</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这个类就是概念中的ConcretePrototype 。这里为了简化也没有其他一些方法了。</p>
+<p>现在看看客户端软件的写法</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><a href="http://leaverimage.b0.upaiyun.com/28245_o.jpg"><img src="/images/ab28ca0c722912c55072bc471d50cb94d9ee8bb8.jpg" alt="" title="2"></a></p>
 <p><strong>理解深浅拷贝</strong></p>
-
 <p>上面的代码就模拟了原型模式，有一个问题就是我们使用了MemberwiseCopy 方法。而这个方法是创建浅拷贝的。如果对象里包含引用类型，引用类型的地址就会被从前者拷贝到后者。这样。两个就指向了同样的对象。</p>
-
-<p>为了说明情况。我们让主角类包含更多的，叫做AdditionalDetails
-<pre class="lang:default decode:true">public class AdditionalDetails
-{
-    int m_charisma;
-    int m_fitness;</p>
-<div class="highlight"><pre class="chroma">public int Charisma
-{
-    get { return m_charisma; }
-    set { m_charisma = value; }
-}
-
-public int Fitness
-{
-    get { return m_fitness; }
-    set { m_fitness = value; }
-}</pre></div>
-<p>}</pre>
-&nbsp;</p>
-
-<p>然后抽象类将会一个AdditionalDetails 对象
-<pre class="lang:default decode:true">public abstract class AProtagonistEx
-{
-    int m_health;
-    int m_felony;
-    double m_money;
-    // 引用类型
-    AdditionalDetails m_details = new AdditionalDetails();</p>
-<div class="highlight"><pre class="chroma">public int Health
-{
-    get { return m_health; }
-    set { m_health = value; }
-}
-
-public int Felony
-{
-    get { return m_felony; }
-    set { m_felony = value; }
-}
-
-public double Money
-{
-    get { return m_money; }
-    set { m_money = value; }
-}
-
-public AdditionalDetails Details
-{
-    get { return m_details; }
-    set { m_details = value; }
-}
-
-public abstract AProtagonistEx Clone();</pre></div>
-<p>}</pre>
-&nbsp;</p>
-
-<p>具体类既然使用MemberwiseCopy实现拷贝
-<pre class="lang:default decode:true">class CJEx : AProtagonistEx
-{
-    public override AProtagonistEx Clone()
-    {
-        return this.MemberwiseClone() as AProtagonistEx;
-    }
-}</pre>
-&nbsp;</p>
-
-<p>问题来了。两份拷贝会指向同一个AdditionalDetials 对象
-<pre class="lang:default decode:true">static void Main(string[] args)
-{
-    // 演示浅拷贝
-    CJEx playerEx = new CJEx();
-    playerEx.Health = 1;
-    playerEx.Felony = 10;
-    playerEx.Money = 2.0;
-    playerEx.Details.Fitness = 5;
-    playerEx.Details.Charisma = 5;</p>
-<div class="highlight"><pre class="chroma">// 克隆对象然后改变引用类型的值
-CJEx shallowClonedPlayer = playerEx.Clone() as CJEx;
-shallowClonedPlayer.Details.Charisma = 10;
-shallowClonedPlayer.Details.Fitness = 10;
-
-//看看发生了什么
-Console.WriteLine(&#34;\nOriginal Object:&#34;);
-Console.WriteLine(&#34;Charisma: {0}, Fitness: {1}&#34;,
-    playerEx.Details.Charisma.ToString(),
-    playerEx.Details.Fitness.ToString());
-Console.WriteLine(&#34;\nShallow Cloned Object:&#34;);
-Console.WriteLine(&#34;Charisma: {0}, Fitness: {1}&#34;,
-    shallowClonedPlayer.Details.Charisma.ToString(),
-    shallowClonedPlayer.Details.Fitness.ToString());</pre></div>
-<p>}</pre>
-<a href="http://leaverimage.b0.upaiyun.com/28244_o.jpeg"><img src="/images/863b924dcc5e05338a089ed0832503ba3ace600f.jpeg" alt="" title="3" /></a></p>
-
+<p>为了说明情况。我们让主角类包含更多的，叫做AdditionalDetails</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p>然后抽象类将会一个AdditionalDetails 对象</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p>具体类既然使用MemberwiseCopy实现拷贝</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p>问题来了。两份拷贝会指向同一个AdditionalDetials 对象</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><a href="http://leaverimage.b0.upaiyun.com/28244_o.jpeg"><img src="/images/863b924dcc5e05338a089ed0832503ba3ace600f.jpeg" alt="" title="3"></a></p>
 <p>画个图。看得清楚些</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/28240_o.jpg"><img src="/images/21512f67bcb7bcfcc7c220a3732d98feb4d4ed89.jpg" alt="" title="2" /></a>
-为了避免这种期刊。我们需要在堆上创建引用类型的拷贝，然后对应赋值
-<pre class="lang:default decode:true">class CJEx : AProtagonistEx
-{
-    public override AProtagonistEx Clone()
-    {
-        CJEx cloned = this.MemberwiseClone() as CJEx;
-        cloned.Details = new AdditionalDetails();
-        cloned.Details.Charisma = this.Details.Charisma;
-        cloned.Details.Fitness = this.Details.Fitness;</p>
-<div class="highlight"><pre class="chroma">    return cloned as AProtagonistEx;
-}</pre></div>
-<p>}</pre>
-&nbsp;</p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/28240_o.jpg"><img src="/images/21512f67bcb7bcfcc7c220a3732d98feb4d4ed89.jpg" alt="" title="2"></a>
+为了避免这种期刊。我们需要在堆上创建引用类型的拷贝，然后对应赋值</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
 <p>这样就可以了</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/28242_o.jpg"><img src="/images/5a1c4910991230f8d746cc39e1f427c29e247164.jpg" alt="" title="5" /></a></p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/28242_o.jpg"><img src="/images/5a1c4910991230f8d746cc39e1f427c29e247164.jpg" alt="" title="5"></a></p>
 <p>注意。当执行深拷贝的时候，可能引用类型来包括引用类型，因此好的做法是用反射。并且递归的拷贝。直到没有引用类型，具体可参考另一文</p>
-
 <p>实现ICloneable接口
-ICloneable接口提供了定义拷贝方法的接口。我们可以使用ICloneable 作为概念中的Prototype，我们看一下如果实现ConcretePrototype
-<pre class="lang:default decode:true">public class CJFinal : ICloneable
-{
-    int m_health;
-    int m_felony;
-    double m_money;
-    AdditionalDetails m_details = new AdditionalDetails();</p>
-<div class="highlight"><pre class="chroma">public int Health
-{
-    get { return m_health; }
-    set { m_health = value; }
-}
-
-public int Felony
-{
-    get { return m_felony; }
-    set { m_felony = value; }
-}
-
-public double Money
-{
-    get { return m_money; }
-    set { m_money = value; }
-}
-
-public AdditionalDetails Details
-{
-    get { return m_details; }
-    set { m_details = value; }
-}
-
-private object ShallowCopy()
-{
-    return this.MemberwiseClone();
-}
-
-private object DeepCopy()
-{
-    CJFinal cloned = this.MemberwiseClone() as CJFinal;
-    cloned.Details = new AdditionalDetails();
-    cloned.Details.Charisma = this.Details.Charisma;
-    cloned.Details.Fitness = this.Details.Fitness;
-
-    return cloned;
-}
-
-#region ICloneable Members
-
-public object Clone()
-{
-    return DeepCopy();
-}
-
-#endregion</pre></div>
-<p>}</pre>
-&nbsp;</p>
-
-<p>客户端代码如下
-<pre class="lang:default decode:true">private static void ICloneableVersionCopy()
-{
-    // 演示深拷贝
-    CJFinal player = new CJFinal();
-    player.Health = 1;
-    player.Felony = 10;
-    player.Money = 2.0;
-    player.Details.Fitness = 5;
-    player.Details.Charisma = 5;</p>
-<div class="highlight"><pre class="chroma">// 演示深拷贝
-CJFinal clonedPlayer = player.Clone() as CJFinal;
-clonedPlayer.Details.Charisma = 10;
-clonedPlayer.Details.Fitness = 10;
-
-// 看看效果
-Console.WriteLine(&#34;\nOriginal Object:&#34;);
-Console.WriteLine(&#34;Charisma: {0}, Fitness: {1}&#34;,
-    player.Details.Charisma.ToString(),
-    player.Details.Fitness.ToString());
-Console.WriteLine(&#34;\nICloneable Deep Cloned Object:&#34;);
-Console.WriteLine(&#34;Charisma: {0}, Fitness: {1}&#34;,
-    clonedPlayer.Details.Charisma.ToString(),
-    clonedPlayer.Details.Fitness.ToString());</pre></div>
-<p>}</pre>
-<a href="http://leaverimage.b0.upaiyun.com/28243_o.jpg"><img src="/images/be282d2800c83c0aa1fa411f51dc3ac55e442f35.jpg" alt="" title="6" /></a></p>
-
+ICloneable接口提供了定义拷贝方法的接口。我们可以使用ICloneable 作为概念中的Prototype，我们看一下如果实现ConcretePrototype</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p>客户端代码如下</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><a href="http://leaverimage.b0.upaiyun.com/28243_o.jpg"><img src="/images/be282d2800c83c0aa1fa411f51dc3ac55e442f35.jpg" alt="" title="6"></a></p>
 <p><strong>Demo下载</strong>
-[downloadicon href=<a href="http://pan.baidu.com/share/link?shareid=86332&amp;uk=1493685990]PrototypeDemo.zip[/downloadicon">http://pan.baidu.com/share/link?shareid=86332&amp;uk=1493685990]PrototypeDemo.zip[/downloadicon</a>]</p>
-
+[downloadicon href=http://pan.baidu.com/share/link?shareid=86332&amp;uk=1493685990]PrototypeDemo.zip[/downloadicon]</p>
 <p>原文地址：<a href="http://www.codeproject.com/Articles/476807/Understanding-and-Implementing-Prototype-Pattern-i">Understanding-and-Implementing-Prototype-Pattern-i</a></p>
-
 <p>著作权声明：本文由<a href="http://leaver.me">http://leaver.me</a> 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</p>
 
 
@@ -723,7 +543,7 @@ Console.WriteLine(&#34;Charisma: {0}, Fitness: {1}&#34;,
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

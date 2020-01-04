@@ -51,7 +51,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -250,20 +250,18 @@
               <div class="post-entry">
                 
                   <p>最近蚂蚁金服中间件开源了 sofa 相关的部分组件,比如 <a href="https://github.com/alipay/sofa-rpc">rpc</a>,欢迎大家参与讨论贡献,为 rpc 做链路适配的时候,skywalking 现在快到5.0版本了. 已经不支持 h2暂时,开发过程中了,环境的搭建.以下部分字段不能少.否则外面无法连接 es.</p>
-<div class="highlight"><pre class="chroma">docker run -d -p 9200:9200 -p 9300:9300 -e &#34;network.host=0.0.0.0&#34; -e &#34;transport.host=0.0.0.0&#34;  -e &#34;network.publish_host=0.0.0.0&#34;  -e &#34;xpack.security.enabled=false&#34; -e &#34;network.bind_host=0.0.0.0&#34; -e &#34;discovery.type=single-node&#34; docker.elastic.co/elasticsearch/elasticsearch:5.5.0</pre></div>
-<p>这条命令会搞定.</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">docker run -d -p 9200:9200 -p 9300:9300 -e &#34;network.host=0.0.0.0&#34; -e &#34;transport.host=0.0.0.0&#34;  -e &#34;network.publish_host=0.0.0.0&#34;  -e &#34;xpack.security.enabled=false&#34; -e &#34;network.bind_host=0.0.0.0&#34; -e &#34;discovery.type=single-node&#34; docker.elastic.co/elasticsearch/elasticsearch:5.5.0
+</code></pre></div><p>这条命令会搞定.</p>
 <p>同时 application.yml 文件中</p>
-<div class="highlight"><pre class="chroma">storage:
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">storage:
   elasticsearch:
     cluster_name: docker-cluster
     cluster_transport_sniffer: false
     cluster_nodes: localhost:9300
     index_shards_number: 2
     index_replicas_number: 0
-    ttl: 70</pre></div>
-<p>这一段改一下.</p>
-
+    ttl: 70
+</code></pre></div><p>这一段改一下.</p>
 <p>其他的一些网上已有的文档,可以看看.<a href="http://www.iocoder.cn/SkyWalking/build-debugging-environment/">SkyWalking 源码分析 —— 调试环境搭建</a></p>
 
                 
@@ -310,7 +308,11 @@
                 
                   介绍 最近看到这么个工具-javOSize .官网地址,去官网看了下.发现介绍很有意思,叫做 the missing sugar for your Java cup.(你的咖啡杯中缺少的那颗糖).于是感受一下这颗糖到底甜不甜
 安装 安装非常简单,从这里下载,其实完成之后就是一个jar包.非常简单,不用配置啥的.
-简单使用 使用方法就是从先附加到一个java进程上,在linux,上我直接执行 ps aux|grep java 就能看到了.不废话,得到java进程的pid之后,运行 java -jar javosize-1.0.9.jar pid pid就是pid的号了. 然后会看到如下图的界面,表示已经附加成功了.先看看都有啥.执行ls.看到有这么几个命令.我比较单纯,刚开始以为是可执行文件.结果丢人了.看了下官方文档,才知道是目录.进入对应的目录.然后执行ls就能看到对应的信息了.ls简直不能再万能..改目录支持的所有命令通过在对应的目录执行help来查看.个人尝试觉得好的功能有.  动态修改类 进入CLASSES目录,然后通过执行 ls|grep xxx 来找到需要修改的类,然后通过vi 就可以直接编辑.编辑完成后,直接保存就会动态替换.文档里说是支持jdk1.7以上,对1.6的支持估计是不行的.没有测试.  无须重启开启jmx 直接挂载之后,执行cd REPOSITORY 然后执行就好了. exec START_JMX_SERVER 6666 拦截任意代码 可以动态添加类似Spring中的aop方法.用于打印一些调用日志,排查线上问题.进入INTERCEPTOR目录.然后通过如下的方法给某个类的某个方法添加拦截器. create TickServlet begin mypackage.Hello doGet System.out.println(&quot;Servlet invoked&quot;); 检测内存泄漏 进入 REPOSITORY 目录,执行 exec TOP_FAT_STATIC_VARIABLES 5 com.apache.*会取出某个包下面占用大小最大的5个类.会很方便找到. 自动检测性能问题 PROBLEMS 目录专业解决这种问题.进入目录后.执行ls命令.会看到这样的场景 &gt;* Concurrency &gt; Deadlocked: false &gt;* Memory &gt; High GC (&gt;2%): false
+简单使用 使用方法就是从先附加到一个java进程上,在linux,上我直接执行 ps aux|grep java  就能看到了.不废话,得到java进程的pid之后,运行 java -jar javosize-1.0.9.jar pid pid就是pid的号了. 然后会看到如下图的界面,表示已经附加成功了.先看看都有啥.执行ls.看到有这么几个命令.我比较单纯,刚开始以为是可执行文件.结果丢人了.看了下官方文档,才知道是目录.进入对应的目录.然后执行ls就能看到对应的信息了.ls简直不能再万能..改目录支持的所有命令通过在对应的目录执行help来查看.个人尝试觉得好的功能有.   动态修改类 进入CLASSES目录,然后通过执行 ls|grep xxx  来找到需要修改的类,然后通过vi 就可以直接编辑.编辑完成后,直接保存就会动态替换.文档里说是支持jdk1.7以上,对1.6的支持估计是不行的.没有测试.   无须重启开启jmx 直接挂载之后,执行cd REPOSITORY 然后执行就好了. exec START_JMX_SERVER 6666
+  拦截任意代码 可以动态添加类似Spring中的aop方法.用于打印一些调用日志,排查线上问题.进入INTERCEPTOR目录.然后通过如下的方法给某个类的某个方法添加拦截器. create TickServlet begin mypackage.Hello doGet System.out.println(&quot;Servlet invoked&quot;);
+  检测内存泄漏 进入 REPOSITORY 目录,执行 exec TOP_FAT_STATIC_VARIABLES 5 com.apache.*会取出某个包下面占用大小最大的5个类.会很方便找到.
+  自动检测性能问题 PROBLEMS 目录专业解决这种问题.进入目录后.执行ls命令.会看到这样的场景
+  Concurrency Deadlocked: false Memory High GC (&gt;2%): false   这里目前只检测了死锁和频繁GC.
                   <a href="https://leizhiyuan.github.io/2015/07/04/javosize%E6%96%B0%E4%B8%80%E4%BB%A3java%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -357,21 +359,14 @@
               <div class="post-entry">
                 
                   <p>项目经过一年终于告一段落.于是有了一个短暂的休假.</p>
-
-<p>早上照例没能睡好觉.很早就醒了.然后又躺了一会,醒来看了会订阅.然后听了一集&lt;&lt; Mr.Robot &gt;&gt;,感觉还行,再对着字幕看了一遍,以后还是有一些地方理解的有问题.以后还是要多对着无字幕版的美剧去看,才能慢慢听懂更多的,比如今天听到个<code>society</code>,讲社交焦虑,听到很熟悉,就是没反应过来.学而不用则殆.</p>
-
-<p>中午给文哥寄了个快递,顺便点个饭.之前的&rdquo;手艺&rdquo;应该也已经忘得差不多了.到杭州之后很少做饭,工作太忙.没办法.当然这只是借口.主要还是我懒吧.</p>
-
-<p>下午按计划好的去浙江图书馆,从大学出来后,虽然书还是看了一些的.但是也再也没有走入图书馆.之前一直想去上海图书馆,结果一直耽搁,今天去浙江图书馆办了个证,借了几本书,看着里面的人自习的自习,借阅的借阅,想想还是有点熟悉的.遗憾的是书相同的份数有点少.想借的几本书都被人借走了,最终借了个<strong>&lt;&lt; 七周七语言 &gt;&gt;</strong>,希望能给自己的编程带来不一样的思考角度.读完后争取写个书评和总结,还借了一本摄影相关的,毕竟拍照是服务妹子的技能.还有个<strong>&lt;&lt; netty权威指南 &gt;&gt;</strong> ,虽然这本书评价好像不高,但是拿来看看还是可以的.</p>
-
+<p>早上照例没能睡好觉.很早就醒了.然后又躺了一会,醒来看了会订阅.然后听了一集&laquo; Mr.Robot &raquo;,感觉还行,再对着字幕看了一遍,以后还是有一些地方理解的有问题.以后还是要多对着无字幕版的美剧去看,才能慢慢听懂更多的,比如今天听到个<code>society</code>,讲社交焦虑,听到很熟悉,就是没反应过来.学而不用则殆.</p>
+<p>中午给文哥寄了个快递,顺便点个饭.之前的&quot;手艺&quot;应该也已经忘得差不多了.到杭州之后很少做饭,工作太忙.没办法.当然这只是借口.主要还是我懒吧.</p>
+<p>下午按计划好的去浙江图书馆,从大学出来后,虽然书还是看了一些的.但是也再也没有走入图书馆.之前一直想去上海图书馆,结果一直耽搁,今天去浙江图书馆办了个证,借了几本书,看着里面的人自习的自习,借阅的借阅,想想还是有点熟悉的.遗憾的是书相同的份数有点少.想借的几本书都被人借走了,最终借了个<strong>&laquo; 七周七语言 &raquo;</strong>,希望能给自己的编程带来不一样的思考角度.读完后争取写个书评和总结,还借了一本摄影相关的,毕竟拍照是服务妹子的技能.还有个<strong>&laquo; netty权威指南 &raquo;</strong> ,虽然这本书评价好像不高,但是拿来看看还是可以的.</p>
 <p>下午回家.杭州的下午还挺美的.天气凉爽.只是作为工作狗,没有下午出来的机会吧.</p>
-
 <p>工作忙,不过在一切自动化的指导下,(马克思没有找我),对linux 的shell操作熟悉度急剧上升,希望能写的更好,让更多的过程自动化,也希望有时间停下来想一想.当时为什么选择写代码,为什么选择当前的职业,知道自己做了什么,知道自己是否进步,想起之前看到的一个话,不知真假,</p>
-
 <blockquote>
 <p>只是因为三轮车好学，你就要一辈子骑三轮车吗？ – Douglas Englebart</p>
 </blockquote>
-
 <p>在职业之外,除了高效做好自己的工作外,也要学习更多的技能,英语,锻炼身体,其他编程相关的.不要安于现状.不要重复自己.还是那句话,不要让你的身份限制你的能力.</p>
 
                 
@@ -423,7 +418,7 @@
 http://bugs.java.com/view_bug.do?bug_id=6521844
 详细的解释过程: 参考: http://www.websina.com/bugzero/faq/securerandom-slowness.html
  Q: Why the SecureRandom generateSeed is so slow or even hang on Linux OS?
-A: When you login, it hangs or takes more than a minute to get the response. If your server is on a Linux OS, the culprit here is SecureRandom generateSeed() which uses /dev/random to generate the seed. However, /dev/random is a blocking number generator and if it doesn&rsquo;t have enough random data to provide, it will simply wait until it does, which forces the JVM to wait.
+  A: When you login, it hangs or takes more than a minute to get the response. If your server is on a Linux OS, the culprit here is SecureRandom generateSeed() which uses /dev/random to generate the seed. However, /dev/random is a blocking number generator and if it doesn't have enough random data to provide, it will simply wait until it does, which forces the JVM to wait.
                   <a href="https://leizhiyuan.github.io/2015/06/30/securerandom%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E6%95%B0%E9%9D%9E%E5%B8%B8%E6%85%A2/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -470,14 +465,10 @@ A: When you login, it hangs or takes more than a minute to get the response. If 
               <div class="post-entry">
                 
                   <p>之前在工作写了一个数据库查询的工具.大体背景就是这种工具需要跨不同环境的数据库,开发,测试,性能等.最早简单写了一个版本,在第一次查询时会初始化三个库的连接,保存在map中,然后后续查询直接根据使用者选择的环境类型取出对应的连接构造sql即可.</p>
-
-<p>随着各个不同系统接入的越来越多,各个平台都保存了自己的连接,导致代码冗余度急剧上升,上周,利用晚上的一点时间读了一下&lt;&lt;重构&gt;&gt;,这本书,深受启发,一个是重构就是要采用小步快走的方式,在测试用例的覆盖下,快速改动,去掉代码中不合理的地方.另一个就是重构需要对业务的当下和未来的变化有一个比较深刻的理解,知道这个系统能做什么,不能做什么.才能更好地做重构.</p>
-
+<p>随着各个不同系统接入的越来越多,各个平台都保存了自己的连接,导致代码冗余度急剧上升,上周,利用晚上的一点时间读了一下&laquo;重构&raquo;,这本书,深受启发,一个是重构就是要采用小步快走的方式,在测试用例的覆盖下,快速改动,去掉代码中不合理的地方.另一个就是重构需要对业务的当下和未来的变化有一个比较深刻的理解,知道这个系统能做什么,不能做什么.才能更好地做重构.</p>
 <p>于是,根据这个工具的特点,感觉抽象工厂模式比较合适,于是在抽象工厂模式的指导下,对关键部分进行了重构,在增加了几个类之后,代码复杂度开始下降.各个接入系统的代码基本上保持在了几十行内,之前都是几百行,大量冗余代码,只能说自己之前眼光太短浅了.并且,采用了类似单例模式的操作.当查询的时候,先根据当前环境作为key取连接,如果连接被关闭,或者不存在,则初始化,然后放到map中,返回.如果有的话,直接用.这样改动后,第一次查询的时候只需要初始化一个连接,速度极快.也算个好处..</p>
-
 <p>由此,反思了一下,设计模式之前也看过.但是总觉得各种书上讲的都比较浅显,给出的例子也似乎如作者所说,很符合那个模式,但实际上,在工作中如何识别当下的业务应该是比较难的,需要在业务变动中,不断地重构自己的代码,才能发现,某一种模式似乎特别适合解决这种问题,反之,重构也需要一定的设计模式作为基础,否则对代码的重构会只停留在抽取公共方法.重命名.大类变小类的阶段..</p>
-
-<p>希望接下来能够抽空把&lt;&lt;敏捷软件开发：原则、模式与实践&gt;&gt;这本书看完.同时能够真的理解这些模式的场合,想起一句话,知道一个技术方案的好,说明你还没有理解这种方法,只有你知道了这个方案的不足,你才真正理解了他,相信很多技术我都没有理解.设计模式也是,希望之后能够理解每种模式的不足,重构这本书也要经常翻翻,能加深对代码的理解.</p>
+<p>希望接下来能够抽空把&laquo;敏捷软件开发：原则、模式与实践&raquo;这本书看完.同时能够真的理解这些模式的场合,想起一句话,知道一个技术方案的好,说明你还没有理解这种方法,只有你知道了这个方案的不足,你才真正理解了他,相信很多技术我都没有理解.设计模式也是,希望之后能够理解每种模式的不足,重构这本书也要经常翻翻,能加深对代码的理解.</p>
 
                 
               </div>
@@ -574,48 +565,30 @@ A: When you login, it hangs or takes more than a minute to get the response. If 
               </p>
               <div class="post-entry">
                 
-                  
-
-<p><div></p>
-
+                  <!-- raw HTML omitted -->
 <p>一直听说蓝绿发布,不知道是怎么个过程.</p>
-
-<p>thanks to<span class="Apple-converted-space"> </span><a href="http://sunitspace.blogspot.jp/2013/10/blue-green-deployment.html" title="blue green deploy">blue-green-deployment</a></p>
-
-<h2 id="蓝绿发布的意义">蓝绿发布的意义</h2>
-
+<p>thanks to<!-- raw HTML omitted --> <!-- raw HTML omitted --><a href="http://sunitspace.blogspot.jp/2013/10/blue-green-deployment.html" title="blue green deploy">blue-green-deployment</a></p>
+<h2 id="heading">蓝绿发布的意义</h2>
 <p>整个发布过程，用户没有感受到任何宕机或者服务重启。</p>
-
-<h2 id="蓝绿发布的过程">蓝绿发布的过程</h2>
-
+<h2 id="heading-1">蓝绿发布的过程</h2>
 <p>第0步:部署以前的配置
-<a href="http://leaverimage.b0.upaiyun.com/2014/09/Blue-Green-Deployment-for-Zero-Downtime-8.png"><img src="/images/640798001262d94e7dbb6e2e7c58bf456e447775.png" alt="Blue Green Deployment for Zero Downtime (8)" /></a></p>
-
-<p>第1步: 把绿色集群的状态改为&rsquo;备用&rsquo;. 从负载均衡的池里把这些地址去掉,这样,绿色的集群就不再回接收到来自用户的请求了.转而进入备用负载均衡的池里.
-<a href="http://leaverimage.b0.upaiyun.com/2014/09/Blue-Green-Deployment-for-Zero-Downtime-9.png"><img src="/images/3f51064c7e2863de366d71673e234504f6991048.png" alt="Blue Green Deployment for Zero Downtime (9)" /></a></p>
-
+<a href="http://leaverimage.b0.upaiyun.com/2014/09/Blue-Green-Deployment-for-Zero-Downtime-8.png"><img src="/images/640798001262d94e7dbb6e2e7c58bf456e447775.png" alt="Blue Green Deployment for Zero Downtime (8)"></a></p>
+<p>第1步: 把绿色集群的状态改为'备用&rsquo;. 从负载均衡的池里把这些地址去掉,这样,绿色的集群就不再回接收到来自用户的请求了.转而进入备用负载均衡的池里.
+<a href="http://leaverimage.b0.upaiyun.com/2014/09/Blue-Green-Deployment-for-Zero-Downtime-9.png"><img src="/images/3f51064c7e2863de366d71673e234504f6991048.png" alt="Blue Green Deployment for Zero Downtime (9)"></a></p>
 <p>第2步:在绿色集群里部署新的代码,直到应用启动成功
-<a href="http://leaverimage.b0.upaiyun.com/2014/09/Blue-Green-Deployment-for-Zero-Downtime-3.png"><img src="/images/d4b51b6ce1a44b5cbaa11da5e8c1aa1d5eeea056.png" alt="Blue Green Deployment for Zero Downtime (3)" /></a></p>
-
+<a href="http://leaverimage.b0.upaiyun.com/2014/09/Blue-Green-Deployment-for-Zero-Downtime-3.png"><img src="/images/d4b51b6ce1a44b5cbaa11da5e8c1aa1d5eeea056.png" alt="Blue Green Deployment for Zero Downtime (3)"></a></p>
 <p>第3步:使用备用负载均衡简单测试一下备用集群的部署情况.理想状态下是全自动的.</p>
-
 <p>第4步:把绿色备用集群的状态改成存货,于是进入了存活负载均衡的池里
-<a href="http://leaverimage.b0.upaiyun.com/2014/09/Blue-Green-Deployment-for-Zero-Downtime-4.png"><img src="/images/19b275c22c2540d4cd4c8e6f28f6c90e474fd0ad.png" alt="Blue Green Deployment for Zero Downtime (4)" /></a></p>
-
+<a href="http://leaverimage.b0.upaiyun.com/2014/09/Blue-Green-Deployment-for-Zero-Downtime-4.png"><img src="/images/19b275c22c2540d4cd4c8e6f28f6c90e474fd0ad.png" alt="Blue Green Deployment for Zero Downtime (4)"></a></p>
 <p>看到 蓝色运行v1版本,绿色运行v2版本,都连接的是相同的数据库.这意味着v2版本也要在老的数据模型上运行.如果数据库有变更,要等到所有的集群升级到新的代码上.</p>
-
 <p>第5步: 对蓝色集群也进行同样的操作.
-<a href="http://leaverimage.b0.upaiyun.com/2014/09/Blue-Green-Deployment-for-Zero-Downtime-5.png"><img src="/images/d40415aeafd0197ad5408a7d9bcf17e99b2b8d64.png" alt="Blue Green Deployment for Zero Downtime (5)" /></a>
-<a href="http://leaverimage.b0.upaiyun.com/2014/09/Blue-Green-Deployment-for-Zero-Downtime-6.png"><img src="/images/6d403f2fcd75c1dcacab86ef6447f837018aaf5e.png" alt="Blue Green Deployment for Zero Downtime (6)" /></a>
+<a href="http://leaverimage.b0.upaiyun.com/2014/09/Blue-Green-Deployment-for-Zero-Downtime-5.png"><img src="/images/d40415aeafd0197ad5408a7d9bcf17e99b2b8d64.png" alt="Blue Green Deployment for Zero Downtime (5)"></a>
+<a href="http://leaverimage.b0.upaiyun.com/2014/09/Blue-Green-Deployment-for-Zero-Downtime-6.png"><img src="/images/6d403f2fcd75c1dcacab86ef6447f837018aaf5e.png" alt="Blue Green Deployment for Zero Downtime (6)"></a>
 最终v2代码完成部署.
-<a href="http://leaverimage.b0.upaiyun.com/2014/09/Blue-Green-Deployment-for-Zero-Downtime-7.png"><img src="/images/6f2592793b9517521e14b4aae09696e30d708ae6.png" alt="Blue Green Deployment for Zero Downtime (7)" /></a></p>
-
+<a href="http://leaverimage.b0.upaiyun.com/2014/09/Blue-Green-Deployment-for-Zero-Downtime-7.png"><img src="/images/6f2592793b9517521e14b4aae09696e30d708ae6.png" alt="Blue Green Deployment for Zero Downtime (7)"></a></p>
 <p>第6步:根据情况.运行数据库迁移</p>
-
-<p></div>
-&nbsp;</p>
-
-<p>&nbsp;</p>
+<!-- raw HTML omitted -->
+<p> </p>
 
                 
               </div>
@@ -648,7 +621,7 @@ A: When you login, it hangs or takes more than a minute to get the response. If 
   <i class="fas fa-calendar"></i>&nbsp;Posted on July 1, 2014
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -663,24 +636,81 @@ A: When you login, it hangs or takes more than a minute to get the response. If 
               </p>
               <div class="post-entry">
                 
-                  理念就是让别人为你服务，中文名控制反转，也叫依赖注入DI
-public class FXNewsProvider { private IFXNewsListener newsListener; private IFXNewsPersister newPersistener; public void getAndPersistNews() { String[] newsIds = newsListener.getAvailableNewsIds(); if(ArrayUtils.isEmpty(newsIds)) { return; } for(String newsId : newsIds) { FXNewsBean newsBean = newsListener.getNewsByPK(newsId); newPersistener.persistNews(newsBean); newsListener.postProcessIfNecessary(newsId); } } }  假设这个类用来处理新闻，
-IFXNewsListener 用来获取新闻，
-IFXNewsPersister  用来把获取的新闻持久化
-当我们需要获取不同的新闻源，比如道琼斯的新闻时，我们会写一个 DowJonesNewsListener 类和 DowJonesNewsPersister 类，然后实例化
-public FXNewsProvider()
-{
-newsListener = new DowJonesNewsListener();
-newPersistener = new DowJonesNewsPersister();
-} &nbsp;
-如果我们依赖于某个类或服务，最简单而有效的方式就是直接
-在类的构造函数中新建相应的依赖类。
-注意看， ，我们都是自己主动地去获
-取依赖的对象！
-可是回头想想，我们自己每次用到什么依赖对象都要主动地去获取，这是否真的必要？我们最终
-所要做的，其实就是直接调用依赖对象所提供的某项服务而已
-能不能我们用的时候自动送过来呢？
-                  <a href="https://leizhiyuan.github.io/2014/07/01/spring%E6%8F%AD%E7%A7%98%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC%E4%BA%8C%E7%AB%A0ioc%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" class="post-read-more">[Read More]</a>
+                  <p><!-- raw HTML omitted -->理念就是让别人为你服务，中文名控制反转，也叫依赖注入DI<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> <!-- raw HTML omitted -->假设这个类用来处理新闻，<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->IFXNewsListener <!-- raw HTML omitted --><!-- raw HTML omitted -->用来获取新闻，<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->IFXNewsPersister  <!-- raw HTML omitted --> <!-- raw HTML omitted -->用来把获取的新闻持久化<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->当我们需要获取不同的新闻源，比如道琼斯的新闻时，我们会写一个<!-- raw HTML omitted --> <!-- raw HTML omitted -->DowJonesNewsListener<!-- raw HTML omitted --> <!-- raw HTML omitted -->类和<!-- raw HTML omitted --> <!-- raw HTML omitted -->DowJonesNewsPersister<!-- raw HTML omitted --> <!-- raw HTML omitted -->类，然后实例化<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p><!-- raw HTML omitted -->如果我们依赖于某个类或服务，最简单而有效的方式就是直接<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->在类的构造函数中新建相应的依赖类。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->注意看，<!-- raw HTML omitted --> <!-- raw HTML omitted -->，我们都是自己主动地去获<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->取依赖的对象！<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->可是回头想想，我们自己每次用到什么依赖对象都要主动地去获取，这是否真的必要？我们最终<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->所要做的，其实就是直接调用依赖对象所提供的某项服务而已<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->能不能我们用的时候自动送过来呢？<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->。现在是用什么，让别人直接送过来就成。所以，简单点儿说，<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC<!-- raw HTML omitted --> <!-- raw HTML omitted -->的理念就是，<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->让别人为你服务！在图<!-- raw HTML omitted --> <!-- raw HTML omitted -->2-1<!-- raw HTML omitted --> <!-- raw HTML omitted -->中，也就是让<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->来为你服务！<!-- raw HTML omitted --></p>
+<p><img src="/images/45ddcfa8929fe85603c18852a59afac715fa4c7f.bmp" alt=""></p>
+<p><!-- raw HTML omitted -->这里，被注入对象就是<!-- raw HTML omitted --> <!-- raw HTML omitted -->FXNewsProvider<!-- raw HTML omitted --> <!-- raw HTML omitted -->，被依赖于对象<!-- raw HTML omitted --> <!-- raw HTML omitted -->IFXNewsListener<!-- raw HTML omitted --> <!-- raw HTML omitted -->和<!-- raw HTML omitted --> <!-- raw HTML omitted -->IFXNewsPersister  <!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->通常情况下，被注入对象会直接依赖于被依赖对象。但是，在<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC<!-- raw HTML omitted --> <!-- raw HTML omitted -->的场景中，二者之间通过<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->来打交道，所有的被注入对象和依赖对象现在由<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->统一管理。被注入对象需要<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->什么，直接跟<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->招呼一声，后者就会把相应的被依赖对象注入到被注入对象中，从而<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->达到<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->为被注入对象服务的目的。<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->在这里就是通常的<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC<!-- raw HTML omitted --> <!-- raw HTML omitted -->容器所充<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->当的角色。从被注入对象的角度看，与之前直接寻求依赖对象相比，依赖对象的取得方式发生了反转，<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->控制也从被注入对象转到了<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->那里<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->这里我们想知道的是？怎么跟<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->打招呼<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->在<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC<!-- raw HTML omitted --> <!-- raw HTML omitted -->模式中，被注入对象又是通过哪些方式来通知<!-- raw HTML omitted --> <!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->为其提供适当服务的呢？三种打招呼的方式<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->，即构造方法注入（<!-- raw HTML omitted --> <!-- raw HTML omitted -->constructor<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->injection<!-- raw HTML omitted --> <!-- raw HTML omitted -->）、<!-- raw HTML omitted --> <!-- raw HTML omitted -->setter<!-- raw HTML omitted --> <!-- raw HTML omitted -->方法注入（<!-- raw HTML omitted --> <!-- raw HTML omitted -->setter injection<!-- raw HTML omitted --> <!-- raw HTML omitted -->）以及接口注入（<!-- raw HTML omitted --> <!-- raw HTML omitted -->interface injection<!-- raw HTML omitted --> <!-- raw HTML omitted -->）。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->构造方法注入：<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p> </p>
+<p><!-- raw HTML omitted -->IoC Service Provider<!-- raw HTML omitted --> <!-- raw HTML omitted -->会检查被注入对象的构造方法，取得它所需要的依赖对象列表，进而为其注<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->入相应的对象。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->setter方法注入<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p> </p>
+<p><!-- raw HTML omitted -->外界就可以通过调用<!-- raw HTML omitted --> <!-- raw HTML omitted -->setNewsListener<!-- raw HTML omitted --> <!-- raw HTML omitted -->和<!-- raw HTML omitted --> <!-- raw HTML omitted -->setNewPersistener<!-- raw HTML omitted --> <!-- raw HTML omitted -->方法为<!-- raw HTML omitted --> <!-- raw HTML omitted -->FXNewsProvider<!-- raw HTML omitted --> <!-- raw HTML omitted -->对<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->象注入所依赖的对象了。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->接口注入，这个基本不用了。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->接口注入<!-- raw HTML omitted --> <!-- raw HTML omitted -->。从注入方式的使用上来说，接口注入是现在不甚提倡的一种方式，基本处于&quot;退<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->役状态&rdquo;。因为它强制被注入对象实现不必要的接口，带有侵入性。而构造方法注入和<!-- raw HTML omitted --> <!-- raw HTML omitted -->setter<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->方法注入则不需要如此。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->8<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->q<!-- raw HTML omitted --> <!-- raw HTML omitted -->构造方法注入。<!-- raw HTML omitted --> <!-- raw HTML omitted -->这种注入方式的优点就是，对象在构造完成之后，即已进入就绪状态，可以 <!-- raw HTML omitted --><!-- raw HTML omitted -->9<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->马上使用。缺点就是，当依赖对象比较多的时候，构造方法的参数列表会比较长。而通过反<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->射构造对象的时候，对相同类型的参数的处理会比较困难，维护和使用上也比较麻烦。而且<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->在<!-- raw HTML omitted --> <!-- raw HTML omitted -->Java<!-- raw HTML omitted --> <!-- raw HTML omitted -->中，构造方法无法被继承，无法设置默认值。对于非必须的依赖处理，可能需要引入多<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->个构造方法，而参数数量的变动可能造成维护上的不便。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->10<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->q<!-- raw HTML omitted --> <!-- raw HTML omitted -->setter<!-- raw HTML omitted --> <!-- raw HTML omitted -->方法注入<!-- raw HTML omitted --> <!-- raw HTML omitted -->。因为方法可以命名，所以<!-- raw HTML omitted --> <!-- raw HTML omitted -->setter<!-- raw HTML omitted --> <!-- raw HTML omitted -->方法注入在描述性上要比构造方法注入好一些。 <!-- raw HTML omitted --><!-- raw HTML omitted -->11<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->另外，<!-- raw HTML omitted --> <!-- raw HTML omitted -->setter<!-- raw HTML omitted --> <!-- raw HTML omitted -->方法可以被继承，允许设置默认值，而且有良好的<!-- raw HTML omitted --> <!-- raw HTML omitted -->IDE<!-- raw HTML omitted --> <!-- raw HTML omitted -->支持。缺点当然就是对象无<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->法在构造完成后马上进入就绪状态。<!-- raw HTML omitted --> <!-- raw HTML omitted -->12<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->综上所述，构造方法注入和<!-- raw HTML omitted --> <!-- raw HTML omitted -->setter<!-- raw HTML omitted --> <!-- raw HTML omitted -->方法注入因为其侵入性较弱，且易于理解和使用，所以是现在使<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->用最多的注入方式；而接口注入因为侵入性较强，近年来已经不流行了。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->回到开头的代码<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p> </p>
+<p><!-- raw HTML omitted -->由于这里已经写死了，所以当我们添加了一个新的新闻源，比如M4网站的时候，这个对象不能用了，我们要新写一个<!-- raw HTML omitted --> <!-- raw HTML omitted -->M4<!-- raw HTML omitted --> <!-- raw HTML omitted -->NewsProvider<!-- raw HTML omitted --> <!-- raw HTML omitted -->的类，然后新写新闻获取类，然后重新实现。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->而使用了IoC之后，<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p> </p>
+<p><!-- raw HTML omitted -->我们只要实现一个<!-- raw HTML omitted --> <!-- raw HTML omitted -->MarketWin24NewsListener<!-- raw HTML omitted --> <!-- raw HTML omitted -->雷就可以，而且<!-- raw HTML omitted --> <!-- raw HTML omitted -->FXNewsProvider <!-- raw HTML omitted --><!-- raw HTML omitted -->可以重用。<!-- raw HTML omitted --></p>
+<p><!-- raw HTML omitted -->而且使用了IoC之后，单元测试变得简单，我们只有写一个Mock<!-- raw HTML omitted --> <!-- raw HTML omitted -->NewsPersister<!-- raw HTML omitted --> <!-- raw HTML omitted -->就可以来测试了。<!-- raw HTML omitted --></p>
+
                 
               </div>
 
@@ -727,16 +757,55 @@ newPersistener = new DowJonesNewsPersister();
               </p>
               <div class="post-entry">
                 
-                  本文转自：http://my.oschina.net/colorleaf/blog/176569
-这个算说的比较清楚的了，虽然简单但是很有用。收藏一下。
-详解Eclipse断点
-大家肯定都用过Eclipse的调试的功能，在调试的过程中自然也无法避免要使用断点(breakpoint)，但不知是否对Eclipse中各类断点都有所了解。本篇图文并茂地介绍了Eclipse中全部类型的断点，及其设置，希望对大家有所帮助。(2011.11.20)
-1. 示例程序 BreakpointDemo是一个臆造的应用程序，只是为了便于讲解Eclipse中各类断点的使用罢了。其代码如下图所示，  BreakpointDemo主要包含两个方法： [1]setValue，该方法根据指定的次数(count)，对成员变量value进行赋值，值的范围为0-9的随机整数。 [2]printValue，该方法会调用setValue()对value进行赋值，并打印出value的值；但，如果value能被3整除，那么就会抛出IllegalArgumentException异常。
-2. Line Breakpoint Line Breakpoin是最简单的Eclipse断点，只要双击某行代码对应的左侧栏，就对该行设置上断点。此处，对第20行代码设置上Line Breakpoint，如下图所示，  可以为Line Breakpoint设置一个条件，那么当程序运行到该断点时，只有满足设定的条件，才会被中断。右键点击第20行的断点，选择&rdquo;Breakpoint Properties&hellip;&rdquo;  在弹出的属性对话框中，勾选上&rdquo;Conditional&rdquo;，然后在文本框中输入&rdquo;count % 2 == 0&rdquo;。  该条件表示，当程序运行到第20行时，只有当count为偶数时，程序才会被中断。细心地话，你会发现该断点的图标发生了改变，多了一个问号。 
-3. Watchpoint Line Breakpoint关注于程序运行的&rdquo;过程&rdquo;，大家也常把使用这种断点的调试称为单步调试。但有时候，我们对程序的运行过程不太了解，可能也不太关心，不能确定在什么地方设置断点比较合适，而可能比较关注某个关键变量的变化或使用。此时，就可以为该变量设置一种特殊的断点&ndash;Watchpoint。在此示例，我们最关心的就是成员变量value的值，那么就可以为它设置一个Watchpoint，双击第9行代码对应的左侧栏就可以了。  使用在2中所提及的方法，查看该断点的属性，  默认地，当该变量被访问或它的值被修改时，程序都会被中断。但在本示例中，只希望当对value的值进行修改时程序才需要被中断，所以取消对&rdquo;Access&rdquo;的勾选。  这时，我们会发现原来的Watchpoin图标也有变化了。 
-4. Method Breakpoint 与关注对某个变量的访问与修改一样，我们也可以关注程序对某个方法的调用情况，即，可以设置Method Breakpoint。在此处，设置针对方法setValue的Method Breakpoint。同理，双击第11行代码对应的左侧栏即可。  仍然要查看该断点的属性。默认地，只勾选了&rdquo;Entry&rdquo;，而没有勾选&rdquo;Exit&rdquo;。  这表示，当刚进入该方法(调用开始)时，程序会被中断；而，离开该方法(调用结束)时，程序并不会被中断。在本示例中，需要同时勾选上&rdquo;Exit&rdquo;。  点击OK之后，可以看到该断点的图标也有所改变。  根据这里的设置，当程序运行到第20行后会在第12行被中断，尽管这里没有显式的断点，但这就是setValue()方法的入口(Entry)。必须注意地是，程序在运行到第16行时不会被中断，尽管它看起来像是setValue()方法的出口(Exit)。实际上，程序会在第17行被中断，这里才是setValue()调用结束的地方。
-5. Exception Breakpoint 如果，我们期望某个特定异常发生时程序能够被中断，以方便查看当时程序所处的状态。通过设置Exception Breakpoint就能达到这一目标。本示例故意在第23行抛出了IllegalArgumentException异常，我们期望程序运行到此处时会被中断。但我们不直接为此行代码设置Line Breakpoint，而是为IllegalArgumentException设置Exception Breakpoint。设置Exception Breakpoint的方法与其它类型断点都不同，它不能通过双击左侧栏的方式在代码编辑器上直接进行设置。点击Breakpoints视图右上角形如Ji的图标，  会弹出如下所示的对话框，  在其中选中IllegalArgumentException，并点击OK，这时一个Exception Breakpoint就设置好了。  当value为3的倍数时，程序会在第23行被中断，这时我们就能使用调试器来看看value具体是等于0，3或6。 6.
-                  <a href="https://leizhiyuan.github.io/2013/11/16/%E8%97%8F%E5%9B%BE%E6%96%87%E5%B9%B6%E8%8C%82%E8%AF%A6%E8%A7%A3eclipse%E6%96%AD%E7%82%B9/" class="post-read-more">[Read More]</a>
+                  <p>本文转自：<a href="http://my.oschina.net/colorleaf/blog/176569">http://my.oschina.net/colorleaf/blog/176569</a></p>
+<p>这个算说的比较清楚的了，虽然简单但是很有用。收藏一下。</p>
+<p><strong>详解Eclipse断点</strong></p>
+<p>大家肯定都用过Eclipse的调试的功能，在调试的过程中自然也无法避免要使用断点(breakpoint)，但不知是否对Eclipse中各类断点都有所了解。本篇图文并茂地介绍了Eclipse中全部类型的断点，及其设置，希望对大家有所帮助。(2011.11.20)</p>
+<p><strong>1. 示例程序</strong>
+BreakpointDemo是一个臆造的应用程序，只是为了便于讲解Eclipse中各类断点的使用罢了。其代码如下图所示，
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153245_BTUJ.png"><img src="/images/abd1d53612eeef8d1feccdf17a894d3e71d41941.png" alt="15153245_BTUJ"></a>
+BreakpointDemo主要包含两个方法：
+[1]setValue，该方法根据指定的次数(count)，对成员变量value进行赋值，值的范围为0-9的随机整数。
+[2]printValue，该方法会调用setValue()对value进行赋值，并打印出value的值；但，如果value能被3整除，那么就会抛出IllegalArgumentException异常。</p>
+<p><strong>2. Line Breakpoint</strong>
+Line Breakpoin是最简单的Eclipse断点，只要双击某行代码对应的左侧栏，就对该行设置上断点。此处，对第20行代码设置上Line Breakpoint，如下图所示，
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153245_zkOp.png"><img src="/images/ca7da4e9038334e0603072298cbaf834326da937.png" alt="15153245_zkOp"></a>
+可以为Line Breakpoint设置一个条件，那么当程序运行到该断点时，只有满足设定的条件，才会被中断。右键点击第20行的断点，选择&quot;Breakpoint Properties&hellip;&rdquo;
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153245_I2Pe.png"><img src="/images/ff95dcb0130a35d3e293a52487e4109316cba1f8.png" alt="15153245_I2Pe"></a>
+在弹出的属性对话框中，勾选上&quot;Conditional&rdquo;，然后在文本框中输入&quot;count % 2 == 0&rdquo;。
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153246_rJtm.png"><img src="/images/4f5d2d716473a55f1e3b96a59ac07f700657452a.png" alt="15153246_rJtm"></a>
+该条件表示，当程序运行到第20行时，只有当count为偶数时，程序才会被中断。细心地话，你会发现该断点的图标发生了改变，多了一个问号。
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153246_5APe.png"><img src="/images/e3d69e5d5b31edbf729ce4522f9b21e2f5024f17.png" alt="15153246_5APe"></a></p>
+<p><strong>3. Watchpoint</strong>
+Line Breakpoint关注于程序运行的&quot;过程&rdquo;，大家也常把使用这种断点的调试称为单步调试。但有时候，我们对程序的运行过程不太了解，可能也不太关心，不能确定在什么地方设置断点比较合适，而可能比较关注某个关键变量的变化或使用。此时，就可以为该变量设置一种特殊的断点&ndash;Watchpoint。在此示例，我们最关心的就是成员变量value的值，那么就可以为它设置一个Watchpoint，双击第9行代码对应的左侧栏就可以了。
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153246_zzEM.png"><img src="/images/082e1647ca341b0f3549dcfc136ce278d73f4acb.png" alt="15153246_zzEM"></a>
+使用在2中所提及的方法，查看该断点的属性，
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153246_e1gH.png"><img src="/images/f268f9ed80a672eeb51d164658a971d6777989b9.png" alt="15153246_e1gH"></a>
+默认地，当该变量被访问或它的值被修改时，程序都会被中断。但在本示例中，只希望当对value的值进行修改时程序才需要被中断，所以取消对&quot;Access&quot;的勾选。
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153246_evtw.png"><img src="/images/1deb043f0baa72b61a76e794f7acf9d25762112c.png" alt="15153246_evtw"></a>
+这时，我们会发现原来的Watchpoin图标也有变化了。
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153246_Sw8K.png"><img src="/images/d2dff57a03768ac00b84dd9bb651e99031d94cdc.png" alt="15153246_Sw8K"></a></p>
+<p><strong>4. Method Breakpoint</strong>
+与关注对某个变量的访问与修改一样，我们也可以关注程序对某个方法的调用情况，即，可以设置Method Breakpoint。在此处，设置针对方法setValue的Method Breakpoint。同理，双击第11行代码对应的左侧栏即可。
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153247_xdH4.png"><img src="/images/bd49da0a82d0dc044a917e5b53107b05b36f6378.png" alt="15153247_xdH4"></a>
+仍然要查看该断点的属性。默认地，只勾选了&quot;Entry&rdquo;，而没有勾选&quot;Exit&rdquo;。
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153247_W1oy.png"><img src="/images/7294186aaa782865383feb3a4e375a5a3b628c27.png" alt="15153247_W1oy"></a>
+这表示，当刚进入该方法(调用开始)时，程序会被中断；而，离开该方法(调用结束)时，程序并不会被中断。在本示例中，需要同时勾选上&quot;Exit&rdquo;。
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153247_QVwz.png"><img src="/images/39f23217e1d0ead7061f1d636b97f52b6ee886fd.png" alt="15153247_QVwz"></a>
+点击OK之后，可以看到该断点的图标也有所改变。
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153247_YRMh.png"><img src="/images/bdeda47c131aefb575366c4d23b16b3e0ee59321.png" alt="15153247_YRMh"></a>
+根据这里的设置，当程序运行到第20行后会在第12行被中断，尽管这里没有显式的断点，但这就是setValue()方法的入口(Entry)。必须注意地是，程序在运行到第16行时不会被中断，尽管它看起来像是setValue()方法的出口(Exit)。实际上，程序会在第17行被中断，这里才是setValue()调用结束的地方。</p>
+<p><strong>5. Exception Breakpoint</strong>
+如果，我们期望某个特定异常发生时程序能够被中断，以方便查看当时程序所处的状态。通过设置Exception Breakpoint就能达到这一目标。本示例故意在第23行抛出了IllegalArgumentException异常，我们期望程序运行到此处时会被中断。但我们不直接为此行代码设置Line Breakpoint，而是为IllegalArgumentException设置Exception Breakpoint。设置Exception Breakpoint的方法与其它类型断点都不同，它不能通过双击左侧栏的方式在代码编辑器上直接进行设置。点击Breakpoints视图右上角形如Ji的图标，
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153247_Wm2U.png"><img src="/images/d4f298befa3d1c0100aef36797c56bbc1d2a423c.png" alt="15153247_Wm2U"></a>
+会弹出如下所示的对话框，
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153248_WgLd.png"><img src="/images/04e45e47d1e4248fd2ec8db8b13252e1c196e525.png" alt="15153248_WgLd"></a>
+在其中选中IllegalArgumentException，并点击OK，这时一个Exception Breakpoint就设置好了。
+<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153248_kE2O.png"><img src="/images/fd555622458bbb34ad01929c6a7483768f6b37a8.png" alt="15153248_kE2O"></a></p>
+<!-- raw HTML omitted -->
+<p><strong>小结</strong>
+上述的Eclipse断点，我们在现实工作中肯定都有意或无意地使用过其中的几种，只是不一定十分了解内情罢了。使用好Eclipse的各种断点，可以把很好地帮助我们分析程序，定位问题。</p>
+
                 
               </div>
 
@@ -772,7 +841,7 @@ newPersistener = new DowJonesNewsPersister();
   <i class="fas fa-calendar"></i>&nbsp;Posted on September 20, 2013
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -787,17 +856,47 @@ newPersistener = new DowJonesNewsPersister();
               </p>
               <div class="post-entry">
                 
-                  面向对象设计的理念是把整个系统分成一组可重用的组件，然而，当系统变得越大的时候，尤其是在java中，这最大的对象依赖将会紧紧耦合，以至于非常难以管理和修改，而现在，你可以使用Spring框架扮演一个中间模块的角色，方便高效地管理其他组件依赖
-输出生成的例子 看个例子，假设你的项目有一个方法可以输出内容到csv或者json格式，你可能写出这样的代码 package com.mkyong.output;
-public interface IOutputGenerator { public void generateOutput(); } ，然后是实现接口的类 package com.mkyong.output.impl;
-import com.mkyong.output.IOutputGenerator;
-public class CsvOutputGenerator implements IOutputGenerator { public void generateOutput(){ System.out.println(&ldquo;Csv Output Generator&rdquo;); } } 再写个Json生成的类 package com.mkyong.output.impl;
-import com.mkyong.output.IOutputGenerator;
-public class JsonOutputGenerator implements IOutputGenerator { public void generateOutput(){ System.out.println(&ldquo;Json Output Generator&rdquo;); } } 有好几种方法来调用IOutputGenerator接口，以及我们如何使用Spring来避免对象的过度耦合。
-方法1-直接调用 package com.mkyong.common;
-import com.mkyong.output.IOutputGenerator; import com.mkyong.output.impl.CsvOutputGenerator;
-public class App { public static void main( String[] args ) { IOutputGenerator output = new CsvOutputGenerator(); output.
-                  <a href="https://leizhiyuan.github.io/2013/09/20/spring%E6%9D%BE%E8%80%A6%E5%90%88%E7%A4%BA%E4%BE%8B/" class="post-read-more">[Read More]</a>
+                  <p>面向对象设计的理念是把整个系统分成一组可重用的组件，然而，当系统变得越大的时候，尤其是在java中，这最大的对象依赖将会紧紧耦合，以至于非常难以管理和修改，而现在，你可以使用Spring框架扮演一个中间模块的角色，方便高效地管理其他组件依赖</p>
+<h2 id="heading">输出生成的例子</h2>
+<p>看个例子，假设你的项目有一个方法可以输出内容到csv或者json格式，你可能写出这样的代码</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>，然后是实现接口的类</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>再写个Json生成的类</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>有好几种方法来调用IOutputGenerator接口，以及我们如何使用Spring来避免对象的过度耦合。</p>
+<h2 id="1-">方法1-直接调用</h2>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>问题：</p>
+<p>这种方法，output这个对象和CsvOutputGenerator耦合在了一起，每次要改变输出格式的话都要修改代码，如果这类代码遍布项目，那么改起来就跪了</p>
+<h2 id="2-">方法2-通过帮助类调用</h2>
+<p>也许你会想创建一个Helper类吧所有的output实现都移进去</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>然后可以这样调用</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>问题：</p>
+<p>看起来似乎更加优雅了，你仅仅需要管理这个Helper类就可以实现不同格式的输出需求改变了，然而，Helper还是和CvsOutputGenerator耦合，每一次要改变输出格式的时候，都要对Helper类做一下微调。</p>
+<h2 id="3-spring">方法3-Spring</h2>
+<p>Spring依赖注入很合适，可以使不同的格式生成类分离开来</p>
+<p>首先对OutputHelper做一点微调，添加了一个参数</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>然后创建一个Spring bean配置文件，并声明所有的Java对象依赖</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>然后通过Spring调用</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>以后要改Json格式，直接改一下xml配置文件就行了。能够减少错误</p>
+<h2 id="heading-1">结论</h2>
+<p>通过Spring框架的依赖注入，可以优雅的管理对象依赖，更大的灵活性，尤其是对于Java项目非常好用。</p>
+
                 
               </div>
 
@@ -876,7 +975,7 @@ public class App { public static void main( String[] args ) { IOutputGenerator o
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

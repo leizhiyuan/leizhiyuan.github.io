@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>分布式 on bystander&#39;s blog</title>
+    <link>https://leizhiyuan.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/</link>
+    <description>Recent content in 分布式 on bystander&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 30 Dec 2019 14:42:42 +0800</lastBuildDate>
+    
+	<atom:link href="https://leizhiyuan.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>深入理解Raft协议</title>
+      <link>https://leizhiyuan.github.io/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/</link>
+      <pubDate>Mon, 30 Dec 2019 14:42:42 +0800</pubDate>
+      
+      <guid>https://leizhiyuan.github.io/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/</guid>
+      <description>本文部分以JRaft为例，来详细介绍Raft。
+Raft 来源 首先，我们介绍 Raft 问题的来源，Raft 实际上是一个一致性算法的一种实现，和Paxos等价，但是在实现上，简化了一些，并且更加易用。
+这里面又引入了两个名字。一个是一致性，一个是Paxos，我们先说一致性，
+一致性是一个可容错的分布式系统重的最基本的一个问题，一致性包含了“多个服务器对同一个值达成共识，一旦对某个值达成共识，这个决定就是不可变了”，通常，一致性算法，当多数服务器可用的时候，才有效，比如5个server，那么2个挂了，是没问题的，但是再挂一个，超过一半，就不能提供服务了。这句话也说明，他不会返回错误的值，因为都不提供服务了。
+一致性通常和 Replicated State Machines（后面简称RSM）相关，最早提出是在图灵奖得主Leslie Lamport的著名论文&amp;quot;Time, clocks, and the ordering of events in a distributed system(1978)&amp;ldquo;论文中，比较系统性的阐述是在Fred Schneider的论文&amp;rdquo; Implementing fault-tolerant services using the state machine approach(1990)&amp;ldquo;中。
+它的基本思想是一个分布式的RSM系统由很多个replica组成，每个replica是一个状态机，它的状态保存在一组状态变量中。状态机的状态通过并且只能通过外部命令（commands)来改变。比如你可以把MySQL服务器想像成一个状态机。它每接收到一条带修改功能的SQL语句（比如update/insert)就会改变它的状态。一组配置好replication的MySQL servers就是典型的RSM。
+RSM能够工作基于这样的假设：
+如果一些状态机具有相同的初始状态，并且他们接收到的命令也相同，处理这些命令的顺序也相同，那么它们处理完这些命令后的状态也应该相同。 因为replica都具有相同的状态，所以坏掉任何一个也没有关系。有了RSM之后理论上可以做到永远不会因为机器的物理故障而丢失数据。
+也就是说，根据论文的指导，比较普遍的构建容错系统的方法是，每个服务器都维持一个状态机和一个Log，状态机就是我们想要实现容错的一个组件实现，比如想实现一个分布式环境下可容错的 Hash Table， 客户端会和这个状态机交互，每个状态机从log中获取input命令，在这个Hash Table 的例子中，这个log 可能是类似 把X 设置成3这样的命令，一致性算法必须确保，如果任何一个状态机在第N个命令中认可了n被设置为了3，那么其他机器上的状态机器就绝对不应该设置为其他值，这就能保证其他所有的机器总是处理相同的命令序列，最终大家都是同样的状态。
+至于Paxos，这里可以先简单理解就是个一致性算法的实现方式，和 Raft 类似。
+总结就一致性是为了解决分布式环境下的容错问题，而Raft 和 Paxos 是其中的一种实现。
+核心怎么实现呢 要实现Raft，根据作者的表述，通过对状态空间的简化，以及问题的分解，实现方只需要实现的就是各个子问题
+状态空间: 状态太多就会增加理解的困难程度。Raft 算法尽可能地确定各个环节的状态。典型地，Raft 算法采用 strong leader 的模型，每个日志的读写均由 Leader 从中主动协调，这样一来，整体系统的数据流将非常简单：从 Leader 流行 Follower。而且每个节点的状态也只有 3 种：Leader，Candidate 和 Follower。</description>
+    </item>
+    
+  </channel>
+</rss>

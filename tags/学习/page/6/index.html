@@ -51,7 +51,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -252,28 +252,22 @@
                   <p><strong>文件系统</strong>
 进程，地址空间，文件这些抽象概念均是操作系统中的重要概念，如果理解了这三个概念，就迈上了成为一个操作系统专家的道路。
 文件系统存放在磁盘上，多数磁盘划分为一个/多个分区，每个分区有一个独立的文件系统，磁盘的0号扇区称为主引导记录，也就是MBR，用来引导计算机，MBR的结尾就是分区表了。该表给出了每个分区的起始和结束地址。表中的一个分区被标记为活动分区。在计算机被引导时，BIOS读入并执行MBR，MBR做的第一件事就是确定活动分区，读入他的第一个块，称为引导块，并执行之，引导块中的程度将装载该分区中的操作系统，为统一起见，每个分区都从一个启动块开始，即使它不含有一个可以启动的操作系统。
-<a href="http://leaverimage.b0.upaiyun.com/32257_o.png"><img src="/images/2e6edaf72b3ff2b35c5e98e4a1538ae14d74d858.png" alt="" /></a>
+<a href="http://leaverimage.b0.upaiyun.com/32257_o.png"><img src="/images/2e6edaf72b3ff2b35c5e98e4a1538ae14d74d858.png" alt=""></a>
 <strong>文件的实现：</strong>
 1.连续分配，每个文件作为一连串连续数据存储在磁盘上。实现简单，读操作性能好，一次就可以了。但不足是删除之后不能移动，因为成本太高，使得空块增多。碎片化严重。更诡异的是对于文件编辑软件，实现无法准确预测大小，如果预测错了。。就跪了。
 //研究那些具有清晰和简洁概念的老式系统和思想是很重要的，因为他们可能以一种令人吃惊的方式在未来系统中获得应用。</p>
-
 <p>2.链表分配
 为每个文件构造磁盘块链表，一个文件分为N个文件块，N个文件块构成一个链表，存储在物理上的多个地方。顺序读取很方便，但随机读取则相当缓慢，由于指针的存在，每个磁盘块存储数据的字节不再是2的整数次幂，导致系统运行效率降低，因为很多程序都是以2的整数次幂来读写磁盘的。</p>
-
 <p>3.在内存中采用表的链表分配
 去除每个文件块在磁盘上的指针字，放入内存的一个表上，就可以解决上一个分配的不足。直观的例子如图。
 文件A使用了磁盘块4，7，2，10，12</p>
-
 <p>内存中这样的表格称为文件分配表，也就是FAT了。主要缺点是对于大磁盘的小块，这种表需要的内存占用太大。。不太适用。
-<a href="http://leaverimage.b0.upaiyun.com/32256_o.png"><img src="/images/b3afb8b5bedaaa50b38292cd6eb90a388d5081d1.png" alt="" /></a></p>
-
+<a href="http://leaverimage.b0.upaiyun.com/32256_o.png"><img src="/images/b3afb8b5bedaaa50b38292cd6eb90a388d5081d1.png" alt=""></a></p>
 <p>4.i节点
 记录各个文件包含哪些磁盘块的方法是给每个文件赋予一个称为i节点的数据结构,其中类除了文件属性和文件块的磁盘地址.相对于在内存中采用表的方式,这种机制的优势在于只有对应文件打开时,其i节点才进入内存.</p>
-
 <p>文件系统的一致性检查分为两种:块的一致性检查和文件的一致性检查.构造两张表,一张跟踪块在文件中的出现次数,另一张跟踪该块在空闲表中的出现次数,如果一致,则某一块必然在两个表中1/2中为1,如果某一块没有出现在任何一张表中,则称为块丢失,浪费了磁盘空间.解决方法是让文件系统检验程序把他们加入到空闲表中
 如果在空闲表中出现了两次.则重新建议建议空闲表即可.
 如果在文件表中出现了两次.则比较麻烦.</p>
-
 <p><strong>文件系统性能</strong>
 1.高速缓存,最常用,指的是一系列的块,逻辑上属于磁盘.但实际上被保存在内存上.基本算法是检查全部的读请求,查看在高速缓存中是否有所需要的块,如果存在,就读,否则读入高速缓存在复制到其他地方.
 2.块提前读,在需要用到块之前,试图提前将其写入高速缓存,从而提高命中率.比如某个文件有n个块,则请求k块的时候,则同时预读k+1块.只适用于顺序读取的文件,对随机读取文件,则没有效果/反效果.
@@ -331,41 +325,29 @@
               <div class="post-entry">
                 
                   <p>这几天在读《现代操作系统》，想起当时学这门课的时候，并没有感觉那么爽，现在通读这本书，知识的过渡性和结构性令我叹服。感受操作系统的魅力吧。</p>
-
 <p><strong>批处理系统中的调度：</strong>
 1.先来先服务</p>
-
 <p>2.最短作业优先
 只有在所有的作业都可以同时运行(也即同时到达)的情况下，最短作业优先算法才是最优化的。</p>
-
 <p>3.最短剩余时间优先-最短作业优先的抢占式版本。调度算法总是选择剩余时间最短的那个进程运行，注意，运行时间必须提前掌握，当一个新的作业到达时，其整个时间同当前进程的剩余时间做比较，如果更少。就运行新进程。可以使新的短作业获得良好的服务。</p>
-
 <p><strong>交互式系统的调度</strong>
 1.轮转调度。
 最古老，最简单，最公平切使用最广，每个进程被分配一个时间片。如果进程在时间片结束之前阻塞或结束，则CPU立即切换。调度程序只是维护一张可运行进程列表，当进程用完它的时间片后，就被移到队列的末尾。时间片太短会导致进程切换过多，降低CPU效率，设置的太长又引起对短的交互请求的响应时间变长。通常20-50ms算合理。</p>
-
 <p>2.优先级调度
 为了防止高优先级进程无休止的运行下去，可以在一个时钟中断里降低当前进程的优先级，如果这导致该进程的优先级低于次高优先级的进程，则切换或者也可以赋予每个进程一个时间片。可以和轮转调度一起工作，设置每个优先级上有多个进程。优先运行高优先级，并未高优先级上的进程按照轮转换着运行，如果高优先级没了。就进入到较低优先级。。。问题是如果不偶尔对优先级进行调整，则可能发生饥饿现象。</p>
-
 <p>3.多级队列
 CTSS的设计者发现为CPU密集型进程设置较长的时间片比频繁的分给他们很短的时间片更为高效（减少了交换次数），但长时间的进程又会影响响应时间，方法是设立优先级类，最高优先级类里的进程运行1个时间片。次高运行2个。以此类推。当一个进程用完分配的时间片后，被移动到下一类。大致算法都是用于讨好交互用户和进程，而不惜牺牲后台进程
 //故事：可以采用只要终端上有Enter键按下，就将该终端上的进程移到最高优先级类。假设当前进程急需交互，但是。一个人发现了。大家都开始用。。。理论和实际差异太大。。哈哈</p>
-
 <p>4.最短进程优先
-这个很好立即，但难点在于如何找出最短的那个。一种方法是根据过去的行为推测。假设每个命令执行时间为T0，下一次运行时间为T1，则可以根据aT0+(1-a)T1来估计时间。。a被用来决定尽快忘掉老的运行时间还是记住它。这种算法成为老化算法。通常选a=<sup>1</sup>&frasl;<sub>2</sub></p>
-
+这个很好立即，但难点在于如何找出最短的那个。一种方法是根据过去的行为推测。假设每个命令执行时间为T0，下一次运行时间为T1，则可以根据aT0+(1-a)T1来估计时间。。a被用来决定尽快忘掉老的运行时间还是记住它。这种算法成为老化算法。通常选a=1/2</p>
 <p>5.保证调度
 就是保证每个用户获得cpu的1/n，系统需要跟踪进程的cpu时间，他实际获得如果多于应该获得的。则转向实际获得小于应该获得的。</p>
-
 <p>6.彩票调度
 保证调度很难实现，而彩票调度算法是向进程提供各种系统资源的彩票。一旦需要做出一项调度决策时，就随机抽出一张彩票。谁获得谁就上。比如视频服务器，可以为不同的帧速率提供不同的彩票。然后分配cpu</p>
-
 <p>7.公平分享调度
 这个就考虑到了进程的所有者。需要我们定义公平的含义。是保证每个用户只占用的时间相等还是其他了。</p>
-
 <p><strong>实时系统的调度：</strong>
 可以分为硬实时和软实时，前者必须满足绝对的截止时间，后者则可以容忍一些。用户级线程系统是不知道的。用户级和内核级的差异主要在性能，用户级需少量的机器指令，而内核级需要很多的。过程。采用轮转和优先级调度更常见一些。</p>
-
 <p>//操作系统的大神们太强大了。哲学家进餐问题居然可以通过拿起左边叉子以后，检测右边是否可用，如果不可用，则等待一个随机的时间。这种方案是可行的。在极少的情况下不可用。。</p>
 
                 
@@ -401,7 +383,7 @@ CTSS的设计者发现为CPU密集型进程设置较长的时间片比频繁的�
   <i class="fas fa-calendar"></i>&nbsp;Posted on January 6, 2013
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;4&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -422,10 +404,27 @@ CTSS的设计者发现为CPU密集型进程设置较长的时间片比频繁的�
  图8.10所示的是无向图的邻接矩阵表示法，可以观察到，矩阵延对角线对称，即A(i，j)= A(j，i)。无向图邻接矩阵的第i行或第i列非零元素的个数其实就是第i个顶点的度。这表示无向图邻接矩阵存在一定的数据冗余。
 图8.11所示的是有向图邻接矩阵表示法，矩阵并不延对角线对称，A(i，j)=1表示顶点Vi邻接到顶点Vj；A(j，i)=1则表示顶点Vi邻接自顶点Vj。两者并不象无向图邻接矩阵那样表示相同的意思。有向图邻接矩阵的第i行非零元素的个数其实就是第i个顶点的出度，而第i列非零元素的个数是第i个顶点的入度，即第i个顶点的度是第i行和第i列非零元素个数之和。
 由于存在n个顶点的图需要n2个数组元素进行存储，当图为稀疏图时，使用邻接矩阵存储方法将出现大量零元素，照成极大地空间浪费，这时应该使用邻接表表示法存储图中的数据。
-8.2.2 邻接表表示法 图的邻接矩阵存储方法跟树的孩子链表示法相类似，是一种顺序分配和链式分配相结合的存储结构。邻接表由表头结点和表结点两部分组成，其中图中每个顶点均对应一个存储在数组中的表头结点。如这个表头结点所对应的顶点存在相邻顶点，则把相邻顶点依次存放于表头结点所指向的单向链表中。如图8.12所示，表结点存放的是邻接顶点在数组中的索引。对于无向图来说，使用邻接表进行存储也会出现数据冗余，表头结点A所指链表中存在一个指向C的表结点的同时，表头结点C所指链表也会存在一个指向A的表结点。  有向图的邻接表有出边表和入边表（又称逆邻接表）之分。出边表的表结点存放的是从表头结点出发的有向边所指的尾顶点；入边表的表结点存放的则是指向表头结点的某个头顶点。如图8.13所示，图(b)和&copy;分别为有向图(a)的出边表和入边表。  以上所讨论的邻接表所表示的都是不带权的图，如果要表示带权图，可以在表结点中增加一个存放权的字段，其效果如图8.14所示。
+8.2.2 邻接表表示法 图的邻接矩阵存储方法跟树的孩子链表示法相类似，是一种顺序分配和链式分配相结合的存储结构。邻接表由表头结点和表结点两部分组成，其中图中每个顶点均对应一个存储在数组中的表头结点。如这个表头结点所对应的顶点存在相邻顶点，则把相邻顶点依次存放于表头结点所指向的单向链表中。如图8.12所示，表结点存放的是邻接顶点在数组中的索引。对于无向图来说，使用邻接表进行存储也会出现数据冗余，表头结点A所指链表中存在一个指向C的表结点的同时，表头结点C所指链表也会存在一个指向A的表结点。  有向图的邻接表有出边表和入边表（又称逆邻接表）之分。出边表的表结点存放的是从表头结点出发的有向边所指的尾顶点；入边表的表结点存放的则是指向表头结点的某个头顶点。如图8.13所示，图(b)和(c)分别为有向图(a)的出边表和入边表。  以上所讨论的邻接表所表示的都是不带权的图，如果要表示带权图，可以在表结点中增加一个存放权的字段，其效果如图8.14所示。
 
 【注意】：观察图8.14可以发现，当删除存储表头结点的数组中的某一元素，有可能使部分表头结点索引号的改变，从而导致大面积修改表结点的情况发生。可以在表结点中直接存放指向表头结点的指针以解决这个问题（在链表中存放类实例即是存放指针，但必须要保证表头结点是类而不是结构体）。在实际创建邻接表时，甚至可以使用链表代替数组存放表头结点或使用顺序表存代替链表存放表结点。对所学的数据结构知识应当根据实际情况及所使用语言的特点灵活应用，切不可生搬硬套。
-【例8-1 AdjacencyList.cs】图的邻接表存储结构  using System; using System.Collections.Generic; public class AdjacencyList&lt;T&gt; { List&lt;Vertex&lt;T&gt;&gt; items; //图的顶点集合 public AdjacencyList() : this(10) { } //构造方法 public AdjacencyList(int capacity) //指定容量的构造方法 { items = new List&lt;Vertex&lt;T&gt;&gt;(capacity); } public void AddVertex(T item) //添加一个顶点 { //不允许插入重复值 if (Contains(item)) { throw new ArgumentException(&ldquo;插入了重复顶点！&rdquo;); } items.Add(new Vertex&lt;T&gt;(item)); } public void AddEdge(T from, T to) //添加无向边 { Vertex&lt;T&gt; fromVer = Find(from); //找到起始顶点 if (fromVer == null) { throw new ArgumentException(&ldquo;头顶点并不存在！&rdquo;); } Vertex&lt;T&gt; toVer = Find(to); //找到结束顶点 if (toVer == null) { throw new ArgumentException(&ldquo;尾顶点并不存在！&rdquo;); } //无向边的两个顶点都需记录边信息 AddDirectedEdge(fromVer, toVer); AddDirectedEdge(toVer, fromVer); } public bool Contains(T item) //查找图中是否包含某项 { foreach (Vertex&lt;T&gt; v in items) { if (v.
+【例8-1 AdjacencyList.cs】图的邻接表存储结构
+l Vertex类中包含了一个visited成员，它的作用是在图遍历时标识当前节点是否被访问过，这一点在稍后会讲到。
+l 邻接点指针域adjvex直接指向某个表头结点，而不是表头结点在数组中的索引。
+AdjacencyList&lt;T&gt;类中使用了一个泛型List代替数组来保存表头结点信息（第5行代码），从而不再考虑数组存储空间不够的情况发生，简化了操作。
+由于一条无向边的信息需要在边的两个顶点分别存储信息，即添加两个有向边，所以58～78行代码的私有方法AddDirectedEdge()方法用于添加一个有向边。新的邻接点信息即可以添加到链表的头部也可以添加到尾部，添加到链表头部可以简化操作，但考虑到要检查是否添加了重复边，需要遍历整个链表，所以最终把邻接点信息添加到链表尾部。
+【例8-1 Demo8-1.cs】图的邻接表存储结构测试
+B：AD
+C：A
+D：AB
+ 本例存储的表如图8.12所示，结果中，冒号前面的是表头结点，冒号后面的是链表中的表结点。
+8.3 图的遍历 和树的遍历类似，在此，我们希望从图中某一顶点出发访遍图中其余顶点，且使每一个顶点仅被访问一次，这一过程就叫做图的遍历(TraversingGraph)。如果只访问图的顶点而不关注边的信息，那么图的遍历十分简单，使用一个foreach语句遍历存放顶点信息的数组即可。但如果为了实现特定算法，就需要根据边的信息按照一定顺序进行遍历。图的遍历算法是求解图的连通性问题、拓扑排序和求关键路径等算法的基础。
+图的遍历要比树的遍历复杂得多，由于图的任一顶点都可能和其余顶点相邻接，故在访问了某顶点之后，可能顺着某条边又访问到了已访问过的顶点，因此，在图的遍历过程中，必须记下每个访问过的顶点，以免同一个顶点被访问多次。为此给顶点附设访问标志visited，其初值为false，一旦某个顶点被访问，则其visited标志置为true。
+图的遍历方法有两种：一种是深度优先搜索遍历（Depth-First Search 简称DFS）；另一种是广度优先搜索遍历（Breadth_First Search 简称BFS）。
+8.3.1 深度优先搜索遍历 图的深度优先搜索遍历类似于二叉树的深度优先搜索遍历。其基本思想如下：假定以图中某个顶点Vi为出发点，首先访问出发点，然后选择一个Vi的未访问过的邻接点Vj，以Vj为新的出发点继续进行深度优先搜索，直至图中所有顶点都被访问过。显然，这是一个递归的搜索过程。
+现以图8.15为例说明深度优先搜索过程。假定V1是出发点，首先访问V1。因V1有两个邻接点V2、V3均末被访问过，可以选择V2作为新的出发点，访问V2之后，再找V2的末访问过的邻接点。同V2邻接的有V1、V4和V5，其中V1已被访问过，而V4、V5尚未被访问过，可以选择V4作为新的出发点。重复上述搜索过程，继续依次访问V8、V5。访问V5之后，由于与V5相邻的顶点均已被访问过，搜索退回到V8，访问V8的另一个邻接点V6。接下来依次访问V3和V7，最后得到的的顶点的访问序列为：V1→ V2→ V4→ V8→ V5→ V6→ V3→V7。  下面根据上一节创建的邻接表存储结构添加深度优先搜索遍历代码。
+【例8-2 DFSTraverse.cs】深度优先搜索遍历
+打开【例8-1 AdjacencyList.cs】，在AdjacencyList&lt;T&gt;类中添加以下代码后，将文件另存为DFSTraverse.cs。
+private void InitVisited() //初始化visited标志 { foreach (Vertex&amp;lt;T&amp;gt; v in items) { v.
                   <a href="https://leizhiyuan.github.io/2013/01/06/%E5%9B%BE%E7%9A%84%E9%81%8D%E5%8E%86c/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -466,7 +465,7 @@ CTSS的设计者发现为CPU密集型进程设置较长的时间片比频繁的�
   <i class="fas fa-calendar"></i>&nbsp;Posted on December 24, 2012
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;3&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -481,16 +480,75 @@ CTSS的设计者发现为CPU密集型进程设置较长的时间片比频繁的�
               </p>
               <div class="post-entry">
                 
-                  首先祝大家平安夜快乐。本篇介绍一些流行的JavaScript模式。为下一篇打基础
-使用/了解JavaScript的一个好处就是函数的高级用法。。在JavaScript里。函数仅仅是对象。他们可以有赋给他们的属性。而在C#中。我们不能做我们可以在JavaScript的全部事情。但是我们仍然可以做些事情。一个原因是JavaScript在函数里给变量以作用域。因此，不得不通过创建函数，大多数情况是匿名的来定位变量。而在C#中。通过使用块，通过花括号来创建作用域
-当然，换种方式来说。C#中，函数也会给变量作用域。通过使用Lambda表达式。我们通过花括号在其里面创建了一个变量。然而。我们也可以局部的创建作用域。
-我们来看看通过使用Lambda表达式可以实现一些在JavaScript里面有用的模式把。
-回调模式
-这个模式是个老的模式。事实上。回调模式从.net 的第一版就开始使用了。但是是以一种很简单的方式实现的。而现在。通过使用Lambda表达式。闭包，捕获变量等特性能够允许我们写出如下的代码来。
-void CreateTextBox() { var tb = new TextBox(); tb.IsReadOnly = true; tb.Text = "Please wait ..."; DoSomeStuff(() =&gt; { tb.Text = string.Empty; tb.IsReadOnly = false; }); } void DoSomeStuff(Action callback) { // Do some stuff - asynchronous would be helpful ... callback(); } 对于JavaScript程序员会觉得这没什么啊。他们使用这个模式太多了。然而，它非常有用。因为我们可以使用参数作为Ajax相关事件的事件处理器（比如oncompleted，onsuccess），等等。如果你使用LINQ，那么你可能也会用到回调模式的一些东西。举个例子。LINQ的where子句将会在每一次迭代中回调你的查询语句。这只是回调函数的一个例子。在.net的世界里。事件如它名字所暗示的那样。通常是事件处理的首选方法。这有时候很像一个回调。他有两个参数。有一个特殊的关键字和一个类型模式（两个参数分别是sender和arguments，sender通常是object类型。Arguments通常继承自EventArgs） 可以通过+= 和-=给事件添加/删除事件处理程序。
-返回方法 和普通的方法比较。Lambda表达式也可以返回一个方法指针（就是一个委托实例），这意味着我们可以使用Lambda表达式创建/返回一个lambda表达式（或者今年仅是一个已定义好的方法的委托实例），大量的情况下。这个模式也很有用。首先看一下例子。
-Func&lt;string, string&gt; SayMyName(string language) { switch(language.ToLower()) { case "fr": return name =&gt; { return "Je m'appelle "
-                  <a href="https://leizhiyuan.github.io/2012/12/24/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E5%9B%9B%E9%83%A8%E5%88%86/" class="post-read-more">[Read More]</a>
+                  <p>首先祝大家平安夜快乐。本篇介绍一些流行的JavaScript模式。为下一篇打基础</p>
+<p>使用/了解JavaScript的一个好处就是函数的高级用法。。在JavaScript里。函数仅仅是对象。他们可以有赋给他们的属性。而在C#中。我们不能做我们可以在JavaScript的全部事情。但是我们仍然可以做些事情。一个原因是JavaScript在函数里给变量以作用域。因此，不得不通过创建函数，大多数情况是匿名的来定位变量。而在C#中。通过使用块，通过花括号来创建作用域</p>
+<p>当然，换种方式来说。C#中，函数也会给变量作用域。通过使用Lambda表达式。我们通过花括号在其里面创建了一个变量。然而。我们也可以局部的创建作用域。</p>
+<p>我们来看看通过使用Lambda表达式可以实现一些在JavaScript里面有用的模式把。</p>
+<p><strong>回调模式</strong></p>
+<p>这个模式是个老的模式。事实上。回调模式从.net 的第一版就开始使用了。但是是以一种很简单的方式实现的。而现在。通过使用Lambda表达式。闭包，捕获变量等特性能够允许我们写出如下的代码来。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>对于JavaScript程序员会觉得这没什么啊。他们使用这个模式太多了。然而，它非常有用。因为我们可以使用参数作为Ajax相关事件的事件处理器（比如oncompleted，onsuccess），等等。如果你使用LINQ，那么你可能也会用到回调模式的一些东西。举个例子。LINQ的where子句将会在每一次迭代中回调你的查询语句。这只是回调函数的一个例子。在.net的世界里。事件如它名字所暗示的那样。通常是事件处理的首选方法。这有时候很像一个回调。他有两个参数。有一个特殊的关键字和一个类型模式（两个参数分别是sender和arguments，sender通常是object类型。Arguments通常继承自EventArgs）
+可以通过+= 和-=给事件添加/删除事件处理程序。</p>
+<p><strong>返回方法</strong>
+和普通的方法比较。Lambda表达式也可以返回一个方法指针（就是一个委托实例），这意味着我们可以使用Lambda表达式创建/返回一个lambda表达式（或者今年仅是一个已定义好的方法的委托实例），大量的情况下。这个模式也很有用。首先看一下例子。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>代码本应该更短些。我们可以让default如果请求的语言没有找到。只是抛出一个异常即可。不过。这个例子展示了这是一种方法工厂。另一种同等效果的方法是包含一个Hashtable。或者更好的话用Dictionary&lt;K, V&gt;</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>即使这看起来似乎有点过度工程化了。但是也许这是方法工厂最好的例子了。毕竟方法简单易扩展，可以被用在很多情况下。这中模式和反射的组合可以是的程序代码更松耦合，更易使用。并且代码更健壮。下图展示了模式的工作流程
+<a href="http://leaverimage.b0.upaiyun.com/30815_o.png"><img src="/images/e6a03db9751c4ebd13b63fd2880f2267e3af2b44.png" alt=""></a></p>
+<p><strong>自定义方法</strong>
+自定义方法模式一个JavaScript中普遍的技术。可以用在代码中提高性能和健壮性，这种模式的背后思想是方法被设置为一个属性。于是可以和其他方法非常方便的交换。我们看一下具体的代码</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这段代码做了什么？好吧。第一种情况下，我们得到第一个素数。也就是2.虽然这很显而易见。我们可以体征我们的算法默认来排除掉所有的偶数。这就加速我们的算法。但是我们依然能够得到开始的偶素数2.我们就可以通过调用NextPrime方法来获得素数了。我们就可以在第二部分里有话我们的算了。</p>
+<p>我们已经看到这种写法可以优化性能。我们可能一下这个例子</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这里我们有了两根分开的区域。一个是为钱1000个数准备的。其他的则留在了另一个区域。通常我们可能需要区分这两种情况。这就是我们为什么使用了自定义方法，当小区域执行完后，自定义函数就会改变了。来执行大的区域了。</p>
+<p><strong>即时执行方法表达式</strong></p>
+<p>在JavaScript中即时执行方法表达式也叫做IIFEs,也相当普遍。这是因为在JavaScript中，不像C#中的花括号可以构造一个局部变量。因此一个变狼可能会污染一个全局对象。（最有可能就是一个window对象），由于很多原因，这种情况很不好。。</p>
+<p>解决方法也很简单，当花括号不能给一个作用域的时候，方法却可以。因此，定义在方法里面的变量就被限制在这个方法里。就像是他的孩子一样。因此，通常JavaScript用户想让那些方法立刻执行。否则，是对变量名和语句行的浪费。另一个原因就是这个方法只执行一次。</p>
+<p>在C#中我们也可以写出类似的方法。我们也会得到一个新的作用域。但这不是我们主要关心的。因为我们可以随心所欲创建新的作用域，我们看些例子</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这段代码很容易理解。然后，如果我们想要传一些参数时候。我们需要定义他们的类型你个，我们看一下如何给即时执行方法传递参数</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>看上去似乎没做什么。然而。我们可以和async关键字组合起来。我们看</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Ok了。</p>
+<p><strong>即时对象初始化</strong></p>
+<p>我把这个模式放在关于Lambda表达式的文章里是因为匿名对象比我们刚刚的一些简单的例子能表达的要多得多。其中一个就是匿名对象也可以包含Lambda表达式。这可以作为我写在本文里的理由。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>如果你想要运行这个模式，你可能会看到一个异常。。至少我看到了。。这难以理解的理由是Lambda表达式不能被赋给匿名对象。如果你也没明白。。那我们看来是坐在一条船上的。
+幸运的是，编译器已经告诉我们了。“哥们，我不知道我该为你的那个Lambda表达式创建哪种类型的委托啊”我们可以帮一下编译器。如下所示。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>一个问题就产生了。方法（这里是Ask）存活的作用域是什么？答案是他存活在创建匿名对象的类里面，或者如果他使用了捕获变量，就在他自己的作用域里面。因此，编译器仍然创建了一个匿名对象（包含对编译器生成的类的元数据，实例化了一个有着类信息的新的对象），但是只是设置了委托对象Ask属性</p>
+<p>注意：你应该避免使用这个模式，当你真的想要访问一个匿名对象的所有属性的时候。理由如下：C#编译器请求在你使用每一个对象之前，应该首先声明他。因此，用的地方一定在声明之后，但是编译器怎么知道？在编译器看来。Person变量还没声明完呢。就开始使用了。
+所以，在上面那个Lambda表达式里并不能直接访问person的Name和Age属性
+有一个方法跳出这个陷阱（事实上有很多种，但我只喜欢这一种最优雅的，考虑下面这段代码</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>现在因为我们之前已经声明了，我们也可以说明person为object对象。但是这样的话我们就要用到反射机制了（可能还需要一些漂亮的包装器），来访问匿名对象的属性，在这种情况下，我们依赖于DLR，他会对这种情况出现一个最漂亮的包装器，现在这段代码就非常JavaScript化了，我也不知道是好还是坏，这也就是为什么我说这个是一个注意点。。</p>
+<p><strong>初始时间分支</strong></p>
+<p>这个模式事实上和自定义方法非常接近，唯一的不同，这种情况下，该方法并不定义自己，而是包含其他方法。显然是可能的。如果这个“其他方法”不是通过传统的方式定义，而是通过属性，（成员变量）</p>
+<p>这种模式的别名也叫做加载时分支，是一个优化模式，这个模式用来避免switch-case或if-else语句等控制结构的大量使用。也可以理解为这个模式为代码永久性的创建了确定分支之间的连接。
+考虑下面这个例子</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>我们都做了什么呢？首先我们有一个方法读取用户配置（由一个配置Setting类来保存），如果我们发现启用了自动设置。我们就给AutoSave这个属性赋上全部的代码，否则我们就放一个空方法在这里，而们就可以通过调用AutoSave（）一次就行了，不再需要检查配置设置或其他的什么情况了。我们也不需要保存一个特殊的布尔变量，因为对应的方法已经被动态的设置了。</p>
+<p>有人也许认为这不是一个巨大的性能提高，但是这仅仅是一个小例子，在一些复杂的代码里，这会节省很多时间，尤其是代码越来越复杂的情况下。</p>
+<p>另外（我认为这是最主要的原因），代码更加容易维护（如果你了解这个模式的话）没有了不必要的控制逻辑，程序员可以更加专注于重要的东西—调用这个自动保存的具体操作</p>
+<p>在JavaScript中，像初始时间分支模式被用在很多性能检测上（比如浏览器检测）不去管浏览器检测实际上是很邪恶的，并且不应该在任何网页上检测用户的浏览器，
+性能检测非常有用，通常和这种模式一起组合使用，这也是Jquery用来对Ajax请求检测需要的正确对象的方法。</p>
+<p>下一部分介绍Lambda表达式超级有用的情况，同样圣诞节快乐。</p>
+
                 
               </div>
 
@@ -526,7 +584,7 @@ Func&lt;string, string&gt; SayMyName(string language) { switch(language.ToLower(
   <i class="fas fa-calendar"></i>&nbsp;Posted on December 18, 2012
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -541,28 +599,68 @@ Func&lt;string, string&gt; SayMyName(string language) { switch(language.ToLower(
               </p>
               <div class="post-entry">
                 
-                  好长时间没发技术文章了，恰好看到一篇非常详细的Lambda文章。一边翻译一边学习。题目好像有点霸气。。
-介绍 Lambda表达式是使代码更加动态，易于扩展并且更加快速（看完本文你就知道原因了）的强有力的工具。也可以用来降低潜在的错误。同时可以利用静态输入和智能提示，就像VS里一样。
-&nbsp;
-Lambda表达式在.net framework 3.5中提出来。并且在LINQ和ASP.NET MVC内部的一些技术中扮演了相当重要的角色。如果你考虑一下ASP.NET MVC中各类控件的实现。你就发现。奥妙就是他们大多使用了Lambda表达式。和Lambda表达式一起，使用Html扩展方法将会使得在后台创建模型成为可能。
-本文会讲到如下的知识。
-1.简短的介绍-Lambda表达式是什么，以及为什么和匿名方法不同（之前我们使用的） 2.走近Lambda表达式的性能-在哪些情况下比起标准方法，Lambda会提高/损失性能 3.深入-Lambda表达式在MSIL代码中是什么样 4.一些来自JS世界的模式映射到C#中 5.那些能够提高性能，并且代码看起来相当舒服的使用Lambda的情况。 6.一些我提出的新模式-当然有可能别人也提出来了。但这是我的思考结果。
-&nbsp;
-如果你期望本文是一篇入门教程我可能要让你失望了，除非你真的很优秀并且很聪明，当然我不是这种人，所以我也想提前声明一下：为了读懂这篇文章你可能需要C#的一些高级知识，并且对C#比较了解。
-&nbsp;
-你应该期望本文试着解释一些事情给你，也会解释一些有趣的问题，至少对我来说是这样的。最后我会展示一些实际的例子和模式，如我所说，Lambda表达式简化了很多情况。因此写显式的模式很有用。
-背景知识-什么是Lambda表达式 在C#1.0中，委托被提出了，它使得传递函数成为可能，一句话就是委托就是强类型的函数指针，但委托比指针更强大。一般传递一个函数需要如下几步。 1. 写一个委托（就像一个类）包含返回类型和参数类型 2. 使用委托作为某一个函数的参数类型，这样，该函数就可以接受和委托描述的有着相同签名的函数了 3. 将一个委托类型的函数传递给委托，创建一个委托实例。
-&nbsp;
-如果听起来很复杂，确实本来很复杂，但这是必需的。（虽然不是造火箭，但是比你认为的要更多的代码），然而步骤三不是必需的，编译器会为你做他，但是步骤1和2却是必不可少的。
-&nbsp;
-幸运的是C#2.0出现了泛型，现在我们也可以写泛型类，方法，更重要的是，泛型委托，然而，直到.net framework 3.5的时候。微软意识到实际上只有两种泛型委托（当然有一些不同的重载），会覆盖99%的使用情况：
-1.Action 没有任何输入参数，也没有输出参数。 2.Action&lt;t1,…t16&gt; 需要1-16个参数，没有输出参数。 3.Func&lt;t1….t16,tout&gt;需要0-16个参数，一个输出参数
-&nbsp;
-Action和其对应的泛型版本（仅仅是一个动作，执行一些事情）返回void的时候。Func则可以返回最后一个参数指定的类型，通过这两个委托类型，我们事实上，大部分情况下。前面提到的三步中的第一部就不用写的。而第二步仍然需要。
-&nbsp;
-那么如果我们想要运行代码的时候怎么做呢。在C#2.0中问题已经可以解决了。在这个版本里。我们可以创建委托方法，也就是一个匿名方法，然后这个语法一直未能流行起来，一个相当简化的匿名方法的版本类似这样： Func&lt;double, double&gt; square = delegate (double x) { return x * x; } 为了提高这种语法，欢迎来到Lambda表达式的国度。首先，这个Lambda名字怎么来的？事实上。来自于数学上的λ演算，更准确的说他是数学中一个正式的系统。用于通过变量绑定和替换来进行表达式计算，所以我们有0-N个输入参数和一个返回值，而在编程中，也可以没有返回值
-我们看一下Lambda表达式的一些例子 //编译器可以识别，然后就可以通过dummyLambda();来调用了 var dummyLambda = () =&gt; { Console.WriteLine(&ldquo;Hallo World from a Lambda expression!
-                  <a href="https://leizhiyuan.github.io/2012/12/18/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86/" class="post-read-more">[Read More]</a>
+                  <p>好长时间没发技术文章了，恰好看到一篇非常详细的Lambda文章。一边翻译一边学习。题目好像有点霸气。。</p>
+<h1 id="span-stylecolor-0000ffspan"><!-- raw HTML omitted --><strong>介绍</strong><!-- raw HTML omitted --></h1>
+<p>Lambda表达式是使代码更加动态，易于扩展并且更加快速（看完本文你就知道原因了）的强有力的工具。也可以用来降低潜在的错误。同时可以利用静态输入和智能提示，就像VS里一样。</p>
+<p> </p>
+<p>Lambda表达式在.net framework 3.5中提出来。并且在LINQ和ASP.NET MVC内部的一些技术中扮演了相当重要的角色。如果你考虑一下ASP.NET MVC中各类控件的实现。你就发现。奥妙就是他们大多使用了Lambda表达式。和Lambda表达式一起，使用Html扩展方法将会使得在后台创建模型成为可能。</p>
+<p>本文会讲到如下的知识。</p>
+<p>1.简短的介绍-Lambda表达式是什么，以及为什么和匿名方法不同（之前我们使用的）
+2.走近Lambda表达式的性能-在哪些情况下比起标准方法，Lambda会提高/损失性能
+3.深入-Lambda表达式在MSIL代码中是什么样
+4.一些来自JS世界的模式映射到C#中
+5.那些能够提高性能，并且代码看起来相当舒服的使用Lambda的情况。
+6.一些我提出的新模式-当然有可能别人也提出来了。但这是我的思考结果。</p>
+<p> </p>
+<p>如果你期望本文是一篇入门教程我可能要让你失望了，除非你真的很优秀并且很聪明，当然我不是这种人，所以我也想提前声明一下：为了读懂这篇文章你可能需要C#的一些高级知识，并且对C#比较了解。</p>
+<p> </p>
+<p>你应该期望本文试着解释一些事情给你，也会解释一些有趣的问题，至少对我来说是这样的。最后我会展示一些实际的例子和模式，如我所说，Lambda表达式简化了很多情况。因此写显式的模式很有用。</p>
+<h1 id="span-stylecolor-0000ff-lambdaspan"><!-- raw HTML omitted --><strong>背景知识-什么是Lambda表达式</strong><!-- raw HTML omitted --></h1>
+<p>在C#1.0中，委托被提出了，它使得传递函数成为可能，一句话就是委托就是强类型的函数指针，但委托比指针更强大。一般传递一个函数需要如下几步。
+1. 写一个委托（就像一个类）包含返回类型和参数类型
+2. 使用委托作为某一个函数的参数类型，这样，该函数就可以接受和委托描述的有着相同签名的函数了
+3. 将一个委托类型的函数传递给委托，创建一个委托实例。</p>
+<p> </p>
+<p>如果听起来很复杂，确实本来很复杂，但这是必需的。（虽然不是造火箭，但是比你认为的要更多的代码），然而步骤三不是必需的，编译器会为你做他，但是步骤1和2却是必不可少的。</p>
+<p> </p>
+<p>幸运的是C#2.0出现了泛型，现在我们也可以写泛型类，方法，更重要的是，泛型委托，然而，直到.net framework 3.5的时候。微软意识到实际上只有两种泛型委托（当然有一些不同的重载），会覆盖99%的使用情况：</p>
+<p>1.Action 没有任何输入参数，也没有输出参数。
+2.Action&lt;t1,…t16&gt; 需要1-16个参数，没有输出参数。
+3.Func&lt;t1….t16,tout&gt;需要0-16个参数，一个输出参数</p>
+<p> </p>
+<p>Action和其对应的泛型版本（仅仅是一个动作，执行一些事情）返回void的时候。Func则可以返回最后一个参数指定的类型，通过这两个委托类型，我们事实上，大部分情况下。前面提到的三步中的第一部就不用写的。而第二步仍然需要。</p>
+<p> </p>
+<p>那么如果我们想要运行代码的时候怎么做呢。在C#2.0中问题已经可以解决了。在这个版本里。我们可以创建委托方法，也就是一个匿名方法，然后这个语法一直未能流行起来，一个相当简化的匿名方法的版本类似这样：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>为了提高这种语法，欢迎来到Lambda表达式的国度。首先，这个Lambda名字怎么来的？事实上。来自于数学上的λ演算，更准确的说他是数学中一个正式的系统。用于通过变量绑定和替换来进行表达式计算，所以我们有0-N个输入参数和一个返回值，而在编程中，也可以没有返回值</p>
+<h1 id="span-stylecolor-0000fflambdaspan"><!-- raw HTML omitted -->我们看一下Lambda表达式的一些例子<!-- raw HTML omitted --></h1>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>从上面的代码段里我们可以学到一些东西</p>
+<ul>
+<li>如果我们只有一个输入参数，我们可以省略()</li>
+<li>如果我们有一个输入参数，并且向返回一个，那么我们可以省略{}和return关键字</li>
+<li>我们可以让我们的Lambda表达式异步执行，只要加上async关键字就可以了</li>
+<li>Var关键字一般都不可以用，只有在极少的情况下有才可以。
+当然我们可以使用像平常那样使用var，如果我们指定了参数类型，这是可选的。因为类型可以从委托的类型中推断出来。而下面的情况都是错误的。请看下面的例子</li>
+</ul>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p>大部分基本情况我们都知道。但是有些相当cool的东西（这使得他们在很多情况下很有用），我们考虑下面的代码片段</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p>这是可以的。因此你可以使用其他的变量。这比你想象的要更特殊。因为这里出现了捕获变量。这使得出现了一个闭包，考虑下面的情况。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p>猜猜看这段代码会发生什么。首先我们创建了一个局部变量。和两个lambda表达式，第一额Lambda表达式展示在其他局部区域里访问局部变量是可以的。这已经很让人难以置信了。这意味着我们想要保护一个变量，但事实上他仍然可以在其他方法里被访问。而不论方法是被定义在内部还是其他类的里。</p>
+<p> </p>
+<p>而第二个Lambda表达式则模拟了一个Lambda表达式可以修改外部域变量。这意味着我们可以在其他方法里修改我们的局部变量，仅仅需要传一个在对应域里创建好的Lambda表达式就可以了。因此，我认为闭包有点魔幻的色彩了。就像并行编程一样。可能导致未期望的结果。就像在并行编程中的竞争情况。</p>
+<p>为了展示一下未期望的结果。欢迎期待下一篇。。</p>
+
                 
               </div>
 
@@ -600,7 +698,7 @@ Action和其对应的泛型版本（仅仅是一个动作，执行一些事情�
   <i class="fas fa-calendar"></i>&nbsp;Posted on December 3, 2012
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -615,17 +713,24 @@ Action和其对应的泛型版本（仅仅是一个动作，执行一些事情�
               </p>
               <div class="post-entry">
                 
-                  很早的时候，学习数据结构的时候。收集了一下演示的动画。帮助理解。但是不全。今天在看KMP算法的时候。看到了福州大学的一个精品课程。。81个演示动画呢。。想打包下载收藏。话说福州大学这才是好样的。踏踏实实搞学术。
-第一种方法就是手工了。。嘎嘎。你敢么。一个个下载。。。一个个改名。。
-第二种就是用整站下载的软件了。。但是我看了一下swf的命名。我就知道下载下来意义不大。因为名字不好理解。
-第三种就是自己写个程序吧。。
-&nbsp;
-整体思路，首先访问课程页面，解析得到每一章的标题和内容，然后创立章节文件夹，得到每个动画对应的html页面，然后对html页面解析，提取swf地址。然后下载就行了。
-比较疼的地方是那个页面用的是gb2312编码。而解析神器HtmlAgilityPack，不能指定编码。只能想办法绕过了。 WebClient client = new WebClient(); MemoryStream ms = new MemoryStream(client.DownloadData(url)); HtmlDocument doc = new HtmlDocument(); doc.Load(ms, Encoding.GetEncoding(&ldquo;gb2312&rdquo;)); 绕过方法就是先使用内置类得到内存流。然后从内存中加载。
-然后呢。涉及的技术就是xpath了。参考着xpath的文档。搞定了不少。中间还有一个地方就是我没注意看。这个页面有两个文件是一样名字。。调试了几次才发现。。 using System; using System.Collections.Generic; using System.Linq; using System.Text; using HtmlAgilityPack; using System.IO; using System.Threading; using System.Net;
-namespace FzuSwf { class Program { static void Main(string[] args) { DoWork(); }
-//执行任务 static void DoWork() { HtmlWeb web = new HtmlWeb(); HtmlDocument doc = web.Load(&#34;http://ds.fzu.edu.cn/fine/resources/&#34;); HtmlNode divResource = doc.
-                  <a href="https://leizhiyuan.github.io/2012/12/03/%E6%BA%90%E7%A0%81%E6%89%93%E5%8C%85%E4%B8%8B%E8%BD%BD%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%BC%94%E7%A4%BA%E5%8A%A8%E7%94%BB/" class="post-read-more">[Read More]</a>
+                  <p>很早的时候，学习数据结构的时候。收集了一下演示的动画。帮助理解。但是不全。今天在看KMP算法的时候。看到了福州大学的一个精品课程。。81个演示动画呢。。想打包下载收藏。话说福州大学这才是好样的。踏踏实实搞学术。</p>
+<p>第一种方法就是手工了。。嘎嘎。你敢么。一个个下载。。。一个个改名。。</p>
+<p>第二种就是用整站下载的软件了。。但是我看了一下swf的命名。我就知道下载下来意义不大。因为名字不好理解。</p>
+<p>第三种就是自己写个程序吧。。</p>
+<p> </p>
+<p>整体思路，首先访问课程页面，解析得到每一章的标题和内容，然后创立章节文件夹，得到每个动画对应的html页面，然后对html页面解析，提取swf地址。然后下载就行了。</p>
+<p>比较疼的地方是那个页面用的是gb2312编码。而解析神器HtmlAgilityPack，不能指定编码。只能想办法绕过了。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p>写完运行。看着如下这个界面。。这个我只是为了让我看到进度。同时后台也在下载。</p>
+<p>我的心是冰凉的。但脖子是僵硬的。。。</p>
+<p><a href="http://leaverimage.b0.upaiyun.com/30019_o.jpg"><img src="/images/47c983d3cf2aa0922d81db29b98b67805aca39b1.jpg" alt="" title="界面"></a></p>
+<p> </p>
+<p>运行完成后。文件夹和文件自动命名完成是这样的。。</p>
+<p><a href="http://leaverimage.b0.upaiyun.com/30020_o.jpg"><img src="/images/abf22883b37a85d6c963ea74373a3f7b42b85135.jpg" alt="" title="文件夹"></a></p>
+<p><a href="http://leaverimage.b0.upaiyun.com/30021_o.jpg"><img src="/images/8ab02bde3050cecc1c5ad8e635b537ace60d0c2a.jpg" alt="" title="文件"></a></p>
+
                 
               </div>
 
@@ -659,7 +764,7 @@ namespace FzuSwf { class Program { static void Main(string[] args) { DoWork(); }
   <i class="fas fa-calendar"></i>&nbsp;Posted on November 25, 2012
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -674,11 +779,12 @@ namespace FzuSwf { class Program { static void Main(string[] args) { DoWork(); }
               </p>
               <div class="post-entry">
                 
-                  洗牌大家都知道，代码实现最广泛的一种就是产生两个随机数，然后交换这两个随机数为下标的牌，但是这种的洗牌并不能保证同概率，你可以参考本文做一些测试，本文代码没啥可说的。我写出了非常详细的注释
-ps:刚开始写那个随机数的时候，我随便给了个种子2012.。结果你懂的。。意外意外。这个全局的result数组让我很疼，代码有什么可以改进的，欢迎留言指出。不胜感激。 /*Author:Bystander *Blog:http://leaver.me Date:2012/11/24/ using System;
-class Program { static int[,] result; static void Main() { //初始牌的顺序，我只测试10张牌的情况 char[] _arr = { &lsquo;A&rsquo;, &lsquo;B&rsquo;, &lsquo;C&rsquo;, &rsquo;D&rsquo;, &lsquo;E&rsquo;, &lsquo;F&rsquo;, &lsquo;G&rsquo;, &lsquo;H&rsquo;, &lsquo;I&rsquo;, &lsquo;J&rsquo; }; result = new int[_arr.Length, _arr.Length]; //进行1000次，来统计结果的数字.
-for (int i = 0; i &amp;lt; 10000; i++) { ShuffleArray_Manual(_arr); SumCount(_arr); } int j = 0; foreach (int i in result) { if (j % result.GetLength(1) == 0) { Console.WriteLine(); } Console.
-                  <a href="https://leizhiyuan.github.io/2012/11/25/c#%E6%A8%A1%E6%8B%9F%E6%89%8B%E5%B7%A5%E6%B4%97%E7%89%8C%E9%99%84%E6%B5%8B%E8%AF%95/" class="post-read-more">[Read More]</a>
+                  <p>洗牌大家都知道，代码实现最广泛的一种就是产生两个随机数，然后交换这两个随机数为下标的牌，但是这种的洗牌并不能保证同概率，你可以参考本文做一些测试，本文代码没啥可说的。我写出了非常详细的注释</p>
+<p>ps:刚开始写那个随机数的时候，我随便给了个种子2012.。结果你懂的。。意外意外。这个全局的result数组让我很疼，代码有什么可以改进的，欢迎留言指出。不胜感激。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+
                 
               </div>
 
@@ -729,16 +835,48 @@ for (int i = 0; i &amp;lt; 10000; i++) { ShuffleArray_Manual(_arr); SumCount(_ar
               </p>
               <div class="post-entry">
                 
-                  昨天读完了程杰的《大话设计模式》。。收获颇丰。深刻感到了设计模式的伟大。。对面向接口的编程也理解了不少。刚好看到codeproject上一篇将依赖倒置的。讲到了依赖注入的方式。仔细读了一下。翻译一遍加深认识。
-高耦合的代码随着项目复杂性的不断增加，最终会变成一碗碗的意大利面条啦。。二者通常是软件设计上的问题，如果一个类对另一个类的实现了解太多。当该类改变的时候会引起更多的改变。这违反了依赖倒置原则
-而松耦合的代码设计优良。随着时间流逝，代码复杂两增大，松耦合的好处会变得更加清晰，依赖注入模式是实现松耦合的一个好的办法，本文介绍在没有依赖注入容器的情况下实现依赖注入
-GoF说了，依赖倒置的原则：
- 高层模块不应依赖于低层模块，他们都应该依赖于抽象 抽象不依赖细节，细节依赖抽象
- 刚开始写依赖倒置比较难，随着经验增长会有所改善，通过使高层模块依赖于抽象，依赖倒置成功解耦，依赖注入模式是该原则的一个实现。
-通常我们写出如下的代码：
-public class Email { public void SendEmail() { // code } } public class Notification { private Email _email; public Notification() { _email = new Email(); } public void PromotionalNotification() { _email.SendEmail(); } }  Notification类依赖Email类，这违反了DIP，而且当我们要发送短信/保存到数据库的时候，我们还要改变Notification类。 我们使用抽象类/接口解耦
-public interface IMessageService { void SendMessage(); } public class Email : IMessageService { public void SendMessage() { // code } } public class Notification { private IMessageService _iMessageService; public Notification() { _iMessageService = new Email(); } public void PromotionalNotification() { _iMessageService.
-                  <a href="https://leizhiyuan.github.io/2012/11/21/%E4%BE%9D%E8%B5%96%E5%80%92%E7%BD%AE%E5%8E%9F%E5%88%99%E5%92%8C%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E6%A8%A1%E5%BC%8F/" class="post-read-more">[Read More]</a>
+                  <p>昨天读完了程杰的《大话设计模式》。。收获颇丰。深刻感到了设计模式的伟大。。对面向接口的编程也理解了不少。刚好看到codeproject上一篇将依赖倒置的。讲到了依赖注入的方式。仔细读了一下。翻译一遍加深认识。</p>
+<p>高耦合的代码随着项目复杂性的不断增加，最终会变成一碗碗的意大利面条啦。。二者通常是软件设计上的问题，如果一个类对另一个类的实现了解太多。当该类改变的时候会引起更多的改变。这违反了依赖倒置原则</p>
+<p>而松耦合的代码设计优良。随着时间流逝，代码复杂两增大，松耦合的好处会变得更加清晰，依赖注入模式是实现松耦合的一个好的办法，本文介绍在没有依赖注入容器的情况下实现依赖注入</p>
+<p>GoF说了，依赖倒置的原则：</p>
+<blockquote>
+<p>高层模块不应依赖于低层模块，他们都应该依赖于抽象
+抽象不依赖细节，细节依赖抽象</p>
+</blockquote>
+<p>刚开始写依赖倒置比较难，随着经验增长会有所改善，通过使高层模块依赖于抽象，依赖倒置成功解耦，依赖注入模式是该原则的一个实现。</p>
+<p>通常我们写出如下的代码：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Notification类依赖Email类，这违反了DIP，而且当我们要发送短信/保存到数据库的时候，我们还要改变Notification类。
+我们使用抽象类/接口解耦</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>IMessageService 是一个接口，而Notification 类只要调用接口的方法/属性就可以了
+同时，我们把Email对象的构造移到Notification 类外面去。</p>
+<p>依赖注入模式可以实现。通常有三种方式</p>
+<ol>
+<li>构造器注入</li>
+<li>属性注入</li>
+<li>方法注入</li>
+</ol>
+<p><strong>构造器注入</strong>
+最普遍的方式，当一个类需要另一个类的依赖的时候，我们通过构造函数来提供，现在我们这样写</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>有几个好处：1.构造函数实现很简单，Notification类需要知道的很少。想要创建Notification实例的时候看构造函数就可以知道需要什么信息了。因此实现了松耦合。</p>
+<p><strong>属性注入</strong></p>
+<p>属性注入/setter注入比较不常见，当依赖可有可无的时候很有用。我们暴露一个可写的属性，允许客户提供不同的依赖实现，比如这样。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>没有了构造函数。而用属性来替换，在PromotionalNotifications 方法里我们需要检查MessageService的值或者提供相应的服务。</p>
+<p><strong>方法注入</strong>
+当依赖可以对于每个方法调用都不同的时候，我们可以通过一个方法参数来实现，比如我们的这个类还可以发送短信。我们就要使用方法注入</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>IMessageService  接口在两个类中都实现了。我们可以提供不同的类对象作为参数，这样可以有不同的调用效果。我们可以使用这三种方法实现松耦合。取决于具体的情景</p>
+<p><strong>结论</strong>
+不难吧。通过构造器注入我们就可以降低耦合度了。因此，程序员一般会使用构造器注入。当然也可以混合着使用嘛。。开心亲</p>
+
                 
               </div>
 
@@ -787,11 +925,32 @@ public interface IMessageService { void SendMessage(); } public class Email : IM
               </p>
               <div class="post-entry">
                 
-                  Throw会抛出/传递异常,通过在catch块里使用throw语句.可以改变产生的异常,比如我们可以抛出一个新的异常,throw语句有各种各样的,并且很有必要.
-例子 我们首先看一下三个方法,分别叫做A,B,C，他们使用不同的throw语句。方法A使用了无参的throw语句。这可以被看作是rethrow(继续抛出)—他会抛出已经出现的同样的异常
-继续，方法B throw一个命名的异常变量。这就不是一个完全的rethrow了—因为他虽然抛出了同样的异常。但是改变了StackTrace（堆栈轨迹），如果有必要的话，我们可以收集一些异常信息，而方法C则创建了一个新的异常。 提示:你可以通过这种方法实现自定义的的错误处理 使用throw语句的例子 using System; class Program { static void Main() { try { A(); B(); C(null); } catch (Exception ex) { Console.WriteLine(ex); } }
-static void A() { // Rethrow 语法. try { int value = 1 / int.Parse(&#34;0&#34;); } catch { throw; } } static void B() { // 过滤异常类型. try { int value = 1 / int.Parse(&#34;0&#34;); } catch (DivideByZeroException ex) { throw ex; } } static void C(string value) { // 创建新的异常.
-                  <a href="https://leizhiyuan.github.io/2012/11/18/c#%E4%B8%AD%E7%9A%84throw/" class="post-read-more">[Read More]</a>
+                  <p>Throw会抛出/传递异常,通过在catch块里使用throw语句.可以改变产生的异常,比如我们可以抛出一个新的异常,throw语句有各种各样的,并且很有必要.</p>
+<p><strong>例子</strong>
+我们首先看一下三个方法,分别叫做A,B,C，他们使用不同的throw语句。方法A使用了无参的throw语句。这可以被看作是rethrow(继续抛出)—他会抛出已经出现的同样的异常</p>
+<p>继续，方法B throw一个命名的异常变量。这就不是一个完全的rethrow了—因为他虽然抛出了同样的异常。但是改变了StackTrace（堆栈轨迹），如果有必要的话，我们可以收集一些异常信息，而方法C则创建了一个新的异常。
+提示:你可以通过这种方法实现自定义的的错误处理
+使用throw语句的例子</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>程序可能的输出结果</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><strong>Rethrow</strong></p>
+<p>接着我们看更多的关于rethrows的细节。Rethrow必须是一个无参的throw语句。如果使用throw ex，那么TargetSie(TargetSite 从堆栈跟踪中获取抛出该异常的方法。如果堆栈跟踪为空引用，TargetSite 也返回空引用。-译者注)和StackTrace都被改变了。</p>
+<p>在下面的程序里，X()方法使用了rethrow语句。Y()使用了throw ex语句。我们可以看看当rethrow语句使用的使用，引发异常的方法，也就是异常的TargetSite是在StringToNumber&mdash;一个int.Parse内部的方法。</p>
+<p>但是：当throw ex用的时候。就像在Y()里面，这个异常的TargetSite被修改到了当前的Y()方法里。
+测试rethrow的例子</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>输出</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><strong>总结：</strong>
+异常处理机制提供了可选的控制路径，它将异常逻辑和异常处理分割开来。并且可以通过throw来rethrow异常或是生成一个新的异常。
+译自：http://www.dotnetperls.com/throw</p>
+<p>本文由Bystander翻译，转载请注明<a href="http://leaver.me">http://leaver.me</a></p>
+
                 
               </div>
 
@@ -825,7 +984,7 @@ static void A() { // Rethrow 语法. try { int value = 1 / int.Parse(&#34;0&#34;
   <i class="fas fa-calendar"></i>&nbsp;Posted on October 19, 2012
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -840,24 +999,57 @@ static void A() { // Rethrow 语法. try { int value = 1 / int.Parse(&#34;0&#34;
               </p>
               <div class="post-entry">
                 
-                  本文讨论题目的内容。然后讨论IEnumerable接口如何使得foreach语句可以使用。之后会展示如果实现自定义的集合类，该集合类实现了IEnumerable接口。Yield关键字和遍历集合后面也讨论。
-背景
-一使用集合。就发现遍历集合就跟着来了。遍历集合最好的方式是实现迭代器模式-Understanding and Implementing the Iterator Pattern in C# and C++(这篇文章我过几天翻译一下) ，C#提供foreach来以一种优雅的方式遍历
-只要集合实现了IEnumerable 接口就可以用foreach来遍历。
-使用代码
-首先先看一下内置的集合类如何使用foreach来遍历的。ArrayList实现了IEnumerable 接口。我们看一下 // 看一下实现了IEnumerable 接口的集合如何遍历 ArrayList list = new ArrayList();
-list.Add(&ldquo;1&rdquo;); list.Add(2); list.Add(&ldquo;3&rdquo;); list.Add(&lsquo;4&rsquo;);
-foreach (object s in list) { Console.WriteLine(s); } &nbsp;
-遍历泛型集合类
-Arraylist 是一个通用集合类，遍历泛型集合类也可以。因为这些泛型集合类实现了IEnumerable&lt;T&gt;接口，看一下吧。 // 遍历实现了IEnumerable&lt;T&gt;接口的泛型类 List&lt;string&gt; listOfStrings = new List&lt;string&gt;();
-listOfStrings.Add(&ldquo;one&rdquo;); listOfStrings.Add(&ldquo;two&rdquo;); listOfStrings.Add(&ldquo;three&rdquo;); listOfStrings.Add(&ldquo;four&rdquo;);
-foreach (string s in listOfStrings) { Console.WriteLine(s); } &nbsp;
-发现了吧。我们自定义的集合类或是泛型集合类应该实现IEnumerable和IEnumerable&lt;T&gt;接口。这样就可以遍历了。
-&nbsp;
-理解yield关键字
-在写个实现接口的例子之前，先理解一下yield关键字，yield会记录集合位置。当从一个函数返回一个值的时候，yield可以用。
-如下的普通的方法。不论调用多少次，都只会返回一个return static int SimpleReturn() { return 1; return 2; return 3; }
-                  <a href="https://leizhiyuan.github.io/2012/10/19/%E5%AE%9E%E7%8E%B0ienumerable%E6%8E%A5%E5%8F%A3%E7%90%86%E8%A7%A3yield%E5%85%B3%E9%94%AE%E5%AD%97/" class="post-read-more">[Read More]</a>
+                  <p>本文讨论题目的内容。然后讨论IEnumerable接口如何使得foreach语句可以使用。之后会展示如果实现自定义的集合类，该集合类实现了IEnumerable接口。Yield关键字和遍历集合后面也讨论。</p>
+<p><strong>背景</strong></p>
+<p>一使用集合。就发现遍历集合就跟着来了。遍历集合最好的方式是实现迭代器模式-<a href="http://www.codeproject.com/Articles/362986/Understanding-and-Implementing-the-Iterator-Patter">Understanding and Implementing the Iterator Pattern in C# and C++</a>(这篇文章我过几天翻译一下) ，C#提供foreach来以一种优雅的方式遍历</p>
+<p>只要集合实现了IEnumerable 接口就可以用foreach来遍历。</p>
+<p><strong>使用代码</strong></p>
+<p>首先先看一下内置的集合类如何使用foreach来遍历的。ArrayList实现了IEnumerable 接口。我们看一下</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p><strong>遍历泛型集合类</strong></p>
+<p>Arraylist 是一个通用集合类，遍历泛型集合类也可以。因为这些泛型集合类实现了IEnumerable&lt;T&gt;接口，看一下吧。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p>发现了吧。我们自定义的集合类或是泛型集合类应该实现IEnumerable和IEnumerable&lt;T&gt;接口。这样就可以遍历了。</p>
+<p> </p>
+<p><strong>理解yield关键字</strong></p>
+<p>在写个实现接口的例子之前，先理解一下yield关键字，yield会记录集合位置。当从一个函数返回一个值的时候，yield可以用。</p>
+<p>如下的普通的方法。不论调用多少次，都只会返回一个return</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p>原因就是普通的return语句不保留函数的返回状态。每一次都是新的调用。然后返回第一个值。</p>
+<p>但是使用下面的语句替换后就不一样。当函数第二次调用的时候。会从上次返回的地方继续调用</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>显然返回1，2，3，唯一要注意的就是函数需要返回IEnumerable。，然后通过foreach调用。</p>
+<p><strong>在自定义的集合类里实现Ienumerable接口</strong></p>
+<p>现在如果我们在我们的自定义集合里定义一个方法。来迭代所有元素。然后通过使用yield返回。我们就可以成功了。</p>
+<p>好。我们定义MyArrayList 类，实现IEnumerable 接口，该接口就会强制我们实现GetEnumerator 函数。这里我们就要使用yield了。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p> </p>
+<p>之后你就可以用foreach遍历了。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p>这个类啊。没写好。也不完整。只要是让你理解。。模拟一下而已。</p>
+<p>自定义泛型类里实现Ienumerable&lt;T&gt;接口</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p>之后就可以使用foreach了。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>** 源代码下载**</p>
+<p>[downloadicon href=http://pan.baidu.com/share/link?shareid=86013&amp;uk=1493685990]EnumerableDemo.7z[/downloadicon]</p>
+<p>原文地址： <a href="http://www.codeproject.com/Articles/474678/A-Beginners-Tutorial-on-Implementing-IEnumerable-I">A-Beginners-Tutorial-on-Implementing-IEnumerable-I</a></p>
+<p>著作权声明：本文由<a href="http://leaver.me/">http://leaver.me</a> 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</p>
+
                 
               </div>
 
@@ -942,7 +1134,7 @@ foreach (string s in listOfStrings) { Console.WriteLine(s); } &nbsp;
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

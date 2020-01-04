@@ -15,21 +15,22 @@
 1、外键的引用类型不一样，如主键是int外键是char
 2、找不到主表中引用的列
 3、主键和外键的字符编码不一致，也可能存储引擎不一样
-对于第一个问题，检查一下自己的主外键记录数据类型是否一样，改了就行了，对于第二个问题，同样的道理，确定你主表中有对应的列。对于第三个问题 create table pw_test( uid int unsigned not null, primary key (uid), foreign key (uid) references pw_other(uid) on delete cascade on update cascade )ENGINE = MYISAM; &nbsp;
-括号外面的语句设置了引擎。实战过程中通过。中间的外键设置了delete 和update约束。uid引用了pw_other表中的uid键 记下语法，出现问题的时候就可以用了。">
+对于第一个问题，检查一下自己的主外键记录数据类型是否一样，改了就行了，对于第二个问题，同样的道理，确定你主表中有对应的列。对于第三个问题
+ 括号外面的语句设置了引擎。实战过程中通过。中间的外键设置了delete 和update约束。uid引用了pw_other表中的uid键 记下语法，出现问题的时候就可以用了。">
   <meta property="og:description" content="最近在做数据库大作业，采用mysql建立数据库的时候出现了这个情况，查了一下，解决了。
 出现问题的大致可能情况
 1、外键的引用类型不一样，如主键是int外键是char
 2、找不到主表中引用的列
 3、主键和外键的字符编码不一致，也可能存储引擎不一样
-对于第一个问题，检查一下自己的主外键记录数据类型是否一样，改了就行了，对于第二个问题，同样的道理，确定你主表中有对应的列。对于第三个问题 create table pw_test( uid int unsigned not null, primary key (uid), foreign key (uid) references pw_other(uid) on delete cascade on update cascade )ENGINE = MYISAM; &nbsp;
-括号外面的语句设置了引擎。实战过程中通过。中间的外键设置了delete 和update约束。uid引用了pw_other表中的uid键 记下语法，出现问题的时候就可以用了。">
+对于第一个问题，检查一下自己的主外键记录数据类型是否一样，改了就行了，对于第二个问题，同样的道理，确定你主表中有对应的列。对于第三个问题
+ 括号外面的语句设置了引擎。实战过程中通过。中间的外键设置了delete 和update约束。uid引用了pw_other表中的uid键 记下语法，出现问题的时候就可以用了。">
   <meta name="twitter:description" content="最近在做数据库大作业，采用mysql建立数据库的时候出现了这个情况，查了一下，解决了。
 出现问题的大致可能情况
 1、外键的引用类型不一样，如主键是int外键是char
 2、找不到主表中引用的列
 3、主键和外键的字符编码不一致，也可能存储引擎不一样
-对于第一个问题，检查一下自己的主外键记录数据类型是否一样，改了就行了，对于第二个问题，同样的道理，确定你主表中有对应的列。对于第三个问题 create …">
+对于第一个问题，检查一下自己的主外键记录数据类型是否一样，改了就行了，对于第二个问题，同样的道理，确定你主表中有对应的列。对于第三个问题
+ 括号外面的语 …">
   <meta name="author" content="bystander"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -78,9 +79,9 @@
     "name" : "bystander"
   },
   "headline": "MySQL ERROR 1005: Can\x27t create table  (errno: 150)解决办法",
-  "description" : "最近在做数据库大作业，采用mysql建立数据库的时候出现了这个情况，查了一下，解决了。\n出现问题的大致可能情况\n1、外键的引用类型不一样，如主键是int外键是char\n2、找不到主表中引用的列\n3、主键和外键的字符编码不一致，也可能存储引擎不一样\n对于第一个问题，检查一下自己的主外键记录数据类型是否一样，改了就行了，对于第二个问题，同样的道理，确定你主表中有对应的列。对于第三个问题 create table pw_test( uid int unsigned not null, primary key (uid), foreign key (uid) references pw_other(uid) on delete cascade on update cascade )ENGINE = MYISAM; \x26nbsp;\n括号外面的语句设置了引擎。实战过程中通过。中间的外键设置了delete 和update约束。uid引用了pw_other表中的uid键 记下语法，出现问题的时候就可以用了。",
+  "description" : "最近在做数据库大作业，采用mysql建立数据库的时候出现了这个情况，查了一下，解决了。\n出现问题的大致可能情况\n1、外键的引用类型不一样，如主键是int外键是char\n2、找不到主表中引用的列\n3、主键和外键的字符编码不一致，也可能存储引擎不一样\n对于第一个问题，检查一下自己的主外键记录数据类型是否一样，改了就行了，对于第二个问题，同样的道理，确定你主表中有对应的列。对于第三个问题\n 括号外面的语句设置了引擎。实战过程中通过。中间的外键设置了delete 和update约束。uid引用了pw_other表中的uid键 记下语法，出现问题的时候就可以用了。",
   "inLanguage" : "en",
-  "wordCount":  35 ,
+  "wordCount":  9 ,
   "datePublished" : "2012-06-10T20:02:31",
   "dateModified" : "2012-06-10T20:02:31",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -105,8 +106,8 @@
 1、外键的引用类型不一样，如主键是int外键是char
 2、找不到主表中引用的列
 3、主键和外键的字符编码不一致，也可能存储引擎不一样
-对于第一个问题，检查一下自己的主外键记录数据类型是否一样，改了就行了，对于第二个问题，同样的道理，确定你主表中有对应的列。对于第三个问题 create table pw_test( uid int unsigned not null, primary key (uid), foreign key (uid) references pw_other(uid) on delete cascade on update cascade )ENGINE = MYISAM; &nbsp;
-括号外面的语句设置了引擎。实战过程中通过。中间的外键设置了delete 和update约束。uid引用了pw_other表中的uid键 记下语法，出现问题的时候就可以用了。">
+对于第一个问题，检查一下自己的主外键记录数据类型是否一样，改了就行了，对于第二个问题，同样的道理，确定你主表中有对应的列。对于第三个问题
+ 括号外面的语句设置了引擎。实战过程中通过。中间的外键设置了delete 和update约束。uid引用了pw_other表中的uid键 记下语法，出现问题的时候就可以用了。">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2012/06/10/mysql-error-1005-cant-create-table-errno-150%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" />
 <meta property="og:type" content="website" />
@@ -118,7 +119,8 @@
 1、外键的引用类型不一样，如主键是int外键是char
 2、找不到主表中引用的列
 3、主键和外键的字符编码不一致，也可能存储引擎不一样
-对于第一个问题，检查一下自己的主外键记录数据类型是否一样，改了就行了，对于第二个问题，同样的道理，确定你主表中有对应的列。对于第三个问题 create …">
+对于第一个问题，检查一下自己的主外键记录数据类型是否一样，改了就行了，对于第二个问题，同样的道理，确定你主表中有对应的列。对于第三个问题
+ 括号外面的语 …">
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -129,7 +131,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -314,25 +316,14 @@
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <p>最近在做数据库大作业，采用mysql建立数据库的时候出现了这个情况，查了一下，解决了。</p>
-
 <p>出现问题的大致可能情况</p>
-
 <p>1、外键的引用类型不一样，如主键是int外键是char</p>
-
 <p>2、找不到主表中引用的列</p>
-
 <p>3、主键和外键的字符编码不一致，也可能存储引擎不一样</p>
-
-<p>对于第一个问题，检查一下自己的主外键记录数据类型是否一样，改了就行了，对于第二个问题，同样的道理，确定你主表中有对应的列。对于第三个问题
-<pre class="lang:pgsql decode:true  crayon-selected">create table pw_test(
-uid int unsigned not null,
-primary key (uid),
-foreign key (uid) references pw_other(uid)
-on delete cascade
-on update cascade
-)ENGINE = MYISAM;</pre>
-&nbsp;</p>
-
+<p>对于第一个问题，检查一下自己的主外键记录数据类型是否一样，改了就行了，对于第二个问题，同样的道理，确定你主表中有对应的列。对于第三个问题</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
 <p>括号外面的语句设置了引擎。实战过程中通过。中间的外键设置了delete 和update约束。uid引用了pw_other表中的uid键
 记下语法，出现问题的时候就可以用了。</p>
 
@@ -448,7 +439,7 @@ on update cascade
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

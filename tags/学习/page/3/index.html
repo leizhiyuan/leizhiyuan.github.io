@@ -51,7 +51,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -234,7 +234,7 @@
   <i class="fas fa-calendar"></i>&nbsp;Posted on February 8, 2014
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;4&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -251,12 +251,32 @@
                 
                   本篇是用来填上一篇 挖下的坑的。
 1.java调用webservice
-有一些已有的webservice服务，由xfire生成发布，有些有参数，有些无参数，无参数的直接我直接使用org.codehaus.xfire这个包里的Client来动态生成客户端。然后调用就可以了。非常简单 Client client = null; try { client = new Client( new URL( &ldquo;http://leaver.me/testService?wsdl&quot;)); client.invoke(&ldquo;refreshAllCache&rdquo;, new Object[0]);
-} catch (MalformedURLException e) { e.printStackTrace(); } catch (Exception e) { e.printStackTrace(); }&lt;/pre&gt; 但对于有参的，且是服务器自定义的类作为参数的时候，实在是搞不定。。不管是把自定义的类放到本地，包名一致，在invoke的时候生成这个对象还是其他什么方法。都无法完成。
+有一些已有的webservice服务，由xfire生成发布，有些有参数，有些无参数，无参数的直接我直接使用org.codehaus.xfire这个包里的Client来动态生成客户端。然后调用就可以了。非常简单
+但对于有参的，且是服务器自定义的类作为参数的时候，实在是搞不定。。不管是把自定义的类放到本地，包名一致，在invoke的时候生成这个对象还是其他什么方法。都无法完成。
 最终换了直接发送soap报文来完成。dirty hack啊。如果你有一些好的方法希望不吝赐教。
-解决方案来源自stackoverflow，因为stackoverflow现在国内好像有时候打不开。因此把代码贴过来。有疑问的话留言讨论。 import javax.xml.soap.; import javax.xml.transform.; import javax.xml.transform.stream.*;
-public class SOAPClientSAAJ {
-/** * Starting point for the SAAJ - SOAP Client Testing */ public static void main(String args[]) { try { // Create SOAP Connection SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.
+解决方案来源自stackoverflow，因为stackoverflow现在国内好像有时候打不开。因此把代码贴过来。有疑问的话留言讨论。
+2.Access restriction on class due to restriction on required library rt.jar? 报错
+总么都感觉是环境问题，系统bug。解决如下：
+ 进入project properties的 Build Path 设置里. 移除 JRE System Library 再添加回来，方法是: 选择 &ldquo;Add Library&rdquo; ，然后选择 JRE System Library.   3.SSHManager类报错：com.jcraft.jsch.JSchException: UnknownHostKey
+我使用的一个SSHManager类如下：
+报这个错是因为
+连接这段代码里少了config.put(&ldquo;StrictHostKeyChecking&rdquo;, &ldquo;no&rdquo;);这段设置，这个是去掉了严格的安全检查，一般只用于测试目的。
+4.navicat连接oracle数据库
+之前使用PL/SQL操作Oracle数据库，使用Heidisql操作mysql数据库。。切换麻烦。而且PL/SQL搜索的时候中文有问题。于是打算使用navicat统一管理
+方法是：
+1.首先下载Instant Client 的32位版本和Navicat Premium
+2.然后解压Instant Client，配置navicat
+
+选择oci文件即可
+然后新建oracle配置，选择basic模式，其他的根据你的数据库信息自己填写即可。
+ 5.HttpClient的logger日志实在太多了
+大人，实在太多了。看不过来啊。附赠一篇log4j配置文件详解
+在log4j.properties文件中添加如下配置信息
+log4j.logger.httpclient.wire.header=INFO
+log4j.logger.httpclient.wire.content=INFO
+log4j.logger.org.apache.commons.httpclient = INFO
+最后附赠一些实用的工具
+http://www.freeformatter.com/ 程序员必备。各类转换，包括转义工具，格式校验工具。效果很好。
                   <a href="https://leizhiyuan.github.io/2014/02/08/%E7%AC%94%E8%AE%B0%E5%86%99%E4%BB%A3%E7%A0%81%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB%E4%B8%8B/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -310,15 +330,38 @@ public class SOAPClientSAAJ {
               </p>
               <div class="post-entry">
                 
-                  有一次遇到了，查了查。原文地址
-Java中取资源时，经常用到Class.getResource和ClassLoader.getResource，这里来看看他们在取资源文件时候的路径问题。
-Class.getResource(String path)  path不以’/&lsquo;开头时，默认是从此类所在的包下取资源； path 以’/&lsquo;开头时，则是从ClassPath根下获取；  什么意思呢？看下面这段代码的输出结果就明白了：  package testpackage; public class TestMain { public static void main(String[] args) { System.out.println(TestMain.class.getResource(&ldquo;&rdquo;)); System.out.println(TestMain.class.getResource(&ldquo;/&rdquo;)); } }  输出结果：  file:/E:/workspace/Test/bin/testpackage/ file:/E:/workspace/Test/bin/  上面说到的【path以’/&lsquo;开头时，则是从ClassPath根下获取；】在这里就是相当于bin目录(Eclipse环境下)。
-再来一个实例，假设有如下Project结构：
+                  <p>有一次遇到了，查了查。<a href="http://www.cnblogs.com/yejg1212/p/3270152.html">原文地址</a></p>
+<p>Java中取资源时，经常用到Class.getResource和ClassLoader.getResource，这里来看看他们在取资源文件时候的路径问题。</p>
+<h2 id="classgetresourcestring-path">Class.getResource(String path)</h2>
+<!-- raw HTML omitted -->
+<p>再来一个实例，假设有如下Project结构：</p>
+<p><a href="http://leaverimage.b0.upaiyun.com/2013/12/o_PackageStructure1.png"><img src="/images/94eb328bce2cf9ff32430cc4075af46091202a22.png" alt="o_PackageStructure1"></a></p>
+<p>如果我们想在TestMain.java中分别取到1~3.properties文件，该怎么写路径呢？代码如下：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p>※Class.getResource和Class.getResourceAsStream在使用时，路径选择上是一样的。</p>
+<p> </p>
+<p> </p>
+<h2 id="classgetclassloadergetresourcestring-path">Class.getClassLoader（）.getResource(String path)</h2>
+<!-- raw HTML omitted -->
+<p>如果有同样的Project结构</p>
+<p><a href="http://leaverimage.b0.upaiyun.com/2013/12/o_PackageStructure.png"><img src="/images/46e184c9601d96bbb9fbb19e475c7909c85fe52c.png" alt="o_PackageStructure"></a></p>
+<p>使用Class.getClassLoader（）.getResource(String path)可以这么写：</p>
+<!-- raw HTML omitted -->
+<p>public class TestMain {
+public static void main(String[] args) {
+TestMain t = new TestMain();
+System.out.println(t.getClass().getClassLoader().getResource(&quot;&quot;));</p>
+<pre><code>    System.out.println(t.getClass().getClassLoader().getResource(&quot;1.properties&quot;));
+    System.out.println(t.getClass().getClassLoader().getResource(&quot;testpackage/2.properties&quot;));
+    System.out.println(t.getClass().getClassLoader().getResource(&quot;testpackage/subpackage/3.properties&quot;));
+}
+</code></pre>
+<p>}<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<p>※Class.getClassLoader（）.getResource和Class.getClassLoader（）.getResourceAsStream在使用时，路径选择上也是一样的。</p>
 
-如果我们想在TestMain.java中分别取到1~3.properties文件，该怎么写路径呢？代码如下： package testpackage;
-public class TestMain {
-public static void main(String[] args) { // 当前类(class)所在的包目录 System.out.println(TestMain.class.getResource(&#34;&#34;)); // class path根目录 System.out.println(TestMain.class.getResource(&#34;/&#34;)); // TestMain.class在&amp;lt;bin&amp;gt;/testpackage包中 // 2.properties 在&amp;lt;bin&amp;gt;/testpackage包中 System.out.println(TestMain.class.getResource(&#34;2.properties&#34;)); // TestMain.class在&amp;lt;bin&amp;gt;/testpackage包中 // 3.properties 在&amp;lt;bin&amp;gt;/testpackage.subpackage包中 System.out.println(TestMain.class.getResource(&#34;subpackage/3.properties&#34;)); // TestMain.
-                  <a href="https://leizhiyuan.github.io/2013/12/14/%E8%97%8Fclass.getresource%E5%92%8Cclassloader.getresource%E4%B8%8D%E5%90%8C%E7%82%B9/" class="post-read-more">[Read More]</a>
                 
               </div>
 
@@ -367,11 +410,24 @@ public static void main(String[] args) { // 当前类(class)所在的包目录 S
               </p>
               <div class="post-entry">
                 
-                  首先什么是代理？ 所谓代理呢也就是在调用实现类的方法时，可以在方法执行前后做额外的工作，这个就是代理。  那动态代理呢，官方解释是：  Java 动态代理机制的出现，使得 Java 开发人员不用手工编写代理类，只要简单地指定一组接口及委托类对象，便能动态地获得代理类。代理类会负责将所有的方法调用分派到委托对象上反射执行，在分派执行的过程中，开发人员还可以按需调整委托类对象及其功能，这是一套非常灵活有弹性的代理框架。 老湿，你说的是个毛啊，完全没看懂啊！
-我更喜欢另一种通俗的解释，官方的解释总是高度抽象的，等用了一段时间才能理解体会  动态代理实现了日志和业务的分开，也就是某个类只是要提供了某些业务，比如银行取款业务。这个类实现了取款业务的同时也需要实现日志功能，如果不用动态代理的话，那么由此一来该类代码里面已经额外地添加了自己不该添加的日志功能能代码。所以我们就得使用动态代理把它的业务代码和日志功能代码分开。所以用到了动态代理概念，spring里面的AOP就是一个很好的例子。  不直观啊，老湿，能再给力一点不？ 额，这样的话，我们来看一个例子，要用到的两个类 实现java.lang.reflect.InvocationHandler接口提供一个执行处理器，也就是真正做事的，然后通过java.lang.reflect.Proxy得到一个代理对象，通过这个代理对象来执行业务方法,在业务方法被调用的同时，执行处理器会被自动调用。 记住，动态代理只能对接口 首先业务接口：  public interface HelloWorld { public void sayHelloWorld(); } 然后我们是这样写的实现 public class HelloWorldImpl implements HelloWorld { public void sayHelloWorld() { System.out.println(&ldquo;Hello World!&rdquo;); } } 后来我们觉得执行这个方法前能不能做点其他啥事呢，比如写个日志？见个妹子？啥，这段代码不让改了，改了的话，业务方法和日志混合的一塌糊涂啊，以后想改个日志格式你来写啊
-那我们就得定义一个拦截器/执行处理器了。 public class HelloWorldHandler implements InvocationHandler { //目标对象 private Object targetObject;
-public HelloWorldHandler(Object targetObject){ this.targetObject = targetObject; } public Object invoke(Object proxy, Method method, Object[] args) throws Throwable { System.
-                  <a href="https://leizhiyuan.github.io/2013/11/24/java%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E5%AE%9E%E4%BE%8B/" class="post-read-more">[Read More]</a>
+                  <p>首先什么是代理？</p>
+<!-- raw HTML omitted -->
+<p>我更喜欢另一种通俗的解释，官方的解释总是高度抽象的，等用了一段时间才能理解体会</p>
+<!-- raw HTML omitted -->
+<p>那我们就得定义一个拦截器/执行处理器了。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这客户端咋用啊，老湿</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>看到没，通过Proxy类的newProxyInstance方法，传入类加载器，类接口，和这个处理器，我们就获得一个代理</p>
+<p>执行结果是这样的</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>恩，电脑没死机，是这样的</p>
+<p> </p>
+<!-- raw HTML omitted -->
+
                 
               </div>
 
@@ -405,7 +461,7 @@ public HelloWorldHandler(Object targetObject){ this.targetObject = targetObject;
   <i class="fas fa-calendar"></i>&nbsp;Posted on September 20, 2013
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;3&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -421,10 +477,59 @@ public HelloWorldHandler(Object targetObject){ this.targetObject = targetObject;
               <div class="post-entry">
                 
                   本文通过Maven完成一个简单的Web项目（注意，Spring配置不是重点，看看就行）
-1.从Maven模板创建Web应用程序 命令格式如下： mvn archetype:generate -DgroupId={project-packaging} -DartifactId={project-name} -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false 这就告诉Maven从**maven-archetype-webapp **这个模板来创建
-友情提示：是不是太难记了..好吧，直接输入 mvn archetype:generate 根据向导来创建把。。
-比如我这样写： &gt; mvn archetype:generate -DgroupId=com.mkyong -DartifactId=CounterWebApp -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false [INFO] Scanning for projects&hellip; [INFO]
-[INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash; [INFO] Building Maven Stub Project (No POM) 1 [INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash; [INFO] [INFO] Generating project in Batch mode [INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;- [INFO] Using following parameters for creating project from Old (1.x) Archetype: maven-archetype-webapp:1.0 [INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;- [INFO] Parameter: groupId, Value: com.mkyong [INFO] Parameter: packageName, Value: com.
+1.从Maven模板创建Web应用程序 命令格式如下：
+这就告诉Maven从**maven-archetype-webapp **这个模板来创建
+友情提示：是不是太难记了..好吧，直接输入
+根据向导来创建把。。
+比如我这样写：
+就创建了一个包名为com.mkyong,类名为CounterWebApp的项目了
+2.Maven的Web程序目录结构 标准的web.xml部署描述文件生成了
+对结构有疑问的去这里
+生成的pom.xml文件如下
+没啥疑问的。web.xml文件则如下：
+index.jsp内容是：
+3.转换以支持Eclipse 为了使Maven的web项目支持Eclipse，在命令行下，cd到CounterWebApp目录下，然后输入这个命令
+-Dwtpversion=2.0参数是必需的，这个参数指明了是web项目，然后导入到eclipse里就行了。从导入的工程ico可以看出是个web项目
+图一
+  
+不要迷惑，如果我们只输入
+会转换成java项目，而不是web项目的。
+好了，现在项目已经准备好部署了，eclipse里的tomcat server插件装好，然后启动项目
+图二
+
+可以通过_http://localhost:8080/CounterWebApp/_地址来访问
+4.更新pom文件 为了使Maven项目支持Spring MVC框架，我们需要修改pom.xml文件
+1.添加编译插件指定jdk6来编译
+2.添加Spring框架依赖
+3.升级JUnit到4.1.1
+5.Spring MVC 松耦合 创建Spring MVC控制器类，有两个方法，打印信息
+然后，创建Spring配置文件，定义视图解析器
+然后更新一下web.xml文件，通过Spring的监听器ContextLoaderListener把Spring框架集成进去
+然移动index.jsp到WEB-INF目录里，以防用户直接访问他，同时我们编辑，增加${message}变量，也就是controller控制器传过来的值到页面
+最终的页面结构是：
+图三
+
+6.Eclipse+Tomcat 为了通过Eclipse的Tomcat插件开始/调试项目，需要再执行一次下面的命令，使得所有的依赖附加完成
+在没执行以前，项目依赖是空的
+图四
+
+执行完以后，就都有了
+图五
+
+重要！许多人就是没有第二次执行这个命令导致无法开始/调试，如果有问题，右击你的项目属性，看看依赖是否为空
+7.Maven打包 web项目打包成war。放在target目录
+进入项目目录，执行一下就可以了
+然后把target目录的CountWebApp.war文件拷贝，并部署到你的web容器里就行了
+8.Demo演示 打开_http://localhost:8080/CounterWebApp/welcome_
+可以看到
+图六
+
+我们传个参数进去
+http://localhost:8080/CounterWebApp/welcome/mkyong
+就可以看到效果了
+图七
+
+9.Demo下载
                   <a href="https://leizhiyuan.github.io/2013/09/20/%E4%BD%BF%E7%94%A8maven%E5%88%9B%E5%BB%BAweb%E9%A1%B9%E7%9B%AE/" class="post-read-more">[Read More]</a>
                 
               </div>
@@ -474,58 +579,32 @@ public HelloWorldHandler(Object targetObject){ this.targetObject = targetObject;
               </p>
               <div class="post-entry">
                 
-                  
-
-<p>Maven不需要作为服务组件安装到windows上，仅仅需要下载，解压，然后配置一下环境变量就行了</p>
-
-<h2 id="1-jdk和java-home">1.JDK和JAVA_HOME</h2>
-
+                  <p>Maven不需要作为服务组件安装到windows上，仅仅需要下载，解压，然后配置一下环境变量就行了</p>
+<h2 id="1jdkjava-home">1.JDK和JAVA_HOME</h2>
 <p>确保JDK已经安装，同时JAVA_HOME变量已经添加到了windows环境变量里，指向jdk目录</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/2013/09/maven-java-home.png"><img src="/images/3161766919fb6fd118699cc45753f0740be3a6b4.png" alt="maven-java-home" /></a></p>
-
-<p>&nbsp;</p>
-
-<h2 id="2-下载maven">2.下载Maven</h2>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/2013/09/maven-java-home.png"><img src="/images/3161766919fb6fd118699cc45753f0740be3a6b4.png" alt="maven-java-home"></a></p>
+<p> </p>
+<h2 id="2maven">2.下载Maven</h2>
 <p>去<a href="http://maven.apache.org/download.html">Maven主页</a>,选个版本，点击下载</p>
-
-<h2 id="3-解压">3.解压</h2>
-
+<h2 id="3">3.解压</h2>
 <p>解压下载的zip文件，重命名，比如我放到D盘的Maven目录</p>
-
-<h2 id="4-添加maven-home环境变量">4.添加MAVEN_HOME环境变量</h2>
-
+<h2 id="4maven-home">4.添加MAVEN_HOME环境变量</h2>
 <p>添加一个新的环境变量MAVEN_HOME到环境变量，指向Maven目录</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/2013/09/maven-maven-home.png"><img src="/images/5a2878c27f389f27afa72040040a0cc54312b388.png" alt="maven-maven-home" /></a></p>
-
-<p>&nbsp;</p>
-
-<h2 id="5-添加path变量">5.添加path变量</h2>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/2013/09/maven-maven-home.png"><img src="/images/5a2878c27f389f27afa72040040a0cc54312b388.png" alt="maven-maven-home"></a></p>
+<p> </p>
+<h2 id="5path">5.添加path变量</h2>
 <p>更新Path变量，把Maven的bin目录添加进去，这样就可以在任何地方执行mvn命令了</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/2013/09/Maven-Path.png"><img src="/images/ec2bd24fcc118b64cb10405acb807c59490c10d6.png" alt="Maven-Path" /></a></p>
-
-<p>&nbsp;</p>
-
-<h2 id="6-验证">6.验证</h2>
-
-<p>打开命令行，输入
-<pre class="lang:default decode:true">mvn -version</pre>
-如果看到类似下面的
-<pre class="lang:default decode:true">C:\Documents and Settings\mkyong&gt;mvn -version
-Apache Maven 2.2.1 (r801777; 2009-08-07 03:16:01+0800)
-Java version: 1.6.0_13
-Java home: C:\Program Files\Java\jdk1.6.0_13\jre
-Default locale: en_US, platform encoding: Cp1252
-OS name: &ldquo;windows xp&rdquo; version: &ldquo;5.1&rdquo; arch: &ldquo;x86&rdquo; Family: &ldquo;windows&rdquo;</pre>
-Maven已经成功的安装配置了。</p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/2013/09/Maven-Path.png"><img src="/images/ec2bd24fcc118b64cb10405acb807c59490c10d6.png" alt="Maven-Path"></a></p>
+<p> </p>
+<h2 id="6">6.验证</h2>
+<p>打开命令行，输入</p>
+<!-- raw HTML omitted -->
+<p>如果看到类似下面的</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Maven已经成功的安装配置了。</p>
 <p>老外写的太详细了。。。</p>
-
-<p>&nbsp;</p>
+<p> </p>
 
                 
               </div>
@@ -560,7 +639,7 @@ Maven已经成功的安装配置了。</p>
   <i class="fas fa-calendar"></i>&nbsp;Posted on September 19, 2013
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -575,15 +654,77 @@ Maven已经成功的安装配置了。</p>
               </p>
               <div class="post-entry">
                 
-                  看了很多个例子，发现这个最好，译文中会带有我的一些了理解，有问题欢迎指出。
-0.Maven是什么？ Apache Maven，是一个软件（特别是Java软件）项目管理及自动构建工具，由Apache软件基金会所提供。基于项目对象模型（缩写：POM）概念，Maven利用一个中央信息片断能管理一个项目的构建、报告和文档等步骤。
-可以看到，核心就是项目管理和自动构建了，从例子中将会体会更深。本例创建一个随机数生成程序。
-1.从Maven模板创建项目 Maven的环境变量配置和java类似，直接添加系统变量MAVEN_HOME指向你下载的maven目录，然后将bin目录添加到path环境变量里。
-在命令行下，进入到你想存储项目的位置，比如，我自己有个叫work的目录，那么我就cd到work目录，然后按下面的格式输入命令 mvn archetype:generate -DgroupId={project-packaging} -DartifactId={project-name} -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false 这是告诉Maven从**maven-archetype-quickstart **创建一个java项目，如果你这个参数不填，那么会列出一个列表，让你选择你想创建什么类型，比如web项目啊，啥的。
-友情提示：是不是太难记了..好吧，直接输入 mvn archetype:generate 根据向导来创建把。。
-比如 &gt;mvn archetype:generate -DgroupId=com.mkyong -DartifactId=NumberGenerator -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false [INFO] Scanning for projects&hellip; [INFO]
-[INFO] &ndash; omitted for readability [INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;- [INFO] Using following parameters for creating project from Old (1.x) Archetype: maven-archetype-quickstart:1.0 [INFO] &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;- [INFO] Parameter: groupId, Value: com.mkyong [INFO] Parameter: packageName, Value: com.mkyong [INFO] Parameter: package, Value: com.mkyong [INFO] Parameter: artifactId, Value: NumberGenerator [INFO] Parameter: basedir, Value: /Users/mkyong/Documents/workspace [INFO] Parameter: version, Value: 1.
-                  <a href="https://leizhiyuan.github.io/2013/09/19/maven%E5%AE%9E%E4%BE%8B%E5%85%A5%E9%97%A8-%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90/" class="post-read-more">[Read More]</a>
+                  <p>看了很多个例子，发现这个最好，译文中会带有我的一些了理解，有问题欢迎指出。</p>
+<h2 id="0maven">0.Maven是什么？</h2>
+<p>Apache Maven，是一个软件（特别是Java软件）项目管理及自动构建工具，由Apache软件基金会所提供。基于项目对象模型（缩写：POM）概念，Maven利用一个中央信息片断能管理一个项目的构建、报告和文档等步骤。</p>
+<p>可以看到，核心就是项目管理和自动构建了，从例子中将会体会更深。本例创建一个随机数生成程序。</p>
+<h2 id="1maven">1.从Maven模板创建项目</h2>
+<p>Maven的环境变量配置和java类似，直接添加系统变量MAVEN_HOME指向你下载的maven目录，然后将bin目录添加到path环境变量里。</p>
+<p>在命令行下，进入到你想存储项目的位置，比如，我自己有个叫work的目录，那么我就cd到work目录，然后按下面的格式输入命令</p>
+<!-- raw HTML omitted -->
+<p>这是告诉Maven从**maven-archetype-quickstart **创建一个java项目，如果你这个参数不填，那么会列出一个列表，让你选择你想创建什么类型，比如web项目啊，啥的。</p>
+<p>友情提示：是不是太难记了..好吧，直接输入</p>
+<!-- raw HTML omitted -->
+<p>根据向导来创建把。。</p>
+<p>比如</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这里的groupId就是包名，artifactId就是类名，以后具体的一些其他参数我希望有时间可以跟大家分享。</p>
+<h2 id="2maven">2.Maven目录结构</h2>
+<p>上面的命令第一次执行的时候会从apache网站下载maven的一些其他东西，所以务必保持联网。执行成功后，会生成一个这样的目录结构</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这里main目录是我们的程序住代码目录。源代码会放在/src/main/java/包名 目录里，而单元测试代码会放在/src/test/java/包名 目录里。当然还有一个标准的pom.xml文件会生成。这个pom文件其实类似于Ant的build.xml文件，它包含了项目的信息，从目录结构到项目插件到项目依赖，都有了。。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="3eclipse">3.用Eclipse写代码</h2>
+<p>maven已经生成了一个完整的工程了，为了能够导入到eclipse里来编辑代码，我们可以把这个项目转换成eclipse可用的。</p>
+<p>首先命令行进入NumberGenerator目录，然后输入</p>
+<!-- raw HTML omitted -->
+<p>然后就会生成Eclipse需要的所有项目文件里</p>
+<p>图1.导入eclipse之后的效果</p>
+<p><a href="http://leaverimage.b0.upaiyun.com/2013/09/maven-single-java-project.png"><img src="/images/a6c0fbb8d5b17d6afc6d6fb110de27cf98be1715.png" alt="maven-single-java-project"></a></p>
+<h2 id="4pom">4.更新pom文件</h2>
+<p>默认的pom文件太简单了。通常我们需要添加编译插件来告诉Maven我们打算使用哪个版本的jdk来编译项目，有时候默认的版本太低了</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>我们把source和target改成了1.6.</p>
+<p>然后更新JUnit到4.1.1</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>最终我们的pom文件如下</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="5">5.更新业务逻辑</h2>
+<p>TDD开发的理念告诉我们先写测试，我们打开AppTest.java文件。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>然后修改App.java的代码</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="6maven">6.Maven打包</h2>
+<p>现在，我们要使用Maven来编译我们的项目，并且打包成一个jar文件，记得pom.xml文件吗？在这个文件里我们定义了打包的类型</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>在项目目录(也就是NumberGenerator目录)的命令行下，输入</p>
+<!-- raw HTML omitted -->
+<p>然后就会看到：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>程序开始编译，并且执行了单元测试，然后在target目录下生成了jar包，最后，程序目录结构如下：</p>
+<p><a href="http://leaverimage.b0.upaiyun.com/2013/09/maven-single-java-project-final.png"><img src="/images/5a515167b36d7c7b74b5643e421cea11097736eb.png" alt="maven-single-java-project-final"></a></p>
+<h2 id="7demo">7.执行Demo</h2>
+<p>运行生成的jar文件，还在在NumberGenerator目录下，输入如下命令</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>后面的com.mkyong.App就是包名+类名，也就是类的全名了</p>
+<h2 id="8demo">8.Demo下载</h2>
+<p><a href="http://pan.baidu.com/share/link?shareid=846280173&amp;uk=1493685990"> Maven-NumberGenerator.zip</a></p>
+<p> </p>
+<p>基本上一个完整的的示例就做完了，希望你有所收获，后续会更新一些Maven的的东西。欢迎支持。中秋快乐。</p>
+<p> </p>
+<p> </p>
+
                 
               </div>
 
@@ -633,11 +774,8 @@ Maven已经成功的安装配置了。</p>
               <div class="post-entry">
                 
                   <p>记录一下。</p>
-
 <p>这两天在熟悉Maven，长见识了.后续可能的话会写上一两篇，今天配置的时候提示tools.jar文件。于是使用everything搜了一下，本机的jdk目录还真没有，最后搜了一下，发现是安装jdk时候的问题，具体就是因为安装jdk的时候，后面被让继续安装jre，这个时候，我为了方便，将jre安装在了jdk的目录里，结果导致jre会覆盖到jdk的这两个文件。同时还会覆盖dt.jar这个包，于是，就没了。。这个问题略隐晦了..</p>
-
-<p>&nbsp;</p>
-
+<p> </p>
 <p>重新安装了jdk，将jdk和jre分开目录，然后设置一下jdk的lib目录到classpath就可以了，问题解决。</p>
 
                 
@@ -669,7 +807,7 @@ Maven已经成功的安装配置了。</p>
   <i class="fas fa-calendar"></i>&nbsp;Posted on September 15, 2013
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -684,16 +822,33 @@ Maven已经成功的安装配置了。</p>
               </p>
               <div class="post-entry">
                 
-                  本文译自官方文档，有细微改动，Java多线程的时候，看了好多文档，还是官方说的最清楚。结合自己的理解，译之。
-CountDownLatch 字面意思就是倒计数闩，后面会讲到，这里的同步允许一个或多个线程等待，，知道其他线程进行的一系列操作完成。而CountDownLatch通过一个参数count（数目）来构造，而await（）则阻塞当前线程，直到countDown()将count减为了0，然后，所有的阻塞线程被释放，也就是那些调用了await方法的线程立即返回，注意，这是一次性的，也就是说count不能被自动重置，如果你想这么做，CyclicBarrier是可以的。
-CountDownLatch用处很多，当用count=1来构造的时候，这就相当于一个开关，所有调用了await方法的线程都在等待，直到有一个线程调用了countDown()，CountDownLatch通过count=N构造的话，就可以使一个线程等待其他N个线程完成操作，或者一个操作被做N次。
-简单的demo：
-一组worker（工人）线程使用两个CountDownLatch
-第一个是开始信号，用来阻止工人提前操作，直到(driver)传送带准备好了才允许开始
-第二个是完成信号，他使传送带等待直到所有的worker都完成 class Driver { // &hellip; void main() throws InterruptedException { CountDownLatch startSignal = new CountDownLatch(1); CountDownLatch doneSignal = new CountDownLatch(N);
-for (int i = 0; i &amp;lt; N; ++i) // 创建并启动线程 new Thread(new Worker(startSignal, doneSignal)).start(); doSomethingElse(); // 传送带做点准备工作 startSignal.countDown(); // 减为0，工人可以开始了 doSomethingElse(); doneSignal.await(); // 等待直到所有的工人完成任务 } }
-class Worker implements Runnable { private final CountDownLatch startSignal; private final CountDownLatch doneSignal; Worker(CountDownLatch startSignal, CountDownLatch doneSignal) { this.
-                  <a href="https://leizhiyuan.github.io/2013/09/15/%E8%AF%91java%E4%B8%AD%E7%9A%84countdownlatch%E5%92%8Ccyclicbarrier/" class="post-read-more">[Read More]</a>
+                  <p>本文译自官方文档，有细微改动，Java多线程的时候，看了好多文档，还是官方说的最清楚。结合自己的理解，译之。</p>
+<h2 id="countdownlatch">CountDownLatch</h2>
+<p>字面意思就是倒计数闩，后面会讲到，这里的同步允许一个或多个线程等待，，知道其他线程进行的一系列操作完成。而CountDownLatch通过一个参数count（数目）来构造，而await（）则阻塞当前线程，直到countDown()将count减为了0，然后，所有的阻塞线程被释放，也就是那些调用了await方法的线程立即返回，注意，这是一次性的，也就是说count不能被自动重置，如果你想这么做，CyclicBarrier是可以的。</p>
+<p>CountDownLatch用处很多，当用count=1来构造的时候，这就相当于一个开关，所有调用了await方法的线程都在等待，直到有一个线程调用了countDown()，CountDownLatch通过count=N构造的话，就可以使一个线程等待其他N个线程完成操作，或者一个操作被做N次。</p>
+<p>简单的demo：</p>
+<p>一组worker（工人）线程使用两个CountDownLatch</p>
+<p>第一个是开始信号，用来阻止工人提前操作，直到(driver)传送带准备好了才允许开始</p>
+<p>第二个是完成信号，他使传送带等待直到所有的worker都完成</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>另一个典型的例子就是把问题分成N部分，通过线程执行每一部分，具体的话是将线程入队到一个Executor对象里。然后调用execute方法。当执行完毕一部分，就并给latch 减去1，当减到0的时候调用await的方法就可以继续运行了，当需要重复计数的话，用CyclicBarrier代替</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<h2 id="cyclicbarrier">CyclicBarrier</h2>
+<p>字面意思回环栅栏。这里的同步是允许一系列的线程互相等待直到大家都来到一个barrier前面，当程序中有互相等待的情况的时候，非常有用，叫做回环是因为当所有等待线程都被释放以后，cyclicBarrier可以被重用</p>
+<p>同时，CyclicBarrier支持一个可选的Runnable参数，当所有的线程都来到barrier前面的时候，程序开始执行runable线程动作，当需要更新所有线程共享的某个状态的时候，该动作非常有用。例子是一个并行分解的例子</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这里每一个worker线程处理矩阵的一行，然后在barrier前面等待，直到所有的行都处理完成，当所有的都完成以后，这里</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>改为</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>如果一个线程由于中断，失败或者超时过早的离开了barrier，那么所有的线程都会通过BrokenBarrierException引发异常。</p>
+
                 
               </div>
 
@@ -741,45 +896,21 @@ class Worker implements Runnable { private final CountDownLatch startSignal; pri
               <div class="post-entry">
                 
                   <p>之前看到一些设计师的主题的字体很美，下载下来发现使用了css3的自定义字体，可以用来显示服务器上的字体，非常方便，学习了一下</p>
-
 <p>1.首先得到字体</p>
-
 <p>这个方法很多，本机的字体，一些国外的免费网站，比如这个：<a href="http://www.dafont.com/">http://www.dafont.com</a>，下载后的字体一般为ttf格式，ttf字体被很多浏览器支持，但是，IE不支持，为了兼容性，需要为IE单独设置字体文件，格式必须为eot，所以我们需要转换字体，使用在线工具，比如<a href="http://www.kirsle.net/wizards/ttf2eot.cgi">http://www.kirsle.net/wizards/ttf2eot.cgi</a>，当然类似的网站有很多，根据个人爱好，随意。</p>
-
-<p>&nbsp;</p>
-
+<p> </p>
 <p>2.添加内容</p>
-
-<p>这里，我写一个简单的html文件，内容为
-<pre class="lang:default decode:true">&lt;body&gt;
-&lt;p class=&ldquo;test&rdquo;&gt;bystander&lt;/p&gt;
-&lt;/body&gt;</pre>
-在没有设置customFont这个类的css之前，字体就是默认的字体了。</p>
-
-<p>&nbsp;</p>
-
-<p>3.设置css样式
-<pre class="lang:default decode:true">@font-face
-{
-font-family:myFont;/<em>主流浏览器可用</em>/
-src:url(&ldquo;PONCTUATION.ttf&rdquo;);
-}
-@font-face
-{
-font-family:myFont;/<em>兼容IE</em>/
-src:url(&ldquo;PONCTUATION.eot&rdquo;);
-}
-.test
-{
-font-family:myFont;
-font-size:40px;
-}</pre>
-显示效果就是这样的了&hellip;只是用来演示的一个字体。</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/38421_o.png"><img src="/images/0aa0db5ed4bc986d61cfbb9e1e421a2226c94f9b.png" alt="" /></a></p>
-
-<p>&nbsp;</p>
-
+<p>这里，我写一个简单的html文件，内容为</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>在没有设置customFont这个类的css之前，字体就是默认的字体了。</p>
+<p> </p>
+<p>3.设置css样式</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>显示效果就是这样的了&hellip;只是用来演示的一个字体。</p>
+<p><a href="http://leaverimage.b0.upaiyun.com/38421_o.png"><img src="/images/0aa0db5ed4bc986d61cfbb9e1e421a2226c94f9b.png" alt=""></a></p>
+<p> </p>
 <p>因为浏览器是要自动下载这个字体文件的，所以对于英文字体没啥问题，英文字体一般这个字体文件在100k左右，和一张图片比起来，基本算不是问题，但是对于中文字体，包一般在10M-20M左右，这样是不现实的，我的想法是，可以自己制作字体包，这样只需要满足常用的一些汉字就行了，大大减少包的大小，然后去找了一下，发现了<a href="http://www.high-logic.com/font-editor/fontcreator.html">http://www.high-logic.com/font-editor/fontcreator.html</a>这个软件，是可以直接编辑字体包的，也可以创建字体包，有空了用来试试.</p>
 
                 
@@ -832,15 +963,23 @@ font-size:40px;
               </p>
               <div class="post-entry">
                 
-                  C#中委托和事件的例子比较多，讲得好的非常好，就不瞎凑热闹了，推荐博客园大牛的一篇：
-C# 中的委托和事件 ，如果你已经有了相应的基础，但没写过相关的例子，那我这里提供一个，首先看一下规范
-.Net Framework的编码规范：
- 委托类型的名称都应该以EventHandler结束。 委托的原型定义：有一个void返回值，并接受两个输入参数：一个Object 类型，一个 EventArgs类型(或继承自EventArgs)。 事件的命名为 委托去掉 EventHandler之后剩余的部分。 继承自EventArgs的类型应该以EventArgs结尾。 然后描述一下流程：  老板监视时间变动（ComputerOffWorkTime方法），当工作时间满50后，通知员工时间到（OnNotifyOffWork方法，并传递OffWorkEventArgs参数），可以下班了，（OnNotifyOffWork方法内部调用事件NotifyOffWork），正式员工收到通知后，则下班，其他员工则清扫一下办公室
-&nbsp;
-然后给出例子： using System; using System.Collections.Generic; using System.IO; using System.Linq; using System.Security.Cryptography; using System.Text;
-namespace DelegateAndEvent {
-public class Boss { //表示工作时间 private int virTime; //下班时老板说的话 public String SaidWords { get { return &#34;Boss:时间到，下班了&#34;; } } //委托定义 public delegate void NotifyOffWorkEventHandler(Object sender, OffWorkEventArgs e); //事件 public event NotifyOffWorkEventHandler NotifyOffWork; //事件参数 public class OffWorkEventArgs:EventArgs { public readonly int virTime; public OffWorkEventArgs(int virTime) { this.
-                  <a href="https://leizhiyuan.github.io/2013/06/25/%E5%A7%94%E6%89%98%E5%92%8C%E4%BA%8B%E4%BB%B6%E7%A4%BA%E4%BE%8B/" class="post-read-more">[Read More]</a>
+                  <p>C#中委托和事件的例子比较多，讲得好的非常好，就不瞎凑热闹了，推荐博客园大牛的一篇：</p>
+<p><a href="http://www.tracefact.net/csharp-programming/delegates-and-events-in-csharp.aspx">C# 中的委托和事件</a> ，如果你已经有了相应的基础，但没写过相关的例子，那我这里提供一个，首先看一下规范</p>
+<p>.Net Framework的编码规范：</p>
+<ul>
+<li>委托类型的名称都应该以EventHandler结束。</li>
+<li>委托的原型定义：有一个void返回值，并接受两个输入参数：一个Object 类型，一个 EventArgs类型(或继承自EventArgs)。</li>
+<li>事件的命名为 委托去掉 EventHandler之后剩余的部分。</li>
+<li>继承自EventArgs的类型应该以EventArgs结尾。
+然后描述一下流程：</li>
+</ul>
+<p>老板监视时间变动（ComputerOffWorkTime方法），当工作时间满50后，通知员工时间到（OnNotifyOffWork方法，并传递OffWorkEventArgs参数），可以下班了，（OnNotifyOffWork方法内部调用事件NotifyOffWork），正式员工收到通知后，则下班，其他员工则清扫一下办公室</p>
+<p> </p>
+<p>然后给出例子：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+
                 
               </div>
 
@@ -923,7 +1062,7 @@ public class Boss { //表示工作时间 private int virTime; //下班时老板�
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

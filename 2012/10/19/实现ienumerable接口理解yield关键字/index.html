@@ -15,35 +15,53 @@
 一使用集合。就发现遍历集合就跟着来了。遍历集合最好的方式是实现迭代器模式-Understanding and Implementing the Iterator Pattern in C# and C&#43;&#43;(这篇文章我过几天翻译一下) ，C#提供foreach来以一种优雅的方式遍历
 只要集合实现了IEnumerable 接口就可以用foreach来遍历。
 使用代码
-首先先看一下内置的集合类如何使用foreach来遍历的。ArrayList实现了IEnumerable 接口。我们看一下 // 看一下实现了IEnumerable 接口的集合如何遍历 ArrayList list = new ArrayList();
-list.Add(&ldquo;1&rdquo;); list.Add(2); list.Add(&ldquo;3&rdquo;); list.Add(&lsquo;4&rsquo;);
-foreach (object s in list) { Console.WriteLine(s); } &nbsp;
-遍历泛型集合类
-Arraylist 是一个通用集合类，遍历泛型集合类也可以。因为这些泛型集合类实现了IEnumerable&lt;T&gt;接口，看一下吧。 // 遍历实现了IEnumerable&lt;T&gt;接口的泛型类 List&lt;string&gt; listOfStrings = new List&lt;string&gt;();
-listOfStrings.Add(&ldquo;one&rdquo;); listOfStrings.Add(&ldquo;two&rdquo;); listOfStrings.Add(&ldquo;three&rdquo;); listOfStrings.Add(&ldquo;four&rdquo;);
-foreach (string s in listOfStrings) { Console.WriteLine(s); } &nbsp;
-发现了吧。我们自定义的集合类或是泛型集合类应该实现IEnumerable和IEnumerable&lt;T&gt;接口。这样就可以遍历了。
-&nbsp;
-理解yield关键字
+首先先看一下内置的集合类如何使用foreach来遍历的。ArrayList实现了IEnumerable 接口。我们看一下
+ 遍历泛型集合类
+Arraylist 是一个通用集合类，遍历泛型集合类也可以。因为这些泛型集合类实现了IEnumerable&lt;T&gt;接口，看一下吧。
+ 发现了吧。我们自定义的集合类或是泛型集合类应该实现IEnumerable和IEnumerable&lt;T&gt;接口。这样就可以遍历了。
+ 理解yield关键字
 在写个实现接口的例子之前，先理解一下yield关键字，yield会记录集合位置。当从一个函数返回一个值的时候，yield可以用。
-如下的普通的方法。不论调用多少次，都只会返回一个return static int SimpleReturn() { return 1; return 2; return 3; }">
+如下的普通的方法。不论调用多少次，都只会返回一个return
+ 原因就是普通的return语句不保留函数的返回状态。每一次都是新的调用。然后返回第一个值。
+但是使用下面的语句替换后就不一样。当函数第二次调用的时候。会从上次返回的地方继续调用
+显然返回1，2，3，唯一要注意的就是函数需要返回IEnumerable。，然后通过foreach调用。
+在自定义的集合类里实现Ienumerable接口
+现在如果我们在我们的自定义集合里定义一个方法。来迭代所有元素。然后通过使用yield返回。我们就可以成功了。
+好。我们定义MyArrayList 类，实现IEnumerable 接口，该接口就会强制我们实现GetEnumerator 函数。这里我们就要使用yield了。
+  之后你就可以用foreach遍历了。
+ 这个类啊。没写好。也不完整。只要是让你理解。。模拟一下而已。
+自定义泛型类里实现Ienumerable&lt;T&gt;接口
+ 之后就可以使用foreach了。
+** 源代码下载**
+[downloadicon href=http://pan.baidu.com/share/link?shareid=86013&amp;uk=1493685990]EnumerableDemo.7z[/downloadicon]
+原文地址： A-Beginners-Tutorial-on-Implementing-IEnumerable-I
+著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！">
   <meta property="og:description" content="本文讨论题目的内容。然后讨论IEnumerable接口如何使得foreach语句可以使用。之后会展示如果实现自定义的集合类，该集合类实现了IEnumerable接口。Yield关键字和遍历集合后面也讨论。
 背景
 一使用集合。就发现遍历集合就跟着来了。遍历集合最好的方式是实现迭代器模式-Understanding and Implementing the Iterator Pattern in C# and C&#43;&#43;(这篇文章我过几天翻译一下) ，C#提供foreach来以一种优雅的方式遍历
 只要集合实现了IEnumerable 接口就可以用foreach来遍历。
 使用代码
-首先先看一下内置的集合类如何使用foreach来遍历的。ArrayList实现了IEnumerable 接口。我们看一下 // 看一下实现了IEnumerable 接口的集合如何遍历 ArrayList list = new ArrayList();
-list.Add(&ldquo;1&rdquo;); list.Add(2); list.Add(&ldquo;3&rdquo;); list.Add(&lsquo;4&rsquo;);
-foreach (object s in list) { Console.WriteLine(s); } &nbsp;
-遍历泛型集合类
-Arraylist 是一个通用集合类，遍历泛型集合类也可以。因为这些泛型集合类实现了IEnumerable&lt;T&gt;接口，看一下吧。 // 遍历实现了IEnumerable&lt;T&gt;接口的泛型类 List&lt;string&gt; listOfStrings = new List&lt;string&gt;();
-listOfStrings.Add(&ldquo;one&rdquo;); listOfStrings.Add(&ldquo;two&rdquo;); listOfStrings.Add(&ldquo;three&rdquo;); listOfStrings.Add(&ldquo;four&rdquo;);
-foreach (string s in listOfStrings) { Console.WriteLine(s); } &nbsp;
-发现了吧。我们自定义的集合类或是泛型集合类应该实现IEnumerable和IEnumerable&lt;T&gt;接口。这样就可以遍历了。
-&nbsp;
-理解yield关键字
+首先先看一下内置的集合类如何使用foreach来遍历的。ArrayList实现了IEnumerable 接口。我们看一下
+ 遍历泛型集合类
+Arraylist 是一个通用集合类，遍历泛型集合类也可以。因为这些泛型集合类实现了IEnumerable&lt;T&gt;接口，看一下吧。
+ 发现了吧。我们自定义的集合类或是泛型集合类应该实现IEnumerable和IEnumerable&lt;T&gt;接口。这样就可以遍历了。
+ 理解yield关键字
 在写个实现接口的例子之前，先理解一下yield关键字，yield会记录集合位置。当从一个函数返回一个值的时候，yield可以用。
-如下的普通的方法。不论调用多少次，都只会返回一个return static int SimpleReturn() { return 1; return 2; return 3; }">
+如下的普通的方法。不论调用多少次，都只会返回一个return
+ 原因就是普通的return语句不保留函数的返回状态。每一次都是新的调用。然后返回第一个值。
+但是使用下面的语句替换后就不一样。当函数第二次调用的时候。会从上次返回的地方继续调用
+显然返回1，2，3，唯一要注意的就是函数需要返回IEnumerable。，然后通过foreach调用。
+在自定义的集合类里实现Ienumerable接口
+现在如果我们在我们的自定义集合里定义一个方法。来迭代所有元素。然后通过使用yield返回。我们就可以成功了。
+好。我们定义MyArrayList 类，实现IEnumerable 接口，该接口就会强制我们实现GetEnumerator 函数。这里我们就要使用yield了。
+  之后你就可以用foreach遍历了。
+ 这个类啊。没写好。也不完整。只要是让你理解。。模拟一下而已。
+自定义泛型类里实现Ienumerable&lt;T&gt;接口
+ 之后就可以使用foreach了。
+** 源代码下载**
+[downloadicon href=http://pan.baidu.com/share/link?shareid=86013&amp;uk=1493685990]EnumerableDemo.7z[/downloadicon]
+原文地址： A-Beginners-Tutorial-on-Implementing-IEnumerable-I
+著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！">
   <meta name="twitter:description" content="本文讨论题目的内容。然后讨论IEnumerable接口如何使得foreach语句可以使用。之后会展示如果实现自定义的集合类，该集合类实现了IEnumerable接口。Yield关键字和遍历集合后面也讨论。
 背景
 一使用集合。就发现遍历集合就跟着来了。遍历集合最好的方式是实现迭代器模式-Understanding and Implementing the Iterator Pattern in C# …">
@@ -95,9 +113,9 @@ foreach (string s in listOfStrings) { Console.WriteLine(s); } &nbsp;
     "name" : "bystander"
   },
   "headline": "实现IEnumerable接口\x26理解yield关键字",
-  "description" : "本文讨论题目的内容。然后讨论IEnumerable接口如何使得foreach语句可以使用。之后会展示如果实现自定义的集合类，该集合类实现了IEnumerable接口。Yield关键字和遍历集合后面也讨论。\n背景\n一使用集合。就发现遍历集合就跟着来了。遍历集合最好的方式是实现迭代器模式-Understanding and Implementing the Iterator Pattern in C# and C\x2b\x2b(这篇文章我过几天翻译一下) ，C#提供foreach来以一种优雅的方式遍历\n只要集合实现了IEnumerable 接口就可以用foreach来遍历。\n使用代码\n首先先看一下内置的集合类如何使用foreach来遍历的。ArrayList实现了IEnumerable 接口。我们看一下 \/\/ 看一下实现了IEnumerable 接口的集合如何遍历 ArrayList list = new ArrayList();\nlist.Add(\x26ldquo;1\x26rdquo;); list.Add(2); list.Add(\x26ldquo;3\x26rdquo;); list.Add(\x26lsquo;4\x26rsquo;);\nforeach (object s in list) { Console.WriteLine(s); } \x26nbsp;\n遍历泛型集合类\nArraylist 是一个通用集合类，遍历泛型集合类也可以。因为这些泛型集合类实现了IEnumerable\x26lt;T\x26gt;接口，看一下吧。 \/\/ 遍历实现了IEnumerable\x26lt;T\x26gt;接口的泛型类 List\x26lt;string\x26gt; listOfStrings = new List\x26lt;string\x26gt;();\nlistOfStrings.Add(\x26ldquo;one\x26rdquo;); listOfStrings.Add(\x26ldquo;two\x26rdquo;); listOfStrings.Add(\x26ldquo;three\x26rdquo;); listOfStrings.Add(\x26ldquo;four\x26rdquo;);\nforeach (string s in listOfStrings) { Console.WriteLine(s); } \x26nbsp;\n发现了吧。我们自定义的集合类或是泛型集合类应该实现IEnumerable和IEnumerable\x26lt;T\x26gt;接口。这样就可以遍历了。\n\x26nbsp;\n理解yield关键字\n在写个实现接口的例子之前，先理解一下yield关键字，yield会记录集合位置。当从一个函数返回一个值的时候，yield可以用。\n如下的普通的方法。不论调用多少次，都只会返回一个return static int SimpleReturn() { return 1; return 2; return 3; }",
+  "description" : "本文讨论题目的内容。然后讨论IEnumerable接口如何使得foreach语句可以使用。之后会展示如果实现自定义的集合类，该集合类实现了IEnumerable接口。Yield关键字和遍历集合后面也讨论。\n背景\n一使用集合。就发现遍历集合就跟着来了。遍历集合最好的方式是实现迭代器模式-Understanding and Implementing the Iterator Pattern in C# and C\x2b\x2b(这篇文章我过几天翻译一下) ，C#提供foreach来以一种优雅的方式遍历\n只要集合实现了IEnumerable 接口就可以用foreach来遍历。\n使用代码\n首先先看一下内置的集合类如何使用foreach来遍历的。ArrayList实现了IEnumerable 接口。我们看一下\n 遍历泛型集合类\nArraylist 是一个通用集合类，遍历泛型集合类也可以。因为这些泛型集合类实现了IEnumerable\x26lt;T\x26gt;接口，看一下吧。\n 发现了吧。我们自定义的集合类或是泛型集合类应该实现IEnumerable和IEnumerable\x26lt;T\x26gt;接口。这样就可以遍历了。\n 理解yield关键字\n在写个实现接口的例子之前，先理解一下yield关键字，yield会记录集合位置。当从一个函数返回一个值的时候，yield可以用。\n如下的普通的方法。不论调用多少次，都只会返回一个return\n 原因就是普通的return语句不保留函数的返回状态。每一次都是新的调用。然后返回第一个值。\n但是使用下面的语句替换后就不一样。当函数第二次调用的时候。会从上次返回的地方继续调用\n显然返回1，2，3，唯一要注意的就是函数需要返回IEnumerable。，然后通过foreach调用。\n在自定义的集合类里实现Ienumerable接口\n现在如果我们在我们的自定义集合里定义一个方法。来迭代所有元素。然后通过使用yield返回。我们就可以成功了。\n好。我们定义MyArrayList 类，实现IEnumerable 接口，该接口就会强制我们实现GetEnumerator 函数。这里我们就要使用yield了。\n  之后你就可以用foreach遍历了。\n 这个类啊。没写好。也不完整。只要是让你理解。。模拟一下而已。\n自定义泛型类里实现Ienumerable\x26lt;T\x26gt;接口\n 之后就可以使用foreach了。\n** 源代码下载**\n[downloadicon href=http:\/\/pan.baidu.com\/share\/link?shareid=86013\x26amp;uk=1493685990]EnumerableDemo.7z[\/downloadicon]\n原文地址： A-Beginners-Tutorial-on-Implementing-IEnumerable-I\n著作权声明：本文由http:\/\/leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！",
   "inLanguage" : "en",
-  "wordCount":  337 ,
+  "wordCount":  46 ,
   "datePublished" : "2012-10-19T07:33:12",
   "dateModified" : "2012-10-19T07:33:12",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -122,18 +140,27 @@ foreach (string s in listOfStrings) { Console.WriteLine(s); } &nbsp;
 一使用集合。就发现遍历集合就跟着来了。遍历集合最好的方式是实现迭代器模式-Understanding and Implementing the Iterator Pattern in C# and C&#43;&#43;(这篇文章我过几天翻译一下) ，C#提供foreach来以一种优雅的方式遍历
 只要集合实现了IEnumerable 接口就可以用foreach来遍历。
 使用代码
-首先先看一下内置的集合类如何使用foreach来遍历的。ArrayList实现了IEnumerable 接口。我们看一下 // 看一下实现了IEnumerable 接口的集合如何遍历 ArrayList list = new ArrayList();
-list.Add(&ldquo;1&rdquo;); list.Add(2); list.Add(&ldquo;3&rdquo;); list.Add(&lsquo;4&rsquo;);
-foreach (object s in list) { Console.WriteLine(s); } &nbsp;
-遍历泛型集合类
-Arraylist 是一个通用集合类，遍历泛型集合类也可以。因为这些泛型集合类实现了IEnumerable&lt;T&gt;接口，看一下吧。 // 遍历实现了IEnumerable&lt;T&gt;接口的泛型类 List&lt;string&gt; listOfStrings = new List&lt;string&gt;();
-listOfStrings.Add(&ldquo;one&rdquo;); listOfStrings.Add(&ldquo;two&rdquo;); listOfStrings.Add(&ldquo;three&rdquo;); listOfStrings.Add(&ldquo;four&rdquo;);
-foreach (string s in listOfStrings) { Console.WriteLine(s); } &nbsp;
-发现了吧。我们自定义的集合类或是泛型集合类应该实现IEnumerable和IEnumerable&lt;T&gt;接口。这样就可以遍历了。
-&nbsp;
-理解yield关键字
+首先先看一下内置的集合类如何使用foreach来遍历的。ArrayList实现了IEnumerable 接口。我们看一下
+ 遍历泛型集合类
+Arraylist 是一个通用集合类，遍历泛型集合类也可以。因为这些泛型集合类实现了IEnumerable&lt;T&gt;接口，看一下吧。
+ 发现了吧。我们自定义的集合类或是泛型集合类应该实现IEnumerable和IEnumerable&lt;T&gt;接口。这样就可以遍历了。
+ 理解yield关键字
 在写个实现接口的例子之前，先理解一下yield关键字，yield会记录集合位置。当从一个函数返回一个值的时候，yield可以用。
-如下的普通的方法。不论调用多少次，都只会返回一个return static int SimpleReturn() { return 1; return 2; return 3; }">
+如下的普通的方法。不论调用多少次，都只会返回一个return
+ 原因就是普通的return语句不保留函数的返回状态。每一次都是新的调用。然后返回第一个值。
+但是使用下面的语句替换后就不一样。当函数第二次调用的时候。会从上次返回的地方继续调用
+显然返回1，2，3，唯一要注意的就是函数需要返回IEnumerable。，然后通过foreach调用。
+在自定义的集合类里实现Ienumerable接口
+现在如果我们在我们的自定义集合里定义一个方法。来迭代所有元素。然后通过使用yield返回。我们就可以成功了。
+好。我们定义MyArrayList 类，实现IEnumerable 接口，该接口就会强制我们实现GetEnumerator 函数。这里我们就要使用yield了。
+  之后你就可以用foreach遍历了。
+ 这个类啊。没写好。也不完整。只要是让你理解。。模拟一下而已。
+自定义泛型类里实现Ienumerable&lt;T&gt;接口
+ 之后就可以使用foreach了。
+** 源代码下载**
+[downloadicon href=http://pan.baidu.com/share/link?shareid=86013&amp;uk=1493685990]EnumerableDemo.7z[/downloadicon]
+原文地址： A-Beginners-Tutorial-on-Implementing-IEnumerable-I
+著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2012/10/19/%E5%AE%9E%E7%8E%B0ienumerable%E6%8E%A5%E5%8F%A3%E7%90%86%E8%A7%A3yield%E5%85%B3%E9%94%AE%E5%AD%97/" />
 <meta property="og:type" content="website" />
@@ -153,7 +180,7 @@ foreach (string s in listOfStrings) { Console.WriteLine(s); } &nbsp;
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -311,7 +338,7 @@ foreach (string s in listOfStrings) { Console.WriteLine(s); } &nbsp;
   <i class="fas fa-calendar"></i>&nbsp;Posted on October 19, 2012
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -338,222 +365,54 @@ foreach (string s in listOfStrings) { Console.WriteLine(s); } &nbsp;
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <p>本文讨论题目的内容。然后讨论IEnumerable接口如何使得foreach语句可以使用。之后会展示如果实现自定义的集合类，该集合类实现了IEnumerable接口。Yield关键字和遍历集合后面也讨论。</p>
-
 <p><strong>背景</strong></p>
-
 <p>一使用集合。就发现遍历集合就跟着来了。遍历集合最好的方式是实现迭代器模式-<a href="http://www.codeproject.com/Articles/362986/Understanding-and-Implementing-the-Iterator-Patter">Understanding and Implementing the Iterator Pattern in C# and C++</a>(这篇文章我过几天翻译一下) ，C#提供foreach来以一种优雅的方式遍历</p>
-
 <p>只要集合实现了IEnumerable 接口就可以用foreach来遍历。</p>
-
 <p><strong>使用代码</strong></p>
-
-<p>首先先看一下内置的集合类如何使用foreach来遍历的。ArrayList实现了IEnumerable 接口。我们看一下
-<pre class="lang:default decode:true">// 看一下实现了IEnumerable 接口的集合如何遍历
-ArrayList list = new ArrayList();</p>
-
-<p>list.Add(&ldquo;1&rdquo;);
-list.Add(2);
-list.Add(&ldquo;3&rdquo;);
-list.Add(&lsquo;4&rsquo;);</p>
-
-<p>foreach (object s in list)
-{
-    Console.WriteLine(s);
-}</pre>
-&nbsp;</p>
-
+<p>首先先看一下内置的集合类如何使用foreach来遍历的。ArrayList实现了IEnumerable 接口。我们看一下</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
 <p><strong>遍历泛型集合类</strong></p>
-
-<p>Arraylist 是一个通用集合类，遍历泛型集合类也可以。因为这些泛型集合类实现了IEnumerable&lt;T&gt;接口，看一下吧。
-<pre class="lang:default decode:true">// 遍历实现了IEnumerable&lt;T&gt;接口的泛型类
-List&lt;string&gt; listOfStrings = new List&lt;string&gt;();</p>
-
-<p>listOfStrings.Add(&ldquo;one&rdquo;);
-listOfStrings.Add(&ldquo;two&rdquo;);
-listOfStrings.Add(&ldquo;three&rdquo;);
-listOfStrings.Add(&ldquo;four&rdquo;);</p>
-
-<p>foreach (string s in listOfStrings)
-{
-    Console.WriteLine(s);
-}</pre>
-&nbsp;</p>
-
+<p>Arraylist 是一个通用集合类，遍历泛型集合类也可以。因为这些泛型集合类实现了IEnumerable&lt;T&gt;接口，看一下吧。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
 <p>发现了吧。我们自定义的集合类或是泛型集合类应该实现IEnumerable和IEnumerable&lt;T&gt;接口。这样就可以遍历了。</p>
-
-<p>&nbsp;</p>
-
+<p> </p>
 <p><strong>理解yield关键字</strong></p>
-
 <p>在写个实现接口的例子之前，先理解一下yield关键字，yield会记录集合位置。当从一个函数返回一个值的时候，yield可以用。</p>
-
-<p>如下的普通的方法。不论调用多少次，都只会返回一个return
-<pre class="lang:default decode:true">static int SimpleReturn()
-{
-    return 1;
-    return 2;
-    return 3;
-}</p>
-
-<p>static void Main(string[] args)
-{
-    // 看看
-    Console.WriteLine(SimpleReturn());
-    Console.WriteLine(SimpleReturn());
-    Console.WriteLine(SimpleReturn());
-    Console.WriteLine(SimpleReturn());
-}</pre>
-&nbsp;</p>
-
+<p>如下的普通的方法。不论调用多少次，都只会返回一个return</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
 <p>原因就是普通的return语句不保留函数的返回状态。每一次都是新的调用。然后返回第一个值。</p>
-
-<p>但是使用下面的语句替换后就不一样。当函数第二次调用的时候。会从上次返回的地方继续调用
-<pre class="lang:default decode:true">static IEnumerable&lt;int&gt; YieldReturn()
-{
-    yield return 1;
-    yield return 2;
-    yield return 3;
-}
-static void Main(string[] args)</p>
-
-<p>{
-    // 看看yield return的效果
-    foreach (int i in YieldReturn())
-    {
-        Console.WriteLine(i);
-    }
-}</pre>
-显然返回1，2，3，唯一要注意的就是函数需要返回IEnumerable。，然后通过foreach调用。</p>
-
+<p>但是使用下面的语句替换后就不一样。当函数第二次调用的时候。会从上次返回的地方继续调用</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>显然返回1，2，3，唯一要注意的就是函数需要返回IEnumerable。，然后通过foreach调用。</p>
 <p><strong>在自定义的集合类里实现Ienumerable接口</strong></p>
-
 <p>现在如果我们在我们的自定义集合里定义一个方法。来迭代所有元素。然后通过使用yield返回。我们就可以成功了。</p>
-
-<p>好。我们定义MyArrayList 类，实现IEnumerable 接口，该接口就会强制我们实现GetEnumerator 函数。这里我们就要使用yield了。
-<pre class="lang:default decode:true">class MyArrayList : IEnumerable
-{
-    object[] m_Items = null;
-    int freeIndex = 0;</p>
-<div class="highlight"><pre class="chroma">public MyArrayList()
-{
-    // 对了方便我直接用数组了，其实应该用链表
-   m_Items = new object[100];
-}
-
-public void Add(object item)
-{
-    // 考虑添加元素的时候
-    m_Items[freeIndex] = item;
-    freeIndex++;
-}
-
-// IEnumerable 函数
-public IEnumerator GetEnumerator()</pre></div>
-<p>{
-       foreach (object o in m_Items)
-        {
-           // 检查是否到了末尾。数组的话。。。没写好
-            if(o == null)
-            {
-                break;
-            }</p>
-<div class="highlight"><pre class="chroma">        // 返回当前元素。然后前进一步
-        yield return o;
-    }
-}</pre></div>
-<p>}</pre>
-&nbsp;</p>
-
-<p>&nbsp;</p>
-
-<p>之后你就可以用foreach遍历了。
-<pre class="lang:default decode:true">static void Main(string[] args)
-{
-    //看看调用部分
-    MyArrayList myList = new MyArrayList();</p>
-<div class="highlight"><pre class="chroma">myList.Add(&#34;1&#34;);
-myList.Add(2);
-myList.Add(&#34;3&#34;);
-myList.Add(&#39;4&#39;);
-
-foreach (object s in myList)
-{
-    Console.WriteLine(s);
-}</pre></div>
-<p>}</pre>
-&nbsp;</p>
-
+<p>好。我们定义MyArrayList 类，实现IEnumerable 接口，该接口就会强制我们实现GetEnumerator 函数。这里我们就要使用yield了。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p> </p>
+<p>之后你就可以用foreach遍历了。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
 <p>这个类啊。没写好。也不完整。只要是让你理解。。模拟一下而已。</p>
-
-<p>自定义泛型类里实现Ienumerable&lt;T&gt;接口
-<pre class="lang:default decode:true">class MyList&lt;T&gt; : IEnumerable&lt;T&gt;
-{
-    T[] m_Items = null;
-    int freeIndex = 0;</p>
-<div class="highlight"><pre class="chroma">public MyList()
-{
-    // 为了方便。使用数组
-    m_Items = new T[100];
-}
-
-public void Add(T item)
-{
-    //添加元素
-    m_Items[freeIndex] = item;
-    freeIndex++;
-}
-
-#region IEnumerable&amp;lt;T&amp;gt; Members 
-
-public IEnumerator&amp;lt;T&amp;gt; GetEnumerator()
-{
-    foreach (T t in m_Items)
-    {
-        //检查是否到了末尾。数组的话。。。没写好
-        if (t == null) // 如果T不是一个可空类型。就中断
-        {
-            break;
-        }
-
-        // 返回当前元素，然后前进一步
-        yield return t;
-    }
-}
-
-#endregion
-
- #region IEnumerable Members
-System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-{
-    // 此处调用泛型版本
-    return this.GetEnumerator();
-}
-
-#endregion</pre></div>
-<p>}</pre>
-&nbsp;</p>
-
-<p>之后就可以使用foreach了。
-<pre class="lang:default decode:true">static void Main(string[] args)
-{
-    // 使用示例
-    MyList&lt;string&gt; myListOfStrings = new MyList&lt;string&gt;();</p>
-<div class="highlight"><pre class="chroma">myListOfStrings.Add(&#34;one&#34;);
-myListOfStrings.Add(&#34;two&#34;);
-myListOfStrings.Add(&#34;three&#34;);
-myListOfStrings.Add(&#34;four&#34;);
-
-foreach (string s in myListOfStrings)
-{
-    Console.WriteLine(s);
-}</pre></div>
-<p>}</pre>
-<strong> 源代码下载</strong></p>
-
-<p>[downloadicon href=<a href="http://pan.baidu.com/share/link?shareid=86013&amp;uk=1493685990]EnumerableDemo.7z[/downloadicon">http://pan.baidu.com/share/link?shareid=86013&amp;uk=1493685990]EnumerableDemo.7z[/downloadicon</a>]</p>
-
+<p>自定义泛型类里实现Ienumerable&lt;T&gt;接口</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
+<p>之后就可以使用foreach了。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>** 源代码下载**</p>
+<p>[downloadicon href=http://pan.baidu.com/share/link?shareid=86013&amp;uk=1493685990]EnumerableDemo.7z[/downloadicon]</p>
 <p>原文地址： <a href="http://www.codeproject.com/Articles/474678/A-Beginners-Tutorial-on-Implementing-IEnumerable-I">A-Beginners-Tutorial-on-Implementing-IEnumerable-I</a></p>
-
 <p>著作权声明：本文由<a href="http://leaver.me/">http://leaver.me</a> 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</p>
 
 
@@ -672,7 +531,7 @@ foreach (string s in myListOfStrings)
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

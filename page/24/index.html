@@ -48,7 +48,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -224,6 +224,65 @@
           
           
             <article class="post-preview">
+              <a href="https://leizhiyuan.github.io/2012/07/13/sqlserver%E8%B6%85%E6%97%B6%E6%97%B6%E9%97%B4%E5%B7%B2%E5%88%B0%E8%A7%A3%E5%86%B3%E5%92%8C%E4%B8%80%E5%A5%97%E6%8E%A7%E4%BB%B6%E5%BA%93/">
+                <h2 class="post-title">SQLServer超时时间已到解决和一套控件库</h2>
+                
+                
+                
+              </a>
+
+              <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on July 13, 2012
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
+    
+  
+  
+</span>
+
+
+              <div class="post-entry">
+                
+                  <p>　　在最近的一个程序中，因为频繁的操作数据库，莫名的出现了如下的错误：</p>
+<p>　　超时时间已到。超时时间已到，但是尚未从池中获取连接。出现这种情况可能是因为所有池连接均在使用，并且达到了最大池大小。</p>
+<p>　　说明: 执行当前 Web 请求期间，出现未处理的异常。请检查堆栈跟踪信息，以了解有关该错误以及代码中导致错误的出处的详细信息。</p>
+<p>　　异常详细信息: System.InvalidOperationException: 超时时间已到。超时时间已到，但是尚未从池中获取连接。出现这种情况可能是因为所有池连接均在使用，并且达到了最大池大小。</p>
+<p>　　按理说这应该是没有关闭数据库连接或者dataset，可是查了一下。发现都关了啊。遂可以表述为原因不明，但是通过在数据库连接字符串中添加max pool size=512  这个数字可以自己设。就可以了</p>
+<p>　　这篇文章短是短了点。。好吧。那顺带分享一套非常精美的C#控件。
+<a href="http://115.com/file/dptqnr63#RadControls-WinForms-2012-2-608-Dev.msi">RadControls-For-WinForms 控件2012</a>
+<a href="http://leaverimage.b0.upaiyun.com/24794_o.jpg"><img src="/images/35b3a6023ad34c4bab5564678dffabbcdd53a5da.jpg" alt="" title="wpf"></a>
+<a href="http://115.com/file/e79q6pju#RadControls-for-WPF-2012-2-0607-Dev.msi">RadControls-for-WPF控件2012</a>
+<a href="http://leaverimage.b0.upaiyun.com/24793_o.jpg"><img src="/images/c3f1eeb8b01e38643d7ce0d2e2716bba20285943.jpg" alt="" title="winform"></a></p>
+
+                
+              </div>
+
+              
+                <div class="blog-tags">
+                  
+                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E5%B7%A5%E4%BD%9C/">工作</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E8%AF%91/">编译</a>&nbsp;
+                  
+                    <a href="https://leizhiyuan.github.io//tags/%E8%AE%BE%E8%AE%A1/">设计</a>&nbsp;
+                  
+                </div>
+              
+            </article>
+          
+            <article class="post-preview">
               <a href="https://leizhiyuan.github.io/2012/07/11/sqlserver%E5%90%AF%E7%94%A8xp_cmdshell/">
                 <h2 class="post-title">SQLServer启用xp_cmdshell</h2>
                 
@@ -252,39 +311,10 @@
               <div class="post-entry">
                 
                   <p>忘了当时是执行哪条命令的时候需要启动xp_cmdshell了。。反正是必须用的。。</p>
-
-<p>默认情况下,sql server安装完后,xp_cmdshell是禁用的(可能是安全考虑),如果要使用它,可按以下步骤
-<pre class="lang:pgsql decode:true">&ndash; 允许配置高级选项
-EXEC sp_configure &lsquo;show advanced options&rsquo;, 1
-GO
-&ndash; 重新配置
-RECONFIGURE
-GO
-&ndash; 启用xp_cmdshell
-EXEC sp_configure &lsquo;xp_cmdshell&rsquo;, 1
-GO
-&ndash;重新配置
-RECONFIGURE
-GO</p>
-
-<p>&ndash;执行想要的xp_cmdshell语句
-Exec xp_cmdshell &lsquo;query user&rsquo;
-GO</p>
-
-<p>&ndash;用完后,要记得将xp_cmdshell禁用(出于安全考虑)
-&ndash; 允许配置高级选项
-EXEC sp_configure &lsquo;show advanced options&rsquo;, 1
-GO
-&ndash; 重新配置
-RECONFIGURE
-GO
-&ndash; 禁用xp_cmdshell
-EXEC sp_configure &lsquo;xp_cmdshell&rsquo;, 0
-GO
-&ndash;重新配置
-RECONFIGURE
-GO</pre>
-&nbsp;</p>
+<p>默认情况下,sql server安装完后,xp_cmdshell是禁用的(可能是安全考虑),如果要使用它,可按以下步骤</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p> </p>
 
                 
               </div>
@@ -330,12 +360,8 @@ GO</pre>
 
               <div class="post-entry">
                 
-                  
-
-<p>最近在看线程的东西，整理一些文档以便学习。分享。</p>
-
-<h3 id="刚刚-http-www-cnblogs-com-xugang"><a href="http://www.cnblogs.com/xugang">刚刚</a></h3>
-
+                  <p>最近在看线程的东西，整理一些文档以便学习。分享。</p>
+<h3 id="httpwwwcnblogscomxugang"><a href="http://www.cnblogs.com/xugang">刚刚</a></h3>
 <ol>
 <li><a href="http://kb.cnblogs.com/page/42528">C#多线程学习(一) 多线程的相关概念</a></li>
 <li><a href="http://kb.cnblogs.com/page/42529">C#多线程学习(二) 如何操纵一个线程</a></li>
@@ -345,16 +371,12 @@ GO</pre>
 <li><a href="http://kb.cnblogs.com/page/42533">C#多线程学习(六) 互斥对象</a></li>
 <li><a href="http://www.cnblogs.com/xugang/archive/2011/03/20/1989782.html">C# 实现多线程的同步方法详解</a></li>
 </ol>
-
-<h3 id="jimmyzheng-http-www-cnblogs-com-jimmyzheng"><a href="http://www.cnblogs.com/JimmyZheng">JimmyZheng</a></h3>
-
+<h3 id="jimmyzhenghttpwwwcnblogscomjimmyzheng"><a href="http://www.cnblogs.com/JimmyZheng">JimmyZheng</a></h3>
 <ol>
 <li><a href="http://www.cnblogs.com/JimmyZheng/archive/2012/06/10/2543143.html">C# 温故而知新： 线程篇(一)</a> <strong>Thread</strong></li>
 <li><a href="http://www.cnblogs.com/JimmyZheng/archive/2012/07/07/2580253.html">C# 温故而知新： 线程篇(二)</a> 线程池和异步线程</li>
 </ol>
-
-<h3 id="zhoufoxcn-http-blog-csdn-net-zhoufoxcn"><a href="http://blog.csdn.net/zhoufoxcn">zhoufoxcn</a></h3>
-
+<h3 id="zhoufoxcnhttpblogcsdnnetzhoufoxcn"><a href="http://blog.csdn.net/zhoufoxcn">zhoufoxcn</a></h3>
 <ol>
 <li><a href="http://blog.csdn.net/zhoufoxcn/article/details/4402999">C#多线程编程（1）：线程的启动</a></li>
 <li><a href="http://blog.csdn.net/zhoufoxcn/article/details/5170815">多线程编程(2)：线程的同步</a></li>
@@ -362,23 +384,17 @@ GO</pre>
 <li><a href="http://blog.csdn.net/zhoufoxcn/article/details/5205690">多线程编程(4)：多线程与UI操作</a></li>
 <li><a href="http://blog.csdn.net/zhoufoxcn/article/details/2453803">一个简单的C#多线程间同步的例子</a></li>
 </ol>
-
-<h3 id="老赵-http-www-cnblogs-com-jeffreyzhao"><a href="http://www.cnblogs.com/JeffreyZhao">老赵</a></h3>
-
+<h3 id="httpwwwcnblogscomjeffreyzhao"><a href="http://www.cnblogs.com/JeffreyZhao">老赵</a></h3>
 <ol>
 <li><a href="http://www.cnblogs.com/JeffreyZhao/archive/2009/07/22/thread-pool-1-the-goal-and-the-clr-thread-pool.html">浅谈线程池（上）：线程池的作用及CLR线程池</a></li>
 <li><a href="http://www.cnblogs.com/JeffreyZhao/archive/2009/07/24/thread-pool-2-dedicate-pool-and-io-pool.html">浅谈线程池（中）：独立线程池的作用及IO线程池</a></li>
 <li><a href="http://www.cnblogs.com/JeffreyZhao/archive/2009/10/20/thread-pool-3-lab.html">浅谈线程池（下）：相关试验及注意事项</a></li>
 </ol>
-
-<h3 id="bloodish-http-www-cnblogs-com-bloodish"><a href="http://www.cnblogs.com/bloodish">bloodish</a></h3>
-
+<h3 id="bloodishhttpwwwcnblogscombloodish"><a href="http://www.cnblogs.com/bloodish">bloodish</a></h3>
 <ol>
 <li><a href="http://www.cnblogs.com/bloodish/archive/2011/03/21/1990025.html">C# Tip &ndash; 如何优雅的控制线程状态</a></li>
 </ol>
-
-<h3 id="autumoon-http-www-cnblogs-com-autumoon"><a href="http://www.cnblogs.com/Autumoon">Autumoon</a></h3>
-
+<h3 id="autumoonhttpwwwcnblogscomautumoon"><a href="http://www.cnblogs.com/Autumoon">Autumoon</a></h3>
 <ol>
 <li><a href="http://www.cnblogs.com/Autumoon/archive/2008/06/19/1225684.html">白话多线程</a></li>
 </ol>
@@ -431,22 +447,15 @@ GO</pre>
 
               <div class="post-entry">
                 
-                  
-
-<p>数组是最基础的数据结构。ArrayList可以看作是Array的复杂版本。下面比较两者的异同</p>
-
-<h3 id="比较">比较：</h3>
-
+                  <p>数组是最基础的数据结构。ArrayList可以看作是Array的复杂版本。下面比较两者的异同</p>
+<h3 id="heading">比较：</h3>
 <blockquote>
-<h3 id="相同点">相同点：</h3>
-
+<h3 id="heading-1">相同点：</h3>
 <blockquote>
 <p>Array和ArrayList均实现了相同的接口，因此具有许多相同的操作方法，例如对自身进行枚举，能够以foreach语句遍历。
 Array和ArrayList创建的对象均保存在托管堆中。</p>
 </blockquote>
-
-<h3 id="不同点">不同点：</h3>
-
+<h3 id="heading-2">不同点：</h3>
 <blockquote>
 <ol>
 <li>Array只能存储同构对象，当然，声明为Object类型的数组除外，因为任何类型都可以隐式转换成Object类型。ArrayList可以存储异构对象，这是因为本质上ArrayList内部维护着一个object[] items类型的字段，在应用ArrayList时，应该考虑装箱和拆箱所带来的性能损失。一般情况下，Array的性能高于ArrayList。</li>
@@ -505,32 +514,21 @@ tip：List泛型类对应于ArrayList。</li>
 
               <div class="post-entry">
                 
-                  
-
-<p>本文同样是笔记整理，手动输入一遍和看书的感觉还是很不一样的。文章非常好，讲的很清楚。</p>
-
-<h3 id="什么是接口">什么是接口？</h3>
-
+                  <p>本文同样是笔记整理，手动输入一遍和看书的感觉还是很不一样的。文章非常好，讲的很清楚。</p>
+<h3 id="heading">什么是接口？</h3>
 <p>　　　接口是包含一组虚方法的抽象类型，其中每一种方法都有其名称、参数和返回值。接口方法不能包含任何实现，CLR允许接口可以包含事件、属性、索引器、静态方法、静态字段、静态构造函数以及常数。但是注意：<strong>C#中不能包含任何静态成员</strong>。一个类可以实现多个接口，当一个类继承某个接口时，它不仅要实现该接口定义的所有方法，还要实现该接口从其他接口中继承的<strong>所有</strong>方法。</p>
-
-<h3 id="什么是抽象类">什么是抽象类？</h3>
-
+<h3 id="heading-1">什么是抽象类？</h3>
 <p>　　　抽象类提供多个派生类共享基类的公共定义，它既可以提供抽象方法，也可以提供非抽象方法。抽象类不能实例化，必须通过继承由派生类实现其抽象方法，因此对抽象类不能使用new关键字，也不能被密封。如果派生类没有实现所有的抽象方法，则该派生类也必须声明为抽象类。另外，实现抽象方法由override方法来实现。</p>
-
-<h3 id="比较">比较</h3>
-
+<h3 id="heading-2">比较</h3>
 <blockquote>
-<h3 id="相同点">相同点</h3>
-
+<h3 id="heading-3">相同点</h3>
 <blockquote>
 <ul>
 <li>都不能被直接实例化，都可以通过继承实现其抽象方法。</li>
 <li>都是面向抽象编程的技术基础，实现了诸多的设计模式。</li>
 </ul>
 </blockquote>
-
-<h3 id="不同点">不同点</h3>
-
+<h3 id="heading-4">不同点</h3>
 <blockquote>
 <ul>
 <li>接口<strong>支持</strong>多继承；抽象类不能实现多继承。</li>
@@ -541,9 +539,7 @@ tip：List泛型类对应于ArrayList。</li>
 <li>接口可以作用于值类型和引用类型；抽象类只能作用于引用类型。例如，Struct就可以继承接口，而不能继承类。</li>
 </ul>
 </blockquote>
-
-<h3 id="规则与场合">规则与场合</h3>
-
+<h3 id="heading-5">规则与场合</h3>
 <blockquote>
 <ol>
 <li>请记住，面向对象思想的一个最重要的原则就是：<strong>面向接口编程</strong>。</li>
@@ -564,10 +560,8 @@ tip：List泛型类对应于ArrayList。</li>
 </ol>
 </blockquote>
 </blockquote>
-
 <p>参考：<a href="http://www.cnblogs.com/anytao/archive/2007/04/12/must_net_02.html">对抽象编程：接口和抽象类</a></p>
-
-<p>&nbsp;</p>
+<p> </p>
 
                 
               </div>
@@ -617,14 +611,60 @@ tip：List泛型类对应于ArrayList。</li>
 
               <div class="post-entry">
                 
-                  字符串string可以理解为char[]，他是一个引用类型。
-字符串创建  操作上类似于int，char等类型，直接进行赋值，string str=&ldquo;bystander&rdquo;;虽然string 是个类，但是如果你天真的使用 string str=new string(&ldquo;bystander&rdquo;); 来构造，会导致一个编译错误。因为System.String只提供了数个接受Char*，Char[]类型参数的构造函数。 所以只能像下面这样使用， Char[] cs={&lsquo;b&rsquo;,&lsquo;y&rsquo;,&lsquo;e&rsquo;}; String str=new String(cs); 看出来了吧，很麻烦的。所以一般还是使用第一种。
- 字符串恒定性  恒定性(Immutability)，是指字符串一经创建，就不可改变，这是String最为重要的特性之一。具体来说，就是字符串一旦创建，就会在托管堆上分配一块连续的内存空间，我们对其的任何改变都不会影响到原有的String对象，而是重新创建的新的String对象。类似Insert，Substring，ToUpper都只是创建出了新的临时的字符串，会成为下次垃圾回收的目标。 好处：
- 保证了对String对象的任何操作不会改变源字符串。 恒定性还意味着操作字符串不会出现线程同步问题 恒定性一定程度上，成就了字符串驻留。   字符串驻留  CLR维护一个表来存放字符串，该表叫做拘留表（或驻留池），他包含程序上以编程方式声明或创建的每一个唯一的字符串的引用，因此具有特定值的实例在系统中只有一个。如果将同一个字符串分配给多个变量，那么CLR就会向拘留池检索相同引用，并分配给变量。
-通过下面这个例子来说明： class StringInterning { public static void Main() { string strA = &ldquo;bystander&rdquo;; string strB = &ldquo;bystander&rdquo;; Console.WriteLine(ReferenceEquals(strA,strB)); string strC = &ldquo;by&rdquo;; string strD = strC+&ldquo;stander&rdquo;; Console.WriteLine(ReferenceEquals(strA,strD)); strD=String.Intern(strD); Console.WriteLine(ReferenceEquals(strA,strD)); } } 猜猜答案是什么。。 正确答案是：True，False，True 为什么不是我们通常认为的那样呢。这就是因为字符串驻留了
-缘起  String类型的特性恒定性，对字符串的任何操作都只会创建新的字符串，这会导致性能下降，而String又用的很频繁，为此，CLR使用字符串驻留来解决这一问题。为此，CLR内部维护一个哈希表，来管理其创建的大部分string对象。其中Key为string本身，Value为分配给对应的string的内存地址。
- 细节  string strA = &ldquo;bystander&rdquo;; CLR初始化时，创建一个空的哈希表，当JIT编译方法的时候，会首先在哈希表中查找每一个字符串常量，显然找不到任何&rdquo;bystander&rdquo;变量，因此会在托管堆中创建一个新的string对系那个strA，并更新哈希表，Key被赋值为&rdquo;bystander&rdquo;,Value被赋值为strA的引用.
-                  <a href="https://leizhiyuan.github.io/2012/07/08/c#%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%A9%BB%E7%95%99/" class="post-read-more">[Read More]</a>
+                  <p>字符串string可以理解为char[]，他是一个引用类型。</p>
+<h3 id="heading">字符串创建</h3>
+<blockquote>
+<p>操作上类似于int，char等类型，直接进行赋值，string str=&quot;bystander&rdquo;;虽然string 是个类，但是如果你天真的使用</p>
+<!-- raw HTML omitted -->
+<p>来构造，会导致一个编译错误。因为System.String只提供了数个接受Char*，Char[]类型参数的构造函数。
+所以只能像下面这样使用，</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>看出来了吧，很麻烦的。所以一般还是使用第一种。</p>
+</blockquote>
+<h3 id="heading-1">字符串恒定性</h3>
+<blockquote>
+<p>恒定性(Immutability)，是指字符串一经创建，就不可改变，这是String最为重要的特性之一。具体来说，就是字符串一旦创建，就会在托管堆上分配一块连续的内存空间，我们对其的任何改变都不会影响到原有的String对象，而是重新创建的新的String对象。类似Insert，Substring，ToUpper都只是创建出了新的临时的字符串，会成为下次垃圾回收的目标。
+好处：</p>
+<ul>
+<li>保证了对String对象的任何操作不会改变源字符串。</li>
+<li>恒定性还意味着操作字符串不会出现线程同步问题</li>
+<li>恒定性一定程度上，成就了字符串驻留。</li>
+</ul>
+</blockquote>
+<h3 id="heading-2">字符串驻留</h3>
+<blockquote>
+<p>CLR维护一个表来存放字符串，该表叫做拘留表（或驻留池），他包含程序上以编程方式声明或创建的每一个唯一的字符串的引用，因此具有特定值的实例在系统中只有一个。如果将同一个字符串分配给多个变量，那么CLR就会向拘留池检索相同引用，并分配给变量。</p>
+<p>通过下面这个例子来说明：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>猜猜答案是什么。。
+正确答案是：True，False，True
+为什么不是我们通常认为的那样呢。这就是因为字符串驻留了</p>
+<h3 id="heading-3">缘起</h3>
+<blockquote>
+<p>String类型的特性恒定性，对字符串的任何操作都只会创建新的字符串，这会导致性能下降，而String又用的很频繁，为此，CLR使用字符串驻留来解决这一问题。为此，CLR内部维护一个哈希表，来管理其创建的大部分string对象。其中Key为string本身，Value为分配给对应的string的内存地址。</p>
+</blockquote>
+<h3 id="heading-4">细节</h3>
+<blockquote>
+<!-- raw HTML omitted -->
+<p>　　CLR初始化时，创建一个空的哈希表，当JIT编译方法的时候，会首先在哈希表中查找每一个字符串常量，显然找不到任何&quot;bystander&quot;变量，因此会在托管堆中创建一个新的string对系那个strA，并更新哈希表，Key被赋值为&quot;bystander&rdquo;,Value被赋值为strA的引用.也就是Value内保留了&quot;bystander&quot;在托管堆中的引用地址.</p>
+<!-- raw HTML omitted -->
+<p>　　接着,JIT根据&quot;bystander&quot;查找哈希表,结果找到了,所以JIT不做操作,只把找到的key对应的Value值赋给了strB对象.因此,第一个输出为true,引用相等.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>　　同样,JIT向哈希表中添加了Key为&quot;by&rdquo;,Value为托管堆上&quot;by&quot;的地址.返回strC对象.但是注意,strD不同,JIT不检测,因为strD他是动态生成的.这样的字符串不会被添加到哈希表中进行维护,而是在托管堆中直接分配,所以第二个Console输出False.</p>
+<p>　　对于第三个,我们首先看看Intern方法和IsInterned方法,对于动态生成的字符串,因为没有添加到CLR维护的哈希表,所以字符串驻留机制对其失效,但是可以手工开启,来实现高效的比较字符串相等.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>　　两者的机制都是去哈希表中查找是否存在str字符串,找到的话也都返回对str的引用,不同的是当哈希表中没有str的话,IsInterned返回null,而Intern将把这个字符串添加到哈希表,并返回引用.注意,IsInterned返回非null并不代表两个字符串引用了相同的地址.
+所以</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>就很好理解了.</p>
+</blockquote>
+</blockquote>
+
                 
               </div>
 
@@ -748,11 +788,8 @@ tip：List泛型类对应于ArrayList。</li>
               <div class="post-entry">
                 
                   <p>资源来自：<a href="http://www.ijinshan.com/dcys/baipishu/">金山网络</a></p>
-
 <p>　　　我比较认真的读完了这本小册子，确实收获还是蛮大的。前几天有个朋友问我电池的事情，我以前看过电池的一些保养的。当时就知道锂电池是首次使用是不需要进行12小时充电的。。看到这本小册子的时候，证实了我没乱讲哈。。</p>
-
 <p>　　　然后里面还说道一个就是很多人不相信软件能够保养电池。其实真的是可以的。。理由不赘述。你可以自己读一读。。我自己感觉对普通用户很有用的是30页的那一节。讲到的问题有；</p>
-
 <ol>
 <li>电池管理类软件对电池寿命没用？</li>
 <li>充电习惯对电池寿命没有用？</li>
@@ -769,8 +806,7 @@ tip：List泛型类对应于ArrayList。</li>
 <li>iPhone和iPad的充电器可以混用吗？</li>
 <li>经常把电用光再充对电池好不好？</li>
 </ol>
-
-<p>书籍下载：<a href="http://115.com/file/ancame68# 移动设备电池白皮书.pdf">移动设备电池使用白皮书</a></p>
+<p>书籍下载：[移动设备电池使用白皮书](<a href="http://115.com/file/ancame68#">http://115.com/file/ancame68#</a> 移动设备电池白皮书.pdf)</p>
 
                 
               </div>
@@ -818,9 +854,16 @@ tip：List泛型类对应于ArrayList。</li>
 
               <div class="post-entry">
                 
-                  看书的时候，看到的。然后感觉书上的写的不清楚，于是自己写了一下。还真的有问题。 要进行序列化和反序列化，首先要定义一个可以序列化的类，方法是在类的声明前加上特性 [Serializable] 定义了一个简单的用户类，需要注意的是私有字段是不能序列化的，只有公有字段和公有属性才可以。如下
-[Serializable] //特性，可以序列化 public class UserData { public string Name; public int Age; private string sex; public string Sex { set{sex=value;} get{return sex;} } public UserData() { } public UserData(string name, int age, string sex) { Name = name; Age = age; Sex = sex; } } 注意，书上有个例子没有给出默认的构造函数，实际测试时如果没有默认构造函数，是不能执行xml序列化的。注意。 然后就导入需要的命名空间。 需要导入 using System.IO; using System.Runtime.Serialization.Formatters.Binary; using System.Xml.Serialization; 分贝对应文件操作，二进制序列化和xml序列化 为了方便，我封装了四个静态函数，用于实现序列化和反序列化。 //封装二进制序列化方法 public static void BinarySerialize(UserData user) { FileStream fs = new FileStream("
-                  <a href="https://leizhiyuan.github.io/2012/07/07/c#%E4%B8%ADxml%E5%92%8C%E4%BA%8C%E8%BF%9B%E5%88%B6%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96/" class="post-read-more">[Read More]</a>
+                  <p>看书的时候，看到的。然后感觉书上的写的不清楚，于是自己写了一下。还真的有问题。
+要进行序列化和反序列化，首先要定义一个可以序列化的类，方法是在类的声明前加上特性
+[Serializable]
+定义了一个简单的用户类，需要注意的是私有字段是不能序列化的，只有公有字段和公有属性才可以。如下</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>分贝对应文件操作，二进制序列化和xml序列化</p>
+<p>为了方便，我封装了四个静态函数，用于实现序列化和反序列化。</p>
+<!-- raw HTML omitted -->
+
                 
               </div>
 
@@ -869,11 +912,15 @@ tip：List泛型类对应于ArrayList。</li>
 
               <div class="post-entry">
                 
-                  最近的一个事就是那个诡异的CSV导入，后来决定用最笨的方法。就是readline，然后确实是可以正常识别了。思路就是一行行读入，然后构造sql语句，保存为sql文件，然后去批量执行sql文件。其实在codeproject找到了一些类似的工具，都有不如意的地方，但是时间关系还没能自己去定制，这件事完成后，就去完善一下大牛们的工具。
-　因为是多个csv文件，每个文件对应于我们想建的一个表，实际是大约2000个csv文件，每个文件大约4000行数据，构造成对应的sql语句比较简单，需要注意的就是如果sql server表中的字段和关键字重名，那么需要加[]，比如我们有个字段是open，那么实际sql语句中使用的时候，比如
-CREATE TABLE ( [open] decimal not null, ) 　简单的读写以后我们构造了2000个sql文件，然后我们需要执行这些sql文件。。必然需要写个代码来批量执行了。。为此，我先用C#生成一个批处理文件，然后来执行
-void GetBat(string InputPath,string OutFile) { DirectoryInfo di = new DirectoryInfo(InputPath); FileInfo[] fi = di.GetFiles(); // Create an array representing the files in the current directory StringBuilder strtemp = new StringBuilder(); foreach (FileInfo fiTemp in fi) { string temp = "osql -S \"127.0.0.1\" -U \"sa\" -P \"broker\" -d \"test_money\" -i \""; temp += fiTemp.FullName.ToString() + "\"\n"; strtemp.
-                  <a href="https://leizhiyuan.github.io/2012/07/06/csv%E6%89%B9%E9%87%8F%E5%AF%BC%E5%85%A5%E8%A7%A3%E5%86%B3/" class="post-read-more">[Read More]</a>
+                  <p>　　最近的一个事就是那个诡异的CSV导入，后来决定用最笨的方法。就是readline，然后确实是可以正常识别了。思路就是一行行读入，然后构造sql语句，保存为sql文件，然后去批量执行sql文件。其实在codeproject找到了一些类似的工具，都有不如意的地方，但是时间关系还没能自己去定制，这件事完成后，就去完善一下大牛们的工具。</p>
+<p>　　因为是多个csv文件，每个文件对应于我们想建的一个表，实际是大约2000个csv文件，每个文件大约4000行数据，构造成对应的sql语句比较简单，需要注意的就是如果sql server表中的字段和关键字重名，那么需要加[]，比如我们有个字段是open，那么实际sql语句中使用的时候，比如</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>　　简单的读写以后我们构造了2000个sql文件，然后我们需要执行这些sql文件。。必然需要写个代码来批量执行了。。为此，我先用C#生成一个批处理文件，然后来执行</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>600M的sql文件执行起来三个多小时。。因为只算一次，所以就不考虑优化了。。鄙视我们吧。</p>
+
                 
               </div>
 
@@ -887,59 +934,6 @@ void GetBat(string InputPath,string OutFile) { DirectoryInfo di = new DirectoryI
                     <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
                   
                     <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
-                  
-                </div>
-              
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/07/05/effective-c#item-9%E5%8C%BA%E5%88%AB%E5%92%8C%E8%AE%A4%E8%AF%86%E5%9B%9B%E4%B8%AA%E5%88%A4%E7%AD%89%E5%87%BD%E6%95%B0/">
-                <h2 class="post-title">《Effective C#》Item 9：区别和认识四个判等函数</h2>
-                
-                
-                
-              </a>
-
-              <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on July 5, 2012
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              <div class="post-entry">
-                
-                  .Net有四个判等函数？不少人看到这个标题，会对此感到怀疑。事实上确是如此，.Net提供了ReferenceEquals、静态Equals，具体类型的Equals以及==操作符这四个判等函数。但是这四个函数之间有细微的关系，改变其中一个函数的实现会影响到其他函数的操作结果。
-　首先要说的是Object.ReferenceEquals和Object.Equals这两个静态函数，对于它们俩来说，是不需要进行重写的，因为它们已经完成它们所要得做的操作。
-对于Object.ReferenceEquals这个静态函数，函数形式如下： public static bool ReferenceEquals( object left, object right ); 这个函数就是判断两个引用类型对象是否指向同一个地址。有此说明后，就确定了它的使用范围，即只能对于引用类型操作。那么对于任何值类型数据操作，即使是与自身的判别，都会返回false。这主要因为在调用此函数的时候，值类型数据要进行装箱操作，也就是对于如下的形式来说。 int n = 10; Object.ReferenceEquals( n, n ); 这是因为对于n这个数据装箱两次，而每次装箱后的地址有不同，而造成Object.ReferenceEquals( n, n )的结果永远为false。
-对于第一个判等函数来说，没有什么好扩展的，因为本身已经很好地完成了它所要做的。
-对于第二个Object.Equals这个静态函数，其形式如下： public static bool Equals( object left, object right ); 按照书中对它的分析，其大致函数代码如下： public static void Equals( object left, object right ) { // Check object identity if( left == right ) return true;
-// both null references handled above if( ( left == null ) || ( right == null ) ) return false; return left.
-                  <a href="https://leizhiyuan.github.io/2012/07/05/effective-c#item-9%E5%8C%BA%E5%88%AB%E5%92%8C%E8%AE%A4%E8%AF%86%E5%9B%9B%E4%B8%AA%E5%88%A4%E7%AD%89%E5%87%BD%E6%95%B0/" class="post-read-more">[Read More]</a>
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%94%B6%E8%97%8F/">收藏</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%AE%BE%E8%AE%A1/">设计</a>&nbsp;
                   
                 </div>
               
@@ -1009,7 +1003,7 @@ void GetBat(string InputPath,string OutFile) { DirectoryInfo di = new DirectoryI
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

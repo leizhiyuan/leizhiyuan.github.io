@@ -18,10 +18,10 @@
       
       <guid>https://leizhiyuan.github.io/2015/05/10/%E5%85%B3%E4%BA%8E%E9%87%8D%E6%9E%84%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</guid>
       <description>之前在工作写了一个数据库查询的工具.大体背景就是这种工具需要跨不同环境的数据库,开发,测试,性能等.最早简单写了一个版本,在第一次查询时会初始化三个库的连接,保存在map中,然后后续查询直接根据使用者选择的环境类型取出对应的连接构造sql即可.
-随着各个不同系统接入的越来越多,各个平台都保存了自己的连接,导致代码冗余度急剧上升,上周,利用晚上的一点时间读了一下&amp;lt;&amp;lt;重构&amp;gt;&amp;gt;,这本书,深受启发,一个是重构就是要采用小步快走的方式,在测试用例的覆盖下,快速改动,去掉代码中不合理的地方.另一个就是重构需要对业务的当下和未来的变化有一个比较深刻的理解,知道这个系统能做什么,不能做什么.才能更好地做重构.
+随着各个不同系统接入的越来越多,各个平台都保存了自己的连接,导致代码冗余度急剧上升,上周,利用晚上的一点时间读了一下&amp;laquo;重构&amp;raquo;,这本书,深受启发,一个是重构就是要采用小步快走的方式,在测试用例的覆盖下,快速改动,去掉代码中不合理的地方.另一个就是重构需要对业务的当下和未来的变化有一个比较深刻的理解,知道这个系统能做什么,不能做什么.才能更好地做重构.
 于是,根据这个工具的特点,感觉抽象工厂模式比较合适,于是在抽象工厂模式的指导下,对关键部分进行了重构,在增加了几个类之后,代码复杂度开始下降.各个接入系统的代码基本上保持在了几十行内,之前都是几百行,大量冗余代码,只能说自己之前眼光太短浅了.并且,采用了类似单例模式的操作.当查询的时候,先根据当前环境作为key取连接,如果连接被关闭,或者不存在,则初始化,然后放到map中,返回.如果有的话,直接用.这样改动后,第一次查询的时候只需要初始化一个连接,速度极快.也算个好处..
 由此,反思了一下,设计模式之前也看过.但是总觉得各种书上讲的都比较浅显,给出的例子也似乎如作者所说,很符合那个模式,但实际上,在工作中如何识别当下的业务应该是比较难的,需要在业务变动中,不断地重构自己的代码,才能发现,某一种模式似乎特别适合解决这种问题,反之,重构也需要一定的设计模式作为基础,否则对代码的重构会只停留在抽取公共方法.重命名.大类变小类的阶段..
-希望接下来能够抽空把&amp;lt;&amp;lt;敏捷软件开发：原则、模式与实践&amp;gt;&amp;gt;这本书看完.同时能够真的理解这些模式的场合,想起一句话,知道一个技术方案的好,说明你还没有理解这种方法,只有你知道了这个方案的不足,你才真正理解了他,相信很多技术我都没有理解.设计模式也是,希望之后能够理解每种模式的不足,重构这本书也要经常翻翻,能加深对代码的理解.</description>
+希望接下来能够抽空把&amp;laquo;敏捷软件开发：原则、模式与实践&amp;raquo;这本书看完.同时能够真的理解这些模式的场合,想起一句话,知道一个技术方案的好,说明你还没有理解这种方法,只有你知道了这个方案的不足,你才真正理解了他,相信很多技术我都没有理解.设计模式也是,希望之后能够理解每种模式的不足,重构这本书也要经常翻翻,能加深对代码的理解.</description>
     </item>
     
     <item>
@@ -50,8 +50,10 @@ Spring 框架之上衍生的产品包括不限于Spring Web Flow,Spring Web Serv
       <guid>https://leizhiyuan.github.io/2014/03/03/%E8%97%8F%E8%BF%90%E7%94%A8-boxlayout-%E8%BF%9B%E8%A1%8C-swing-%E6%8E%A7%E4%BB%B6%E5%B8%83%E5%B1%80/</guid>
       <description>写的非常非常好的一个教程，感谢陈 怡平
 引言 在用户使用 Java Swing 进行用户界面开发过程中，会碰到如何对 Java Swing 的控件进行布局的问题。Swing 的控件放置在容器 (Container) 中，容器就是能够容纳控件或者其它容器的类，容器的具体例子有 Frame、Panel 等等。容器需要定义一个布局管理器来对控件进行布局管理，Swing 当中提供的主要的布局管理器有 FlowLayout、BorderLayout、BoxLayout、GridLayout 和 GridBaglayout, 它们的主要特点如表 1 所示：
-表 1. Swing 中的一些主要布局管理器的比较   布局管理器 特点     FlowLayout 把控件按照顺序一个接一个由左向右的水平放置在容器中，一行放不下，就放到下一行   BorderLayout 将整个容器划分成东南西北中五个方位来放置控件，放置控件时需要指定控件放置的方位   BoxLayout 可以指定在容器中是否对控件进行水平或者垂直放置，比 FlowLayout 要更为灵活   GridLayout 将整个容器划分成一定的行和一定的列，可以指定控件放在某行某列上   GridBagLayout 是 Swing 当中最灵活也是最复杂的布局管理器，可对控件在容器中的位置进行比较灵活的调整    本文主要关注在 BoxLayout 布局管理器的使用上。我们首先对 BoxLayout 作一下介绍。
-BoxLayout 介绍 如前所述，BoxLayout 可以把控件依次进行水平或者垂直排列布局，这是通过参数 X_AXIS、Y_AXIS 来决定的。X_AXIS 表示水平排列，而 Y_AXIS 表示垂直排列。BoxLayout 的构造函数有两个参数，一个参数定义使用该 BoxLayout 的容器，另一个参数是指定 BoxLayout 是采用水平还是垂直排列。下面是一个创建 BoxLayout 实例的例子：   JPanel panel=new JPanel(); BoxLayout layout=new BoxLayout(panel, BoxLayout.</description>
+表 1. Swing 中的一些主要布局管理器的比较 BoxLayout 介绍 如前所述，BoxLayout 可以把控件依次进行水平或者垂直排列布局，这是通过参数 X_AXIS、Y_AXIS 来决定的。X_AXIS 表示水平排列，而 Y_AXIS 表示垂直排列。BoxLayout 的构造函数有两个参数，一个参数定义使用该 BoxLayout 的容器，另一个参数是指定 BoxLayout 是采用水平还是垂直排列。下面是一个创建 BoxLayout 实例的例子：
+当 BoxLayout 进行布局时，它将所有控件依次按照控件的优先尺寸按照顺序的进行水平或者垂直放置，假如布局的整个水平或者垂直空间的尺寸不能放下所有控件，那么 BoxLayout 会试图调整各个控件的大小来填充整个布局的水平或者垂直空间。
+BoxLayout 往往和 Box 这个容器结合在一起使用，这么做的理由是，BoxLayout 是把控件以水平或者垂直的方向一个接一个的放置，如果要调整这些控件之间的空间，就会需要使用 Box 容器提供的透明的组件作为填充来填充控件之间的空间，从而达到调整控件之间的间隔空间的目的。Box 容器提供了 4 种透明的组件，分别是 rigid area、strut、glue、filler。Box 容器分别提供了不同的方法来创建这些组件。这四个组件的特点如下：
+ Rigid area 是一种用户可以定义水平和垂直尺寸的透明组件； strut 与 rigid area 类似，但是用户只能定义一个方向的尺寸，即水平方向或者垂直方向，不能同时定义水平和垂直尺寸； 当用户将 glue 放在两个控件之间时，它会尽可能的占据两个控件之间的多余空间，从而将两个控件挤到两边； Filler 是 Box 的内部类，它与 rigid area 相似，都可以指定水平或者垂直的尺寸，但是它可以设置最小，最大和优先尺寸。  用 BoxLayout 进行布局 在了解了 BoxLayout 和 Box 容器的基本特点后，我们来看一下 BoxLayout 的优点，首先 BoxLayout 可以进行对控件进行垂直或者水平布局，同时 BoxLayout 使用起来较为简单，然而把它和 Box 容器相结合，就可以进行较为复杂的布局，达到同使用 GridBagLayout 的一样的效果，但是使用起来要简单方便多了。我们用按钮的布局作为例子来看怎样运用 BoxLayout 和 Box 容器进行布局：</description>
     </item>
     
     <item>
@@ -62,13 +64,22 @@ BoxLayout 介绍 如前所述，BoxLayout 可以把控件依次进行水平或�
       <guid>https://leizhiyuan.github.io/2014/03/01/%E8%AF%91%E4%BD%BF%E7%94%A8mockito%E7%AE%80%E5%8D%95mock%E5%85%A5%E9%97%A8/</guid>
       <description>我们在写单元测试的时候，面临的一个挑战就是要测试的内容总是依赖于其他组件，要是我们还得先配置好其他组件，未免有点不如意，那么我们可以使用Mocks来代替那些依赖的组件
 本文问了展示这个过程，我会创建一个DAL，数据访问层，这是一个类，提供了一个通用的api来访问和修改数据仓库的数据，然后，我们要测试这个api，而不用配置连接某个本地的数据库，，或者一个远程的数据库，或者是一个文件系统，反正就是任何放数据的东西，DAL层的好处就是隔离开了数据访问和应用程序代码
-首先使用maven来创建一个工程 mvn archetype:generate -DgroupId=info.sanaulla -DartifactId=MockitoDemo -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false 执行之后，本地生成MockitoDemo 文件夹，然后整个工程的目录结构与生成好了。
-然后，我们写这样一个model类，表示book类型 package info.sanaulla.models;
-import java.util.List;
-/** * Model class for the book details. */ public class Book {
-private String isbn; private String title; private List&amp;lt;String&amp;gt; authors; private String publication; private Integer yearOfPublication; private Integer numberOfPages; private String image;
-public Book(String isbn, String title, List&amp;lt;String&amp;gt; authors, String publication, Integer yearOfPublication, Integer numberOfPages, String image){
-this.isbn = isbn; this.title: = title; this.</description>
+首先使用maven来创建一个工程
+执行之后，本地生成MockitoDemo 文件夹，然后整个工程的目录结构与生成好了。
+然后，我们写这样一个model类，表示book类型
+然后，我们访问Book model的DAL类会如下
+DAL层现在还没啥功能，我们要通过TDD来测试，实际中，DAL可能和ORM来交互，也可能和数据库API交互，但是我们设计DAL的时候，不用关心
+准备测试
+我倾向于用junit做单元测试，而Mockito做mock。首先更新一下pom文件。添加依赖
+下面，我们要测试啦，我们会在单元测试中把mock数据注入到BookDAL中，这样我们就不要依赖任何数据源就可以完成测试
+我们当然对应测试DAL类的每个方法嘛。
+然后我们会在setup（这个方法是在测试类执行测试前执行的，用于准备数据啦）
+在setup()方法中
+1.首先我创建BookDAL的对象
+2.然后stub,存根。。用mock的数据。这样当对应的方法被调用的时候就返回我mock的数据
+然后，我们执行一下
+mvn test就可以看到结果了
+   很简单。。。没有配置任何实际的数据源。</description>
     </item>
     
     <item>
@@ -80,14 +91,13 @@ this.isbn = isbn; this.title: = title; this.</description>
       <description>之前看到一些设计师的主题的字体很美，下载下来发现使用了css3的自定义字体，可以用来显示服务器上的字体，非常方便，学习了一下
 1.首先得到字体
 这个方法很多，本机的字体，一些国外的免费网站，比如这个：http://www.dafont.com，下载后的字体一般为ttf格式，ttf字体被很多浏览器支持，但是，IE不支持，为了兼容性，需要为IE单独设置字体文件，格式必须为eot，所以我们需要转换字体，使用在线工具，比如http://www.kirsle.net/wizards/ttf2eot.cgi，当然类似的网站有很多，根据个人爱好，随意。
-&amp;nbsp;
-2.添加内容
-这里，我写一个简单的html文件，内容为 &amp;lt;body&amp;gt; &amp;lt;p class=&amp;ldquo;test&amp;rdquo;&amp;gt;bystander&amp;lt;/p&amp;gt; &amp;lt;/body&amp;gt; 在没有设置customFont这个类的css之前，字体就是默认的字体了。
-&amp;nbsp;
-3.设置css样式 @font-face { font-family:myFont;/主流浏览器可用/ src:url(&amp;ldquo;PONCTUATION.ttf&amp;rdquo;); } @font-face { font-family:myFont;/兼容IE/ src:url(&amp;ldquo;PONCTUATION.eot&amp;rdquo;); } .test { font-family:myFont; font-size:40px; } 显示效果就是这样的了&amp;hellip;只是用来演示的一个字体。
+ 2.添加内容
+这里，我写一个简单的html文件，内容为
+在没有设置customFont这个类的css之前，字体就是默认的字体了。
+ 3.设置css样式
+显示效果就是这样的了&amp;hellip;只是用来演示的一个字体。
 
-&amp;nbsp;
-因为浏览器是要自动下载这个字体文件的，所以对于英文字体没啥问题，英文字体一般这个字体文件在100k左右，和一张图片比起来，基本算不是问题，但是对于中文字体，包一般在10M-20M左右，这样是不现实的，我的想法是，可以自己制作字体包，这样只需要满足常用的一些汉字就行了，大大减少包的大小，然后去找了一下，发现了http://www.high-logic.com/font-editor/fontcreator.html这个软件，是可以直接编辑字体包的，也可以创建字体包，有空了用来试试.</description>
+ 因为浏览器是要自动下载这个字体文件的，所以对于英文字体没啥问题，英文字体一般这个字体文件在100k左右，和一张图片比起来，基本算不是问题，但是对于中文字体，包一般在10M-20M左右，这样是不现实的，我的想法是，可以自己制作字体包，这样只需要满足常用的一些汉字就行了，大大减少包的大小，然后去找了一下，发现了http://www.high-logic.com/font-editor/fontcreator.html这个软件，是可以直接编辑字体包的，也可以创建字体包，有空了用来试试.</description>
     </item>
     
     <item>
@@ -100,9 +110,7 @@ this.isbn = isbn; this.title: = title; this.</description>
 C#的反射可以用来实现一个简单的插件系统。思路很简单，我们创建一个解决方案，包含三个工程，一个为我们的软件MyApplication，一个为插件接口IPlugin，一个为具体的插件MyPlugin。插件系统的基本思路是我们用一个接口类库,来定义我们软件可以使用的插件必须实现的方法签名。然后我们的软件MyApplication通过引用该IPlugin dll来动态调用，而具体的实现插件MyPlugin则引用该接口来实现具体的方法。这样我们的应用程序就能在不知道具体插件的情况下调用插件了。。
 结构图如下：
 
-关键代码也就是通过对程序集载入。搜索到对应接口的实现类。然后调用即可。 Assembly a = Assembly.LoadFrom(AssemblyName); foreach (Type t in a.GetTypes()) { if (t.GetInterface(&amp;ldquo;IMyFunction&amp;rdquo;) != null) { try { IMyFunction pluginclass = Activator.CreateInstance(t) as IMyFunction; pluginclass.doSomething(); } catch (Exception ex) { MessageBox.Show(ex.ToString()); } } } 运行结果：
-
-源码下载：PluginSystem.zip</description>
+关键代码也就是通过对程序集载入。搜索到对应接口的实现类。然后调用即可。</description>
     </item>
     
     <item>
@@ -111,7 +119,9 @@ C#的反射可以用来实现一个简单的插件系统。思路很简单，我
       <pubDate>Sat, 02 Feb 2013 07:39:11 +0000</pubDate>
       
       <guid>https://leizhiyuan.github.io/2013/02/02/%E5%88%A9%E7%94%A8%E5%8F%8D%E5%B0%84%E8%BD%AC%E6%8D%A2%E5%AF%B9%E8%B1%A1list%E5%88%B0csv/</guid>
-      <description>扒自一工程。。可以学习一下.net中反射的简单用法 /// &amp;lt;summary&amp;gt; /// Take object List as input and export to csv which will be prompt save as dialog /// &amp;lt;/summary&amp;gt; /// &amp;lt;typeparam name=&amp;ldquo;T&amp;rdquo;&amp;gt; Type of object&amp;lt;/typeparam&amp;gt; /// &amp;lt;param name=&amp;ldquo;listToExport&amp;rdquo;&amp;gt; Object list to export&amp;lt;/param&amp;gt; /// &amp;lt;param name=&amp;ldquo;seperateChar&amp;rdquo;&amp;gt; character to use as scv separator&amp;lt;/param&amp;gt; public static string ExportListToCSV&amp;lt;T&amp;gt;( List&amp;lt;T&amp;gt; listToExport, string seperateChar) { Int32 success = 0; StringBuilder export = new StringBuilder(); try { string seperator = &amp;ldquo;&amp;rdquo; ; StringBuilder builder = new StringBuilder();</description>
+      <description>扒自一工程。。可以学习一下.net中反射的简单用法
+ 增加这个只是两个预定义的实体框架内的属性。
+使用PropertyInfo 可以获得名字。数据类型。声明类型，反射类型，读写属性等等。也可以设置或获取属性值。</description>
     </item>
     
     <item>
@@ -145,8 +155,7 @@ C# 3.0
 16. Linq介绍
 C# 4.0
 17. 深入理解动态类型
-&amp;nbsp;
-从C#的所有特性可以看出,C#中提出的每个新特性都是建立在原来特性的基础上,并且是对原来特性的一个改进, 做这么多的改进主要是为了方便开发人员更好地使用C#来编写程序,是让我们写更少的代码来实现我们的程序,把一些额外的工作交给编译器去帮我们做,也就是很多人说微软很喜欢搞语法糖的意思(语法糖即让编译器帮我们做一些额外的事情，减少开发人员所考虑的事情，使开发人员放更多的精力放在系统的业务逻辑上面。)，大家从C# 3中提出的特性中可以很好的看出这点(指的是玩语法糖)，C#3中几乎大部分特性都是C#提供的语法糖，从CLR层面来说(指的是增加新的IL指令)，C# 3并没有更新什么，C# 4中提出的动态类型又是建立在表达式树的基础上，包括Linq也是建立在表达式树的基础上，所以每个特性都是层层递进的一个关系。相信C#后面提出的新特性将会更加方便我们开发程序，感觉所有语言的一个统一的思想都是——写更少的代码，却可以做更多的事情。但是我们不能仅仅停住于知道怎么使用它，我们还应该深入研究它的背后的故事，知道新特性是如何实现的和原理。用一句说就是——我们要知其然之气所以然，学习知识应该抱着刨根问底的态度去学习,相信这样的学习方式也可以让大家不感到心虚,写出的程序将会更加自信。</description>
+ 从C#的所有特性可以看出,C#中提出的每个新特性都是建立在原来特性的基础上,并且是对原来特性的一个改进, 做这么多的改进主要是为了方便开发人员更好地使用C#来编写程序,是让我们写更少的代码来实现我们的程序,把一些额外的工作交给编译器去帮我们做,也就是很多人说微软很喜欢搞语法糖的意思(语法糖即让编译器帮我们做一些额外的事情，减少开发人员所考虑的事情，使开发人员放更多的精力放在系统的业务逻辑上面。)，大家从C# 3中提出的特性中可以很好的看出这点(指的是玩语法糖)，C#3中几乎大部分特性都是C#提供的语法糖，从CLR层面来说(指的是增加新的IL指令)，C# 3并没有更新什么，C# 4中提出的动态类型又是建立在表达式树的基础上，包括Linq也是建立在表达式树的基础上，所以每个特性都是层层递进的一个关系。相信C#后面提出的新特性将会更加方便我们开发程序，感觉所有语言的一个统一的思想都是——写更少的代码，却可以做更多的事情。但是我们不能仅仅停住于知道怎么使用它，我们还应该深入研究它的背后的故事，知道新特性是如何实现的和原理。用一句说就是——我们要知其然之气所以然，学习知识应该抱着刨根问底的态度去学习,相信这样的学习方式也可以让大家不感到心虚,写出的程序将会更加自信。</description>
     </item>
     
     <item>
@@ -158,11 +167,26 @@ C# 4.0
       <description>本文来自xjp的碎碎念，我很喜欢的一个博主。博客已被伟大的GFW屏蔽。和文章的主题类似，我有时候会在G+上会纠正一些人的谣言，并且给出澄清，可是，往往效果不大。我的态度很简单，你要反对一样东西，请你不要是那样的东西。或用那样的东西去反对。不要为任何主义所迷惑，你要做好一个人。
 今天看到一篇来自《新京报》的报道，称时事评论员@周筱赟爆料称，根据铁道部的两份采购合同显示，推测铁道部12306订票网站实际投入已经超过5亿元，而不是之前曾披露的3.2亿元。
 首先我很赞同周筱赟所做的事情，在国内目前民众获取信息渠道有限的情况下，有这样的热心人士去披露政府部门行政行为中值得讨论的部分，对于整个社会的公正与透明都有极大的推动作用。
-但我注意的是另一群人，他们典型的回复是： &amp;gt; 1、花5个多亿做成这么垃圾的网站，铁道部公然贪污多少钱？臭不要脸的！二逼的网站和系统归功于傻逼造就！ &amp;gt; &amp;gt; 2、卧槽，里面有4.5亿是贪污款吧 &amp;gt; &amp;gt; 3、习总说反腐，最大的蛀虫在这里，敢反否？ &amp;gt; &amp;gt; 4、3亿建站为什么这些年一直没有工商部去追查12306的贪污问题。你懂我懂大家懂。 &amp;gt; &amp;gt; 5、中央纪委、监察部和各级纪检监察机关要加大检查监督力度，执好纪、问好责、把好关。 &amp;gt; &amp;gt; 6、太极集团是做医药的呀，怎么也搞起软件来了。我想说，有没经验都不要紧，要紧的是有钱。咱就撒都能做！ &amp;gt; &amp;gt; 7、五亿······· 用了个500的模版 月薪5000水平的制作团队 &amp;gt; &amp;gt; 8、三億各單位部門宣傳費，一億三公支出，五千萬采購合同草擬費用，四千萬給媒體掩口費, 九百九十萬信息產業部備案費用，最後十萬才是網站制作費用… 這五億基本上都使對了地方，沒有錯啊! 其它的评论都是诸如此类，某一些理性的评论都被深埋其中。
-我不是铁道部、太极的任何一方，我不能拍着胸脯说这些问题一定不存在，但真正让我恐惧的是，有大量网友没有认真去研究文章的内容与事实，只是单纯下意识地做出了判断，然后开喷。
-我们仔细去看我们讨厌的那些五毛与政府宣传部门，他们的日常做法都是： &amp;gt; 1、戴帽子 &amp;gt; &amp;gt; 2、站在道德高度，说正确的废话 &amp;gt; &amp;gt; 3、自说自话，完全不管别人在说什么 &amp;gt; &amp;gt; 4、预设立场 &amp;gt; &amp;gt; 5、我永远是对的，反对我的都是错的 &amp;gt; &amp;gt; 6、你们站在人民的对立面 然后有一个微博网友在评论里跟我说，他只需要一万元就能够搞定12306的网站外包开发。听到这样的话，我不由地一阵颤抖，如果这话来自一名所谓的业内人士，那我真的不知道应该怎么说了。
-引用某网友的评论： &amp;gt; 从专业角度来说，投入不算多，只是透明度不够，民众才疑惑！全国各地还需要再多些大型机房，才能满足高峰期分流排队和并发操作！ 我的看法是，不否认铁道部的开发、架构设计存在一定问题，如果没有实际的大型系统设计经验的团队，可能会造成很多理论与实际脱节问题，事实上今年的12306已经比去年好太多了，他们也在吸取教训。当然，我也赞成他们向互联网公司取经，吸收现有经验。
-建议大家不要单纯喷，5亿这个数字可能略高，但比起数千万的静态网站好多了，至于具体审计是国家审计局的事情，我支持惩处贪腐。做一个覆盖数千万用户，承受刷票插件5秒一次的并发，服务器、带宽、配套都是成本。而售票数字化几乎是必经之路，铁道部走出这一步是好的，买不到票有基础运力的问题，跟网络售票无关。
+但我注意的是另一群人，他们典型的回复是：
+ 1、花5个多亿做成这么垃圾的网站，铁道部公然贪污多少钱？臭不要脸的！二逼的网站和系统归功于傻逼造就！
+2、卧槽，里面有4.5亿是贪污款吧
+3、习总说反腐，最大的蛀虫在这里，敢反否？
+4、3亿建站为什么这些年一直没有工商部去追查12306的贪污问题。你懂我懂大家懂。
+5、中央纪委、监察部和各级纪检监察机关要加大检查监督力度，执好纪、问好责、把好关。
+6、太极集团是做医药的呀，怎么也搞起软件来了。我想说，有没经验都不要紧，要紧的是有钱。咱就撒都能做！
+7、五亿······· 用了个500的模版 月薪5000水平的制作团队
+8、三億各單位部門宣傳費，一億三公支出，五千萬采購合同草擬費用，四千萬給媒體掩口費, 九百九十萬信息產業部備案費用，最後十萬才是網站制作費用… 這五億基本上都使對了地方，沒有錯啊! 其它的评论都是诸如此类，某一些理性的评论都被深埋其中。
+ 我不是铁道部、太极的任何一方，我不能拍着胸脯说这些问题一定不存在，但真正让我恐惧的是，有大量网友没有认真去研究文章的内容与事实，只是单纯下意识地做出了判断，然后开喷。
+我们仔细去看我们讨厌的那些五毛与政府宣传部门，他们的日常做法都是：
+ 1、戴帽子
+2、站在道德高度，说正确的废话
+3、自说自话，完全不管别人在说什么
+4、预设立场
+5、我永远是对的，反对我的都是错的
+6、你们站在人民的对立面 然后有一个微博网友在评论里跟我说，他只需要一万元就能够搞定12306的网站外包开发。听到这样的话，我不由地一阵颤抖，如果这话来自一名所谓的业内人士，那我真的不知道应该怎么说了。
+ 引用某网友的评论：
+ 从专业角度来说，投入不算多，只是透明度不够，民众才疑惑！全国各地还需要再多些大型机房，才能满足高峰期分流排队和并发操作！ 我的看法是，不否认铁道部的开发、架构设计存在一定问题，如果没有实际的大型系统设计经验的团队，可能会造成很多理论与实际脱节问题，事实上今年的12306已经比去年好太多了，他们也在吸取教训。当然，我也赞成他们向互联网公司取经，吸收现有经验。
+ 建议大家不要单纯喷，5亿这个数字可能略高，但比起数千万的静态网站好多了，至于具体审计是国家审计局的事情，我支持惩处贪腐。做一个覆盖数千万用户，承受刷票插件5秒一次的并发，服务器、带宽、配套都是成本。而售票数字化几乎是必经之路，铁道部走出这一步是好的，买不到票有基础运力的问题，跟网络售票无关。
 不要一叶障目，买不到票人人都会烦心，诚然铁道部是一个不错的发泄口，但如果只是为了喷而喷。借用我之前的一句话，铁道部如何做你们才满意？</description>
     </item>
     
@@ -177,17 +201,10 @@ C# 4.0
 博客：http://leaver.me
 转载请注明出处！
 
-&amp;nbsp;
-
+ 
 涉及到的东西有：
 1.C#隐藏TabControl的header部分，前面的文章有介绍
-2.获取窗体全部的某一类控件（这个无聊的话抽象出一个通用的方法出来，以后就可以直接用了） /// &amp;lt;summary&amp;gt; /// 获取所有的文本框控件 /// &amp;lt;/summary&amp;gt; /// &amp;lt;param name=&amp;ldquo;control&amp;rdquo;&amp;gt;&amp;lt;/param&amp;gt; /// &amp;lt;returns&amp;gt;&amp;lt;/returns&amp;gt; private List&amp;lt;TextBox&amp;gt; GetAllControls(Control control) { foreach (Control con in control.Controls) { if (con.Controls.Count &amp;gt; 0) { GetAllControls(con); } else if (con is TextBox) { tBoxList.Add(con as TextBox); } } return tBoxList; } &amp;nbsp;
-3.文件操作
-4.字符串操作
-反正很简单，主要就是写的时候思路要清晰。知道大部分使用密码的规则。处理一下生日格式。否则后面很麻烦。。相应的验证也比较少。界面依然毫无美感。。
-总结：
-现在发现在控件命名上越来越顺利了。自我感觉良好。后面慢慢的要开始尝试使用学到的一些新的技术点。。
-下载：社工字典生成工具</description>
+2.获取窗体全部的某一类控件（这个无聊的话抽象出一个通用的方法出来，以后就可以直接用了）</description>
     </item>
     
     <item>
@@ -202,10 +219,27 @@ C# 4.0
  图8.10所示的是无向图的邻接矩阵表示法，可以观察到，矩阵延对角线对称，即A(i，j)= A(j，i)。无向图邻接矩阵的第i行或第i列非零元素的个数其实就是第i个顶点的度。这表示无向图邻接矩阵存在一定的数据冗余。
 图8.11所示的是有向图邻接矩阵表示法，矩阵并不延对角线对称，A(i，j)=1表示顶点Vi邻接到顶点Vj；A(j，i)=1则表示顶点Vi邻接自顶点Vj。两者并不象无向图邻接矩阵那样表示相同的意思。有向图邻接矩阵的第i行非零元素的个数其实就是第i个顶点的出度，而第i列非零元素的个数是第i个顶点的入度，即第i个顶点的度是第i行和第i列非零元素个数之和。
 由于存在n个顶点的图需要n2个数组元素进行存储，当图为稀疏图时，使用邻接矩阵存储方法将出现大量零元素，照成极大地空间浪费，这时应该使用邻接表表示法存储图中的数据。
-8.2.2 邻接表表示法 图的邻接矩阵存储方法跟树的孩子链表示法相类似，是一种顺序分配和链式分配相结合的存储结构。邻接表由表头结点和表结点两部分组成，其中图中每个顶点均对应一个存储在数组中的表头结点。如这个表头结点所对应的顶点存在相邻顶点，则把相邻顶点依次存放于表头结点所指向的单向链表中。如图8.12所示，表结点存放的是邻接顶点在数组中的索引。对于无向图来说，使用邻接表进行存储也会出现数据冗余，表头结点A所指链表中存在一个指向C的表结点的同时，表头结点C所指链表也会存在一个指向A的表结点。  有向图的邻接表有出边表和入边表（又称逆邻接表）之分。出边表的表结点存放的是从表头结点出发的有向边所指的尾顶点；入边表的表结点存放的则是指向表头结点的某个头顶点。如图8.13所示，图(b)和&amp;copy;分别为有向图(a)的出边表和入边表。  以上所讨论的邻接表所表示的都是不带权的图，如果要表示带权图，可以在表结点中增加一个存放权的字段，其效果如图8.14所示。
+8.2.2 邻接表表示法 图的邻接矩阵存储方法跟树的孩子链表示法相类似，是一种顺序分配和链式分配相结合的存储结构。邻接表由表头结点和表结点两部分组成，其中图中每个顶点均对应一个存储在数组中的表头结点。如这个表头结点所对应的顶点存在相邻顶点，则把相邻顶点依次存放于表头结点所指向的单向链表中。如图8.12所示，表结点存放的是邻接顶点在数组中的索引。对于无向图来说，使用邻接表进行存储也会出现数据冗余，表头结点A所指链表中存在一个指向C的表结点的同时，表头结点C所指链表也会存在一个指向A的表结点。  有向图的邻接表有出边表和入边表（又称逆邻接表）之分。出边表的表结点存放的是从表头结点出发的有向边所指的尾顶点；入边表的表结点存放的则是指向表头结点的某个头顶点。如图8.13所示，图(b)和(c)分别为有向图(a)的出边表和入边表。  以上所讨论的邻接表所表示的都是不带权的图，如果要表示带权图，可以在表结点中增加一个存放权的字段，其效果如图8.14所示。
 
 【注意】：观察图8.14可以发现，当删除存储表头结点的数组中的某一元素，有可能使部分表头结点索引号的改变，从而导致大面积修改表结点的情况发生。可以在表结点中直接存放指向表头结点的指针以解决这个问题（在链表中存放类实例即是存放指针，但必须要保证表头结点是类而不是结构体）。在实际创建邻接表时，甚至可以使用链表代替数组存放表头结点或使用顺序表存代替链表存放表结点。对所学的数据结构知识应当根据实际情况及所使用语言的特点灵活应用，切不可生搬硬套。
-【例8-1 AdjacencyList.cs】图的邻接表存储结构  using System; using System.Collections.Generic; public class AdjacencyList&amp;lt;T&amp;gt; { List&amp;lt;Vertex&amp;lt;T&amp;gt;&amp;gt; items; //图的顶点集合 public AdjacencyList() : this(10) { } //构造方法 public AdjacencyList(int capacity) //指定容量的构造方法 { items = new List&amp;lt;Vertex&amp;lt;T&amp;gt;&amp;gt;(capacity); } public void AddVertex(T item) //添加一个顶点 { //不允许插入重复值 if (Contains(item)) { throw new ArgumentException(&amp;ldquo;插入了重复顶点！&amp;rdquo;); } items.Add(new Vertex&amp;lt;T&amp;gt;(item)); } public void AddEdge(T from, T to) //添加无向边 { Vertex&amp;lt;T&amp;gt; fromVer = Find(from); //找到起始顶点 if (fromVer == null) { throw new ArgumentException(&amp;ldquo;头顶点并不存在！&amp;rdquo;); } Vertex&amp;lt;T&amp;gt; toVer = Find(to); //找到结束顶点 if (toVer == null) { throw new ArgumentException(&amp;ldquo;尾顶点并不存在！&amp;rdquo;); } //无向边的两个顶点都需记录边信息 AddDirectedEdge(fromVer, toVer); AddDirectedEdge(toVer, fromVer); } public bool Contains(T item) //查找图中是否包含某项 { foreach (Vertex&amp;lt;T&amp;gt; v in items) { if (v.</description>
+【例8-1 AdjacencyList.cs】图的邻接表存储结构
+l Vertex类中包含了一个visited成员，它的作用是在图遍历时标识当前节点是否被访问过，这一点在稍后会讲到。
+l 邻接点指针域adjvex直接指向某个表头结点，而不是表头结点在数组中的索引。
+AdjacencyList&amp;lt;T&amp;gt;类中使用了一个泛型List代替数组来保存表头结点信息（第5行代码），从而不再考虑数组存储空间不够的情况发生，简化了操作。
+由于一条无向边的信息需要在边的两个顶点分别存储信息，即添加两个有向边，所以58～78行代码的私有方法AddDirectedEdge()方法用于添加一个有向边。新的邻接点信息即可以添加到链表的头部也可以添加到尾部，添加到链表头部可以简化操作，但考虑到要检查是否添加了重复边，需要遍历整个链表，所以最终把邻接点信息添加到链表尾部。
+【例8-1 Demo8-1.cs】图的邻接表存储结构测试
+B：AD
+C：A
+D：AB
+ 本例存储的表如图8.12所示，结果中，冒号前面的是表头结点，冒号后面的是链表中的表结点。
+8.3 图的遍历 和树的遍历类似，在此，我们希望从图中某一顶点出发访遍图中其余顶点，且使每一个顶点仅被访问一次，这一过程就叫做图的遍历(TraversingGraph)。如果只访问图的顶点而不关注边的信息，那么图的遍历十分简单，使用一个foreach语句遍历存放顶点信息的数组即可。但如果为了实现特定算法，就需要根据边的信息按照一定顺序进行遍历。图的遍历算法是求解图的连通性问题、拓扑排序和求关键路径等算法的基础。
+图的遍历要比树的遍历复杂得多，由于图的任一顶点都可能和其余顶点相邻接，故在访问了某顶点之后，可能顺着某条边又访问到了已访问过的顶点，因此，在图的遍历过程中，必须记下每个访问过的顶点，以免同一个顶点被访问多次。为此给顶点附设访问标志visited，其初值为false，一旦某个顶点被访问，则其visited标志置为true。
+图的遍历方法有两种：一种是深度优先搜索遍历（Depth-First Search 简称DFS）；另一种是广度优先搜索遍历（Breadth_First Search 简称BFS）。
+8.3.1 深度优先搜索遍历 图的深度优先搜索遍历类似于二叉树的深度优先搜索遍历。其基本思想如下：假定以图中某个顶点Vi为出发点，首先访问出发点，然后选择一个Vi的未访问过的邻接点Vj，以Vj为新的出发点继续进行深度优先搜索，直至图中所有顶点都被访问过。显然，这是一个递归的搜索过程。
+现以图8.15为例说明深度优先搜索过程。假定V1是出发点，首先访问V1。因V1有两个邻接点V2、V3均末被访问过，可以选择V2作为新的出发点，访问V2之后，再找V2的末访问过的邻接点。同V2邻接的有V1、V4和V5，其中V1已被访问过，而V4、V5尚未被访问过，可以选择V4作为新的出发点。重复上述搜索过程，继续依次访问V8、V5。访问V5之后，由于与V5相邻的顶点均已被访问过，搜索退回到V8，访问V8的另一个邻接点V6。接下来依次访问V3和V7，最后得到的的顶点的访问序列为：V1→ V2→ V4→ V8→ V5→ V6→ V3→V7。  下面根据上一节创建的邻接表存储结构添加深度优先搜索遍历代码。
+【例8-2 DFSTraverse.cs】深度优先搜索遍历
+打开【例8-1 AdjacencyList.cs】，在AdjacencyList&amp;lt;T&amp;gt;类中添加以下代码后，将文件另存为DFSTraverse.cs。
+private void InitVisited() //初始化visited标志 { foreach (Vertex&amp;amp;lt;T&amp;amp;gt; v in items) { v.</description>
     </item>
     
     <item>
@@ -217,10 +251,8 @@ C# 4.0
       <description>一个C#的通信的例子
 
 1.服务端，服务端通过ip和端口生成客户端之后，点击开始监听后，便开启监听线程持续监听，同时注册断开连接和收到信息的事件。收到来自TcpClient 流中的信息后，解析之，如果是连接信息，就添加到连接列表，这样服务端就可以显示多个客户端了。如果是断开信息，就删掉。如果服务端想要给客户端发消息，就选中该客户，然后填写信息，就会调用连接类的发送方法。
-&amp;nbsp;
-2.客户端，也就是被控端，被控端通过tcp连接到远端ip，然后发送连接成功状态，随后异步读取。读取到信息后调用解析方式。然后处理。。
-3.服务端如何生成客户端。其实也比较简单。就是写好客户端以后，保存为文本。然后通过CodeDomProvider的相关方法来编译即可。代码如下： public static bool Compile(string EXE_Name, string Source) { CodeDomProvider Compiler = CodeDomProvider.CreateProvider(&amp;ldquo;CSharp&amp;rdquo;); CompilerParameters Parameters = new CompilerParameters(); CompilerResults cResults = default(CompilerResults);
-Parameters.GenerateExecutable = true; Parameters.OutputAssembly = EXE_Name; Parameters.ReferencedAssemblies.Add(&amp;#34;System.dll&amp;#34;); Parameters.CompilerOptions = &amp;#34; /target:winexe&amp;#34;; Parameters.TreatWarningsAsErrors = false; cResults = Compiler.CompileAssemblyFromSource(Parameters, Source); if (cResults.Errors.Count &amp;amp;gt; 0) { foreach (CompilerError CompilerError_loopVariable in cResults.Errors) { CompilerError error = CompilerError_loopVariable; MessageBox.Show(&amp;#34;Error: &amp;#34; + error.ErrorText, &amp;#34;&amp;#34;, MessageBoxButtons.OK, MessageBoxIcon.Error); } return false; } else if (cResults.</description>
+ 2.客户端，也就是被控端，被控端通过tcp连接到远端ip，然后发送连接成功状态，随后异步读取。读取到信息后调用解析方式。然后处理。。
+3.服务端如何生成客户端。其实也比较简单。就是写好客户端以后，保存为文本。然后通过CodeDomProvider的相关方法来编译即可。代码如下：</description>
     </item>
     
     <item>
@@ -233,9 +265,20 @@ Parameters.GenerateExecutable = true; Parameters.OutputAssembly = EXE_Name; Para
 本节介绍一些核心有lambda表达式的模式，我不认为他们完全是新的模式，但是至少我还没有看到有人给他们起过名字，我于是决定尝试取个可能好，也可能不好的名字，这样我起码能很容易的给别人描述，有话在先，许多模式相当强大，但是可能会引入潜在的bug，所以小心为上
 复杂的多态
 Lambda表达式也可以被用来创建一些多态（override），而不用使用abstract或者virtual关键字（当然这并不意味着就不能用），考虑如下的代码片段
-class MyBaseClass { public Action SomeAction { get; protected set; } public MyBaseClass() { SomeAction = () =&amp;gt; { //Do something! }; } } 看起来没什么新的知识，我们创建一个类，里面有一个属性（一个lambda表达式），又一次JavaScript化了，有趣的地方是：属性暴露的这个部分不只是本类可以改变，子类也可以改变，看代码
-class MyInheritedClass : MyBaseClass { public MyInheritedClass { SomeAction = () =&amp;gt; { //Do something different! }; } }  看到了。我们可以改变这个方法。或者进行更精确的操作，这种方法的缺点是我们不能直接访问父类的实现，也就缺乏了基类的能力，因为，这个父类的属性会有同样的值，如果程序员真的需要这样写，我建议你遵循 pattern
-class MyBaseClass { public Action SomeAction { get; private set; } Stack&amp;lt;Action&amp;gt; previousActions; protected void AddSomeAction(Action newMethod) { previousActions.Push(SomeAction); SomeAction = newMethod; } protected void RemoveSomeAction() { if(previousActions.</description>
+看起来没什么新的知识，我们创建一个类，里面有一个属性（一个lambda表达式），又一次JavaScript化了，有趣的地方是：属性暴露的这个部分不只是本类可以改变，子类也可以改变，看代码
+看到了。我们可以改变这个方法。或者进行更精确的操作，这种方法的缺点是我们不能直接访问父类的实现，也就缺乏了基类的能力，因为，这个父类的属性会有同样的值，如果程序员真的需要这样写，我建议你遵循 pattern
+这样的话，子类就不得不拥有了 AddSomeAction() 方法，而这个方法是吧当前的方法压入堆栈，那样我们可以恢复之前的状态。
+这种模式我起了一个名字叫做Lambda属性多态模式（LP3），它简单的描述了可以在属性里捕获任何方法。之后可以被子类所设置，栈是这个模式的一个附加品，没有改变我们使用属性来完成的模式目标
+为什么要用这种模式？有几个理由。地一个，因为我们可以用。但是等一等。如果你使用当中不同的属性，这个模式会变得相当棘手，突然，多态变成了一个完全的新方法。但是这也许是一个不同的模式，现在我想说这个模式完成了以前人们认为不可能的事情
+举个例子，你想要（不建议，但是也许对该问题是最优雅的解决方法了。）重写一个静态方法，好吧。静态不可能被继承，原因很简单，师承是对实例对象来说的。而静态方法不属于任何一个实例，对于所有的实例都是一样的。这会引发一个警告，下面的例子也许并不如你所想的结果，因此，除非你非常清楚。否则不要乱用。 看代码
+这很简单，希望没有对你产生误导，这种模式有时候会让事情变得异常复杂，这也是为什么我总是避免使用它。不过他很有用。（可以通过该方法构造所有的静态属性和方法，并且可以使你总是获得你感兴趣的那个）只要你不感到头疼，这是解决静态多态性的一个好方法。是的。静态多态性是可能的。
+简单请求一个方法
+之前我已经介绍过这个方法了。但是我没有说名字，这就是方法字典模式，这个模式的一个基础就是一个哈希表或是一个字典，包含一个keys（通常是字符串，但取决于具体的情况），这些keys对应一些特定的方法，这个模式也指定了一个特殊的方法构造这些字典，否则，一个简单的switch-case就搞定了，看代码
+这哪里需要字典？好像不需要。事实上我们写的更好一些。
+等等，这个模式现在没有优点了。。事实上，这个模式并不特别好写，她还需要多写写代码，但是我们可以使用反射来自动化这个字典的构造，这样我们就会和switch-case一样搞笑了。但是我们的代码更加健壮，并且维护更简单，如果你写switch-case。。你就需要手工添加很多分支语句了。。
+我们看一种可能的实现方法。我通常更倾向于添加一些类型转换，这样就可以方便的使用keys对应的值了。当然，你也可以通过其他方法实现，比如使用一致的方法签名，这里我还是用转换。
+现在看起来好多了，事实上。这个模式节省了我很多时间。这个模式最好的就是：它使你可以写出优雅的插件。通过不同的库扩充功能。为什么。你可以使用该方法来扫描未知的库，这些库符合一些确定的模式。然后包含他们进入你的代码，这样。没有任何问题。其他库的方法就会继承成你的代码里。你所需要做的仅仅如下：
+现在，我们所需要做的就是确定加载的插件，并且添加一些方法来处理这些事事情。最后。可以通过调用LoadPlugin()方法从给定的程序集实例上加载方法。这只是这个模式的一个应用。而我其实还可以做很多。。。比如我们也在JavaScript里面使用。那里可是没有内置的反射的。。</description>
     </item>
     
     <item>
@@ -247,20 +290,19 @@ class MyBaseClass { public Action SomeAction { get; private set; } Stack&amp;lt;
       <description>1.什么是Lambda表达式
 Lambda表达式是一个匿名方法，通常在LINQ中被用来创建委托
 简单来说。它是一个没有声明，没有访问修饰符，没有返回值。甚至没有名字的方法。
-&amp;nbsp;
-2.为什么我们需要使用Lambda表达式？或者说为什么我们要写一个没有名字的函数？
+ 2.为什么我们需要使用Lambda表达式？或者说为什么我们要写一个没有名字的函数？
 为了方便，这种快捷方式允许你在调用的地方直接编写代码，尤其是你想调用的代码只会在这个地方使用一次。并且方法体本身很短。节省了单独写方法中写声明等等的麻烦。。
 好处
 1.代码量减少。不必写方法的名称。返回值和访问修饰符
 2.当阅读代码的时候。直接就可以看到被调用函数的代码，不用去别的地方。
 Lambda表示应该短些。太复杂了。可读性就下降了
-&amp;nbsp;
-如果编写Lambda表达式
+ 如果编写Lambda表达式
 Lambda基本的定义是：参数=&amp;gt;执行代码
-举个例子 n = &amp;gt; n % 2 == 1 n是输入参数 n % 2 == 1 是函数体
+举个例子
+n是输入参数 n % 2 == 1 是函数体
 你可以读作：给这个匿名方法传入一个参数n，如果n是奇数就返回true
-&amp;nbsp;
-使用该Lambda的例子 List&amp;lt;int&amp;gt; numbers = new List&amp;lt;int&amp;gt;{11,37,52}; List&amp;lt;int&amp;gt; oddNumbers = numbers.where(n =&amp;gt; n % 2 == 1).ToList(); //现在oddNumbers 里面就是11和37了 ok.基本的Lambda表达式就是这样了。</description>
+ 使用该Lambda的例子
+ok.基本的Lambda表达式就是这样了。</description>
     </item>
     
     <item>
@@ -270,9 +312,8 @@ Lambda基本的定义是：参数=&amp;gt;执行代码
       
       <guid>https://leizhiyuan.github.io/2012/11/25/c#%E6%A8%A1%E6%8B%9F%E6%89%8B%E5%B7%A5%E6%B4%97%E7%89%8C%E9%99%84%E6%B5%8B%E8%AF%95/</guid>
       <description>洗牌大家都知道，代码实现最广泛的一种就是产生两个随机数，然后交换这两个随机数为下标的牌，但是这种的洗牌并不能保证同概率，你可以参考本文做一些测试，本文代码没啥可说的。我写出了非常详细的注释
-ps:刚开始写那个随机数的时候，我随便给了个种子2012.。结果你懂的。。意外意外。这个全局的result数组让我很疼，代码有什么可以改进的，欢迎留言指出。不胜感激。 /*Author:Bystander *Blog:http://leaver.me Date:2012/11/24/ using System;
-class Program { static int[,] result; static void Main() { //初始牌的顺序，我只测试10张牌的情况 char[] _arr = { &amp;lsquo;A&amp;rsquo;, &amp;lsquo;B&amp;rsquo;, &amp;lsquo;C&amp;rsquo;, &amp;rsquo;D&amp;rsquo;, &amp;lsquo;E&amp;rsquo;, &amp;lsquo;F&amp;rsquo;, &amp;lsquo;G&amp;rsquo;, &amp;lsquo;H&amp;rsquo;, &amp;lsquo;I&amp;rsquo;, &amp;lsquo;J&amp;rsquo; }; result = new int[_arr.Length, _arr.Length]; //进行1000次，来统计结果的数字.
-for (int i = 0; i &amp;amp;lt; 10000; i++) { ShuffleArray_Manual(_arr); SumCount(_arr); } int j = 0; foreach (int i in result) { if (j % result.GetLength(1) == 0) { Console.WriteLine(); } Console.</description>
+ps:刚开始写那个随机数的时候，我随便给了个种子2012.。结果你懂的。。意外意外。这个全局的result数组让我很疼，代码有什么可以改进的，欢迎留言指出。不胜感激。
+ </description>
     </item>
     
     <item>
@@ -282,9 +323,18 @@ for (int i = 0; i &amp;amp;lt; 10000; i++) { ShuffleArray_Manual(_arr); SumCount
       
       <guid>https://leizhiyuan.github.io/2012/11/23/%E8%8E%B7%E5%8F%96%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%89%88%E6%9C%AC%E4%BF%A1%E6%81%AF/</guid>
       <description>坊间流传的代码都有些问题，比如不能正常获取win7以上的版本信息，不能获取诸如专业版，旗舰版等的信息，不能正常获取操作系统位的信息。
-使用代码，写了一个简单的库来实现效果。用法大概如下： StringBuilder sb = new StringBuilder(String.Empty); sb.AppendLine(&amp;ldquo;Operation System Information&amp;rdquo;); sb.AppendLine(&amp;ldquo;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-&amp;rdquo;); sb.AppendLine(String.Format(&amp;ldquo;Name = {0}&amp;rdquo;, OSVersionInfo.Name)); sb.AppendLine(String.Format(&amp;ldquo;Edition = {0}&amp;rdquo;, OSVersionInfo.Edition)); if (OSVersionInfo.ServicePack!=string.Empty) sb.AppendLine(String.Format(&amp;ldquo;Service Pack = {0}&amp;rdquo;, OSVersionInfo.ServicePack)); else sb.AppendLine(&amp;ldquo;Service Pack = None&amp;rdquo;); sb.AppendLine(String.Format(&amp;ldquo;Version = {0}&amp;rdquo;, OSVersionInfo.VersionString)); sb.AppendLine(String.Format(&amp;ldquo;ProcessorBits = {0}&amp;rdquo;, OSVersionInfo.ProcessorBits)); sb.AppendLine(String.Format(&amp;ldquo;OSBits = {0}&amp;rdquo;, OSVersionInfo.OSBits)); sb.AppendLine(String.Format(&amp;ldquo;ProgramBits = {0}&amp;rdquo;, OSVersionInfo.ProgramBits));
-textBox1.Text = sb.ToString(); 对比一下坊间的几种不足： 总的来说。最大的问题就是不能正确检测你的操作系统到底是32位还是64位。几种方法大致如下： 1. 使用IntPtr指针的大小 最关键的一句代码是： return IntPtr.Size * 8; 但是事实上，这个返回的不是操作系统的位数，返回的是运行的程序的位数，如果在64位的windows上以32位的模式运行了这个程序，那么就会返回32.
-2. 使用PROCESSOR_ARCHITECTURE 环境变量 string pa = Environment.GetEnvironmentVariable(&amp;ldquo;PROCESSOR_ARCHITECTURE&amp;rdquo;); return ((String.IsNullOrEmpty(pa) || String.</description>
+使用代码，写了一个简单的库来实现效果。用法大概如下：
+对比一下坊间的几种不足： 总的来说。最大的问题就是不能正确检测你的操作系统到底是32位还是64位。几种方法大致如下： 1. 使用IntPtr指针的大小 最关键的一句代码是：
+但是事实上，这个返回的不是操作系统的位数，返回的是运行的程序的位数，如果在64位的windows上以32位的模式运行了这个程序，那么就会返回32.
+2. 使用PROCESSOR_ARCHITECTURE 环境变量
+这就是纯粹的误导了，因为和1的情况一样。不能返回处理器的位数而是返回了运行程序的位数，如果在64位的windows上以32位的模式运行了这个程序，那么就会返回32.
+3. 使用PInvoke 和 GetSystemInfo 注意：为了保持文章不要太长。。我没有包括PInvoke API的声明，（译者注：C#的互操作性嘛），但你可能在我提供的源代码里找到。
+老问题，还是会返回运行程序的位数，而不是操作系统/处理器的位数。 4. 使用PInvoke和GetNativeSystemInfo 我看到过有人说上面的都不可信。可以使用GetNativeSystemInfo代替，代码和上面一样，只是把GetSystemInfo换成GetNativeSystemInfo就好。
+结果不一样了。但是。。。这个API返回了处理器本身的位数，而我对操作系统的位数感兴趣。。毕竟64位的处理器上也可以轻松运行32位的操作系统 5. 组合 IntPtr.Size 和 IsWow64Process
+如果IntPtr是64.操作系统必然也是64位，因为你不能在32位的操作系统上运行64位的程序 如果程序在32位模式下运行，代码会检测是否是64位的处理器，而程序在32位模式下运行来判断是32位还是64位。 如果返回的是64，那么操作系统是64位，但是程序以32位的模式运行，如果是32，那么操作系统也是32.
+最后，我在lib里还加入了一些方法。以便区分程序/操作系统/处理器的位数。
+源码下载：
+[downloadicon href=http://pan.baidu.com/share/link?shareid=161028&amp;amp;uk=1493685990]OSVersion.zip[/downloadicon] 译自：http://www.codeproject.com/Articles/73000/Getting-Operating-System-Version-Info-Even-for-Win，有删减。</description>
     </item>
     
     <item>
@@ -300,8 +350,17 @@ GoF说了，依赖倒置的原则：
  高层模块不应依赖于低层模块，他们都应该依赖于抽象 抽象不依赖细节，细节依赖抽象
  刚开始写依赖倒置比较难，随着经验增长会有所改善，通过使高层模块依赖于抽象，依赖倒置成功解耦，依赖注入模式是该原则的一个实现。
 通常我们写出如下的代码：
-public class Email { public void SendEmail() { // code } } public class Notification { private Email _email; public Notification() { _email = new Email(); } public void PromotionalNotification() { _email.SendEmail(); } }  Notification类依赖Email类，这违反了DIP，而且当我们要发送短信/保存到数据库的时候，我们还要改变Notification类。 我们使用抽象类/接口解耦
-public interface IMessageService { void SendMessage(); } public class Email : IMessageService { public void SendMessage() { // code } } public class Notification { private IMessageService _iMessageService; public Notification() { _iMessageService = new Email(); } public void PromotionalNotification() { _iMessageService.</description>
+Notification类依赖Email类，这违反了DIP，而且当我们要发送短信/保存到数据库的时候，我们还要改变Notification类。 我们使用抽象类/接口解耦
+IMessageService 是一个接口，而Notification 类只要调用接口的方法/属性就可以了 同时，我们把Email对象的构造移到Notification 类外面去。
+依赖注入模式可以实现。通常有三种方式
+ 构造器注入 属性注入 方法注入  构造器注入 最普遍的方式，当一个类需要另一个类的依赖的时候，我们通过构造函数来提供，现在我们这样写
+有几个好处：1.构造函数实现很简单，Notification类需要知道的很少。想要创建Notification实例的时候看构造函数就可以知道需要什么信息了。因此实现了松耦合。
+属性注入
+属性注入/setter注入比较不常见，当依赖可有可无的时候很有用。我们暴露一个可写的属性，允许客户提供不同的依赖实现，比如这样。
+没有了构造函数。而用属性来替换，在PromotionalNotifications 方法里我们需要检查MessageService的值或者提供相应的服务。
+方法注入 当依赖可以对于每个方法调用都不同的时候，我们可以通过一个方法参数来实现，比如我们的这个类还可以发送短信。我们就要使用方法注入
+IMessageService 接口在两个类中都实现了。我们可以提供不同的类对象作为参数，这样可以有不同的调用效果。我们可以使用这三种方法实现松耦合。取决于具体的情景
+结论 不难吧。通过构造器注入我们就可以降低耦合度了。因此，程序员一般会使用构造器注入。当然也可以混合着使用嘛。。开心亲</description>
     </item>
     
     <item>
@@ -314,11 +373,16 @@ public interface IMessageService { void SendMessage(); } public class Email : IM
 背景 有时候我们需要做很多任务，而做这些任务的算法可能不同，这样可以设计成策略模式，这样。执行该任务的基本的一些代码就是一样的。但程序可可以动态的切换来执行任务的不同部分了。
 现在，真实的情况是有些算法，从实现层面山看，有可能有一些步骤是不一样的，这种情况下。我们可以使用继承来完成。
 当有个算法，而这个算法的一部分却多样的时候。使用模板模式就很好。GoF定义模板模式为：
- &amp;ldquo;Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm&amp;rsquo;s structure.&amp;rdquo;.
+ &amp;ldquo;Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm&#39;s structure.&amp;quot;.
  定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。模板模式使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。
  在上面的类图中： AbstractClass：包含两种方法。第一种就是算法的每一步。另一种就是模板方法。模板方法就是那些可以被用在所有独立方法中。并且提供了算法执行的一个骨架 ConcreteClass：这个类重写了抽象类中每一步的方法，包含对这些步骤的个性化实现。
 使用代码 看一个简单的例子。假想我们有一个类用来读取数据。并且能够为信息管理系统到处数据。
-abstract class DataExporter { // 这个方法都是一致的 public void ReadData() { Console.WriteLine(&#34;Reading the data from SqlServer&#34;); } // 当报表格式顶的时候这个也是定的。 public void FormatData() { Console.WriteLine(&#34;Formating the data as per requriements.</description>
+ReadData和FormatData 的实现不会变。唯一可变的部分就是ExportData方法。该方法对于不同的导出类型不同。如果我们要导出excel文件。我们要实现一个ConcreteClass的实现。
+同样如果要导出PDF文件。重写这部分即可
+好处就是客户端可以使用DataExporter类，而具体的实现是在派生类中的
+ 运行时。对算法的调用将会执行真正请求的派生类的方法。 看一下我们的类图 
+亮点何在 本文讨论了什么时候模板模式很有用。也简单的实现了。模板模式是一个典型的好莱坞原则： 别给我们打电话,我们会联系你的” 不论什么时候。模板方法总是在调用派生类中的方法。 [downloadicon href=http://pan.baidu.com/share/link?shareid=98214&amp;amp;uk=1493685990]TemplateMethodDemo.zip[/downloadicon]
+原文地址：Understanding-and-Implementing-Template-Method-Des 著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</description>
     </item>
     
     <item>
@@ -338,8 +402,12 @@ abstract class DataExporter { // 这个方法都是一致的 public void ReadDat
 使用代码 为了模拟外观模式,我们模拟一个小例子.试着实现一个简单的外观对象,该外观对象操作一些WP手机的控制器对象,我们先定义问题
 每天早上我跑步的时候,我都得对我的手机做出以下的事情.. 1. 关闭wifi 2. 切换到移动网络 3. 打开GPS 4. 打开音乐 5. 开始跑步追踪器
 跑完以后.,我又蛋疼的做出以下几件事 1. 在twitter和facebook上分享我的跑步数据 2. 关闭跑步追踪器 3. 关闭音乐 4. 关闭GPS 5. 关闭移动数据 6. 打开wifi
-目前我都是手工做的.,我们来实现这些假想的控制器类吧. class GPSController { bool isSwitchedOn = false;
-public bool IsSwitchedOn { get { return isSwitchedOn; } set { isSwitchedOn = value; DisplayStatus(); } } private void DisplayStatus() { string status = (isSwitchedOn == true) ?</description>
+目前我都是手工做的.,我们来实现这些假想的控制器类吧.
+其他的像MobileDataController, MusicController, WifiController 代码都是基本的一样的.
+然后模拟一下跑步追踪器这个app
+下面模拟一下我的手工过程
+手工部分模拟完了.运行效果看看 
+好了.我们还是写个外观软件自动做这个吧 该软件对外提供两个接口StartJogging.</description>
     </item>
     
     <item>
@@ -351,12 +419,15 @@ public bool IsSwitchedOn { get { return isSwitchedOn; } set { isSwitchedOn = val
       <description>背景 本文讨论装饰器模式,这个模式是因为很多情况下需要动态的给对象添加功能.比如我们创建了一个Stream类.后来需要对这个数据流类动态的添加一个加密功能.有人可能说把加密方法写到流类里面啊.然后使用一个bool变量来控制开关就行了.但是这样.这个加密方法只能写一种..如果用派生类来实现.那么..对于不同的加密方法.,都要创建一个子类,举个例子.比如有时候是一些函数的组合.我们最终的派生类的数目基本上就和排列组合的数目一样了.
 我们使用装饰器模式来解决这个问题.GoF描述为 &amp;ldquo;Attach additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing for extending functionality.&amp;rdquo;
 首先看一下图.理解一下这个模式中每一个类的作用
- • Component:定义了可以动态添加功能的具体类ConcreteComponents的接口. • ConcreteComponent: 可以动态添加功能的具体类 • Decorator: 定义了动态添加到ConcreteComponent类中的功能的接口 • ConcreteDecorator: 可以添加到 ConcreteComponent.中的具体功能类.
+ •	Component:定义了可以动态添加功能的具体类ConcreteComponents的接口. •	ConcreteComponent: 可以动态添加功能的具体类 •	Decorator: 定义了动态添加到ConcreteComponent类中的功能的接口 •	ConcreteDecorator: 可以添加到 ConcreteComponent.中的具体功能类.
 使用代码
 我们开一个面包店的例子.面包店卖蛋糕和甜点.客户可以买蛋糕和甜点,同时添加一些额外的东西.额外的东西包括奶油(Cream),樱桃(Cherry),香料(Scent)和会员(Name Card)
-如果我们用派生类来实现..那么我们会有如下的类 • CakeOnly • CakeWithCreamAndCherry • CakeWithCreamAndCherryAndScent • CakeWithCreamAndCherryAndScentAndNameCard • CakeWithCherryOnly • PastryOnly • PastryWithCreamAndCherry • PastryWithCreamAndCherryAndScent • PastryWithCreamAndCherryAndScentAndNameCard • PastryWithCherryOnly • 等等等等
+如果我们用派生类来实现..那么我们会有如下的类 •	CakeOnly •	CakeWithCreamAndCherry •	CakeWithCreamAndCherryAndScent •	CakeWithCreamAndCherryAndScentAndNameCard •	CakeWithCherryOnly •	PastryOnly •	PastryWithCreamAndCherry •	PastryWithCreamAndCherryAndScent •	PastryWithCreamAndCherryAndScentAndNameCard •	PastryWithCherryOnly •	等等等等
 这简直就是噩梦..我们用装饰器模式来实现把. 首先定义Component 接口
-public abstract class BakeryComponent { public abstract string GetName(); public abstract double GetPrice(); }  前面说过了.</description>
+前面说过了.这个类定义了能够动态添加功能的具体类(ConcreteComponents)的接口,好吧.然后来创建具体类ConcreteComponents
+现在基对象准备好了.看看那些可以被动态添加的功能.我们看看Decorator 类
+注意两个地方.第一个就是类实现BakeryComponent 接口,原因是装饰后的蛋糕还是蛋糕,另一个是该类也持有一个BakeryComponent 对象,原因是,我们需要Cake和装饰的项目是is-a关系,但是事实上不是.通过加一个对象就可以模拟is-a关系.
+一句话.我们使用继承实现了静态的is-a关系,而是用构成则是一个动态的is-a关系.</description>
     </item>
     
     <item>
@@ -372,8 +443,24 @@ GoF 定义原型模式为用原型实例指定创建对象的种类，并且通�
 主要的参与者有 • Prototype: 抽象类或接口，定义了方法来拷贝自己 • ConcretePrototype: 克隆的具体类. • Client: 需要执行拷贝对象的软件对象 然后实现吧
 使用代码
 为了简化。我以一个著名的偷车游戏作为例子 我们说游戏里有一个注脚。这个主要有着一些定义游戏数据的统计量。保存游戏的时候我们就需要拷贝这个对象，然后序列化到文件中。（仅仅是举个例子，真实的游戏里很少这样做）
-下面这个类抽象类就是概念中的Prototype public abstract class AProtagonist { int m_health; int m_felony; double m_money;
-public int Health { get { return m_health; } set { m_health = value; } } public int Felony { get { return m_felony; } set { m_felony = value; } } public double Money { get { return m_money; } set { m_money = value; } } public abstract AProtagonist Clone(); } &amp;nbsp;</description>
+下面这个类抽象类就是概念中的Prototype
+ 接口定义了玩家重要的信息，然后定义了一个Clone方法。然后我们定义一个具体的玩家类CJ。这样我们可以克隆当前对象，然后异步的进行序列化
+这个类就是概念中的ConcretePrototype 。这里为了简化也没有其他一些方法了。
+现在看看客户端软件的写法
+
+理解深浅拷贝
+上面的代码就模拟了原型模式，有一个问题就是我们使用了MemberwiseCopy 方法。而这个方法是创建浅拷贝的。如果对象里包含引用类型，引用类型的地址就会被从前者拷贝到后者。这样。两个就指向了同样的对象。
+为了说明情况。我们让主角类包含更多的，叫做AdditionalDetails
+ 然后抽象类将会一个AdditionalDetails 对象
+ 具体类既然使用MemberwiseCopy实现拷贝
+ 问题来了。两份拷贝会指向同一个AdditionalDetials 对象
+
+画个图。看得清楚些
+ 为了避免这种期刊。我们需要在堆上创建引用类型的拷贝，然后对应赋值
+ 这样就可以了
+
+注意。当执行深拷贝的时候，可能引用类型来包括引用类型，因此好的做法是用反射。并且递归的拷贝。直到没有引用类型，具体可参考另一文
+实现ICloneable接口 ICloneable接口提供了定义拷贝方法的接口。我们可以使用ICloneable 作为概念中的Prototype，我们看一下如果实现ConcretePrototype</description>
     </item>
     
     <item>
@@ -388,8 +475,16 @@ public int Health { get { return m_health; } set { m_health = value; } } public 
 最近我在开发一个通用任务的异步执行的引擎。我的通用任务通常有Do/Undo方法。原则上是相互独立的，但是有一些任务需要从已经执行的任务重请求数据。比如。一个任务可以 为一个硬件设备建立一个API，随后的任务就可以使用创建好的API来操作硬件设备。但是。我不想我的执行引擎知道关于这个执行任务的任何信息。而且。我也不想直接手工的就在一个任务里引用另一个任务。
 黑板类
 黑板类本质上是一个Dictionary的包装类，对外暴露Get和Set方法。黑板类允许其他对象存储并且取回数据。但是要求这些数据使用一个 BlackboardProperty 类型的标识符来表示这些数据是可存取的。BlackboardProperty 对象应该在那些准备读写黑板类的对象之间共享，因此，他应该在那些类中作为一个静态成员。（很像WPF的依赖属性。是他们所属控件的静态成员）
-注意：命名安全应该可以通过同样的方式实现。但是但是依然没有解决类型安全的问题。那么。到了主要的部分了。那就是黑板类的代码了 public class Blackboard : INotifyPropertyChanged, INotifyPropertyChanging { Dictionary&amp;lt;string, object&amp;gt; _dict = new Dictionary&amp;lt;string, object&amp;gt;();
-public T Get&amp;amp;lt;T&amp;amp;gt;(BlackboardProperty&amp;amp;lt;T&amp;amp;gt; property) { if (!_dict.ContainsKey(property.Name)) _dict[property.Name] = property.GetDefault(); return (T)_dict[property.Name]; } public void Set&amp;amp;lt;T&amp;amp;gt;(BlackboardProperty&amp;amp;lt;T&amp;amp;gt; property, T value) { OnPropertyChanging(property.Name); _dict[property.Name] = value; OnPropertyChanged(property.Name); } #region property change notification public event PropertyChangingEventHandler PropertyChanging; public event PropertyChangedEventHandler PropertyChanged; protected virtual void OnPropertyChanging(string propertyName) { if (PropertyChanging !</description>
+注意：命名安全应该可以通过同样的方式实现。但是但是依然没有解决类型安全的问题。那么。到了主要的部分了。那就是黑板类的代码了
+黑板属性（BlackBoardProperty）类
+BlackBoardProperty 类 提供了一个标识符来存取黑板对象中的数据。定义了名称和值的类型。也定义了一个默认的返回值。以防黑板类中对应属性没有值。
+我承认不是非常有用的代码。但是。能够模拟两个类的使用。 下一个例子会更和现实情况接近。但是肯定是被简化过了的。在下面的例子里。我定义了集中不同的任务。我用这些任务来启动对硬件设备的连接。操作设备。关闭连接。这些任务通过一个执行引擎依次执行，这些任务通过一个公用的黑板类来共享数据。至于这个任务类的和执行引擎（ExecutionEngine）类还是留到另一篇文章中把。
+黑板类另一种可能的使用情况就是一个支持插件的软件。如果需要的话允许插件进行通信，这种情况下属性改变的时候能够通知是很有用的。
+还有一件重要的事情是注意 BlackboardProperty 实例一般应该作为逻辑上拥有该属性的类的一个静态成员。那么既然那是静态的。同样的BlackboardProperty 实例就可以出现在多个黑板对象里。当某一个给定的属性。黑板对象里没有值的时候。他会请求BlackboardProperty 实例提供一个默认的值。缺省的值可能是一个引用类型，因此，如果你不想在多个黑板对象间共享同一个引用。在创建BlackboardProperty 对象的时候务必使用下面的构造函数。 public BlackboardProperty(string name, Func createDefaultValueFunc) 这就会使得默认的值不会在多个黑板对象间共享。
+有意思的地方 我应该说过了。这个方案一部分是受微软WPF中依赖属性的影响。还参考了我前段时间读到的一篇关于枚举类的文章
+许可 本文包括源代码和文件在CPOL下授权。
+原文地址： Type-safe-blackboard-property-bag
+著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</description>
     </item>
     
     <item>
@@ -408,11 +503,26 @@ public T Get&amp;amp;lt;T&amp;amp;gt;(BlackboardProperty&amp;amp;lt;T&amp;amp;gt
 3.1背景层
 第一层是一个椭圆。其实是一个canvas，一会在上面画反射和折射层，填充的颜色和按钮的背景（Background）关联。
 下面是Blend中的截图
-图2  &amp;lt;!&amp;ndash; Background Layer &amp;ndash;&amp;gt; &amp;lt;Ellipse Fill=&amp;ldquo;{TemplateBinding Background}&amp;rdquo;/&amp;gt; 3.1.1折射层
-第二层模拟了光从上到下的折射。被放在反射层之前是因为，要达到反光玻璃的效果，反射层必须在按钮的中间某处有一个硬边缘。这一层实际上是另一个椭圆。但是这次。我们使用一个径向渐变（白色-透明）的填充。来模拟光的折射。渐变开始于第一层底部的中央。结束于上面的中间。然而。为了降低折射光的强度。渐变还是开始于椭圆的底部再下一点为好。可以从图上和代码里清晰的看到。  &amp;lt;!&amp;ndash; Refraction Layer &amp;ndash;&amp;gt; &amp;lt;Ellipse x:Name=&amp;ldquo;RefractionLayer&amp;rdquo;&amp;gt; &amp;lt;Ellipse.Fill&amp;gt; &amp;lt;RadialGradientBrush GradientOrigin=&amp;ldquo;0.496,1.052&amp;rdquo;&amp;gt; &amp;lt;RadialGradientBrush.RelativeTransform&amp;gt; &amp;lt;TransformGroup&amp;gt; &amp;lt;ScaleTransform CenterX=&amp;ldquo;0.5&amp;rdquo; CenterY=&amp;ldquo;0.5&amp;rdquo; ScaleX=&amp;ldquo;1.5&amp;rdquo; ScaleY=&amp;ldquo;1.5&amp;rdquo;/&amp;gt; &amp;lt;TranslateTransform X=&amp;ldquo;0.02&amp;rdquo; Y=&amp;ldquo;0.3&amp;rdquo;/&amp;gt; &amp;lt;/TransformGroup&amp;gt; &amp;lt;/RadialGradientBrush.RelativeTransform&amp;gt; &amp;lt;GradientStop Offset=&amp;ldquo;1&amp;rdquo; Color=&amp;ldquo;#00000000&amp;rdquo;/&amp;gt; &amp;lt;GradientStop Offset=&amp;ldquo;0.4&amp;rdquo; Color=&amp;ldquo;#FFFFFFFF&amp;rdquo;/&amp;gt; &amp;lt;/RadialGradientBrush&amp;gt; &amp;lt;/Ellipse.Fill&amp;gt; &amp;lt;/Ellipse&amp;gt; &amp;nbsp;
-3.1.2反射层
-第三层是光的反射层。是最难的部分。问题是反射效果不能使用任何标准的形状来画。因此。使用路径（Path）来画反射区域。当时。手工画也是可以的。但老实说。手工画图实在没什么可享受的（除非你是一个艺术家，或者有一个数位板），无论如何。我现在MS Blend中华好一个椭圆并转换成一个路径，然后我使用贝塞尔曲线点调整得到平滑的路径，你可以添加渐变到一个复杂的Path对象上。就像你对其他与定义的图形，比如椭圆，矩形所做的一样。为了得到光泽反射。我额每年需要一个透明-白色的径向渐变填充，从路径的底部开始（也就是按钮的中间某处），结束在顶部。我想如果我是一个艺术家。我会让渐变更准一点。可是我不是。因此。就这样。因为我们要把我们的按钮放在一个Grid里。所有我们设置VerticalAlignment=&amp;ldquo;Top&amp;rdquo; 这样反射区域在按钮的中间的结束了。
-图三  &amp;lt;!&amp;ndash; Reflection Layer &amp;ndash;&amp;gt; &amp;lt;Path x:Name=&amp;ldquo;ReflectionLayer&amp;rdquo; VerticalAlignment=&amp;ldquo;Top&amp;rdquo; Stretch=&amp;ldquo;Fill&amp;rdquo;&amp;gt; &amp;lt;Path.</description>
+图2 
+3.1.1折射层
+第二层模拟了光从上到下的折射。被放在反射层之前是因为，要达到反光玻璃的效果，反射层必须在按钮的中间某处有一个硬边缘。这一层实际上是另一个椭圆。但是这次。我们使用一个径向渐变（白色-透明）的填充。来模拟光的折射。渐变开始于第一层底部的中央。结束于上面的中间。然而。为了降低折射光的强度。渐变还是开始于椭圆的底部再下一点为好。可以从图上和代码里清晰的看到。 
+ 3.1.2反射层
+第三层是光的反射层。是最难的部分。问题是反射效果不能使用任何标准的形状来画。因此。使用路径（Path）来画反射区域。当时。手工画也是可以的。但老实说。手工画图实在没什么可享受的（除非你是一个艺术家，或者有一个数位板），无论如何。我现在MS Blend中华好一个椭圆并转换成一个路径，然后我使用贝塞尔曲线点调整得到平滑的路径，你可以添加渐变到一个复杂的Path对象上。就像你对其他与定义的图形，比如椭圆，矩形所做的一样。为了得到光泽反射。我额每年需要一个透明-白色的径向渐变填充，从路径的底部开始（也就是按钮的中间某处），结束在顶部。我想如果我是一个艺术家。我会让渐变更准一点。可是我不是。因此。就这样。因为我们要把我们的按钮放在一个Grid里。所有我们设置VerticalAlignment=&amp;quot;Top&amp;rdquo; 这样反射区域在按钮的中间的结束了。
+图三 
+ 最后。我添加一个ContentPresenter 到按钮中间。经验告诉我，内容区域再向下一个像素会使得按钮看起来更漂亮。因此，在这里我用了margin属性（注意。因为内容区域在Grid的中间（Center）。所以2个像素的top实际上是向下移动了一个像素 ）
+好了。最后在Blend中看起来大概是这样
+图4 
+4.添加一些交互性
+4.1鼠标悬停效果
+为了有鼠标悬停效果，我们需要增加光源的亮度。因此。我们为IsMouseOver 事件定义一个触发器，复制并且粘贴反射和折射层的渐变设置代码。对于折射层。我仅仅移动了渐变的起点向上了一点。在反射层中。我改变了渐变停止点。使不透明的白色多一点。
+ 4.2鼠标点击效果 对于IsPressed 事件，需要降低光。因此。反向操作即可。折射层中光源下一点。反射层中渐变停止点更加透明一些。
+ 再说一次。渐变停止点的值靠经验选的。我也不能给出精确的值。
+5.使用代码
+为了使用这个样式。把定义在GlassButton.xaml 里的样式资源文件并不到你的窗体/页里。然后设置按钮的样式为{StaticResource GlassButton}. 为了设置按钮的颜色。使用Background属性即可。
+  6.Demo下载 [downloadicon href=http://pan.baidu.com/share/link?shareid=81378&amp;amp;uk=1493685990]Demo与源代码下载[/downloadicon] 7.许可
+本文包括源代码和文件在CPOL下授权。
+原文地址：a-style-for-round-glassy-wpf-buttons
+ 著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</description>
     </item>
     
     <item>
@@ -427,8 +537,24 @@ public T Get&amp;amp;lt;T&amp;amp;gt;(BlackboardProperty&amp;amp;lt;T&amp;amp;gt
  通过一个模态对话框来让用户等待操作完成 能让用户看到进度。 能让用户随时取消。 我搜了好久也没找到拿来就能用的窗体控件，也许是我没找到。于是我自己写。。 图1  背景
 BackgroundWorker 类包含了我需要完成任务的所有东西。我只需要给他提供一个对话框。
 使用代码
-ProgressForm 包含了一个BackgroundWorker ，你要做的仅仅就是提供了一个完成工作的方法。 ProgressForm form = new ProgressForm(); form.DoWork += new ProgressForm.DoWorkEventHandler(form_DoWork); //如果想为后台任务提供参数的话 form.Argument = something; 为了开始BackgroundWorker，只需要调用ShowDialog 方法。返回值则取决于任务是怎么完成的。 DialogResult result = form.ShowDialog(); if (result == DialogResult.Cancel) { //用户点击了取消 } else if (result == DialogResult.Abort) { /未处理的异常抛出 //你可以得到异常信息 MessageBox.Show(form.Result.Error.Message); } else if (result == DialogResult.OK) { //正常完成 //结果存储在 form.Result里 } &amp;nbsp;
-最后。任务方法看起来是这样的。 void form_DoWork(ProgressForm sender, DoWorkEventArgs e) { //得到参数 object myArgument = e.</description>
+ProgressForm 包含了一个BackgroundWorker ，你要做的仅仅就是提供了一个完成工作的方法。
+为了开始BackgroundWorker，只需要调用ShowDialog 方法。返回值则取决于任务是怎么完成的。
+ 最后。任务方法看起来是这样的。
+如果你想要改改进度条，或者进度条显示的文本。SetProgress 有一些重载的方法
+最后一个可自定义的字符串是：有两个预定义的字符串CancellingText 和DefaultStatusText. CancellingText ，这两个字符串，当用户点击取消的时候显示
+如何实现 ProgressForm 紧紧嵌入了一个BackgroundWorker ，并包装进了主函数。
+首先。我设计了如图所示的一个窗体，然后。添加了BackgroundWorker。
+我们必须把DoWork事件暴露给用户。我添加了一个委托。这样。我可以很容易的访问窗体成员
+ 好。我们已经有了任务和事件。先爱。我们希望当窗体显示的时候。后台任务尽可能开始。我们在Load事件中写代码
+现在写一个方法通知进度。添加代码到ProgressChanged 事件处理程序中
+我们快做好了。现在我们添加取消按钮
+最后一件事是我们想要当worker完成的时候自动关闭窗体，因为我们的worker通过ShowDialog 方法启动。如果直接接收返回结果会很好
+主要的工作就完成了。我添加了一些预定义的字符串啊。如果正在取消。保护状态不会改变。还有传递参数啊。 完整的代码如下：
+结论 窗体简单，我通常用。希望对你们也有用
+Demo下载
+源码和测试下载
+许可 本文，包括源代码和文件在CPOL下授权。
+ 原文地址：ProgressForm-A-simple-form-linked-to-a-BackgroundW 著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</description>
     </item>
     
     <item>
@@ -454,9 +580,9 @@ ProgressForm 包含了一个BackgroundWorker ，你要做的仅仅就是提供�
 8.条件断点  如果你尝试通过断点再现一个罕见的事件，该情况引发了一些严重的错误。你可以添加条件断点。定义一个断点的条件，然后如果条件不成立，VS会忽略该断点
 9.内存窗口  有些bug由不正确的结构体定义引起，忽略的对齐属性等等。查看内存中的内容可以定位然后修复bug。VS提供了一个放百年的内存窗口，可以把值以8/16/32/64位的形式展示。还有浮点值。也允许实时改变他们。就像在文本编辑器里一样。
 10.转到定义  这个特性不是直接关于调试的，而是关于浏览大项目的。如果你尝试找到一些不是你自己写的代码中的错误，快速知道“这个类型是什么”或者“这个函数是干嘛的”，可以节省很多时间，VS通过一个转到定义命令方便了你。
-11.命令窗口  第十一的技巧chaau已经建议过了。确实可以节省很多时间，VS支持命令窗口，可以通过，视图-其他窗口-命令窗口来启动。一旦激活，你可以输入不同的命令来自动化调试。举个例子。你可以通过如下命令 简单的模拟MFC COleDateTime 变量。 ? dt.Format(&amp;ldquo;%Y-%m-%d %H:%M:%S&amp;rdquo;) 许可 本文包括源代码和文件在CPOL下授权。
-&amp;nbsp;
-原文地址：10plus-powerful-debugging-tricks-with-Visual-Studi
+11.命令窗口  第十一的技巧chaau已经建议过了。确实可以节省很多时间，VS支持命令窗口，可以通过，视图-其他窗口-命令窗口来启动。一旦激活，你可以输入不同的命令来自动化调试。举个例子。你可以通过如下命令 简单的模拟MFC COleDateTime 变量。
+许可 本文包括源代码和文件在CPOL下授权。
+ 原文地址：10plus-powerful-debugging-tricks-with-Visual-Studi
 著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</description>
     </item>
     
@@ -542,9 +668,8 @@ ProgressForm 包含了一个BackgroundWorker ，你要做的仅仅就是提供�
       
       <guid>https://leizhiyuan.github.io/2012/07/27/wpf%E5%AE%9E%E7%8E%B0%E6%8E%A7%E4%BB%B6%E6%8B%96%E5%8A%A8%E6%95%88%E6%9E%9C/</guid>
       <description>首先很简单，当然是去添加两个控件了，这里我添加了两个控件，都是label，然后我想实现的是将label1拖动到label2上的时候，label1的内容会被复制到label2上。
-&amp;lt;Label Content=&#34;TestDrop&#34; Height =&#34;28&#34; HorizontalAlignment=&#34;Left&#34; Margin=&#34;70,35,0,0&#34; Name =&#34;label1&#34; VerticalAlignment=&#34;Top&#34; MouseDown=&#34;label1_MouseDown&#34; /&amp;gt; &amp;lt;Label Content =&#34;ToHere&#34; Height=&#34;28&#34; HorizontalAlignment=&#34;Left&#34; Margin =&#34;342,107,0,0&#34; Name=&#34;label2&#34; VerticalAlignment=&#34;Top&#34; AllowDrop =&#34;True&#34; Drop=&#34;tagert_drop&#34; /&amp;gt; 需要注意的代码是label1中的MouseDown事件。和label2中的AllowDrop =&amp;ldquo;True&amp;rdquo; Drop=&amp;ldquo;tagert_drop&amp;rdquo;
-然后对应的处理事件
-private void label1_MouseDown(object sender, MouseButtonEventArgs e) { Label lbl = (Label )sender; DragDrop.DoDragDrop(lbl, lbl.Content, DragDropEffects .Copy); } private void tagert_drop(object sender, DragEventArgs e) { (( Label)sender).Content = e.Data.GetData(DataFormats.Text); } 其他的效果可以仿照这个来做。比如拖动以后的效果可以DragDropEffects来设置。。</description>
+需要注意的代码是label1中的MouseDown事件。和label2中的AllowDrop =&amp;quot;True&amp;rdquo; Drop=&amp;quot;tagert_drop&amp;rdquo;
+然后对应的处理事件</description>
     </item>
     
     <item>
@@ -582,7 +707,7 @@ private void label1_MouseDown(object sender, MouseButtonEventArgs e) { Label lbl
 什么是接口？ 　接口是包含一组虚方法的抽象类型，其中每一种方法都有其名称、参数和返回值。接口方法不能包含任何实现，CLR允许接口可以包含事件、属性、索引器、静态方法、静态字段、静态构造函数以及常数。但是注意：C#中不能包含任何静态成员。一个类可以实现多个接口，当一个类继承某个接口时，它不仅要实现该接口定义的所有方法，还要实现该接口从其他接口中继承的所有方法。
 什么是抽象类？ 　抽象类提供多个派生类共享基类的公共定义，它既可以提供抽象方法，也可以提供非抽象方法。抽象类不能实例化，必须通过继承由派生类实现其抽象方法，因此对抽象类不能使用new关键字，也不能被密封。如果派生类没有实现所有的抽象方法，则该派生类也必须声明为抽象类。另外，实现抽象方法由override方法来实现。
 比较  相同点   都不能被直接实例化，都可以通过继承实现其抽象方法。 都是面向抽象编程的技术基础，实现了诸多的设计模式。   不同点   接口支持多继承；抽象类不能实现多继承。 接口只能定义抽象规则；抽象类既可以定义规则，还可能提供已实现的成员。 接口是一组行为规范；抽象类是一个不完全的类，着重族的概念。 接口可以用于支持回调；抽象类不能实现回调，因为继承不支持。 接口只包含方法、属性、索引器、事件的签名，但不能定义字段和包含实现的方法；抽象类可以定义字段、属性、包含有实现的方法。 接口可以作用于值类型和引用类型；抽象类只能作用于引用类型。例如，Struct就可以继承接口，而不能继承类。   规则与场合   请记住，面向对象思想的一个最重要的原则就是：面向接口编程。 借助接口和抽象类，23个设计模式中的很多思想被巧妙的实现了，精髓就是面向抽象编程，通过封装变化来实现实体之间的关系。 抽象类应主要用于关系密切的对象，而接口最适合为不相关的类提供通用功能。 接口着重于CAN-DO关系类型，而抽象类则偏重于IS-A式的关系； 接口多定义对象的行为；抽象类多定义对象的属性； 接口定义可以使用public、protected、internal 和private修饰符，但是几乎所有的接口都定义为public，另外方法的访问级别不能低于接口的访问级别，否则可能导致编译错误。 “接口不变”，是应该考虑的重要因素。所以，在由接口增加扩展时，应该增加新的接口，而不能更改现有接口。 尽量将接口设计成功能单一的功能块，以.NET Framework为例，IDisposable、IDisposable、IComparable、IEquatable、IEnumerable等都只包含一个公共方法。 接口名称前面的大写字母“I”是一个约定，正如字段名以下划线开头一样，请坚持这些原则。 在接口中，所有的方法都默认为public。 如果预计会出现版本问题，可以创建“抽象类”。而向接口中添加新成员则会强制要求修改所有派生类，并重新编译，所以版本式的问题最好以抽象类来实现。 从抽象类派生的非抽象类必须包括继承的所有抽象方法和抽象访问器的实实现。 对抽象类不能使用new关键字，也不能被密封，原因是抽象类不能被实例化。 在抽象方法声明中不能使用 static 或 virtual 修饰符。 最后还是要勤于键盘，才能深入理解啊。    参考：对抽象编程：接口和抽象类
-&amp;nbsp;</description>
+ </description>
     </item>
     
     <item>
@@ -594,7 +719,7 @@ private void label1_MouseDown(object sender, MouseButtonEventArgs e) { Label lbl
       <description>资源来自：金山网络
 　我比较认真的读完了这本小册子，确实收获还是蛮大的。前几天有个朋友问我电池的事情，我以前看过电池的一些保养的。当时就知道锂电池是首次使用是不需要进行12小时充电的。。看到这本小册子的时候，证实了我没乱讲哈。。
 　然后里面还说道一个就是很多人不相信软件能够保养电池。其实真的是可以的。。理由不赘述。你可以自己读一读。。我自己感觉对普通用户很有用的是30页的那一节。讲到的问题有；
- 电池管理类软件对电池寿命没用？ 充电习惯对电池寿命没有用？ 一块电池都只够安卓撑一天？ 提示电池充满就可以马上拔掉电源 ？ 不管怎么用待机时间都一样？ 手机还有一半电量的时候不必担心？ 新电池前3次需充满12小时？ 涓流充电有用吗？ 手机电池充一夜也没什么危害？ 边充电边使用对电池无伤害？ 突然断电再立刻充上会伤害电池吗？ 充电不饱和会伤害电池吗？ iPhone和iPad的充电器可以混用吗？ 经常把电用光再充对电池好不好？  书籍下载：移动设备电池使用白皮书</description>
+ 电池管理类软件对电池寿命没用？ 充电习惯对电池寿命没有用？ 一块电池都只够安卓撑一天？ 提示电池充满就可以马上拔掉电源 ？ 不管怎么用待机时间都一样？ 手机还有一半电量的时候不必担心？ 新电池前3次需充满12小时？ 涓流充电有用吗？ 手机电池充一夜也没什么危害？ 边充电边使用对电池无伤害？ 突然断电再立刻充上会伤害电池吗？ 充电不饱和会伤害电池吗？ iPhone和iPad的充电器可以混用吗？ 经常把电用光再充对电池好不好？  书籍下载：[移动设备电池使用白皮书](http://115.com/file/ancame68# 移动设备电池白皮书.pdf)</description>
     </item>
     
     <item>
@@ -605,10 +730,37 @@ private void label1_MouseDown(object sender, MouseButtonEventArgs e) { Label lbl
       <guid>https://leizhiyuan.github.io/2012/07/05/effective-c#item-9%E5%8C%BA%E5%88%AB%E5%92%8C%E8%AE%A4%E8%AF%86%E5%9B%9B%E4%B8%AA%E5%88%A4%E7%AD%89%E5%87%BD%E6%95%B0/</guid>
       <description>.Net有四个判等函数？不少人看到这个标题，会对此感到怀疑。事实上确是如此，.Net提供了ReferenceEquals、静态Equals，具体类型的Equals以及==操作符这四个判等函数。但是这四个函数之间有细微的关系，改变其中一个函数的实现会影响到其他函数的操作结果。
 　首先要说的是Object.ReferenceEquals和Object.Equals这两个静态函数，对于它们俩来说，是不需要进行重写的，因为它们已经完成它们所要得做的操作。
-对于Object.ReferenceEquals这个静态函数，函数形式如下： public static bool ReferenceEquals( object left, object right ); 这个函数就是判断两个引用类型对象是否指向同一个地址。有此说明后，就确定了它的使用范围，即只能对于引用类型操作。那么对于任何值类型数据操作，即使是与自身的判别，都会返回false。这主要因为在调用此函数的时候，值类型数据要进行装箱操作，也就是对于如下的形式来说。 int n = 10; Object.ReferenceEquals( n, n ); 这是因为对于n这个数据装箱两次，而每次装箱后的地址有不同，而造成Object.ReferenceEquals( n, n )的结果永远为false。
+对于Object.ReferenceEquals这个静态函数，函数形式如下：
+　这个函数就是判断两个引用类型对象是否指向同一个地址。有此说明后，就确定了它的使用范围，即只能对于引用类型操作。那么对于任何值类型数据操作，即使是与自身的判别，都会返回false。这主要因为在调用此函数的时候，值类型数据要进行装箱操作，也就是对于如下的形式来说。
+这是因为对于n这个数据装箱两次，而每次装箱后的地址有不同，而造成Object.ReferenceEquals( n, n )的结果永远为false。
 对于第一个判等函数来说，没有什么好扩展的，因为本身已经很好地完成了它所要做的。
-对于第二个Object.Equals这个静态函数，其形式如下： public static bool Equals( object left, object right ); 按照书中对它的分析，其大致函数代码如下： public static void Equals( object left, object right ) { // Check object identity if( left == right ) return true;
-// both null references handled above if( ( left == null ) || ( right == null ) ) return false; return left.</description>
+对于第二个Object.Equals这个静态函数，其形式如下：
+　按照书中对它的分析，其大致函数代码如下：
+　可以说，Object.Equals这个函数完成判等操作，需要经过三个步骤，
+第一步是需要根据对象所属类型的==操作符的执行结果；
+第二步是判别是否为null，也是和第一步一样，需要根据类型的==操作符的执行结果；
+最后一步要使用到类型的Equals函数的执行结果。
+也就是说这个静态函数的返回结果，要取决于后面要提到的两个判等函数。类型是否提供相应的判等函数，成为这个函数返回结果的重要因素。
+　那么对于Object.Equals这个静态方法来说，虽说接受参数的类型也属于引用类型，但是不同于Object.ReferenceEquals函数，对于如下的代码，能得出正确的结果。
+ 这是因为在此函数中要用到具体类型的两个判等函数，不过就函数本身而言，该做的判断都做了，因此不需要去重载添加复杂的操作。
+为了更好的述说剩下两个函数，先解释一下等价的意义。对于等价的意义，就是自反、对称以及传递。
+ 所谓自反，即a == a； 而对称，是a == b，则b == a； 传递是 a == b，b == c，则 a == c； 理解等价的意义后，那么在实现类型的判等函数也要满足这个等价规则。  对于可以重载的两个判等函数，首先来介绍的是类型的Equals函数，其大致形式如下：
+ 如上增加了一个类型检查，即
+　这部分，这是由于子类对象可以通过as转化成基类对象，从而造成不同类型对象可以进行判等操作，违反了等价关系。
+　除此外对于类型的Equals函数来，其实并没有限制类型非要属于引用类型，对于值类型也是可以重载此函数，但是我并不推荐，主要是Equals函数的参数类型是不可变的，也就是说通过此方法，值类型要经过装箱操作，而这是比较影响效率的。
+　而对于值类型来说，我推荐使用最后一种判等函数，即重载运算符==函数，其大致形式如下：
+ 对于一个值类型而言，其的大致形式应该如下：
+ 　由于==操作与!=操作要同步定义，所以在定义==重载函数的时候，也要定义!=重载函数。这也是.Net在判等操作保持一致性。那么对于最后一个判等函数，这种重载运算符的方法并不适合引用类型。这就是.Net经常现象，去判断两个引用类型，不要用==，而要用某个对象的Equals函数。所以在编写自己类型的时候，要保留这种风格。
+那么对于以上介绍的四种判等函数，会产生如下类似的对比表格。
+操作结果取决于
+适用范围
+建议
+Object.ReferenceEquals
+引用类型
+Object.Equals
+无限制
+类型的Equals
+无限制</description>
     </item>
     
     <item>
@@ -617,10 +769,10 @@ private void label1_MouseDown(object sender, MouseButtonEventArgs e) { Label lbl
       <pubDate>Mon, 02 Jul 2012 05:30:02 +0000</pubDate>
       
       <guid>https://leizhiyuan.github.io/2012/07/02/c#%E4%B8%AD%E7%9A%84%E9%9D%99%E6%80%81%E4%B8%8E%E9%9D%9E%E9%9D%99%E6%80%81/</guid>
-      <description> 为什么要分静态和非静态 在面向对象的世界里，大部分的情况都是实例特征主宰天下，类相当于一个类型模板，而对象则是类特征的拷贝，并且独立于其他对象来操作这些特征，但是在某些情况下，需要某些特征被所有的对象共公有，因此有必要实现一种基于类的特征，而不是基于实例对象的特征机制，这就是静态特征。
+      <description>为什么要分静态和非静态 在面向对象的世界里，大部分的情况都是实例特征主宰天下，类相当于一个类型模板，而对象则是类特征的拷贝，并且独立于其他对象来操作这些特征，但是在某些情况下，需要某些特征被所有的对象共公有，因此有必要实现一种基于类的特征，而不是基于实例对象的特征机制，这就是静态特征。
 1.静态类和非静态类  一个类如果包含静态成员和静态方法，那么该类就可以定义为静态类，定义方法是在类定义前加上static，比如
-static class MyClass { //define the class } 比较：   静态类只能包含静态成员和静态方法，否则会抛出编译错误，而非静态类既可以包含非静态成员和非静态方法，还可以包含静态成员和静态方法。但不能作用于静态只读字段。 静态类不可实例化，非静态类可以实例化，不管是静态类还是非静态类，对静态成员和静态方法的调用都必须通过类来实现访问。 相对于非静态类来说，静态类有一些特点值得应用，比如System.Console这个典型的静态类。 如果一个类只包含静态成员和静态方法，就应该将该类标记为static，并提供私有的构造函数来避免用户实例创建对象，这也是MonoState模式的体现。    2.静态构造函数和实例构造函数  静态构造函数，只能用于初始化类中的静态成员，包括静态字段和静态属性，静态构造函数不能带参数，不能有访问修饰符也不能被手工调用，通过是在.net运行库第一次调用类成员之前执行。其中，实例构造函数中也是可以初始化静态成员的。
-比较   静态构造函数，可以和无参的构造函数共存。虽然参数列表相同，但是二者的执行顺序不同，静态构造函数在运行库加载类时执行，而实例构造函数在实例创建时执行。 静态构造函数，只能对静态成员进行初始化操作，不能作用于非静态成员，而实例构造函数二者都可以，当然如前面所说，对静态只读字段就不可以了。 静态构造函数只被执行一次，而且.net运行库也不知道什么时候会被执行，而实例构造函数可以在多次实例创建时被执行多次。 一个类只能有一个静态构造函数，但是可以有多个实例构造函数。 一般来说，简单的静态成员可以在声明时就进行初始化，而复杂的静态成员则选择在静态构造函数中进行初始化较佳。    3.静态成员和实例成员  静态成员主要包括静态字段和静态属性，静态成员可以实现在类中能够被所有实例对象共享的数据。例如一个缴费登记系统中，消费总额作为所以消费的综合，静态成员来实现就有很好。没有不必要的数据冗余。
+比较：   静态类只能包含静态成员和静态方法，否则会抛出编译错误，而非静态类既可以包含非静态成员和非静态方法，还可以包含静态成员和静态方法。但不能作用于静态只读字段。 静态类不可实例化，非静态类可以实例化，不管是静态类还是非静态类，对静态成员和静态方法的调用都必须通过类来实现访问。 相对于非静态类来说，静态类有一些特点值得应用，比如System.Console这个典型的静态类。 如果一个类只包含静态成员和静态方法，就应该将该类标记为static，并提供私有的构造函数来避免用户实例创建对象，这也是MonoState模式的体现。      2.静态构造函数和实例构造函数  静态构造函数，只能用于初始化类中的静态成员，包括静态字段和静态属性，静态构造函数不能带参数，不能有访问修饰符也不能被手工调用，通过是在.net运行库第一次调用类成员之前执行。其中，实例构造函数中也是可以初始化静态成员的。
+比较   静态构造函数，可以和无参的构造函数共存。虽然参数列表相同，但是二者的执行顺序不同，静态构造函数在运行库加载类时执行，而实例构造函数在实例创建时执行。 静态构造函数，只能对静态成员进行初始化操作，不能作用于非静态成员，而实例构造函数二者都可以，当然如前面所说，对静态只读字段就不可以了。 静态构造函数只被执行一次，而且.net运行库也不知道什么时候会被执行，而实例构造函数可以在多次实例创建时被执行多次。 一个类只能有一个静态构造函数，但是可以有多个实例构造函数。 一般来说，简单的静态成员可以在声明时就进行初始化，而复杂的静态成员则选择在静态构造函数中进行初始化较佳。      3.静态成员和实例成员  静态成员主要包括静态字段和静态属性，静态成员可以实现在类中能够被所有实例对象共享的数据。例如一个缴费登记系统中，消费总额作为所以消费的综合，静态成员来实现就有很好。没有不必要的数据冗余。
 比较   静态成员包括静态字段和静态属性，静态字段一般实现为private，而静态属性一般为public，以体现类的封装原则。 静态成员和类关联，不依赖对象存在，只能由类访问，而不能由对象访问，实例成员和具体的对象关联，只能由对象访问，不能由类访问。 静态成员属于类所有，不论创建多少个实例对象，静态成员在内存中只有一份，实例成员属于对象实例所有，每个都有其对应的内存区域。    4.静态方法和实例方法  类似于静态成员共享数据段，静态方法共享代码段，静态方法以static标识。
 比较   性能上，静态方法和实例方法差别不大，所有方法，不管是静态的还是非静态的，都是在JIT加载类时分配内存，不同的是静态方法以类名引用，而静态方法以对象引用，创建实例时，不会再为类的方法分配内存，所有的实例对象公用一个类的方法代码，因此，静态方法和实例方法的调用，区别仅在于实例方法需要当前对象指针指向该方法，而静态方法可以直接调用，性能上差异微乎其微。 静态方法只能访问静态成员和静态方法，可以间接通过创建实例对象来访问实例成员和实例方法，而实例方法可以直接全部。。 静态方法只能由类来访问，实例方法只能由对象来访问。 静态方法中不能使用this关键字，否则编译错误，而实例方法中可以引用。 静态方法不能被标记为virtual，abstract或是override，静态方法可以被派生类访问，但是不能被覆写。 Main方法是静态的，因此Main方法不能直接访问Main所在类的实例方法和成员。 鉴于线程处理的安全性，应该避免提供改变静态状态的静态方法，因为，如果多线程同时访问该段代码，可能造成线程处理错误，因此，静态状态必须是线程安全的。 静态方法适合系统中边缘性的非业务需要，例如通用的工具类。    </description>
     </item>
@@ -631,7 +783,36 @@ static class MyClass { //define the class } 比较：   静态类只能包含静
       <pubDate>Tue, 19 Jun 2012 17:03:49 +0000</pubDate>
       
       <guid>https://leizhiyuan.github.io/2012/06/19/sass%E7%94%A8%E6%B3%95%E6%8C%87%E5%8D%97/</guid>
-      <description>作者： [阮一峰](http://www.ruanyifeng.com/) 日期： [2012年6月19日](http://www.ruanyifeng.com/blog/2012/06/)   学过[CSS](http://zh.wikipedia.org/wiki/%E5%B1%82%E5%8F%A0%E6%A0%B7%E5%BC%8F%E8%A1%A8)的人都知道，它不是一种编程语言。  你可以用它开发网页样式，但是没法用它编程。也就是说，CSS基本上是设计师的工具，不是程序员的工具。在程序员眼里，CSS是一件很麻烦的东西。它没有变量，也没有条件语句，只是一行行单纯的描述，写起来相当费事。 ![](/images/24063303e3abc5d5089bc58bdba65c550be0f8cb.jpg) 很自然地，有人就开始为CSS加入编程元素，这被叫做[&#34;CSS预处理器&#34;](http://www.catswhocode.com/blog/8-css-preprocessors-to-speed-up-development-time)（css preprocessor）。它的基本思想是，用一种专门的编程语言，进行网页样式设计，然后再编译成正常的CSS文件。 各种&#34;CSS预处理器&#34;之中，我自己最喜欢[SASS](http://sass-lang.com/)，觉得它有很多优点，打算以后都用它来写CSS。下面是我整理的用法总结，供自己开发时参考，相信对其他人也有用。 ============================================ **SASS用法指南** 作者：阮一峰 ![](/images/c00b9e9a6c97811cb70a4f18ec85976f493eb3e7.png) **一、什么是SASS** [SASS](http://sass-lang.com/)是一种CSS的开发工具，提供了许多便利的写法，大大节省了设计者的时间，使得CSS的开发，变得简单和可维护。 本文总结了SASS的主要用法。我的目标是，有了这篇文章，日常的一般使用就不需要去看[官方文档](http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html)了。 **二、安装和使用** **2.1 安装** SASS是Ruby语言写的，但是两者的语法没有关系。不懂Ruby，照样使用。只是必须先[安装Ruby](http://www.ruby-lang.org/zh_cn/downloads/)，然后再安装SASS。 假定你已经安装好了Ruby，接着在命令行输入下面的命令：  gem install sass 然后，就可以使用了。 **2.2 使用** SASS文件就是普通的文本文件，里面可以直接使用CSS语法。文件后缀名是.scss，意思为Sassy CSS。 下面的命令，可以在屏幕上显示.scss文件转化的css代码。（假设文件名为test。）  sass test.scss 如果要将显示结果保存成文件，后面再跟一个.css文件名。  sass test.scss test.css SASS提供四个编译风格的选项：  * nested：嵌套缩进的css代码，它是默认值。   * expanded：没有缩进的、扩展的css代码。   * compact：简洁格式的css代码。   * compressed：压缩后的css代码。 生产环境当中，一般使用最后一个选项。  sass --style compressed test.sass test.css SASS的官方网站，提供了一个[在线转换器](http://sass-lang.com/try.html)。你可以在那里，试运行下面的各种例子。 **三、基本用法** **3.1 变量** SASS允许使用变量，所有变量以$开头。  $blue : #1875e7;   div {  color : $blue;  } 如果变量需要镶嵌在字符串之中，就必须需要写在#{}之中。  $side : left;   .</description>
+      <description>作者： 阮一峰
+日期： 2012年6月19日
+学过CSS的人都知道，它不是一种编程语言。
+你可以用它开发网页样式，但是没法用它编程。也就是说，CSS基本上是设计师的工具，不是程序员的工具。在程序员眼里，CSS是一件很麻烦的东西。它没有变量，也没有条件语句，只是一行行单纯的描述，写起来相当费事。
+很自然地，有人就开始为CSS加入编程元素，这被叫做&amp;ldquo;CSS预处理器&amp;rdquo;（css preprocessor）。它的基本思想是，用一种专门的编程语言，进行网页样式设计，然后再编译成正常的CSS文件。
+各种&amp;quot;CSS预处理器&amp;quot;之中，我自己最喜欢SASS，觉得它有很多优点，打算以后都用它来写CSS。下面是我整理的用法总结，供自己开发时参考，相信对其他人也有用。
+============================================
+SASS用法指南
+作者：阮一峰
+一、什么是SASS
+SASS是一种CSS的开发工具，提供了许多便利的写法，大大节省了设计者的时间，使得CSS的开发，变得简单和可维护。
+本文总结了SASS的主要用法。我的目标是，有了这篇文章，日常的一般使用就不需要去看官方文档了。
+二、安装和使用
+2.1 安装
+SASS是Ruby语言写的，但是两者的语法没有关系。不懂Ruby，照样使用。只是必须先安装Ruby，然后再安装SASS。
+假定你已经安装好了Ruby，接着在命令行输入下面的命令：
+ gem install sass 然后，就可以使用了。
+ 2.2 使用
+SASS文件就是普通的文本文件，里面可以直接使用CSS语法。文件后缀名是.scss，意思为Sassy CSS。
+下面的命令，可以在屏幕上显示.scss文件转化的css代码。（假设文件名为test。）
+ sass test.scss 如果要将显示结果保存成文件，后面再跟一个.css文件名。 sass test.scss test.css SASS提供四个编译风格的选项：
+  nested：嵌套缩进的css代码，它是默认值。
+  expanded：没有缩进的、扩展的css代码。
+  compact：简洁格式的css代码。
+  compressed：压缩后的css代码。 生产环境当中，一般使用最后一个选项。 sass &amp;ndash;style compressed test.sass test.css SASS的官方网站，提供了一个在线转换器。你可以在那里，试运行下面的各种例子。
+   三、基本用法
+3.1 变量
+SASS允许使用变量，所有变量以$开头。
+ $blue : #1875e7;
+div { color : $blue; } 如果变量需要镶嵌在字符串之中，就必须需要写在#{}之中。 $side : left;</description>
     </item>
     
   </channel>

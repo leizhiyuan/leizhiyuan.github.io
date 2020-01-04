@@ -10,9 +10,71 @@
   <title>SASS用法指南 - bystander&#39;s blog</title>
   <meta property="og:title" content="SASS用法指南" />
   <meta name="twitter:title" content="SASS用法指南" />
-  <meta name="description" content="作者： [阮一峰](http://www.ruanyifeng.com/) 日期： [2012年6月19日](http://www.ruanyifeng.com/blog/2012/06/)   学过[CSS](http://zh.wikipedia.org/wiki/%E5%B1%82%E5%8F%A0%E6%A0%B7%E5%BC%8F%E8%A1%A8)的人都知道，它不是一种编程语言。  你可以用它开发网页样式，但是没法用它编程。也就是说，CSS基本上是设计师的工具，不是程序员的工具。在程序员眼里，CSS是一件很麻烦的东西。它没有变量，也没有条件语句，只是一行行单纯的描述，写起来相当费事。 ![](/images/24063303e3abc5d5089bc58bdba65c550be0f8cb.jpg) 很自然地，有人就开始为CSS加入编程元素，这被叫做[&#34;CSS预处理器&#34;](http://www.catswhocode.com/blog/8-css-preprocessors-to-speed-up-development-time)（css preprocessor）。它的基本思想是，用一种专门的编程语言，进行网页样式设计，然后再编译成正常的CSS文件。 各种&#34;CSS预处理器&#34;之中，我自己最喜欢[SASS](http://sass-lang.com/)，觉得它有很多优点，打算以后都用它来写CSS。下面是我整理的用法总结，供自己开发时参考，相信对其他人也有用。 ============================================ **SASS用法指南** 作者：阮一峰 ![](/images/c00b9e9a6c97811cb70a4f18ec85976f493eb3e7.png) **一、什么是SASS** [SASS](http://sass-lang.com/)是一种CSS的开发工具，提供了许多便利的写法，大大节省了设计者的时间，使得CSS的开发，变得简单和可维护。 本文总结了SASS的主要用法。我的目标是，有了这篇文章，日常的一般使用就不需要去看[官方文档](http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html)了。 **二、安装和使用** **2.1 安装** SASS是Ruby语言写的，但是两者的语法没有关系。不懂Ruby，照样使用。只是必须先[安装Ruby](http://www.ruby-lang.org/zh_cn/downloads/)，然后再安装SASS。 假定你已经安装好了Ruby，接着在命令行输入下面的命令：  gem install sass 然后，就可以使用了。 **2.2 使用** SASS文件就是普通的文本文件，里面可以直接使用CSS语法。文件后缀名是.scss，意思为Sassy CSS。 下面的命令，可以在屏幕上显示.scss文件转化的css代码。（假设文件名为test。）  sass test.scss 如果要将显示结果保存成文件，后面再跟一个.css文件名。  sass test.scss test.css SASS提供四个编译风格的选项：  * nested：嵌套缩进的css代码，它是默认值。   * expanded：没有缩进的、扩展的css代码。   * compact：简洁格式的css代码。   * compressed：压缩后的css代码。 生产环境当中，一般使用最后一个选项。  sass --style compressed test.sass test.css SASS的官方网站，提供了一个[在线转换器](http://sass-lang.com/try.html)。你可以在那里，试运行下面的各种例子。 **三、基本用法** **3.1 变量** SASS允许使用变量，所有变量以$开头。  $blue : #1875e7;   div {  color : $blue;  } 如果变量需要镶嵌在字符串之中，就必须需要写在#{}之中。  $side : left;   .">
-  <meta property="og:description" content="作者： [阮一峰](http://www.ruanyifeng.com/) 日期： [2012年6月19日](http://www.ruanyifeng.com/blog/2012/06/)   学过[CSS](http://zh.wikipedia.org/wiki/%E5%B1%82%E5%8F%A0%E6%A0%B7%E5%BC%8F%E8%A1%A8)的人都知道，它不是一种编程语言。  你可以用它开发网页样式，但是没法用它编程。也就是说，CSS基本上是设计师的工具，不是程序员的工具。在程序员眼里，CSS是一件很麻烦的东西。它没有变量，也没有条件语句，只是一行行单纯的描述，写起来相当费事。 ![](/images/24063303e3abc5d5089bc58bdba65c550be0f8cb.jpg) 很自然地，有人就开始为CSS加入编程元素，这被叫做[&#34;CSS预处理器&#34;](http://www.catswhocode.com/blog/8-css-preprocessors-to-speed-up-development-time)（css preprocessor）。它的基本思想是，用一种专门的编程语言，进行网页样式设计，然后再编译成正常的CSS文件。 各种&#34;CSS预处理器&#34;之中，我自己最喜欢[SASS](http://sass-lang.com/)，觉得它有很多优点，打算以后都用它来写CSS。下面是我整理的用法总结，供自己开发时参考，相信对其他人也有用。 ============================================ **SASS用法指南** 作者：阮一峰 ![](/images/c00b9e9a6c97811cb70a4f18ec85976f493eb3e7.png) **一、什么是SASS** [SASS](http://sass-lang.com/)是一种CSS的开发工具，提供了许多便利的写法，大大节省了设计者的时间，使得CSS的开发，变得简单和可维护。 本文总结了SASS的主要用法。我的目标是，有了这篇文章，日常的一般使用就不需要去看[官方文档](http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html)了。 **二、安装和使用** **2.1 安装** SASS是Ruby语言写的，但是两者的语法没有关系。不懂Ruby，照样使用。只是必须先[安装Ruby](http://www.ruby-lang.org/zh_cn/downloads/)，然后再安装SASS。 假定你已经安装好了Ruby，接着在命令行输入下面的命令：  gem install sass 然后，就可以使用了。 **2.2 使用** SASS文件就是普通的文本文件，里面可以直接使用CSS语法。文件后缀名是.scss，意思为Sassy CSS。 下面的命令，可以在屏幕上显示.scss文件转化的css代码。（假设文件名为test。）  sass test.scss 如果要将显示结果保存成文件，后面再跟一个.css文件名。  sass test.scss test.css SASS提供四个编译风格的选项：  * nested：嵌套缩进的css代码，它是默认值。   * expanded：没有缩进的、扩展的css代码。   * compact：简洁格式的css代码。   * compressed：压缩后的css代码。 生产环境当中，一般使用最后一个选项。  sass --style compressed test.sass test.css SASS的官方网站，提供了一个[在线转换器](http://sass-lang.com/try.html)。你可以在那里，试运行下面的各种例子。 **三、基本用法** **3.1 变量** SASS允许使用变量，所有变量以$开头。  $blue : #1875e7;   div {  color : $blue;  } 如果变量需要镶嵌在字符串之中，就必须需要写在#{}之中。  $side : left;   .">
-  <meta name="twitter:description" content="作者： [阮一峰](http://www.ruanyifeng.com/) 日期： [2012年6月19日](http://www.ruanyifeng.com/blog/2012/06/)   学过[CSS](http://zh.wikipedia.org/wiki/%E5%B1%82%E5%8F%A0%E6%A0%B7%E5%BC%8F%E8%A1%A8)的人都知道，它不是一种编程语言。  你 …">
+  <meta name="description" content="作者： 阮一峰
+日期： 2012年6月19日
+学过CSS的人都知道，它不是一种编程语言。
+你可以用它开发网页样式，但是没法用它编程。也就是说，CSS基本上是设计师的工具，不是程序员的工具。在程序员眼里，CSS是一件很麻烦的东西。它没有变量，也没有条件语句，只是一行行单纯的描述，写起来相当费事。
+很自然地，有人就开始为CSS加入编程元素，这被叫做&ldquo;CSS预处理器&rdquo;（css preprocessor）。它的基本思想是，用一种专门的编程语言，进行网页样式设计，然后再编译成正常的CSS文件。
+各种&quot;CSS预处理器&quot;之中，我自己最喜欢SASS，觉得它有很多优点，打算以后都用它来写CSS。下面是我整理的用法总结，供自己开发时参考，相信对其他人也有用。
+============================================
+SASS用法指南
+作者：阮一峰
+一、什么是SASS
+SASS是一种CSS的开发工具，提供了许多便利的写法，大大节省了设计者的时间，使得CSS的开发，变得简单和可维护。
+本文总结了SASS的主要用法。我的目标是，有了这篇文章，日常的一般使用就不需要去看官方文档了。
+二、安装和使用
+2.1 安装
+SASS是Ruby语言写的，但是两者的语法没有关系。不懂Ruby，照样使用。只是必须先安装Ruby，然后再安装SASS。
+假定你已经安装好了Ruby，接着在命令行输入下面的命令：
+ gem install sass 然后，就可以使用了。
+ 2.2 使用
+SASS文件就是普通的文本文件，里面可以直接使用CSS语法。文件后缀名是.scss，意思为Sassy CSS。
+下面的命令，可以在屏幕上显示.scss文件转化的css代码。（假设文件名为test。）
+ sass test.scss 如果要将显示结果保存成文件，后面再跟一个.css文件名。 sass test.scss test.css SASS提供四个编译风格的选项：
+  nested：嵌套缩进的css代码，它是默认值。
+  expanded：没有缩进的、扩展的css代码。
+  compact：简洁格式的css代码。
+  compressed：压缩后的css代码。 生产环境当中，一般使用最后一个选项。 sass &ndash;style compressed test.sass test.css SASS的官方网站，提供了一个在线转换器。你可以在那里，试运行下面的各种例子。
+   三、基本用法
+3.1 变量
+SASS允许使用变量，所有变量以$开头。
+ $blue : #1875e7;
+div { color : $blue; } 如果变量需要镶嵌在字符串之中，就必须需要写在#{}之中。 $side : left;">
+  <meta property="og:description" content="作者： 阮一峰
+日期： 2012年6月19日
+学过CSS的人都知道，它不是一种编程语言。
+你可以用它开发网页样式，但是没法用它编程。也就是说，CSS基本上是设计师的工具，不是程序员的工具。在程序员眼里，CSS是一件很麻烦的东西。它没有变量，也没有条件语句，只是一行行单纯的描述，写起来相当费事。
+很自然地，有人就开始为CSS加入编程元素，这被叫做&ldquo;CSS预处理器&rdquo;（css preprocessor）。它的基本思想是，用一种专门的编程语言，进行网页样式设计，然后再编译成正常的CSS文件。
+各种&quot;CSS预处理器&quot;之中，我自己最喜欢SASS，觉得它有很多优点，打算以后都用它来写CSS。下面是我整理的用法总结，供自己开发时参考，相信对其他人也有用。
+============================================
+SASS用法指南
+作者：阮一峰
+一、什么是SASS
+SASS是一种CSS的开发工具，提供了许多便利的写法，大大节省了设计者的时间，使得CSS的开发，变得简单和可维护。
+本文总结了SASS的主要用法。我的目标是，有了这篇文章，日常的一般使用就不需要去看官方文档了。
+二、安装和使用
+2.1 安装
+SASS是Ruby语言写的，但是两者的语法没有关系。不懂Ruby，照样使用。只是必须先安装Ruby，然后再安装SASS。
+假定你已经安装好了Ruby，接着在命令行输入下面的命令：
+ gem install sass 然后，就可以使用了。
+ 2.2 使用
+SASS文件就是普通的文本文件，里面可以直接使用CSS语法。文件后缀名是.scss，意思为Sassy CSS。
+下面的命令，可以在屏幕上显示.scss文件转化的css代码。（假设文件名为test。）
+ sass test.scss 如果要将显示结果保存成文件，后面再跟一个.css文件名。 sass test.scss test.css SASS提供四个编译风格的选项：
+  nested：嵌套缩进的css代码，它是默认值。
+  expanded：没有缩进的、扩展的css代码。
+  compact：简洁格式的css代码。
+  compressed：压缩后的css代码。 生产环境当中，一般使用最后一个选项。 sass &ndash;style compressed test.sass test.css SASS的官方网站，提供了一个在线转换器。你可以在那里，试运行下面的各种例子。
+   三、基本用法
+3.1 变量
+SASS允许使用变量，所有变量以$开头。
+ $blue : #1875e7;
+div { color : $blue; } 如果变量需要镶嵌在字符串之中，就必须需要写在#{}之中。 $side : left;">
+  <meta name="twitter:description" content="作者： 阮一峰
+日期： 2012年6月19日
+学过CSS的人都知道，它不是一种编程语言。
+你可以用它开发网页样式，但是没法用它编程。也就是说，CSS基本上是设计师的工具，不是程序员的工具。在程序员眼里，CSS是一件很麻烦的东西。它没有变量，也没有条件语句，只是一行行单纯的描述，写起来相当费事。
+很自然地，有人就开始为CSS加入编程元素，这被叫做&ldquo;CSS预处理器&rdquo;（css …">
   <meta name="author" content="bystander"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -61,9 +123,9 @@
     "name" : "bystander"
   },
   "headline": "SASS用法指南",
-  "description" : "作者： [阮一峰](http:\/\/www.ruanyifeng.com\/) 日期： [2012年6月19日](http:\/\/www.ruanyifeng.com\/blog\/2012\/06\/)   学过[CSS](http:\/\/zh.wikipedia.org\/wiki\/%E5%B1%82%E5%8F%A0%E6%A0%B7%E5%BC%8F%E8%A1%A8)的人都知道，它不是一种编程语言。  你可以用它开发网页样式，但是没法用它编程。也就是说，CSS基本上是设计师的工具，不是程序员的工具。在程序员眼里，CSS是一件很麻烦的东西。它没有变量，也没有条件语句，只是一行行单纯的描述，写起来相当费事。 ![](\/images\/24063303e3abc5d5089bc58bdba65c550be0f8cb.jpg) 很自然地，有人就开始为CSS加入编程元素，这被叫做[\x22CSS预处理器\x22](http:\/\/www.catswhocode.com\/blog\/8-css-preprocessors-to-speed-up-development-time)（css preprocessor）。它的基本思想是，用一种专门的编程语言，进行网页样式设计，然后再编译成正常的CSS文件。 各种\x22CSS预处理器\x22之中，我自己最喜欢[SASS](http:\/\/sass-lang.com\/)，觉得它有很多优点，打算以后都用它来写CSS。下面是我整理的用法总结，供自己开发时参考，相信对其他人也有用。 ============================================ **SASS用法指南** 作者：阮一峰 ![](\/images\/c00b9e9a6c97811cb70a4f18ec85976f493eb3e7.png) **一、什么是SASS** [SASS](http:\/\/sass-lang.com\/)是一种CSS的开发工具，提供了许多便利的写法，大大节省了设计者的时间，使得CSS的开发，变得简单和可维护。 本文总结了SASS的主要用法。我的目标是，有了这篇文章，日常的一般使用就不需要去看[官方文档](http:\/\/sass-lang.com\/docs\/yardoc\/file.SASS_REFERENCE.html)了。 **二、安装和使用** **2.1 安装** SASS是Ruby语言写的，但是两者的语法没有关系。不懂Ruby，照样使用。只是必须先[安装Ruby](http:\/\/www.ruby-lang.org\/zh_cn\/downloads\/)，然后再安装SASS。 假定你已经安装好了Ruby，接着在命令行输入下面的命令：  gem install sass 然后，就可以使用了。 **2.2 使用** SASS文件就是普通的文本文件，里面可以直接使用CSS语法。文件后缀名是.scss，意思为Sassy CSS。 下面的命令，可以在屏幕上显示.scss文件转化的css代码。（假设文件名为test。）  sass test.scss 如果要将显示结果保存成文件，后面再跟一个.css文件名。  sass test.scss test.css SASS提供四个编译风格的选项：  * nested：嵌套缩进的css代码，它是默认值。   * expanded：没有缩进的、扩展的css代码。   * compact：简洁格式的css代码。   * compressed：压缩后的css代码。 生产环境当中，一般使用最后一个选项。  sass --style compressed test.sass test.css SASS的官方网站，提供了一个[在线转换器](http:\/\/sass-lang.com\/try.html)。你可以在那里，试运行下面的各种例子。 **三、基本用法** **3.1 变量** SASS允许使用变量，所有变量以$开头。  $blue : #1875e7;   div {  color : $blue;  } 如果变量需要镶嵌在字符串之中，就必须需要写在#{}之中。  $side : left;   .",
+  "description" : "作者： 阮一峰\n日期： 2012年6月19日\n学过CSS的人都知道，它不是一种编程语言。\n你可以用它开发网页样式，但是没法用它编程。也就是说，CSS基本上是设计师的工具，不是程序员的工具。在程序员眼里，CSS是一件很麻烦的东西。它没有变量，也没有条件语句，只是一行行单纯的描述，写起来相当费事。\n很自然地，有人就开始为CSS加入编程元素，这被叫做\x26ldquo;CSS预处理器\x26rdquo;（css preprocessor）。它的基本思想是，用一种专门的编程语言，进行网页样式设计，然后再编译成正常的CSS文件。\n各种\x26quot;CSS预处理器\x26quot;之中，我自己最喜欢SASS，觉得它有很多优点，打算以后都用它来写CSS。下面是我整理的用法总结，供自己开发时参考，相信对其他人也有用。\n============================================\nSASS用法指南\n作者：阮一峰\n一、什么是SASS\nSASS是一种CSS的开发工具，提供了许多便利的写法，大大节省了设计者的时间，使得CSS的开发，变得简单和可维护。\n本文总结了SASS的主要用法。我的目标是，有了这篇文章，日常的一般使用就不需要去看官方文档了。\n二、安装和使用\n2.1 安装\nSASS是Ruby语言写的，但是两者的语法没有关系。不懂Ruby，照样使用。只是必须先安装Ruby，然后再安装SASS。\n假定你已经安装好了Ruby，接着在命令行输入下面的命令：\n gem install sass 然后，就可以使用了。\n 2.2 使用\nSASS文件就是普通的文本文件，里面可以直接使用CSS语法。文件后缀名是.scss，意思为Sassy CSS。\n下面的命令，可以在屏幕上显示.scss文件转化的css代码。（假设文件名为test。）\n sass test.scss 如果要将显示结果保存成文件，后面再跟一个.css文件名。 sass test.scss test.css SASS提供四个编译风格的选项：\n  nested：嵌套缩进的css代码，它是默认值。\n  expanded：没有缩进的、扩展的css代码。\n  compact：简洁格式的css代码。\n  compressed：压缩后的css代码。 生产环境当中，一般使用最后一个选项。 sass \x26ndash;style compressed test.sass test.css SASS的官方网站，提供了一个在线转换器。你可以在那里，试运行下面的各种例子。\n   三、基本用法\n3.1 变量\nSASS允许使用变量，所有变量以$开头。\n $blue : #1875e7;\ndiv { color : $blue; } 如果变量需要镶嵌在字符串之中，就必须需要写在#{}之中。 $side : left;",
   "inLanguage" : "en",
-  "wordCount":  323 ,
+  "wordCount":  317 ,
   "datePublished" : "2012-06-19T17:03:49",
   "dateModified" : "2012-06-19T17:03:49",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -83,14 +145,47 @@
 </script>
 
 <meta property="og:title" content="SASS用法指南" />
-<meta property="og:description" content="作者： [阮一峰](http://www.ruanyifeng.com/) 日期： [2012年6月19日](http://www.ruanyifeng.com/blog/2012/06/)   学过[CSS](http://zh.wikipedia.org/wiki/%E5%B1%82%E5%8F%A0%E6%A0%B7%E5%BC%8F%E8%A1%A8)的人都知道，它不是一种编程语言。  你可以用它开发网页样式，但是没法用它编程。也就是说，CSS基本上是设计师的工具，不是程序员的工具。在程序员眼里，CSS是一件很麻烦的东西。它没有变量，也没有条件语句，只是一行行单纯的描述，写起来相当费事。 ![](/images/24063303e3abc5d5089bc58bdba65c550be0f8cb.jpg) 很自然地，有人就开始为CSS加入编程元素，这被叫做[&#34;CSS预处理器&#34;](http://www.catswhocode.com/blog/8-css-preprocessors-to-speed-up-development-time)（css preprocessor）。它的基本思想是，用一种专门的编程语言，进行网页样式设计，然后再编译成正常的CSS文件。 各种&#34;CSS预处理器&#34;之中，我自己最喜欢[SASS](http://sass-lang.com/)，觉得它有很多优点，打算以后都用它来写CSS。下面是我整理的用法总结，供自己开发时参考，相信对其他人也有用。 ============================================ **SASS用法指南** 作者：阮一峰 ![](/images/c00b9e9a6c97811cb70a4f18ec85976f493eb3e7.png) **一、什么是SASS** [SASS](http://sass-lang.com/)是一种CSS的开发工具，提供了许多便利的写法，大大节省了设计者的时间，使得CSS的开发，变得简单和可维护。 本文总结了SASS的主要用法。我的目标是，有了这篇文章，日常的一般使用就不需要去看[官方文档](http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html)了。 **二、安装和使用** **2.1 安装** SASS是Ruby语言写的，但是两者的语法没有关系。不懂Ruby，照样使用。只是必须先[安装Ruby](http://www.ruby-lang.org/zh_cn/downloads/)，然后再安装SASS。 假定你已经安装好了Ruby，接着在命令行输入下面的命令：  gem install sass 然后，就可以使用了。 **2.2 使用** SASS文件就是普通的文本文件，里面可以直接使用CSS语法。文件后缀名是.scss，意思为Sassy CSS。 下面的命令，可以在屏幕上显示.scss文件转化的css代码。（假设文件名为test。）  sass test.scss 如果要将显示结果保存成文件，后面再跟一个.css文件名。  sass test.scss test.css SASS提供四个编译风格的选项：  * nested：嵌套缩进的css代码，它是默认值。   * expanded：没有缩进的、扩展的css代码。   * compact：简洁格式的css代码。   * compressed：压缩后的css代码。 生产环境当中，一般使用最后一个选项。  sass --style compressed test.sass test.css SASS的官方网站，提供了一个[在线转换器](http://sass-lang.com/try.html)。你可以在那里，试运行下面的各种例子。 **三、基本用法** **3.1 变量** SASS允许使用变量，所有变量以$开头。  $blue : #1875e7;   div {  color : $blue;  } 如果变量需要镶嵌在字符串之中，就必须需要写在#{}之中。  $side : left;   .">
+<meta property="og:description" content="作者： 阮一峰
+日期： 2012年6月19日
+学过CSS的人都知道，它不是一种编程语言。
+你可以用它开发网页样式，但是没法用它编程。也就是说，CSS基本上是设计师的工具，不是程序员的工具。在程序员眼里，CSS是一件很麻烦的东西。它没有变量，也没有条件语句，只是一行行单纯的描述，写起来相当费事。
+很自然地，有人就开始为CSS加入编程元素，这被叫做&ldquo;CSS预处理器&rdquo;（css preprocessor）。它的基本思想是，用一种专门的编程语言，进行网页样式设计，然后再编译成正常的CSS文件。
+各种&quot;CSS预处理器&quot;之中，我自己最喜欢SASS，觉得它有很多优点，打算以后都用它来写CSS。下面是我整理的用法总结，供自己开发时参考，相信对其他人也有用。
+============================================
+SASS用法指南
+作者：阮一峰
+一、什么是SASS
+SASS是一种CSS的开发工具，提供了许多便利的写法，大大节省了设计者的时间，使得CSS的开发，变得简单和可维护。
+本文总结了SASS的主要用法。我的目标是，有了这篇文章，日常的一般使用就不需要去看官方文档了。
+二、安装和使用
+2.1 安装
+SASS是Ruby语言写的，但是两者的语法没有关系。不懂Ruby，照样使用。只是必须先安装Ruby，然后再安装SASS。
+假定你已经安装好了Ruby，接着在命令行输入下面的命令：
+ gem install sass 然后，就可以使用了。
+ 2.2 使用
+SASS文件就是普通的文本文件，里面可以直接使用CSS语法。文件后缀名是.scss，意思为Sassy CSS。
+下面的命令，可以在屏幕上显示.scss文件转化的css代码。（假设文件名为test。）
+ sass test.scss 如果要将显示结果保存成文件，后面再跟一个.css文件名。 sass test.scss test.css SASS提供四个编译风格的选项：
+  nested：嵌套缩进的css代码，它是默认值。
+  expanded：没有缩进的、扩展的css代码。
+  compact：简洁格式的css代码。
+  compressed：压缩后的css代码。 生产环境当中，一般使用最后一个选项。 sass &ndash;style compressed test.sass test.css SASS的官方网站，提供了一个在线转换器。你可以在那里，试运行下面的各种例子。
+   三、基本用法
+3.1 变量
+SASS允许使用变量，所有变量以$开头。
+ $blue : #1875e7;
+div { color : $blue; } 如果变量需要镶嵌在字符串之中，就必须需要写在#{}之中。 $side : left;">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2012/06/19/sass%E7%94%A8%E6%B3%95%E6%8C%87%E5%8D%97/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="bystander&#39;s blog" />
 
   <meta name="twitter:title" content="SASS用法指南" />
-  <meta name="twitter:description" content="作者： [阮一峰](http://www.ruanyifeng.com/) 日期： [2012年6月19日](http://www.ruanyifeng.com/blog/2012/06/)   学过[CSS](http://zh.wikipedia.org/wiki/%E5%B1%82%E5%8F%A0%E6%A0%B7%E5%BC%8F%E8%A1%A8)的人都知道，它不是一种编程语言。  你 …">
+  <meta name="twitter:description" content="作者： 阮一峰
+日期： 2012年6月19日
+学过CSS的人都知道，它不是一种编程语言。
+你可以用它开发网页样式，但是没法用它编程。也就是说，CSS基本上是设计师的工具，不是程序员的工具。在程序员眼里，CSS是一件很麻烦的东西。它没有变量，也没有条件语句，只是一行行单纯的描述，写起来相当费事。
+很自然地，有人就开始为CSS加入编程元素，这被叫做&ldquo;CSS预处理器&rdquo;（css …">
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -101,7 +196,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -285,227 +380,206 @@
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <div>
-
-作者： [阮一峰](http://www.ruanyifeng.com/)
-
-日期： [2012年6月19日](http://www.ruanyifeng.com/blog/2012/06/)
-
-</div>
-<div id="main-content">
-<div>
-
-学过[CSS](http://zh.wikipedia.org/wiki/%E5%B1%82%E5%8F%A0%E6%A0%B7%E5%BC%8F%E8%A1%A8)的人都知道，它不是一种编程语言。
-
-</div>
-<div id="more">
-
-你可以用它开发网页样式，但是没法用它编程。也就是说，CSS基本上是设计师的工具，不是程序员的工具。在程序员眼里，CSS是一件很麻烦的东西。它没有变量，也没有条件语句，只是一行行单纯的描述，写起来相当费事。
-
-![](/images/24063303e3abc5d5089bc58bdba65c550be0f8cb.jpg)
-
-很自然地，有人就开始为CSS加入编程元素，这被叫做["CSS预处理器"](http://www.catswhocode.com/blog/8-css-preprocessors-to-speed-up-development-time)（css preprocessor）。它的基本思想是，用一种专门的编程语言，进行网页样式设计，然后再编译成正常的CSS文件。
-
-各种"CSS预处理器"之中，我自己最喜欢[SASS](http://sass-lang.com/)，觉得它有很多优点，打算以后都用它来写CSS。下面是我整理的用法总结，供自己开发时参考，相信对其他人也有用。
-
-============================================
-
-**SASS用法指南**
-
-作者：阮一峰
-
-![](/images/c00b9e9a6c97811cb70a4f18ec85976f493eb3e7.png)
-
-**一、什么是SASS**
-
-[SASS](http://sass-lang.com/)是一种CSS的开发工具，提供了许多便利的写法，大大节省了设计者的时间，使得CSS的开发，变得简单和可维护。
-
-本文总结了SASS的主要用法。我的目标是，有了这篇文章，日常的一般使用就不需要去看[官方文档](http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html)了。
-
-**二、安装和使用**
-
-**2.1 安装**
-
-SASS是Ruby语言写的，但是两者的语法没有关系。不懂Ruby，照样使用。只是必须先[安装Ruby](http://www.ruby-lang.org/zh_cn/downloads/)，然后再安装SASS。
-
-假定你已经安装好了Ruby，接着在命令行输入下面的命令：
-> gem install sass
-然后，就可以使用了。
-
-**2.2 使用**
-
-SASS文件就是普通的文本文件，里面可以直接使用CSS语法。文件后缀名是.scss，意思为Sassy CSS。
-
-下面的命令，可以在屏幕上显示.scss文件转化的css代码。（假设文件名为test。）
-> sass test.scss
+        <!-- raw HTML omitted -->
+<p>作者： <a href="http://www.ruanyifeng.com/">阮一峰</a></p>
+<p>日期： <a href="http://www.ruanyifeng.com/blog/2012/06/">2012年6月19日</a></p>
+<!-- raw HTML omitted -->
+<p>学过<a href="http://zh.wikipedia.org/wiki/%E5%B1%82%E5%8F%A0%E6%A0%B7%E5%BC%8F%E8%A1%A8">CSS</a>的人都知道，它不是一种编程语言。</p>
+<!-- raw HTML omitted -->
+<p>你可以用它开发网页样式，但是没法用它编程。也就是说，CSS基本上是设计师的工具，不是程序员的工具。在程序员眼里，CSS是一件很麻烦的东西。它没有变量，也没有条件语句，只是一行行单纯的描述，写起来相当费事。</p>
+<p><img src="/images/24063303e3abc5d5089bc58bdba65c550be0f8cb.jpg" alt=""></p>
+<p>很自然地，有人就开始为CSS加入编程元素，这被叫做<a href="http://www.catswhocode.com/blog/8-css-preprocessors-to-speed-up-development-time">&ldquo;CSS预处理器&rdquo;</a>（css preprocessor）。它的基本思想是，用一种专门的编程语言，进行网页样式设计，然后再编译成正常的CSS文件。</p>
+<p>各种&quot;CSS预处理器&quot;之中，我自己最喜欢<a href="http://sass-lang.com/">SASS</a>，觉得它有很多优点，打算以后都用它来写CSS。下面是我整理的用法总结，供自己开发时参考，相信对其他人也有用。</p>
+<p>============================================</p>
+<p><strong>SASS用法指南</strong></p>
+<p>作者：阮一峰</p>
+<p><img src="/images/c00b9e9a6c97811cb70a4f18ec85976f493eb3e7.png" alt=""></p>
+<p><strong>一、什么是SASS</strong></p>
+<p><a href="http://sass-lang.com/">SASS</a>是一种CSS的开发工具，提供了许多便利的写法，大大节省了设计者的时间，使得CSS的开发，变得简单和可维护。</p>
+<p>本文总结了SASS的主要用法。我的目标是，有了这篇文章，日常的一般使用就不需要去看<a href="http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html">官方文档</a>了。</p>
+<p><strong>二、安装和使用</strong></p>
+<p><strong>2.1 安装</strong></p>
+<p>SASS是Ruby语言写的，但是两者的语法没有关系。不懂Ruby，照样使用。只是必须先<a href="http://www.ruby-lang.org/zh_cn/downloads/">安装Ruby</a>，然后再安装SASS。</p>
+<p>假定你已经安装好了Ruby，接着在命令行输入下面的命令：</p>
+<blockquote>
+<p>gem install sass
+然后，就可以使用了。</p>
+</blockquote>
+<p><strong>2.2 使用</strong></p>
+<p>SASS文件就是普通的文本文件，里面可以直接使用CSS语法。文件后缀名是.scss，意思为Sassy CSS。</p>
+<p>下面的命令，可以在屏幕上显示.scss文件转化的css代码。（假设文件名为test。）</p>
+<blockquote>
+<p>sass test.scss
 如果要将显示结果保存成文件，后面再跟一个.css文件名。
-> sass test.scss test.css
-SASS提供四个编译风格的选项：
-> * nested：嵌套缩进的css代码，它是默认值。
-> 
-> * expanded：没有缩进的、扩展的css代码。
-> 
-> * compact：简洁格式的css代码。
-> 
-> * compressed：压缩后的css代码。
+sass test.scss test.css
+SASS提供四个编译风格的选项：</p>
+<ul>
+<li>
+<p>nested：嵌套缩进的css代码，它是默认值。</p>
+</li>
+<li>
+<p>expanded：没有缩进的、扩展的css代码。</p>
+</li>
+<li>
+<p>compact：简洁格式的css代码。</p>
+</li>
+<li>
+<p>compressed：压缩后的css代码。
 生产环境当中，一般使用最后一个选项。
-> sass --style compressed test.sass test.css
-SASS的官方网站，提供了一个[在线转换器](http://sass-lang.com/try.html)。你可以在那里，试运行下面的各种例子。
-
-**三、基本用法**
-
-**3.1 变量**
-
-SASS允许使用变量，所有变量以$开头。
-> $blue : #1875e7;
-> 
-> div {
-> color : $blue;
-> }
+sass &ndash;style compressed test.sass test.css
+SASS的官方网站，提供了一个<a href="http://sass-lang.com/try.html">在线转换器</a>。你可以在那里，试运行下面的各种例子。</p>
+</li>
+</ul>
+</blockquote>
+<p><strong>三、基本用法</strong></p>
+<p><strong>3.1 变量</strong></p>
+<p>SASS允许使用变量，所有变量以$开头。</p>
+<blockquote>
+<p>$blue : #1875e7;</p>
+<p>div {
+color : $blue;
+}
 如果变量需要镶嵌在字符串之中，就必须需要写在#{}之中。
-> $side : left;
-> 
-> .rounded {
-> border-#{$side}-radius: 5px;
-> }
-**3.2 计算功能**
-
-SASS允许在代码中使用算式：
-> body {
-> margin: (14px/2);
-> top: 50px + 100px;
-> right: $var * 10%;
-> }
-**3.3 嵌套**
-
-SASS允许选择器嵌套。比如，下面的CSS代码：
-> div h1 {
-> color : red;
-> }
+$side : left;</p>
+<p>.rounded {
+border-#{$side}-radius: 5px;
+}
+<strong>3.2 计算功能</strong></p>
+</blockquote>
+<p>SASS允许在代码中使用算式：</p>
+<blockquote>
+<p>body {
+margin: (14px/2);
+top: 50px + 100px;
+right: $var * 10%;
+}
+<strong>3.3 嵌套</strong></p>
+</blockquote>
+<p>SASS允许选择器嵌套。比如，下面的CSS代码：</p>
+<blockquote>
+<p>div h1 {
+color : red;
+}
 可以写成：
-> div {
-> hi {
-> color:red;
-> }
-> }
+div {
+hi {
+color:red;
+}
+}
 属性也可以嵌套：
-> p {
-> border-color: red;
-> }
+p {
+border-color: red;
+}
 可以写成：
-> p {
-> border: {
-> color: red;
-> }
-> }
-注意，border后面必须加上冒号。
-
-**3.4 注释**
-
-SASS共有两种注释风格。
-
-标准的CSS注释 /* comment */ ，会保留到编译后的文件。
-
-单行注释 // comment，只保留在SASS源文件中，编译后被省略。
-
-**四、代码的重用**
-
-**4.1 继承**
-
-SASS允许一个选择器，继承另一个选择器。比如，现有class1：
-> .class1 {
-> border: 1px solid #ddd;
-> }
+p {
+border: {
+color: red;
+}
+}
+注意，border后面必须加上冒号。</p>
+</blockquote>
+<p><strong>3.4 注释</strong></p>
+<p>SASS共有两种注释风格。</p>
+<p>标准的CSS注释 /* comment */ ，会保留到编译后的文件。</p>
+<p>单行注释 // comment，只保留在SASS源文件中，编译后被省略。</p>
+<p><strong>四、代码的重用</strong></p>
+<p><strong>4.1 继承</strong></p>
+<p>SASS允许一个选择器，继承另一个选择器。比如，现有class1：</p>
+<blockquote>
+<p>.class1 {
+border: 1px solid #ddd;
+}
 class2要继承class1，就要使用@extend命令：
-> .class2 {
-> @extend .class1;
-> font-size:120%;
-> }
-**4.2 Mixin**
-
-Mixin有点像C语言的宏（macro），是可以重用的代码块。
-
-使用@mixin命令，定义一个代码块。
-> @mixin left {
-> float: left;
-> margin-left: 10px;
-> }
+.class2 {
+@extend .class1;
+font-size:120%;
+}
+<strong>4.2 Mixin</strong></p>
+</blockquote>
+<p>Mixin有点像C语言的宏（macro），是可以重用的代码块。</p>
+<p>使用@mixin命令，定义一个代码块。</p>
+<blockquote>
+<p>@mixin left {
+float: left;
+margin-left: 10px;
+}
 使用@include命令，调用这个mixin。
-> div {
-> @include left;
-> }
+div {
+@include left;
+}
 mixin的强大之处，在于可以指定参数和缺省值。
-> @mixin left($value: 10px) {
-> float: left;
-> margin-right: $value;
-> }
+@mixin left($value: 10px) {
+float: left;
+margin-right: $value;
+}
 使用的时候，根据需要加入参数：
-> div {
-> @include left(20px);
-> }
-**4.3 颜色函数**
-
-SASS提供了一些内置的颜色函数，以便生成系列颜色。
-> lighten(#cc3, 10%) // #d6d65c
-> darken(#cc3, 10%) // #a3a329
-> grayscale(#cc3) // #808080
-> complement(#cc3) // #33c
-**4.4 插入文件**
-
-@import命令，用来插入外部文件。
-> @import("path/filename.scss");
+div {
+@include left(20px);
+}
+<strong>4.3 颜色函数</strong></p>
+</blockquote>
+<p>SASS提供了一些内置的颜色函数，以便生成系列颜色。</p>
+<blockquote>
+<p>lighten(#cc3, 10%) // #d6d65c
+darken(#cc3, 10%) // #a3a329
+grayscale(#cc3) // #808080
+complement(#cc3) // #33c
+<strong>4.4 插入文件</strong></p>
+</blockquote>
+<p>@import命令，用来插入外部文件。</p>
+<blockquote>
+<p>@import(&ldquo;path/filename.scss&rdquo;);
 如果插入的是.css文件，则等同于css的import命令。
-> @import "foo.css";
-**五、高级用法**
-
-**5.1 条件语句**
-
-@if可以用来判断：
-> p {
-> @if 1 + 1 == 2 { border: 1px solid; }
-> @if 5 &lt; 3 { border: 2px dotted; }
-> }
+@import &ldquo;foo.css&rdquo;;
+<strong>五、高级用法</strong></p>
+</blockquote>
+<p><strong>5.1 条件语句</strong></p>
+<p>@if可以用来判断：</p>
+<blockquote>
+<p>p {
+@if 1 + 1 == 2 { border: 1px solid; }
+@if 5 &lt; 3 { border: 2px dotted; }
+}
 配套的还有@else命令：
-> @if lightness($color) &gt; 30% {
-> background-color: #000;
-> } @else {
-> background-color: #fff;
-> }
-**5.2 循环语句**
-
-SASS支持for循环：
-> @for $i from 1 to 10 {
-> .border-#{$i} {
-> border: #{$i}px solid blue;
-> }
-> }
+@if lightness($color) &gt; 30% {
+background-color: #000;
+} @else {
+background-color: #fff;
+}
+<strong>5.2 循环语句</strong></p>
+</blockquote>
+<p>SASS支持for循环：</p>
+<blockquote>
+<p>@for $i from 1 to 10 {
+.border-#{$i} {
+border: #{$i}px solid blue;
+}
+}
 也支持while循环：
-> $i: 6;
-> 
-> @while $i &gt; 0 {
-> .item-#{$i} { width: 2em * $i; }
-> $i: $i - 2;
-> }
+$i: 6;</p>
+<p>@while $i &gt; 0 {
+.item-#{$i} { width: 2em * $i; }
+$i: $i - 2;
+}
 each命令，作用与for类似：
-> @each $member in a, b, c, d {
-> .#{$member} {
-> background-image: url("/image/#{$member}.jpg");
-> }
-> }
-**5.3 自定义函数**
-
-SASS允许用户编写自己的函数。
-> @function double($n) {
-> @return $n * 2;
-> }
-> 
-> #sidebar {
-> width: double(5px);
-> }
-（完）
-
-</div>
-</div>
+@each $member in a, b, c, d {
+.#{$member} {
+background-image: url(&quot;/image/#{$member}.jpg&rdquo;);
+}
+}
+<strong>5.3 自定义函数</strong></p>
+</blockquote>
+<p>SASS允许用户编写自己的函数。</p>
+<blockquote>
+<p>@function double($n) {
+@return $n * 2;
+}</p>
+<p>#sidebar {
+width: double(5px);
+}
+（完）</p>
+</blockquote>
+<!-- raw HTML omitted -->
 
 
         
@@ -621,7 +695,7 @@ SASS允许用户编写自己的函数。
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

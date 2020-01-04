@@ -138,7 +138,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -323,23 +323,14 @@
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <p>　　前段时间数据库的时候，出现这个问题。一般是读到20多万条的时候。会出现这个问题。</p>
-
 <p>　　找了一下。主要是这两个问题：</p>
-
 <p>　　一、看所有open的连接是否都close了。</p>
-
 <p>　　二、如果访问量很大，加上Max   Pool   Size=512这一句，当然这是要以损失系统性能为代价的！</p>
-
 <p>　　我查了一下。数据库连接所有的open都关闭了。 max pool size也确实加上了。但是。问题依旧。。</p>
-
 <p>　　哦，还有的说在数据库连接字串中添加Connect Timeout=500，也就是设置连接超时更长一些。问题依旧。。</p>
-
 <p>　　后来看到一篇文章中说：</p>
-
 <p>　　DataReader是独占连接 的，每个DataReader都要占用一个连接。当然这个情况是偶尔出现的，所以会很长时间出现一次，因为只有同时有超过连接池最大连接数量的并发操作才 会发生。而且你加大并发数量只能暂时缓解问题。</p>
-
 <p>　　文中建议用使用dataset来读取。然后我就把读取数据中使用DataReader的地方全部用DataAdapter和DataSet来获取数据库数据，因为DataSet非独占。会将数据保存在内存中，一次连接后释放，问题解决。</p>
-
 <p>　　记录一下。</p>
 
 
@@ -458,7 +449,7 @@
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

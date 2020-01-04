@@ -12,23 +12,64 @@
   <meta name="twitter:title" content="[笔记]写代码遇到的一些问题汇总下" />
   <meta name="description" content="本篇是用来填上一篇 挖下的坑的。
 1.java调用webservice
-有一些已有的webservice服务，由xfire生成发布，有些有参数，有些无参数，无参数的直接我直接使用org.codehaus.xfire这个包里的Client来动态生成客户端。然后调用就可以了。非常简单 Client client = null; try { client = new Client( new URL( &ldquo;http://leaver.me/testService?wsdl&quot;)); client.invoke(&ldquo;refreshAllCache&rdquo;, new Object[0]);
-} catch (MalformedURLException e) { e.printStackTrace(); } catch (Exception e) { e.printStackTrace(); }&lt;/pre&gt; 但对于有参的，且是服务器自定义的类作为参数的时候，实在是搞不定。。不管是把自定义的类放到本地，包名一致，在invoke的时候生成这个对象还是其他什么方法。都无法完成。
+有一些已有的webservice服务，由xfire生成发布，有些有参数，有些无参数，无参数的直接我直接使用org.codehaus.xfire这个包里的Client来动态生成客户端。然后调用就可以了。非常简单
+但对于有参的，且是服务器自定义的类作为参数的时候，实在是搞不定。。不管是把自定义的类放到本地，包名一致，在invoke的时候生成这个对象还是其他什么方法。都无法完成。
 最终换了直接发送soap报文来完成。dirty hack啊。如果你有一些好的方法希望不吝赐教。
-解决方案来源自stackoverflow，因为stackoverflow现在国内好像有时候打不开。因此把代码贴过来。有疑问的话留言讨论。 import javax.xml.soap.; import javax.xml.transform.; import javax.xml.transform.stream.*;
-public class SOAPClientSAAJ {
-/** * Starting point for the SAAJ - SOAP Client Testing */ public static void main(String args[]) { try { // Create SOAP Connection SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.">
+解决方案来源自stackoverflow，因为stackoverflow现在国内好像有时候打不开。因此把代码贴过来。有疑问的话留言讨论。
+2.Access restriction on class due to restriction on required library rt.jar? 报错
+总么都感觉是环境问题，系统bug。解决如下：
+ 进入project properties的 Build Path 设置里. 移除 JRE System Library 再添加回来，方法是: 选择 &ldquo;Add Library&rdquo; ，然后选择 JRE System Library.   3.SSHManager类报错：com.jcraft.jsch.JSchException: UnknownHostKey
+我使用的一个SSHManager类如下：
+报这个错是因为
+连接这段代码里少了config.put(&ldquo;StrictHostKeyChecking&rdquo;, &ldquo;no&rdquo;);这段设置，这个是去掉了严格的安全检查，一般只用于测试目的。
+4.navicat连接oracle数据库
+之前使用PL/SQL操作Oracle数据库，使用Heidisql操作mysql数据库。。切换麻烦。而且PL/SQL搜索的时候中文有问题。于是打算使用navicat统一管理
+方法是：
+1.首先下载Instant Client 的32位版本和Navicat Premium
+2.然后解压Instant Client，配置navicat
+
+选择oci文件即可
+然后新建oracle配置，选择basic模式，其他的根据你的数据库信息自己填写即可。
+ 5.HttpClient的logger日志实在太多了
+大人，实在太多了。看不过来啊。附赠一篇log4j配置文件详解
+在log4j.properties文件中添加如下配置信息
+log4j.logger.httpclient.wire.header=INFO
+log4j.logger.httpclient.wire.content=INFO
+log4j.logger.org.apache.commons.httpclient = INFO
+最后附赠一些实用的工具
+http://www.freeformatter.com/ 程序员必备。各类转换，包括转义工具，格式校验工具。效果很好。">
   <meta property="og:description" content="本篇是用来填上一篇 挖下的坑的。
 1.java调用webservice
-有一些已有的webservice服务，由xfire生成发布，有些有参数，有些无参数，无参数的直接我直接使用org.codehaus.xfire这个包里的Client来动态生成客户端。然后调用就可以了。非常简单 Client client = null; try { client = new Client( new URL( &ldquo;http://leaver.me/testService?wsdl&quot;)); client.invoke(&ldquo;refreshAllCache&rdquo;, new Object[0]);
-} catch (MalformedURLException e) { e.printStackTrace(); } catch (Exception e) { e.printStackTrace(); }&lt;/pre&gt; 但对于有参的，且是服务器自定义的类作为参数的时候，实在是搞不定。。不管是把自定义的类放到本地，包名一致，在invoke的时候生成这个对象还是其他什么方法。都无法完成。
+有一些已有的webservice服务，由xfire生成发布，有些有参数，有些无参数，无参数的直接我直接使用org.codehaus.xfire这个包里的Client来动态生成客户端。然后调用就可以了。非常简单
+但对于有参的，且是服务器自定义的类作为参数的时候，实在是搞不定。。不管是把自定义的类放到本地，包名一致，在invoke的时候生成这个对象还是其他什么方法。都无法完成。
 最终换了直接发送soap报文来完成。dirty hack啊。如果你有一些好的方法希望不吝赐教。
-解决方案来源自stackoverflow，因为stackoverflow现在国内好像有时候打不开。因此把代码贴过来。有疑问的话留言讨论。 import javax.xml.soap.; import javax.xml.transform.; import javax.xml.transform.stream.*;
-public class SOAPClientSAAJ {
-/** * Starting point for the SAAJ - SOAP Client Testing */ public static void main(String args[]) { try { // Create SOAP Connection SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.">
+解决方案来源自stackoverflow，因为stackoverflow现在国内好像有时候打不开。因此把代码贴过来。有疑问的话留言讨论。
+2.Access restriction on class due to restriction on required library rt.jar? 报错
+总么都感觉是环境问题，系统bug。解决如下：
+ 进入project properties的 Build Path 设置里. 移除 JRE System Library 再添加回来，方法是: 选择 &ldquo;Add Library&rdquo; ，然后选择 JRE System Library.   3.SSHManager类报错：com.jcraft.jsch.JSchException: UnknownHostKey
+我使用的一个SSHManager类如下：
+报这个错是因为
+连接这段代码里少了config.put(&ldquo;StrictHostKeyChecking&rdquo;, &ldquo;no&rdquo;);这段设置，这个是去掉了严格的安全检查，一般只用于测试目的。
+4.navicat连接oracle数据库
+之前使用PL/SQL操作Oracle数据库，使用Heidisql操作mysql数据库。。切换麻烦。而且PL/SQL搜索的时候中文有问题。于是打算使用navicat统一管理
+方法是：
+1.首先下载Instant Client 的32位版本和Navicat Premium
+2.然后解压Instant Client，配置navicat
+
+选择oci文件即可
+然后新建oracle配置，选择basic模式，其他的根据你的数据库信息自己填写即可。
+ 5.HttpClient的logger日志实在太多了
+大人，实在太多了。看不过来啊。附赠一篇log4j配置文件详解
+在log4j.properties文件中添加如下配置信息
+log4j.logger.httpclient.wire.header=INFO
+log4j.logger.httpclient.wire.content=INFO
+log4j.logger.org.apache.commons.httpclient = INFO
+最后附赠一些实用的工具
+http://www.freeformatter.com/ 程序员必备。各类转换，包括转义工具，格式校验工具。效果很好。">
   <meta name="twitter:description" content="本篇是用来填上一篇 挖下的坑的。
 1.java调用webservice
-有一些已有的webservice服务，由xfire生成发布，有些有参数，有些无参数，无参数的直接我直接使用org.codehaus.xfire这个包里的Client来动态生成客户端。然后调用就可以了。非常简单 Client client = null; try { client = new Client( new URL( …">
+有一些已有的webservice服务，由xfire生成发布，有些有参数，有些无参数，无参数的直接我直接使用org.codehaus.xfire这个包里的Client来动态生成客户端。然后调用就可以了。非常简单
+但对于有参的，且是服务器自定义的类作为参数的时候，实在是搞不定。。不管是把自定义的类放到本地，包名一致，在invoke …">
   <meta name="author" content="bystander"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -77,9 +118,9 @@ public class SOAPClientSAAJ {
     "name" : "bystander"
   },
   "headline": "[笔记]写代码遇到的一些问题汇总下",
-  "description" : "本篇是用来填上一篇 挖下的坑的。\n1.java调用webservice\n有一些已有的webservice服务，由xfire生成发布，有些有参数，有些无参数，无参数的直接我直接使用org.codehaus.xfire这个包里的Client来动态生成客户端。然后调用就可以了。非常简单 Client client = null; try { client = new Client( new URL( \x26ldquo;http:\/\/leaver.me\/testService?wsdl\x26quot;)); client.invoke(\x26ldquo;refreshAllCache\x26rdquo;, new Object[0]);\n} catch (MalformedURLException e) { e.printStackTrace(); } catch (Exception e) { e.printStackTrace(); }\x26lt;\/pre\x26gt; 但对于有参的，且是服务器自定义的类作为参数的时候，实在是搞不定。。不管是把自定义的类放到本地，包名一致，在invoke的时候生成这个对象还是其他什么方法。都无法完成。\n最终换了直接发送soap报文来完成。dirty hack啊。如果你有一些好的方法希望不吝赐教。\n解决方案来源自stackoverflow，因为stackoverflow现在国内好像有时候打不开。因此把代码贴过来。有疑问的话留言讨论。 import javax.xml.soap.; import javax.xml.transform.; import javax.xml.transform.stream.*;\npublic class SOAPClientSAAJ {\n\/** * Starting point for the SAAJ - SOAP Client Testing *\/ public static void main(String args[]) { try { \/\/ Create SOAP Connection SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.",
+  "description" : "本篇是用来填上一篇 挖下的坑的。\n1.java调用webservice\n有一些已有的webservice服务，由xfire生成发布，有些有参数，有些无参数，无参数的直接我直接使用org.codehaus.xfire这个包里的Client来动态生成客户端。然后调用就可以了。非常简单\n但对于有参的，且是服务器自定义的类作为参数的时候，实在是搞不定。。不管是把自定义的类放到本地，包名一致，在invoke的时候生成这个对象还是其他什么方法。都无法完成。\n最终换了直接发送soap报文来完成。dirty hack啊。如果你有一些好的方法希望不吝赐教。\n解决方案来源自stackoverflow，因为stackoverflow现在国内好像有时候打不开。因此把代码贴过来。有疑问的话留言讨论。\n2.Access restriction on class due to restriction on required library rt.jar? 报错\n总么都感觉是环境问题，系统bug。解决如下：\n 进入project properties的 Build Path 设置里. 移除 JRE System Library 再添加回来，方法是: 选择 \x26ldquo;Add Library\x26rdquo; ，然后选择 JRE System Library.   3.SSHManager类报错：com.jcraft.jsch.JSchException: UnknownHostKey\n我使用的一个SSHManager类如下：\n报这个错是因为\n连接这段代码里少了config.put(\x26ldquo;StrictHostKeyChecking\x26rdquo;, \x26ldquo;no\x26rdquo;);这段设置，这个是去掉了严格的安全检查，一般只用于测试目的。\n4.navicat连接oracle数据库\n之前使用PL\/SQL操作Oracle数据库，使用Heidisql操作mysql数据库。。切换麻烦。而且PL\/SQL搜索的时候中文有问题。于是打算使用navicat统一管理\n方法是：\n1.首先下载Instant Client 的32位版本和Navicat Premium\n2.然后解压Instant Client，配置navicat\n\n选择oci文件即可\n然后新建oracle配置，选择basic模式，其他的根据你的数据库信息自己填写即可。\n 5.HttpClient的logger日志实在太多了\n大人，实在太多了。看不过来啊。附赠一篇log4j配置文件详解\n在log4j.properties文件中添加如下配置信息\nlog4j.logger.httpclient.wire.header=INFO\nlog4j.logger.httpclient.wire.content=INFO\nlog4j.logger.org.apache.commons.httpclient = INFO\n最后附赠一些实用的工具\nhttp:\/\/www.freeformatter.com\/ 程序员必备。各类转换，包括转义工具，格式校验工具。效果很好。",
   "inLanguage" : "en",
-  "wordCount":  672 ,
+  "wordCount":  68 ,
   "datePublished" : "2014-02-08T11:06:51",
   "dateModified" : "2014-02-08T11:06:51",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -101,12 +142,32 @@ public class SOAPClientSAAJ {
 <meta property="og:title" content="[笔记]写代码遇到的一些问题汇总下" />
 <meta property="og:description" content="本篇是用来填上一篇 挖下的坑的。
 1.java调用webservice
-有一些已有的webservice服务，由xfire生成发布，有些有参数，有些无参数，无参数的直接我直接使用org.codehaus.xfire这个包里的Client来动态生成客户端。然后调用就可以了。非常简单 Client client = null; try { client = new Client( new URL( &ldquo;http://leaver.me/testService?wsdl&quot;)); client.invoke(&ldquo;refreshAllCache&rdquo;, new Object[0]);
-} catch (MalformedURLException e) { e.printStackTrace(); } catch (Exception e) { e.printStackTrace(); }&lt;/pre&gt; 但对于有参的，且是服务器自定义的类作为参数的时候，实在是搞不定。。不管是把自定义的类放到本地，包名一致，在invoke的时候生成这个对象还是其他什么方法。都无法完成。
+有一些已有的webservice服务，由xfire生成发布，有些有参数，有些无参数，无参数的直接我直接使用org.codehaus.xfire这个包里的Client来动态生成客户端。然后调用就可以了。非常简单
+但对于有参的，且是服务器自定义的类作为参数的时候，实在是搞不定。。不管是把自定义的类放到本地，包名一致，在invoke的时候生成这个对象还是其他什么方法。都无法完成。
 最终换了直接发送soap报文来完成。dirty hack啊。如果你有一些好的方法希望不吝赐教。
-解决方案来源自stackoverflow，因为stackoverflow现在国内好像有时候打不开。因此把代码贴过来。有疑问的话留言讨论。 import javax.xml.soap.; import javax.xml.transform.; import javax.xml.transform.stream.*;
-public class SOAPClientSAAJ {
-/** * Starting point for the SAAJ - SOAP Client Testing */ public static void main(String args[]) { try { // Create SOAP Connection SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.">
+解决方案来源自stackoverflow，因为stackoverflow现在国内好像有时候打不开。因此把代码贴过来。有疑问的话留言讨论。
+2.Access restriction on class due to restriction on required library rt.jar? 报错
+总么都感觉是环境问题，系统bug。解决如下：
+ 进入project properties的 Build Path 设置里. 移除 JRE System Library 再添加回来，方法是: 选择 &ldquo;Add Library&rdquo; ，然后选择 JRE System Library.   3.SSHManager类报错：com.jcraft.jsch.JSchException: UnknownHostKey
+我使用的一个SSHManager类如下：
+报这个错是因为
+连接这段代码里少了config.put(&ldquo;StrictHostKeyChecking&rdquo;, &ldquo;no&rdquo;);这段设置，这个是去掉了严格的安全检查，一般只用于测试目的。
+4.navicat连接oracle数据库
+之前使用PL/SQL操作Oracle数据库，使用Heidisql操作mysql数据库。。切换麻烦。而且PL/SQL搜索的时候中文有问题。于是打算使用navicat统一管理
+方法是：
+1.首先下载Instant Client 的32位版本和Navicat Premium
+2.然后解压Instant Client，配置navicat
+
+选择oci文件即可
+然后新建oracle配置，选择basic模式，其他的根据你的数据库信息自己填写即可。
+ 5.HttpClient的logger日志实在太多了
+大人，实在太多了。看不过来啊。附赠一篇log4j配置文件详解
+在log4j.properties文件中添加如下配置信息
+log4j.logger.httpclient.wire.header=INFO
+log4j.logger.httpclient.wire.content=INFO
+log4j.logger.org.apache.commons.httpclient = INFO
+最后附赠一些实用的工具
+http://www.freeformatter.com/ 程序员必备。各类转换，包括转义工具，格式校验工具。效果很好。">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2014/02/08/%E7%AC%94%E8%AE%B0%E5%86%99%E4%BB%A3%E7%A0%81%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB%E4%B8%8B/" />
 <meta property="og:type" content="website" />
@@ -115,7 +176,8 @@ public class SOAPClientSAAJ {
   <meta name="twitter:title" content="[笔记]写代码遇到的一些问题汇总下" />
   <meta name="twitter:description" content="本篇是用来填上一篇 挖下的坑的。
 1.java调用webservice
-有一些已有的webservice服务，由xfire生成发布，有些有参数，有些无参数，无参数的直接我直接使用org.codehaus.xfire这个包里的Client来动态生成客户端。然后调用就可以了。非常简单 Client client = null; try { client = new Client( new URL( …">
+有一些已有的webservice服务，由xfire生成发布，有些有参数，有些无参数，无参数的直接我直接使用org.codehaus.xfire这个包里的Client来动态生成客户端。然后调用就可以了。非常简单
+但对于有参的，且是服务器自定义的类作为参数的时候，实在是搞不定。。不管是把自定义的类放到本地，包名一致，在invoke …">
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -126,7 +188,7 @@ public class SOAPClientSAAJ {
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -284,7 +346,7 @@ public class SOAPClientSAAJ {
   <i class="fas fa-calendar"></i>&nbsp;Posted on February 8, 2014
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;4&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
   
   
   
@@ -311,317 +373,50 @@ public class SOAPClientSAAJ {
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <p>本篇是用来填<a href="http://leaver.me/archives/3454.html">上一篇 </a>挖下的坑的。</p>
-
 <p><em><strong>1.java调用webservice</strong></em></p>
-
-<p>有一些已有的webservice服务，由xfire生成发布，有些有参数，有些无参数，无参数的直接我直接使用org.codehaus.xfire这个包里的Client来动态生成客户端。然后调用就可以了。非常简单
-<pre class="lang:default decode:true">Client client = null;
-        try {
-            client = new Client(
-                    new URL(
-                            &ldquo;<a href="http://leaver.me/testService?wsdl&quot;))">http://leaver.me/testService?wsdl&quot;))</a>;
-            client.invoke(&ldquo;refreshAllCache&rdquo;, new Object[0]);</p>
-<div class="highlight"><pre class="chroma">    } catch (MalformedURLException e) {
-
-        e.printStackTrace();
-    } catch (Exception e) {
-
-        e.printStackTrace();
-    }&lt;/pre&gt;</pre></div>
+<p>有一些已有的webservice服务，由xfire生成发布，有些有参数，有些无参数，无参数的直接我直接使用org.codehaus.xfire这个包里的Client来动态生成客户端。然后调用就可以了。非常简单</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>但对于有参的，且是服务器自定义的类作为参数的时候，实在是搞不定。。不管是把自定义的类放到本地，包名一致，在invoke的时候生成这个对象还是其他什么方法。都无法完成。</p>
-
 <p>最终换了直接发送soap报文来完成。dirty hack啊。如果你有一些好的方法希望不吝赐教。</p>
-
-<p>解决方案来源自<a href="http://stackoverflow.com/a/15942217/764869">stackoverflow</a>，因为stackoverflow现在国内好像有时候打不开。因此把代码贴过来。有疑问的话留言讨论。
-<pre class="lang:java decode:true">import javax.xml.soap.<em>;
-import javax.xml.transform.</em>;
-import javax.xml.transform.stream.*;</p>
-
-<p>public class SOAPClientSAAJ {</p>
-<div class="highlight"><pre class="chroma">/**
- * Starting point for the SAAJ - SOAP Client Testing
- */
-public static void main(String args[]) {
-    try {
-        // Create SOAP Connection
-        SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();
-        SOAPConnection soapConnection = soapConnectionFactory.createConnection();
-
-        // Send SOAP Message to SOAP Server
-        String url = &#34;http://ws.cdyne.com/emailverify/Emailvernotestemail.asmx&#34;;
-        SOAPMessage soapResponse = soapConnection.call(createSOAPRequest(), url);
-
-        // Process the SOAP Response
-        printSOAPResponse(soapResponse);
-
-        soapConnection.close();
-    } catch (Exception e) {
-        System.err.println(&#34;Error occurred while sending SOAP Request to Server&#34;);
-        e.printStackTrace();
-    }
-}
-
-private static SOAPMessage createSOAPRequest() throws Exception {
-    MessageFactory messageFactory = MessageFactory.newInstance();
-    SOAPMessage soapMessage = messageFactory.createMessage();
-    SOAPPart soapPart = soapMessage.getSOAPPart();
-
-    String serverURI = &#34;http://ws.cdyne.com/&#34;;
-
-    // SOAP Envelope
-    SOAPEnvelope envelope = soapPart.getEnvelope();
-    envelope.addNamespaceDeclaration(&#34;example&#34;, serverURI);
-
-    /*
-    Constructed SOAP Request Message:
-    &amp;lt;SOAP-ENV:Envelope xmlns:SOAP-ENV=&#34;http://schemas.xmlsoap.org/soap/envelope/&#34; xmlns:example=&#34;http://ws.cdyne.com/&#34;&amp;gt;
-        &amp;lt;SOAP-ENV:Header/&amp;gt;
-        &amp;lt;SOAP-ENV:Body&amp;gt;
-            &amp;lt;example:VerifyEmail&amp;gt;
-                &amp;lt;example:email&amp;gt;mutantninja@gmail.com&amp;lt;/example:email&amp;gt;
-                &amp;lt;example:LicenseKey&amp;gt;123&amp;lt;/example:LicenseKey&amp;gt;
-            &amp;lt;/example:VerifyEmail&amp;gt;
-        &amp;lt;/SOAP-ENV:Body&amp;gt;
-    &amp;lt;/SOAP-ENV:Envelope&amp;gt;
-     */
-
-    // SOAP Body
-    SOAPBody soapBody = envelope.getBody();
-    SOAPElement soapBodyElem = soapBody.addChildElement(&#34;VerifyEmail&#34;, &#34;example&#34;);
-    SOAPElement soapBodyElem1 = soapBodyElem.addChildElement(&#34;email&#34;, &#34;example&#34;);
-    soapBodyElem1.addTextNode(&#34;mutantninja@gmail.com&#34;);
-    SOAPElement soapBodyElem2 = soapBodyElem.addChildElement(&#34;LicenseKey&#34;, &#34;example&#34;);
-    soapBodyElem2.addTextNode(&#34;123&#34;);
-
-    MimeHeaders headers = soapMessage.getMimeHeaders();
-    headers.addHeader(&#34;SOAPAction&#34;, serverURI  + &#34;VerifyEmail&#34;);
-
-    soapMessage.saveChanges();
-
-    /* Print the request message */
-    System.out.print(&#34;Request SOAP Message = &#34;);
-    soapMessage.writeTo(System.out);
-    System.out.println();
-
-    return soapMessage;
-}
-
-/**
- * Method used to print the SOAP Response
- */
-private static void printSOAPResponse(SOAPMessage soapResponse) throws Exception {
-    TransformerFactory transformerFactory = TransformerFactory.newInstance();
-    Transformer transformer = transformerFactory.newTransformer();
-    Source sourceContent = soapResponse.getSOAPPart().getContent();
-    System.out.print(&#34;\nResponse SOAP Message = &#34;);
-    StreamResult result = new StreamResult(System.out);
-    transformer.transform(sourceContent, result);
-}</pre></div>
-<p>}</pre>
-<em><strong>2.Access restriction on class due to restriction on required library rt.jar? 报错</strong></em></p>
-
+<p>解决方案来源自<a href="http://stackoverflow.com/a/15942217/764869">stackoverflow</a>，因为stackoverflow现在国内好像有时候打不开。因此把代码贴过来。有疑问的话留言讨论。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><em><strong>2.Access restriction on class due to restriction on required library rt.jar? 报错</strong></em></p>
 <p>总么都感觉是环境问题，系统bug。<a href="http://stackoverflow.com/a/2174607/764869">解决</a>如下：</p>
-
 <ol>
 <li>进入project properties的 Build Path 设置里.</li>
 <li>移除 JRE System Library</li>
 <li>再添加回来，方法是: 选择 &ldquo;Add Library&rdquo; ，然后选择 JRE System Library.
-&nbsp;</li>
+ </li>
 </ol>
-
 <p><em><strong>3.SSHManager类报错：com.jcraft.jsch.JSchException: UnknownHostKey</strong></em></p>
-
-<p>我使用的一个SSHManager类如下：
-<pre class="lang:java decode:true">package me.leaver.Util;</p>
-
-<p>import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;</p>
-
-<p>import com.jcraft.jsch.Channel;
-import com.jcraft.jsch.ChannelExec;
-import com.jcraft.jsch.JSch;
-import com.jcraft.jsch.JSchException;
-import com.jcraft.jsch.Session;</p>
-
-<p>public class SSHManager {
-    private static final Logger LOGGER = Logger.getLogger(SSHManager.class
-            .getName());
-    private JSch jschSSHChannel;
-    private String strUserName;
-    private String strConnectionIP;
-    private int intConnectionPort;
-    private String strPassword;
-    private Session sesConnection;
-    private int intTimeOut;</p>
-<div class="highlight"><pre class="chroma">private void doCommonConstructorActions(String userName, String password,
-        String connectionIP, String knownHostsFileName) {
-    jschSSHChannel = new JSch();
-
-    try {
-        jschSSHChannel.setKnownHosts(knownHostsFileName);
-    } catch (JSchException jschX) {
-        logError(jschX.getMessage());
-    }
-
-    strUserName = userName;
-    strPassword = password;
-    strConnectionIP = connectionIP;
-}
-
-public SSHManager(String userName, String password, String connectionIP,
-        String knownHostsFileName) {
-    doCommonConstructorActions(userName, password, connectionIP,
-            knownHostsFileName);
-    intConnectionPort = 22;
-    intTimeOut = 60000;
-}
-
-public SSHManager(String userName, String password, String connectionIP,
-        String knownHostsFileName, int connectionPort) {
-    doCommonConstructorActions(userName, password, connectionIP,
-            knownHostsFileName);
-    intConnectionPort = connectionPort;
-    intTimeOut = 60000;
-}
-
-public SSHManager(String userName, String password, String connectionIP,
-        String knownHostsFileName, int connectionPort,
-        int timeOutMilliseconds) {
-    doCommonConstructorActions(userName, password, connectionIP,
-            knownHostsFileName);
-    intConnectionPort = connectionPort;
-    intTimeOut = timeOutMilliseconds;
-}
-
-public String connect() {
-    String errorMessage = null;
-
-    try {
-        sesConnection = jschSSHChannel.getSession(strUserName,
-                strConnectionIP, intConnectionPort);
-        Properties config = new Properties();
-        config.put(&#34;StrictHostKeyChecking&#34;, &#34;no&#34;);
-        sesConnection.setConfig(config);
-        sesConnection.setPassword(strPassword);
-        sesConnection.connect(intTimeOut);
-    } catch (JSchException jschX) {
-        errorMessage = jschX.getMessage();
-    }
-
-    return errorMessage;
-}
-
-private String logError(String errorMessage) {
-    if (errorMessage != null) {
-        LOGGER.log(Level.SEVERE, &#34;{0}:{1} - {2}&#34;, new Object[] {
-                strConnectionIP, intConnectionPort, errorMessage });
-    }
-
-    return errorMessage;
-}
-
-private String logWarning(String warnMessage) {
-    if (warnMessage != null) {
-        LOGGER.log(Level.WARNING, &#34;{0}:{1} - {2}&#34;, new Object[] {
-                strConnectionIP, intConnectionPort, warnMessage });
-    }
-
-    return warnMessage;
-}
-
-public String sendCommand(String command) {
-    StringBuilder outputBuffer = new StringBuilder();
-
-    try {
-        Channel channel = sesConnection.openChannel(&#34;exec&#34;);
-        ((ChannelExec) channel).setCommand(command);
-        channel.connect();
-        InputStream commandOutput = channel.getInputStream();
-        int readByte = commandOutput.read();
-
-        while (readByte != 0xffffffff) {
-            outputBuffer.append((char) readByte);
-            readByte = commandOutput.read();
-        }
-
-        channel.disconnect();
-    } catch (IOException ioX) {
-        logWarning(ioX.getMessage());
-        return null;
-    } catch (JSchException jschX) {
-        logWarning(jschX.getMessage());
-        return null;
-    }
-
-    return outputBuffer.toString();
-}
-
-public void close() {
-    sesConnection.disconnect();
-}</pre></div>
-<p>}</pre>
-报这个错是因为
-<pre class="lang:default decode:true">public String connect() {
-        String errorMessage = null;</p>
-<div class="highlight"><pre class="chroma">    try {
-        sesConnection = jschSSHChannel.getSession(strUserName,
-                strConnectionIP, intConnectionPort);
-        Properties config = new Properties();
-        config.put(&#34;StrictHostKeyChecking&#34;, &#34;no&#34;);
-        sesConnection.setConfig(config);
-        sesConnection.setPassword(strPassword);
-        sesConnection.connect(intTimeOut);
-    } catch (JSchException jschX) {
-        errorMessage = jschX.getMessage();
-    }
-
-    return errorMessage;
-}&lt;/pre&gt;</pre></div>
+<p>我使用的一个SSHManager类如下：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>报这个错是因为</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>连接这段代码里少了config.put(&ldquo;StrictHostKeyChecking&rdquo;, &ldquo;no&rdquo;);这段设置，这个是去掉了严格的安全检查，一般只用于测试目的。</p>
-
 <p><em><strong>4.navicat连接oracle数据库</strong></em></p>
-
 <p>之前使用PL/SQL操作Oracle数据库，使用Heidisql操作mysql数据库。。切换麻烦。而且PL/SQL搜索的时候中文有问题。于是打算使用navicat统一管理</p>
-
 <p>方法是：</p>
-
 <p>1.首先下载<a href="http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html">Instant Client </a>的32位版本和Navicat Premium</p>
-
 <p>2.然后解压Instant Client，配置navicat</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/2014/02/navicat_oracle.jpg"><img src="/images/929f511bc4fcfcc7f2579078a8aff7dddfa8b5c1.jpg" alt="navicat_oracle" /></a></p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/2014/02/navicat_oracle.jpg"><img src="/images/929f511bc4fcfcc7f2579078a8aff7dddfa8b5c1.jpg" alt="navicat_oracle"></a></p>
 <p>选择oci文件即可</p>
-
 <p>然后新建oracle配置，选择basic模式，其他的根据你的数据库信息自己填写即可。</p>
-
-<p>&nbsp;</p>
-
+<p> </p>
 <p><em><strong>5.HttpClient的logger日志实在太多了</strong></em></p>
-
-<p>大人，实在太多了。看不过来啊。附赠一篇<a href="http://www.cnblogs.com/ITEagle/archive/2010/04/23/1718365.html">log4j配置文件详解</a>
-<div>
-<div></p>
-
+<p>大人，实在太多了。看不过来啊。附赠一篇<a href="http://www.cnblogs.com/ITEagle/archive/2010/04/23/1718365.html">log4j配置文件详解</a></p>
+<!-- raw HTML omitted -->
 <p>在log4j.properties文件中添加如下配置信息</p>
-
 <p>log4j.logger.httpclient.wire.header=INFO</p>
-
 <p>log4j.logger.httpclient.wire.content=INFO</p>
-
 <p>log4j.logger.org.apache.commons.httpclient = INFO</p>
-
-<p></div>
-</div>
-<em><strong>6.其他</strong></em></p>
-
+<!-- raw HTML omitted -->
 <p>最后附赠一些实用的工具</p>
-
 <p><a href="http://www.freeformatter.com/">http://www.freeformatter.com/</a> 程序员必备。各类转换，包括转义工具，格式校验工具。效果很好。</p>
-
 <p><a href="http://voice.hupu.com/hushi/f1/10909.html">流体力学理论与F1赛车的空气动力学1</a>，<a href="http://voice.hupu.com/hushi/f1/10953.html">2</a>，<a href="http://voice.hupu.com/hushi/f1/11001.html">3</a>   什么雷诺数，伯努利方程，文丘里效应，当年木有好好学啊。这么高大上的东西果然还是有压力。</p>
 
 
@@ -742,7 +537,7 @@ public void close() {
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

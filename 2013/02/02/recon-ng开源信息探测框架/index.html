@@ -14,30 +14,46 @@
 首发。转载什么的请注明出处。起码给我留个链接啥的嘛。
 首先介绍一下。这个工具是国外刚刚发布的。主要用来渗透前的信息探测。使用类似Metasploit 主要有 Auxiliary： 这个模块查询主机信息泄漏页。进行hash反查，模糊名称精确，检查某个email是否密码泄漏，域名解析ip等 Contacts： 这个模块探测和某一公司有关的人员的信息，主要包括 LinkedIn 和Jigsaw 这两个模块。得到的信息可以被Auxiliary模块使用，如果和Social Engineer Toolkit(社会工程学工具集，这个工具已经发布了。是开源的。大家可以看看)，一起。效果强大。
 Hosts： 这个用来获取站点子域名。。包括使用baidu。Google bing等。。效果相当强大。 Output： 这个模块用来创建输出报表 Pwnedlist： 这个模块不是得shell的。他可通过 Pwnedlist.com 提供的api，如果这个网站被入侵过。那么可以直接获得其他黑客泄漏的帐号密码。。（需要去 Pwnedlist.com 注册）
-安装方法： bt下直接 git clone https://LaNMaSteR53@bitbucket.org/LaNMaSteR53/recon-ng.git 然后有可能提示输入密码，好象是随便输一个用来保护版本控制。。我输的是toor。。 然后就安装好了。输入 cd recon-ng 然后 ./recon-ng.py 首先查看有哪些模块。输入 modules 图一
+安装方法： bt下直接
+然后有可能提示输入密码，好象是随便输一个用来保护版本控制。。我输的是toor。。 然后就安装好了。输入
+然后
+首先查看有哪些模块。输入
+图一
 
 我以获取子域名为例，通过我前面的介绍你已经知道了hosts模块里的所有模块基本都是干这事的。我用里面的baidu模块来说明。你也可以使用bing等，，
-输入命令 load hosts::baidu 图二
+输入命令
+图二
 
-刚开始你可能不清楚这个模块的说明。那么继续输入info即可查看模块的详细说明 要开始使用。我们输入 options 和Metasploit很像把。可以查看要使用需要的配置。
+刚开始你可能不清楚这个模块的说明。那么继续输入info即可查看模块的详细说明 要开始使用。我们输入
+和Metasploit很像把。可以查看要使用需要的配置。
 图三
 
-看表，会发现有三行。第一行是标题，第二行是域名设置，第三行是输出。这个current value也就是当前值已经为true。所以不用设置。req的意思是是否必须设置。我们输入 baidu.com就是你的目标了。 set domain baidu.com 就会从百度的结果里提取百度的子域名信息了。要开始。我们输入 run 图四
+看表，会发现有三行。第一行是标题，第二行是域名设置，第三行是输出。这个current value也就是当前值已经为true。所以不用设置。req的意思是是否必须设置。我们输入 baidu.com就是你的目标了。
+就会从百度的结果里提取百度的子域名信息了。要开始。我们输入
+图四
 
 更多希望大家发掘吧。我抛砖。求引玉。">
   <meta property="og:description" content="作者：bystander 博客：http://leaver.me 微博：http://t.qq.com/lazystander 论坛：法客论坛
 首发。转载什么的请注明出处。起码给我留个链接啥的嘛。
 首先介绍一下。这个工具是国外刚刚发布的。主要用来渗透前的信息探测。使用类似Metasploit 主要有 Auxiliary： 这个模块查询主机信息泄漏页。进行hash反查，模糊名称精确，检查某个email是否密码泄漏，域名解析ip等 Contacts： 这个模块探测和某一公司有关的人员的信息，主要包括 LinkedIn 和Jigsaw 这两个模块。得到的信息可以被Auxiliary模块使用，如果和Social Engineer Toolkit(社会工程学工具集，这个工具已经发布了。是开源的。大家可以看看)，一起。效果强大。
 Hosts： 这个用来获取站点子域名。。包括使用baidu。Google bing等。。效果相当强大。 Output： 这个模块用来创建输出报表 Pwnedlist： 这个模块不是得shell的。他可通过 Pwnedlist.com 提供的api，如果这个网站被入侵过。那么可以直接获得其他黑客泄漏的帐号密码。。（需要去 Pwnedlist.com 注册）
-安装方法： bt下直接 git clone https://LaNMaSteR53@bitbucket.org/LaNMaSteR53/recon-ng.git 然后有可能提示输入密码，好象是随便输一个用来保护版本控制。。我输的是toor。。 然后就安装好了。输入 cd recon-ng 然后 ./recon-ng.py 首先查看有哪些模块。输入 modules 图一
+安装方法： bt下直接
+然后有可能提示输入密码，好象是随便输一个用来保护版本控制。。我输的是toor。。 然后就安装好了。输入
+然后
+首先查看有哪些模块。输入
+图一
 
 我以获取子域名为例，通过我前面的介绍你已经知道了hosts模块里的所有模块基本都是干这事的。我用里面的baidu模块来说明。你也可以使用bing等，，
-输入命令 load hosts::baidu 图二
+输入命令
+图二
 
-刚开始你可能不清楚这个模块的说明。那么继续输入info即可查看模块的详细说明 要开始使用。我们输入 options 和Metasploit很像把。可以查看要使用需要的配置。
+刚开始你可能不清楚这个模块的说明。那么继续输入info即可查看模块的详细说明 要开始使用。我们输入
+和Metasploit很像把。可以查看要使用需要的配置。
 图三
 
-看表，会发现有三行。第一行是标题，第二行是域名设置，第三行是输出。这个current value也就是当前值已经为true。所以不用设置。req的意思是是否必须设置。我们输入 baidu.com就是你的目标了。 set domain baidu.com 就会从百度的结果里提取百度的子域名信息了。要开始。我们输入 run 图四
+看表，会发现有三行。第一行是标题，第二行是域名设置，第三行是输出。这个current value也就是当前值已经为true。所以不用设置。req的意思是是否必须设置。我们输入 baidu.com就是你的目标了。
+就会从百度的结果里提取百度的子域名信息了。要开始。我们输入
+图四
 
 更多希望大家发掘吧。我抛砖。求引玉。">
   <meta name="twitter:description" content="作者：bystander 博客：http://leaver.me 微博：http://t.qq.com/lazystander 论坛：法客论坛
@@ -91,9 +107,9 @@ Hosts： 这个用来获取站点子域名。。包括使用baidu。Google bing�
     "name" : "bystander"
   },
   "headline": "recon-ng开源信息探测框架",
-  "description" : "作者：bystander 博客：http:\/\/leaver.me 微博：http:\/\/t.qq.com\/lazystander 论坛：法客论坛\n首发。转载什么的请注明出处。起码给我留个链接啥的嘛。\n首先介绍一下。这个工具是国外刚刚发布的。主要用来渗透前的信息探测。使用类似Metasploit 主要有 Auxiliary： 这个模块查询主机信息泄漏页。进行hash反查，模糊名称精确，检查某个email是否密码泄漏，域名解析ip等 Contacts： 这个模块探测和某一公司有关的人员的信息，主要包括 LinkedIn 和Jigsaw 这两个模块。得到的信息可以被Auxiliary模块使用，如果和Social Engineer Toolkit(社会工程学工具集，这个工具已经发布了。是开源的。大家可以看看)，一起。效果强大。\nHosts： 这个用来获取站点子域名。。包括使用baidu。Google bing等。。效果相当强大。 Output： 这个模块用来创建输出报表 Pwnedlist： 这个模块不是得shell的。他可通过 Pwnedlist.com 提供的api，如果这个网站被入侵过。那么可以直接获得其他黑客泄漏的帐号密码。。（需要去 Pwnedlist.com 注册）\n安装方法： bt下直接 git clone https:\/\/LaNMaSteR53@bitbucket.org\/LaNMaSteR53\/recon-ng.git 然后有可能提示输入密码，好象是随便输一个用来保护版本控制。。我输的是toor。。 然后就安装好了。输入 cd recon-ng 然后 .\/recon-ng.py 首先查看有哪些模块。输入 modules 图一\n\n我以获取子域名为例，通过我前面的介绍你已经知道了hosts模块里的所有模块基本都是干这事的。我用里面的baidu模块来说明。你也可以使用bing等，，\n输入命令 load hosts::baidu 图二\n\n刚开始你可能不清楚这个模块的说明。那么继续输入info即可查看模块的详细说明 要开始使用。我们输入 options 和Metasploit很像把。可以查看要使用需要的配置。\n图三\n\n看表，会发现有三行。第一行是标题，第二行是域名设置，第三行是输出。这个current value也就是当前值已经为true。所以不用设置。req的意思是是否必须设置。我们输入 baidu.com就是你的目标了。 set domain baidu.com 就会从百度的结果里提取百度的子域名信息了。要开始。我们输入 run 图四\n\n更多希望大家发掘吧。我抛砖。求引玉。",
+  "description" : "作者：bystander 博客：http:\/\/leaver.me 微博：http:\/\/t.qq.com\/lazystander 论坛：法客论坛\n首发。转载什么的请注明出处。起码给我留个链接啥的嘛。\n首先介绍一下。这个工具是国外刚刚发布的。主要用来渗透前的信息探测。使用类似Metasploit 主要有 Auxiliary： 这个模块查询主机信息泄漏页。进行hash反查，模糊名称精确，检查某个email是否密码泄漏，域名解析ip等 Contacts： 这个模块探测和某一公司有关的人员的信息，主要包括 LinkedIn 和Jigsaw 这两个模块。得到的信息可以被Auxiliary模块使用，如果和Social Engineer Toolkit(社会工程学工具集，这个工具已经发布了。是开源的。大家可以看看)，一起。效果强大。\nHosts： 这个用来获取站点子域名。。包括使用baidu。Google bing等。。效果相当强大。 Output： 这个模块用来创建输出报表 Pwnedlist： 这个模块不是得shell的。他可通过 Pwnedlist.com 提供的api，如果这个网站被入侵过。那么可以直接获得其他黑客泄漏的帐号密码。。（需要去 Pwnedlist.com 注册）\n安装方法： bt下直接\n然后有可能提示输入密码，好象是随便输一个用来保护版本控制。。我输的是toor。。 然后就安装好了。输入\n然后\n首先查看有哪些模块。输入\n图一\n\n我以获取子域名为例，通过我前面的介绍你已经知道了hosts模块里的所有模块基本都是干这事的。我用里面的baidu模块来说明。你也可以使用bing等，，\n输入命令\n图二\n\n刚开始你可能不清楚这个模块的说明。那么继续输入info即可查看模块的详细说明 要开始使用。我们输入\n和Metasploit很像把。可以查看要使用需要的配置。\n图三\n\n看表，会发现有三行。第一行是标题，第二行是域名设置，第三行是输出。这个current value也就是当前值已经为true。所以不用设置。req的意思是是否必须设置。我们输入 baidu.com就是你的目标了。\n就会从百度的结果里提取百度的子域名信息了。要开始。我们输入\n图四\n\n更多希望大家发掘吧。我抛砖。求引玉。",
   "inLanguage" : "en",
-  "wordCount":  61 ,
+  "wordCount":  47 ,
   "datePublished" : "2013-02-02T06:52:28",
   "dateModified" : "2013-02-02T06:52:28",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -117,15 +133,23 @@ Hosts： 这个用来获取站点子域名。。包括使用baidu。Google bing�
 首发。转载什么的请注明出处。起码给我留个链接啥的嘛。
 首先介绍一下。这个工具是国外刚刚发布的。主要用来渗透前的信息探测。使用类似Metasploit 主要有 Auxiliary： 这个模块查询主机信息泄漏页。进行hash反查，模糊名称精确，检查某个email是否密码泄漏，域名解析ip等 Contacts： 这个模块探测和某一公司有关的人员的信息，主要包括 LinkedIn 和Jigsaw 这两个模块。得到的信息可以被Auxiliary模块使用，如果和Social Engineer Toolkit(社会工程学工具集，这个工具已经发布了。是开源的。大家可以看看)，一起。效果强大。
 Hosts： 这个用来获取站点子域名。。包括使用baidu。Google bing等。。效果相当强大。 Output： 这个模块用来创建输出报表 Pwnedlist： 这个模块不是得shell的。他可通过 Pwnedlist.com 提供的api，如果这个网站被入侵过。那么可以直接获得其他黑客泄漏的帐号密码。。（需要去 Pwnedlist.com 注册）
-安装方法： bt下直接 git clone https://LaNMaSteR53@bitbucket.org/LaNMaSteR53/recon-ng.git 然后有可能提示输入密码，好象是随便输一个用来保护版本控制。。我输的是toor。。 然后就安装好了。输入 cd recon-ng 然后 ./recon-ng.py 首先查看有哪些模块。输入 modules 图一
+安装方法： bt下直接
+然后有可能提示输入密码，好象是随便输一个用来保护版本控制。。我输的是toor。。 然后就安装好了。输入
+然后
+首先查看有哪些模块。输入
+图一
 
 我以获取子域名为例，通过我前面的介绍你已经知道了hosts模块里的所有模块基本都是干这事的。我用里面的baidu模块来说明。你也可以使用bing等，，
-输入命令 load hosts::baidu 图二
+输入命令
+图二
 
-刚开始你可能不清楚这个模块的说明。那么继续输入info即可查看模块的详细说明 要开始使用。我们输入 options 和Metasploit很像把。可以查看要使用需要的配置。
+刚开始你可能不清楚这个模块的说明。那么继续输入info即可查看模块的详细说明 要开始使用。我们输入
+和Metasploit很像把。可以查看要使用需要的配置。
 图三
 
-看表，会发现有三行。第一行是标题，第二行是域名设置，第三行是输出。这个current value也就是当前值已经为true。所以不用设置。req的意思是是否必须设置。我们输入 baidu.com就是你的目标了。 set domain baidu.com 就会从百度的结果里提取百度的子域名信息了。要开始。我们输入 run 图四
+看表，会发现有三行。第一行是标题，第二行是域名设置，第三行是输出。这个current value也就是当前值已经为true。所以不用设置。req的意思是是否必须设置。我们输入 baidu.com就是你的目标了。
+就会从百度的结果里提取百度的子域名信息了。要开始。我们输入
+图四
 
 更多希望大家发掘吧。我抛砖。求引玉。">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
@@ -147,7 +171,7 @@ Hosts： 这个用来获取站点子域名。。包括使用baidu。Google bing�
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -335,63 +359,49 @@ Hosts： 这个用来获取站点子域名。。包括使用baidu。Google bing�
 博客：<a href="http://leaver.me">http://leaver.me</a>
 微博：<a href="http://t.qq.com/lazystander">http://t.qq.com/lazystander</a>
 论坛：法客论坛</p>
-
 <p>首发。转载什么的请注明出处。起码给我留个链接啥的嘛。</p>
-
 <p>首先介绍一下。这个工具是国外刚刚发布的。主要用来渗透前的信息探测。使用类似Metasploit
 主要有
 Auxiliary：
 这个模块查询主机信息泄漏页。进行hash反查，模糊名称精确，检查某个email是否密码泄漏，域名解析ip等
 Contacts：
 这个模块探测和某一公司有关的人员的信息，主要包括 LinkedIn 和Jigsaw 这两个模块。得到的信息可以被Auxiliary模块使用，如果和Social Engineer Toolkit(社会工程学工具集，这个工具已经发布了。是开源的。大家可以看看)，一起。效果强大。</p>
-
 <p>Hosts：
 这个用来获取站点子域名。。包括使用baidu。Google bing等。。效果相当强大。
 Output：
 这个模块用来创建输出报表
 Pwnedlist：
 这个模块不是得shell的。他可通过 Pwnedlist.com 提供的api，如果这个网站被入侵过。那么可以直接获得其他黑客泄漏的帐号密码。。（需要去 Pwnedlist.com 注册）</p>
-
 <p>安装方法：
-bt下直接
-<pre class="lang:default decode:true">git clone <a href="https://LaNMaSteR53@bitbucket.org/LaNMaSteR53/recon-ng.git">https://LaNMaSteR53@bitbucket.org/LaNMaSteR53/recon-ng.git</a></pre>
-然后有可能提示输入密码，好象是随便输一个用来保护版本控制。。我输的是toor。。
-然后就安装好了。输入
-<pre class="lang:default decode:true">cd recon-ng</pre>
-然后
-<pre class="lang:default decode:true">./recon-ng.py</pre>
-首先查看有哪些模块。输入
-<pre class="lang:default decode:true">modules</pre>
-图一</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/32339_o.jpg"><img src="/images/88f2dd5c24ad567a09c5b6162cd60d70b3fb781d.jpg" alt="" /></a></p>
-
+bt下直接</p>
+<!-- raw HTML omitted -->
+<p>然后有可能提示输入密码，好象是随便输一个用来保护版本控制。。我输的是toor。。
+然后就安装好了。输入</p>
+<!-- raw HTML omitted -->
+<p>然后</p>
+<!-- raw HTML omitted -->
+<p>首先查看有哪些模块。输入</p>
+<!-- raw HTML omitted -->
+<p>图一</p>
+<p><a href="http://leaverimage.b0.upaiyun.com/32339_o.jpg"><img src="/images/88f2dd5c24ad567a09c5b6162cd60d70b3fb781d.jpg" alt=""></a></p>
 <p>我以获取子域名为例，通过我前面的介绍你已经知道了hosts模块里的所有模块基本都是干这事的。我用里面的baidu模块来说明。你也可以使用bing等，，</p>
-
-<p>输入命令
-<pre class="lang:default decode:true">load hosts::baidu</pre>
-图二</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/32340_o.jpg"><img src="/images/f818e08de804ba8875667692fbdd580ad8114667.jpg" alt="" /></a></p>
-
+<p>输入命令</p>
+<!-- raw HTML omitted -->
+<p>图二</p>
+<p><a href="http://leaverimage.b0.upaiyun.com/32340_o.jpg"><img src="/images/f818e08de804ba8875667692fbdd580ad8114667.jpg" alt=""></a></p>
 <p>刚开始你可能不清楚这个模块的说明。那么继续输入info即可查看模块的详细说明
-要开始使用。我们输入
-<pre class="lang:default decode:true">options</pre>
-和Metasploit很像把。可以查看要使用需要的配置。</p>
-
+要开始使用。我们输入</p>
+<!-- raw HTML omitted -->
+<p>和Metasploit很像把。可以查看要使用需要的配置。</p>
 <p>图三</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/32341_o.jpg"><img src="/images/7848e773ab3e4e3ad03f59ba7b5ac6704d333ce6.jpg" alt="" /></a></p>
-
+<p><a href="http://leaverimage.b0.upaiyun.com/32341_o.jpg"><img src="/images/7848e773ab3e4e3ad03f59ba7b5ac6704d333ce6.jpg" alt=""></a></p>
 <p>看表，会发现有三行。第一行是标题，第二行是域名设置，第三行是输出。这个current value也就是当前值已经为true。所以不用设置。req的意思是是否必须设置。我们输入
-baidu.com就是你的目标了。
-<pre class="lang:default decode:true">set domain baidu.com</pre>
-就会从百度的结果里提取百度的子域名信息了。要开始。我们输入
-<pre class="lang:default decode:true">run</pre>
-图四</p>
-
-<p><a href="http://leaverimage.b0.upaiyun.com/32342_o.jpg"><img src="/images/125a841869478ff39dd63113e2e9427c3ae1cf81.jpg" alt="" /></a></p>
-
+baidu.com就是你的目标了。</p>
+<!-- raw HTML omitted -->
+<p>就会从百度的结果里提取百度的子域名信息了。要开始。我们输入</p>
+<!-- raw HTML omitted -->
+<p>图四</p>
+<p><a href="http://leaverimage.b0.upaiyun.com/32342_o.jpg"><img src="/images/125a841869478ff39dd63113e2e9427c3ae1cf81.jpg" alt=""></a></p>
 <p>更多希望大家发掘吧。我抛砖。求引玉。</p>
 
 
@@ -508,7 +518,7 @@ baidu.com就是你的目标了。
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

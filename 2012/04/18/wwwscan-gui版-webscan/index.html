@@ -12,7 +12,7 @@
   <meta name="twitter:title" content="WWWScan GUI版--WebScan" />
   <meta name="description" content="网上一直有个版本是Wscan Gui Beta6，首先感谢作者的无私奉献，写代码不容易啊。但是这个我不知道为什么在我的电脑上总是有一些错误。很多功能虽然加上了，但是其实对我有点多余。毕竟，我只是用这个扫描一下。于是，决定自己用C#做个GUI版，模仿实现一下。
 　然后我看了一下目录结构。如下图所知  貌似作者只是简单写了。然后对应着调用扫描器。我想了下，可以通过修改文件名来实现，因为wwwscan默认只能识别cgi.list，那么我想的是当我选中一种扫描类型后。将对应的字典，比如asp.list改成cgi.list。当然为了保护原文件，复制。。然后调用。这样就不用有这么多exe了。。
-　第二个我想实现作者的检测网站的脚本类型的功能，想到了两种方法。一种是循环访问index.xxx文件，xxx对asp jsp等，然后判断http状态码，200的话就可以对应判断出来网站脚本了。但是这样测试了一会没成功，还是算了，，然后想了一种猥琐流的方法，就是直接访问首页。然后把源码下载下来，然后搜索&rdquo;.xxx&rdquo;字符串，找到就行了，，当然这两种方法都是不完善的。。我也没想到什么完美的。。希望有人知道的话留言指教。
+　第二个我想实现作者的检测网站的脚本类型的功能，想到了两种方法。一种是循环访问index.xxx文件，xxx对asp jsp等，然后判断http状态码，200的话就可以对应判断出来网站脚本了。但是这样测试了一会没成功，还是算了，，然后想了一种猥琐流的方法，就是直接访问首页。然后把源码下载下来，然后搜索&rdquo;.xxx&quot;字符串，找到就行了，，当然这两种方法都是不完善的。。我也没想到什么完美的。。希望有人知道的话留言指教。
 　最后的目录就清爽多了 
 　那个4p啊，，就是盲扫描了。。不知道网站脚本的时候采用。。。
 　界面基本完全模仿了作者的UI，进行了略微调整，希望作者不介意。 
@@ -20,7 +20,7 @@
 [downloadicon href=http://pan.baidu.com/share/link?shareid=83803&amp;uk=1493685990]WebScan下载[/downloadicon]">
   <meta property="og:description" content="网上一直有个版本是Wscan Gui Beta6，首先感谢作者的无私奉献，写代码不容易啊。但是这个我不知道为什么在我的电脑上总是有一些错误。很多功能虽然加上了，但是其实对我有点多余。毕竟，我只是用这个扫描一下。于是，决定自己用C#做个GUI版，模仿实现一下。
 　然后我看了一下目录结构。如下图所知  貌似作者只是简单写了。然后对应着调用扫描器。我想了下，可以通过修改文件名来实现，因为wwwscan默认只能识别cgi.list，那么我想的是当我选中一种扫描类型后。将对应的字典，比如asp.list改成cgi.list。当然为了保护原文件，复制。。然后调用。这样就不用有这么多exe了。。
-　第二个我想实现作者的检测网站的脚本类型的功能，想到了两种方法。一种是循环访问index.xxx文件，xxx对asp jsp等，然后判断http状态码，200的话就可以对应判断出来网站脚本了。但是这样测试了一会没成功，还是算了，，然后想了一种猥琐流的方法，就是直接访问首页。然后把源码下载下来，然后搜索&rdquo;.xxx&rdquo;字符串，找到就行了，，当然这两种方法都是不完善的。。我也没想到什么完美的。。希望有人知道的话留言指教。
+　第二个我想实现作者的检测网站的脚本类型的功能，想到了两种方法。一种是循环访问index.xxx文件，xxx对asp jsp等，然后判断http状态码，200的话就可以对应判断出来网站脚本了。但是这样测试了一会没成功，还是算了，，然后想了一种猥琐流的方法，就是直接访问首页。然后把源码下载下来，然后搜索&rdquo;.xxx&quot;字符串，找到就行了，，当然这两种方法都是不完善的。。我也没想到什么完美的。。希望有人知道的话留言指教。
 　最后的目录就清爽多了 
 　那个4p啊，，就是盲扫描了。。不知道网站脚本的时候采用。。。
 　界面基本完全模仿了作者的UI，进行了略微调整，希望作者不介意。 
@@ -76,7 +76,7 @@
     "name" : "bystander"
   },
   "headline": "WWWScan GUI版--WebScan",
-  "description" : "网上一直有个版本是Wscan Gui Beta6，首先感谢作者的无私奉献，写代码不容易啊。但是这个我不知道为什么在我的电脑上总是有一些错误。很多功能虽然加上了，但是其实对我有点多余。毕竟，我只是用这个扫描一下。于是，决定自己用C#做个GUI版，模仿实现一下。\n　然后我看了一下目录结构。如下图所知  貌似作者只是简单写了。然后对应着调用扫描器。我想了下，可以通过修改文件名来实现，因为wwwscan默认只能识别cgi.list，那么我想的是当我选中一种扫描类型后。将对应的字典，比如asp.list改成cgi.list。当然为了保护原文件，复制。。然后调用。这样就不用有这么多exe了。。\n　第二个我想实现作者的检测网站的脚本类型的功能，想到了两种方法。一种是循环访问index.xxx文件，xxx对asp jsp等，然后判断http状态码，200的话就可以对应判断出来网站脚本了。但是这样测试了一会没成功，还是算了，，然后想了一种猥琐流的方法，就是直接访问首页。然后把源码下载下来，然后搜索\x26rdquo;.xxx\x26rdquo;字符串，找到就行了，，当然这两种方法都是不完善的。。我也没想到什么完美的。。希望有人知道的话留言指教。\n　最后的目录就清爽多了 \n　那个4p啊，，就是盲扫描了。。不知道网站脚本的时候采用。。。\n　界面基本完全模仿了作者的UI，进行了略微调整，希望作者不介意。 \n　程序需要.net framework 3.5。。win7默认都有。不用担心。xp用户可以下载环境后使用。毕竟是扫描工具，国内那些2b杀软会报毒，不放心的去世界杀毒网自己扫描吧。千万不要用来干坏事，遵守我国相关法律法规。\n[downloadicon href=http:\/\/pan.baidu.com\/share\/link?shareid=83803\x26amp;uk=1493685990]WebScan下载[\/downloadicon]",
+  "description" : "网上一直有个版本是Wscan Gui Beta6，首先感谢作者的无私奉献，写代码不容易啊。但是这个我不知道为什么在我的电脑上总是有一些错误。很多功能虽然加上了，但是其实对我有点多余。毕竟，我只是用这个扫描一下。于是，决定自己用C#做个GUI版，模仿实现一下。\n　然后我看了一下目录结构。如下图所知  貌似作者只是简单写了。然后对应着调用扫描器。我想了下，可以通过修改文件名来实现，因为wwwscan默认只能识别cgi.list，那么我想的是当我选中一种扫描类型后。将对应的字典，比如asp.list改成cgi.list。当然为了保护原文件，复制。。然后调用。这样就不用有这么多exe了。。\n　第二个我想实现作者的检测网站的脚本类型的功能，想到了两种方法。一种是循环访问index.xxx文件，xxx对asp jsp等，然后判断http状态码，200的话就可以对应判断出来网站脚本了。但是这样测试了一会没成功，还是算了，，然后想了一种猥琐流的方法，就是直接访问首页。然后把源码下载下来，然后搜索\x26rdquo;.xxx\x26quot;字符串，找到就行了，，当然这两种方法都是不完善的。。我也没想到什么完美的。。希望有人知道的话留言指教。\n　最后的目录就清爽多了 \n　那个4p啊，，就是盲扫描了。。不知道网站脚本的时候采用。。。\n　界面基本完全模仿了作者的UI，进行了略微调整，希望作者不介意。 \n　程序需要.net framework 3.5。。win7默认都有。不用担心。xp用户可以下载环境后使用。毕竟是扫描工具，国内那些2b杀软会报毒，不放心的去世界杀毒网自己扫描吧。千万不要用来干坏事，遵守我国相关法律法规。\n[downloadicon href=http:\/\/pan.baidu.com\/share\/link?shareid=83803\x26amp;uk=1493685990]WebScan下载[\/downloadicon]",
   "inLanguage" : "en",
   "wordCount":  15 ,
   "datePublished" : "2012-04-18T21:56:11",
@@ -100,7 +100,7 @@
 <meta property="og:title" content="WWWScan GUI版--WebScan" />
 <meta property="og:description" content="网上一直有个版本是Wscan Gui Beta6，首先感谢作者的无私奉献，写代码不容易啊。但是这个我不知道为什么在我的电脑上总是有一些错误。很多功能虽然加上了，但是其实对我有点多余。毕竟，我只是用这个扫描一下。于是，决定自己用C#做个GUI版，模仿实现一下。
 　然后我看了一下目录结构。如下图所知  貌似作者只是简单写了。然后对应着调用扫描器。我想了下，可以通过修改文件名来实现，因为wwwscan默认只能识别cgi.list，那么我想的是当我选中一种扫描类型后。将对应的字典，比如asp.list改成cgi.list。当然为了保护原文件，复制。。然后调用。这样就不用有这么多exe了。。
-　第二个我想实现作者的检测网站的脚本类型的功能，想到了两种方法。一种是循环访问index.xxx文件，xxx对asp jsp等，然后判断http状态码，200的话就可以对应判断出来网站脚本了。但是这样测试了一会没成功，还是算了，，然后想了一种猥琐流的方法，就是直接访问首页。然后把源码下载下来，然后搜索&rdquo;.xxx&rdquo;字符串，找到就行了，，当然这两种方法都是不完善的。。我也没想到什么完美的。。希望有人知道的话留言指教。
+　第二个我想实现作者的检测网站的脚本类型的功能，想到了两种方法。一种是循环访问index.xxx文件，xxx对asp jsp等，然后判断http状态码，200的话就可以对应判断出来网站脚本了。但是这样测试了一会没成功，还是算了，，然后想了一种猥琐流的方法，就是直接访问首页。然后把源码下载下来，然后搜索&rdquo;.xxx&quot;字符串，找到就行了，，当然这两种方法都是不完善的。。我也没想到什么完美的。。希望有人知道的话留言指教。
 　最后的目录就清爽多了 
 　那个4p啊，，就是盲扫描了。。不知道网站脚本的时候采用。。。
 　界面基本完全模仿了作者的UI，进行了略微调整，希望作者不介意。 
@@ -124,7 +124,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -309,24 +309,17 @@
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <p>　　网上一直有个版本是Wscan Gui Beta6，首先感谢作者的无私奉献，写代码不容易啊。但是这个我不知道为什么在我的电脑上总是有一些错误。很多功能虽然加上了，但是其实对我有点多余。毕竟，我只是用这个扫描一下。于是，决定自己用C#做个GUI版，模仿实现一下。</p>
-
 <p>　　然后我看了一下目录结构。如下图所知
-<a href="http://leaverimage.b0.upaiyun.com/20741_o.jpg"><img src="/images/1ab70fd66fde9efa08507a1d3930a4c4c9c4e53f.jpg" alt="" /></a>
+<a href="http://leaverimage.b0.upaiyun.com/20741_o.jpg"><img src="/images/1ab70fd66fde9efa08507a1d3930a4c4c9c4e53f.jpg" alt=""></a>
 　　貌似作者只是简单写了。然后对应着调用扫描器。我想了下，可以通过修改文件名来实现，因为wwwscan默认只能识别cgi.list，那么我想的是当我选中一种扫描类型后。将对应的字典，比如asp.list改成cgi.list。当然为了保护原文件，复制。。然后调用。这样就不用有这么多exe了。。</p>
-
-<p>　　第二个我想实现作者的检测网站的脚本类型的功能，想到了两种方法。一种是循环访问index.xxx文件，xxx对asp jsp等，然后判断http状态码，200的话就可以对应判断出来网站脚本了。但是这样测试了一会没成功，还是算了，，然后想了一种猥琐流的方法，就是直接访问首页。然后把源码下载下来，然后搜索&rdquo;.xxx&rdquo;字符串，找到就行了，，当然这两种方法都是不完善的。。我也没想到什么完美的。。希望有人知道的话留言指教。</p>
-
+<p>　　第二个我想实现作者的检测网站的脚本类型的功能，想到了两种方法。一种是循环访问index.xxx文件，xxx对asp jsp等，然后判断http状态码，200的话就可以对应判断出来网站脚本了。但是这样测试了一会没成功，还是算了，，然后想了一种猥琐流的方法，就是直接访问首页。然后把源码下载下来，然后搜索&rdquo;.xxx&quot;字符串，找到就行了，，当然这两种方法都是不完善的。。我也没想到什么完美的。。希望有人知道的话留言指教。</p>
 <p>　　最后的目录就清爽多了
-<a href="http://leaverimage.b0.upaiyun.com/20742_o.jpg"><img src="/images/5a2532b3507acd9c4ddd6787249e87f588554c46.jpg" alt="" /></a></p>
-
+<a href="http://leaverimage.b0.upaiyun.com/20742_o.jpg"><img src="/images/5a2532b3507acd9c4ddd6787249e87f588554c46.jpg" alt=""></a></p>
 <p>　　那个4p啊，，就是盲扫描了。。不知道网站脚本的时候采用。。。</p>
-
 <p>　　界面基本完全模仿了作者的UI，进行了略微调整，希望作者不介意。
-<a href="http://leaverimage.b0.upaiyun.com/20743_o.jpg"><img src="/images/d099861e804d120c52b106989f63254908490533.jpg" alt="" /></a></p>
-
+<a href="http://leaverimage.b0.upaiyun.com/20743_o.jpg"><img src="/images/d099861e804d120c52b106989f63254908490533.jpg" alt=""></a></p>
 <p>　　程序需要.net framework 3.5。。win7默认都有。不用担心。xp用户可以下载环境后使用。毕竟是扫描工具，国内那些2b杀软会报毒，不放心的去世界杀毒网自己扫描吧。千万不要用来干坏事，遵守我国相关法律法规。</p>
-
-<p>[downloadicon href=<a href="http://pan.baidu.com/share/link?shareid=83803&amp;uk=1493685990]WebScan下载[/downloadicon">http://pan.baidu.com/share/link?shareid=83803&amp;uk=1493685990]WebScan下载[/downloadicon</a>]</p>
+<p>[downloadicon href=http://pan.baidu.com/share/link?shareid=83803&amp;uk=1493685990]WebScan下载[/downloadicon]</p>
 
 
         
@@ -438,7 +431,7 @@
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

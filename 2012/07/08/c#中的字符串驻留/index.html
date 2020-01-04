@@ -11,21 +11,41 @@
   <meta property="og:title" content="C#中的字符串驻留" />
   <meta name="twitter:title" content="C#中的字符串驻留" />
   <meta name="description" content="字符串string可以理解为char[]，他是一个引用类型。
-字符串创建  操作上类似于int，char等类型，直接进行赋值，string str=&ldquo;bystander&rdquo;;虽然string 是个类，但是如果你天真的使用 string str=new string(&ldquo;bystander&rdquo;); 来构造，会导致一个编译错误。因为System.String只提供了数个接受Char*，Char[]类型参数的构造函数。 所以只能像下面这样使用， Char[] cs={&lsquo;b&rsquo;,&lsquo;y&rsquo;,&lsquo;e&rsquo;}; String str=new String(cs); 看出来了吧，很麻烦的。所以一般还是使用第一种。
+字符串创建  操作上类似于int，char等类型，直接进行赋值，string str=&quot;bystander&rdquo;;虽然string 是个类，但是如果你天真的使用
+来构造，会导致一个编译错误。因为System.String只提供了数个接受Char*，Char[]类型参数的构造函数。 所以只能像下面这样使用，
+看出来了吧，很麻烦的。所以一般还是使用第一种。
  字符串恒定性  恒定性(Immutability)，是指字符串一经创建，就不可改变，这是String最为重要的特性之一。具体来说，就是字符串一旦创建，就会在托管堆上分配一块连续的内存空间，我们对其的任何改变都不会影响到原有的String对象，而是重新创建的新的String对象。类似Insert，Substring，ToUpper都只是创建出了新的临时的字符串，会成为下次垃圾回收的目标。 好处：
  保证了对String对象的任何操作不会改变源字符串。 恒定性还意味着操作字符串不会出现线程同步问题 恒定性一定程度上，成就了字符串驻留。   字符串驻留  CLR维护一个表来存放字符串，该表叫做拘留表（或驻留池），他包含程序上以编程方式声明或创建的每一个唯一的字符串的引用，因此具有特定值的实例在系统中只有一个。如果将同一个字符串分配给多个变量，那么CLR就会向拘留池检索相同引用，并分配给变量。
-通过下面这个例子来说明： class StringInterning { public static void Main() { string strA = &ldquo;bystander&rdquo;; string strB = &ldquo;bystander&rdquo;; Console.WriteLine(ReferenceEquals(strA,strB)); string strC = &ldquo;by&rdquo;; string strD = strC&#43;&ldquo;stander&rdquo;; Console.WriteLine(ReferenceEquals(strA,strD)); strD=String.Intern(strD); Console.WriteLine(ReferenceEquals(strA,strD)); } } 猜猜答案是什么。。 正确答案是：True，False，True 为什么不是我们通常认为的那样呢。这就是因为字符串驻留了
+通过下面这个例子来说明：
+猜猜答案是什么。。 正确答案是：True，False，True 为什么不是我们通常认为的那样呢。这就是因为字符串驻留了
 缘起  String类型的特性恒定性，对字符串的任何操作都只会创建新的字符串，这会导致性能下降，而String又用的很频繁，为此，CLR使用字符串驻留来解决这一问题。为此，CLR内部维护一个哈希表，来管理其创建的大部分string对象。其中Key为string本身，Value为分配给对应的string的内存地址。
- 细节  string strA = &ldquo;bystander&rdquo;; CLR初始化时，创建一个空的哈希表，当JIT编译方法的时候，会首先在哈希表中查找每一个字符串常量，显然找不到任何&rdquo;bystander&rdquo;变量，因此会在托管堆中创建一个新的string对系那个strA，并更新哈希表，Key被赋值为&rdquo;bystander&rdquo;,Value被赋值为strA的引用.">
+ 细节  　CLR初始化时，创建一个空的哈希表，当JIT编译方法的时候，会首先在哈希表中查找每一个字符串常量，显然找不到任何&quot;bystander&quot;变量，因此会在托管堆中创建一个新的string对系那个strA，并更新哈希表，Key被赋值为&quot;bystander&rdquo;,Value被赋值为strA的引用.也就是Value内保留了&quot;bystander&quot;在托管堆中的引用地址.
+　接着,JIT根据&quot;bystander&quot;查找哈希表,结果找到了,所以JIT不做操作,只把找到的key对应的Value值赋给了strB对象.因此,第一个输出为true,引用相等.
+　同样,JIT向哈希表中添加了Key为&quot;by&rdquo;,Value为托管堆上&quot;by&quot;的地址.返回strC对象.但是注意,strD不同,JIT不检测,因为strD他是动态生成的.这样的字符串不会被添加到哈希表中进行维护,而是在托管堆中直接分配,所以第二个Console输出False.
+　对于第三个,我们首先看看Intern方法和IsInterned方法,对于动态生成的字符串,因为没有添加到CLR维护的哈希表,所以字符串驻留机制对其失效,但是可以手工开启,来实现高效的比较字符串相等.
+　两者的机制都是去哈希表中查找是否存在str字符串,找到的话也都返回对str的引用,不同的是当哈希表中没有str的话,IsInterned返回null,而Intern将把这个字符串添加到哈希表,并返回引用.注意,IsInterned返回非null并不代表两个字符串引用了相同的地址. 所以
+就很好理解了.
+  ">
   <meta property="og:description" content="字符串string可以理解为char[]，他是一个引用类型。
-字符串创建  操作上类似于int，char等类型，直接进行赋值，string str=&ldquo;bystander&rdquo;;虽然string 是个类，但是如果你天真的使用 string str=new string(&ldquo;bystander&rdquo;); 来构造，会导致一个编译错误。因为System.String只提供了数个接受Char*，Char[]类型参数的构造函数。 所以只能像下面这样使用， Char[] cs={&lsquo;b&rsquo;,&lsquo;y&rsquo;,&lsquo;e&rsquo;}; String str=new String(cs); 看出来了吧，很麻烦的。所以一般还是使用第一种。
+字符串创建  操作上类似于int，char等类型，直接进行赋值，string str=&quot;bystander&rdquo;;虽然string 是个类，但是如果你天真的使用
+来构造，会导致一个编译错误。因为System.String只提供了数个接受Char*，Char[]类型参数的构造函数。 所以只能像下面这样使用，
+看出来了吧，很麻烦的。所以一般还是使用第一种。
  字符串恒定性  恒定性(Immutability)，是指字符串一经创建，就不可改变，这是String最为重要的特性之一。具体来说，就是字符串一旦创建，就会在托管堆上分配一块连续的内存空间，我们对其的任何改变都不会影响到原有的String对象，而是重新创建的新的String对象。类似Insert，Substring，ToUpper都只是创建出了新的临时的字符串，会成为下次垃圾回收的目标。 好处：
  保证了对String对象的任何操作不会改变源字符串。 恒定性还意味着操作字符串不会出现线程同步问题 恒定性一定程度上，成就了字符串驻留。   字符串驻留  CLR维护一个表来存放字符串，该表叫做拘留表（或驻留池），他包含程序上以编程方式声明或创建的每一个唯一的字符串的引用，因此具有特定值的实例在系统中只有一个。如果将同一个字符串分配给多个变量，那么CLR就会向拘留池检索相同引用，并分配给变量。
-通过下面这个例子来说明： class StringInterning { public static void Main() { string strA = &ldquo;bystander&rdquo;; string strB = &ldquo;bystander&rdquo;; Console.WriteLine(ReferenceEquals(strA,strB)); string strC = &ldquo;by&rdquo;; string strD = strC&#43;&ldquo;stander&rdquo;; Console.WriteLine(ReferenceEquals(strA,strD)); strD=String.Intern(strD); Console.WriteLine(ReferenceEquals(strA,strD)); } } 猜猜答案是什么。。 正确答案是：True，False，True 为什么不是我们通常认为的那样呢。这就是因为字符串驻留了
+通过下面这个例子来说明：
+猜猜答案是什么。。 正确答案是：True，False，True 为什么不是我们通常认为的那样呢。这就是因为字符串驻留了
 缘起  String类型的特性恒定性，对字符串的任何操作都只会创建新的字符串，这会导致性能下降，而String又用的很频繁，为此，CLR使用字符串驻留来解决这一问题。为此，CLR内部维护一个哈希表，来管理其创建的大部分string对象。其中Key为string本身，Value为分配给对应的string的内存地址。
- 细节  string strA = &ldquo;bystander&rdquo;; CLR初始化时，创建一个空的哈希表，当JIT编译方法的时候，会首先在哈希表中查找每一个字符串常量，显然找不到任何&rdquo;bystander&rdquo;变量，因此会在托管堆中创建一个新的string对系那个strA，并更新哈希表，Key被赋值为&rdquo;bystander&rdquo;,Value被赋值为strA的引用.">
+ 细节  　CLR初始化时，创建一个空的哈希表，当JIT编译方法的时候，会首先在哈希表中查找每一个字符串常量，显然找不到任何&quot;bystander&quot;变量，因此会在托管堆中创建一个新的string对系那个strA，并更新哈希表，Key被赋值为&quot;bystander&rdquo;,Value被赋值为strA的引用.也就是Value内保留了&quot;bystander&quot;在托管堆中的引用地址.
+　接着,JIT根据&quot;bystander&quot;查找哈希表,结果找到了,所以JIT不做操作,只把找到的key对应的Value值赋给了strB对象.因此,第一个输出为true,引用相等.
+　同样,JIT向哈希表中添加了Key为&quot;by&rdquo;,Value为托管堆上&quot;by&quot;的地址.返回strC对象.但是注意,strD不同,JIT不检测,因为strD他是动态生成的.这样的字符串不会被添加到哈希表中进行维护,而是在托管堆中直接分配,所以第二个Console输出False.
+　对于第三个,我们首先看看Intern方法和IsInterned方法,对于动态生成的字符串,因为没有添加到CLR维护的哈希表,所以字符串驻留机制对其失效,但是可以手工开启,来实现高效的比较字符串相等.
+　两者的机制都是去哈希表中查找是否存在str字符串,找到的话也都返回对str的引用,不同的是当哈希表中没有str的话,IsInterned返回null,而Intern将把这个字符串添加到哈希表,并返回引用.注意,IsInterned返回非null并不代表两个字符串引用了相同的地址. 所以
+就很好理解了.
+  ">
   <meta name="twitter:description" content="字符串string可以理解为char[]，他是一个引用类型。
-字符串创建  操作上类似于int，char等类型，直接进行赋值，string str=&ldquo;bystander&rdquo;;虽然string 是个类，但是如果你天真的使用 string str=new string(&ldquo;bystander&rdquo;); 来构造，会导致一个编译错误。因为System.String只 …">
+字符串创建  操作上类似于int，char等类型，直接进行赋值，string str=&quot;bystander&rdquo;;虽然string 是个类，但是如果你天真的使用
+来构造，会导致一个编译错误。因为System.String只提供了数个接受Char*，Char[]类型参数的构造函数。 所以只能像下面这样使用，
+看出来了吧， …">
   <meta name="author" content="bystander"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -74,9 +94,9 @@
     "name" : "bystander"
   },
   "headline": "C#中的字符串驻留",
-  "description" : "字符串string可以理解为char[]，他是一个引用类型。\n字符串创建  操作上类似于int，char等类型，直接进行赋值，string str=\x26ldquo;bystander\x26rdquo;;虽然string 是个类，但是如果你天真的使用 string str=new string(\x26ldquo;bystander\x26rdquo;); 来构造，会导致一个编译错误。因为System.String只提供了数个接受Char*，Char[]类型参数的构造函数。 所以只能像下面这样使用， Char[] cs={\x26lsquo;b\x26rsquo;,\x26lsquo;y\x26rsquo;,\x26lsquo;e\x26rsquo;}; String str=new String(cs); 看出来了吧，很麻烦的。所以一般还是使用第一种。\n 字符串恒定性  恒定性(Immutability)，是指字符串一经创建，就不可改变，这是String最为重要的特性之一。具体来说，就是字符串一旦创建，就会在托管堆上分配一块连续的内存空间，我们对其的任何改变都不会影响到原有的String对象，而是重新创建的新的String对象。类似Insert，Substring，ToUpper都只是创建出了新的临时的字符串，会成为下次垃圾回收的目标。 好处：\n 保证了对String对象的任何操作不会改变源字符串。 恒定性还意味着操作字符串不会出现线程同步问题 恒定性一定程度上，成就了字符串驻留。   字符串驻留  CLR维护一个表来存放字符串，该表叫做拘留表（或驻留池），他包含程序上以编程方式声明或创建的每一个唯一的字符串的引用，因此具有特定值的实例在系统中只有一个。如果将同一个字符串分配给多个变量，那么CLR就会向拘留池检索相同引用，并分配给变量。\n通过下面这个例子来说明： class StringInterning { public static void Main() { string strA = \x26ldquo;bystander\x26rdquo;; string strB = \x26ldquo;bystander\x26rdquo;; Console.WriteLine(ReferenceEquals(strA,strB)); string strC = \x26ldquo;by\x26rdquo;; string strD = strC\x2b\x26ldquo;stander\x26rdquo;; Console.WriteLine(ReferenceEquals(strA,strD)); strD=String.Intern(strD); Console.WriteLine(ReferenceEquals(strA,strD)); } } 猜猜答案是什么。。 正确答案是：True，False，True 为什么不是我们通常认为的那样呢。这就是因为字符串驻留了\n缘起  String类型的特性恒定性，对字符串的任何操作都只会创建新的字符串，这会导致性能下降，而String又用的很频繁，为此，CLR使用字符串驻留来解决这一问题。为此，CLR内部维护一个哈希表，来管理其创建的大部分string对象。其中Key为string本身，Value为分配给对应的string的内存地址。\n 细节  string strA = \x26ldquo;bystander\x26rdquo;; CLR初始化时，创建一个空的哈希表，当JIT编译方法的时候，会首先在哈希表中查找每一个字符串常量，显然找不到任何\x26rdquo;bystander\x26rdquo;变量，因此会在托管堆中创建一个新的string对系那个strA，并更新哈希表，Key被赋值为\x26rdquo;bystander\x26rdquo;,Value被赋值为strA的引用.",
+  "description" : "字符串string可以理解为char[]，他是一个引用类型。\n字符串创建  操作上类似于int，char等类型，直接进行赋值，string str=\x26quot;bystander\x26rdquo;;虽然string 是个类，但是如果你天真的使用\n来构造，会导致一个编译错误。因为System.String只提供了数个接受Char*，Char[]类型参数的构造函数。 所以只能像下面这样使用，\n看出来了吧，很麻烦的。所以一般还是使用第一种。\n 字符串恒定性  恒定性(Immutability)，是指字符串一经创建，就不可改变，这是String最为重要的特性之一。具体来说，就是字符串一旦创建，就会在托管堆上分配一块连续的内存空间，我们对其的任何改变都不会影响到原有的String对象，而是重新创建的新的String对象。类似Insert，Substring，ToUpper都只是创建出了新的临时的字符串，会成为下次垃圾回收的目标。 好处：\n 保证了对String对象的任何操作不会改变源字符串。 恒定性还意味着操作字符串不会出现线程同步问题 恒定性一定程度上，成就了字符串驻留。   字符串驻留  CLR维护一个表来存放字符串，该表叫做拘留表（或驻留池），他包含程序上以编程方式声明或创建的每一个唯一的字符串的引用，因此具有特定值的实例在系统中只有一个。如果将同一个字符串分配给多个变量，那么CLR就会向拘留池检索相同引用，并分配给变量。\n通过下面这个例子来说明：\n猜猜答案是什么。。 正确答案是：True，False，True 为什么不是我们通常认为的那样呢。这就是因为字符串驻留了\n缘起  String类型的特性恒定性，对字符串的任何操作都只会创建新的字符串，这会导致性能下降，而String又用的很频繁，为此，CLR使用字符串驻留来解决这一问题。为此，CLR内部维护一个哈希表，来管理其创建的大部分string对象。其中Key为string本身，Value为分配给对应的string的内存地址。\n 细节  　CLR初始化时，创建一个空的哈希表，当JIT编译方法的时候，会首先在哈希表中查找每一个字符串常量，显然找不到任何\x26quot;bystander\x26quot;变量，因此会在托管堆中创建一个新的string对系那个strA，并更新哈希表，Key被赋值为\x26quot;bystander\x26rdquo;,Value被赋值为strA的引用.也就是Value内保留了\x26quot;bystander\x26quot;在托管堆中的引用地址.\n　接着,JIT根据\x26quot;bystander\x26quot;查找哈希表,结果找到了,所以JIT不做操作,只把找到的key对应的Value值赋给了strB对象.因此,第一个输出为true,引用相等.\n　同样,JIT向哈希表中添加了Key为\x26quot;by\x26rdquo;,Value为托管堆上\x26quot;by\x26quot;的地址.返回strC对象.但是注意,strD不同,JIT不检测,因为strD他是动态生成的.这样的字符串不会被添加到哈希表中进行维护,而是在托管堆中直接分配,所以第二个Console输出False.\n　对于第三个,我们首先看看Intern方法和IsInterned方法,对于动态生成的字符串,因为没有添加到CLR维护的哈希表,所以字符串驻留机制对其失效,但是可以手工开启,来实现高效的比较字符串相等.\n　两者的机制都是去哈希表中查找是否存在str字符串,找到的话也都返回对str的引用,不同的是当哈希表中没有str的话,IsInterned返回null,而Intern将把这个字符串添加到哈希表,并返回引用.注意,IsInterned返回非null并不代表两个字符串引用了相同的地址. 所以\n就很好理解了.\n  ",
   "inLanguage" : "en",
-  "wordCount":  96 ,
+  "wordCount":  30 ,
   "datePublished" : "2012-07-08T20:57:11",
   "dateModified" : "2012-07-08T20:57:11",
   "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
@@ -97,12 +117,21 @@
 
 <meta property="og:title" content="C#中的字符串驻留" />
 <meta property="og:description" content="字符串string可以理解为char[]，他是一个引用类型。
-字符串创建  操作上类似于int，char等类型，直接进行赋值，string str=&ldquo;bystander&rdquo;;虽然string 是个类，但是如果你天真的使用 string str=new string(&ldquo;bystander&rdquo;); 来构造，会导致一个编译错误。因为System.String只提供了数个接受Char*，Char[]类型参数的构造函数。 所以只能像下面这样使用， Char[] cs={&lsquo;b&rsquo;,&lsquo;y&rsquo;,&lsquo;e&rsquo;}; String str=new String(cs); 看出来了吧，很麻烦的。所以一般还是使用第一种。
+字符串创建  操作上类似于int，char等类型，直接进行赋值，string str=&quot;bystander&rdquo;;虽然string 是个类，但是如果你天真的使用
+来构造，会导致一个编译错误。因为System.String只提供了数个接受Char*，Char[]类型参数的构造函数。 所以只能像下面这样使用，
+看出来了吧，很麻烦的。所以一般还是使用第一种。
  字符串恒定性  恒定性(Immutability)，是指字符串一经创建，就不可改变，这是String最为重要的特性之一。具体来说，就是字符串一旦创建，就会在托管堆上分配一块连续的内存空间，我们对其的任何改变都不会影响到原有的String对象，而是重新创建的新的String对象。类似Insert，Substring，ToUpper都只是创建出了新的临时的字符串，会成为下次垃圾回收的目标。 好处：
  保证了对String对象的任何操作不会改变源字符串。 恒定性还意味着操作字符串不会出现线程同步问题 恒定性一定程度上，成就了字符串驻留。   字符串驻留  CLR维护一个表来存放字符串，该表叫做拘留表（或驻留池），他包含程序上以编程方式声明或创建的每一个唯一的字符串的引用，因此具有特定值的实例在系统中只有一个。如果将同一个字符串分配给多个变量，那么CLR就会向拘留池检索相同引用，并分配给变量。
-通过下面这个例子来说明： class StringInterning { public static void Main() { string strA = &ldquo;bystander&rdquo;; string strB = &ldquo;bystander&rdquo;; Console.WriteLine(ReferenceEquals(strA,strB)); string strC = &ldquo;by&rdquo;; string strD = strC&#43;&ldquo;stander&rdquo;; Console.WriteLine(ReferenceEquals(strA,strD)); strD=String.Intern(strD); Console.WriteLine(ReferenceEquals(strA,strD)); } } 猜猜答案是什么。。 正确答案是：True，False，True 为什么不是我们通常认为的那样呢。这就是因为字符串驻留了
+通过下面这个例子来说明：
+猜猜答案是什么。。 正确答案是：True，False，True 为什么不是我们通常认为的那样呢。这就是因为字符串驻留了
 缘起  String类型的特性恒定性，对字符串的任何操作都只会创建新的字符串，这会导致性能下降，而String又用的很频繁，为此，CLR使用字符串驻留来解决这一问题。为此，CLR内部维护一个哈希表，来管理其创建的大部分string对象。其中Key为string本身，Value为分配给对应的string的内存地址。
- 细节  string strA = &ldquo;bystander&rdquo;; CLR初始化时，创建一个空的哈希表，当JIT编译方法的时候，会首先在哈希表中查找每一个字符串常量，显然找不到任何&rdquo;bystander&rdquo;变量，因此会在托管堆中创建一个新的string对系那个strA，并更新哈希表，Key被赋值为&rdquo;bystander&rdquo;,Value被赋值为strA的引用.">
+ 细节  　CLR初始化时，创建一个空的哈希表，当JIT编译方法的时候，会首先在哈希表中查找每一个字符串常量，显然找不到任何&quot;bystander&quot;变量，因此会在托管堆中创建一个新的string对系那个strA，并更新哈希表，Key被赋值为&quot;bystander&rdquo;,Value被赋值为strA的引用.也就是Value内保留了&quot;bystander&quot;在托管堆中的引用地址.
+　接着,JIT根据&quot;bystander&quot;查找哈希表,结果找到了,所以JIT不做操作,只把找到的key对应的Value值赋给了strB对象.因此,第一个输出为true,引用相等.
+　同样,JIT向哈希表中添加了Key为&quot;by&rdquo;,Value为托管堆上&quot;by&quot;的地址.返回strC对象.但是注意,strD不同,JIT不检测,因为strD他是动态生成的.这样的字符串不会被添加到哈希表中进行维护,而是在托管堆中直接分配,所以第二个Console输出False.
+　对于第三个,我们首先看看Intern方法和IsInterned方法,对于动态生成的字符串,因为没有添加到CLR维护的哈希表,所以字符串驻留机制对其失效,但是可以手工开启,来实现高效的比较字符串相等.
+　两者的机制都是去哈希表中查找是否存在str字符串,找到的话也都返回对str的引用,不同的是当哈希表中没有str的话,IsInterned返回null,而Intern将把这个字符串添加到哈希表,并返回引用.注意,IsInterned返回非null并不代表两个字符串引用了相同的地址. 所以
+就很好理解了.
+  ">
 <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
 <meta property="og:url" content="https://leizhiyuan.github.io/2012/07/08/c#%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%A9%BB%E7%95%99/" />
 <meta property="og:type" content="website" />
@@ -110,7 +139,9 @@
 
   <meta name="twitter:title" content="C#中的字符串驻留" />
   <meta name="twitter:description" content="字符串string可以理解为char[]，他是一个引用类型。
-字符串创建  操作上类似于int，char等类型，直接进行赋值，string str=&ldquo;bystander&rdquo;;虽然string 是个类，但是如果你天真的使用 string str=new string(&ldquo;bystander&rdquo;); 来构造，会导致一个编译错误。因为System.String只 …">
+字符串创建  操作上类似于int，char等类型，直接进行赋值，string str=&quot;bystander&rdquo;;虽然string 是个类，但是如果你天真的使用
+来构造，会导致一个编译错误。因为System.String只提供了数个接受Char*，Char[]类型参数的构造函数。 所以只能像下面这样使用，
+看出来了吧， …">
   <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
   <meta name="twitter:card" content="summary" />
   <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -121,7 +152,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -305,84 +336,57 @@
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        
-
-<p>字符串string可以理解为char[]，他是一个引用类型。</p>
-
-<h3 id="字符串创建">字符串创建</h3>
-
+        <p>字符串string可以理解为char[]，他是一个引用类型。</p>
+<h3 id="heading">字符串创建</h3>
 <blockquote>
-<p>操作上类似于int，char等类型，直接进行赋值，string str=&ldquo;bystander&rdquo;;虽然string 是个类，但是如果你天真的使用
-<pre class="lang:c# decode:true ">string str=new string(&ldquo;bystander&rdquo;);</pre>
-来构造，会导致一个编译错误。因为System.String只提供了数个接受Char*，Char[]类型参数的构造函数。
-所以只能像下面这样使用，
-<pre class="lang:c# decode:true ">Char[] cs={&lsquo;b&rsquo;,&lsquo;y&rsquo;,&lsquo;e&rsquo;};
-String str=new String(cs);</pre>
-看出来了吧，很麻烦的。所以一般还是使用第一种。</p>
+<p>操作上类似于int，char等类型，直接进行赋值，string str=&quot;bystander&rdquo;;虽然string 是个类，但是如果你天真的使用</p>
+<!-- raw HTML omitted -->
+<p>来构造，会导致一个编译错误。因为System.String只提供了数个接受Char*，Char[]类型参数的构造函数。
+所以只能像下面这样使用，</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>看出来了吧，很麻烦的。所以一般还是使用第一种。</p>
 </blockquote>
-
-<h3 id="字符串恒定性">字符串恒定性</h3>
-
+<h3 id="heading-1">字符串恒定性</h3>
 <blockquote>
 <p>恒定性(Immutability)，是指字符串一经创建，就不可改变，这是String最为重要的特性之一。具体来说，就是字符串一旦创建，就会在托管堆上分配一块连续的内存空间，我们对其的任何改变都不会影响到原有的String对象，而是重新创建的新的String对象。类似Insert，Substring，ToUpper都只是创建出了新的临时的字符串，会成为下次垃圾回收的目标。
 好处：</p>
-
 <ul>
 <li>保证了对String对象的任何操作不会改变源字符串。</li>
 <li>恒定性还意味着操作字符串不会出现线程同步问题</li>
 <li>恒定性一定程度上，成就了字符串驻留。</li>
 </ul>
 </blockquote>
-
-<h3 id="字符串驻留">字符串驻留</h3>
-
+<h3 id="heading-2">字符串驻留</h3>
 <blockquote>
 <p>CLR维护一个表来存放字符串，该表叫做拘留表（或驻留池），他包含程序上以编程方式声明或创建的每一个唯一的字符串的引用，因此具有特定值的实例在系统中只有一个。如果将同一个字符串分配给多个变量，那么CLR就会向拘留池检索相同引用，并分配给变量。</p>
-
-<p>通过下面这个例子来说明：
-<pre class="lang:c# decode:true ">class StringInterning
-{
-     public static void Main()
-        {
-            string strA = &ldquo;bystander&rdquo;;
-            string strB = &ldquo;bystander&rdquo;;
-            Console.WriteLine(ReferenceEquals(strA,strB));
-            string strC = &ldquo;by&rdquo;;
-            string strD = strC+&ldquo;stander&rdquo;;
-            Console.WriteLine(ReferenceEquals(strA,strD));
-            strD=String.Intern(strD);
-            Console.WriteLine(ReferenceEquals(strA,strD));
-        }
-}</pre>
-猜猜答案是什么。。
+<p>通过下面这个例子来说明：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>猜猜答案是什么。。
 正确答案是：True，False，True
 为什么不是我们通常认为的那样呢。这就是因为字符串驻留了</p>
-
-<h3 id="缘起">缘起</h3>
-
+<h3 id="heading-3">缘起</h3>
 <blockquote>
 <p>String类型的特性恒定性，对字符串的任何操作都只会创建新的字符串，这会导致性能下降，而String又用的很频繁，为此，CLR使用字符串驻留来解决这一问题。为此，CLR内部维护一个哈希表，来管理其创建的大部分string对象。其中Key为string本身，Value为分配给对应的string的内存地址。</p>
 </blockquote>
-
-<h3 id="细节">细节</h3>
-
+<h3 id="heading-4">细节</h3>
 <blockquote>
-<p><pre class="lang:c# decode:true ">string strA = &ldquo;bystander&rdquo;;</pre>
-　　CLR初始化时，创建一个空的哈希表，当JIT编译方法的时候，会首先在哈希表中查找每一个字符串常量，显然找不到任何&rdquo;bystander&rdquo;变量，因此会在托管堆中创建一个新的string对系那个strA，并更新哈希表，Key被赋值为&rdquo;bystander&rdquo;,Value被赋值为strA的引用.也就是Value内保留了&rdquo;bystander&rdquo;在托管堆中的引用地址.
-<pre class="lang:c# decode:true ">string strB = &ldquo;bystander&rdquo;;</pre>
-　　接着,JIT根据&rdquo;bystander&rdquo;查找哈希表,结果找到了,所以JIT不做操作,只把找到的key对应的Value值赋给了strB对象.因此,第一个输出为true,引用相等.
-<pre class="lang:c# decode:true "> string strC = &ldquo;by&rdquo;;
- string strD = strC+&ldquo;stander&rdquo;;</pre>
-　　同样,JIT向哈希表中添加了Key为&rdquo;by&rdquo;,Value为托管堆上&rdquo;by&rdquo;的地址.返回strC对象.但是注意,strD不同,JIT不检测,因为strD他是动态生成的.这样的字符串不会被添加到哈希表中进行维护,而是在托管堆中直接分配,所以第二个Console输出False.</p>
-
-<p>　　对于第三个,我们首先看看Intern方法和IsInterned方法,对于动态生成的字符串,因为没有添加到CLR维护的哈希表,所以字符串驻留机制对其失效,但是可以手工开启,来实现高效的比较字符串相等.
-<pre class="lang:c# decode:true ">public static string Intern(string str)
-public static string IsInterned(string str)</pre>
-　　两者的机制都是去哈希表中查找是否存在str字符串,找到的话也都返回对str的引用,不同的是当哈希表中没有str的话,IsInterned返回null,而Intern将把这个字符串添加到哈希表,并返回引用.注意,IsInterned返回非null并不代表两个字符串引用了相同的地址.
-所以
-<pre class="lang:c# decode:true ">strD=String.Intern(strD);
-Console.WriteLine(ReferenceEquals(strA,strD));</pre>
-就很好理解了.</p>
+<!-- raw HTML omitted -->
+<p>　　CLR初始化时，创建一个空的哈希表，当JIT编译方法的时候，会首先在哈希表中查找每一个字符串常量，显然找不到任何&quot;bystander&quot;变量，因此会在托管堆中创建一个新的string对系那个strA，并更新哈希表，Key被赋值为&quot;bystander&rdquo;,Value被赋值为strA的引用.也就是Value内保留了&quot;bystander&quot;在托管堆中的引用地址.</p>
+<!-- raw HTML omitted -->
+<p>　　接着,JIT根据&quot;bystander&quot;查找哈希表,结果找到了,所以JIT不做操作,只把找到的key对应的Value值赋给了strB对象.因此,第一个输出为true,引用相等.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>　　同样,JIT向哈希表中添加了Key为&quot;by&rdquo;,Value为托管堆上&quot;by&quot;的地址.返回strC对象.但是注意,strD不同,JIT不检测,因为strD他是动态生成的.这样的字符串不会被添加到哈希表中进行维护,而是在托管堆中直接分配,所以第二个Console输出False.</p>
+<p>　　对于第三个,我们首先看看Intern方法和IsInterned方法,对于动态生成的字符串,因为没有添加到CLR维护的哈希表,所以字符串驻留机制对其失效,但是可以手工开启,来实现高效的比较字符串相等.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>　　两者的机制都是去哈希表中查找是否存在str字符串,找到的话也都返回对str的引用,不同的是当哈希表中没有str的话,IsInterned返回null,而Intern将把这个字符串添加到哈希表,并返回引用.注意,IsInterned返回非null并不代表两个字符串引用了相同的地址.
+所以</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>就很好理解了.</p>
 </blockquote>
 </blockquote>
 
@@ -502,7 +506,7 @@ Console.WriteLine(ReferenceEquals(strA,strD));</pre>
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

@@ -120,7 +120,7 @@ OOM-killer：Out-of-Memory (OOM) Killer是一种保护机制，用于当内存�
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="bystander&#39;s blog" />
 
-  <meta name="generator" content="Hugo 0.59.0" />
+  <meta name="generator" content="Hugo 0.61.0" />
   <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -304,80 +304,55 @@ OOM-killer：Out-of-Memory (OOM) Killer是一种保护机制，用于当内存�
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        
-
-<p>oom 之前知道, 但是并不是很了解,最近遇到了由 oom 引发的问题,所以学习记录一下.</p>
-
+        <p>oom 之前知道, 但是并不是很了解,最近遇到了由 oom 引发的问题,所以学习记录一下.</p>
 <p>OOM-killer：Out-of-Memory (OOM) Killer是一种保护机制，用于当内存严重不足时，为了系统的继续运转，内核迫不得已挑选一个进程，将其杀死，以释放内存，缓解内存不足的问题。
 可以看出这种方式对进程的保护是有限的，不能完全的保护进程的运行。</p>
-
-<h2 id="如何知道是否发生了-oom">如何知道是否发生了 oom</h2>
-
+<h2 id="-oom">如何知道是否发生了 oom</h2>
 <p>两种方法,第一种,查看 /var/log/messages,会有类似</p>
-<div class="highlight"><pre class="chroma">Out of memory: Kill process 9682 (mysqld) score 9 or sacrifice child
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">Out of memory: Kill process 9682 (mysqld) score 9 or sacrifice child
 Killed process 9682, UID 27, (mysqld) total-vm:47388kB, anon-rss:3744kB, file-rss:80kB
 httpd invoked oom-killer: gfp_mask=0x201da, order=0, oom_adj=0, oom_score_adj=0
 httpd cpuset=/ mems_allowed=0
-Pid: 8911, comm: httpd Not tainted 2.6.32-279.1.1.el6.i686 #1</pre></div>
-<p>这样的标识,说明发生了 oom,关键就是 kill process, 所以可以这样</p>
-
+Pid: 8911, comm: httpd Not tainted 2.6.32-279.1.1.el6.i686 #1
+</code></pre></div><p>这样的标识,说明发生了 oom,关键就是 kill process, 所以可以这样</p>
 <p><code>sudo cat /var/log/messages | grep -i&quot;killed process&quot;</code></p>
-
 <p>另一种是通过dmesg来查看
 <code>dmesg | egrep -i 'killed process'</code>
 这个命令查看的 oom 的时间里是时间戳的形式,如果你的 dmesg 没有-T这个时间的选项,那么就需要通过</p>
-<div class="highlight"><pre class="chroma">date -d &#34;1970-01-01 UTC `echo &#34;$(date +%s)-$(cat /proc/uptime|cut -f 1 -d&#39; &#39;)+12288812.926194&#34;|bc ` seconds&#34;</pre></div>
-<p>来转换成可读的时间了.</p>
-
-<h2 id="oom-的原理">oom 的原理</h2>
-
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">date -d &#34;1970-01-01 UTC `echo &#34;$(date +%s)-$(cat /proc/uptime|cut -f 1 -d&#39; &#39;)+12288812.926194&#34;|bc ` seconds&#34;
+</code></pre></div><p>来转换成可读的时间了.</p>
+<h2 id="oom-">oom 的原理</h2>
 <p>其中涉及到有三个相关文件：</p>
-
 <ul>
 <li>/proc/$PID/oom_adj</li>
 <li>/proc/$PID/oom_score</li>
 <li>/proc/$PID/oom_score_adj
 其中 oom_score 表示最终的分数，该分数越大，越可能被 Killer 杀掉。</li>
 </ul>
-
 <p>而 oom_adj 是调整分数的，可以设置为负值，会对 oom_score减分。</p>
-
 <p>从Linux 2.6.36开始都安装了/proc/$PID/oom_score_adj，此后将替换掉/proc/$PID/oom_adj。即使当前是对/proc/$PID/oom_adj进行的设置，在内核内部进行变换后的值也是针对/proc/$PID/oom_score_adj设置的。可以参见<a href="https://github.com/tinganho/linux-kernel/blob/master/Documentation/feature-removal-schedule.txt">feature-removal-schedule</a>这里 171行.</p>
-
 <p>通过 cat /proc/$PID/oom_score 可以查看进程的得分</p>
-
 <p>打分算法在这里
 <a href="https://github.com/torvalds/linux/blob/master/mm/oom_kill.c">https://github.com/torvalds/linux/blob/master/mm/oom_kill.c</a></p>
-
 <p>从上面的 oom_kill.c 代码里可以看到 oom_badness() 给每个进程打分，根据 points 的高低来决定杀哪个进程，这个 points 可以根据 adj 调节，root 权限的进程通常被认为很重要，不应该被轻易杀掉，所以打分的时候可以得到 3% 的优惠（adj -= 30; 分数越低越不容易被杀掉）。我们可以在用户空间通过操作每个进程的 oom_adj 内核参数来决定哪些进程不这么容易被 OOM killer 选中杀掉。比如，如果不想 MySQL 进程被轻易杀掉的话可以找到 MySQL 运行的进程号后，调整 oom_score_adj 为 -15（注意 points 越小越不容易被杀）：范围是从-1000 到 1000,参考<a href="https://github.com/torvalds/linux/commit/a63d83f427fbce97a6cea0db2e64b0eb8435cd10#include/linux/oom.h">这里</a></p>
-
-<h2 id="说明">说明</h2>
-
+<h2 id="heading">说明</h2>
 <p>也就是说rot 进程也并没有太大的优惠.主要还是取决于占用内存的多少.这就说明,如果 A,B 两个进程. B 属于正常进程,占用系统最多的进程.但是 A 是其他进程,如果 A 突然占用内存升高,导致需要触发 oom, 那么由于打分算法的存在,也会导致 B 被杀.</p>
-
-<h2 id="如何查看当前进程分数">如何查看当前进程分数</h2>
-
+<h2 id="heading-1">如何查看当前进程分数</h2>
 <p>两种.一种是
 <code>ps -eo pid,comm,pmem --sort -rss | awk '{&quot;cat /proc/&quot;$1&quot;/oom_score&quot; | getline oom; print $0&quot;\t&quot;oom}'</code></p>
-
 <p>另一种是</p>
-<div class="highlight"><pre class="chroma"><span class="cp">#!/bin/bash
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
 </span><span class="cp"></span><span class="k">for</span> proc in <span class="k">$(</span>find /proc -maxdepth <span class="m">1</span> -regex <span class="s1">&#39;/proc/[0-9]+&#39;</span><span class="k">)</span><span class="p">;</span> <span class="k">do</span>
     <span class="nb">printf</span> <span class="s2">&#34;%2d %5d %s\n&#34;</span> <span class="se">\
 </span><span class="se"></span>        <span class="s2">&#34;</span><span class="k">$(</span>cat <span class="nv">$proc</span>/oom_score<span class="k">)</span><span class="s2">&#34;</span> <span class="se">\
 </span><span class="se"></span>        <span class="s2">&#34;</span><span class="k">$(</span>basename <span class="nv">$proc</span><span class="k">)</span><span class="s2">&#34;</span> <span class="se">\
-</span><span class="se"></span>        <span class="s2">&#34;</span><span class="k">$(</span>cat <span class="nv">$proc</span>/cmdline <span class="p">|</span> tr <span class="s1">&#39;\0&#39;</span> <span class="s1">&#39; &#39;</span> <span class="p">|</span> head -c <span class="m">50</span><span class="k">)</span><span class="s2">&#34;</span>
-<span class="k">done</span> <span class="m">2</span>&gt;/dev/null <span class="p">|</span> sort -nr <span class="p">|</span> head -n <span class="m">10</span></pre></div>
-<h2 id="能否关闭">能否关闭</h2>
-
+</span><span class="se"></span>        <span class="s2">&#34;</span><span class="k">$(</span>cat <span class="nv">$proc</span>/cmdline <span class="p">|</span> tr <span class="s1">&#39;\0&#39;</span> <span class="s1">&#39; &#39;</span> <span class="p">|</span> head -c 50<span class="k">)</span><span class="s2">&#34;</span>
+<span class="k">done</span> 2&gt;/dev/null <span class="p">|</span> sort -nr <span class="p">|</span> head -n <span class="m">10</span>
+</code></pre></div><h2 id="heading-2">能否关闭</h2>
 <p>OOM Killer的关闭与激活方式：</p>
-
-<h1 id="echo-0-proc-sys-vm-oom-kill">echo &ldquo;0&rdquo; &gt; /proc/sys/vm/oom-kill</h1>
-
-<h1 id="echo-1-proc-sys-vm-oom-kill">echo &ldquo;1″ &gt; /proc/sys/vm/oom-kill</h1>
-
-<h2 id="参考">参考</h2>
-
+<h1 id="echo-0--procsysvmoom-kill">echo &ldquo;0&rdquo; &gt; /proc/sys/vm/oom-kill</h1>
+<h1 id="echo-1--procsysvmoom-kill">echo &ldquo;1″ &gt; /proc/sys/vm/oom-kill</h1>
+<h2 id="heading-3">参考</h2>
 <p><a href="https://github.com/Yhzhtk/note/issues/31">Linux 找出最有可能被 OOM Killer 杀掉的进程</a>
 <a href="http://www.vpsee.com/2013/10/how-to-configure-the-linux-oom-killer/">理解和配置 Linux 下的 OOM Killer</a></p>
 
@@ -491,7 +466,7 @@ Pid: 8911, comm: httpd Not tainted 2.6.32-279.1.1.el6.i686 #1</pre></div>
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.59.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>
