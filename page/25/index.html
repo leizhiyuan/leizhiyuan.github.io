@@ -67,6 +67,32 @@
     <article class="post">
         <header>
             <h1 class="post-title">
+                <a href="http://leaver.me/2012/07/06/csv%E6%89%B9%E9%87%8F%E5%AF%BC%E5%85%A5%E8%A7%A3%E5%86%B3/" title="CSV批量导入解决">CSV批量导入解决</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2012年7月6日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            最近的一个事就是那个诡异的CSV导入，后来决定用最笨的方法。就是readline，然后确实是可以正常识别了。思路就是一行行读入，然后构造sql语句，保存为sql文件，然后去批量执行sql文件。其实在codeproject找到了一些类似的工具，都有不如意的地方，但是时间关系还没能自己去定制，这件事完成后，就去完善一下大牛们的工具。
+　因为是多个csv文件，每个文件对应于我们想建的一个表，实际是大约2000个csv文件，每个文件大约4000行数据，构造成对应的sql语句比较简单，需要注意的就是如果sql server表中的字段和关键字重名，那么需要加[]，比如我们有个字段是open，那么实际sql语句中使用的时候，比如
+　简单的读写以后我们构造了2000个sql文件，然后我们需要执行这些sql文件。。必然需要写个代码来批量执行了。。为此，我先用C#生成一个批处理文件，然后来执行
+600M的sql文件执行起来三个多小时。。因为只算一次，所以就不考虑优化了。。鄙视我们吧。……
+        </div>
+        <p class="readmore"><a href="http://leaver.me/2012/07/06/csv%E6%89%B9%E9%87%8F%E5%AF%BC%E5%85%A5%E8%A7%A3%E5%86%B3/">阅读全文</a></p>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
                 <a href="http://leaver.me/2012/07/05/effective-c#item-9%E5%8C%BA%E5%88%AB%E5%92%8C%E8%AE%A4%E8%AF%86%E5%9B%9B%E4%B8%AA%E5%88%A4%E7%AD%89%E5%87%BD%E6%95%B0/" title="《Effective C#》Item 9：区别和认识四个判等函数">《Effective C#》Item 9：区别和认识四个判等函数</a>
             </h1>
         </header>
@@ -372,30 +398,6 @@ http://nds.cngba.com/nds_bd/2007122122100.shtml……
         <p class="readmore"><a href="http://leaver.me/2012/06/27/%E5%AF%B9%E4%B8%8D%E8%B5%B7%E6%88%91%E7%AD%89%E4%B8%8D%E4%BA%86%E4%BD%A0%E4%BA%86/">阅读全文</a></p>
     </article>
     
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2012/06/24/c#%E6%B8%A9%E6%95%85%E8%80%8C%E7%9F%A5%E6%96%B0-%E7%BA%BF%E7%A8%8B%E7%AF%87/" title="c#温故而知新： 线程篇">c#温故而知新： 线程篇</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2012年6月24日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F'>文章收藏</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            上次的C#温故而知新：Stream篇 已经完结了，这次，JimmyZheng 开始更新线程了，转发收藏，持续更新，当然你也可以直接去看JimmyZheng的文章，欢迎学习交流
- c#温故而知新： 线程篇(一)：Thread c#温故而知新： 线程篇(二)：线程池和异步线程  ……
-        </div>
-        <p class="readmore"><a href="http://leaver.me/2012/06/24/c#%E6%B8%A9%E6%95%85%E8%80%8C%E7%9F%A5%E6%96%B0-%E7%BA%BF%E7%A8%8B%E7%AF%87/">阅读全文</a></p>
-    </article>
-    
     
 
 
@@ -509,6 +511,10 @@ http://nds.cngba.com/nds_bd/2007122122100.shtml……
 <ul class="widget-list">
     
     <li>
+        <a href="http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2019 年终总结">2019 年终总结</a>
+    </li>
+    
+    <li>
         <a href="http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/" title="深入理解Raft协议">深入理解Raft协议</a>
     </li>
     
@@ -544,10 +550,6 @@ http://nds.cngba.com/nds_bd/2007122122100.shtml……
         <a href="http://leaver.me/2019/04/06/recently/" title="Recently">Recently</a>
     </li>
     
-    <li>
-        <a href="http://leaver.me/2019/03/01/mac%E8%BF%81%E7%A7%BB%E5%AF%BC%E8%87%B4golang%E6%97%A0%E6%B3%95debug%E7%9A%84%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D/" title="Mac迁移导致Golang无法debug的问题修复">Mac迁移导致Golang无法debug的问题修复</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -563,7 +565,7 @@ http://nds.cngba.com/nds_bd/2007122122100.shtml……
     
     <li><a href="http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/">文章收藏 (53)</a></li>
     
-    <li><a href="http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录 (2)</a></li>
+    <li><a href="http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录 (3)</a></li>
     
     <li><a href="http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记 (4)</a></li>
     

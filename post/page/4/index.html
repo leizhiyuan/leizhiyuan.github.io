@@ -69,6 +69,41 @@
     <article class="post">
         <header>
             <h1 class="post-title">
+                <a href="http://leaver.me/2016/05/29/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E5%85%A5%E9%97%A8%E5%92%8C%E8%BF%90%E8%A1%8Cdemo/" title="motan源码阅读-入门和运行demo">motan源码阅读-入门和运行demo</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2016年5月29日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            工作中一直在使用rpc,但是只是对简单的原理比较熟悉.最近看到有motan的一个介绍,代码拉下来看了看,除了测试用例比较少之外.其他还是不错的,和阿里的rpc框架比起来,还是弱了一些,好处就是方便用来学习. motan 是weibo的一个rpc框架,据说已经在线上使用了.
+在学习rpc框架之前,建议看一个hello world级别的文章RPC框架几行代码就够了,写的非常好,看完基本就知道rpc的核心了.
+Remote Procedure Calls中最关键的那个图,就能说明了.
+本地client调用本地client stub,stub对消息进行封装,通过socket发送,服务端的server stub接收到,然后解包,将里面传递的方法名,方法参数.等等信息,识别出来,调用服务端对应的服务,然后得到结果后,又通过socket返回,本地client又进行解包.就行了.
+这里面会涉及到,封装,封装就是吧对象序列化,这样才能在网络中传递.
+而生产环境的rpc框架需要考虑的有:
+stub怎么生成,序列化怎么最高效,如何统一不同机器之前的调用,(大小端的机器等),如何识别该调用哪个机器,负载均衡.socket通信.等等.
+先跑个demo熟悉一下.
+下载motan源码,导入ide,然后先启动服务端,MotanApiExportDemo,这个类,然后控制台会打出服务已经启动.然后运行MotanApiClientDemo,会发现一个控制台打出motan,服务端打出hello motan.就说明跑起来了.
+如果控制台日志没有.修改对应resources下面的log4j.properties文件.首行添加log4j.rootLogger=debug,stdout ,会设置默认日志级别为debug,并且在控制台输出. 或者直接fork我这个
+后面会逐步分析,希望坚持下来.……
+        </div>
+        <p class="readmore"><a href="http://leaver.me/2016/05/29/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E5%85%A5%E9%97%A8%E5%92%8C%E8%BF%90%E8%A1%8Cdemo/">阅读全文</a></p>
+    </article>
+    
+    
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
                 <a href="http://leaver.me/2016/05/29/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E7%B3%BB%E5%88%97%E7%9B%AE%E5%BD%95/" title="motan源码阅读系列目录">motan源码阅读系列目录</a>
             </h1>
         </header>
@@ -391,35 +426,6 @@ import java.util.concurrent.locks.Lock; import java.util.concurrent.locks.Reentr
     
     
     
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2015/09/08/kafka%E5%BF%AB%E9%80%9F%E5%BC%80%E5%8F%91demo/" title="kafka快速开发demo">kafka快速开发demo</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2015年9月8日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            在kafka快速上手,主要是使用kafka提供的测试来做了一下简单测试,实际开发中的使用可能才是我们要关系的.启动zk和kafka,新建topic的过程都不变.
-1 新建一个maven工程,引入依赖
-&lt;dependency&gt; &lt;groupId&gt;org.apache.kafka&lt;/groupId&gt; &lt;artifactId&gt;kafka_2.11&lt;/artifactId&gt; &lt;version&gt;0.8.2.1&lt;/version&gt; &lt;/dependency&gt; 2 编写配置文件
-public interface KafkaProperties { public final static String ZK = &#34;127.0.0.1:2181&#34;; public final static String GROUP_ID = &#34;test_group1&#34;; public final static String TOPIC = &#34;test&#34;; public final static String BROKER_LIST = &#34;127.0.0.1:9092&#34;; public final static String SESSION_TIMEOUT = &#34;20000&#34;; public final static String SYNC_TIMEOUT = &#34;20000&#34;; public final static String INTERVAL = &#34;1000&#34;; } 3 编写生产者
-public class KafkaProducer extends Thread { private Producer&lt;Integer, String&gt; producer; private String topic; private Properties props = new Properties(); private final int SLEEP = 1000 * 3; public KafkaProducer(String topic) { props.put(&#34;serializer.class&#34;, &#34;kafka.serializer.StringEncoder&#34;); //生产者直接和broker列表连接 props.put(&#34;metadata.broker.list&#34;, KafkaProperties.BROKER_LIST); producer = new Producer&lt;Integer, String&gt;(new ProducerConfig(props)); this.topic = topic; } @Override public void run() { int offsetNo = 1; while (true) { String msg = new String(&#34;Message_&#34; + offsetNo); System.out.println(&#34;Send-&gt;[&#34; + msg + &#34;]&#34;); producer.send(new KeyedMessage&lt;Integer, String&gt;(topic, msg)); offsetNo++; try { sleep(SLEEP); } catch (Exception ex) { ex.……
-        </div>
-        <p class="readmore"><a href="http://leaver.me/2015/09/08/kafka%E5%BF%AB%E9%80%9F%E5%BC%80%E5%8F%91demo/">阅读全文</a></p>
-    </article>
-    
-    
-    
 
 
 
@@ -532,6 +538,10 @@ public class KafkaProducer extends Thread { private Producer&lt;Integer, String&
 <ul class="widget-list">
     
     <li>
+        <a href="http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2019 年终总结">2019 年终总结</a>
+    </li>
+    
+    <li>
         <a href="http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/" title="深入理解Raft协议">深入理解Raft协议</a>
     </li>
     
@@ -567,10 +577,6 @@ public class KafkaProducer extends Thread { private Producer&lt;Integer, String&
         <a href="http://leaver.me/2019/04/06/recently/" title="Recently">Recently</a>
     </li>
     
-    <li>
-        <a href="http://leaver.me/2019/03/01/mac%E8%BF%81%E7%A7%BB%E5%AF%BC%E8%87%B4golang%E6%97%A0%E6%B3%95debug%E7%9A%84%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D/" title="Mac迁移导致Golang无法debug的问题修复">Mac迁移导致Golang无法debug的问题修复</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -586,7 +592,7 @@ public class KafkaProducer extends Thread { private Producer&lt;Integer, String&
     
     <li><a href="http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/">文章收藏 (53)</a></li>
     
-    <li><a href="http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录 (2)</a></li>
+    <li><a href="http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录 (3)</a></li>
     
     <li><a href="http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记 (4)</a></li>
     

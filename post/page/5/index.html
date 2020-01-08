@@ -69,6 +69,35 @@
     <article class="post">
         <header>
             <h1 class="post-title">
+                <a href="http://leaver.me/2015/09/08/kafka%E5%BF%AB%E9%80%9F%E5%BC%80%E5%8F%91demo/" title="kafka快速开发demo">kafka快速开发demo</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2015年9月8日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            在kafka快速上手,主要是使用kafka提供的测试来做了一下简单测试,实际开发中的使用可能才是我们要关系的.启动zk和kafka,新建topic的过程都不变.
+1 新建一个maven工程,引入依赖
+&lt;dependency&gt; &lt;groupId&gt;org.apache.kafka&lt;/groupId&gt; &lt;artifactId&gt;kafka_2.11&lt;/artifactId&gt; &lt;version&gt;0.8.2.1&lt;/version&gt; &lt;/dependency&gt; 2 编写配置文件
+public interface KafkaProperties { public final static String ZK = &#34;127.0.0.1:2181&#34;; public final static String GROUP_ID = &#34;test_group1&#34;; public final static String TOPIC = &#34;test&#34;; public final static String BROKER_LIST = &#34;127.0.0.1:9092&#34;; public final static String SESSION_TIMEOUT = &#34;20000&#34;; public final static String SYNC_TIMEOUT = &#34;20000&#34;; public final static String INTERVAL = &#34;1000&#34;; } 3 编写生产者
+public class KafkaProducer extends Thread { private Producer&lt;Integer, String&gt; producer; private String topic; private Properties props = new Properties(); private final int SLEEP = 1000 * 3; public KafkaProducer(String topic) { props.put(&#34;serializer.class&#34;, &#34;kafka.serializer.StringEncoder&#34;); //生产者直接和broker列表连接 props.put(&#34;metadata.broker.list&#34;, KafkaProperties.BROKER_LIST); producer = new Producer&lt;Integer, String&gt;(new ProducerConfig(props)); this.topic = topic; } @Override public void run() { int offsetNo = 1; while (true) { String msg = new String(&#34;Message_&#34; + offsetNo); System.out.println(&#34;Send-&gt;[&#34; + msg + &#34;]&#34;); producer.send(new KeyedMessage&lt;Integer, String&gt;(topic, msg)); offsetNo++; try { sleep(SLEEP); } catch (Exception ex) { ex.……
+        </div>
+        <p class="readmore"><a href="http://leaver.me/2015/09/08/kafka%E5%BF%AB%E9%80%9F%E5%BC%80%E5%8F%91demo/">阅读全文</a></p>
+    </article>
+    
+    
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
                 <a href="http://leaver.me/2015/09/07/kafka%E6%96%87%E7%AB%A0%E6%8E%A8%E8%8D%90/" title="kafka文章推荐">kafka文章推荐</a>
             </h1>
         </header>
@@ -356,41 +385,6 @@ Google相册,好用.智能,空间不大.前段时间无意在Google相册里发�
     
     
     
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2015/06/30/securerandom%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E6%95%B0%E9%9D%9E%E5%B8%B8%E6%85%A2/" title="SecureRandom第一次生成随机数非常慢">SecureRandom第一次生成随机数非常慢</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2015年6月30日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            最近发现某个系统在第一次做操作的时候非常缓慢,逐步定位打印更加详细的日志后,发现问题是使用了SecureRandom 这个类来获取随机种子,这个类第一次初始化的时候setSeed的值,非常缓慢,偶尔出现, 排查的过程就是二分,不断定位具体的代码,最终定位
-也就是说根本原因是SecureRandom 这个jre的工具类的问题.具体的bug搜索之后,见
-http://bugs.java.com/view_bug.do?bug_id=6521844
-详细的解释过程: 参考: http://www.websina.com/bugzero/faq/securerandom-slowness.html
- Q: Why the SecureRandom generateSeed is so slow or even hang on Linux OS?
-  A: When you login, it hangs or takes more than a minute to get the response. If your server is on a Linux OS, the culprit here is SecureRandom generateSeed() which uses /dev/random to generate the seed. However, /dev/random is a blocking number generator and if it doesn't have enough random data to provide, it will simply wait until it does, which forces the JVM to wait. Keyboard and mouse input as well as disk activity can generate the randomness or entropy needed. But on a server that lacks such activies, the problem may arise.
- 大意是说当使用SecureRandom 的时候默认使用的/dev/random 文件来生成种子,如果没有足够的种子数据,(这些数据是由键盘,鼠标,磁盘活动等产生的,如果没有这些活动,就没有足够的数据)会一直等待,导致jvm卡住,耗费比较长的时候.由于出现问题的这个环境的确是最近没什么操作,而且复现的操作也是隔个一个晚上,重新做业务才会出现.
-文中给出了一种解决方案.
- 启动参数添加 -Djava.security.egd=file:/dev/./urandom,验证是可以的. 修改随机数获取方式  这里urandom是啥呢,引用自维基
- /dev/random的一个副本是/dev/urandom（“unlocked”，非阻塞的随机数发生器[4]），它会重复使用熵池中的数据以产生伪随机数据。这表示对/dev/urandom的读取操作不会产生阻塞，但其输出的熵可能小于/dev/random的。它可以作为生成较低强度密码的伪随机数生成器，不建议用于生成高强度长期密码。
- 类似案例: SecureRandom 导致tomcat启动过慢. https://wiki.apache.org/tomcat/HowTo/FasterStartUp#Entropy_Source 从文中看到说java8已经提升了这个性能.但是一般生产环境的java版本是不会改的.……
-        </div>
-        <p class="readmore"><a href="http://leaver.me/2015/06/30/securerandom%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E6%95%B0%E9%9D%9E%E5%B8%B8%E6%85%A2/">阅读全文</a></p>
-    </article>
-    
-    
-    
 
 
 
@@ -503,6 +497,10 @@ http://bugs.java.com/view_bug.do?bug_id=6521844
 <ul class="widget-list">
     
     <li>
+        <a href="http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2019 年终总结">2019 年终总结</a>
+    </li>
+    
+    <li>
         <a href="http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/" title="深入理解Raft协议">深入理解Raft协议</a>
     </li>
     
@@ -538,10 +536,6 @@ http://bugs.java.com/view_bug.do?bug_id=6521844
         <a href="http://leaver.me/2019/04/06/recently/" title="Recently">Recently</a>
     </li>
     
-    <li>
-        <a href="http://leaver.me/2019/03/01/mac%E8%BF%81%E7%A7%BB%E5%AF%BC%E8%87%B4golang%E6%97%A0%E6%B3%95debug%E7%9A%84%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D/" title="Mac迁移导致Golang无法debug的问题修复">Mac迁移导致Golang无法debug的问题修复</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -557,7 +551,7 @@ http://bugs.java.com/view_bug.do?bug_id=6521844
     
     <li><a href="http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/">文章收藏 (53)</a></li>
     
-    <li><a href="http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录 (2)</a></li>
+    <li><a href="http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录 (3)</a></li>
     
     <li><a href="http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记 (4)</a></li>
     

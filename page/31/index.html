@@ -67,6 +67,34 @@
     <article class="post">
         <header>
             <h1 class="post-title">
+                <a href="http://leaver.me/2012/04/20/%E4%BA%8C%E7%BA%A7%E5%9F%9F%E5%90%8D%E6%9F%A5%E6%89%BE-%E5%AE%9E%E7%8E%B0%E6%BC%94%E7%A4%BAgapi-json-c/" title="二级域名查找 实现演示（GAPI&#43;Json&#43;C#）">二级域名查找 实现演示（GAPI&#43;Json&#43;C#）</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2012年4月20日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            昨天看到了李劼杰的检索一个域名下属所有子域名的两种方法很受启发。想用C#实现一些东西，本来是打算做的相对完整一点的，结果发现Google 开放的api貌似是有限制，段时间内不同提交太多。所以就简单实现一下，有需要的朋友自己扩展
+　刚开始的思路是想Google应该是有开放的api吧。。于是先Google C# 收集 Google搜索结果。翻了一会，看到了 此文 ，一看我去，返回的竟然是json格式。。只听过，从来没有接触过。。。不做总是不会的，试试。
+思路；访问该页面，得到字符串-》去掉多余部分-》解析成对象-》提取对象的字段 1.访问该&lt;pre lang]&ldquo;C#&ldquo;&gt;http://ajax.googleapis.com/ajax/services/search/web?v=1.0&amp;q=hello，其实hello部分就是需要查找的字串，对于查找二级域名这种事，应用到Google的一个语法就是site:leaver.me。类似这样的，可以获取到所有leaver.me上的子站和内容。。 然后分析json数据。直接访问会发现格式很乱。使用http://jsonformatter.curiousconcept.com/这个工具进行格式化。最终结果如图  可以很清楚的看出json的结构，results是结果集，我需要的是需要的是[]之间的部分，包括[]，我理解的是这样。默认给出4个结果。
+　2.要去掉多余部分，得用正则表达式了，
+json解析我在外国找到了json.net这个解析器，导入什么的就不说了，至于用法我是看的他的文档
+　3.Listresults = JsonConvert.DeserializeObject&lt;List&gt;(json); //list 存放解析的结果，result为对应自写类就是将一个json格式的字符串解析成一个list组，组内元素为一个对应的类，就是先分析json的格式。发现每个结果都有如下的格式……
+        </div>
+        <p class="readmore"><a href="http://leaver.me/2012/04/20/%E4%BA%8C%E7%BA%A7%E5%9F%9F%E5%90%8D%E6%9F%A5%E6%89%BE-%E5%AE%9E%E7%8E%B0%E6%BC%94%E7%A4%BAgapi-json-c/">阅读全文</a></p>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
                 <a href="http://leaver.me/2012/04/18/wwwscan-gui%E7%89%88-webscan/" title="WWWScan GUI版--WebScan">WWWScan GUI版--WebScan</a>
             </h1>
         </header>
@@ -368,31 +396,6 @@ m个进程访问临界资源，信号量的变化在1- （1-m）之间
         <p class="readmore"><a href="http://leaver.me/2012/04/12/%E5%A4%96%E9%83%A8%E5%9B%BE%E7%89%87%E4%BD%BF%E7%94%A8%E7%81%AF%E7%AE%B1%E6%95%88%E6%9E%9C/">阅读全文</a></p>
     </article>
     
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2012/04/12/andorid-%E5%AE%9E%E7%8E%B0%E6%8B%96%E5%8A%A8%E6%BB%91%E5%8A%A8%E6%95%88%E6%9E%9C/" title="andorid 实现拖动滑动效果">andorid 实现拖动滑动效果</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2012年4月12日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            <p>这个大家都有过体会，就是当你左右拖动的时候，能够做到向左向右翻页。代码我写了很详细的注释。包括xml的注释，所以就不怎么解释了。先测试下代码高亮能用不.我当前用的是<strong>WP-Syntax</strong>插件。将就着还行吧。如果你知道更好的话。不妨给我推荐一下。</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->……
-        </div>
-        <p class="readmore"><a href="http://leaver.me/2012/04/12/andorid-%E5%AE%9E%E7%8E%B0%E6%8B%96%E5%8A%A8%E6%BB%91%E5%8A%A8%E6%95%88%E6%9E%9C/">阅读全文</a></p>
-    </article>
-    
     
 
 
@@ -486,6 +489,10 @@ m个进程访问临界资源，信号量的变化在1- （1-m）之间
 <ul class="widget-list">
     
     <li>
+        <a href="http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2019 年终总结">2019 年终总结</a>
+    </li>
+    
+    <li>
         <a href="http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/" title="深入理解Raft协议">深入理解Raft协议</a>
     </li>
     
@@ -521,10 +528,6 @@ m个进程访问临界资源，信号量的变化在1- （1-m）之间
         <a href="http://leaver.me/2019/04/06/recently/" title="Recently">Recently</a>
     </li>
     
-    <li>
-        <a href="http://leaver.me/2019/03/01/mac%E8%BF%81%E7%A7%BB%E5%AF%BC%E8%87%B4golang%E6%97%A0%E6%B3%95debug%E7%9A%84%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D/" title="Mac迁移导致Golang无法debug的问题修复">Mac迁移导致Golang无法debug的问题修复</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -540,7 +543,7 @@ m个进程访问临界资源，信号量的变化在1- （1-m）之间
     
     <li><a href="http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/">文章收藏 (53)</a></li>
     
-    <li><a href="http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录 (2)</a></li>
+    <li><a href="http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录 (3)</a></li>
     
     <li><a href="http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记 (4)</a></li>
     

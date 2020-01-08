@@ -67,6 +67,43 @@
     <article class="post">
         <header>
             <h1 class="post-title">
+                <a href="http://leaver.me/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%83%E7%AF%87%E8%BE%93%E5%87%BA%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B910-demo/" title="[译]Unix sed实用教程第七篇–输出文件内容(10 Demo)">[译]Unix sed实用教程第七篇–输出文件内容(10 Demo)</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2013年8月11日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91'>我的翻译</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            之前已经学习过选择性打印输出了，本文将通过10个例子全面讲解文件输出的一些方法，主打p命令
+首先看一下将使用的示例文件
+1.打印文件首行之前讲过了，-n取消默认的全部打印，p表示print，1就是行号了
+2.输出最后一行3.输出不匹配X的那些行也好理解，！表示非，就是说包含X匹配的不打印输出
+4.输出包含u/x的那些行正则是强大的，这样就匹配了u/x
+5.输出以x/X结尾的那些行这里$符号不再是匹配文件尾部，而是行尾，这是正则的规则
+6.输出以A/L开头的行前面也说过，^匹配了行首，A表示A匹配，然而|则是或者的意思，为什么要加\转义，是为了避免被解析成pipe管道，后面的就不解释了
+7.隔行打印n命令是输出当前行，然后读入下一行到pattern space的意思，这句命令是这么执行的，首先读入一行，然后通过n命令输出，然后通过n命令再读一行，然后把这行删除，就出现了隔行输出的效果
+8.如何两行输出，隔两行再输出n;n; 命令呢输出了前两行，然后读入第三行到pattern space，N命令则对如下一行并与第三行合并，然后d命令删除pattern space中的内容，于是三四行被清空，然后读入56行，继续重复。就这样。作者这里给出的例子不直观，我举个例子，我的文件内容是
+执行上面的命令后，会输出
+明白了吧
+9.输出某个范围行内以X结果的那些行这里首先制定了从/Unix/匹配开始到文件尾部的这些行，然后呢，在这些之间的行，如果以X结果，就输出。
+10.输出不包括开始和结尾的那些行这个命令就会只输出/Solaris/和/HPUX/之间的行，不包括他们两个。
+这里要说一下//这个，当匹配了Solaris的时候就进入了花括号，因为这个里面没有提供任何匹配，所以就考虑最后一次匹配模式，也就是相当于是考虑Solaris这一行，他不被打印，当到了HPUX这一匹配，//又代表了HPUX匹配，这一行也不打印。
+Demo完了，你懂了么。……
+        </div>
+        <p class="readmore"><a href="http://leaver.me/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%83%E7%AF%87%E8%BE%93%E5%87%BA%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B910-demo/">阅读全文</a></p>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
                 <a href="http://leaver.me/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AD%E7%AF%87%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/" title="[译]Unix sed实用教程第六篇–删除文件内容">[译]Unix sed实用教程第六篇–删除文件内容</a>
             </h1>
         </header>
@@ -399,35 +436,6 @@ pattern space缓冲区用于临时保存每次读取的一行的内容，大部�
         <p class="readmore"><a href="http://leaver.me/2013/07/17/%E4%BD%BF%E7%94%A8css3%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AD%97%E4%BD%93%E7%BE%8E%E5%8C%96%E6%96%87%E5%AD%97/">阅读全文</a></p>
     </article>
     
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/06/29/%E7%AD%89%E7%89%A9%E4%BD%93%E5%A1%AB%E5%85%85%E9%97%AE%E9%A2%98/" title="等物体填充问题">等物体填充问题</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年6月29日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            那天在群里，rich大牛提了一个问题，一个直径为10cm的球内最多能够填充直径为1cm的球多少个.
-之前看到过一个类似的简单说明，就像是在一个盒子里装乒乓球，如果装满了，想继续装，如何办？经验告诉我们，摇一摇盒子。。这个问题看上去简单，其实是个NP难问题&hellip;于是，查找了一些资料，比较有意思，分享一下。
- 首先是stetson大学efriedma教授的网页，收集了各类填充（英文是packing）问题的图示，欢迎移步：packing center ，不过这里面恰好没有球体填充（SpherePacking）的问题，然后继续查找，进入了一个可以演示球体填充问题的页面：sphere packing demo 感谢网站作者Hugo Pfoertner，这里作者解出了1-72个球的问题，但是，作者说对于n&gt;10的情况无法证明最优化.不过这个页面的演示太帅了，推荐看看。
-
- 可以鼠标拖动旋转3D视角。
-然后在数学世界看到了一球体填充问题的证明结果，见：SpherePacking，当然，下面一大堆引用我都没看..看文章里的意思是说这个填充问题填充率已经被证明最大是77.9%，但是这个上限可能还能提高，因为貌似根据这个情况，rich大牛提出的这个问题应该数量在779左右..
- ……
-        </div>
-        <p class="readmore"><a href="http://leaver.me/2013/06/29/%E7%AD%89%E7%89%A9%E4%BD%93%E5%A1%AB%E5%85%85%E9%97%AE%E9%A2%98/">阅读全文</a></p>
-    </article>
-    
     
 
 
@@ -541,6 +549,10 @@ pattern space缓冲区用于临时保存每次读取的一行的内容，大部�
 <ul class="widget-list">
     
     <li>
+        <a href="http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2019 年终总结">2019 年终总结</a>
+    </li>
+    
+    <li>
         <a href="http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/" title="深入理解Raft协议">深入理解Raft协议</a>
     </li>
     
@@ -576,10 +588,6 @@ pattern space缓冲区用于临时保存每次读取的一行的内容，大部�
         <a href="http://leaver.me/2019/04/06/recently/" title="Recently">Recently</a>
     </li>
     
-    <li>
-        <a href="http://leaver.me/2019/03/01/mac%E8%BF%81%E7%A7%BB%E5%AF%BC%E8%87%B4golang%E6%97%A0%E6%B3%95debug%E7%9A%84%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D/" title="Mac迁移导致Golang无法debug的问题修复">Mac迁移导致Golang无法debug的问题修复</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -595,7 +603,7 @@ pattern space缓冲区用于临时保存每次读取的一行的内容，大部�
     
     <li><a href="http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/">文章收藏 (53)</a></li>
     
-    <li><a href="http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录 (2)</a></li>
+    <li><a href="http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录 (3)</a></li>
     
     <li><a href="http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记 (4)</a></li>
     

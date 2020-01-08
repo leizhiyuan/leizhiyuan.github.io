@@ -69,6 +69,40 @@
     <article class="post">
         <header>
             <h1 class="post-title">
+                <a href="http://leaver.me/2012/09/03/%E8%B6%85%E6%97%B6%E6%97%B6%E9%97%B4%E5%B7%B2%E5%88%B0%E4%BD%86%E6%98%AF%E5%B0%9A%E6%9C%AA%E4%BB%8E%E6%B1%A0%E4%B8%AD%E8%8E%B7%E5%8F%96%E8%BF%9E%E6%8E%A5/" title="超时时间已到，但是尚未从池中获取连接">超时时间已到，但是尚未从池中获取连接</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2012年9月3日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            前段时间数据库的时候，出现这个问题。一般是读到20多万条的时候。会出现这个问题。
+　找了一下。主要是这两个问题：
+　一、看所有open的连接是否都close了。
+　二、如果访问量很大，加上Max Pool Size=512这一句，当然这是要以损失系统性能为代价的！
+　我查了一下。数据库连接所有的open都关闭了。 max pool size也确实加上了。但是。问题依旧。。
+　哦，还有的说在数据库连接字串中添加Connect Timeout=500，也就是设置连接超时更长一些。问题依旧。。
+　后来看到一篇文章中说：
+　DataReader是独占连接 的，每个DataReader都要占用一个连接。当然这个情况是偶尔出现的，所以会很长时间出现一次，因为只有同时有超过连接池最大连接数量的并发操作才 会发生。而且你加大并发数量只能暂时缓解问题。
+　文中建议用使用dataset来读取。然后我就把读取数据中使用DataReader的地方全部用DataAdapter和DataSet来获取数据库数据，因为DataSet非独占。会将数据保存在内存中，一次连接后释放，问题解决。
+　记录一下。……
+        </div>
+        <p class="readmore"><a href="http://leaver.me/2012/09/03/%E8%B6%85%E6%97%B6%E6%97%B6%E9%97%B4%E5%B7%B2%E5%88%B0%E4%BD%86%E6%98%AF%E5%B0%9A%E6%9C%AA%E4%BB%8E%E6%B1%A0%E4%B8%AD%E8%8E%B7%E5%8F%96%E8%BF%9E%E6%8E%A5/">阅读全文</a></p>
+    </article>
+    
+    
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
                 <a href="http://leaver.me/2012/09/02/%E9%9D%A2%E8%AF%95%E6%97%B6%E5%A6%82%E4%BD%95%E5%90%91%E5%85%AC%E5%8F%B8%E6%8F%90%E9%97%AE/" title="面试时，如何向公司提问？">面试时，如何向公司提问？</a>
             </h1>
         </header>
@@ -351,36 +385,6 @@
     
     
     
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2012/07/14/%E6%9C%AA%E8%83%BD%E5%8A%A0%E8%BD%BD%E6%96%87%E4%BB%B6%E6%88%96%E7%A8%8B%E5%BA%8F%E9%9B%86app_web_xxxx/" title="未能加载文件或程序集“App_Web_xxxx”">未能加载文件或程序集“App_Web_xxxx”</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2012年7月14日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            今天在用WCF写服务的时候，服务一直连不上，直接查看svc文件，发现如下错误 未能加载文件或程序集“&lsquo;App_Web_****, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null&rdquo;,****是一个随机字符串。
-解决方法中：
-　在web.config里配置成这样子：
-　就好了。中午和下午一直在搞javascript连接WCF的demo，总算是晚上搞定了，，还是老样子，，最大的体会就是很多东西就是看着简单，写起来会有各种各样的问题，比如这次，即使照着微软的官方文档来，也会有错误。动手才是王道，不管做什么。这几天忙完了，写篇文章出来。
-　最后分享一下微软官方的WCF与Ajax开发实践系列课程，我只能说WCF这东西没有哪一本书比微软官方的技术培训讲的更好了，非常建议学习。
-　武汉最近下雨了，天气挺凉爽，过几天准备回家吧。。……
-        </div>
-        <p class="readmore"><a href="http://leaver.me/2012/07/14/%E6%9C%AA%E8%83%BD%E5%8A%A0%E8%BD%BD%E6%96%87%E4%BB%B6%E6%88%96%E7%A8%8B%E5%BA%8F%E9%9B%86app_web_xxxx/">阅读全文</a></p>
-    </article>
-    
-    
-    
 
 
 
@@ -493,6 +497,10 @@
 <ul class="widget-list">
     
     <li>
+        <a href="http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2019 年终总结">2019 年终总结</a>
+    </li>
+    
+    <li>
         <a href="http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/" title="深入理解Raft协议">深入理解Raft协议</a>
     </li>
     
@@ -528,10 +536,6 @@
         <a href="http://leaver.me/2019/04/06/recently/" title="Recently">Recently</a>
     </li>
     
-    <li>
-        <a href="http://leaver.me/2019/03/01/mac%E8%BF%81%E7%A7%BB%E5%AF%BC%E8%87%B4golang%E6%97%A0%E6%B3%95debug%E7%9A%84%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D/" title="Mac迁移导致Golang无法debug的问题修复">Mac迁移导致Golang无法debug的问题修复</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -547,7 +551,7 @@
     
     <li><a href="http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/">文章收藏 (53)</a></li>
     
-    <li><a href="http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录 (2)</a></li>
+    <li><a href="http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录 (3)</a></li>
     
     <li><a href="http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记 (4)</a></li>
     

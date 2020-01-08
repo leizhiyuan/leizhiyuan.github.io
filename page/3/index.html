@@ -67,6 +67,42 @@
     <article class="post">
         <header>
             <h1 class="post-title">
+                <a href="http://leaver.me/2016/12/10/graylog%E6%97%A5%E8%AE%B0%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/" title="graylog日记管理平台使用的那些坑">graylog日记管理平台使用的那些坑</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2016年12月10日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            前言 最近使用 graylog在部署日志平台的时候,踩到很多&quot;坑&rdquo;,记录一下
+日志采集(nxlog) 1.客户端不要做太多的正则计算 graylog 最早推荐的 nxlog 采集客户端,现在貌似有了 beats 的采集方式,不过我没了解,nxlog 采集的话,需要配置Snippets,就是定义输入,输出,处理器的地方,这个地方, Input 模块是在客户端计算的.所以,一定不要进行太多的正则计算.否则会严重影响客户端的 cpu 资源.降低应用程序的性能.
+2.开多行一定要慎重 graylog 可以通过配置
+&lt;Extension multiline&gt; Module xm_multiline HeaderLine /^\d{0,2}\/\d{0,2}\/\d{0,4}/ EndLine /^\d{0,2}\/\d{0,2}\/\d{0,4}/ &lt;/Extension&gt; &lt;Input pcc-esolutions-log&gt; Module im_file File &#34;*.log&#34; SavePos TRUE InputType multiline &lt;/Input&gt; 来实现对于类似错误栈这样的信息,将多行采集成一行,但是一定要注意.如果这个正则写错了,或者其他原因,导致,未能正确匹配.会导致 nxlog 客户端占用内存暴涨.原因是为了实现多行采集,会再客户端内存中保存日志内容,直到匹配到行尾.如果未能正确匹配.会一直保存.导致内存泄露.
+这时候一般伴随着nxlog 的客户端日志中开始打印: 2016-12-05 18:36:47 ERROR oversized string, limit is 1048576 bytes 这样的信息.表示单条日志超过了1m
+最终有一定几率影响客户端应用,被 oom 所杀.不要问我怎么知道的&hellip;
+3 日志就是太大怎么办. 貌似没办法..只能在 Input 配置中.
+Exec if $raw_event $raw_event = substr($raw_event, 0, 1040000); 执行类似的来限制,没有尝试过,参考这里:日志大小超长配置
+服务端处理(graylog) 1.服务端性能不好的情况下也不要做大量正则 日志处理这部分主要是说 graylog 自身的处理,graylog 是 cpu 密集型的,在收到了 nxlog 经过少量计算的日志后, graylog 其实还提供了 extrator 的功能来解析字段,当时我因为部署了很多应用的日志采集,为了生成一个统一的索引字段,我在extrator写了一个正则,对于所有的消息,根据这个正则找到一个字段,来作为 key(保存成 no), 可能一个流水号,这样我就可以根据 no:xxx 来查询所有相关的日志了.
+结果这个正则写了以后, graylog 处理性能急剧下降.开始大量积压消息.无法发送给后端的 es 来做处理.在 graylog 的管理页面,能明显看到 in 是几千, out 是几百..很快 node 节点就废了.
+参考:Very slow process message
+如果是确定不是 graylog 的问题, output 还是慢,可以尝试修改输出的并发量来解决,改改 graylog 配置中的output_batch_size值.
+2.journal如果太多,可能导致graylog 状态 dead 由于我前面的问题,导致 journal 中保存了太多的日志,这样会导致两个问题,1,启动的时候会尝试吧这些日志全部加载 graylog 服务端的内存中.这时候,如果应用内存不够,直接会启动不了报java 的 oom,
+2016-12-04T12:25:36.543+02:00 ERROR [ServiceManager] Service JournalReader [FAILED] has failed in the RUNNING state. java.lang.OutOfMemoryError: Java heap space at java.……
+        </div>
+        <p class="readmore"><a href="http://leaver.me/2016/12/10/graylog%E6%97%A5%E8%AE%B0%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/">阅读全文</a></p>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
                 <a href="http://leaver.me/2016/11/06/graylog%E4%B8%AD%E7%9A%84mongodb%E9%85%8D%E7%BD%AE/" title="graylog中的mongodb配置">graylog中的mongodb配置</a>
             </h1>
         </header>
@@ -349,39 +385,6 @@ configHandler.refer(interfaceClass, clusters, proxy) 开始获取接口代理
         <p class="readmore"><a href="http://leaver.me/2016/05/30/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%8F%91%E5%B8%83/">阅读全文</a></p>
     </article>
     
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2016/05/29/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E5%85%A5%E9%97%A8%E5%92%8C%E8%BF%90%E8%A1%8Cdemo/" title="motan源码阅读-入门和运行demo">motan源码阅读-入门和运行demo</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2016年5月29日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            工作中一直在使用rpc,但是只是对简单的原理比较熟悉.最近看到有motan的一个介绍,代码拉下来看了看,除了测试用例比较少之外.其他还是不错的,和阿里的rpc框架比起来,还是弱了一些,好处就是方便用来学习. motan 是weibo的一个rpc框架,据说已经在线上使用了.
-在学习rpc框架之前,建议看一个hello world级别的文章RPC框架几行代码就够了,写的非常好,看完基本就知道rpc的核心了.
-Remote Procedure Calls中最关键的那个图,就能说明了.
-本地client调用本地client stub,stub对消息进行封装,通过socket发送,服务端的server stub接收到,然后解包,将里面传递的方法名,方法参数.等等信息,识别出来,调用服务端对应的服务,然后得到结果后,又通过socket返回,本地client又进行解包.就行了.
-这里面会涉及到,封装,封装就是吧对象序列化,这样才能在网络中传递.
-而生产环境的rpc框架需要考虑的有:
-stub怎么生成,序列化怎么最高效,如何统一不同机器之前的调用,(大小端的机器等),如何识别该调用哪个机器,负载均衡.socket通信.等等.
-先跑个demo熟悉一下.
-下载motan源码,导入ide,然后先启动服务端,MotanApiExportDemo,这个类,然后控制台会打出服务已经启动.然后运行MotanApiClientDemo,会发现一个控制台打出motan,服务端打出hello motan.就说明跑起来了.
-如果控制台日志没有.修改对应resources下面的log4j.properties文件.首行添加log4j.rootLogger=debug,stdout ,会设置默认日志级别为debug,并且在控制台输出. 或者直接fork我这个
-后面会逐步分析,希望坚持下来.……
-        </div>
-        <p class="readmore"><a href="http://leaver.me/2016/05/29/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E5%85%A5%E9%97%A8%E5%92%8C%E8%BF%90%E8%A1%8Cdemo/">阅读全文</a></p>
-    </article>
-    
     
 
 
@@ -481,6 +484,10 @@ stub怎么生成,序列化怎么最高效,如何统一不同机器之前的调�
 <ul class="widget-list">
     
     <li>
+        <a href="http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2019 年终总结">2019 年终总结</a>
+    </li>
+    
+    <li>
         <a href="http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/" title="深入理解Raft协议">深入理解Raft协议</a>
     </li>
     
@@ -516,10 +523,6 @@ stub怎么生成,序列化怎么最高效,如何统一不同机器之前的调�
         <a href="http://leaver.me/2019/04/06/recently/" title="Recently">Recently</a>
     </li>
     
-    <li>
-        <a href="http://leaver.me/2019/03/01/mac%E8%BF%81%E7%A7%BB%E5%AF%BC%E8%87%B4golang%E6%97%A0%E6%B3%95debug%E7%9A%84%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D/" title="Mac迁移导致Golang无法debug的问题修复">Mac迁移导致Golang无法debug的问题修复</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -535,7 +538,7 @@ stub怎么生成,序列化怎么最高效,如何统一不同机器之前的调�
     
     <li><a href="http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/">文章收藏 (53)</a></li>
     
-    <li><a href="http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录 (2)</a></li>
+    <li><a href="http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录 (3)</a></li>
     
     <li><a href="http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记 (4)</a></li>
     

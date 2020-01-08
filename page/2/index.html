@@ -67,6 +67,29 @@
     <article class="post">
         <header>
             <h1 class="post-title">
+                <a href="http://leaver.me/2019/03/01/mac%E8%BF%81%E7%A7%BB%E5%AF%BC%E8%87%B4golang%E6%97%A0%E6%B3%95debug%E7%9A%84%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D/" title="Mac迁移导致Golang无法debug的问题修复">Mac迁移导致Golang无法debug的问题修复</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2019年3月1日
+        </date>
+        
+        <div class="post-content">
+            最近，使用Mac的迁移助手之后，突然出现一个奇怪的问题。我的golang 用goland 或者vscode都会出现间歇性的无法debug，表现为第一次debug，断点可以停下来。再调试一遍就会直接走过
+而如果你直接在项目中执行
+dlv debug 会看到如下的报错
+Unexpected header files xxxx uint64_t 之类的 网上搜了一下都没有解决。。
+并给出了具体的文件目录。这个看着是c库的一些文件，当时我记得迁移完成后，brew提示有一些库有问题。
+执行
+brew doctor 会看到
+Warning: Unbrewed header files were found in /usr/local/include. If you didn&#39;t put them there on purpose they could cause problems when building Homebrew formulae, and may need to be deleted. Unexpected header files: /usr/local/include/node/openssl/archs/BSD-x86_64/asm/crypto/include/internal/bn_conf.h /usr/local/include/node/openssl/archs/BSD-x86_64/asm/crypto/include/internal/dso_conf.h /usr/local/include/node/openssl/archs/BSD-x86_64/asm/include/openssl/opensslconf.h /usr/local/include/node/openssl/archs/BSD-x86_64/no-asm/crypto/buildinf.h /usr/local/include/node/openssl/archs/BSD-x86_64/no-asm/crypto/include/internal/bn_conf 于是，拷贝下来，一个for循环，将这些文件全部删除。之后再执行dlv debug 就好了。。……
+        </div>
+        <p class="readmore"><a href="http://leaver.me/2019/03/01/mac%E8%BF%81%E7%A7%BB%E5%AF%BC%E8%87%B4golang%E6%97%A0%E6%B3%95debug%E7%9A%84%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D/">阅读全文</a></p>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
                 <a href="http://leaver.me/2019/01/20/social-network-break/" title="Social Network Break">Social Network Break</a>
             </h1>
         </header>
@@ -299,42 +322,6 @@ oom 的原理 其中涉及到有三个相关文件：
         <p class="readmore"><a href="http://leaver.me/2017/02/03/oom%E4%BB%8B%E7%BB%8D/">阅读全文</a></p>
     </article>
     
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2016/12/10/graylog%E6%97%A5%E8%AE%B0%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/" title="graylog日记管理平台使用的那些坑">graylog日记管理平台使用的那些坑</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2016年12月10日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            前言 最近使用 graylog在部署日志平台的时候,踩到很多&quot;坑&rdquo;,记录一下
-日志采集(nxlog) 1.客户端不要做太多的正则计算 graylog 最早推荐的 nxlog 采集客户端,现在貌似有了 beats 的采集方式,不过我没了解,nxlog 采集的话,需要配置Snippets,就是定义输入,输出,处理器的地方,这个地方, Input 模块是在客户端计算的.所以,一定不要进行太多的正则计算.否则会严重影响客户端的 cpu 资源.降低应用程序的性能.
-2.开多行一定要慎重 graylog 可以通过配置
-&lt;Extension multiline&gt; Module xm_multiline HeaderLine /^\d{0,2}\/\d{0,2}\/\d{0,4}/ EndLine /^\d{0,2}\/\d{0,2}\/\d{0,4}/ &lt;/Extension&gt; &lt;Input pcc-esolutions-log&gt; Module im_file File &#34;*.log&#34; SavePos TRUE InputType multiline &lt;/Input&gt; 来实现对于类似错误栈这样的信息,将多行采集成一行,但是一定要注意.如果这个正则写错了,或者其他原因,导致,未能正确匹配.会导致 nxlog 客户端占用内存暴涨.原因是为了实现多行采集,会再客户端内存中保存日志内容,直到匹配到行尾.如果未能正确匹配.会一直保存.导致内存泄露.
-这时候一般伴随着nxlog 的客户端日志中开始打印: 2016-12-05 18:36:47 ERROR oversized string, limit is 1048576 bytes 这样的信息.表示单条日志超过了1m
-最终有一定几率影响客户端应用,被 oom 所杀.不要问我怎么知道的&hellip;
-3 日志就是太大怎么办. 貌似没办法..只能在 Input 配置中.
-Exec if $raw_event $raw_event = substr($raw_event, 0, 1040000); 执行类似的来限制,没有尝试过,参考这里:日志大小超长配置
-服务端处理(graylog) 1.服务端性能不好的情况下也不要做大量正则 日志处理这部分主要是说 graylog 自身的处理,graylog 是 cpu 密集型的,在收到了 nxlog 经过少量计算的日志后, graylog 其实还提供了 extrator 的功能来解析字段,当时我因为部署了很多应用的日志采集,为了生成一个统一的索引字段,我在extrator写了一个正则,对于所有的消息,根据这个正则找到一个字段,来作为 key(保存成 no), 可能一个流水号,这样我就可以根据 no:xxx 来查询所有相关的日志了.
-结果这个正则写了以后, graylog 处理性能急剧下降.开始大量积压消息.无法发送给后端的 es 来做处理.在 graylog 的管理页面,能明显看到 in 是几千, out 是几百..很快 node 节点就废了.
-参考:Very slow process message
-如果是确定不是 graylog 的问题, output 还是慢,可以尝试修改输出的并发量来解决,改改 graylog 配置中的output_batch_size值.
-2.journal如果太多,可能导致graylog 状态 dead 由于我前面的问题,导致 journal 中保存了太多的日志,这样会导致两个问题,1,启动的时候会尝试吧这些日志全部加载 graylog 服务端的内存中.这时候,如果应用内存不够,直接会启动不了报java 的 oom,
-2016-12-04T12:25:36.543+02:00 ERROR [ServiceManager] Service JournalReader [FAILED] has failed in the RUNNING state. java.lang.OutOfMemoryError: Java heap space at java.……
-        </div>
-        <p class="readmore"><a href="http://leaver.me/2016/12/10/graylog%E6%97%A5%E8%AE%B0%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/">阅读全文</a></p>
-    </article>
-    
     
 
 
@@ -427,6 +414,10 @@ Exec if $raw_event $raw_event = substr($raw_event, 0, 1040000); 执行类似的�
 <ul class="widget-list">
     
     <li>
+        <a href="http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2019 年终总结">2019 年终总结</a>
+    </li>
+    
+    <li>
         <a href="http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/" title="深入理解Raft协议">深入理解Raft协议</a>
     </li>
     
@@ -462,10 +453,6 @@ Exec if $raw_event $raw_event = substr($raw_event, 0, 1040000); 执行类似的�
         <a href="http://leaver.me/2019/04/06/recently/" title="Recently">Recently</a>
     </li>
     
-    <li>
-        <a href="http://leaver.me/2019/03/01/mac%E8%BF%81%E7%A7%BB%E5%AF%BC%E8%87%B4golang%E6%97%A0%E6%B3%95debug%E7%9A%84%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D/" title="Mac迁移导致Golang无法debug的问题修复">Mac迁移导致Golang无法debug的问题修复</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -481,7 +468,7 @@ Exec if $raw_event $raw_event = substr($raw_event, 0, 1040000); 执行类似的�
     
     <li><a href="http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/">文章收藏 (53)</a></li>
     
-    <li><a href="http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录 (2)</a></li>
+    <li><a href="http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录 (3)</a></li>
     
     <li><a href="http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记 (4)</a></li>
     
