@@ -2,44 +2,44 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>中间件 on bystander&#39;s blog</title>
-    <link>https://leizhiyuan.github.io/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/</link>
+    <link>http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/</link>
     <description>Recent content in 中间件 on bystander&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Tue, 08 Sep 2015 00:04:31 +0000</lastBuildDate>
     
-	<atom:link href="https://leizhiyuan.github.io/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>kafka快速开发demo</title>
-      <link>https://leizhiyuan.github.io/2015/09/08/kafka%E5%BF%AB%E9%80%9F%E5%BC%80%E5%8F%91demo/</link>
+      <link>http://leaver.me/2015/09/08/kafka%E5%BF%AB%E9%80%9F%E5%BC%80%E5%8F%91demo/</link>
       <pubDate>Tue, 08 Sep 2015 00:04:31 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2015/09/08/kafka%E5%BF%AB%E9%80%9F%E5%BC%80%E5%8F%91demo/</guid>
+      <guid>http://leaver.me/2015/09/08/kafka%E5%BF%AB%E9%80%9F%E5%BC%80%E5%8F%91demo/</guid>
       <description>在kafka快速上手,主要是使用kafka提供的测试来做了一下简单测试,实际开发中的使用可能才是我们要关系的.启动zk和kafka,新建topic的过程都不变.
 1 新建一个maven工程,引入依赖
 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.apache.kafka&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;kafka_2.11&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;0.8.2.1&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; 2 编写配置文件
 public interface KafkaProperties { public final static String ZK = &amp;#34;127.0.0.1:2181&amp;#34;; public final static String GROUP_ID = &amp;#34;test_group1&amp;#34;; public final static String TOPIC = &amp;#34;test&amp;#34;; public final static String BROKER_LIST = &amp;#34;127.0.0.1:9092&amp;#34;; public final static String SESSION_TIMEOUT = &amp;#34;20000&amp;#34;; public final static String SYNC_TIMEOUT = &amp;#34;20000&amp;#34;; public final static String INTERVAL = &amp;#34;1000&amp;#34;; } 3 编写生产者
-public class KafkaProducer extends Thread { private Producer&amp;lt;Integer, String&amp;gt; producer; private String topic; private Properties props = new Properties(); private final int SLEEP = 1000 * 3; public KafkaProducer(String topic) { props.</description>
+public class KafkaProducer extends Thread { private Producer&amp;lt;Integer, String&amp;gt; producer; private String topic; private Properties props = new Properties(); private final int SLEEP = 1000 * 3; public KafkaProducer(String topic) { props.put(&amp;#34;serializer.class&amp;#34;, &amp;#34;kafka.serializer.StringEncoder&amp;#34;); //生产者直接和broker列表连接 props.put(&amp;#34;metadata.broker.list&amp;#34;, KafkaProperties.BROKER_LIST); producer = new Producer&amp;lt;Integer, String&amp;gt;(new ProducerConfig(props)); this.topic = topic; } @Override public void run() { int offsetNo = 1; while (true) { String msg = new String(&amp;#34;Message_&amp;#34; + offsetNo); System.out.println(&amp;#34;Send-&amp;gt;[&amp;#34; + msg + &amp;#34;]&amp;#34;); producer.send(new KeyedMessage&amp;lt;Integer, String&amp;gt;(topic, msg)); offsetNo++; try { sleep(SLEEP); } catch (Exception ex) { ex.</description>
     </item>
     
     <item>
       <title>kafka文章推荐</title>
-      <link>https://leizhiyuan.github.io/2015/09/07/kafka%E6%96%87%E7%AB%A0%E6%8E%A8%E8%8D%90/</link>
+      <link>http://leaver.me/2015/09/07/kafka%E6%96%87%E7%AB%A0%E6%8E%A8%E8%8D%90/</link>
       <pubDate>Mon, 07 Sep 2015 23:45:50 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2015/09/07/kafka%E6%96%87%E7%AB%A0%E6%8E%A8%E8%8D%90/</guid>
+      <guid>http://leaver.me/2015/09/07/kafka%E6%96%87%E7%AB%A0%E6%8E%A8%E8%8D%90/</guid>
       <description>本文主要分享看到的好的关于kafka的文章.后续看到持续更新
  Kafka剖析（一）：Kafka背景及架构介绍 Kafka设计解析（二）：Kafka High Availability （上） Kafka设计解析（三）：Kafka High Availability （下） Kafka设计解析（四）：Kafka Consumer解析  </description>
     </item>
     
     <item>
       <title>kafka分布式部署与验证</title>
-      <link>https://leizhiyuan.github.io/2015/09/05/kafka%E5%88%86%E5%B8%83%E5%BC%8F%E9%83%A8%E7%BD%B2%E4%B8%8E%E9%AA%8C%E8%AF%81/</link>
+      <link>http://leaver.me/2015/09/05/kafka%E5%88%86%E5%B8%83%E5%BC%8F%E9%83%A8%E7%BD%B2%E4%B8%8E%E9%AA%8C%E8%AF%81/</link>
       <pubDate>Sat, 05 Sep 2015 07:30:13 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2015/09/05/kafka%E5%88%86%E5%B8%83%E5%BC%8F%E9%83%A8%E7%BD%B2%E4%B8%8E%E9%AA%8C%E8%AF%81/</guid>
+      <guid>http://leaver.me/2015/09/05/kafka%E5%88%86%E5%B8%83%E5%BC%8F%E9%83%A8%E7%BD%B2%E4%B8%8E%E9%AA%8C%E8%AF%81/</guid>
       <description>在kafka快速上手,和kafka中的partition和offset中,已经解释了kafka的一些原理,和完成了一个简单的生产消费的实践,如第一篇所说,kafka是一个分布式环境下的消息组件,那么,按照我们前面的简单上手,如果kafka的应用进程被杀或者kafka的机器宕机,那么kafka消息组件就无法使用了,或者zookeeper宕机了,那么kafka也无法使用了.
 kafka集群(cluster) 一台机器不够,那就多搞几台,首先,启动zookeeper这个就不多说了.可以参看前文,在启动kafka的时候,我们在单机模拟启动多个kafka应用. 首先在config目录,copy两个server.properties 文件,这里我复制三份,分别起名server1.properties ,server2.properties server3.properties 然后修改这三个配置文件,主要修改broker.id=2,port=9094,log.dir=/tmp/kafka-logs-2这三个值,broker.id是用来标记分布式环境中的broker的,要求唯一,port和log.dir一个端口,一个log目录,如果在真实的分布式环境中是不需要修改.这里单机模拟防止端口冲突.
 分别把broker.id改为1,2,3,log.dir则分别改成kafka-logs-1,kafka-logs-2,kafka-logs-3,然后依次启动 kafka-server-start.bat ../../config/server1.properties kafka-server-start.bat ../../config/server2.properties kafka-server-start.bat ../../config/server3.properties
@@ -50,15 +50,16 @@ kafka集群(cluster) 一台机器不够,那就多搞几台,首先,启动zookeepe
 然后我们测试一条信息. kafka-console-producer.bat --broker-list localhost:7777,localhost:8888,localhost:9999 --topic replicationtest 上面的7777是server1.properties 中设置的.根据个人情况.改改.然后在控制台发发消息.
 然后消费一下. kafka-console-consumer.bat --zookeeper localhost:2181 --topic replicationtest 这里的2181是zookeeper的端口,不用改. 然后.我们开始关掉一个broker,在3的控制台里CTRL,C.然后是否终止操作,输入Y. 再发一条消息 一切正常.我们看一下集群信息 发现Isr中存活的机器少了3.因为3挂了. 然后我们关掉broker2.这时候,会触发新的leader选举.期望值1变成leader,再发一条消息 可以看到生产者发消息过程中,产生了异常,因为和2的连接断开了.但是注意,消息并没有丢,因为触发了新的选举.可以看到,消费者还是接到了正常的消息.集群情况如下 至此,kafka的broker集群测试完毕,那么剩下的问题来了.消费者启动的时候连接的是zookeeper的地址,如果这台zookeeper挂了呢. 那么我们需要zookeeper集群部署.
 zookeeper集群 这就包括两部分.
- 是broker本来要能知道这些zookeeper集群的地址,当一个宕机的时候,才会切换到另一个zookeeper 消费者要知道这些zookeeper的地址,理由同上.</description>
+ 是broker本来要能知道这些zookeeper集群的地址,当一个宕机的时候,才会切换到另一个zookeeper 消费者要知道这些zookeeper的地址,理由同上.  因此步骤如下.可以自己试一试,比较简单
+ 复制3份zookeeper.properties文件,命名为zookeeper1.properties,zookeeper2.properties,zookeeper3.properties,修改文件中的dataDir=/tmp/zookeeper和,clientPort=2181,端口分别设置为2181,2182,2183.然后启动三个zookeeper 修改kafka启动配置,server1.properties三个文件中的zookeeper.connect=localhost:2181这个配置,逗号隔开.最终为zookeeper.connect=localhost:2181,localhost:2182,localhost:2183,然后启动 生产者也改下配置中的.metadata.broker.list=localhost:9092,如果使用命令行启动就不用改了.参数指定也可以. 消费者同理,可以改下配置文件中zookeeper.connect=127.0.0.1:2181,也可以命令行启动的时候修改. 5.最终就是各种宕机测试了.  </description>
     </item>
     
     <item>
       <title>kafka中的partition和offset</title>
-      <link>https://leizhiyuan.github.io/2015/09/04/kafka%E4%B8%AD%E7%9A%84partition%E5%92%8Coffset/</link>
+      <link>http://leaver.me/2015/09/04/kafka%E4%B8%AD%E7%9A%84partition%E5%92%8Coffset/</link>
       <pubDate>Fri, 04 Sep 2015 00:01:21 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2015/09/04/kafka%E4%B8%AD%E7%9A%84partition%E5%92%8Coffset/</guid>
+      <guid>http://leaver.me/2015/09/04/kafka%E4%B8%AD%E7%9A%84partition%E5%92%8Coffset/</guid>
       <description>在kafka快速上手中,留下的问题是关于partition和offset,这篇文章主要解释这个.
 Log机制 说到分区,就要说kafka对消息的存储.在官方文档中. 首先,kafka是通过log(日志)来记录消息发布的.每当产生一个消息,kafka会记录到本地的log文件中,这个log和我们平时的log有一定的区别.这里可以参考一下The Log,不多解释.
 这个log文件默认的位置在config/server.properties中指定的.默认的位置是log.dirs=/tmp/kafka-logs,linux不用说,windows的话就在你对应磁盘的根目录下.我这里是D盘.
@@ -77,10 +78,10 @@ kafka对消息进行一定的计算,通过hash来进行分区.这样,就把一�
     
     <item>
       <title>kafka快速上手</title>
-      <link>https://leizhiyuan.github.io/2015/09/03/kafka%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/</link>
+      <link>http://leaver.me/2015/09/03/kafka%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/</link>
       <pubDate>Thu, 03 Sep 2015 22:29:57 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2015/09/03/kafka%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/</guid>
+      <guid>http://leaver.me/2015/09/03/kafka%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/</guid>
       <description>简单介绍 kafka是一个分布式消息中间件,在kafka中主要涉及到四个基本名词: Topic Kafka将消息种子分门别类， 每一类的消息称之为一个主题(Topic).
 Producer 发布消息的对象称之为主题生产者.
 Consumer 订阅消息并处理消息的对象称之为主题消费者

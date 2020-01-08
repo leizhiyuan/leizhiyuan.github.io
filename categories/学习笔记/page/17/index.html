@@ -1,941 +1,780 @@
-<!DOCTYPE html>
-<html lang="en" itemscope itemtype="http://schema.org/WebPage">
-  <head>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>学习笔记 | bystander&#39;s blog</title>
+    <meta property="og:title" content="学习笔记 - bystander&#39;s blog">
+    <meta property="og:type" content="article">
+        
+        
+    <meta name="Keywords" content="">
+    <meta name="description" content="学习笔记">
+        
+    <meta name="author" content="bystander">
+    <meta property="og:url" content="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <link rel="alternate" type="application/rss+xml+xml" href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.xml" title="bystander's blog" />
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
     
 
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-
-  <title>Overview of all pages with the category #学习笔记 - bystander&#39;s blog</title>
-  <meta property="og:title" content="Overview of all pages with the category #学习笔记" />
-  <meta name="twitter:title" content="Overview of all pages with the category #学习笔记" />
-  <meta name="description" content="Overview of all pages with the category #学习笔记, such as: 深入理解Raft协议">
-  <meta property="og:description" content="Overview of all pages with the category #学习笔记, such as: 深入理解Raft协议">
-  <meta name="twitter:description" content="Overview of all pages with the category #学习笔记, such as: 深入理解Raft协议">
-  <meta name="author" content="bystander"/><script type="application/ld+json">
-{
-    "@context": "http://schema.org",
-    "@type": "WebSite",
-    "name": "bystander\x27s blog",
-    
-    "url": "https:\/\/leizhiyuan.github.io\/"
-}
-</script><script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Organization",
-  "name": "",
-  "url": "https:\/\/leizhiyuan.github.io\/"
-  
-  
-  
-  
-}
-</script>
-
-<meta property="og:title" content="学习笔记" />
-<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
-<meta property="og:url" content="https://leizhiyuan.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" />
-<meta property="og:type" content="website" />
-<meta property="og:site_name" content="bystander&#39;s blog" />
-
-  <meta name="twitter:title" content="学习笔记" />
-  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
-  <meta name="twitter:card" content="summary" />
-  <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
-  <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
-  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
-  <meta name="twitter:card" content="summary" />
-  <meta property="og:url" content="https://leizhiyuan.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="bystander&#39;s blog" />
-
-  <meta name="generator" content="Hugo 0.61.0" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
-
-
-
-  </head>
-  <body>
-    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="https://leizhiyuan.github.io/">bystander&#39;s blog</a>
-    </div>
-
-    <div class="collapse navbar-collapse" id="main-navbar">
-      <ul class="nav navbar-nav navbar-right">
-        
-          
-            <li>
-              <a title="首页" href="/">首页</a>
-            </li>
-          
-        
-          
-            <li>
-              <a title="目录" href="/categories">目录</a>
-            </li>
-          
-        
-          
-            <li>
-              <a title="标签" href="/tags">标签</a>
-            </li>
-          
-        
-          
-            <li>
-              <a title="友情链接" href="/2016/01/01/links">友情链接</a>
-            </li>
-          
-        
-          
-            <li>
-              <a title="关于我" href="/about/">关于我</a>
-            </li>
-          
-        
-
-        
-
-        
-      </ul>
-    </div>
 
     
-      <div class="avatar-container">
-        <div class="avatar-img-border">
-          <a title="bystander&#39;s blog" href="https://leizhiyuan.github.io/">
-            <img class="avatar-img" src="https://leizhiyuan.github.io/images/author.jpg" alt="bystander&#39;s blog" />
-          </a>
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://leaver.me/">
+                        bystander&#39;s blog
+                    </a>
+                
+                <p class="description">寻找窄门</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="http://leaver.me/">首页</a>
+                    
+                    <a  href="http://leaver.me/categories" title="目录">目录</a>
+                    
+                    <a  href="http://leaver.me/about/" title="关于我">关于我</a>
+                    
+                </nav>
+            </div>
         </div>
-      </div>
-    
-
-  </div>
-</nav>
-
-
-
-
-    
-
-
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-<div class="pswp__bg"></div>
-
-<div class="pswp__scroll-wrap">
-    
-    <div class="pswp__container">
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
     </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
     
-    <div class="pswp__ui pswp__ui--hidden">
-    <div class="pswp__top-bar">
-      
-      <div class="pswp__counter"></div>
-      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-      <button class="pswp__button pswp__button--share" title="Share"></button>
-      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-      
-      
-      <div class="pswp__preloader">
-        <div class="pswp__preloader__icn">
-          <div class="pswp__preloader__cut">
-            <div class="pswp__preloader__donut"></div>
-          </div>
+    <h3 class="archive-title">
+        分类
+        <span class="keyword">学习笔记</span>
+        中的文章
+    </h3>
+    
+
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="http://leaver.me/2012/05/09/c-%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/">C&#43;&#43;回调函数</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2012年5月9日
+        </date>
+        
+        <div class="post-meta meta-category">
+            |
+            
+            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
+            
         </div>
-      </div>
-    </div>
-    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-      <div class="pswp__share-tooltip"></div>
-    </div>
-    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-    </button>
-    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-    </button>
-    <div class="pswp__caption">
-      <div class="pswp__caption__center"></div>
-    </div>
-    </div>
-    </div>
+        
+        <div class="post-content">
+            回调函数就是一个通过函数指针调用的函数。如果你把函数的指针(地址)作为参数传递给另一个函数，当这个指针被用为调用它所指向的函数时，我们就说这是回调函数。
+　也就是说，回调函数它首先是一个函数，然后有一个指针指向它（该指针称为函数指针），在别的代码块中，通过这个函数指针调用了这个函数，仅此而已。
+　下面给出一个例子，我写出了比较详细的注释。希望足够清晰。这个例子说明了，回调函数可以把调用者和被调用者分开，对于调用者来说，只需要知道自己要调用一个函数，该函数有一个string类型的参数，至于具体调用哪个，被调用的函数到底怎么执行，怎么解释该参数，是完全不用关心的。
+　回调函数的一个很实用的例子就是泛型算法中的max算法，具体可以参见本文末尾的第一篇参考文档， 如果你在自行写代码中发生了 error C2679: 二进制“&laquo;”: 没有找到接受“std::string”类型的右操作数的运算符(或没有可接受的转换)错误 说明你没有把string头文件导入，导入即可 个人能力有限，错误之处请留言指正，不胜感激。 参考： http://learn.akae.cn/media/ch24s05.html http://baike.baidu.com/view/414773.htm……
+            <p class="readmore"><a href="http://leaver.me/2012/05/09/c-%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/">阅读全文</a></p>
+        </div>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="http://leaver.me/2012/05/08/gsmgprswcdmahsdpa3g-%E7%AD%89%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A/">GSM,GPRS,WCDMA,HSDPA,3G 等名词解释</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2012年5月8日
+        </date>
+        
+        <div class="post-meta meta-category">
+            |
+            
+            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
+            
+        </div>
+        
+        <div class="post-content">
+            今天想起这个事，发现自己其实一直对这个也分不清楚。查了下资料。总算是搞清楚了。整理了一下资料。删除了没太大意义的文字。结构也重新设计了下，总体看起来比较明了了。首先解释最热门的3G概念**3G**是英文The Third Generation mobile communication Systems的缩写，指第三代移动通信技术。相对第一代模拟制式手机(1G)和第二代GSM、CDMA等数字手机 (2G)，第三代手机（3G）一般地讲，是指将无线通信与国际互联网等多媒体通信结合的新一代移动通信系统。实际上，2G时代并没有2G这个名称，2G名称的出现是在行动通讯系统出现3G之后，才将过去使用GSM网路的行动通讯时代取名为2G，然而，2G演变到3G之间的过渡时期则被称为2.5G时代。同理，1G也是这么来的。就跟咱们做题是一样的。看到答案以后来推前面的过程。在2G时代，GSM、CDMA领导市场，他们是2G通信时代的两个实现。GSM（Global System for Mobile communications）系统，中文名称为「全球数位手机系统」，它是1990年在欧洲发展出来，所以又称泛欧式行动电话系统。GSM系统是2G时代在全球最被广泛应用的行动通讯技术，至今全球GSM用户数远远超过CDMA系统用户数。CDMA（Code Division Multiple Access）中文全名又称分码多工撷取，是相对于GSM的另一种无线通讯技术，CDMA系统只在美、韩、中、澳洲等国被使用，而全球多达200多个国家地区采用GSM系统_两者的差异：虽然GSM与CDMA二者都是先将语音讯号数位化，受话者接收时再将数位讯号转变回语音，但由于CDMA系统使用的800MHz频谱，讯号在空中的遗失率较GSM采用的900或1800MHz频谱来得少，所以相较于GSM系统有通话不稳定的问题，CDMA可以提供更清晰的声音品质。在网路容量方面，CDMA的容量是GSM的3倍；CDMA的网路覆盖范围最远可达200公里，而GSM的网路覆盖范围则不会超过35公里。此外，CDMA的传输速率最高可达64Kbps，远高于GSM的9.6Kbps。至于内容应用方面，GSM与CDMA都可以提供包括语音、简讯、数据、来电显示、三方通话等服务。但是由于全球采用CDMA系统的国家较少，所以CDMA系统可以漫游的国家地区也就较GSM来得少。CDMA系统只在美、韩、中、澳洲等国被使用，而全球多达200多个国家地区采用GSM系统。GSM向3G的发展路线_◆GSM→GPRS→EDGE→WCDMA→HSDPA_泛欧式的WCDMA系统演变过程相当复杂。行动通讯技术从GSM迈入GPRS时，可说是2G时迈向3G时代过程的第一步，这个时期被定位为2.5G时代，在2.5G时代，手机用户虽然已经可以享受较高速的无线上网，不过，内容应用仍然只限于收发e-mail、片段视讯下载等服务。（所谓GPRS（General Packet Radio Ser-vice），全名为整合封包无线电服务，它可说是新一代的GSM技术标准，相对于GSM是采取拨接方式传送资料，GPRS则是以封包无线方式传输资料，它可以在全球的GSM系统中运行。GPRS较GSM能更有效地利用无线网路，可以特别使用于突发性、频繁的小流量资料传输，传输速率高达115Kbps。从GSM到GPRS，速度提升10倍）为了提供更多、更高品质的服务给用户，行动通讯业者与设备提供商接着又开发出EDGE技术，EDGE是英文Enhanced Data Rate for GSM Evolution 的缩写，即增强型数据速率GSM演进技术。EDGE系统大大增强了GSM、GPRS等无线技术的频宽，虽然3G时代已经来到，但是，目前EDGE系统仍在全球被广泛的应用。使用EDGE技术，传输速率最高可达384Kbps，此外EDGE并将现有的GSM/GPRS等网路整合，在取得3G服务之前，EDGE可说提供了价格低廉、传输速度又快的服务，所以它也被认定为WCDMA系统的补充技术。WCDMA（英文Wideband Code Division Multiple Access）一种宽频无线技术，又称宽频分码多工多重撷取，它可以让第三代移动通讯最佳化，传输速率最高可达2Mbps.至于HSDPA（High Speed ​​Downlink Packet Access）中文名称为高速下行链路封包接取技术，它是WCDMA系统的进阶技术。HSDPA被认为是迈向3G蜂巢式网路的重要起步，其下载速度可以达到14Mbps，而系统资料容量是WCDMA网路的3倍，这项技术被宣称为将在未来对行动电话记忆体市场格局带来重大变革。CDMA向3G的发展路线__◆CDMA→CDMA2000→CDMA2000 1x→CDMA2000 1x EV-DO_至于泛美式的CDMA2000（Code Division Multiple Access 2000 是一个3G移动通讯标准，CDMA2000与另一个3G标准WCDMA不兼容。），则是CDMA的升级技术。而CDMA2000的第一阶段技术称为CDMA 2000 1X，传输数率达144Kbps，较CDMA高出两倍；至于第二阶段的CDMA2000 1x EV-DO，最高传输数率可达1.4Mbps。还在向后发展已经到了CDMA2000 3.x，不过是在不断优化了。了解即可参考：https://lex0912.wordpress.com/2010/05/21/gsmgprswcdmahsdpahttps://zh.wikipedia.org/wiki/CDMA2000https://zh.wikipedia.org/wiki/3G……
+            <p class="readmore"><a href="http://leaver.me/2012/05/08/gsmgprswcdmahsdpa3g-%E7%AD%89%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A/">阅读全文</a></p>
+        </div>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="http://leaver.me/2012/05/07/windows%E4%B8%8Bvim%E9%97%AA%E7%83%81%E9%97%AE%E9%A2%98/">windows下vim闪烁问题</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2012年5月7日
+        </date>
+        
+        <div class="post-meta meta-category">
+            |
+            
+            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
+            
+        </div>
+        
+        <div class="post-content">
+            今天打开我的vim才发现，界面隔几秒会闪烁。虽说貌似能够起到防止眼睛疲劳的效果，但我实在是hold不住啊。不行，搜索。。 首先有这个问题的人不多。首先找到了这篇文章，但是作者不知道怎么想的。只说了原因，没有给出解决方法。继续搜索关键字cursorcolumn，结果找到了这篇文章，按着说明来了一下
+没效果。依然闪烁。 好吧。如果是插件的问题。于是我删掉了所有的插件包括写入的配置。依然不行。于是还是采用排除法，一行行删掉配置文件。最后定位到
+　这是设置字体的，不太明白为什么会出现这样的情况。怀疑是字体的原因，于是换个字体，依然闪烁。。好吧。就这样吧。删掉算了。……
+            <p class="readmore"><a href="http://leaver.me/2012/05/07/windows%E4%B8%8Bvim%E9%97%AA%E7%83%81%E9%97%AE%E9%A2%98/">阅读全文</a></p>
+        </div>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="http://leaver.me/2012/05/05/%E4%BD%A0%E4%BC%9A%E7%94%A8%E8%AE%A1%E7%AE%97%E5%99%A8%E5%90%97/">你会用计算器吗？</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2012年5月5日
+        </date>
+        
+        <div class="post-meta meta-category">
+            |
+            
+            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
+            
+        </div>
+        
+        <div class="post-content">
+            今天早上在用windows自带的计算器转换进制的时候，看到了下图所示的按钮。MS MR之类的。 
+　这些个按钮在简单的计算器上也有。我从小时候到现在都没搞清楚。当然也没搞过。。不学总是不会的。于是，找找资料。学会了也分享一下，英文是我猜的。。不过估计差不多
+　首先明确的一点是这类计算器内部有一个小的记忆芯片，可以用来存储一个数，类似于内存吧。所以M的意思就是Memory，下面先给出这几个的总体说明
+　“MS”，英文 Memory Store，用来存储输入栏显示的数字。
+　“MR”，英文 Memory Read， 再次显示调用存储的数字。
+　“M+”，英文 Memory Plus， 存储器里的值加上输入栏的值，结果又存入存储器
+　“M+”，英文 Memory Minus， 存储器里的值减去输入栏的值，结果又存入存储器
+　“MC”，英文 Memory Clear，用于清除存储器中的数值，默认为0
+　“C”， 英文 Cancel，就是全部撤销；
+　“CE”， 英文 Cancel Error，也就是撤销错误输入。
+　现在来说个例子，比如我要计算1002+113因为一些计算器不支持整个式子输入。也是为了演示这些功能。我们可以这样输入，
+　先输入100，然后 * ，然后 2 ，按下等号，这时候输入栏变成了200，我们按下MS 或者M+，按下MS的话把200存到了存储器，而按下M+呢，因为存储器默认是0，所以就相当于0+200，存储器里就是200了。然后我们继续输入11 ，输入 +，输入3 ，按下等号，输入栏变成了33.我们按下M+，这时候输入栏并没有改变。因为M+将存储器里的200加上了33.则存储器里变成了233.我们按下MR就是读取存储器的值，这样输入栏就可以看到233了。我们就可以继续用233来运算了。MC就是清除233.恢复为0.
+　例如：想要9*6，如果按6按错按成5了， 按C就是从头来过， 这时就要重新按9了， 但是如果你按CE的话， 就只要输入6就行了， 不必输入前面的了。
+　我个人感觉M存储器就相当于一个草稿。吧计算中的一些临时值存储起来，就不用手记了。我记得我那时候有时候算值还得先把一些临时值写在纸上，后面重新输入。没文化真可怕。……
+            <p class="readmore"><a href="http://leaver.me/2012/05/05/%E4%BD%A0%E4%BC%9A%E7%94%A8%E8%AE%A1%E7%AE%97%E5%99%A8%E5%90%97/">阅读全文</a></p>
+        </div>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="http://leaver.me/2012/05/04/%E5%9B%BE%E7%89%87%E5%8E%8B%E7%BC%A9%E5%B7%A5%E5%85%B7%E6%BA%90%E7%A0%81c/">图片压缩工具源码（C#）</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2012年5月4日
+        </date>
+        
+        <div class="post-meta meta-category">
+            |
+            
+            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
+            
+        </div>
+        
+        <div class="post-content">
+            以前在用一个破解版的图片压缩工具。今天早上想想自己也试着做一个吧。查了一些资料。参考了一些代码。总算是写出来了。其实关键代码很简单。主要还是画界面，处理边界。。 看下效果图  处理图像的关键代码是这样的：
+另外一个就是空间的tip功能，vs2010中貌似已经不支持直接使用属性来设置tip了。所以用到了ToolTip类，使用方法如下，你也可以先导入库，然后简写，ToolTip对象可以给窗体的控件设置提示。主要是第二句话，第一个参数是控件名，第二个参数是提示文本，最好将这两句放入窗体的Load方法中
+
+还有一些边界，比如只接受数字数字之类的，我在代码里给出了详细的说明。实用工具的效果自行测试。对大图片效果最好。
+源码下载：图片压缩工具源码……
+            <p class="readmore"><a href="http://leaver.me/2012/05/04/%E5%9B%BE%E7%89%87%E5%8E%8B%E7%BC%A9%E5%B7%A5%E5%85%B7%E6%BA%90%E7%A0%81c/">阅读全文</a></p>
+        </div>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="http://leaver.me/2012/05/03/%E8%AF%B4%E8%AF%B4%E9%82%AE%E4%BB%B6%E4%B8%AD%E7%9A%84%E6%8A%84%E9%80%81%E5%92%8C%E5%AF%86%E9%80%81/">说说邮件中的抄送和密送</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2012年5月3日
+        </date>
+        
+        <div class="post-meta meta-category">
+            |
+            
+            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
+            
+        </div>
+        
+        <div class="post-content">
+            一直是分不太清楚，或者说是不知道具体的应用场合，于是，今天早上查了一下资料。总算是搞清楚了
+　不论你是用什么邮箱服务提供商，可能是126.或是Gmail，或是Qmail。在发送邮件的时候会看到如下类似的选项
+
+　抄送的英文缩写为CC，来源于Carbon Copy，如果一份邮件需要发送给多个人阅读，只要在“抄送”或“CC”一栏填上相关人员的信箱地址即可。如果是抄送多人，同样的直接添加到抄送栏就可以了。
+　密送的英文缩写为BCC，来源于Blind Carbon Copy,由于某种原因或出于某种考虑，你不希望收信人知道你把这封邮件还发送给了另外的人，则可将这位幕后的人的信箱地址放在密送一栏。
+　具体的规则是怎么呢。如果我密送给了多个人，那么多个人会互相看到彼此吗？下面我将使用一个例子来说明
+　如果：A 发送邮件(To)给B1、B2，抄送(CC)给C1、C2，密送(BCC)给D1、D2。
+　那么：
+　A知道自己发送邮件给了B1、B2，并且抄送给了C1、C2，密送给了D1、D2。这相当于废话。。自己肯定知道自己给谁发了。　B1知道这封是A发送给B1、B2的邮件，并且抄送给了C1、C2、但不知道密送给了D1、D2。To的人能看到抄送，看不到密送　C1知道这封是A发送给B1、B2的邮件，并且抄送给了C1、C2，但不知道密送给了D1、D2。抄送的人看不到密送。　D1知道这封是A发送给B1、B2的邮件，并且抄送给了C1、C2，而且密送给了自己，但不知道密送给了D2。 密送的人权限比较大，可以看到最多的情况，但依然看不到密送
+　具体的用法呢，一句话就是：一般抄送和密送是为了备份，知会，或者监督跟踪的作用。
+　我先举个例子。有些个朋友过节什么的喜欢群发邮件。或是一些什么网页之类的。有这个心是好的。可是。对于收到的人来说，一看到是群发的。直接可能都删掉了。所以此时可以使用密送功能。对应于上面说的最后一种情况。具体使用时在To里写上自己的地址，这样邮件会发给自己。密送栏里写上其他人的邮件，这样就同时密送给其他人，并且每个人都会只看到发给自己。起码有看下去的心情。
+　邮件在工作中用的非常多，美国人总结的中国人典型特征中有一条，“即使面对面坐着，也不直接交谈而要使用邮件。”而这在很多外企之中是非常流行的文化，和总部打交道，邮件往往是最快捷和便宜的方式，&rdquo;
+　说到抄送，简直是所有邮件灾难故事最有力的协助者。同事之间常有抄送行为，有时是为了工作方便，同事A同时将一封邮件抄送给B和C，只能说明他们之间需要互相协作完成一件事情，但如果A将邮件发送给了B，却抄送给了B的老板C，那意味就深远了，通常有可能的情况是，A和B在合作的过程中发生了一些不愉快，告知老板的目的只是为了给对方一些震慑，这一招在各大公司当中都屡试不爽，而且往往成为一件悬而不决的事情得到解决的最快速手段。
+　抄送更多时候只是手段，而不是最终目的。看到一个某人A与其他部门同事B合作时发生的插曲，在某次急需同事B提供某文件支持时，B不慌不忙地一直以各种借口拖延工作，A忍无可忍，发了一封紧急邮件，同时抄送了B部门的领导和自己的领导，在这样一封邮件下，B在十分钟之内就将所需文件以附件形式传了过来，并回复了原邮件中的所有人。
+　如果你看了觉得真麻烦。其实。最有效的交流就是面对面，但是在职场中这是最有效地证明你自己干过什么的工具，一旦出了什么问题，最容易发现在哪个环节出现了问题，该由谁承担什么样的责任。如果遇到打官司这样的严重情况，邮件甚至能够作为呈堂证供。
+　没事给朋友写写邮件，那天看到一句话：维系友情的方法之一，是冷冰冰地写邮件。频率少得可怜，常常春暖花开发的邮件，秋叶飘零时收到回复。 参考：
+http://www.eeo.com.cn/2012/0328/223658.shtml
+http://baike.soso.com/v3997479.htm
+http://dudo.org/archives/2007123120184.html……
+            <p class="readmore"><a href="http://leaver.me/2012/05/03/%E8%AF%B4%E8%AF%B4%E9%82%AE%E4%BB%B6%E4%B8%AD%E7%9A%84%E6%8A%84%E9%80%81%E5%92%8C%E5%AF%86%E9%80%81/">阅读全文</a></p>
+        </div>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="http://leaver.me/2012/04/28/wordpress-%E5%AE%9E%E7%8E%B0404%E4%B8%AA%E6%80%A7%E8%B7%B3%E8%BD%AC%E9%A1%B5%E9%9D%A2/">wordpress 实现404个性跳转页面</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2012年4月28日
+        </date>
+        
+        <div class="post-meta meta-category">
+            |
+            
+            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
+            
+        </div>
+        
+        <div class="post-content">
+            这个就不多说了，直接贴代码，使用方法就是把这些代码全部拷贝进你的404.php这个文件。后台点击外观-编辑-选择404.php，开始编辑，
+完成后然后就可以自己测试下效果了，你也可以先访问http://leaver.me/test404查看效果
+  ……
+            <p class="readmore"><a href="http://leaver.me/2012/04/28/wordpress-%E5%AE%9E%E7%8E%B0404%E4%B8%AA%E6%80%A7%E8%B7%B3%E8%BD%AC%E9%A1%B5%E9%9D%A2/">阅读全文</a></p>
+        </div>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="http://leaver.me/2012/04/26/win7%E4%BD%BF%E7%94%A8putty%E8%BF%9E%E6%8E%A5vitualbox%E4%B8%8B%E7%9A%84ubuntu/">Win7使用Putty连接VitualBox下的Ubuntu</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2012年4月26日
+        </date>
+        
+        <div class="post-meta meta-category">
+            |
+            
+            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
+            
+        </div>
+        
+        <div class="post-content">
+            推荐连接方式选择Host-only Adapter（主机模式）。设置方法是打开vitualbox，然后选中虚拟机，点击设置，找到网络，然后如下图选择
+
+设置完成后，启动ubuntu，然后执行
+找到下面这行，可以看到虚拟机分配到的ip地址为192.168.56.101
+
+然后呢，可以在win7的cmd下 ping 192.168.56.101，看看可不可以ping通，
+
+有返回所以是通的，
+然后在ubuntu下需要执行
+Ubuntu缺省安装了openssh-client（用于ubuntu连接其他服务器）,所以在这里就不安装了，只安装server，用于其它电脑连接ubuntu，如果你的系统没有安装的话，再用apt-get安装上即可。
+然后确认sshserver是否启动了：
+如果只有ssh-agent行那ssh-server还没有启动，需要执行
+，启动ssh服务器 如果看到sshd那说明ssh-server已经启动了。
+然后下载putty，推荐去官方下载，下载完成后发现是单文件，直接执行即可。
+输入ubuntu的ip点击open即可
+
+登录上以后执行命令会发现有乱码，鼠标右键点击putty窗口的标题栏，选择，&ldquo;Change Settings&rdquo;，&ldquo;Translation&rdquo;，在&quot;Received data assumed to be in which character set&quot;的下拉菜单里选择&quot;UTF-8&rdquo;。如下图
+
+这样，下次又得重复同样的工作，为了保持配置，继续在上图选择左边的session
+
+在saved session输入个名字，save即可，下次直接连这个就可以了
+参考：http://www.linuxidc.com/Linux/2011-12/49325.htm
+http://spark10000.blog.51cto.com/955100/547211
+至于putty的使用不在本文的计划范围内，以后有机会再写吧。
+每次遇到问题就体会到网络的信息实在太杂了。掌握搜索技术和对数据的快速筛选很重要。
+ ……
+            <p class="readmore"><a href="http://leaver.me/2012/04/26/win7%E4%BD%BF%E7%94%A8putty%E8%BF%9E%E6%8E%A5vitualbox%E4%B8%8B%E7%9A%84ubuntu/">阅读全文</a></p>
+        </div>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="http://leaver.me/2012/04/25/%E6%AD%A3%E8%A7%84%E5%BC%8F-%E6%9C%80%E5%B0%8F%E5%8C%96dfa%E8%AF%B4%E6%98%8E/">正规式-&gt;最小化DFA说明</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2012年4月25日
+        </date>
+        
+        <div class="post-meta meta-category">
+            |
+            
+            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
+            
+        </div>
+        
+        <div class="post-content">
+            今天早上去图书馆，去看编译原理，想把这部分搞清楚，看着龙书+国产的某一本不知什么的习题与解析，猜过程。。猜原理。。终于是看懂了。。 整体的步骤是三步： 一，先把正规式转换为NFA（非确定有穷自动机）, 二，在把NFA通过“子集构造法”转化为DFA， 三，在把DFA通过“分割法”进行最小化。
+　**一步很简单，就是反复运用下图的规则，**图1 
+　这样就能转换到NFA了。 给出一个例题，来自Google book。本文主要根据这个例题来讲，图2  二.子集构造法。 同样的例题，把转换好的NFA确定化，图3 
+　这个表是从NFA到DFA的时候必须要用到的。第一列第一行I的意思是从NFA的起始节点经过任意个ε所能到达的结点集合。Ia表示从该集合开始经过一个a所能到达的集合，经过一个a的意思是可以略过前后的ε。同样Ib也就是经过一个b，可以略过前后任意个ε。 至于第二行以及后面的I是怎么确定的。我参考了一些题目才明白，原来就是看上面的Ia和Ib哪个还没出现在I列，就拿下来进行运算，该列对应的Ia和Ib就是前面我说的那样推导。
+　如果还不太明白，看图就是了。你会发现I中的几个项目都在Ia和Ib中出现了。而且是完全出现
+　这步做完以后，为了画出最后的DFA，那么肯定得标出一些号来，比如1.2.3.。或者A。 B。c，我一般标的方法是先把I列全部标上1.2.3.递增。然后看1表示的集合和Ia和Ib中的哪个集合一样，就把那个集合也表示为1.继续向下做。最后会得到这样一个表格。图4 
+　至此，就可以表示出DFA了。就对照上面那个表，从0节点开始经过a到1.经过b到2，就这样画就行了。。
+　最后的DFA如下图，图5 
+　双圈的表示终态，这个是怎么来的呢。去看看图4，会发现有些项之前有双圈标志，这个是因为在NFA图2中，9为终态，所以所有包含9的集合都被认为是终态集，改成1.2.3.。。方便画节点后就需要把这些点作为终态了。。
+　三.最小化，分割法。
+FA的最小化就是寻求最小状态DFA
+　最小状态DFA的含义: 1.没有多余状态(死状态)2. 没有两个状态是互相等价（不可区别） 两个状态s和t等价的条件： 兼容性（一致性）条件——同是终态或同是非终态 传播性（蔓延性）条件——从s出发读入某个a和从t出发经过某个a并且经过某个b到达的状态等价。就是相同。
+　DFA的最小化—例子，第一步都是固定的。分成终态和非终态
+１．将Ｍ的状态分为两个子集一个由终态k1=｛Ｃ，Ｄ，Ｅ，Ｆ｝组成，一个由非终态k2=｛Ｓ，Ａ，Ｂ｝组成，
+２．考察｛Ｓ，Ａ，Ｂ｝是否可分．
+
+因为Ａ经过a到达C属于k1.而S经过a到达A属于k2.B经过a到达A属于k2，所以K2继续划分为{S，B},{A},
+３．考察｛Ｓ，Ｂ｝是否可再分：
+B经过b到达D属于k1.S经过b到达B属于k2，所以S，B可以划分。划分为{S},{B}
+４．考察｛Ｃ，Ｄ，Ｅ，Ｆ｝是否可再分： 因为Ｃ，Ｄ，Ｅ，Ｆ经过a和b到达的状态都属于｛Ｃ，Ｄ，Ｅ，Ｆ｝=k1所以相同，所以不可再分：
+５．｛Ｃ，Ｄ，Ｅ，Ｆ｝以｛Ｄ｝来代替则，因为CDEF相同，你也可以用C来代替。无所谓的最小化的ＤＦＡ如图，： 
+真麻烦啊。。心里清楚，还得找些图来说明。。额。。基本上感觉自己讲清楚了。。。不清楚的地方。。请留言互相讨论。。谢谢。。
+参考：
+http://www.worldcat.org/title/bian-yi-yuan-li-xue-xi-fu-dao/oclc/302301738
+http://metc.gdut.edu.cn/compile/cmpl3/3-3.htm……
+            <p class="readmore"><a href="http://leaver.me/2012/04/25/%E6%AD%A3%E8%A7%84%E5%BC%8F-%E6%9C%80%E5%B0%8F%E5%8C%96dfa%E8%AF%B4%E6%98%8E/">阅读全文</a></p>
+        </div>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="http://leaver.me/2012/04/23/win7%E4%B8%8A%E7%BD%91%E6%8F%90%E7%A4%BA711%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3/">WIN7上网提示711错误解决</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2012年4月23日
+        </date>
+        
+        <div class="post-meta meta-category">
+            |
+            
+            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
+            
+        </div>
+        
+        <div class="post-content">
+            朋友今天上网突然网络连接出现了这个问题，也就是无法加载远程访问连接服务。Google了一下，第一种方法就是查看如下的服务是否启动，如果没有，自行启动。 服务名称:eventlog 显示名称: Windows Event Log 启动类型:自动 服务名称:TapiSrv 显示名称: Telephony 启动类型:手动 服务名称:SstpSvc 显示名称: Secure Socket Tunneling Protocol Service 启动类型:手动 服务名称:Netman 显示名称: Network Connections 启动类型:手动 服务名称:nsi 显示名称: Network Store Inte***ce Service 启动类型: 自动 服务名称:RasMan 显示名称: Remote Access Connection Manager 启动类型:手动
+　启动方法：对着我的电脑点右键-》管理-》服务和应用-》服务 找到对应的服务后，右键属性，启动类型就可以了 但是如上操作有时并不可以，会提示有些服务不能启动，这种情况下，
+　用管理员账号登陆，再打开 c:\windows\system32\logfiles 如果看到 wmi文件夹，在wmi文件夹上点右键，点 获取管理员权限 ,后重启即可修复。 
+　附上Win7下添加右键获取管理员权限的方法：
+在Win7下经常要用到管理员权限,为了方便可以添加一个右键菜单,方法如下: 新建一个“记事本”文件，复制以下内容：
+复制好后选文件-另存为,保存类型选&quot;所有文件&rdquo;,文件扩展名为reg 然后运行即可。
+Win7下取消右键获取管理员权限方法：
+同样的保存上面内容为reg格式文件即可。……
+            <p class="readmore"><a href="http://leaver.me/2012/04/23/win7%E4%B8%8A%E7%BD%91%E6%8F%90%E7%A4%BA711%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3/">阅读全文</a></p>
+        </div>
+    </article>
+    
+
+    
+
+
+
+<ol class="page-navigator">
+    
+    <li class="prev">
+        <a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/16/">上一页</a>
+    </li>
+    
+
+    
+
+    
+        
+        
+    
+    
+
+    
+        
+        
+        <li >
+            <a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">1</a>
+        </li>
+        
+    
+        
+        <li>
+            <span>...</span>
+        </li>
+        
+    
+        
+        
+        <li >
+            <a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/15/">15</a>
+        </li>
+        
+    
+        
+        
+        <li >
+            <a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/16/">16</a>
+        </li>
+        
+    
+        
+        
+        <li  class="current">
+            <a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/17/">17</a>
+        </li>
+        
+    
+        
+        
+        <li >
+            <a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/18/">18</a>
+        </li>
+        
+    
+        
+        
+        <li >
+            <a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/19/">19</a>
+        </li>
+        
+    
+
+    
+    
+
+    <li class="next">
+        <a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/18/">下一页</a>
+    </li>
+    
+</ol>
+
+
+
+
 </div>
 
+                </div>
 
-  
-  
-  
-
-
-
-
-
-
-  
-
-  <header class="header-section ">
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='http://leaver.me/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://leaver.me/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
     
-    <div class="intro-header no-img">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <div class="categories-heading">
-              
-                <h1>学习笔记</h1>
-              
-              
-                <hr class="small">
-              
-              
-              
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
-
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/" title="深入理解Raft协议">深入理解Raft协议</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/" title="《非暴力沟通》笔记">《非暴力沟通》笔记</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/10/06/wedding-of-friends/" title="Wedding of Friends">Wedding of Friends</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/09/29/principle-note/" title="Principle Note">Principle Note</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/" title="梦见鲸鱼的那一夜">梦见鲸鱼的那一夜</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/08/20/understand-hong-kong-2/" title="Understand Hong Kong 2">Understand Hong Kong 2</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/08/18/understand-hong-kong-part-1/" title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/" title="错过的都是命，得到的才是人生">错过的都是命，得到的才是人生</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/04/06/recently/" title="Recently">Recently</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/03/01/mac%E8%BF%81%E7%A7%BB%E5%AF%BC%E8%87%B4golang%E6%97%A0%E6%B3%95debug%E7%9A%84%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D/" title="Mac迁移导致Golang无法debug的问题修复">Mac迁移导致Golang无法debug的问题修复</a>
+    </li>
+    
+</ul>
+    </section>
 
     
-  <div class="container" role="main">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记 (186)</a></li>
+    
+    <li><a href="http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/">我的翻译 (57)</a></li>
+    
+    <li><a href="http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/">文章收藏 (53)</a></li>
+    
+    <li><a href="http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录 (2)</a></li>
+    
+    <li><a href="http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记 (4)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://leaver.me/tags/android/">android</a>
+    
+    <a href="http://leaver.me/tags/c/">C＃</a>
+    
+    <a href="http://leaver.me/tags/c&#43;&#43;/">C&#43;&#43;</a>
+    
+    <a href="http://leaver.me/tags/java/">java</a>
+    
+    <a href="http://leaver.me/tags/javascript/">javascript</a>
+    
+    <a href="http://leaver.me/tags/linux/">linux</a>
+    
+    <a href="http://leaver.me/tags/mac/">mac</a>
+    
+    <a href="http://leaver.me/tags/matlab/">matlab</a>
+    
+    <a href="http://leaver.me/tags/maven/">maven</a>
+    
+    <a href="http://leaver.me/tags/mysql/">mysql</a>
+    
+    <a href="http://leaver.me/tags/nextgen-gallery/">NextGEN Gallery</a>
+    
+    <a href="http://leaver.me/tags/php/">php</a>
+    
+    <a href="http://leaver.me/tags/python/">python</a>
+    
+    <a href="http://leaver.me/tags/shell/">shell</a>
+    
+    <a href="http://leaver.me/tags/spring/">spring</a>
+    
+    <a href="http://leaver.me/tags/sql/">sql</a>
+    
+    <a href="http://leaver.me/tags/stackoverflow/">stackoverflow</a>
+    
+    <a href="http://leaver.me/tags/wcf/">WCF</a>
+    
+    <a href="http://leaver.me/tags/web/">web</a>
+    
+    <a href="http://leaver.me/tags/windows/">windows</a>
+    
+    <a href="http://leaver.me/tags/wordpress/">wordpress</a>
+    
+    <a href="http://leaver.me/tags/wpf/">WPF</a>
+    
+    <a href="http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/">上海</a>
+    
+    <a href="http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/">下载</a>
+    
+    <a href="http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
+    
+    <a href="http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/">互联网</a>
+    
+    <a href="http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
+    
+    <a href="http://leaver.me/tags/%E5%88%B6%E5%BA%A6/">制度</a>
+    
+    <a href="http://leaver.me/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+    
+    <a href="http://leaver.me/tags/%E5%8E%9F%E5%88%9B/">原创</a>
+    
+    <a href="http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/">大学</a>
+    
+    <a href="http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/">学习</a>
+    
+    <a href="http://leaver.me/tags/%E5%AE%89%E5%85%A8/">安全</a>
+    
+    <a href="http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/">家庭</a>
+    
+    <a href="http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/">工作</a>
+    
+    <a href="http://leaver.me/tags/%E5%B7%A5%E5%85%B7/">工具</a>
+    
+    <a href="http://leaver.me/tags/%E5%B9%B6%E5%8F%91/">并发</a>
+    
+    <a href="http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/">序列化</a>
+    
+    <a href="http://leaver.me/tags/%E5%BC%80%E5%8F%91/">开发</a>
+    
+    <a href="http://leaver.me/tags/%E5%BF%83%E7%90%86/">心理</a>
+    
+    <a href="http://leaver.me/tags/%E6%80%BB%E7%BB%93/">总结</a>
+    
+    <a href="http://leaver.me/tags/%E6%8A%80%E6%9C%AF/">技术</a>
+    
+    <a href="http://leaver.me/tags/%E6%8F%92%E4%BB%B6/">插件</a>
+    
+    <a href="http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+    
+    <a href="http://leaver.me/tags/%E6%94%B6%E8%97%8F/">收藏</a>
+    
+    <a href="http://leaver.me/tags/%E6%95%B0%E5%AD%A6/">数学</a>
+    
+    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+    
+    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">数据挖掘</a>
+    
+    <a href="http://leaver.me/tags/%E6%96%87%E7%AB%A0/">文章</a>
+    
+    <a href="http://leaver.me/tags/%E6%99%BA%E8%83%BD/">智能</a>
+    
+    <a href="http://leaver.me/tags/%E6%9D%82%E6%96%87/">杂文</a>
+    
+    <a href="http://leaver.me/tags/%E6%AD%A6%E6%B1%89/">武汉</a>
+    
+    <a href="http://leaver.me/tags/%E6%B1%87%E7%BC%96/">汇编</a>
+    
+    <a href="http://leaver.me/tags/%E7%88%B1%E6%83%85/">爱情</a>
+    
+    <a href="http://leaver.me/tags/%E7%90%86%E8%AE%BA/">理论</a>
+    
+    <a href="http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</a>
+    
+    <a href="http://leaver.me/tags/%E7%94%9F%E6%B4%BB/">生活</a>
+    
+    <a href="http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/">电子书</a>
+    
+    <a href="http://leaver.me/tags/%E7%94%B5%E5%BD%B1/">电影</a>
+    
+    <a href="http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/">社会</a>
+    
+    <a href="http://leaver.me/tags/%E7%A7%91%E6%8A%80/">科技</a>
+    
+    <a href="http://leaver.me/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+    
+    <a href="http://leaver.me/tags/%E7%AE%97%E6%B3%95/">算法</a>
+    
+    <a href="http://leaver.me/tags/%E7%BC%96%E7%A8%8B/">编程</a>
+    
+    <a href="http://leaver.me/tags/%E7%BC%96%E8%AF%91/">编译</a>
+    
+    <a href="http://leaver.me/tags/%E7%BF%BB%E8%AF%91/">翻译</a>
+    
+    <a href="http://leaver.me/tags/%E8%81%8C%E4%B8%9A/">职业</a>
+    
+    <a href="http://leaver.me/tags/%E8%AE%B0%E5%BD%95/">记录</a>
+    
+    <a href="http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/">设计</a>
+    
+    <a href="http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/">读书</a>
+    
+    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/">软件</a>
+    
+    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</a>
+    
+    <a href="http://leaver.me/tags/%E8%BF%90%E7%BB%B4/">运维</a>
+    
+    <a href="http://leaver.me/tags/%E9%87%91%E8%9E%8D/">金融</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
         
-        <div class="posts-list">
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/05/09/c-%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/">
-                <h2 class="post-title">C&#43;&#43;回调函数</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on May 9, 2012
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  <p>　　回调函数就是一个通过函数指针调用的函数。如果你把函数的指针(地址)作为参数传递给另一个函数，当这个指针被用为调用它所指向的函数时，我们就说这是回调函数。</p>
-<p>　　也就是说，回调函数它首先是一个函数，然后有一个指针指向它（该指针称为函数指针），在别的代码块中，通过这个函数指针调用了这个函数，仅此而已。</p>
-<p>　　下面给出一个例子，我写出了比较详细的注释。希望足够清晰。这个例子说明了，回调函数可以把调用者和被调用者分开，对于调用者来说，只需要知道自己要调用一个函数，该函数有一个string类型的参数，至于具体调用哪个，被调用的函数到底怎么执行，怎么解释该参数，是完全不用关心的。</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p>　　回调函数的一个很实用的例子就是泛型算法中的max算法，具体可以参见本文末尾的第一篇参考文档，
-如果你在自行写代码中发生了
-error C2679: 二进制“&laquo;”: 没有找到接受“std::string”类型的右操作数的运算符(或没有可接受的转换)错误
-　　说明你没有把string头文件导入，导入即可
-　　个人能力有限，错误之处请留言指正，不胜感激。
-参考：
-<a href="http://learn.akae.cn/media/ch24s05.html">http://learn.akae.cn/media/ch24s05.html</a>
-<a href="http://baike.baidu.com/view/414773.htm">http://baike.baidu.com/view/414773.htm</a></p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c&#43;&#43;/">C&#43;&#43;</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%8E%9F%E5%88%9B/">原创</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/05/08/gsmgprswcdmahsdpa3g-%E7%AD%89%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A/">
-                <h2 class="post-title">GSM,GPRS,WCDMA,HSDPA,3G 等名词解释</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on May 8, 2012
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  <p>　　今天想起这个事，发现自己其实一直对这个也分不清楚。查了下资料。总算是搞清楚了。整理了一下资料。删除了没太大意义的文字。结构也重新设计了下，总体看起来比较明了了。<!-- raw HTML omitted -->　　首先解释最热门的3G概念<!-- raw HTML omitted -->　　<!-- raw HTML omitted -->**<em><!-- raw HTML omitted -->3G<!-- raw HTML omitted --></em>**是英文The Third Generation mobile communication Systems的缩写<!-- raw HTML omitted -->，指第三代移动通信技术。相对第一代模拟制式手机(1G)和第二代GSM、CDMA等数字手机 (2G)，第三代手机（3G）一般地讲，是指将无线通信与国际互联网等多媒体通信结合的新一代移动通信系统。<!-- raw HTML omitted -->　　实际上，2G时代并没有2G这个名称，2G名称的出现是在行动通讯系统出现3G之后，才将过去使用GSM网路的行动通讯时代取名为2G，然而，2G演变到3G之间的过渡时期则被称为2.5G时代。同理，1G也是这么来的。就跟咱们做题是一样的。看到答案以后来推前面的过程。<!-- raw HTML omitted -->　　<!-- raw HTML omitted -->在2G时代，GSM、CDMA领导市场，他们是2G通信时代的两个实现。<!-- raw HTML omitted --><!-- raw HTML omitted -->　　<!-- raw HTML omitted -->GSM（Global System for Mobile communications）<!-- raw HTML omitted -->系统，中文名称为「全球数位手机系统」，它是1990年在欧洲发展出来，所以又称泛欧式行动电话系统。GSM系统是2G时代在全球最被广泛应用的行动通讯技术，至今全球GSM用户数远远超过CDMA系统用户数。<!-- raw HTML omitted -->　　<!-- raw HTML omitted -->CDMA（Code Division Multiple Access）中文全名又称分码多工撷取<!-- raw HTML omitted -->，是相对于GSM的另一种无线通讯技术，CDMA系统只在美、韩、中、澳洲等国被使用，而全球多达200多个国家地区采用GSM系统<!-- raw HTML omitted -->_<strong><!-- raw HTML omitted -->两者的差异：<!-- raw HTML omitted --></strong><em><!-- raw HTML omitted -->　　虽然GSM与CDMA二者都是先将语音讯号数位化，受话者接收时再将数位讯号转变回语音，但由于CDMA系统使用的800MHz频谱，讯号在空中的遗失率较GSM采用的900或1800MHz频谱来得少，所以相较于GSM系统有通话不稳定的问题，CDMA可以提供更清晰的声音品质。<!-- raw HTML omitted -->　　在网路容量方面，CDMA的容量是GSM的3倍；CDMA的网路覆盖范围最远可达200公里，而GSM的网路覆盖范围则不会超过35公里。此外，CDMA的传输速率最高可达64Kbps，远高于GSM的9.6Kbps。<!-- raw HTML omitted -->　　至于内容应用方面，GSM与CDMA都可以提供包括语音、简讯、数据、来电显示、三方通话等服务。但是由于全球采用CDMA系统的国家较少，所以CDMA系统可以漫游的国家地区也就较GSM来得少。CDMA系统只在美、韩、中、澳洲等国被使用，而全球多达200多个国家地区采用GSM系统。<!-- raw HTML omitted --></em><strong><!-- raw HTML omitted -->GSM向3G的发展路线<!-- raw HTML omitted --></strong>_<!-- raw HTML omitted -->　<em><!-- raw HTML omitted -->　◆GSM→GPRS→EDGE→WCDMA→HSDPA<!-- raw HTML omitted -->_<!-- raw HTML omitted -->　　泛欧式的WCDMA系统演变过程相当复杂。行动通讯技术从GSM迈入GPRS时，可说是2G时迈向3G时代过程的第一步，这个时期被定位为2.5G时代，在2.5G时代，手机用户虽然已经可以享受较高速的无线上网，不过，内容应用仍然只限于收发e-mail、片段视讯下载等服务。（所谓GPRS（General Packet Radio Ser-vice），全名为整合封包无线电服务，它可说是新一代的GSM技术标准，相对于GSM是采取拨接方式传送资料，GPRS则是以封包无线方式传输资料，它可以在全球的GSM系统中运行。GPRS较GSM能更有效地利用无线网路，可以特别使用于突发性、频繁的小流量资料传输，传输速率高达115Kbps。从GSM到GPRS，速度提升10倍）<!-- raw HTML omitted -->　　为了提供更多、更高品质的服务给用户，行动通讯业者与设备提供商接着又开发出EDGE技术，<!-- raw HTML omitted -->EDGE是英文Enhanced Data Rate for GSM Evolution 的缩写<!-- raw HTML omitted -->，即增强型数据速率GSM演进技术。EDGE系统大大增强了GSM、GPRS等无线技术的频宽，虽然3G时代已经来到，但是，目前EDGE系统仍在全球被广泛的应用。<!-- raw HTML omitted -->　　使用EDGE技术，传输速率最高可达384Kbps，此外EDGE并将现有的GSM/GPRS等网路整合，在取得3G服务之前，EDGE可说提供了价格低廉、传输速度又快的服务，所以它也被认定为WCDMA系统的补充技术。<!-- raw HTML omitted -->　　<!-- raw HTML omitted -->WCDMA（英文Wideband Code Division Multiple Access）一种宽频无线技术<!-- raw HTML omitted -->，又称宽频分码多工多重撷取，它可以让第三代移动通讯最佳化，传输速率最高可达2Mbps.<!-- raw HTML omitted -->　　至于<!-- raw HTML omitted -->HSDPA（High Speed ​​Downlink Packet Access）<!-- raw HTML omitted -->中文名称为高速下行链路封包接取技术，它是WCDMA系统的进阶技术。HSDPA被认为是迈向3G蜂巢式网路的重要起步，其下载速度可以达到14Mbps，而系统资料容量是WCDMA网路的3倍，这项技术被宣称为将在未来对行动电话记忆体市场格局带来重大变革。<!-- raw HTML omitted --></em><strong><!-- raw HTML omitted -->CDMA向3G的发展路线<!-- raw HTML omitted --></strong>_<!-- raw HTML omitted --><!-- raw HTML omitted -->　　<!-- raw HTML omitted --><!-- raw HTML omitted -->_◆CDMA→CDMA2000→CDMA2000 1x→CDMA2000 1x EV-DO_<!-- raw HTML omitted --><!-- raw HTML omitted -->　　至于泛美式的CDMA2000（Code Division Multiple Access 2000 是一个3G移动通讯标准，CDMA2000与另一个3G标准WCDMA不兼容。），则是CDMA的升级技术。而CDMA2000的第一阶段技术称为CDMA 2000 1X，传输数率达144Kbps，较CDMA高出两倍；至于第二阶段的CDMA2000 1x EV-DO，最高传输数率可达1.4Mbps。还在向后发展已经到了CDMA2000 3.x，不过是在不断优化了。了解即可<!-- raw HTML omitted -->参考：<!-- raw HTML omitted -->       <a href="https://lex0912.wordpress.com/2010/05/21/gsmgprswcdmahsdpa">https://lex0912.wordpress.com/2010/05/21/gsmgprswcdmahsdpa</a><!-- raw HTML omitted --><a href="https://zh.wikipedia.org/wiki/CDMA2000">       https://zh.wikipedia.org/wiki/CDMA2000</a><!-- raw HTML omitted --><a href="https://zh.wikipedia.org/wiki/3G">       https://zh.wikipedia.org/wiki/3G</a></p>
-
-                
-              </div>
-
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/05/07/windows%E4%B8%8Bvim%E9%97%AA%E7%83%81%E9%97%AE%E9%A2%98/">
-                <h2 class="post-title">windows下vim闪烁问题</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on May 7, 2012
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  <p>　　今天打开我的vim才发现，界面隔几秒会闪烁。虽说貌似能够起到防止眼睛疲劳的效果，但我实在是hold不住啊。不行，搜索。。
-首先有这个问题的人不多。首先找到了<a href="http://hi.baidu.com/chrisyue/blog/item/ebc7b8de373c1048cdbf1af9.html">这篇文章</a>，但是作者不知道怎么想的。只说了原因，没有给出解决方法。继续搜索关键字cursorcolumn，结果找到了<a href="http://yyq123.blogspot.com/2012/01/vim-cursor.html">这篇文章</a>，按着说明来了一下</p>
-<!-- raw HTML omitted -->
-<p>没效果。依然闪烁。
-　　好吧。如果是插件的问题。于是我删掉了所有的插件包括写入的配置。依然不行。于是还是采用排除法，一行行删掉配置文件。最后定位到</p>
-<!-- raw HTML omitted -->
-<p>　　这是设置字体的，不太明白为什么会出现这样的情况。怀疑是字体的原因，于是换个字体，依然闪烁。。好吧。就这样吧。删掉算了。</p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/05/05/%E4%BD%A0%E4%BC%9A%E7%94%A8%E8%AE%A1%E7%AE%97%E5%99%A8%E5%90%97/">
-                <h2 class="post-title">你会用计算器吗？</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on May 5, 2012
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  <p>　　今天早上在用windows自带的计算器转换进制的时候，看到了下图所示的按钮。MS MR之类的。
-<a href="http://leaverimage.b0.upaiyun.com/21157_o.jpg"><img src="/images/94b98df6f3d241859ae7ea4e2f869ede69eca33a.jpg" alt=""></a></p>
-<p>　　这些个按钮在简单的计算器上也有。我从小时候到现在都没搞清楚。当然也没搞过。。不学总是不会的。于是，找找资料。学会了也分享一下，英文是我猜的。。不过估计差不多</p>
-<p>　　首先明确的一点是这类计算器内部有一个小的记忆芯片，可以用来存储一个数，类似于内存吧。所以M的意思就是Memory，下面先给出这几个的总体说明</p>
-<p>　　“MS”，英文 Memory Store，用来存储输入栏显示的数字。</p>
-<p>　　“MR”，英文 Memory Read， 再次显示调用存储的数字。</p>
-<p>　　“M+”，英文 Memory Plus， 存储器里的值加上输入栏的值，结果又存入存储器</p>
-<p>　　“M+”，英文 Memory Minus， 存储器里的值减去输入栏的值，结果又存入存储器</p>
-<p>　　“MC”，英文 Memory Clear，用于清除存储器中的数值，默认为0</p>
-<p>　　“C”， 英文 Cancel，就是全部撤销；</p>
-<p>　　“CE”，  英文 Cancel Error，也就是撤销错误输入。</p>
-<p>　　现在来说个例子，比如我要计算100<em>2+11</em>3因为一些计算器不支持整个式子输入。也是为了演示这些功能。我们可以这样输入，</p>
-<p>　　先输入100，然后 * ，然后 2 ，按下等号，这时候输入栏变成了200，我们按下MS 或者M+，按下MS的话把200存到了存储器，而按下M+呢，因为存储器默认是0，所以就相当于0+200，存储器里就是200了。然后我们继续输入11 ，输入 +，输入3 ，按下等号，输入栏变成了33.我们按下M+，这时候输入栏并没有改变。因为M+将存储器里的200加上了33.则存储器里变成了233.我们按下MR就是读取存储器的值，这样输入栏就可以看到233了。我们就可以继续用233来运算了。MC就是清除233.恢复为0.</p>
-<p>　　例如：想要9*6，如果按6按错按成5了， 按C就是从头来过， 这时就要重新按9了， 但是如果你按CE的话， 就只要输入6就行了， 不必输入前面的了。</p>
-<p>　　我个人感觉M存储器就相当于一个草稿。吧计算中的一些临时值存储起来，就不用手记了。我记得我那时候有时候算值还得先把一些临时值写在纸上，后面重新输入。没文化真可怕。</p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%8E%9F%E5%88%9B/">原创</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%AC%94%E8%AE%B0/">笔记</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/05/04/%E5%9B%BE%E7%89%87%E5%8E%8B%E7%BC%A9%E5%B7%A5%E5%85%B7%E6%BA%90%E7%A0%81c/">
-                <h2 class="post-title">图片压缩工具源码（C#）</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on May 4, 2012
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  <p>以前在用一个破解版的图片压缩工具。今天早上想想自己也试着做一个吧。查了一些资料。参考了一些代码。总算是写出来了。其实关键代码很简单。主要还是画界面，处理边界。。
-看下效果图
-<a href="http://leaverimage.b0.upaiyun.com/21131_o.jpg"><img src="/images/00f5221099dd3a813d09fbb95fe9a36e5268d652.jpg" alt=""></a>
-处理图像的关键代码是这样的：</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p>另外一个就是空间的tip功能，vs2010中貌似已经不支持直接使用属性来设置tip了。所以用到了ToolTip类，使用方法如下，你也可以先导入库，然后简写，ToolTip对象可以给窗体的控件设置提示。主要是第二句话，第一个参数是控件名，第二个参数是提示文本，最好将这两句放入窗体的Load方法中</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p><a href="http://leaverimage.b0.upaiyun.com/21132_o.jpg"><img src="/images/516b951c5df12c7569b3cfefd817a894d380c063.jpg" alt=""></a></p>
-<p>还有一些边界，比如只接受数字数字之类的，我在代码里给出了详细的说明。实用工具的效果自行测试。对大图片效果最好。</p>
-<p>源码下载：<a href="http://pan.baidu.com/share/link?shareid=62101&amp;uk=1493685990">图片压缩工具源码</a></p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/05/03/%E8%AF%B4%E8%AF%B4%E9%82%AE%E4%BB%B6%E4%B8%AD%E7%9A%84%E6%8A%84%E9%80%81%E5%92%8C%E5%AF%86%E9%80%81/">
-                <h2 class="post-title">说说邮件中的抄送和密送</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on May 3, 2012
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  <p>　　一直是分不太清楚，或者说是不知道具体的应用场合，于是，今天早上查了一下资料。总算是搞清楚了</p>
-<p>　　不论你是用什么邮箱服务提供商，可能是126.或是Gmail，或是Qmail。在发送邮件的时候会看到如下类似的选项</p>
-<p><a href="http://leaverimage.b0.upaiyun.com/21092_o.png"><img src="/images/1dbfa77edb4f3eb5f8bb37f4df0e7a3c76b17ae3.png" alt="" title="cc"></a></p>
-<p>　　抄送的英文缩写为CC，来源于Carbon Copy，如果一份邮件需要发送给多个人阅读，只要在“抄送”或“CC”一栏填上相关人员的信箱地址即可。如果是抄送多人，同样的直接添加到抄送栏就可以了。</p>
-<p>　　密送的英文缩写为BCC，来源于Blind Carbon Copy,由于某种原因或出于某种考虑，你不希望收信人知道你把这封邮件还发送给了另外的人，则可将这位幕后的人的信箱地址放在密送一栏。</p>
-<p>　　具体的规则是怎么呢。如果我密送给了多个人，那么多个人会互相看到彼此吗？下面我将使用一个例子来说明</p>
-<p>　　如果：A 发送邮件(To)给B1、B2，抄送(CC)给C1、C2，密送(BCC)给D1、D2。</p>
-<p>　　那么：</p>
-<p>　　A知道自己发送邮件给了B1、B2，并且抄送给了C1、C2，密送给了D1、D2。这相当于废话。。自己肯定知道自己给谁发了。　
-　　B1知道这封是A发送给B1、B2的邮件，并且抄送给了C1、C2、但不知道密送给了D1、D2。To的人能看到抄送，看不到密送　
-　　C1知道这封是A发送给B1、B2的邮件，并且抄送给了C1、C2，但不知道密送给了D1、D2。抄送的人看不到密送。　　
-　　D1知道这封是A发送给B1、B2的邮件，并且抄送给了C1、C2，而且密送给了自己，但不知道密送给了D2。 密送的人权限比较大，可以看到最多的情况，但依然看不到密送</p>
-<p>　　具体的用法呢，一句话就是：<em><strong>一般抄送和密送是为了备份，知会，或者监督跟踪的作用。</strong></em></p>
-<p>　　我先举个例子。有些个朋友过节什么的喜欢群发邮件。或是一些什么网页之类的。有这个心是好的。可是。对于收到的人来说，一看到是群发的。直接可能都删掉了。所以此时可以使用密送功能。对应于上面说的最后一种情况。具体使用时在To里写上自己的地址，这样邮件会发给自己。密送栏里写上其他人的邮件，这样就同时密送给其他人，并且每个人都会只看到发给自己。起码有看下去的心情。</p>
-<p>　　邮件在工作中用的非常多，美国人总结的中国人典型特征中有一条，“即使面对面坐着，也不直接交谈而要使用邮件。”而这在很多外企之中是非常流行的文化，和总部打交道，邮件往往是最快捷和便宜的方式，&rdquo;</p>
-<p>　　说到抄送，简直是所有邮件灾难故事最有力的协助者。同事之间常有抄送行为，有时是为了工作方便，同事A同时将一封邮件抄送给B和C，只能说明他们之间需要互相协作完成一件事情，但如果A将邮件发送给了B，却抄送给了B的老板C，那意味就深远了，通常有可能的情况是，A和B在合作的过程中发生了一些不愉快，告知老板的目的只是为了给对方一些震慑，这一招在各大公司当中都屡试不爽，而且往往成为一件悬而不决的事情得到解决的最快速手段。</p>
-<p>　　抄送更多时候只是手段，而不是最终目的。看到一个某人A与其他部门同事B合作时发生的插曲，在某次急需同事B提供某文件支持时，B不慌不忙地一直以各种借口拖延工作，A忍无可忍，发了一封紧急邮件，同时抄送了B部门的领导和自己的领导，在这样一封邮件下，B在十分钟之内就将所需文件以附件形式传了过来，并回复了原邮件中的所有人。</p>
-<p>　　如果你看了觉得真麻烦。其实。最有效的交流就是面对面，但是在职场中这是最有效地证明你自己干过什么的工具，一旦出了什么问题，最容易发现在哪个环节出现了问题，该由谁承担什么样的责任。如果遇到打官司这样的严重情况，邮件甚至能够作为呈堂证供。</p>
-<p>　　没事给朋友写写邮件，那天看到一句话：维系友情的方法之一，是冷冰冰地写邮件。频率少得可怜，常常春暖花开发的邮件，秋叶飘零时收到回复。
- </p>
-<p>参考：</p>
-<p><a href="http://www.eeo.com.cn/2012/0328/223658.shtml">http://www.eeo.com.cn/2012/0328/223658.shtml</a></p>
-<p><a href="http://baike.soso.com/v3997479.htm">http://baike.soso.com/v3997479.htm</a></p>
-<p><a href="http://dudo.org/archives/2007123120184.html">http://dudo.org/archives/2007123120184.html</a></p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%A4%BE%E4%BC%9A/">社会</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/04/28/wordpress-%E5%AE%9E%E7%8E%B0404%E4%B8%AA%E6%80%A7%E8%B7%B3%E8%BD%AC%E9%A1%B5%E9%9D%A2/">
-                <h2 class="post-title">wordpress 实现404个性跳转页面</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on April 28, 2012
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  <p>这个就不多说了，直接贴代码，使用方法就是把这些代码全部拷贝进你的404.php这个文件。后台点击外观-编辑-选择404.php，开始编辑，</p>
-<p>完成后然后就可以自己测试下效果了，你也可以先访问<a href="http://leaver.me/test404">http://leaver.me/test404</a>查看效果</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<blockquote>
-</blockquote>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/wordpress/">wordpress</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%AC%94%E8%AE%B0/">笔记</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/04/26/win7%E4%BD%BF%E7%94%A8putty%E8%BF%9E%E6%8E%A5vitualbox%E4%B8%8B%E7%9A%84ubuntu/">
-                <h2 class="post-title">Win7使用Putty连接VitualBox下的Ubuntu</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on April 26, 2012
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  <p>推荐连接方式选择Host-only Adapter（主机模式）。设置方法是打开vitualbox，然后选中虚拟机，点击设置，找到网络，然后如下图选择</p>
-<p><a href="http://leaverimage.b0.upaiyun.com/20944_o.jpg"><img src="/images/6f75b3ea6509800b51958f720d2e3173390bc0a1.jpg" alt="" title="桥接设置"></a></p>
-<p>设置完成后，启动ubuntu，然后执行</p>
-<!-- raw HTML omitted -->
-<p>找到下面这行，可以看到虚拟机分配到的ip地址为192.168.56.101</p>
-<p><a href="http://leaverimage.b0.upaiyun.com/20945_o.jpg"><img src="/images/a57df08f6538afb4deebab8a4e08564bda4528e0.jpg" alt="" title="IP地址"></a></p>
-<p>然后呢，可以在win7的cmd下 ping 192.168.56.101，看看可不可以ping通，</p>
-<p><a href="http://leaverimage.b0.upaiyun.com/20948_o.jpg"><img src="/images/b38276de90d54e82042a95ae97e40e658753d1d5.jpg" alt="" title="ping"></a></p>
-<p>有返回所以是通的，</p>
-<p>然后在ubuntu下需要执行</p>
-<!-- raw HTML omitted -->
-<p>Ubuntu缺省安装了openssh-client（用于ubuntu连接其他服务器）,所以在这里就不安装了，只安装server，用于其它电脑连接ubuntu，如果你的系统没有安装的话，再用apt-get安装上即可。</p>
-<p>然后确认sshserver是否启动了：</p>
-<!-- raw HTML omitted -->
-<p>如果只有ssh-agent行那ssh-server还没有启动，需要执行</p>
-<!-- raw HTML omitted -->
-<p>，启动ssh服务器
-如果看到sshd那说明ssh-server已经启动了。</p>
-<p>然后下载putty，推荐去<a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">官方下载</a>，下载完成后发现是单文件，直接执行即可。</p>
-<p>输入ubuntu的ip点击open即可</p>
-<p><a href="http://leaverimage.b0.upaiyun.com/20950_o.jpg"><img src="/images/9901f47b9a70d8c61d8ea28aeb41985e4b92be9d.jpg" alt="" title="登录设置"></a></p>
-<p>登录上以后执行命令会发现有乱码，鼠标右键点击putty窗口的标题栏，选择，&ldquo;Change Settings&rdquo;，&ldquo;Translation&rdquo;，在&quot;Received data assumed to be in which character set&quot;的下拉菜单里选择&quot;UTF-8&rdquo;。如下图</p>
-<p><a href="http://leaverimage.b0.upaiyun.com/20951_o.png"><img src="/images/6d08c4a6755cd31c3dc560f681162e46c797c02d.png" alt="" title="utf-8"></a></p>
-<p>这样，下次又得重复同样的工作，为了保持配置，继续在上图选择左边的session</p>
-<p><a href="http://leaverimage.b0.upaiyun.com/20952_o.jpg"><img src="/images/d0111c6b9386937d97e77046d84dbd510a062982.jpg" alt="" title="session"></a></p>
-<p>在saved session输入个名字，save即可，下次直接连这个就可以了</p>
-<p>参考：<a href="http://www.linuxidc.com/Linux/2011-12/49325.htm">http://www.linuxidc.com/Linux/2011-12/49325.htm</a></p>
-<p><a href="http://spark10000.blog.51cto.com/955100/547211">http://spark10000.blog.51cto.com/955100/547211</a></p>
-<p>至于putty的使用不在本文的计划范围内，以后有机会再写吧。</p>
-<p>每次遇到问题就体会到网络的信息实在太杂了。掌握搜索技术和对数据的快速筛选很重要。</p>
-<p> </p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/04/25/%E6%AD%A3%E8%A7%84%E5%BC%8F-%E6%9C%80%E5%B0%8F%E5%8C%96dfa%E8%AF%B4%E6%98%8E/">
-                <h2 class="post-title">正规式-&gt;最小化DFA说明</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on April 25, 2012
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  <p>　　今天早上去图书馆，去看编译原理，想把这部分搞清楚，看着龙书+国产的某一本不知什么的习题与解析，猜过程。。猜原理。。终于是看懂了。。
-整体的步骤是三步：
-一，先把正规式转换为NFA（非确定有穷自动机）,
-二，在把NFA通过“子集构造法”转化为DFA，
-三，在把DFA通过“分割法”进行最小化。</p>
-<p>　　　**一步很简单，就是反复运用下图的规则，**图1
-<a href="http://leaverimage.b0.upaiyun.com/20920_o.png"><img src="/images/6807123f3c419d9d4ae9c8bc7833f940ddd2cd83.png" alt=""></a></p>
-<p>　　这样就能转换到NFA了。
-给出一个例题，来自Google book。本文主要根据这个例题来讲，图2
-<a href="http://leaverimage.b0.upaiyun.com/20924_o.jpg"><img src="/images/1816f6c4b5eac34b7a8ee5a44400ea8ace103722.jpg" alt=""></a>
-　　　<strong>二.子集构造法。</strong>
-同样的例题，把转换好的NFA确定化，图3
-<a href="http://leaverimage.b0.upaiyun.com/20921_o.jpg"><img src="/images/29683c76cbf62ad4420a384cdb4a6902818d49db.jpg" alt=""></a></p>
-<p>　　这个表是从NFA到DFA的时候必须要用到的。第一列第一行I的意思是从NFA的起始节点经过任意个ε所能到达的结点集合。Ia表示从该集合开始经过一个a所能到达的集合，经过一个a的意思是可以略过前后的ε。同样Ib也就是经过一个b，可以略过前后任意个ε。
-至于第二行以及后面的I是怎么确定的。我参考了一些题目才明白，原来就是看上面的Ia和Ib哪个还没出现在I列，就拿下来进行运算，该列对应的Ia和Ib就是前面我说的那样推导。</p>
-<p>　　如果还不太明白，看图就是了。你会发现I中的几个项目都在Ia和Ib中出现了。而且是完全出现</p>
-<p>　　这步做完以后，为了画出最后的DFA，那么肯定得标出一些号来，比如1.2.3.。或者A。 B。c，我一般标的方法是先把I列全部标上1.2.3.递增。然后看1表示的集合和Ia和Ib中的哪个集合一样，就把那个集合也表示为1.继续向下做。最后会得到这样一个表格。图4
-<a href="http://leaverimage.b0.upaiyun.com/20922_o.jpg"><img src="/images/cfd89b33da236d53885bb7ff781a33633c15e072.jpg" alt=""></a></p>
-<p>　　至此，就可以表示出DFA了。就对照上面那个表，从0节点开始经过a到1.经过b到2，就这样画就行了。。</p>
-<p>　　最后的DFA如下图，图5
-<a href="http://leaverimage.b0.upaiyun.com/20925_o.jpg"><img src="/images/26ef020ce54f209ce93f988ab6af15e1daf0f131.jpg" alt=""></a></p>
-<p>　　双圈的表示终态，这个是怎么来的呢。去看看图4，会发现有些项之前有双圈标志，这个是因为在NFA图2中，9为终态，所以所有包含9的集合都被认为是终态集，改成1.2.3.。。方便画节点后就需要把这些点作为终态了。。</p>
-<p>　　　<strong>三.最小化，分割法。</strong></p>
-<p>FA的最小化就是寻求最小状态DFA</p>
-<p>　　最小状态DFA的含义:
-1.没有多余状态(死状态)2. 没有两个状态是互相等价（不可区别）
-两个状态s和t等价的条件：
-兼容性（一致性）条件——同是终态或同是非终态
-传播性（蔓延性）条件——从s出发读入某个a和从t出发经过某个a并且经过某个b到达的状态等价。就是相同。</p>
-<p>　　DFA的最小化—例子，第一步都是固定的。分成终态和非终态</p>
-<p>１．将Ｍ的状态分为两个子集一个由终态k1=｛Ｃ，Ｄ，Ｅ，Ｆ｝组成，一个由非终态k2=｛Ｓ，Ａ，Ｂ｝组成，</p>
-<p>２．考察｛Ｓ，Ａ，Ｂ｝是否可分．</p>
-<p><a href="http://leaverimage.b0.upaiyun.com/20927_o.jpg"><img src="/images/4bf93ce8a42fb3161b1d288da5697a5745effc23.jpg" alt=""></a></p>
-<p>因为Ａ经过a到达C属于k1.而S经过a到达A属于k2.B经过a到达A属于k2，所以K2继续划分为{S，B},{A},</p>
-<p>３．考察｛Ｓ，Ｂ｝是否可再分：</p>
-<p>B经过b到达D属于k1.S经过b到达B属于k2，所以S，B可以划分。划分为{S},{B}</p>
-<p>４．考察｛Ｃ，Ｄ，Ｅ，Ｆ｝是否可再分：
-因为Ｃ，Ｄ，Ｅ，Ｆ经过a和b到达的状态都属于｛Ｃ，Ｄ，Ｅ，Ｆ｝=k1所以相同，所以不可再分：</p>
-<p>５．｛Ｃ，Ｄ，Ｅ，Ｆ｝以｛Ｄ｝来代替则，因为CDEF相同，你也可以用C来代替。无所谓的最小化的ＤＦＡ如图，：
-<a href="http://leaverimage.b0.upaiyun.com/20928_o.jpg"><img src="/images/573e265f308413f9398a0f05b240403b07cff10f.jpg" alt=""></a></p>
-<p>真麻烦啊。。心里清楚，还得找些图来说明。。额。。基本上感觉自己讲清楚了。。。不清楚的地方。。请留言互相讨论。。谢谢。。</p>
-<p>参考：</p>
-<p><a href="http://www.worldcat.org/title/bian-yi-yuan-li-xue-xi-fu-dao/oclc/302301738">http://www.worldcat.org/title/bian-yi-yuan-li-xue-xi-fu-dao/oclc/302301738</a></p>
-<p><a href="http://metc.gdut.edu.cn/compile/cmpl3/3-3.htm">http://metc.gdut.edu.cn/compile/cmpl3/3-3.htm</a></p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E8%AF%91/">编译</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/04/23/win7%E4%B8%8A%E7%BD%91%E6%8F%90%E7%A4%BA711%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3/">
-                <h2 class="post-title">WIN7上网提示711错误解决</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on April 23, 2012
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  <p>　　朋友今天上网突然网络连接出现了这个问题，也就是无法加载远程访问连接服务。Google了一下，第一种方法就是查看如下的服务是否启动，如果没有，自行启动。
-服务名称:eventlog 显示名称: Windows Event Log 启动类型:自动
-服务名称:TapiSrv 显示名称: Telephony 启动类型:手动
-服务名称:SstpSvc 显示名称: Secure Socket Tunneling Protocol Service 启动类型:手动
-服务名称:Netman 显示名称: Network Connections 启动类型:手动
-服务名称:nsi 显示名称: Network Store Inte***ce Service 启动类型: 自动
-服务名称:RasMan 显示名称: Remote Access Connection Manager 启动类型:手动</p>
-<p>　　启动方法：对着我的电脑点右键-》管理-》服务和应用-》服务 找到对应的服务后，右键属性，启动类型就可以了
-　　但是如上操作有时并不可以，会提示有些服务不能启动，这种情况下，</p>
-<p>　　用管理员账号登陆，再打开 c:\windows\system32\logfiles 如果看到 wmi文件夹，在wmi文件夹上点右键，点 获取管理员权限 ,后重启即可修复。
-<a href="http://leaverimage.b0.upaiyun.com/20868_o.jpg"><img src="/images/8c81734100537494754fe25960feac29d5d469fc.jpg" alt=""></a></p>
-<p>　　　附上Win7下添加右键获取管理员权限的方法：</p>
-<p>在Win7下经常要用到管理员权限,为了方便可以添加一个右键菜单,方法如下:
-新建一个“记事本”文件，复制以下内容：</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p>复制好后选文件-另存为,保存类型选&quot;所有文件&rdquo;,文件扩展名为reg 然后运行即可。</p>
-<p>Win7下取消右键获取管理员权限方法：</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p>同样的保存上面内容为reg格式文件即可。</p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%AC%94%E8%AE%B0/">笔记</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-        </div>
+        <li>
+            <a target="_blank" href="https://www.cppfans.org/" title="C&#43;&#43;爱好者博客">C&#43;&#43;爱好者博客</a>
+        </li>
         
-          <ul class="pager main-pager">
-            
-              <li class="previous">
-                <a href="https://leizhiyuan.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/16/">&larr; Newer Posts</a>
-              </li>
-            
-            
-              <li class="next">
-                <a href="https://leizhiyuan.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/18/">Older Posts &rarr;</a>
-              </li>
-            
-          </ul>
+        <li>
+            <a target="_blank" href="http://www.kailing.pub" title="KL，每天进步一点点">KL，每天进步一点点</a>
+        </li>
         
-      </div>
-    </div>
-  </div>
+    </ul>
+</section>
 
-    <footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <ul class="list-inline text-center footer-links">
-          
-              <li>
-                <a href="https://github.com/leizhiyuan" title="GitHub">
-                  <span class="fa-stack fa-lg">
-                    <i class="fas fa-circle fa-stack-2x"></i>
-                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-          
-          <li>
-            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.xml" title="RSS">
-              <span class="fa-stack fa-lg">
-                <i class="fas fa-circle fa-stack-2x"></i>
-                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
-              </span>
-            </a>
-          </li>
-          
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="http://leaver.me/index.xml">文章 RSS</a></li>
         </ul>
-        <p class="credits copyright text-muted">
-          
-            
-              <a href="leaver.me">bystander</a>
-            
-          
-
-          &nbsp;&bull;&nbsp;&copy;
-          
-            2019
-          
-
-          
-            &nbsp;&bull;&nbsp;
-            <a href="https://leizhiyuan.github.io/">bystander&#39;s blog</a>
-          
-        </p>
-        
-        <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
-          
-        </p>
-      </div>
+    </section>
+</div>
+            </div>
+        </div>
     </div>
-  </div>
-</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-<script src="https://leizhiyuan.github.io/js/main.js"></script>
-<script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
-<script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="http://leaver.me/">bystander&#39;s blog By bystander</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
 
 
 
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', '30961201', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 
 
 
 
-  </body>
+</body>
+
 </html>
-

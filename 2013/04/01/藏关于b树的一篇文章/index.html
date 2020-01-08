@@ -1,353 +1,141 @@
-<!DOCTYPE html>
-<html lang="en" itemscope itemtype="http://schema.org/WebPage">
-  <head>
-    
+<!doctype html>
+<html lang="zh-CN">
+<head>
 
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>[藏]关于B树的一篇文章 - bystander&#39;s blog</title>
-  <meta property="og:title" content="[藏]关于B树的一篇文章" />
-  <meta name="twitter:title" content="[藏]关于B树的一篇文章" />
-  <meta name="description" content="很多人对B树的理解有很多错误，我看的最多的就是有人混淆二叉树（Binary Tree）和B树（B-Tree）,二叉树是不用简称，也就是BT的，而特殊一点的二叉搜索树才会用BST(Binary Search Tree),至于B-树和B树，这两个其实一样的，英文都是(B-Tree)，注意看中间的-号，这个是国内翻译的问题.所以大家不要被误导.
-Rudolf Bayer 和 Ed McCreight 于1972年，在Boeing Research Labs 工作时发明了B 树，但是他们没有解释B 代表什么意义（如果有的话）.Douglas Comer 解释说: 两位作者从来都没解释过B树的原始意义。我个人觉得很有可能是他的名字，程序员对其作品的一种情结吧.
-这篇文章来自国外,是某大学的CS课程在线的,由于有时候无法访问，我直接提供PDF版,对其构造过程非常清晰.非常非常好的B树教程,图示很多,就不翻译了,强烈推荐阅读！
- 下载：B树讲解
- ">
-  <meta property="og:description" content="很多人对B树的理解有很多错误，我看的最多的就是有人混淆二叉树（Binary Tree）和B树（B-Tree）,二叉树是不用简称，也就是BT的，而特殊一点的二叉搜索树才会用BST(Binary Search Tree),至于B-树和B树，这两个其实一样的，英文都是(B-Tree)，注意看中间的-号，这个是国内翻译的问题.所以大家不要被误导.
-Rudolf Bayer 和 Ed McCreight 于1972年，在Boeing Research Labs 工作时发明了B 树，但是他们没有解释B 代表什么意义（如果有的话）.Douglas Comer 解释说: 两位作者从来都没解释过B树的原始意义。我个人觉得很有可能是他的名字，程序员对其作品的一种情结吧.
-这篇文章来自国外,是某大学的CS课程在线的,由于有时候无法访问，我直接提供PDF版,对其构造过程非常清晰.非常非常好的B树教程,图示很多,就不翻译了,强烈推荐阅读！
- 下载：B树讲解
- ">
-  <meta name="twitter:description" content="很多人对B树的理解有很多错误，我看的最多的就是有人混淆二叉树（Binary Tree）和B树（B-Tree）,二叉树是不用简称，也就是BT的，而特殊一点的二叉搜索树才会用BST(Binary Search Tree),至于B-树和B树，这两个其实一样的，英文都是(B-Tree)，注意看中间的-号，这个是国内翻译的问题.所以大家不要被误导.
-Rudolf Bayer 和 Ed McCreight  …">
-  <meta name="author" content="bystander"/><script type="application/ld+json">
-{
-    "@context": "http://schema.org",
-    "@type": "WebSite",
-    "name": "bystander\x27s blog",
-    
-    "url": "https:\/\/leizhiyuan.github.io\/"
-}
-</script><script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Organization",
-  "name": "",
-  "url": "https:\/\/leizhiyuan.github.io\/"
-  
-  
-  
-  
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [{
-        "@type": "ListItem",
-        "position": 1,
-        "item": {
-          "@id": "https:\/\/leizhiyuan.github.io\/",
-          "name": "home"
-        }
-    },{
-        "@type": "ListItem",
-        "position": 3,
-        "item": {
-          "@id": "https:\/\/leizhiyuan.github.io\/2013\/04\/01\/%E8%97%8F%E5%85%B3%E4%BA%8Eb%E6%A0%91%E7%9A%84%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0\/",
-          "name": "[藏]关于 b树的一篇文章"
-        }
-    }]
-}
-</script><script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Article",
-  "author": {
-    "name" : "bystander"
-  },
-  "headline": "[藏]关于B树的一篇文章",
-  "description" : "很多人对B树的理解有很多错误，我看的最多的就是有人混淆二叉树（Binary Tree）和B树（B-Tree）,二叉树是不用简称，也就是BT的，而特殊一点的二叉搜索树才会用BST(Binary Search Tree),至于B-树和B树，这两个其实一样的，英文都是(B-Tree)，注意看中间的-号，这个是国内翻译的问题.所以大家不要被误导.\nRudolf Bayer 和 Ed McCreight 于1972年，在Boeing Research Labs 工作时发明了B 树，但是他们没有解释B 代表什么意义（如果有的话）.Douglas Comer 解释说: 两位作者从来都没解释过B树的原始意义。我个人觉得很有可能是他的名字，程序员对其作品的一种情结吧.\n这篇文章来自国外,是某大学的CS课程在线的,由于有时候无法访问，我直接提供PDF版,对其构造过程非常清晰.非常非常好的B树教程,图示很多,就不翻译了,强烈推荐阅读！\n 下载：B树讲解\n ",
-  "inLanguage" : "en",
-  "wordCount":  20 ,
-  "datePublished" : "2013-04-01T18:12:37",
-  "dateModified" : "2013-04-01T18:12:37",
-  "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
-  "keywords" : [ "C\x2b\x2b, 学习, 收藏, 算法" ],
-  "mainEntityOfPage" : "https:\/\/leizhiyuan.github.io\/2013\/04\/01\/%E8%97%8F%E5%85%B3%E4%BA%8Eb%E6%A0%91%E7%9A%84%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0\/",
-  "publisher" : {
-    "@type": "Organization",
-    "name" : "https:\/\/leizhiyuan.github.io\/",
-    "logo" : {
-        "@type" : "ImageObject",
-        "url" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
-        "height" :  60 ,
-        "width" :  60
-    }
-  }
-}
-</script>
-
-<meta property="og:title" content="[藏]关于B树的一篇文章" />
-<meta property="og:description" content="很多人对B树的理解有很多错误，我看的最多的就是有人混淆二叉树（Binary Tree）和B树（B-Tree）,二叉树是不用简称，也就是BT的，而特殊一点的二叉搜索树才会用BST(Binary Search Tree),至于B-树和B树，这两个其实一样的，英文都是(B-Tree)，注意看中间的-号，这个是国内翻译的问题.所以大家不要被误导.
-Rudolf Bayer 和 Ed McCreight 于1972年，在Boeing Research Labs 工作时发明了B 树，但是他们没有解释B 代表什么意义（如果有的话）.Douglas Comer 解释说: 两位作者从来都没解释过B树的原始意义。我个人觉得很有可能是他的名字，程序员对其作品的一种情结吧.
-这篇文章来自国外,是某大学的CS课程在线的,由于有时候无法访问，我直接提供PDF版,对其构造过程非常清晰.非常非常好的B树教程,图示很多,就不翻译了,强烈推荐阅读！
- 下载：B树讲解
- ">
-<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
-<meta property="og:url" content="https://leizhiyuan.github.io/2013/04/01/%E8%97%8F%E5%85%B3%E4%BA%8Eb%E6%A0%91%E7%9A%84%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" />
-<meta property="og:type" content="website" />
-<meta property="og:site_name" content="bystander&#39;s blog" />
-
-  <meta name="twitter:title" content="[藏]关于B树的一篇文章" />
-  <meta name="twitter:description" content="很多人对B树的理解有很多错误，我看的最多的就是有人混淆二叉树（Binary Tree）和B树（B-Tree）,二叉树是不用简称，也就是BT的，而特殊一点的二叉搜索树才会用BST(Binary Search Tree),至于B-树和B树，这两个其实一样的，英文都是(B-Tree)，注意看中间的-号，这个是国内翻译的问题.所以大家不要被误导.
-Rudolf Bayer 和 Ed McCreight  …">
-  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
-  <meta name="twitter:card" content="summary" />
-  <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
-  <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
-  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
-  <meta name="twitter:card" content="summary" />
-  <meta property="og:url" content="https://leizhiyuan.github.io/2013/04/01/%E8%97%8F%E5%85%B3%E4%BA%8Eb%E6%A0%91%E7%9A%84%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="bystander&#39;s blog" />
-
-  <meta name="generator" content="Hugo 0.61.0" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
-
-
-
-  </head>
-  <body>
-    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="https://leizhiyuan.github.io/">bystander&#39;s blog</a>
-    </div>
-
-    <div class="collapse navbar-collapse" id="main-navbar">
-      <ul class="nav navbar-nav navbar-right">
+    <title>[藏]关于B树的一篇文章 | bystander&#39;s blog</title>
+    <meta property="og:title" content="[藏]关于B树的一篇文章 - bystander&#39;s blog">
+    <meta property="og:type" content="article">
         
-          
-            <li>
-              <a title="首页" href="/">首页</a>
-            </li>
-          
+    <meta property="article:published_time" content='2013-04-01T18:12:37&#43;08:00'>
         
-          
-            <li>
-              <a title="目录" href="/categories">目录</a>
-            </li>
-          
         
-          
-            <li>
-              <a title="标签" href="/tags">标签</a>
-            </li>
-          
+    <meta property="article:modified_time" content='2013-04-01T18:12:37&#43;08:00'>
         
-          
-            <li>
-              <a title="友情链接" href="/2016/01/01/links">友情链接</a>
-            </li>
-          
+    <meta name="Keywords" content="">
+    <meta name="description" content="[藏]关于B树的一篇文章">
         
-          
-            <li>
-              <a title="关于我" href="/about/">关于我</a>
-            </li>
-          
-        
+    <meta name="author" content="bystander">
+    <meta property="og:url" content="http://leaver.me/2013/04/01/%E8%97%8F%E5%85%B3%E4%BA%8Eb%E6%A0%91%E7%9A%84%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
-        
-
-        
-      </ul>
-    </div>
-
-    
-      <div class="avatar-container">
-        <div class="avatar-img-border">
-          <a title="bystander&#39;s blog" href="https://leizhiyuan.github.io/">
-            <img class="avatar-img" src="https://leizhiyuan.github.io/images/author.jpg" alt="bystander&#39;s blog" />
-          </a>
-        </div>
-      </div>
-    
-
-  </div>
-</nav>
-
-
-
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     
 
 
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-<div class="pswp__bg"></div>
-
-<div class="pswp__scroll-wrap">
     
-    <div class="pswp__container">
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-    </div>
     
-    <div class="pswp__ui pswp__ui--hidden">
-    <div class="pswp__top-bar">
-      
-      <div class="pswp__counter"></div>
-      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-      <button class="pswp__button pswp__button--share" title="Share"></button>
-      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-      
-      
-      <div class="pswp__preloader">
-        <div class="pswp__preloader__icn">
-          <div class="pswp__preloader__cut">
-            <div class="pswp__preloader__donut"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-      <div class="pswp__share-tooltip"></div>
-    </div>
-    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-    </button>
-    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-    </button>
-    <div class="pswp__caption">
-      <div class="pswp__caption__center"></div>
-    </div>
-    </div>
-    </div>
-</div>
+</head>
 
 
-  
-  
-  
-
-
-
-
-
-
-  
-
-  <header class="header-section ">
-    
-    <div class="intro-header no-img">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <div class="post-heading">
-              
-                <h1>[藏]关于B树的一篇文章</h1>
-              
-              
-              
-              
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on April 1, 2013
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://leaver.me/">
+                        bystander&#39;s blog
+                    </a>
+                
+                <p class="description">寻找窄门</p>
             </div>
-          </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="http://leaver.me/">首页</a>
+                    
+                    <a  href="http://leaver.me/categories" title="目录">目录</a>
+                    
+                    <a  href="http://leaver.me/about/" title="关于我">关于我</a>
+                    
+                </nav>
+            </div>
         </div>
-      </div>
     </div>
-  </header>
+</header>
 
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
 
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
     
-<div class="container" role="main">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-      <article role="main" class="blog-post">
-        <p>很多人对B树的理解有很多错误，我看的最多的就是有人混淆二叉树（Binary Tree）和B树（B-Tree）,二叉树是不用简称，也就是BT的，而特殊一点的二叉搜索树才会用BST(Binary Search Tree),至于B-树和B树，这两个其实一样的，英文都是(B-Tree)，注意看中间的-号，这个是国内翻译的问题.所以大家不要被误导.</p>
+    <article class="post">
+        <header>
+            <h1 class="post-title">[藏]关于B树的一篇文章</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2013年4月1日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F'>文章收藏</a></span>
+            
+        </div>
+        
+        
+        
+        <div class="post-content">
+            <p>很多人对B树的理解有很多错误，我看的最多的就是有人混淆二叉树（Binary Tree）和B树（B-Tree）,二叉树是不用简称，也就是BT的，而特殊一点的二叉搜索树才会用BST(Binary Search Tree),至于B-树和B树，这两个其实一样的，英文都是(B-Tree)，注意看中间的-号，这个是国内翻译的问题.所以大家不要被误导.</p>
 <p>Rudolf Bayer 和 Ed McCreight 于1972年，在Boeing Research Labs 工作时发明了B 树，但是他们没有解释B 代表什么意义（如果有的话）.Douglas Comer 解释说: 两位作者从来都没解释过B树的原始意义。我个人觉得很有可能是他的名字，程序员对其作品的一种情结吧.</p>
 <p>这篇文章来自国外,是某大学的CS课程在线的,由于有时候无法访问，我直接提供PDF版,对其构造过程非常清晰.非常非常好的B树教程,图示很多,就不翻译了,强烈推荐阅读！</p>
 <p> </p>
 <p>下载：<a href="http://pan.baidu.com/share/link?shareid=404077&amp;uk=1493685990">B树讲解</a></p>
 <p> </p>
 
-
-        
-          <div class="blog-tags">
-            
-              <a href="https://leizhiyuan.github.io//tags/c&#43;&#43;/">C&#43;&#43;</a>&nbsp;
-            
-              <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-            
-              <a href="https://leizhiyuan.github.io//tags/%E6%94%B6%E8%97%8F/">收藏</a>&nbsp;
-            
-              <a href="https://leizhiyuan.github.io//tags/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
-            
-          </div>
-        
+        </div>
 
         
 
+
         
-      </article>
 
-      
-        <ul class="pager blog-pager">
-          
-            <li class="previous">
-              <a href="https://leizhiyuan.github.io/2013/03/11/%E8%97%8F%E7%86%AC%E5%B0%B1%E4%B8%80%E4%B8%AA%E5%AD%97/" data-toggle="tooltip" data-placement="top" title="[藏]熬就一个字">&larr; Previous Post</a>
-            </li>
-          
-          
-            <li class="next">
-              <a href="https://leizhiyuan.github.io/2013/04/05/%E5%92%8C-%E6%B5%85%E6%9E%90/" data-toggle="tooltip" data-placement="top" title="和
-浅析">Next Post &rarr;</a>
-            </li>
-          
-        </ul>
-      
-
-
-      
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
         
-          
-          <div class="disqus-comments">
-            <div id="disqus_thread"></div>
+        <li><a href="/2013/03/06/e.net-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%8C%87%E5%8D%97/">[E].Net 多线程指南</a></li>
+        
+        <li><a href="/2013/01/06/%E5%9B%BE%E7%9A%84%E9%81%8D%E5%8E%86c/">图的遍历(C#)</a></li>
+        
+        <li><a href="/2012/10/04/%E7%AE%80%E5%8D%95%E6%89%A9%E5%B1%95%E6%96%B9%E6%B3%95%E5%A2%9E%E5%BC%BA%E4%BB%A3%E7%A0%81%E5%8F%AF%E8%AF%BB%E6%80%A7/">简单扩展方法增强代码可读性</a></li>
+        
+        <li><a href="/2012/10/03/11%E4%B8%AA%E9%AB%98%E6%95%88%E7%9A%84vs%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/">11个高效的VS调试技巧</a></li>
+        
+        <li><a href="/2012/09/25/c#-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E7%B3%BB%E5%88%97/">C# 网络编程系列</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='http://leaver.me/tags/c&#43;&#43;'>C&#43;&#43;</a></li>
+                
+                <li><a href='http://leaver.me/tags/%E5%AD%A6%E4%B9%A0'>学习</a></li>
+                
+                <li><a href='http://leaver.me/tags/%E6%94%B6%E8%97%8F'>收藏</a></li>
+                
+                <li><a href='http://leaver.me/tags/%E7%AE%97%E6%B3%95'>算法</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    <div id="disqus_thread"></div>
 <script type="application/javascript">
     var disqus_config = function () {
     
@@ -367,85 +155,312 @@ Rudolf Bayer 和 Ed McCreight  …">
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-          </div>
-          
-        
-        
-      
 
-    </div>
-  </div>
+    
+    
 </div>
 
-    <footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <ul class="list-inline text-center footer-links">
-          
-              <li>
-                <a href="https://github.com/leizhiyuan" title="GitHub">
-                  <span class="fa-stack fa-lg">
-                    <i class="fas fa-circle fa-stack-2x"></i>
-                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-          
-          <li>
-            <a href="" title="RSS">
-              <span class="fa-stack fa-lg">
-                <i class="fas fa-circle fa-stack-2x"></i>
-                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
-              </span>
-            </a>
-          </li>
-          
-        </ul>
-        <p class="credits copyright text-muted">
-          
-            
-              <a href="leaver.me">bystander</a>
-            
-          
+                </div>
 
-          &nbsp;&bull;&nbsp;&copy;
-          
-            2019
-          
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='http://leaver.me/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://leaver.me/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/" title="深入理解Raft协议">深入理解Raft协议</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/" title="《非暴力沟通》笔记">《非暴力沟通》笔记</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/10/06/wedding-of-friends/" title="Wedding of Friends">Wedding of Friends</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/09/29/principle-note/" title="Principle Note">Principle Note</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/" title="梦见鲸鱼的那一夜">梦见鲸鱼的那一夜</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/08/20/understand-hong-kong-2/" title="Understand Hong Kong 2">Understand Hong Kong 2</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/08/18/understand-hong-kong-part-1/" title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/" title="错过的都是命，得到的才是人生">错过的都是命，得到的才是人生</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/04/06/recently/" title="Recently">Recently</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/03/01/mac%E8%BF%81%E7%A7%BB%E5%AF%BC%E8%87%B4golang%E6%97%A0%E6%B3%95debug%E7%9A%84%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D/" title="Mac迁移导致Golang无法debug的问题修复">Mac迁移导致Golang无法debug的问题修复</a>
+    </li>
+    
+</ul>
+    </section>
 
-          
-            &nbsp;&bull;&nbsp;
-            <a href="https://leizhiyuan.github.io/">bystander&#39;s blog</a>
-          
-        </p>
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记 (186)</a></li>
+    
+    <li><a href="http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/">我的翻译 (57)</a></li>
+    
+    <li><a href="http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/">文章收藏 (53)</a></li>
+    
+    <li><a href="http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录 (2)</a></li>
+    
+    <li><a href="http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记 (4)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://leaver.me/tags/android/">android</a>
+    
+    <a href="http://leaver.me/tags/c/">C＃</a>
+    
+    <a href="http://leaver.me/tags/c&#43;&#43;/">C&#43;&#43;</a>
+    
+    <a href="http://leaver.me/tags/java/">java</a>
+    
+    <a href="http://leaver.me/tags/javascript/">javascript</a>
+    
+    <a href="http://leaver.me/tags/linux/">linux</a>
+    
+    <a href="http://leaver.me/tags/mac/">mac</a>
+    
+    <a href="http://leaver.me/tags/matlab/">matlab</a>
+    
+    <a href="http://leaver.me/tags/maven/">maven</a>
+    
+    <a href="http://leaver.me/tags/mysql/">mysql</a>
+    
+    <a href="http://leaver.me/tags/nextgen-gallery/">NextGEN Gallery</a>
+    
+    <a href="http://leaver.me/tags/php/">php</a>
+    
+    <a href="http://leaver.me/tags/python/">python</a>
+    
+    <a href="http://leaver.me/tags/shell/">shell</a>
+    
+    <a href="http://leaver.me/tags/spring/">spring</a>
+    
+    <a href="http://leaver.me/tags/sql/">sql</a>
+    
+    <a href="http://leaver.me/tags/stackoverflow/">stackoverflow</a>
+    
+    <a href="http://leaver.me/tags/wcf/">WCF</a>
+    
+    <a href="http://leaver.me/tags/web/">web</a>
+    
+    <a href="http://leaver.me/tags/windows/">windows</a>
+    
+    <a href="http://leaver.me/tags/wordpress/">wordpress</a>
+    
+    <a href="http://leaver.me/tags/wpf/">WPF</a>
+    
+    <a href="http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/">上海</a>
+    
+    <a href="http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/">下载</a>
+    
+    <a href="http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
+    
+    <a href="http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/">互联网</a>
+    
+    <a href="http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
+    
+    <a href="http://leaver.me/tags/%E5%88%B6%E5%BA%A6/">制度</a>
+    
+    <a href="http://leaver.me/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+    
+    <a href="http://leaver.me/tags/%E5%8E%9F%E5%88%9B/">原创</a>
+    
+    <a href="http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/">大学</a>
+    
+    <a href="http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/">学习</a>
+    
+    <a href="http://leaver.me/tags/%E5%AE%89%E5%85%A8/">安全</a>
+    
+    <a href="http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/">家庭</a>
+    
+    <a href="http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/">工作</a>
+    
+    <a href="http://leaver.me/tags/%E5%B7%A5%E5%85%B7/">工具</a>
+    
+    <a href="http://leaver.me/tags/%E5%B9%B6%E5%8F%91/">并发</a>
+    
+    <a href="http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/">序列化</a>
+    
+    <a href="http://leaver.me/tags/%E5%BC%80%E5%8F%91/">开发</a>
+    
+    <a href="http://leaver.me/tags/%E5%BF%83%E7%90%86/">心理</a>
+    
+    <a href="http://leaver.me/tags/%E6%80%BB%E7%BB%93/">总结</a>
+    
+    <a href="http://leaver.me/tags/%E6%8A%80%E6%9C%AF/">技术</a>
+    
+    <a href="http://leaver.me/tags/%E6%8F%92%E4%BB%B6/">插件</a>
+    
+    <a href="http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+    
+    <a href="http://leaver.me/tags/%E6%94%B6%E8%97%8F/">收藏</a>
+    
+    <a href="http://leaver.me/tags/%E6%95%B0%E5%AD%A6/">数学</a>
+    
+    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+    
+    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">数据挖掘</a>
+    
+    <a href="http://leaver.me/tags/%E6%96%87%E7%AB%A0/">文章</a>
+    
+    <a href="http://leaver.me/tags/%E6%99%BA%E8%83%BD/">智能</a>
+    
+    <a href="http://leaver.me/tags/%E6%9D%82%E6%96%87/">杂文</a>
+    
+    <a href="http://leaver.me/tags/%E6%AD%A6%E6%B1%89/">武汉</a>
+    
+    <a href="http://leaver.me/tags/%E6%B1%87%E7%BC%96/">汇编</a>
+    
+    <a href="http://leaver.me/tags/%E7%88%B1%E6%83%85/">爱情</a>
+    
+    <a href="http://leaver.me/tags/%E7%90%86%E8%AE%BA/">理论</a>
+    
+    <a href="http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</a>
+    
+    <a href="http://leaver.me/tags/%E7%94%9F%E6%B4%BB/">生活</a>
+    
+    <a href="http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/">电子书</a>
+    
+    <a href="http://leaver.me/tags/%E7%94%B5%E5%BD%B1/">电影</a>
+    
+    <a href="http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/">社会</a>
+    
+    <a href="http://leaver.me/tags/%E7%A7%91%E6%8A%80/">科技</a>
+    
+    <a href="http://leaver.me/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+    
+    <a href="http://leaver.me/tags/%E7%AE%97%E6%B3%95/">算法</a>
+    
+    <a href="http://leaver.me/tags/%E7%BC%96%E7%A8%8B/">编程</a>
+    
+    <a href="http://leaver.me/tags/%E7%BC%96%E8%AF%91/">编译</a>
+    
+    <a href="http://leaver.me/tags/%E7%BF%BB%E8%AF%91/">翻译</a>
+    
+    <a href="http://leaver.me/tags/%E8%81%8C%E4%B8%9A/">职业</a>
+    
+    <a href="http://leaver.me/tags/%E8%AE%B0%E5%BD%95/">记录</a>
+    
+    <a href="http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/">设计</a>
+    
+    <a href="http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/">读书</a>
+    
+    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/">软件</a>
+    
+    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</a>
+    
+    <a href="http://leaver.me/tags/%E8%BF%90%E7%BB%B4/">运维</a>
+    
+    <a href="http://leaver.me/tags/%E9%87%91%E8%9E%8D/">金融</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
         
-        <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
-          
-        </p>
-      </div>
+        <li>
+            <a target="_blank" href="https://www.cppfans.org/" title="C&#43;&#43;爱好者博客">C&#43;&#43;爱好者博客</a>
+        </li>
+        
+        <li>
+            <a target="_blank" href="http://www.kailing.pub" title="KL，每天进步一点点">KL，每天进步一点点</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="http://leaver.me/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
     </div>
-  </div>
-</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-<script src="https://leizhiyuan.github.io/js/main.js"></script>
-<script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
-<script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="http://leaver.me/">bystander&#39;s blog By bystander</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
 
 
+    
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', '30961201', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 
 
 
 
+</body>
 
-  </body>
 </html>
-

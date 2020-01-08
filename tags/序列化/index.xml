@@ -2,35 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>序列化 on bystander&#39;s blog</title>
-    <link>https://leizhiyuan.github.io/tags/%E5%BA%8F%E5%88%97%E5%8C%96/</link>
+    <link>http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/</link>
     <description>Recent content in 序列化 on bystander&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Mon, 28 Dec 2015 19:17:25 +0000</lastBuildDate>
     
-	<atom:link href="https://leizhiyuan.github.io/tags/%E5%BA%8F%E5%88%97%E5%8C%96/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>python3.5 安装 Paramiko</title>
-      <link>https://leizhiyuan.github.io/2015/12/28/python3.5-%E5%AE%89%E8%A3%85-paramiko/</link>
+      <link>http://leaver.me/2015/12/28/python3.5-%E5%AE%89%E8%A3%85-paramiko/</link>
       <pubDate>Mon, 28 Dec 2015 19:17:25 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2015/12/28/python3.5-%E5%AE%89%E8%A3%85-paramiko/</guid>
+      <guid>http://leaver.me/2015/12/28/python3.5-%E5%AE%89%E8%A3%85-paramiko/</guid>
       <description>最近由于一些需求,要搞一下python,于是周末搞了搞.要连接服务器,进行一些服务器的操作,于是安装这个Paramiko包,
 直接pip install paramiko 结果.报错,最关键的一句是:
 error: Unable to find vcvarsall.bat google一圈.最终找到一种最简单地方法.其他的安装vs.安装MinGW都太复杂了.
  安装PyCrypto 第三方版 因为paramiko依赖PyCrypto,上面那个错就是他报错出来的.安装PyCrypto第三方版  pip install --use-wheel --no-index --find-links=https://github.com/sfbahr/PyCrypto-Wheels/raw/master/pycrypto-2.6.1-cp35-none-win_amd64.whl pycrypto 安装完成后,再次安装paramiko即可. 2.修改nt.py
 安装完上面的步骤,写一个简单的程序测试下
-#-*- coding: utf-8 -*- #!/usr/bin/python import paramiko import threading def ssh2(ip,username,passwd,cmd): try: ssh = paramiko.SSHClient() ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy()) ssh.connect(ip,22,username,passwd,timeout=5) for m in cmd: stdin, stdout, stderr = ssh.exec_command(m) out = stdout.readlines() #屏幕输出 for o in out: print(o) print(&amp;#39;%s\tOK\n&amp;#39;%(ip)) ssh.close() except : print(&amp;#39;%s\tError\n&amp;#39;%(ip)) if __name__==&amp;#39;__main__&amp;#39;: cmd = [&amp;#39;find /home/admin/logs/ -mtime +3 -name \&amp;#39;*.</description>
+#-*- coding: utf-8 -*- #!/usr/bin/python import paramiko import threading def ssh2(ip,username,passwd,cmd): try: ssh = paramiko.SSHClient() ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy()) ssh.connect(ip,22,username,passwd,timeout=5) for m in cmd: stdin, stdout, stderr = ssh.exec_command(m) out = stdout.readlines() #屏幕输出 for o in out: print(o) print(&amp;#39;%s\tOK\n&amp;#39;%(ip)) ssh.close() except : print(&amp;#39;%s\tError\n&amp;#39;%(ip)) if __name__==&amp;#39;__main__&amp;#39;: cmd = [&amp;#39;find /home/admin/logs/ -mtime +3 -name \&amp;#39;*.log.*\&amp;#39; -exec rm -rf {} \;&amp;#39;]#你要执行的命令列表 username = &amp;#34;admin&amp;#34; #用户名 passwd = &amp;#34;password&amp;#34; #密码 threads = [] #多线程 ip = &amp;#34;127.0.0.1&amp;#34; print(&amp;#34;Begin......&amp;#34;) a=threading.Thread(target=ssh2,args=(ip,username,passwd,cmd)) a.start() input() 运行报错. ImportError: No module named &#39;winrandom&#39;
+so一下..找到一个办法 http://stackoverflow.com/questions/24804829/another-one-about-pycrypto-and-paramiko
+找到python3.5的安装目录的 Lib\site-packages\Crypto\Random\OSRNG的nt.py文件将
+import winrandom 改成
+from . import winrandom 再次运行ok.非常简单</description>
     </item>
     
     <item>
       <title>json-lib反序列化精度丢失问题</title>
-      <link>https://leizhiyuan.github.io/2015/11/25/json-lib%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%B2%BE%E5%BA%A6%E4%B8%A2%E5%A4%B1%E9%97%AE%E9%A2%98/</link>
+      <link>http://leaver.me/2015/11/25/json-lib%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%B2%BE%E5%BA%A6%E4%B8%A2%E5%A4%B1%E9%97%AE%E9%A2%98/</link>
       <pubDate>Wed, 25 Nov 2015 21:30:58 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2015/11/25/json-lib%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%B2%BE%E5%BA%A6%E4%B8%A2%E5%A4%B1%E9%97%AE%E9%A2%98/</guid>
+      <guid>http://leaver.me/2015/11/25/json-lib%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%B2%BE%E5%BA%A6%E4%B8%A2%E5%A4%B1%E9%97%AE%E9%A2%98/</guid>
       <description>最近在工作中,遇到一个问题,项目中某处使用了json-lib的2.4-jdk15版本.问题最终简化为
 double amount = 6264583.33; String jsonString = &amp;#34;{\&amp;#34;pi\&amp;#34;:&amp;#34; + amount + &amp;#34;}&amp;#34;; JSONObject jsonObject = JSONObject.fromObject(jsonString); System.out.println(&amp;#34;转换前:&amp;#34; + jsonString); System.out.println(&amp;#34;转换后:&amp;#34; + jsonObject); 这个值输出的将会是6264583.5 这个值.这个问题.先google一下,很快赵到了 http://sourceforge.net/p/json-lib/bugs/116/ 于是,大概问题知道了.是json-lib的一个bug,但是这个bug怎么来的呢.结合这个bug下面的评论和debug代码,先以pi这个例子,很快走到了.
 可以看到json-lib走到了apache common-lang(2.5这个版本) 的NumberUtils.createNumber处,此时String的还是对的. 继续单步,来到这个方法里面
@@ -41,7 +45,15 @@ n = org.apache.commons.lang3.math.NumberUtils.createNumber(&amp;#34;3.1415926535
 修复不完善..
 于是提个bug :https://issues.apache.org/jira/browse/LANG-1187 等回复.
 继续.公司内部一般使用fastjson,那么如果我使用fastjson,有问题吗? 发现没有问题.
-Object o = com.alibaba.fastjson.JSONObject.parse(&amp;#34;3.14159265358&amp;#34;); System.out.println(&amp;#34;fastjson_createNumber_3.14159265358----&amp;gt;&amp;#34; + o + &amp;#34;-&amp;gt;精度正常&amp;#34;); o = com.alibaba.fastjson.JSONObject.parse(&amp;#34;6264583.33&amp;#34;); System.out.println(&amp;#34;fastjson_createNumber_6264583.33----&amp;gt;&amp;#34; + o + &amp;#34;-&amp;gt;精度正常&amp;#34;); 可以看到,这里做转换的时候传递了一个是否是bigdecimal的标识.</description>
+Object o = com.alibaba.fastjson.JSONObject.parse(&amp;#34;3.14159265358&amp;#34;); System.out.println(&amp;#34;fastjson_createNumber_3.14159265358----&amp;gt;&amp;#34; + o + &amp;#34;-&amp;gt;精度正常&amp;#34;); o = com.alibaba.fastjson.JSONObject.parse(&amp;#34;6264583.33&amp;#34;); System.out.println(&amp;#34;fastjson_createNumber_6264583.33----&amp;gt;&amp;#34; + o + &amp;#34;-&amp;gt;精度正常&amp;#34;); 可以看到,这里做转换的时候传递了一个是否是bigdecimal的标识.而这个标识默认是开启的.而且即使不开启..
+最坏的情况也是个double.所以数据不会丢失.
+再顺便说一下,double的6264583.33 为什么转换到float会精度丢失,先看一下浮点数在计算机中怎么表示的 找到一张图,这是double的标识和浮点数的计算.
+而浮点数则是32位,1位符号位,8位幂,23位尾数,看测试代码
+//double标识测试 double d = 6264583.33d; long l = Double.doubleToLongBits(d); System.out.println(Long.toBinaryString(l)); //float想要表示这个数字 float f = 6264583.33f; int value = Float.floatToIntBits(f); System.out.println(Integer.toBinaryString(value)); //double表示这个值 d = 6264583.5d; l = Double.doubleToLongBits(d); System.out.println(Long.toBinaryString(l)); 输出结果(做一下分割对齐)
+1 00000101010 111111001011100000111010101000111101011100001010010 1 00101010 1111110010111000001111 1 00000101010 111111001011100000111100000000000000000000000000000 注意看,第一行是6264583.33的double表示.而同样想要用float表示这个数字,发现幂,符号位,都是对的.但是因为尾数只有23位,所以四舍五入,将完整double的后几位进位1,变成了这个二进制表示法,这时候已经不准确了, 而这个数字呢.看第三行,会发现实际上是6264583.5的精确值表示.尾数位0都是可以省略的,因为按照公式计算也没啥作用.
+如有问题,欢迎评论讨论.
+附录: 完整的测试代码
+public class App { public static void main(String[] args) { //http://sourceforge.net/p/json-lib/bugs/116/ //2.4版本有问题 double pi = 3.14159265358; String jsonString = &amp;#34;{\&amp;#34;pi\&amp;#34;:&amp;#34; + pi + &amp;#34;}&amp;#34;; JSONObject jsonObject = JSONObject.</description>
     </item>
     
   </channel>

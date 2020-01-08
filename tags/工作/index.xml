@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>工作 on bystander&#39;s blog</title>
-    <link>https://leizhiyuan.github.io/tags/%E5%B7%A5%E4%BD%9C/</link>
+    <link>http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/</link>
     <description>Recent content in 工作 on bystander&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Sun, 27 Oct 2019 06:29:11 +0800</lastBuildDate>
     
-	<atom:link href="https://leizhiyuan.github.io/tags/%E5%B7%A5%E4%BD%9C/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>《非暴力沟通》笔记</title>
-      <link>https://leizhiyuan.github.io/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/</link>
+      <link>http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Sun, 27 Oct 2019 06:29:11 +0800</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/</guid>
+      <guid>http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/</guid>
       <description>最近读完了《非暴力沟通》这本书，看完之后，整体感觉还好，感觉核心就下面这四点
 1.清楚地表达观察结果 区分感受和观察，表达的时候，一定要表达清楚，不要只表达感受，即使你批评一个人，也要说清楚，你看到了什么事情，让你觉得你应该批评他，而不是一开口就是你不对，你错了。 要不带评论的冷静观察。
 2.表达感受 在表达完你的观察之后，要表达感受，这个主要是为了自己，让你能观察到自己的感受，让你知道什么时候，你是什么感受，是否是正向的。如何处理，注意，“我觉得”，“我想”，这个词带有评判色彩，当你说这个的时候，请重新组织语言。
@@ -27,10 +27,10 @@
     
     <item>
       <title>Principle Note</title>
-      <link>https://leizhiyuan.github.io/2019/09/29/principle-note/</link>
+      <link>http://leaver.me/2019/09/29/principle-note/</link>
       <pubDate>Sun, 29 Sep 2019 06:04:31 +0800</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2019/09/29/principle-note/</guid>
+      <guid>http://leaver.me/2019/09/29/principle-note/</guid>
       <description>最近在读一本书，《原则》，有一些感触比较深的点，分享下。这本书前半部分介绍作者在桥水的工作历程，建议直接忽略。从第二部分看起来即可。
 1. 独立思考 （1）你想要什么； （2）事实是什么； （3）面对事实，你如何实现自己的愿望
 知道自己想要什么，知道现实是什么，然后找办法实现，可以求助别人，如果还是实现不了，建议认清楚这种鸿沟。
@@ -58,10 +58,10 @@
     
     <item>
       <title>分析代码调用关系的利器-Flow</title>
-      <link>https://leizhiyuan.github.io/2017/04/08/%E5%88%86%E6%9E%90%E4%BB%A3%E7%A0%81%E8%B0%83%E7%94%A8%E5%85%B3%E7%B3%BB%E7%9A%84%E5%88%A9%E5%99%A8-flow/</link>
+      <link>http://leaver.me/2017/04/08/%E5%88%86%E6%9E%90%E4%BB%A3%E7%A0%81%E8%B0%83%E7%94%A8%E5%85%B3%E7%B3%BB%E7%9A%84%E5%88%A9%E5%99%A8-flow/</link>
       <pubDate>Sat, 08 Apr 2017 15:10:36 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2017/04/08/%E5%88%86%E6%9E%90%E4%BB%A3%E7%A0%81%E8%B0%83%E7%94%A8%E5%85%B3%E7%B3%BB%E7%9A%84%E5%88%A9%E5%99%A8-flow/</guid>
+      <guid>http://leaver.me/2017/04/08/%E5%88%86%E6%9E%90%E4%BB%A3%E7%A0%81%E8%B0%83%E7%94%A8%E5%85%B3%E7%B3%BB%E7%9A%84%E5%88%A9%E5%99%A8-flow/</guid>
       <description>今天推荐一个不错的软件.是idea 的插件.名字是Flow, 官方称:A better way to understand your Java applications,原理就是通过 java-agent 修改字节码,配置了拦截器,然后真实地跑一个测试用例,或者启动一下项目,就会生成一个真实的调用关系.官方地址:http://findtheflow.io/
 之前阅读源代码,对于抽象类,或者接口,静态阅读代码不太容易确定具体的调用类,因此阅读有一定的阻碍,当然 debug 也行..但是这个可以通过跑用例,或者简单的测试用例,理清调用关系,非常不错. 可以对代码结构有一个整体关系
 安装 安装比较简单:https://plugins.jetbrains.com/plugin/8362?pr=idea 直接安装idea 这个插件,然后重新启动 idea, 安装完成后的效果.
@@ -74,10 +74,10 @@
     
     <item>
       <title>jdk8_cannot_access_class_file</title>
-      <link>https://leizhiyuan.github.io/2017/03/31/jdk8_cannot_access_class_file/</link>
+      <link>http://leaver.me/2017/03/31/jdk8_cannot_access_class_file/</link>
       <pubDate>Fri, 31 Mar 2017 13:48:50 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2017/03/31/jdk8_cannot_access_class_file/</guid>
+      <guid>http://leaver.me/2017/03/31/jdk8_cannot_access_class_file/</guid>
       <description>之前有个项目用 jdk6跑运行正常,用 jdk8跑的时候,会报java cannot access ....class file ...as class file not found though it exists. 虽然可以通过加上报错的类到依赖里解决.但是一直没想明白,为啥 jdk6下没报错.
 最近再次遇到,于是想一次性搞清楚.搜了一下,看 so 上有这么个说法.大意就是以前,如果 A 依赖 B,B 实现了 C 接口,编译的时候, 用 jdk8编译的时候, C 必须在 classpath 中, http://stackoverflow.com/questions/40255718/compiling-with-jdk-1-8-java-cannot-access-class-file-class-file-not-found
 给出了一个 bug 连接,但是这里跟我们的问题有差异,不过这个点提醒了我.于是我搜索了一下 jdk8的relase note
@@ -89,24 +89,31 @@ http://www.oracle.com/technetwork/java/javase/8-compatibility-guide-2156366.html
     
     <item>
       <title>oom介绍</title>
-      <link>https://leizhiyuan.github.io/2017/02/03/oom%E4%BB%8B%E7%BB%8D/</link>
+      <link>http://leaver.me/2017/02/03/oom%E4%BB%8B%E7%BB%8D/</link>
       <pubDate>Fri, 03 Feb 2017 15:04:04 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2017/02/03/oom%E4%BB%8B%E7%BB%8D/</guid>
+      <guid>http://leaver.me/2017/02/03/oom%E4%BB%8B%E7%BB%8D/</guid>
       <description>oom 之前知道, 但是并不是很了解,最近遇到了由 oom 引发的问题,所以学习记录一下.
 OOM-killer：Out-of-Memory (OOM) Killer是一种保护机制，用于当内存严重不足时，为了系统的继续运转，内核迫不得已挑选一个进程，将其杀死，以释放内存，缓解内存不足的问题。 可以看出这种方式对进程的保护是有限的，不能完全的保护进程的运行。
 如何知道是否发生了 oom 两种方法,第一种,查看 /var/log/messages,会有类似
 Out of memory: Kill process 9682 (mysqld) score 9 or sacrifice child Killed process 9682, UID 27, (mysqld) total-vm:47388kB, anon-rss:3744kB, file-rss:80kB httpd invoked oom-killer: gfp_mask=0x201da, order=0, oom_adj=0, oom_score_adj=0 httpd cpuset=/ mems_allowed=0 Pid: 8911, comm: httpd Not tainted 2.6.32-279.1.1.el6.i686 #1 这样的标识,说明发生了 oom,关键就是 kill process, 所以可以这样
 sudo cat /var/log/messages | grep -i&amp;quot;killed process&amp;quot;
-另一种是通过dmesg来查看 dmesg | egrep -i &#39;killed process&#39; 这个命令查看的 oom 的时间里是时间戳的形式,如果你的 dmesg 没有-T这个时间的选项,那么就需要通过</description>
+另一种是通过dmesg来查看 dmesg | egrep -i &#39;killed process&#39; 这个命令查看的 oom 的时间里是时间戳的形式,如果你的 dmesg 没有-T这个时间的选项,那么就需要通过
+date -d &amp;#34;1970-01-01 UTC `echo &amp;#34;$(date +%s)-$(cat /proc/uptime|cut -f 1 -d&amp;#39; &amp;#39;)+12288812.926194&amp;#34;|bc ` seconds&amp;#34; 来转换成可读的时间了.
+oom 的原理 其中涉及到有三个相关文件：
+ /proc/$PID/oom_adj /proc/$PID/oom_score /proc/$PID/oom_score_adj 其中 oom_score 表示最终的分数，该分数越大，越可能被 Killer 杀掉。  而 oom_adj 是调整分数的，可以设置为负值，会对 oom_score减分。
+从Linux 2.6.36开始都安装了/proc/$PID/oom_score_adj，此后将替换掉/proc/$PID/oom_adj。即使当前是对/proc/$PID/oom_adj进行的设置，在内核内部进行变换后的值也是针对/proc/$PID/oom_score_adj设置的。可以参见feature-removal-schedule这里 171行.
+通过 cat /proc/$PID/oom_score 可以查看进程的得分
+打分算法在这里 https://github.com/torvalds/linux/blob/master/mm/oom_kill.c
+从上面的 oom_kill.c 代码里可以看到 oom_badness() 给每个进程打分，根据 points 的高低来决定杀哪个进程，这个 points 可以根据 adj 调节，root 权限的进程通常被认为很重要，不应该被轻易杀掉，所以打分的时候可以得到 3% 的优惠（adj -= 30; 分数越低越不容易被杀掉）。我们可以在用户空间通过操作每个进程的 oom_adj 内核参数来决定哪些进程不这么容易被 OOM killer 选中杀掉。比如，如果不想 MySQL 进程被轻易杀掉的话可以找到 MySQL 运行的进程号后，调整 oom_score_adj 为 -15（注意 points 越小越不容易被杀）：范围是从-1000 到 1000,参考这里</description>
     </item>
     
     <item>
       <title>graylog日记管理平台使用的那些坑</title>
-      <link>https://leizhiyuan.github.io/2016/12/10/graylog%E6%97%A5%E8%AE%B0%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/</link>
+      <link>http://leaver.me/2016/12/10/graylog%E6%97%A5%E8%AE%B0%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/</link>
       <pubDate>Sat, 10 Dec 2016 18:48:17 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2016/12/10/graylog%E6%97%A5%E8%AE%B0%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/</guid>
+      <guid>http://leaver.me/2016/12/10/graylog%E6%97%A5%E8%AE%B0%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/</guid>
       <description>前言 最近使用 graylog在部署日志平台的时候,踩到很多&amp;quot;坑&amp;rdquo;,记录一下
 日志采集(nxlog) 1.客户端不要做太多的正则计算 graylog 最早推荐的 nxlog 采集客户端,现在貌似有了 beats 的采集方式,不过我没了解,nxlog 采集的话,需要配置Snippets,就是定义输入,输出,处理器的地方,这个地方, Input 模块是在客户端计算的.所以,一定不要进行太多的正则计算.否则会严重影响客户端的 cpu 资源.降低应用程序的性能.
 2.开多行一定要慎重 graylog 可以通过配置
@@ -114,15 +121,21 @@ sudo cat /var/log/messages | grep -i&amp;quot;killed process&amp;quot;
 这时候一般伴随着nxlog 的客户端日志中开始打印: 2016-12-05 18:36:47 ERROR oversized string, limit is 1048576 bytes 这样的信息.表示单条日志超过了1m
 最终有一定几率影响客户端应用,被 oom 所杀.不要问我怎么知道的&amp;hellip;
 3 日志就是太大怎么办. 貌似没办法..只能在 Input 配置中.
-Exec if $raw_event $raw_event = substr($raw_event, 0, 1040000); 执行类似的来限制,没有尝试过,参考这里:日志大小超长配置</description>
+Exec if $raw_event $raw_event = substr($raw_event, 0, 1040000); 执行类似的来限制,没有尝试过,参考这里:日志大小超长配置
+服务端处理(graylog) 1.服务端性能不好的情况下也不要做大量正则 日志处理这部分主要是说 graylog 自身的处理,graylog 是 cpu 密集型的,在收到了 nxlog 经过少量计算的日志后, graylog 其实还提供了 extrator 的功能来解析字段,当时我因为部署了很多应用的日志采集,为了生成一个统一的索引字段,我在extrator写了一个正则,对于所有的消息,根据这个正则找到一个字段,来作为 key(保存成 no), 可能一个流水号,这样我就可以根据 no:xxx 来查询所有相关的日志了.
+结果这个正则写了以后, graylog 处理性能急剧下降.开始大量积压消息.无法发送给后端的 es 来做处理.在 graylog 的管理页面,能明显看到 in 是几千, out 是几百..很快 node 节点就废了.
+参考:Very slow process message
+如果是确定不是 graylog 的问题, output 还是慢,可以尝试修改输出的并发量来解决,改改 graylog 配置中的output_batch_size值.
+2.journal如果太多,可能导致graylog 状态 dead 由于我前面的问题,导致 journal 中保存了太多的日志,这样会导致两个问题,1,启动的时候会尝试吧这些日志全部加载 graylog 服务端的内存中.这时候,如果应用内存不够,直接会启动不了报java 的 oom,
+2016-12-04T12:25:36.543+02:00 ERROR [ServiceManager] Service JournalReader [FAILED] has failed in the RUNNING state. java.lang.OutOfMemoryError: Java heap space at java.</description>
     </item>
     
     <item>
       <title>graylog中的字段解析</title>
-      <link>https://leizhiyuan.github.io/2016/10/30/graylog%E4%B8%AD%E7%9A%84%E5%AD%97%E6%AE%B5%E8%A7%A3%E6%9E%90/</link>
+      <link>http://leaver.me/2016/10/30/graylog%E4%B8%AD%E7%9A%84%E5%AD%97%E6%AE%B5%E8%A7%A3%E6%9E%90/</link>
       <pubDate>Sun, 30 Oct 2016 14:47:01 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2016/10/30/graylog%E4%B8%AD%E7%9A%84%E5%AD%97%E6%AE%B5%E8%A7%A3%E6%9E%90/</guid>
+      <guid>http://leaver.me/2016/10/30/graylog%E4%B8%AD%E7%9A%84%E5%AD%97%E6%AE%B5%E8%A7%A3%E6%9E%90/</guid>
       <description>关于字段解析 一旦 graylog 用在了一个分布式系统上,那么采集的日志格式多种多样,涉及到通过 rules.drl来解析具体的字段.之前的同学的方案是用drools 来完成的.通过一个统一的界面,来给用户生成一些正则规则这种.然后自己写了个转换器转成 Drools 的文件.更新到 graylog 的服务器上.然后重启gralog 应用完成.
 实际上, graylog 2之后的版本提供了rules和 pipeline ,这种不需要重启应用,完成这个解析的动作.但是.注意.这个不完善.所以只支持一些简单的语法,无法实现原有的完全转换.所以放弃.
 在此过程中.这个rules 有一个比较强大的功能,自动解析 key value 对.需要添加,但是,需要你的日志文件格式里的 key value有空格, 也就是要求必须是 key=value 这样,不能紧挨着逗号这样的..比如你的打印日志是 key=value,key2=value2.那么久无法解析了..这个暂时没看到比较好的办法.估计要改代码.如果你恰好符合.那最好了.</description>
@@ -130,25 +143,27 @@ Exec if $raw_event $raw_event = substr($raw_event, 0, 1040000); 执行类似的�
     
     <item>
       <title>javOSize:新一代java分析工具</title>
-      <link>https://leizhiyuan.github.io/2015/07/04/javosize%E6%96%B0%E4%B8%80%E4%BB%A3java%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/</link>
+      <link>http://leaver.me/2015/07/04/javosize%E6%96%B0%E4%B8%80%E4%BB%A3java%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/</link>
       <pubDate>Sat, 04 Jul 2015 16:18:57 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2015/07/04/javosize%E6%96%B0%E4%B8%80%E4%BB%A3java%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/</guid>
+      <guid>http://leaver.me/2015/07/04/javosize%E6%96%B0%E4%B8%80%E4%BB%A3java%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/</guid>
       <description>介绍 最近看到这么个工具-javOSize .官网地址,去官网看了下.发现介绍很有意思,叫做 the missing sugar for your Java cup.(你的咖啡杯中缺少的那颗糖).于是感受一下这颗糖到底甜不甜
 安装 安装非常简单,从这里下载,其实完成之后就是一个jar包.非常简单,不用配置啥的.
 简单使用 使用方法就是从先附加到一个java进程上,在linux,上我直接执行 ps aux|grep java  就能看到了.不废话,得到java进程的pid之后,运行 java -jar javosize-1.0.9.jar pid pid就是pid的号了. 然后会看到如下图的界面,表示已经附加成功了.先看看都有啥.执行ls.看到有这么几个命令.我比较单纯,刚开始以为是可执行文件.结果丢人了.看了下官方文档,才知道是目录.进入对应的目录.然后执行ls就能看到对应的信息了.ls简直不能再万能..改目录支持的所有命令通过在对应的目录执行help来查看.个人尝试觉得好的功能有.   动态修改类 进入CLASSES目录,然后通过执行 ls|grep xxx  来找到需要修改的类,然后通过vi 就可以直接编辑.编辑完成后,直接保存就会动态替换.文档里说是支持jdk1.7以上,对1.6的支持估计是不行的.没有测试.   无须重启开启jmx 直接挂载之后,执行cd REPOSITORY 然后执行就好了. exec START_JMX_SERVER 6666
   拦截任意代码 可以动态添加类似Spring中的aop方法.用于打印一些调用日志,排查线上问题.进入INTERCEPTOR目录.然后通过如下的方法给某个类的某个方法添加拦截器. create TickServlet begin mypackage.Hello doGet System.out.println(&amp;quot;Servlet invoked&amp;quot;);
   检测内存泄漏 进入 REPOSITORY 目录,执行 exec TOP_FAT_STATIC_VARIABLES 5 com.apache.*会取出某个包下面占用大小最大的5个类.会很方便找到.
   自动检测性能问题 PROBLEMS 目录专业解决这种问题.进入目录后.执行ls命令.会看到这样的场景
-  Concurrency Deadlocked: false Memory High GC (&amp;gt;2%): false   这里目前只检测了死锁和频繁GC.</description>
+  Concurrency Deadlocked: false Memory High GC (&amp;gt;2%): false   这里目前只检测了死锁和频繁GC.已经很有用了.至于效果还有待观察.
+  无需重启开启GC 日志 和开启jmx一样,进入JMX目录后,执行 exec java.lang:type=Memory.setVerbose(true); 就开启了.
+  更多文档  官方文档  </description>
     </item>
     
     <item>
       <title>休假停下来反思</title>
-      <link>https://leizhiyuan.github.io/2015/07/02/%E4%BC%91%E5%81%87%E5%81%9C%E4%B8%8B%E6%9D%A5%E5%8F%8D%E6%80%9D/</link>
+      <link>http://leaver.me/2015/07/02/%E4%BC%91%E5%81%87%E5%81%9C%E4%B8%8B%E6%9D%A5%E5%8F%8D%E6%80%9D/</link>
       <pubDate>Thu, 02 Jul 2015 21:20:19 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2015/07/02/%E4%BC%91%E5%81%87%E5%81%9C%E4%B8%8B%E6%9D%A5%E5%8F%8D%E6%80%9D/</guid>
+      <guid>http://leaver.me/2015/07/02/%E4%BC%91%E5%81%87%E5%81%9C%E4%B8%8B%E6%9D%A5%E5%8F%8D%E6%80%9D/</guid>
       <description>项目经过一年终于告一段落.于是有了一个短暂的休假.
 早上照例没能睡好觉.很早就醒了.然后又躺了一会,醒来看了会订阅.然后听了一集&amp;laquo; Mr.Robot &amp;raquo;,感觉还行,再对着字幕看了一遍,以后还是有一些地方理解的有问题.以后还是要多对着无字幕版的美剧去看,才能慢慢听懂更多的,比如今天听到个society,讲社交焦虑,听到很熟悉,就是没反应过来.学而不用则殆.
 中午给文哥寄了个快递,顺便点个饭.之前的&amp;quot;手艺&amp;quot;应该也已经忘得差不多了.到杭州之后很少做饭,工作太忙.没办法.当然这只是借口.主要还是我懒吧.
@@ -161,24 +176,29 @@ Exec if $raw_event $raw_event = substr($raw_event, 0, 1040000); 执行类似的�
     
     <item>
       <title>SecureRandom第一次生成随机数非常慢</title>
-      <link>https://leizhiyuan.github.io/2015/06/30/securerandom%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E6%95%B0%E9%9D%9E%E5%B8%B8%E6%85%A2/</link>
+      <link>http://leaver.me/2015/06/30/securerandom%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E6%95%B0%E9%9D%9E%E5%B8%B8%E6%85%A2/</link>
       <pubDate>Tue, 30 Jun 2015 19:18:36 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2015/06/30/securerandom%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E6%95%B0%E9%9D%9E%E5%B8%B8%E6%85%A2/</guid>
+      <guid>http://leaver.me/2015/06/30/securerandom%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E6%95%B0%E9%9D%9E%E5%B8%B8%E6%85%A2/</guid>
       <description>最近发现某个系统在第一次做操作的时候非常缓慢,逐步定位打印更加详细的日志后,发现问题是使用了SecureRandom 这个类来获取随机种子,这个类第一次初始化的时候setSeed的值,非常缓慢,偶尔出现, 排查的过程就是二分,不断定位具体的代码,最终定位
 也就是说根本原因是SecureRandom 这个jre的工具类的问题.具体的bug搜索之后,见
 http://bugs.java.com/view_bug.do?bug_id=6521844
 详细的解释过程: 参考: http://www.websina.com/bugzero/faq/securerandom-slowness.html
  Q: Why the SecureRandom generateSeed is so slow or even hang on Linux OS?
-  A: When you login, it hangs or takes more than a minute to get the response. If your server is on a Linux OS, the culprit here is SecureRandom generateSeed() which uses /dev/random to generate the seed. However, /dev/random is a blocking number generator and if it doesn&#39;t have enough random data to provide, it will simply wait until it does, which forces the JVM to wait.</description>
+  A: When you login, it hangs or takes more than a minute to get the response. If your server is on a Linux OS, the culprit here is SecureRandom generateSeed() which uses /dev/random to generate the seed. However, /dev/random is a blocking number generator and if it doesn&#39;t have enough random data to provide, it will simply wait until it does, which forces the JVM to wait. Keyboard and mouse input as well as disk activity can generate the randomness or entropy needed. But on a server that lacks such activies, the problem may arise.
+ 大意是说当使用SecureRandom 的时候默认使用的/dev/random 文件来生成种子,如果没有足够的种子数据,(这些数据是由键盘,鼠标,磁盘活动等产生的,如果没有这些活动,就没有足够的数据)会一直等待,导致jvm卡住,耗费比较长的时候.由于出现问题的这个环境的确是最近没什么操作,而且复现的操作也是隔个一个晚上,重新做业务才会出现.
+文中给出了一种解决方案.
+ 启动参数添加 -Djava.security.egd=file:/dev/./urandom,验证是可以的. 修改随机数获取方式  这里urandom是啥呢,引用自维基
+ /dev/random的一个副本是/dev/urandom（“unlocked”，非阻塞的随机数发生器[4]），它会重复使用熵池中的数据以产生伪随机数据。这表示对/dev/urandom的读取操作不会产生阻塞，但其输出的熵可能小于/dev/random的。它可以作为生成较低强度密码的伪随机数生成器，不建议用于生成高强度长期密码。
+ 类似案例: SecureRandom 导致tomcat启动过慢. https://wiki.apache.org/tomcat/HowTo/FasterStartUp#Entropy_Source 从文中看到说java8已经提升了这个性能.但是一般生产环境的java版本是不会改的.</description>
     </item>
     
     <item>
       <title>关于国产的一些想法</title>
-      <link>https://leizhiyuan.github.io/2015/05/10/%E5%85%B3%E4%BA%8E%E5%9B%BD%E4%BA%A7%E7%9A%84%E4%B8%80%E4%BA%9B%E6%83%B3%E6%B3%95/</link>
+      <link>http://leaver.me/2015/05/10/%E5%85%B3%E4%BA%8E%E5%9B%BD%E4%BA%A7%E7%9A%84%E4%B8%80%E4%BA%9B%E6%83%B3%E6%B3%95/</link>
       <pubDate>Sun, 10 May 2015 11:14:53 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2015/05/10/%E5%85%B3%E4%BA%8E%E5%9B%BD%E4%BA%A7%E7%9A%84%E4%B8%80%E4%BA%9B%E6%83%B3%E6%B3%95/</guid>
+      <guid>http://leaver.me/2015/05/10/%E5%85%B3%E4%BA%8E%E5%9B%BD%E4%BA%A7%E7%9A%84%E4%B8%80%E4%BA%9B%E6%83%B3%E6%B3%95/</guid>
       <description>最近也没啥特殊的事情,恰好昨晚魅族云服务当机,导致本地所以联系人丢失,路上想给家里打个电话,没法打,最近又入手了国产入门机械键盘雷柏v500,写点啥呢. ##魅族##
 魅族mx4是我去年11月份入手的.且不说魅族搞饥饿营销.先说说我手机从去年到现在遇到的问题.
  屏幕黄边,刚入手没多久,屏幕左侧出现明显黄边,当时很无语.这质量..不过拿去直接给换了个屏幕,同事的另一台也是,入手后直接屏幕大面积坏点. 通话质量,我买手机主要就是为了打电话,可是魅族这通话质量,打着打着就没声音了,电流声声音很大.尤其微信的时候. 固件更新质量,有问题通过更新是好事,但是魅族的工程师每周编出那么多更新log也是蛮拼的.实际上一点问题没解决.老是改计算器,闹钟,比较著名的就是之前有人提到的滑动变点击,用了好几个月最后悄悄修复了. 安全,之前对魅族的质量还算放心,结果上上周,直接整个出应用中心故障,导致很多用户手机莫名秒开始自动下载软件,自动安装,卸载完成又出现,我当时怀疑是我开了wifi下自动更新,于是关掉了.结果还真是.最后给出个这么说法.   亲爱的魅友们： Flyme应用中心于4月28日晚间服务器发生故障，部分用户出现应用名称与图标混乱，自动更新安装其他应用等情况。在发现故障之后，2个小时之内已经解决，给大家造成不便我们深表歉意。
@@ -193,20 +213,20 @@ http://bugs.java.com/view_bug.do?bug_id=6521844
     
     <item>
       <title>一键切换jdk版本</title>
-      <link>https://leizhiyuan.github.io/2014/11/07/%E4%B8%80%E9%94%AE%E5%88%87%E6%8D%A2jdk%E7%89%88%E6%9C%AC/</link>
+      <link>http://leaver.me/2014/11/07/%E4%B8%80%E9%94%AE%E5%88%87%E6%8D%A2jdk%E7%89%88%E6%9C%AC/</link>
       <pubDate>Fri, 07 Nov 2014 16:08:29 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2014/11/07/%E4%B8%80%E9%94%AE%E5%88%87%E6%8D%A2jdk%E7%89%88%E6%9C%AC/</guid>
+      <guid>http://leaver.me/2014/11/07/%E4%B8%80%E9%94%AE%E5%88%87%E6%8D%A2jdk%E7%89%88%E6%9C%AC/</guid>
       <description>工作中有时候会切换jdk版本.有时候需要用个64位的.有时候需要用32位的.频繁手动很不方便,参考了一下,写了一个bat脚本,保存为bat,运行即可切换.同理可以改改,运来切换1.7,1.8这样的版本.
-@echo off :init set JAVA_HOME_32=D:\5.Program\Jdk32Home set JAVA_HOME_64=D:\Software\JdkHome :start echo. echo ============================================= echo jdk版本列表 echo 32 (%JAVA_HOME_32%) echo 64 (%JAVA_HOME_64%) echo ============================================= :select set /p opt=请选择jdk版本： if %opt%==32 ( start /I /WAIT /B wmic ENVIRONMENT where name=&amp;#39;JAVA_HOME&amp;#39; set VariableValue=&amp;#34;%JAVA_HOME_32%&amp;#34; &amp;amp;gt;nul rem reg add &amp;#34;HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment&amp;#34; /v JAVA_HOME /t reg_sz /d &amp;#34;%JAVA_HOME_32%&amp;#34; /f goto success ) if %opt%==64 ( start /I /WAIT /B wmic ENVIRONMENT where name=&amp;#39;JAVA_HOME&amp;#39; set VariableValue=&amp;#34;%JAVA_HOME_64%&amp;#34; &amp;amp;gt;nul rem reg add &amp;#34;HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment&amp;#34; /v JAVA_HOME /t reg_sz /d &amp;#34;%JAVA_HOME_64%&amp;#34; /f goto success ) echo 选择的版本错误,请重新选择！ PAUSE goto start :success echo.</description>
+@echo off :init set JAVA_HOME_32=D:\5.Program\Jdk32Home set JAVA_HOME_64=D:\Software\JdkHome :start echo. echo ============================================= echo jdk版本列表 echo 32 (%JAVA_HOME_32%) echo 64 (%JAVA_HOME_64%) echo ============================================= :select set /p opt=请选择jdk版本： if %opt%==32 ( start /I /WAIT /B wmic ENVIRONMENT where name=&amp;#39;JAVA_HOME&amp;#39; set VariableValue=&amp;#34;%JAVA_HOME_32%&amp;#34; &amp;amp;gt;nul rem reg add &amp;#34;HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment&amp;#34; /v JAVA_HOME /t reg_sz /d &amp;#34;%JAVA_HOME_32%&amp;#34; /f goto success ) if %opt%==64 ( start /I /WAIT /B wmic ENVIRONMENT where name=&amp;#39;JAVA_HOME&amp;#39; set VariableValue=&amp;#34;%JAVA_HOME_64%&amp;#34; &amp;amp;gt;nul rem reg add &amp;#34;HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment&amp;#34; /v JAVA_HOME /t reg_sz /d &amp;#34;%JAVA_HOME_64%&amp;#34; /f goto success ) echo 选择的版本错误,请重新选择！ PAUSE goto start :success echo. echo 设置环境变了成功. </description>
     </item>
     
     <item>
       <title>jenkins相关资料</title>
-      <link>https://leizhiyuan.github.io/2014/09/21/jenkins%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99/</link>
+      <link>http://leaver.me/2014/09/21/jenkins%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99/</link>
       <pubDate>Sun, 21 Sep 2014 18:26:48 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2014/09/21/jenkins%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99/</guid>
+      <guid>http://leaver.me/2014/09/21/jenkins%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99/</guid>
       <description>jenkins相关资料 jenkins的前身是hudson,是为了做持续集成测试而诞生的框架.
 简单说就是把代码流配置上去,然后该框架就能根据设定的时间或其他方式不间断的执行测试用例.并给出报告.这样就可以随时掌控代码质量.支持执行shell命令.支持短信通知等等.
 jenkins,首先从http://jenkins-ci.org/官方下载war包,然后有两种方式可以本地部署,一种直接执行 java -jar hudson.war,然后在本地的8080端口访问就可以了.另一种是我们希望部署在容器上,那么可以部署到tomcat,jetty等等.直接拷贝war包到对应的目录即可.
@@ -217,10 +237,10 @@ jenkins,首先从http://jenkins-ci.org/官方下载war包,然后有两种方式�
     
     <item>
       <title>蓝绿发布的整个部署过程</title>
-      <link>https://leizhiyuan.github.io/2014/09/14/%E8%93%9D%E7%BB%BF%E5%8F%91%E5%B8%83%E7%9A%84%E6%95%B4%E4%B8%AA%E9%83%A8%E7%BD%B2%E8%BF%87%E7%A8%8B/</link>
+      <link>http://leaver.me/2014/09/14/%E8%93%9D%E7%BB%BF%E5%8F%91%E5%B8%83%E7%9A%84%E6%95%B4%E4%B8%AA%E9%83%A8%E7%BD%B2%E8%BF%87%E7%A8%8B/</link>
       <pubDate>Sun, 14 Sep 2014 10:01:55 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2014/09/14/%E8%93%9D%E7%BB%BF%E5%8F%91%E5%B8%83%E7%9A%84%E6%95%B4%E4%B8%AA%E9%83%A8%E7%BD%B2%E8%BF%87%E7%A8%8B/</guid>
+      <guid>http://leaver.me/2014/09/14/%E8%93%9D%E7%BB%BF%E5%8F%91%E5%B8%83%E7%9A%84%E6%95%B4%E4%B8%AA%E9%83%A8%E7%BD%B2%E8%BF%87%E7%A8%8B/</guid>
       <description>一直听说蓝绿发布,不知道是怎么个过程.
 thanks toblue-green-deployment
 蓝绿发布的意义 整个发布过程，用户没有感受到任何宕机或者服务重启。
@@ -237,10 +257,10 @@ thanks toblue-green-deployment
     
     <item>
       <title>第一次给Spring-Framework贡献代码</title>
-      <link>https://leizhiyuan.github.io/2014/08/21/%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%BB%99spring-framework%E8%B4%A1%E7%8C%AE%E4%BB%A3%E7%A0%81/</link>
+      <link>http://leaver.me/2014/08/21/%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%BB%99spring-framework%E8%B4%A1%E7%8C%AE%E4%BB%A3%E7%A0%81/</link>
       <pubDate>Thu, 21 Aug 2014 07:46:26 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2014/08/21/%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%BB%99spring-framework%E8%B4%A1%E7%8C%AE%E4%BB%A3%E7%A0%81/</guid>
+      <guid>http://leaver.me/2014/08/21/%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%BB%99spring-framework%E8%B4%A1%E7%8C%AE%E4%BB%A3%E7%A0%81/</guid>
       <description>鲁肃说建议去看Spring框架的代码,之前其实我想看来着,不过一看到还要gradlew,换jdk就好麻烦.这次各种折腾把代码fork下来,然后安装gradlew ,然后转换成eclipse支持的,期间升级了eclipse版本和jdk版本到8.否则会有个方法不支持,
 流程很简单,先fork一下代码,然后自己改好提交上去,再去Spring框架的pull request请求一下.等大牛合并就行了.
 刚开始看测试用例,我当时看到这个方法调用了一个下线的方法.于是改了一下.提交上去之后,**sbrannen ** 回复说:
@@ -253,10 +273,10 @@ https://github.com/spring-projects/spring-framework/commits?author=leizhiyuan
     
     <item>
       <title>8583报文相关</title>
-      <link>https://leizhiyuan.github.io/2014/06/27/8583%E6%8A%A5%E6%96%87%E7%9B%B8%E5%85%B3/</link>
+      <link>http://leaver.me/2014/06/27/8583%E6%8A%A5%E6%96%87%E7%9B%B8%E5%85%B3/</link>
       <pubDate>Fri, 27 Jun 2014 15:28:46 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2014/06/27/8583%E6%8A%A5%E6%96%87%E7%9B%B8%E5%85%B3/</guid>
+      <guid>http://leaver.me/2014/06/27/8583%E6%8A%A5%E6%96%87%E7%9B%B8%E5%85%B3/</guid>
       <description>以下是我在学习的时候发现的好的资料，都是非常有帮助的。
 如果你想知道原理，看完下面这篇就会了
 [藏]轻松掌握ISO8583报文协议原理 看了原理之后还想知道怎么来的。手工联系一下
@@ -270,10 +290,10 @@ Jimmy写了一个例子非常好，iso-8583-tutorial-build-and-parse-iso-message
     
     <item>
       <title>[藏]轻松掌握ISO8583报文协议原理</title>
-      <link>https://leizhiyuan.github.io/2014/06/27/%E8%97%8F%E8%BD%BB%E6%9D%BE%E6%8E%8C%E6%8F%A1iso8583%E6%8A%A5%E6%96%87%E5%8D%8F%E8%AE%AE%E5%8E%9F%E7%90%86/</link>
+      <link>http://leaver.me/2014/06/27/%E8%97%8F%E8%BD%BB%E6%9D%BE%E6%8E%8C%E6%8F%A1iso8583%E6%8A%A5%E6%96%87%E5%8D%8F%E8%AE%AE%E5%8E%9F%E7%90%86/</link>
       <pubDate>Fri, 27 Jun 2014 14:30:53 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2014/06/27/%E8%97%8F%E8%BD%BB%E6%9D%BE%E6%8E%8C%E6%8F%A1iso8583%E6%8A%A5%E6%96%87%E5%8D%8F%E8%AE%AE%E5%8E%9F%E7%90%86/</guid>
+      <guid>http://leaver.me/2014/06/27/%E8%97%8F%E8%BD%BB%E6%9D%BE%E6%8E%8C%E6%8F%A1iso8583%E6%8A%A5%E6%96%87%E5%8D%8F%E8%AE%AE%E5%8E%9F%E7%90%86/</guid>
       <description>感谢@lysheng，可惜原文已经删除了，因此全文备份。作者提到的“全面掌握ISO8583报文”和“符合CEN/XFS（即WOSA/XFS）规范的SP编写，这两篇文章我能找到的话也会备份在本博客。我 刚进入金融行业时，就知道了IS08583报文协议，我想可能我还没进入这个行业都已经听过了，可知ISO8583的影响力有多大了。最初刚接触它时，确 实对其中的一些细节概念不是很清晰，对有些地方比较迷惑。鉴于此，我想很多同行也必然会经历同样得阶段，所以我写下本文，以便大家能够少走一些弯路。同 时，我在网上写下我要写“全面掌握ISO8583报文”和“符合CEN/XFS（即WOSA/XFS）规范的SP编写”两篇文章时，很多人都询问我什么时候能够写出来，可知许多人是需要了解这方面的知识的，即使我时间不是很多，也得尽量将这两篇文章写出来，给需要的人提供一些参考。如果单纯的讲IS08583那些字段的定义，我觉得没有什么意思，标准中已经对每个字段解释的非常详细了，如果你觉得理解英文版的ISO8583规范有些 困难，网上也有同行为我们翻译好的中文版ISO8583规范，所以我的目的是达到阅读本文后能够对ISO8583知其然，亦知其所以然，使以前基本没有接 触它的人也能够达到掌握ISO8583报文规范。好了，我们该转入正题了。最开始时，金融系统只有IBM这些大的公司来提供设备，象各种主机与终端等。在各个计算机设备之间，需要交换数据。我们知道数据是通过网络来传送的，而在 网络上传送的数据都是基于0或1这样的二进制数据，如果没有对数据进行编码，则这些数据没有人能够理解，属于没有用的数据。起初的X.25、SDLC以及 现在流行的TCP/IP网络协议都提供底层的通讯编码协议，它们解决了最底层的通讯问题，能够将一串字符从一个地方传送到另一个地方。但是，仅仅传送字符 串是没有太大意义的，怎样来解析字符串代表什么内容是非常重要的，否则传送一些“0123abcd”的字符串也是无用的乱码。
 让我们随着时光回到几十年前的某个时刻，假设我们被推到历史的舞台上，由我们来设计一个通用报文协议，来解决金融系统之间的报文交换，暂且称该协议叫做 ISO8583协议。此时，技术是在不断的前行，当初IBM一支独秀的局面好像已经不妙了，各种大小不一的公司都进入金融行业以求能有所斩获，呈一片百花 齐放的局面。我们怎样来设计一个报文协议，能够将这些如雨后春笋般出现的所有公司都纳入进来，其实也不是一件很简单的事。
 我们还是先一步步的来考虑吧。金融行业其实涉及到的数据内容并不是成千上万，无法统计，恰恰相反，是比较少的。我们都可以在心底数得过来，象交易类型、帐 号、帐户类型、密码、交易金额、交易手续费、日期时间、商户代码、2磁3磁数据、交易序列号等，把所有能够总结出来的都总结起来不过100个左右的数据。 那我们可以首先简单的设计ISO8583，定义128个字段，将所有能够考虑到的类似上面提到的“帐号”等金融数据类型，按照一个顺序排起来，分别对应 128个字段中的一个字段。每个数据类型占固定的长度，这个顺序和长度我们都事先定义好。这样就简单了，要发送一个报文时，就将128个字段按照顺序接起 来，然后将接起来的整串数据包发送出去。
@@ -295,10 +315,10 @@ Jimmy写了一个例子非常好，iso-8583-tutorial-build-and-parse-iso-message
     
     <item>
       <title>构建数据库连接的配置方法</title>
-      <link>https://leizhiyuan.github.io/2014/04/26/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/</link>
+      <link>http://leaver.me/2014/04/26/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/</link>
       <pubDate>Sat, 26 Apr 2014 16:56:41 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2014/04/26/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/</guid>
+      <guid>http://leaver.me/2014/04/26/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/</guid>
       <description>以前我在写数据库连接的时候，都是在文件里写死的，或者一个简单地配置文件，只有一个数据库连接嘛，但是最近写一个测试工具的时候，需要很多数据库，而且有些还有分库规则，于是查找资料，完善了两个类，和xml的定义规则，分享出来。仅供参考，有任何指教请回复。不胜感谢
 首先xml的配置格式定义如下
 然后我们有XmlConfigReader类，用来读取这个配置文件，并且返回对应的jdbcConfig对象。
@@ -315,10 +335,10 @@ Jimmy写了一个例子非常好，iso-8583-tutorial-build-and-parse-iso-message
     
     <item>
       <title>Google输入法和Java不兼容</title>
-      <link>https://leizhiyuan.github.io/2014/03/29/google%E8%BE%93%E5%85%A5%E6%B3%95%E5%92%8Cjava%E4%B8%8D%E5%85%BC%E5%AE%B9/</link>
+      <link>http://leaver.me/2014/03/29/google%E8%BE%93%E5%85%A5%E6%B3%95%E5%92%8Cjava%E4%B8%8D%E5%85%BC%E5%AE%B9/</link>
       <pubDate>Sat, 29 Mar 2014 12:13:25 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2014/03/29/google%E8%BE%93%E5%85%A5%E6%B3%95%E5%92%8Cjava%E4%B8%8D%E5%85%BC%E5%AE%B9/</guid>
+      <guid>http://leaver.me/2014/03/29/google%E8%BE%93%E5%85%A5%E6%B3%95%E5%92%8Cjava%E4%B8%8D%E5%85%BC%E5%AE%B9/</guid>
       <description>一直发现自己写的Swing界面无法关闭，症状是点击了界面的关闭按钮后程序会卡住，然后点击无响应最后就挂掉了。
 最开始以为是自己的资源没释放，但是没理由呀，应该在关闭的时候会自动释放，而且改了代码也没用。
 今天再执行另一个Swing的时候，eclipse报错了
@@ -328,10 +348,10 @@ Jimmy写了一个例子非常好，iso-8583-tutorial-build-and-parse-iso-message
     
     <item>
       <title>linux编写定时任务</title>
-      <link>https://leizhiyuan.github.io/2014/03/29/linux%E7%BC%96%E5%86%99%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/</link>
+      <link>http://leaver.me/2014/03/29/linux%E7%BC%96%E5%86%99%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/</link>
       <pubDate>Sat, 29 Mar 2014 10:31:31 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2014/03/29/linux%E7%BC%96%E5%86%99%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/</guid>
+      <guid>http://leaver.me/2014/03/29/linux%E7%BC%96%E5%86%99%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/</guid>
       <description>linux中定时任务用来执行一些周期性的自动化的任务，比如有些人可能用来定期备份，也可能是定期检查一下特殊文件的签名，如果不一致，就报警，检测入侵。
 cron是linux下的定时执行工具
 这个工具的几个命令是这样的
@@ -356,10 +376,10 @@ cron是linux下的定时执行工具
     
     <item>
       <title>linux的CPU负载均值</title>
-      <link>https://leizhiyuan.github.io/2014/03/08/linux%E7%9A%84cpu%E8%B4%9F%E8%BD%BD%E5%9D%87%E5%80%BC/</link>
+      <link>http://leaver.me/2014/03/08/linux%E7%9A%84cpu%E8%B4%9F%E8%BD%BD%E5%9D%87%E5%80%BC/</link>
       <pubDate>Sat, 08 Mar 2014 17:19:30 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2014/03/08/linux%E7%9A%84cpu%E8%B4%9F%E8%BD%BD%E5%9D%87%E5%80%BC/</guid>
+      <guid>http://leaver.me/2014/03/08/linux%E7%9A%84cpu%E8%B4%9F%E8%BD%BD%E5%9D%87%E5%80%BC/</guid>
       <description>当运行在Linux上的程序有问题之后，我们通常要看一下当前CPU和内存的使用情况来分析一下问题
 对于CPU的使用率，通常用Load Average，也就是负载均值来度量
 负载均值是啥？
@@ -379,10 +399,10 @@ cron是linux下的定时执行工具
     
     <item>
       <title>eclipse管理多个workplace</title>
-      <link>https://leizhiyuan.github.io/2014/03/08/eclipse%E7%AE%A1%E7%90%86%E5%A4%9A%E4%B8%AAworkplace/</link>
+      <link>http://leaver.me/2014/03/08/eclipse%E7%AE%A1%E7%90%86%E5%A4%9A%E4%B8%AAworkplace/</link>
       <pubDate>Sat, 08 Mar 2014 16:34:34 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2014/03/08/eclipse%E7%AE%A1%E7%90%86%E5%A4%9A%E4%B8%AAworkplace/</guid>
+      <guid>http://leaver.me/2014/03/08/eclipse%E7%AE%A1%E7%90%86%E5%A4%9A%E4%B8%AAworkplace/</guid>
       <description>由于eclipse用的比较多，管理多个workplace很麻烦，经常需要打开以后再切换，简单介绍个方法。
 一
 1.进入Eclipse的安装目录，鼠标点击eclipse.exe，右键菜单&amp;ndash;&amp;gt;发送到&amp;ndash;&amp;gt;桌面快捷方式
@@ -401,10 +421,10 @@ cron是linux下的定时执行工具
     
     <item>
       <title>[译]使用Mockito简单mock入门</title>
-      <link>https://leizhiyuan.github.io/2014/03/01/%E8%AF%91%E4%BD%BF%E7%94%A8mockito%E7%AE%80%E5%8D%95mock%E5%85%A5%E9%97%A8/</link>
+      <link>http://leaver.me/2014/03/01/%E8%AF%91%E4%BD%BF%E7%94%A8mockito%E7%AE%80%E5%8D%95mock%E5%85%A5%E9%97%A8/</link>
       <pubDate>Sat, 01 Mar 2014 10:57:33 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2014/03/01/%E8%AF%91%E4%BD%BF%E7%94%A8mockito%E7%AE%80%E5%8D%95mock%E5%85%A5%E9%97%A8/</guid>
+      <guid>http://leaver.me/2014/03/01/%E8%AF%91%E4%BD%BF%E7%94%A8mockito%E7%AE%80%E5%8D%95mock%E5%85%A5%E9%97%A8/</guid>
       <description>我们在写单元测试的时候，面临的一个挑战就是要测试的内容总是依赖于其他组件，要是我们还得先配置好其他组件，未免有点不如意，那么我们可以使用Mocks来代替那些依赖的组件
 本文问了展示这个过程，我会创建一个DAL，数据访问层，这是一个类，提供了一个通用的api来访问和修改数据仓库的数据，然后，我们要测试这个api，而不用配置连接某个本地的数据库，，或者一个远程的数据库，或者是一个文件系统，反正就是任何放数据的东西，DAL层的好处就是隔离开了数据访问和应用程序代码
 首先使用maven来创建一个工程
@@ -427,10 +447,10 @@ mvn test就可以看到结果了
     
     <item>
       <title>尝试JavaFX开发</title>
-      <link>https://leizhiyuan.github.io/2014/02/11/%E5%B0%9D%E8%AF%95javafx%E5%BC%80%E5%8F%91/</link>
+      <link>http://leaver.me/2014/02/11/%E5%B0%9D%E8%AF%95javafx%E5%BC%80%E5%8F%91/</link>
       <pubDate>Tue, 11 Feb 2014 20:40:12 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2014/02/11/%E5%B0%9D%E8%AF%95javafx%E5%BC%80%E5%8F%91/</guid>
+      <guid>http://leaver.me/2014/02/11/%E5%B0%9D%E8%AF%95javafx%E5%BC%80%E5%8F%91/</guid>
       <description>曾经有报道说JavaFX将使java在桌面开发上大有作为，感觉好像是很高端的样子，今天尝试了一下，界面对于自用的工具来说，本来也不多重要，只是一个简单的尝试
 简单说下大致的步骤和一些思路，可能有错误。
 javafx需要sdk支持，java7之后的都有的。设计思路是数据和代码分离，界面通过xml或json数据来描述，这样就把业务逻辑代码和界面实现代码分开了
@@ -449,10 +469,10 @@ JavaFX和WPF其实思路是一模一样的，恰好WPF我也用过，感觉两�
     
     <item>
       <title>[笔记]写代码遇到的一些问题汇总下</title>
-      <link>https://leizhiyuan.github.io/2014/02/08/%E7%AC%94%E8%AE%B0%E5%86%99%E4%BB%A3%E7%A0%81%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB%E4%B8%8B/</link>
+      <link>http://leaver.me/2014/02/08/%E7%AC%94%E8%AE%B0%E5%86%99%E4%BB%A3%E7%A0%81%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB%E4%B8%8B/</link>
       <pubDate>Sat, 08 Feb 2014 11:06:51 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2014/02/08/%E7%AC%94%E8%AE%B0%E5%86%99%E4%BB%A3%E7%A0%81%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB%E4%B8%8B/</guid>
+      <guid>http://leaver.me/2014/02/08/%E7%AC%94%E8%AE%B0%E5%86%99%E4%BB%A3%E7%A0%81%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB%E4%B8%8B/</guid>
       <description>本篇是用来填上一篇 挖下的坑的。
 1.java调用webservice
 有一些已有的webservice服务，由xfire生成发布，有些有参数，有些无参数，无参数的直接我直接使用org.codehaus.xfire这个包里的Client来动态生成客户端。然后调用就可以了。非常简单
@@ -480,15 +500,16 @@ log4j.logger.httpclient.wire.header=INFO
 log4j.logger.httpclient.wire.content=INFO
 log4j.logger.org.apache.commons.httpclient = INFO
 最后附赠一些实用的工具
-http://www.freeformatter.com/ 程序员必备。各类转换，包括转义工具，格式校验工具。效果很好。</description>
+http://www.freeformatter.com/ 程序员必备。各类转换，包括转义工具，格式校验工具。效果很好。
+流体力学理论与F1赛车的空气动力学1，2，3 什么雷诺数，伯努利方程，文丘里效应，当年木有好好学啊。这么高大上的东西果然还是有压力。</description>
     </item>
     
     <item>
       <title>[藏]跨行清算系统的实现原理</title>
-      <link>https://leizhiyuan.github.io/2013/12/14/%E8%97%8F%E8%B7%A8%E8%A1%8C%E6%B8%85%E7%AE%97%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/</link>
+      <link>http://leaver.me/2013/12/14/%E8%97%8F%E8%B7%A8%E8%A1%8C%E6%B8%85%E7%AE%97%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/</link>
       <pubDate>Sat, 14 Dec 2013 18:24:12 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/12/14/%E8%97%8F%E8%B7%A8%E8%A1%8C%E6%B8%85%E7%AE%97%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/</guid>
+      <guid>http://leaver.me/2013/12/14/%E8%97%8F%E8%B7%A8%E8%A1%8C%E6%B8%85%E7%AE%97%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/</guid>
       <description>本文来自God Is Coder，通过这篇文章我算是理解了跨行清算系统逻辑，非常非常好。
 最近看了很多银联方面的清算系统的设计原理，对于跨行清算系统有了很大的了解，写这篇文章的目的是在于从一个程序员的角度去思考一个跨行清算系统的架构是如何实现的以及整个过程中我们有哪些思想是可以借鉴的。由于金融里面涉及到太多的专业名词，包括借贷，备付金，头寸，调拨等等，这里不会涉及到这些，取而代之的是以大家可以理解的概念去解释。
 下面简单的介绍一下两种跨行清算系统的实现原理以及特点。一种跨清算系统是我们最熟悉的银联，还有一种是越来越流行的第三方支付系统，比较典型的是快钱。
@@ -521,15 +542,21 @@ http://www.freeformatter.com/ 程序员必备。各类转换，包括转义工�
 每天由一个系统记录这些跨行交易信息，汇总出来，统一记账。这样一天只需要调用一次保证金系统即可。那么整个清算过程则是下面的流程：
   1 系统T日发生建行和工行的跨行交易100 
   2 清算系统T+1日汇总T日工行和建行之间发生的交易明细数据，并且发这些数据发给建行和工行进行确认 
-    3 工行建行分别对明细对账确认之后，通知清算系统确认交易明细无误，清算系统开始清算，调用保证金支付系统转账。 4 清算完成之后，工行和建行分别获取保证金系统的真实金额和自身系统内部的映射账户进行余额对账。    清算中心最主要干得事情就是统计谁欠谁多少钱，以及触发保证金系统的调拨操作。</description>
+    3 工行建行分别对明细对账确认之后，通知清算系统确认交易明细无误，清算系统开始清算，调用保证金支付系统转账。 4 清算完成之后，工行和建行分别获取保证金系统的真实金额和自身系统内部的映射账户进行余额对账。    清算中心最主要干得事情就是统计谁欠谁多少钱，以及触发保证金系统的调拨操作。
+ 对账流程 对账包括两个部分，一个是跨行交易明细的对账以及保证金余额的对账。
+首先要思考的是：对账是谁发起的 ？ 这个是了解对账的本质。
+我们举生活中的一个例子，我们把钱投资到一个人，那个人负责公司的日常运作。你肯定会主动了解公司的账务，因为那个是你的钱。对账的发起人也是如此，对于银联的清算过程，对账的发起者是商业银行，因为你把钱放在保证金系统里面，这是你的钱，你需要去关心这个的，银联可不关心这个。
+对于另外一种保证金系统，把钱放在各个银行里面了，那么对账的发起者就是这个保证金系统维护者了。目前普遍的第三方支付公司都是这个模式，所以他要找各个银行要结果明细进行对账，确认自己的资金安全无误。
+ 以上就是一个简单的跨行清算系统的雏形，从一个就简单的例子入手，说明一个清算过程。目前银联的第三方支付公司的清算过程大致如此，但是实现细节远比这个复杂。但是一个基本的清算系统的本质模型大体上是不会变的。当然这个只是对于同币种的清算，不同币种或者虚拟货币的清算会涉及到汇率的问题，这些就很复杂，有机会在研究一下，后续在分享。
+PS：以上很多名词都是自己的随意写的，里面很多专业名词这里不提及，有兴趣的可以自己去了解。</description>
     </item>
     
     <item>
       <title>[藏]Class.getResource和ClassLoader.getResource不同点</title>
-      <link>https://leizhiyuan.github.io/2013/12/14/%E8%97%8Fclass.getresource%E5%92%8Cclassloader.getresource%E4%B8%8D%E5%90%8C%E7%82%B9/</link>
+      <link>http://leaver.me/2013/12/14/%E8%97%8Fclass.getresource%E5%92%8Cclassloader.getresource%E4%B8%8D%E5%90%8C%E7%82%B9/</link>
       <pubDate>Sat, 14 Dec 2013 18:18:53 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/12/14/%E8%97%8Fclass.getresource%E5%92%8Cclassloader.getresource%E4%B8%8D%E5%90%8C%E7%82%B9/</guid>
+      <guid>http://leaver.me/2013/12/14/%E8%97%8Fclass.getresource%E5%92%8Cclassloader.getresource%E4%B8%8D%E5%90%8C%E7%82%B9/</guid>
       <description>有一次遇到了，查了查。原文地址
 Java中取资源时，经常用到Class.getResource和ClassLoader.getResource，这里来看看他们在取资源文件时候的路径问题。
 Class.getResource(String path) 再来一个实例，假设有如下Project结构：
@@ -545,10 +572,10 @@ public class TestMain { public static void main(String[] args) { TestMain t = ne
     
     <item>
       <title>Java动态代理实例</title>
-      <link>https://leizhiyuan.github.io/2013/11/24/java%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E5%AE%9E%E4%BE%8B/</link>
+      <link>http://leaver.me/2013/11/24/java%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E5%AE%9E%E4%BE%8B/</link>
       <pubDate>Sun, 24 Nov 2013 18:16:31 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/11/24/java%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E5%AE%9E%E4%BE%8B/</guid>
+      <guid>http://leaver.me/2013/11/24/java%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E5%AE%9E%E4%BE%8B/</guid>
       <description>首先什么是代理？
 我更喜欢另一种通俗的解释，官方的解释总是高度抽象的，等用了一段时间才能理解体会
 那我们就得定义一个拦截器/执行处理器了。
@@ -561,10 +588,10 @@ public class TestMain { public static void main(String[] args) { TestMain t = ne
     
     <item>
       <title>[译]Java中的CountDownLatch和CyclicBarrier</title>
-      <link>https://leizhiyuan.github.io/2013/09/15/%E8%AF%91java%E4%B8%AD%E7%9A%84countdownlatch%E5%92%8Ccyclicbarrier/</link>
+      <link>http://leaver.me/2013/09/15/%E8%AF%91java%E4%B8%AD%E7%9A%84countdownlatch%E5%92%8Ccyclicbarrier/</link>
       <pubDate>Sun, 15 Sep 2013 08:03:09 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/09/15/%E8%AF%91java%E4%B8%AD%E7%9A%84countdownlatch%E5%92%8Ccyclicbarrier/</guid>
+      <guid>http://leaver.me/2013/09/15/%E8%AF%91java%E4%B8%AD%E7%9A%84countdownlatch%E5%92%8Ccyclicbarrier/</guid>
       <description>本文译自官方文档，有细微改动，Java多线程的时候，看了好多文档，还是官方说的最清楚。结合自己的理解，译之。
 CountDownLatch 字面意思就是倒计数闩，后面会讲到，这里的同步允许一个或多个线程等待，，知道其他线程进行的一系列操作完成。而CountDownLatch通过一个参数count（数目）来构造，而await（）则阻塞当前线程，直到countDown()将count减为了0，然后，所有的阻塞线程被释放，也就是那些调用了await方法的线程立即返回，注意，这是一次性的，也就是说count不能被自动重置，如果你想这么做，CyclicBarrier是可以的。
 CountDownLatch用处很多，当用count=1来构造的时候，这就相当于一个开关，所有调用了await方法的线程都在等待，直到有一个线程调用了countDown()，CountDownLatch通过count=N构造的话，就可以使一个线程等待其他N个线程完成操作，或者一个操作被做N次。
@@ -582,10 +609,10 @@ CountDownLatch用处很多，当用count=1来构造的时候，这就相当于�
     
     <item>
       <title>阿里巴巴5月5日综合算法题详解</title>
-      <link>https://leizhiyuan.github.io/2013/06/02/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B45%E6%9C%885%E6%97%A5%E7%BB%BC%E5%90%88%E7%AE%97%E6%B3%95%E9%A2%98%E8%AF%A6%E8%A7%A3/</link>
+      <link>http://leaver.me/2013/06/02/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B45%E6%9C%885%E6%97%A5%E7%BB%BC%E5%90%88%E7%AE%97%E6%B3%95%E9%A2%98%E8%AF%A6%E8%A7%A3/</link>
       <pubDate>Sun, 02 Jun 2013 15:44:22 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/06/02/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B45%E6%9C%885%E6%97%A5%E7%BB%BC%E5%90%88%E7%AE%97%E6%B3%95%E9%A2%98%E8%AF%A6%E8%A7%A3/</guid>
+      <guid>http://leaver.me/2013/06/02/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B45%E6%9C%885%E6%97%A5%E7%BB%BC%E5%90%88%E7%AE%97%E6%B3%95%E9%A2%98%E8%AF%A6%E8%A7%A3/</guid>
       <description>之前参加了阿里的笔试和电面，让后天那个敏感的日子去参加现场面，就去看了一下那天笔试的最后一道综合题，看着网上清一色最后一道题不知道从哪转的答案，不忍直视，一看代码就是错的，最直接的就是求中位数连奇偶性都不判断，直接处以2..这，另外当在无法整除的情况下，数据结果错误。
  这道题的大意是：有一个淘宝商户，在某城市有n个仓库，每个仓库的储货量不同，现在要通过货物运输，将每次仓库的储货量变成一致的，n个仓库之间的运输线路围城一个圈，即1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;&amp;hellip;-&amp;gt;n-&amp;gt;1-&amp;gt;&amp;hellip;，货物只能通过连接的仓库运输，设计最小的运送成本（运货量*路程）达到淘宝商户的要求，并写出代码。
 解题思路：
@@ -605,10 +632,10 @@ CountDownLatch用处很多，当用count=1来构造的时候，这就相当于�
     
     <item>
       <title>[藏]社交网络，电子时代的人生绑架者</title>
-      <link>https://leizhiyuan.github.io/2013/05/13/%E8%97%8F%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E7%94%B5%E5%AD%90%E6%97%B6%E4%BB%A3%E7%9A%84%E4%BA%BA%E7%94%9F%E7%BB%91%E6%9E%B6%E8%80%85/</link>
+      <link>http://leaver.me/2013/05/13/%E8%97%8F%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E7%94%B5%E5%AD%90%E6%97%B6%E4%BB%A3%E7%9A%84%E4%BA%BA%E7%94%9F%E7%BB%91%E6%9E%B6%E8%80%85/</link>
       <pubDate>Mon, 13 May 2013 06:31:43 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/05/13/%E8%97%8F%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E7%94%B5%E5%AD%90%E6%97%B6%E4%BB%A3%E7%9A%84%E4%BA%BA%E7%94%9F%E7%BB%91%E6%9E%B6%E8%80%85/</guid>
+      <guid>http://leaver.me/2013/05/13/%E8%97%8F%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E7%94%B5%E5%AD%90%E6%97%B6%E4%BB%A3%E7%9A%84%E4%BA%BA%E7%94%9F%E7%BB%91%E6%9E%B6%E8%80%85/</guid>
       <description>作者:负二
 bystander:本文回答了你刷社交网络的内在因素.希望读到的人不只是读到那么简单.
 大家在互相打招呼之前，先各自拿出手机，其中几个人用手机“签到”，然后把“签到”信息转发给在场的每一个人，而另一些人则用手机给饭桌上的菜肴拍照，然后同样转发给在场的每一个人，直到各种提示音消失之后，大家开始一边动筷子，一边心不在焉地聊八卦，如果没有爆炸性的话题出现，吸引在场的每一个人的注意力，那么大家的注意力都会被自己的手机虏获——比如我会收到坐在对面的那人发来的一张用手指画的拙劣的涂鸦，然后让我根据此图猜一个单词。
@@ -624,10 +651,10 @@ bystander:本文回答了你刷社交网络的内在因素.希望读到的人不
     
     <item>
       <title>分享几个电子书资源站点</title>
-      <link>https://leizhiyuan.github.io/2012/10/18/%E5%88%86%E4%BA%AB%E5%87%A0%E4%B8%AA%E7%94%B5%E5%AD%90%E4%B9%A6%E8%B5%84%E6%BA%90%E7%AB%99%E7%82%B9/</link>
+      <link>http://leaver.me/2012/10/18/%E5%88%86%E4%BA%AB%E5%87%A0%E4%B8%AA%E7%94%B5%E5%AD%90%E4%B9%A6%E8%B5%84%E6%BA%90%E7%AB%99%E7%82%B9/</link>
       <pubDate>Thu, 18 Oct 2012 11:12:01 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/10/18/%E5%88%86%E4%BA%AB%E5%87%A0%E4%B8%AA%E7%94%B5%E5%AD%90%E4%B9%A6%E8%B5%84%E6%BA%90%E7%AB%99%E7%82%B9/</guid>
+      <guid>http://leaver.me/2012/10/18/%E5%88%86%E4%BA%AB%E5%87%A0%E4%B8%AA%E7%94%B5%E5%AD%90%E4%B9%A6%E8%B5%84%E6%BA%90%E7%AB%99%E7%82%B9/</guid>
       <description>看到书签里有好些电子书的资源站。今天心情不错。遂起了分享的念头。。
 对于计算机相关专业人隆重推荐小书屋
 作者很认真的在分享技术/安全/心理学/技术PPT方面的书籍。算是国内技术书籍比较好的分享站点了。
@@ -642,10 +669,10 @@ ps:如果你收藏了其他的站点。不妨留言回复。</description>
     
     <item>
       <title>C#调用Matlab引擎</title>
-      <link>https://leizhiyuan.github.io/2012/08/09/c#%E8%B0%83%E7%94%A8matlab%E5%BC%95%E6%93%8E/</link>
+      <link>http://leaver.me/2012/08/09/c#%E8%B0%83%E7%94%A8matlab%E5%BC%95%E6%93%8E/</link>
       <pubDate>Thu, 09 Aug 2012 22:39:57 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/08/09/c#%E8%B0%83%E7%94%A8matlab%E5%BC%95%E6%93%8E/</guid>
+      <guid>http://leaver.me/2012/08/09/c#%E8%B0%83%E7%94%A8matlab%E5%BC%95%E6%93%8E/</guid>
       <description>最近在使用matlab的时候。求多元函数取得最小值的时候。变量的值。于是就用到了sym符号。结果在C#中调用时总是出错。后来Google了N久发现是符号工具箱是无法编译的。。后来找到了替代方法。就是调用matlab 引擎。当然要稍微麻烦一点。因为调用引擎这种方法参数传递比较麻烦。我只想到了通过C#把需要计算的值保存到文本中。然后matlab中load进来。计算完成后 save出去。。
 　调用matlab引擎类似于在C#中新开了一个进程。然后执行一些命令。之前需要引用Matlab Application Type Library。这是个com组件
  然后在程序里使用 using语句
@@ -657,10 +684,10 @@ ps:如果你收藏了其他的站点。不妨留言回复。</description>
     
     <item>
       <title>SQLServer超时时间已到解决和一套控件库</title>
-      <link>https://leizhiyuan.github.io/2012/07/13/sqlserver%E8%B6%85%E6%97%B6%E6%97%B6%E9%97%B4%E5%B7%B2%E5%88%B0%E8%A7%A3%E5%86%B3%E5%92%8C%E4%B8%80%E5%A5%97%E6%8E%A7%E4%BB%B6%E5%BA%93/</link>
+      <link>http://leaver.me/2012/07/13/sqlserver%E8%B6%85%E6%97%B6%E6%97%B6%E9%97%B4%E5%B7%B2%E5%88%B0%E8%A7%A3%E5%86%B3%E5%92%8C%E4%B8%80%E5%A5%97%E6%8E%A7%E4%BB%B6%E5%BA%93/</link>
       <pubDate>Fri, 13 Jul 2012 08:36:56 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/07/13/sqlserver%E8%B6%85%E6%97%B6%E6%97%B6%E9%97%B4%E5%B7%B2%E5%88%B0%E8%A7%A3%E5%86%B3%E5%92%8C%E4%B8%80%E5%A5%97%E6%8E%A7%E4%BB%B6%E5%BA%93/</guid>
+      <guid>http://leaver.me/2012/07/13/sqlserver%E8%B6%85%E6%97%B6%E6%97%B6%E9%97%B4%E5%B7%B2%E5%88%B0%E8%A7%A3%E5%86%B3%E5%92%8C%E4%B8%80%E5%A5%97%E6%8E%A7%E4%BB%B6%E5%BA%93/</guid>
       <description>在最近的一个程序中，因为频繁的操作数据库，莫名的出现了如下的错误：
 　超时时间已到。超时时间已到，但是尚未从池中获取连接。出现这种情况可能是因为所有池连接均在使用，并且达到了最大池大小。
 　说明: 执行当前 Web 请求期间，出现未处理的异常。请检查堆栈跟踪信息，以了解有关该错误以及代码中导致错误的出处的详细信息。
@@ -671,10 +698,10 @@ ps:如果你收藏了其他的站点。不妨留言回复。</description>
     
     <item>
       <title>降级论</title>
-      <link>https://leizhiyuan.github.io/2012/07/07/%E9%99%8D%E7%BA%A7%E8%AE%BA/</link>
+      <link>http://leaver.me/2012/07/07/%E9%99%8D%E7%BA%A7%E8%AE%BA/</link>
       <pubDate>Sat, 07 Jul 2012 22:37:11 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/07/07/%E9%99%8D%E7%BA%A7%E8%AE%BA/</guid>
+      <guid>http://leaver.me/2012/07/07/%E9%99%8D%E7%BA%A7%E8%AE%BA/</guid>
       <description>相当精彩的一篇文章『降级论』，收藏分享。精彩的部分突出显示了。
 　几乎一年没有写博客了，说没时间那是借口，唯一的原因是，年纪越大越发觉自己肤浅。有些想法还没提笔，就发现很幼稚，就不敢发出来贻笑大方了。这次先给大家说个小故事：
 　从前有三个屌丝，聚在一起做网络，提供免费的网络服务，砸锅卖铁，通宵达旦，除了卖肾啥都做了。3年后终于做到了五百万用户，对于年轻人来说，能把五百万人玩弄于鼓掌之间，已经是很牛逼轰轰的事了，不过用户越多，成本越高，每年服务器、带宽租金、房租水电、广告运营等成本，已经达到了十七八万，屌丝们不得不面对一个终极问题：如何盈利？
@@ -701,7 +728,16 @@ ps:如果你收藏了其他的站点。不妨留言回复。</description>
 　这个项目虽然是传统行业，但是我们基本上是按照互联网产品的思路去做的，除了拍摄需要来店里以外，其他一切，包括营销、预约、客服、后期、选片、取片、客户关系等，所有环节都放在网络上，尤其是微博（@tuciababy官网）。当然，最重要的是，作为一个脑残的果粉，我按照iPhone的做工和品质去要求每一张作品，必须达到我们能力可以做到的最好水准，不计成本的最好水准，才允许送给客户。正式接客不到两个月时间，虽然还远未达到成功，但目前已做到每天都有客户订单，财务上已实现盈利，未来相信一定会比大部分app开发者更光明。（ps:我们没有请工商、税务、城管去吃饭喝酒泡桑拿，也没有塞钱给任何政府机关。
  当你的产品真的用心做到很好的时候，其实你不需要讨好任何人的。
  ）
-　这个项目让我沉思了很久：07年我曾把一个纯纯的web2.0网站做到了alexa中国区前1000名（如有质疑，请查询2010年附近的tucia.com排名），结果一路亏损，到最后只剩下一个员工；11年我把那个纯纯的app做到苹果官方推荐区免费榜的第一位（点此看截图），那段时间每天四五千iPhone安装量，结果一路烧钱，到最后濒临关闭；而如今，我只需把自己从纯纯的互联网降级下来，做一些看起来有些“低级”的项目，居然就能立即实现收支平衡。</description>
+　这个项目让我沉思了很久：07年我曾把一个纯纯的web2.0网站做到了alexa中国区前1000名（如有质疑，请查询2010年附近的tucia.com排名），结果一路亏损，到最后只剩下一个员工；11年我把那个纯纯的app做到苹果官方推荐区免费榜的第一位（点此看截图），那段时间每天四五千iPhone安装量，结果一路烧钱，到最后濒临关闭；而如今，我只需把自己从纯纯的互联网降级下来，做一些看起来有些“低级”的项目，居然就能立即实现收支平衡。
+　除此以外，我还发现一个现象，
+ 中国消费者在与奸商们的长期斗争中，已经培养出了一种非常苦B的品质：只要不被坑，他就谢天谢地。如果商家严格做到了承诺的每一件事情，客户就会感动的泪如泉涌。
+ 如果商家不仅做到了所有承诺的事情，还很贴心的提供了一些额外的服务（比如我们给每位客户赠送非常好吃的樱桃和昂贵的进口巧克力作为甜点），那么客户就会激动的哭天喊地、奔走相告，推荐给他认识的每一个人。
+ 其实这片肮脏的国土，就是上天赐予IT青年们的最好机会。
+ 　在一个不会练武的村子里，只要你会打两拳，你就是拳术最厉害的人；在一个没有服务意识、忽视产品质量的土地上，只要你用心做服务，用最高的标准去要求自己，你就会成为这块土地上最出色的商家；在一个没有现代管理意识，不懂网络、不懂微博、不懂用户体验、不懂口碑传播的粗犷社会里，你只需要把之前花在IT产品上的心思的10%拿过来用，就可以秒杀一切天朝对手。
+　所以，
+　IT青年们，当你在为网站的转化率苦苦思索的时候，当你在为app的活跃度辗转反侧的时候，当你在为融资计划苦苦哀求各界大佬引荐的时候，也许犯了一个错误，也许你们的脑子最值得闪光的地方，不是去悲催的IT界当炮灰，而应该是去按摩界、餐饮界、烧烤界、早餐界、理发界、家政界、按摩界、送花界、纺织界、成人用品界、现代化养殖界、有机蔬果界、个人护理界、汽车修理界。。。。与IT界相比，这些行业的确无比低级，他们的老板连qq都会发音成“抠抠”，他们的员工一辈子都没用过Email；跟他们解释什么是SEO，什么是用户体验，什么是数据挖掘，他们会在听你说完之前就开枪自杀掉。正是因为如此，这些行业才是如此的不堪一击。正是因为如此，当智商高达147的IT青年还在为3k薪水拼命、而智商不到50的烧烤店老板正坐在porsche里玩着前面那位青年开发的app的时候，我就忍不住仰望星空。
+ 这些原始而纯粹的行业，正在等待IT精英们的降级，如同蒲公英一般的伞兵，在黑夜里从天而降，长驱直入，用最智慧的产品、最优质的服务拯救这些早就该死的行业，屌丝的生命将会绽放出银色的羽翼，无比丰满，无比性感。
+ 　最后注意，请珍惜生命，远离我的微博：@meditic</description>
     </item>
     
   </channel>

@@ -1,333 +1,92 @@
-<!DOCTYPE html>
-<html lang="en" itemscope itemtype="http://schema.org/WebPage">
-  <head>
-    
+<!doctype html>
+<html lang="zh-CN">
+<head>
 
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>深入理解Raft协议 - bystander&#39;s blog</title>
-  <meta property="og:title" content="深入理解Raft协议" />
-  <meta name="twitter:title" content="深入理解Raft协议" />
-  <meta name="description" content="本文部分以JRaft为例，来详细介绍Raft。
-Raft 来源 首先，我们介绍 Raft 问题的来源，Raft 实际上是一个一致性算法的一种实现，和Paxos等价，但是在实现上，简化了一些，并且更加易用。
-这里面又引入了两个名字。一个是一致性，一个是Paxos，我们先说一致性，
-一致性是一个可容错的分布式系统重的最基本的一个问题，一致性包含了“多个服务器对同一个值达成共识，一旦对某个值达成共识，这个决定就是不可变了”，通常，一致性算法，当多数服务器可用的时候，才有效，比如5个server，那么2个挂了，是没问题的，但是再挂一个，超过一半，就不能提供服务了。这句话也说明，他不会返回错误的值，因为都不提供服务了。
-一致性通常和 Replicated State Machines（后面简称RSM）相关，最早提出是在图灵奖得主Leslie Lamport的著名论文&quot;Time, clocks, and the ordering of events in a distributed system(1978)&ldquo;论文中，比较系统性的阐述是在Fred Schneider的论文&rdquo; Implementing fault-tolerant services using the state machine approach(1990)&ldquo;中。
-它的基本思想是一个分布式的RSM系统由很多个replica组成，每个replica是一个状态机，它的状态保存在一组状态变量中。状态机的状态通过并且只能通过外部命令（commands)来改变。比如你可以把MySQL服务器想像成一个状态机。它每接收到一条带修改功能的SQL语句（比如update/insert)就会改变它的状态。一组配置好replication的MySQL servers就是典型的RSM。
-RSM能够工作基于这样的假设：
-如果一些状态机具有相同的初始状态，并且他们接收到的命令也相同，处理这些命令的顺序也相同，那么它们处理完这些命令后的状态也应该相同。 因为replica都具有相同的状态，所以坏掉任何一个也没有关系。有了RSM之后理论上可以做到永远不会因为机器的物理故障而丢失数据。
-也就是说，根据论文的指导，比较普遍的构建容错系统的方法是，每个服务器都维持一个状态机和一个Log，状态机就是我们想要实现容错的一个组件实现，比如想实现一个分布式环境下可容错的 Hash Table， 客户端会和这个状态机交互，每个状态机从log中获取input命令，在这个Hash Table 的例子中，这个log 可能是类似 把X 设置成3这样的命令，一致性算法必须确保，如果任何一个状态机在第N个命令中认可了n被设置为了3，那么其他机器上的状态机器就绝对不应该设置为其他值，这就能保证其他所有的机器总是处理相同的命令序列，最终大家都是同样的状态。
-至于Paxos，这里可以先简单理解就是个一致性算法的实现方式，和 Raft 类似。
-总结就一致性是为了解决分布式环境下的容错问题，而Raft 和 Paxos 是其中的一种实现。
-核心怎么实现呢 要实现Raft，根据作者的表述，通过对状态空间的简化，以及问题的分解，实现方只需要实现的就是各个子问题
-状态空间: 状态太多就会增加理解的困难程度。Raft 算法尽可能地确定各个环节的状态。典型地，Raft 算法采用 strong leader 的模型，每个日志的读写均由 Leader 从中主动协调，这样一来，整体系统的数据流将非常简单：从 Leader 流行 Follower。而且每个节点的状态也只有 3 种：Leader，Candidate 和 Follower。">
-  <meta property="og:description" content="本文部分以JRaft为例，来详细介绍Raft。
-Raft 来源 首先，我们介绍 Raft 问题的来源，Raft 实际上是一个一致性算法的一种实现，和Paxos等价，但是在实现上，简化了一些，并且更加易用。
-这里面又引入了两个名字。一个是一致性，一个是Paxos，我们先说一致性，
-一致性是一个可容错的分布式系统重的最基本的一个问题，一致性包含了“多个服务器对同一个值达成共识，一旦对某个值达成共识，这个决定就是不可变了”，通常，一致性算法，当多数服务器可用的时候，才有效，比如5个server，那么2个挂了，是没问题的，但是再挂一个，超过一半，就不能提供服务了。这句话也说明，他不会返回错误的值，因为都不提供服务了。
-一致性通常和 Replicated State Machines（后面简称RSM）相关，最早提出是在图灵奖得主Leslie Lamport的著名论文&quot;Time, clocks, and the ordering of events in a distributed system(1978)&ldquo;论文中，比较系统性的阐述是在Fred Schneider的论文&rdquo; Implementing fault-tolerant services using the state machine approach(1990)&ldquo;中。
-它的基本思想是一个分布式的RSM系统由很多个replica组成，每个replica是一个状态机，它的状态保存在一组状态变量中。状态机的状态通过并且只能通过外部命令（commands)来改变。比如你可以把MySQL服务器想像成一个状态机。它每接收到一条带修改功能的SQL语句（比如update/insert)就会改变它的状态。一组配置好replication的MySQL servers就是典型的RSM。
-RSM能够工作基于这样的假设：
-如果一些状态机具有相同的初始状态，并且他们接收到的命令也相同，处理这些命令的顺序也相同，那么它们处理完这些命令后的状态也应该相同。 因为replica都具有相同的状态，所以坏掉任何一个也没有关系。有了RSM之后理论上可以做到永远不会因为机器的物理故障而丢失数据。
-也就是说，根据论文的指导，比较普遍的构建容错系统的方法是，每个服务器都维持一个状态机和一个Log，状态机就是我们想要实现容错的一个组件实现，比如想实现一个分布式环境下可容错的 Hash Table， 客户端会和这个状态机交互，每个状态机从log中获取input命令，在这个Hash Table 的例子中，这个log 可能是类似 把X 设置成3这样的命令，一致性算法必须确保，如果任何一个状态机在第N个命令中认可了n被设置为了3，那么其他机器上的状态机器就绝对不应该设置为其他值，这就能保证其他所有的机器总是处理相同的命令序列，最终大家都是同样的状态。
-至于Paxos，这里可以先简单理解就是个一致性算法的实现方式，和 Raft 类似。
-总结就一致性是为了解决分布式环境下的容错问题，而Raft 和 Paxos 是其中的一种实现。
-核心怎么实现呢 要实现Raft，根据作者的表述，通过对状态空间的简化，以及问题的分解，实现方只需要实现的就是各个子问题
-状态空间: 状态太多就会增加理解的困难程度。Raft 算法尽可能地确定各个环节的状态。典型地，Raft 算法采用 strong leader 的模型，每个日志的读写均由 Leader 从中主动协调，这样一来，整体系统的数据流将非常简单：从 Leader 流行 Follower。而且每个节点的状态也只有 3 种：Leader，Candidate 和 Follower。">
-  <meta name="twitter:description" content="本文部分以JRaft为例，来详细介绍Raft。
-Raft 来源 首先，我们介绍 Raft 问题的来源，Raft 实际上是一个一致性算法的一种实现，和Paxos等价，但是在实现上，简化了一些，并且更加易用。
-这里面又引入了两个名字。一个是一致性，一个是Paxos，我们先说一致性，
-一致性是一个可容错的分布式系统重的最基本的一个问题，一致性包含了“多个服务器对同一个值达成共识，一旦对某个值达成共识，这 …">
-  <meta name="author" content="bystander"/><script type="application/ld+json">
-{
-    "@context": "http://schema.org",
-    "@type": "WebSite",
-    "name": "bystander\x27s blog",
-    
-    "url": "https:\/\/leizhiyuan.github.io\/"
-}
-</script><script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Organization",
-  "name": "",
-  "url": "https:\/\/leizhiyuan.github.io\/"
-  
-  
-  
-  
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [{
-        "@type": "ListItem",
-        "position": 1,
-        "item": {
-          "@id": "https:\/\/leizhiyuan.github.io\/",
-          "name": "home"
-        }
-    },{
-        "@type": "ListItem",
-        "position": 3,
-        "item": {
-          "@id": "https:\/\/leizhiyuan.github.io\/2019\/12\/30\/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE\/",
-          "name": "深入理解 raft协议"
-        }
-    }]
-}
-</script><script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Article",
-  "author": {
-    "name" : "bystander"
-  },
-  "headline": "深入理解Raft协议",
-  "description" : "本文部分以JRaft为例，来详细介绍Raft。\nRaft 来源 首先，我们介绍 Raft 问题的来源，Raft 实际上是一个一致性算法的一种实现，和Paxos等价，但是在实现上，简化了一些，并且更加易用。\n这里面又引入了两个名字。一个是一致性，一个是Paxos，我们先说一致性，\n一致性是一个可容错的分布式系统重的最基本的一个问题，一致性包含了“多个服务器对同一个值达成共识，一旦对某个值达成共识，这个决定就是不可变了”，通常，一致性算法，当多数服务器可用的时候，才有效，比如5个server，那么2个挂了，是没问题的，但是再挂一个，超过一半，就不能提供服务了。这句话也说明，他不会返回错误的值，因为都不提供服务了。\n一致性通常和 Replicated State Machines（后面简称RSM）相关，最早提出是在图灵奖得主Leslie Lamport的著名论文\x26quot;Time, clocks, and the ordering of events in a distributed system(1978)\x26ldquo;论文中，比较系统性的阐述是在Fred Schneider的论文\x26rdquo; Implementing fault-tolerant services using the state machine approach(1990)\x26ldquo;中。\n它的基本思想是一个分布式的RSM系统由很多个replica组成，每个replica是一个状态机，它的状态保存在一组状态变量中。状态机的状态通过并且只能通过外部命令（commands)来改变。比如你可以把MySQL服务器想像成一个状态机。它每接收到一条带修改功能的SQL语句（比如update\/insert)就会改变它的状态。一组配置好replication的MySQL servers就是典型的RSM。\nRSM能够工作基于这样的假设：\n如果一些状态机具有相同的初始状态，并且他们接收到的命令也相同，处理这些命令的顺序也相同，那么它们处理完这些命令后的状态也应该相同。 因为replica都具有相同的状态，所以坏掉任何一个也没有关系。有了RSM之后理论上可以做到永远不会因为机器的物理故障而丢失数据。\n也就是说，根据论文的指导，比较普遍的构建容错系统的方法是，每个服务器都维持一个状态机和一个Log，状态机就是我们想要实现容错的一个组件实现，比如想实现一个分布式环境下可容错的 Hash Table， 客户端会和这个状态机交互，每个状态机从log中获取input命令，在这个Hash Table 的例子中，这个log 可能是类似 把X 设置成3这样的命令，一致性算法必须确保，如果任何一个状态机在第N个命令中认可了n被设置为了3，那么其他机器上的状态机器就绝对不应该设置为其他值，这就能保证其他所有的机器总是处理相同的命令序列，最终大家都是同样的状态。\n至于Paxos，这里可以先简单理解就是个一致性算法的实现方式，和 Raft 类似。\n总结就一致性是为了解决分布式环境下的容错问题，而Raft 和 Paxos 是其中的一种实现。\n核心怎么实现呢 要实现Raft，根据作者的表述，通过对状态空间的简化，以及问题的分解，实现方只需要实现的就是各个子问题\n状态空间: 状态太多就会增加理解的困难程度。Raft 算法尽可能地确定各个环节的状态。典型地，Raft 算法采用 strong leader 的模型，每个日志的读写均由 Leader 从中主动协调，这样一来，整体系统的数据流将非常简单：从 Leader 流行 Follower。而且每个节点的状态也只有 3 种：Leader，Candidate 和 Follower。",
-  "inLanguage" : "en",
-  "wordCount":  445 ,
-  "datePublished" : "2019-12-30T14:42:42",
-  "dateModified" : "2019-12-30T14:42:42",
-  "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
-  "keywords" : [ "分布式, 理论" ],
-  "mainEntityOfPage" : "https:\/\/leizhiyuan.github.io\/2019\/12\/30\/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE\/",
-  "publisher" : {
-    "@type": "Organization",
-    "name" : "https:\/\/leizhiyuan.github.io\/",
-    "logo" : {
-        "@type" : "ImageObject",
-        "url" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
-        "height" :  60 ,
-        "width" :  60
-    }
-  }
-}
-</script>
-
-<meta property="og:title" content="深入理解Raft协议" />
-<meta property="og:description" content="本文部分以JRaft为例，来详细介绍Raft。
-Raft 来源 首先，我们介绍 Raft 问题的来源，Raft 实际上是一个一致性算法的一种实现，和Paxos等价，但是在实现上，简化了一些，并且更加易用。
-这里面又引入了两个名字。一个是一致性，一个是Paxos，我们先说一致性，
-一致性是一个可容错的分布式系统重的最基本的一个问题，一致性包含了“多个服务器对同一个值达成共识，一旦对某个值达成共识，这个决定就是不可变了”，通常，一致性算法，当多数服务器可用的时候，才有效，比如5个server，那么2个挂了，是没问题的，但是再挂一个，超过一半，就不能提供服务了。这句话也说明，他不会返回错误的值，因为都不提供服务了。
-一致性通常和 Replicated State Machines（后面简称RSM）相关，最早提出是在图灵奖得主Leslie Lamport的著名论文&quot;Time, clocks, and the ordering of events in a distributed system(1978)&ldquo;论文中，比较系统性的阐述是在Fred Schneider的论文&rdquo; Implementing fault-tolerant services using the state machine approach(1990)&ldquo;中。
-它的基本思想是一个分布式的RSM系统由很多个replica组成，每个replica是一个状态机，它的状态保存在一组状态变量中。状态机的状态通过并且只能通过外部命令（commands)来改变。比如你可以把MySQL服务器想像成一个状态机。它每接收到一条带修改功能的SQL语句（比如update/insert)就会改变它的状态。一组配置好replication的MySQL servers就是典型的RSM。
-RSM能够工作基于这样的假设：
-如果一些状态机具有相同的初始状态，并且他们接收到的命令也相同，处理这些命令的顺序也相同，那么它们处理完这些命令后的状态也应该相同。 因为replica都具有相同的状态，所以坏掉任何一个也没有关系。有了RSM之后理论上可以做到永远不会因为机器的物理故障而丢失数据。
-也就是说，根据论文的指导，比较普遍的构建容错系统的方法是，每个服务器都维持一个状态机和一个Log，状态机就是我们想要实现容错的一个组件实现，比如想实现一个分布式环境下可容错的 Hash Table， 客户端会和这个状态机交互，每个状态机从log中获取input命令，在这个Hash Table 的例子中，这个log 可能是类似 把X 设置成3这样的命令，一致性算法必须确保，如果任何一个状态机在第N个命令中认可了n被设置为了3，那么其他机器上的状态机器就绝对不应该设置为其他值，这就能保证其他所有的机器总是处理相同的命令序列，最终大家都是同样的状态。
-至于Paxos，这里可以先简单理解就是个一致性算法的实现方式，和 Raft 类似。
-总结就一致性是为了解决分布式环境下的容错问题，而Raft 和 Paxos 是其中的一种实现。
-核心怎么实现呢 要实现Raft，根据作者的表述，通过对状态空间的简化，以及问题的分解，实现方只需要实现的就是各个子问题
-状态空间: 状态太多就会增加理解的困难程度。Raft 算法尽可能地确定各个环节的状态。典型地，Raft 算法采用 strong leader 的模型，每个日志的读写均由 Leader 从中主动协调，这样一来，整体系统的数据流将非常简单：从 Leader 流行 Follower。而且每个节点的状态也只有 3 种：Leader，Candidate 和 Follower。">
-<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
-<meta property="og:url" content="https://leizhiyuan.github.io/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/" />
-<meta property="og:type" content="website" />
-<meta property="og:site_name" content="bystander&#39;s blog" />
-
-  <meta name="twitter:title" content="深入理解Raft协议" />
-  <meta name="twitter:description" content="本文部分以JRaft为例，来详细介绍Raft。
-Raft 来源 首先，我们介绍 Raft 问题的来源，Raft 实际上是一个一致性算法的一种实现，和Paxos等价，但是在实现上，简化了一些，并且更加易用。
-这里面又引入了两个名字。一个是一致性，一个是Paxos，我们先说一致性，
-一致性是一个可容错的分布式系统重的最基本的一个问题，一致性包含了“多个服务器对同一个值达成共识，一旦对某个值达成共识，这 …">
-  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
-  <meta name="twitter:card" content="summary" />
-  <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
-  <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
-  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
-  <meta name="twitter:card" content="summary" />
-  <meta property="og:url" content="https://leizhiyuan.github.io/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="bystander&#39;s blog" />
-
-  <meta name="generator" content="Hugo 0.61.0" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
-
-
-
-  </head>
-  <body>
-    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="https://leizhiyuan.github.io/">bystander&#39;s blog</a>
-    </div>
-
-    <div class="collapse navbar-collapse" id="main-navbar">
-      <ul class="nav navbar-nav navbar-right">
+    <title>深入理解Raft协议 | bystander&#39;s blog</title>
+    <meta property="og:title" content="深入理解Raft协议 - bystander&#39;s blog">
+    <meta property="og:type" content="article">
         
-          
-            <li>
-              <a title="首页" href="/">首页</a>
-            </li>
-          
+    <meta property="article:published_time" content='2019-12-30T14:42:42&#43;08:00'>
         
-          
-            <li>
-              <a title="目录" href="/categories">目录</a>
-            </li>
-          
         
-          
-            <li>
-              <a title="标签" href="/tags">标签</a>
-            </li>
-          
+    <meta property="article:modified_time" content='2019-12-30T14:42:42&#43;08:00'>
         
-          
-            <li>
-              <a title="友情链接" href="/2016/01/01/links">友情链接</a>
-            </li>
-          
+    <meta name="Keywords" content="">
+    <meta name="description" content="深入理解Raft协议">
         
-          
-            <li>
-              <a title="关于我" href="/about/">关于我</a>
-            </li>
-          
-        
+    <meta name="author" content="bystander">
+    <meta property="og:url" content="http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
-        
-
-        
-      </ul>
-    </div>
-
-    
-      <div class="avatar-container">
-        <div class="avatar-img-border">
-          <a title="bystander&#39;s blog" href="https://leizhiyuan.github.io/">
-            <img class="avatar-img" src="https://leizhiyuan.github.io/images/author.jpg" alt="bystander&#39;s blog" />
-          </a>
-        </div>
-      </div>
-    
-
-  </div>
-</nav>
-
-
-
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     
 
 
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-<div class="pswp__bg"></div>
-
-<div class="pswp__scroll-wrap">
     
-    <div class="pswp__container">
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-    </div>
     
-    <div class="pswp__ui pswp__ui--hidden">
-    <div class="pswp__top-bar">
-      
-      <div class="pswp__counter"></div>
-      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-      <button class="pswp__button pswp__button--share" title="Share"></button>
-      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-      
-      
-      <div class="pswp__preloader">
-        <div class="pswp__preloader__icn">
-          <div class="pswp__preloader__cut">
-            <div class="pswp__preloader__donut"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-      <div class="pswp__share-tooltip"></div>
-    </div>
-    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-    </button>
-    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-    </button>
-    <div class="pswp__caption">
-      <div class="pswp__caption__center"></div>
-    </div>
-    </div>
-    </div>
-</div>
+</head>
 
 
-  
-  
-  
-
-
-
-
-
-
-  
-
-  <header class="header-section ">
-    
-    <div class="intro-header no-img">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <div class="post-heading">
-              
-                <h1>深入理解Raft协议</h1>
-              
-              
-              
-              
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on December 30, 2019
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;3&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://leaver.me/">
+                        bystander&#39;s blog
+                    </a>
+                
+                <p class="description">寻找窄门</p>
             </div>
-          </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="http://leaver.me/">首页</a>
+                    
+                    <a  href="http://leaver.me/categories" title="目录">目录</a>
+                    
+                    <a  href="http://leaver.me/about/" title="关于我">关于我</a>
+                    
+                </nav>
+            </div>
         </div>
-      </div>
     </div>
-  </header>
+</header>
 
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
 
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
     
-<div class="container" role="main">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-      <article role="main" class="blog-post">
-        <p>本文部分以JRaft为例，来详细介绍Raft。</p>
+    <article class="post">
+        <header>
+            <h1 class="post-title">深入理解Raft协议</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2019年12月30日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a></span>
+            
+        </div>
+        
+        
+        
+        <div class="post-content">
+            <p>本文部分以JRaft为例，来详细介绍Raft。</p>
 <h1 id="raft-">Raft 来源</h1>
 <p>首先，我们介绍 Raft 问题的来源，Raft 实际上是一个一致性算法的一种实现，和Paxos等价，但是在实现上，简化了一些，并且更加易用。</p>
 <p>这里面又引入了两个名字。一个是一致性，一个是Paxos，我们先说一致性，</p>
@@ -440,39 +199,28 @@ Follower 节点Crash – Follower Crash的时候，发给他的所有请求都�
 <p>Raft 官网 : <a href="https://raft.github.io/">https://raft.github.io/</a></p>
 <p>In Search of an Understandable Consensus Algorithm : <a href="https://raft.github.io/raft.pdf">https://raft.github.io/raft.pdf</a></p>
 
+        </div>
 
         
-          <div class="blog-tags">
+
+
+        
+
+
+        <div class="post-meta meta-tags">
             
-              <a href="https://leizhiyuan.github.io//tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>&nbsp;
+            <ul class="clearfix">
+                
+                <li><a href='http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F'>分布式</a></li>
+                
+                <li><a href='http://leaver.me/tags/%E7%90%86%E8%AE%BA'>理论</a></li>
+                
+            </ul>
             
-              <a href="https://leizhiyuan.github.io//tags/%E7%90%86%E8%AE%BA/">理论</a>&nbsp;
-            
-          </div>
-        
-
-        
-
-        
-      </article>
-
-      
-        <ul class="pager blog-pager">
-          
-            <li class="previous">
-              <a href="https://leizhiyuan.github.io/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/" data-toggle="tooltip" data-placement="top" title="《非暴力沟通》笔记">&larr; Previous Post</a>
-            </li>
-          
-          
-        </ul>
-      
-
-
-      
-        
-          
-          <div class="disqus-comments">
-            <div id="disqus_thread"></div>
+        </div>
+    </article>
+    
+    <div id="disqus_thread"></div>
 <script type="application/javascript">
     var disqus_config = function () {
     
@@ -492,85 +240,312 @@ Follower 节点Crash – Follower Crash的时候，发给他的所有请求都�
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-          </div>
-          
-        
-        
-      
 
-    </div>
-  </div>
+    
+    
 </div>
 
-    <footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <ul class="list-inline text-center footer-links">
-          
-              <li>
-                <a href="https://github.com/leizhiyuan" title="GitHub">
-                  <span class="fa-stack fa-lg">
-                    <i class="fas fa-circle fa-stack-2x"></i>
-                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-          
-          <li>
-            <a href="" title="RSS">
-              <span class="fa-stack fa-lg">
-                <i class="fas fa-circle fa-stack-2x"></i>
-                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
-              </span>
-            </a>
-          </li>
-          
-        </ul>
-        <p class="credits copyright text-muted">
-          
-            
-              <a href="leaver.me">bystander</a>
-            
-          
+                </div>
 
-          &nbsp;&bull;&nbsp;&copy;
-          
-            2019
-          
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='http://leaver.me/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://leaver.me/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/" title="深入理解Raft协议">深入理解Raft协议</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/" title="《非暴力沟通》笔记">《非暴力沟通》笔记</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/10/06/wedding-of-friends/" title="Wedding of Friends">Wedding of Friends</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/09/29/principle-note/" title="Principle Note">Principle Note</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/" title="梦见鲸鱼的那一夜">梦见鲸鱼的那一夜</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/08/20/understand-hong-kong-2/" title="Understand Hong Kong 2">Understand Hong Kong 2</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/08/18/understand-hong-kong-part-1/" title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/" title="错过的都是命，得到的才是人生">错过的都是命，得到的才是人生</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/04/06/recently/" title="Recently">Recently</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/03/01/mac%E8%BF%81%E7%A7%BB%E5%AF%BC%E8%87%B4golang%E6%97%A0%E6%B3%95debug%E7%9A%84%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D/" title="Mac迁移导致Golang无法debug的问题修复">Mac迁移导致Golang无法debug的问题修复</a>
+    </li>
+    
+</ul>
+    </section>
 
-          
-            &nbsp;&bull;&nbsp;
-            <a href="https://leizhiyuan.github.io/">bystander&#39;s blog</a>
-          
-        </p>
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记 (186)</a></li>
+    
+    <li><a href="http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/">我的翻译 (57)</a></li>
+    
+    <li><a href="http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/">文章收藏 (53)</a></li>
+    
+    <li><a href="http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录 (2)</a></li>
+    
+    <li><a href="http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记 (4)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://leaver.me/tags/android/">android</a>
+    
+    <a href="http://leaver.me/tags/c/">C＃</a>
+    
+    <a href="http://leaver.me/tags/c&#43;&#43;/">C&#43;&#43;</a>
+    
+    <a href="http://leaver.me/tags/java/">java</a>
+    
+    <a href="http://leaver.me/tags/javascript/">javascript</a>
+    
+    <a href="http://leaver.me/tags/linux/">linux</a>
+    
+    <a href="http://leaver.me/tags/mac/">mac</a>
+    
+    <a href="http://leaver.me/tags/matlab/">matlab</a>
+    
+    <a href="http://leaver.me/tags/maven/">maven</a>
+    
+    <a href="http://leaver.me/tags/mysql/">mysql</a>
+    
+    <a href="http://leaver.me/tags/nextgen-gallery/">NextGEN Gallery</a>
+    
+    <a href="http://leaver.me/tags/php/">php</a>
+    
+    <a href="http://leaver.me/tags/python/">python</a>
+    
+    <a href="http://leaver.me/tags/shell/">shell</a>
+    
+    <a href="http://leaver.me/tags/spring/">spring</a>
+    
+    <a href="http://leaver.me/tags/sql/">sql</a>
+    
+    <a href="http://leaver.me/tags/stackoverflow/">stackoverflow</a>
+    
+    <a href="http://leaver.me/tags/wcf/">WCF</a>
+    
+    <a href="http://leaver.me/tags/web/">web</a>
+    
+    <a href="http://leaver.me/tags/windows/">windows</a>
+    
+    <a href="http://leaver.me/tags/wordpress/">wordpress</a>
+    
+    <a href="http://leaver.me/tags/wpf/">WPF</a>
+    
+    <a href="http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/">上海</a>
+    
+    <a href="http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/">下载</a>
+    
+    <a href="http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
+    
+    <a href="http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/">互联网</a>
+    
+    <a href="http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
+    
+    <a href="http://leaver.me/tags/%E5%88%B6%E5%BA%A6/">制度</a>
+    
+    <a href="http://leaver.me/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+    
+    <a href="http://leaver.me/tags/%E5%8E%9F%E5%88%9B/">原创</a>
+    
+    <a href="http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/">大学</a>
+    
+    <a href="http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/">学习</a>
+    
+    <a href="http://leaver.me/tags/%E5%AE%89%E5%85%A8/">安全</a>
+    
+    <a href="http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/">家庭</a>
+    
+    <a href="http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/">工作</a>
+    
+    <a href="http://leaver.me/tags/%E5%B7%A5%E5%85%B7/">工具</a>
+    
+    <a href="http://leaver.me/tags/%E5%B9%B6%E5%8F%91/">并发</a>
+    
+    <a href="http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/">序列化</a>
+    
+    <a href="http://leaver.me/tags/%E5%BC%80%E5%8F%91/">开发</a>
+    
+    <a href="http://leaver.me/tags/%E5%BF%83%E7%90%86/">心理</a>
+    
+    <a href="http://leaver.me/tags/%E6%80%BB%E7%BB%93/">总结</a>
+    
+    <a href="http://leaver.me/tags/%E6%8A%80%E6%9C%AF/">技术</a>
+    
+    <a href="http://leaver.me/tags/%E6%8F%92%E4%BB%B6/">插件</a>
+    
+    <a href="http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+    
+    <a href="http://leaver.me/tags/%E6%94%B6%E8%97%8F/">收藏</a>
+    
+    <a href="http://leaver.me/tags/%E6%95%B0%E5%AD%A6/">数学</a>
+    
+    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+    
+    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">数据挖掘</a>
+    
+    <a href="http://leaver.me/tags/%E6%96%87%E7%AB%A0/">文章</a>
+    
+    <a href="http://leaver.me/tags/%E6%99%BA%E8%83%BD/">智能</a>
+    
+    <a href="http://leaver.me/tags/%E6%9D%82%E6%96%87/">杂文</a>
+    
+    <a href="http://leaver.me/tags/%E6%AD%A6%E6%B1%89/">武汉</a>
+    
+    <a href="http://leaver.me/tags/%E6%B1%87%E7%BC%96/">汇编</a>
+    
+    <a href="http://leaver.me/tags/%E7%88%B1%E6%83%85/">爱情</a>
+    
+    <a href="http://leaver.me/tags/%E7%90%86%E8%AE%BA/">理论</a>
+    
+    <a href="http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</a>
+    
+    <a href="http://leaver.me/tags/%E7%94%9F%E6%B4%BB/">生活</a>
+    
+    <a href="http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/">电子书</a>
+    
+    <a href="http://leaver.me/tags/%E7%94%B5%E5%BD%B1/">电影</a>
+    
+    <a href="http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/">社会</a>
+    
+    <a href="http://leaver.me/tags/%E7%A7%91%E6%8A%80/">科技</a>
+    
+    <a href="http://leaver.me/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+    
+    <a href="http://leaver.me/tags/%E7%AE%97%E6%B3%95/">算法</a>
+    
+    <a href="http://leaver.me/tags/%E7%BC%96%E7%A8%8B/">编程</a>
+    
+    <a href="http://leaver.me/tags/%E7%BC%96%E8%AF%91/">编译</a>
+    
+    <a href="http://leaver.me/tags/%E7%BF%BB%E8%AF%91/">翻译</a>
+    
+    <a href="http://leaver.me/tags/%E8%81%8C%E4%B8%9A/">职业</a>
+    
+    <a href="http://leaver.me/tags/%E8%AE%B0%E5%BD%95/">记录</a>
+    
+    <a href="http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/">设计</a>
+    
+    <a href="http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/">读书</a>
+    
+    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/">软件</a>
+    
+    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</a>
+    
+    <a href="http://leaver.me/tags/%E8%BF%90%E7%BB%B4/">运维</a>
+    
+    <a href="http://leaver.me/tags/%E9%87%91%E8%9E%8D/">金融</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
         
-        <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
-          
-        </p>
-      </div>
+        <li>
+            <a target="_blank" href="https://www.cppfans.org/" title="C&#43;&#43;爱好者博客">C&#43;&#43;爱好者博客</a>
+        </li>
+        
+        <li>
+            <a target="_blank" href="http://www.kailing.pub" title="KL，每天进步一点点">KL，每天进步一点点</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="http://leaver.me/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
     </div>
-  </div>
-</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-<script src="https://leizhiyuan.github.io/js/main.js"></script>
-<script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
-<script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="http://leaver.me/">bystander&#39;s blog By bystander</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
 
 
+    
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', '30961201', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 
 
 
 
+</body>
 
-  </body>
 </html>
-

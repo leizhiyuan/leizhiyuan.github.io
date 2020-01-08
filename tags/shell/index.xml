@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>shell on bystander&#39;s blog</title>
-    <link>https://leizhiyuan.github.io/tags/shell/</link>
+    <link>http://leaver.me/tags/shell/</link>
     <description>Recent content in shell on bystander&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Sat, 29 Mar 2014 10:31:31 +0000</lastBuildDate>
     
-	<atom:link href="https://leizhiyuan.github.io/tags/shell/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://leaver.me/tags/shell/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>linux编写定时任务</title>
-      <link>https://leizhiyuan.github.io/2014/03/29/linux%E7%BC%96%E5%86%99%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/</link>
+      <link>http://leaver.me/2014/03/29/linux%E7%BC%96%E5%86%99%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/</link>
       <pubDate>Sat, 29 Mar 2014 10:31:31 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2014/03/29/linux%E7%BC%96%E5%86%99%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/</guid>
+      <guid>http://leaver.me/2014/03/29/linux%E7%BC%96%E5%86%99%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/</guid>
       <description>linux中定时任务用来执行一些周期性的自动化的任务，比如有些人可能用来定期备份，也可能是定期检查一下特殊文件的签名，如果不一致，就报警，检测入侵。
 cron是linux下的定时执行工具
 这个工具的几个命令是这样的
@@ -41,20 +41,20 @@ cron是linux下的定时执行工具
     
     <item>
       <title>Unix sed实用教程系列目录</title>
-      <link>https://leizhiyuan.github.io/2013/08/11/unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%B3%BB%E5%88%97%E7%9B%AE%E5%BD%95/</link>
+      <link>http://leaver.me/2013/08/11/unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%B3%BB%E5%88%97%E7%9B%AE%E5%BD%95/</link>
       <pubDate>Sun, 11 Aug 2013 17:03:51 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/08/11/unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%B3%BB%E5%88%97%E7%9B%AE%E5%BD%95/</guid>
+      <guid>http://leaver.me/2013/08/11/unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%B3%BB%E5%88%97%E7%9B%AE%E5%BD%95/</guid>
       <description>本系列文章已经译完了，译自awk-sed@theunixschool,收获颇丰，作者没有将明白的我做了补充，并且尝试讲的更清楚，整理成系列索引，方便学习，开篇非译文,是我为了方便后面的理解写的一篇,感谢原作者的分享.有任何问题欢迎留言讨论.
  Unix sed实用教程开篇 [译]Unix sed实用教程第一篇–向文件中增加一行 [译]Unix sed实用教程第二篇–替换文件内容 [译]Unix sed实用教程第三篇–读写文件 [译]Unix sed实用教程第四篇–选择性打印 [译]Unix sed实用教程第五篇–替换文件内容续 [译]Unix sed实用教程第六篇–删除文件内容 [译]Unix sed实用教程第七篇–输出文件内容(10 Demo) [译]Unix sed实用教程第八篇–CSV文件操作  </description>
     </item>
     
     <item>
       <title>[译]Unix sed实用教程第八篇–CSV文件操作</title>
-      <link>https://leizhiyuan.github.io/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AB%E7%AF%87csv%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</link>
+      <link>http://leaver.me/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AB%E7%AF%87csv%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</link>
       <pubDate>Sun, 11 Aug 2013 16:55:33 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AB%E7%AF%87csv%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</guid>
+      <guid>http://leaver.me/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AB%E7%AF%87csv%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</guid>
       <description>本文作为sed使用教程的最后一篇，将比较全面的讲解如何操作csv文件，csv文件通过逗号分隔
 示例文件如下：
 1.删除第一列s开启替换模式，当^符号在中括号里的时候，就是非的意思，也就是说[^,]匹配了所有不是逗号的一个字符，然后后面的星号表示0个或多个，然后是一个逗号，也就是匹配&amp;quot;xxxx,&amp;ldquo;替换为空
@@ -80,10 +80,10 @@ N表示读入并合并下一行，然后将两行之间的换行符替换为空�
     
     <item>
       <title>[译]Unix sed实用教程第七篇–输出文件内容(10 Demo)</title>
-      <link>https://leizhiyuan.github.io/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%83%E7%AF%87%E8%BE%93%E5%87%BA%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B910-demo/</link>
+      <link>http://leaver.me/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%83%E7%AF%87%E8%BE%93%E5%87%BA%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B910-demo/</link>
       <pubDate>Sun, 11 Aug 2013 16:27:31 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%83%E7%AF%87%E8%BE%93%E5%87%BA%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B910-demo/</guid>
+      <guid>http://leaver.me/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%83%E7%AF%87%E8%BE%93%E5%87%BA%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B910-demo/</guid>
       <description>之前已经学习过选择性打印输出了，本文将通过10个例子全面讲解文件输出的一些方法，主打p命令
 首先看一下将使用的示例文件
 1.打印文件首行之前讲过了，-n取消默认的全部打印，p表示print，1就是行号了
@@ -103,10 +103,10 @@ Demo完了，你懂了么。</description>
     
     <item>
       <title>[译]Unix sed实用教程第六篇–删除文件内容</title>
-      <link>https://leizhiyuan.github.io/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AD%E7%AF%87%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/</link>
+      <link>http://leaver.me/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AD%E7%AF%87%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/</link>
       <pubDate>Sat, 10 Aug 2013 13:15:38 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AD%E7%AF%87%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/</guid>
+      <guid>http://leaver.me/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AD%E7%AF%87%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/</guid>
       <description>其实，删除和替换是由一些相同的，不过，这里我们单独列出来，通过25个例子穿插讲解sed删除文件的一些方法，使用的示例文件如下：
 1.删除第一行d就是删除，1就是指第1行，记得哦，这不会影响到源文件，一般，做删除的时候一般要加-i参数，前面说过了
 2.删除指定行，这里删除第3行3.删除最后一行4.删除范围行，这里删除2-4行5.保留指定的行，这里保留2-4行！这个是对前面的2,4来操作，是非的意思，也就是不是2-4行的行，这样除去2-4行，其他的都删除了
@@ -137,10 +137,10 @@ Demo完了，你懂了么。</description>
     
     <item>
       <title>[译]Unix sed实用教程第五篇–替换文件内容续</title>
-      <link>https://leizhiyuan.github.io/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%BA%94%E7%AF%87%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E7%BB%AD/</link>
+      <link>http://leaver.me/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%BA%94%E7%AF%87%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E7%BB%AD/</link>
       <pubDate>Sat, 10 Aug 2013 09:05:55 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%BA%94%E7%AF%87%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E7%BB%AD/</guid>
+      <guid>http://leaver.me/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%BA%94%E7%AF%87%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E7%BB%AD/</guid>
       <description>前面已经学习过替换文件内容了，本文我们学习一些更频繁使用的搜索替换操作.
 示例文件使用：
 1.替换每行开始的两个字母，这里用XX来替换s代表substitute，前面说过了，^用来匹配行开头，.表示任意一个字符，两个..就是你懂的，
@@ -165,10 +165,10 @@ Demo完了，你懂了么。</description>
     
     <item>
       <title>[译]Unix sed实用教程第四篇–选择性打印</title>
-      <link>https://leizhiyuan.github.io/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%9B%9B%E7%AF%87%E9%80%89%E6%8B%A9%E6%80%A7%E6%89%93%E5%8D%B0/</link>
+      <link>http://leaver.me/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%9B%9B%E7%AF%87%E9%80%89%E6%8B%A9%E6%80%A7%E6%89%93%E5%8D%B0/</link>
       <pubDate>Sat, 10 Aug 2013 08:39:56 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%9B%9B%E7%AF%87%E9%80%89%E6%8B%A9%E6%80%A7%E6%89%93%E5%8D%B0/</guid>
+      <guid>http://leaver.me/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%9B%9B%E7%AF%87%E9%80%89%E6%8B%A9%E6%80%A7%E6%89%93%E5%8D%B0/</guid>
       <description>本文，我们将会学习如何选择性的打印（其实，这里的打印是print，也就是输出到标准输出的意思），用到的示例文件是：
 1.打印所有内容一对单引号，没有任何参数即可
 2.如何打印包含Gmail的那一行.(grep也可以实现这个功能)在斜线里面，我们指定正则匹配模式，p的意思呢，就是print，打印的意思，也就是打印包含Gmail这一行，但是我们看到Gmail打印了两次，为什么，因为sed的默认行为是在解析完一行之后就把他输出出来，也就是对于Gmail这一行，先执行p解析，解析完成后再默认打印一次，就打印了两次，而其他的，没有命令解析，直接读入完成后输出即可。
@@ -191,10 +191,10 @@ Demo完了，你懂了么。</description>
     
     <item>
       <title>[译]Unix sed实用教程第三篇–读写文件</title>
-      <link>https://leizhiyuan.github.io/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%89%E7%AF%87%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/</link>
+      <link>http://leaver.me/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%89%E7%AF%87%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/</link>
       <pubDate>Fri, 09 Aug 2013 16:52:56 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%89%E7%AF%87%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/</guid>
+      <guid>http://leaver.me/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%89%E7%AF%87%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/</guid>
       <description>本文将展示如何将文件内容读入到sed输出，同时包含如何将一个文件的部分内容写入到另一文件
 一.文件读取
 假定有两个文件，file1和file2，内容分别如下：
@@ -214,10 +214,10 @@ _**二.文件写入**_使用一个file1文件，内容如下：
     
     <item>
       <title>[译]Unix sed实用教程第二篇–替换文件内容</title>
-      <link>https://leizhiyuan.github.io/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%BA%8C%E7%AF%87%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/</link>
+      <link>http://leaver.me/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%BA%8C%E7%AF%87%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/</link>
       <pubDate>Fri, 09 Aug 2013 16:24:12 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%BA%8C%E7%AF%87%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/</guid>
+      <guid>http://leaver.me/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%BA%8C%E7%AF%87%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/</guid>
       <description>上一节中-Unix sed实用教程第一篇–向文件中增加一行 学习了添加文件，本节讲解数据内容替换.
 本节将使用sample1.txt文件作为示例，文件内容如下，都是些水果..：
 1.向每一行的开头添加内容，这里我们添加“Fruit：”
@@ -247,10 +247,10 @@ _**二.文件写入**_使用一个file1文件，内容如下：
     
     <item>
       <title>[译]Unix sed实用教程第一篇--向文件中增加一行</title>
-      <link>https://leizhiyuan.github.io/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%80%E7%AF%87-%E5%90%91%E6%96%87%E4%BB%B6%E4%B8%AD%E5%A2%9E%E5%8A%A0%E4%B8%80%E8%A1%8C/</link>
+      <link>http://leaver.me/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%80%E7%AF%87-%E5%90%91%E6%96%87%E4%BB%B6%E4%B8%AD%E5%A2%9E%E5%8A%A0%E4%B8%80%E8%A1%8C/</link>
       <pubDate>Fri, 09 Aug 2013 14:56:29 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%80%E7%AF%87-%E5%90%91%E6%96%87%E4%BB%B6%E4%B8%AD%E5%A2%9E%E5%8A%A0%E4%B8%80%E8%A1%8C/</guid>
+      <guid>http://leaver.me/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%80%E7%AF%87-%E5%90%91%E6%96%87%E4%BB%B6%E4%B8%AD%E5%A2%9E%E5%8A%A0%E4%B8%80%E8%A1%8C/</guid>
       <description>Unix sed实用教程第一讲，本系列第一篇，有任何问题欢迎留言讨论。
 sed 是unix中最重要的编辑器之一，注意，有之一..支持多种编辑任务，本文将实现题目的功能实例
 假定我们有一额文本文件，叫做empFile，包含了员工名字和员工id，如下：
@@ -267,10 +267,10 @@ sed 是unix中最重要的编辑器之一，注意，有之一..支持多种编�
     
     <item>
       <title>Unix sed实用教程开篇</title>
-      <link>https://leizhiyuan.github.io/2013/08/09/unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E5%BC%80%E7%AF%87/</link>
+      <link>http://leaver.me/2013/08/09/unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E5%BC%80%E7%AF%87/</link>
       <pubDate>Fri, 09 Aug 2013 09:43:52 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/08/09/unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E5%BC%80%E7%AF%87/</guid>
+      <guid>http://leaver.me/2013/08/09/unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E5%BC%80%E7%AF%87/</guid>
       <description>已经看了一段时间的Linux Shell编程了,也能完成一些基本的使用，为了加深理解，恰好看到了The Unix School的一个sed&amp;amp;awk教程，不是简单的命令参数堆积，而是一个相当实用的系列，因此，希望能在几天内完成翻译.翻译过程不会逐字翻译，会穿插一些注释，包括自己的一些理解和其他的一些引用，作为开篇，简单说一下sed的工作机制，对后面的理解会有很大帮助。
 sed是什么： sed是一个非交互式的流编辑器（stream editor）。所谓非交互式，是指使用sed只能在命令行下输入编辑命令来编辑文本，然后在屏幕上查看输出；而所谓流编辑器，是指sed每次只从文件（或输入）读入一行，然后对该行进行指定的处理，并将结果输出到屏幕（除非取消了屏幕输出又没有显式地使用打印命令），接着读入下一行。整个文件像流水一样被逐行处理然后逐行输出。(via Walk in Mindfields ) sed工作机制： sed维护两个缓冲区，pattern space和hold space，命令开始执行之前都为空。
 pattern space缓冲区用于临时保存每次读取的一行的内容，大部分的匹配和替换等等操作都是针对pattern space中的内容进行的，因此不会对输入文件有任何影响,而hold space则作为后备缓冲区使用,除非指定了一些特殊的命令(例如D删除命令)，否则pattern space中的内容会在处理完一行之后清空，但hold space中的内容在处理完每一行时不会被删除。

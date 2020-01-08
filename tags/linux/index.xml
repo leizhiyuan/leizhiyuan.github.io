@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>linux on bystander&#39;s blog</title>
-    <link>https://leizhiyuan.github.io/tags/linux/</link>
+    <link>http://leaver.me/tags/linux/</link>
     <description>Recent content in linux on bystander&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Sat, 29 Mar 2014 10:31:31 +0000</lastBuildDate>
     
-	<atom:link href="https://leizhiyuan.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://leaver.me/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>linux编写定时任务</title>
-      <link>https://leizhiyuan.github.io/2014/03/29/linux%E7%BC%96%E5%86%99%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/</link>
+      <link>http://leaver.me/2014/03/29/linux%E7%BC%96%E5%86%99%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/</link>
       <pubDate>Sat, 29 Mar 2014 10:31:31 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2014/03/29/linux%E7%BC%96%E5%86%99%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/</guid>
+      <guid>http://leaver.me/2014/03/29/linux%E7%BC%96%E5%86%99%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/</guid>
       <description>linux中定时任务用来执行一些周期性的自动化的任务，比如有些人可能用来定期备份，也可能是定期检查一下特殊文件的签名，如果不一致，就报警，检测入侵。
 cron是linux下的定时执行工具
 这个工具的几个命令是这样的
@@ -41,10 +41,10 @@ cron是linux下的定时执行工具
     
     <item>
       <title>linux的CPU负载均值</title>
-      <link>https://leizhiyuan.github.io/2014/03/08/linux%E7%9A%84cpu%E8%B4%9F%E8%BD%BD%E5%9D%87%E5%80%BC/</link>
+      <link>http://leaver.me/2014/03/08/linux%E7%9A%84cpu%E8%B4%9F%E8%BD%BD%E5%9D%87%E5%80%BC/</link>
       <pubDate>Sat, 08 Mar 2014 17:19:30 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2014/03/08/linux%E7%9A%84cpu%E8%B4%9F%E8%BD%BD%E5%9D%87%E5%80%BC/</guid>
+      <guid>http://leaver.me/2014/03/08/linux%E7%9A%84cpu%E8%B4%9F%E8%BD%BD%E5%9D%87%E5%80%BC/</guid>
       <description>当运行在Linux上的程序有问题之后，我们通常要看一下当前CPU和内存的使用情况来分析一下问题
 对于CPU的使用率，通常用Load Average，也就是负载均值来度量
 负载均值是啥？
@@ -64,10 +64,10 @@ cron是linux下的定时执行工具
     
     <item>
       <title>[笔记]写代码遇到的一些问题汇总下</title>
-      <link>https://leizhiyuan.github.io/2014/02/08/%E7%AC%94%E8%AE%B0%E5%86%99%E4%BB%A3%E7%A0%81%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB%E4%B8%8B/</link>
+      <link>http://leaver.me/2014/02/08/%E7%AC%94%E8%AE%B0%E5%86%99%E4%BB%A3%E7%A0%81%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB%E4%B8%8B/</link>
       <pubDate>Sat, 08 Feb 2014 11:06:51 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2014/02/08/%E7%AC%94%E8%AE%B0%E5%86%99%E4%BB%A3%E7%A0%81%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB%E4%B8%8B/</guid>
+      <guid>http://leaver.me/2014/02/08/%E7%AC%94%E8%AE%B0%E5%86%99%E4%BB%A3%E7%A0%81%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB%E4%B8%8B/</guid>
       <description>本篇是用来填上一篇 挖下的坑的。
 1.java调用webservice
 有一些已有的webservice服务，由xfire生成发布，有些有参数，有些无参数，无参数的直接我直接使用org.codehaus.xfire这个包里的Client来动态生成客户端。然后调用就可以了。非常简单
@@ -95,25 +95,26 @@ log4j.logger.httpclient.wire.header=INFO
 log4j.logger.httpclient.wire.content=INFO
 log4j.logger.org.apache.commons.httpclient = INFO
 最后附赠一些实用的工具
-http://www.freeformatter.com/ 程序员必备。各类转换，包括转义工具，格式校验工具。效果很好。</description>
+http://www.freeformatter.com/ 程序员必备。各类转换，包括转义工具，格式校验工具。效果很好。
+流体力学理论与F1赛车的空气动力学1，2，3 什么雷诺数，伯努利方程，文丘里效应，当年木有好好学啊。这么高大上的东西果然还是有压力。</description>
     </item>
     
     <item>
       <title>Unix sed实用教程系列目录</title>
-      <link>https://leizhiyuan.github.io/2013/08/11/unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%B3%BB%E5%88%97%E7%9B%AE%E5%BD%95/</link>
+      <link>http://leaver.me/2013/08/11/unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%B3%BB%E5%88%97%E7%9B%AE%E5%BD%95/</link>
       <pubDate>Sun, 11 Aug 2013 17:03:51 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/08/11/unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%B3%BB%E5%88%97%E7%9B%AE%E5%BD%95/</guid>
+      <guid>http://leaver.me/2013/08/11/unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%B3%BB%E5%88%97%E7%9B%AE%E5%BD%95/</guid>
       <description>本系列文章已经译完了，译自awk-sed@theunixschool,收获颇丰，作者没有将明白的我做了补充，并且尝试讲的更清楚，整理成系列索引，方便学习，开篇非译文,是我为了方便后面的理解写的一篇,感谢原作者的分享.有任何问题欢迎留言讨论.
  Unix sed实用教程开篇 [译]Unix sed实用教程第一篇–向文件中增加一行 [译]Unix sed实用教程第二篇–替换文件内容 [译]Unix sed实用教程第三篇–读写文件 [译]Unix sed实用教程第四篇–选择性打印 [译]Unix sed实用教程第五篇–替换文件内容续 [译]Unix sed实用教程第六篇–删除文件内容 [译]Unix sed实用教程第七篇–输出文件内容(10 Demo) [译]Unix sed实用教程第八篇–CSV文件操作  </description>
     </item>
     
     <item>
       <title>[译]Unix sed实用教程第八篇–CSV文件操作</title>
-      <link>https://leizhiyuan.github.io/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AB%E7%AF%87csv%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</link>
+      <link>http://leaver.me/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AB%E7%AF%87csv%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</link>
       <pubDate>Sun, 11 Aug 2013 16:55:33 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AB%E7%AF%87csv%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</guid>
+      <guid>http://leaver.me/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AB%E7%AF%87csv%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</guid>
       <description>本文作为sed使用教程的最后一篇，将比较全面的讲解如何操作csv文件，csv文件通过逗号分隔
 示例文件如下：
 1.删除第一列s开启替换模式，当^符号在中括号里的时候，就是非的意思，也就是说[^,]匹配了所有不是逗号的一个字符，然后后面的星号表示0个或多个，然后是一个逗号，也就是匹配&amp;quot;xxxx,&amp;ldquo;替换为空
@@ -139,10 +140,10 @@ N表示读入并合并下一行，然后将两行之间的换行符替换为空�
     
     <item>
       <title>[译]Unix sed实用教程第七篇–输出文件内容(10 Demo)</title>
-      <link>https://leizhiyuan.github.io/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%83%E7%AF%87%E8%BE%93%E5%87%BA%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B910-demo/</link>
+      <link>http://leaver.me/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%83%E7%AF%87%E8%BE%93%E5%87%BA%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B910-demo/</link>
       <pubDate>Sun, 11 Aug 2013 16:27:31 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%83%E7%AF%87%E8%BE%93%E5%87%BA%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B910-demo/</guid>
+      <guid>http://leaver.me/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%83%E7%AF%87%E8%BE%93%E5%87%BA%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B910-demo/</guid>
       <description>之前已经学习过选择性打印输出了，本文将通过10个例子全面讲解文件输出的一些方法，主打p命令
 首先看一下将使用的示例文件
 1.打印文件首行之前讲过了，-n取消默认的全部打印，p表示print，1就是行号了
@@ -162,10 +163,10 @@ Demo完了，你懂了么。</description>
     
     <item>
       <title>[译]Unix sed实用教程第六篇–删除文件内容</title>
-      <link>https://leizhiyuan.github.io/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AD%E7%AF%87%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/</link>
+      <link>http://leaver.me/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AD%E7%AF%87%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/</link>
       <pubDate>Sat, 10 Aug 2013 13:15:38 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AD%E7%AF%87%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/</guid>
+      <guid>http://leaver.me/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AD%E7%AF%87%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/</guid>
       <description>其实，删除和替换是由一些相同的，不过，这里我们单独列出来，通过25个例子穿插讲解sed删除文件的一些方法，使用的示例文件如下：
 1.删除第一行d就是删除，1就是指第1行，记得哦，这不会影响到源文件，一般，做删除的时候一般要加-i参数，前面说过了
 2.删除指定行，这里删除第3行3.删除最后一行4.删除范围行，这里删除2-4行5.保留指定的行，这里保留2-4行！这个是对前面的2,4来操作，是非的意思，也就是不是2-4行的行，这样除去2-4行，其他的都删除了
@@ -196,10 +197,10 @@ Demo完了，你懂了么。</description>
     
     <item>
       <title>[译]Unix sed实用教程第五篇–替换文件内容续</title>
-      <link>https://leizhiyuan.github.io/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%BA%94%E7%AF%87%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E7%BB%AD/</link>
+      <link>http://leaver.me/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%BA%94%E7%AF%87%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E7%BB%AD/</link>
       <pubDate>Sat, 10 Aug 2013 09:05:55 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%BA%94%E7%AF%87%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E7%BB%AD/</guid>
+      <guid>http://leaver.me/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%BA%94%E7%AF%87%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E7%BB%AD/</guid>
       <description>前面已经学习过替换文件内容了，本文我们学习一些更频繁使用的搜索替换操作.
 示例文件使用：
 1.替换每行开始的两个字母，这里用XX来替换s代表substitute，前面说过了，^用来匹配行开头，.表示任意一个字符，两个..就是你懂的，
@@ -224,10 +225,10 @@ Demo完了，你懂了么。</description>
     
     <item>
       <title>[译]Unix sed实用教程第四篇–选择性打印</title>
-      <link>https://leizhiyuan.github.io/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%9B%9B%E7%AF%87%E9%80%89%E6%8B%A9%E6%80%A7%E6%89%93%E5%8D%B0/</link>
+      <link>http://leaver.me/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%9B%9B%E7%AF%87%E9%80%89%E6%8B%A9%E6%80%A7%E6%89%93%E5%8D%B0/</link>
       <pubDate>Sat, 10 Aug 2013 08:39:56 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%9B%9B%E7%AF%87%E9%80%89%E6%8B%A9%E6%80%A7%E6%89%93%E5%8D%B0/</guid>
+      <guid>http://leaver.me/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%9B%9B%E7%AF%87%E9%80%89%E6%8B%A9%E6%80%A7%E6%89%93%E5%8D%B0/</guid>
       <description>本文，我们将会学习如何选择性的打印（其实，这里的打印是print，也就是输出到标准输出的意思），用到的示例文件是：
 1.打印所有内容一对单引号，没有任何参数即可
 2.如何打印包含Gmail的那一行.(grep也可以实现这个功能)在斜线里面，我们指定正则匹配模式，p的意思呢，就是print，打印的意思，也就是打印包含Gmail这一行，但是我们看到Gmail打印了两次，为什么，因为sed的默认行为是在解析完一行之后就把他输出出来，也就是对于Gmail这一行，先执行p解析，解析完成后再默认打印一次，就打印了两次，而其他的，没有命令解析，直接读入完成后输出即可。
@@ -250,10 +251,10 @@ Demo完了，你懂了么。</description>
     
     <item>
       <title>[译]Unix sed实用教程第三篇–读写文件</title>
-      <link>https://leizhiyuan.github.io/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%89%E7%AF%87%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/</link>
+      <link>http://leaver.me/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%89%E7%AF%87%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/</link>
       <pubDate>Fri, 09 Aug 2013 16:52:56 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%89%E7%AF%87%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/</guid>
+      <guid>http://leaver.me/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%89%E7%AF%87%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/</guid>
       <description>本文将展示如何将文件内容读入到sed输出，同时包含如何将一个文件的部分内容写入到另一文件
 一.文件读取
 假定有两个文件，file1和file2，内容分别如下：
@@ -273,10 +274,10 @@ _**二.文件写入**_使用一个file1文件，内容如下：
     
     <item>
       <title>[译]Unix sed实用教程第二篇–替换文件内容</title>
-      <link>https://leizhiyuan.github.io/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%BA%8C%E7%AF%87%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/</link>
+      <link>http://leaver.me/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%BA%8C%E7%AF%87%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/</link>
       <pubDate>Fri, 09 Aug 2013 16:24:12 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%BA%8C%E7%AF%87%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/</guid>
+      <guid>http://leaver.me/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%BA%8C%E7%AF%87%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/</guid>
       <description>上一节中-Unix sed实用教程第一篇–向文件中增加一行 学习了添加文件，本节讲解数据内容替换.
 本节将使用sample1.txt文件作为示例，文件内容如下，都是些水果..：
 1.向每一行的开头添加内容，这里我们添加“Fruit：”
@@ -306,10 +307,10 @@ _**二.文件写入**_使用一个file1文件，内容如下：
     
     <item>
       <title>[译]Unix sed实用教程第一篇--向文件中增加一行</title>
-      <link>https://leizhiyuan.github.io/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%80%E7%AF%87-%E5%90%91%E6%96%87%E4%BB%B6%E4%B8%AD%E5%A2%9E%E5%8A%A0%E4%B8%80%E8%A1%8C/</link>
+      <link>http://leaver.me/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%80%E7%AF%87-%E5%90%91%E6%96%87%E4%BB%B6%E4%B8%AD%E5%A2%9E%E5%8A%A0%E4%B8%80%E8%A1%8C/</link>
       <pubDate>Fri, 09 Aug 2013 14:56:29 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%80%E7%AF%87-%E5%90%91%E6%96%87%E4%BB%B6%E4%B8%AD%E5%A2%9E%E5%8A%A0%E4%B8%80%E8%A1%8C/</guid>
+      <guid>http://leaver.me/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%80%E7%AF%87-%E5%90%91%E6%96%87%E4%BB%B6%E4%B8%AD%E5%A2%9E%E5%8A%A0%E4%B8%80%E8%A1%8C/</guid>
       <description>Unix sed实用教程第一讲，本系列第一篇，有任何问题欢迎留言讨论。
 sed 是unix中最重要的编辑器之一，注意，有之一..支持多种编辑任务，本文将实现题目的功能实例
 假定我们有一额文本文件，叫做empFile，包含了员工名字和员工id，如下：
@@ -326,10 +327,10 @@ sed 是unix中最重要的编辑器之一，注意，有之一..支持多种编�
     
     <item>
       <title>Unix sed实用教程开篇</title>
-      <link>https://leizhiyuan.github.io/2013/08/09/unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E5%BC%80%E7%AF%87/</link>
+      <link>http://leaver.me/2013/08/09/unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E5%BC%80%E7%AF%87/</link>
       <pubDate>Fri, 09 Aug 2013 09:43:52 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/08/09/unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E5%BC%80%E7%AF%87/</guid>
+      <guid>http://leaver.me/2013/08/09/unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E5%BC%80%E7%AF%87/</guid>
       <description>已经看了一段时间的Linux Shell编程了,也能完成一些基本的使用，为了加深理解，恰好看到了The Unix School的一个sed&amp;amp;awk教程，不是简单的命令参数堆积，而是一个相当实用的系列，因此，希望能在几天内完成翻译.翻译过程不会逐字翻译，会穿插一些注释，包括自己的一些理解和其他的一些引用，作为开篇，简单说一下sed的工作机制，对后面的理解会有很大帮助。
 sed是什么： sed是一个非交互式的流编辑器（stream editor）。所谓非交互式，是指使用sed只能在命令行下输入编辑命令来编辑文本，然后在屏幕上查看输出；而所谓流编辑器，是指sed每次只从文件（或输入）读入一行，然后对该行进行指定的处理，并将结果输出到屏幕（除非取消了屏幕输出又没有显式地使用打印命令），接着读入下一行。整个文件像流水一样被逐行处理然后逐行输出。(via Walk in Mindfields ) sed工作机制： sed维护两个缓冲区，pattern space和hold space，命令开始执行之前都为空。
 pattern space缓冲区用于临时保存每次读取的一行的内容，大部分的匹配和替换等等操作都是针对pattern space中的内容进行的，因此不会对输入文件有任何影响,而hold space则作为后备缓冲区使用,除非指定了一些特殊的命令(例如D删除命令)，否则pattern space中的内容会在处理完一行之后清空，但hold space中的内容在处理完每一行时不会被删除。
@@ -344,10 +345,10 @@ pattern space缓冲区用于临时保存每次读取的一行的内容，大部�
     <item>
       <title>和
 浅析</title>
-      <link>https://leizhiyuan.github.io/2013/04/05/%E5%92%8C-%E6%B5%85%E6%9E%90/</link>
+      <link>http://leaver.me/2013/04/05/%E5%92%8C-%E6%B5%85%E6%9E%90/</link>
       <pubDate>Fri, 05 Apr 2013 13:29:04 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/04/05/%E5%92%8C-%E6%B5%85%E6%9E%90/</guid>
+      <guid>http://leaver.me/2013/04/05/%E5%92%8C-%E6%B5%85%E6%9E%90/</guid>
       <description>这两个转义字符最初学习C++的时候看到了,当时没多想，后来某一天突然想起来，回车不就是换行吗？这不是多此一举吗？今天又看到，索性查了下相关资料，整理一下，留作记录.
 关于“回车”（carriage return）和“换行”（line feed）这两个概念的来历和区别。
 在计算机还没有出现之前，有一种叫做电传打字机（Teletype Model 33）的玩意，每秒钟可以打10个字符。但是它有一个问题，就是打完一行换行的时候，要用去0.2秒，正好可以打两个字符。要是在这0.2秒里面，又有新的字符传过来，那么这个字符将丢失。
@@ -370,10 +371,10 @@ bystander
     
     <item>
       <title>操作系统的死锁和内存管理</title>
-      <link>https://leizhiyuan.github.io/2013/02/02/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%AD%BB%E9%94%81%E5%92%8C%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
+      <link>http://leaver.me/2013/02/02/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%AD%BB%E9%94%81%E5%92%8C%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
       <pubDate>Sat, 02 Feb 2013 06:58:09 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/02/02/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%AD%BB%E9%94%81%E5%92%8C%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</guid>
+      <guid>http://leaver.me/2013/02/02/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%AD%BB%E9%94%81%E5%92%8C%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</guid>
       <description>这部分是最后一部分笔记。《现代操作系统》第三版的笔记就这样了。 死锁； 把需要排他性使用的对象称为资源，资源分为可抢占的和不可抢占的。可抢占资源可以从拥有它的进程中抢占而不会具有任何副作用。存储器就是可抢占的。不可抢占资源是指在不引起相关的计算失败的情况下，无法把它从占有她的进程处抢占过来。比如CD刻录机，如果一个进程开始刻盘，突然分配给CD刻录机到另一进程，就会划坏CD盘。死锁会发生在不可抢占资源中 死锁的规范定义：如果一个进程集合中的每个进程都在等待只能由该进程集合中的其他进程才能引发的事件，那么，该进程集合就是死锁的。
 死锁的四个必要条件 1.互斥条件。每个资源要么已经分配给一个进程，要么就是可用的。 2.占有和等待条件，已经得到了某个资源的进程可以再请求新的资源。 3.不可抢占条件，已经分配给一个进程的资源不可强制性的被抢占，他只能由占有她的进程显式的释放。 4.环路等待条件。死锁发生时，系统中一定有友两个/多个进程组成的一条回路，该环路中的每个进程都在等待着下一个进程所占有的资源。
 死锁处理的四种策略 1.忽略该问题，如果可以忽略。则忽略 2.检测死锁并恢复，让死锁发生，检测他们是否发生，一旦发生。采取行动。 3.仔细对资源进行分配。动态的避免死锁。 4.通过破坏引起的四个必要条件之一。防止死锁发生。
@@ -387,10 +388,10 @@ window如何知道系统配置的细节呢。答案就是windows会挂载一种�
     
     <item>
       <title>ubuntu终端su认证失败解决</title>
-      <link>https://leizhiyuan.github.io/2012/04/15/ubuntu%E7%BB%88%E7%AB%AFsu%E8%AE%A4%E8%AF%81%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3/</link>
+      <link>http://leaver.me/2012/04/15/ubuntu%E7%BB%88%E7%AB%AFsu%E8%AE%A4%E8%AF%81%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3/</link>
       <pubDate>Sun, 15 Apr 2012 18:09:10 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/04/15/ubuntu%E7%BB%88%E7%AB%AFsu%E8%AE%A4%E8%AF%81%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3/</guid>
+      <guid>http://leaver.me/2012/04/15/ubuntu%E7%BB%88%E7%AB%AFsu%E8%AE%A4%E8%AF%81%E5%A4%B1%E8%B4%A5%E8%A7%A3%E5%86%B3/</guid>
       <description>这个以前碰到过。不过今天又遇到了。记录一下。Ubuntu 安装后，root用户默认被锁定，不允许登录，也不允许“su”到 root。对于开发人员来说貌似有些麻烦了。。
 　解决方法：打开终端。输入sudo passwd 回车，然后输入安装ubuntu时设置的密码。回车后要求输入新密码。新密码可以和安装时的密码相同。所以继续输吧。然后确认一次。就可以了
 　
@@ -399,10 +400,10 @@ window如何知道系统配置的细节呢。答案就是windows会挂载一种�
     
     <item>
       <title>lamp开发环境简单搭建</title>
-      <link>https://leizhiyuan.github.io/2012/04/15/lamp%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA/</link>
+      <link>http://leaver.me/2012/04/15/lamp%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA/</link>
       <pubDate>Sun, 15 Apr 2012 17:54:27 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/04/15/lamp%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA/</guid>
+      <guid>http://leaver.me/2012/04/15/lamp%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA/</guid>
       <description>因为一些事情，要去学习php开发。所以呢。今天就先搭建一下php开发环境，其实windows下搭建相对比较简单，也有一键安装包。比如AppServ，但是因为考虑到以后的一些事情，于是还是采用LAMP开发环境。
 　我是用Ubuntu来做，本地刚好有Ubuntu的镜像。。虚拟里面来测试。首先就是在虚拟机里安装Ubuntu。这个不多说。大家都会。安装好以后。登陆进来。命令行或是图形界面都可以。
 　新版本的Ubuntu貌似是没了新立得管理器。所以使用命令来安装更简单。打开终端。切换到root。如果不能切换到root。参考此文。切换到root后。输入

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>安全 on bystander&#39;s blog</title>
-    <link>https://leizhiyuan.github.io/tags/%E5%AE%89%E5%85%A8/</link>
+    <link>http://leaver.me/tags/%E5%AE%89%E5%85%A8/</link>
     <description>Recent content in 安全 on bystander&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Sun, 29 Jun 2014 06:43:48 +0000</lastBuildDate>
     
-	<atom:link href="https://leizhiyuan.github.io/tags/%E5%AE%89%E5%85%A8/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://leaver.me/tags/%E5%AE%89%E5%85%A8/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>burpsuite抓包https</title>
-      <link>https://leizhiyuan.github.io/2014/06/29/burpsuite%E6%8A%93%E5%8C%85https/</link>
+      <link>http://leaver.me/2014/06/29/burpsuite%E6%8A%93%E5%8C%85https/</link>
       <pubDate>Sun, 29 Jun 2014 06:43:48 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2014/06/29/burpsuite%E6%8A%93%E5%8C%85https/</guid>
+      <guid>http://leaver.me/2014/06/29/burpsuite%E6%8A%93%E5%8C%85https/</guid>
       <description>最近工作需要，需要burpsuite抓下https的包
 burpsuite抓包https的时候，如果是https协议，火狐会不信任证书
  
@@ -35,10 +35,10 @@ burpsuite抓包https的时候，如果是https协议，火狐会不信任证书
     
     <item>
       <title>[藏]隐藏在PNG图像元数据中的新iFrame注入攻击</title>
-      <link>https://leizhiyuan.github.io/2014/02/09/%E8%97%8F%E9%9A%90%E8%97%8F%E5%9C%A8png%E5%9B%BE%E5%83%8F%E5%85%83%E6%95%B0%E6%8D%AE%E4%B8%AD%E7%9A%84%E6%96%B0iframe%E6%B3%A8%E5%85%A5%E6%94%BB%E5%87%BB/</link>
+      <link>http://leaver.me/2014/02/09/%E8%97%8F%E9%9A%90%E8%97%8F%E5%9C%A8png%E5%9B%BE%E5%83%8F%E5%85%83%E6%95%B0%E6%8D%AE%E4%B8%AD%E7%9A%84%E6%96%B0iframe%E6%B3%A8%E5%85%A5%E6%94%BB%E5%87%BB/</link>
       <pubDate>Sun, 09 Feb 2014 09:23:12 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2014/02/09/%E8%97%8F%E9%9A%90%E8%97%8F%E5%9C%A8png%E5%9B%BE%E5%83%8F%E5%85%83%E6%95%B0%E6%8D%AE%E4%B8%AD%E7%9A%84%E6%96%B0iframe%E6%B3%A8%E5%85%A5%E6%94%BB%E5%87%BB/</guid>
+      <guid>http://leaver.me/2014/02/09/%E8%97%8F%E9%9A%90%E8%97%8F%E5%9C%A8png%E5%9B%BE%E5%83%8F%E5%85%83%E6%95%B0%E6%8D%AE%E4%B8%AD%E7%9A%84%E6%96%B0iframe%E6%B3%A8%E5%85%A5%E6%94%BB%E5%87%BB/</guid>
       <description>这个攻击方式很旧了，但手法相当不错，来自乐嵌网
 我们一直在努力保持领先的最新趋势，今天我们发现了一个非常有趣的事，这或者是我们之前没有发现，或者是刚发生的。 我们只能说这是新发现的。
  我们都了解的iFrame注入攻击，对吧？
@@ -70,15 +70,19 @@ burpsuite抓包https的时候，如果是https协议，火狐会不信任证书
  有两点需要特别注意了，它使用createElement做了一个iFrame标签**，**然后设置**elm.style.position.left 和 elm.style.position.top **属性的值为-1000px，把iframe放到可视区域之外。这些值都是负值，在浏览器中根本看不到。但是你知道谁能看到吗？只有浏览器和Google能看到。这就是下载驱动和搜索引擎感染（SEP)攻击的小伎俩。
  最后我们在elm.src元素中发现了真正的威胁**。**
  做的这么独特到底有什么用呢？
-它尽力隐藏真正的威胁的水平是独特的。现在的杀毒软件不会解码图像元数据，直到JavaScript文件加载完毕就停止扫描。不会追踪cookie文件，对于攻击者来说，这太好了，使它们很难被发现。</description>
+它尽力隐藏真正的威胁的水平是独特的。现在的杀毒软件不会解码图像元数据，直到JavaScript文件加载完毕就停止扫描。不会追踪cookie文件，对于攻击者来说，这太好了，使它们很难被发现。
+ 记住一点，尽管我们这里谈论的是PNG文件，这些方法和概念也可以应用到其他类型图像中。重要的一点是：留意你的web 服务状态，了解哪些修改和未修改的文件并确保漏洞未被利用。
+ 通常情况下，一些新的侦查和排障需要一定的时间。 现在我们的 网站恶意软件扫描器能发现它吗 ？ 绝对可以！
+ 不要笑了，朋友们！
+原文：new-iframe-injections-leverage-png-image-metadata by Peter Gramantik</description>
     </item>
     
     <item>
       <title>详细讲解双查询注入</title>
-      <link>https://leizhiyuan.github.io/2013/03/03/%E8%AF%A6%E7%BB%86%E8%AE%B2%E8%A7%A3%E5%8F%8C%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5/</link>
+      <link>http://leaver.me/2013/03/03/%E8%AF%A6%E7%BB%86%E8%AE%B2%E8%A7%A3%E5%8F%8C%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5/</link>
       <pubDate>Sun, 03 Mar 2013 07:53:24 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/03/03/%E8%AF%A6%E7%BB%86%E8%AE%B2%E8%A7%A3%E5%8F%8C%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5/</guid>
+      <guid>http://leaver.me/2013/03/03/%E8%AF%A6%E7%BB%86%E8%AE%B2%E8%A7%A3%E5%8F%8C%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5/</guid>
       <description>上一篇文章中，http://leaver.me/archives/2726.html
 我说双查询很难讲清楚，这次就试着讲一下。读了一些原理性的东西。然后尽量通俗的给大家讲清楚。。
 在此之前，我们理解一下子查询，查询的关键字是select，这个大家都知道。子查询可以简单的理解在一个select语句里还有一个select。里面的这个select语句就是子查询。
@@ -101,15 +105,26 @@ burpsuite抓包https的时候，如果是https协议，火狐会不信任证书
  如果我们把这条语句后面加上from 一个表名。那么一般会返回security0或security1的一个集合。数目是由表本身有几条结果决定的。比如一个管理表里有5个管理员。这个就会返回五条记录，这里users表里有13个用户，所以返回了13条  如果是从information_schema.schemata里，这个表里包含了mysql的所有数据库名。这里本机有三个数据库。所以会返回三个结果
 
 现在我们准备加上Group By 语句了。 我们使用information_schema.tables 或 information_schema.columns者两个表来查询。因为表里面一般数据很多。容易生成很多的随机值，不至于全部是security0，这样就不能查询出结果了。
-这里我先解释一下。我们把concat((select database()), floor(rand()*2)) 这个结果取了一个别名 a ，然后使用他进行分组。这样相同的security0分到一组，security1分到一组。就剩下两个结果了。</description>
+这里我先解释一下。我们把concat((select database()), floor(rand()*2)) 这个结果取了一个别名 a ，然后使用他进行分组。这样相同的security0分到一组，security1分到一组。就剩下两个结果了。 
+注意。这里的database()可以替换成任何你想查的函数，比如version(), user(), datadir()或者其他的查询。比如查表啊。查列啊。原理都是一样的。
+最后的亮点来了。。 我们输入这条：注意多了一个聚合函数count(*)
+
+报错了
+重复的键值 可以看到security就是我们的查询结果了 想要查询版本就这样：
+看看替换了database()为version()  再看一个
+报错
+这里的~这个符号只是为了让结果更清晰。
+这里还有一个比较复杂的。叫做派生表。需要使用 select 1 from (table name); 这样的语法来报错，具体就是
+来报错。
+大家可以对照我上一篇文章来看。相信讲的还算清楚。</description>
     </item>
     
     <item>
       <title>双查询注入</title>
-      <link>https://leizhiyuan.github.io/2013/02/22/%E5%8F%8C%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5/</link>
+      <link>http://leaver.me/2013/02/22/%E5%8F%8C%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5/</link>
       <pubDate>Fri, 22 Feb 2013 20:57:02 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/02/22/%E5%8F%8C%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5/</guid>
+      <guid>http://leaver.me/2013/02/22/%E5%8F%8C%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5/</guid>
       <description>作者：bystander 论坛：法客论坛 这个东西比较难解释。我就不多解释。尽量通过这篇文章大家能够照猫画虎手注即可。想要深入理解的可以去看看mysql数据库的一些知识
 介绍一下双查询注入，有时候我们通过order by 语句获取到了确定的列数，可是当我们使用union select或union select all查询的时候，
 却会出现一个错误提示，列数不一致。
@@ -134,10 +149,10 @@ burpsuite抓包https的时候，如果是https协议，火狐会不信任证书
     
     <item>
       <title>recon-ng开源信息探测框架</title>
-      <link>https://leizhiyuan.github.io/2013/02/02/recon-ng%E5%BC%80%E6%BA%90%E4%BF%A1%E6%81%AF%E6%8E%A2%E6%B5%8B%E6%A1%86%E6%9E%B6/</link>
+      <link>http://leaver.me/2013/02/02/recon-ng%E5%BC%80%E6%BA%90%E4%BF%A1%E6%81%AF%E6%8E%A2%E6%B5%8B%E6%A1%86%E6%9E%B6/</link>
       <pubDate>Sat, 02 Feb 2013 06:52:28 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/02/02/recon-ng%E5%BC%80%E6%BA%90%E4%BF%A1%E6%81%AF%E6%8E%A2%E6%B5%8B%E6%A1%86%E6%9E%B6/</guid>
+      <guid>http://leaver.me/2013/02/02/recon-ng%E5%BC%80%E6%BA%90%E4%BF%A1%E6%81%AF%E6%8E%A2%E6%B5%8B%E6%A1%86%E6%9E%B6/</guid>
       <description>作者：bystander 博客：http://leaver.me 微博：http://t.qq.com/lazystander 论坛：法客论坛
 首发。转载什么的请注明出处。起码给我留个链接啥的嘛。
 首先介绍一下。这个工具是国外刚刚发布的。主要用来渗透前的信息探测。使用类似Metasploit 主要有 Auxiliary： 这个模块查询主机信息泄漏页。进行hash反查，模糊名称精确，检查某个email是否密码泄漏，域名解析ip等 Contacts： 这个模块探测和某一公司有关的人员的信息，主要包括 LinkedIn 和Jigsaw 这两个模块。得到的信息可以被Auxiliary模块使用，如果和Social Engineer Toolkit(社会工程学工具集，这个工具已经发布了。是开源的。大家可以看看)，一起。效果强大。
@@ -165,10 +180,10 @@ Hosts： 这个用来获取站点子域名。。包括使用baidu。Google bing�
     
     <item>
       <title>SQL注入中的WAF绕过技术</title>
-      <link>https://leizhiyuan.github.io/2013/01/06/sql%E6%B3%A8%E5%85%A5%E4%B8%AD%E7%9A%84waf%E7%BB%95%E8%BF%87%E6%8A%80%E6%9C%AF/</link>
+      <link>http://leaver.me/2013/01/06/sql%E6%B3%A8%E5%85%A5%E4%B8%AD%E7%9A%84waf%E7%BB%95%E8%BF%87%E6%8A%80%E6%9C%AF/</link>
       <pubDate>Sun, 06 Jan 2013 13:15:37 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/01/06/sql%E6%B3%A8%E5%85%A5%E4%B8%AD%E7%9A%84waf%E7%BB%95%E8%BF%87%E6%8A%80%E6%9C%AF/</guid>
+      <guid>http://leaver.me/2013/01/06/sql%E6%B3%A8%E5%85%A5%E4%B8%AD%E7%9A%84waf%E7%BB%95%E8%BF%87%E6%8A%80%E6%9C%AF/</guid>
       <description>作者：bystander 博客：http://leaver.me 论坛：法克论坛
 目录
 1.大小写绕过2.简单编码绕过3.注释绕过4.分隔重写绕过5.Http参数污染(HPP)
@@ -188,10 +203,10 @@ Hosts： 这个用来获取站点子域名。。包括使用baidu。Google bing�
     
     <item>
       <title>一个恶意vbs脚本的简单解码</title>
-      <link>https://leizhiyuan.github.io/2012/11/25/%E4%B8%80%E4%B8%AA%E6%81%B6%E6%84%8Fvbs%E8%84%9A%E6%9C%AC%E7%9A%84%E7%AE%80%E5%8D%95%E8%A7%A3%E7%A0%81/</link>
+      <link>http://leaver.me/2012/11/25/%E4%B8%80%E4%B8%AA%E6%81%B6%E6%84%8Fvbs%E8%84%9A%E6%9C%AC%E7%9A%84%E7%AE%80%E5%8D%95%E8%A7%A3%E7%A0%81/</link>
       <pubDate>Sun, 25 Nov 2012 09:00:59 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/11/25/%E4%B8%80%E4%B8%AA%E6%81%B6%E6%84%8Fvbs%E8%84%9A%E6%9C%AC%E7%9A%84%E7%AE%80%E5%8D%95%E8%A7%A3%E7%A0%81/</guid>
+      <guid>http://leaver.me/2012/11/25/%E4%B8%80%E4%B8%AA%E6%81%B6%E6%84%8Fvbs%E8%84%9A%E6%9C%AC%E7%9A%84%E7%AE%80%E5%8D%95%E8%A7%A3%E7%A0%81/</guid>
       <description>今天把电脑还原到了11月7号。结果eset更新后报C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup这个目录有个zzs.vbs的不受欢迎的程序，当时没什么事，就打开看看。想知道是个什么东西。
 由于eset阻止，我就把文件拖出来。改个后缀。发现代码不长，前半段是ascii码编码的。。
 后半段是
@@ -202,10 +217,10 @@ Hosts： 这个用来获取站点子域名。。包括使用baidu。Google bing�
     
     <item>
       <title>分享几个电子书资源站点</title>
-      <link>https://leizhiyuan.github.io/2012/10/18/%E5%88%86%E4%BA%AB%E5%87%A0%E4%B8%AA%E7%94%B5%E5%AD%90%E4%B9%A6%E8%B5%84%E6%BA%90%E7%AB%99%E7%82%B9/</link>
+      <link>http://leaver.me/2012/10/18/%E5%88%86%E4%BA%AB%E5%87%A0%E4%B8%AA%E7%94%B5%E5%AD%90%E4%B9%A6%E8%B5%84%E6%BA%90%E7%AB%99%E7%82%B9/</link>
       <pubDate>Thu, 18 Oct 2012 11:12:01 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/10/18/%E5%88%86%E4%BA%AB%E5%87%A0%E4%B8%AA%E7%94%B5%E5%AD%90%E4%B9%A6%E8%B5%84%E6%BA%90%E7%AB%99%E7%82%B9/</guid>
+      <guid>http://leaver.me/2012/10/18/%E5%88%86%E4%BA%AB%E5%87%A0%E4%B8%AA%E7%94%B5%E5%AD%90%E4%B9%A6%E8%B5%84%E6%BA%90%E7%AB%99%E7%82%B9/</guid>
       <description>看到书签里有好些电子书的资源站。今天心情不错。遂起了分享的念头。。
 对于计算机相关专业人隆重推荐小书屋
 作者很认真的在分享技术/安全/心理学/技术PPT方面的书籍。算是国内技术书籍比较好的分享站点了。
@@ -220,10 +235,10 @@ ps:如果你收藏了其他的站点。不妨留言回复。</description>
     
     <item>
       <title>从hash函数到王小云的MD5破解</title>
-      <link>https://leizhiyuan.github.io/2012/05/15/%E4%BB%8Ehash%E5%87%BD%E6%95%B0%E5%88%B0%E7%8E%8B%E5%B0%8F%E4%BA%91%E7%9A%84md5%E7%A0%B4%E8%A7%A3/</link>
+      <link>http://leaver.me/2012/05/15/%E4%BB%8Ehash%E5%87%BD%E6%95%B0%E5%88%B0%E7%8E%8B%E5%B0%8F%E4%BA%91%E7%9A%84md5%E7%A0%B4%E8%A7%A3/</link>
       <pubDate>Tue, 15 May 2012 13:26:14 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/05/15/%E4%BB%8Ehash%E5%87%BD%E6%95%B0%E5%88%B0%E7%8E%8B%E5%B0%8F%E4%BA%91%E7%9A%84md5%E7%A0%B4%E8%A7%A3/</guid>
+      <guid>http://leaver.me/2012/05/15/%E4%BB%8Ehash%E5%87%BD%E6%95%B0%E5%88%B0%E7%8E%8B%E5%B0%8F%E4%BA%91%E7%9A%84md5%E7%A0%B4%E8%A7%A3/</guid>
       <description>以前一直纳闷不是说md5是不可逆的吗，那王小云怎么能破解呢。看到此文，豁然开朗，所谓的破解只是可以获得一个碰撞，使得两个文件的md5值一样。并不是说给定一个md5，能够得到原文。
 　密码学是理论计算机的一个很大的方向。之前准备先写密码学概论再提在hash函数破解上做出重大贡献的王小云教授的工作，不过前两天王小云获得求是杰出科学家奖以及100万奖金，在媒体上又掀起了一轮宣传狂潮，但是有些报道极端弱智，错误百出，所以我趁机纠正一下，并介绍密码学的一个组成部分——hash函数，以及王小云在这上面的工作。
 　王小云的主要工作是关于hash函数的破解工作。她在2005一个密码学会议上宣布破解了SHA-1，震惊了全世界。所以要介绍和理解她的工作，先看一下hash函数具体是怎么回事。
@@ -243,15 +258,15 @@ ps:如果你收藏了其他的站点。不妨留言回复。</description>
 　事实上，Alice要求Caesar签名的文件letter已经被Alice做了手脚，准确地说，Alice还准备了另外一个文件order，它们的MD5码完全一致。而Caesar的数字签名还依赖于MD5算法，所以Alice用order文件替换Letter文件之后，Caesar的数字签名依然有效。那封order给Alice提供了察看秘密文件的权限。
 　具体的实现方法可见Hash Functions and the Blind Passenger Attack。我在这里简单的解释一下(只是大致思路，具体实现方式，需要对文件结构信息有所了解)：
 　letter文件的内容是： if(x1==x1) show &amp;ldquo;letter&amp;rdquo; else show &amp;ldquo;order&amp;rdquo; order文件的内容是：　if(x2==x1) show &amp;ldquo;letter&amp;rdquo; else show &amp;ldquo;order&amp;rdquo; 其中字符串&amp;quot;letter&amp;quot;和&amp;quot;order&amp;quot;代表两封信实际显示的内容。x1，x2是一个MD5的碰撞。
-　上面的方法，只供参考和学术用途，实际使用所引起的后果概不负责。　参考： １.</description>
+　上面的方法，只供参考和学术用途，实际使用所引起的后果概不负责。　参考： １.Attacking Hash Functions by Poisoned Messages &amp;ldquo;The Story of Alice and her Boss&amp;rdquo; ２.Hash function, wikipedia　３.SHA, wikipedia ４.Interview with Yiqun Lisa Yin concerning the attack on SHA-1　　原文来自：http://zhiqiang.org</description>
     </item>
     
     <item>
       <title>WWWScan GUI版--WebScan</title>
-      <link>https://leizhiyuan.github.io/2012/04/18/wwwscan-gui%E7%89%88-webscan/</link>
+      <link>http://leaver.me/2012/04/18/wwwscan-gui%E7%89%88-webscan/</link>
       <pubDate>Wed, 18 Apr 2012 21:56:11 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/04/18/wwwscan-gui%E7%89%88-webscan/</guid>
+      <guid>http://leaver.me/2012/04/18/wwwscan-gui%E7%89%88-webscan/</guid>
       <description>网上一直有个版本是Wscan Gui Beta6，首先感谢作者的无私奉献，写代码不容易啊。但是这个我不知道为什么在我的电脑上总是有一些错误。很多功能虽然加上了，但是其实对我有点多余。毕竟，我只是用这个扫描一下。于是，决定自己用C#做个GUI版，模仿实现一下。
 　然后我看了一下目录结构。如下图所知  貌似作者只是简单写了。然后对应着调用扫描器。我想了下，可以通过修改文件名来实现，因为wwwscan默认只能识别cgi.list，那么我想的是当我选中一种扫描类型后。将对应的字典，比如asp.list改成cgi.list。当然为了保护原文件，复制。。然后调用。这样就不用有这么多exe了。。
 　第二个我想实现作者的检测网站的脚本类型的功能，想到了两种方法。一种是循环访问index.xxx文件，xxx对asp jsp等，然后判断http状态码，200的话就可以对应判断出来网站脚本了。但是这样测试了一会没成功，还是算了，，然后想了一种猥琐流的方法，就是直接访问首页。然后把源码下载下来，然后搜索&amp;rdquo;.xxx&amp;quot;字符串，找到就行了，，当然这两种方法都是不完善的。。我也没想到什么完美的。。希望有人知道的话留言指教。

@@ -1,367 +1,92 @@
-<!DOCTYPE html>
-<html lang="en" itemscope itemtype="http://schema.org/WebPage">
-  <head>
-    
+<!doctype html>
+<html lang="zh-CN">
+<head>
 
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>正规式-&gt;最小化DFA说明 - bystander&#39;s blog</title>
-  <meta property="og:title" content="正规式-&gt;最小化DFA说明" />
-  <meta name="twitter:title" content="正规式-&gt;最小化DFA说明" />
-  <meta name="description" content="今天早上去图书馆，去看编译原理，想把这部分搞清楚，看着龙书&#43;国产的某一本不知什么的习题与解析，猜过程。。猜原理。。终于是看懂了。。 整体的步骤是三步： 一，先把正规式转换为NFA（非确定有穷自动机）, 二，在把NFA通过“子集构造法”转化为DFA， 三，在把DFA通过“分割法”进行最小化。
-　**一步很简单，就是反复运用下图的规则，**图1 
-　这样就能转换到NFA了。 给出一个例题，来自Google book。本文主要根据这个例题来讲，图2  二.子集构造法。 同样的例题，把转换好的NFA确定化，图3 
-　这个表是从NFA到DFA的时候必须要用到的。第一列第一行I的意思是从NFA的起始节点经过任意个ε所能到达的结点集合。Ia表示从该集合开始经过一个a所能到达的集合，经过一个a的意思是可以略过前后的ε。同样Ib也就是经过一个b，可以略过前后任意个ε。 至于第二行以及后面的I是怎么确定的。我参考了一些题目才明白，原来就是看上面的Ia和Ib哪个还没出现在I列，就拿下来进行运算，该列对应的Ia和Ib就是前面我说的那样推导。
-　如果还不太明白，看图就是了。你会发现I中的几个项目都在Ia和Ib中出现了。而且是完全出现
-　这步做完以后，为了画出最后的DFA，那么肯定得标出一些号来，比如1.2.3.。或者A。 B。c，我一般标的方法是先把I列全部标上1.2.3.递增。然后看1表示的集合和Ia和Ib中的哪个集合一样，就把那个集合也表示为1.继续向下做。最后会得到这样一个表格。图4 
-　至此，就可以表示出DFA了。就对照上面那个表，从0节点开始经过a到1.经过b到2，就这样画就行了。。
-　最后的DFA如下图，图5 
-　双圈的表示终态，这个是怎么来的呢。去看看图4，会发现有些项之前有双圈标志，这个是因为在NFA图2中，9为终态，所以所有包含9的集合都被认为是终态集，改成1.2.3.。。方便画节点后就需要把这些点作为终态了。。
-　三.最小化，分割法。
-FA的最小化就是寻求最小状态DFA
-　最小状态DFA的含义: 1.没有多余状态(死状态)2. 没有两个状态是互相等价（不可区别） 两个状态s和t等价的条件： 兼容性（一致性）条件——同是终态或同是非终态 传播性（蔓延性）条件——从s出发读入某个a和从t出发经过某个a并且经过某个b到达的状态等价。就是相同。
-　DFA的最小化—例子，第一步都是固定的。分成终态和非终态
-１．将Ｍ的状态分为两个子集一个由终态k1=｛Ｃ，Ｄ，Ｅ，Ｆ｝组成，一个由非终态k2=｛Ｓ，Ａ，Ｂ｝组成，
-２．考察｛Ｓ，Ａ，Ｂ｝是否可分．
-
-因为Ａ经过a到达C属于k1.而S经过a到达A属于k2.B经过a到达A属于k2，所以K2继续划分为{S，B},{A},
-３．考察｛Ｓ，Ｂ｝是否可再分：
-B经过b到达D属于k1.S经过b到达B属于k2，所以S，B可以划分。划分为{S},{B}
-４．考察｛Ｃ，Ｄ，Ｅ，Ｆ｝是否可再分： 因为Ｃ，Ｄ，Ｅ，Ｆ经过a和b到达的状态都属于｛Ｃ，Ｄ，Ｅ，Ｆ｝=k1所以相同，所以不可再分：
-５．｛Ｃ，Ｄ，Ｅ，Ｆ｝以｛Ｄ｝来代替则，因为CDEF相同，你也可以用C来代替。无所谓的最小化的ＤＦＡ如图，： 
-真麻烦啊。。心里清楚，还得找些图来说明。。额。。基本上感觉自己讲清楚了。。。不清楚的地方。。请留言互相讨论。。谢谢。。
-参考：
-http://www.worldcat.org/title/bian-yi-yuan-li-xue-xi-fu-dao/oclc/302301738
-http://metc.gdut.edu.cn/compile/cmpl3/3-3.htm">
-  <meta property="og:description" content="今天早上去图书馆，去看编译原理，想把这部分搞清楚，看着龙书&#43;国产的某一本不知什么的习题与解析，猜过程。。猜原理。。终于是看懂了。。 整体的步骤是三步： 一，先把正规式转换为NFA（非确定有穷自动机）, 二，在把NFA通过“子集构造法”转化为DFA， 三，在把DFA通过“分割法”进行最小化。
-　**一步很简单，就是反复运用下图的规则，**图1 
-　这样就能转换到NFA了。 给出一个例题，来自Google book。本文主要根据这个例题来讲，图2  二.子集构造法。 同样的例题，把转换好的NFA确定化，图3 
-　这个表是从NFA到DFA的时候必须要用到的。第一列第一行I的意思是从NFA的起始节点经过任意个ε所能到达的结点集合。Ia表示从该集合开始经过一个a所能到达的集合，经过一个a的意思是可以略过前后的ε。同样Ib也就是经过一个b，可以略过前后任意个ε。 至于第二行以及后面的I是怎么确定的。我参考了一些题目才明白，原来就是看上面的Ia和Ib哪个还没出现在I列，就拿下来进行运算，该列对应的Ia和Ib就是前面我说的那样推导。
-　如果还不太明白，看图就是了。你会发现I中的几个项目都在Ia和Ib中出现了。而且是完全出现
-　这步做完以后，为了画出最后的DFA，那么肯定得标出一些号来，比如1.2.3.。或者A。 B。c，我一般标的方法是先把I列全部标上1.2.3.递增。然后看1表示的集合和Ia和Ib中的哪个集合一样，就把那个集合也表示为1.继续向下做。最后会得到这样一个表格。图4 
-　至此，就可以表示出DFA了。就对照上面那个表，从0节点开始经过a到1.经过b到2，就这样画就行了。。
-　最后的DFA如下图，图5 
-　双圈的表示终态，这个是怎么来的呢。去看看图4，会发现有些项之前有双圈标志，这个是因为在NFA图2中，9为终态，所以所有包含9的集合都被认为是终态集，改成1.2.3.。。方便画节点后就需要把这些点作为终态了。。
-　三.最小化，分割法。
-FA的最小化就是寻求最小状态DFA
-　最小状态DFA的含义: 1.没有多余状态(死状态)2. 没有两个状态是互相等价（不可区别） 两个状态s和t等价的条件： 兼容性（一致性）条件——同是终态或同是非终态 传播性（蔓延性）条件——从s出发读入某个a和从t出发经过某个a并且经过某个b到达的状态等价。就是相同。
-　DFA的最小化—例子，第一步都是固定的。分成终态和非终态
-１．将Ｍ的状态分为两个子集一个由终态k1=｛Ｃ，Ｄ，Ｅ，Ｆ｝组成，一个由非终态k2=｛Ｓ，Ａ，Ｂ｝组成，
-２．考察｛Ｓ，Ａ，Ｂ｝是否可分．
-
-因为Ａ经过a到达C属于k1.而S经过a到达A属于k2.B经过a到达A属于k2，所以K2继续划分为{S，B},{A},
-３．考察｛Ｓ，Ｂ｝是否可再分：
-B经过b到达D属于k1.S经过b到达B属于k2，所以S，B可以划分。划分为{S},{B}
-４．考察｛Ｃ，Ｄ，Ｅ，Ｆ｝是否可再分： 因为Ｃ，Ｄ，Ｅ，Ｆ经过a和b到达的状态都属于｛Ｃ，Ｄ，Ｅ，Ｆ｝=k1所以相同，所以不可再分：
-５．｛Ｃ，Ｄ，Ｅ，Ｆ｝以｛Ｄ｝来代替则，因为CDEF相同，你也可以用C来代替。无所谓的最小化的ＤＦＡ如图，： 
-真麻烦啊。。心里清楚，还得找些图来说明。。额。。基本上感觉自己讲清楚了。。。不清楚的地方。。请留言互相讨论。。谢谢。。
-参考：
-http://www.worldcat.org/title/bian-yi-yuan-li-xue-xi-fu-dao/oclc/302301738
-http://metc.gdut.edu.cn/compile/cmpl3/3-3.htm">
-  <meta name="twitter:description" content="今天早上去图书馆，去看编译原理，想把这部分搞清楚，看着龙书&#43;国产的某一本不知什么的习题与解析，猜过程。。猜原理。。终于是看懂了。。 整体的步骤是三步： 一，先把正规式转换为NFA（非确定有穷自动机）, 二，在把NFA通过“子集构造法”转化为DFA， 三，在把DFA通过“分割法”进行最小化。
-　**一步很简单，就是反复运用下图的规则，**图1 
-　这样就能转换到NFA了。 给出一个例题，来 …">
-  <meta name="author" content="bystander"/><script type="application/ld+json">
-{
-    "@context": "http://schema.org",
-    "@type": "WebSite",
-    "name": "bystander\x27s blog",
-    
-    "url": "https:\/\/leizhiyuan.github.io\/"
-}
-</script><script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Organization",
-  "name": "",
-  "url": "https:\/\/leizhiyuan.github.io\/"
-  
-  
-  
-  
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [{
-        "@type": "ListItem",
-        "position": 1,
-        "item": {
-          "@id": "https:\/\/leizhiyuan.github.io\/",
-          "name": "home"
-        }
-    },{
-        "@type": "ListItem",
-        "position": 3,
-        "item": {
-          "@id": "https:\/\/leizhiyuan.github.io\/2012\/04\/25\/%E6%AD%A3%E8%A7%84%E5%BC%8F-%E6%9C%80%E5%B0%8F%E5%8C%96dfa%E8%AF%B4%E6%98%8E\/",
-          "name": "正规式 \x3e最小化 d f a说明"
-        }
-    }]
-}
-</script><script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Article",
-  "author": {
-    "name" : "bystander"
-  },
-  "headline": "正规式-\x3e最小化DFA说明",
-  "description" : "今天早上去图书馆，去看编译原理，想把这部分搞清楚，看着龙书\x2b国产的某一本不知什么的习题与解析，猜过程。。猜原理。。终于是看懂了。。 整体的步骤是三步： 一，先把正规式转换为NFA（非确定有穷自动机）, 二，在把NFA通过“子集构造法”转化为DFA， 三，在把DFA通过“分割法”进行最小化。\n　**一步很简单，就是反复运用下图的规则，**图1 \n　这样就能转换到NFA了。 给出一个例题，来自Google book。本文主要根据这个例题来讲，图2  二.子集构造法。 同样的例题，把转换好的NFA确定化，图3 \n　这个表是从NFA到DFA的时候必须要用到的。第一列第一行I的意思是从NFA的起始节点经过任意个ε所能到达的结点集合。Ia表示从该集合开始经过一个a所能到达的集合，经过一个a的意思是可以略过前后的ε。同样Ib也就是经过一个b，可以略过前后任意个ε。 至于第二行以及后面的I是怎么确定的。我参考了一些题目才明白，原来就是看上面的Ia和Ib哪个还没出现在I列，就拿下来进行运算，该列对应的Ia和Ib就是前面我说的那样推导。\n　如果还不太明白，看图就是了。你会发现I中的几个项目都在Ia和Ib中出现了。而且是完全出现\n　这步做完以后，为了画出最后的DFA，那么肯定得标出一些号来，比如1.2.3.。或者A。 B。c，我一般标的方法是先把I列全部标上1.2.3.递增。然后看1表示的集合和Ia和Ib中的哪个集合一样，就把那个集合也表示为1.继续向下做。最后会得到这样一个表格。图4 \n　至此，就可以表示出DFA了。就对照上面那个表，从0节点开始经过a到1.经过b到2，就这样画就行了。。\n　最后的DFA如下图，图5 \n　双圈的表示终态，这个是怎么来的呢。去看看图4，会发现有些项之前有双圈标志，这个是因为在NFA图2中，9为终态，所以所有包含9的集合都被认为是终态集，改成1.2.3.。。方便画节点后就需要把这些点作为终态了。。\n　三.最小化，分割法。\nFA的最小化就是寻求最小状态DFA\n　最小状态DFA的含义: 1.没有多余状态(死状态)2. 没有两个状态是互相等价（不可区别） 两个状态s和t等价的条件： 兼容性（一致性）条件——同是终态或同是非终态 传播性（蔓延性）条件——从s出发读入某个a和从t出发经过某个a并且经过某个b到达的状态等价。就是相同。\n　DFA的最小化—例子，第一步都是固定的。分成终态和非终态\n１．将Ｍ的状态分为两个子集一个由终态k1=｛Ｃ，Ｄ，Ｅ，Ｆ｝组成，一个由非终态k2=｛Ｓ，Ａ，Ｂ｝组成，\n２．考察｛Ｓ，Ａ，Ｂ｝是否可分．\n\n因为Ａ经过a到达C属于k1.而S经过a到达A属于k2.B经过a到达A属于k2，所以K2继续划分为{S，B},{A},\n３．考察｛Ｓ，Ｂ｝是否可再分：\nB经过b到达D属于k1.S经过b到达B属于k2，所以S，B可以划分。划分为{S},{B}\n４．考察｛Ｃ，Ｄ，Ｅ，Ｆ｝是否可再分： 因为Ｃ，Ｄ，Ｅ，Ｆ经过a和b到达的状态都属于｛Ｃ，Ｄ，Ｅ，Ｆ｝=k1所以相同，所以不可再分：\n５．｛Ｃ，Ｄ，Ｅ，Ｆ｝以｛Ｄ｝来代替则，因为CDEF相同，你也可以用C来代替。无所谓的最小化的ＤＦＡ如图，： \n真麻烦啊。。心里清楚，还得找些图来说明。。额。。基本上感觉自己讲清楚了。。。不清楚的地方。。请留言互相讨论。。谢谢。。\n参考：\nhttp:\/\/www.worldcat.org\/title\/bian-yi-yuan-li-xue-xi-fu-dao\/oclc\/302301738\nhttp:\/\/metc.gdut.edu.cn\/compile\/cmpl3\/3-3.htm",
-  "inLanguage" : "en",
-  "wordCount":  40 ,
-  "datePublished" : "2012-04-25T17:38:42",
-  "dateModified" : "2012-04-25T17:38:42",
-  "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
-  "keywords" : [ "编译" ],
-  "mainEntityOfPage" : "https:\/\/leizhiyuan.github.io\/2012\/04\/25\/%E6%AD%A3%E8%A7%84%E5%BC%8F-%E6%9C%80%E5%B0%8F%E5%8C%96dfa%E8%AF%B4%E6%98%8E\/",
-  "publisher" : {
-    "@type": "Organization",
-    "name" : "https:\/\/leizhiyuan.github.io\/",
-    "logo" : {
-        "@type" : "ImageObject",
-        "url" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
-        "height" :  60 ,
-        "width" :  60
-    }
-  }
-}
-</script>
-
-<meta property="og:title" content="正规式-&gt;最小化DFA说明" />
-<meta property="og:description" content="今天早上去图书馆，去看编译原理，想把这部分搞清楚，看着龙书&#43;国产的某一本不知什么的习题与解析，猜过程。。猜原理。。终于是看懂了。。 整体的步骤是三步： 一，先把正规式转换为NFA（非确定有穷自动机）, 二，在把NFA通过“子集构造法”转化为DFA， 三，在把DFA通过“分割法”进行最小化。
-　**一步很简单，就是反复运用下图的规则，**图1 
-　这样就能转换到NFA了。 给出一个例题，来自Google book。本文主要根据这个例题来讲，图2  二.子集构造法。 同样的例题，把转换好的NFA确定化，图3 
-　这个表是从NFA到DFA的时候必须要用到的。第一列第一行I的意思是从NFA的起始节点经过任意个ε所能到达的结点集合。Ia表示从该集合开始经过一个a所能到达的集合，经过一个a的意思是可以略过前后的ε。同样Ib也就是经过一个b，可以略过前后任意个ε。 至于第二行以及后面的I是怎么确定的。我参考了一些题目才明白，原来就是看上面的Ia和Ib哪个还没出现在I列，就拿下来进行运算，该列对应的Ia和Ib就是前面我说的那样推导。
-　如果还不太明白，看图就是了。你会发现I中的几个项目都在Ia和Ib中出现了。而且是完全出现
-　这步做完以后，为了画出最后的DFA，那么肯定得标出一些号来，比如1.2.3.。或者A。 B。c，我一般标的方法是先把I列全部标上1.2.3.递增。然后看1表示的集合和Ia和Ib中的哪个集合一样，就把那个集合也表示为1.继续向下做。最后会得到这样一个表格。图4 
-　至此，就可以表示出DFA了。就对照上面那个表，从0节点开始经过a到1.经过b到2，就这样画就行了。。
-　最后的DFA如下图，图5 
-　双圈的表示终态，这个是怎么来的呢。去看看图4，会发现有些项之前有双圈标志，这个是因为在NFA图2中，9为终态，所以所有包含9的集合都被认为是终态集，改成1.2.3.。。方便画节点后就需要把这些点作为终态了。。
-　三.最小化，分割法。
-FA的最小化就是寻求最小状态DFA
-　最小状态DFA的含义: 1.没有多余状态(死状态)2. 没有两个状态是互相等价（不可区别） 两个状态s和t等价的条件： 兼容性（一致性）条件——同是终态或同是非终态 传播性（蔓延性）条件——从s出发读入某个a和从t出发经过某个a并且经过某个b到达的状态等价。就是相同。
-　DFA的最小化—例子，第一步都是固定的。分成终态和非终态
-１．将Ｍ的状态分为两个子集一个由终态k1=｛Ｃ，Ｄ，Ｅ，Ｆ｝组成，一个由非终态k2=｛Ｓ，Ａ，Ｂ｝组成，
-２．考察｛Ｓ，Ａ，Ｂ｝是否可分．
-
-因为Ａ经过a到达C属于k1.而S经过a到达A属于k2.B经过a到达A属于k2，所以K2继续划分为{S，B},{A},
-３．考察｛Ｓ，Ｂ｝是否可再分：
-B经过b到达D属于k1.S经过b到达B属于k2，所以S，B可以划分。划分为{S},{B}
-４．考察｛Ｃ，Ｄ，Ｅ，Ｆ｝是否可再分： 因为Ｃ，Ｄ，Ｅ，Ｆ经过a和b到达的状态都属于｛Ｃ，Ｄ，Ｅ，Ｆ｝=k1所以相同，所以不可再分：
-５．｛Ｃ，Ｄ，Ｅ，Ｆ｝以｛Ｄ｝来代替则，因为CDEF相同，你也可以用C来代替。无所谓的最小化的ＤＦＡ如图，： 
-真麻烦啊。。心里清楚，还得找些图来说明。。额。。基本上感觉自己讲清楚了。。。不清楚的地方。。请留言互相讨论。。谢谢。。
-参考：
-http://www.worldcat.org/title/bian-yi-yuan-li-xue-xi-fu-dao/oclc/302301738
-http://metc.gdut.edu.cn/compile/cmpl3/3-3.htm">
-<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
-<meta property="og:url" content="https://leizhiyuan.github.io/2012/04/25/%E6%AD%A3%E8%A7%84%E5%BC%8F-%E6%9C%80%E5%B0%8F%E5%8C%96dfa%E8%AF%B4%E6%98%8E/" />
-<meta property="og:type" content="website" />
-<meta property="og:site_name" content="bystander&#39;s blog" />
-
-  <meta name="twitter:title" content="正规式-&gt;最小化DFA说明" />
-  <meta name="twitter:description" content="今天早上去图书馆，去看编译原理，想把这部分搞清楚，看着龙书&#43;国产的某一本不知什么的习题与解析，猜过程。。猜原理。。终于是看懂了。。 整体的步骤是三步： 一，先把正规式转换为NFA（非确定有穷自动机）, 二，在把NFA通过“子集构造法”转化为DFA， 三，在把DFA通过“分割法”进行最小化。
-　**一步很简单，就是反复运用下图的规则，**图1 
-　这样就能转换到NFA了。 给出一个例题，来 …">
-  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
-  <meta name="twitter:card" content="summary" />
-  <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
-  <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
-  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
-  <meta name="twitter:card" content="summary" />
-  <meta property="og:url" content="https://leizhiyuan.github.io/2012/04/25/%E6%AD%A3%E8%A7%84%E5%BC%8F-%E6%9C%80%E5%B0%8F%E5%8C%96dfa%E8%AF%B4%E6%98%8E/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="bystander&#39;s blog" />
-
-  <meta name="generator" content="Hugo 0.61.0" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
-
-
-
-  </head>
-  <body>
-    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="https://leizhiyuan.github.io/">bystander&#39;s blog</a>
-    </div>
-
-    <div class="collapse navbar-collapse" id="main-navbar">
-      <ul class="nav navbar-nav navbar-right">
+    <title>正规式-&gt;最小化DFA说明 | bystander&#39;s blog</title>
+    <meta property="og:title" content="正规式-&gt;最小化DFA说明 - bystander&#39;s blog">
+    <meta property="og:type" content="article">
         
-          
-            <li>
-              <a title="首页" href="/">首页</a>
-            </li>
-          
+    <meta property="article:published_time" content='2012-04-25T17:38:42&#43;08:00'>
         
-          
-            <li>
-              <a title="目录" href="/categories">目录</a>
-            </li>
-          
         
-          
-            <li>
-              <a title="标签" href="/tags">标签</a>
-            </li>
-          
+    <meta property="article:modified_time" content='2012-04-25T17:38:42&#43;08:00'>
         
-          
-            <li>
-              <a title="友情链接" href="/2016/01/01/links">友情链接</a>
-            </li>
-          
+    <meta name="Keywords" content="">
+    <meta name="description" content="正规式-&gt;最小化DFA说明">
         
-          
-            <li>
-              <a title="关于我" href="/about/">关于我</a>
-            </li>
-          
-        
+    <meta name="author" content="bystander">
+    <meta property="og:url" content="http://leaver.me/2012/04/25/%E6%AD%A3%E8%A7%84%E5%BC%8F-%E6%9C%80%E5%B0%8F%E5%8C%96dfa%E8%AF%B4%E6%98%8E/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
-        
-
-        
-      </ul>
-    </div>
-
-    
-      <div class="avatar-container">
-        <div class="avatar-img-border">
-          <a title="bystander&#39;s blog" href="https://leizhiyuan.github.io/">
-            <img class="avatar-img" src="https://leizhiyuan.github.io/images/author.jpg" alt="bystander&#39;s blog" />
-          </a>
-        </div>
-      </div>
-    
-
-  </div>
-</nav>
-
-
-
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     
 
 
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-<div class="pswp__bg"></div>
-
-<div class="pswp__scroll-wrap">
     
-    <div class="pswp__container">
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-    </div>
     
-    <div class="pswp__ui pswp__ui--hidden">
-    <div class="pswp__top-bar">
-      
-      <div class="pswp__counter"></div>
-      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-      <button class="pswp__button pswp__button--share" title="Share"></button>
-      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-      
-      
-      <div class="pswp__preloader">
-        <div class="pswp__preloader__icn">
-          <div class="pswp__preloader__cut">
-            <div class="pswp__preloader__donut"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-      <div class="pswp__share-tooltip"></div>
-    </div>
-    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-    </button>
-    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-    </button>
-    <div class="pswp__caption">
-      <div class="pswp__caption__center"></div>
-    </div>
-    </div>
-    </div>
-</div>
+</head>
 
 
-  
-  
-  
-
-
-
-
-
-
-  
-
-  <header class="header-section ">
-    
-    <div class="intro-header no-img">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <div class="post-heading">
-              
-                <h1>正规式-&gt;最小化DFA说明</h1>
-              
-              
-              
-              
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on April 25, 2012
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://leaver.me/">
+                        bystander&#39;s blog
+                    </a>
+                
+                <p class="description">寻找窄门</p>
             </div>
-          </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="http://leaver.me/">首页</a>
+                    
+                    <a  href="http://leaver.me/categories" title="目录">目录</a>
+                    
+                    <a  href="http://leaver.me/about/" title="关于我">关于我</a>
+                    
+                </nav>
+            </div>
         </div>
-      </div>
     </div>
-  </header>
+</header>
 
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
 
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
     
-<div class="container" role="main">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-      <article role="main" class="blog-post">
-        <p>　　今天早上去图书馆，去看编译原理，想把这部分搞清楚，看着龙书+国产的某一本不知什么的习题与解析，猜过程。。猜原理。。终于是看懂了。。
+    <article class="post">
+        <header>
+            <h1 class="post-title">正规式-&gt;最小化DFA说明</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2012年4月25日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a></span>
+            
+        </div>
+        
+        
+        
+        <div class="post-content">
+            <p>　　今天早上去图书馆，去看编译原理，想把这部分搞清楚，看着龙书+国产的某一本不知什么的习题与解析，猜过程。。猜原理。。终于是看懂了。。
 整体的步骤是三步：
 一，先把正规式转换为NFA（非确定有穷自动机）,
 二，在把NFA通过“子集构造法”转化为DFA，
@@ -406,41 +131,26 @@ http://metc.gdut.edu.cn/compile/cmpl3/3-3.htm">
 <p><a href="http://www.worldcat.org/title/bian-yi-yuan-li-xue-xi-fu-dao/oclc/302301738">http://www.worldcat.org/title/bian-yi-yuan-li-xue-xi-fu-dao/oclc/302301738</a></p>
 <p><a href="http://metc.gdut.edu.cn/compile/cmpl3/3-3.htm">http://metc.gdut.edu.cn/compile/cmpl3/3-3.htm</a></p>
 
+        </div>
 
         
-          <div class="blog-tags">
+
+
+        
+
+
+        <div class="post-meta meta-tags">
             
-              <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E8%AF%91/">编译</a>&nbsp;
+            <ul class="clearfix">
+                
+                <li><a href='http://leaver.me/tags/%E7%BC%96%E8%AF%91'>编译</a></li>
+                
+            </ul>
             
-          </div>
-        
-
-        
-
-        
-      </article>
-
-      
-        <ul class="pager blog-pager">
-          
-            <li class="previous">
-              <a href="https://leizhiyuan.github.io/2012/04/23/win7%E4%B8%8A%E7%BD%91%E6%8F%90%E7%A4%BA711%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3/" data-toggle="tooltip" data-placement="top" title="WIN7上网提示711错误解决">&larr; Previous Post</a>
-            </li>
-          
-          
-            <li class="next">
-              <a href="https://leizhiyuan.github.io/2012/04/26/%E6%96%87%E6%AF%94%E4%B8%89%E5%AE%B6-%E6%9C%89%E5%85%B3%E5%A5%8B%E6%96%97/" data-toggle="tooltip" data-placement="top" title="文比三家-有关奋斗">Next Post &rarr;</a>
-            </li>
-          
-        </ul>
-      
-
-
-      
-        
-          
-          <div class="disqus-comments">
-            <div id="disqus_thread"></div>
+        </div>
+    </article>
+    
+    <div id="disqus_thread"></div>
 <script type="application/javascript">
     var disqus_config = function () {
     
@@ -460,85 +170,312 @@ http://metc.gdut.edu.cn/compile/cmpl3/3-3.htm">
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-          </div>
-          
-        
-        
-      
 
-    </div>
-  </div>
+    
+    
 </div>
 
-    <footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <ul class="list-inline text-center footer-links">
-          
-              <li>
-                <a href="https://github.com/leizhiyuan" title="GitHub">
-                  <span class="fa-stack fa-lg">
-                    <i class="fas fa-circle fa-stack-2x"></i>
-                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-          
-          <li>
-            <a href="" title="RSS">
-              <span class="fa-stack fa-lg">
-                <i class="fas fa-circle fa-stack-2x"></i>
-                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
-              </span>
-            </a>
-          </li>
-          
-        </ul>
-        <p class="credits copyright text-muted">
-          
-            
-              <a href="leaver.me">bystander</a>
-            
-          
+                </div>
 
-          &nbsp;&bull;&nbsp;&copy;
-          
-            2019
-          
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='http://leaver.me/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://leaver.me/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/" title="深入理解Raft协议">深入理解Raft协议</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/" title="《非暴力沟通》笔记">《非暴力沟通》笔记</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/10/06/wedding-of-friends/" title="Wedding of Friends">Wedding of Friends</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/09/29/principle-note/" title="Principle Note">Principle Note</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/" title="梦见鲸鱼的那一夜">梦见鲸鱼的那一夜</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/08/20/understand-hong-kong-2/" title="Understand Hong Kong 2">Understand Hong Kong 2</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/08/18/understand-hong-kong-part-1/" title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/" title="错过的都是命，得到的才是人生">错过的都是命，得到的才是人生</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/04/06/recently/" title="Recently">Recently</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/03/01/mac%E8%BF%81%E7%A7%BB%E5%AF%BC%E8%87%B4golang%E6%97%A0%E6%B3%95debug%E7%9A%84%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D/" title="Mac迁移导致Golang无法debug的问题修复">Mac迁移导致Golang无法debug的问题修复</a>
+    </li>
+    
+</ul>
+    </section>
 
-          
-            &nbsp;&bull;&nbsp;
-            <a href="https://leizhiyuan.github.io/">bystander&#39;s blog</a>
-          
-        </p>
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记 (186)</a></li>
+    
+    <li><a href="http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/">我的翻译 (57)</a></li>
+    
+    <li><a href="http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/">文章收藏 (53)</a></li>
+    
+    <li><a href="http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录 (2)</a></li>
+    
+    <li><a href="http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记 (4)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://leaver.me/tags/android/">android</a>
+    
+    <a href="http://leaver.me/tags/c/">C＃</a>
+    
+    <a href="http://leaver.me/tags/c&#43;&#43;/">C&#43;&#43;</a>
+    
+    <a href="http://leaver.me/tags/java/">java</a>
+    
+    <a href="http://leaver.me/tags/javascript/">javascript</a>
+    
+    <a href="http://leaver.me/tags/linux/">linux</a>
+    
+    <a href="http://leaver.me/tags/mac/">mac</a>
+    
+    <a href="http://leaver.me/tags/matlab/">matlab</a>
+    
+    <a href="http://leaver.me/tags/maven/">maven</a>
+    
+    <a href="http://leaver.me/tags/mysql/">mysql</a>
+    
+    <a href="http://leaver.me/tags/nextgen-gallery/">NextGEN Gallery</a>
+    
+    <a href="http://leaver.me/tags/php/">php</a>
+    
+    <a href="http://leaver.me/tags/python/">python</a>
+    
+    <a href="http://leaver.me/tags/shell/">shell</a>
+    
+    <a href="http://leaver.me/tags/spring/">spring</a>
+    
+    <a href="http://leaver.me/tags/sql/">sql</a>
+    
+    <a href="http://leaver.me/tags/stackoverflow/">stackoverflow</a>
+    
+    <a href="http://leaver.me/tags/wcf/">WCF</a>
+    
+    <a href="http://leaver.me/tags/web/">web</a>
+    
+    <a href="http://leaver.me/tags/windows/">windows</a>
+    
+    <a href="http://leaver.me/tags/wordpress/">wordpress</a>
+    
+    <a href="http://leaver.me/tags/wpf/">WPF</a>
+    
+    <a href="http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/">上海</a>
+    
+    <a href="http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/">下载</a>
+    
+    <a href="http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
+    
+    <a href="http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/">互联网</a>
+    
+    <a href="http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
+    
+    <a href="http://leaver.me/tags/%E5%88%B6%E5%BA%A6/">制度</a>
+    
+    <a href="http://leaver.me/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+    
+    <a href="http://leaver.me/tags/%E5%8E%9F%E5%88%9B/">原创</a>
+    
+    <a href="http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/">大学</a>
+    
+    <a href="http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/">学习</a>
+    
+    <a href="http://leaver.me/tags/%E5%AE%89%E5%85%A8/">安全</a>
+    
+    <a href="http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/">家庭</a>
+    
+    <a href="http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/">工作</a>
+    
+    <a href="http://leaver.me/tags/%E5%B7%A5%E5%85%B7/">工具</a>
+    
+    <a href="http://leaver.me/tags/%E5%B9%B6%E5%8F%91/">并发</a>
+    
+    <a href="http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/">序列化</a>
+    
+    <a href="http://leaver.me/tags/%E5%BC%80%E5%8F%91/">开发</a>
+    
+    <a href="http://leaver.me/tags/%E5%BF%83%E7%90%86/">心理</a>
+    
+    <a href="http://leaver.me/tags/%E6%80%BB%E7%BB%93/">总结</a>
+    
+    <a href="http://leaver.me/tags/%E6%8A%80%E6%9C%AF/">技术</a>
+    
+    <a href="http://leaver.me/tags/%E6%8F%92%E4%BB%B6/">插件</a>
+    
+    <a href="http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+    
+    <a href="http://leaver.me/tags/%E6%94%B6%E8%97%8F/">收藏</a>
+    
+    <a href="http://leaver.me/tags/%E6%95%B0%E5%AD%A6/">数学</a>
+    
+    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+    
+    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">数据挖掘</a>
+    
+    <a href="http://leaver.me/tags/%E6%96%87%E7%AB%A0/">文章</a>
+    
+    <a href="http://leaver.me/tags/%E6%99%BA%E8%83%BD/">智能</a>
+    
+    <a href="http://leaver.me/tags/%E6%9D%82%E6%96%87/">杂文</a>
+    
+    <a href="http://leaver.me/tags/%E6%AD%A6%E6%B1%89/">武汉</a>
+    
+    <a href="http://leaver.me/tags/%E6%B1%87%E7%BC%96/">汇编</a>
+    
+    <a href="http://leaver.me/tags/%E7%88%B1%E6%83%85/">爱情</a>
+    
+    <a href="http://leaver.me/tags/%E7%90%86%E8%AE%BA/">理论</a>
+    
+    <a href="http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</a>
+    
+    <a href="http://leaver.me/tags/%E7%94%9F%E6%B4%BB/">生活</a>
+    
+    <a href="http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/">电子书</a>
+    
+    <a href="http://leaver.me/tags/%E7%94%B5%E5%BD%B1/">电影</a>
+    
+    <a href="http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/">社会</a>
+    
+    <a href="http://leaver.me/tags/%E7%A7%91%E6%8A%80/">科技</a>
+    
+    <a href="http://leaver.me/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+    
+    <a href="http://leaver.me/tags/%E7%AE%97%E6%B3%95/">算法</a>
+    
+    <a href="http://leaver.me/tags/%E7%BC%96%E7%A8%8B/">编程</a>
+    
+    <a href="http://leaver.me/tags/%E7%BC%96%E8%AF%91/">编译</a>
+    
+    <a href="http://leaver.me/tags/%E7%BF%BB%E8%AF%91/">翻译</a>
+    
+    <a href="http://leaver.me/tags/%E8%81%8C%E4%B8%9A/">职业</a>
+    
+    <a href="http://leaver.me/tags/%E8%AE%B0%E5%BD%95/">记录</a>
+    
+    <a href="http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/">设计</a>
+    
+    <a href="http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/">读书</a>
+    
+    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/">软件</a>
+    
+    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</a>
+    
+    <a href="http://leaver.me/tags/%E8%BF%90%E7%BB%B4/">运维</a>
+    
+    <a href="http://leaver.me/tags/%E9%87%91%E8%9E%8D/">金融</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
         
-        <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
-          
-        </p>
-      </div>
+        <li>
+            <a target="_blank" href="https://www.cppfans.org/" title="C&#43;&#43;爱好者博客">C&#43;&#43;爱好者博客</a>
+        </li>
+        
+        <li>
+            <a target="_blank" href="http://www.kailing.pub" title="KL，每天进步一点点">KL，每天进步一点点</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="http://leaver.me/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
     </div>
-  </div>
-</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-<script src="https://leizhiyuan.github.io/js/main.js"></script>
-<script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
-<script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="http://leaver.me/">bystander&#39;s blog By bystander</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
 
 
+    
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', '30961201', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 
 
 
 
+</body>
 
-  </body>
 </html>
-

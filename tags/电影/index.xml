@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>电影 on bystander&#39;s blog</title>
-    <link>https://leizhiyuan.github.io/tags/%E7%94%B5%E5%BD%B1/</link>
+    <link>http://leaver.me/tags/%E7%94%B5%E5%BD%B1/</link>
     <description>Recent content in 电影 on bystander&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Thu, 31 May 2012 11:07:23 +0000</lastBuildDate>
     
-	<atom:link href="https://leizhiyuan.github.io/tags/%E7%94%B5%E5%BD%B1/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://leaver.me/tags/%E7%94%B5%E5%BD%B1/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>电影各种版本详解</title>
-      <link>https://leizhiyuan.github.io/2012/05/31/%E7%94%B5%E5%BD%B1%E5%90%84%E7%A7%8D%E7%89%88%E6%9C%AC%E8%AF%A6%E8%A7%A3/</link>
+      <link>http://leaver.me/2012/05/31/%E7%94%B5%E5%BD%B1%E5%90%84%E7%A7%8D%E7%89%88%E6%9C%AC%E8%AF%A6%E8%A7%A3/</link>
       <pubDate>Thu, 31 May 2012 11:07:23 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/05/31/%E7%94%B5%E5%BD%B1%E5%90%84%E7%A7%8D%E7%89%88%E6%9C%AC%E8%AF%A6%E8%A7%A3/</guid>
+      <guid>http://leaver.me/2012/05/31/%E7%94%B5%E5%BD%B1%E5%90%84%E7%A7%8D%E7%89%88%E6%9C%AC%E8%AF%A6%E8%A7%A3/</guid>
       <description>这是今天早上突然想到的。因为最近一下电影网站恶意混淆各种版本，比如拿个枪版就说个DVD，骗下载量。特此找到此文。分享之。国内作者太无良啊。转载从来不注明出处。找原始出处花了一些时间。原文非常乱。音视频格式也交错着介绍。我删掉了。想看的去原文看吧。
 1.CAM（枪版）——珍爱生命，远离枪版 CAM通常是用数码摄像机从电影院盗录。有时会使用 小三角架，但大多数时候不可能使用，所以摄像机会抖动。因此我们看到画面通常偏暗人物常常会失真，下方的字幕时常会出现倾斜。 由于声音是从摄像机自带的话筒录制，所以经常会录到观众的笑声等声音。因为这些因素，图象和声音质量通常都很差。 举例说明：Journey.To.The.Center.Of.The.Earth.CAM.XViD-CAMERA（地心游记3D枪版）
 2.TS——只比枪版好一点 TS 与CAM版的标准是相同的。 但它使用的是外置音源（一般是影院座椅上为听力不好的人设的耳机孔）这个音源不能保证是好的音源，因为受到很多背景噪音的干扰。TS是在空的影院或是用专 业摄像机在投影室录制，所以图象质量可能比CAM好。但画面的起伏很大。常出现的有一般TS版和经过修复清晰TS版。 举例说明：Iron.Man.PROPER.TS.XviD-iLG（钢铁侠TS版）
@@ -33,7 +33,11 @@
 13.1080I 即1080线隔行扫描，分辨率为1920×1080，仅次于1080P 举例说明：close.encounters.of.the.third.kind.1080i.disk1.ts（第三类接触1080i版本）
 14.1080P 1080P是美国电影电视工程师协会（SMPTE）制定的最高等级高清数字电视的格式标准，有效显示格式为：1920×1080，像素数达到207．36万。 1080P带来的高画质给消费者带来的是真正的家庭影院的视听享受，由于它向下全面兼容其它高清格式，通用性非常强，保证了在未来十几年的时间里产品不会过时，具有很好的超前性。随着1080P片源的不断涌现，1080P产品的优势已经显现出来。 举例说明：Resident.Evil.HD.DVD.REMUX.1080p.MPEG-2.DTS-HD.F@Silu.disk1.ts（生化危机1，1080P版本）
 15.REPACK——重新打包版 如果发布组织发布了一个坏的版本，他们会发布REPACK来解决这些问题。 举例说明：The.Eye.2008.REPACK.BDRip.X264-TLF-cd1.mkv（美版见鬼，repack版本）
-16.REMUX——无损版 Remux的意思是无损的提取出HD-DVD 和 BluRay-DVD里面的视频数据和音频数据，封装到我们熟悉的TS或者AVI文件中。 HD- DVD和 Blu-Ray Rip、Re都是把原始的高清数据进行压缩和重编码，从1080P压缩到720P, 20G左右的片子压缩到了4.</description>
+16.REMUX——无损版 Remux的意思是无损的提取出HD-DVD 和 BluRay-DVD里面的视频数据和音频数据，封装到我们熟悉的TS或者AVI文件中。 HD- DVD和 Blu-Ray Rip、Re都是把原始的高清数据进行压缩和重编码，从1080P压缩到720P, 20G左右的片子压缩到了4.3G. 可在19、20、22寸的宽屏上看，但是上到大尺寸高分辩率的显示设备就能明显的看出区别了。大屏幕的朋友还是建议购买原始编码的Remux。 举例说明：The.Patriot.Extended.Cut.Blu-ray.REMUX.H264.1080P.DTS.LPCM.DD51.Fanxy@Silu.DISK1.ts（爱国者remux版本）
+17. Extended——加长版 情形和导演剪辑版类似，很多的加长版是用来圈钱的,有的干脆就是把花絮里的删除段落直接加进去,也就长了几分钟而已。也有很厚道的,比如指环王的加长版,一部就加长了近50分钟,肯定对剧情有影响的。 举例说明：The.Lord.Of.The.Rings-Return.Of.The.King.EXTENDED.EDITION.DVDRip.XViD-ALLiANCE.avi（指环王3：王者归来加长版）
+来源：
+http://blog.sina.com.cn/s/blog_486387300102dxo1.html
+http://blog.sina.com.cn/renli</description>
     </item>
     
   </channel>

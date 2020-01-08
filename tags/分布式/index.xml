@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>分布式 on bystander&#39;s blog</title>
-    <link>https://leizhiyuan.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/</link>
+    <link>http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/</link>
     <description>Recent content in 分布式 on bystander&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Mon, 30 Dec 2019 14:42:42 +0800</lastBuildDate>
     
-	<atom:link href="https://leizhiyuan.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>深入理解Raft协议</title>
-      <link>https://leizhiyuan.github.io/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/</link>
+      <link>http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/</link>
       <pubDate>Mon, 30 Dec 2019 14:42:42 +0800</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/</guid>
+      <guid>http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/</guid>
       <description>本文部分以JRaft为例，来详细介绍Raft。
 Raft 来源 首先，我们介绍 Raft 问题的来源，Raft 实际上是一个一致性算法的一种实现，和Paxos等价，但是在实现上，简化了一些，并且更加易用。
 这里面又引入了两个名字。一个是一致性，一个是Paxos，我们先说一致性，
@@ -29,7 +29,16 @@ RSM能够工作基于这样的假设：
 至于Paxos，这里可以先简单理解就是个一致性算法的实现方式，和 Raft 类似。
 总结就一致性是为了解决分布式环境下的容错问题，而Raft 和 Paxos 是其中的一种实现。
 核心怎么实现呢 要实现Raft，根据作者的表述，通过对状态空间的简化，以及问题的分解，实现方只需要实现的就是各个子问题
-状态空间: 状态太多就会增加理解的困难程度。Raft 算法尽可能地确定各个环节的状态。典型地，Raft 算法采用 strong leader 的模型，每个日志的读写均由 Leader 从中主动协调，这样一来，整体系统的数据流将非常简单：从 Leader 流行 Follower。而且每个节点的状态也只有 3 种：Leader，Candidate 和 Follower。</description>
+状态空间: 状态太多就会增加理解的困难程度。Raft 算法尽可能地确定各个环节的状态。典型地，Raft 算法采用 strong leader 的模型，每个日志的读写均由 Leader 从中主动协调，这样一来，整体系统的数据流将非常简单：从 Leader 流行 Follower。而且每个节点的状态也只有 3 种：Leader，Candidate 和 Follower。
+子问题: Leader election：描述如何从集群的几个节点中选举出 Leader； Log Replication：描述如何将日志同步到各个节点从而达成一致； Safety：定义了一组约束条件来保证 Raft 算法的强一致性； Membership changes：描述如何变更集群关系（增加或者减少节点）；
+Leader election Raft的节点被称为peer，节点的状态是Raft算法的关键属性，在任何时候，Raft节点可能处于以下三种状态：
+Leader：Leader负责处理客户端的请求，同时还需要协调日志的复制。在任意时刻，最多允许存在1个Leader，其他节点都是Follower。注意，集群在选举期间可能短暂处于存在0个Leader的场景。
+Follower：Follower是被动的，它们不主动提出请求，只是响应Leader和Candidate的请求。注意，节点之间的通信是通过RPC进行的。
+Candidate：Candidate是节点从Follower转变为Leader的过渡状态。因为Follower是一个完全被动的状态，所以当需要重新选举时，Follower需要将自己提升为Candidate，然后发起选举。
+但是这种机制也带来一个麻烦，如果一个节点 因为自己的原因没有看到 Leader 发出的通知，他就会自以为是的试图竞选成为新的Leader，虽然不断发起选举且一直未能当选（因为Leader和其他船都正常通信），但是它却通过自己的投票请求实际抬升了全局的 Term
+为了阻止这种“捣乱”，可以设计一个预投票 (pre-vote) 环节。候选者在发起投票之前，先发起预投票，如果没有得到半数以上节点的反馈，则候选者就会放弃参选，也就不会提升全局的 Term。
+ Candidate 被 ET(Election Timeout) 触发 Candidate 开始尝试发起 pre-vote 预投票 Follower 判断是否认可该 pre-vote request Candidate 根据 pre-vote response 来决定是否发起 RequestVoteRequest Follower 判断是否认可该 RequestVoteRequest Candidate 根据 Response 来判断自己是否当选  线性一致性 线性一致读是在分布式系统中实现 Java volatile 语义，当客户端向集群发起写操作的请求并且获得成功响应之后，该写操作的结果要对所有后来的读请求可见。其实就是CAP里面的C，
+Raft log read 实际上如果基于Raft本身的设计，因为每次 Read 都需要走 Raft 流程，Raft Log 存储、复制带来刷盘开销、存储开销、网络开销，走 Raft Log不仅仅有日志落盘的开销，还有日志复制的网络开销，另外还有一堆的 Raft “读日志” 造成的磁盘占用开销，导致 Read 操作性能是非常低效的，所以在读操作很多的场景下对性能影响很大，在读比重很大的系统中是无法被接受的，通常都不会使用。</description>
     </item>
     
   </channel>

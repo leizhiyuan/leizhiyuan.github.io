@@ -1,769 +1,613 @@
-<!DOCTYPE html>
-<html lang="en" itemscope itemtype="http://schema.org/WebPage">
-  <head>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>WCF | bystander&#39;s blog</title>
+    <meta property="og:title" content="WCF - bystander&#39;s blog">
+    <meta property="og:type" content="article">
+        
+        
+    <meta name="Keywords" content="">
+    <meta name="description" content="WCF">
+        
+    <meta name="author" content="bystander">
+    <meta property="og:url" content="http://leaver.me/tags/wcf/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <link rel="alternate" type="application/rss+xml+xml" href="http://leaver.me/tags/wcf/index.xml" title="bystander's blog" />
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
     
 
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-
-  <title>Overview of all pages with the tag #WCF - bystander&#39;s blog</title>
-  <meta property="og:title" content="Overview of all pages with the tag #WCF" />
-  <meta name="twitter:title" content="Overview of all pages with the tag #WCF" />
-  <meta name="description" content="Overview of all pages with the tag #WCF, such as: 通过Windows应用进行服务寄宿示例代码">
-  <meta property="og:description" content="Overview of all pages with the tag #WCF, such as: 通过Windows应用进行服务寄宿示例代码">
-  <meta name="twitter:description" content="Overview of all pages with the tag #WCF, such as: 通过Windows应用进行服务寄宿示例代码">
-  <meta name="author" content="bystander"/><script type="application/ld+json">
-{
-    "@context": "http://schema.org",
-    "@type": "WebSite",
-    "name": "bystander\x27s blog",
-    
-    "url": "https:\/\/leizhiyuan.github.io\/"
-}
-</script><script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Organization",
-  "name": "",
-  "url": "https:\/\/leizhiyuan.github.io\/"
-  
-  
-  
-  
-}
-</script>
-
-<meta property="og:title" content="WCF" />
-<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
-<meta property="og:url" content="https://leizhiyuan.github.io/tags/wcf/" />
-<meta property="og:type" content="website" />
-<meta property="og:site_name" content="bystander&#39;s blog" />
-
-  <meta name="twitter:title" content="WCF" />
-  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
-  <meta name="twitter:card" content="summary" />
-  <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
-  <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
-  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
-  <meta name="twitter:card" content="summary" />
-  <meta property="og:url" content="https://leizhiyuan.github.io/tags/wcf/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="bystander&#39;s blog" />
-
-  <meta name="generator" content="Hugo 0.61.0" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
-
-
-
-  </head>
-  <body>
-    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="https://leizhiyuan.github.io/">bystander&#39;s blog</a>
-    </div>
-
-    <div class="collapse navbar-collapse" id="main-navbar">
-      <ul class="nav navbar-nav navbar-right">
-        
-          
-            <li>
-              <a title="首页" href="/">首页</a>
-            </li>
-          
-        
-          
-            <li>
-              <a title="目录" href="/categories">目录</a>
-            </li>
-          
-        
-          
-            <li>
-              <a title="标签" href="/tags">标签</a>
-            </li>
-          
-        
-          
-            <li>
-              <a title="友情链接" href="/2016/01/01/links">友情链接</a>
-            </li>
-          
-        
-          
-            <li>
-              <a title="关于我" href="/about/">关于我</a>
-            </li>
-          
-        
-
-        
-
-        
-      </ul>
-    </div>
 
     
-      <div class="avatar-container">
-        <div class="avatar-img-border">
-          <a title="bystander&#39;s blog" href="https://leizhiyuan.github.io/">
-            <img class="avatar-img" src="https://leizhiyuan.github.io/images/author.jpg" alt="bystander&#39;s blog" />
-          </a>
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://leaver.me/">
+                        bystander&#39;s blog
+                    </a>
+                
+                <p class="description">寻找窄门</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="http://leaver.me/">首页</a>
+                    
+                    <a  href="http://leaver.me/categories" title="目录">目录</a>
+                    
+                    <a  href="http://leaver.me/about/" title="关于我">关于我</a>
+                    
+                </nav>
+            </div>
         </div>
-      </div>
-    
-
-  </div>
-</nav>
-
-
-
-
-    
-
-
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-<div class="pswp__bg"></div>
-
-<div class="pswp__scroll-wrap">
-    
-    <div class="pswp__container">
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
     </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
     
-    <div class="pswp__ui pswp__ui--hidden">
-    <div class="pswp__top-bar">
-      
-      <div class="pswp__counter"></div>
-      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-      <button class="pswp__button pswp__button--share" title="Share"></button>
-      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-      
-      
-      <div class="pswp__preloader">
-        <div class="pswp__preloader__icn">
-          <div class="pswp__preloader__cut">
-            <div class="pswp__preloader__donut"></div>
-          </div>
+    <h3 class="archive-title">
+        包含标签
+        <span class="keyword">WCF</span>
+        的文章
+    </h3>
+    
+
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="http://leaver.me/2012/09/09/%E9%80%9A%E8%BF%87windows%E5%BA%94%E7%94%A8%E8%BF%9B%E8%A1%8C%E6%9C%8D%E5%8A%A1%E5%AF%84%E5%AE%BF%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81/">通过Windows应用进行服务寄宿示例代码</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2012年9月9日
+        </date>
+        
+        <div class="post-meta meta-category">
+            |
+            
+            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
+            
         </div>
-      </div>
-    </div>
-    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-      <div class="pswp__share-tooltip"></div>
-    </div>
-    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-    </button>
-    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-    </button>
-    <div class="pswp__caption">
-      <div class="pswp__caption__center"></div>
-    </div>
-    </div>
-    </div>
+        
+        <div class="post-content">
+            此程序部分源码来自《WCF技术剖析》。。但是。这本书上讲的非常不清楚。有些很小的地方没讲。。导致出现很多问题。。。比如ListView需要先添加列。默认的config需要删除。等等。。
+最终是成功了。 
+源码下载：Lazy.FormDemo……
+            <p class="readmore"><a href="http://leaver.me/2012/09/09/%E9%80%9A%E8%BF%87windows%E5%BA%94%E7%94%A8%E8%BF%9B%E8%A1%8C%E6%9C%8D%E5%8A%A1%E5%AF%84%E5%AE%BF%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81/">阅读全文</a></p>
+        </div>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="http://leaver.me/2012/09/09/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B04/">WCF读书笔记(4)</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2012年9月9日
+        </date>
+        
+        <div class="post-meta meta-category">
+            |
+            
+            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
+            
+        </div>
+        
+        <div class="post-content">
+            三种供客户端和服务端控制通信的契约介绍： 1.服务契约描述了由特定服务端点所公开的操作，每一种操作，通过参数和返回值定义请求和响应消息的格式。 2.数据契约描述了复杂类型如何被串行化为消息的一部分，数据契约是服务契约中优先用来包含复杂类型的方式。 3.消息契约提供对某个soap消息格式的控制，包括支持定制消息标题和数据契约所描述的单个消息体元素。
+消息参数（Message Parameter） 对于
+若客户端传入的参数为“Hello”，则生成的请求消息体中标记为Hello,而响应返回的消息体则被标记为返回内容,可以通过
+来定制消息中的标签。
+绑定元素 实际上，每个绑定元素都会被映射到一个信道上，这样，绑定元素和信道在这个意义上可以互换。
+执行上下文（OperationContext） 是System.ServiceModel命名空间的一种类型，他为服务请求提供了对执行上下文的访问，OperationContext.Current为请求在生命周期期间提供了对上下文的访问。
+WCF的实例化模式 实例化控制模式服务对象被分配给请求的方式，一旦服务主机已经建立而且为每个端点创建了信道监听器，对各终端的请求已经由适当的服务对象所执行，则这些对象是基于服务类型的实例化模式的。他们是InstanceContextMode的一个枚举。 1.PerCall 服务对象为每一个对服务的调用所创建。 2.PerSession 对每一个客户端创建一个。默认是这样 3.Single 创建单一的服务对象。并由所有客户端的调用使用。 尽可能使用PerCall，大规模的部署避免PerSession并发。
+WCF的四种会话 应用会话，传输会话，可靠会话，安全会话。
+信道发生器取得SessionId……
+            <p class="readmore"><a href="http://leaver.me/2012/09/09/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B04/">阅读全文</a></p>
+        </div>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="http://leaver.me/2012/09/08/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B03/">WCF读书笔记(3)</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2012年9月8日
+        </date>
+        
+        <div class="post-meta meta-category">
+            |
+            
+            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
+            
+        </div>
+        
+        <div class="post-content">
+            WCF的四大行为
+　契约行为（Contract Behavior），操作行为（Operation Behavior），服务行为（Service Behavior），终结点行为（Endpoint Behavior）。
+　如果把WCF看做是消息处理，对象激活与操作执行的管道，那么我们可以通过相应的行为来改变这个管道中某个环节的工作方式。比如加个密啊。什么的。
+单向模式（One-Way）
+　单向模式不需要服务器执行后返回一个回复，多用于不要求服务执行后返回一个回复，并且能够容忍日志记录的失败，只有返回类型为void的才允许设置为true，同理，ref和out参数作为另一种类型的输出。也是不允许的。
+WCF的三种异步操作
+　1.异步信道调用：客户端可以通过代理对象进行异步调用信道。
+　2.One-Way消息交换：单向的消息交换一旦抵达传输层，马上返回，从而实现异步
+　3.异步服务实现：服务端在具体实现服务操作的时候。采用异步调用的方式。
+序列化：
+　XMLSerializer序列化对象时，必须是公有，可读可写的属性，才能序列化。
+WCF的四大契约
+　服务契约（Service Contract），数据契约（Data Contract），消息契约（Message Contract），错误契约（Fault Contract）
+信道：
+　信道是为了便利WCF中客户端和服务的通信来设置的。ServiceHost为每个断点创建一个信道侦听器，侦听器产生通信通道，代理则产生一个信道发生器，发生器产生客户端的信道，两种信道相互兼容并且能有效处理之间的信息。
+　实际上，通信信道是有一个分层的信道栈组成-栈中的每一个信道都在消息处理过程中负责实施一个特定动作，信道栈包含一个传输信道，一个消息编码信道，和任意数量的消息处理信道，绑定则将决定了哪些信道留在信道栈中。当行为穿过信道栈时，消息处理方式将会有所改变。。……
+            <p class="readmore"><a href="http://leaver.me/2012/09/08/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B03/">阅读全文</a></p>
+        </div>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="http://leaver.me/2012/09/07/wcf%E5%8F%8C%E5%B7%A5%E9%80%9A%E4%BF%A1%E7%A4%BA%E4%BE%8B/">WCF双工通信示例</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2012年9月7日
+        </date>
+        
+        <div class="post-meta meta-category">
+            |
+            
+            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
+            
+        </div>
+        
+        <div class="post-content">
+            这两天在看WCF的书籍。就参考书上的代码写了这个例子。不得不说。书上有些错误的地方。。运行明显报错。改了一下。顺利通过。
+　先运行Hosting。然后运行Client。可以看到效果。不过不知道为什么会有如下的一个提示：
+　目标程序集不包含服务类型。可能需要调整此程序集的代码访问安全策略。
+　点击确定后并不影响程序运行。。但是也是个问题。。找了一下解决方法。都没有解决。。可能是我新建契约服务的时候，删掉了默认的IService配置。
+//update:此问题解决了。是因为默认的app.config太多。对于典型的四层结构。需要删除契约和服务中的app.config。。
+　暂时先放着吧。
+　运行截图：
+　
+　示例代码下载：Lazy.Duplex……
+            <p class="readmore"><a href="http://leaver.me/2012/09/07/wcf%E5%8F%8C%E5%B7%A5%E9%80%9A%E4%BF%A1%E7%A4%BA%E4%BE%8B/">阅读全文</a></p>
+        </div>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="http://leaver.me/2012/09/06/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B02/">WCF读书笔记(2)</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2012年9月6日
+        </date>
+        
+        <div class="post-meta meta-category">
+            |
+            
+            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
+            
+        </div>
+        
+        <div class="post-content">
+            信道形状（Channel Shape）
+　用来表述不同的消息交换模式对消息交换双方信道（信息交换的管道）的不同要求，有什么IOutputChannel IReplyChannel IDuplexChannel之类的。。
+　对于IReplyChannel，服务器返回一个RequestContext类型，作为请求和回复之间的一道桥梁，可以获取也可以返回消息。
+会话信道（Session Channel）
+　从状态保持的角度，信道可以分为两种类型，Datagram Channel和Session Channel，前者不和客户端绑定，后者可以识别客户端。
+　对于WCF的信道层来说，信道管理器在客户端和服务端扮演不同的角色。服务端的信道管理器用于监听来自客户端的请求，而客户端的信道仅仅是单纯创建用于请求发送和回复接收的信道，因此服务端的消息管理器又称为信道监听器（Channel Listener），客户端的信道管理器则称之为信道工厂（Channel Factory）
+绑定元素（Binding Element）
+　构成一个绑定对象的元素，绑定实现了通信的所有细节，通过创建信道栈实现对消息的交换，系统绑定是指服务于某种类型场景的绑定元素的有序集合。 包括什么BaseHttpBinding之类的。
+　一个程序集包括元数据，中间语言代码，和资源。程序集已经加载，将一直保存在内存中，直到应用程序域卸载。最好摒弃添加服务引用的服务调用方式，而是直接将包含服务契约的程序集部署到客户端。客户端以直接创建代理的方式进行调用。
+　WCF可以看成是适配器，是CLR类型和XML两个不同世界的纽带。
+　依赖倒置原则：即抽象不应该依赖细节，细节应该依赖于抽象；即要针对接口编程，不要对实现编程。高层模块不应该依赖低层模块。两个都应该依赖抽象。
+　契约关心的是我能做到。而不在于我如何做到。
+封送（Marshaling）
+　解决跨应用程序域对象访问的问题，需要采用一种特别的机制，那就是封送。分为按值封送和按引用封送
+　按值封送实现了跨应用程序域的数据共享
+　按引用封送则实现了跨应用程序域的远程调用。
+　如果一个程序员频繁的使用复制粘贴编程。那就意味着设计需要重构……
+            <p class="readmore"><a href="http://leaver.me/2012/09/06/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B02/">阅读全文</a></p>
+        </div>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="http://leaver.me/2012/09/05/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B01/">WCF读书笔记(1)</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2012年9月5日
+        </date>
+        
+        <div class="post-meta meta-category">
+            |
+            
+            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
+            
+        </div>
+        
+        <div class="post-content">
+            信道的分类：Transport Channel 信道
+　1.Message Encording Channel　2.Protocol Channel
+信道管理器（Channel Manager）,信道管理器用于信道栈的创建和生命周期的管理
+　1.ChannelListener　2.ChannelFactory
+WCF服务调用的两种典型方式
+　1.是借助代码生成工具svcUtil.exe导入元数据生成客户端代码和配置，添加服务引用采用的就是这种方式，工具会创建一个继承自Client的服务代理类型。
+　2.是通过ChannelFactory直接创建服务代理对象进行服务调用。
+　如果客户端已经进行了终结点的配置
+　那么通过信道工厂进行调用的代码大致如下：　　WCF处理的是跨应用程序域，跨机器，跨网络的通信，所以WCF大多数时间进行网络传俗这样的IO操作，IO绑定的操作是采用异步编程（APM【Asynchronous Programming Model】）
+消息交换模式MEP（Message Exchange Pattern）
+　MEP定义了参与者进行消息交换的模板，代表一系列的模板，他们定了消息的发送者和接收者，相互进行消息传递的次序，比较典型的三种
+　1.Datagram 数据包模式，嘴尖的SEND/FORGET模式也叫One-Way模式，基于从一个源到另一个或多个目的地的单向消息传输，并不期待回复
+　消息报的发送可以分成三个模式，分别是单目的地模式，多投模式，广播模式。 依次接受方更强大。。
+　2.Request/Reply模式
+　使用最多的一种模式，请求期待回复。采用同步通信方式，但也可用于异步通信
+　3.Duplex 双工模式
+　双方可以互发消息，实现服务器回调客户端。订阅/发布是其中一种典型的实例，TCP可以提供原生的双工通信，WCF通过WSDualHttpBinding实现了基于Http的双工通信，实际上是采用两个HTTP通道实现……
+            <p class="readmore"><a href="http://leaver.me/2012/09/05/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B01/">阅读全文</a></p>
+        </div>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="http://leaver.me/2012/09/04/%E4%BD%BF%E7%94%A8microsoft-web-deploy%E6%8A%80%E6%9C%AF%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/">使用Microsoft Web Deploy技术自动部署</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2012年9月4日
+        </date>
+        
+        <div class="post-meta meta-category">
+            |
+            
+            <a href='http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F'>文章收藏</a>
+            
+        </div>
+        
+        <div class="post-content">
+            在前段时间使用WCF的时候。部署到服务器上一直不得要领。出现各种问题。最终搞定。原文图很多，我给个摘要，大家还是原文看。因为原文写于2010年。自动部署工具已经更新至第3版。所以有些按钮得好好找找。不过相信对大家都不是难事。
+　本篇文章将提供一个循序渐进的教程，教你如何在一台Web服务期上安装和启用Web Deploy。接着我们演示如何使用Visual Studio通过Web Deploy直接（将文件）发布到服务器上，以及如何使用Visual Studio创建自动部署你的应用程序的安装包。
+　Web Deploy—为什么你会喜欢它
+　部署一个Web应用程序或站点包含好几个步骤。您通常需要：
+　1. 拷贝文件和文件夹；
+　2. 提供数据库结构，或许还要生成一些数据库数据；
+　3. 在文件和文件夹上设置相应的读写和安全访问控制列表；
+　4. 安装和配置SSL认证；
+　5. 部署其它杂七杂八的依赖项（事件日志，GAC库，COM对象等等）。
+　手工执行上面的步骤又累又慢又危险（因为手工部署总是容易出错）。使用自动化流程，可以让你在一台服务器上快速维护和部署应用程序，减少出错的几率，并极大加快你在应用程序上的改动放到作业服务器上的周期。
+　去原文看看吧。使用Microsoft Web Deploy技术自动部署……
+            <p class="readmore"><a href="http://leaver.me/2012/09/04/%E4%BD%BF%E7%94%A8microsoft-web-deploy%E6%8A%80%E6%9C%AF%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/">阅读全文</a></p>
+        </div>
+    </article>
+    
+
+    
+
+
+
+
+
 </div>
 
+                </div>
 
-  
-  
-  
-
-
-
-
-
-
-  
-
-  <header class="header-section ">
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='http://leaver.me/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://leaver.me/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
     
-    <div class="intro-header no-img">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <div class="tags-heading">
-              
-                <h1>WCF</h1>
-              
-              
-                <hr class="small">
-              
-              
-              
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
-
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/" title="深入理解Raft协议">深入理解Raft协议</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/" title="《非暴力沟通》笔记">《非暴力沟通》笔记</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/10/06/wedding-of-friends/" title="Wedding of Friends">Wedding of Friends</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/09/29/principle-note/" title="Principle Note">Principle Note</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/" title="梦见鲸鱼的那一夜">梦见鲸鱼的那一夜</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/08/20/understand-hong-kong-2/" title="Understand Hong Kong 2">Understand Hong Kong 2</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/08/18/understand-hong-kong-part-1/" title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/" title="错过的都是命，得到的才是人生">错过的都是命，得到的才是人生</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/04/06/recently/" title="Recently">Recently</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/03/01/mac%E8%BF%81%E7%A7%BB%E5%AF%BC%E8%87%B4golang%E6%97%A0%E6%B3%95debug%E7%9A%84%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D/" title="Mac迁移导致Golang无法debug的问题修复">Mac迁移导致Golang无法debug的问题修复</a>
+    </li>
+    
+</ul>
+    </section>
 
     
-  <div class="container" role="main">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记 (186)</a></li>
+    
+    <li><a href="http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/">我的翻译 (57)</a></li>
+    
+    <li><a href="http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/">文章收藏 (53)</a></li>
+    
+    <li><a href="http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录 (2)</a></li>
+    
+    <li><a href="http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记 (4)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://leaver.me/tags/android/">android</a>
+    
+    <a href="http://leaver.me/tags/c/">C＃</a>
+    
+    <a href="http://leaver.me/tags/c&#43;&#43;/">C&#43;&#43;</a>
+    
+    <a href="http://leaver.me/tags/java/">java</a>
+    
+    <a href="http://leaver.me/tags/javascript/">javascript</a>
+    
+    <a href="http://leaver.me/tags/linux/">linux</a>
+    
+    <a href="http://leaver.me/tags/mac/">mac</a>
+    
+    <a href="http://leaver.me/tags/matlab/">matlab</a>
+    
+    <a href="http://leaver.me/tags/maven/">maven</a>
+    
+    <a href="http://leaver.me/tags/mysql/">mysql</a>
+    
+    <a href="http://leaver.me/tags/nextgen-gallery/">NextGEN Gallery</a>
+    
+    <a href="http://leaver.me/tags/php/">php</a>
+    
+    <a href="http://leaver.me/tags/python/">python</a>
+    
+    <a href="http://leaver.me/tags/shell/">shell</a>
+    
+    <a href="http://leaver.me/tags/spring/">spring</a>
+    
+    <a href="http://leaver.me/tags/sql/">sql</a>
+    
+    <a href="http://leaver.me/tags/stackoverflow/">stackoverflow</a>
+    
+    <a href="http://leaver.me/tags/wcf/">WCF</a>
+    
+    <a href="http://leaver.me/tags/web/">web</a>
+    
+    <a href="http://leaver.me/tags/windows/">windows</a>
+    
+    <a href="http://leaver.me/tags/wordpress/">wordpress</a>
+    
+    <a href="http://leaver.me/tags/wpf/">WPF</a>
+    
+    <a href="http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/">上海</a>
+    
+    <a href="http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/">下载</a>
+    
+    <a href="http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
+    
+    <a href="http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/">互联网</a>
+    
+    <a href="http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
+    
+    <a href="http://leaver.me/tags/%E5%88%B6%E5%BA%A6/">制度</a>
+    
+    <a href="http://leaver.me/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+    
+    <a href="http://leaver.me/tags/%E5%8E%9F%E5%88%9B/">原创</a>
+    
+    <a href="http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/">大学</a>
+    
+    <a href="http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/">学习</a>
+    
+    <a href="http://leaver.me/tags/%E5%AE%89%E5%85%A8/">安全</a>
+    
+    <a href="http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/">家庭</a>
+    
+    <a href="http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/">工作</a>
+    
+    <a href="http://leaver.me/tags/%E5%B7%A5%E5%85%B7/">工具</a>
+    
+    <a href="http://leaver.me/tags/%E5%B9%B6%E5%8F%91/">并发</a>
+    
+    <a href="http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/">序列化</a>
+    
+    <a href="http://leaver.me/tags/%E5%BC%80%E5%8F%91/">开发</a>
+    
+    <a href="http://leaver.me/tags/%E5%BF%83%E7%90%86/">心理</a>
+    
+    <a href="http://leaver.me/tags/%E6%80%BB%E7%BB%93/">总结</a>
+    
+    <a href="http://leaver.me/tags/%E6%8A%80%E6%9C%AF/">技术</a>
+    
+    <a href="http://leaver.me/tags/%E6%8F%92%E4%BB%B6/">插件</a>
+    
+    <a href="http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+    
+    <a href="http://leaver.me/tags/%E6%94%B6%E8%97%8F/">收藏</a>
+    
+    <a href="http://leaver.me/tags/%E6%95%B0%E5%AD%A6/">数学</a>
+    
+    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+    
+    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">数据挖掘</a>
+    
+    <a href="http://leaver.me/tags/%E6%96%87%E7%AB%A0/">文章</a>
+    
+    <a href="http://leaver.me/tags/%E6%99%BA%E8%83%BD/">智能</a>
+    
+    <a href="http://leaver.me/tags/%E6%9D%82%E6%96%87/">杂文</a>
+    
+    <a href="http://leaver.me/tags/%E6%AD%A6%E6%B1%89/">武汉</a>
+    
+    <a href="http://leaver.me/tags/%E6%B1%87%E7%BC%96/">汇编</a>
+    
+    <a href="http://leaver.me/tags/%E7%88%B1%E6%83%85/">爱情</a>
+    
+    <a href="http://leaver.me/tags/%E7%90%86%E8%AE%BA/">理论</a>
+    
+    <a href="http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</a>
+    
+    <a href="http://leaver.me/tags/%E7%94%9F%E6%B4%BB/">生活</a>
+    
+    <a href="http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/">电子书</a>
+    
+    <a href="http://leaver.me/tags/%E7%94%B5%E5%BD%B1/">电影</a>
+    
+    <a href="http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/">社会</a>
+    
+    <a href="http://leaver.me/tags/%E7%A7%91%E6%8A%80/">科技</a>
+    
+    <a href="http://leaver.me/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+    
+    <a href="http://leaver.me/tags/%E7%AE%97%E6%B3%95/">算法</a>
+    
+    <a href="http://leaver.me/tags/%E7%BC%96%E7%A8%8B/">编程</a>
+    
+    <a href="http://leaver.me/tags/%E7%BC%96%E8%AF%91/">编译</a>
+    
+    <a href="http://leaver.me/tags/%E7%BF%BB%E8%AF%91/">翻译</a>
+    
+    <a href="http://leaver.me/tags/%E8%81%8C%E4%B8%9A/">职业</a>
+    
+    <a href="http://leaver.me/tags/%E8%AE%B0%E5%BD%95/">记录</a>
+    
+    <a href="http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/">设计</a>
+    
+    <a href="http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/">读书</a>
+    
+    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/">软件</a>
+    
+    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</a>
+    
+    <a href="http://leaver.me/tags/%E8%BF%90%E7%BB%B4/">运维</a>
+    
+    <a href="http://leaver.me/tags/%E9%87%91%E8%9E%8D/">金融</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
         
-        <div class="posts-list">
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/09/09/%E9%80%9A%E8%BF%87windows%E5%BA%94%E7%94%A8%E8%BF%9B%E8%A1%8C%E6%9C%8D%E5%8A%A1%E5%AF%84%E5%AE%BF%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81/">
-                <h2 class="post-title">通过Windows应用进行服务寄宿示例代码</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on September 9, 2012
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  <p>此程序部分源码来自《WCF技术剖析》。。但是。这本书上讲的非常不清楚。有些很小的地方没讲。。导致出现很多问题。。。比如ListView需要先添加列。默认的config需要删除。等等。。</p>
-<p>最终是成功了。
-<a href="http://leaverimage.b0.upaiyun.com/26808_o.jpg"><img src="/images/7390df89e6e155098b41900c68b850b956f79a4d.jpg" alt="" title="wCf"></a></p>
-<p>源码下载：<a href="http://dl.vmall.com/c0d8askuak">Lazy.FormDemo</a></p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/wcf/">WCF</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/09/09/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B04/">
-                <h2 class="post-title">WCF读书笔记(4)</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on September 9, 2012
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  <p><strong>三种供客户端和服务端控制通信的契约介绍：</strong>
-1.服务契约描述了由特定服务端点所公开的操作，每一种操作，通过参数和返回值定义请求和响应消息的格式。
-2.数据契约描述了复杂类型如何被串行化为消息的一部分，数据契约是服务契约中优先用来包含复杂类型的方式。
-3.消息契约提供对某个soap消息格式的控制，包括支持定制消息标题和数据契约所描述的单个消息体元素。</p>
-<p><strong>消息参数（Message Parameter）</strong>
-对于</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p>若客户端传入的参数为“Hello”，则生成的请求消息体中标记为<!-- raw HTML omitted --> Hello<!-- raw HTML omitted -->,而响应返回的消息体则被标记为<!-- raw HTML omitted -->返回内容<!-- raw HTML omitted -->,可以通过</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p>来定制消息中的标签。</p>
-<p><strong>绑定元素</strong>
-实际上，每个绑定元素都会被映射到一个信道上，这样，绑定元素和信道在这个意义上可以互换。</p>
-<p><strong>执行上下文（OperationContext）</strong>
-是System.ServiceModel命名空间的一种类型，他为服务请求提供了对执行上下文的访问，OperationContext.Current为请求在生命周期期间提供了对上下文的访问。</p>
-<p><strong>WCF的实例化模式</strong>
-实例化控制模式服务对象被分配给请求的方式，一旦服务主机已经建立而且为每个端点创建了信道监听器，对各终端的请求已经由适当的服务对象所执行，则这些对象是基于服务类型的实例化模式的。他们是InstanceContextMode的一个枚举。
-1.PerCall 服务对象为每一个对服务的调用所创建。
-2.PerSession 对每一个客户端创建一个。默认是这样
-3.Single 创建单一的服务对象。并由所有客户端的调用使用。
-尽可能使用PerCall，大规模的部署避免PerSession并发。</p>
-<p><strong>WCF的四种会话</strong>
-应用会话，传输会话，可靠会话，安全会话。</p>
-<p><strong>信道发生器取得SessionId</strong></p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/wcf/">WCF</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%AD%A6%E6%B1%89/">武汉</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/09/08/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B03/">
-                <h2 class="post-title">WCF读书笔记(3)</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on September 8, 2012
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  <p><strong>WCF的四大行为</strong></p>
-<p>　　契约行为（Contract Behavior），操作行为（Operation Behavior），服务行为（Service Behavior），终结点行为（Endpoint Behavior）。</p>
-<p>　　如果把WCF看做是消息处理，对象激活与操作执行的管道，那么我们可以通过相应的行为来改变这个管道中某个环节的工作方式。比如加个密啊。什么的。</p>
-<p><strong>单向模式（One-Way）</strong></p>
-<p>　　单向模式不需要服务器执行后返回一个回复，多用于不要求服务执行后返回一个回复，并且能够容忍日志记录的失败，只有返回类型为void的才允许设置为true，同理，ref和out参数作为另一种类型的输出。也是不允许的。</p>
-<p><strong>WCF的三种异步操作</strong></p>
-<p>　　1.异步信道调用：客户端可以通过代理对象进行异步调用信道。</p>
-<p>　　2.One-Way消息交换：单向的消息交换一旦抵达传输层，马上返回，从而实现异步</p>
-<p>　　3.异步服务实现：服务端在具体实现服务操作的时候。采用异步调用的方式。</p>
-<p><strong>序列化：</strong></p>
-<p>　　XMLSerializer序列化对象时，必须是公有，可读可写的属性，才能序列化。</p>
-<p><strong>WCF的四大契约</strong></p>
-<p>　　服务契约（Service Contract），数据契约（Data Contract），消息契约（Message Contract），错误契约（Fault Contract）</p>
-<p><strong>信道：</strong></p>
-<p>　　信道是为了便利WCF中客户端和服务的通信来设置的。ServiceHost为每个断点创建一个信道侦听器，侦听器产生通信通道，代理则产生一个信道发生器，发生器产生客户端的信道，两种信道相互兼容并且能有效处理之间的信息。</p>
-<p>　　实际上，通信信道是有一个分层的信道栈组成-栈中的每一个信道都在消息处理过程中负责实施一个特定动作，信道栈包含一个传输信道，一个消息编码信道，和任意数量的消息处理信道，绑定则将决定了哪些信道留在信道栈中。当行为穿过信道栈时，消息处理方式将会有所改变。。</p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/wcf/">WCF</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%8E%9F%E5%88%9B/">原创</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/09/07/wcf%E5%8F%8C%E5%B7%A5%E9%80%9A%E4%BF%A1%E7%A4%BA%E4%BE%8B/">
-                <h2 class="post-title">WCF双工通信示例</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on September 7, 2012
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  <p>　　这两天在看WCF的书籍。就参考书上的代码写了这个例子。不得不说。书上有些错误的地方。。运行明显报错。改了一下。顺利通过。</p>
-<p>　　先运行Hosting。然后运行Client。可以看到效果。不过不知道为什么会有如下的一个提示：</p>
-<p>　　目标程序集不包含服务类型。可能需要调整此程序集的代码访问安全策略。</p>
-<p>　　点击确定后并不影响程序运行。。但是也是个问题。。找了一下解决方法。都没有解决。。可能是我新建契约服务的时候，删掉了默认的IService配置。</p>
-<p>//update:此问题解决了。是因为默认的app.config太多。对于典型的四层结构。需要删除契约和服务中的app.config。。</p>
-<p>　　暂时先放着吧。</p>
-<p>　　运行截图：</p>
-<p>　　<a href="http://leaverimage.b0.upaiyun.com/26775_o.jpg"><img src="/images/35cc6b919f9d513bf612503ffcac5b3448f20f37.jpg" alt="" title="wcfExample"></a></p>
-<p>　　示例代码下载：<a href="http://dl.vmall.com/c0c44hq61p">Lazy.Duplex</a></p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/wcf/">WCF</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/09/06/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B02/">
-                <h2 class="post-title">WCF读书笔记(2)</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on September 6, 2012
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  <p><strong>信道形状（Channel Shape）</strong></p>
-<p>　　用来表述不同的消息交换模式对消息交换双方信道（信息交换的管道）的不同要求，有什么IOutputChannel IReplyChannel IDuplexChannel之类的。。</p>
-<p>　　对于IReplyChannel，服务器返回一个RequestContext类型，作为请求和回复之间的一道桥梁，可以获取也可以返回消息。</p>
-<p><strong>会话信道（Session Channel）</strong></p>
-<p>　　从状态保持的角度，信道可以分为两种类型，Datagram Channel和Session Channel，前者不和客户端绑定，后者可以识别客户端。</p>
-<p>　　对于WCF的信道层来说，信道管理器在客户端和服务端扮演不同的角色。服务端的信道管理器用于监听来自客户端的请求，而客户端的信道仅仅是单纯创建用于请求发送和回复接收的信道，因此服务端的消息管理器又称为信道监听器（Channel Listener），客户端的信道管理器则称之为信道工厂（Channel Factory）</p>
-<p><strong>绑定元素（Binding Element）</strong></p>
-<p>　　构成一个绑定对象的元素，绑定实现了通信的所有细节，通过创建信道栈实现对消息的交换，系统绑定是指服务于某种类型场景的绑定元素的有序集合。 包括什么BaseHttpBinding之类的。</p>
-<p>　　<strong>一个程序集</strong>包括元数据，中间语言代码，和资源。程序集已经加载，将一直保存在内存中，直到应用程序域卸载。最好摒弃添加服务引用的服务调用方式，而是直接将包含服务契约的程序集部署到客户端。客户端以直接创建代理的方式进行调用。</p>
-<p>　　WCF可以看成是适配器，是CLR类型和XML两个不同世界的纽带。</p>
-<p>　　<strong>依赖倒置原则</strong>：即抽象不应该依赖细节，细节应该依赖于抽象；即要针对接口编程，不要对实现编程。高层模块不应该依赖低层模块。两个都应该依赖抽象。</p>
-<p>　　契约关心的是我能做到。而不在于我如何做到。</p>
-<p><strong>封送（Marshaling）</strong></p>
-<p>　　解决跨应用程序域对象访问的问题，需要采用一种特别的机制，那就是封送。分为按值封送和按引用封送</p>
-<p>　　按值封送实现了跨应用程序域的数据共享</p>
-<p>　　按引用封送则实现了跨应用程序域的远程调用。</p>
-<p>　　如果一个程序员频繁的使用复制粘贴编程。那就意味着设计需要重构</p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/wcf/">WCF</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%94%B6%E8%97%8F/">收藏</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/09/05/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B01/">
-                <h2 class="post-title">WCF读书笔记(1)</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on September 5, 2012
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  <p><strong>信道的分类：Transport Channel 信道</strong></p>
-<p>　　1.Message Encording Channel　　
-　　2.Protocol Channel</p>
-<p><strong>信道管理器（Channel Manager）,信道管理器用于信道栈的创建和生命周期的管理</strong></p>
-<p>　　1.ChannelListener　　
-　　2.ChannelFactory</p>
-<p><strong>WCF服务调用的两种典型方式</strong></p>
-<p>　　1.是借助代码生成工具svcUtil.exe导入元数据生成客户端代码和配置，添加服务引用采用的就是这种方式，工具会创建一个继承自Client<!-- raw HTML omitted -->的服务代理类型。</p>
-<p>　　2.是通过ChannelFactory直接创建服务代理对象进行服务调用。</p>
-<p>　　如果客户端已经进行了终结点的配置</p>
-<p>　　那么通过信道工厂进行调用的代码大致如下：　</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<p>　　WCF处理的是跨应用程序域，跨机器，跨网络的通信，所以WCF大多数时间进行网络传俗这样的IO操作，IO绑定的操作是采用异步编程（APM【Asynchronous Programming Model】）</p>
-<p><strong>消息交换模式MEP（Message Exchange Pattern）</strong></p>
-<p>　　MEP定义了参与者进行消息交换的模板，代表一系列的模板，他们定了消息的发送者和接收者，相互进行消息传递的次序，比较典型的三种</p>
-<p>　　1.Datagram 数据包模式，嘴尖的SEND/FORGET模式也叫One-Way模式，基于从一个源到另一个或多个目的地的单向消息传输，并不期待回复</p>
-<p>　　消息报的发送可以分成三个模式，分别是单目的地模式，多投模式，广播模式。 依次接受方更强大。。</p>
-<p>　　2.Request/Reply模式</p>
-<p>　　使用最多的一种模式，请求期待回复。采用同步通信方式，但也可用于异步通信</p>
-<p>　　3.Duplex 双工模式</p>
-<p>　　双方可以互发消息，实现服务器回调客户端。订阅/发布是其中一种典型的实例，TCP可以提供原生的双工通信，WCF通过WSDualHttpBinding实现了基于Http的双工通信，实际上是采用两个HTTP通道实现</p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/wcf/">WCF</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%80%BB%E7%BB%93/">总结</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-            <article class="post-preview">
-              <a href="https://leizhiyuan.github.io/2012/09/04/%E4%BD%BF%E7%94%A8microsoft-web-deploy%E6%8A%80%E6%9C%AF%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/">
-                <h2 class="post-title">使用Microsoft Web Deploy技术自动部署</h2>
-
-                
-              </a>
-
-              <p class="post-meta">
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on September 4, 2012
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              </p>
-              <div class="post-entry">
-                
-                  <p>　　在前段时间使用WCF的时候。部署到服务器上一直不得要领。出现各种问题。最终搞定。原文图很多，我给个摘要，大家还是原文看。因为原文写于2010年。自动部署工具已经更新至第3版。所以有些按钮得好好找找。不过相信对大家都不是难事。</p>
-<p>　　本篇文章将提供一个循序渐进的教程，教你如何在一台Web服务期上安装和启用Web Deploy。接着我们演示如何使用Visual Studio通过Web Deploy直接（将文件）发布到服务器上，以及如何使用Visual Studio创建自动部署你的应用程序的安装包。</p>
-<p>　　<strong>Web Deploy—为什么你会喜欢它</strong></p>
-<p>　　部署一个Web应用程序或站点包含好几个步骤。您通常需要：</p>
-<p>　　1. 拷贝文件和文件夹；</p>
-<p>　　2. 提供数据库结构，或许还要生成一些数据库数据；</p>
-<p>　　3. 在文件和文件夹上设置相应的读写和安全访问控制列表；</p>
-<p>　　4. 安装和配置SSL认证；</p>
-<p>　　5. 部署其它杂七杂八的依赖项（事件日志，GAC库，COM对象等等）。</p>
-<p>　　手工执行上面的步骤又累又慢又危险（因为手工部署总是容易出错）。使用自动化流程，可以让你在一台服务器上快速维护和部署应用程序，减少出错的几率，并极大加快你在应用程序上的改动放到作业服务器上的周期。</p>
-<p>　　去原文看看吧。<a href="http://blog.joycode.com/scottgu/archives/2010/11/03/116148.joy">使用Microsoft Web Deploy技术自动部署</a></p>
-
-                
-              </div>
-
-              
-                <div class="blog-tags">
-                  
-                    <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/wcf/">WCF</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E6%94%B6%E8%97%8F/">收藏</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
-                  
-                    <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-                  
-                </div>
-              
-
-            </article>
-          
-        </div>
+        <li>
+            <a target="_blank" href="https://www.cppfans.org/" title="C&#43;&#43;爱好者博客">C&#43;&#43;爱好者博客</a>
+        </li>
         
-      </div>
-    </div>
-  </div>
+        <li>
+            <a target="_blank" href="http://www.kailing.pub" title="KL，每天进步一点点">KL，每天进步一点点</a>
+        </li>
+        
+    </ul>
+</section>
 
-    <footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <ul class="list-inline text-center footer-links">
-          
-              <li>
-                <a href="https://github.com/leizhiyuan" title="GitHub">
-                  <span class="fa-stack fa-lg">
-                    <i class="fas fa-circle fa-stack-2x"></i>
-                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-          
-          <li>
-            <a href="/tags/wcf/index.xml" title="RSS">
-              <span class="fa-stack fa-lg">
-                <i class="fas fa-circle fa-stack-2x"></i>
-                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
-              </span>
-            </a>
-          </li>
-          
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="http://leaver.me/index.xml">文章 RSS</a></li>
         </ul>
-        <p class="credits copyright text-muted">
-          
-            
-              <a href="leaver.me">bystander</a>
-            
-          
-
-          &nbsp;&bull;&nbsp;&copy;
-          
-            2019
-          
-
-          
-            &nbsp;&bull;&nbsp;
-            <a href="https://leizhiyuan.github.io/">bystander&#39;s blog</a>
-          
-        </p>
-        
-        <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
-          
-        </p>
-      </div>
+    </section>
+</div>
+            </div>
+        </div>
     </div>
-  </div>
-</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-<script src="https://leizhiyuan.github.io/js/main.js"></script>
-<script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
-<script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="http://leaver.me/">bystander&#39;s blog By bystander</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
 
 
 
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', '30961201', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 
 
 
 
-  </body>
+</body>
+
 </html>
-

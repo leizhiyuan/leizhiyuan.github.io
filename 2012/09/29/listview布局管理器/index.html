@@ -1,366 +1,92 @@
-<!DOCTYPE html>
-<html lang="en" itemscope itemtype="http://schema.org/WebPage">
-  <head>
-    
+<!doctype html>
+<html lang="zh-CN">
+<head>
 
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>ListView布局管理器 - bystander&#39;s blog</title>
-  <meta property="og:title" content="ListView布局管理器" />
-  <meta name="twitter:title" content="ListView布局管理器" />
-  <meta name="description" content="介绍 使用ListViewLayoutManager 可以控制ListView/GridView列的布局
- 固定列宽：有着固定列宽的列 范围列宽：有着最小最大宽度的列 比例列宽：成比例的列宽  范围列宽可以限制列的宽度，也包括填充列的剩余可视区域。
-据我们了解的Html中的表格和Grid空间。比例列以一个百分比来定义列宽，以下几个因素共同确定了比例列的宽度。
- 垂直ListView滚动条的可视与否 ListView控件宽度的改变 非比例列宽度的改变  本程序支持通过XAML或是后台代码来控制ListView。如果通过XAML来控制。则允许ListViewLayoutManager 被附加到一个存在的ListView控件上。
-ConverterGridColumn 类通过接口IValueConverter 提供了对象绑定。使用ImageGridViewColumn 类则允许通过DataTemplate（数据模板）将列显示成图片等。
-在 User Setting Applied中，我展示了如何固定ListViewlieder顺序和大小
-XAML中ListView/GridView布局 固定列 下面的例子展示了通过XAML使用固定列宽控制列
-设置附加到ListView控件上的ListViewLayoutManager 的Enabled属性为True。然后FixedColumn.Width 就会阻止鼠标拖动改变列的宽度。
-比例列
-下面的例子展示了使用XAML通过比例来控制列
-对比Grid控件的RowDefinition.Width 属性，ProportionalColumn.Width会计算百分比。简单来说，就是上面的例子中Name列会占到总宽度的25%，而City列占到75%。 与固定列相似。鼠标将不能改变列的宽度。
-范围列
-下面的例子展示了使用XAML通过最小/最小宽度来控制列
-第一个范围列的IsFillColumn 属性被设置为True，因此将会自动改变大小来填满剩余的空间，而如果ListView包含一个比例列的话，范围列将不会填充
-通过鼠标可以拖动范围列的宽度。鼠标指针会有一些提示。。
-组合使用
-在真实的世界里。组合使用很普遍。他们的顺序可以多种多样。
-使用后台代码控制ListView/GridView布局 定制列的效果 类ConverterGridColumn 作为一个基类，用来绑定列到独立的对象。
-列以图片展示 ImageGridColumn 作为一个基类，用来绑定列到图片
-有意思的地方 作为ListView控件的核心部件- ListViewLayoutManager 有以下的功能 阻止改变固定列和比例列的宽度 强制了范围列的范围 随着ListView控件的改变而更新列布局 随着某一列的改变而更新布局
-为了正确的接收到请求的信息，分析ListView控件的可视树是很有必要的,Thumb对象提供了列宽改变的事件。而为了正确的展示鼠标指针，PreviewMouseMove 和PreviewMouseLeftButtonDown 事件都会被处理
-当Viewport控件大小改变（ScrollChangedEventArgs.ViewportWidthChange）的时候，会触发ScrollViewer 控件的ScrollChanged 事件 通过使用DependencyPropertyDescriptor 可以追踪 GridViewColumn的宽度改变。并发出通知。
-为了可以集成进已有的系统，列数据被放置在附加属性里。使用DependencyProperty.ReadLocalValue()方法会检测当前的属性是否在同一个对象里。
-类ConverterGridViewColumn 同时使用一个简单的绑定。展示数据转换（IValueConverter接口）">
-  <meta property="og:description" content="介绍 使用ListViewLayoutManager 可以控制ListView/GridView列的布局
- 固定列宽：有着固定列宽的列 范围列宽：有着最小最大宽度的列 比例列宽：成比例的列宽  范围列宽可以限制列的宽度，也包括填充列的剩余可视区域。
-据我们了解的Html中的表格和Grid空间。比例列以一个百分比来定义列宽，以下几个因素共同确定了比例列的宽度。
- 垂直ListView滚动条的可视与否 ListView控件宽度的改变 非比例列宽度的改变  本程序支持通过XAML或是后台代码来控制ListView。如果通过XAML来控制。则允许ListViewLayoutManager 被附加到一个存在的ListView控件上。
-ConverterGridColumn 类通过接口IValueConverter 提供了对象绑定。使用ImageGridViewColumn 类则允许通过DataTemplate（数据模板）将列显示成图片等。
-在 User Setting Applied中，我展示了如何固定ListViewlieder顺序和大小
-XAML中ListView/GridView布局 固定列 下面的例子展示了通过XAML使用固定列宽控制列
-设置附加到ListView控件上的ListViewLayoutManager 的Enabled属性为True。然后FixedColumn.Width 就会阻止鼠标拖动改变列的宽度。
-比例列
-下面的例子展示了使用XAML通过比例来控制列
-对比Grid控件的RowDefinition.Width 属性，ProportionalColumn.Width会计算百分比。简单来说，就是上面的例子中Name列会占到总宽度的25%，而City列占到75%。 与固定列相似。鼠标将不能改变列的宽度。
-范围列
-下面的例子展示了使用XAML通过最小/最小宽度来控制列
-第一个范围列的IsFillColumn 属性被设置为True，因此将会自动改变大小来填满剩余的空间，而如果ListView包含一个比例列的话，范围列将不会填充
-通过鼠标可以拖动范围列的宽度。鼠标指针会有一些提示。。
-组合使用
-在真实的世界里。组合使用很普遍。他们的顺序可以多种多样。
-使用后台代码控制ListView/GridView布局 定制列的效果 类ConverterGridColumn 作为一个基类，用来绑定列到独立的对象。
-列以图片展示 ImageGridColumn 作为一个基类，用来绑定列到图片
-有意思的地方 作为ListView控件的核心部件- ListViewLayoutManager 有以下的功能 阻止改变固定列和比例列的宽度 强制了范围列的范围 随着ListView控件的改变而更新列布局 随着某一列的改变而更新布局
-为了正确的接收到请求的信息，分析ListView控件的可视树是很有必要的,Thumb对象提供了列宽改变的事件。而为了正确的展示鼠标指针，PreviewMouseMove 和PreviewMouseLeftButtonDown 事件都会被处理
-当Viewport控件大小改变（ScrollChangedEventArgs.ViewportWidthChange）的时候，会触发ScrollViewer 控件的ScrollChanged 事件 通过使用DependencyPropertyDescriptor 可以追踪 GridViewColumn的宽度改变。并发出通知。
-为了可以集成进已有的系统，列数据被放置在附加属性里。使用DependencyProperty.ReadLocalValue()方法会检测当前的属性是否在同一个对象里。
-类ConverterGridViewColumn 同时使用一个简单的绑定。展示数据转换（IValueConverter接口）">
-  <meta name="twitter:description" content="介绍 使用ListViewLayoutManager 可以控制ListView/GridView列的布局
- 固定列宽：有着固定列宽的列 范围列宽：有着最小最大宽度的列 比例列宽：成比例的列宽  范围列宽可以限制列的宽度，也包括填充列的剩余可视区域。
-据我们了解的Html中的表格和Grid空间。比例列以一个百分比来定义列宽，以下几个因素共同确定了比例列的宽度。
- 垂直ListView …">
-  <meta name="author" content="bystander"/><script type="application/ld+json">
-{
-    "@context": "http://schema.org",
-    "@type": "WebSite",
-    "name": "bystander\x27s blog",
-    
-    "url": "https:\/\/leizhiyuan.github.io\/"
-}
-</script><script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Organization",
-  "name": "",
-  "url": "https:\/\/leizhiyuan.github.io\/"
-  
-  
-  
-  
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [{
-        "@type": "ListItem",
-        "position": 1,
-        "item": {
-          "@id": "https:\/\/leizhiyuan.github.io\/",
-          "name": "home"
-        }
-    },{
-        "@type": "ListItem",
-        "position": 3,
-        "item": {
-          "@id": "https:\/\/leizhiyuan.github.io\/2012\/09\/29\/listview%E5%B8%83%E5%B1%80%E7%AE%A1%E7%90%86%E5%99%A8\/",
-          "name": "List view布局管理器"
-        }
-    }]
-}
-</script><script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Article",
-  "author": {
-    "name" : "bystander"
-  },
-  "headline": "ListView布局管理器",
-  "description" : "介绍 使用ListViewLayoutManager 可以控制ListView\/GridView列的布局\n 固定列宽：有着固定列宽的列 范围列宽：有着最小最大宽度的列 比例列宽：成比例的列宽  范围列宽可以限制列的宽度，也包括填充列的剩余可视区域。\n据我们了解的Html中的表格和Grid空间。比例列以一个百分比来定义列宽，以下几个因素共同确定了比例列的宽度。\n 垂直ListView滚动条的可视与否 ListView控件宽度的改变 非比例列宽度的改变  本程序支持通过XAML或是后台代码来控制ListView。如果通过XAML来控制。则允许ListViewLayoutManager 被附加到一个存在的ListView控件上。\nConverterGridColumn 类通过接口IValueConverter 提供了对象绑定。使用ImageGridViewColumn 类则允许通过DataTemplate（数据模板）将列显示成图片等。\n在 User Setting Applied中，我展示了如何固定ListViewlieder顺序和大小\nXAML中ListView\/GridView布局 固定列 下面的例子展示了通过XAML使用固定列宽控制列\n设置附加到ListView控件上的ListViewLayoutManager 的Enabled属性为True。然后FixedColumn.Width 就会阻止鼠标拖动改变列的宽度。\n比例列\n下面的例子展示了使用XAML通过比例来控制列\n对比Grid控件的RowDefinition.Width 属性，ProportionalColumn.Width会计算百分比。简单来说，就是上面的例子中Name列会占到总宽度的25%，而City列占到75%。 与固定列相似。鼠标将不能改变列的宽度。\n范围列\n下面的例子展示了使用XAML通过最小\/最小宽度来控制列\n第一个范围列的IsFillColumn 属性被设置为True，因此将会自动改变大小来填满剩余的空间，而如果ListView包含一个比例列的话，范围列将不会填充\n通过鼠标可以拖动范围列的宽度。鼠标指针会有一些提示。。\n组合使用\n在真实的世界里。组合使用很普遍。他们的顺序可以多种多样。\n使用后台代码控制ListView\/GridView布局 定制列的效果 类ConverterGridColumn 作为一个基类，用来绑定列到独立的对象。\n列以图片展示 ImageGridColumn 作为一个基类，用来绑定列到图片\n有意思的地方 作为ListView控件的核心部件- ListViewLayoutManager 有以下的功能 阻止改变固定列和比例列的宽度 强制了范围列的范围 随着ListView控件的改变而更新列布局 随着某一列的改变而更新布局\n为了正确的接收到请求的信息，分析ListView控件的可视树是很有必要的,Thumb对象提供了列宽改变的事件。而为了正确的展示鼠标指针，PreviewMouseMove 和PreviewMouseLeftButtonDown 事件都会被处理\n当Viewport控件大小改变（ScrollChangedEventArgs.ViewportWidthChange）的时候，会触发ScrollViewer 控件的ScrollChanged 事件 通过使用DependencyPropertyDescriptor 可以追踪 GridViewColumn的宽度改变。并发出通知。\n为了可以集成进已有的系统，列数据被放置在附加属性里。使用DependencyProperty.ReadLocalValue()方法会检测当前的属性是否在同一个对象里。\n类ConverterGridViewColumn 同时使用一个简单的绑定。展示数据转换（IValueConverter接口）",
-  "inLanguage" : "en",
-  "wordCount":  77 ,
-  "datePublished" : "2012-09-29T10:14:54",
-  "dateModified" : "2012-09-29T10:14:54",
-  "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
-  "keywords" : [ "C＃, WPF, 大学, 学习, 编程, 翻译, 软件" ],
-  "mainEntityOfPage" : "https:\/\/leizhiyuan.github.io\/2012\/09\/29\/listview%E5%B8%83%E5%B1%80%E7%AE%A1%E7%90%86%E5%99%A8\/",
-  "publisher" : {
-    "@type": "Organization",
-    "name" : "https:\/\/leizhiyuan.github.io\/",
-    "logo" : {
-        "@type" : "ImageObject",
-        "url" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
-        "height" :  60 ,
-        "width" :  60
-    }
-  }
-}
-</script>
-
-<meta property="og:title" content="ListView布局管理器" />
-<meta property="og:description" content="介绍 使用ListViewLayoutManager 可以控制ListView/GridView列的布局
- 固定列宽：有着固定列宽的列 范围列宽：有着最小最大宽度的列 比例列宽：成比例的列宽  范围列宽可以限制列的宽度，也包括填充列的剩余可视区域。
-据我们了解的Html中的表格和Grid空间。比例列以一个百分比来定义列宽，以下几个因素共同确定了比例列的宽度。
- 垂直ListView滚动条的可视与否 ListView控件宽度的改变 非比例列宽度的改变  本程序支持通过XAML或是后台代码来控制ListView。如果通过XAML来控制。则允许ListViewLayoutManager 被附加到一个存在的ListView控件上。
-ConverterGridColumn 类通过接口IValueConverter 提供了对象绑定。使用ImageGridViewColumn 类则允许通过DataTemplate（数据模板）将列显示成图片等。
-在 User Setting Applied中，我展示了如何固定ListViewlieder顺序和大小
-XAML中ListView/GridView布局 固定列 下面的例子展示了通过XAML使用固定列宽控制列
-设置附加到ListView控件上的ListViewLayoutManager 的Enabled属性为True。然后FixedColumn.Width 就会阻止鼠标拖动改变列的宽度。
-比例列
-下面的例子展示了使用XAML通过比例来控制列
-对比Grid控件的RowDefinition.Width 属性，ProportionalColumn.Width会计算百分比。简单来说，就是上面的例子中Name列会占到总宽度的25%，而City列占到75%。 与固定列相似。鼠标将不能改变列的宽度。
-范围列
-下面的例子展示了使用XAML通过最小/最小宽度来控制列
-第一个范围列的IsFillColumn 属性被设置为True，因此将会自动改变大小来填满剩余的空间，而如果ListView包含一个比例列的话，范围列将不会填充
-通过鼠标可以拖动范围列的宽度。鼠标指针会有一些提示。。
-组合使用
-在真实的世界里。组合使用很普遍。他们的顺序可以多种多样。
-使用后台代码控制ListView/GridView布局 定制列的效果 类ConverterGridColumn 作为一个基类，用来绑定列到独立的对象。
-列以图片展示 ImageGridColumn 作为一个基类，用来绑定列到图片
-有意思的地方 作为ListView控件的核心部件- ListViewLayoutManager 有以下的功能 阻止改变固定列和比例列的宽度 强制了范围列的范围 随着ListView控件的改变而更新列布局 随着某一列的改变而更新布局
-为了正确的接收到请求的信息，分析ListView控件的可视树是很有必要的,Thumb对象提供了列宽改变的事件。而为了正确的展示鼠标指针，PreviewMouseMove 和PreviewMouseLeftButtonDown 事件都会被处理
-当Viewport控件大小改变（ScrollChangedEventArgs.ViewportWidthChange）的时候，会触发ScrollViewer 控件的ScrollChanged 事件 通过使用DependencyPropertyDescriptor 可以追踪 GridViewColumn的宽度改变。并发出通知。
-为了可以集成进已有的系统，列数据被放置在附加属性里。使用DependencyProperty.ReadLocalValue()方法会检测当前的属性是否在同一个对象里。
-类ConverterGridViewColumn 同时使用一个简单的绑定。展示数据转换（IValueConverter接口）">
-<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
-<meta property="og:url" content="https://leizhiyuan.github.io/2012/09/29/listview%E5%B8%83%E5%B1%80%E7%AE%A1%E7%90%86%E5%99%A8/" />
-<meta property="og:type" content="website" />
-<meta property="og:site_name" content="bystander&#39;s blog" />
-
-  <meta name="twitter:title" content="ListView布局管理器" />
-  <meta name="twitter:description" content="介绍 使用ListViewLayoutManager 可以控制ListView/GridView列的布局
- 固定列宽：有着固定列宽的列 范围列宽：有着最小最大宽度的列 比例列宽：成比例的列宽  范围列宽可以限制列的宽度，也包括填充列的剩余可视区域。
-据我们了解的Html中的表格和Grid空间。比例列以一个百分比来定义列宽，以下几个因素共同确定了比例列的宽度。
- 垂直ListView …">
-  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
-  <meta name="twitter:card" content="summary" />
-  <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
-  <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
-  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
-  <meta name="twitter:card" content="summary" />
-  <meta property="og:url" content="https://leizhiyuan.github.io/2012/09/29/listview%E5%B8%83%E5%B1%80%E7%AE%A1%E7%90%86%E5%99%A8/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="bystander&#39;s blog" />
-
-  <meta name="generator" content="Hugo 0.61.0" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
-
-
-
-  </head>
-  <body>
-    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="https://leizhiyuan.github.io/">bystander&#39;s blog</a>
-    </div>
-
-    <div class="collapse navbar-collapse" id="main-navbar">
-      <ul class="nav navbar-nav navbar-right">
+    <title>ListView布局管理器 | bystander&#39;s blog</title>
+    <meta property="og:title" content="ListView布局管理器 - bystander&#39;s blog">
+    <meta property="og:type" content="article">
         
-          
-            <li>
-              <a title="首页" href="/">首页</a>
-            </li>
-          
+    <meta property="article:published_time" content='2012-09-29T10:14:54&#43;08:00'>
         
-          
-            <li>
-              <a title="目录" href="/categories">目录</a>
-            </li>
-          
         
-          
-            <li>
-              <a title="标签" href="/tags">标签</a>
-            </li>
-          
+    <meta property="article:modified_time" content='2012-09-29T10:14:54&#43;08:00'>
         
-          
-            <li>
-              <a title="友情链接" href="/2016/01/01/links">友情链接</a>
-            </li>
-          
+    <meta name="Keywords" content="">
+    <meta name="description" content="ListView布局管理器">
         
-          
-            <li>
-              <a title="关于我" href="/about/">关于我</a>
-            </li>
-          
-        
+    <meta name="author" content="bystander">
+    <meta property="og:url" content="http://leaver.me/2012/09/29/listview%E5%B8%83%E5%B1%80%E7%AE%A1%E7%90%86%E5%99%A8/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
-        
-
-        
-      </ul>
-    </div>
-
-    
-      <div class="avatar-container">
-        <div class="avatar-img-border">
-          <a title="bystander&#39;s blog" href="https://leizhiyuan.github.io/">
-            <img class="avatar-img" src="https://leizhiyuan.github.io/images/author.jpg" alt="bystander&#39;s blog" />
-          </a>
-        </div>
-      </div>
-    
-
-  </div>
-</nav>
-
-
-
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     
 
 
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-<div class="pswp__bg"></div>
-
-<div class="pswp__scroll-wrap">
     
-    <div class="pswp__container">
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-    </div>
     
-    <div class="pswp__ui pswp__ui--hidden">
-    <div class="pswp__top-bar">
-      
-      <div class="pswp__counter"></div>
-      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-      <button class="pswp__button pswp__button--share" title="Share"></button>
-      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-      
-      
-      <div class="pswp__preloader">
-        <div class="pswp__preloader__icn">
-          <div class="pswp__preloader__cut">
-            <div class="pswp__preloader__donut"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-      <div class="pswp__share-tooltip"></div>
-    </div>
-    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-    </button>
-    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-    </button>
-    <div class="pswp__caption">
-      <div class="pswp__caption__center"></div>
-    </div>
-    </div>
-    </div>
-</div>
+</head>
 
 
-  
-  
-  
-
-
-
-
-
-
-  
-
-  <header class="header-section ">
-    
-    <div class="intro-header no-img">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <div class="post-heading">
-              
-                <h1>ListView布局管理器</h1>
-              
-              
-              
-              
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on September 29, 2012
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://leaver.me/">
+                        bystander&#39;s blog
+                    </a>
+                
+                <p class="description">寻找窄门</p>
             </div>
-          </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="http://leaver.me/">首页</a>
+                    
+                    <a  href="http://leaver.me/categories" title="目录">目录</a>
+                    
+                    <a  href="http://leaver.me/about/" title="关于我">关于我</a>
+                    
+                </nav>
+            </div>
         </div>
-      </div>
     </div>
-  </header>
+</header>
 
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
 
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
     
-<div class="container" role="main">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-      <article role="main" class="blog-post">
-        <p><a href="http://leaverimage.b0.upaiyun.com/27575_o.jpg"><img src="/images/3908a54221845d3b8f0b2ad7c3c0b559dae7a979.jpg" alt="" title="listview"></a></p>
+    <article class="post">
+        <header>
+            <h1 class="post-title">ListView布局管理器</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2012年9月29日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91'>我的翻译</a></span>
+            
+        </div>
+        
+        
+        
+        <div class="post-content">
+            <p><a href="http://leaverimage.b0.upaiyun.com/27575_o.jpg"><img src="/images/3908a54221845d3b8f0b2ad7c3c0b559dae7a979.jpg" alt="" title="listview"></a></p>
 <h3 id="heading">介绍</h3>
 <p>使用ListViewLayoutManager  可以控制ListView/GridView列的布局</p>
 <ol>
@@ -432,53 +158,55 @@ XAML中ListView/GridView布局 固定列 下面的例子展示了通过XAML使�
 <p>原文地址：<a href="http://www.codeproject.com/Articles/25058/ListView-Layout-Manager">ListView-Layout-Manager</a>
 著作权声明：本文由<a href="http://leaver.me">http://leaver.me</a> 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</p>
 
-
-        
-          <div class="blog-tags">
-            
-              <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-            
-              <a href="https://leizhiyuan.github.io//tags/wpf/">WPF</a>&nbsp;
-            
-              <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-            
-              <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-            
-              <a href="https://leizhiyuan.github.io//tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
-            
-              <a href="https://leizhiyuan.github.io//tags/%E7%BF%BB%E8%AF%91/">翻译</a>&nbsp;
-            
-              <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-            
-          </div>
-        
+        </div>
 
         
 
+
         
-      </article>
 
-      
-        <ul class="pager blog-pager">
-          
-            <li class="previous">
-              <a href="https://leizhiyuan.github.io/2012/09/27/%E4%BB%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%BB%E5%8F%96%E5%9B%BE%E7%89%87%E5%8F%91%E7%94%9F%E6%97%A0%E6%95%88%E7%9A%84%E5%8F%82%E6%95%B0%E5%BC%82%E5%B8%B8/" data-toggle="tooltip" data-placement="top" title="从数据库读取图片发生“无效的参数”异常">&larr; Previous Post</a>
-            </li>
-          
-          
-            <li class="next">
-              <a href="https://leizhiyuan.github.io/2012/09/30/csv%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E5%B7%A5%E5%85%B7/" data-toggle="tooltip" data-placement="top" title="CSV导入导出工具">Next Post &rarr;</a>
-            </li>
-          
-        </ul>
-      
-
-
-      
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
         
-          
-          <div class="disqus-comments">
-            <div id="disqus_thread"></div>
+        <li><a href="/2012/09/26/avalondock-2.0%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86/">AvalonDock 2.0入门指南第一部分</a></li>
+        
+        <li><a href="/2012/09/27/%E4%BB%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%BB%E5%8F%96%E5%9B%BE%E7%89%87%E5%8F%91%E7%94%9F%E6%97%A0%E6%95%88%E7%9A%84%E5%8F%82%E6%95%B0%E5%BC%82%E5%B8%B8/">从数据库读取图片发生“无效的参数”异常</a></li>
+        
+        <li><a href="/2012/09/25/c#%E7%BC%96%E5%86%99youtube%E4%B8%8B%E8%BD%BD%E5%99%A8/">C#编写youtube下载器</a></li>
+        
+        <li><a href="/2012/09/24/.net%E6%98%BE%E7%A4%BA%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E7%8A%B6%E6%80%81%E5%9B%BE%E6%A0%87/">.net显示网络连接状态图标</a></li>
+        
+        <li><a href="/2012/09/24/%E4%B8%80%E4%B8%AA%E5%8F%AF%E5%AE%9A%E5%88%B6%E7%9A%84wpf%E4%BB%BB%E5%8A%A1%E5%AF%B9%E8%AF%9D%E6%A1%86/">一个可定制的WPF任务对话框</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='http://leaver.me/tags/c'>C＃</a></li>
+                
+                <li><a href='http://leaver.me/tags/wpf'>WPF</a></li>
+                
+                <li><a href='http://leaver.me/tags/%E5%A4%A7%E5%AD%A6'>大学</a></li>
+                
+                <li><a href='http://leaver.me/tags/%E5%AD%A6%E4%B9%A0'>学习</a></li>
+                
+                <li><a href='http://leaver.me/tags/%E7%BC%96%E7%A8%8B'>编程</a></li>
+                
+                <li><a href='http://leaver.me/tags/%E7%BF%BB%E8%AF%91'>翻译</a></li>
+                
+                <li><a href='http://leaver.me/tags/%E8%BD%AF%E4%BB%B6'>软件</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    <div id="disqus_thread"></div>
 <script type="application/javascript">
     var disqus_config = function () {
     
@@ -498,85 +226,312 @@ XAML中ListView/GridView布局 固定列 下面的例子展示了通过XAML使�
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-          </div>
-          
-        
-        
-      
 
-    </div>
-  </div>
+    
+    
 </div>
 
-    <footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <ul class="list-inline text-center footer-links">
-          
-              <li>
-                <a href="https://github.com/leizhiyuan" title="GitHub">
-                  <span class="fa-stack fa-lg">
-                    <i class="fas fa-circle fa-stack-2x"></i>
-                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-          
-          <li>
-            <a href="" title="RSS">
-              <span class="fa-stack fa-lg">
-                <i class="fas fa-circle fa-stack-2x"></i>
-                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
-              </span>
-            </a>
-          </li>
-          
-        </ul>
-        <p class="credits copyright text-muted">
-          
-            
-              <a href="leaver.me">bystander</a>
-            
-          
+                </div>
 
-          &nbsp;&bull;&nbsp;&copy;
-          
-            2019
-          
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='http://leaver.me/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://leaver.me/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/" title="深入理解Raft协议">深入理解Raft协议</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/" title="《非暴力沟通》笔记">《非暴力沟通》笔记</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/10/06/wedding-of-friends/" title="Wedding of Friends">Wedding of Friends</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/09/29/principle-note/" title="Principle Note">Principle Note</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/" title="梦见鲸鱼的那一夜">梦见鲸鱼的那一夜</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/08/20/understand-hong-kong-2/" title="Understand Hong Kong 2">Understand Hong Kong 2</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/08/18/understand-hong-kong-part-1/" title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/" title="错过的都是命，得到的才是人生">错过的都是命，得到的才是人生</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/04/06/recently/" title="Recently">Recently</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/03/01/mac%E8%BF%81%E7%A7%BB%E5%AF%BC%E8%87%B4golang%E6%97%A0%E6%B3%95debug%E7%9A%84%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D/" title="Mac迁移导致Golang无法debug的问题修复">Mac迁移导致Golang无法debug的问题修复</a>
+    </li>
+    
+</ul>
+    </section>
 
-          
-            &nbsp;&bull;&nbsp;
-            <a href="https://leizhiyuan.github.io/">bystander&#39;s blog</a>
-          
-        </p>
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记 (186)</a></li>
+    
+    <li><a href="http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/">我的翻译 (57)</a></li>
+    
+    <li><a href="http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/">文章收藏 (53)</a></li>
+    
+    <li><a href="http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录 (2)</a></li>
+    
+    <li><a href="http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记 (4)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://leaver.me/tags/android/">android</a>
+    
+    <a href="http://leaver.me/tags/c/">C＃</a>
+    
+    <a href="http://leaver.me/tags/c&#43;&#43;/">C&#43;&#43;</a>
+    
+    <a href="http://leaver.me/tags/java/">java</a>
+    
+    <a href="http://leaver.me/tags/javascript/">javascript</a>
+    
+    <a href="http://leaver.me/tags/linux/">linux</a>
+    
+    <a href="http://leaver.me/tags/mac/">mac</a>
+    
+    <a href="http://leaver.me/tags/matlab/">matlab</a>
+    
+    <a href="http://leaver.me/tags/maven/">maven</a>
+    
+    <a href="http://leaver.me/tags/mysql/">mysql</a>
+    
+    <a href="http://leaver.me/tags/nextgen-gallery/">NextGEN Gallery</a>
+    
+    <a href="http://leaver.me/tags/php/">php</a>
+    
+    <a href="http://leaver.me/tags/python/">python</a>
+    
+    <a href="http://leaver.me/tags/shell/">shell</a>
+    
+    <a href="http://leaver.me/tags/spring/">spring</a>
+    
+    <a href="http://leaver.me/tags/sql/">sql</a>
+    
+    <a href="http://leaver.me/tags/stackoverflow/">stackoverflow</a>
+    
+    <a href="http://leaver.me/tags/wcf/">WCF</a>
+    
+    <a href="http://leaver.me/tags/web/">web</a>
+    
+    <a href="http://leaver.me/tags/windows/">windows</a>
+    
+    <a href="http://leaver.me/tags/wordpress/">wordpress</a>
+    
+    <a href="http://leaver.me/tags/wpf/">WPF</a>
+    
+    <a href="http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/">上海</a>
+    
+    <a href="http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/">下载</a>
+    
+    <a href="http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
+    
+    <a href="http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/">互联网</a>
+    
+    <a href="http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
+    
+    <a href="http://leaver.me/tags/%E5%88%B6%E5%BA%A6/">制度</a>
+    
+    <a href="http://leaver.me/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+    
+    <a href="http://leaver.me/tags/%E5%8E%9F%E5%88%9B/">原创</a>
+    
+    <a href="http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/">大学</a>
+    
+    <a href="http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/">学习</a>
+    
+    <a href="http://leaver.me/tags/%E5%AE%89%E5%85%A8/">安全</a>
+    
+    <a href="http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/">家庭</a>
+    
+    <a href="http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/">工作</a>
+    
+    <a href="http://leaver.me/tags/%E5%B7%A5%E5%85%B7/">工具</a>
+    
+    <a href="http://leaver.me/tags/%E5%B9%B6%E5%8F%91/">并发</a>
+    
+    <a href="http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/">序列化</a>
+    
+    <a href="http://leaver.me/tags/%E5%BC%80%E5%8F%91/">开发</a>
+    
+    <a href="http://leaver.me/tags/%E5%BF%83%E7%90%86/">心理</a>
+    
+    <a href="http://leaver.me/tags/%E6%80%BB%E7%BB%93/">总结</a>
+    
+    <a href="http://leaver.me/tags/%E6%8A%80%E6%9C%AF/">技术</a>
+    
+    <a href="http://leaver.me/tags/%E6%8F%92%E4%BB%B6/">插件</a>
+    
+    <a href="http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+    
+    <a href="http://leaver.me/tags/%E6%94%B6%E8%97%8F/">收藏</a>
+    
+    <a href="http://leaver.me/tags/%E6%95%B0%E5%AD%A6/">数学</a>
+    
+    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+    
+    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">数据挖掘</a>
+    
+    <a href="http://leaver.me/tags/%E6%96%87%E7%AB%A0/">文章</a>
+    
+    <a href="http://leaver.me/tags/%E6%99%BA%E8%83%BD/">智能</a>
+    
+    <a href="http://leaver.me/tags/%E6%9D%82%E6%96%87/">杂文</a>
+    
+    <a href="http://leaver.me/tags/%E6%AD%A6%E6%B1%89/">武汉</a>
+    
+    <a href="http://leaver.me/tags/%E6%B1%87%E7%BC%96/">汇编</a>
+    
+    <a href="http://leaver.me/tags/%E7%88%B1%E6%83%85/">爱情</a>
+    
+    <a href="http://leaver.me/tags/%E7%90%86%E8%AE%BA/">理论</a>
+    
+    <a href="http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</a>
+    
+    <a href="http://leaver.me/tags/%E7%94%9F%E6%B4%BB/">生活</a>
+    
+    <a href="http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/">电子书</a>
+    
+    <a href="http://leaver.me/tags/%E7%94%B5%E5%BD%B1/">电影</a>
+    
+    <a href="http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/">社会</a>
+    
+    <a href="http://leaver.me/tags/%E7%A7%91%E6%8A%80/">科技</a>
+    
+    <a href="http://leaver.me/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+    
+    <a href="http://leaver.me/tags/%E7%AE%97%E6%B3%95/">算法</a>
+    
+    <a href="http://leaver.me/tags/%E7%BC%96%E7%A8%8B/">编程</a>
+    
+    <a href="http://leaver.me/tags/%E7%BC%96%E8%AF%91/">编译</a>
+    
+    <a href="http://leaver.me/tags/%E7%BF%BB%E8%AF%91/">翻译</a>
+    
+    <a href="http://leaver.me/tags/%E8%81%8C%E4%B8%9A/">职业</a>
+    
+    <a href="http://leaver.me/tags/%E8%AE%B0%E5%BD%95/">记录</a>
+    
+    <a href="http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/">设计</a>
+    
+    <a href="http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/">读书</a>
+    
+    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/">软件</a>
+    
+    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</a>
+    
+    <a href="http://leaver.me/tags/%E8%BF%90%E7%BB%B4/">运维</a>
+    
+    <a href="http://leaver.me/tags/%E9%87%91%E8%9E%8D/">金融</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
         
-        <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
-          
-        </p>
-      </div>
+        <li>
+            <a target="_blank" href="https://www.cppfans.org/" title="C&#43;&#43;爱好者博客">C&#43;&#43;爱好者博客</a>
+        </li>
+        
+        <li>
+            <a target="_blank" href="http://www.kailing.pub" title="KL，每天进步一点点">KL，每天进步一点点</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="http://leaver.me/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
     </div>
-  </div>
-</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-<script src="https://leizhiyuan.github.io/js/main.js"></script>
-<script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
-<script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="http://leaver.me/">bystander&#39;s blog By bystander</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
 
 
+    
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', '30961201', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 
 
 
 
+</body>
 
-  </body>
 </html>
-

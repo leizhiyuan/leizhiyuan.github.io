@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>上海 on bystander&#39;s blog</title>
-    <link>https://leizhiyuan.github.io/tags/%E4%B8%8A%E6%B5%B7/</link>
+    <link>http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/</link>
     <description>Recent content in 上海 on bystander&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Tue, 11 Mar 2014 08:28:38 +0000</lastBuildDate>
     
-	<atom:link href="https://leizhiyuan.github.io/tags/%E4%B8%8A%E6%B5%B7/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>[藏]深入理解Java内存模型</title>
-      <link>https://leizhiyuan.github.io/2014/03/11/%E8%97%8F%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/</link>
+      <link>http://leaver.me/2014/03/11/%E8%97%8F%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/</link>
       <pubDate>Tue, 11 Mar 2014 08:28:38 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2014/03/11/%E8%97%8F%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/</guid>
+      <guid>http://leaver.me/2014/03/11/%E8%97%8F%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/</guid>
       <description> 深入理解java内存模型（一）——基础 深入理解java内存模型（二）——重排序 深入理解java内存模型（三）——顺序一致性 深入理解java内存模型（四）——volatile 深入理解java内存模型（五）——锁 深入理解java内存模型（六）——final 深入理解java内存模型（七）——总结  </description>
     </item>
     
     <item>
       <title>linux的CPU负载均值</title>
-      <link>https://leizhiyuan.github.io/2014/03/08/linux%E7%9A%84cpu%E8%B4%9F%E8%BD%BD%E5%9D%87%E5%80%BC/</link>
+      <link>http://leaver.me/2014/03/08/linux%E7%9A%84cpu%E8%B4%9F%E8%BD%BD%E5%9D%87%E5%80%BC/</link>
       <pubDate>Sat, 08 Mar 2014 17:19:30 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2014/03/08/linux%E7%9A%84cpu%E8%B4%9F%E8%BD%BD%E5%9D%87%E5%80%BC/</guid>
+      <guid>http://leaver.me/2014/03/08/linux%E7%9A%84cpu%E8%B4%9F%E8%BD%BD%E5%9D%87%E5%80%BC/</guid>
       <description>当运行在Linux上的程序有问题之后，我们通常要看一下当前CPU和内存的使用情况来分析一下问题
 对于CPU的使用率，通常用Load Average，也就是负载均值来度量
 负载均值是啥？
@@ -45,10 +45,10 @@
     
     <item>
       <title>eclipse管理多个workplace</title>
-      <link>https://leizhiyuan.github.io/2014/03/08/eclipse%E7%AE%A1%E7%90%86%E5%A4%9A%E4%B8%AAworkplace/</link>
+      <link>http://leaver.me/2014/03/08/eclipse%E7%AE%A1%E7%90%86%E5%A4%9A%E4%B8%AAworkplace/</link>
       <pubDate>Sat, 08 Mar 2014 16:34:34 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2014/03/08/eclipse%E7%AE%A1%E7%90%86%E5%A4%9A%E4%B8%AAworkplace/</guid>
+      <guid>http://leaver.me/2014/03/08/eclipse%E7%AE%A1%E7%90%86%E5%A4%9A%E4%B8%AAworkplace/</guid>
       <description>由于eclipse用的比较多，管理多个workplace很麻烦，经常需要打开以后再切换，简单介绍个方法。
 一
 1.进入Eclipse的安装目录，鼠标点击eclipse.exe，右键菜单&amp;ndash;&amp;gt;发送到&amp;ndash;&amp;gt;桌面快捷方式
@@ -67,10 +67,10 @@
     
     <item>
       <title>尝试JavaFX开发</title>
-      <link>https://leizhiyuan.github.io/2014/02/11/%E5%B0%9D%E8%AF%95javafx%E5%BC%80%E5%8F%91/</link>
+      <link>http://leaver.me/2014/02/11/%E5%B0%9D%E8%AF%95javafx%E5%BC%80%E5%8F%91/</link>
       <pubDate>Tue, 11 Feb 2014 20:40:12 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2014/02/11/%E5%B0%9D%E8%AF%95javafx%E5%BC%80%E5%8F%91/</guid>
+      <guid>http://leaver.me/2014/02/11/%E5%B0%9D%E8%AF%95javafx%E5%BC%80%E5%8F%91/</guid>
       <description>曾经有报道说JavaFX将使java在桌面开发上大有作为，感觉好像是很高端的样子，今天尝试了一下，界面对于自用的工具来说，本来也不多重要，只是一个简单的尝试
 简单说下大致的步骤和一些思路，可能有错误。
 javafx需要sdk支持，java7之后的都有的。设计思路是数据和代码分离，界面通过xml或json数据来描述，这样就把业务逻辑代码和界面实现代码分开了
@@ -89,10 +89,10 @@ JavaFX和WPF其实思路是一模一样的，恰好WPF我也用过，感觉两�
     
     <item>
       <title>[藏]隐藏在PNG图像元数据中的新iFrame注入攻击</title>
-      <link>https://leizhiyuan.github.io/2014/02/09/%E8%97%8F%E9%9A%90%E8%97%8F%E5%9C%A8png%E5%9B%BE%E5%83%8F%E5%85%83%E6%95%B0%E6%8D%AE%E4%B8%AD%E7%9A%84%E6%96%B0iframe%E6%B3%A8%E5%85%A5%E6%94%BB%E5%87%BB/</link>
+      <link>http://leaver.me/2014/02/09/%E8%97%8F%E9%9A%90%E8%97%8F%E5%9C%A8png%E5%9B%BE%E5%83%8F%E5%85%83%E6%95%B0%E6%8D%AE%E4%B8%AD%E7%9A%84%E6%96%B0iframe%E6%B3%A8%E5%85%A5%E6%94%BB%E5%87%BB/</link>
       <pubDate>Sun, 09 Feb 2014 09:23:12 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2014/02/09/%E8%97%8F%E9%9A%90%E8%97%8F%E5%9C%A8png%E5%9B%BE%E5%83%8F%E5%85%83%E6%95%B0%E6%8D%AE%E4%B8%AD%E7%9A%84%E6%96%B0iframe%E6%B3%A8%E5%85%A5%E6%94%BB%E5%87%BB/</guid>
+      <guid>http://leaver.me/2014/02/09/%E8%97%8F%E9%9A%90%E8%97%8F%E5%9C%A8png%E5%9B%BE%E5%83%8F%E5%85%83%E6%95%B0%E6%8D%AE%E4%B8%AD%E7%9A%84%E6%96%B0iframe%E6%B3%A8%E5%85%A5%E6%94%BB%E5%87%BB/</guid>
       <description>这个攻击方式很旧了，但手法相当不错，来自乐嵌网
 我们一直在努力保持领先的最新趋势，今天我们发现了一个非常有趣的事，这或者是我们之前没有发现，或者是刚发生的。 我们只能说这是新发现的。
  我们都了解的iFrame注入攻击，对吧？
@@ -124,15 +124,19 @@ JavaFX和WPF其实思路是一模一样的，恰好WPF我也用过，感觉两�
  有两点需要特别注意了，它使用createElement做了一个iFrame标签**，**然后设置**elm.style.position.left 和 elm.style.position.top **属性的值为-1000px，把iframe放到可视区域之外。这些值都是负值，在浏览器中根本看不到。但是你知道谁能看到吗？只有浏览器和Google能看到。这就是下载驱动和搜索引擎感染（SEP)攻击的小伎俩。
  最后我们在elm.src元素中发现了真正的威胁**。**
  做的这么独特到底有什么用呢？
-它尽力隐藏真正的威胁的水平是独特的。现在的杀毒软件不会解码图像元数据，直到JavaScript文件加载完毕就停止扫描。不会追踪cookie文件，对于攻击者来说，这太好了，使它们很难被发现。</description>
+它尽力隐藏真正的威胁的水平是独特的。现在的杀毒软件不会解码图像元数据，直到JavaScript文件加载完毕就停止扫描。不会追踪cookie文件，对于攻击者来说，这太好了，使它们很难被发现。
+ 记住一点，尽管我们这里谈论的是PNG文件，这些方法和概念也可以应用到其他类型图像中。重要的一点是：留意你的web 服务状态，了解哪些修改和未修改的文件并确保漏洞未被利用。
+ 通常情况下，一些新的侦查和排障需要一定的时间。 现在我们的 网站恶意软件扫描器能发现它吗 ？ 绝对可以！
+ 不要笑了，朋友们！
+原文：new-iframe-injections-leverage-png-image-metadata by Peter Gramantik</description>
     </item>
     
     <item>
       <title>[笔记]写代码遇到的一些问题汇总下</title>
-      <link>https://leizhiyuan.github.io/2014/02/08/%E7%AC%94%E8%AE%B0%E5%86%99%E4%BB%A3%E7%A0%81%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB%E4%B8%8B/</link>
+      <link>http://leaver.me/2014/02/08/%E7%AC%94%E8%AE%B0%E5%86%99%E4%BB%A3%E7%A0%81%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB%E4%B8%8B/</link>
       <pubDate>Sat, 08 Feb 2014 11:06:51 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2014/02/08/%E7%AC%94%E8%AE%B0%E5%86%99%E4%BB%A3%E7%A0%81%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB%E4%B8%8B/</guid>
+      <guid>http://leaver.me/2014/02/08/%E7%AC%94%E8%AE%B0%E5%86%99%E4%BB%A3%E7%A0%81%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB%E4%B8%8B/</guid>
       <description>本篇是用来填上一篇 挖下的坑的。
 1.java调用webservice
 有一些已有的webservice服务，由xfire生成发布，有些有参数，有些无参数，无参数的直接我直接使用org.codehaus.xfire这个包里的Client来动态生成客户端。然后调用就可以了。非常简单
@@ -160,15 +164,16 @@ log4j.logger.httpclient.wire.header=INFO
 log4j.logger.httpclient.wire.content=INFO
 log4j.logger.org.apache.commons.httpclient = INFO
 最后附赠一些实用的工具
-http://www.freeformatter.com/ 程序员必备。各类转换，包括转义工具，格式校验工具。效果很好。</description>
+http://www.freeformatter.com/ 程序员必备。各类转换，包括转义工具，格式校验工具。效果很好。
+流体力学理论与F1赛车的空气动力学1，2，3 什么雷诺数，伯努利方程，文丘里效应，当年木有好好学啊。这么高大上的东西果然还是有压力。</description>
     </item>
     
     <item>
       <title>[笔记]写代码遇到的一些问题汇总上</title>
-      <link>https://leizhiyuan.github.io/2014/02/04/%E7%AC%94%E8%AE%B0%E5%86%99%E4%BB%A3%E7%A0%81%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB%E4%B8%8A/</link>
+      <link>http://leaver.me/2014/02/04/%E7%AC%94%E8%AE%B0%E5%86%99%E4%BB%A3%E7%A0%81%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB%E4%B8%8A/</link>
       <pubDate>Tue, 04 Feb 2014 19:13:26 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2014/02/04/%E7%AC%94%E8%AE%B0%E5%86%99%E4%BB%A3%E7%A0%81%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB%E4%B8%8A/</guid>
+      <guid>http://leaver.me/2014/02/04/%E7%AC%94%E8%AE%B0%E5%86%99%E4%BB%A3%E7%A0%81%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB%E4%B8%8A/</guid>
       <description>今天大雪，天冷，不能出去玩了。把保存在pocket里的一些记录总结一下，太懒了。。下篇等我去了上海用我电脑写吧
 1.java模拟https登陆
 首先我要登陆，然后保存cookie，然后利用cookie来访问后续的网页，发包，处理包这样，然后，为了方便，我选择了 org.apache.http 这个库，典型的一个登陆场景应该是这样的，以后遇到问题一定先要去看官方的例子，别人给出的例子一般要么是不能用，要么是用的方法都是一些过时的，虽然能用，但看到警告还是不舒服。
@@ -197,10 +202,10 @@ missing net.sf.json-lib，但实际上这个我的确是加载进来了。去了
     
     <item>
       <title>前路月光</title>
-      <link>https://leizhiyuan.github.io/2014/01/28/%E5%89%8D%E8%B7%AF%E6%9C%88%E5%85%89/</link>
+      <link>http://leaver.me/2014/01/28/%E5%89%8D%E8%B7%AF%E6%9C%88%E5%85%89/</link>
       <pubDate>Tue, 28 Jan 2014 15:35:43 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2014/01/28/%E5%89%8D%E8%B7%AF%E6%9C%88%E5%85%89/</guid>
+      <guid>http://leaver.me/2014/01/28/%E5%89%8D%E8%B7%AF%E6%9C%88%E5%85%89/</guid>
       <description>火影片头曲想知道中文，没找到翻译，于是译之，感谢@sepith  。
 今夜月光 不知为何 比往日温柔 崎岖泥泞的来时路 何时才能有同行之人
 我沉默 为即将而来的眼泪 泪水中努力 悲伤着变得更强
@@ -217,10 +222,10 @@ missing net.sf.json-lib，但实际上这个我的确是加载进来了。去了
     
     <item>
       <title>[藏]跨行清算系统的实现原理</title>
-      <link>https://leizhiyuan.github.io/2013/12/14/%E8%97%8F%E8%B7%A8%E8%A1%8C%E6%B8%85%E7%AE%97%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/</link>
+      <link>http://leaver.me/2013/12/14/%E8%97%8F%E8%B7%A8%E8%A1%8C%E6%B8%85%E7%AE%97%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/</link>
       <pubDate>Sat, 14 Dec 2013 18:24:12 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/12/14/%E8%97%8F%E8%B7%A8%E8%A1%8C%E6%B8%85%E7%AE%97%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/</guid>
+      <guid>http://leaver.me/2013/12/14/%E8%97%8F%E8%B7%A8%E8%A1%8C%E6%B8%85%E7%AE%97%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/</guid>
       <description>本文来自God Is Coder，通过这篇文章我算是理解了跨行清算系统逻辑，非常非常好。
 最近看了很多银联方面的清算系统的设计原理，对于跨行清算系统有了很大的了解，写这篇文章的目的是在于从一个程序员的角度去思考一个跨行清算系统的架构是如何实现的以及整个过程中我们有哪些思想是可以借鉴的。由于金融里面涉及到太多的专业名词，包括借贷，备付金，头寸，调拨等等，这里不会涉及到这些，取而代之的是以大家可以理解的概念去解释。
 下面简单的介绍一下两种跨行清算系统的实现原理以及特点。一种跨清算系统是我们最熟悉的银联，还有一种是越来越流行的第三方支付系统，比较典型的是快钱。
@@ -253,15 +258,21 @@ missing net.sf.json-lib，但实际上这个我的确是加载进来了。去了
 每天由一个系统记录这些跨行交易信息，汇总出来，统一记账。这样一天只需要调用一次保证金系统即可。那么整个清算过程则是下面的流程：
   1 系统T日发生建行和工行的跨行交易100 
   2 清算系统T+1日汇总T日工行和建行之间发生的交易明细数据，并且发这些数据发给建行和工行进行确认 
-    3 工行建行分别对明细对账确认之后，通知清算系统确认交易明细无误，清算系统开始清算，调用保证金支付系统转账。 4 清算完成之后，工行和建行分别获取保证金系统的真实金额和自身系统内部的映射账户进行余额对账。    清算中心最主要干得事情就是统计谁欠谁多少钱，以及触发保证金系统的调拨操作。</description>
+    3 工行建行分别对明细对账确认之后，通知清算系统确认交易明细无误，清算系统开始清算，调用保证金支付系统转账。 4 清算完成之后，工行和建行分别获取保证金系统的真实金额和自身系统内部的映射账户进行余额对账。    清算中心最主要干得事情就是统计谁欠谁多少钱，以及触发保证金系统的调拨操作。
+ 对账流程 对账包括两个部分，一个是跨行交易明细的对账以及保证金余额的对账。
+首先要思考的是：对账是谁发起的 ？ 这个是了解对账的本质。
+我们举生活中的一个例子，我们把钱投资到一个人，那个人负责公司的日常运作。你肯定会主动了解公司的账务，因为那个是你的钱。对账的发起人也是如此，对于银联的清算过程，对账的发起者是商业银行，因为你把钱放在保证金系统里面，这是你的钱，你需要去关心这个的，银联可不关心这个。
+对于另外一种保证金系统，把钱放在各个银行里面了，那么对账的发起者就是这个保证金系统维护者了。目前普遍的第三方支付公司都是这个模式，所以他要找各个银行要结果明细进行对账，确认自己的资金安全无误。
+ 以上就是一个简单的跨行清算系统的雏形，从一个就简单的例子入手，说明一个清算过程。目前银联的第三方支付公司的清算过程大致如此，但是实现细节远比这个复杂。但是一个基本的清算系统的本质模型大体上是不会变的。当然这个只是对于同币种的清算，不同币种或者虚拟货币的清算会涉及到汇率的问题，这些就很复杂，有机会在研究一下，后续在分享。
+PS：以上很多名词都是自己的随意写的，里面很多专业名词这里不提及，有兴趣的可以自己去了解。</description>
     </item>
     
     <item>
       <title>Java动态代理实例</title>
-      <link>https://leizhiyuan.github.io/2013/11/24/java%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E5%AE%9E%E4%BE%8B/</link>
+      <link>http://leaver.me/2013/11/24/java%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E5%AE%9E%E4%BE%8B/</link>
       <pubDate>Sun, 24 Nov 2013 18:16:31 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/11/24/java%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E5%AE%9E%E4%BE%8B/</guid>
+      <guid>http://leaver.me/2013/11/24/java%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E5%AE%9E%E4%BE%8B/</guid>
       <description>首先什么是代理？
 我更喜欢另一种通俗的解释，官方的解释总是高度抽象的，等用了一段时间才能理解体会
 那我们就得定义一个拦截器/执行处理器了。

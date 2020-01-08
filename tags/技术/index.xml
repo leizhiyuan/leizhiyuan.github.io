@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>技术 on bystander&#39;s blog</title>
-    <link>https://leizhiyuan.github.io/tags/%E6%8A%80%E6%9C%AF/</link>
+    <link>http://leaver.me/tags/%E6%8A%80%E6%9C%AF/</link>
     <description>Recent content in 技术 on bystander&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Tue, 31 May 2016 20:00:45 +0000</lastBuildDate>
     
-	<atom:link href="https://leizhiyuan.github.io/tags/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://leaver.me/tags/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>motan源码阅读-客户端服务引用</title>
-      <link>https://leizhiyuan.github.io/2016/05/31/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%BC%95%E7%94%A8/</link>
+      <link>http://leaver.me/2016/05/31/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%BC%95%E7%94%A8/</link>
       <pubDate>Tue, 31 May 2016 20:00:45 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2016/05/31/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%BC%95%E7%94%A8/</guid>
+      <guid>http://leaver.me/2016/05/31/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%BC%95%E7%94%A8/</guid>
       <description>一旦服务器启动,服务开始提供,并且在配置中心注册了(配置中心可以是本地的地址,也可以是zk,也可以是其他的实现),那么客户端就要开始调用了
 点击看大图
 服务引用 RefererConfig.getRef()
@@ -34,10 +34,10 @@ configHandler.refer(interfaceClass, clusters, proxy) 开始获取接口代理
     
     <item>
       <title>motan源码阅读-服务的发布</title>
-      <link>https://leizhiyuan.github.io/2016/05/30/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%8F%91%E5%B8%83/</link>
+      <link>http://leaver.me/2016/05/30/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%8F%91%E5%B8%83/</link>
       <pubDate>Mon, 30 May 2016 20:42:06 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2016/05/30/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%8F%91%E5%B8%83/</guid>
+      <guid>http://leaver.me/2016/05/30/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%8F%91%E5%B8%83/</guid>
       <description>这一篇继续从这个demo开始,分析一下这个服务是怎么发布出去的.关键的代码从motanDemoService.export();开始.
 一图胜千言.
 点击看大图
@@ -59,10 +59,10 @@ configHandler.refer(interfaceClass, clusters, proxy) 开始获取接口代理
     
     <item>
       <title>motan源码阅读-入门和运行demo</title>
-      <link>https://leizhiyuan.github.io/2016/05/29/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E5%85%A5%E9%97%A8%E5%92%8C%E8%BF%90%E8%A1%8Cdemo/</link>
+      <link>http://leaver.me/2016/05/29/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E5%85%A5%E9%97%A8%E5%92%8C%E8%BF%90%E8%A1%8Cdemo/</link>
       <pubDate>Sun, 29 May 2016 15:13:48 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2016/05/29/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E5%85%A5%E9%97%A8%E5%92%8C%E8%BF%90%E8%A1%8Cdemo/</guid>
+      <guid>http://leaver.me/2016/05/29/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E5%85%A5%E9%97%A8%E5%92%8C%E8%BF%90%E8%A1%8Cdemo/</guid>
       <description>工作中一直在使用rpc,但是只是对简单的原理比较熟悉.最近看到有motan的一个介绍,代码拉下来看了看,除了测试用例比较少之外.其他还是不错的,和阿里的rpc框架比起来,还是弱了一些,好处就是方便用来学习. motan 是weibo的一个rpc框架,据说已经在线上使用了.
 在学习rpc框架之前,建议看一个hello world级别的文章RPC框架几行代码就够了,写的非常好,看完基本就知道rpc的核心了.
 Remote Procedure Calls中最关键的那个图,就能说明了.
@@ -78,10 +78,10 @@ stub怎么生成,序列化怎么最高效,如何统一不同机器之前的调�
     
     <item>
       <title>eclipse插件开发-tycho使用</title>
-      <link>https://leizhiyuan.github.io/2016/05/21/eclipse%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91-tycho%E4%BD%BF%E7%94%A8/</link>
+      <link>http://leaver.me/2016/05/21/eclipse%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91-tycho%E4%BD%BF%E7%94%A8/</link>
       <pubDate>Sat, 21 May 2016 18:55:27 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2016/05/21/eclipse%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91-tycho%E4%BD%BF%E7%94%A8/</guid>
+      <guid>http://leaver.me/2016/05/21/eclipse%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91-tycho%E4%BD%BF%E7%94%A8/</guid>
       <description>不说废话，直接上。本文主要包括tycho的使用，版本号的自动更新。
 eclipse插件开发中，依赖的管理是个问题。如果采用常规的搞个lib目录，然后加到MF文件中。一旦依赖越来越多。或者要更换版本号就变得非常麻烦。所以要用到tycho
 首先说明一下目录结构。一个parent的maven工程，一个plugin工程，。两个features。一个是deps的。一个是plugin的，这个依赖deps是独立的mvn项目。可以先不用管。一个deps依赖工程（这个依赖工程独立）。 在主pom下。
@@ -90,7 +90,14 @@ eclipse插件开发中，依赖的管理是个问题。如果采用常规的搞�
  新建一个普通的mvn工程,比如deps。打包类型写成&amp;lt;packaging&amp;gt;bundle&amp;lt;/packaging&amp;gt;,同时在pom.xml中添加build部分  &amp;lt;build&amp;gt; &amp;lt;plugins&amp;gt; &amp;lt;plugin&amp;gt; &amp;lt;groupId&amp;gt;org.apache.felix&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;maven-bundle-plugin&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;3.0.1&amp;lt;/version&amp;gt; &amp;lt;extensions&amp;gt;true&amp;lt;/extensions&amp;gt; &amp;lt;configuration&amp;gt; &amp;lt;niceManifest&amp;gt;true&amp;lt;/niceManifest&amp;gt; &amp;lt;manifestLocation&amp;gt;META-INF&amp;lt;/manifestLocation&amp;gt; &amp;lt;instructions&amp;gt; &amp;lt;Bundle-SymbolicName&amp;gt;${project.artifactId}&amp;lt;/Bundle-SymbolicName&amp;gt; &amp;lt;Embed-Dependency&amp;gt;*&amp;lt;/Embed-Dependency&amp;gt; &amp;lt;Embed-Transitive&amp;gt;true&amp;lt;/Embed-Transitive&amp;gt; &amp;lt;Embed-Directory&amp;gt;lib&amp;lt;/Embed-Directory&amp;gt; &amp;lt;Bundle-ClassPath&amp;gt;{maven-dependencies}&amp;lt;/Bundle-ClassPath&amp;gt; &amp;lt;_exportcontents&amp;gt;*&amp;lt;/_exportcontents&amp;gt; &amp;lt;_failok&amp;gt;true&amp;lt;/_failok&amp;gt; &amp;lt;_nouses&amp;gt;true&amp;lt;/_nouses&amp;gt; &amp;lt;Import-Package&amp;gt;&amp;lt;/Import-Package&amp;gt; &amp;lt;/instructions&amp;gt; &amp;lt;/configuration&amp;gt; &amp;lt;/plugin&amp;gt; &amp;lt;/plugins&amp;gt; &amp;lt;/build&amp;gt; 然后正常添加一些依赖到这个工程中。然后执行一下mvn clean install ，你就会发现本地mvn仓库生成了一个jar包，这个jar里直接打包了所有的jar
 关于插件部分
  新建一个类型为pom的parent工程。用来包含下面的子工程，通过  &amp;lt;modules&amp;gt; &amp;lt;module&amp;gt;xxx.plugin.1&amp;lt;/module&amp;gt; &amp;lt;module&amp;gt;xxx.plugin.2&amp;lt;/module&amp;gt; &amp;lt;/modules&amp;gt; 来管理。同时 添加如下的插件
-&amp;lt;properties&amp;gt; &amp;lt;tycho.version&amp;gt;0.24.0&amp;lt;/tycho.version&amp;gt; &amp;lt;/properties&amp;gt; &amp;lt;build&amp;gt; &amp;lt;plugins&amp;gt; &amp;lt;plugin&amp;gt; &amp;lt;groupId&amp;gt;org.apache.maven.plugins&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;maven-source-plugin&amp;lt;/artifactId&amp;gt; &amp;lt;executions&amp;gt; &amp;lt;execution&amp;gt; &amp;lt;id&amp;gt;attach-sources&amp;lt;/id&amp;gt; &amp;lt;phase&amp;gt;none&amp;lt;/phase&amp;gt; &amp;lt;/execution&amp;gt; &amp;lt;/executions&amp;gt; &amp;lt;version&amp;gt;2.4&amp;lt;/version&amp;gt; &amp;lt;/plugin&amp;gt; &amp;lt;plugin&amp;gt; &amp;lt;groupId&amp;gt;org.eclipse.tycho&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;tycho-maven-plugin&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${tycho.version}&amp;lt;/version&amp;gt; &amp;lt;extensions&amp;gt;true&amp;lt;/extensions&amp;gt; &amp;lt;/plugin&amp;gt; &amp;lt;plugin&amp;gt; &amp;lt;groupId&amp;gt;org.</description>
+&amp;lt;properties&amp;gt; &amp;lt;tycho.version&amp;gt;0.24.0&amp;lt;/tycho.version&amp;gt; &amp;lt;/properties&amp;gt; &amp;lt;build&amp;gt; &amp;lt;plugins&amp;gt; &amp;lt;plugin&amp;gt; &amp;lt;groupId&amp;gt;org.apache.maven.plugins&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;maven-source-plugin&amp;lt;/artifactId&amp;gt; &amp;lt;executions&amp;gt; &amp;lt;execution&amp;gt; &amp;lt;id&amp;gt;attach-sources&amp;lt;/id&amp;gt; &amp;lt;phase&amp;gt;none&amp;lt;/phase&amp;gt; &amp;lt;/execution&amp;gt; &amp;lt;/executions&amp;gt; &amp;lt;version&amp;gt;2.4&amp;lt;/version&amp;gt; &amp;lt;/plugin&amp;gt; &amp;lt;plugin&amp;gt; &amp;lt;groupId&amp;gt;org.eclipse.tycho&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;tycho-maven-plugin&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${tycho.version}&amp;lt;/version&amp;gt; &amp;lt;extensions&amp;gt;true&amp;lt;/extensions&amp;gt; &amp;lt;/plugin&amp;gt; &amp;lt;plugin&amp;gt; &amp;lt;groupId&amp;gt;org.eclipse.tycho&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;target-platform-configuration&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${tycho.version}&amp;lt;/version&amp;gt; &amp;lt;configuration&amp;gt; &amp;lt;pomDependencies&amp;gt;consider&amp;lt;/pomDependencies&amp;gt; &amp;lt;/configuration&amp;gt; &amp;lt;/plugin&amp;gt; &amp;lt;/plugins&amp;gt; &amp;lt;/build&amp;gt;  新建一个专门用来管理依赖的features，这样用户就可以安装这个features，来把所有的依赖安装到eclipse插件目录了。packing是eclipse-feature
+  新建一个plugin，新建一个这个插件对应的feature。然后通过右键转换成mvn工程。如图
+  新建一个repository项目，这个项目主要就是为了发布，生成发布相关的文件。新建Update set project。然后添加两个features。转换成mvn。其中packing改成eclipse-repository。 注意，这里的版本号必须对应。比如plugin.xml的版本是1.5.0.qualifier,那么对应pom中必须是1.5.0-SNAPSHOT  然后去根目录下执行一下mvn clean install，就会在repository目录生成需要部署的zip文件或者web site文件
+遗留问题是以后要是升级版本号怎么办。。不用担心。。主pom中添加
+&amp;lt;plugin&amp;gt; &amp;lt;groupId&amp;gt;org.eclipse.tycho&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;tycho-versions-plugin&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${tycho.version}&amp;lt;/version&amp;gt; &amp;lt;/plugin&amp;gt; 然后 在根目录执行 mvn -Dtycho.mode=maven org.eclipse.tycho:tycho-versions-plugin:set-version -DnewVersion=1.6.0 即可全部替换pom和plugin的版本号
+另外如果项目导入后在eclipse中报错，一般是因为缺少了上面说的那个依赖。可以直接复制到eclipse的plugin依赖目录。或者在mvn clean install之后，通过安装 依赖feature的方式解决。
+附上一些文档
+EclipseTycho Building OSGi project with Maven and tycho</description>
     </item>
     
   </channel>

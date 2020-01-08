@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>笔记 on bystander&#39;s blog</title>
-    <link>https://leizhiyuan.github.io/tags/%E7%AC%94%E8%AE%B0/</link>
+    <link>http://leaver.me/tags/%E7%AC%94%E8%AE%B0/</link>
     <description>Recent content in 笔记 on bystander&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Sun, 29 May 2016 15:13:24 +0000</lastBuildDate>
     
-	<atom:link href="https://leizhiyuan.github.io/tags/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://leaver.me/tags/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>motan源码阅读系列目录</title>
-      <link>https://leizhiyuan.github.io/2016/05/29/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E7%B3%BB%E5%88%97%E7%9B%AE%E5%BD%95/</link>
+      <link>http://leaver.me/2016/05/29/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E7%B3%BB%E5%88%97%E7%9B%AE%E5%BD%95/</link>
       <pubDate>Sun, 29 May 2016 15:13:24 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2016/05/29/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E7%B3%BB%E5%88%97%E7%9B%AE%E5%BD%95/</guid>
+      <guid>http://leaver.me/2016/05/29/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E7%B3%BB%E5%88%97%E7%9B%AE%E5%BD%95/</guid>
       <description>本系列希望可以吧motan的源码通读一遍.
 motan源码阅读-入门和运行demo
 motan源码阅读-服务的发布
@@ -25,10 +25,10 @@ motan源码阅读-客户端服务引用</description>
     
     <item>
       <title>eclipse插件开发-tycho使用</title>
-      <link>https://leizhiyuan.github.io/2016/05/21/eclipse%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91-tycho%E4%BD%BF%E7%94%A8/</link>
+      <link>http://leaver.me/2016/05/21/eclipse%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91-tycho%E4%BD%BF%E7%94%A8/</link>
       <pubDate>Sat, 21 May 2016 18:55:27 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2016/05/21/eclipse%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91-tycho%E4%BD%BF%E7%94%A8/</guid>
+      <guid>http://leaver.me/2016/05/21/eclipse%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91-tycho%E4%BD%BF%E7%94%A8/</guid>
       <description>不说废话，直接上。本文主要包括tycho的使用，版本号的自动更新。
 eclipse插件开发中，依赖的管理是个问题。如果采用常规的搞个lib目录，然后加到MF文件中。一旦依赖越来越多。或者要更换版本号就变得非常麻烦。所以要用到tycho
 首先说明一下目录结构。一个parent的maven工程，一个plugin工程，。两个features。一个是deps的。一个是plugin的，这个依赖deps是独立的mvn项目。可以先不用管。一个deps依赖工程（这个依赖工程独立）。 在主pom下。
@@ -37,15 +37,22 @@ eclipse插件开发中，依赖的管理是个问题。如果采用常规的搞�
  新建一个普通的mvn工程,比如deps。打包类型写成&amp;lt;packaging&amp;gt;bundle&amp;lt;/packaging&amp;gt;,同时在pom.xml中添加build部分  &amp;lt;build&amp;gt; &amp;lt;plugins&amp;gt; &amp;lt;plugin&amp;gt; &amp;lt;groupId&amp;gt;org.apache.felix&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;maven-bundle-plugin&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;3.0.1&amp;lt;/version&amp;gt; &amp;lt;extensions&amp;gt;true&amp;lt;/extensions&amp;gt; &amp;lt;configuration&amp;gt; &amp;lt;niceManifest&amp;gt;true&amp;lt;/niceManifest&amp;gt; &amp;lt;manifestLocation&amp;gt;META-INF&amp;lt;/manifestLocation&amp;gt; &amp;lt;instructions&amp;gt; &amp;lt;Bundle-SymbolicName&amp;gt;${project.artifactId}&amp;lt;/Bundle-SymbolicName&amp;gt; &amp;lt;Embed-Dependency&amp;gt;*&amp;lt;/Embed-Dependency&amp;gt; &amp;lt;Embed-Transitive&amp;gt;true&amp;lt;/Embed-Transitive&amp;gt; &amp;lt;Embed-Directory&amp;gt;lib&amp;lt;/Embed-Directory&amp;gt; &amp;lt;Bundle-ClassPath&amp;gt;{maven-dependencies}&amp;lt;/Bundle-ClassPath&amp;gt; &amp;lt;_exportcontents&amp;gt;*&amp;lt;/_exportcontents&amp;gt; &amp;lt;_failok&amp;gt;true&amp;lt;/_failok&amp;gt; &amp;lt;_nouses&amp;gt;true&amp;lt;/_nouses&amp;gt; &amp;lt;Import-Package&amp;gt;&amp;lt;/Import-Package&amp;gt; &amp;lt;/instructions&amp;gt; &amp;lt;/configuration&amp;gt; &amp;lt;/plugin&amp;gt; &amp;lt;/plugins&amp;gt; &amp;lt;/build&amp;gt; 然后正常添加一些依赖到这个工程中。然后执行一下mvn clean install ，你就会发现本地mvn仓库生成了一个jar包，这个jar里直接打包了所有的jar
 关于插件部分
  新建一个类型为pom的parent工程。用来包含下面的子工程，通过  &amp;lt;modules&amp;gt; &amp;lt;module&amp;gt;xxx.plugin.1&amp;lt;/module&amp;gt; &amp;lt;module&amp;gt;xxx.plugin.2&amp;lt;/module&amp;gt; &amp;lt;/modules&amp;gt; 来管理。同时 添加如下的插件
-&amp;lt;properties&amp;gt; &amp;lt;tycho.version&amp;gt;0.24.0&amp;lt;/tycho.version&amp;gt; &amp;lt;/properties&amp;gt; &amp;lt;build&amp;gt; &amp;lt;plugins&amp;gt; &amp;lt;plugin&amp;gt; &amp;lt;groupId&amp;gt;org.apache.maven.plugins&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;maven-source-plugin&amp;lt;/artifactId&amp;gt; &amp;lt;executions&amp;gt; &amp;lt;execution&amp;gt; &amp;lt;id&amp;gt;attach-sources&amp;lt;/id&amp;gt; &amp;lt;phase&amp;gt;none&amp;lt;/phase&amp;gt; &amp;lt;/execution&amp;gt; &amp;lt;/executions&amp;gt; &amp;lt;version&amp;gt;2.4&amp;lt;/version&amp;gt; &amp;lt;/plugin&amp;gt; &amp;lt;plugin&amp;gt; &amp;lt;groupId&amp;gt;org.eclipse.tycho&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;tycho-maven-plugin&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${tycho.version}&amp;lt;/version&amp;gt; &amp;lt;extensions&amp;gt;true&amp;lt;/extensions&amp;gt; &amp;lt;/plugin&amp;gt; &amp;lt;plugin&amp;gt; &amp;lt;groupId&amp;gt;org.</description>
+&amp;lt;properties&amp;gt; &amp;lt;tycho.version&amp;gt;0.24.0&amp;lt;/tycho.version&amp;gt; &amp;lt;/properties&amp;gt; &amp;lt;build&amp;gt; &amp;lt;plugins&amp;gt; &amp;lt;plugin&amp;gt; &amp;lt;groupId&amp;gt;org.apache.maven.plugins&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;maven-source-plugin&amp;lt;/artifactId&amp;gt; &amp;lt;executions&amp;gt; &amp;lt;execution&amp;gt; &amp;lt;id&amp;gt;attach-sources&amp;lt;/id&amp;gt; &amp;lt;phase&amp;gt;none&amp;lt;/phase&amp;gt; &amp;lt;/execution&amp;gt; &amp;lt;/executions&amp;gt; &amp;lt;version&amp;gt;2.4&amp;lt;/version&amp;gt; &amp;lt;/plugin&amp;gt; &amp;lt;plugin&amp;gt; &amp;lt;groupId&amp;gt;org.eclipse.tycho&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;tycho-maven-plugin&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${tycho.version}&amp;lt;/version&amp;gt; &amp;lt;extensions&amp;gt;true&amp;lt;/extensions&amp;gt; &amp;lt;/plugin&amp;gt; &amp;lt;plugin&amp;gt; &amp;lt;groupId&amp;gt;org.eclipse.tycho&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;target-platform-configuration&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${tycho.version}&amp;lt;/version&amp;gt; &amp;lt;configuration&amp;gt; &amp;lt;pomDependencies&amp;gt;consider&amp;lt;/pomDependencies&amp;gt; &amp;lt;/configuration&amp;gt; &amp;lt;/plugin&amp;gt; &amp;lt;/plugins&amp;gt; &amp;lt;/build&amp;gt;  新建一个专门用来管理依赖的features，这样用户就可以安装这个features，来把所有的依赖安装到eclipse插件目录了。packing是eclipse-feature
+  新建一个plugin，新建一个这个插件对应的feature。然后通过右键转换成mvn工程。如图
+  新建一个repository项目，这个项目主要就是为了发布，生成发布相关的文件。新建Update set project。然后添加两个features。转换成mvn。其中packing改成eclipse-repository。 注意，这里的版本号必须对应。比如plugin.xml的版本是1.5.0.qualifier,那么对应pom中必须是1.5.0-SNAPSHOT  然后去根目录下执行一下mvn clean install，就会在repository目录生成需要部署的zip文件或者web site文件
+遗留问题是以后要是升级版本号怎么办。。不用担心。。主pom中添加
+&amp;lt;plugin&amp;gt; &amp;lt;groupId&amp;gt;org.eclipse.tycho&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;tycho-versions-plugin&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${tycho.version}&amp;lt;/version&amp;gt; &amp;lt;/plugin&amp;gt; 然后 在根目录执行 mvn -Dtycho.mode=maven org.eclipse.tycho:tycho-versions-plugin:set-version -DnewVersion=1.6.0 即可全部替换pom和plugin的版本号
+另外如果项目导入后在eclipse中报错，一般是因为缺少了上面说的那个依赖。可以直接复制到eclipse的plugin依赖目录。或者在mvn clean install之后，通过安装 依赖feature的方式解决。
+附上一些文档
+EclipseTycho Building OSGi project with Maven and tycho</description>
     </item>
     
     <item>
       <title>Spring依赖注入</title>
-      <link>https://leizhiyuan.github.io/2013/09/20/spring%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/</link>
+      <link>http://leaver.me/2013/09/20/spring%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/</link>
       <pubDate>Fri, 20 Sep 2013 19:06:00 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/09/20/spring%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/</guid>
+      <guid>http://leaver.me/2013/09/20/spring%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/</guid>
       <description>在Spring框架中，依赖注入设计模式主要用来定义对象之间的依赖，存在两种主要类型
 1)setter注入(设置器)
 2)constructor注入(构造器)
@@ -63,10 +70,10 @@ eclipse插件开发中，依赖的管理是个问题。如果采用常规的搞�
     
     <item>
       <title>Maven提示缺少tools.jar</title>
-      <link>https://leizhiyuan.github.io/2013/09/19/maven%E6%8F%90%E7%A4%BA%E7%BC%BA%E5%B0%91tools.jar/</link>
+      <link>http://leaver.me/2013/09/19/maven%E6%8F%90%E7%A4%BA%E7%BC%BA%E5%B0%91tools.jar/</link>
       <pubDate>Thu, 19 Sep 2013 13:24:26 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/09/19/maven%E6%8F%90%E7%A4%BA%E7%BC%BA%E5%B0%91tools.jar/</guid>
+      <guid>http://leaver.me/2013/09/19/maven%E6%8F%90%E7%A4%BA%E7%BC%BA%E5%B0%91tools.jar/</guid>
       <description>记录一下。
 这两天在熟悉Maven，长见识了.后续可能的话会写上一两篇，今天配置的时候提示tools.jar文件。于是使用everything搜了一下，本机的jdk目录还真没有，最后搜了一下，发现是安装jdk时候的问题，具体就是因为安装jdk的时候，后面被让继续安装jre，这个时候，我为了方便，将jre安装在了jdk的目录里，结果导致jre会覆盖到jdk的这两个文件。同时还会覆盖dt.jar这个包，于是，就没了。。这个问题略隐晦了..
  重新安装了jdk，将jdk和jre分开目录，然后设置一下jdk的lib目录到classpath就可以了，问题解决。</description>
@@ -74,20 +81,20 @@ eclipse插件开发中，依赖的管理是个问题。如果采用常规的搞�
     
     <item>
       <title>《软件测试》一点笔记</title>
-      <link>https://leizhiyuan.github.io/2013/07/26/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E4%B8%80%E7%82%B9%E7%AC%94%E8%AE%B0/</link>
+      <link>http://leaver.me/2013/07/26/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E4%B8%80%E7%82%B9%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Fri, 26 Jul 2013 08:24:54 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/07/26/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E4%B8%80%E7%82%B9%E7%AC%94%E8%AE%B0/</guid>
+      <guid>http://leaver.me/2013/07/26/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E4%B8%80%E7%82%B9%E7%AC%94%E8%AE%B0/</guid>
       <description>这两天在读《软件测试》，书不厚，也就300页，有些观念还是挺诧异的，比如软件功能超出产品说明书也算作软件缺陷&amp;hellip;想想也能明白，只是猛然看到还是很惊异..简单记录一下读书过程中一些重要的笔记.留作备份.
 软件缺陷：</description>
     </item>
     
     <item>
       <title>操作系统的死锁和内存管理</title>
-      <link>https://leizhiyuan.github.io/2013/02/02/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%AD%BB%E9%94%81%E5%92%8C%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
+      <link>http://leaver.me/2013/02/02/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%AD%BB%E9%94%81%E5%92%8C%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
       <pubDate>Sat, 02 Feb 2013 06:58:09 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/02/02/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%AD%BB%E9%94%81%E5%92%8C%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</guid>
+      <guid>http://leaver.me/2013/02/02/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%AD%BB%E9%94%81%E5%92%8C%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</guid>
       <description>这部分是最后一部分笔记。《现代操作系统》第三版的笔记就这样了。 死锁； 把需要排他性使用的对象称为资源，资源分为可抢占的和不可抢占的。可抢占资源可以从拥有它的进程中抢占而不会具有任何副作用。存储器就是可抢占的。不可抢占资源是指在不引起相关的计算失败的情况下，无法把它从占有她的进程处抢占过来。比如CD刻录机，如果一个进程开始刻盘，突然分配给CD刻录机到另一进程，就会划坏CD盘。死锁会发生在不可抢占资源中 死锁的规范定义：如果一个进程集合中的每个进程都在等待只能由该进程集合中的其他进程才能引发的事件，那么，该进程集合就是死锁的。
 死锁的四个必要条件 1.互斥条件。每个资源要么已经分配给一个进程，要么就是可用的。 2.占有和等待条件，已经得到了某个资源的进程可以再请求新的资源。 3.不可抢占条件，已经分配给一个进程的资源不可强制性的被抢占，他只能由占有她的进程显式的释放。 4.环路等待条件。死锁发生时，系统中一定有友两个/多个进程组成的一条回路，该环路中的每个进程都在等待着下一个进程所占有的资源。
 死锁处理的四种策略 1.忽略该问题，如果可以忽略。则忽略 2.检测死锁并恢复，让死锁发生，检测他们是否发生，一旦发生。采取行动。 3.仔细对资源进行分配。动态的避免死锁。 4.通过破坏引起的四个必要条件之一。防止死锁发生。
@@ -101,10 +108,10 @@ window如何知道系统配置的细节呢。答案就是windows会挂载一种�
     
     <item>
       <title>操作系统中的文件系统</title>
-      <link>https://leizhiyuan.github.io/2013/01/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/</link>
+      <link>http://leaver.me/2013/01/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/</link>
       <pubDate>Thu, 31 Jan 2013 15:00:44 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/01/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/</guid>
+      <guid>http://leaver.me/2013/01/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/</guid>
       <description>文件系统 进程，地址空间，文件这些抽象概念均是操作系统中的重要概念，如果理解了这三个概念，就迈上了成为一个操作系统专家的道路。 文件系统存放在磁盘上，多数磁盘划分为一个/多个分区，每个分区有一个独立的文件系统，磁盘的0号扇区称为主引导记录，也就是MBR，用来引导计算机，MBR的结尾就是分区表了。该表给出了每个分区的起始和结束地址。表中的一个分区被标记为活动分区。在计算机被引导时，BIOS读入并执行MBR，MBR做的第一件事就是确定活动分区，读入他的第一个块，称为引导块，并执行之，引导块中的程度将装载该分区中的操作系统，为统一起见，每个分区都从一个启动块开始，即使它不含有一个可以启动的操作系统。  文件的实现： 1.连续分配，每个文件作为一连串连续数据存储在磁盘上。实现简单，读操作性能好，一次就可以了。但不足是删除之后不能移动，因为成本太高，使得空块增多。碎片化严重。更诡异的是对于文件编辑软件，实现无法准确预测大小，如果预测错了。。就跪了。 //研究那些具有清晰和简洁概念的老式系统和思想是很重要的，因为他们可能以一种令人吃惊的方式在未来系统中获得应用。
 2.链表分配 为每个文件构造磁盘块链表，一个文件分为N个文件块，N个文件块构成一个链表，存储在物理上的多个地方。顺序读取很方便，但随机读取则相当缓慢，由于指针的存在，每个磁盘块存储数据的字节不再是2的整数次幂，导致系统运行效率降低，因为很多程序都是以2的整数次幂来读写磁盘的。
 3.在内存中采用表的链表分配 去除每个文件块在磁盘上的指针字，放入内存的一个表上，就可以解决上一个分配的不足。直观的例子如图。 文件A使用了磁盘块4，7，2，10，12
@@ -116,10 +123,10 @@ window如何知道系统配置的细节呢。答案就是windows会挂载一种�
     
     <item>
       <title>一个恶意vbs脚本的简单解码</title>
-      <link>https://leizhiyuan.github.io/2012/11/25/%E4%B8%80%E4%B8%AA%E6%81%B6%E6%84%8Fvbs%E8%84%9A%E6%9C%AC%E7%9A%84%E7%AE%80%E5%8D%95%E8%A7%A3%E7%A0%81/</link>
+      <link>http://leaver.me/2012/11/25/%E4%B8%80%E4%B8%AA%E6%81%B6%E6%84%8Fvbs%E8%84%9A%E6%9C%AC%E7%9A%84%E7%AE%80%E5%8D%95%E8%A7%A3%E7%A0%81/</link>
       <pubDate>Sun, 25 Nov 2012 09:00:59 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/11/25/%E4%B8%80%E4%B8%AA%E6%81%B6%E6%84%8Fvbs%E8%84%9A%E6%9C%AC%E7%9A%84%E7%AE%80%E5%8D%95%E8%A7%A3%E7%A0%81/</guid>
+      <guid>http://leaver.me/2012/11/25/%E4%B8%80%E4%B8%AA%E6%81%B6%E6%84%8Fvbs%E8%84%9A%E6%9C%AC%E7%9A%84%E7%AE%80%E5%8D%95%E8%A7%A3%E7%A0%81/</guid>
       <description>今天把电脑还原到了11月7号。结果eset更新后报C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup这个目录有个zzs.vbs的不受欢迎的程序，当时没什么事，就打开看看。想知道是个什么东西。
 由于eset阻止，我就把文件拖出来。改个后缀。发现代码不长，前半段是ascii码编码的。。
 后半段是
@@ -130,10 +137,10 @@ window如何知道系统配置的细节呢。答案就是windows会挂载一种�
     
     <item>
       <title>关于源代码控制的五个误区</title>
-      <link>https://leizhiyuan.github.io/2012/10/04/%E5%85%B3%E4%BA%8E%E6%BA%90%E4%BB%A3%E7%A0%81%E6%8E%A7%E5%88%B6%E7%9A%84%E4%BA%94%E4%B8%AA%E8%AF%AF%E5%8C%BA/</link>
+      <link>http://leaver.me/2012/10/04/%E5%85%B3%E4%BA%8E%E6%BA%90%E4%BB%A3%E7%A0%81%E6%8E%A7%E5%88%B6%E7%9A%84%E4%BA%94%E4%B8%AA%E8%AF%AF%E5%8C%BA/</link>
       <pubDate>Thu, 04 Oct 2012 12:18:57 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/10/04/%E5%85%B3%E4%BA%8E%E6%BA%90%E4%BB%A3%E7%A0%81%E6%8E%A7%E5%88%B6%E7%9A%84%E4%BA%94%E4%B8%AA%E8%AF%AF%E5%8C%BA/</guid>
+      <guid>http://leaver.me/2012/10/04/%E5%85%B3%E4%BA%8E%E6%BA%90%E4%BB%A3%E7%A0%81%E6%8E%A7%E5%88%B6%E7%9A%84%E4%BA%94%E4%B8%AA%E8%AF%AF%E5%8C%BA/</guid>
       <description>上周，在Red Gate好朋友的帮助下。我发起了一个名为小竞赛赢得优秀的SQL Source Control 5份授权的活动。参加的方式很简单-分享你使用源代码控制过程中，本可以避免的最痛苦的经历
 许多痛苦的故事都出现了。但是我认为这五个获奖者的故事值得分享，并且我都做了评论，因为我觉得随着时间的流逝，这些故事依然对我们有所启发。那么，开始享受这些故事吧，我希望这些知识中的闪光点能够帮助你以后不会掉进相同的陷阱里。
 给获奖者：希望那些授权可以帮助抚慰你们关于那些已经过去的痛苦记忆。不久我会联系你们关于奖项颁发的相关事宜。
@@ -170,10 +177,10 @@ Robin Vessey 让我产生了共鸣，因为它真的是伪VCS（Version Control 
     
     <item>
       <title>C#中的字符串驻留</title>
-      <link>https://leizhiyuan.github.io/2012/07/08/c#%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%A9%BB%E7%95%99/</link>
+      <link>http://leaver.me/2012/07/08/c#%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%A9%BB%E7%95%99/</link>
       <pubDate>Sun, 08 Jul 2012 20:57:11 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/07/08/c#%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%A9%BB%E7%95%99/</guid>
+      <guid>http://leaver.me/2012/07/08/c#%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%A9%BB%E7%95%99/</guid>
       <description>字符串string可以理解为char[]，他是一个引用类型。
 字符串创建  操作上类似于int，char等类型，直接进行赋值，string str=&amp;quot;bystander&amp;rdquo;;虽然string 是个类，但是如果你天真的使用
 来构造，会导致一个编译错误。因为System.String只提供了数个接受Char*，Char[]类型参数的构造函数。 所以只能像下面这样使用，
@@ -194,10 +201,10 @@ Robin Vessey 让我产生了共鸣，因为它真的是伪VCS（Version Control 
     
     <item>
       <title>移动设备电池白皮书</title>
-      <link>https://leizhiyuan.github.io/2012/07/07/%E7%A7%BB%E5%8A%A8%E8%AE%BE%E5%A4%87%E7%94%B5%E6%B1%A0%E7%99%BD%E7%9A%AE%E4%B9%A6/</link>
+      <link>http://leaver.me/2012/07/07/%E7%A7%BB%E5%8A%A8%E8%AE%BE%E5%A4%87%E7%94%B5%E6%B1%A0%E7%99%BD%E7%9A%AE%E4%B9%A6/</link>
       <pubDate>Sat, 07 Jul 2012 18:47:40 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/07/07/%E7%A7%BB%E5%8A%A8%E8%AE%BE%E5%A4%87%E7%94%B5%E6%B1%A0%E7%99%BD%E7%9A%AE%E4%B9%A6/</guid>
+      <guid>http://leaver.me/2012/07/07/%E7%A7%BB%E5%8A%A8%E8%AE%BE%E5%A4%87%E7%94%B5%E6%B1%A0%E7%99%BD%E7%9A%AE%E4%B9%A6/</guid>
       <description>资源来自：金山网络
 　我比较认真的读完了这本小册子，确实收获还是蛮大的。前几天有个朋友问我电池的事情，我以前看过电池的一些保养的。当时就知道锂电池是首次使用是不需要进行12小时充电的。。看到这本小册子的时候，证实了我没乱讲哈。。
 　然后里面还说道一个就是很多人不相信软件能够保养电池。其实真的是可以的。。理由不赘述。你可以自己读一读。。我自己感觉对普通用户很有用的是30页的那一节。讲到的问题有；
@@ -206,10 +213,10 @@ Robin Vessey 让我产生了共鸣，因为它真的是伪VCS（Version Control 
     
     <item>
       <title>Unable to read file Data_EGCITest解决方法</title>
-      <link>https://leizhiyuan.github.io/2012/07/03/unable-to-read-file-data_egcitest%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</link>
+      <link>http://leaver.me/2012/07/03/unable-to-read-file-data_egcitest%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</link>
       <pubDate>Tue, 03 Jul 2012 19:50:19 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/07/03/unable-to-read-file-data_egcitest%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</guid>
+      <guid>http://leaver.me/2012/07/03/unable-to-read-file-data_egcitest%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</guid>
       <description>今天做的是使用matlab进行协整检验，好吧。。听起来似乎很厉害的样子，其实，我也不太清楚协整到底是干嘛呢。不过经管的各位很给力。 想来协整检验matlab是可以做的。所以就去查matlab是不是有这个函数，结果是有的。egcitest，但是具体的参数还是景观的朋友看懂的。
 　早上3点多起床，看matlab的书，然后早上看完了。基本上熟悉了matlab的操作。然后就开始写这个。大致的流程和昨天的那篇文章是一致的。但是matlab生成的dll文件在C#里面调用始终会提示这样一个错误。：
 　组合了几个关键字进行搜索，发现了这篇文章，翻译过来很简单。
@@ -221,10 +228,10 @@ Robin Vessey 让我产生了共鸣，因为它真的是伪VCS（Version Control 
     
     <item>
       <title>C#中的静态与非静态</title>
-      <link>https://leizhiyuan.github.io/2012/07/02/c#%E4%B8%AD%E7%9A%84%E9%9D%99%E6%80%81%E4%B8%8E%E9%9D%9E%E9%9D%99%E6%80%81/</link>
+      <link>http://leaver.me/2012/07/02/c#%E4%B8%AD%E7%9A%84%E9%9D%99%E6%80%81%E4%B8%8E%E9%9D%9E%E9%9D%99%E6%80%81/</link>
       <pubDate>Mon, 02 Jul 2012 05:30:02 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/07/02/c#%E4%B8%AD%E7%9A%84%E9%9D%99%E6%80%81%E4%B8%8E%E9%9D%9E%E9%9D%99%E6%80%81/</guid>
+      <guid>http://leaver.me/2012/07/02/c#%E4%B8%AD%E7%9A%84%E9%9D%99%E6%80%81%E4%B8%8E%E9%9D%9E%E9%9D%99%E6%80%81/</guid>
       <description>为什么要分静态和非静态 在面向对象的世界里，大部分的情况都是实例特征主宰天下，类相当于一个类型模板，而对象则是类特征的拷贝，并且独立于其他对象来操作这些特征，但是在某些情况下，需要某些特征被所有的对象共公有，因此有必要实现一种基于类的特征，而不是基于实例对象的特征机制，这就是静态特征。
 1.静态类和非静态类  一个类如果包含静态成员和静态方法，那么该类就可以定义为静态类，定义方法是在类定义前加上static，比如
 比较：   静态类只能包含静态成员和静态方法，否则会抛出编译错误，而非静态类既可以包含非静态成员和非静态方法，还可以包含静态成员和静态方法。但不能作用于静态只读字段。 静态类不可实例化，非静态类可以实例化，不管是静态类还是非静态类，对静态成员和静态方法的调用都必须通过类来实现访问。 相对于非静态类来说，静态类有一些特点值得应用，比如System.Console这个典型的静态类。 如果一个类只包含静态成员和静态方法，就应该将该类标记为static，并提供私有的构造函数来避免用户实例创建对象，这也是MonoState模式的体现。      2.静态构造函数和实例构造函数  静态构造函数，只能用于初始化类中的静态成员，包括静态字段和静态属性，静态构造函数不能带参数，不能有访问修饰符也不能被手工调用，通过是在.net运行库第一次调用类成员之前执行。其中，实例构造函数中也是可以初始化静态成员的。
@@ -235,10 +242,10 @@ Robin Vessey 让我产生了共鸣，因为它真的是伪VCS（Version Control 
     
     <item>
       <title>C＃中的is和as</title>
-      <link>https://leizhiyuan.github.io/2012/07/01/c%E4%B8%AD%E7%9A%84is%E5%92%8Cas/</link>
+      <link>http://leaver.me/2012/07/01/c%E4%B8%AD%E7%9A%84is%E5%92%8Cas/</link>
       <pubDate>Sun, 01 Jul 2012 05:52:09 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/07/01/c%E4%B8%AD%E7%9A%84is%E5%92%8Cas/</guid>
+      <guid>http://leaver.me/2012/07/01/c%E4%B8%AD%E7%9A%84is%E5%92%8Cas/</guid>
       <description>is和as都是用作类型转换的，类型转换包括显示转换和隐式转换，在.NET中类型转换的基本规则如下：
 基本规则   任何类型都可以安全的转换为其基类类型，可以由隐式转换来完成； 任何类型转换为其派生类型时，必须进行显示转换，转换的规则是：（类型名）对象名； 使用GetType可以取得任何对象的精确类型； 基本类型可以使用Covert类实现类型转换； 除了string以外的其他类型都有Parse方法，用于将字符串类型转换为对应的基本类型； 值类型和引用类型的转换机制称为装箱（boxing）和拆箱（unboxing）。 is和as操作符，是C#中用于类型转换的，提供了对类型兼容性的判断，从而使得类型转换控制在安全的范畴，提供了灵活的类型转换控制。   is的模式如下：   检查对象类型的兼容性，并返回结果，true或者false； 不会抛出异常； 如果对象为null，则返回值永远为false。 使用很简单，用于条件判断中.   举例：
  as的模式如下：   检查对象类型的兼容性，并返回转换结果，如果不兼容就返回null； 不会抛出异常； 如果结果判断为空，则强制执行类型转换将抛出NullReferenceException异常。 as必须和引用类型一起使用   举例：
@@ -247,10 +254,10 @@ Robin Vessey 让我产生了共鸣，因为它真的是伪VCS（Version Control 
     
     <item>
       <title>C#WinForm实现不规则窗体</title>
-      <link>https://leizhiyuan.github.io/2012/06/21/c#winform%E5%AE%9E%E7%8E%B0%E4%B8%8D%E8%A7%84%E5%88%99%E7%AA%97%E4%BD%93/</link>
+      <link>http://leaver.me/2012/06/21/c#winform%E5%AE%9E%E7%8E%B0%E4%B8%8D%E8%A7%84%E5%88%99%E7%AA%97%E4%BD%93/</link>
       <pubDate>Thu, 21 Jun 2012 09:26:34 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/06/21/c#winform%E5%AE%9E%E7%8E%B0%E4%B8%8D%E8%A7%84%E5%88%99%E7%AA%97%E4%BD%93/</guid>
+      <guid>http://leaver.me/2012/06/21/c#winform%E5%AE%9E%E7%8E%B0%E4%B8%8D%E8%A7%84%E5%88%99%E7%AA%97%E4%BD%93/</guid>
       <description>这个纯属娱乐，因为其实用的不是太多，因为非主流，非标准的界面不符合用户的体验，不符合可用性功能的某一条HE规则。
 为了完成这个效果，首先需要自己动手画个你需要的界面出来，界面边缘需要是一种可以很好区别的颜色，比如纯蓝色，因为实现不规则窗体是让C#使边缘颜色透明化来实现的，所以需要唯一识别。因为我用的图是一张灰色的图，我然后圈了一个蓝色的边缘。
 刚开始的图；
@@ -269,10 +276,10 @@ http://allancandy.cnblogs.com/archive/2005/09/01/227814.html</description>
     
     <item>
       <title>你为什么会说是？-[影响力]</title>
-      <link>https://leizhiyuan.github.io/2012/06/07/%E4%BD%A0%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E8%AF%B4%E6%98%AF-%E5%BD%B1%E5%93%8D%E5%8A%9B/</link>
+      <link>http://leaver.me/2012/06/07/%E4%BD%A0%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E8%AF%B4%E6%98%AF-%E5%BD%B1%E5%93%8D%E5%8A%9B/</link>
       <pubDate>Thu, 07 Jun 2012 10:58:49 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/06/07/%E4%BD%A0%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E8%AF%B4%E6%98%AF-%E5%BD%B1%E5%93%8D%E5%8A%9B/</guid>
+      <guid>http://leaver.me/2012/06/07/%E4%BD%A0%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E8%AF%B4%E6%98%AF-%E5%BD%B1%E5%93%8D%E5%8A%9B/</guid>
       <description>今天早上把这本书读完了，短短的300页，绝对是今年读到的又一本经典之作，书摘什么的因为是读的纸质版，所以没有写什么笔记，但是还是简单的总结下书中的内容。顺带谈谈自己的感受。
 　就像昨天文章中提到的，这本书讲的不是成功学，而是心理学，讲我们在生活中为什么有时候会受到他人，或者是一些定律的影响，不知不觉中做了后来后悔的事情。或者是明明已经后悔了，却无法反悔。
 　影响力的几个武器；
@@ -298,10 +305,10 @@ http://allancandy.cnblogs.com/archive/2005/09/01/227814.html</description>
     
     <item>
       <title>比较HE和Think Aloud可用性测试</title>
-      <link>https://leizhiyuan.github.io/2012/05/29/%E6%AF%94%E8%BE%83he%E5%92%8Cthink-aloud%E5%8F%AF%E7%94%A8%E6%80%A7%E6%B5%8B%E8%AF%95/</link>
+      <link>http://leaver.me/2012/05/29/%E6%AF%94%E8%BE%83he%E5%92%8Cthink-aloud%E5%8F%AF%E7%94%A8%E6%80%A7%E6%B5%8B%E8%AF%95/</link>
       <pubDate>Tue, 29 May 2012 09:12:48 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/05/29/%E6%AF%94%E8%BE%83he%E5%92%8Cthink-aloud%E5%8F%AF%E7%94%A8%E6%80%A7%E6%B5%8B%E8%AF%95/</guid>
+      <guid>http://leaver.me/2012/05/29/%E6%AF%94%E8%BE%83he%E5%92%8Cthink-aloud%E5%8F%AF%E7%94%A8%E6%80%A7%E6%B5%8B%E8%AF%95/</guid>
       <description>首先，HE和Think Aloud 都是两用可用性测试的方法，HE，也就是这个启发式评估可以在设计的早期阶段（比如草稿）就开始使用，并且不需要太多的其他步骤。而Think Aloud则更多建立在已经设计出来的原型系统上。需要更多的步骤。这两个各有利弊。互相协作。才能更好嘛，有些问题，HE可以发现，有些则只有Think Aloud可以发现。
 1.Many Usability Aspects Identified in HE are Confirmed in Think-Aloud Usability Tests 许多可用性方面的问题可以在HE中识别。然后在Think Aloud测试中被确认。
 2.When HE Predictions are not Confirmed by Think-Aloud Usability Tests 当HE预测了问题但是Think Aloud中，并没有发现。这种情况下。请相信Think Aloud测试。因为用户是王道。数据比预测更准确。
@@ -313,10 +320,10 @@ HE规则因为是建立在早期草稿原型上的。并不是真实情况，他
     
     <item>
       <title>10条可用性准则（Heuristics）</title>
-      <link>https://leizhiyuan.github.io/2012/05/29/10%E6%9D%A1%E5%8F%AF%E7%94%A8%E6%80%A7%E5%87%86%E5%88%99heuristics/</link>
+      <link>http://leaver.me/2012/05/29/10%E6%9D%A1%E5%8F%AF%E7%94%A8%E6%80%A7%E5%87%86%E5%88%99heuristics/</link>
       <pubDate>Tue, 29 May 2012 06:52:48 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/05/29/10%E6%9D%A1%E5%8F%AF%E7%94%A8%E6%80%A7%E5%87%86%E5%88%99heuristics/</guid>
+      <guid>http://leaver.me/2012/05/29/10%E6%9D%A1%E5%8F%AF%E7%94%A8%E6%80%A7%E5%87%86%E5%88%99heuristics/</guid>
       <description>SSD4第二单元其实就讲了这么一点东西，包括一点VB的控件常识
 可用性测试（Usability testing），是一项通过用户的使用来评估产品的技术，由于它反应了用户的真实使用经验，所以可以视为一种不可或缺的可用性检验过程[1]。也就是说，可用性测试是指让用户使用产品（服务）的设计原型或者成品，通过观察，记录和分析用户的行为和感受，以改善产品（服务）可用性的一系列方法。它适用于产品（服务）前期设计开发，中期改进和后期维护完善的各个阶段，是用户中心设计的思想的重要体现。
 10条可用性准则（Heuristics） These are ten general principles for user interface design. They are called &amp;ldquo;heuristics&amp;rdquo; because they are more in the nature of rules of thumb than specific usability guidelines.
@@ -324,15 +331,21 @@ HE规则因为是建立在早期草稿原型上的。并不是真实情况，他
 The system should always keep users informed about what is going on, through appropriate feedback within reasonable time.
 系统应该始终在合理的时间以适当的反馈信息让用户知道系统正在做什么。
 2.Match between system and the real world——系统和现实世界之间的吻合
-The system should speak the users&amp;rsquo; language, with words, phrases and concepts familiar to the user, rather than system-oriented terms.</description>
+The system should speak the users&amp;rsquo; language, with words, phrases and concepts familiar to the user, rather than system-oriented terms. Follow real-world conventions, making information appear in a natural and logical order.
+系统应该用用户熟悉的词，短语和概念来说用户的语言，而不是用面向系统的术语。遵循现实世界中的惯例，让信息以自然的合乎逻辑的次序展现在用户面前。
+3.User control and freedom——用户控制和自由
+Users often choose system functions by mistake and will need a clearly marked &amp;ldquo;emergency exit&amp;rdquo; to leave the unwanted state without having to go through an extended dialogue. Support undo and redo.
+用户经常错误地选择系统功能，所以在不需要查看由于误操作而延伸出来地对话的情况下有一个明显地标志为“紧急退出”的操作来离开不想要的状态。另外，系统需要支持“撤销操作”和“重做”的功能。
+4.Consistency and standards——一致性和标准
+Users should not have to wonder whether different words, situations, or actions mean the same thing.</description>
     </item>
     
     <item>
       <title>LR(0)项目集规范族的构造</title>
-      <link>https://leizhiyuan.github.io/2012/05/12/lr0%E9%A1%B9%E7%9B%AE%E9%9B%86%E8%A7%84%E8%8C%83%E6%97%8F%E7%9A%84%E6%9E%84%E9%80%A0/</link>
+      <link>http://leaver.me/2012/05/12/lr0%E9%A1%B9%E7%9B%AE%E9%9B%86%E8%A7%84%E8%8C%83%E6%97%8F%E7%9A%84%E6%9E%84%E9%80%A0/</link>
       <pubDate>Sat, 12 May 2012 10:38:38 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/05/12/lr0%E9%A1%B9%E7%9B%AE%E9%9B%86%E8%A7%84%E8%8C%83%E6%97%8F%E7%9A%84%E6%9E%84%E9%80%A0/</guid>
+      <guid>http://leaver.me/2012/05/12/lr0%E9%A1%B9%E7%9B%AE%E9%9B%86%E8%A7%84%E8%8C%83%E6%97%8F%E7%9A%84%E6%9E%84%E9%80%A0/</guid>
       <description>此文略长。我也没想到这写起来这么多，但对构造过程绝对清楚，一步步慢慢看吧。
 　LR的第一个L和LL的第一个L含义相同，即从左到右扫描句子 ，第二个R表示Right most最右推导。
 　在通常的描述中，后面还有一个括号里面的数字如，LR(0)、LR(1)这样，括号里面的数字表示用于决策所需的后续token分词数。
@@ -362,15 +375,27 @@ The system should speak the users&amp;rsquo; language, with words, phrases and c
 　例题：对于下列文法，S→aS|bS|a，构造该文法的LR(0)项目集规范族
 　思路就是利用闭包函数CLOSURE和转换函数GO来构造。通过计算函数CLOSURE和GO得到文法的LR(0)项目集规范族，而GO函数则把LR(0)项目集规范族连成一个识别该文法所产生的活前缀的DFA。DFA大家都知道，有穷自动机。
 　(1)将文法G(S)拓广为G(S’)也就是该文法的增广文法，目的是使语法分析器知道何时应该停止并接受该串，也就是说当使用S&amp;rsquo;-&amp;gt;S进行规约的时候，就结束。
-　(0)S’→S (1)S→aS　(2)S→bS　(3)S→a</description>
+　(0)S’→S (1)S→aS　(2)S→bS　(3)S→a
+　构造该文法的LR(0)项目集规范族，I就是产生式，至于I0 I1就是往下递增就可以了。没什么特别的意思。：
+　I0=CLOSURE({S&amp;rsquo; →•S})={S’ →•S, S→•aS, S→•bS, S→•a}
+　//第一条是固定的，都是求S&amp;rsquo; →•S的闭包。而因为右侧的S又可以推导出后面三个，所以后面三个式子是属于该闭包的。在闭包的规则中可以看出，若A→α·Bβ属于CLOSURE(I)，此时S&amp;rsquo; →•S属于闭包，S相当于规则中的B,则每一形如B→·γ的项目也属于CLOSURE(I),此处相当于S-&amp;gt;后面的三个推导式。加上.就可以了
+　I1=GO( I0 , a)=CLOSURE({S→a•S , S→a•})={S→a•S , S→a• , S→•aS, S→•bS, S→•a }
+　//第二条你可能已经看出来了，其实就是把转换函数GO反过来用，在GO函数中，X为一文法符号，J＝{任何形如A→αX·β的项目| A→α·Xβ属于I}。也就是在I0中，找到右侧包含a的项目，然后将.右移一位来求他们的闭包函数，此处，I0中包含.a的项目为 S→•aS和 S→•a，.右移一位变成S→a•S , S→a•，求闭包函数的规则和上面那条是一样的，继续找推导式右边可以推导出来的式子就可以了，此处，右边同样是S可以推导出三个式子，前面加上.就可以了。
+　I2=GO(I0 , b)=CLOSURE({S→b•S })={ S→b•S, S→•aS, S→•bS, S→•a }
+　//第三条仿照第二条进行推导，先在I0中找有.b的，然后右移一位，然后推导式右侧的S继续用题目给出的推导，然后前面加上.
+　I3=GO(I0 , S)=CLOSURE({S’ →S•})={ S’ →S•}
+　//第四条因为右侧包含.S的只有一项。必须是.S。所以只有一个，右移后求闭包即可。因为S是右侧的第一位，所以不用再向下推导了，规则是：A→α·Bβ属于CLOSURE(I)，此处是S’ →S•，则B→·γ的项目也属于CLOSURE(I)，此处S相当于规则中的α，无B。。。。
+　因为GO(I1, a)=CLOSURE({S→a•S , S→a•})=I1，
+　//第五条同理，在I1中找有右侧有.a的项目，右移一位。进行求闭包，发现和I1求闭包的变量是一样的。所以结果必然也和I1是一样的。
+　GO(I1, b)=CLOSURE(S→b•S)=I2.</description>
     </item>
     
     <item>
       <title>《乌合之众》笔记下部</title>
-      <link>https://leizhiyuan.github.io/2012/05/11/%E4%B9%8C%E5%90%88%E4%B9%8B%E4%BC%97%E7%AC%94%E8%AE%B0%E4%B8%8B%E9%83%A8/</link>
+      <link>http://leaver.me/2012/05/11/%E4%B9%8C%E5%90%88%E4%B9%8B%E4%BC%97%E7%AC%94%E8%AE%B0%E4%B8%8B%E9%83%A8/</link>
       <pubDate>Fri, 11 May 2012 09:20:58 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/05/11/%E4%B9%8C%E5%90%88%E4%B9%8B%E4%BC%97%E7%AC%94%E8%AE%B0%E4%B8%8B%E9%83%A8/</guid>
+      <guid>http://leaver.me/2012/05/11/%E4%B9%8C%E5%90%88%E4%B9%8B%E4%BC%97%E7%AC%94%E8%AE%B0%E4%B8%8B%E9%83%A8/</guid>
       <description>看完了下部，本书绝对是群体心理学的经典。没有废话，180多页的小册子讲的非常非常好。 执政府和帝国的具体工作就是用新的名称把过去大多数的制度重新包装一遍，用新名词代替那些能够让群众想起不利形象的名称。因为新鲜能够防止这种联想。
 　统治者的艺术，就像律师的艺术，首先在于驾驭辞藻的学问。
 　推动各民族演化的主要因素，永远不是真理，而是谬误。
@@ -405,10 +430,10 @@ The system should speak the users&amp;rsquo; language, with words, phrases and c
     
     <item>
       <title>你会用计算器吗？</title>
-      <link>https://leizhiyuan.github.io/2012/05/05/%E4%BD%A0%E4%BC%9A%E7%94%A8%E8%AE%A1%E7%AE%97%E5%99%A8%E5%90%97/</link>
+      <link>http://leaver.me/2012/05/05/%E4%BD%A0%E4%BC%9A%E7%94%A8%E8%AE%A1%E7%AE%97%E5%99%A8%E5%90%97/</link>
       <pubDate>Sat, 05 May 2012 12:55:50 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/05/05/%E4%BD%A0%E4%BC%9A%E7%94%A8%E8%AE%A1%E7%AE%97%E5%99%A8%E5%90%97/</guid>
+      <guid>http://leaver.me/2012/05/05/%E4%BD%A0%E4%BC%9A%E7%94%A8%E8%AE%A1%E7%AE%97%E5%99%A8%E5%90%97/</guid>
       <description>今天早上在用windows自带的计算器转换进制的时候，看到了下图所示的按钮。MS MR之类的。 
 　这些个按钮在简单的计算器上也有。我从小时候到现在都没搞清楚。当然也没搞过。。不学总是不会的。于是，找找资料。学会了也分享一下，英文是我猜的。。不过估计差不多
 　首先明确的一点是这类计算器内部有一个小的记忆芯片，可以用来存储一个数，类似于内存吧。所以M的意思就是Memory，下面先给出这几个的总体说明
@@ -427,10 +452,10 @@ The system should speak the users&amp;rsquo; language, with words, phrases and c
     
     <item>
       <title>wordpress 实现404个性跳转页面</title>
-      <link>https://leizhiyuan.github.io/2012/04/28/wordpress-%E5%AE%9E%E7%8E%B0404%E4%B8%AA%E6%80%A7%E8%B7%B3%E8%BD%AC%E9%A1%B5%E9%9D%A2/</link>
+      <link>http://leaver.me/2012/04/28/wordpress-%E5%AE%9E%E7%8E%B0404%E4%B8%AA%E6%80%A7%E8%B7%B3%E8%BD%AC%E9%A1%B5%E9%9D%A2/</link>
       <pubDate>Sat, 28 Apr 2012 09:53:51 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/04/28/wordpress-%E5%AE%9E%E7%8E%B0404%E4%B8%AA%E6%80%A7%E8%B7%B3%E8%BD%AC%E9%A1%B5%E9%9D%A2/</guid>
+      <guid>http://leaver.me/2012/04/28/wordpress-%E5%AE%9E%E7%8E%B0404%E4%B8%AA%E6%80%A7%E8%B7%B3%E8%BD%AC%E9%A1%B5%E9%9D%A2/</guid>
       <description>这个就不多说了，直接贴代码，使用方法就是把这些代码全部拷贝进你的404.php这个文件。后台点击外观-编辑-选择404.php，开始编辑，
 完成后然后就可以自己测试下效果了，你也可以先访问http://leaver.me/test404查看效果
   </description>
@@ -438,10 +463,10 @@ The system should speak the users&amp;rsquo; language, with words, phrases and c
     
     <item>
       <title>WIN7上网提示711错误解决</title>
-      <link>https://leizhiyuan.github.io/2012/04/23/win7%E4%B8%8A%E7%BD%91%E6%8F%90%E7%A4%BA711%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3/</link>
+      <link>http://leaver.me/2012/04/23/win7%E4%B8%8A%E7%BD%91%E6%8F%90%E7%A4%BA711%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3/</link>
       <pubDate>Mon, 23 Apr 2012 12:27:59 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/04/23/win7%E4%B8%8A%E7%BD%91%E6%8F%90%E7%A4%BA711%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3/</guid>
+      <guid>http://leaver.me/2012/04/23/win7%E4%B8%8A%E7%BD%91%E6%8F%90%E7%A4%BA711%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3/</guid>
       <description>朋友今天上网突然网络连接出现了这个问题，也就是无法加载远程访问连接服务。Google了一下，第一种方法就是查看如下的服务是否启动，如果没有，自行启动。 服务名称:eventlog 显示名称: Windows Event Log 启动类型:自动 服务名称:TapiSrv 显示名称: Telephony 启动类型:手动 服务名称:SstpSvc 显示名称: Secure Socket Tunneling Protocol Service 启动类型:手动 服务名称:Netman 显示名称: Network Connections 启动类型:手动 服务名称:nsi 显示名称: Network Store Inte***ce Service 启动类型: 自动 服务名称:RasMan 显示名称: Remote Access Connection Manager 启动类型:手动
 　启动方法：对着我的电脑点右键-》管理-》服务和应用-》服务 找到对应的服务后，右键属性，启动类型就可以了 但是如上操作有时并不可以，会提示有些服务不能启动，这种情况下，
 　用管理员账号登陆，再打开 c:\windows\system32\logfiles 如果看到 wmi文件夹，在wmi文件夹上点右键，点 获取管理员权限 ,后重启即可修复。 
@@ -454,10 +479,10 @@ Win7下取消右键获取管理员权限方法：
     
     <item>
       <title>操作系统知识点汇总(下)</title>
-      <link>https://leizhiyuan.github.io/2012/04/18/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB%E4%B8%8B/</link>
+      <link>http://leaver.me/2012/04/18/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB%E4%B8%8B/</link>
       <pubDate>Wed, 18 Apr 2012 15:09:44 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/04/18/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB%E4%B8%8B/</guid>
+      <guid>http://leaver.me/2012/04/18/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB%E4%B8%8B/</guid>
       <description>太长了，还是分成两篇。此为下
 同时到达的作业使用短作业优先平均周转时间最短。
 系统调用和一般过程调用的区别： 1.运行状态不同 用户态/和心态 2.进入方式不同 过程调用/访问管中断 3.代码层次不同 用户级/系统级
@@ -492,10 +517,10 @@ Win7下取消右键获取管理员权限方法：
     
     <item>
       <title>《PHP和MySQL程序设计》&amp; 《细说PHP》</title>
-      <link>https://leizhiyuan.github.io/2012/04/16/php%E5%92%8Cmysql%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E7%BB%86%E8%AF%B4php/</link>
+      <link>http://leaver.me/2012/04/16/php%E5%92%8Cmysql%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E7%BB%86%E8%AF%B4php/</link>
       <pubDate>Mon, 16 Apr 2012 22:04:41 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2012/04/16/php%E5%92%8Cmysql%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E7%BB%86%E8%AF%B4php/</guid>
+      <guid>http://leaver.me/2012/04/16/php%E5%92%8Cmysql%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E7%BB%86%E8%AF%B4php/</guid>
       <description>今天从早上到下午一使劲把PHP和MySQL程序设计 这本书读完了。因为昨天读完了head first的那本php书。所以看这本书难度也不是很大。先对这本书整体评价一下。
 　这本书我其实之前并没有在豆瓣上看看评论。豆瓣也不适合看这类专业书的评论。只是看到是第三版。说明这本书还是不错的。一般国内的专业书很少看到出过第二版的。。因为质量实在是太差了。选好书的一个方法就是看版本。。能出到第N版的都是有其可圈可点之处的。于是把这本书拿来就看。
 　书从头看到尾。我只能说大叔把代码贴的太多了。但是好事情就是代码给出了执行结果。这基本上方便了我直接看代码。文字部分跳过一些。但是，大叔，我也是人啊。 你把代码贴这么多。。函数给这么全。这也记不住啊。而且书也并不是有个循序渐进的过程。对比昨天看的head first的书。深深体会到一本好的入门书是多么重要啊。这本书并不如它的宣传那样适合新手读。很多地方都用了结果还没解释。到后面又开始解释。完全无条理。。最最重要的是错误太多了。。　不过。对我还是有很大收获的。因为看了这本书就发现head first的书确实是入门书。讲的比较浅。（但非常重要），一些框架。模板。类在这里面都有讨论。需要花些时间搞清楚。我已经记下来了。稍后准备阅读一下这些主题，

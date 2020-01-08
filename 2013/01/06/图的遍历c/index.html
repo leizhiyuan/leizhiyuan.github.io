@@ -1,373 +1,92 @@
-<!DOCTYPE html>
-<html lang="en" itemscope itemtype="http://schema.org/WebPage">
-  <head>
-    
+<!doctype html>
+<html lang="zh-CN">
+<head>
 
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>图的遍历(C#) - bystander&#39;s blog</title>
-  <meta property="og:title" content="图的遍历(C#)" />
-  <meta name="twitter:title" content="图的遍历(C#)" />
-  <meta name="description" content="讲的非常好的一篇文章。感谢abatei，直接收藏分享之。
-图的存储结构 图的存储结构除了要存储图中各个顶点的本身的信息外，同时还要存储顶点与顶点之间的所有关系（边的信息），因此，图的结构比较复杂，很难以数据元素在存储区中的物理位置来表示元素之间的关系，但也正是由于其任意的特性，故物理表示方法很多。常用的图的存储结构有邻接矩阵、邻接表、十字链表和邻接多重表。
-8.2.1 邻接矩阵表示法 对于一个具有n个顶点的图，可以使用n*n的矩阵（二维数组）来表示它们间的邻接关系。图8.10和图8.11中，矩阵A(i，j)=1表示图中存在一条边(Vi，Vj)，而A(i，j)=0表示图中不存在边(Vi，Vj)。实际编程时，当图为不带权图时，可以在二维数组中存放bool值，A(i，j)=true表示存在边(Vi，Vj)，A(i，j)=false表示不存在边(Vi，Vj)；当图带权值时，则可以直接在二维数组中存放权值，A(i，j)=null表示不存在边(Vi，Vj)。
- 图8.10所示的是无向图的邻接矩阵表示法，可以观察到，矩阵延对角线对称，即A(i，j)= A(j，i)。无向图邻接矩阵的第i行或第i列非零元素的个数其实就是第i个顶点的度。这表示无向图邻接矩阵存在一定的数据冗余。
-图8.11所示的是有向图邻接矩阵表示法，矩阵并不延对角线对称，A(i，j)=1表示顶点Vi邻接到顶点Vj；A(j，i)=1则表示顶点Vi邻接自顶点Vj。两者并不象无向图邻接矩阵那样表示相同的意思。有向图邻接矩阵的第i行非零元素的个数其实就是第i个顶点的出度，而第i列非零元素的个数是第i个顶点的入度，即第i个顶点的度是第i行和第i列非零元素个数之和。
-由于存在n个顶点的图需要n2个数组元素进行存储，当图为稀疏图时，使用邻接矩阵存储方法将出现大量零元素，照成极大地空间浪费，这时应该使用邻接表表示法存储图中的数据。
-8.2.2 邻接表表示法 图的邻接矩阵存储方法跟树的孩子链表示法相类似，是一种顺序分配和链式分配相结合的存储结构。邻接表由表头结点和表结点两部分组成，其中图中每个顶点均对应一个存储在数组中的表头结点。如这个表头结点所对应的顶点存在相邻顶点，则把相邻顶点依次存放于表头结点所指向的单向链表中。如图8.12所示，表结点存放的是邻接顶点在数组中的索引。对于无向图来说，使用邻接表进行存储也会出现数据冗余，表头结点A所指链表中存在一个指向C的表结点的同时，表头结点C所指链表也会存在一个指向A的表结点。  有向图的邻接表有出边表和入边表（又称逆邻接表）之分。出边表的表结点存放的是从表头结点出发的有向边所指的尾顶点；入边表的表结点存放的则是指向表头结点的某个头顶点。如图8.13所示，图(b)和(c)分别为有向图(a)的出边表和入边表。  以上所讨论的邻接表所表示的都是不带权的图，如果要表示带权图，可以在表结点中增加一个存放权的字段，其效果如图8.14所示。
-
-【注意】：观察图8.14可以发现，当删除存储表头结点的数组中的某一元素，有可能使部分表头结点索引号的改变，从而导致大面积修改表结点的情况发生。可以在表结点中直接存放指向表头结点的指针以解决这个问题（在链表中存放类实例即是存放指针，但必须要保证表头结点是类而不是结构体）。在实际创建邻接表时，甚至可以使用链表代替数组存放表头结点或使用顺序表存代替链表存放表结点。对所学的数据结构知识应当根据实际情况及所使用语言的特点灵活应用，切不可生搬硬套。
-【例8-1 AdjacencyList.cs】图的邻接表存储结构
-l Vertex类中包含了一个visited成员，它的作用是在图遍历时标识当前节点是否被访问过，这一点在稍后会讲到。
-l 邻接点指针域adjvex直接指向某个表头结点，而不是表头结点在数组中的索引。
-AdjacencyList&lt;T&gt;类中使用了一个泛型List代替数组来保存表头结点信息（第5行代码），从而不再考虑数组存储空间不够的情况发生，简化了操作。
-由于一条无向边的信息需要在边的两个顶点分别存储信息，即添加两个有向边，所以58～78行代码的私有方法AddDirectedEdge()方法用于添加一个有向边。新的邻接点信息即可以添加到链表的头部也可以添加到尾部，添加到链表头部可以简化操作，但考虑到要检查是否添加了重复边，需要遍历整个链表，所以最终把邻接点信息添加到链表尾部。
-【例8-1 Demo8-1.cs】图的邻接表存储结构测试
-B：AD
-C：A
-D：AB
- 本例存储的表如图8.12所示，结果中，冒号前面的是表头结点，冒号后面的是链表中的表结点。
-8.3 图的遍历 和树的遍历类似，在此，我们希望从图中某一顶点出发访遍图中其余顶点，且使每一个顶点仅被访问一次，这一过程就叫做图的遍历(TraversingGraph)。如果只访问图的顶点而不关注边的信息，那么图的遍历十分简单，使用一个foreach语句遍历存放顶点信息的数组即可。但如果为了实现特定算法，就需要根据边的信息按照一定顺序进行遍历。图的遍历算法是求解图的连通性问题、拓扑排序和求关键路径等算法的基础。
-图的遍历要比树的遍历复杂得多，由于图的任一顶点都可能和其余顶点相邻接，故在访问了某顶点之后，可能顺着某条边又访问到了已访问过的顶点，因此，在图的遍历过程中，必须记下每个访问过的顶点，以免同一个顶点被访问多次。为此给顶点附设访问标志visited，其初值为false，一旦某个顶点被访问，则其visited标志置为true。
-图的遍历方法有两种：一种是深度优先搜索遍历（Depth-First Search 简称DFS）；另一种是广度优先搜索遍历（Breadth_First Search 简称BFS）。
-8.3.1 深度优先搜索遍历 图的深度优先搜索遍历类似于二叉树的深度优先搜索遍历。其基本思想如下：假定以图中某个顶点Vi为出发点，首先访问出发点，然后选择一个Vi的未访问过的邻接点Vj，以Vj为新的出发点继续进行深度优先搜索，直至图中所有顶点都被访问过。显然，这是一个递归的搜索过程。
-现以图8.15为例说明深度优先搜索过程。假定V1是出发点，首先访问V1。因V1有两个邻接点V2、V3均末被访问过，可以选择V2作为新的出发点，访问V2之后，再找V2的末访问过的邻接点。同V2邻接的有V1、V4和V5，其中V1已被访问过，而V4、V5尚未被访问过，可以选择V4作为新的出发点。重复上述搜索过程，继续依次访问V8、V5。访问V5之后，由于与V5相邻的顶点均已被访问过，搜索退回到V8，访问V8的另一个邻接点V6。接下来依次访问V3和V7，最后得到的的顶点的访问序列为：V1→ V2→ V4→ V8→ V5→ V6→ V3→V7。  下面根据上一节创建的邻接表存储结构添加深度优先搜索遍历代码。
-【例8-2 DFSTraverse.cs】深度优先搜索遍历
-打开【例8-1 AdjacencyList.cs】，在AdjacencyList&lt;T&gt;类中添加以下代码后，将文件另存为DFSTraverse.cs。
-private void InitVisited() //初始化visited标志 { foreach (Vertex&amp;lt;T&amp;gt; v in items) { v.">
-  <meta property="og:description" content="讲的非常好的一篇文章。感谢abatei，直接收藏分享之。
-图的存储结构 图的存储结构除了要存储图中各个顶点的本身的信息外，同时还要存储顶点与顶点之间的所有关系（边的信息），因此，图的结构比较复杂，很难以数据元素在存储区中的物理位置来表示元素之间的关系，但也正是由于其任意的特性，故物理表示方法很多。常用的图的存储结构有邻接矩阵、邻接表、十字链表和邻接多重表。
-8.2.1 邻接矩阵表示法 对于一个具有n个顶点的图，可以使用n*n的矩阵（二维数组）来表示它们间的邻接关系。图8.10和图8.11中，矩阵A(i，j)=1表示图中存在一条边(Vi，Vj)，而A(i，j)=0表示图中不存在边(Vi，Vj)。实际编程时，当图为不带权图时，可以在二维数组中存放bool值，A(i，j)=true表示存在边(Vi，Vj)，A(i，j)=false表示不存在边(Vi，Vj)；当图带权值时，则可以直接在二维数组中存放权值，A(i，j)=null表示不存在边(Vi，Vj)。
- 图8.10所示的是无向图的邻接矩阵表示法，可以观察到，矩阵延对角线对称，即A(i，j)= A(j，i)。无向图邻接矩阵的第i行或第i列非零元素的个数其实就是第i个顶点的度。这表示无向图邻接矩阵存在一定的数据冗余。
-图8.11所示的是有向图邻接矩阵表示法，矩阵并不延对角线对称，A(i，j)=1表示顶点Vi邻接到顶点Vj；A(j，i)=1则表示顶点Vi邻接自顶点Vj。两者并不象无向图邻接矩阵那样表示相同的意思。有向图邻接矩阵的第i行非零元素的个数其实就是第i个顶点的出度，而第i列非零元素的个数是第i个顶点的入度，即第i个顶点的度是第i行和第i列非零元素个数之和。
-由于存在n个顶点的图需要n2个数组元素进行存储，当图为稀疏图时，使用邻接矩阵存储方法将出现大量零元素，照成极大地空间浪费，这时应该使用邻接表表示法存储图中的数据。
-8.2.2 邻接表表示法 图的邻接矩阵存储方法跟树的孩子链表示法相类似，是一种顺序分配和链式分配相结合的存储结构。邻接表由表头结点和表结点两部分组成，其中图中每个顶点均对应一个存储在数组中的表头结点。如这个表头结点所对应的顶点存在相邻顶点，则把相邻顶点依次存放于表头结点所指向的单向链表中。如图8.12所示，表结点存放的是邻接顶点在数组中的索引。对于无向图来说，使用邻接表进行存储也会出现数据冗余，表头结点A所指链表中存在一个指向C的表结点的同时，表头结点C所指链表也会存在一个指向A的表结点。  有向图的邻接表有出边表和入边表（又称逆邻接表）之分。出边表的表结点存放的是从表头结点出发的有向边所指的尾顶点；入边表的表结点存放的则是指向表头结点的某个头顶点。如图8.13所示，图(b)和(c)分别为有向图(a)的出边表和入边表。  以上所讨论的邻接表所表示的都是不带权的图，如果要表示带权图，可以在表结点中增加一个存放权的字段，其效果如图8.14所示。
-
-【注意】：观察图8.14可以发现，当删除存储表头结点的数组中的某一元素，有可能使部分表头结点索引号的改变，从而导致大面积修改表结点的情况发生。可以在表结点中直接存放指向表头结点的指针以解决这个问题（在链表中存放类实例即是存放指针，但必须要保证表头结点是类而不是结构体）。在实际创建邻接表时，甚至可以使用链表代替数组存放表头结点或使用顺序表存代替链表存放表结点。对所学的数据结构知识应当根据实际情况及所使用语言的特点灵活应用，切不可生搬硬套。
-【例8-1 AdjacencyList.cs】图的邻接表存储结构
-l Vertex类中包含了一个visited成员，它的作用是在图遍历时标识当前节点是否被访问过，这一点在稍后会讲到。
-l 邻接点指针域adjvex直接指向某个表头结点，而不是表头结点在数组中的索引。
-AdjacencyList&lt;T&gt;类中使用了一个泛型List代替数组来保存表头结点信息（第5行代码），从而不再考虑数组存储空间不够的情况发生，简化了操作。
-由于一条无向边的信息需要在边的两个顶点分别存储信息，即添加两个有向边，所以58～78行代码的私有方法AddDirectedEdge()方法用于添加一个有向边。新的邻接点信息即可以添加到链表的头部也可以添加到尾部，添加到链表头部可以简化操作，但考虑到要检查是否添加了重复边，需要遍历整个链表，所以最终把邻接点信息添加到链表尾部。
-【例8-1 Demo8-1.cs】图的邻接表存储结构测试
-B：AD
-C：A
-D：AB
- 本例存储的表如图8.12所示，结果中，冒号前面的是表头结点，冒号后面的是链表中的表结点。
-8.3 图的遍历 和树的遍历类似，在此，我们希望从图中某一顶点出发访遍图中其余顶点，且使每一个顶点仅被访问一次，这一过程就叫做图的遍历(TraversingGraph)。如果只访问图的顶点而不关注边的信息，那么图的遍历十分简单，使用一个foreach语句遍历存放顶点信息的数组即可。但如果为了实现特定算法，就需要根据边的信息按照一定顺序进行遍历。图的遍历算法是求解图的连通性问题、拓扑排序和求关键路径等算法的基础。
-图的遍历要比树的遍历复杂得多，由于图的任一顶点都可能和其余顶点相邻接，故在访问了某顶点之后，可能顺着某条边又访问到了已访问过的顶点，因此，在图的遍历过程中，必须记下每个访问过的顶点，以免同一个顶点被访问多次。为此给顶点附设访问标志visited，其初值为false，一旦某个顶点被访问，则其visited标志置为true。
-图的遍历方法有两种：一种是深度优先搜索遍历（Depth-First Search 简称DFS）；另一种是广度优先搜索遍历（Breadth_First Search 简称BFS）。
-8.3.1 深度优先搜索遍历 图的深度优先搜索遍历类似于二叉树的深度优先搜索遍历。其基本思想如下：假定以图中某个顶点Vi为出发点，首先访问出发点，然后选择一个Vi的未访问过的邻接点Vj，以Vj为新的出发点继续进行深度优先搜索，直至图中所有顶点都被访问过。显然，这是一个递归的搜索过程。
-现以图8.15为例说明深度优先搜索过程。假定V1是出发点，首先访问V1。因V1有两个邻接点V2、V3均末被访问过，可以选择V2作为新的出发点，访问V2之后，再找V2的末访问过的邻接点。同V2邻接的有V1、V4和V5，其中V1已被访问过，而V4、V5尚未被访问过，可以选择V4作为新的出发点。重复上述搜索过程，继续依次访问V8、V5。访问V5之后，由于与V5相邻的顶点均已被访问过，搜索退回到V8，访问V8的另一个邻接点V6。接下来依次访问V3和V7，最后得到的的顶点的访问序列为：V1→ V2→ V4→ V8→ V5→ V6→ V3→V7。  下面根据上一节创建的邻接表存储结构添加深度优先搜索遍历代码。
-【例8-2 DFSTraverse.cs】深度优先搜索遍历
-打开【例8-1 AdjacencyList.cs】，在AdjacencyList&lt;T&gt;类中添加以下代码后，将文件另存为DFSTraverse.cs。
-private void InitVisited() //初始化visited标志 { foreach (Vertex&amp;lt;T&amp;gt; v in items) { v.">
-  <meta name="twitter:description" content="讲的非常好的一篇文章。感谢abatei，直接收藏分享之。
-图的存储结构 图的存储结构除了要存储图中各个顶点的本身的信息外，同时还要存储顶点与顶点之间的所有关系（边的信息），因此，图的结构比较复杂，很难以数据元素在存储区中的物理位置来表示元素之间的关系，但也正是由于其任意的特性，故物理表示方法很多。常用的图的存储结构有邻接矩阵、邻接表、十字链表和邻接多重表。
-8.2.1 邻接矩阵表示法 对于一个具 …">
-  <meta name="author" content="bystander"/><script type="application/ld+json">
-{
-    "@context": "http://schema.org",
-    "@type": "WebSite",
-    "name": "bystander\x27s blog",
-    
-    "url": "https:\/\/leizhiyuan.github.io\/"
-}
-</script><script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Organization",
-  "name": "",
-  "url": "https:\/\/leizhiyuan.github.io\/"
-  
-  
-  
-  
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [{
-        "@type": "ListItem",
-        "position": 1,
-        "item": {
-          "@id": "https:\/\/leizhiyuan.github.io\/",
-          "name": "home"
-        }
-    },{
-        "@type": "ListItem",
-        "position": 3,
-        "item": {
-          "@id": "https:\/\/leizhiyuan.github.io\/2013\/01\/06\/%E5%9B%BE%E7%9A%84%E9%81%8D%E5%8E%86c\/",
-          "name": "图的遍历( c#)"
-        }
-    }]
-}
-</script><script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Article",
-  "author": {
-    "name" : "bystander"
-  },
-  "headline": "图的遍历(C#)",
-  "description" : "讲的非常好的一篇文章。感谢abatei，直接收藏分享之。\n图的存储结构 图的存储结构除了要存储图中各个顶点的本身的信息外，同时还要存储顶点与顶点之间的所有关系（边的信息），因此，图的结构比较复杂，很难以数据元素在存储区中的物理位置来表示元素之间的关系，但也正是由于其任意的特性，故物理表示方法很多。常用的图的存储结构有邻接矩阵、邻接表、十字链表和邻接多重表。\n8.2.1 邻接矩阵表示法 对于一个具有n个顶点的图，可以使用n*n的矩阵（二维数组）来表示它们间的邻接关系。图8.10和图8.11中，矩阵A(i，j)=1表示图中存在一条边(Vi，Vj)，而A(i，j)=0表示图中不存在边(Vi，Vj)。实际编程时，当图为不带权图时，可以在二维数组中存放bool值，A(i，j)=true表示存在边(Vi，Vj)，A(i，j)=false表示不存在边(Vi，Vj)；当图带权值时，则可以直接在二维数组中存放权值，A(i，j)=null表示不存在边(Vi，Vj)。\n 图8.10所示的是无向图的邻接矩阵表示法，可以观察到，矩阵延对角线对称，即A(i，j)= A(j，i)。无向图邻接矩阵的第i行或第i列非零元素的个数其实就是第i个顶点的度。这表示无向图邻接矩阵存在一定的数据冗余。\n图8.11所示的是有向图邻接矩阵表示法，矩阵并不延对角线对称，A(i，j)=1表示顶点Vi邻接到顶点Vj；A(j，i)=1则表示顶点Vi邻接自顶点Vj。两者并不象无向图邻接矩阵那样表示相同的意思。有向图邻接矩阵的第i行非零元素的个数其实就是第i个顶点的出度，而第i列非零元素的个数是第i个顶点的入度，即第i个顶点的度是第i行和第i列非零元素个数之和。\n由于存在n个顶点的图需要n2个数组元素进行存储，当图为稀疏图时，使用邻接矩阵存储方法将出现大量零元素，照成极大地空间浪费，这时应该使用邻接表表示法存储图中的数据。\n8.2.2 邻接表表示法 图的邻接矩阵存储方法跟树的孩子链表示法相类似，是一种顺序分配和链式分配相结合的存储结构。邻接表由表头结点和表结点两部分组成，其中图中每个顶点均对应一个存储在数组中的表头结点。如这个表头结点所对应的顶点存在相邻顶点，则把相邻顶点依次存放于表头结点所指向的单向链表中。如图8.12所示，表结点存放的是邻接顶点在数组中的索引。对于无向图来说，使用邻接表进行存储也会出现数据冗余，表头结点A所指链表中存在一个指向C的表结点的同时，表头结点C所指链表也会存在一个指向A的表结点。  有向图的邻接表有出边表和入边表（又称逆邻接表）之分。出边表的表结点存放的是从表头结点出发的有向边所指的尾顶点；入边表的表结点存放的则是指向表头结点的某个头顶点。如图8.13所示，图(b)和(c)分别为有向图(a)的出边表和入边表。  以上所讨论的邻接表所表示的都是不带权的图，如果要表示带权图，可以在表结点中增加一个存放权的字段，其效果如图8.14所示。\n\n【注意】：观察图8.14可以发现，当删除存储表头结点的数组中的某一元素，有可能使部分表头结点索引号的改变，从而导致大面积修改表结点的情况发生。可以在表结点中直接存放指向表头结点的指针以解决这个问题（在链表中存放类实例即是存放指针，但必须要保证表头结点是类而不是结构体）。在实际创建邻接表时，甚至可以使用链表代替数组存放表头结点或使用顺序表存代替链表存放表结点。对所学的数据结构知识应当根据实际情况及所使用语言的特点灵活应用，切不可生搬硬套。\n【例8-1 AdjacencyList.cs】图的邻接表存储结构\nl Vertex类中包含了一个visited成员，它的作用是在图遍历时标识当前节点是否被访问过，这一点在稍后会讲到。\nl 邻接点指针域adjvex直接指向某个表头结点，而不是表头结点在数组中的索引。\nAdjacencyList\x26lt;T\x26gt;类中使用了一个泛型List代替数组来保存表头结点信息（第5行代码），从而不再考虑数组存储空间不够的情况发生，简化了操作。\n由于一条无向边的信息需要在边的两个顶点分别存储信息，即添加两个有向边，所以58～78行代码的私有方法AddDirectedEdge()方法用于添加一个有向边。新的邻接点信息即可以添加到链表的头部也可以添加到尾部，添加到链表头部可以简化操作，但考虑到要检查是否添加了重复边，需要遍历整个链表，所以最终把邻接点信息添加到链表尾部。\n【例8-1 Demo8-1.cs】图的邻接表存储结构测试\nB：AD\nC：A\nD：AB\n 本例存储的表如图8.12所示，结果中，冒号前面的是表头结点，冒号后面的是链表中的表结点。\n8.3 图的遍历 和树的遍历类似，在此，我们希望从图中某一顶点出发访遍图中其余顶点，且使每一个顶点仅被访问一次，这一过程就叫做图的遍历(TraversingGraph)。如果只访问图的顶点而不关注边的信息，那么图的遍历十分简单，使用一个foreach语句遍历存放顶点信息的数组即可。但如果为了实现特定算法，就需要根据边的信息按照一定顺序进行遍历。图的遍历算法是求解图的连通性问题、拓扑排序和求关键路径等算法的基础。\n图的遍历要比树的遍历复杂得多，由于图的任一顶点都可能和其余顶点相邻接，故在访问了某顶点之后，可能顺着某条边又访问到了已访问过的顶点，因此，在图的遍历过程中，必须记下每个访问过的顶点，以免同一个顶点被访问多次。为此给顶点附设访问标志visited，其初值为false，一旦某个顶点被访问，则其visited标志置为true。\n图的遍历方法有两种：一种是深度优先搜索遍历（Depth-First Search 简称DFS）；另一种是广度优先搜索遍历（Breadth_First Search 简称BFS）。\n8.3.1 深度优先搜索遍历 图的深度优先搜索遍历类似于二叉树的深度优先搜索遍历。其基本思想如下：假定以图中某个顶点Vi为出发点，首先访问出发点，然后选择一个Vi的未访问过的邻接点Vj，以Vj为新的出发点继续进行深度优先搜索，直至图中所有顶点都被访问过。显然，这是一个递归的搜索过程。\n现以图8.15为例说明深度优先搜索过程。假定V1是出发点，首先访问V1。因V1有两个邻接点V2、V3均末被访问过，可以选择V2作为新的出发点，访问V2之后，再找V2的末访问过的邻接点。同V2邻接的有V1、V4和V5，其中V1已被访问过，而V4、V5尚未被访问过，可以选择V4作为新的出发点。重复上述搜索过程，继续依次访问V8、V5。访问V5之后，由于与V5相邻的顶点均已被访问过，搜索退回到V8，访问V8的另一个邻接点V6。接下来依次访问V3和V7，最后得到的的顶点的访问序列为：V1→ V2→ V4→ V8→ V5→ V6→ V3→V7。  下面根据上一节创建的邻接表存储结构添加深度优先搜索遍历代码。\n【例8-2 DFSTraverse.cs】深度优先搜索遍历\n打开【例8-1 AdjacencyList.cs】，在AdjacencyList\x26lt;T\x26gt;类中添加以下代码后，将文件另存为DFSTraverse.cs。\nprivate void InitVisited() \/\/初始化visited标志 { foreach (Vertex\x26amp;lt;T\x26amp;gt; v in items) { v.",
-  "inLanguage" : "en",
-  "wordCount":  107 ,
-  "datePublished" : "2013-01-06T16:35:45",
-  "dateModified" : "2013-01-06T16:35:45",
-  "image" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
-  "keywords" : [ "C＃, windows, 大学, 学习, 收藏, 设计, 软件" ],
-  "mainEntityOfPage" : "https:\/\/leizhiyuan.github.io\/2013\/01\/06\/%E5%9B%BE%E7%9A%84%E9%81%8D%E5%8E%86c\/",
-  "publisher" : {
-    "@type": "Organization",
-    "name" : "https:\/\/leizhiyuan.github.io\/",
-    "logo" : {
-        "@type" : "ImageObject",
-        "url" : "https:\/\/leizhiyuan.github.io\/images\/author.jpg",
-        "height" :  60 ,
-        "width" :  60
-    }
-  }
-}
-</script>
-
-<meta property="og:title" content="图的遍历(C#)" />
-<meta property="og:description" content="讲的非常好的一篇文章。感谢abatei，直接收藏分享之。
-图的存储结构 图的存储结构除了要存储图中各个顶点的本身的信息外，同时还要存储顶点与顶点之间的所有关系（边的信息），因此，图的结构比较复杂，很难以数据元素在存储区中的物理位置来表示元素之间的关系，但也正是由于其任意的特性，故物理表示方法很多。常用的图的存储结构有邻接矩阵、邻接表、十字链表和邻接多重表。
-8.2.1 邻接矩阵表示法 对于一个具有n个顶点的图，可以使用n*n的矩阵（二维数组）来表示它们间的邻接关系。图8.10和图8.11中，矩阵A(i，j)=1表示图中存在一条边(Vi，Vj)，而A(i，j)=0表示图中不存在边(Vi，Vj)。实际编程时，当图为不带权图时，可以在二维数组中存放bool值，A(i，j)=true表示存在边(Vi，Vj)，A(i，j)=false表示不存在边(Vi，Vj)；当图带权值时，则可以直接在二维数组中存放权值，A(i，j)=null表示不存在边(Vi，Vj)。
- 图8.10所示的是无向图的邻接矩阵表示法，可以观察到，矩阵延对角线对称，即A(i，j)= A(j，i)。无向图邻接矩阵的第i行或第i列非零元素的个数其实就是第i个顶点的度。这表示无向图邻接矩阵存在一定的数据冗余。
-图8.11所示的是有向图邻接矩阵表示法，矩阵并不延对角线对称，A(i，j)=1表示顶点Vi邻接到顶点Vj；A(j，i)=1则表示顶点Vi邻接自顶点Vj。两者并不象无向图邻接矩阵那样表示相同的意思。有向图邻接矩阵的第i行非零元素的个数其实就是第i个顶点的出度，而第i列非零元素的个数是第i个顶点的入度，即第i个顶点的度是第i行和第i列非零元素个数之和。
-由于存在n个顶点的图需要n2个数组元素进行存储，当图为稀疏图时，使用邻接矩阵存储方法将出现大量零元素，照成极大地空间浪费，这时应该使用邻接表表示法存储图中的数据。
-8.2.2 邻接表表示法 图的邻接矩阵存储方法跟树的孩子链表示法相类似，是一种顺序分配和链式分配相结合的存储结构。邻接表由表头结点和表结点两部分组成，其中图中每个顶点均对应一个存储在数组中的表头结点。如这个表头结点所对应的顶点存在相邻顶点，则把相邻顶点依次存放于表头结点所指向的单向链表中。如图8.12所示，表结点存放的是邻接顶点在数组中的索引。对于无向图来说，使用邻接表进行存储也会出现数据冗余，表头结点A所指链表中存在一个指向C的表结点的同时，表头结点C所指链表也会存在一个指向A的表结点。  有向图的邻接表有出边表和入边表（又称逆邻接表）之分。出边表的表结点存放的是从表头结点出发的有向边所指的尾顶点；入边表的表结点存放的则是指向表头结点的某个头顶点。如图8.13所示，图(b)和(c)分别为有向图(a)的出边表和入边表。  以上所讨论的邻接表所表示的都是不带权的图，如果要表示带权图，可以在表结点中增加一个存放权的字段，其效果如图8.14所示。
-
-【注意】：观察图8.14可以发现，当删除存储表头结点的数组中的某一元素，有可能使部分表头结点索引号的改变，从而导致大面积修改表结点的情况发生。可以在表结点中直接存放指向表头结点的指针以解决这个问题（在链表中存放类实例即是存放指针，但必须要保证表头结点是类而不是结构体）。在实际创建邻接表时，甚至可以使用链表代替数组存放表头结点或使用顺序表存代替链表存放表结点。对所学的数据结构知识应当根据实际情况及所使用语言的特点灵活应用，切不可生搬硬套。
-【例8-1 AdjacencyList.cs】图的邻接表存储结构
-l Vertex类中包含了一个visited成员，它的作用是在图遍历时标识当前节点是否被访问过，这一点在稍后会讲到。
-l 邻接点指针域adjvex直接指向某个表头结点，而不是表头结点在数组中的索引。
-AdjacencyList&lt;T&gt;类中使用了一个泛型List代替数组来保存表头结点信息（第5行代码），从而不再考虑数组存储空间不够的情况发生，简化了操作。
-由于一条无向边的信息需要在边的两个顶点分别存储信息，即添加两个有向边，所以58～78行代码的私有方法AddDirectedEdge()方法用于添加一个有向边。新的邻接点信息即可以添加到链表的头部也可以添加到尾部，添加到链表头部可以简化操作，但考虑到要检查是否添加了重复边，需要遍历整个链表，所以最终把邻接点信息添加到链表尾部。
-【例8-1 Demo8-1.cs】图的邻接表存储结构测试
-B：AD
-C：A
-D：AB
- 本例存储的表如图8.12所示，结果中，冒号前面的是表头结点，冒号后面的是链表中的表结点。
-8.3 图的遍历 和树的遍历类似，在此，我们希望从图中某一顶点出发访遍图中其余顶点，且使每一个顶点仅被访问一次，这一过程就叫做图的遍历(TraversingGraph)。如果只访问图的顶点而不关注边的信息，那么图的遍历十分简单，使用一个foreach语句遍历存放顶点信息的数组即可。但如果为了实现特定算法，就需要根据边的信息按照一定顺序进行遍历。图的遍历算法是求解图的连通性问题、拓扑排序和求关键路径等算法的基础。
-图的遍历要比树的遍历复杂得多，由于图的任一顶点都可能和其余顶点相邻接，故在访问了某顶点之后，可能顺着某条边又访问到了已访问过的顶点，因此，在图的遍历过程中，必须记下每个访问过的顶点，以免同一个顶点被访问多次。为此给顶点附设访问标志visited，其初值为false，一旦某个顶点被访问，则其visited标志置为true。
-图的遍历方法有两种：一种是深度优先搜索遍历（Depth-First Search 简称DFS）；另一种是广度优先搜索遍历（Breadth_First Search 简称BFS）。
-8.3.1 深度优先搜索遍历 图的深度优先搜索遍历类似于二叉树的深度优先搜索遍历。其基本思想如下：假定以图中某个顶点Vi为出发点，首先访问出发点，然后选择一个Vi的未访问过的邻接点Vj，以Vj为新的出发点继续进行深度优先搜索，直至图中所有顶点都被访问过。显然，这是一个递归的搜索过程。
-现以图8.15为例说明深度优先搜索过程。假定V1是出发点，首先访问V1。因V1有两个邻接点V2、V3均末被访问过，可以选择V2作为新的出发点，访问V2之后，再找V2的末访问过的邻接点。同V2邻接的有V1、V4和V5，其中V1已被访问过，而V4、V5尚未被访问过，可以选择V4作为新的出发点。重复上述搜索过程，继续依次访问V8、V5。访问V5之后，由于与V5相邻的顶点均已被访问过，搜索退回到V8，访问V8的另一个邻接点V6。接下来依次访问V3和V7，最后得到的的顶点的访问序列为：V1→ V2→ V4→ V8→ V5→ V6→ V3→V7。  下面根据上一节创建的邻接表存储结构添加深度优先搜索遍历代码。
-【例8-2 DFSTraverse.cs】深度优先搜索遍历
-打开【例8-1 AdjacencyList.cs】，在AdjacencyList&lt;T&gt;类中添加以下代码后，将文件另存为DFSTraverse.cs。
-private void InitVisited() //初始化visited标志 { foreach (Vertex&amp;lt;T&amp;gt; v in items) { v.">
-<meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
-<meta property="og:url" content="https://leizhiyuan.github.io/2013/01/06/%E5%9B%BE%E7%9A%84%E9%81%8D%E5%8E%86c/" />
-<meta property="og:type" content="website" />
-<meta property="og:site_name" content="bystander&#39;s blog" />
-
-  <meta name="twitter:title" content="图的遍历(C#)" />
-  <meta name="twitter:description" content="讲的非常好的一篇文章。感谢abatei，直接收藏分享之。
-图的存储结构 图的存储结构除了要存储图中各个顶点的本身的信息外，同时还要存储顶点与顶点之间的所有关系（边的信息），因此，图的结构比较复杂，很难以数据元素在存储区中的物理位置来表示元素之间的关系，但也正是由于其任意的特性，故物理表示方法很多。常用的图的存储结构有邻接矩阵、邻接表、十字链表和邻接多重表。
-8.2.1 邻接矩阵表示法 对于一个具 …">
-  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
-  <meta name="twitter:card" content="summary" />
-  <link href='https://leizhiyuan.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
-  <meta property="og:image" content="https://leizhiyuan.github.io/images/author.jpg" />
-  <meta name="twitter:image" content="https://leizhiyuan.github.io/images/author.jpg" />
-  <meta name="twitter:card" content="summary" />
-  <meta property="og:url" content="https://leizhiyuan.github.io/2013/01/06/%E5%9B%BE%E7%9A%84%E9%81%8D%E5%8E%86c/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="bystander&#39;s blog" />
-
-  <meta name="generator" content="Hugo 0.61.0" />
-  <link rel="alternate" href="https://leizhiyuan.github.io/index.xml" type="application/rss+xml" title="bystander&#39;s blog"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://leizhiyuan.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
-  <link rel="stylesheet" href="https://leizhiyuan.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://leizhiyuan.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
-
-
-
-  </head>
-  <body>
-    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="https://leizhiyuan.github.io/">bystander&#39;s blog</a>
-    </div>
-
-    <div class="collapse navbar-collapse" id="main-navbar">
-      <ul class="nav navbar-nav navbar-right">
+    <title>图的遍历(C#) | bystander&#39;s blog</title>
+    <meta property="og:title" content="图的遍历(C#) - bystander&#39;s blog">
+    <meta property="og:type" content="article">
         
-          
-            <li>
-              <a title="首页" href="/">首页</a>
-            </li>
-          
+    <meta property="article:published_time" content='2013-01-06T16:35:45&#43;08:00'>
         
-          
-            <li>
-              <a title="目录" href="/categories">目录</a>
-            </li>
-          
         
-          
-            <li>
-              <a title="标签" href="/tags">标签</a>
-            </li>
-          
+    <meta property="article:modified_time" content='2013-01-06T16:35:45&#43;08:00'>
         
-          
-            <li>
-              <a title="友情链接" href="/2016/01/01/links">友情链接</a>
-            </li>
-          
+    <meta name="Keywords" content="">
+    <meta name="description" content="图的遍历(C#)">
         
-          
-            <li>
-              <a title="关于我" href="/about/">关于我</a>
-            </li>
-          
-        
+    <meta name="author" content="bystander">
+    <meta property="og:url" content="http://leaver.me/2013/01/06/%E5%9B%BE%E7%9A%84%E9%81%8D%E5%8E%86c/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
-        
-
-        
-      </ul>
-    </div>
-
-    
-      <div class="avatar-container">
-        <div class="avatar-img-border">
-          <a title="bystander&#39;s blog" href="https://leizhiyuan.github.io/">
-            <img class="avatar-img" src="https://leizhiyuan.github.io/images/author.jpg" alt="bystander&#39;s blog" />
-          </a>
-        </div>
-      </div>
-    
-
-  </div>
-</nav>
-
-
-
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     
 
 
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-<div class="pswp__bg"></div>
-
-<div class="pswp__scroll-wrap">
     
-    <div class="pswp__container">
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-    </div>
     
-    <div class="pswp__ui pswp__ui--hidden">
-    <div class="pswp__top-bar">
-      
-      <div class="pswp__counter"></div>
-      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-      <button class="pswp__button pswp__button--share" title="Share"></button>
-      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-      
-      
-      <div class="pswp__preloader">
-        <div class="pswp__preloader__icn">
-          <div class="pswp__preloader__cut">
-            <div class="pswp__preloader__donut"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-      <div class="pswp__share-tooltip"></div>
-    </div>
-    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-    </button>
-    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-    </button>
-    <div class="pswp__caption">
-      <div class="pswp__caption__center"></div>
-    </div>
-    </div>
-    </div>
-</div>
+</head>
 
 
-  
-  
-  
-
-
-
-
-
-
-  
-
-  <header class="header-section ">
-    
-    <div class="intro-header no-img">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <div class="post-heading">
-              
-                <h1>图的遍历(C#)</h1>
-              
-              
-              
-              
-                <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on January 6, 2013
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;bystander
-    
-  
-  
-</span>
-
-
-              
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://leaver.me/">
+                        bystander&#39;s blog
+                    </a>
+                
+                <p class="description">寻找窄门</p>
             </div>
-          </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="http://leaver.me/">首页</a>
+                    
+                    <a  href="http://leaver.me/categories" title="目录">目录</a>
+                    
+                    <a  href="http://leaver.me/about/" title="关于我">关于我</a>
+                    
+                </nav>
+            </div>
         </div>
-      </div>
     </div>
-  </header>
+</header>
 
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
 
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
     
-<div class="container" role="main">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-      <article role="main" class="blog-post">
-        <p>讲的非常好的一篇文章。感谢<a href="http://www.cnblogs.com/abatei/archive/2008/06/06/1215114.html">abatei</a>，直接收藏分享之。</p>
+    <article class="post">
+        <header>
+            <h1 class="post-title">图的遍历(C#)</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2013年1月6日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F'>文章收藏</a></span>
+            
+        </div>
+        
+        
+        
+        <div class="post-content">
+            <p>讲的非常好的一篇文章。感谢<a href="http://www.cnblogs.com/abatei/archive/2008/06/06/1215114.html">abatei</a>，直接收藏分享之。</p>
 <h2 id="heading">图的存储结构</h2>
 <p>图的存储结构除了要存储图中各个顶点的本身的信息外，同时还要存储顶点与顶点之间的所有关系（边的信息），因此，图的结构比较复杂，很难以数据元素在存储区中的物理位置来表示元素之间的关系，但也正是由于其任意的特性，故物理表示方法很多。常用的图的存储结构有邻接矩阵、邻接表、十字链表和邻接多重表。</p>
 <h3 id="821">8.2.1  邻接矩阵表示法</h3>
@@ -442,53 +161,55 @@ private void InitVisited() //初始化visited标志 { foreach (Vertex&amp;lt;T&a
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 
-
-        
-          <div class="blog-tags">
-            
-              <a href="https://leizhiyuan.github.io//tags/c/">C＃</a>&nbsp;
-            
-              <a href="https://leizhiyuan.github.io//tags/windows/">windows</a>&nbsp;
-            
-              <a href="https://leizhiyuan.github.io//tags/%E5%A4%A7%E5%AD%A6/">大学</a>&nbsp;
-            
-              <a href="https://leizhiyuan.github.io//tags/%E5%AD%A6%E4%B9%A0/">学习</a>&nbsp;
-            
-              <a href="https://leizhiyuan.github.io//tags/%E6%94%B6%E8%97%8F/">收藏</a>&nbsp;
-            
-              <a href="https://leizhiyuan.github.io//tags/%E8%AE%BE%E8%AE%A1/">设计</a>&nbsp;
-            
-              <a href="https://leizhiyuan.github.io//tags/%E8%BD%AF%E4%BB%B6/">软件</a>&nbsp;
-            
-          </div>
-        
+        </div>
 
         
 
+
         
-      </article>
 
-      
-        <ul class="pager blog-pager">
-          
-            <li class="previous">
-              <a href="https://leizhiyuan.github.io/2013/01/06/sql%E6%B3%A8%E5%85%A5%E4%B8%AD%E7%9A%84waf%E7%BB%95%E8%BF%87%E6%8A%80%E6%9C%AF/" data-toggle="tooltip" data-placement="top" title="SQL注入中的WAF绕过技术">&larr; Previous Post</a>
-            </li>
-          
-          
-            <li class="next">
-              <a href="https://leizhiyuan.github.io/2013/01/11/c#%E9%9A%90%E8%97%8Ftabcontrol%E6%A0%87%E7%AD%BE%E6%A0%8F/" data-toggle="tooltip" data-placement="top" title="C#隐藏TabControl标签栏">Next Post &rarr;</a>
-            </li>
-          
-        </ul>
-      
-
-
-      
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
         
-          
-          <div class="disqus-comments">
-            <div id="disqus_thread"></div>
+        <li><a href="/2012/10/16/%E7%B1%BB%E5%9E%8B%E5%AE%89%E5%85%A8%E7%9A%84%E9%BB%91%E6%9D%BF%E6%A8%A1%E5%BC%8F%E5%B1%9E%E6%80%A7%E5%8C%85/">类型安全的黑板模式（属性包）</a></li>
+        
+        <li><a href="/2012/10/12/%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%95%99%E4%BD%A0%E5%88%B6%E4%BD%9Cwpf%E5%9C%86%E5%BD%A2%E7%8E%BB%E7%92%83%E6%8C%89%E9%92%AE/">一步步教你制作WPF圆形玻璃按钮</a></li>
+        
+        <li><a href="/2012/10/09/c#%E7%BC%96%E5%86%99ftp%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%BD%AF%E4%BB%B6/">C#编写FTP客户端软件</a></li>
+        
+        <li><a href="/2012/10/03/11%E4%B8%AA%E9%AB%98%E6%95%88%E7%9A%84vs%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/">11个高效的VS调试技巧</a></li>
+        
+        <li><a href="/2013/01/04/%E8%BF%9C%E7%A8%8B%E7%AE%A1%E7%90%86democ/">远程管理Demo(C#)</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='http://leaver.me/tags/c'>C＃</a></li>
+                
+                <li><a href='http://leaver.me/tags/windows'>windows</a></li>
+                
+                <li><a href='http://leaver.me/tags/%E5%A4%A7%E5%AD%A6'>大学</a></li>
+                
+                <li><a href='http://leaver.me/tags/%E5%AD%A6%E4%B9%A0'>学习</a></li>
+                
+                <li><a href='http://leaver.me/tags/%E6%94%B6%E8%97%8F'>收藏</a></li>
+                
+                <li><a href='http://leaver.me/tags/%E8%AE%BE%E8%AE%A1'>设计</a></li>
+                
+                <li><a href='http://leaver.me/tags/%E8%BD%AF%E4%BB%B6'>软件</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    <div id="disqus_thread"></div>
 <script type="application/javascript">
     var disqus_config = function () {
     
@@ -508,85 +229,312 @@ private void InitVisited() //初始化visited标志 { foreach (Vertex&amp;lt;T&a
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-          </div>
-          
-        
-        
-      
 
-    </div>
-  </div>
+    
+    
 </div>
 
-    <footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <ul class="list-inline text-center footer-links">
-          
-              <li>
-                <a href="https://github.com/leizhiyuan" title="GitHub">
-                  <span class="fa-stack fa-lg">
-                    <i class="fas fa-circle fa-stack-2x"></i>
-                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-          
-          <li>
-            <a href="" title="RSS">
-              <span class="fa-stack fa-lg">
-                <i class="fas fa-circle fa-stack-2x"></i>
-                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
-              </span>
-            </a>
-          </li>
-          
-        </ul>
-        <p class="credits copyright text-muted">
-          
-            
-              <a href="leaver.me">bystander</a>
-            
-          
+                </div>
 
-          &nbsp;&bull;&nbsp;&copy;
-          
-            2019
-          
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='http://leaver.me/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://leaver.me/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/" title="深入理解Raft协议">深入理解Raft协议</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/" title="《非暴力沟通》笔记">《非暴力沟通》笔记</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/10/06/wedding-of-friends/" title="Wedding of Friends">Wedding of Friends</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/09/29/principle-note/" title="Principle Note">Principle Note</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/" title="梦见鲸鱼的那一夜">梦见鲸鱼的那一夜</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/08/20/understand-hong-kong-2/" title="Understand Hong Kong 2">Understand Hong Kong 2</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/08/18/understand-hong-kong-part-1/" title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/" title="错过的都是命，得到的才是人生">错过的都是命，得到的才是人生</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/04/06/recently/" title="Recently">Recently</a>
+    </li>
+    
+    <li>
+        <a href="http://leaver.me/2019/03/01/mac%E8%BF%81%E7%A7%BB%E5%AF%BC%E8%87%B4golang%E6%97%A0%E6%B3%95debug%E7%9A%84%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D/" title="Mac迁移导致Golang无法debug的问题修复">Mac迁移导致Golang无法debug的问题修复</a>
+    </li>
+    
+</ul>
+    </section>
 
-          
-            &nbsp;&bull;&nbsp;
-            <a href="https://leizhiyuan.github.io/">bystander&#39;s blog</a>
-          
-        </p>
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记 (186)</a></li>
+    
+    <li><a href="http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/">我的翻译 (57)</a></li>
+    
+    <li><a href="http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/">文章收藏 (53)</a></li>
+    
+    <li><a href="http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录 (2)</a></li>
+    
+    <li><a href="http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记 (4)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://leaver.me/tags/android/">android</a>
+    
+    <a href="http://leaver.me/tags/c/">C＃</a>
+    
+    <a href="http://leaver.me/tags/c&#43;&#43;/">C&#43;&#43;</a>
+    
+    <a href="http://leaver.me/tags/java/">java</a>
+    
+    <a href="http://leaver.me/tags/javascript/">javascript</a>
+    
+    <a href="http://leaver.me/tags/linux/">linux</a>
+    
+    <a href="http://leaver.me/tags/mac/">mac</a>
+    
+    <a href="http://leaver.me/tags/matlab/">matlab</a>
+    
+    <a href="http://leaver.me/tags/maven/">maven</a>
+    
+    <a href="http://leaver.me/tags/mysql/">mysql</a>
+    
+    <a href="http://leaver.me/tags/nextgen-gallery/">NextGEN Gallery</a>
+    
+    <a href="http://leaver.me/tags/php/">php</a>
+    
+    <a href="http://leaver.me/tags/python/">python</a>
+    
+    <a href="http://leaver.me/tags/shell/">shell</a>
+    
+    <a href="http://leaver.me/tags/spring/">spring</a>
+    
+    <a href="http://leaver.me/tags/sql/">sql</a>
+    
+    <a href="http://leaver.me/tags/stackoverflow/">stackoverflow</a>
+    
+    <a href="http://leaver.me/tags/wcf/">WCF</a>
+    
+    <a href="http://leaver.me/tags/web/">web</a>
+    
+    <a href="http://leaver.me/tags/windows/">windows</a>
+    
+    <a href="http://leaver.me/tags/wordpress/">wordpress</a>
+    
+    <a href="http://leaver.me/tags/wpf/">WPF</a>
+    
+    <a href="http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/">上海</a>
+    
+    <a href="http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/">下载</a>
+    
+    <a href="http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
+    
+    <a href="http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/">互联网</a>
+    
+    <a href="http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
+    
+    <a href="http://leaver.me/tags/%E5%88%B6%E5%BA%A6/">制度</a>
+    
+    <a href="http://leaver.me/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+    
+    <a href="http://leaver.me/tags/%E5%8E%9F%E5%88%9B/">原创</a>
+    
+    <a href="http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/">大学</a>
+    
+    <a href="http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/">学习</a>
+    
+    <a href="http://leaver.me/tags/%E5%AE%89%E5%85%A8/">安全</a>
+    
+    <a href="http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/">家庭</a>
+    
+    <a href="http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/">工作</a>
+    
+    <a href="http://leaver.me/tags/%E5%B7%A5%E5%85%B7/">工具</a>
+    
+    <a href="http://leaver.me/tags/%E5%B9%B6%E5%8F%91/">并发</a>
+    
+    <a href="http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/">序列化</a>
+    
+    <a href="http://leaver.me/tags/%E5%BC%80%E5%8F%91/">开发</a>
+    
+    <a href="http://leaver.me/tags/%E5%BF%83%E7%90%86/">心理</a>
+    
+    <a href="http://leaver.me/tags/%E6%80%BB%E7%BB%93/">总结</a>
+    
+    <a href="http://leaver.me/tags/%E6%8A%80%E6%9C%AF/">技术</a>
+    
+    <a href="http://leaver.me/tags/%E6%8F%92%E4%BB%B6/">插件</a>
+    
+    <a href="http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+    
+    <a href="http://leaver.me/tags/%E6%94%B6%E8%97%8F/">收藏</a>
+    
+    <a href="http://leaver.me/tags/%E6%95%B0%E5%AD%A6/">数学</a>
+    
+    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+    
+    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">数据挖掘</a>
+    
+    <a href="http://leaver.me/tags/%E6%96%87%E7%AB%A0/">文章</a>
+    
+    <a href="http://leaver.me/tags/%E6%99%BA%E8%83%BD/">智能</a>
+    
+    <a href="http://leaver.me/tags/%E6%9D%82%E6%96%87/">杂文</a>
+    
+    <a href="http://leaver.me/tags/%E6%AD%A6%E6%B1%89/">武汉</a>
+    
+    <a href="http://leaver.me/tags/%E6%B1%87%E7%BC%96/">汇编</a>
+    
+    <a href="http://leaver.me/tags/%E7%88%B1%E6%83%85/">爱情</a>
+    
+    <a href="http://leaver.me/tags/%E7%90%86%E8%AE%BA/">理论</a>
+    
+    <a href="http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</a>
+    
+    <a href="http://leaver.me/tags/%E7%94%9F%E6%B4%BB/">生活</a>
+    
+    <a href="http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/">电子书</a>
+    
+    <a href="http://leaver.me/tags/%E7%94%B5%E5%BD%B1/">电影</a>
+    
+    <a href="http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/">社会</a>
+    
+    <a href="http://leaver.me/tags/%E7%A7%91%E6%8A%80/">科技</a>
+    
+    <a href="http://leaver.me/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+    
+    <a href="http://leaver.me/tags/%E7%AE%97%E6%B3%95/">算法</a>
+    
+    <a href="http://leaver.me/tags/%E7%BC%96%E7%A8%8B/">编程</a>
+    
+    <a href="http://leaver.me/tags/%E7%BC%96%E8%AF%91/">编译</a>
+    
+    <a href="http://leaver.me/tags/%E7%BF%BB%E8%AF%91/">翻译</a>
+    
+    <a href="http://leaver.me/tags/%E8%81%8C%E4%B8%9A/">职业</a>
+    
+    <a href="http://leaver.me/tags/%E8%AE%B0%E5%BD%95/">记录</a>
+    
+    <a href="http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/">设计</a>
+    
+    <a href="http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/">读书</a>
+    
+    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/">软件</a>
+    
+    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</a>
+    
+    <a href="http://leaver.me/tags/%E8%BF%90%E7%BB%B4/">运维</a>
+    
+    <a href="http://leaver.me/tags/%E9%87%91%E8%9E%8D/">金融</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
         
-        <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.61.0</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
-          
-        </p>
-      </div>
+        <li>
+            <a target="_blank" href="https://www.cppfans.org/" title="C&#43;&#43;爱好者博客">C&#43;&#43;爱好者博客</a>
+        </li>
+        
+        <li>
+            <a target="_blank" href="http://www.kailing.pub" title="KL，每天进步一点点">KL，每天进步一点点</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="http://leaver.me/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
     </div>
-  </div>
-</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-<script src="https://leizhiyuan.github.io/js/main.js"></script>
-<script src="https://leizhiyuan.github.io/js/highlight.min.js"></script>
-<script> hljs.initHighlightingOnLoad(); </script>
-<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://leizhiyuan.github.io/js/load-photoswipe.js"></script>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="http://leaver.me/">bystander&#39;s blog By bystander</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
 
 
+    
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', '30961201', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 
 
 
 
+</body>
 
-  </body>
 </html>
-

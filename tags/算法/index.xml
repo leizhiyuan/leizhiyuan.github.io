@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>算法 on bystander&#39;s blog</title>
-    <link>https://leizhiyuan.github.io/tags/%E7%AE%97%E6%B3%95/</link>
+    <link>http://leaver.me/tags/%E7%AE%97%E6%B3%95/</link>
     <description>Recent content in 算法 on bystander&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Sat, 29 Jun 2013 18:14:08 +0000</lastBuildDate>
     
-	<atom:link href="https://leizhiyuan.github.io/tags/%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://leaver.me/tags/%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>等物体填充问题</title>
-      <link>https://leizhiyuan.github.io/2013/06/29/%E7%AD%89%E7%89%A9%E4%BD%93%E5%A1%AB%E5%85%85%E9%97%AE%E9%A2%98/</link>
+      <link>http://leaver.me/2013/06/29/%E7%AD%89%E7%89%A9%E4%BD%93%E5%A1%AB%E5%85%85%E9%97%AE%E9%A2%98/</link>
       <pubDate>Sat, 29 Jun 2013 18:14:08 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/06/29/%E7%AD%89%E7%89%A9%E4%BD%93%E5%A1%AB%E5%85%85%E9%97%AE%E9%A2%98/</guid>
+      <guid>http://leaver.me/2013/06/29/%E7%AD%89%E7%89%A9%E4%BD%93%E5%A1%AB%E5%85%85%E9%97%AE%E9%A2%98/</guid>
       <description>那天在群里，rich大牛提了一个问题，一个直径为10cm的球内最多能够填充直径为1cm的球多少个.
 之前看到过一个类似的简单说明，就像是在一个盒子里装乒乓球，如果装满了，想继续装，如何办？经验告诉我们，摇一摇盒子。。这个问题看上去简单，其实是个NP难问题&amp;hellip;于是，查找了一些资料，比较有意思，分享一下。
  首先是stetson大学efriedma教授的网页，收集了各类填充（英文是packing）问题的图示，欢迎移步：packing center ，不过这里面恰好没有球体填充（SpherePacking）的问题，然后继续查找，进入了一个可以演示球体填充问题的页面：sphere packing demo 感谢网站作者Hugo Pfoertner，这里作者解出了1-72个球的问题，但是，作者说对于n&amp;gt;10的情况无法证明最优化.不过这个页面的演示太帅了，推荐看看。
@@ -28,10 +28,10 @@
     
     <item>
       <title>阿里巴巴5月5日综合算法题详解</title>
-      <link>https://leizhiyuan.github.io/2013/06/02/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B45%E6%9C%885%E6%97%A5%E7%BB%BC%E5%90%88%E7%AE%97%E6%B3%95%E9%A2%98%E8%AF%A6%E8%A7%A3/</link>
+      <link>http://leaver.me/2013/06/02/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B45%E6%9C%885%E6%97%A5%E7%BB%BC%E5%90%88%E7%AE%97%E6%B3%95%E9%A2%98%E8%AF%A6%E8%A7%A3/</link>
       <pubDate>Sun, 02 Jun 2013 15:44:22 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/06/02/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B45%E6%9C%885%E6%97%A5%E7%BB%BC%E5%90%88%E7%AE%97%E6%B3%95%E9%A2%98%E8%AF%A6%E8%A7%A3/</guid>
+      <guid>http://leaver.me/2013/06/02/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B45%E6%9C%885%E6%97%A5%E7%BB%BC%E5%90%88%E7%AE%97%E6%B3%95%E9%A2%98%E8%AF%A6%E8%A7%A3/</guid>
       <description>之前参加了阿里的笔试和电面，让后天那个敏感的日子去参加现场面，就去看了一下那天笔试的最后一道综合题，看着网上清一色最后一道题不知道从哪转的答案，不忍直视，一看代码就是错的，最直接的就是求中位数连奇偶性都不判断，直接处以2..这，另外当在无法整除的情况下，数据结果错误。
  这道题的大意是：有一个淘宝商户，在某城市有n个仓库，每个仓库的储货量不同，现在要通过货物运输，将每次仓库的储货量变成一致的，n个仓库之间的运输线路围城一个圈，即1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;&amp;hellip;-&amp;gt;n-&amp;gt;1-&amp;gt;&amp;hellip;，货物只能通过连接的仓库运输，设计最小的运送成本（运货量*路程）达到淘宝商户的要求，并写出代码。
 解题思路：
@@ -51,10 +51,10 @@
     
     <item>
       <title>邻接表实现无向图(C&#43;&#43;)</title>
-      <link>https://leizhiyuan.github.io/2013/05/31/%E9%82%BB%E6%8E%A5%E8%A1%A8%E5%AE%9E%E7%8E%B0%E6%97%A0%E5%90%91%E5%9B%BEc-/</link>
+      <link>http://leaver.me/2013/05/31/%E9%82%BB%E6%8E%A5%E8%A1%A8%E5%AE%9E%E7%8E%B0%E6%97%A0%E5%90%91%E5%9B%BEc-/</link>
       <pubDate>Fri, 31 May 2013 15:05:29 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/05/31/%E9%82%BB%E6%8E%A5%E8%A1%A8%E5%AE%9E%E7%8E%B0%E6%97%A0%E5%90%91%E5%9B%BEc-/</guid>
+      <guid>http://leaver.me/2013/05/31/%E9%82%BB%E6%8E%A5%E8%A1%A8%E5%AE%9E%E7%8E%B0%E6%97%A0%E5%90%91%E5%9B%BEc-/</guid>
       <description>很早以前写的代码了，贴出来做个备份吧。用向量来存储一条邻接链表，存储可连通值。实现了判断是否连通，添加边，添加顶点的功能。
 UnDirectGraph.h
 UnDirectGraph.cpp
@@ -63,10 +63,10 @@ UnDirectGraph.cpp
     
     <item>
       <title>求整数1-N范围和为N的所有组合</title>
-      <link>https://leizhiyuan.github.io/2013/05/27/%E6%B1%82%E6%95%B4%E6%95%B01-n%E8%8C%83%E5%9B%B4%E5%92%8C%E4%B8%BAn%E7%9A%84%E6%89%80%E6%9C%89%E7%BB%84%E5%90%88/</link>
+      <link>http://leaver.me/2013/05/27/%E6%B1%82%E6%95%B4%E6%95%B01-n%E8%8C%83%E5%9B%B4%E5%92%8C%E4%B8%BAn%E7%9A%84%E6%89%80%E6%9C%89%E7%BB%84%E5%90%88/</link>
       <pubDate>Mon, 27 May 2013 10:55:49 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/05/27/%E6%B1%82%E6%95%B4%E6%95%B01-n%E8%8C%83%E5%9B%B4%E5%92%8C%E4%B8%BAn%E7%9A%84%E6%89%80%E6%9C%89%E7%BB%84%E5%90%88/</guid>
+      <guid>http://leaver.me/2013/05/27/%E6%B1%82%E6%95%B4%E6%95%B01-n%E8%8C%83%E5%9B%B4%E5%92%8C%E4%B8%BAn%E7%9A%84%E6%89%80%E6%9C%89%E7%BB%84%E5%90%88/</guid>
       <description>看到的一道题，给出答案
 问题：找出整数1~N范围和为N的所有集合，集合里的数不允许重复。
 解答：递归吧
@@ -78,10 +78,10 @@ UnDirectGraph.cpp
     
     <item>
       <title>倒水问题求解(C&#43;&#43;)</title>
-      <link>https://leizhiyuan.github.io/2013/05/15/%E5%80%92%E6%B0%B4%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3c-/</link>
+      <link>http://leaver.me/2013/05/15/%E5%80%92%E6%B0%B4%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3c-/</link>
       <pubDate>Wed, 15 May 2013 18:37:24 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/05/15/%E5%80%92%E6%B0%B4%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3c-/</guid>
+      <guid>http://leaver.me/2013/05/15/%E5%80%92%E6%B0%B4%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3c-/</guid>
       <description>明天要去参加微软面试，不求顺利，但求体验。
 这个题目答题的意思是:
 给你一个容量为A升的桶和一个容量为B升的桶，水不限使用，要求精确得到Q升水.请说明步骤
@@ -96,15 +96,19 @@ A B
  0 0 4 0 1 3 1 0 0 1 4 1 2 3 &amp;lt;-A桶中得到2了
 试试从 B-&amp;gt;A
 A B
- 0 0 0 3 3 0 3 3 4 2 &amp;lt;- B中也得到了2 但是注意,从 B-&amp;gt;A 比从 A-&amp;gt;B快哦</description>
+ 0 0 0 3 3 0 3 3 4 2 &amp;lt;- B中也得到了2 但是注意,从 B-&amp;gt;A 比从 A-&amp;gt;B快哦
+然后我贴出代码
+运行结果如下：
+
+关于如何求最少的步数来求解这个问题，希望有朋友能够留言指教。</description>
     </item>
     
     <item>
       <title>模板优先级队列及堆排序(C&#43;&#43;实现)</title>
-      <link>https://leizhiyuan.github.io/2013/04/16/%E6%A8%A1%E6%9D%BF%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97%E5%8F%8A%E5%A0%86%E6%8E%92%E5%BA%8Fc-%E5%AE%9E%E7%8E%B0/</link>
+      <link>http://leaver.me/2013/04/16/%E6%A8%A1%E6%9D%BF%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97%E5%8F%8A%E5%A0%86%E6%8E%92%E5%BA%8Fc-%E5%AE%9E%E7%8E%B0/</link>
       <pubDate>Tue, 16 Apr 2013 08:42:58 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/04/16/%E6%A8%A1%E6%9D%BF%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97%E5%8F%8A%E5%A0%86%E6%8E%92%E5%BA%8Fc-%E5%AE%9E%E7%8E%B0/</guid>
+      <guid>http://leaver.me/2013/04/16/%E6%A8%A1%E6%9D%BF%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97%E5%8F%8A%E5%A0%86%E6%8E%92%E5%BA%8Fc-%E5%AE%9E%E7%8E%B0/</guid>
       <description>模板优先级队列，数组实现，再熟悉一下常用算法，同时简单的堆排序应用
 写了一个是队列自增长，另一个为了演示我还添加了一个叫做FillPq的方法，这个方法可以使用一个数组直接填充到优先级队列里，此时，优先级队列并不优先，然后进行下滤调整，之后建堆完成，输出即可
 然后是堆排序
@@ -113,10 +117,10 @@ A B
     
     <item>
       <title>模板栈以及中缀表达式求值(C&#43;&#43;实现)</title>
-      <link>https://leizhiyuan.github.io/2013/04/11/%E6%A8%A1%E6%9D%BF%E6%A0%88%E4%BB%A5%E5%8F%8A%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BCc-%E5%AE%9E%E7%8E%B0/</link>
+      <link>http://leaver.me/2013/04/11/%E6%A8%A1%E6%9D%BF%E6%A0%88%E4%BB%A5%E5%8F%8A%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BCc-%E5%AE%9E%E7%8E%B0/</link>
       <pubDate>Thu, 11 Apr 2013 18:50:25 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/04/11/%E6%A8%A1%E6%9D%BF%E6%A0%88%E4%BB%A5%E5%8F%8A%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BCc-%E5%AE%9E%E7%8E%B0/</guid>
+      <guid>http://leaver.me/2013/04/11/%E6%A8%A1%E6%9D%BF%E6%A0%88%E4%BB%A5%E5%8F%8A%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BCc-%E5%AE%9E%E7%8E%B0/</guid>
       <description>栈直接用链表实现，这个比较简单，不多说，不过C++写程序，IDE的错误检测不是很给力。
 至于给定一个中缀表达式，如何不转换成后缀表达式，直接求值，方法就是使用两个栈，一个操作符栈，一个操作数栈，然后从左到右扫描表达式，我这里中缀表达式计算实现的很简单，不完整，大家可以扩展。栈的实现是我想写的，思路如下：
 1.如何是操作数，压入操作数栈
@@ -132,10 +136,10 @@ A B
     
     <item>
       <title>[藏]关于B树的一篇文章</title>
-      <link>https://leizhiyuan.github.io/2013/04/01/%E8%97%8F%E5%85%B3%E4%BA%8Eb%E6%A0%91%E7%9A%84%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</link>
+      <link>http://leaver.me/2013/04/01/%E8%97%8F%E5%85%B3%E4%BA%8Eb%E6%A0%91%E7%9A%84%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</link>
       <pubDate>Mon, 01 Apr 2013 18:12:37 +0000</pubDate>
       
-      <guid>https://leizhiyuan.github.io/2013/04/01/%E8%97%8F%E5%85%B3%E4%BA%8Eb%E6%A0%91%E7%9A%84%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</guid>
+      <guid>http://leaver.me/2013/04/01/%E8%97%8F%E5%85%B3%E4%BA%8Eb%E6%A0%91%E7%9A%84%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</guid>
       <description>很多人对B树的理解有很多错误，我看的最多的就是有人混淆二叉树（Binary Tree）和B树（B-Tree）,二叉树是不用简称，也就是BT的，而特殊一点的二叉搜索树才会用BST(Binary Search Tree),至于B-树和B树，这两个其实一样的，英文都是(B-Tree)，注意看中间的-号，这个是国内翻译的问题.所以大家不要被误导.
 Rudolf Bayer 和 Ed McCreight 于1972年，在Boeing Research Labs 工作时发明了B 树，但是他们没有解释B 代表什么意义（如果有的话）.Douglas Comer 解释说: 两位作者从来都没解释过B树的原始意义。我个人觉得很有可能是他的名字，程序员对其作品的一种情结吧.
 这篇文章来自国外,是某大学的CS课程在线的,由于有时候无法访问，我直接提供PDF版,对其构造过程非常清晰.非常非常好的B树教程,图示很多,就不翻译了,强烈推荐阅读！
