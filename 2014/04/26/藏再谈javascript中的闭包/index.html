@@ -1,100 +1,7 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>[藏]再谈JavaScript中的闭包 | bystander&#39;s blog</title>
-    <meta property="og:title" content="[藏]再谈JavaScript中的闭包 - bystander&#39;s blog">
-    <meta property="og:type" content="article">
-        
-    <meta property="article:published_time" content='2014-04-26T16:36:28&#43;08:00'>
-        
-        
-    <meta property="article:modified_time" content='2014-04-26T16:36:28&#43;08:00'>
-        
-    <meta name="Keywords" content="">
-    <meta name="description" content="[藏]再谈JavaScript中的闭包">
-        
-    <meta name="author" content="bystander">
-    <meta property="og:url" content="http://leaver.me/2014/04/26/%E8%97%8F%E5%86%8D%E8%B0%88javascript%E4%B8%AD%E7%9A%84%E9%97%AD%E5%8C%85/">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-
-    <link rel="stylesheet" href='/css/normalize.css'>
-    <link rel="stylesheet" href='/css/style.css'>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-    
-
-
-    
-    
-</head>
-
-
-<body>
-    <header id="header" class="clearfix">
-    <div class="container">
-        <div class="col-group">
-            <div class="site-name ">
-                
-                    <a id="logo" href="http://leaver.me/">
-                        bystander&#39;s blog
-                    </a>
-                
-                <p class="description">寻找窄门</p>
-            </div>
-            <div>
-                <nav id="nav-menu" class="clearfix">
-                    <a class="current" href="http://leaver.me/">首页</a>
-                    
-                    <a  href="http://leaver.me/categories" title="目录">目录</a>
-                    
-                    <a  href="http://leaver.me/about/" title="关于我">关于我</a>
-                    
-                </nav>
-            </div>
-        </div>
-    </div>
-</header>
-
-    <div id="body">
-        <div class="container">
-            <div class="col-group">
-
-                <div class="col-8" id="main">
-                    
-<div class="res-cons">
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">[藏]再谈JavaScript中的闭包</h1>
-        </header>
-        <date class="post-meta meta-date">
-            2014年4月26日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F'>文章收藏</a></span>
-            
-        </div>
-        
-        
-        
-        <div class="post-content">
-            <p>之前读js的时候总是感觉不清楚，近日决定重新攻读，看到这篇文章之后，我明白了某大神说的那句话，如果你不能向一个6岁的小朋友讲明白。那么这件事情你一定不明白。还有就是如果你必须理解一个闭包才会使用它，那么这个闭包设计本身就是失败的。情赏析本文。相当精彩。</p>
-<p>JavaScript中函数的重要性毋庸置疑。在理解了JavaScript中的函数之后，非常重要的地点就是理解我们怎样使用函数来创建闭包。一直以来，闭包都是JavaScript新手学习时的一个难点所在，它位于JavaScript函数与变量作用域交叉的一个灰色地带：</p>
-<p><a href="http://leaverimage.b0.upaiyun.com/2014/04/1389597690904-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202014-01-13%20%E4%B8%8B%E5%8D%881.20.17.png"><img src="/images/a6b5c488378f9e3aa825f07d0a699f5ba6c72afd.png" alt="1389597690904-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202014-01-13%20%E4%B8%8B%E5%8D%881.20.17"></a></p>
-<p>本文将尽可能简单的方法讲述关于JavaScript闭包的那些事情，使用的代码也非常的简单。如果一开始就讲述闭包的概念，只会使得你更加的困惑。所以我们就从一个我们熟悉的领域开始，慢慢的向闭包的邪恶领域前进，看看我们在那里能发现什么。</p>
-<p>下面开始我们的冒险之旅吧！</p>
-<h1 id="heading">函数中的函数</h1>
-<p>我们要做的第一件事情是理解当你在函数中创建了函数并且从函数内部返回一个函数时究竟发生了什么。首先我们来快速的回顾一下函数。</p>
-<p>看下面的代码：</p>
-<pre><code>&lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;calculateRectangleArea&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(&lt;/span&gt;&lt;/span&gt;length&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;,&lt;/span&gt;width&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;{&lt;/span&gt;
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><title>[藏]再谈JavaScript中的闭包 | bystander's blog</title><meta property="og:title" content="[藏]再谈JavaScript中的闭包 - bystander's blog"><meta property="og:type" content="article"><meta property="article:published_time" content="2014-04-26T16:36:28+08:00"><meta property="article:modified_time" content="2014-04-26T16:36:28+08:00"><meta name=Keywords content><meta name=description content="[藏]再谈JavaScript中的闭包"><meta name=author content="bystander"><meta property="og:url" content="http://leaver.me/2014/04/26/%E8%97%8F%E5%86%8D%E8%B0%88javascript%E4%B8%AD%E7%9A%84%E9%97%AD%E5%8C%85/"><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><link rel=stylesheet href=/css/normalize.css><link rel=stylesheet href=/css/style.css><script type=text/javascript src=//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js></script></head><body><header id=header class=clearfix><div class=container><div class=col-group><div class=site-name><a id=logo href=http://leaver.me/>bystander's blog</a><p class=description>寻找窄门</p></div><div><nav id=nav-menu class=clearfix><a class=current href=http://leaver.me/>首页</a>
+<a href=http://leaver.me/categories title=目录>目录</a>
+<a href=http://leaver.me/about/ title=关于我>关于我</a></nav></div></div></div></header><div id=body><div class=container><div class=col-group><div class=col-8 id=main><div class=res-cons><article class=post><header><h1 class=post-title>[藏]再谈JavaScript中的闭包</h1></header><date class="post-meta meta-date">2014年4月26日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F>文章收藏</a></span></div><div class=post-content><p>之前读js的时候总是感觉不清楚，近日决定重新攻读，看到这篇文章之后，我明白了某大神说的那句话，如果你不能向一个6岁的小朋友讲明白。那么这件事情你一定不明白。还有就是如果你必须理解一个闭包才会使用它，那么这个闭包设计本身就是失败的。情赏析本文。相当精彩。</p><p>JavaScript中函数的重要性毋庸置疑。在理解了JavaScript中的函数之后，非常重要的地点就是理解我们怎样使用函数来创建闭包。一直以来，闭包都是JavaScript新手学习时的一个难点所在，它位于JavaScript函数与变量作用域交叉的一个灰色地带：</p><p><a href=http://leaverimage.b0.upaiyun.com/2014/04/1389597690904-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202014-01-13%20%E4%B8%8B%E5%8D%881.20.17.png><img src=/images/a6b5c488378f9e3aa825f07d0a699f5ba6c72afd.png alt=1389597690904-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202014-01-13%20%E4%B8%8B%E5%8D%881.20.17></a></p><p>本文将尽可能简单的方法讲述关于JavaScript闭包的那些事情，使用的代码也非常的简单。如果一开始就讲述闭包的概念，只会使得你更加的困惑。所以我们就从一个我们熟悉的领域开始，慢慢的向闭包的邪恶领域前进，看看我们在那里能发现什么。</p><p>下面开始我们的冒险之旅吧！</p><h1 id=函数中的函数>函数中的函数</h1><p>我们要做的第一件事情是理解当你在函数中创建了函数并且从函数内部返回一个函数时究竟发生了什么。首先我们来快速的回顾一下函数。</p><p>看下面的代码：</p><pre><code>&lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;calculateRectangleArea&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(&lt;/span&gt;&lt;/span&gt;length&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;,&lt;/span&gt;width&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;return&lt;/span&gt; length&lt;span class=&quot;token operator&quot; style=&quot;color: #a67f59;&quot;&gt;*&lt;/span&gt;width&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;}&lt;/span&gt;   
 
@@ -251,389 +158,82 @@ getDelay函数展示了一个包含当前时间Date.now()和前面定义的开�
 当getDelay函数被返回时外部函数stopWatch函数不再器作用，那么下面的这行代码又发生了什么？
 
 &lt;pre class=&quot; language-javascript&quot; style=&quot;color: black;&quot;&gt;`&lt;span class=&quot;token keyword&quot; style=&quot;color: #0077aa;&quot;&gt;var&lt;/span&gt; elapsedTime &lt;span class=&quot;token operator&quot; style=&quot;color: #a67f59;&quot;&gt;=&lt;/span&gt; Date&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;now&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;(&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot; style=&quot;color: #a67f59;&quot;&gt;-&lt;/span&gt; startTime&lt;span class=&quot;token punctuation&quot; style=&quot;color: #999999;&quot;&gt;;&lt;/span&gt;   
-</code></pre>
-<p>在这个上下文中，看起来startTime变量没有被定义。但是，这段代码显然正常运行了，因此这里存在一些其他的东西。这里提到的“其他的东西”值得就是害羞而神秘的闭包。我们来看看究竟发生了什么似的我们的startTime变量储存了一个实际的值而不是undefined。</p>
-<p>JavaScript runtime将会持续跟踪你的变量，内存使用，引用，实际上来说它非常的聪明。在这个例子中，它探测到内部函数（getDelay）依赖于一个来自外部函数（stopWatch）的变量。当这种情况发生时，runtime将会确保任何来自于外部函数的变量仍然在内部函数中可用，即使外部函数已经调用结束了。</p>
-<p>为了说明这一点，我们来看一张图：</p>
-<p><a href="http://leaverimage.b0.upaiyun.com/2014/04/1389597838417-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202014-01-13%20%E4%B8%8B%E5%8D%883.03.33.png"><img src="/images/0771c57bc7c41dfbfaebf8c90b29ebfb3d265bae.png" alt="1389597838417-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202014-01-13%20%E4%B8%8B%E5%8D%883.03.33"></a></p>
-<p>变量timer依然指向getDelay函数，但是getDelay函数依然可以获取来自于外部函数stopWatch中的startTime变量。这个内部函数 – 由于它将来自于外部函数的相关变量包含进了自己的作用域中 – 因此被称为闭包：</p>
-<p><a href="http://leaverimage.b0.upaiyun.com/2014/04/1389597858778-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202014-01-13%20%E4%B8%8B%E5%8D%883.05.32.png"><img src="/images/6f0bc551d479b6a9c3b4a7c17f5b28c97a21b146.png" alt="1389597858778-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202014-01-13%20%E4%B8%8B%E5%8D%883.05.32"></a></p>
-<p>至此，我们可以给闭包下一个定义：闭包就是一个新创建但是依然包含外部作用域变量的函数：</p>
-<p><a href="http://leaverimage.b0.upaiyun.com/2014/04/1389597875629-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202014-01-13%20%E4%B8%8B%E5%8D%883.08.29.png"><img src="/images/62cc4b99cacf82a71cb306de3365c88adfeb8e85.png" alt="1389597875629-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202014-01-13%20%E4%B8%8B%E5%8D%883.08.29"></a></p>
-<p>再次回到前面的例子，在timer变量初始化时startTime得到了Date.now()的值。当stopWatch返回了内部桉树getDelay时，stopWatch函数不再起作用。但是内部函数依赖的变量却没有消失。这些共享的变量没有消失。相反，它们被包含进入了内部函数，也就是闭包中。</p>
-<h1 id="heading-1">总结</h1>
-<p>闭包乍看上去很复杂，但是其实很简单，它存在于JavaScript中的各个地方。重要的一点是记住：闭包允许函数保持运行，即使函数的韩静发生了巨大的变化或者小时。当函数被创建时任何包含在作用域中的变量都会被保护起来以确保函数的正常运行。这样的机制对于JavaScript这样的动态语言来说是非常重要的，因为你可以随时创建，修改以及销毁变量。</p>
-<hr>
-<h1 id="closures-in-javascripthttpwwwkirupacomhtml5closures-in-javascripthtmhttpwwwkirupacomhtml5closures-in-javascripthtm">本文译自Closures in JavaScript，原文地址<a href="http://www.kirupa.com/html5/closures_in_javascript.htm">http://www.kirupa.com/html5/closures_in_javascript.htm</a></h1>
-
-        </div>
-
-        
-
-
-        
-
-<div class="post-archive">
-    <h2>See Also</h2>
-    <ul class="listing">
-        
-        <li><a href="/2013/12/14/%E8%97%8Fclass.getresource%E5%92%8Cclassloader.getresource%E4%B8%8D%E5%90%8C%E7%82%B9/">[藏]Class.getResource和ClassLoader.getResource不同点</a></li>
-        
-        <li><a href="/2013/04/01/%E8%97%8F%E5%85%B3%E4%BA%8Eb%E6%A0%91%E7%9A%84%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/">[藏]关于B树的一篇文章</a></li>
-        
-        <li><a href="/2013/03/06/e.net-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%8C%87%E5%8D%97/">[E].Net 多线程指南</a></li>
-        
-        <li><a href="/2013/01/06/%E5%9B%BE%E7%9A%84%E9%81%8D%E5%8E%86c/">图的遍历(C#)</a></li>
-        
-        <li><a href="/2012/09/25/c#-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E7%B3%BB%E5%88%97/">C# 网络编程系列</a></li>
-        
-    </ul>
-</div>
-
-
-        <div class="post-meta meta-tags">
-            
-            <ul class="clearfix">
-                
-                <li><a href='http://leaver.me/tags/javascript'>javascript</a></li>
-                
-                <li><a href='http://leaver.me/tags/web'>web</a></li>
-                
-                <li><a href='http://leaver.me/tags/%E5%AD%A6%E4%B9%A0'>学习</a></li>
-                
-                <li><a href='http://leaver.me/tags/%E6%94%B6%E8%97%8F'>收藏</a></li>
-                
-            </ul>
-            
-        </div>
-    </article>
-    
-    <div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "leaverme" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
-    
-    
-</div>
-
-                </div>
-
-                <div id="secondary">
-    <section class="widget">
-        <form id="search" action='http://leaver.me/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
-      
-      <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="http://leaver.me/">
-      <button type="submit" class="submit icon-search"></button>
-</form>
-    </section>
-    
-    <section class="widget">
-        <h3 class="widget-title">最近文章</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2019 年终总结">2019 年终总结</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/" title="深入理解Raft协议">深入理解Raft协议</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/" title="《非暴力沟通》笔记">《非暴力沟通》笔记</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/10/06/wedding-of-friends/" title="Wedding of Friends">Wedding of Friends</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/09/29/principle-note/" title="Principle Note">Principle Note</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/" title="梦见鲸鱼的那一夜">梦见鲸鱼的那一夜</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/08/20/understand-hong-kong-2/" title="Understand Hong Kong 2">Understand Hong Kong 2</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/08/18/understand-hong-kong-part-1/" title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/" title="错过的都是命，得到的才是人生">错过的都是命，得到的才是人生</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/04/06/recently/" title="Recently">Recently</a>
-    </li>
-    
-</ul>
-    </section>
-
-    
-
-    <section class="widget">
-        <h3 class="widget-title">分类</h3>
-<ul class="widget-list">
-    
-    <li><a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记 (186)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/">我的翻译 (57)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/">文章收藏 (53)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录 (3)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记 (4)</a></li>
-    
-</ul>
-    </section>
-
-    <section class="widget">
-        <h3 class="widget-title">标签</h3>
-<div class="tagcloud">
-    
-    <a href="http://leaver.me/tags/android/">android</a>
-    
-    <a href="http://leaver.me/tags/c/">C＃</a>
-    
-    <a href="http://leaver.me/tags/c&#43;&#43;/">C&#43;&#43;</a>
-    
-    <a href="http://leaver.me/tags/java/">java</a>
-    
-    <a href="http://leaver.me/tags/javascript/">javascript</a>
-    
-    <a href="http://leaver.me/tags/linux/">linux</a>
-    
-    <a href="http://leaver.me/tags/mac/">mac</a>
-    
-    <a href="http://leaver.me/tags/matlab/">matlab</a>
-    
-    <a href="http://leaver.me/tags/maven/">maven</a>
-    
-    <a href="http://leaver.me/tags/mysql/">mysql</a>
-    
-    <a href="http://leaver.me/tags/nextgen-gallery/">NextGEN Gallery</a>
-    
-    <a href="http://leaver.me/tags/php/">php</a>
-    
-    <a href="http://leaver.me/tags/python/">python</a>
-    
-    <a href="http://leaver.me/tags/shell/">shell</a>
-    
-    <a href="http://leaver.me/tags/spring/">spring</a>
-    
-    <a href="http://leaver.me/tags/sql/">sql</a>
-    
-    <a href="http://leaver.me/tags/stackoverflow/">stackoverflow</a>
-    
-    <a href="http://leaver.me/tags/wcf/">WCF</a>
-    
-    <a href="http://leaver.me/tags/web/">web</a>
-    
-    <a href="http://leaver.me/tags/windows/">windows</a>
-    
-    <a href="http://leaver.me/tags/wordpress/">wordpress</a>
-    
-    <a href="http://leaver.me/tags/wpf/">WPF</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/">上海</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/">下载</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
-    
-    <a href="http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/">互联网</a>
-    
-    <a href="http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
-    
-    <a href="http://leaver.me/tags/%E5%88%B6%E5%BA%A6/">制度</a>
-    
-    <a href="http://leaver.me/tags/%E5%89%8D%E7%AB%AF/">前端</a>
-    
-    <a href="http://leaver.me/tags/%E5%8E%9F%E5%88%9B/">原创</a>
-    
-    <a href="http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/">大学</a>
-    
-    <a href="http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/">学习</a>
-    
-    <a href="http://leaver.me/tags/%E5%AE%89%E5%85%A8/">安全</a>
-    
-    <a href="http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/">家庭</a>
-    
-    <a href="http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/">工作</a>
-    
-    <a href="http://leaver.me/tags/%E5%B7%A5%E5%85%B7/">工具</a>
-    
-    <a href="http://leaver.me/tags/%E5%B9%B6%E5%8F%91/">并发</a>
-    
-    <a href="http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/">序列化</a>
-    
-    <a href="http://leaver.me/tags/%E5%BC%80%E5%8F%91/">开发</a>
-    
-    <a href="http://leaver.me/tags/%E5%BF%83%E7%90%86/">心理</a>
-    
-    <a href="http://leaver.me/tags/%E6%80%BB%E7%BB%93/">总结</a>
-    
-    <a href="http://leaver.me/tags/%E6%8A%80%E6%9C%AF/">技术</a>
-    
-    <a href="http://leaver.me/tags/%E6%8F%92%E4%BB%B6/">插件</a>
-    
-    <a href="http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-    
-    <a href="http://leaver.me/tags/%E6%94%B6%E8%97%8F/">收藏</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E5%AD%A6/">数学</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">数据挖掘</a>
-    
-    <a href="http://leaver.me/tags/%E6%96%87%E7%AB%A0/">文章</a>
-    
-    <a href="http://leaver.me/tags/%E6%99%BA%E8%83%BD/">智能</a>
-    
-    <a href="http://leaver.me/tags/%E6%9D%82%E6%96%87/">杂文</a>
-    
-    <a href="http://leaver.me/tags/%E6%AD%A6%E6%B1%89/">武汉</a>
-    
-    <a href="http://leaver.me/tags/%E6%B1%87%E7%BC%96/">汇编</a>
-    
-    <a href="http://leaver.me/tags/%E7%88%B1%E6%83%85/">爱情</a>
-    
-    <a href="http://leaver.me/tags/%E7%90%86%E8%AE%BA/">理论</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%9F%E6%B4%BB/">生活</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/">电子书</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%B5%E5%BD%B1/">电影</a>
-    
-    <a href="http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/">社会</a>
-    
-    <a href="http://leaver.me/tags/%E7%A7%91%E6%8A%80/">科技</a>
-    
-    <a href="http://leaver.me/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
-    
-    <a href="http://leaver.me/tags/%E7%AE%97%E6%B3%95/">算法</a>
-    
-    <a href="http://leaver.me/tags/%E7%BC%96%E7%A8%8B/">编程</a>
-    
-    <a href="http://leaver.me/tags/%E7%BC%96%E8%AF%91/">编译</a>
-    
-    <a href="http://leaver.me/tags/%E7%BF%BB%E8%AF%91/">翻译</a>
-    
-    <a href="http://leaver.me/tags/%E8%81%8C%E4%B8%9A/">职业</a>
-    
-    <a href="http://leaver.me/tags/%E8%AE%B0%E5%BD%95/">记录</a>
-    
-    <a href="http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/">设计</a>
-    
-    <a href="http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/">读书</a>
-    
-    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/">软件</a>
-    
-    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</a>
-    
-    <a href="http://leaver.me/tags/%E8%BF%90%E7%BB%B4/">运维</a>
-    
-    <a href="http://leaver.me/tags/%E9%87%91%E8%9E%8D/">金融</a>
-    
-</div>
-    </section>
-
-    
-<section class="widget">
-    <h3 class="widget-title">友情链接</h3>
-    <ul class="widget-list">
-        
-        <li>
-            <a target="_blank" href="https://www.cppfans.org/" title="C&#43;&#43;爱好者博客">C&#43;&#43;爱好者博客</a>
-        </li>
-        
-        <li>
-            <a target="_blank" href="http://www.kailing.pub" title="KL，每天进步一点点">KL，每天进步一点点</a>
-        </li>
-        
-    </ul>
-</section>
-
-
-    <section class="widget">
-        <h3 class="widget-title">其它</h3>
-        <ul class="widget-list">
-            <li><a href="http://leaver.me/index.xml">文章 RSS</a></li>
-        </ul>
-    </section>
-</div>
-            </div>
-        </div>
-    </div>
-    <footer id="footer">
-    <div class="container">
-        &copy; 2020 <a href="http://leaver.me/">bystander&#39;s blog By bystander</a>.
-        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
-        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
-        
-    </div>
-</footer>
-
-
-    
-    <script type="text/javascript">
-        window.MathJax = {
-            tex2jax: {
-                inlineMath: [['$', '$']],
-                processEscapes: true
-                }
-            };
-    </script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
-
-
-<a id="rocket" href="#top"></a>
-<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-30961201-3', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-
-
-
-
-
-</body>
-
-</html>
+</code></pre><p>在这个上下文中，看起来startTime变量没有被定义。但是，这段代码显然正常运行了，因此这里存在一些其他的东西。这里提到的“其他的东西”值得就是害羞而神秘的闭包。我们来看看究竟发生了什么似的我们的startTime变量储存了一个实际的值而不是undefined。</p><p>JavaScript runtime将会持续跟踪你的变量，内存使用，引用，实际上来说它非常的聪明。在这个例子中，它探测到内部函数（getDelay）依赖于一个来自外部函数（stopWatch）的变量。当这种情况发生时，runtime将会确保任何来自于外部函数的变量仍然在内部函数中可用，即使外部函数已经调用结束了。</p><p>为了说明这一点，我们来看一张图：</p><p><a href=http://leaverimage.b0.upaiyun.com/2014/04/1389597838417-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202014-01-13%20%E4%B8%8B%E5%8D%883.03.33.png><img src=/images/0771c57bc7c41dfbfaebf8c90b29ebfb3d265bae.png alt=1389597838417-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202014-01-13%20%E4%B8%8B%E5%8D%883.03.33></a></p><p>变量timer依然指向getDelay函数，但是getDelay函数依然可以获取来自于外部函数stopWatch中的startTime变量。这个内部函数 – 由于它将来自于外部函数的相关变量包含进了自己的作用域中 – 因此被称为闭包：</p><p><a href=http://leaverimage.b0.upaiyun.com/2014/04/1389597858778-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202014-01-13%20%E4%B8%8B%E5%8D%883.05.32.png><img src=/images/6f0bc551d479b6a9c3b4a7c17f5b28c97a21b146.png alt=1389597858778-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202014-01-13%20%E4%B8%8B%E5%8D%883.05.32></a></p><p>至此，我们可以给闭包下一个定义：闭包就是一个新创建但是依然包含外部作用域变量的函数：</p><p><a href=http://leaverimage.b0.upaiyun.com/2014/04/1389597875629-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202014-01-13%20%E4%B8%8B%E5%8D%883.08.29.png><img src=/images/62cc4b99cacf82a71cb306de3365c88adfeb8e85.png alt=1389597875629-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202014-01-13%20%E4%B8%8B%E5%8D%883.08.29></a></p><p>再次回到前面的例子，在timer变量初始化时startTime得到了Date.now()的值。当stopWatch返回了内部桉树getDelay时，stopWatch函数不再起作用。但是内部函数依赖的变量却没有消失。这些共享的变量没有消失。相反，它们被包含进入了内部函数，也就是闭包中。</p><h1 id=总结>总结</h1><p>闭包乍看上去很复杂，但是其实很简单，它存在于JavaScript中的各个地方。重要的一点是记住：闭包允许函数保持运行，即使函数的韩静发生了巨大的变化或者小时。当函数被创建时任何包含在作用域中的变量都会被保护起来以确保函数的正常运行。这样的机制对于JavaScript这样的动态语言来说是非常重要的，因为你可以随时创建，修改以及销毁变量。</p><hr><h1 id=本文译自closures-in-javascript原文地址httpwwwkirupacomhtml5closures_in_javascripthtmhttpwwwkirupacomhtml5closures_in_javascripthtm>本文译自Closures in JavaScript，原文地址<a href=http://www.kirupa.com/html5/closures_in_javascript.htm>http://www.kirupa.com/html5/closures_in_javascript.htm</a></h1></div><div class=post-archive><h2>See Also</h2><ul class=listing><li><a href=/2013/12/14/%E8%97%8Fclass.getresource%E5%92%8Cclassloader.getresource%E4%B8%8D%E5%90%8C%E7%82%B9/>[藏]Class.getResource和ClassLoader.getResource不同点</a></li><li><a href=/2013/04/01/%E8%97%8F%E5%85%B3%E4%BA%8Eb%E6%A0%91%E7%9A%84%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/>[藏]关于B树的一篇文章</a></li><li><a href=/2013/03/06/e.net-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%8C%87%E5%8D%97/>[E].Net 多线程指南</a></li><li><a href=/2013/01/06/%E5%9B%BE%E7%9A%84%E9%81%8D%E5%8E%86c/>图的遍历(C#)</a></li><li><a href=/2012/09/25/c#-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E7%B3%BB%E5%88%97/>C# 网络编程系列</a></li></ul></div><div class="post-meta meta-tags"><ul class=clearfix><li><a href=http://leaver.me/tags/javascript>javascript</a></li><li><a href=http://leaver.me/tags/web>web</a></li><li><a href=http://leaver.me/tags/%E5%AD%A6%E4%B9%A0>学习</a></li><li><a href=http://leaver.me/tags/%E6%94%B6%E8%97%8F>收藏</a></li></ul></div></article><div id=disqus_thread></div><script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return;}
+var d=document,s=d.createElement('script');s.async=true;s.src='//'+"leaverme"+'.disqus.com/embed.js';s.setAttribute('data-timestamp',+new Date());(d.head||d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div></div><div id=secondary><section class=widget><form id=search action=http://leaver.me/search/ method=get accept-charset=utf-8 target=_blank _lpchecked=1><input type=text name=q maxlength=20 placeholder=Search>
+<input type=hidden name=sitesearch value=http://leaver.me/>
+<button type=submit class="submit icon-search"></button></form></section><section class=widget><h3 class=widget-title>最近文章</h3><ul class=widget-list><li><a href=http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/ title="2019 年终总结">2019 年终总结</a></li><li><a href=http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/ title=深入理解Raft协议>深入理解Raft协议</a></li><li><a href=http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/ title=《非暴力沟通》笔记>《非暴力沟通》笔记</a></li><li><a href=http://leaver.me/2019/10/06/wedding-of-friends/ title="Wedding of Friends">Wedding of Friends</a></li><li><a href=http://leaver.me/2019/09/29/principle-note/ title="Principle Note">Principle Note</a></li><li><a href=http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/ title=梦见鲸鱼的那一夜>梦见鲸鱼的那一夜</a></li><li><a href=http://leaver.me/2019/08/20/understand-hong-kong-2/ title="Understand Hong Kong 2">Understand Hong Kong 2</a></li><li><a href=http://leaver.me/2019/08/18/understand-hong-kong-part-1/ title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a></li><li><a href=http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/ title=错过的都是命，得到的才是人生>错过的都是命，得到的才是人生</a></li><li><a href=http://leaver.me/2019/04/06/recently/ title=Recently>Recently</a></li></ul></section><section class=widget><h3 class=widget-title>分类</h3><ul class=widget-list><li><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/>学习笔记 (186)</a></li><li><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/>我的翻译 (57)</a></li><li><a href=http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/>文章收藏 (53)</a></li><li><a href=http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/>生活记录 (3)</a></li><li><a href=http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/>读书笔记 (4)</a></li></ul></section><section class=widget><h3 class=widget-title>标签</h3><div class=tagcloud><a href=http://leaver.me/tags/android/>android</a>
+<a href=http://leaver.me/tags/c/>C＃</a>
+<a href=http://leaver.me/tags/c++/>C++</a>
+<a href=http://leaver.me/tags/java/>java</a>
+<a href=http://leaver.me/tags/javascript/>javascript</a>
+<a href=http://leaver.me/tags/linux/>linux</a>
+<a href=http://leaver.me/tags/mac/>mac</a>
+<a href=http://leaver.me/tags/matlab/>matlab</a>
+<a href=http://leaver.me/tags/maven/>maven</a>
+<a href=http://leaver.me/tags/mysql/>mysql</a>
+<a href=http://leaver.me/tags/nextgen-gallery/>NextGEN Gallery</a>
+<a href=http://leaver.me/tags/php/>php</a>
+<a href=http://leaver.me/tags/python/>python</a>
+<a href=http://leaver.me/tags/shell/>shell</a>
+<a href=http://leaver.me/tags/spring/>spring</a>
+<a href=http://leaver.me/tags/sql/>sql</a>
+<a href=http://leaver.me/tags/stackoverflow/>stackoverflow</a>
+<a href=http://leaver.me/tags/wcf/>WCF</a>
+<a href=http://leaver.me/tags/web/>web</a>
+<a href=http://leaver.me/tags/windows/>windows</a>
+<a href=http://leaver.me/tags/wordpress/>wordpress</a>
+<a href=http://leaver.me/tags/wpf/>WPF</a>
+<a href=http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/>上海</a>
+<a href=http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/>下载</a>
+<a href=http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/>中间件</a>
+<a href=http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/>互联网</a>
+<a href=http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/>分布式</a>
+<a href=http://leaver.me/tags/%E5%88%B6%E5%BA%A6/>制度</a>
+<a href=http://leaver.me/tags/%E5%89%8D%E7%AB%AF/>前端</a>
+<a href=http://leaver.me/tags/%E5%8E%9F%E5%88%9B/>原创</a>
+<a href=http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/>大学</a>
+<a href=http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/>学习</a>
+<a href=http://leaver.me/tags/%E5%AE%89%E5%85%A8/>安全</a>
+<a href=http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/>家庭</a>
+<a href=http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/>工作</a>
+<a href=http://leaver.me/tags/%E5%B7%A5%E5%85%B7/>工具</a>
+<a href=http://leaver.me/tags/%E5%B9%B6%E5%8F%91/>并发</a>
+<a href=http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/>序列化</a>
+<a href=http://leaver.me/tags/%E5%BC%80%E5%8F%91/>开发</a>
+<a href=http://leaver.me/tags/%E5%BF%83%E7%90%86/>心理</a>
+<a href=http://leaver.me/tags/%E6%80%BB%E7%BB%93/>总结</a>
+<a href=http://leaver.me/tags/%E6%8A%80%E6%9C%AF/>技术</a>
+<a href=http://leaver.me/tags/%E6%8F%92%E4%BB%B6/>插件</a>
+<a href=http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/>操作系统</a>
+<a href=http://leaver.me/tags/%E6%94%B6%E8%97%8F/>收藏</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E5%AD%A6/>数学</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/>数据库</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/>数据挖掘</a>
+<a href=http://leaver.me/tags/%E6%96%87%E7%AB%A0/>文章</a>
+<a href=http://leaver.me/tags/%E6%99%BA%E8%83%BD/>智能</a>
+<a href=http://leaver.me/tags/%E6%9D%82%E6%96%87/>杂文</a>
+<a href=http://leaver.me/tags/%E6%AD%A6%E6%B1%89/>武汉</a>
+<a href=http://leaver.me/tags/%E6%B1%87%E7%BC%96/>汇编</a>
+<a href=http://leaver.me/tags/%E7%88%B1%E6%83%85/>爱情</a>
+<a href=http://leaver.me/tags/%E7%90%86%E8%AE%BA/>理论</a>
+<a href=http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/>生产力</a>
+<a href=http://leaver.me/tags/%E7%94%9F%E6%B4%BB/>生活</a>
+<a href=http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/>电子书</a>
+<a href=http://leaver.me/tags/%E7%94%B5%E5%BD%B1/>电影</a>
+<a href=http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/>社会</a>
+<a href=http://leaver.me/tags/%E7%A7%91%E6%8A%80/>科技</a>
+<a href=http://leaver.me/tags/%E7%AC%94%E8%AE%B0/>笔记</a>
+<a href=http://leaver.me/tags/%E7%AE%97%E6%B3%95/>算法</a>
+<a href=http://leaver.me/tags/%E7%BC%96%E7%A8%8B/>编程</a>
+<a href=http://leaver.me/tags/%E7%BC%96%E8%AF%91/>编译</a>
+<a href=http://leaver.me/tags/%E7%BF%BB%E8%AF%91/>翻译</a>
+<a href=http://leaver.me/tags/%E8%81%8C%E4%B8%9A/>职业</a>
+<a href=http://leaver.me/tags/%E8%AE%B0%E5%BD%95/>记录</a>
+<a href=http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/>设计</a>
+<a href=http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/>读书</a>
+<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/>软件</a>
+<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/>软件测试</a>
+<a href=http://leaver.me/tags/%E8%BF%90%E7%BB%B4/>运维</a>
+<a href=http://leaver.me/tags/%E9%87%91%E8%9E%8D/>金融</a></div></section><section class=widget><h3 class=widget-title>友情链接</h3><ul class=widget-list><li><a target=_blank href=https://www.cppfans.org/ title=C++爱好者博客>C++爱好者博客</a></li><li><a target=_blank href=http://www.kailing.pub title=KL，每天进步一点点>KL，每天进步一点点</a></li></ul></section><section class=widget><h3 class=widget-title>其它</h3><ul class=widget-list><li><a href=http://leaver.me/index.xml>文章 RSS</a></li></ul></section></div></div></div></div><footer id=footer><div class=container>&copy; 2020 <a href=http://leaver.me/>bystander's blog By bystander</a>.
+Powered by <a rel="nofollow noreferer noopener" href=https://gohugo.io target=_blank>Hugo</a>.
+<a href=https://www.flysnow.org/ target=_blank>Theme</a> based on <a href=https://github.com/flysnow-org/maupassant-hugo target=_blank>maupassant</a>.</div></footer><script type=text/javascript>window.MathJax={tex2jax:{inlineMath:[['$','$']],processEscapes:true}};</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script><a id=rocket href=#top></a><script type=text/javascript src="/js/totop.js?v=0.0.0" async></script><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-30961201-3','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></body></html>

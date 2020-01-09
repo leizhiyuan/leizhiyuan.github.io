@@ -1,148 +1,16 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>中间件 | bystander&#39;s blog</title>
-    <meta property="og:title" content="中间件 - bystander&#39;s blog">
-    <meta property="og:type" content="article">
-        
-        
-    <meta name="Keywords" content="">
-    <meta name="description" content="中间件">
-        
-    <meta name="author" content="bystander">
-    <meta property="og:url" content="http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-
-    <link rel="stylesheet" href='/css/normalize.css'>
-    <link rel="stylesheet" href='/css/style.css'>
-    <link rel="alternate" type="application/rss+xml+xml" href="http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/index.xml" title="bystander's blog" />
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-    
-
-
-    
-    
-</head>
-
-
-<body>
-    <header id="header" class="clearfix">
-    <div class="container">
-        <div class="col-group">
-            <div class="site-name ">
-                
-                    <a id="logo" href="http://leaver.me/">
-                        bystander&#39;s blog
-                    </a>
-                
-                <p class="description">寻找窄门</p>
-            </div>
-            <div>
-                <nav id="nav-menu" class="clearfix">
-                    <a class="" href="http://leaver.me/">首页</a>
-                    
-                    <a  href="http://leaver.me/categories" title="目录">目录</a>
-                    
-                    <a  href="http://leaver.me/about/" title="关于我">关于我</a>
-                    
-                </nav>
-            </div>
-        </div>
-    </div>
-</header>
-
-    <div id="body">
-        <div class="container">
-            <div class="col-group">
-
-                <div class="col-8" id="main">
-                    
-<div class="res-cons">
-    
-    <h3 class="archive-title">
-        包含标签
-        <span class="keyword">中间件</span>
-        的文章
-    </h3>
-    
-
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2015/09/08/kafka%E5%BF%AB%E9%80%9F%E5%BC%80%E5%8F%91demo/">kafka快速开发demo</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2015年9月8日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            在kafka快速上手,主要是使用kafka提供的测试来做了一下简单测试,实际开发中的使用可能才是我们要关系的.启动zk和kafka,新建topic的过程都不变.
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><title>中间件 | bystander's blog</title><meta property="og:title" content="中间件 - bystander's blog"><meta property="og:type" content="article"><meta name=Keywords content><meta name=description content="中间件"><meta name=author content="bystander"><meta property="og:url" content="http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/"><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><link rel=stylesheet href=/css/normalize.css><link rel=stylesheet href=/css/style.css><link rel=alternate type=application/rss+xml+xml href=http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/index.xml title="bystander's blog"><script type=text/javascript src=//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js></script></head><body><header id=header class=clearfix><div class=container><div class=col-group><div class=site-name><a id=logo href=http://leaver.me/>bystander's blog</a><p class=description>寻找窄门</p></div><div><nav id=nav-menu class=clearfix><a href=http://leaver.me/>首页</a>
+<a href=http://leaver.me/categories title=目录>目录</a>
+<a href=http://leaver.me/about/ title=关于我>关于我</a></nav></div></div></div></header><div id=body><div class=container><div class=col-group><div class=col-8 id=main><div class=res-cons><h3 class=archive-title>包含标签
+<span class=keyword>中间件</span>
+的文章</h3><article class=post><header><h1 class=post-title><a href=http://leaver.me/2015/09/08/kafka%E5%BF%AB%E9%80%9F%E5%BC%80%E5%8F%91demo/>kafka快速开发demo</a></h1></header><date class="post-meta meta-date">2015年9月8日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>在kafka快速上手,主要是使用kafka提供的测试来做了一下简单测试,实际开发中的使用可能才是我们要关系的.启动zk和kafka,新建topic的过程都不变.
 1 新建一个maven工程,引入依赖
-&lt;dependency&gt; &lt;groupId&gt;org.apache.kafka&lt;/groupId&gt; &lt;artifactId&gt;kafka_2.11&lt;/artifactId&gt; &lt;version&gt;0.8.2.1&lt;/version&gt; &lt;/dependency&gt; 2 编写配置文件
-public interface KafkaProperties { public final static String ZK = &#34;127.0.0.1:2181&#34;; public final static String GROUP_ID = &#34;test_group1&#34;; public final static String TOPIC = &#34;test&#34;; public final static String BROKER_LIST = &#34;127.0.0.1:9092&#34;; public final static String SESSION_TIMEOUT = &#34;20000&#34;; public final static String SYNC_TIMEOUT = &#34;20000&#34;; public final static String INTERVAL = &#34;1000&#34;; } 3 编写生产者
-public class KafkaProducer extends Thread { private Producer&lt;Integer, String&gt; producer; private String topic; private Properties props = new Properties(); private final int SLEEP = 1000 * 3; public KafkaProducer(String topic) { props.put(&#34;serializer.class&#34;, &#34;kafka.serializer.StringEncoder&#34;); //生产者直接和broker列表连接 props.put(&#34;metadata.broker.list&#34;, KafkaProperties.BROKER_LIST); producer = new Producer&lt;Integer, String&gt;(new ProducerConfig(props)); this.topic = topic; } @Override public void run() { int offsetNo = 1; while (true) { String msg = new String(&#34;Message_&#34; + offsetNo); System.out.println(&#34;Send-&gt;[&#34; + msg + &#34;]&#34;); producer.send(new KeyedMessage&lt;Integer, String&gt;(topic, msg)); offsetNo++; try { sleep(SLEEP); } catch (Exception ex) { ex.……
-            <p class="readmore"><a href="http://leaver.me/2015/09/08/kafka%E5%BF%AB%E9%80%9F%E5%BC%80%E5%8F%91demo/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2015/09/07/kafka%E6%96%87%E7%AB%A0%E6%8E%A8%E8%8D%90/">kafka文章推荐</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2015年9月7日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            本文主要分享看到的好的关于kafka的文章.后续看到持续更新
- Kafka剖析（一）：Kafka背景及架构介绍 Kafka设计解析（二）：Kafka High Availability （上） Kafka设计解析（三）：Kafka High Availability （下） Kafka设计解析（四）：Kafka Consumer解析  ……
-            <p class="readmore"><a href="http://leaver.me/2015/09/07/kafka%E6%96%87%E7%AB%A0%E6%8E%A8%E8%8D%90/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2015/09/05/kafka%E5%88%86%E5%B8%83%E5%BC%8F%E9%83%A8%E7%BD%B2%E4%B8%8E%E9%AA%8C%E8%AF%81/">kafka分布式部署与验证</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2015年9月5日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            在kafka快速上手,和kafka中的partition和offset中,已经解释了kafka的一些原理,和完成了一个简单的生产消费的实践,如第一篇所说,kafka是一个分布式环境下的消息组件,那么,按照我们前面的简单上手,如果kafka的应用进程被杀或者kafka的机器宕机,那么kafka消息组件就无法使用了,或者zookeeper宕机了,那么kafka也无法使用了.
+&lt;dependency> &lt;groupId>org.apache.kafka&lt;/groupId> &lt;artifactId>kafka_2.11&lt;/artifactId> &lt;version>0.8.2.1&lt;/version> &lt;/dependency> 2 编写配置文件
+public interface KafkaProperties { public final static String ZK = "127.0.0.1:2181"; public final static String GROUP_ID = "test_group1"; public final static String TOPIC = "test"; public final static String BROKER_LIST = "127.0.0.1:9092"; public final static String SESSION_TIMEOUT = "20000"; public final static String SYNC_TIMEOUT = "20000"; public final static String INTERVAL = "1000"; } 3 编写生产者
+public class KafkaProducer extends Thread { private Producer&lt;Integer, String> producer; private String topic; private Properties props = new Properties(); private final int SLEEP = 1000 * 3; public KafkaProducer(String topic) { props.put("serializer.class", "kafka.serializer.StringEncoder"); //生产者直接和broker列表连接 props.put("metadata.broker.list", KafkaProperties.BROKER_LIST); producer = new Producer&lt;Integer, String>(new ProducerConfig(props)); this.topic = topic; } @Override public void run() { int offsetNo = 1; while (true) { String msg = new String("Message_" + offsetNo); System.out.println("Send->[" + msg + "]"); producer.send(new KeyedMessage&lt;Integer, String>(topic, msg)); offsetNo++; try { sleep(SLEEP); } catch (Exception ex) { ex.……<p class=readmore><a href=http://leaver.me/2015/09/08/kafka%E5%BF%AB%E9%80%9F%E5%BC%80%E5%8F%91demo/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2015/09/07/kafka%E6%96%87%E7%AB%A0%E6%8E%A8%E8%8D%90/>kafka文章推荐</a></h1></header><date class="post-meta meta-date">2015年9月7日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>本文主要分享看到的好的关于kafka的文章.后续看到持续更新
+Kafka剖析（一）：Kafka背景及架构介绍 Kafka设计解析（二）：Kafka High Availability （上） Kafka设计解析（三）：Kafka High Availability （下） Kafka设计解析（四）：Kafka Consumer解析 ……<p class=readmore><a href=http://leaver.me/2015/09/07/kafka%E6%96%87%E7%AB%A0%E6%8E%A8%E8%8D%90/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2015/09/05/kafka%E5%88%86%E5%B8%83%E5%BC%8F%E9%83%A8%E7%BD%B2%E4%B8%8E%E9%AA%8C%E8%AF%81/>kafka分布式部署与验证</a></h1></header><date class="post-meta meta-date">2015年9月5日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>在kafka快速上手,和kafka中的partition和offset中,已经解释了kafka的一些原理,和完成了一个简单的生产消费的实践,如第一篇所说,kafka是一个分布式环境下的消息组件,那么,按照我们前面的简单上手,如果kafka的应用进程被杀或者kafka的机器宕机,那么kafka消息组件就无法使用了,或者zookeeper宕机了,那么kafka也无法使用了.
 kafka集群(cluster) 一台机器不够,那就多搞几台,首先,启动zookeeper这个就不多说了.可以参看前文,在启动kafka的时候,我们在单机模拟启动多个kafka应用. 首先在config目录,copy两个server.properties 文件,这里我复制三份,分别起名server1.properties ,server2.properties server3.properties 然后修改这三个配置文件,主要修改broker.id=2,port=9094,log.dir=/tmp/kafka-logs-2这三个值,broker.id是用来标记分布式环境中的broker的,要求唯一,port和log.dir一个端口,一个log目录,如果在真实的分布式环境中是不需要修改.这里单机模拟防止端口冲突.
 分别把broker.id改为1,2,3,log.dir则分别改成kafka-logs-1,kafka-logs-2,kafka-logs-3,然后依次启动 kafka-server-start.bat ../../config/server1.properties kafka-server-start.bat ../../config/server2.properties kafka-server-start.bat ../../config/server3.properties
 如果你启动有报错,一个就是之前说的那个vm参数太大,另一个可能是你的端口没改好.具体错误看下报错就好了.
@@ -152,31 +20,9 @@ kafka集群(cluster) 一台机器不够,那就多搞几台,首先,启动zookeepe
 然后我们测试一条信息. kafka-console-producer.bat --broker-list localhost:7777,localhost:8888,localhost:9999 --topic replicationtest 上面的7777是server1.properties 中设置的.根据个人情况.改改.然后在控制台发发消息.
 然后消费一下. kafka-console-consumer.bat --zookeeper localhost:2181 --topic replicationtest 这里的2181是zookeeper的端口,不用改. 然后.我们开始关掉一个broker,在3的控制台里CTRL,C.然后是否终止操作,输入Y. 再发一条消息 一切正常.我们看一下集群信息 发现Isr中存活的机器少了3.因为3挂了. 然后我们关掉broker2.这时候,会触发新的leader选举.期望值1变成leader,再发一条消息 可以看到生产者发消息过程中,产生了异常,因为和2的连接断开了.但是注意,消息并没有丢,因为触发了新的选举.可以看到,消费者还是接到了正常的消息.集群情况如下 至此,kafka的broker集群测试完毕,那么剩下的问题来了.消费者启动的时候连接的是zookeeper的地址,如果这台zookeeper挂了呢. 那么我们需要zookeeper集群部署.
 zookeeper集群 这就包括两部分.
- 是broker本来要能知道这些zookeeper集群的地址,当一个宕机的时候,才会切换到另一个zookeeper 消费者要知道这些zookeeper的地址,理由同上.  因此步骤如下.可以自己试一试,比较简单
- 复制3份zookeeper.properties文件,命名为zookeeper1.properties,zookeeper2.properties,zookeeper3.properties,修改文件中的dataDir=/tmp/zookeeper和,clientPort=2181,端口分别设置为2181,2182,2183.然后启动三个zookeeper 修改kafka启动配置,server1.properties三个文件中的zookeeper.connect=localhost:2181这个配置,逗号隔开.最终为zookeeper.connect=localhost:2181,localhost:2182,localhost:2183,然后启动 生产者也改下配置中的.metadata.broker.list=localhost:9092,如果使用命令行启动就不用改了.参数指定也可以. 消费者同理,可以改下配置文件中zookeeper.connect=127.0.0.1:2181,也可以命令行启动的时候修改. 5.最终就是各种宕机测试了.  ……
-            <p class="readmore"><a href="http://leaver.me/2015/09/05/kafka%E5%88%86%E5%B8%83%E5%BC%8F%E9%83%A8%E7%BD%B2%E4%B8%8E%E9%AA%8C%E8%AF%81/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2015/09/04/kafka%E4%B8%AD%E7%9A%84partition%E5%92%8Coffset/">kafka中的partition和offset</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2015年9月4日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            在kafka快速上手中,留下的问题是关于partition和offset,这篇文章主要解释这个.
+是broker本来要能知道这些zookeeper集群的地址,当一个宕机的时候,才会切换到另一个zookeeper 消费者要知道这些zookeeper的地址,理由同上. 因此步骤如下.可以自己试一试,比较简单
+复制3份zookeeper.properties文件,命名为zookeeper1.properties,zookeeper2.properties,zookeeper3.properties,修改文件中的dataDir=/tmp/zookeeper和,clientPort=2181,端口分别设置为2181,2182,2183.然后启动三个zookeeper 修改kafka启动配置,server1.properties三个文件中的zookeeper.connect=localhost:2181这个配置,逗号隔开.最终为zookeeper.connect=localhost:2181,localhost:2182,localhost:2183,然后启动 生产者也改下配置中的.metadata.broker.list=localhost:9092,如果使用命令行启动就不用改了.参数指定也可以. 消费者同理,可以改下配置文件中zookeeper.connect=127.0.0.1:2181,也可以命令行启动的时候修改. 5.最终就是各种宕机测试了. ……<p class=readmore><a href=http://leaver.me/2015/09/05/kafka%E5%88%86%E5%B8%83%E5%BC%8F%E9%83%A8%E7%BD%B2%E4%B8%8E%E9%AA%8C%E8%AF%81/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2015/09/04/kafka%E4%B8%AD%E7%9A%84partition%E5%92%8Coffset/>kafka中的partition和offset</a></h1></header><date class="post-meta meta-date">2015年9月4日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>在kafka快速上手中,留下的问题是关于partition和offset,这篇文章主要解释这个.
 Log机制 说到分区,就要说kafka对消息的存储.在官方文档中. 首先,kafka是通过log(日志)来记录消息发布的.每当产生一个消息,kafka会记录到本地的log文件中,这个log和我们平时的log有一定的区别.这里可以参考一下The Log,不多解释.
 这个log文件默认的位置在config/server.properties中指定的.默认的位置是log.dirs=/tmp/kafka-logs,linux不用说,windows的话就在你对应磁盘的根目录下.我这里是D盘.
 #分区partition# kafka是为分布式环境设计的,因此如果日志文件,其实也可以理解成消息数据库,放在同一个地方,那么必然会带来可用性的下降,一挂全挂,如果全量拷贝到所有的机器上,那么数据又存在过多的冗余,而且由于每台机器的磁盘大小是有限的,所以即使有再多的机器,可处理的消息还是被磁盘所限制,无法超越当前磁盘大小.因此有了partition的概念.
@@ -187,32 +33,10 @@ kafka对消息进行一定的计算,通过hash来进行分区.这样,就把一�
 上一段说了分区,分区就是一个有序的,不可变的消息队列.新来的commit log持续往后面加数据.这些消息被分配了一个下标(或者偏移),就是offset,用来定位这一条消息.
 消费者消费到了哪条消息,是保持在消费者这一端的.消息者也可以控制,消费者可以在本地保存最后消息的offset,并间歇性的向zookeeper注册offset.也可以重置offset
 #如何通过offset算出分区#
-其实partition存储的时候,又分成了多个segment(段),然后通过一个index,索引,来标识第几段.这里先可以去看一下本地log目录的分区文件夹. 在我这里,test-0,这个分区里面,会有一个index文件和一个log文件, 对于某个指定的分区,假设每5个消息,作为一个段大小,当产生了10条消息的情况想,目前有会得到(只是解释) 0.index (表示这里index是对0-4做的索引) 5.index (表示这里index是对5-9做的索引) 10.index (表示这里index是对10-15做的索引,目前还没满) 和 0.log 5.log 10.log ,当消费者需要读取offset=8的时候,首先kafka对index文件列表进行二分查找,可以算出.应该是在5.index对应的log文件中,然后对对应的5.log文件,进行顺序查找,5-&gt;6-&gt;7-&gt;8,直到顺序找到8就好了.
+其实partition存储的时候,又分成了多个segment(段),然后通过一个index,索引,来标识第几段.这里先可以去看一下本地log目录的分区文件夹. 在我这里,test-0,这个分区里面,会有一个index文件和一个log文件, 对于某个指定的分区,假设每5个消息,作为一个段大小,当产生了10条消息的情况想,目前有会得到(只是解释) 0.index (表示这里index是对0-4做的索引) 5.index (表示这里index是对5-9做的索引) 10.index (表示这里index是对10-15做的索引,目前还没满) 和 0.log 5.log 10.log ,当消费者需要读取offset=8的时候,首先kafka对index文件列表进行二分查找,可以算出.应该是在5.index对应的log文件中,然后对对应的5.log文件,进行顺序查找,5->6->7->8,直到顺序找到8就好了.
 具体的算法参看美团的文章好了
-更多文档  官方文档 Kafka文件存储机制那些事 Kafka集群partition replication自动分配分析  ……
-            <p class="readmore"><a href="http://leaver.me/2015/09/04/kafka%E4%B8%AD%E7%9A%84partition%E5%92%8Coffset/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2015/09/03/kafka%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/">kafka快速上手</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2015年9月3日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            简单介绍 kafka是一个分布式消息中间件,在kafka中主要涉及到四个基本名词: Topic Kafka将消息种子分门别类， 每一类的消息称之为一个主题(Topic).
+更多文档 官方文档 Kafka文件存储机制那些事 Kafka集群partition replication自动分配分析 ……<p class=readmore><a href=http://leaver.me/2015/09/04/kafka%E4%B8%AD%E7%9A%84partition%E5%92%8Coffset/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2015/09/03/kafka%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/>kafka快速上手</a></h1></header><date class="post-meta meta-date">2015年9月3日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>简单介绍 kafka是一个分布式消息中间件,在kafka中主要涉及到四个基本名词: Topic Kafka将消息种子分门别类， 每一类的消息称之为一个主题(Topic).
 Producer 发布消息的对象称之为主题生产者.
 Consumer 订阅消息并处理消息的对象称之为主题消费者
 Broker 已发布的消息保存在一组服务器中，称之为Kafka集群。集群中的每一个服务器称为一个代理(Broker). 消费者可以订阅一个或多个主题，并从Broker拉数据(注意是拉,不是pull,)，从而消费这些已发布的消息。
@@ -224,310 +48,81 @@ Broker 已发布的消息保存在一组服务器中，称之为Kafka集群。�
 4.使用简易的控制台生产者模拟 kafka-console-producer.bat --broker-list localhost:9092 --topic test 前面说过了.新版本生产者直接通过brokerlist来连接kafka,目前只有一台,所以就一个地址,准备向test这个topic发送消息.
 5.使用简易的控制台消费者模拟 kafka-console-consumer.bat --zookeeper localhost:2181 --topic test 这个前面也说过了.消费者使用zookeeper获取可用的broker列表,然后拉去消息,并且还有一些offset同步的问题.和分区,文件存储一起的一个概念,下次写.
 6.开始生产和消费消息 至此,已经开了四个控制台窗口了..在producer窗口里,随便打几个字,然后enter,在消费者的窗口里将会显示出来. 其他问题 实际可能不那么顺利,如果你启动kafka或者其他应用的时候,有错误提示,提示无法创建虚拟机vm这样的.那么修改一下对应的bat脚本.就好了 ,vm的heap申请是1G,如果你机器内存不够,改成512M,或者更小的就好了.
-更多文档  官方文档 kafka快速入门  ……
-            <p class="readmore"><a href="http://leaver.me/2015/09/03/kafka%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/">阅读全文</a></p>
-        </div>
-    </article>
-    
-
-    
-
-
-
-
-
-</div>
-
-                </div>
-
-                <div id="secondary">
-    <section class="widget">
-        <form id="search" action='http://leaver.me/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
-      
-      <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="http://leaver.me/">
-      <button type="submit" class="submit icon-search"></button>
-</form>
-    </section>
-    
-    <section class="widget">
-        <h3 class="widget-title">最近文章</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2019 年终总结">2019 年终总结</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/" title="深入理解Raft协议">深入理解Raft协议</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/" title="《非暴力沟通》笔记">《非暴力沟通》笔记</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/10/06/wedding-of-friends/" title="Wedding of Friends">Wedding of Friends</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/09/29/principle-note/" title="Principle Note">Principle Note</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/" title="梦见鲸鱼的那一夜">梦见鲸鱼的那一夜</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/08/20/understand-hong-kong-2/" title="Understand Hong Kong 2">Understand Hong Kong 2</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/08/18/understand-hong-kong-part-1/" title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/" title="错过的都是命，得到的才是人生">错过的都是命，得到的才是人生</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/04/06/recently/" title="Recently">Recently</a>
-    </li>
-    
-</ul>
-    </section>
-
-    
-
-    <section class="widget">
-        <h3 class="widget-title">分类</h3>
-<ul class="widget-list">
-    
-    <li><a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记 (186)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/">我的翻译 (57)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/">文章收藏 (53)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录 (3)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记 (4)</a></li>
-    
-</ul>
-    </section>
-
-    <section class="widget">
-        <h3 class="widget-title">标签</h3>
-<div class="tagcloud">
-    
-    <a href="http://leaver.me/tags/android/">android</a>
-    
-    <a href="http://leaver.me/tags/c/">C＃</a>
-    
-    <a href="http://leaver.me/tags/c&#43;&#43;/">C&#43;&#43;</a>
-    
-    <a href="http://leaver.me/tags/java/">java</a>
-    
-    <a href="http://leaver.me/tags/javascript/">javascript</a>
-    
-    <a href="http://leaver.me/tags/linux/">linux</a>
-    
-    <a href="http://leaver.me/tags/mac/">mac</a>
-    
-    <a href="http://leaver.me/tags/matlab/">matlab</a>
-    
-    <a href="http://leaver.me/tags/maven/">maven</a>
-    
-    <a href="http://leaver.me/tags/mysql/">mysql</a>
-    
-    <a href="http://leaver.me/tags/nextgen-gallery/">NextGEN Gallery</a>
-    
-    <a href="http://leaver.me/tags/php/">php</a>
-    
-    <a href="http://leaver.me/tags/python/">python</a>
-    
-    <a href="http://leaver.me/tags/shell/">shell</a>
-    
-    <a href="http://leaver.me/tags/spring/">spring</a>
-    
-    <a href="http://leaver.me/tags/sql/">sql</a>
-    
-    <a href="http://leaver.me/tags/stackoverflow/">stackoverflow</a>
-    
-    <a href="http://leaver.me/tags/wcf/">WCF</a>
-    
-    <a href="http://leaver.me/tags/web/">web</a>
-    
-    <a href="http://leaver.me/tags/windows/">windows</a>
-    
-    <a href="http://leaver.me/tags/wordpress/">wordpress</a>
-    
-    <a href="http://leaver.me/tags/wpf/">WPF</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/">上海</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/">下载</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
-    
-    <a href="http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/">互联网</a>
-    
-    <a href="http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
-    
-    <a href="http://leaver.me/tags/%E5%88%B6%E5%BA%A6/">制度</a>
-    
-    <a href="http://leaver.me/tags/%E5%89%8D%E7%AB%AF/">前端</a>
-    
-    <a href="http://leaver.me/tags/%E5%8E%9F%E5%88%9B/">原创</a>
-    
-    <a href="http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/">大学</a>
-    
-    <a href="http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/">学习</a>
-    
-    <a href="http://leaver.me/tags/%E5%AE%89%E5%85%A8/">安全</a>
-    
-    <a href="http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/">家庭</a>
-    
-    <a href="http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/">工作</a>
-    
-    <a href="http://leaver.me/tags/%E5%B7%A5%E5%85%B7/">工具</a>
-    
-    <a href="http://leaver.me/tags/%E5%B9%B6%E5%8F%91/">并发</a>
-    
-    <a href="http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/">序列化</a>
-    
-    <a href="http://leaver.me/tags/%E5%BC%80%E5%8F%91/">开发</a>
-    
-    <a href="http://leaver.me/tags/%E5%BF%83%E7%90%86/">心理</a>
-    
-    <a href="http://leaver.me/tags/%E6%80%BB%E7%BB%93/">总结</a>
-    
-    <a href="http://leaver.me/tags/%E6%8A%80%E6%9C%AF/">技术</a>
-    
-    <a href="http://leaver.me/tags/%E6%8F%92%E4%BB%B6/">插件</a>
-    
-    <a href="http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-    
-    <a href="http://leaver.me/tags/%E6%94%B6%E8%97%8F/">收藏</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E5%AD%A6/">数学</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">数据挖掘</a>
-    
-    <a href="http://leaver.me/tags/%E6%96%87%E7%AB%A0/">文章</a>
-    
-    <a href="http://leaver.me/tags/%E6%99%BA%E8%83%BD/">智能</a>
-    
-    <a href="http://leaver.me/tags/%E6%9D%82%E6%96%87/">杂文</a>
-    
-    <a href="http://leaver.me/tags/%E6%AD%A6%E6%B1%89/">武汉</a>
-    
-    <a href="http://leaver.me/tags/%E6%B1%87%E7%BC%96/">汇编</a>
-    
-    <a href="http://leaver.me/tags/%E7%88%B1%E6%83%85/">爱情</a>
-    
-    <a href="http://leaver.me/tags/%E7%90%86%E8%AE%BA/">理论</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%9F%E6%B4%BB/">生活</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/">电子书</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%B5%E5%BD%B1/">电影</a>
-    
-    <a href="http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/">社会</a>
-    
-    <a href="http://leaver.me/tags/%E7%A7%91%E6%8A%80/">科技</a>
-    
-    <a href="http://leaver.me/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
-    
-    <a href="http://leaver.me/tags/%E7%AE%97%E6%B3%95/">算法</a>
-    
-    <a href="http://leaver.me/tags/%E7%BC%96%E7%A8%8B/">编程</a>
-    
-    <a href="http://leaver.me/tags/%E7%BC%96%E8%AF%91/">编译</a>
-    
-    <a href="http://leaver.me/tags/%E7%BF%BB%E8%AF%91/">翻译</a>
-    
-    <a href="http://leaver.me/tags/%E8%81%8C%E4%B8%9A/">职业</a>
-    
-    <a href="http://leaver.me/tags/%E8%AE%B0%E5%BD%95/">记录</a>
-    
-    <a href="http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/">设计</a>
-    
-    <a href="http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/">读书</a>
-    
-    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/">软件</a>
-    
-    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</a>
-    
-    <a href="http://leaver.me/tags/%E8%BF%90%E7%BB%B4/">运维</a>
-    
-    <a href="http://leaver.me/tags/%E9%87%91%E8%9E%8D/">金融</a>
-    
-</div>
-    </section>
-
-    
-<section class="widget">
-    <h3 class="widget-title">友情链接</h3>
-    <ul class="widget-list">
-        
-        <li>
-            <a target="_blank" href="https://www.cppfans.org/" title="C&#43;&#43;爱好者博客">C&#43;&#43;爱好者博客</a>
-        </li>
-        
-        <li>
-            <a target="_blank" href="http://www.kailing.pub" title="KL，每天进步一点点">KL，每天进步一点点</a>
-        </li>
-        
-    </ul>
-</section>
-
-
-    <section class="widget">
-        <h3 class="widget-title">其它</h3>
-        <ul class="widget-list">
-            <li><a href="http://leaver.me/index.xml">文章 RSS</a></li>
-        </ul>
-    </section>
-</div>
-            </div>
-        </div>
-    </div>
-    <footer id="footer">
-    <div class="container">
-        &copy; 2020 <a href="http://leaver.me/">bystander&#39;s blog By bystander</a>.
-        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
-        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
-        
-    </div>
-</footer>
-
-
-
-<a id="rocket" href="#top"></a>
-<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-30961201-3', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-
-
-
-
-
-</body>
-
-</html>
+更多文档 官方文档 kafka快速入门 ……<p class=readmore><a href=http://leaver.me/2015/09/03/kafka%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/>阅读全文</a></p></div></article></div></div><div id=secondary><section class=widget><form id=search action=http://leaver.me/search/ method=get accept-charset=utf-8 target=_blank _lpchecked=1><input type=text name=q maxlength=20 placeholder=Search>
+<input type=hidden name=sitesearch value=http://leaver.me/>
+<button type=submit class="submit icon-search"></button></form></section><section class=widget><h3 class=widget-title>最近文章</h3><ul class=widget-list><li><a href=http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/ title="2019 年终总结">2019 年终总结</a></li><li><a href=http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/ title=深入理解Raft协议>深入理解Raft协议</a></li><li><a href=http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/ title=《非暴力沟通》笔记>《非暴力沟通》笔记</a></li><li><a href=http://leaver.me/2019/10/06/wedding-of-friends/ title="Wedding of Friends">Wedding of Friends</a></li><li><a href=http://leaver.me/2019/09/29/principle-note/ title="Principle Note">Principle Note</a></li><li><a href=http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/ title=梦见鲸鱼的那一夜>梦见鲸鱼的那一夜</a></li><li><a href=http://leaver.me/2019/08/20/understand-hong-kong-2/ title="Understand Hong Kong 2">Understand Hong Kong 2</a></li><li><a href=http://leaver.me/2019/08/18/understand-hong-kong-part-1/ title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a></li><li><a href=http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/ title=错过的都是命，得到的才是人生>错过的都是命，得到的才是人生</a></li><li><a href=http://leaver.me/2019/04/06/recently/ title=Recently>Recently</a></li></ul></section><section class=widget><h3 class=widget-title>分类</h3><ul class=widget-list><li><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/>学习笔记 (186)</a></li><li><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/>我的翻译 (57)</a></li><li><a href=http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/>文章收藏 (53)</a></li><li><a href=http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/>生活记录 (3)</a></li><li><a href=http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/>读书笔记 (4)</a></li></ul></section><section class=widget><h3 class=widget-title>标签</h3><div class=tagcloud><a href=http://leaver.me/tags/android/>android</a>
+<a href=http://leaver.me/tags/c/>C＃</a>
+<a href=http://leaver.me/tags/c++/>C++</a>
+<a href=http://leaver.me/tags/java/>java</a>
+<a href=http://leaver.me/tags/javascript/>javascript</a>
+<a href=http://leaver.me/tags/linux/>linux</a>
+<a href=http://leaver.me/tags/mac/>mac</a>
+<a href=http://leaver.me/tags/matlab/>matlab</a>
+<a href=http://leaver.me/tags/maven/>maven</a>
+<a href=http://leaver.me/tags/mysql/>mysql</a>
+<a href=http://leaver.me/tags/nextgen-gallery/>NextGEN Gallery</a>
+<a href=http://leaver.me/tags/php/>php</a>
+<a href=http://leaver.me/tags/python/>python</a>
+<a href=http://leaver.me/tags/shell/>shell</a>
+<a href=http://leaver.me/tags/spring/>spring</a>
+<a href=http://leaver.me/tags/sql/>sql</a>
+<a href=http://leaver.me/tags/stackoverflow/>stackoverflow</a>
+<a href=http://leaver.me/tags/wcf/>WCF</a>
+<a href=http://leaver.me/tags/web/>web</a>
+<a href=http://leaver.me/tags/windows/>windows</a>
+<a href=http://leaver.me/tags/wordpress/>wordpress</a>
+<a href=http://leaver.me/tags/wpf/>WPF</a>
+<a href=http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/>上海</a>
+<a href=http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/>下载</a>
+<a href=http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/>中间件</a>
+<a href=http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/>互联网</a>
+<a href=http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/>分布式</a>
+<a href=http://leaver.me/tags/%E5%88%B6%E5%BA%A6/>制度</a>
+<a href=http://leaver.me/tags/%E5%89%8D%E7%AB%AF/>前端</a>
+<a href=http://leaver.me/tags/%E5%8E%9F%E5%88%9B/>原创</a>
+<a href=http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/>大学</a>
+<a href=http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/>学习</a>
+<a href=http://leaver.me/tags/%E5%AE%89%E5%85%A8/>安全</a>
+<a href=http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/>家庭</a>
+<a href=http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/>工作</a>
+<a href=http://leaver.me/tags/%E5%B7%A5%E5%85%B7/>工具</a>
+<a href=http://leaver.me/tags/%E5%B9%B6%E5%8F%91/>并发</a>
+<a href=http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/>序列化</a>
+<a href=http://leaver.me/tags/%E5%BC%80%E5%8F%91/>开发</a>
+<a href=http://leaver.me/tags/%E5%BF%83%E7%90%86/>心理</a>
+<a href=http://leaver.me/tags/%E6%80%BB%E7%BB%93/>总结</a>
+<a href=http://leaver.me/tags/%E6%8A%80%E6%9C%AF/>技术</a>
+<a href=http://leaver.me/tags/%E6%8F%92%E4%BB%B6/>插件</a>
+<a href=http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/>操作系统</a>
+<a href=http://leaver.me/tags/%E6%94%B6%E8%97%8F/>收藏</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E5%AD%A6/>数学</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/>数据库</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/>数据挖掘</a>
+<a href=http://leaver.me/tags/%E6%96%87%E7%AB%A0/>文章</a>
+<a href=http://leaver.me/tags/%E6%99%BA%E8%83%BD/>智能</a>
+<a href=http://leaver.me/tags/%E6%9D%82%E6%96%87/>杂文</a>
+<a href=http://leaver.me/tags/%E6%AD%A6%E6%B1%89/>武汉</a>
+<a href=http://leaver.me/tags/%E6%B1%87%E7%BC%96/>汇编</a>
+<a href=http://leaver.me/tags/%E7%88%B1%E6%83%85/>爱情</a>
+<a href=http://leaver.me/tags/%E7%90%86%E8%AE%BA/>理论</a>
+<a href=http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/>生产力</a>
+<a href=http://leaver.me/tags/%E7%94%9F%E6%B4%BB/>生活</a>
+<a href=http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/>电子书</a>
+<a href=http://leaver.me/tags/%E7%94%B5%E5%BD%B1/>电影</a>
+<a href=http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/>社会</a>
+<a href=http://leaver.me/tags/%E7%A7%91%E6%8A%80/>科技</a>
+<a href=http://leaver.me/tags/%E7%AC%94%E8%AE%B0/>笔记</a>
+<a href=http://leaver.me/tags/%E7%AE%97%E6%B3%95/>算法</a>
+<a href=http://leaver.me/tags/%E7%BC%96%E7%A8%8B/>编程</a>
+<a href=http://leaver.me/tags/%E7%BC%96%E8%AF%91/>编译</a>
+<a href=http://leaver.me/tags/%E7%BF%BB%E8%AF%91/>翻译</a>
+<a href=http://leaver.me/tags/%E8%81%8C%E4%B8%9A/>职业</a>
+<a href=http://leaver.me/tags/%E8%AE%B0%E5%BD%95/>记录</a>
+<a href=http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/>设计</a>
+<a href=http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/>读书</a>
+<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/>软件</a>
+<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/>软件测试</a>
+<a href=http://leaver.me/tags/%E8%BF%90%E7%BB%B4/>运维</a>
+<a href=http://leaver.me/tags/%E9%87%91%E8%9E%8D/>金融</a></div></section><section class=widget><h3 class=widget-title>友情链接</h3><ul class=widget-list><li><a target=_blank href=https://www.cppfans.org/ title=C++爱好者博客>C++爱好者博客</a></li><li><a target=_blank href=http://www.kailing.pub title=KL，每天进步一点点>KL，每天进步一点点</a></li></ul></section><section class=widget><h3 class=widget-title>其它</h3><ul class=widget-list><li><a href=http://leaver.me/index.xml>文章 RSS</a></li></ul></section></div></div></div></div><footer id=footer><div class=container>&copy; 2020 <a href=http://leaver.me/>bystander's blog By bystander</a>.
+Powered by <a rel="nofollow noreferer noopener" href=https://gohugo.io target=_blank>Hugo</a>.
+<a href=https://www.flysnow.org/ target=_blank>Theme</a> based on <a href=https://github.com/flysnow-org/maupassant-hugo target=_blank>maupassant</a>.</div></footer><a id=rocket href=#top></a><script type=text/javascript src="/js/totop.js?v=0.0.0" async></script><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-30961201-3','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></body></html>

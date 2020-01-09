@@ -1,494 +1,91 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>一个简单实例的LR分析过程 | bystander&#39;s blog</title>
-    <meta property="og:title" content="一个简单实例的LR分析过程 - bystander&#39;s blog">
-    <meta property="og:type" content="article">
-        
-    <meta property="article:published_time" content='2012-05-14T11:38:49&#43;08:00'>
-        
-        
-    <meta property="article:modified_time" content='2012-05-14T11:38:49&#43;08:00'>
-        
-    <meta name="Keywords" content="">
-    <meta name="description" content="一个简单实例的LR分析过程">
-        
-    <meta name="author" content="bystander">
-    <meta property="og:url" content="http://leaver.me/2012/05/14/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E5%AE%9E%E4%BE%8B%E7%9A%84lr%E5%88%86%E6%9E%90%E8%BF%87%E7%A8%8B/">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-
-    <link rel="stylesheet" href='/css/normalize.css'>
-    <link rel="stylesheet" href='/css/style.css'>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-    
-
-
-    
-    
-</head>
-
-
-<body>
-    <header id="header" class="clearfix">
-    <div class="container">
-        <div class="col-group">
-            <div class="site-name ">
-                
-                    <a id="logo" href="http://leaver.me/">
-                        bystander&#39;s blog
-                    </a>
-                
-                <p class="description">寻找窄门</p>
-            </div>
-            <div>
-                <nav id="nav-menu" class="clearfix">
-                    <a class="current" href="http://leaver.me/">首页</a>
-                    
-                    <a  href="http://leaver.me/categories" title="目录">目录</a>
-                    
-                    <a  href="http://leaver.me/about/" title="关于我">关于我</a>
-                    
-                </nav>
-            </div>
-        </div>
-    </div>
-</header>
-
-    <div id="body">
-        <div class="container">
-            <div class="col-group">
-
-                <div class="col-8" id="main">
-                    
-<div class="res-cons">
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">一个简单实例的LR分析过程</h1>
-        </header>
-        <date class="post-meta meta-date">
-            2012年5月14日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a></span>
-            
-        </div>
-        
-        
-        
-        <div class="post-content">
-            <p>　　经过前面两篇文章。已经讲清楚了LR语法分析中最重要的分析表的构造过程。先补充一个小问题，就是LR(0)项目的分类</p>
-<p>　　根据圆点所在的位置和圆点后是终结符还是非终结符或为空把项目分为以下几种：</p>
-<p>　　移进项目： 形如 A→α .a β ，a是终结符, a ,b∈V* 以下同
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><title>一个简单实例的LR分析过程 | bystander's blog</title><meta property="og:title" content="一个简单实例的LR分析过程 - bystander's blog"><meta property="og:type" content="article"><meta property="article:published_time" content="2012-05-14T11:38:49+08:00"><meta property="article:modified_time" content="2012-05-14T11:38:49+08:00"><meta name=Keywords content><meta name=description content="一个简单实例的LR分析过程"><meta name=author content="bystander"><meta property="og:url" content="http://leaver.me/2012/05/14/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E5%AE%9E%E4%BE%8B%E7%9A%84lr%E5%88%86%E6%9E%90%E8%BF%87%E7%A8%8B/"><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><link rel=stylesheet href=/css/normalize.css><link rel=stylesheet href=/css/style.css><script type=text/javascript src=//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js></script></head><body><header id=header class=clearfix><div class=container><div class=col-group><div class=site-name><a id=logo href=http://leaver.me/>bystander's blog</a><p class=description>寻找窄门</p></div><div><nav id=nav-menu class=clearfix><a class=current href=http://leaver.me/>首页</a>
+<a href=http://leaver.me/categories title=目录>目录</a>
+<a href=http://leaver.me/about/ title=关于我>关于我</a></nav></div></div></div></header><div id=body><div class=container><div class=col-group><div class=col-8 id=main><div class=res-cons><article class=post><header><h1 class=post-title>一个简单实例的LR分析过程</h1></header><date class="post-meta meta-date">2012年5月14日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></span></div><div class=post-content><p>　　经过前面两篇文章。已经讲清楚了LR语法分析中最重要的分析表的构造过程。先补充一个小问题，就是LR(0)项目的分类</p><p>　　根据圆点所在的位置和圆点后是终结符还是非终结符或为空把项目分为以下几种：</p><p>　　移进项目： 形如 A→α .a β ，a是终结符, a ,b∈V* 以下同
 　　待约项目：A→α .B β , 其中B是非终结符　
 　　归约项目：A→α . 表明产生式已分析完成。　
 　　接受项目：形如 S’→S .　　
-　　特别的。A→ε的LR(0)项目只有A→ • 是归约项目</p>
-<p>　　因为LR分析表的构造前面两篇文章已经讲的很清楚了，所以这个题目重要是解释一下如何使用分析表来构造，分析表的构造也许你得自己参考前面两篇文章来构造了。题目来自网络。</p>
-<p>　　好，下面看题目，已知文法G[S]：</p>
-<p>　　(1) S → aAcBe
+　　特别的。A→ε的LR(0)项目只有A→ • 是归约项目</p><p>　　因为LR分析表的构造前面两篇文章已经讲的很清楚了，所以这个题目重要是解释一下如何使用分析表来构造，分析表的构造也许你得自己参考前面两篇文章来构造了。题目来自网络。</p><p>　　好，下面看题目，已知文法G[S]：</p><p>　　(1) S → aAcBe
 　　(2) A → b　
 　　(3) A → Ab　　
-　　(4) B → d</p>
-<p>　　写出对输入串 abbcde#的LR分析 过程。</p>
-<p>　　在分析的时候，因为我们的手工分析，所以还需要一个表来记录我们的步骤。否则记不住啊。该表共需7列。行数不定。做到哪是哪。</p>
-<p>　　<!-- raw HTML omitted --> 步骤   符号栈   输入符号栈     动作   状态栈    ACTION    GOTO <!-- raw HTML omitted --></p>
-<p>　　其中，步骤就是从1向下递增。符号栈用来保存运算中的结果，初始为#，输入符号栈保存输入串，初始值为给定的。动作里面就是用来注释是进行移进，还是规约。状态栈就是保持LR分析表的那个状态了。Action 和Goto同理</p>
-<p>　　通过前两篇文章的步骤，此题可以构造出如下的一张LR分析表</p>
-<p>　　<a href="http://leaverimage.b0.upaiyun.com/21467_o.jpg"><img src="/images/5b2465bb8d435fab286faf6634217380656ce008.jpg" alt="" title="lr分析表"></a></p>
-<p>　　分析表中有Si和rj大家都知道的。s是shift的缩写，也就是移进，r是reduce的缩写，也就是规约。规约是推导的逆操作，大家都懂。</p>
-<p>　　先来看看在进行分析的时候s和j操作的规则</p>
-<p>　　Si:移进，把i移入到状态栈，把a移入到文法符号栈。其中i，j表示状态号。</p>
-<p>　　ri:归约，用第i个产生式归约，同时状态栈与符号栈退出相应个符号，并把GOTO表相应状态和第i个产生式的左部非终结符入栈。</p>
-<p>　　文法中有A→β的产生式，若β的长度为r(即|β|=r)，则从状态栈和文法符号栈中自栈顶向下去掉r个符号，即栈指针P减去r。并把A移入文法符号栈内，Sj=GOTO[Si，A]移进状态栈，其中Si为修改指针后的栈顶状态。</p>
-<p>　　当归约到文法符号栈中只剩文法的开始符号S时，并且输入符号串已结束即当前输入符是&rsquo;#'，则为分析成功。</p>
-<p>　　然后使用我们将要使用的辅助表来分析吧，为了简单。我还是直接给出答案。然后分析一下典型的情况。</p>
-<p>　　<a href="http://leaverimage.b0.upaiyun.com/21466_o.jpg"><img src="/images/d6565babf03f2f230fb9d8933518bc1cb55bf7cc.jpg" alt="" title="分析结果"></a></p>
-<p>　　第一步，符号栈中是#，输入符号串就是给定的要分析的串，状态栈因为从0开始，所以状态栈直接填0，大家都知道，LR分析是从左到右扫描的。所以心里想着一根指针p，p首先指向输入串的a，然后我们查分析表的（0，a）,0就是状态0，a就是指针的当前字符。分析表中的（0，a）是s2，填入第一步的action，并且动作列填入移进，根据规则，将2入状态栈，a入符号栈，</p>
-<p>　　进入第二步，指针p肯定要前进一步了，所以输入符号串就进入b了。此步同上一步，不多解释。</p>
-<p>　　关键是进入第三步后，此时，符号栈中为#ab，输入符号串是bcde#，状态栈是024，此时去查表，差的是（4，b），4是状态栈顶，b是p指针的当前位置。发现是r2，根据规则，用第二条产生式(2) A → b来规约。把动作栏先填了，同时状态栈与符号栈退出相应个符号，也即是说，把状态栏的栈顶4，退出来，同时符号栈的b也退出，心里想着，不填表，并把GOTO表相应状态和第i个产生式的左部非终结符入栈。Goto表需要查的是(2,A)=3,2是r2的2，A是第二个产生式的左部嘛。所以，就把3入状态栈，A入符号栈。</p>
-<p>　　后面的都是一样的。不解释了。要想学懂编译原理。多动手是必需的。你也手工试试吧。</p>
-<p>参考：
-　　 <a href="http://leaver.me/archives/574.html">http://leaver.me/archives/574.html</a>
-　　 <a href="http://leaver.me/archives/548.html">http://leaver.me/archives/548.html</a></p>
-
-        </div>
-
-        
-
-
-        
-
-<div class="post-archive">
-    <h2>See Also</h2>
-    <ul class="listing">
-        
-        <li><a href="/2012/05/12/lr0%E9%A1%B9%E7%9B%AE%E9%9B%86%E8%A7%84%E8%8C%83%E6%97%8F%E7%9A%84%E6%9E%84%E9%80%A0/">LR(0)项目集规范族的构造</a></li>
-        
-        <li><a href="/2012/05/13/lr0%E5%92%8Cslr%E5%88%86%E6%9E%90%E8%A1%A8%E7%9A%84%E6%9E%84%E9%80%A0/">LR(0)和SLR分析表的构造</a></li>
-        
-        <li><a href="/2012/05/11/%E4%B9%8C%E5%90%88%E4%B9%8B%E4%BC%97%E7%AC%94%E8%AE%B0%E4%B8%8B%E9%83%A8/">《乌合之众》笔记下部</a></li>
-        
-        <li><a href="/2012/05/09/c-%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/">C&#43;&#43;回调函数</a></li>
-        
-        <li><a href="/2012/05/05/.net%E4%B8%89%E5%B1%82%E6%9E%B6%E6%9E%84/">.Net三层架构</a></li>
-        
-    </ul>
-</div>
-
-
-        <div class="post-meta meta-tags">
-            
-            <ul class="clearfix">
-                
-                <li><a href='http://leaver.me/tags/%E5%AD%A6%E4%B9%A0'>学习</a></li>
-                
-                <li><a href='http://leaver.me/tags/%E6%80%BB%E7%BB%93'>总结</a></li>
-                
-                <li><a href='http://leaver.me/tags/%E7%BC%96%E7%A8%8B'>编程</a></li>
-                
-                <li><a href='http://leaver.me/tags/%E7%BC%96%E8%AF%91'>编译</a></li>
-                
-            </ul>
-            
-        </div>
-    </article>
-    
-    <div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "leaverme" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
-    
-    
-</div>
-
-                </div>
-
-                <div id="secondary">
-    <section class="widget">
-        <form id="search" action='http://leaver.me/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
-      
-      <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="http://leaver.me/">
-      <button type="submit" class="submit icon-search"></button>
-</form>
-    </section>
-    
-    <section class="widget">
-        <h3 class="widget-title">最近文章</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2019 年终总结">2019 年终总结</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/" title="深入理解Raft协议">深入理解Raft协议</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/" title="《非暴力沟通》笔记">《非暴力沟通》笔记</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/10/06/wedding-of-friends/" title="Wedding of Friends">Wedding of Friends</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/09/29/principle-note/" title="Principle Note">Principle Note</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/" title="梦见鲸鱼的那一夜">梦见鲸鱼的那一夜</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/08/20/understand-hong-kong-2/" title="Understand Hong Kong 2">Understand Hong Kong 2</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/08/18/understand-hong-kong-part-1/" title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/" title="错过的都是命，得到的才是人生">错过的都是命，得到的才是人生</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/04/06/recently/" title="Recently">Recently</a>
-    </li>
-    
-</ul>
-    </section>
-
-    
-
-    <section class="widget">
-        <h3 class="widget-title">分类</h3>
-<ul class="widget-list">
-    
-    <li><a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记 (186)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/">我的翻译 (57)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/">文章收藏 (53)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录 (3)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记 (4)</a></li>
-    
-</ul>
-    </section>
-
-    <section class="widget">
-        <h3 class="widget-title">标签</h3>
-<div class="tagcloud">
-    
-    <a href="http://leaver.me/tags/android/">android</a>
-    
-    <a href="http://leaver.me/tags/c/">C＃</a>
-    
-    <a href="http://leaver.me/tags/c&#43;&#43;/">C&#43;&#43;</a>
-    
-    <a href="http://leaver.me/tags/java/">java</a>
-    
-    <a href="http://leaver.me/tags/javascript/">javascript</a>
-    
-    <a href="http://leaver.me/tags/linux/">linux</a>
-    
-    <a href="http://leaver.me/tags/mac/">mac</a>
-    
-    <a href="http://leaver.me/tags/matlab/">matlab</a>
-    
-    <a href="http://leaver.me/tags/maven/">maven</a>
-    
-    <a href="http://leaver.me/tags/mysql/">mysql</a>
-    
-    <a href="http://leaver.me/tags/nextgen-gallery/">NextGEN Gallery</a>
-    
-    <a href="http://leaver.me/tags/php/">php</a>
-    
-    <a href="http://leaver.me/tags/python/">python</a>
-    
-    <a href="http://leaver.me/tags/shell/">shell</a>
-    
-    <a href="http://leaver.me/tags/spring/">spring</a>
-    
-    <a href="http://leaver.me/tags/sql/">sql</a>
-    
-    <a href="http://leaver.me/tags/stackoverflow/">stackoverflow</a>
-    
-    <a href="http://leaver.me/tags/wcf/">WCF</a>
-    
-    <a href="http://leaver.me/tags/web/">web</a>
-    
-    <a href="http://leaver.me/tags/windows/">windows</a>
-    
-    <a href="http://leaver.me/tags/wordpress/">wordpress</a>
-    
-    <a href="http://leaver.me/tags/wpf/">WPF</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/">上海</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/">下载</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
-    
-    <a href="http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/">互联网</a>
-    
-    <a href="http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
-    
-    <a href="http://leaver.me/tags/%E5%88%B6%E5%BA%A6/">制度</a>
-    
-    <a href="http://leaver.me/tags/%E5%89%8D%E7%AB%AF/">前端</a>
-    
-    <a href="http://leaver.me/tags/%E5%8E%9F%E5%88%9B/">原创</a>
-    
-    <a href="http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/">大学</a>
-    
-    <a href="http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/">学习</a>
-    
-    <a href="http://leaver.me/tags/%E5%AE%89%E5%85%A8/">安全</a>
-    
-    <a href="http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/">家庭</a>
-    
-    <a href="http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/">工作</a>
-    
-    <a href="http://leaver.me/tags/%E5%B7%A5%E5%85%B7/">工具</a>
-    
-    <a href="http://leaver.me/tags/%E5%B9%B6%E5%8F%91/">并发</a>
-    
-    <a href="http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/">序列化</a>
-    
-    <a href="http://leaver.me/tags/%E5%BC%80%E5%8F%91/">开发</a>
-    
-    <a href="http://leaver.me/tags/%E5%BF%83%E7%90%86/">心理</a>
-    
-    <a href="http://leaver.me/tags/%E6%80%BB%E7%BB%93/">总结</a>
-    
-    <a href="http://leaver.me/tags/%E6%8A%80%E6%9C%AF/">技术</a>
-    
-    <a href="http://leaver.me/tags/%E6%8F%92%E4%BB%B6/">插件</a>
-    
-    <a href="http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-    
-    <a href="http://leaver.me/tags/%E6%94%B6%E8%97%8F/">收藏</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E5%AD%A6/">数学</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">数据挖掘</a>
-    
-    <a href="http://leaver.me/tags/%E6%96%87%E7%AB%A0/">文章</a>
-    
-    <a href="http://leaver.me/tags/%E6%99%BA%E8%83%BD/">智能</a>
-    
-    <a href="http://leaver.me/tags/%E6%9D%82%E6%96%87/">杂文</a>
-    
-    <a href="http://leaver.me/tags/%E6%AD%A6%E6%B1%89/">武汉</a>
-    
-    <a href="http://leaver.me/tags/%E6%B1%87%E7%BC%96/">汇编</a>
-    
-    <a href="http://leaver.me/tags/%E7%88%B1%E6%83%85/">爱情</a>
-    
-    <a href="http://leaver.me/tags/%E7%90%86%E8%AE%BA/">理论</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%9F%E6%B4%BB/">生活</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/">电子书</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%B5%E5%BD%B1/">电影</a>
-    
-    <a href="http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/">社会</a>
-    
-    <a href="http://leaver.me/tags/%E7%A7%91%E6%8A%80/">科技</a>
-    
-    <a href="http://leaver.me/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
-    
-    <a href="http://leaver.me/tags/%E7%AE%97%E6%B3%95/">算法</a>
-    
-    <a href="http://leaver.me/tags/%E7%BC%96%E7%A8%8B/">编程</a>
-    
-    <a href="http://leaver.me/tags/%E7%BC%96%E8%AF%91/">编译</a>
-    
-    <a href="http://leaver.me/tags/%E7%BF%BB%E8%AF%91/">翻译</a>
-    
-    <a href="http://leaver.me/tags/%E8%81%8C%E4%B8%9A/">职业</a>
-    
-    <a href="http://leaver.me/tags/%E8%AE%B0%E5%BD%95/">记录</a>
-    
-    <a href="http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/">设计</a>
-    
-    <a href="http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/">读书</a>
-    
-    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/">软件</a>
-    
-    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</a>
-    
-    <a href="http://leaver.me/tags/%E8%BF%90%E7%BB%B4/">运维</a>
-    
-    <a href="http://leaver.me/tags/%E9%87%91%E8%9E%8D/">金融</a>
-    
-</div>
-    </section>
-
-    
-<section class="widget">
-    <h3 class="widget-title">友情链接</h3>
-    <ul class="widget-list">
-        
-        <li>
-            <a target="_blank" href="https://www.cppfans.org/" title="C&#43;&#43;爱好者博客">C&#43;&#43;爱好者博客</a>
-        </li>
-        
-        <li>
-            <a target="_blank" href="http://www.kailing.pub" title="KL，每天进步一点点">KL，每天进步一点点</a>
-        </li>
-        
-    </ul>
-</section>
-
-
-    <section class="widget">
-        <h3 class="widget-title">其它</h3>
-        <ul class="widget-list">
-            <li><a href="http://leaver.me/index.xml">文章 RSS</a></li>
-        </ul>
-    </section>
-</div>
-            </div>
-        </div>
-    </div>
-    <footer id="footer">
-    <div class="container">
-        &copy; 2020 <a href="http://leaver.me/">bystander&#39;s blog By bystander</a>.
-        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
-        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
-        
-    </div>
-</footer>
-
-
-    
-    <script type="text/javascript">
-        window.MathJax = {
-            tex2jax: {
-                inlineMath: [['$', '$']],
-                processEscapes: true
-                }
-            };
-    </script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
-
-
-<a id="rocket" href="#top"></a>
-<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-30961201-3', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-
-
-
-
-
-</body>
-
-</html>
+　　(4) B → d</p><p>　　写出对输入串 abbcde#的LR分析 过程。</p><p>　　在分析的时候，因为我们的手工分析，所以还需要一个表来记录我们的步骤。否则记不住啊。该表共需7列。行数不定。做到哪是哪。</p><p>　　 步骤   符号栈   输入符号栈     动作   状态栈    ACTION    GOTO</p><p>　　其中，步骤就是从1向下递增。符号栈用来保存运算中的结果，初始为#，输入符号栈保存输入串，初始值为给定的。动作里面就是用来注释是进行移进，还是规约。状态栈就是保持LR分析表的那个状态了。Action 和Goto同理</p><p>　　通过前两篇文章的步骤，此题可以构造出如下的一张LR分析表</p><p>　　<a href=http://leaverimage.b0.upaiyun.com/21467_o.jpg><img src=/images/5b2465bb8d435fab286faf6634217380656ce008.jpg alt title=lr分析表></a></p><p>　　分析表中有Si和rj大家都知道的。s是shift的缩写，也就是移进，r是reduce的缩写，也就是规约。规约是推导的逆操作，大家都懂。</p><p>　　先来看看在进行分析的时候s和j操作的规则</p><p>　　Si:移进，把i移入到状态栈，把a移入到文法符号栈。其中i，j表示状态号。</p><p>　　ri:归约，用第i个产生式归约，同时状态栈与符号栈退出相应个符号，并把GOTO表相应状态和第i个产生式的左部非终结符入栈。</p><p>　　文法中有A→β的产生式，若β的长度为r(即|β|=r)，则从状态栈和文法符号栈中自栈顶向下去掉r个符号，即栈指针P减去r。并把A移入文法符号栈内，Sj=GOTO[Si，A]移进状态栈，其中Si为修改指针后的栈顶状态。</p><p>　　当归约到文法符号栈中只剩文法的开始符号S时，并且输入符号串已结束即当前输入符是&rsquo;#'，则为分析成功。</p><p>　　然后使用我们将要使用的辅助表来分析吧，为了简单。我还是直接给出答案。然后分析一下典型的情况。</p><p>　　<a href=http://leaverimage.b0.upaiyun.com/21466_o.jpg><img src=/images/d6565babf03f2f230fb9d8933518bc1cb55bf7cc.jpg alt title=分析结果></a></p><p>　　第一步，符号栈中是#，输入符号串就是给定的要分析的串，状态栈因为从0开始，所以状态栈直接填0，大家都知道，LR分析是从左到右扫描的。所以心里想着一根指针p，p首先指向输入串的a，然后我们查分析表的（0，a）,0就是状态0，a就是指针的当前字符。分析表中的（0，a）是s2，填入第一步的action，并且动作列填入移进，根据规则，将2入状态栈，a入符号栈，</p><p>　　进入第二步，指针p肯定要前进一步了，所以输入符号串就进入b了。此步同上一步，不多解释。</p><p>　　关键是进入第三步后，此时，符号栈中为#ab，输入符号串是bcde#，状态栈是024，此时去查表，差的是（4，b），4是状态栈顶，b是p指针的当前位置。发现是r2，根据规则，用第二条产生式(2) A → b来规约。把动作栏先填了，同时状态栈与符号栈退出相应个符号，也即是说，把状态栏的栈顶4，退出来，同时符号栈的b也退出，心里想着，不填表，并把GOTO表相应状态和第i个产生式的左部非终结符入栈。Goto表需要查的是(2,A)=3,2是r2的2，A是第二个产生式的左部嘛。所以，就把3入状态栈，A入符号栈。</p><p>　　后面的都是一样的。不解释了。要想学懂编译原理。多动手是必需的。你也手工试试吧。</p><p>参考：
+　　 <a href=http://leaver.me/archives/574.html>http://leaver.me/archives/574.html</a>
+　　 <a href=http://leaver.me/archives/548.html>http://leaver.me/archives/548.html</a></p></div><div class=post-archive><h2>See Also</h2><ul class=listing><li><a href=/2012/05/12/lr0%E9%A1%B9%E7%9B%AE%E9%9B%86%E8%A7%84%E8%8C%83%E6%97%8F%E7%9A%84%E6%9E%84%E9%80%A0/>LR(0)项目集规范族的构造</a></li><li><a href=/2012/05/13/lr0%E5%92%8Cslr%E5%88%86%E6%9E%90%E8%A1%A8%E7%9A%84%E6%9E%84%E9%80%A0/>LR(0)和SLR分析表的构造</a></li><li><a href=/2012/05/11/%E4%B9%8C%E5%90%88%E4%B9%8B%E4%BC%97%E7%AC%94%E8%AE%B0%E4%B8%8B%E9%83%A8/>《乌合之众》笔记下部</a></li><li><a href=/2012/05/09/c-%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/>C++回调函数</a></li><li><a href=/2012/05/05/.net%E4%B8%89%E5%B1%82%E6%9E%B6%E6%9E%84/>.Net三层架构</a></li></ul></div><div class="post-meta meta-tags"><ul class=clearfix><li><a href=http://leaver.me/tags/%E5%AD%A6%E4%B9%A0>学习</a></li><li><a href=http://leaver.me/tags/%E6%80%BB%E7%BB%93>总结</a></li><li><a href=http://leaver.me/tags/%E7%BC%96%E7%A8%8B>编程</a></li><li><a href=http://leaver.me/tags/%E7%BC%96%E8%AF%91>编译</a></li></ul></div></article><div id=disqus_thread></div><script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return;}
+var d=document,s=d.createElement('script');s.async=true;s.src='//'+"leaverme"+'.disqus.com/embed.js';s.setAttribute('data-timestamp',+new Date());(d.head||d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div></div><div id=secondary><section class=widget><form id=search action=http://leaver.me/search/ method=get accept-charset=utf-8 target=_blank _lpchecked=1><input type=text name=q maxlength=20 placeholder=Search>
+<input type=hidden name=sitesearch value=http://leaver.me/>
+<button type=submit class="submit icon-search"></button></form></section><section class=widget><h3 class=widget-title>最近文章</h3><ul class=widget-list><li><a href=http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/ title="2019 年终总结">2019 年终总结</a></li><li><a href=http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/ title=深入理解Raft协议>深入理解Raft协议</a></li><li><a href=http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/ title=《非暴力沟通》笔记>《非暴力沟通》笔记</a></li><li><a href=http://leaver.me/2019/10/06/wedding-of-friends/ title="Wedding of Friends">Wedding of Friends</a></li><li><a href=http://leaver.me/2019/09/29/principle-note/ title="Principle Note">Principle Note</a></li><li><a href=http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/ title=梦见鲸鱼的那一夜>梦见鲸鱼的那一夜</a></li><li><a href=http://leaver.me/2019/08/20/understand-hong-kong-2/ title="Understand Hong Kong 2">Understand Hong Kong 2</a></li><li><a href=http://leaver.me/2019/08/18/understand-hong-kong-part-1/ title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a></li><li><a href=http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/ title=错过的都是命，得到的才是人生>错过的都是命，得到的才是人生</a></li><li><a href=http://leaver.me/2019/04/06/recently/ title=Recently>Recently</a></li></ul></section><section class=widget><h3 class=widget-title>分类</h3><ul class=widget-list><li><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/>学习笔记 (186)</a></li><li><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/>我的翻译 (57)</a></li><li><a href=http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/>文章收藏 (53)</a></li><li><a href=http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/>生活记录 (3)</a></li><li><a href=http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/>读书笔记 (4)</a></li></ul></section><section class=widget><h3 class=widget-title>标签</h3><div class=tagcloud><a href=http://leaver.me/tags/android/>android</a>
+<a href=http://leaver.me/tags/c/>C＃</a>
+<a href=http://leaver.me/tags/c++/>C++</a>
+<a href=http://leaver.me/tags/java/>java</a>
+<a href=http://leaver.me/tags/javascript/>javascript</a>
+<a href=http://leaver.me/tags/linux/>linux</a>
+<a href=http://leaver.me/tags/mac/>mac</a>
+<a href=http://leaver.me/tags/matlab/>matlab</a>
+<a href=http://leaver.me/tags/maven/>maven</a>
+<a href=http://leaver.me/tags/mysql/>mysql</a>
+<a href=http://leaver.me/tags/nextgen-gallery/>NextGEN Gallery</a>
+<a href=http://leaver.me/tags/php/>php</a>
+<a href=http://leaver.me/tags/python/>python</a>
+<a href=http://leaver.me/tags/shell/>shell</a>
+<a href=http://leaver.me/tags/spring/>spring</a>
+<a href=http://leaver.me/tags/sql/>sql</a>
+<a href=http://leaver.me/tags/stackoverflow/>stackoverflow</a>
+<a href=http://leaver.me/tags/wcf/>WCF</a>
+<a href=http://leaver.me/tags/web/>web</a>
+<a href=http://leaver.me/tags/windows/>windows</a>
+<a href=http://leaver.me/tags/wordpress/>wordpress</a>
+<a href=http://leaver.me/tags/wpf/>WPF</a>
+<a href=http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/>上海</a>
+<a href=http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/>下载</a>
+<a href=http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/>中间件</a>
+<a href=http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/>互联网</a>
+<a href=http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/>分布式</a>
+<a href=http://leaver.me/tags/%E5%88%B6%E5%BA%A6/>制度</a>
+<a href=http://leaver.me/tags/%E5%89%8D%E7%AB%AF/>前端</a>
+<a href=http://leaver.me/tags/%E5%8E%9F%E5%88%9B/>原创</a>
+<a href=http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/>大学</a>
+<a href=http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/>学习</a>
+<a href=http://leaver.me/tags/%E5%AE%89%E5%85%A8/>安全</a>
+<a href=http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/>家庭</a>
+<a href=http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/>工作</a>
+<a href=http://leaver.me/tags/%E5%B7%A5%E5%85%B7/>工具</a>
+<a href=http://leaver.me/tags/%E5%B9%B6%E5%8F%91/>并发</a>
+<a href=http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/>序列化</a>
+<a href=http://leaver.me/tags/%E5%BC%80%E5%8F%91/>开发</a>
+<a href=http://leaver.me/tags/%E5%BF%83%E7%90%86/>心理</a>
+<a href=http://leaver.me/tags/%E6%80%BB%E7%BB%93/>总结</a>
+<a href=http://leaver.me/tags/%E6%8A%80%E6%9C%AF/>技术</a>
+<a href=http://leaver.me/tags/%E6%8F%92%E4%BB%B6/>插件</a>
+<a href=http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/>操作系统</a>
+<a href=http://leaver.me/tags/%E6%94%B6%E8%97%8F/>收藏</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E5%AD%A6/>数学</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/>数据库</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/>数据挖掘</a>
+<a href=http://leaver.me/tags/%E6%96%87%E7%AB%A0/>文章</a>
+<a href=http://leaver.me/tags/%E6%99%BA%E8%83%BD/>智能</a>
+<a href=http://leaver.me/tags/%E6%9D%82%E6%96%87/>杂文</a>
+<a href=http://leaver.me/tags/%E6%AD%A6%E6%B1%89/>武汉</a>
+<a href=http://leaver.me/tags/%E6%B1%87%E7%BC%96/>汇编</a>
+<a href=http://leaver.me/tags/%E7%88%B1%E6%83%85/>爱情</a>
+<a href=http://leaver.me/tags/%E7%90%86%E8%AE%BA/>理论</a>
+<a href=http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/>生产力</a>
+<a href=http://leaver.me/tags/%E7%94%9F%E6%B4%BB/>生活</a>
+<a href=http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/>电子书</a>
+<a href=http://leaver.me/tags/%E7%94%B5%E5%BD%B1/>电影</a>
+<a href=http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/>社会</a>
+<a href=http://leaver.me/tags/%E7%A7%91%E6%8A%80/>科技</a>
+<a href=http://leaver.me/tags/%E7%AC%94%E8%AE%B0/>笔记</a>
+<a href=http://leaver.me/tags/%E7%AE%97%E6%B3%95/>算法</a>
+<a href=http://leaver.me/tags/%E7%BC%96%E7%A8%8B/>编程</a>
+<a href=http://leaver.me/tags/%E7%BC%96%E8%AF%91/>编译</a>
+<a href=http://leaver.me/tags/%E7%BF%BB%E8%AF%91/>翻译</a>
+<a href=http://leaver.me/tags/%E8%81%8C%E4%B8%9A/>职业</a>
+<a href=http://leaver.me/tags/%E8%AE%B0%E5%BD%95/>记录</a>
+<a href=http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/>设计</a>
+<a href=http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/>读书</a>
+<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/>软件</a>
+<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/>软件测试</a>
+<a href=http://leaver.me/tags/%E8%BF%90%E7%BB%B4/>运维</a>
+<a href=http://leaver.me/tags/%E9%87%91%E8%9E%8D/>金融</a></div></section><section class=widget><h3 class=widget-title>友情链接</h3><ul class=widget-list><li><a target=_blank href=https://www.cppfans.org/ title=C++爱好者博客>C++爱好者博客</a></li><li><a target=_blank href=http://www.kailing.pub title=KL，每天进步一点点>KL，每天进步一点点</a></li></ul></section><section class=widget><h3 class=widget-title>其它</h3><ul class=widget-list><li><a href=http://leaver.me/index.xml>文章 RSS</a></li></ul></section></div></div></div></div><footer id=footer><div class=container>&copy; 2020 <a href=http://leaver.me/>bystander's blog By bystander</a>.
+Powered by <a rel="nofollow noreferer noopener" href=https://gohugo.io target=_blank>Hugo</a>.
+<a href=https://www.flysnow.org/ target=_blank>Theme</a> based on <a href=https://github.com/flysnow-org/maupassant-hugo target=_blank>maupassant</a>.</div></footer><script type=text/javascript>window.MathJax={tex2jax:{inlineMath:[['$','$']],processEscapes:true}};</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script><a id=rocket href=#top></a><script type=text/javascript src="/js/totop.js?v=0.0.0" async></script><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-30961201-3','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></body></html>

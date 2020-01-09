@@ -1,23 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>分布式 on bystander&#39;s blog</title>
-    <link>http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/</link>
-    <description>Recent content in 分布式 on bystander&#39;s blog</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh-CN</language>
-    <lastBuildDate>Mon, 30 Dec 2019 14:42:42 +0800</lastBuildDate>
-    
-	<atom:link href="http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>深入理解Raft协议</title>
-      <link>http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/</link>
-      <pubDate>Mon, 30 Dec 2019 14:42:42 +0800</pubDate>
-      
-      <guid>http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/</guid>
-      <description>本文部分以JRaft为例，来详细介绍Raft。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>分布式 on bystander's blog</title><link>http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/</link><description>Recent content in 分布式 on bystander's blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 30 Dec 2019 14:42:42 +0800</lastBuildDate><atom:link href="http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/index.xml" rel="self" type="application/rss+xml"/><item><title>深入理解Raft协议</title><link>http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/</link><pubDate>Mon, 30 Dec 2019 14:42:42 +0800</pubDate><guid>http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/</guid><description>本文部分以JRaft为例，来详细介绍Raft。
 Raft 来源 首先，我们介绍 Raft 问题的来源，Raft 实际上是一个一致性算法的一种实现，和Paxos等价，但是在实现上，简化了一些，并且更加易用。
 这里面又引入了两个名字。一个是一致性，一个是Paxos，我们先说一致性，
 一致性是一个可容错的分布式系统重的最基本的一个问题，一致性包含了“多个服务器对同一个值达成共识，一旦对某个值达成共识，这个决定就是不可变了”，通常，一致性算法，当多数服务器可用的时候，才有效，比如5个server，那么2个挂了，是没问题的，但是再挂一个，超过一半，就不能提供服务了。这句话也说明，他不会返回错误的值，因为都不提供服务了。
@@ -37,9 +18,5 @@ Follower：Follower是被动的，它们不主动提出请求，只是响应Lead
 Candidate：Candidate是节点从Follower转变为Leader的过渡状态。因为Follower是一个完全被动的状态，所以当需要重新选举时，Follower需要将自己提升为Candidate，然后发起选举。
 但是这种机制也带来一个麻烦，如果一个节点 因为自己的原因没有看到 Leader 发出的通知，他就会自以为是的试图竞选成为新的Leader，虽然不断发起选举且一直未能当选（因为Leader和其他船都正常通信），但是它却通过自己的投票请求实际抬升了全局的 Term
 为了阻止这种“捣乱”，可以设计一个预投票 (pre-vote) 环节。候选者在发起投票之前，先发起预投票，如果没有得到半数以上节点的反馈，则候选者就会放弃参选，也就不会提升全局的 Term。
- Candidate 被 ET(Election Timeout) 触发 Candidate 开始尝试发起 pre-vote 预投票 Follower 判断是否认可该 pre-vote request Candidate 根据 pre-vote response 来决定是否发起 RequestVoteRequest Follower 判断是否认可该 RequestVoteRequest Candidate 根据 Response 来判断自己是否当选  线性一致性 线性一致读是在分布式系统中实现 Java volatile 语义，当客户端向集群发起写操作的请求并且获得成功响应之后，该写操作的结果要对所有后来的读请求可见。其实就是CAP里面的C，
-Raft log read 实际上如果基于Raft本身的设计，因为每次 Read 都需要走 Raft 流程，Raft Log 存储、复制带来刷盘开销、存储开销、网络开销，走 Raft Log不仅仅有日志落盘的开销，还有日志复制的网络开销，另外还有一堆的 Raft “读日志” 造成的磁盘占用开销，导致 Read 操作性能是非常低效的，所以在读操作很多的场景下对性能影响很大，在读比重很大的系统中是无法被接受的，通常都不会使用。</description>
-    </item>
-    
-  </channel>
-</rss>
+Candidate 被 ET(Election Timeout) 触发 Candidate 开始尝试发起 pre-vote 预投票 Follower 判断是否认可该 pre-vote request Candidate 根据 pre-vote response 来决定是否发起 RequestVoteRequest Follower 判断是否认可该 RequestVoteRequest Candidate 根据 Response 来判断自己是否当选 线性一致性 线性一致读是在分布式系统中实现 Java volatile 语义，当客户端向集群发起写操作的请求并且获得成功响应之后，该写操作的结果要对所有后来的读请求可见。其实就是CAP里面的C，
+Raft log read 实际上如果基于Raft本身的设计，因为每次 Read 都需要走 Raft 流程，Raft Log 存储、复制带来刷盘开销、存储开销、网络开销，走 Raft Log不仅仅有日志落盘的开销，还有日志复制的网络开销，另外还有一堆的 Raft “读日志” 造成的磁盘占用开销，导致 Read 操作性能是非常低效的，所以在读操作很多的场景下对性能影响很大，在读比重很大的系统中是无法被接受的，通常都不会使用。</description></item></channel></rss>

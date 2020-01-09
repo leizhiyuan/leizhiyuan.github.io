@@ -1,507 +1,102 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>oom介绍 | bystander&#39;s blog</title>
-    <meta property="og:title" content="oom介绍 - bystander&#39;s blog">
-    <meta property="og:type" content="article">
-        
-    <meta property="article:published_time" content='2017-02-03T15:04:04&#43;08:00'>
-        
-        
-    <meta property="article:modified_time" content='2017-02-03T15:04:04&#43;08:00'>
-        
-    <meta name="Keywords" content="">
-    <meta name="description" content="oom介绍">
-        
-    <meta name="author" content="bystander">
-    <meta property="og:url" content="http://leaver.me/2017/02/03/oom%E4%BB%8B%E7%BB%8D/">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-
-    <link rel="stylesheet" href='/css/normalize.css'>
-    <link rel="stylesheet" href='/css/style.css'>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-    
-
-
-    
-    
-</head>
-
-
-<body>
-    <header id="header" class="clearfix">
-    <div class="container">
-        <div class="col-group">
-            <div class="site-name ">
-                
-                    <a id="logo" href="http://leaver.me/">
-                        bystander&#39;s blog
-                    </a>
-                
-                <p class="description">寻找窄门</p>
-            </div>
-            <div>
-                <nav id="nav-menu" class="clearfix">
-                    <a class="current" href="http://leaver.me/">首页</a>
-                    
-                    <a  href="http://leaver.me/categories" title="目录">目录</a>
-                    
-                    <a  href="http://leaver.me/about/" title="关于我">关于我</a>
-                    
-                </nav>
-            </div>
-        </div>
-    </div>
-</header>
-
-    <div id="body">
-        <div class="container">
-            <div class="col-group">
-
-                <div class="col-8" id="main">
-                    
-<div class="res-cons">
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">oom介绍</h1>
-        </header>
-        <date class="post-meta meta-date">
-            2017年2月3日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a></span>
-            
-        </div>
-        
-        
-        
-        <div class="post-content">
-            <p>oom 之前知道, 但是并不是很了解,最近遇到了由 oom 引发的问题,所以学习记录一下.</p>
-<p>OOM-killer：Out-of-Memory (OOM) Killer是一种保护机制，用于当内存严重不足时，为了系统的继续运转，内核迫不得已挑选一个进程，将其杀死，以释放内存，缓解内存不足的问题。
-可以看出这种方式对进程的保护是有限的，不能完全的保护进程的运行。</p>
-<h2 id="-oom">如何知道是否发生了 oom</h2>
-<p>两种方法,第一种,查看 /var/log/messages,会有类似</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">Out of memory: Kill process 9682 (mysqld) score 9 or sacrifice child
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><title>oom介绍 | bystander's blog</title><meta property="og:title" content="oom介绍 - bystander's blog"><meta property="og:type" content="article"><meta property="article:published_time" content="2017-02-03T15:04:04+08:00"><meta property="article:modified_time" content="2017-02-03T15:04:04+08:00"><meta name=Keywords content><meta name=description content="oom介绍"><meta name=author content="bystander"><meta property="og:url" content="http://leaver.me/2017/02/03/oom%E4%BB%8B%E7%BB%8D/"><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><link rel=stylesheet href=/css/normalize.css><link rel=stylesheet href=/css/style.css><script type=text/javascript src=//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js></script></head><body><header id=header class=clearfix><div class=container><div class=col-group><div class=site-name><a id=logo href=http://leaver.me/>bystander's blog</a><p class=description>寻找窄门</p></div><div><nav id=nav-menu class=clearfix><a class=current href=http://leaver.me/>首页</a>
+<a href=http://leaver.me/categories title=目录>目录</a>
+<a href=http://leaver.me/about/ title=关于我>关于我</a></nav></div></div></div></header><div id=body><div class=container><div class=col-group><div class=col-8 id=main><div class=res-cons><article class=post><header><h1 class=post-title>oom介绍</h1></header><date class="post-meta meta-date">2017年2月3日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></span></div><div class=post-content><p>oom 之前知道, 但是并不是很了解,最近遇到了由 oom 引发的问题,所以学习记录一下.</p><p>OOM-killer：Out-of-Memory (OOM) Killer是一种保护机制，用于当内存严重不足时，为了系统的继续运转，内核迫不得已挑选一个进程，将其杀死，以释放内存，缓解内存不足的问题。
+可以看出这种方式对进程的保护是有限的，不能完全的保护进程的运行。</p><h2 id=如何知道是否发生了-oom>如何知道是否发生了 oom</h2><p>两种方法,第一种,查看 /var/log/messages,会有类似</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback>Out of memory: Kill process 9682 (mysqld) score 9 or sacrifice child
 Killed process 9682, UID 27, (mysqld) total-vm:47388kB, anon-rss:3744kB, file-rss:80kB
 httpd invoked oom-killer: gfp_mask=0x201da, order=0, oom_adj=0, oom_score_adj=0
 httpd cpuset=/ mems_allowed=0
 Pid: 8911, comm: httpd Not tainted 2.6.32-279.1.1.el6.i686 #1
-</code></pre></div><p>这样的标识,说明发生了 oom,关键就是 kill process, 所以可以这样</p>
-<p><code>sudo cat /var/log/messages | grep -i&quot;killed process&quot;</code></p>
-<p>另一种是通过dmesg来查看
+</code></pre></div><p>这样的标识,说明发生了 oom,关键就是 kill process, 所以可以这样</p><p><code>sudo cat /var/log/messages | grep -i"killed process"</code></p><p>另一种是通过dmesg来查看
 <code>dmesg | egrep -i 'killed process'</code>
-这个命令查看的 oom 的时间里是时间戳的形式,如果你的 dmesg 没有-T这个时间的选项,那么就需要通过</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">date -d &#34;1970-01-01 UTC `echo &#34;$(date +%s)-$(cat /proc/uptime|cut -f 1 -d&#39; &#39;)+12288812.926194&#34;|bc ` seconds&#34;
-</code></pre></div><p>来转换成可读的时间了.</p>
-<h2 id="oom-">oom 的原理</h2>
-<p>其中涉及到有三个相关文件：</p>
-<ul>
-<li>/proc/$PID/oom_adj</li>
-<li>/proc/$PID/oom_score</li>
-<li>/proc/$PID/oom_score_adj
-其中 oom_score 表示最终的分数，该分数越大，越可能被 Killer 杀掉。</li>
-</ul>
-<p>而 oom_adj 是调整分数的，可以设置为负值，会对 oom_score减分。</p>
-<p>从Linux 2.6.36开始都安装了/proc/$PID/oom_score_adj，此后将替换掉/proc/$PID/oom_adj。即使当前是对/proc/$PID/oom_adj进行的设置，在内核内部进行变换后的值也是针对/proc/$PID/oom_score_adj设置的。可以参见<a href="https://github.com/tinganho/linux-kernel/blob/master/Documentation/feature-removal-schedule.txt">feature-removal-schedule</a>这里 171行.</p>
-<p>通过 cat /proc/$PID/oom_score 可以查看进程的得分</p>
-<p>打分算法在这里
-<a href="https://github.com/torvalds/linux/blob/master/mm/oom_kill.c">https://github.com/torvalds/linux/blob/master/mm/oom_kill.c</a></p>
-<p>从上面的 oom_kill.c 代码里可以看到 oom_badness() 给每个进程打分，根据 points 的高低来决定杀哪个进程，这个 points 可以根据 adj 调节，root 权限的进程通常被认为很重要，不应该被轻易杀掉，所以打分的时候可以得到 3% 的优惠（adj -= 30; 分数越低越不容易被杀掉）。我们可以在用户空间通过操作每个进程的 oom_adj 内核参数来决定哪些进程不这么容易被 OOM killer 选中杀掉。比如，如果不想 MySQL 进程被轻易杀掉的话可以找到 MySQL 运行的进程号后，调整 oom_score_adj 为 -15（注意 points 越小越不容易被杀）：范围是从-1000 到 1000,参考<a href="https://github.com/torvalds/linux/commit/a63d83f427fbce97a6cea0db2e64b0eb8435cd10#include/linux/oom.h">这里</a></p>
-<h2 id="heading">说明</h2>
-<p>也就是说rot 进程也并没有太大的优惠.主要还是取决于占用内存的多少.这就说明,如果 A,B 两个进程. B 属于正常进程,占用系统最多的进程.但是 A 是其他进程,如果 A 突然占用内存升高,导致需要触发 oom, 那么由于打分算法的存在,也会导致 B 被杀.</p>
-<h2 id="heading-1">如何查看当前进程分数</h2>
-<p>两种.一种是
-<code>ps -eo pid,comm,pmem --sort -rss | awk '{&quot;cat /proc/&quot;$1&quot;/oom_score&quot; | getline oom; print $0&quot;\t&quot;oom}'</code></p>
-<p>另一种是</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
-</span><span class="cp"></span><span class="k">for</span> proc in <span class="k">$(</span>find /proc -maxdepth <span class="m">1</span> -regex <span class="s1">&#39;/proc/[0-9]+&#39;</span><span class="k">)</span><span class="p">;</span> <span class="k">do</span>
-    <span class="nb">printf</span> <span class="s2">&#34;%2d %5d %s\n&#34;</span> <span class="se">\
-</span><span class="se"></span>        <span class="s2">&#34;</span><span class="k">$(</span>cat <span class="nv">$proc</span>/oom_score<span class="k">)</span><span class="s2">&#34;</span> <span class="se">\
-</span><span class="se"></span>        <span class="s2">&#34;</span><span class="k">$(</span>basename <span class="nv">$proc</span><span class="k">)</span><span class="s2">&#34;</span> <span class="se">\
-</span><span class="se"></span>        <span class="s2">&#34;</span><span class="k">$(</span>cat <span class="nv">$proc</span>/cmdline <span class="p">|</span> tr <span class="s1">&#39;\0&#39;</span> <span class="s1">&#39; &#39;</span> <span class="p">|</span> head -c 50<span class="k">)</span><span class="s2">&#34;</span>
-<span class="k">done</span> 2&gt;/dev/null <span class="p">|</span> sort -nr <span class="p">|</span> head -n <span class="m">10</span>
-</code></pre></div><h2 id="heading-2">能否关闭</h2>
-<p>OOM Killer的关闭与激活方式：</p>
-<h1 id="echo-0--procsysvmoom-kill">echo &ldquo;0&rdquo; &gt; /proc/sys/vm/oom-kill</h1>
-<h1 id="echo-1--procsysvmoom-kill">echo &ldquo;1″ &gt; /proc/sys/vm/oom-kill</h1>
-<h2 id="heading-3">参考</h2>
-<p><a href="https://github.com/Yhzhtk/note/issues/31">Linux 找出最有可能被 OOM Killer 杀掉的进程</a>
-<a href="http://www.vpsee.com/2013/10/how-to-configure-the-linux-oom-killer/">理解和配置 Linux 下的 OOM Killer</a></p>
-
-        </div>
-
-        
-
-
-        
-
-<div class="post-archive">
-    <h2>See Also</h2>
-    <ul class="listing">
-        
-        <li><a href="/2016/12/10/graylog%E6%97%A5%E8%AE%B0%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/">graylog日记管理平台使用的那些坑</a></li>
-        
-        <li><a href="/2016/10/30/graylog%E4%B8%AD%E7%9A%84%E5%AD%97%E6%AE%B5%E8%A7%A3%E6%9E%90/">graylog中的字段解析</a></li>
-        
-        <li><a href="/2014/09/21/jenkins%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99/">jenkins相关资料</a></li>
-        
-        <li><a href="/2014/06/27/8583%E6%8A%A5%E6%96%87%E7%9B%B8%E5%85%B3/">8583报文相关</a></li>
-        
-        <li><a href="/2014/04/26/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/">构建数据库连接的配置方法</a></li>
-        
-    </ul>
-</div>
-
-
-        <div class="post-meta meta-tags">
-            
-            <ul class="clearfix">
-                
-                <li><a href='http://leaver.me/tags/java'>java</a></li>
-                
-                <li><a href='http://leaver.me/tags/%E5%B7%A5%E4%BD%9C'>工作</a></li>
-                
-            </ul>
-            
-        </div>
-    </article>
-    
-    <div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "leaverme" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
-    
-    
-</div>
-
-                </div>
-
-                <div id="secondary">
-    <section class="widget">
-        <form id="search" action='http://leaver.me/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
-      
-      <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="http://leaver.me/">
-      <button type="submit" class="submit icon-search"></button>
-</form>
-    </section>
-    
-    <section class="widget">
-        <h3 class="widget-title">最近文章</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2019 年终总结">2019 年终总结</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/" title="深入理解Raft协议">深入理解Raft协议</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/" title="《非暴力沟通》笔记">《非暴力沟通》笔记</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/10/06/wedding-of-friends/" title="Wedding of Friends">Wedding of Friends</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/09/29/principle-note/" title="Principle Note">Principle Note</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/" title="梦见鲸鱼的那一夜">梦见鲸鱼的那一夜</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/08/20/understand-hong-kong-2/" title="Understand Hong Kong 2">Understand Hong Kong 2</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/08/18/understand-hong-kong-part-1/" title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/" title="错过的都是命，得到的才是人生">错过的都是命，得到的才是人生</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/04/06/recently/" title="Recently">Recently</a>
-    </li>
-    
-</ul>
-    </section>
-
-    
-
-    <section class="widget">
-        <h3 class="widget-title">分类</h3>
-<ul class="widget-list">
-    
-    <li><a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记 (186)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/">我的翻译 (57)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/">文章收藏 (53)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录 (3)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记 (4)</a></li>
-    
-</ul>
-    </section>
-
-    <section class="widget">
-        <h3 class="widget-title">标签</h3>
-<div class="tagcloud">
-    
-    <a href="http://leaver.me/tags/android/">android</a>
-    
-    <a href="http://leaver.me/tags/c/">C＃</a>
-    
-    <a href="http://leaver.me/tags/c&#43;&#43;/">C&#43;&#43;</a>
-    
-    <a href="http://leaver.me/tags/java/">java</a>
-    
-    <a href="http://leaver.me/tags/javascript/">javascript</a>
-    
-    <a href="http://leaver.me/tags/linux/">linux</a>
-    
-    <a href="http://leaver.me/tags/mac/">mac</a>
-    
-    <a href="http://leaver.me/tags/matlab/">matlab</a>
-    
-    <a href="http://leaver.me/tags/maven/">maven</a>
-    
-    <a href="http://leaver.me/tags/mysql/">mysql</a>
-    
-    <a href="http://leaver.me/tags/nextgen-gallery/">NextGEN Gallery</a>
-    
-    <a href="http://leaver.me/tags/php/">php</a>
-    
-    <a href="http://leaver.me/tags/python/">python</a>
-    
-    <a href="http://leaver.me/tags/shell/">shell</a>
-    
-    <a href="http://leaver.me/tags/spring/">spring</a>
-    
-    <a href="http://leaver.me/tags/sql/">sql</a>
-    
-    <a href="http://leaver.me/tags/stackoverflow/">stackoverflow</a>
-    
-    <a href="http://leaver.me/tags/wcf/">WCF</a>
-    
-    <a href="http://leaver.me/tags/web/">web</a>
-    
-    <a href="http://leaver.me/tags/windows/">windows</a>
-    
-    <a href="http://leaver.me/tags/wordpress/">wordpress</a>
-    
-    <a href="http://leaver.me/tags/wpf/">WPF</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/">上海</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/">下载</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
-    
-    <a href="http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/">互联网</a>
-    
-    <a href="http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
-    
-    <a href="http://leaver.me/tags/%E5%88%B6%E5%BA%A6/">制度</a>
-    
-    <a href="http://leaver.me/tags/%E5%89%8D%E7%AB%AF/">前端</a>
-    
-    <a href="http://leaver.me/tags/%E5%8E%9F%E5%88%9B/">原创</a>
-    
-    <a href="http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/">大学</a>
-    
-    <a href="http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/">学习</a>
-    
-    <a href="http://leaver.me/tags/%E5%AE%89%E5%85%A8/">安全</a>
-    
-    <a href="http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/">家庭</a>
-    
-    <a href="http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/">工作</a>
-    
-    <a href="http://leaver.me/tags/%E5%B7%A5%E5%85%B7/">工具</a>
-    
-    <a href="http://leaver.me/tags/%E5%B9%B6%E5%8F%91/">并发</a>
-    
-    <a href="http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/">序列化</a>
-    
-    <a href="http://leaver.me/tags/%E5%BC%80%E5%8F%91/">开发</a>
-    
-    <a href="http://leaver.me/tags/%E5%BF%83%E7%90%86/">心理</a>
-    
-    <a href="http://leaver.me/tags/%E6%80%BB%E7%BB%93/">总结</a>
-    
-    <a href="http://leaver.me/tags/%E6%8A%80%E6%9C%AF/">技术</a>
-    
-    <a href="http://leaver.me/tags/%E6%8F%92%E4%BB%B6/">插件</a>
-    
-    <a href="http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-    
-    <a href="http://leaver.me/tags/%E6%94%B6%E8%97%8F/">收藏</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E5%AD%A6/">数学</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">数据挖掘</a>
-    
-    <a href="http://leaver.me/tags/%E6%96%87%E7%AB%A0/">文章</a>
-    
-    <a href="http://leaver.me/tags/%E6%99%BA%E8%83%BD/">智能</a>
-    
-    <a href="http://leaver.me/tags/%E6%9D%82%E6%96%87/">杂文</a>
-    
-    <a href="http://leaver.me/tags/%E6%AD%A6%E6%B1%89/">武汉</a>
-    
-    <a href="http://leaver.me/tags/%E6%B1%87%E7%BC%96/">汇编</a>
-    
-    <a href="http://leaver.me/tags/%E7%88%B1%E6%83%85/">爱情</a>
-    
-    <a href="http://leaver.me/tags/%E7%90%86%E8%AE%BA/">理论</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%9F%E6%B4%BB/">生活</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/">电子书</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%B5%E5%BD%B1/">电影</a>
-    
-    <a href="http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/">社会</a>
-    
-    <a href="http://leaver.me/tags/%E7%A7%91%E6%8A%80/">科技</a>
-    
-    <a href="http://leaver.me/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
-    
-    <a href="http://leaver.me/tags/%E7%AE%97%E6%B3%95/">算法</a>
-    
-    <a href="http://leaver.me/tags/%E7%BC%96%E7%A8%8B/">编程</a>
-    
-    <a href="http://leaver.me/tags/%E7%BC%96%E8%AF%91/">编译</a>
-    
-    <a href="http://leaver.me/tags/%E7%BF%BB%E8%AF%91/">翻译</a>
-    
-    <a href="http://leaver.me/tags/%E8%81%8C%E4%B8%9A/">职业</a>
-    
-    <a href="http://leaver.me/tags/%E8%AE%B0%E5%BD%95/">记录</a>
-    
-    <a href="http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/">设计</a>
-    
-    <a href="http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/">读书</a>
-    
-    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/">软件</a>
-    
-    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</a>
-    
-    <a href="http://leaver.me/tags/%E8%BF%90%E7%BB%B4/">运维</a>
-    
-    <a href="http://leaver.me/tags/%E9%87%91%E8%9E%8D/">金融</a>
-    
-</div>
-    </section>
-
-    
-<section class="widget">
-    <h3 class="widget-title">友情链接</h3>
-    <ul class="widget-list">
-        
-        <li>
-            <a target="_blank" href="https://www.cppfans.org/" title="C&#43;&#43;爱好者博客">C&#43;&#43;爱好者博客</a>
-        </li>
-        
-        <li>
-            <a target="_blank" href="http://www.kailing.pub" title="KL，每天进步一点点">KL，每天进步一点点</a>
-        </li>
-        
-    </ul>
-</section>
-
-
-    <section class="widget">
-        <h3 class="widget-title">其它</h3>
-        <ul class="widget-list">
-            <li><a href="http://leaver.me/index.xml">文章 RSS</a></li>
-        </ul>
-    </section>
-</div>
-            </div>
-        </div>
-    </div>
-    <footer id="footer">
-    <div class="container">
-        &copy; 2020 <a href="http://leaver.me/">bystander&#39;s blog By bystander</a>.
-        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
-        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
-        
-    </div>
-</footer>
-
-
-    
-    <script type="text/javascript">
-        window.MathJax = {
-            tex2jax: {
-                inlineMath: [['$', '$']],
-                processEscapes: true
-                }
-            };
-    </script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
-
-
-<a id="rocket" href="#top"></a>
-<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-30961201-3', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-
-
-
-
-
-</body>
-
-</html>
+这个命令查看的 oom 的时间里是时间戳的形式,如果你的 dmesg 没有-T这个时间的选项,那么就需要通过</p><div class=highlight><pre class=chroma><code class=language-fallback data-lang=fallback>date -d &#34;1970-01-01 UTC `echo &#34;$(date +%s)-$(cat /proc/uptime|cut -f 1 -d&#39; &#39;)+12288812.926194&#34;|bc ` seconds&#34;
+</code></pre></div><p>来转换成可读的时间了.</p><h2 id=oom-的原理>oom 的原理</h2><p>其中涉及到有三个相关文件：</p><ul><li>/proc/$PID/oom_adj</li><li>/proc/$PID/oom_score</li><li>/proc/$PID/oom_score_adj
+其中 oom_score 表示最终的分数，该分数越大，越可能被 Killer 杀掉。</li></ul><p>而 oom_adj 是调整分数的，可以设置为负值，会对 oom_score减分。</p><p>从Linux 2.6.36开始都安装了/proc/$PID/oom_score_adj，此后将替换掉/proc/$PID/oom_adj。即使当前是对/proc/$PID/oom_adj进行的设置，在内核内部进行变换后的值也是针对/proc/$PID/oom_score_adj设置的。可以参见<a href=https://github.com/tinganho/linux-kernel/blob/master/Documentation/feature-removal-schedule.txt>feature-removal-schedule</a>这里 171行.</p><p>通过 cat /proc/$PID/oom_score 可以查看进程的得分</p><p>打分算法在这里
+<a href=https://github.com/torvalds/linux/blob/master/mm/oom_kill.c>https://github.com/torvalds/linux/blob/master/mm/oom_kill.c</a></p><p>从上面的 oom_kill.c 代码里可以看到 oom_badness() 给每个进程打分，根据 points 的高低来决定杀哪个进程，这个 points 可以根据 adj 调节，root 权限的进程通常被认为很重要，不应该被轻易杀掉，所以打分的时候可以得到 3% 的优惠（adj -= 30; 分数越低越不容易被杀掉）。我们可以在用户空间通过操作每个进程的 oom_adj 内核参数来决定哪些进程不这么容易被 OOM killer 选中杀掉。比如，如果不想 MySQL 进程被轻易杀掉的话可以找到 MySQL 运行的进程号后，调整 oom_score_adj 为 -15（注意 points 越小越不容易被杀）：范围是从-1000 到 1000,参考<a href=https://github.com/torvalds/linux/commit/a63d83f427fbce97a6cea0db2e64b0eb8435cd10#include/linux/oom.h>这里</a></p><h2 id=说明>说明</h2><p>也就是说rot 进程也并没有太大的优惠.主要还是取决于占用内存的多少.这就说明,如果 A,B 两个进程. B 属于正常进程,占用系统最多的进程.但是 A 是其他进程,如果 A 突然占用内存升高,导致需要触发 oom, 那么由于打分算法的存在,也会导致 B 被杀.</p><h2 id=如何查看当前进程分数>如何查看当前进程分数</h2><p>两种.一种是
+<code>ps -eo pid,comm,pmem --sort -rss | awk '{"cat /proc/"$1"/oom_score" | getline oom; print $0"\t"oom}'</code></p><p>另一种是</p><div class=highlight><pre class=chroma><code class=language-bash data-lang=bash><span class=cp>#!/bin/bash
+</span><span class=cp></span><span class=k>for</span> proc in <span class=k>$(</span>find /proc -maxdepth <span class=m>1</span> -regex <span class=s1>&#39;/proc/[0-9]+&#39;</span><span class=k>)</span><span class=p>;</span> <span class=k>do</span>
+    <span class=nb>printf</span> <span class=s2>&#34;%2d %5d %s\n&#34;</span> <span class=se>\
+</span><span class=se></span>        <span class=s2>&#34;</span><span class=k>$(</span>cat <span class=nv>$proc</span>/oom_score<span class=k>)</span><span class=s2>&#34;</span> <span class=se>\
+</span><span class=se></span>        <span class=s2>&#34;</span><span class=k>$(</span>basename <span class=nv>$proc</span><span class=k>)</span><span class=s2>&#34;</span> <span class=se>\
+</span><span class=se></span>        <span class=s2>&#34;</span><span class=k>$(</span>cat <span class=nv>$proc</span>/cmdline <span class=p>|</span> tr <span class=s1>&#39;\0&#39;</span> <span class=s1>&#39; &#39;</span> <span class=p>|</span> head -c 50<span class=k>)</span><span class=s2>&#34;</span>
+<span class=k>done</span> 2&gt;/dev/null <span class=p>|</span> sort -nr <span class=p>|</span> head -n <span class=m>10</span>
+</code></pre></div><h2 id=能否关闭>能否关闭</h2><p>OOM Killer的关闭与激活方式：</p><h1 id=echo-0--procsysvmoom-kill>echo &ldquo;0&rdquo; > /proc/sys/vm/oom-kill</h1><h1 id=echo-1--procsysvmoom-kill>echo &ldquo;1″ > /proc/sys/vm/oom-kill</h1><h2 id=参考>参考</h2><p><a href=https://github.com/Yhzhtk/note/issues/31>Linux 找出最有可能被 OOM Killer 杀掉的进程</a>
+<a href=http://www.vpsee.com/2013/10/how-to-configure-the-linux-oom-killer/>理解和配置 Linux 下的 OOM Killer</a></p></div><div class=post-archive><h2>See Also</h2><ul class=listing><li><a href=/2016/12/10/graylog%E6%97%A5%E8%AE%B0%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/>graylog日记管理平台使用的那些坑</a></li><li><a href=/2016/10/30/graylog%E4%B8%AD%E7%9A%84%E5%AD%97%E6%AE%B5%E8%A7%A3%E6%9E%90/>graylog中的字段解析</a></li><li><a href=/2014/09/21/jenkins%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99/>jenkins相关资料</a></li><li><a href=/2014/06/27/8583%E6%8A%A5%E6%96%87%E7%9B%B8%E5%85%B3/>8583报文相关</a></li><li><a href=/2014/04/26/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/>构建数据库连接的配置方法</a></li></ul></div><div class="post-meta meta-tags"><ul class=clearfix><li><a href=http://leaver.me/tags/java>java</a></li><li><a href=http://leaver.me/tags/%E5%B7%A5%E4%BD%9C>工作</a></li></ul></div></article><div id=disqus_thread></div><script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return;}
+var d=document,s=d.createElement('script');s.async=true;s.src='//'+"leaverme"+'.disqus.com/embed.js';s.setAttribute('data-timestamp',+new Date());(d.head||d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div></div><div id=secondary><section class=widget><form id=search action=http://leaver.me/search/ method=get accept-charset=utf-8 target=_blank _lpchecked=1><input type=text name=q maxlength=20 placeholder=Search>
+<input type=hidden name=sitesearch value=http://leaver.me/>
+<button type=submit class="submit icon-search"></button></form></section><section class=widget><h3 class=widget-title>最近文章</h3><ul class=widget-list><li><a href=http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/ title="2019 年终总结">2019 年终总结</a></li><li><a href=http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/ title=深入理解Raft协议>深入理解Raft协议</a></li><li><a href=http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/ title=《非暴力沟通》笔记>《非暴力沟通》笔记</a></li><li><a href=http://leaver.me/2019/10/06/wedding-of-friends/ title="Wedding of Friends">Wedding of Friends</a></li><li><a href=http://leaver.me/2019/09/29/principle-note/ title="Principle Note">Principle Note</a></li><li><a href=http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/ title=梦见鲸鱼的那一夜>梦见鲸鱼的那一夜</a></li><li><a href=http://leaver.me/2019/08/20/understand-hong-kong-2/ title="Understand Hong Kong 2">Understand Hong Kong 2</a></li><li><a href=http://leaver.me/2019/08/18/understand-hong-kong-part-1/ title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a></li><li><a href=http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/ title=错过的都是命，得到的才是人生>错过的都是命，得到的才是人生</a></li><li><a href=http://leaver.me/2019/04/06/recently/ title=Recently>Recently</a></li></ul></section><section class=widget><h3 class=widget-title>分类</h3><ul class=widget-list><li><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/>学习笔记 (186)</a></li><li><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/>我的翻译 (57)</a></li><li><a href=http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/>文章收藏 (53)</a></li><li><a href=http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/>生活记录 (3)</a></li><li><a href=http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/>读书笔记 (4)</a></li></ul></section><section class=widget><h3 class=widget-title>标签</h3><div class=tagcloud><a href=http://leaver.me/tags/android/>android</a>
+<a href=http://leaver.me/tags/c/>C＃</a>
+<a href=http://leaver.me/tags/c++/>C++</a>
+<a href=http://leaver.me/tags/java/>java</a>
+<a href=http://leaver.me/tags/javascript/>javascript</a>
+<a href=http://leaver.me/tags/linux/>linux</a>
+<a href=http://leaver.me/tags/mac/>mac</a>
+<a href=http://leaver.me/tags/matlab/>matlab</a>
+<a href=http://leaver.me/tags/maven/>maven</a>
+<a href=http://leaver.me/tags/mysql/>mysql</a>
+<a href=http://leaver.me/tags/nextgen-gallery/>NextGEN Gallery</a>
+<a href=http://leaver.me/tags/php/>php</a>
+<a href=http://leaver.me/tags/python/>python</a>
+<a href=http://leaver.me/tags/shell/>shell</a>
+<a href=http://leaver.me/tags/spring/>spring</a>
+<a href=http://leaver.me/tags/sql/>sql</a>
+<a href=http://leaver.me/tags/stackoverflow/>stackoverflow</a>
+<a href=http://leaver.me/tags/wcf/>WCF</a>
+<a href=http://leaver.me/tags/web/>web</a>
+<a href=http://leaver.me/tags/windows/>windows</a>
+<a href=http://leaver.me/tags/wordpress/>wordpress</a>
+<a href=http://leaver.me/tags/wpf/>WPF</a>
+<a href=http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/>上海</a>
+<a href=http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/>下载</a>
+<a href=http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/>中间件</a>
+<a href=http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/>互联网</a>
+<a href=http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/>分布式</a>
+<a href=http://leaver.me/tags/%E5%88%B6%E5%BA%A6/>制度</a>
+<a href=http://leaver.me/tags/%E5%89%8D%E7%AB%AF/>前端</a>
+<a href=http://leaver.me/tags/%E5%8E%9F%E5%88%9B/>原创</a>
+<a href=http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/>大学</a>
+<a href=http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/>学习</a>
+<a href=http://leaver.me/tags/%E5%AE%89%E5%85%A8/>安全</a>
+<a href=http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/>家庭</a>
+<a href=http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/>工作</a>
+<a href=http://leaver.me/tags/%E5%B7%A5%E5%85%B7/>工具</a>
+<a href=http://leaver.me/tags/%E5%B9%B6%E5%8F%91/>并发</a>
+<a href=http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/>序列化</a>
+<a href=http://leaver.me/tags/%E5%BC%80%E5%8F%91/>开发</a>
+<a href=http://leaver.me/tags/%E5%BF%83%E7%90%86/>心理</a>
+<a href=http://leaver.me/tags/%E6%80%BB%E7%BB%93/>总结</a>
+<a href=http://leaver.me/tags/%E6%8A%80%E6%9C%AF/>技术</a>
+<a href=http://leaver.me/tags/%E6%8F%92%E4%BB%B6/>插件</a>
+<a href=http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/>操作系统</a>
+<a href=http://leaver.me/tags/%E6%94%B6%E8%97%8F/>收藏</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E5%AD%A6/>数学</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/>数据库</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/>数据挖掘</a>
+<a href=http://leaver.me/tags/%E6%96%87%E7%AB%A0/>文章</a>
+<a href=http://leaver.me/tags/%E6%99%BA%E8%83%BD/>智能</a>
+<a href=http://leaver.me/tags/%E6%9D%82%E6%96%87/>杂文</a>
+<a href=http://leaver.me/tags/%E6%AD%A6%E6%B1%89/>武汉</a>
+<a href=http://leaver.me/tags/%E6%B1%87%E7%BC%96/>汇编</a>
+<a href=http://leaver.me/tags/%E7%88%B1%E6%83%85/>爱情</a>
+<a href=http://leaver.me/tags/%E7%90%86%E8%AE%BA/>理论</a>
+<a href=http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/>生产力</a>
+<a href=http://leaver.me/tags/%E7%94%9F%E6%B4%BB/>生活</a>
+<a href=http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/>电子书</a>
+<a href=http://leaver.me/tags/%E7%94%B5%E5%BD%B1/>电影</a>
+<a href=http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/>社会</a>
+<a href=http://leaver.me/tags/%E7%A7%91%E6%8A%80/>科技</a>
+<a href=http://leaver.me/tags/%E7%AC%94%E8%AE%B0/>笔记</a>
+<a href=http://leaver.me/tags/%E7%AE%97%E6%B3%95/>算法</a>
+<a href=http://leaver.me/tags/%E7%BC%96%E7%A8%8B/>编程</a>
+<a href=http://leaver.me/tags/%E7%BC%96%E8%AF%91/>编译</a>
+<a href=http://leaver.me/tags/%E7%BF%BB%E8%AF%91/>翻译</a>
+<a href=http://leaver.me/tags/%E8%81%8C%E4%B8%9A/>职业</a>
+<a href=http://leaver.me/tags/%E8%AE%B0%E5%BD%95/>记录</a>
+<a href=http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/>设计</a>
+<a href=http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/>读书</a>
+<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/>软件</a>
+<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/>软件测试</a>
+<a href=http://leaver.me/tags/%E8%BF%90%E7%BB%B4/>运维</a>
+<a href=http://leaver.me/tags/%E9%87%91%E8%9E%8D/>金融</a></div></section><section class=widget><h3 class=widget-title>友情链接</h3><ul class=widget-list><li><a target=_blank href=https://www.cppfans.org/ title=C++爱好者博客>C++爱好者博客</a></li><li><a target=_blank href=http://www.kailing.pub title=KL，每天进步一点点>KL，每天进步一点点</a></li></ul></section><section class=widget><h3 class=widget-title>其它</h3><ul class=widget-list><li><a href=http://leaver.me/index.xml>文章 RSS</a></li></ul></section></div></div></div></div><footer id=footer><div class=container>&copy; 2020 <a href=http://leaver.me/>bystander's blog By bystander</a>.
+Powered by <a rel="nofollow noreferer noopener" href=https://gohugo.io target=_blank>Hugo</a>.
+<a href=https://www.flysnow.org/ target=_blank>Theme</a> based on <a href=https://github.com/flysnow-org/maupassant-hugo target=_blank>maupassant</a>.</div></footer><script type=text/javascript>window.MathJax={tex2jax:{inlineMath:[['$','$']],processEscapes:true}};</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script><a id=rocket href=#top></a><script type=text/javascript src="/js/totop.js?v=0.0.0" async></script><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-30961201-3','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></body></html>

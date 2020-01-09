@@ -1,510 +1,119 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>[藏]图文并茂详解Eclipse断点 | bystander&#39;s blog</title>
-    <meta property="og:title" content="[藏]图文并茂详解Eclipse断点 - bystander&#39;s blog">
-    <meta property="og:type" content="article">
-        
-    <meta property="article:published_time" content='2013-11-16T14:21:11&#43;08:00'>
-        
-        
-    <meta property="article:modified_time" content='2013-11-16T14:21:11&#43;08:00'>
-        
-    <meta name="Keywords" content="">
-    <meta name="description" content="[藏]图文并茂详解Eclipse断点">
-        
-    <meta name="author" content="bystander">
-    <meta property="og:url" content="http://leaver.me/2013/11/16/%E8%97%8F%E5%9B%BE%E6%96%87%E5%B9%B6%E8%8C%82%E8%AF%A6%E8%A7%A3eclipse%E6%96%AD%E7%82%B9/">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-
-    <link rel="stylesheet" href='/css/normalize.css'>
-    <link rel="stylesheet" href='/css/style.css'>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-    
-
-
-    
-    
-</head>
-
-
-<body>
-    <header id="header" class="clearfix">
-    <div class="container">
-        <div class="col-group">
-            <div class="site-name ">
-                
-                    <a id="logo" href="http://leaver.me/">
-                        bystander&#39;s blog
-                    </a>
-                
-                <p class="description">寻找窄门</p>
-            </div>
-            <div>
-                <nav id="nav-menu" class="clearfix">
-                    <a class="current" href="http://leaver.me/">首页</a>
-                    
-                    <a  href="http://leaver.me/categories" title="目录">目录</a>
-                    
-                    <a  href="http://leaver.me/about/" title="关于我">关于我</a>
-                    
-                </nav>
-            </div>
-        </div>
-    </div>
-</header>
-
-    <div id="body">
-        <div class="container">
-            <div class="col-group">
-
-                <div class="col-8" id="main">
-                    
-<div class="res-cons">
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">[藏]图文并茂详解Eclipse断点</h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年11月16日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F'>文章收藏</a></span>
-            
-        </div>
-        
-        
-        
-        <div class="post-content">
-            <p>本文转自：<a href="http://my.oschina.net/colorleaf/blog/176569">http://my.oschina.net/colorleaf/blog/176569</a></p>
-<p>这个算说的比较清楚的了，虽然简单但是很有用。收藏一下。</p>
-<p><strong>详解Eclipse断点</strong></p>
-<p>大家肯定都用过Eclipse的调试的功能，在调试的过程中自然也无法避免要使用断点(breakpoint)，但不知是否对Eclipse中各类断点都有所了解。本篇图文并茂地介绍了Eclipse中全部类型的断点，及其设置，希望对大家有所帮助。(2011.11.20)</p>
-<p><strong>1. 示例程序</strong>
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><title>[藏]图文并茂详解Eclipse断点 | bystander's blog</title><meta property="og:title" content="[藏]图文并茂详解Eclipse断点 - bystander's blog"><meta property="og:type" content="article"><meta property="article:published_time" content="2013-11-16T14:21:11+08:00"><meta property="article:modified_time" content="2013-11-16T14:21:11+08:00"><meta name=Keywords content><meta name=description content="[藏]图文并茂详解Eclipse断点"><meta name=author content="bystander"><meta property="og:url" content="http://leaver.me/2013/11/16/%E8%97%8F%E5%9B%BE%E6%96%87%E5%B9%B6%E8%8C%82%E8%AF%A6%E8%A7%A3eclipse%E6%96%AD%E7%82%B9/"><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><link rel=stylesheet href=/css/normalize.css><link rel=stylesheet href=/css/style.css><script type=text/javascript src=//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js></script></head><body><header id=header class=clearfix><div class=container><div class=col-group><div class=site-name><a id=logo href=http://leaver.me/>bystander's blog</a><p class=description>寻找窄门</p></div><div><nav id=nav-menu class=clearfix><a class=current href=http://leaver.me/>首页</a>
+<a href=http://leaver.me/categories title=目录>目录</a>
+<a href=http://leaver.me/about/ title=关于我>关于我</a></nav></div></div></div></header><div id=body><div class=container><div class=col-group><div class=col-8 id=main><div class=res-cons><article class=post><header><h1 class=post-title>[藏]图文并茂详解Eclipse断点</h1></header><date class="post-meta meta-date">2013年11月16日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F>文章收藏</a></span></div><div class=post-content><p>本文转自：<a href=http://my.oschina.net/colorleaf/blog/176569>http://my.oschina.net/colorleaf/blog/176569</a></p><p>这个算说的比较清楚的了，虽然简单但是很有用。收藏一下。</p><p><strong>详解Eclipse断点</strong></p><p>大家肯定都用过Eclipse的调试的功能，在调试的过程中自然也无法避免要使用断点(breakpoint)，但不知是否对Eclipse中各类断点都有所了解。本篇图文并茂地介绍了Eclipse中全部类型的断点，及其设置，希望对大家有所帮助。(2011.11.20)</p><p><strong>1. 示例程序</strong>
 BreakpointDemo是一个臆造的应用程序，只是为了便于讲解Eclipse中各类断点的使用罢了。其代码如下图所示，
-<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153245_BTUJ.png"><img src="/images/abd1d53612eeef8d1feccdf17a894d3e71d41941.png" alt="15153245_BTUJ"></a>
+<a href=http://leaverimage.b0.upaiyun.com/2013/11/15153245_BTUJ.png><img src=/images/abd1d53612eeef8d1feccdf17a894d3e71d41941.png alt=15153245_BTUJ></a>
 BreakpointDemo主要包含两个方法：
 [1]setValue，该方法根据指定的次数(count)，对成员变量value进行赋值，值的范围为0-9的随机整数。
-[2]printValue，该方法会调用setValue()对value进行赋值，并打印出value的值；但，如果value能被3整除，那么就会抛出IllegalArgumentException异常。</p>
-<p><strong>2. Line Breakpoint</strong>
+[2]printValue，该方法会调用setValue()对value进行赋值，并打印出value的值；但，如果value能被3整除，那么就会抛出IllegalArgumentException异常。</p><p><strong>2. Line Breakpoint</strong>
 Line Breakpoin是最简单的Eclipse断点，只要双击某行代码对应的左侧栏，就对该行设置上断点。此处，对第20行代码设置上Line Breakpoint，如下图所示，
-<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153245_zkOp.png"><img src="/images/ca7da4e9038334e0603072298cbaf834326da937.png" alt="15153245_zkOp"></a>
-可以为Line Breakpoint设置一个条件，那么当程序运行到该断点时，只有满足设定的条件，才会被中断。右键点击第20行的断点，选择&quot;Breakpoint Properties&hellip;&rdquo;
-<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153245_I2Pe.png"><img src="/images/ff95dcb0130a35d3e293a52487e4109316cba1f8.png" alt="15153245_I2Pe"></a>
-在弹出的属性对话框中，勾选上&quot;Conditional&rdquo;，然后在文本框中输入&quot;count % 2 == 0&rdquo;。
-<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153246_rJtm.png"><img src="/images/4f5d2d716473a55f1e3b96a59ac07f700657452a.png" alt="15153246_rJtm"></a>
+<a href=http://leaverimage.b0.upaiyun.com/2013/11/15153245_zkOp.png><img src=/images/ca7da4e9038334e0603072298cbaf834326da937.png alt=15153245_zkOp></a>
+可以为Line Breakpoint设置一个条件，那么当程序运行到该断点时，只有满足设定的条件，才会被中断。右键点击第20行的断点，选择"Breakpoint Properties&mldr;&rdquo;
+<a href=http://leaverimage.b0.upaiyun.com/2013/11/15153245_I2Pe.png><img src=/images/ff95dcb0130a35d3e293a52487e4109316cba1f8.png alt=15153245_I2Pe></a>
+在弹出的属性对话框中，勾选上"Conditional&rdquo;，然后在文本框中输入"count % 2 == 0&rdquo;。
+<a href=http://leaverimage.b0.upaiyun.com/2013/11/15153246_rJtm.png><img src=/images/4f5d2d716473a55f1e3b96a59ac07f700657452a.png alt=15153246_rJtm></a>
 该条件表示，当程序运行到第20行时，只有当count为偶数时，程序才会被中断。细心地话，你会发现该断点的图标发生了改变，多了一个问号。
-<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153246_5APe.png"><img src="/images/e3d69e5d5b31edbf729ce4522f9b21e2f5024f17.png" alt="15153246_5APe"></a></p>
-<p><strong>3. Watchpoint</strong>
-Line Breakpoint关注于程序运行的&quot;过程&rdquo;，大家也常把使用这种断点的调试称为单步调试。但有时候，我们对程序的运行过程不太了解，可能也不太关心，不能确定在什么地方设置断点比较合适，而可能比较关注某个关键变量的变化或使用。此时，就可以为该变量设置一种特殊的断点&ndash;Watchpoint。在此示例，我们最关心的就是成员变量value的值，那么就可以为它设置一个Watchpoint，双击第9行代码对应的左侧栏就可以了。
-<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153246_zzEM.png"><img src="/images/082e1647ca341b0f3549dcfc136ce278d73f4acb.png" alt="15153246_zzEM"></a>
+<a href=http://leaverimage.b0.upaiyun.com/2013/11/15153246_5APe.png><img src=/images/e3d69e5d5b31edbf729ce4522f9b21e2f5024f17.png alt=15153246_5APe></a></p><p><strong>3. Watchpoint</strong>
+Line Breakpoint关注于程序运行的"过程&rdquo;，大家也常把使用这种断点的调试称为单步调试。但有时候，我们对程序的运行过程不太了解，可能也不太关心，不能确定在什么地方设置断点比较合适，而可能比较关注某个关键变量的变化或使用。此时，就可以为该变量设置一种特殊的断点&ndash;Watchpoint。在此示例，我们最关心的就是成员变量value的值，那么就可以为它设置一个Watchpoint，双击第9行代码对应的左侧栏就可以了。
+<a href=http://leaverimage.b0.upaiyun.com/2013/11/15153246_zzEM.png><img src=/images/082e1647ca341b0f3549dcfc136ce278d73f4acb.png alt=15153246_zzEM></a>
 使用在2中所提及的方法，查看该断点的属性，
-<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153246_e1gH.png"><img src="/images/f268f9ed80a672eeb51d164658a971d6777989b9.png" alt="15153246_e1gH"></a>
-默认地，当该变量被访问或它的值被修改时，程序都会被中断。但在本示例中，只希望当对value的值进行修改时程序才需要被中断，所以取消对&quot;Access&quot;的勾选。
-<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153246_evtw.png"><img src="/images/1deb043f0baa72b61a76e794f7acf9d25762112c.png" alt="15153246_evtw"></a>
+<a href=http://leaverimage.b0.upaiyun.com/2013/11/15153246_e1gH.png><img src=/images/f268f9ed80a672eeb51d164658a971d6777989b9.png alt=15153246_e1gH></a>
+默认地，当该变量被访问或它的值被修改时，程序都会被中断。但在本示例中，只希望当对value的值进行修改时程序才需要被中断，所以取消对"Access"的勾选。
+<a href=http://leaverimage.b0.upaiyun.com/2013/11/15153246_evtw.png><img src=/images/1deb043f0baa72b61a76e794f7acf9d25762112c.png alt=15153246_evtw></a>
 这时，我们会发现原来的Watchpoin图标也有变化了。
-<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153246_Sw8K.png"><img src="/images/d2dff57a03768ac00b84dd9bb651e99031d94cdc.png" alt="15153246_Sw8K"></a></p>
-<p><strong>4. Method Breakpoint</strong>
+<a href=http://leaverimage.b0.upaiyun.com/2013/11/15153246_Sw8K.png><img src=/images/d2dff57a03768ac00b84dd9bb651e99031d94cdc.png alt=15153246_Sw8K></a></p><p><strong>4. Method Breakpoint</strong>
 与关注对某个变量的访问与修改一样，我们也可以关注程序对某个方法的调用情况，即，可以设置Method Breakpoint。在此处，设置针对方法setValue的Method Breakpoint。同理，双击第11行代码对应的左侧栏即可。
-<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153247_xdH4.png"><img src="/images/bd49da0a82d0dc044a917e5b53107b05b36f6378.png" alt="15153247_xdH4"></a>
-仍然要查看该断点的属性。默认地，只勾选了&quot;Entry&rdquo;，而没有勾选&quot;Exit&rdquo;。
-<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153247_W1oy.png"><img src="/images/7294186aaa782865383feb3a4e375a5a3b628c27.png" alt="15153247_W1oy"></a>
-这表示，当刚进入该方法(调用开始)时，程序会被中断；而，离开该方法(调用结束)时，程序并不会被中断。在本示例中，需要同时勾选上&quot;Exit&rdquo;。
-<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153247_QVwz.png"><img src="/images/39f23217e1d0ead7061f1d636b97f52b6ee886fd.png" alt="15153247_QVwz"></a>
+<a href=http://leaverimage.b0.upaiyun.com/2013/11/15153247_xdH4.png><img src=/images/bd49da0a82d0dc044a917e5b53107b05b36f6378.png alt=15153247_xdH4></a>
+仍然要查看该断点的属性。默认地，只勾选了"Entry&rdquo;，而没有勾选"Exit&rdquo;。
+<a href=http://leaverimage.b0.upaiyun.com/2013/11/15153247_W1oy.png><img src=/images/7294186aaa782865383feb3a4e375a5a3b628c27.png alt=15153247_W1oy></a>
+这表示，当刚进入该方法(调用开始)时，程序会被中断；而，离开该方法(调用结束)时，程序并不会被中断。在本示例中，需要同时勾选上"Exit&rdquo;。
+<a href=http://leaverimage.b0.upaiyun.com/2013/11/15153247_QVwz.png><img src=/images/39f23217e1d0ead7061f1d636b97f52b6ee886fd.png alt=15153247_QVwz></a>
 点击OK之后，可以看到该断点的图标也有所改变。
-<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153247_YRMh.png"><img src="/images/bdeda47c131aefb575366c4d23b16b3e0ee59321.png" alt="15153247_YRMh"></a>
-根据这里的设置，当程序运行到第20行后会在第12行被中断，尽管这里没有显式的断点，但这就是setValue()方法的入口(Entry)。必须注意地是，程序在运行到第16行时不会被中断，尽管它看起来像是setValue()方法的出口(Exit)。实际上，程序会在第17行被中断，这里才是setValue()调用结束的地方。</p>
-<p><strong>5. Exception Breakpoint</strong>
+<a href=http://leaverimage.b0.upaiyun.com/2013/11/15153247_YRMh.png><img src=/images/bdeda47c131aefb575366c4d23b16b3e0ee59321.png alt=15153247_YRMh></a>
+根据这里的设置，当程序运行到第20行后会在第12行被中断，尽管这里没有显式的断点，但这就是setValue()方法的入口(Entry)。必须注意地是，程序在运行到第16行时不会被中断，尽管它看起来像是setValue()方法的出口(Exit)。实际上，程序会在第17行被中断，这里才是setValue()调用结束的地方。</p><p><strong>5. Exception Breakpoint</strong>
 如果，我们期望某个特定异常发生时程序能够被中断，以方便查看当时程序所处的状态。通过设置Exception Breakpoint就能达到这一目标。本示例故意在第23行抛出了IllegalArgumentException异常，我们期望程序运行到此处时会被中断。但我们不直接为此行代码设置Line Breakpoint，而是为IllegalArgumentException设置Exception Breakpoint。设置Exception Breakpoint的方法与其它类型断点都不同，它不能通过双击左侧栏的方式在代码编辑器上直接进行设置。点击Breakpoints视图右上角形如Ji的图标，
-<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153247_Wm2U.png"><img src="/images/d4f298befa3d1c0100aef36797c56bbc1d2a423c.png" alt="15153247_Wm2U"></a>
+<a href=http://leaverimage.b0.upaiyun.com/2013/11/15153247_Wm2U.png><img src=/images/d4f298befa3d1c0100aef36797c56bbc1d2a423c.png alt=15153247_Wm2U></a>
 会弹出如下所示的对话框，
-<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153248_WgLd.png"><img src="/images/04e45e47d1e4248fd2ec8db8b13252e1c196e525.png" alt="15153248_WgLd"></a>
+<a href=http://leaverimage.b0.upaiyun.com/2013/11/15153248_WgLd.png><img src=/images/04e45e47d1e4248fd2ec8db8b13252e1c196e525.png alt=15153248_WgLd></a>
 在其中选中IllegalArgumentException，并点击OK，这时一个Exception Breakpoint就设置好了。
-<a href="http://leaverimage.b0.upaiyun.com/2013/11/15153248_kE2O.png"><img src="/images/fd555622458bbb34ad01929c6a7483768f6b37a8.png" alt="15153248_kE2O"></a></p>
-<!-- raw HTML omitted -->
-<p><strong>小结</strong>
-上述的Eclipse断点，我们在现实工作中肯定都有意或无意地使用过其中的几种，只是不一定十分了解内情罢了。使用好Eclipse的各种断点，可以把很好地帮助我们分析程序，定位问题。</p>
-
-        </div>
-
-        
-
-
-        
-
-<div class="post-archive">
-    <h2>See Also</h2>
-    <ul class="listing">
-        
-        <li><a href="/2012/06/19/get%E5%92%8Cpost%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%E5%8F%8A%E4%B8%BA%E4%BB%80%E4%B9%88%E7%BD%91%E4%B8%8A%E7%9A%84%E5%A4%9A%E6%95%B0%E7%AD%94%E6%A1%88%E9%83%BD%E6%98%AF%E9%94%99%E7%9A%84/">GET和POST有什么区别？及为什么网上的多数答案都是错的。</a></li>
-        
-        <li><a href="/2013/01/27/c#-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0%E7%B4%A2%E5%BC%95/">C# 基础知识系列文章索引</a></li>
-        
-        <li><a href="/2012/09/24/wpf%E6%AF%9B%E7%8E%BB%E7%92%83%E6%95%88%E6%9E%9Cdemo%E5%92%8C%E4%B8%80%E4%B8%AA%E9%97%AE%E9%A2%98/">WPF毛玻璃效果Demo和一个问题</a></li>
-        
-        <li><a href="/2012/09/07/wcf%E5%8F%8C%E5%B7%A5%E9%80%9A%E4%BF%A1%E7%A4%BA%E4%BE%8B/">WCF双工通信示例</a></li>
-        
-        <li><a href="/2012/09/06/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B02/">WCF读书笔记(2)</a></li>
-        
-    </ul>
-</div>
-
-
-        <div class="post-meta meta-tags">
-            
-            <ul class="clearfix">
-                
-                <li><a href='http://leaver.me/tags/java'>java</a></li>
-                
-                <li><a href='http://leaver.me/tags/%E5%BC%80%E5%8F%91'>开发</a></li>
-                
-                <li><a href='http://leaver.me/tags/%E6%80%BB%E7%BB%93'>总结</a></li>
-                
-                <li><a href='http://leaver.me/tags/%E6%94%B6%E8%97%8F'>收藏</a></li>
-                
-                <li><a href='http://leaver.me/tags/%E8%BD%AF%E4%BB%B6'>软件</a></li>
-                
-            </ul>
-            
-        </div>
-    </article>
-    
-    <div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "leaverme" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
-    
-    
-</div>
-
-                </div>
-
-                <div id="secondary">
-    <section class="widget">
-        <form id="search" action='http://leaver.me/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
-      
-      <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="http://leaver.me/">
-      <button type="submit" class="submit icon-search"></button>
-</form>
-    </section>
-    
-    <section class="widget">
-        <h3 class="widget-title">最近文章</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2019 年终总结">2019 年终总结</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/" title="深入理解Raft协议">深入理解Raft协议</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/" title="《非暴力沟通》笔记">《非暴力沟通》笔记</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/10/06/wedding-of-friends/" title="Wedding of Friends">Wedding of Friends</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/09/29/principle-note/" title="Principle Note">Principle Note</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/" title="梦见鲸鱼的那一夜">梦见鲸鱼的那一夜</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/08/20/understand-hong-kong-2/" title="Understand Hong Kong 2">Understand Hong Kong 2</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/08/18/understand-hong-kong-part-1/" title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/" title="错过的都是命，得到的才是人生">错过的都是命，得到的才是人生</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/04/06/recently/" title="Recently">Recently</a>
-    </li>
-    
-</ul>
-    </section>
-
-    
-
-    <section class="widget">
-        <h3 class="widget-title">分类</h3>
-<ul class="widget-list">
-    
-    <li><a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记 (186)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/">我的翻译 (57)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/">文章收藏 (53)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录 (3)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记 (4)</a></li>
-    
-</ul>
-    </section>
-
-    <section class="widget">
-        <h3 class="widget-title">标签</h3>
-<div class="tagcloud">
-    
-    <a href="http://leaver.me/tags/android/">android</a>
-    
-    <a href="http://leaver.me/tags/c/">C＃</a>
-    
-    <a href="http://leaver.me/tags/c&#43;&#43;/">C&#43;&#43;</a>
-    
-    <a href="http://leaver.me/tags/java/">java</a>
-    
-    <a href="http://leaver.me/tags/javascript/">javascript</a>
-    
-    <a href="http://leaver.me/tags/linux/">linux</a>
-    
-    <a href="http://leaver.me/tags/mac/">mac</a>
-    
-    <a href="http://leaver.me/tags/matlab/">matlab</a>
-    
-    <a href="http://leaver.me/tags/maven/">maven</a>
-    
-    <a href="http://leaver.me/tags/mysql/">mysql</a>
-    
-    <a href="http://leaver.me/tags/nextgen-gallery/">NextGEN Gallery</a>
-    
-    <a href="http://leaver.me/tags/php/">php</a>
-    
-    <a href="http://leaver.me/tags/python/">python</a>
-    
-    <a href="http://leaver.me/tags/shell/">shell</a>
-    
-    <a href="http://leaver.me/tags/spring/">spring</a>
-    
-    <a href="http://leaver.me/tags/sql/">sql</a>
-    
-    <a href="http://leaver.me/tags/stackoverflow/">stackoverflow</a>
-    
-    <a href="http://leaver.me/tags/wcf/">WCF</a>
-    
-    <a href="http://leaver.me/tags/web/">web</a>
-    
-    <a href="http://leaver.me/tags/windows/">windows</a>
-    
-    <a href="http://leaver.me/tags/wordpress/">wordpress</a>
-    
-    <a href="http://leaver.me/tags/wpf/">WPF</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/">上海</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/">下载</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
-    
-    <a href="http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/">互联网</a>
-    
-    <a href="http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
-    
-    <a href="http://leaver.me/tags/%E5%88%B6%E5%BA%A6/">制度</a>
-    
-    <a href="http://leaver.me/tags/%E5%89%8D%E7%AB%AF/">前端</a>
-    
-    <a href="http://leaver.me/tags/%E5%8E%9F%E5%88%9B/">原创</a>
-    
-    <a href="http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/">大学</a>
-    
-    <a href="http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/">学习</a>
-    
-    <a href="http://leaver.me/tags/%E5%AE%89%E5%85%A8/">安全</a>
-    
-    <a href="http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/">家庭</a>
-    
-    <a href="http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/">工作</a>
-    
-    <a href="http://leaver.me/tags/%E5%B7%A5%E5%85%B7/">工具</a>
-    
-    <a href="http://leaver.me/tags/%E5%B9%B6%E5%8F%91/">并发</a>
-    
-    <a href="http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/">序列化</a>
-    
-    <a href="http://leaver.me/tags/%E5%BC%80%E5%8F%91/">开发</a>
-    
-    <a href="http://leaver.me/tags/%E5%BF%83%E7%90%86/">心理</a>
-    
-    <a href="http://leaver.me/tags/%E6%80%BB%E7%BB%93/">总结</a>
-    
-    <a href="http://leaver.me/tags/%E6%8A%80%E6%9C%AF/">技术</a>
-    
-    <a href="http://leaver.me/tags/%E6%8F%92%E4%BB%B6/">插件</a>
-    
-    <a href="http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-    
-    <a href="http://leaver.me/tags/%E6%94%B6%E8%97%8F/">收藏</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E5%AD%A6/">数学</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">数据挖掘</a>
-    
-    <a href="http://leaver.me/tags/%E6%96%87%E7%AB%A0/">文章</a>
-    
-    <a href="http://leaver.me/tags/%E6%99%BA%E8%83%BD/">智能</a>
-    
-    <a href="http://leaver.me/tags/%E6%9D%82%E6%96%87/">杂文</a>
-    
-    <a href="http://leaver.me/tags/%E6%AD%A6%E6%B1%89/">武汉</a>
-    
-    <a href="http://leaver.me/tags/%E6%B1%87%E7%BC%96/">汇编</a>
-    
-    <a href="http://leaver.me/tags/%E7%88%B1%E6%83%85/">爱情</a>
-    
-    <a href="http://leaver.me/tags/%E7%90%86%E8%AE%BA/">理论</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%9F%E6%B4%BB/">生活</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/">电子书</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%B5%E5%BD%B1/">电影</a>
-    
-    <a href="http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/">社会</a>
-    
-    <a href="http://leaver.me/tags/%E7%A7%91%E6%8A%80/">科技</a>
-    
-    <a href="http://leaver.me/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
-    
-    <a href="http://leaver.me/tags/%E7%AE%97%E6%B3%95/">算法</a>
-    
-    <a href="http://leaver.me/tags/%E7%BC%96%E7%A8%8B/">编程</a>
-    
-    <a href="http://leaver.me/tags/%E7%BC%96%E8%AF%91/">编译</a>
-    
-    <a href="http://leaver.me/tags/%E7%BF%BB%E8%AF%91/">翻译</a>
-    
-    <a href="http://leaver.me/tags/%E8%81%8C%E4%B8%9A/">职业</a>
-    
-    <a href="http://leaver.me/tags/%E8%AE%B0%E5%BD%95/">记录</a>
-    
-    <a href="http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/">设计</a>
-    
-    <a href="http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/">读书</a>
-    
-    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/">软件</a>
-    
-    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</a>
-    
-    <a href="http://leaver.me/tags/%E8%BF%90%E7%BB%B4/">运维</a>
-    
-    <a href="http://leaver.me/tags/%E9%87%91%E8%9E%8D/">金融</a>
-    
-</div>
-    </section>
-
-    
-<section class="widget">
-    <h3 class="widget-title">友情链接</h3>
-    <ul class="widget-list">
-        
-        <li>
-            <a target="_blank" href="https://www.cppfans.org/" title="C&#43;&#43;爱好者博客">C&#43;&#43;爱好者博客</a>
-        </li>
-        
-        <li>
-            <a target="_blank" href="http://www.kailing.pub" title="KL，每天进步一点点">KL，每天进步一点点</a>
-        </li>
-        
-    </ul>
-</section>
-
-
-    <section class="widget">
-        <h3 class="widget-title">其它</h3>
-        <ul class="widget-list">
-            <li><a href="http://leaver.me/index.xml">文章 RSS</a></li>
-        </ul>
-    </section>
-</div>
-            </div>
-        </div>
-    </div>
-    <footer id="footer">
-    <div class="container">
-        &copy; 2020 <a href="http://leaver.me/">bystander&#39;s blog By bystander</a>.
-        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
-        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
-        
-    </div>
-</footer>
-
-
-    
-    <script type="text/javascript">
-        window.MathJax = {
-            tex2jax: {
-                inlineMath: [['$', '$']],
-                processEscapes: true
-                }
-            };
-    </script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
-
-
-<a id="rocket" href="#top"></a>
-<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-30961201-3', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-
-
-
-
-
-</body>
-
-</html>
+<a href=http://leaverimage.b0.upaiyun.com/2013/11/15153248_kE2O.png><img src=/images/fd555622458bbb34ad01929c6a7483768f6b37a8.png alt=15153248_kE2O></a></p><p><strong>小结</strong>
+上述的Eclipse断点，我们在现实工作中肯定都有意或无意地使用过其中的几种，只是不一定十分了解内情罢了。使用好Eclipse的各种断点，可以把很好地帮助我们分析程序，定位问题。</p></div><div class=post-archive><h2>See Also</h2><ul class=listing><li><a href=/2012/06/19/get%E5%92%8Cpost%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%E5%8F%8A%E4%B8%BA%E4%BB%80%E4%B9%88%E7%BD%91%E4%B8%8A%E7%9A%84%E5%A4%9A%E6%95%B0%E7%AD%94%E6%A1%88%E9%83%BD%E6%98%AF%E9%94%99%E7%9A%84/>GET和POST有什么区别？及为什么网上的多数答案都是错的。</a></li><li><a href=/2013/01/27/c#-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0%E7%B4%A2%E5%BC%95/>C# 基础知识系列文章索引</a></li><li><a href=/2012/09/24/wpf%E6%AF%9B%E7%8E%BB%E7%92%83%E6%95%88%E6%9E%9Cdemo%E5%92%8C%E4%B8%80%E4%B8%AA%E9%97%AE%E9%A2%98/>WPF毛玻璃效果Demo和一个问题</a></li><li><a href=/2012/09/07/wcf%E5%8F%8C%E5%B7%A5%E9%80%9A%E4%BF%A1%E7%A4%BA%E4%BE%8B/>WCF双工通信示例</a></li><li><a href=/2012/09/06/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B02/>WCF读书笔记(2)</a></li></ul></div><div class="post-meta meta-tags"><ul class=clearfix><li><a href=http://leaver.me/tags/java>java</a></li><li><a href=http://leaver.me/tags/%E5%BC%80%E5%8F%91>开发</a></li><li><a href=http://leaver.me/tags/%E6%80%BB%E7%BB%93>总结</a></li><li><a href=http://leaver.me/tags/%E6%94%B6%E8%97%8F>收藏</a></li><li><a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6>软件</a></li></ul></div></article><div id=disqus_thread></div><script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return;}
+var d=document,s=d.createElement('script');s.async=true;s.src='//'+"leaverme"+'.disqus.com/embed.js';s.setAttribute('data-timestamp',+new Date());(d.head||d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div></div><div id=secondary><section class=widget><form id=search action=http://leaver.me/search/ method=get accept-charset=utf-8 target=_blank _lpchecked=1><input type=text name=q maxlength=20 placeholder=Search>
+<input type=hidden name=sitesearch value=http://leaver.me/>
+<button type=submit class="submit icon-search"></button></form></section><section class=widget><h3 class=widget-title>最近文章</h3><ul class=widget-list><li><a href=http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/ title="2019 年终总结">2019 年终总结</a></li><li><a href=http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/ title=深入理解Raft协议>深入理解Raft协议</a></li><li><a href=http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/ title=《非暴力沟通》笔记>《非暴力沟通》笔记</a></li><li><a href=http://leaver.me/2019/10/06/wedding-of-friends/ title="Wedding of Friends">Wedding of Friends</a></li><li><a href=http://leaver.me/2019/09/29/principle-note/ title="Principle Note">Principle Note</a></li><li><a href=http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/ title=梦见鲸鱼的那一夜>梦见鲸鱼的那一夜</a></li><li><a href=http://leaver.me/2019/08/20/understand-hong-kong-2/ title="Understand Hong Kong 2">Understand Hong Kong 2</a></li><li><a href=http://leaver.me/2019/08/18/understand-hong-kong-part-1/ title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a></li><li><a href=http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/ title=错过的都是命，得到的才是人生>错过的都是命，得到的才是人生</a></li><li><a href=http://leaver.me/2019/04/06/recently/ title=Recently>Recently</a></li></ul></section><section class=widget><h3 class=widget-title>分类</h3><ul class=widget-list><li><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/>学习笔记 (186)</a></li><li><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/>我的翻译 (57)</a></li><li><a href=http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/>文章收藏 (53)</a></li><li><a href=http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/>生活记录 (3)</a></li><li><a href=http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/>读书笔记 (4)</a></li></ul></section><section class=widget><h3 class=widget-title>标签</h3><div class=tagcloud><a href=http://leaver.me/tags/android/>android</a>
+<a href=http://leaver.me/tags/c/>C＃</a>
+<a href=http://leaver.me/tags/c++/>C++</a>
+<a href=http://leaver.me/tags/java/>java</a>
+<a href=http://leaver.me/tags/javascript/>javascript</a>
+<a href=http://leaver.me/tags/linux/>linux</a>
+<a href=http://leaver.me/tags/mac/>mac</a>
+<a href=http://leaver.me/tags/matlab/>matlab</a>
+<a href=http://leaver.me/tags/maven/>maven</a>
+<a href=http://leaver.me/tags/mysql/>mysql</a>
+<a href=http://leaver.me/tags/nextgen-gallery/>NextGEN Gallery</a>
+<a href=http://leaver.me/tags/php/>php</a>
+<a href=http://leaver.me/tags/python/>python</a>
+<a href=http://leaver.me/tags/shell/>shell</a>
+<a href=http://leaver.me/tags/spring/>spring</a>
+<a href=http://leaver.me/tags/sql/>sql</a>
+<a href=http://leaver.me/tags/stackoverflow/>stackoverflow</a>
+<a href=http://leaver.me/tags/wcf/>WCF</a>
+<a href=http://leaver.me/tags/web/>web</a>
+<a href=http://leaver.me/tags/windows/>windows</a>
+<a href=http://leaver.me/tags/wordpress/>wordpress</a>
+<a href=http://leaver.me/tags/wpf/>WPF</a>
+<a href=http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/>上海</a>
+<a href=http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/>下载</a>
+<a href=http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/>中间件</a>
+<a href=http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/>互联网</a>
+<a href=http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/>分布式</a>
+<a href=http://leaver.me/tags/%E5%88%B6%E5%BA%A6/>制度</a>
+<a href=http://leaver.me/tags/%E5%89%8D%E7%AB%AF/>前端</a>
+<a href=http://leaver.me/tags/%E5%8E%9F%E5%88%9B/>原创</a>
+<a href=http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/>大学</a>
+<a href=http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/>学习</a>
+<a href=http://leaver.me/tags/%E5%AE%89%E5%85%A8/>安全</a>
+<a href=http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/>家庭</a>
+<a href=http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/>工作</a>
+<a href=http://leaver.me/tags/%E5%B7%A5%E5%85%B7/>工具</a>
+<a href=http://leaver.me/tags/%E5%B9%B6%E5%8F%91/>并发</a>
+<a href=http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/>序列化</a>
+<a href=http://leaver.me/tags/%E5%BC%80%E5%8F%91/>开发</a>
+<a href=http://leaver.me/tags/%E5%BF%83%E7%90%86/>心理</a>
+<a href=http://leaver.me/tags/%E6%80%BB%E7%BB%93/>总结</a>
+<a href=http://leaver.me/tags/%E6%8A%80%E6%9C%AF/>技术</a>
+<a href=http://leaver.me/tags/%E6%8F%92%E4%BB%B6/>插件</a>
+<a href=http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/>操作系统</a>
+<a href=http://leaver.me/tags/%E6%94%B6%E8%97%8F/>收藏</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E5%AD%A6/>数学</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/>数据库</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/>数据挖掘</a>
+<a href=http://leaver.me/tags/%E6%96%87%E7%AB%A0/>文章</a>
+<a href=http://leaver.me/tags/%E6%99%BA%E8%83%BD/>智能</a>
+<a href=http://leaver.me/tags/%E6%9D%82%E6%96%87/>杂文</a>
+<a href=http://leaver.me/tags/%E6%AD%A6%E6%B1%89/>武汉</a>
+<a href=http://leaver.me/tags/%E6%B1%87%E7%BC%96/>汇编</a>
+<a href=http://leaver.me/tags/%E7%88%B1%E6%83%85/>爱情</a>
+<a href=http://leaver.me/tags/%E7%90%86%E8%AE%BA/>理论</a>
+<a href=http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/>生产力</a>
+<a href=http://leaver.me/tags/%E7%94%9F%E6%B4%BB/>生活</a>
+<a href=http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/>电子书</a>
+<a href=http://leaver.me/tags/%E7%94%B5%E5%BD%B1/>电影</a>
+<a href=http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/>社会</a>
+<a href=http://leaver.me/tags/%E7%A7%91%E6%8A%80/>科技</a>
+<a href=http://leaver.me/tags/%E7%AC%94%E8%AE%B0/>笔记</a>
+<a href=http://leaver.me/tags/%E7%AE%97%E6%B3%95/>算法</a>
+<a href=http://leaver.me/tags/%E7%BC%96%E7%A8%8B/>编程</a>
+<a href=http://leaver.me/tags/%E7%BC%96%E8%AF%91/>编译</a>
+<a href=http://leaver.me/tags/%E7%BF%BB%E8%AF%91/>翻译</a>
+<a href=http://leaver.me/tags/%E8%81%8C%E4%B8%9A/>职业</a>
+<a href=http://leaver.me/tags/%E8%AE%B0%E5%BD%95/>记录</a>
+<a href=http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/>设计</a>
+<a href=http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/>读书</a>
+<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/>软件</a>
+<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/>软件测试</a>
+<a href=http://leaver.me/tags/%E8%BF%90%E7%BB%B4/>运维</a>
+<a href=http://leaver.me/tags/%E9%87%91%E8%9E%8D/>金融</a></div></section><section class=widget><h3 class=widget-title>友情链接</h3><ul class=widget-list><li><a target=_blank href=https://www.cppfans.org/ title=C++爱好者博客>C++爱好者博客</a></li><li><a target=_blank href=http://www.kailing.pub title=KL，每天进步一点点>KL，每天进步一点点</a></li></ul></section><section class=widget><h3 class=widget-title>其它</h3><ul class=widget-list><li><a href=http://leaver.me/index.xml>文章 RSS</a></li></ul></section></div></div></div></div><footer id=footer><div class=container>&copy; 2020 <a href=http://leaver.me/>bystander's blog By bystander</a>.
+Powered by <a rel="nofollow noreferer noopener" href=https://gohugo.io target=_blank>Hugo</a>.
+<a href=https://www.flysnow.org/ target=_blank>Theme</a> based on <a href=https://github.com/flysnow-org/maupassant-hugo target=_blank>maupassant</a>.</div></footer><script type=text/javascript>window.MathJax={tex2jax:{inlineMath:[['$','$']],processEscapes:true}};</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script><a id=rocket href=#top></a><script type=text/javascript src="/js/totop.js?v=0.0.0" async></script><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-30961201-3','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></body></html>

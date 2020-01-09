@@ -1,594 +1,95 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>.Net三层架构 | bystander&#39;s blog</title>
-    <meta property="og:title" content=".Net三层架构 - bystander&#39;s blog">
-    <meta property="og:type" content="article">
-        
-    <meta property="article:published_time" content='2012-05-05T15:09:37&#43;08:00'>
-        
-        
-    <meta property="article:modified_time" content='2012-05-05T15:09:37&#43;08:00'>
-        
-    <meta name="Keywords" content="">
-    <meta name="description" content=".Net三层架构">
-        
-    <meta name="author" content="bystander">
-    <meta property="og:url" content="http://leaver.me/2012/05/05/.net%E4%B8%89%E5%B1%82%E6%9E%B6%E6%9E%84/">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-
-    <link rel="stylesheet" href='/css/normalize.css'>
-    <link rel="stylesheet" href='/css/style.css'>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-    
-
-
-    
-    
-</head>
-
-
-<body>
-    <header id="header" class="clearfix">
-    <div class="container">
-        <div class="col-group">
-            <div class="site-name ">
-                
-                    <a id="logo" href="http://leaver.me/">
-                        bystander&#39;s blog
-                    </a>
-                
-                <p class="description">寻找窄门</p>
-            </div>
-            <div>
-                <nav id="nav-menu" class="clearfix">
-                    <a class="current" href="http://leaver.me/">首页</a>
-                    
-                    <a  href="http://leaver.me/categories" title="目录">目录</a>
-                    
-                    <a  href="http://leaver.me/about/" title="关于我">关于我</a>
-                    
-                </nav>
-            </div>
-        </div>
-    </div>
-</header>
-
-    <div id="body">
-        <div class="container">
-            <div class="col-group">
-
-                <div class="col-8" id="main">
-                    
-<div class="res-cons">
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">.Net三层架构</h1>
-        </header>
-        <date class="post-meta meta-date">
-            2012年5月5日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F'>文章收藏</a></span>
-            
-        </div>
-        
-        
-        
-        <div class="post-content">
-            <p><strong><!-- raw HTML omitted -->本文来源：<a href="http://www.cnblogs.com/gaoweipeng/archive/2009/01/18/1377855.html">http://www.cnblogs.com/gaoweipeng/archive/2009/01/18/1377855.html</a><!-- raw HTML omitted --></strong></p>
-<p>老规矩。因为是非常不错的文章。所有有必要收藏下来备用。推荐。</p>
-<p>**<!-- raw HTML omitted -->三层体系结构的概念</p>
-<p><!-- raw HTML omitted -->**</p>
-<ol>
-<li>用户界面表示层(USL)</li>
-<li>业务逻辑层(BLL)</li>
-<li>数据访问层(DAL)
-<strong>BLL将USL与DAL隔开了，并且加入了业务规则</strong></li>
-</ol>
-<!-- raw HTML omitted -->
-<ul>
-<li>
-<p><strong><!-- raw HTML omitted -->各层的作用<!-- raw HTML omitted --></strong></p>
-</li>
-<li>
-<!-- raw HTML omitted -->
-<p>2：业务逻辑层:主要是针对具体的问题的操作，也可以理解成对数据层的操作,对数据业务逻辑处理，如果说数据层是积木，那逻辑层就是对这些积木的搭建。</p>
-<p>3：表示层:主要表示WEB方式,也可以表示成WINFORM方式,WEB方式也可以表现成:aspx, 如果逻辑层相当强大和完善,无论表现层如何定义和更改,逻辑层都能完善地提供服务。<!-- raw HTML omitted --></p>
-</li>
-</ul>
-<!-- raw HTML omitted -->
-<ul>
-<li>
-<p><strong>具体的区分方法</strong></p>
-<p>1：数据数据访问层:主要看你的数据层里面有没有包含逻辑处理，实际上他的各个函数主要完成各个对数据文件的操作。而不必管其他操作。</p>
-<p>2：业务逻辑层:主要负责对数据层的操作。也就是说把一些数据层的操作进行组合。</p>
-<p>3：表示层:主要对用户的请求接受，以及数据的返回，为客户端提供应用程序的访问。</p>
-</li>
-</ul>
-<!-- raw HTML omitted -->
-<ul>
-<li>
-<p><strong>三层结构解释</strong></p>
-<p>所谓三层体系结构，是在<!-- raw HTML omitted -->客户端与数据库之间<!-- raw HTML omitted -->加入了一个<!-- raw HTML omitted -->中间层<!-- raw HTML omitted -->，也叫<!-- raw HTML omitted -->组件层<!-- raw HTML omitted -->。这里所说的三层体系，不是指物理上的三层，不是简单地放置三台机器就是三层体系结构，也不仅仅有B/S应用才是三层体系结构，三层是指逻辑上的三层，即使这三个层放置到一台机器上。 三层体系的应用程序将业务规则、数据访问、合法性校验等工作放到了中间层进行处理。通常情况下，客户端不直接与数据库进行交互，而是通过COM/DCOM通讯与中间层建立连接，再经由中间层与数据库进行交换.</p>
-<p>开发人员可以将应用的商业逻辑放在中间层应用服务器上，把应用的业务逻辑与用户界面分开。在保证客户端功能的前提下，为用户提供一个简洁的界面。这意味着如果需要修改应用程序代码，只需要对中间层应用服务器进行修改，而不用修改成千上万的客户端应用程序。从而使开发人员可以专注于应用系统核心业务逻辑的分析、设计和开发，简化了应用系统的开发、更新和升级工作。</p>
-</li>
-</ul>
-<!-- raw HTML omitted -->
-<ul>
-<li><strong>那么为什么要应用“中间业务层”呢？举些例子:</strong>
-我们假设有一段登录代码，则可以这样处理Web程序，外观层负责接收前台页面的数据，然后传给中间层，中间层对数据进行处理，比如格式化，防SQL注入等等一些，这样的数据再传给数据访问层然后与数据库进行操作，比如与数据库的用户名和密码匹配等等一些代码。**</li>
-</ul>
-<p>**</p>
-<ul>
-<li>
-<!-- raw HTML omitted -->
-</li>
-</ul>
-<blockquote>
-<p>在“数据访问层”中，最好不要出现任何“业务逻辑”！也就是说，<!-- raw HTML omitted -->要保证“数据访问层”的中的函数功能的原子性！即最小性和不可再分。“数据访问层”只管负责存储或读取数据就可以了。<!-- raw HTML omitted --></p>
-<!-- raw HTML omitted -->
-</blockquote>
-<ul>
-<li>
-<p><strong>ASP.NET中的三层结构说明</strong></p>
-<p>完善的三层结构的要求是:**修改表现层而不用修改逻辑层,修改逻辑层而不用修改数据层。**否则你的应用是不是多层结构,或者说是层结构的划分和组织上是不是有问题就很难说.不同的应用有不同的理解，这只是一个概念的问题．</p>
-</li>
-<li>
-<!-- raw HTML omitted -->
-</li>
-</ul>
-<!-- raw HTML omitted -->
-<pre><code>我们用三层结构主要是使项目结构更清楚，分工更明确，有利于后期的维护和升级。它未必会提升性能，因为当子程序模块未执行结束时，主程序模块只能处于等待状态。这说明将应用程序划分层次，会带来其执行速度上的一些损失。但从团队开发效率角度上来讲却可以感受到大不相同的效果。
-</code></pre>
-<p>需要说明一下，三层结构不是.NET的专利，也不是专门用在数据库上的技术。它是一种更加普适的架构设计理念。</p>
-<!-- raw HTML omitted -->
-<ul>
-<li>
-<p>对于表的<strong>综合查询</strong>方法是：
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><title>.Net三层架构 | bystander's blog</title><meta property="og:title" content=".Net三层架构 - bystander's blog"><meta property="og:type" content="article"><meta property="article:published_time" content="2012-05-05T15:09:37+08:00"><meta property="article:modified_time" content="2012-05-05T15:09:37+08:00"><meta name=Keywords content><meta name=description content=".Net三层架构"><meta name=author content="bystander"><meta property="og:url" content="http://leaver.me/2012/05/05/.net%E4%B8%89%E5%B1%82%E6%9E%B6%E6%9E%84/"><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><link rel=stylesheet href=/css/normalize.css><link rel=stylesheet href=/css/style.css><script type=text/javascript src=//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js></script></head><body><header id=header class=clearfix><div class=container><div class=col-group><div class=site-name><a id=logo href=http://leaver.me/>bystander's blog</a><p class=description>寻找窄门</p></div><div><nav id=nav-menu class=clearfix><a class=current href=http://leaver.me/>首页</a>
+<a href=http://leaver.me/categories title=目录>目录</a>
+<a href=http://leaver.me/about/ title=关于我>关于我</a></nav></div></div></div></header><div id=body><div class=container><div class=col-group><div class=col-8 id=main><div class=res-cons><article class=post><header><h1 class=post-title>.Net三层架构</h1></header><date class="post-meta meta-date">2012年5月5日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F>文章收藏</a></span></div><div class=post-content><p><strong>本文来源：<a href=http://www.cnblogs.com/gaoweipeng/archive/2009/01/18/1377855.html>http://www.cnblogs.com/gaoweipeng/archive/2009/01/18/1377855.html</a></strong></p><p>老规矩。因为是非常不错的文章。所有有必要收藏下来备用。推荐。</p><p>**三层体系结构的概念</p><p>**</p><ol><li>用户界面表示层(USL)</li><li>业务逻辑层(BLL)</li><li>数据访问层(DAL)
+<strong>BLL将USL与DAL隔开了，并且加入了业务规则</strong></li></ol><ul><li><p><strong>各层的作用</strong></p></li><li><p>2：业务逻辑层:主要是针对具体的问题的操作，也可以理解成对数据层的操作,对数据业务逻辑处理，如果说数据层是积木，那逻辑层就是对这些积木的搭建。</p><p>3：表示层:主要表示WEB方式,也可以表示成WINFORM方式,WEB方式也可以表现成:aspx, 如果逻辑层相当强大和完善,无论表现层如何定义和更改,逻辑层都能完善地提供服务。</p></li></ul><ul><li><p><strong>具体的区分方法</strong></p><p>1：数据数据访问层:主要看你的数据层里面有没有包含逻辑处理，实际上他的各个函数主要完成各个对数据文件的操作。而不必管其他操作。</p><p>2：业务逻辑层:主要负责对数据层的操作。也就是说把一些数据层的操作进行组合。</p><p>3：表示层:主要对用户的请求接受，以及数据的返回，为客户端提供应用程序的访问。</p></li></ul><ul><li><p><strong>三层结构解释</strong></p><p>所谓三层体系结构，是在客户端与数据库之间加入了一个中间层，也叫组件层。这里所说的三层体系，不是指物理上的三层，不是简单地放置三台机器就是三层体系结构，也不仅仅有B/S应用才是三层体系结构，三层是指逻辑上的三层，即使这三个层放置到一台机器上。 三层体系的应用程序将业务规则、数据访问、合法性校验等工作放到了中间层进行处理。通常情况下，客户端不直接与数据库进行交互，而是通过COM/DCOM通讯与中间层建立连接，再经由中间层与数据库进行交换.</p><p>开发人员可以将应用的商业逻辑放在中间层应用服务器上，把应用的业务逻辑与用户界面分开。在保证客户端功能的前提下，为用户提供一个简洁的界面。这意味着如果需要修改应用程序代码，只需要对中间层应用服务器进行修改，而不用修改成千上万的客户端应用程序。从而使开发人员可以专注于应用系统核心业务逻辑的分析、设计和开发，简化了应用系统的开发、更新和升级工作。</p></li></ul><ul><li><strong>那么为什么要应用“中间业务层”呢？举些例子:</strong>
+我们假设有一段登录代码，则可以这样处理Web程序，外观层负责接收前台页面的数据，然后传给中间层，中间层对数据进行处理，比如格式化，防SQL注入等等一些，这样的数据再传给数据访问层然后与数据库进行操作，比如与数据库的用户名和密码匹配等等一些代码。**</li></ul><p>**</p><ul><li></li></ul><blockquote><p>在“数据访问层”中，最好不要出现任何“业务逻辑”！也就是说，要保证“数据访问层”的中的函数功能的原子性！即最小性和不可再分。“数据访问层”只管负责存储或读取数据就可以了。</p></blockquote><ul><li><p><strong>ASP.NET中的三层结构说明</strong></p><p>完善的三层结构的要求是:**修改表现层而不用修改逻辑层,修改逻辑层而不用修改数据层。**否则你的应用是不是多层结构,或者说是层结构的划分和组织上是不是有问题就很难说.不同的应用有不同的理解，这只是一个概念的问题．</p></li><li></li></ul><pre><code>我们用三层结构主要是使项目结构更清楚，分工更明确，有利于后期的维护和升级。它未必会提升性能，因为当子程序模块未执行结束时，主程序模块只能处于等待状态。这说明将应用程序划分层次，会带来其执行速度上的一些损失。但从团队开发效率角度上来讲却可以感受到大不相同的效果。
+</code></pre><p>需要说明一下，三层结构不是.NET的专利，也不是专门用在数据库上的技术。它是一种更加普适的架构设计理念。</p><ul><li><p>对于表的<strong>综合查询</strong>方法是：
 先对主表查询，调用主表所对应的DL。再根据主表的记录分别对每一个子表进行查询。将自表的查询结果添加的主表后，形成一个大的查询集合。
 对于表的操作（增删改）：
 此时只对主表进行操作，调用主表对应的DL中的操作方法。
-RL层是逻辑判断层，主要是对页面上传入的数据进行逻辑判断。RL层之上就是UI</p>
-</li>
-<li>
-<p><strong><!-- raw HTML omitted --><!-- raw HTML omitted -->如何建立一个三层体系结构解决方案<!-- raw HTML omitted --><!-- raw HTML omitted --></strong></p>
-<p>新建一个空白解决方案。然后：
+RL层是逻辑判断层，主要是对页面上传入的数据进行逻辑判断。RL层之上就是UI</p></li><li><p><strong>如何建立一个三层体系结构解决方案</strong></p><p>新建一个空白解决方案。然后：
 “添加”－“新建项目”－“其他项目”－“企业级模版项目”－“C#生成块”－“数据访问”（数据层，下简称D层）
 “添加”－“新建项目”－“其他项目”－“企业级模版项目”－“C#生成块”－“业务规则”（业务层，下简称C层）
 “添加”－“新建项目”－“其他项目”－“企业级模版项目”－“C#生成块”－“Web用户界面”（界面层，下简称U层）
 右键点“解决方案”－“项目<strong>依赖项”</strong>，设置U依赖于D、C，C依赖于D。
 对U添加引用D、C，对C添加引用D。
-到此为止，一个三层的架子建立起来了。我上面说的很具体很“傻瓜”，知道的人觉得我废话，其实我这段时间很强烈的感觉到非常多的人其实对这个简单的过程完全不了解。虽然不反对建2个“空项目”和1个“Asp    net    Web应用程序项目”也可以作为3层的框架，而且相当多的人认为其实这些“企业级模板项目”其实就是个空项目，这是一个误区。没错，企业级模板项目你从解决方案资源管理器里看它是个什么也没有的，但是你可以用记事本打开项目文件，看见不同了吧？？有些东西在背后，你是看不见的，不过系统已经做好了。也就是说，如果你在C层里的某个类里“using    System    Data    SqlClineit”，或者使用一个SqlConnection对象，编译时候不会出错，但是会在“任务列表”里生成一些“策略警告”，警告你在C层里不要放应该放在D层的东西（虽然就程序来说没错，但是可读性可维护性就打了折扣）而这种功能，空项目是无法給你的。</p>
-</li>
-<li>
-<p><!-- raw HTML omitted -->在新TraceLWord3中，应用了“企业级模板项目”。把原来的LWordTask.cs，并放置到一个单一的项目里，项目名称为：AccessTask。解决方案中又新建了一个名称为：InterService的项目，该项目中包含一个LWordService.cs程序文件，它便是“中间业务层”程序。为了不重复命名，TraceLWord3的网站被放置到了WebUI项目中。<!-- raw HTML omitted -->更完整的代码，可以在CodePackage/TraceLWord3目录中找到——</p>
-</li>
-<li>
-<p>**<!-- raw HTML omitted -->面象对象与实际的结合</p>
-<p><!-- raw HTML omitted -->**</p>
-</li>
-<li>
-<!-- raw HTML omitted -->
-</li>
-</ul>
-<!-- raw HTML omitted -->
-<ul>
-<li>
-<p><strong>“三层结构”的缺点</strong></p>
-</li>
-<li>
-<p>有些网友在读完这篇文章前作之后，对我提出了一些质疑，这提醒我文章至此还没有提及“三层结构”的缺点。“三层结构”这个词眼似乎一直都很热门，究其原因，或许是这种开发模式应用的比较普遍。但是“三层结构”却并不是百试百灵的“万灵药”，它也存在着缺点。下面就来说说它的缺点……</p>
-<p><!-- raw HTML omitted -->“三层结构”开发模式的一个非常明显的缺点就是其执行速度不够快。当然这个“执行速度”是相对于非分层的应用程序来说的。<!-- raw HTML omitted -->从文中所给出的时序图来看，也明显的暴露了这一缺点。TraceLWord1和TraceLWord2没有分层，直接调用的ADO.NET所提供的类来获取数据。但是，TraceLWord6确要经过多次调用才能获取到数据。在子程序模块程序没有返回时，主程序模块只能处于等待状态。所以在执行速度上，留言板的版本越高，排名却越靠后。<!-- raw HTML omitted -->“三层结构”开发模式，不适用于对执行速度要求过于苛刻的系统，例如：在线订票，在线炒股等等……它比较擅长于商业规则容易变化的系统。<!-- raw HTML omitted --></p>
-<p>“三层结构”开发模式，入门难度够高，难于理解和学习。这是对于初学程序设计的人来说的。<!-- raw HTML omitted -->以这种模式开发出来的软件，代码量通常要稍稍多一些。<!-- raw HTML omitted -->这往往会令初学者淹没在茫茫的代码之中。望之生畏，对其产生反感，也是可以理解的……</p>
-<p>其实，无论哪一种开发模式或方法，都是有利有弊的。不会存在一种“万用法”可以解决任何问题。所以“三层结构”这个词眼也不会是个例外！是否采用这个模式进行系统开发，要作出比较、权衡之后才可以。切忌滥用!</p>
-</li>
-</ul>
-<!-- raw HTML omitted -->
-<ul>
-<li>
-<p><strong><!-- raw HTML omitted -->参与资料<!-- raw HTML omitted --></strong><!-- raw HTML omitted --></p>
-<!-- raw HTML omitted -->
-</li>
-</ul>
-<ol>
-<li>
-<p><a href="http://www.bincess.cn/Downloads/MainDoc.rar">MainDoc.rar    （《浅谈“三层结构”原理与用意》1.30M)      </a></p>
-<p><a href="http://www.bincess.cn/Downloads/MainDoc.rar">http://www.bincess.cn/Downloads/MainDoc.rar</a>     <!-- raw HTML omitted --></p>
-<!-- raw HTML omitted -->
-</li>
-<li>
-<p><!-- raw HTML omitted -->petshop 4.0的体系结构（只是稍微看了一下，了解一下结构）</p>
-<!-- raw HTML omitted -->
-</li>
-</ol>
-<!-- raw HTML omitted -->
-<ol start="3">
-<li><!-- raw HTML omitted -->参考了Duwamish
-<!-- raw HTML omitted --></li>
-<li><!-- raw HTML omitted -->Web Search<!-- raw HTML omitted --></li>
-</ol>
-
-        </div>
-
-        
-
-
-        
-
-<div class="post-archive">
-    <h2>See Also</h2>
-    <ul class="listing">
-        
-        <li><a href="/2012/04/13/system.web%E4%B8%AD%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%B1%BB%E5%9E%8B%E6%88%96%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E5%90%8D%E7%A7%B0ui%E8%A7%A3%E5%86%B3/">System.Web中不存在类型或命名空间名称UI解决</a></li>
-        
-        <li><a href="/2012/05/05/%E4%BD%A0%E4%BC%9A%E7%94%A8%E8%AE%A1%E7%AE%97%E5%99%A8%E5%90%97/">你会用计算器吗？</a></li>
-        
-        <li><a href="/2012/05/04/%E5%9B%BE%E7%89%87%E5%8E%8B%E7%BC%A9%E5%B7%A5%E5%85%B7%E6%BA%90%E7%A0%81c/">图片压缩工具源码（C#）</a></li>
-        
-        <li><a href="/2012/05/03/%E8%AF%B4%E8%AF%B4%E9%82%AE%E4%BB%B6%E4%B8%AD%E7%9A%84%E6%8A%84%E9%80%81%E5%92%8C%E5%AF%86%E9%80%81/">说说邮件中的抄送和密送</a></li>
-        
-        <li><a href="/2012/04/28/c#-%E6%B8%A9%E6%95%85%E8%80%8C%E7%9F%A5%E6%96%B0stream%E7%AF%87/">C# 温故而知新：Stream篇</a></li>
-        
-    </ul>
-</div>
-
-
-        <div class="post-meta meta-tags">
-            
-            <ul class="clearfix">
-                
-                <li><a href='http://leaver.me/tags/c'>C＃</a></li>
-                
-                <li><a href='http://leaver.me/tags/%E5%AD%A6%E4%B9%A0'>学习</a></li>
-                
-                <li><a href='http://leaver.me/tags/%E5%BC%80%E5%8F%91'>开发</a></li>
-                
-                <li><a href='http://leaver.me/tags/%E7%BC%96%E7%A8%8B'>编程</a></li>
-                
-                <li><a href='http://leaver.me/tags/%E8%BD%AF%E4%BB%B6'>软件</a></li>
-                
-            </ul>
-            
-        </div>
-    </article>
-    
-    <div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "leaverme" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
-    
-    
-</div>
-
-                </div>
-
-                <div id="secondary">
-    <section class="widget">
-        <form id="search" action='http://leaver.me/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
-      
-      <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="http://leaver.me/">
-      <button type="submit" class="submit icon-search"></button>
-</form>
-    </section>
-    
-    <section class="widget">
-        <h3 class="widget-title">最近文章</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2019 年终总结">2019 年终总结</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/" title="深入理解Raft协议">深入理解Raft协议</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/" title="《非暴力沟通》笔记">《非暴力沟通》笔记</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/10/06/wedding-of-friends/" title="Wedding of Friends">Wedding of Friends</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/09/29/principle-note/" title="Principle Note">Principle Note</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/" title="梦见鲸鱼的那一夜">梦见鲸鱼的那一夜</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/08/20/understand-hong-kong-2/" title="Understand Hong Kong 2">Understand Hong Kong 2</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/08/18/understand-hong-kong-part-1/" title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/" title="错过的都是命，得到的才是人生">错过的都是命，得到的才是人生</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/04/06/recently/" title="Recently">Recently</a>
-    </li>
-    
-</ul>
-    </section>
-
-    
-
-    <section class="widget">
-        <h3 class="widget-title">分类</h3>
-<ul class="widget-list">
-    
-    <li><a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记 (186)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/">我的翻译 (57)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/">文章收藏 (53)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录 (3)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记 (4)</a></li>
-    
-</ul>
-    </section>
-
-    <section class="widget">
-        <h3 class="widget-title">标签</h3>
-<div class="tagcloud">
-    
-    <a href="http://leaver.me/tags/android/">android</a>
-    
-    <a href="http://leaver.me/tags/c/">C＃</a>
-    
-    <a href="http://leaver.me/tags/c&#43;&#43;/">C&#43;&#43;</a>
-    
-    <a href="http://leaver.me/tags/java/">java</a>
-    
-    <a href="http://leaver.me/tags/javascript/">javascript</a>
-    
-    <a href="http://leaver.me/tags/linux/">linux</a>
-    
-    <a href="http://leaver.me/tags/mac/">mac</a>
-    
-    <a href="http://leaver.me/tags/matlab/">matlab</a>
-    
-    <a href="http://leaver.me/tags/maven/">maven</a>
-    
-    <a href="http://leaver.me/tags/mysql/">mysql</a>
-    
-    <a href="http://leaver.me/tags/nextgen-gallery/">NextGEN Gallery</a>
-    
-    <a href="http://leaver.me/tags/php/">php</a>
-    
-    <a href="http://leaver.me/tags/python/">python</a>
-    
-    <a href="http://leaver.me/tags/shell/">shell</a>
-    
-    <a href="http://leaver.me/tags/spring/">spring</a>
-    
-    <a href="http://leaver.me/tags/sql/">sql</a>
-    
-    <a href="http://leaver.me/tags/stackoverflow/">stackoverflow</a>
-    
-    <a href="http://leaver.me/tags/wcf/">WCF</a>
-    
-    <a href="http://leaver.me/tags/web/">web</a>
-    
-    <a href="http://leaver.me/tags/windows/">windows</a>
-    
-    <a href="http://leaver.me/tags/wordpress/">wordpress</a>
-    
-    <a href="http://leaver.me/tags/wpf/">WPF</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/">上海</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/">下载</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
-    
-    <a href="http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/">互联网</a>
-    
-    <a href="http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
-    
-    <a href="http://leaver.me/tags/%E5%88%B6%E5%BA%A6/">制度</a>
-    
-    <a href="http://leaver.me/tags/%E5%89%8D%E7%AB%AF/">前端</a>
-    
-    <a href="http://leaver.me/tags/%E5%8E%9F%E5%88%9B/">原创</a>
-    
-    <a href="http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/">大学</a>
-    
-    <a href="http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/">学习</a>
-    
-    <a href="http://leaver.me/tags/%E5%AE%89%E5%85%A8/">安全</a>
-    
-    <a href="http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/">家庭</a>
-    
-    <a href="http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/">工作</a>
-    
-    <a href="http://leaver.me/tags/%E5%B7%A5%E5%85%B7/">工具</a>
-    
-    <a href="http://leaver.me/tags/%E5%B9%B6%E5%8F%91/">并发</a>
-    
-    <a href="http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/">序列化</a>
-    
-    <a href="http://leaver.me/tags/%E5%BC%80%E5%8F%91/">开发</a>
-    
-    <a href="http://leaver.me/tags/%E5%BF%83%E7%90%86/">心理</a>
-    
-    <a href="http://leaver.me/tags/%E6%80%BB%E7%BB%93/">总结</a>
-    
-    <a href="http://leaver.me/tags/%E6%8A%80%E6%9C%AF/">技术</a>
-    
-    <a href="http://leaver.me/tags/%E6%8F%92%E4%BB%B6/">插件</a>
-    
-    <a href="http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-    
-    <a href="http://leaver.me/tags/%E6%94%B6%E8%97%8F/">收藏</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E5%AD%A6/">数学</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">数据挖掘</a>
-    
-    <a href="http://leaver.me/tags/%E6%96%87%E7%AB%A0/">文章</a>
-    
-    <a href="http://leaver.me/tags/%E6%99%BA%E8%83%BD/">智能</a>
-    
-    <a href="http://leaver.me/tags/%E6%9D%82%E6%96%87/">杂文</a>
-    
-    <a href="http://leaver.me/tags/%E6%AD%A6%E6%B1%89/">武汉</a>
-    
-    <a href="http://leaver.me/tags/%E6%B1%87%E7%BC%96/">汇编</a>
-    
-    <a href="http://leaver.me/tags/%E7%88%B1%E6%83%85/">爱情</a>
-    
-    <a href="http://leaver.me/tags/%E7%90%86%E8%AE%BA/">理论</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%9F%E6%B4%BB/">生活</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/">电子书</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%B5%E5%BD%B1/">电影</a>
-    
-    <a href="http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/">社会</a>
-    
-    <a href="http://leaver.me/tags/%E7%A7%91%E6%8A%80/">科技</a>
-    
-    <a href="http://leaver.me/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
-    
-    <a href="http://leaver.me/tags/%E7%AE%97%E6%B3%95/">算法</a>
-    
-    <a href="http://leaver.me/tags/%E7%BC%96%E7%A8%8B/">编程</a>
-    
-    <a href="http://leaver.me/tags/%E7%BC%96%E8%AF%91/">编译</a>
-    
-    <a href="http://leaver.me/tags/%E7%BF%BB%E8%AF%91/">翻译</a>
-    
-    <a href="http://leaver.me/tags/%E8%81%8C%E4%B8%9A/">职业</a>
-    
-    <a href="http://leaver.me/tags/%E8%AE%B0%E5%BD%95/">记录</a>
-    
-    <a href="http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/">设计</a>
-    
-    <a href="http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/">读书</a>
-    
-    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/">软件</a>
-    
-    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</a>
-    
-    <a href="http://leaver.me/tags/%E8%BF%90%E7%BB%B4/">运维</a>
-    
-    <a href="http://leaver.me/tags/%E9%87%91%E8%9E%8D/">金融</a>
-    
-</div>
-    </section>
-
-    
-<section class="widget">
-    <h3 class="widget-title">友情链接</h3>
-    <ul class="widget-list">
-        
-        <li>
-            <a target="_blank" href="https://www.cppfans.org/" title="C&#43;&#43;爱好者博客">C&#43;&#43;爱好者博客</a>
-        </li>
-        
-        <li>
-            <a target="_blank" href="http://www.kailing.pub" title="KL，每天进步一点点">KL，每天进步一点点</a>
-        </li>
-        
-    </ul>
-</section>
-
-
-    <section class="widget">
-        <h3 class="widget-title">其它</h3>
-        <ul class="widget-list">
-            <li><a href="http://leaver.me/index.xml">文章 RSS</a></li>
-        </ul>
-    </section>
-</div>
-            </div>
-        </div>
-    </div>
-    <footer id="footer">
-    <div class="container">
-        &copy; 2020 <a href="http://leaver.me/">bystander&#39;s blog By bystander</a>.
-        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
-        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
-        
-    </div>
-</footer>
-
-
-    
-    <script type="text/javascript">
-        window.MathJax = {
-            tex2jax: {
-                inlineMath: [['$', '$']],
-                processEscapes: true
-                }
-            };
-    </script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
-
-
-<a id="rocket" href="#top"></a>
-<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-30961201-3', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-
-
-
-
-
-</body>
-
-</html>
+到此为止，一个三层的架子建立起来了。我上面说的很具体很“傻瓜”，知道的人觉得我废话，其实我这段时间很强烈的感觉到非常多的人其实对这个简单的过程完全不了解。虽然不反对建2个“空项目”和1个“Asp    net    Web应用程序项目”也可以作为3层的框架，而且相当多的人认为其实这些“企业级模板项目”其实就是个空项目，这是一个误区。没错，企业级模板项目你从解决方案资源管理器里看它是个什么也没有的，但是你可以用记事本打开项目文件，看见不同了吧？？有些东西在背后，你是看不见的，不过系统已经做好了。也就是说，如果你在C层里的某个类里“using    System    Data    SqlClineit”，或者使用一个SqlConnection对象，编译时候不会出错，但是会在“任务列表”里生成一些“策略警告”，警告你在C层里不要放应该放在D层的东西（虽然就程序来说没错，但是可读性可维护性就打了折扣）而这种功能，空项目是无法給你的。</p></li><li><p>在新TraceLWord3中，应用了“企业级模板项目”。把原来的LWordTask.cs，并放置到一个单一的项目里，项目名称为：AccessTask。解决方案中又新建了一个名称为：InterService的项目，该项目中包含一个LWordService.cs程序文件，它便是“中间业务层”程序。为了不重复命名，TraceLWord3的网站被放置到了WebUI项目中。更完整的代码，可以在CodePackage/TraceLWord3目录中找到——</p></li><li><p>**面象对象与实际的结合</p><p>**</p></li><li></li></ul><ul><li><p><strong>“三层结构”的缺点</strong></p></li><li><p>有些网友在读完这篇文章前作之后，对我提出了一些质疑，这提醒我文章至此还没有提及“三层结构”的缺点。“三层结构”这个词眼似乎一直都很热门，究其原因，或许是这种开发模式应用的比较普遍。但是“三层结构”却并不是百试百灵的“万灵药”，它也存在着缺点。下面就来说说它的缺点……</p><p>“三层结构”开发模式的一个非常明显的缺点就是其执行速度不够快。当然这个“执行速度”是相对于非分层的应用程序来说的。从文中所给出的时序图来看，也明显的暴露了这一缺点。TraceLWord1和TraceLWord2没有分层，直接调用的ADO.NET所提供的类来获取数据。但是，TraceLWord6确要经过多次调用才能获取到数据。在子程序模块程序没有返回时，主程序模块只能处于等待状态。所以在执行速度上，留言板的版本越高，排名却越靠后。“三层结构”开发模式，不适用于对执行速度要求过于苛刻的系统，例如：在线订票，在线炒股等等……它比较擅长于商业规则容易变化的系统。</p><p>“三层结构”开发模式，入门难度够高，难于理解和学习。这是对于初学程序设计的人来说的。以这种模式开发出来的软件，代码量通常要稍稍多一些。这往往会令初学者淹没在茫茫的代码之中。望之生畏，对其产生反感，也是可以理解的……</p><p>其实，无论哪一种开发模式或方法，都是有利有弊的。不会存在一种“万用法”可以解决任何问题。所以“三层结构”这个词眼也不会是个例外！是否采用这个模式进行系统开发，要作出比较、权衡之后才可以。切忌滥用!</p></li></ul><ul><li><p><strong>参与资料</strong></p></li></ul><ol><li><p><a href=http://www.bincess.cn/Downloads/MainDoc.rar>MainDoc.rar    （《浅谈“三层结构”原理与用意》1.30M)      </a></p><p><a href=http://www.bincess.cn/Downloads/MainDoc.rar>http://www.bincess.cn/Downloads/MainDoc.rar</a>     </p></li><li><p>petshop 4.0的体系结构（只是稍微看了一下，了解一下结构）</p></li></ol><ol start=3><li>参考了Duwamish</li><li>Web Search</li></ol></div><div class=post-archive><h2>See Also</h2><ul class=listing><li><a href=/2012/04/13/system.web%E4%B8%AD%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%B1%BB%E5%9E%8B%E6%88%96%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E5%90%8D%E7%A7%B0ui%E8%A7%A3%E5%86%B3/>System.Web中不存在类型或命名空间名称UI解决</a></li><li><a href=/2012/05/05/%E4%BD%A0%E4%BC%9A%E7%94%A8%E8%AE%A1%E7%AE%97%E5%99%A8%E5%90%97/>你会用计算器吗？</a></li><li><a href=/2012/05/04/%E5%9B%BE%E7%89%87%E5%8E%8B%E7%BC%A9%E5%B7%A5%E5%85%B7%E6%BA%90%E7%A0%81c/>图片压缩工具源码（C#）</a></li><li><a href=/2012/05/03/%E8%AF%B4%E8%AF%B4%E9%82%AE%E4%BB%B6%E4%B8%AD%E7%9A%84%E6%8A%84%E9%80%81%E5%92%8C%E5%AF%86%E9%80%81/>说说邮件中的抄送和密送</a></li><li><a href=/2012/04/28/c#-%E6%B8%A9%E6%95%85%E8%80%8C%E7%9F%A5%E6%96%B0stream%E7%AF%87/>C# 温故而知新：Stream篇</a></li></ul></div><div class="post-meta meta-tags"><ul class=clearfix><li><a href=http://leaver.me/tags/c>C＃</a></li><li><a href=http://leaver.me/tags/%E5%AD%A6%E4%B9%A0>学习</a></li><li><a href=http://leaver.me/tags/%E5%BC%80%E5%8F%91>开发</a></li><li><a href=http://leaver.me/tags/%E7%BC%96%E7%A8%8B>编程</a></li><li><a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6>软件</a></li></ul></div></article><div id=disqus_thread></div><script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return;}
+var d=document,s=d.createElement('script');s.async=true;s.src='//'+"leaverme"+'.disqus.com/embed.js';s.setAttribute('data-timestamp',+new Date());(d.head||d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div></div><div id=secondary><section class=widget><form id=search action=http://leaver.me/search/ method=get accept-charset=utf-8 target=_blank _lpchecked=1><input type=text name=q maxlength=20 placeholder=Search>
+<input type=hidden name=sitesearch value=http://leaver.me/>
+<button type=submit class="submit icon-search"></button></form></section><section class=widget><h3 class=widget-title>最近文章</h3><ul class=widget-list><li><a href=http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/ title="2019 年终总结">2019 年终总结</a></li><li><a href=http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/ title=深入理解Raft协议>深入理解Raft协议</a></li><li><a href=http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/ title=《非暴力沟通》笔记>《非暴力沟通》笔记</a></li><li><a href=http://leaver.me/2019/10/06/wedding-of-friends/ title="Wedding of Friends">Wedding of Friends</a></li><li><a href=http://leaver.me/2019/09/29/principle-note/ title="Principle Note">Principle Note</a></li><li><a href=http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/ title=梦见鲸鱼的那一夜>梦见鲸鱼的那一夜</a></li><li><a href=http://leaver.me/2019/08/20/understand-hong-kong-2/ title="Understand Hong Kong 2">Understand Hong Kong 2</a></li><li><a href=http://leaver.me/2019/08/18/understand-hong-kong-part-1/ title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a></li><li><a href=http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/ title=错过的都是命，得到的才是人生>错过的都是命，得到的才是人生</a></li><li><a href=http://leaver.me/2019/04/06/recently/ title=Recently>Recently</a></li></ul></section><section class=widget><h3 class=widget-title>分类</h3><ul class=widget-list><li><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/>学习笔记 (186)</a></li><li><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/>我的翻译 (57)</a></li><li><a href=http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/>文章收藏 (53)</a></li><li><a href=http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/>生活记录 (3)</a></li><li><a href=http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/>读书笔记 (4)</a></li></ul></section><section class=widget><h3 class=widget-title>标签</h3><div class=tagcloud><a href=http://leaver.me/tags/android/>android</a>
+<a href=http://leaver.me/tags/c/>C＃</a>
+<a href=http://leaver.me/tags/c++/>C++</a>
+<a href=http://leaver.me/tags/java/>java</a>
+<a href=http://leaver.me/tags/javascript/>javascript</a>
+<a href=http://leaver.me/tags/linux/>linux</a>
+<a href=http://leaver.me/tags/mac/>mac</a>
+<a href=http://leaver.me/tags/matlab/>matlab</a>
+<a href=http://leaver.me/tags/maven/>maven</a>
+<a href=http://leaver.me/tags/mysql/>mysql</a>
+<a href=http://leaver.me/tags/nextgen-gallery/>NextGEN Gallery</a>
+<a href=http://leaver.me/tags/php/>php</a>
+<a href=http://leaver.me/tags/python/>python</a>
+<a href=http://leaver.me/tags/shell/>shell</a>
+<a href=http://leaver.me/tags/spring/>spring</a>
+<a href=http://leaver.me/tags/sql/>sql</a>
+<a href=http://leaver.me/tags/stackoverflow/>stackoverflow</a>
+<a href=http://leaver.me/tags/wcf/>WCF</a>
+<a href=http://leaver.me/tags/web/>web</a>
+<a href=http://leaver.me/tags/windows/>windows</a>
+<a href=http://leaver.me/tags/wordpress/>wordpress</a>
+<a href=http://leaver.me/tags/wpf/>WPF</a>
+<a href=http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/>上海</a>
+<a href=http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/>下载</a>
+<a href=http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/>中间件</a>
+<a href=http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/>互联网</a>
+<a href=http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/>分布式</a>
+<a href=http://leaver.me/tags/%E5%88%B6%E5%BA%A6/>制度</a>
+<a href=http://leaver.me/tags/%E5%89%8D%E7%AB%AF/>前端</a>
+<a href=http://leaver.me/tags/%E5%8E%9F%E5%88%9B/>原创</a>
+<a href=http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/>大学</a>
+<a href=http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/>学习</a>
+<a href=http://leaver.me/tags/%E5%AE%89%E5%85%A8/>安全</a>
+<a href=http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/>家庭</a>
+<a href=http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/>工作</a>
+<a href=http://leaver.me/tags/%E5%B7%A5%E5%85%B7/>工具</a>
+<a href=http://leaver.me/tags/%E5%B9%B6%E5%8F%91/>并发</a>
+<a href=http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/>序列化</a>
+<a href=http://leaver.me/tags/%E5%BC%80%E5%8F%91/>开发</a>
+<a href=http://leaver.me/tags/%E5%BF%83%E7%90%86/>心理</a>
+<a href=http://leaver.me/tags/%E6%80%BB%E7%BB%93/>总结</a>
+<a href=http://leaver.me/tags/%E6%8A%80%E6%9C%AF/>技术</a>
+<a href=http://leaver.me/tags/%E6%8F%92%E4%BB%B6/>插件</a>
+<a href=http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/>操作系统</a>
+<a href=http://leaver.me/tags/%E6%94%B6%E8%97%8F/>收藏</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E5%AD%A6/>数学</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/>数据库</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/>数据挖掘</a>
+<a href=http://leaver.me/tags/%E6%96%87%E7%AB%A0/>文章</a>
+<a href=http://leaver.me/tags/%E6%99%BA%E8%83%BD/>智能</a>
+<a href=http://leaver.me/tags/%E6%9D%82%E6%96%87/>杂文</a>
+<a href=http://leaver.me/tags/%E6%AD%A6%E6%B1%89/>武汉</a>
+<a href=http://leaver.me/tags/%E6%B1%87%E7%BC%96/>汇编</a>
+<a href=http://leaver.me/tags/%E7%88%B1%E6%83%85/>爱情</a>
+<a href=http://leaver.me/tags/%E7%90%86%E8%AE%BA/>理论</a>
+<a href=http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/>生产力</a>
+<a href=http://leaver.me/tags/%E7%94%9F%E6%B4%BB/>生活</a>
+<a href=http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/>电子书</a>
+<a href=http://leaver.me/tags/%E7%94%B5%E5%BD%B1/>电影</a>
+<a href=http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/>社会</a>
+<a href=http://leaver.me/tags/%E7%A7%91%E6%8A%80/>科技</a>
+<a href=http://leaver.me/tags/%E7%AC%94%E8%AE%B0/>笔记</a>
+<a href=http://leaver.me/tags/%E7%AE%97%E6%B3%95/>算法</a>
+<a href=http://leaver.me/tags/%E7%BC%96%E7%A8%8B/>编程</a>
+<a href=http://leaver.me/tags/%E7%BC%96%E8%AF%91/>编译</a>
+<a href=http://leaver.me/tags/%E7%BF%BB%E8%AF%91/>翻译</a>
+<a href=http://leaver.me/tags/%E8%81%8C%E4%B8%9A/>职业</a>
+<a href=http://leaver.me/tags/%E8%AE%B0%E5%BD%95/>记录</a>
+<a href=http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/>设计</a>
+<a href=http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/>读书</a>
+<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/>软件</a>
+<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/>软件测试</a>
+<a href=http://leaver.me/tags/%E8%BF%90%E7%BB%B4/>运维</a>
+<a href=http://leaver.me/tags/%E9%87%91%E8%9E%8D/>金融</a></div></section><section class=widget><h3 class=widget-title>友情链接</h3><ul class=widget-list><li><a target=_blank href=https://www.cppfans.org/ title=C++爱好者博客>C++爱好者博客</a></li><li><a target=_blank href=http://www.kailing.pub title=KL，每天进步一点点>KL，每天进步一点点</a></li></ul></section><section class=widget><h3 class=widget-title>其它</h3><ul class=widget-list><li><a href=http://leaver.me/index.xml>文章 RSS</a></li></ul></section></div></div></div></div><footer id=footer><div class=container>&copy; 2020 <a href=http://leaver.me/>bystander's blog By bystander</a>.
+Powered by <a rel="nofollow noreferer noopener" href=https://gohugo.io target=_blank>Hugo</a>.
+<a href=https://www.flysnow.org/ target=_blank>Theme</a> based on <a href=https://github.com/flysnow-org/maupassant-hugo target=_blank>maupassant</a>.</div></footer><script type=text/javascript>window.MathJax={tex2jax:{inlineMath:[['$','$']],processEscapes:true}};</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script><a id=rocket href=#top></a><script type=text/javascript src="/js/totop.js?v=0.0.0" async></script><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-30961201-3','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></body></html>

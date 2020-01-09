@@ -1,31 +1,8 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>stackoverflow on bystander&#39;s blog</title>
-    <link>http://leaver.me/tags/stackoverflow/</link>
-    <description>Recent content in stackoverflow on bystander&#39;s blog</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh-CN</language>
-    <lastBuildDate>Tue, 22 May 2012 11:28:27 +0000</lastBuildDate>
-    
-	<atom:link href="http://leaver.me/tags/stackoverflow/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>c &amp; c&#43;&#43;中sizeof返回值不同?</title>
-      <link>http://leaver.me/2012/05/22/c-c-%E4%B8%ADsizeof%E8%BF%94%E5%9B%9E%E5%80%BC%E4%B8%8D%E5%90%8C/</link>
-      <pubDate>Tue, 22 May 2012 11:28:27 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/05/22/c-c-%E4%B8%ADsizeof%E8%BF%94%E5%9B%9E%E5%80%BC%E4%B8%8D%E5%90%8C/</guid>
-      <description>问题: A character array is defined globally and a structure with same name is defined within a function. 一个字符数组被定义为全局变量，一个相同名字的结构体被定义在一个函数内部。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>stackoverflow on bystander's blog</title><link>http://leaver.me/tags/stackoverflow/</link><description>Recent content in stackoverflow on bystander's blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 22 May 2012 11:28:27 +0000</lastBuildDate><atom:link href="http://leaver.me/tags/stackoverflow/index.xml" rel="self" type="application/rss+xml"/><item><title>c &amp; c++中sizeof返回值不同?</title><link>http://leaver.me/2012/05/22/c-c-%E4%B8%ADsizeof%E8%BF%94%E5%9B%9E%E5%80%BC%E4%B8%8D%E5%90%8C/</link><pubDate>Tue, 22 May 2012 11:28:27 +0000</pubDate><guid>http://leaver.me/2012/05/22/c-c-%E4%B8%ADsizeof%E8%BF%94%E5%9B%9E%E5%80%BC%E4%B8%8D%E5%90%8C/</guid><description>问题: A character array is defined globally and a structure with same name is defined within a function. 一个字符数组被定义为全局变量，一个相同名字的结构体被定义在一个函数内部。
 Why sizeof operator returns different values for c &amp;amp; c++ ? 为什么sizeof操作符对于C和C++返回了不同的值呢？
 答案： Because in C++, the struct you defined is named S, while in C, 因为在C++中，你定义的结构体的名称是S，而在C中，
-it&#39;s named struct S (which is why you often see typedef struct used in C code). 他叫做struct S（这也是为什么我们可以经常看到typedef struct 被用在C代码中）。
+it's named struct S (which is why you often see typedef struct used in C code). 他叫做struct S（这也是为什么我们可以经常看到typedef struct 被用在C代码中）。
 In C, to refer to the struct type, you need to say struct S. Therefore, sizeof(S) refers to the array. 在C中，引用一个结构类型的时候，你必须说struct S，因此，sizeof（S）调用的是数组S。
 In C++, struct is unnecessary. So the local S hides the global S. 在C++中，struct这个字不是必需的，所以局部变量S隐藏了全局变量S。
 If you were to change the code to the following, you would get the expected results: 如果你把代码改成下面的样子，你就能得到你期望的结果了。
-原文:http://stackoverflow.com/q/10670261/764869</description>
-    </item>
-    
-  </channel>
-</rss>
+原文:http://stackoverflow.com/q/10670261/764869</description></item></channel></rss>

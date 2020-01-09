@@ -1,183 +1,27 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>学习 | bystander&#39;s blog</title>
-    <meta property="og:title" content="学习 - bystander&#39;s blog">
-    <meta property="og:type" content="article">
-        
-        
-    <meta name="Keywords" content="">
-    <meta name="description" content="学习">
-        
-    <meta name="author" content="bystander">
-    <meta property="og:url" content="http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-
-    <link rel="stylesheet" href='/css/normalize.css'>
-    <link rel="stylesheet" href='/css/style.css'>
-    <link rel="alternate" type="application/rss+xml+xml" href="http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/index.xml" title="bystander's blog" />
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-    
-
-
-    
-    
-</head>
-
-
-<body>
-    <header id="header" class="clearfix">
-    <div class="container">
-        <div class="col-group">
-            <div class="site-name ">
-                
-                    <a id="logo" href="http://leaver.me/">
-                        bystander&#39;s blog
-                    </a>
-                
-                <p class="description">寻找窄门</p>
-            </div>
-            <div>
-                <nav id="nav-menu" class="clearfix">
-                    <a class="" href="http://leaver.me/">首页</a>
-                    
-                    <a  href="http://leaver.me/categories" title="目录">目录</a>
-                    
-                    <a  href="http://leaver.me/about/" title="关于我">关于我</a>
-                    
-                </nav>
-            </div>
-        </div>
-    </div>
-</header>
-
-    <div id="body">
-        <div class="container">
-            <div class="col-group">
-
-                <div class="col-8" id="main">
-                    
-<div class="res-cons">
-    
-    <h3 class="archive-title">
-        包含标签
-        <span class="keyword">学习</span>
-        的文章
-    </h3>
-    
-
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/06/11/dmp%E7%89%88%E6%9C%AC%E4%BF%AE%E6%94%B9%E5%B7%A5%E5%85%B7c/">DMP版本修改工具(C#)</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年6月11日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            最近在使用oracle导入一个dmp文件的时候，由于不知道dmp文件是如何导出的，是使用exp还是expdp导出的，所以纠结了比较长的时间，最后想到是否可以查看dmp文件的一些辅助信息呢，于是有了这个工具。
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><title>学习 | bystander's blog</title><meta property="og:title" content="学习 - bystander's blog"><meta property="og:type" content="article"><meta name=Keywords content><meta name=description content="学习"><meta name=author content="bystander"><meta property="og:url" content="http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/"><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><link rel=stylesheet href=/css/normalize.css><link rel=stylesheet href=/css/style.css><link rel=alternate type=application/rss+xml+xml href=http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/index.xml title="bystander's blog"><script type=text/javascript src=//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js></script></head><body><header id=header class=clearfix><div class=container><div class=col-group><div class=site-name><a id=logo href=http://leaver.me/>bystander's blog</a><p class=description>寻找窄门</p></div><div><nav id=nav-menu class=clearfix><a href=http://leaver.me/>首页</a>
+<a href=http://leaver.me/categories title=目录>目录</a>
+<a href=http://leaver.me/about/ title=关于我>关于我</a></nav></div></div></div></header><div id=body><div class=container><div class=col-group><div class=col-8 id=main><div class=res-cons><h3 class=archive-title>包含标签
+<span class=keyword>学习</span>
+的文章</h3><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/06/11/dmp%E7%89%88%E6%9C%AC%E4%BF%AE%E6%94%B9%E5%B7%A5%E5%85%B7c/>DMP版本修改工具(C#)</a></h1></header><date class="post-meta meta-date">2013年6月11日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>最近在使用oracle导入一个dmp文件的时候，由于不知道dmp文件是如何导出的，是使用exp还是expdp导出的，所以纠结了比较长的时间，最后想到是否可以查看dmp文件的一些辅助信息呢，于是有了这个工具。
 在使用dmp导入的时候报如下错误
 据说有两个可能，1个是文件本身损坏，另一个是版本问题，多出现在高版本导出的数据向低版本导入。解决方法就是修改一下dmp文件就行了。dmp文件头部大概9个字节处标识了版本号用来头部验证。对于非常大的dmp我们不能直接用文本编辑器打开，因此找找资料，写个工具。本机一个12GB的文件已测试。
-
 工具使用很简单，选择文件，识别出来版本，按格式改成导入端oracle的版本值，然后即可正常导入11G-10G测试成功。
 下载地址：DMP版本修改工具
- ……
-            <p class="readmore"><a href="http://leaver.me/2013/06/11/dmp%E7%89%88%E6%9C%AC%E4%BF%AE%E6%94%B9%E5%B7%A5%E5%85%B7c/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/05/27/%E8%AF%91%E5%8F%8D%E5%B0%84reflection%E5%92%8C%E5%8A%A8%E6%80%81dynamic/">[译]反射(Reflection)和动态(dynamic)</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年5月27日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91'>我的翻译</a>
-            
-        </div>
-        
-        <div class="post-content">
-            反射  简单用法实例：  // 浏览方法 foreach (MemberInfo objMemberInfo in parameterType.GetMembers()) {Console.WriteLine(objMemberInfo.Name);}
+ ……<p class=readmore><a href=http://leaver.me/2013/06/11/dmp%E7%89%88%E6%9C%AC%E4%BF%AE%E6%94%B9%E5%B7%A5%E5%85%B7c/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/05/27/%E8%AF%91%E5%8F%8D%E5%B0%84reflection%E5%92%8C%E5%8A%A8%E6%80%81dynamic/>[译]反射(Reflection)和动态(dynamic)</a></h1></header><date class="post-meta meta-date">2013年5月27日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91>我的翻译</a></div><div class=post-content>反射  简单用法实例：  // 浏览方法 foreach (MemberInfo objMemberInfo in parameterType.GetMembers()) {Console.WriteLine(objMemberInfo.Name);}
 // 浏览属性. foreach (PropertyInfo objPropertyInfo in parameterType.GetProperties()) {Console.WriteLine(objPropertyInfo.Name);}
-//开始调用 parameterType.InvokeMember(&ldquo;Display&rdquo;,BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.InvokeMethod | BindingFlags.Instance,null, objMyClass, null);实际一点的用处呢：  动态dynamic  简单用法示例：  实际用处：  两者的区别和联系呢 ……
-            <p class="readmore"><a href="http://leaver.me/2013/05/27/%E8%AF%91%E5%8F%8D%E5%B0%84reflection%E5%92%8C%E5%8A%A8%E6%80%81dynamic/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/05/24/%E6%AD%A6%E6%B1%89%E5%A4%A7%E5%AD%A6%E8%AE%BA%E6%96%87%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%E6%A0%BC%E5%BC%8F%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7c/">武汉大学论文参考文献格式生成工具(C#)</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年5月24日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            每次写论文报告什么的，最头疼的就是参考文献的，本来打算写一个论文格式生成工具的，不过，一想起代码量，就有点吓人，所以分而治之，先写参考文献生成工具.
+//开始调用 parameterType.InvokeMember(&ldquo;Display&rdquo;,BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.InvokeMethod | BindingFlags.Instance,null, objMyClass, null);实际一点的用处呢：  动态dynamic  简单用法示例：  实际用处：  两者的区别和联系呢 ……<p class=readmore><a href=http://leaver.me/2013/05/27/%E8%AF%91%E5%8F%8D%E5%B0%84reflection%E5%92%8C%E5%8A%A8%E6%80%81dynamic/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/05/24/%E6%AD%A6%E6%B1%89%E5%A4%A7%E5%AD%A6%E8%AE%BA%E6%96%87%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%E6%A0%BC%E5%BC%8F%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7c/>武汉大学论文参考文献格式生成工具(C#)</a></h1></header><date class="post-meta meta-date">2013年5月24日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>每次写论文报告什么的，最头疼的就是参考文献的，本来打算写一个论文格式生成工具的，不过，一想起代码量，就有点吓人，所以分而治之，先写参考文献生成工具.
 本工具生成的文献格式符合武汉大学本科生论文的格式要求，因此，放心使用，填写内容都是必填，页码什么的要是不知道就随便填一个..你懂的..有问题请留言反馈。
-程序提供8种参考文献类型，第9种电子文献，没有实现，因为感觉在论文中参考文献要是网址的话很难看.而且用的不多..其实主要还是懒..每种文献类型需要填写的信息都不一样，8种&hellip;8种&hellip;
-
+程序提供8种参考文献类型，第9种电子文献，没有实现，因为感觉在论文中参考文献要是网址的话很难看.而且用的不多..其实主要还是懒..每种文献类型需要填写的信息都不一样，8种&mldr;8种&mldr;
 使用方法：
 1.在界面右侧选择参考文献类型，然后填写。添加，左侧将会出现
 2.如果填写错误，双击左侧条目，即可删除
 3.完成后导出，即可在本目录生成docx文档
 下载地址：武汉大学论文参考文献格式生成工具
- ……
-            <p class="readmore"><a href="http://leaver.me/2013/05/24/%E6%AD%A6%E6%B1%89%E5%A4%A7%E5%AD%A6%E8%AE%BA%E6%96%87%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%E6%A0%BC%E5%BC%8F%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7c/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/05/15/%E5%80%92%E6%B0%B4%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3c-/">倒水问题求解(C&#43;&#43;)</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年5月15日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            明天要去参加微软面试，不求顺利，但求体验。
+ ……<p class=readmore><a href=http://leaver.me/2013/05/24/%E6%AD%A6%E6%B1%89%E5%A4%A7%E5%AD%A6%E8%AE%BA%E6%96%87%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%E6%A0%BC%E5%BC%8F%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7c/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/05/15/%E5%80%92%E6%B0%B4%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3c-/>倒水问题求解(C++)</a></h1></header><date class="post-meta meta-date">2013年5月15日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>明天要去参加微软面试，不求顺利，但求体验。
 这个题目答题的意思是:
 给你一个容量为A升的桶和一个容量为B升的桶，水不限使用，要求精确得到Q升水.请说明步骤
 当数字比较小的时候,我们可以通过大脑穷举来得到结果,但这里有两个问题,当数字很大的时候怎么解?题目给定的数据是否有解?
@@ -186,74 +30,27 @@
 Q = A * x + B * y Q =目标值.
 Q必须是 Gcd(A,B)(也就是A,B的最大公约数)的倍数,否则无解,如果 Gcd(A,B) == 1, 任何Q都是可解的
 最简单的方法就是把A的水不断的向B中倒(B向A中倒也行),知道得到最终结果,如果桶满了,就清空该桶.举个例子
-A = 3, B = 4 并且 Q = 2 重复得从 A-&gt;B
+A = 3, B = 4 并且 Q = 2 重复得从 A->B
 A B
- 0 0 4 0 1 3 1 0 0 1 4 1 2 3 &lt;-A桶中得到2了
-试试从 B-&gt;A
+0 0 4 0 1 3 1 0 0 1 4 1 2 3 &lt;-A桶中得到2了
+试试从 B->A
 A B
- 0 0 0 3 3 0 3 3 4 2 &lt;- B中也得到了2 但是注意,从 B-&gt;A 比从 A-&gt;B快哦
+0 0 0 3 3 0 3 3 4 2 &lt;- B中也得到了2 但是注意,从 B->A 比从 A->B快哦
 然后我贴出代码
 运行结果如下：
-
-关于如何求最少的步数来求解这个问题，希望有朋友能够留言指教。……
-            <p class="readmore"><a href="http://leaver.me/2013/05/15/%E5%80%92%E6%B0%B4%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3c-/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/05/01/%E5%B7%B2%E5%A4%B1%E6%95%88csdn%E5%85%8D%E7%A7%AF%E5%88%86%E4%B8%8B%E8%BD%BD%E5%99%A8/">[已失效]Csdn免积分下载器</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年5月1日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            作者：bystander
+关于如何求最少的步数来求解这个问题，希望有朋友能够留言指教。……<p class=readmore><a href=http://leaver.me/2013/05/15/%E5%80%92%E6%B0%B4%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3c-/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/05/01/%E5%B7%B2%E5%A4%B1%E6%95%88csdn%E5%85%8D%E7%A7%AF%E5%88%86%E4%B8%8B%E8%BD%BD%E5%99%A8/>[已失效]Csdn免积分下载器</a></h1></header><date class="post-meta meta-date">2013年5月1日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>作者：bystander
 转载请注明来源:http://leaver.me
 原理很简单，目前好像还没有大规模传开，我就不透露了，大家低调使用.为了方便，我写了个客户端，下载地址在文章末尾
-
  使用方法直接把你想下载的地址复制过去，点击下载就会调用ie来下载了.
- 文章太短了，发两个可乐的吧：……
-            <p class="readmore"><a href="http://leaver.me/2013/05/01/%E5%B7%B2%E5%A4%B1%E6%95%88csdn%E5%85%8D%E7%A7%AF%E5%88%86%E4%B8%8B%E8%BD%BD%E5%99%A8/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/04/17/%E4%B8%80%E9%81%93%E7%AC%94%E8%AF%95%E6%8C%87%E9%92%88%E9%A2%98%E7%9B%AE%E8%AF%A6%E8%A7%A3/">一道笔试指针题目详解</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年4月17日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            看到本题是在搜狗某年的笔试题上,看也没人给出非常详细的讲解,直接给出了答案,我来尝试写一写,
-貌似本题来源自&lt;**The C Puzzle Book&gt; ，**搜狗也只是换了一下字符串，直接看题吧
-&lt;span style=&quot;font-family: Georgia, 'Times New Roman', 'Bitstream Charter', Times, serif; font-size: 13px; line-height: 19px;&quot;&gt;请写出程序的执行结果....&lt;/span&gt;
+ 文章太短了，发两个可乐的吧：……<p class=readmore><a href=http://leaver.me/2013/05/01/%E5%B7%B2%E5%A4%B1%E6%95%88csdn%E5%85%8D%E7%A7%AF%E5%88%86%E4%B8%8B%E8%BD%BD%E5%99%A8/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/04/17/%E4%B8%80%E9%81%93%E7%AC%94%E8%AF%95%E6%8C%87%E9%92%88%E9%A2%98%E7%9B%AE%E8%AF%A6%E8%A7%A3/>一道笔试指针题目详解</a></h1></header><date class="post-meta meta-date">2013年4月17日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>看到本题是在搜狗某年的笔试题上,看也没人给出非常详细的讲解,直接给出了答案,我来尝试写一写,
+貌似本题来源自&lt;**The C Puzzle Book> ，**搜狗也只是换了一下字符串，直接看题吧
+&lt;span style="font-family: Georgia, 'Times New Roman', 'Bitstream Charter', Times, serif; font-size: 13px; line-height: 19px;">请写出程序的执行结果....&lt;/span>
 首先从左到右看：
 再看第二行，**cp[]是一个字符，*cp[]就是一个指针，指向该字符，cp[]就是一个指针，指向该指针，而cp就成为了指针数组，内容是指向字符的指针的指针。并且通过c的元素进行了初始化
 第三行，***cpp是一个字符，**cpp指向该字符，*cpp指向该指针，cpp就指向该字符的指针的指针.
 然后我画一张图表示初始的情况看看
-
 然后对于下面的输出语句，通过操作符优先级使用括号来区分一下：
 这个嘛，就是把cpp后移(注意cpp已经改变了)然后就指向了cp[1]，然后两次取其值即可得到AMAZI
 推导过程如下：
@@ -262,126 +59,37 @@ A B
 所以，最后输出就是
 AMAZINGBEST
 错误之处还望指正.
-  ……
-            <p class="readmore"><a href="http://leaver.me/2013/04/17/%E4%B8%80%E9%81%93%E7%AC%94%E8%AF%95%E6%8C%87%E9%92%88%E9%A2%98%E7%9B%AE%E8%AF%A6%E8%A7%A3/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/04/16/%E6%A8%A1%E6%9D%BF%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97%E5%8F%8A%E5%A0%86%E6%8E%92%E5%BA%8Fc-%E5%AE%9E%E7%8E%B0/">模板优先级队列及堆排序(C&#43;&#43;实现)</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年4月16日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            模板优先级队列，数组实现，再熟悉一下常用算法，同时简单的堆排序应用
+  ……<p class=readmore><a href=http://leaver.me/2013/04/17/%E4%B8%80%E9%81%93%E7%AC%94%E8%AF%95%E6%8C%87%E9%92%88%E9%A2%98%E7%9B%AE%E8%AF%A6%E8%A7%A3/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/04/16/%E6%A8%A1%E6%9D%BF%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97%E5%8F%8A%E5%A0%86%E6%8E%92%E5%BA%8Fc-%E5%AE%9E%E7%8E%B0/>模板优先级队列及堆排序(C++实现)</a></h1></header><date class="post-meta meta-date">2013年4月16日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>模板优先级队列，数组实现，再熟悉一下常用算法，同时简单的堆排序应用
 写了一个是队列自增长，另一个为了演示我还添加了一个叫做FillPq的方法，这个方法可以使用一个数组直接填充到优先级队列里，此时，优先级队列并不优先，然后进行下滤调整，之后建堆完成，输出即可
 然后是堆排序
- ……
-            <p class="readmore"><a href="http://leaver.me/2013/04/16/%E6%A8%A1%E6%9D%BF%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97%E5%8F%8A%E5%A0%86%E6%8E%92%E5%BA%8Fc-%E5%AE%9E%E7%8E%B0/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/04/11/%E6%A8%A1%E6%9D%BF%E6%A0%88%E4%BB%A5%E5%8F%8A%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BCc-%E5%AE%9E%E7%8E%B0/">模板栈以及中缀表达式求值(C&#43;&#43;实现)</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年4月11日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            栈直接用链表实现，这个比较简单，不多说，不过C++写程序，IDE的错误检测不是很给力。
+ ……<p class=readmore><a href=http://leaver.me/2013/04/16/%E6%A8%A1%E6%9D%BF%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97%E5%8F%8A%E5%A0%86%E6%8E%92%E5%BA%8Fc-%E5%AE%9E%E7%8E%B0/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/04/11/%E6%A8%A1%E6%9D%BF%E6%A0%88%E4%BB%A5%E5%8F%8A%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BCc-%E5%AE%9E%E7%8E%B0/>模板栈以及中缀表达式求值(C++实现)</a></h1></header><date class="post-meta meta-date">2013年4月11日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>栈直接用链表实现，这个比较简单，不多说，不过C++写程序，IDE的错误检测不是很给力。
 至于给定一个中缀表达式，如何不转换成后缀表达式，直接求值，方法就是使用两个栈，一个操作符栈，一个操作数栈，然后从左到右扫描表达式，我这里中缀表达式计算实现的很简单，不完整，大家可以扩展。栈的实现是我想写的，思路如下：
 1.如何是操作数，压入操作数栈
 2.如果是操作符，压入操作符栈
 3.如果是左括号，直接忽略
 4.如果是有括号，弹出操作符栈栈顶元素，然后弹出操作数栈两个元素，进行操作以后结果压入操作数栈
  看个图就好了
-
  最后给出栈顶实现代码
 然后是main函数代码
-另外，今天是博客建站一周年.加油！……
-            <p class="readmore"><a href="http://leaver.me/2013/04/11/%E6%A8%A1%E6%9D%BF%E6%A0%88%E4%BB%A5%E5%8F%8A%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BCc-%E5%AE%9E%E7%8E%B0/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/04/11/%E5%B9%B6%E6%9F%A5%E9%9B%86c-%E5%AE%9E%E7%8E%B0/">并查集(C&#43;&#43;实现)</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年4月11日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            并查集这个很有意思，并查集是一种树型的数据结构，用于处理一些不相交集合（Disjoint Sets）的合并及查询问题。昨天看书看到了，然后用C++简单实现了下。在Dijkstra算法中，用来判断两个顶点是否在同一个集合里。
+另外，今天是博客建站一周年.加油！……<p class=readmore><a href=http://leaver.me/2013/04/11/%E6%A8%A1%E6%9D%BF%E6%A0%88%E4%BB%A5%E5%8F%8A%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BCc-%E5%AE%9E%E7%8E%B0/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/04/11/%E5%B9%B6%E6%9F%A5%E9%9B%86c-%E5%AE%9E%E7%8E%B0/>并查集(C++实现)</a></h1></header><date class="post-meta meta-date">2013年4月11日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>并查集这个很有意思，并查集是一种树型的数据结构，用于处理一些不相交集合（Disjoint Sets）的合并及查询问题。昨天看书看到了，然后用C++简单实现了下。在Dijkstra算法中，用来判断两个顶点是否在同一个集合里。
 里面定义了两个类，都是并查集，一个是QuickFind，查找很快，一个是QuickUnion，合并较快。写了一些注释，有一些优化的提示.看代码吧，有什么问题指出来吧。
 QuickFind的实现
 QuickUnion的实现
 参考文档(英文)：UnionFind.pdf
-工程代码下载：并查集Demo……
-            <p class="readmore"><a href="http://leaver.me/2013/04/11/%E5%B9%B6%E6%9F%A5%E9%9B%86c-%E5%AE%9E%E7%8E%B0/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/04/05/%E5%92%8C-%E6%B5%85%E6%9E%90/">和
-浅析</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年4月5日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            这两个转义字符最初学习C++的时候看到了,当时没多想，后来某一天突然想起来，回车不就是换行吗？这不是多此一举吗？今天又看到，索性查了下相关资料，整理一下，留作记录.
+工程代码下载：并查集Demo……<p class=readmore><a href=http://leaver.me/2013/04/11/%E5%B9%B6%E6%9F%A5%E9%9B%86c-%E5%AE%9E%E7%8E%B0/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/04/05/%E5%92%8C-%E6%B5%85%E6%9E%90/>和
+浅析</a></h1></header><date class="post-meta meta-date">2013年4月5日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>这两个转义字符最初学习C++的时候看到了,当时没多想，后来某一天突然想起来，回车不就是换行吗？这不是多此一举吗？今天又看到，索性查了下相关资料，整理一下，留作记录.
 关于“回车”（carriage return）和“换行”（line feed）这两个概念的来历和区别。
 在计算机还没有出现之前，有一种叫做电传打字机（Teletype Model 33）的玩意，每秒钟可以打10个字符。但是它有一个问题，就是打完一行换行的时候，要用去0.2秒，正好可以打两个字符。要是在这0.2秒里面，又有新的字符传过来，那么这个字符将丢失。
 于是，研制人员想了个办法解决这个问题，就是在每行后面加两个表示结束的字符。一个叫做“回车”，告诉打字机把打印头定位在左边界；另一个叫做“换行”，告诉打字机把纸向下移一行（这句的意思是把纸向上拉，然后打印头就定位到了下一行），可以想象一下，这个打印头只能在一个固定的水平线上左右移动，而不能上下移动，我们通过移动纸来完成打印下一行。
 不明白的我在youtube上找到一个这种打字机的演示视频，为了方便读者观看，我提供一个下载地址。
 后来，计算机发明了，这两个概念也就被般到了计算机上。那时，存储器很贵，一些科学家认为在每行结尾加两个字符太浪费了，加一个就可以。于是，就出现了分歧。
-Unix系统里，每行结尾只有&rdquo;&lt;换行&gt;&quot;，即&rdquo;\n&rdquo;；
-Windows系统里面，每行结尾是&rdquo;&lt;换行&gt;&lt;回车&gt;&quot;，即&rdquo;\n\r&rdquo;；
-Mac系统里，每行结尾是&rdquo;&lt;回车&gt;&quot;，不过mac基于unix，所以换行也应该是可以的。
+Unix系统里，每行结尾只有&rdquo;&lt;换行>"，即&rdquo;\n&rdquo;；
+Windows系统里面，每行结尾是&rdquo;&lt;换行>&lt;回车>"，即&rdquo;\n\r&rdquo;；
+Mac系统里，每行结尾是&rdquo;&lt;回车>"，不过mac基于unix，所以换行也应该是可以的。
 一个直接后果是，Unix/Mac系统下的文件在Windows里打开的话，所有文字会变成一行；而Windows里的文件在Unix/Mac下打开的话，在每行的结尾可能会多出一个^M符号。这个如果你在windows下使用vim也会发现这个情况
 用C++来说明
 如：
@@ -390,398 +98,81 @@ Mac系统里，每行结尾是&rdquo;&lt;回车&gt;&quot;，不过mac基于unix�
 则 显示
 leaver.me
 bystander
-一句话，这看起来是一个历史遗留问题&hellip;&hellip;……
-            <p class="readmore"><a href="http://leaver.me/2013/04/05/%E5%92%8C-%E6%B5%85%E6%9E%90/">阅读全文</a></p>
-        </div>
-    </article>
-    
-
-    
-
-
-
-<ol class="page-navigator">
-    
-    <li class="prev">
-        <a href="http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/page/3/">上一页</a>
-    </li>
-    
-
-    
-
-    
-        
-        
-    
-    
-
-    
-        
-        
-        <li >
-            <a href="http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/">1</a>
-        </li>
-        
-    
-        
-        <li>
-            <span>...</span>
-        </li>
-        
-    
-        
-        
-        <li >
-            <a href="http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/page/2/">2</a>
-        </li>
-        
-    
-        
-        
-        <li >
-            <a href="http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/page/3/">3</a>
-        </li>
-        
-    
-        
-        
-        <li  class="current">
-            <a href="http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/page/4/">4</a>
-        </li>
-        
-    
-        
-        
-        <li >
-            <a href="http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/page/5/">5</a>
-        </li>
-        
-    
-        
-        
-        <li >
-            <a href="http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/page/6/">6</a>
-        </li>
-        
-    
-        
-        <li>
-            <span>...</span>
-        </li>
-        
-    
-        
-        
-        <li >
-            <a href="http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/page/12/">12</a>
-        </li>
-        
-    
-
-    
-    
-
-    <li class="next">
-        <a href="http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/page/5/">下一页</a>
-    </li>
-    
-</ol>
-
-
-
-
-</div>
-
-                </div>
-
-                <div id="secondary">
-    <section class="widget">
-        <form id="search" action='http://leaver.me/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
-      
-      <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="http://leaver.me/">
-      <button type="submit" class="submit icon-search"></button>
-</form>
-    </section>
-    
-    <section class="widget">
-        <h3 class="widget-title">最近文章</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2019 年终总结">2019 年终总结</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/" title="深入理解Raft协议">深入理解Raft协议</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/" title="《非暴力沟通》笔记">《非暴力沟通》笔记</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/10/06/wedding-of-friends/" title="Wedding of Friends">Wedding of Friends</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/09/29/principle-note/" title="Principle Note">Principle Note</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/" title="梦见鲸鱼的那一夜">梦见鲸鱼的那一夜</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/08/20/understand-hong-kong-2/" title="Understand Hong Kong 2">Understand Hong Kong 2</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/08/18/understand-hong-kong-part-1/" title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/" title="错过的都是命，得到的才是人生">错过的都是命，得到的才是人生</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/04/06/recently/" title="Recently">Recently</a>
-    </li>
-    
-</ul>
-    </section>
-
-    
-
-    <section class="widget">
-        <h3 class="widget-title">分类</h3>
-<ul class="widget-list">
-    
-    <li><a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记 (186)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/">我的翻译 (57)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/">文章收藏 (53)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录 (3)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记 (4)</a></li>
-    
-</ul>
-    </section>
-
-    <section class="widget">
-        <h3 class="widget-title">标签</h3>
-<div class="tagcloud">
-    
-    <a href="http://leaver.me/tags/android/">android</a>
-    
-    <a href="http://leaver.me/tags/c/">C＃</a>
-    
-    <a href="http://leaver.me/tags/c&#43;&#43;/">C&#43;&#43;</a>
-    
-    <a href="http://leaver.me/tags/java/">java</a>
-    
-    <a href="http://leaver.me/tags/javascript/">javascript</a>
-    
-    <a href="http://leaver.me/tags/linux/">linux</a>
-    
-    <a href="http://leaver.me/tags/mac/">mac</a>
-    
-    <a href="http://leaver.me/tags/matlab/">matlab</a>
-    
-    <a href="http://leaver.me/tags/maven/">maven</a>
-    
-    <a href="http://leaver.me/tags/mysql/">mysql</a>
-    
-    <a href="http://leaver.me/tags/nextgen-gallery/">NextGEN Gallery</a>
-    
-    <a href="http://leaver.me/tags/php/">php</a>
-    
-    <a href="http://leaver.me/tags/python/">python</a>
-    
-    <a href="http://leaver.me/tags/shell/">shell</a>
-    
-    <a href="http://leaver.me/tags/spring/">spring</a>
-    
-    <a href="http://leaver.me/tags/sql/">sql</a>
-    
-    <a href="http://leaver.me/tags/stackoverflow/">stackoverflow</a>
-    
-    <a href="http://leaver.me/tags/wcf/">WCF</a>
-    
-    <a href="http://leaver.me/tags/web/">web</a>
-    
-    <a href="http://leaver.me/tags/windows/">windows</a>
-    
-    <a href="http://leaver.me/tags/wordpress/">wordpress</a>
-    
-    <a href="http://leaver.me/tags/wpf/">WPF</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/">上海</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/">下载</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
-    
-    <a href="http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/">互联网</a>
-    
-    <a href="http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
-    
-    <a href="http://leaver.me/tags/%E5%88%B6%E5%BA%A6/">制度</a>
-    
-    <a href="http://leaver.me/tags/%E5%89%8D%E7%AB%AF/">前端</a>
-    
-    <a href="http://leaver.me/tags/%E5%8E%9F%E5%88%9B/">原创</a>
-    
-    <a href="http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/">大学</a>
-    
-    <a href="http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/">学习</a>
-    
-    <a href="http://leaver.me/tags/%E5%AE%89%E5%85%A8/">安全</a>
-    
-    <a href="http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/">家庭</a>
-    
-    <a href="http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/">工作</a>
-    
-    <a href="http://leaver.me/tags/%E5%B7%A5%E5%85%B7/">工具</a>
-    
-    <a href="http://leaver.me/tags/%E5%B9%B6%E5%8F%91/">并发</a>
-    
-    <a href="http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/">序列化</a>
-    
-    <a href="http://leaver.me/tags/%E5%BC%80%E5%8F%91/">开发</a>
-    
-    <a href="http://leaver.me/tags/%E5%BF%83%E7%90%86/">心理</a>
-    
-    <a href="http://leaver.me/tags/%E6%80%BB%E7%BB%93/">总结</a>
-    
-    <a href="http://leaver.me/tags/%E6%8A%80%E6%9C%AF/">技术</a>
-    
-    <a href="http://leaver.me/tags/%E6%8F%92%E4%BB%B6/">插件</a>
-    
-    <a href="http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-    
-    <a href="http://leaver.me/tags/%E6%94%B6%E8%97%8F/">收藏</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E5%AD%A6/">数学</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">数据挖掘</a>
-    
-    <a href="http://leaver.me/tags/%E6%96%87%E7%AB%A0/">文章</a>
-    
-    <a href="http://leaver.me/tags/%E6%99%BA%E8%83%BD/">智能</a>
-    
-    <a href="http://leaver.me/tags/%E6%9D%82%E6%96%87/">杂文</a>
-    
-    <a href="http://leaver.me/tags/%E6%AD%A6%E6%B1%89/">武汉</a>
-    
-    <a href="http://leaver.me/tags/%E6%B1%87%E7%BC%96/">汇编</a>
-    
-    <a href="http://leaver.me/tags/%E7%88%B1%E6%83%85/">爱情</a>
-    
-    <a href="http://leaver.me/tags/%E7%90%86%E8%AE%BA/">理论</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%9F%E6%B4%BB/">生活</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/">电子书</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%B5%E5%BD%B1/">电影</a>
-    
-    <a href="http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/">社会</a>
-    
-    <a href="http://leaver.me/tags/%E7%A7%91%E6%8A%80/">科技</a>
-    
-    <a href="http://leaver.me/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
-    
-    <a href="http://leaver.me/tags/%E7%AE%97%E6%B3%95/">算法</a>
-    
-    <a href="http://leaver.me/tags/%E7%BC%96%E7%A8%8B/">编程</a>
-    
-    <a href="http://leaver.me/tags/%E7%BC%96%E8%AF%91/">编译</a>
-    
-    <a href="http://leaver.me/tags/%E7%BF%BB%E8%AF%91/">翻译</a>
-    
-    <a href="http://leaver.me/tags/%E8%81%8C%E4%B8%9A/">职业</a>
-    
-    <a href="http://leaver.me/tags/%E8%AE%B0%E5%BD%95/">记录</a>
-    
-    <a href="http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/">设计</a>
-    
-    <a href="http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/">读书</a>
-    
-    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/">软件</a>
-    
-    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</a>
-    
-    <a href="http://leaver.me/tags/%E8%BF%90%E7%BB%B4/">运维</a>
-    
-    <a href="http://leaver.me/tags/%E9%87%91%E8%9E%8D/">金融</a>
-    
-</div>
-    </section>
-
-    
-<section class="widget">
-    <h3 class="widget-title">友情链接</h3>
-    <ul class="widget-list">
-        
-        <li>
-            <a target="_blank" href="https://www.cppfans.org/" title="C&#43;&#43;爱好者博客">C&#43;&#43;爱好者博客</a>
-        </li>
-        
-        <li>
-            <a target="_blank" href="http://www.kailing.pub" title="KL，每天进步一点点">KL，每天进步一点点</a>
-        </li>
-        
-    </ul>
-</section>
-
-
-    <section class="widget">
-        <h3 class="widget-title">其它</h3>
-        <ul class="widget-list">
-            <li><a href="http://leaver.me/index.xml">文章 RSS</a></li>
-        </ul>
-    </section>
-</div>
-            </div>
-        </div>
-    </div>
-    <footer id="footer">
-    <div class="container">
-        &copy; 2020 <a href="http://leaver.me/">bystander&#39;s blog By bystander</a>.
-        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
-        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
-        
-    </div>
-</footer>
-
-
-
-<a id="rocket" href="#top"></a>
-<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-30961201-3', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-
-
-
-
-
-</body>
-
-</html>
+一句话，这看起来是一个历史遗留问题&mldr;&mldr;……<p class=readmore><a href=http://leaver.me/2013/04/05/%E5%92%8C-%E6%B5%85%E6%9E%90/>阅读全文</a></p></div></article><ol class=page-navigator><li class=prev><a href=http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/page/3/>上一页</a></li><li><a href=http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/>1</a></li><li><span>...</span></li><li><a href=http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/page/2/>2</a></li><li><a href=http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/page/3/>3</a></li><li class=current><a href=http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/page/4/>4</a></li><li><a href=http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/page/5/>5</a></li><li><a href=http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/page/6/>6</a></li><li><span>...</span></li><li><a href=http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/page/12/>12</a></li><li class=next><a href=http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/page/5/>下一页</a></li></ol></div></div><div id=secondary><section class=widget><form id=search action=http://leaver.me/search/ method=get accept-charset=utf-8 target=_blank _lpchecked=1><input type=text name=q maxlength=20 placeholder=Search>
+<input type=hidden name=sitesearch value=http://leaver.me/>
+<button type=submit class="submit icon-search"></button></form></section><section class=widget><h3 class=widget-title>最近文章</h3><ul class=widget-list><li><a href=http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/ title="2019 年终总结">2019 年终总结</a></li><li><a href=http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/ title=深入理解Raft协议>深入理解Raft协议</a></li><li><a href=http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/ title=《非暴力沟通》笔记>《非暴力沟通》笔记</a></li><li><a href=http://leaver.me/2019/10/06/wedding-of-friends/ title="Wedding of Friends">Wedding of Friends</a></li><li><a href=http://leaver.me/2019/09/29/principle-note/ title="Principle Note">Principle Note</a></li><li><a href=http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/ title=梦见鲸鱼的那一夜>梦见鲸鱼的那一夜</a></li><li><a href=http://leaver.me/2019/08/20/understand-hong-kong-2/ title="Understand Hong Kong 2">Understand Hong Kong 2</a></li><li><a href=http://leaver.me/2019/08/18/understand-hong-kong-part-1/ title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a></li><li><a href=http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/ title=错过的都是命，得到的才是人生>错过的都是命，得到的才是人生</a></li><li><a href=http://leaver.me/2019/04/06/recently/ title=Recently>Recently</a></li></ul></section><section class=widget><h3 class=widget-title>分类</h3><ul class=widget-list><li><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/>学习笔记 (186)</a></li><li><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/>我的翻译 (57)</a></li><li><a href=http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/>文章收藏 (53)</a></li><li><a href=http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/>生活记录 (3)</a></li><li><a href=http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/>读书笔记 (4)</a></li></ul></section><section class=widget><h3 class=widget-title>标签</h3><div class=tagcloud><a href=http://leaver.me/tags/android/>android</a>
+<a href=http://leaver.me/tags/c/>C＃</a>
+<a href=http://leaver.me/tags/c++/>C++</a>
+<a href=http://leaver.me/tags/java/>java</a>
+<a href=http://leaver.me/tags/javascript/>javascript</a>
+<a href=http://leaver.me/tags/linux/>linux</a>
+<a href=http://leaver.me/tags/mac/>mac</a>
+<a href=http://leaver.me/tags/matlab/>matlab</a>
+<a href=http://leaver.me/tags/maven/>maven</a>
+<a href=http://leaver.me/tags/mysql/>mysql</a>
+<a href=http://leaver.me/tags/nextgen-gallery/>NextGEN Gallery</a>
+<a href=http://leaver.me/tags/php/>php</a>
+<a href=http://leaver.me/tags/python/>python</a>
+<a href=http://leaver.me/tags/shell/>shell</a>
+<a href=http://leaver.me/tags/spring/>spring</a>
+<a href=http://leaver.me/tags/sql/>sql</a>
+<a href=http://leaver.me/tags/stackoverflow/>stackoverflow</a>
+<a href=http://leaver.me/tags/wcf/>WCF</a>
+<a href=http://leaver.me/tags/web/>web</a>
+<a href=http://leaver.me/tags/windows/>windows</a>
+<a href=http://leaver.me/tags/wordpress/>wordpress</a>
+<a href=http://leaver.me/tags/wpf/>WPF</a>
+<a href=http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/>上海</a>
+<a href=http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/>下载</a>
+<a href=http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/>中间件</a>
+<a href=http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/>互联网</a>
+<a href=http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/>分布式</a>
+<a href=http://leaver.me/tags/%E5%88%B6%E5%BA%A6/>制度</a>
+<a href=http://leaver.me/tags/%E5%89%8D%E7%AB%AF/>前端</a>
+<a href=http://leaver.me/tags/%E5%8E%9F%E5%88%9B/>原创</a>
+<a href=http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/>大学</a>
+<a href=http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/>学习</a>
+<a href=http://leaver.me/tags/%E5%AE%89%E5%85%A8/>安全</a>
+<a href=http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/>家庭</a>
+<a href=http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/>工作</a>
+<a href=http://leaver.me/tags/%E5%B7%A5%E5%85%B7/>工具</a>
+<a href=http://leaver.me/tags/%E5%B9%B6%E5%8F%91/>并发</a>
+<a href=http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/>序列化</a>
+<a href=http://leaver.me/tags/%E5%BC%80%E5%8F%91/>开发</a>
+<a href=http://leaver.me/tags/%E5%BF%83%E7%90%86/>心理</a>
+<a href=http://leaver.me/tags/%E6%80%BB%E7%BB%93/>总结</a>
+<a href=http://leaver.me/tags/%E6%8A%80%E6%9C%AF/>技术</a>
+<a href=http://leaver.me/tags/%E6%8F%92%E4%BB%B6/>插件</a>
+<a href=http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/>操作系统</a>
+<a href=http://leaver.me/tags/%E6%94%B6%E8%97%8F/>收藏</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E5%AD%A6/>数学</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/>数据库</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/>数据挖掘</a>
+<a href=http://leaver.me/tags/%E6%96%87%E7%AB%A0/>文章</a>
+<a href=http://leaver.me/tags/%E6%99%BA%E8%83%BD/>智能</a>
+<a href=http://leaver.me/tags/%E6%9D%82%E6%96%87/>杂文</a>
+<a href=http://leaver.me/tags/%E6%AD%A6%E6%B1%89/>武汉</a>
+<a href=http://leaver.me/tags/%E6%B1%87%E7%BC%96/>汇编</a>
+<a href=http://leaver.me/tags/%E7%88%B1%E6%83%85/>爱情</a>
+<a href=http://leaver.me/tags/%E7%90%86%E8%AE%BA/>理论</a>
+<a href=http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/>生产力</a>
+<a href=http://leaver.me/tags/%E7%94%9F%E6%B4%BB/>生活</a>
+<a href=http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/>电子书</a>
+<a href=http://leaver.me/tags/%E7%94%B5%E5%BD%B1/>电影</a>
+<a href=http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/>社会</a>
+<a href=http://leaver.me/tags/%E7%A7%91%E6%8A%80/>科技</a>
+<a href=http://leaver.me/tags/%E7%AC%94%E8%AE%B0/>笔记</a>
+<a href=http://leaver.me/tags/%E7%AE%97%E6%B3%95/>算法</a>
+<a href=http://leaver.me/tags/%E7%BC%96%E7%A8%8B/>编程</a>
+<a href=http://leaver.me/tags/%E7%BC%96%E8%AF%91/>编译</a>
+<a href=http://leaver.me/tags/%E7%BF%BB%E8%AF%91/>翻译</a>
+<a href=http://leaver.me/tags/%E8%81%8C%E4%B8%9A/>职业</a>
+<a href=http://leaver.me/tags/%E8%AE%B0%E5%BD%95/>记录</a>
+<a href=http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/>设计</a>
+<a href=http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/>读书</a>
+<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/>软件</a>
+<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/>软件测试</a>
+<a href=http://leaver.me/tags/%E8%BF%90%E7%BB%B4/>运维</a>
+<a href=http://leaver.me/tags/%E9%87%91%E8%9E%8D/>金融</a></div></section><section class=widget><h3 class=widget-title>友情链接</h3><ul class=widget-list><li><a target=_blank href=https://www.cppfans.org/ title=C++爱好者博客>C++爱好者博客</a></li><li><a target=_blank href=http://www.kailing.pub title=KL，每天进步一点点>KL，每天进步一点点</a></li></ul></section><section class=widget><h3 class=widget-title>其它</h3><ul class=widget-list><li><a href=http://leaver.me/index.xml>文章 RSS</a></li></ul></section></div></div></div></div><footer id=footer><div class=container>&copy; 2020 <a href=http://leaver.me/>bystander's blog By bystander</a>.
+Powered by <a rel="nofollow noreferer noopener" href=https://gohugo.io target=_blank>Hugo</a>.
+<a href=https://www.flysnow.org/ target=_blank>Theme</a> based on <a href=https://github.com/flysnow-org/maupassant-hugo target=_blank>maupassant</a>.</div></footer><a id=rocket href=#top></a><script type=text/javascript src="/js/totop.js?v=0.0.0" async></script><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-30961201-3','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></body></html>

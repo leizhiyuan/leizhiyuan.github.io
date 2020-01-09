@@ -1,46 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>数据库 on bystander&#39;s blog</title>
-    <link>http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
-    <description>Recent content in 数据库 on bystander&#39;s blog</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh-CN</language>
-    <lastBuildDate>Sun, 30 Sep 2012 22:33:19 +0000</lastBuildDate>
-    
-	<atom:link href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>CSV导入导出工具</title>
-      <link>http://leaver.me/2012/09/30/csv%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E5%B7%A5%E5%85%B7/</link>
-      <pubDate>Sun, 30 Sep 2012 22:33:19 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/09/30/csv%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E5%B7%A5%E5%85%B7/</guid>
-      <description>介绍
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>数据库 on bystander's blog</title><link>http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</link><description>Recent content in 数据库 on bystander's blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 30 Sep 2012 22:33:19 +0000</lastBuildDate><atom:link href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml"/><item><title>CSV导入导出工具</title><link>http://leaver.me/2012/09/30/csv%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E5%B7%A5%E5%85%B7/</link><pubDate>Sun, 30 Sep 2012 22:33:19 +0000</pubDate><guid>http://leaver.me/2012/09/30/csv%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E5%B7%A5%E5%85%B7/</guid><description>介绍
 本文介绍并且实现了在平面文件CSV和SQL server之间的导入导出功能。使用VS2005写的。使用了.net 2.0
 本文基于前一篇文章：从CSV导入数据并存储到数据库，本文包含了新功能，比如，导出功能，在数据库创建表，批量拷贝。接下来的例子中有很多注释。
 导入
 通过ODBC驱动连接到一个CSV文件，然后把文件读到一张表了（基于前面提到的那篇文章） 使用不同的编码和不同的行分隔符（基于前文） 加载CSV文件到DataSet（基于前文） 如何显示对CSV文件的预览（基于前文） 通过SqlBulkCopy的对象向SQL server转移数据，原始数据是DataSet实例
 使用结构表，基于CSV文件，创建一个新表 使用事件来处理批量拷贝的进程 导出
 浏览SQL 数据库中的用户表 使用不同的编码和分隔符 使用SqlDataReader读取数据，使用StreamWriter转移数据到平面文件
- 使用
- 下载工程 新建一个数据库，或者使用一个存在的数据库 修改软件中的数据库连接字符串，在prop.cs文件中  运行工程  一些代码段 加载CSV到DataSet中
+使用
+下载工程 新建一个数据库，或者使用一个存在的数据库 修改软件中的数据库连接字符串，在prop.cs文件中 运行工程 一些代码段 加载CSV到DataSet中
 通过SqlBulkCopy从ODBC连接中转移数据到数据库
 基于结构表创建表
 获取数据库中用户表名
 通过StreamWriter写数据
 Demo下载 CSV_import_export 许可 本文包括源代码和文件在CPOL下授权
-原文地址：C-CSV-Import-Export</description>
-    </item>
-    
-    <item>
-      <title>从数据库读取图片发生“无效的参数”异常</title>
-      <link>http://leaver.me/2012/09/27/%E4%BB%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%BB%E5%8F%96%E5%9B%BE%E7%89%87%E5%8F%91%E7%94%9F%E6%97%A0%E6%95%88%E7%9A%84%E5%8F%82%E6%95%B0%E5%BC%82%E5%B8%B8/</link>
-      <pubDate>Thu, 27 Sep 2012 19:47:39 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/09/27/%E4%BB%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%BB%E5%8F%96%E5%9B%BE%E7%89%87%E5%8F%91%E7%94%9F%E6%97%A0%E6%95%88%E7%9A%84%E5%8F%82%E6%95%B0%E5%BC%82%E5%B8%B8/</guid>
-      <description>介绍 我发现对于很多人来说，当从数据库里载入一张图片然后重新创建成一张图片显示的话会有这样一个问题&amp;mdash;-当他们尝试重新创建新的图片的时候，会抛出一个“无效的参数”异常
+原文地址：C-CSV-Import-Export</description></item><item><title>从数据库读取图片发生“无效的参数”异常</title><link>http://leaver.me/2012/09/27/%E4%BB%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%BB%E5%8F%96%E5%9B%BE%E7%89%87%E5%8F%91%E7%94%9F%E6%97%A0%E6%95%88%E7%9A%84%E5%8F%82%E6%95%B0%E5%BC%82%E5%B8%B8/</link><pubDate>Thu, 27 Sep 2012 19:47:39 +0000</pubDate><guid>http://leaver.me/2012/09/27/%E4%BB%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%BB%E5%8F%96%E5%9B%BE%E7%89%87%E5%8F%91%E7%94%9F%E6%97%A0%E6%95%88%E7%9A%84%E5%8F%82%E6%95%B0%E5%BC%82%E5%B8%B8/</guid><description>介绍 我发现对于很多人来说，当从数据库里载入一张图片然后重新创建成一张图片显示的话会有这样一个问题&amp;mdash;-当他们尝试重新创建新的图片的时候，会抛出一个“无效的参数”异常
 因此，本文介绍该异常如何产生。并且我希望未来当我或是你发生这个错误的时候还能有所帮助。。
 背景 存储图片到数据库里面是一个很有效的想法。很多人在一些场合都会这样做。的确，这是一个很好的想法。在图片很小的情况下，或者图片不是太多。在这两种情况下，当你需要图片的时候，你会实时去加载它们。而当你不需要的时候如果从数据库里加载图片会浪费很多带宽。并使得你的程序有一些慢。
 但问题是这种方法也很容易发生错误。&amp;ndash;尤其是你使用字符串连接，然后组合到你的SQL语句里面—并且这个错误只有当你打算使用存储的信息的时候才会发生。然后，看起来似乎是你的读取代码写错了&amp;mdash;不可能—它是正常的。我在其他地方都可以的。。
@@ -57,16 +29,7 @@ Demo下载 CSV_import_export 许可 本文包括源代码和文件在CPOL下授�
 存储并不会有什么问题—但是事实上只是把Image的类型名保存了。而你傻傻的以为是图片数据本身。
 这还不是唯一的一个不让你直接连接字符串构造SQL语句的原因，如果你想知道其他原因。 使用Google 搜索Bobby Tables，&amp;mdash;这不是闹着玩的。。
 好了。其实把代码写正确也不难，虽然可能得多花一些时间。但是，它可以帮助提高代码的可读性和可靠性。而你要做的就是使用一个参数化的查询。
-首先，把图片转换到一个字节数组里。</description>
-    </item>
-    
-    <item>
-      <title>《商务智能与数据挖掘-谢邦昌》第三章读书笔记</title>
-      <link>http://leaver.me/2012/09/21/%E5%95%86%E5%8A%A1%E6%99%BA%E8%83%BD%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-%E8%B0%A2%E9%82%A6%E6%98%8C%E7%AC%AC%E4%B8%89%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
-      <pubDate>Fri, 21 Sep 2012 08:16:06 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/09/21/%E5%95%86%E5%8A%A1%E6%99%BA%E8%83%BD%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-%E8%B0%A2%E9%82%A6%E6%98%8C%E7%AC%AC%E4%B8%89%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid>
-      <description>3.数据挖掘
+首先，把图片转换到一个字节数组里。</description></item><item><title>《商务智能与数据挖掘-谢邦昌》第三章读书笔记</title><link>http://leaver.me/2012/09/21/%E5%95%86%E5%8A%A1%E6%99%BA%E8%83%BD%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-%E8%B0%A2%E9%82%A6%E6%98%8C%E7%AC%AC%E4%B8%89%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link><pubDate>Fri, 21 Sep 2012 08:16:06 +0000</pubDate><guid>http://leaver.me/2012/09/21/%E5%95%86%E5%8A%A1%E6%99%BA%E8%83%BD%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-%E8%B0%A2%E9%82%A6%E6%98%8C%E7%AC%AC%E4%B8%89%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid><description>3.数据挖掘
 3.1定义
 　数据挖掘是指找寻隐藏在数据中的信息，如趋势。特征及相关性的过程。也就是从数据中发掘信息或知识（Knowledge Discovery in Database）。也有人称之为数据考古学。。记住，它不是一个无所不能的软件或是一种技术，他是一种结合数种专业技术的应用。数据挖掘工具从数据中发掘出个各种假设。但是并不帮你查证。确认这些假设。也不帮你判断这些假设是否有价值。
 3.2数据挖掘的功能
@@ -99,16 +62,7 @@ Demo下载 CSV_import_export 许可 本文包括源代码和文件在CPOL下授�
 　从数据分析的观点看，在开始进入这个阶段时已经建立了看似是高质量的模型，但在实际应用中，随着应用数据的不同，模型的准确率肯定会变化。这里，一个关键的目的是确定是否有某些重要的商业问题还没有充分地考虑。在这个阶段的结尾，应该获得对数据挖掘结果的判定。
 　6. 实施（Deployment）
 　一般而言，创建模型完成并不意味着项目结束。模型建立并经验证之后，可以有两种主要的使用方法。一种是提供给决策人员做参考，由他察看和分析这个模型之后提出行动方案建议；另一种是把此模型应用到不同的数据集上。此外，在应用了模型之后，当然还要不断监控它的效果。
-　四个层次分别为阶段（phase）、一般任务（generic task）、专项任务（specialized task）、流程实例（process instance）。每个阶段由若干一般任务组成，每个一般任务又实施若干专项任务，每个专项任务由若干流程实例来完成。其中，上两层独立于具体数据挖掘方法，即是一般数据挖掘项目均需实施的步骤（What to do？），这两层的任务将结合具体数据挖掘项目的“上下文”（context）映像到下两层的具体任务和过程。所谓项目的“上下文”是指项目开发中密切相关、需要综合考虑的一些关键问题，如应用领域、数据挖掘问题类型、技术难点、工具及其提供的技术等。</description>
-    </item>
-    
-    <item>
-      <title>《商务智能与数据挖掘-谢邦昌》第二章读书笔记</title>
-      <link>http://leaver.me/2012/09/20/%E5%95%86%E5%8A%A1%E6%99%BA%E8%83%BD%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-%E8%B0%A2%E9%82%A6%E6%98%8C%E7%AC%AC%E4%BA%8C%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
-      <pubDate>Thu, 20 Sep 2012 08:47:36 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/09/20/%E5%95%86%E5%8A%A1%E6%99%BA%E8%83%BD%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-%E8%B0%A2%E9%82%A6%E6%98%8C%E7%AC%AC%E4%BA%8C%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid>
-      <description>2.数据仓库
+　四个层次分别为阶段（phase）、一般任务（generic task）、专项任务（specialized task）、流程实例（process instance）。每个阶段由若干一般任务组成，每个一般任务又实施若干专项任务，每个专项任务由若干流程实例来完成。其中，上两层独立于具体数据挖掘方法，即是一般数据挖掘项目均需实施的步骤（What to do？），这两层的任务将结合具体数据挖掘项目的“上下文”（context）映像到下两层的具体任务和过程。所谓项目的“上下文”是指项目开发中密切相关、需要综合考虑的一些关键问题，如应用领域、数据挖掘问题类型、技术难点、工具及其提供的技术等。</description></item><item><title>《商务智能与数据挖掘-谢邦昌》第二章读书笔记</title><link>http://leaver.me/2012/09/20/%E5%95%86%E5%8A%A1%E6%99%BA%E8%83%BD%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-%E8%B0%A2%E9%82%A6%E6%98%8C%E7%AC%AC%E4%BA%8C%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link><pubDate>Thu, 20 Sep 2012 08:47:36 +0000</pubDate><guid>http://leaver.me/2012/09/20/%E5%95%86%E5%8A%A1%E6%99%BA%E8%83%BD%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-%E8%B0%A2%E9%82%A6%E6%98%8C%E7%AC%AC%E4%BA%8C%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid><description>2.数据仓库
 　数据仓库名字上来看是很好理解的。他与传统的数据库的不同在于。传统的数据库是未经整理后的一大堆数据集。而数据仓库是从数据库中萃取出来。经过整理，规划，建构而成的一个有系统的数据库的子集合。
 2.1数据仓库特点：
 　数据仓库的四个特点。
@@ -126,16 +80,7 @@ Demo下载 CSV_import_export 许可 本文包括源代码和文件在CPOL下授�
 　3.可视化（Visualize）即前端呈现给用户看的形式，例如数据挖掘（Data Mining） 即OLAP工具，用以呈现分析过的数据形式。
 　4.调度（Administration）为管理的工具。
 2.3建立数据仓库的原因和目的
-　提高企业的竞争能力，降低成本，提高客户满意度。创造利润。</description>
-    </item>
-    
-    <item>
-      <title>《商务智能与数据挖掘-谢邦昌》第一章读书笔记</title>
-      <link>http://leaver.me/2012/09/19/%E5%95%86%E5%8A%A1%E6%99%BA%E8%83%BD%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-%E8%B0%A2%E9%82%A6%E6%98%8C%E7%AC%AC%E4%B8%80%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
-      <pubDate>Wed, 19 Sep 2012 08:00:34 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/09/19/%E5%95%86%E5%8A%A1%E6%99%BA%E8%83%BD%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-%E8%B0%A2%E9%82%A6%E6%98%8C%E7%AC%AC%E4%B8%80%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid>
-      <description>1.绪论
+　提高企业的竞争能力，降低成本，提高客户满意度。创造利润。</description></item><item><title>《商务智能与数据挖掘-谢邦昌》第一章读书笔记</title><link>http://leaver.me/2012/09/19/%E5%95%86%E5%8A%A1%E6%99%BA%E8%83%BD%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-%E8%B0%A2%E9%82%A6%E6%98%8C%E7%AC%AC%E4%B8%80%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link><pubDate>Wed, 19 Sep 2012 08:00:34 +0000</pubDate><guid>http://leaver.me/2012/09/19/%E5%95%86%E5%8A%A1%E6%99%BA%E8%83%BD%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-%E8%B0%A2%E9%82%A6%E6%98%8C%E7%AC%AC%E4%B8%80%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid><description>1.绪论
 　商务智能的含义就是指通过企业所拥有的数据和数据仓库的汇总，结合联机分析及数据挖掘技术挖掘出潜藏在数据库中的有用信息，并将其提供给决策者或部门主管作为平时运营的决策依据。而当企业面临危机时或必须立即做出重大决策时，也能依据数据仓库所提供的正确数据及时作出正确的决策。协助企业顺利解决问题。化危机为转机。更可见商务智能的重要性。
 　商务智能应用的几个方面
 　对于一般企业来说，商务智能主要应用在以下几个方面。1.了解运营状况，2.衡量绩效。3.改善关系。4.创造获利机会。
@@ -146,16 +91,7 @@ Demo下载 CSV_import_export 许可 本文包括源代码和文件在CPOL下授�
 　联机分析简单来说就是能让用户根据本身决策需求来浏览数据。动态且实时的产生其所需的报表，以提高分析效率的技术。事实上，他除了能提供在线实时数据分析模块外，更重要的是能展示多维度的数据。
 　商务智能的另一项重要技术：数据挖掘：是指在大量数据库中寻找有意义或是有价值的信息的过程。通过机器学习技术或是统计分析方法论。根据整合的数据加以分析探索，发掘出隐含在数据中的特性。通过专业领域知识整合及分析。从中找出合理且有用的信息，经过相关部门针对该模型的评估后，再提供给相关决策单位加以运用。
 　企业间的竞争模式，从传统的“红海策略”，即采取压低成本与价格的杀价流血竞争。到近来倡导以创新为核心竞争力的“蓝海策略”，不论哪一种策略模式，都是不断地从研发，制造，营销，客服或资源配置等运营的相关问题上。寻求问题的发生原因，并尝试找出解决方案，而运营阶段中，陆续积累的庞大数据，往往就是答案的隐身之处。这也是数据挖掘的目的。
-　数据库仓库强大而实用，但有一个局限性。就是他实质上反映的过去的历史，由于数据仓库经常在特定周期或时间点进行加载和处理。因此他只是表示一个时间点上的快照。即使构建了实时或是近似实时的数据仓库，其数据仍然只表示当前和历史的数据。无法达到预测的需要。与传统的统计分析方法不同的是，数据挖掘不是让人提出假设。然后据此去找相关数据。而是让数据仓库确定数据相关性。并允许采用与以往不同的模式对数据进行分析。</description>
-    </item>
-    
-    <item>
-      <title>超时时间已到，但是尚未从池中获取连接</title>
-      <link>http://leaver.me/2012/09/03/%E8%B6%85%E6%97%B6%E6%97%B6%E9%97%B4%E5%B7%B2%E5%88%B0%E4%BD%86%E6%98%AF%E5%B0%9A%E6%9C%AA%E4%BB%8E%E6%B1%A0%E4%B8%AD%E8%8E%B7%E5%8F%96%E8%BF%9E%E6%8E%A5/</link>
-      <pubDate>Mon, 03 Sep 2012 08:47:31 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/09/03/%E8%B6%85%E6%97%B6%E6%97%B6%E9%97%B4%E5%B7%B2%E5%88%B0%E4%BD%86%E6%98%AF%E5%B0%9A%E6%9C%AA%E4%BB%8E%E6%B1%A0%E4%B8%AD%E8%8E%B7%E5%8F%96%E8%BF%9E%E6%8E%A5/</guid>
-      <description>前段时间数据库的时候，出现这个问题。一般是读到20多万条的时候。会出现这个问题。
+　数据库仓库强大而实用，但有一个局限性。就是他实质上反映的过去的历史，由于数据仓库经常在特定周期或时间点进行加载和处理。因此他只是表示一个时间点上的快照。即使构建了实时或是近似实时的数据仓库，其数据仍然只表示当前和历史的数据。无法达到预测的需要。与传统的统计分析方法不同的是，数据挖掘不是让人提出假设。然后据此去找相关数据。而是让数据仓库确定数据相关性。并允许采用与以往不同的模式对数据进行分析。</description></item><item><title>超时时间已到，但是尚未从池中获取连接</title><link>http://leaver.me/2012/09/03/%E8%B6%85%E6%97%B6%E6%97%B6%E9%97%B4%E5%B7%B2%E5%88%B0%E4%BD%86%E6%98%AF%E5%B0%9A%E6%9C%AA%E4%BB%8E%E6%B1%A0%E4%B8%AD%E8%8E%B7%E5%8F%96%E8%BF%9E%E6%8E%A5/</link><pubDate>Mon, 03 Sep 2012 08:47:31 +0000</pubDate><guid>http://leaver.me/2012/09/03/%E8%B6%85%E6%97%B6%E6%97%B6%E9%97%B4%E5%B7%B2%E5%88%B0%E4%BD%86%E6%98%AF%E5%B0%9A%E6%9C%AA%E4%BB%8E%E6%B1%A0%E4%B8%AD%E8%8E%B7%E5%8F%96%E8%BF%9E%E6%8E%A5/</guid><description>前段时间数据库的时候，出现这个问题。一般是读到20多万条的时候。会出现这个问题。
 　找了一下。主要是这两个问题：
 　一、看所有open的连接是否都close了。
 　二、如果访问量很大，加上Max Pool Size=512这一句，当然这是要以损失系统性能为代价的！
@@ -164,8 +100,4 @@ Demo下载 CSV_import_export 许可 本文包括源代码和文件在CPOL下授�
 　后来看到一篇文章中说：
 　DataReader是独占连接 的，每个DataReader都要占用一个连接。当然这个情况是偶尔出现的，所以会很长时间出现一次，因为只有同时有超过连接池最大连接数量的并发操作才 会发生。而且你加大并发数量只能暂时缓解问题。
 　文中建议用使用dataset来读取。然后我就把读取数据中使用DataReader的地方全部用DataAdapter和DataSet来获取数据库数据，因为DataSet非独占。会将数据保存在内存中，一次连接后释放，问题解决。
-　记录一下。</description>
-    </item>
-    
-  </channel>
-</rss>
+　记录一下。</description></item></channel></rss>

@@ -1,158 +1,58 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>开发 on bystander&#39;s blog</title>
-    <link>http://leaver.me/tags/%E5%BC%80%E5%8F%91/</link>
-    <description>Recent content in 开发 on bystander&#39;s blog</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh-CN</language>
-    <lastBuildDate>Sun, 13 May 2018 12:34:32 +0000</lastBuildDate>
-    
-	<atom:link href="http://leaver.me/tags/%E5%BC%80%E5%8F%91/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>skywalking插件开发的注意事项</title>
-      <link>http://leaver.me/2018/05/13/skywalking%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</link>
-      <pubDate>Sun, 13 May 2018 12:34:32 +0000</pubDate>
-      
-      <guid>http://leaver.me/2018/05/13/skywalking%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</guid>
-      <description>最近蚂蚁金服中间件开源了 sofa 相关的部分组件,比如 rpc,欢迎大家参与讨论贡献,为 rpc 做链路适配的时候,skywalking 现在快到5.0版本了. 已经不支持 h2暂时,开发过程中了,环境的搭建.以下部分字段不能少.否则外面无法连接 es.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>开发 on bystander's blog</title><link>http://leaver.me/tags/%E5%BC%80%E5%8F%91/</link><description>Recent content in 开发 on bystander's blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 13 May 2018 12:34:32 +0000</lastBuildDate><atom:link href="http://leaver.me/tags/%E5%BC%80%E5%8F%91/index.xml" rel="self" type="application/rss+xml"/><item><title>skywalking插件开发的注意事项</title><link>http://leaver.me/2018/05/13/skywalking%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</link><pubDate>Sun, 13 May 2018 12:34:32 +0000</pubDate><guid>http://leaver.me/2018/05/13/skywalking%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</guid><description>最近蚂蚁金服中间件开源了 sofa 相关的部分组件,比如 rpc,欢迎大家参与讨论贡献,为 rpc 做链路适配的时候,skywalking 现在快到5.0版本了. 已经不支持 h2暂时,开发过程中了,环境的搭建.以下部分字段不能少.否则外面无法连接 es.
 docker run -d -p 9200:9200 -p 9300:9300 -e &amp;#34;network.host=0.0.0.0&amp;#34; -e &amp;#34;transport.host=0.0.0.0&amp;#34; -e &amp;#34;network.publish_host=0.0.0.0&amp;#34; -e &amp;#34;xpack.security.enabled=false&amp;#34; -e &amp;#34;network.bind_host=0.0.0.0&amp;#34; -e &amp;#34;discovery.type=single-node&amp;#34; docker.elastic.co/elasticsearch/elasticsearch:5.5.0 这条命令会搞定.
 同时 application.yml 文件中
 storage: elasticsearch: cluster_name: docker-cluster cluster_transport_sniffer: false cluster_nodes: localhost:9300 index_shards_number: 2 index_replicas_number: 0 ttl: 70 这一段改一下.
-其他的一些网上已有的文档,可以看看.SkyWalking 源码分析 —— 调试环境搭建</description>
-    </item>
-    
-    <item>
-      <title>javOSize:新一代java分析工具</title>
-      <link>http://leaver.me/2015/07/04/javosize%E6%96%B0%E4%B8%80%E4%BB%A3java%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/</link>
-      <pubDate>Sat, 04 Jul 2015 16:18:57 +0000</pubDate>
-      
-      <guid>http://leaver.me/2015/07/04/javosize%E6%96%B0%E4%B8%80%E4%BB%A3java%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/</guid>
-      <description>介绍 最近看到这么个工具-javOSize .官网地址,去官网看了下.发现介绍很有意思,叫做 the missing sugar for your Java cup.(你的咖啡杯中缺少的那颗糖).于是感受一下这颗糖到底甜不甜
+其他的一些网上已有的文档,可以看看.SkyWalking 源码分析 —— 调试环境搭建</description></item><item><title>javOSize:新一代java分析工具</title><link>http://leaver.me/2015/07/04/javosize%E6%96%B0%E4%B8%80%E4%BB%A3java%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/</link><pubDate>Sat, 04 Jul 2015 16:18:57 +0000</pubDate><guid>http://leaver.me/2015/07/04/javosize%E6%96%B0%E4%B8%80%E4%BB%A3java%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/</guid><description>介绍 最近看到这么个工具-javOSize .官网地址,去官网看了下.发现介绍很有意思,叫做 the missing sugar for your Java cup.(你的咖啡杯中缺少的那颗糖).于是感受一下这颗糖到底甜不甜
 安装 安装非常简单,从这里下载,其实完成之后就是一个jar包.非常简单,不用配置啥的.
-简单使用 使用方法就是从先附加到一个java进程上,在linux,上我直接执行 ps aux|grep java  就能看到了.不废话,得到java进程的pid之后,运行 java -jar javosize-1.0.9.jar pid pid就是pid的号了. 然后会看到如下图的界面,表示已经附加成功了.先看看都有啥.执行ls.看到有这么几个命令.我比较单纯,刚开始以为是可执行文件.结果丢人了.看了下官方文档,才知道是目录.进入对应的目录.然后执行ls就能看到对应的信息了.ls简直不能再万能..改目录支持的所有命令通过在对应的目录执行help来查看.个人尝试觉得好的功能有.   动态修改类 进入CLASSES目录,然后通过执行 ls|grep xxx  来找到需要修改的类,然后通过vi 就可以直接编辑.编辑完成后,直接保存就会动态替换.文档里说是支持jdk1.7以上,对1.6的支持估计是不行的.没有测试.   无须重启开启jmx 直接挂载之后,执行cd REPOSITORY 然后执行就好了. exec START_JMX_SERVER 6666
-  拦截任意代码 可以动态添加类似Spring中的aop方法.用于打印一些调用日志,排查线上问题.进入INTERCEPTOR目录.然后通过如下的方法给某个类的某个方法添加拦截器. create TickServlet begin mypackage.Hello doGet System.out.println(&amp;quot;Servlet invoked&amp;quot;);
-  检测内存泄漏 进入 REPOSITORY 目录,执行 exec TOP_FAT_STATIC_VARIABLES 5 com.apache.*会取出某个包下面占用大小最大的5个类.会很方便找到.
-  自动检测性能问题 PROBLEMS 目录专业解决这种问题.进入目录后.执行ls命令.会看到这样的场景
-  Concurrency Deadlocked: false Memory High GC (&amp;gt;2%): false   这里目前只检测了死锁和频繁GC.已经很有用了.至于效果还有待观察.
-  无需重启开启GC 日志 和开启jmx一样,进入JMX目录后,执行 exec java.lang:type=Memory.setVerbose(true); 就开启了.
-  更多文档  官方文档  </description>
-    </item>
-    
-    <item>
-      <title>休假停下来反思</title>
-      <link>http://leaver.me/2015/07/02/%E4%BC%91%E5%81%87%E5%81%9C%E4%B8%8B%E6%9D%A5%E5%8F%8D%E6%80%9D/</link>
-      <pubDate>Thu, 02 Jul 2015 21:20:19 +0000</pubDate>
-      
-      <guid>http://leaver.me/2015/07/02/%E4%BC%91%E5%81%87%E5%81%9C%E4%B8%8B%E6%9D%A5%E5%8F%8D%E6%80%9D/</guid>
-      <description>项目经过一年终于告一段落.于是有了一个短暂的休假.
+简单使用 使用方法就是从先附加到一个java进程上,在linux,上我直接执行 ps aux|grep java 就能看到了.不废话,得到java进程的pid之后,运行 java -jar javosize-1.0.9.jar pid pid就是pid的号了. 然后会看到如下图的界面,表示已经附加成功了.先看看都有啥.执行ls.看到有这么几个命令.我比较单纯,刚开始以为是可执行文件.结果丢人了.看了下官方文档,才知道是目录.进入对应的目录.然后执行ls就能看到对应的信息了.ls简直不能再万能..改目录支持的所有命令通过在对应的目录执行help来查看.个人尝试觉得好的功能有. 动态修改类 进入CLASSES目录,然后通过执行 ls|grep xxx 来找到需要修改的类,然后通过vi 就可以直接编辑.编辑完成后,直接保存就会动态替换.文档里说是支持jdk1.7以上,对1.6的支持估计是不行的.没有测试. 无须重启开启jmx 直接挂载之后,执行cd REPOSITORY 然后执行就好了. exec START_JMX_SERVER 6666
+拦截任意代码 可以动态添加类似Spring中的aop方法.用于打印一些调用日志,排查线上问题.进入INTERCEPTOR目录.然后通过如下的方法给某个类的某个方法添加拦截器. create TickServlet begin mypackage.Hello doGet System.out.println(&amp;quot;Servlet invoked&amp;quot;);
+检测内存泄漏 进入 REPOSITORY 目录,执行 exec TOP_FAT_STATIC_VARIABLES 5 com.apache.*会取出某个包下面占用大小最大的5个类.会很方便找到.
+自动检测性能问题 PROBLEMS 目录专业解决这种问题.进入目录后.执行ls命令.会看到这样的场景
+Concurrency Deadlocked: false Memory High GC (&amp;gt;2%): false 这里目前只检测了死锁和频繁GC.已经很有用了.至于效果还有待观察.
+无需重启开启GC 日志 和开启jmx一样,进入JMX目录后,执行 exec java.lang:type=Memory.setVerbose(true); 就开启了.
+更多文档 官方文档</description></item><item><title>休假停下来反思</title><link>http://leaver.me/2015/07/02/%E4%BC%91%E5%81%87%E5%81%9C%E4%B8%8B%E6%9D%A5%E5%8F%8D%E6%80%9D/</link><pubDate>Thu, 02 Jul 2015 21:20:19 +0000</pubDate><guid>http://leaver.me/2015/07/02/%E4%BC%91%E5%81%87%E5%81%9C%E4%B8%8B%E6%9D%A5%E5%8F%8D%E6%80%9D/</guid><description>项目经过一年终于告一段落.于是有了一个短暂的休假.
 早上照例没能睡好觉.很早就醒了.然后又躺了一会,醒来看了会订阅.然后听了一集&amp;laquo; Mr.Robot &amp;raquo;,感觉还行,再对着字幕看了一遍,以后还是有一些地方理解的有问题.以后还是要多对着无字幕版的美剧去看,才能慢慢听懂更多的,比如今天听到个society,讲社交焦虑,听到很熟悉,就是没反应过来.学而不用则殆.
 中午给文哥寄了个快递,顺便点个饭.之前的&amp;quot;手艺&amp;quot;应该也已经忘得差不多了.到杭州之后很少做饭,工作太忙.没办法.当然这只是借口.主要还是我懒吧.
 下午按计划好的去浙江图书馆,从大学出来后,虽然书还是看了一些的.但是也再也没有走入图书馆.之前一直想去上海图书馆,结果一直耽搁,今天去浙江图书馆办了个证,借了几本书,看着里面的人自习的自习,借阅的借阅,想想还是有点熟悉的.遗憾的是书相同的份数有点少.想借的几本书都被人借走了,最终借了个&amp;laquo; 七周七语言 &amp;raquo;,希望能给自己的编程带来不一样的思考角度.读完后争取写个书评和总结,还借了一本摄影相关的,毕竟拍照是服务妹子的技能.还有个&amp;laquo; netty权威指南 &amp;raquo; ,虽然这本书评价好像不高,但是拿来看看还是可以的.
 下午回家.杭州的下午还挺美的.天气凉爽.只是作为工作狗,没有下午出来的机会吧.
 工作忙,不过在一切自动化的指导下,(马克思没有找我),对linux 的shell操作熟悉度急剧上升,希望能写的更好,让更多的过程自动化,也希望有时间停下来想一想.当时为什么选择写代码,为什么选择当前的职业,知道自己做了什么,知道自己是否进步,想起之前看到的一个话,不知真假,
- 只是因为三轮车好学，你就要一辈子骑三轮车吗？ – Douglas Englebart
- 在职业之外,除了高效做好自己的工作外,也要学习更多的技能,英语,锻炼身体,其他编程相关的.不要安于现状.不要重复自己.还是那句话,不要让你的身份限制你的能力.</description>
-    </item>
-    
-    <item>
-      <title>SecureRandom第一次生成随机数非常慢</title>
-      <link>http://leaver.me/2015/06/30/securerandom%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E6%95%B0%E9%9D%9E%E5%B8%B8%E6%85%A2/</link>
-      <pubDate>Tue, 30 Jun 2015 19:18:36 +0000</pubDate>
-      
-      <guid>http://leaver.me/2015/06/30/securerandom%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E6%95%B0%E9%9D%9E%E5%B8%B8%E6%85%A2/</guid>
-      <description>最近发现某个系统在第一次做操作的时候非常缓慢,逐步定位打印更加详细的日志后,发现问题是使用了SecureRandom 这个类来获取随机种子,这个类第一次初始化的时候setSeed的值,非常缓慢,偶尔出现, 排查的过程就是二分,不断定位具体的代码,最终定位
+只是因为三轮车好学，你就要一辈子骑三轮车吗？ – Douglas Englebart
+在职业之外,除了高效做好自己的工作外,也要学习更多的技能,英语,锻炼身体,其他编程相关的.不要安于现状.不要重复自己.还是那句话,不要让你的身份限制你的能力.</description></item><item><title>SecureRandom第一次生成随机数非常慢</title><link>http://leaver.me/2015/06/30/securerandom%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E6%95%B0%E9%9D%9E%E5%B8%B8%E6%85%A2/</link><pubDate>Tue, 30 Jun 2015 19:18:36 +0000</pubDate><guid>http://leaver.me/2015/06/30/securerandom%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E6%95%B0%E9%9D%9E%E5%B8%B8%E6%85%A2/</guid><description>最近发现某个系统在第一次做操作的时候非常缓慢,逐步定位打印更加详细的日志后,发现问题是使用了SecureRandom 这个类来获取随机种子,这个类第一次初始化的时候setSeed的值,非常缓慢,偶尔出现, 排查的过程就是二分,不断定位具体的代码,最终定位
 也就是说根本原因是SecureRandom 这个jre的工具类的问题.具体的bug搜索之后,见
 http://bugs.java.com/view_bug.do?bug_id=6521844
 详细的解释过程: 参考: http://www.websina.com/bugzero/faq/securerandom-slowness.html
- Q: Why the SecureRandom generateSeed is so slow or even hang on Linux OS?
-  A: When you login, it hangs or takes more than a minute to get the response. If your server is on a Linux OS, the culprit here is SecureRandom generateSeed() which uses /dev/random to generate the seed. However, /dev/random is a blocking number generator and if it doesn&#39;t have enough random data to provide, it will simply wait until it does, which forces the JVM to wait. Keyboard and mouse input as well as disk activity can generate the randomness or entropy needed. But on a server that lacks such activies, the problem may arise.
- 大意是说当使用SecureRandom 的时候默认使用的/dev/random 文件来生成种子,如果没有足够的种子数据,(这些数据是由键盘,鼠标,磁盘活动等产生的,如果没有这些活动,就没有足够的数据)会一直等待,导致jvm卡住,耗费比较长的时候.由于出现问题的这个环境的确是最近没什么操作,而且复现的操作也是隔个一个晚上,重新做业务才会出现.
+Q: Why the SecureRandom generateSeed is so slow or even hang on Linux OS?
+A: When you login, it hangs or takes more than a minute to get the response. If your server is on a Linux OS, the culprit here is SecureRandom generateSeed() which uses /dev/random to generate the seed. However, /dev/random is a blocking number generator and if it doesn't have enough random data to provide, it will simply wait until it does, which forces the JVM to wait. Keyboard and mouse input as well as disk activity can generate the randomness or entropy needed. But on a server that lacks such activies, the problem may arise.
+大意是说当使用SecureRandom 的时候默认使用的/dev/random 文件来生成种子,如果没有足够的种子数据,(这些数据是由键盘,鼠标,磁盘活动等产生的,如果没有这些活动,就没有足够的数据)会一直等待,导致jvm卡住,耗费比较长的时候.由于出现问题的这个环境的确是最近没什么操作,而且复现的操作也是隔个一个晚上,重新做业务才会出现.
 文中给出了一种解决方案.
- 启动参数添加 -Djava.security.egd=file:/dev/./urandom,验证是可以的. 修改随机数获取方式  这里urandom是啥呢,引用自维基
- /dev/random的一个副本是/dev/urandom（“unlocked”，非阻塞的随机数发生器[4]），它会重复使用熵池中的数据以产生伪随机数据。这表示对/dev/urandom的读取操作不会产生阻塞，但其输出的熵可能小于/dev/random的。它可以作为生成较低强度密码的伪随机数生成器，不建议用于生成高强度长期密码。
- 类似案例: SecureRandom 导致tomcat启动过慢. https://wiki.apache.org/tomcat/HowTo/FasterStartUp#Entropy_Source 从文中看到说java8已经提升了这个性能.但是一般生产环境的java版本是不会改的.</description>
-    </item>
-    
-    <item>
-      <title>关于重构和设计模式</title>
-      <link>http://leaver.me/2015/05/10/%E5%85%B3%E4%BA%8E%E9%87%8D%E6%9E%84%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
-      <pubDate>Sun, 10 May 2015 17:23:10 +0000</pubDate>
-      
-      <guid>http://leaver.me/2015/05/10/%E5%85%B3%E4%BA%8E%E9%87%8D%E6%9E%84%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</guid>
-      <description>之前在工作写了一个数据库查询的工具.大体背景就是这种工具需要跨不同环境的数据库,开发,测试,性能等.最早简单写了一个版本,在第一次查询时会初始化三个库的连接,保存在map中,然后后续查询直接根据使用者选择的环境类型取出对应的连接构造sql即可.
+启动参数添加 -Djava.security.egd=file:/dev/./urandom,验证是可以的. 修改随机数获取方式 这里urandom是啥呢,引用自维基
+/dev/random的一个副本是/dev/urandom（“unlocked”，非阻塞的随机数发生器[4]），它会重复使用熵池中的数据以产生伪随机数据。这表示对/dev/urandom的读取操作不会产生阻塞，但其输出的熵可能小于/dev/random的。它可以作为生成较低强度密码的伪随机数生成器，不建议用于生成高强度长期密码。
+类似案例: SecureRandom 导致tomcat启动过慢. https://wiki.apache.org/tomcat/HowTo/FasterStartUp#Entropy_Source 从文中看到说java8已经提升了这个性能.但是一般生产环境的java版本是不会改的.</description></item><item><title>关于重构和设计模式</title><link>http://leaver.me/2015/05/10/%E5%85%B3%E4%BA%8E%E9%87%8D%E6%9E%84%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link><pubDate>Sun, 10 May 2015 17:23:10 +0000</pubDate><guid>http://leaver.me/2015/05/10/%E5%85%B3%E4%BA%8E%E9%87%8D%E6%9E%84%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</guid><description>之前在工作写了一个数据库查询的工具.大体背景就是这种工具需要跨不同环境的数据库,开发,测试,性能等.最早简单写了一个版本,在第一次查询时会初始化三个库的连接,保存在map中,然后后续查询直接根据使用者选择的环境类型取出对应的连接构造sql即可.
 随着各个不同系统接入的越来越多,各个平台都保存了自己的连接,导致代码冗余度急剧上升,上周,利用晚上的一点时间读了一下&amp;laquo;重构&amp;raquo;,这本书,深受启发,一个是重构就是要采用小步快走的方式,在测试用例的覆盖下,快速改动,去掉代码中不合理的地方.另一个就是重构需要对业务的当下和未来的变化有一个比较深刻的理解,知道这个系统能做什么,不能做什么.才能更好地做重构.
 于是,根据这个工具的特点,感觉抽象工厂模式比较合适,于是在抽象工厂模式的指导下,对关键部分进行了重构,在增加了几个类之后,代码复杂度开始下降.各个接入系统的代码基本上保持在了几十行内,之前都是几百行,大量冗余代码,只能说自己之前眼光太短浅了.并且,采用了类似单例模式的操作.当查询的时候,先根据当前环境作为key取连接,如果连接被关闭,或者不存在,则初始化,然后放到map中,返回.如果有的话,直接用.这样改动后,第一次查询的时候只需要初始化一个连接,速度极快.也算个好处..
 由此,反思了一下,设计模式之前也看过.但是总觉得各种书上讲的都比较浅显,给出的例子也似乎如作者所说,很符合那个模式,但实际上,在工作中如何识别当下的业务应该是比较难的,需要在业务变动中,不断地重构自己的代码,才能发现,某一种模式似乎特别适合解决这种问题,反之,重构也需要一定的设计模式作为基础,否则对代码的重构会只停留在抽取公共方法.重命名.大类变小类的阶段..
-希望接下来能够抽空把&amp;laquo;敏捷软件开发：原则、模式与实践&amp;raquo;这本书看完.同时能够真的理解这些模式的场合,想起一句话,知道一个技术方案的好,说明你还没有理解这种方法,只有你知道了这个方案的不足,你才真正理解了他,相信很多技术我都没有理解.设计模式也是,希望之后能够理解每种模式的不足,重构这本书也要经常翻翻,能加深对代码的理解.</description>
-    </item>
-    
-    <item>
-      <title>一键切换jdk版本</title>
-      <link>http://leaver.me/2014/11/07/%E4%B8%80%E9%94%AE%E5%88%87%E6%8D%A2jdk%E7%89%88%E6%9C%AC/</link>
-      <pubDate>Fri, 07 Nov 2014 16:08:29 +0000</pubDate>
-      
-      <guid>http://leaver.me/2014/11/07/%E4%B8%80%E9%94%AE%E5%88%87%E6%8D%A2jdk%E7%89%88%E6%9C%AC/</guid>
-      <description>工作中有时候会切换jdk版本.有时候需要用个64位的.有时候需要用32位的.频繁手动很不方便,参考了一下,写了一个bat脚本,保存为bat,运行即可切换.同理可以改改,运来切换1.7,1.8这样的版本.
-@echo off :init set JAVA_HOME_32=D:\5.Program\Jdk32Home set JAVA_HOME_64=D:\Software\JdkHome :start echo. echo ============================================= echo jdk版本列表 echo 32 (%JAVA_HOME_32%) echo 64 (%JAVA_HOME_64%) echo ============================================= :select set /p opt=请选择jdk版本： if %opt%==32 ( start /I /WAIT /B wmic ENVIRONMENT where name=&amp;#39;JAVA_HOME&amp;#39; set VariableValue=&amp;#34;%JAVA_HOME_32%&amp;#34; &amp;amp;gt;nul rem reg add &amp;#34;HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment&amp;#34; /v JAVA_HOME /t reg_sz /d &amp;#34;%JAVA_HOME_32%&amp;#34; /f goto success ) if %opt%==64 ( start /I /WAIT /B wmic ENVIRONMENT where name=&amp;#39;JAVA_HOME&amp;#39; set VariableValue=&amp;#34;%JAVA_HOME_64%&amp;#34; &amp;amp;gt;nul rem reg add &amp;#34;HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment&amp;#34; /v JAVA_HOME /t reg_sz /d &amp;#34;%JAVA_HOME_64%&amp;#34; /f goto success ) echo 选择的版本错误,请重新选择！ PAUSE goto start :success echo. echo 设置环境变了成功. </description>
-    </item>
-    
-    <item>
-      <title>蓝绿发布的整个部署过程</title>
-      <link>http://leaver.me/2014/09/14/%E8%93%9D%E7%BB%BF%E5%8F%91%E5%B8%83%E7%9A%84%E6%95%B4%E4%B8%AA%E9%83%A8%E7%BD%B2%E8%BF%87%E7%A8%8B/</link>
-      <pubDate>Sun, 14 Sep 2014 10:01:55 +0000</pubDate>
-      
-      <guid>http://leaver.me/2014/09/14/%E8%93%9D%E7%BB%BF%E5%8F%91%E5%B8%83%E7%9A%84%E6%95%B4%E4%B8%AA%E9%83%A8%E7%BD%B2%E8%BF%87%E7%A8%8B/</guid>
-      <description>一直听说蓝绿发布,不知道是怎么个过程.
+希望接下来能够抽空把&amp;laquo;敏捷软件开发：原则、模式与实践&amp;raquo;这本书看完.同时能够真的理解这些模式的场合,想起一句话,知道一个技术方案的好,说明你还没有理解这种方法,只有你知道了这个方案的不足,你才真正理解了他,相信很多技术我都没有理解.设计模式也是,希望之后能够理解每种模式的不足,重构这本书也要经常翻翻,能加深对代码的理解.</description></item><item><title>一键切换jdk版本</title><link>http://leaver.me/2014/11/07/%E4%B8%80%E9%94%AE%E5%88%87%E6%8D%A2jdk%E7%89%88%E6%9C%AC/</link><pubDate>Fri, 07 Nov 2014 16:08:29 +0000</pubDate><guid>http://leaver.me/2014/11/07/%E4%B8%80%E9%94%AE%E5%88%87%E6%8D%A2jdk%E7%89%88%E6%9C%AC/</guid><description>工作中有时候会切换jdk版本.有时候需要用个64位的.有时候需要用32位的.频繁手动很不方便,参考了一下,写了一个bat脚本,保存为bat,运行即可切换.同理可以改改,运来切换1.7,1.8这样的版本.
+@echo off :init set JAVA_HOME_32=D:\5.Program\Jdk32Home set JAVA_HOME_64=D:\Software\JdkHome :start echo. echo ============================================= echo jdk版本列表 echo 32 (%JAVA_HOME_32%) echo 64 (%JAVA_HOME_64%) echo ============================================= :select set /p opt=请选择jdk版本： if %opt%==32 ( start /I /WAIT /B wmic ENVIRONMENT where name=&amp;#39;JAVA_HOME&amp;#39; set VariableValue=&amp;#34;%JAVA_HOME_32%&amp;#34; &amp;amp;gt;nul rem reg add &amp;#34;HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment&amp;#34; /v JAVA_HOME /t reg_sz /d &amp;#34;%JAVA_HOME_32%&amp;#34; /f goto success ) if %opt%==64 ( start /I /WAIT /B wmic ENVIRONMENT where name=&amp;#39;JAVA_HOME&amp;#39; set VariableValue=&amp;#34;%JAVA_HOME_64%&amp;#34; &amp;amp;gt;nul rem reg add &amp;#34;HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment&amp;#34; /v JAVA_HOME /t reg_sz /d &amp;#34;%JAVA_HOME_64%&amp;#34; /f goto success ) echo 选择的版本错误,请重新选择！ PAUSE goto start :success echo. echo 设置环境变了成功.</description></item><item><title>蓝绿发布的整个部署过程</title><link>http://leaver.me/2014/09/14/%E8%93%9D%E7%BB%BF%E5%8F%91%E5%B8%83%E7%9A%84%E6%95%B4%E4%B8%AA%E9%83%A8%E7%BD%B2%E8%BF%87%E7%A8%8B/</link><pubDate>Sun, 14 Sep 2014 10:01:55 +0000</pubDate><guid>http://leaver.me/2014/09/14/%E8%93%9D%E7%BB%BF%E5%8F%91%E5%B8%83%E7%9A%84%E6%95%B4%E4%B8%AA%E9%83%A8%E7%BD%B2%E8%BF%87%E7%A8%8B/</guid><description>一直听说蓝绿发布,不知道是怎么个过程.
 thanks toblue-green-deployment
 蓝绿发布的意义 整个发布过程，用户没有感受到任何宕机或者服务重启。
-蓝绿发布的过程 第0步:部署以前的配置 
-第1步: 把绿色集群的状态改为&#39;备用&amp;rsquo;. 从负载均衡的池里把这些地址去掉,这样,绿色的集群就不再回接收到来自用户的请求了.转而进入备用负载均衡的池里. 
-第2步:在绿色集群里部署新的代码,直到应用启动成功 
+蓝绿发布的过程 第0步:部署以前的配置
+第1步: 把绿色集群的状态改为'备用&amp;rsquo;. 从负载均衡的池里把这些地址去掉,这样,绿色的集群就不再回接收到来自用户的请求了.转而进入备用负载均衡的池里.
+第2步:在绿色集群里部署新的代码,直到应用启动成功
 第3步:使用备用负载均衡简单测试一下备用集群的部署情况.理想状态下是全自动的.
-第4步:把绿色备用集群的状态改成存货,于是进入了存活负载均衡的池里 
+第4步:把绿色备用集群的状态改成存货,于是进入了存活负载均衡的池里
 看到 蓝色运行v1版本,绿色运行v2版本,都连接的是相同的数据库.这意味着v2版本也要在老的数据模型上运行.如果数据库有变更,要等到所有的集群升级到新的代码上.
-第5步: 对蓝色集群也进行同样的操作.   最终v2代码完成部署. 
+第5步: 对蓝色集群也进行同样的操作. 最终v2代码完成部署.
 第6步:根据情况.运行数据库迁移
- </description>
-    </item>
-    
-    <item>
-      <title>《Spring揭秘》读书笔记-第二章IoC的基本概念</title>
-      <link>http://leaver.me/2014/07/01/spring%E6%8F%AD%E7%A7%98%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC%E4%BA%8C%E7%AB%A0ioc%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</link>
-      <pubDate>Tue, 01 Jul 2014 18:54:17 +0000</pubDate>
-      
-      <guid>http://leaver.me/2014/07/01/spring%E6%8F%AD%E7%A7%98%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC%E4%BA%8C%E7%AB%A0ioc%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</guid>
-      <description>理念就是让别人为你服务，中文名控制反转，也叫依赖注入DI 假设这个类用来处理新闻，IFXNewsListener 用来获取新闻，IFXNewsPersister 用来把获取的新闻持久化当我们需要获取不同的新闻源，比如道琼斯的新闻时，我们会写一个DowJonesNewsListener类和DowJonesNewsPersister类，然后实例化 如果我们依赖于某个类或服务，最简单而有效的方式就是直接在类的构造函数中新建相应的依赖类。注意看，，我们都是自己主动地去获取依赖的对象！可是回头想想，我们自己每次用到什么依赖对象都要主动地去获取，这是否真的必要？我们最终所要做的，其实就是直接调用依赖对象所提供的某项服务而已能不能我们用的时候自动送过来呢？。现在是用什么，让别人直接送过来就成。所以，简单点儿说，IoC的理念就是，让别人为你服务！在图2-1中，也就是让IoC Service Provider来为你服务！这里，被注入对象就是FXNewsProvider，被依赖于对象IFXNewsListener和IFXNewsPersister 通常情况下，被注入对象会直接依赖于被依赖对象。但是，在IoC的场景中，二者之间通过IoC ServiceProvider来打交道，所有的被注入对象和依赖对象现在由IoC Service Provider统一管理。被注入对象需要什么，直接跟IoC Service Provider招呼一声，后者就会把相应的被依赖对象注入到被注入对象中，从而达到IoC Service Provider为被注入对象服务的目的。IoC Service Provider在这里就是通常的IoC容器所充当的角色。从被注入对象的角度看，与之前直接寻求依赖对象相比，依赖对象的取得方式发生了反转，控制也从被注入对象转到了IoC Service Provider那里这里我们想知道的是？怎么跟IoC Service Provider打招呼在IoC模式中，被注入对象又是通过哪些方式来通知IoC Service Provider为其提供适当服务的呢？三种打招呼的方式，即构造方法注入（constructorinjection）、setter方法注入（setter injection）以及接口注入（interface injection）。构造方法注入：  IoC Service Provider会检查被注入对象的构造方法，取得它所需要的依赖对象列表，进而为其注入相应的对象。setter方法注入  外界就可以通过调用setNewsListener和setNewPersistener方法为FXNewsProvider对象注入所依赖的对象了。接口注入，这个基本不用了。接口注入。从注入方式的使用上来说，接口注入是现在不甚提倡的一种方式，基本处于&amp;quot;退役状态&amp;rdquo;。因为它强制被注入对象实现不必要的接口，带有侵入性。而构造方法注入和setter方法注入则不需要如此。8q构造方法注入。这种注入方式的优点就是，对象在构造完成之后，即已进入就绪状态，可以 9马上使用。缺点就是，当依赖对象比较多的时候，构造方法的参数列表会比较长。而通过反射构造对象的时候，对相同类型的参数的处理会比较困难，维护和使用上也比较麻烦。而且在Java中，构造方法无法被继承，无法设置默认值。对于非必须的依赖处理，可能需要引入多个构造方法，而参数数量的变动可能造成维护上的不便。10qsetter方法注入。因为方法可以命名，所以setter方法注入在描述性上要比构造方法注入好一些。 11另外，setter方法可以被继承，允许设置默认值，而且有良好的IDE支持。缺点当然就是对象无法在构造完成后马上进入就绪状态。12综上所述，构造方法注入和setter方法注入因为其侵入性较弱，且易于理解和使用，所以是现在使用最多的注入方式；而接口注入因为侵入性较强，近年来已经不流行了。回到开头的代码  由于这里已经写死了，所以当我们添加了一个新的新闻源，比如M4网站的时候，这个对象不能用了，我们要新写一个M4NewsProvider的类，然后新写新闻获取类，然后重新实现。而使用了IoC之后，  我们只要实现一个MarketWin24NewsListener雷就可以，而且FXNewsProvider 可以重用。而且使用了IoC之后，单元测试变得简单，我们只有写一个MockNewsPersister就可以来测试了。</description>
-    </item>
-    
-    <item>
-      <title>[藏]图文并茂详解Eclipse断点</title>
-      <link>http://leaver.me/2013/11/16/%E8%97%8F%E5%9B%BE%E6%96%87%E5%B9%B6%E8%8C%82%E8%AF%A6%E8%A7%A3eclipse%E6%96%AD%E7%82%B9/</link>
-      <pubDate>Sat, 16 Nov 2013 14:21:11 +0000</pubDate>
-      
-      <guid>http://leaver.me/2013/11/16/%E8%97%8F%E5%9B%BE%E6%96%87%E5%B9%B6%E8%8C%82%E8%AF%A6%E8%A7%A3eclipse%E6%96%AD%E7%82%B9/</guid>
-      <description>本文转自：http://my.oschina.net/colorleaf/blog/176569
+ </description></item><item><title>《Spring揭秘》读书笔记-第二章IoC的基本概念</title><link>http://leaver.me/2014/07/01/spring%E6%8F%AD%E7%A7%98%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC%E4%BA%8C%E7%AB%A0ioc%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</link><pubDate>Tue, 01 Jul 2014 18:54:17 +0000</pubDate><guid>http://leaver.me/2014/07/01/spring%E6%8F%AD%E7%A7%98%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC%E4%BA%8C%E7%AB%A0ioc%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</guid><description>理念就是让别人为你服务，中文名控制反转，也叫依赖注入DI 假设这个类用来处理新闻，IFXNewsListener 用来获取新闻，IFXNewsPersister 用来把获取的新闻持久化当我们需要获取不同的新闻源，比如道琼斯的新闻时，我们会写一个DowJonesNewsListener类和DowJonesNewsPersister类，然后实例化 如果我们依赖于某个类或服务，最简单而有效的方式就是直接在类的构造函数中新建相应的依赖类。注意看，，我们都是自己主动地去获取依赖的对象！可是回头想想，我们自己每次用到什么依赖对象都要主动地去获取，这是否真的必要？我们最终所要做的，其实就是直接调用依赖对象所提供的某项服务而已能不能我们用的时候自动送过来呢？。现在是用什么，让别人直接送过来就成。所以，简单点儿说，IoC的理念就是，让别人为你服务！在图2-1中，也就是让IoC Service Provider来为你服务！这里，被注入对象就是FXNewsProvider，被依赖于对象IFXNewsListener和IFXNewsPersister 通常情况下，被注入对象会直接依赖于被依赖对象。但是，在IoC的场景中，二者之间通过IoC ServiceProvider来打交道，所有的被注入对象和依赖对象现在由IoC Service Provider统一管理。被注入对象需要什么，直接跟IoC Service Provider招呼一声，后者就会把相应的被依赖对象注入到被注入对象中，从而达到IoC Service Provider为被注入对象服务的目的。IoC Service Provider在这里就是通常的IoC容器所充当的角色。从被注入对象的角度看，与之前直接寻求依赖对象相比，依赖对象的取得方式发生了反转，控制也从被注入对象转到了IoC Service Provider那里这里我们想知道的是？怎么跟IoC Service Provider打招呼在IoC模式中，被注入对象又是通过哪些方式来通知IoC Service Provider为其提供适当服务的呢？三种打招呼的方式，即构造方法注入（constructorinjection）、setter方法注入（setter injection）以及接口注入（interface injection）。构造方法注入：  IoC Service Provider会检查被注入对象的构造方法，取得它所需要的依赖对象列表，进而为其注入相应的对象。setter方法注入  外界就可以通过调用setNewsListener和setNewPersistener方法为FXNewsProvider对象注入所依赖的对象了。接口注入，这个基本不用了。接口注入。从注入方式的使用上来说，接口注入是现在不甚提倡的一种方式，基本处于&amp;quot;退役状态&amp;rdquo;。因为它强制被注入对象实现不必要的接口，带有侵入性。而构造方法注入和setter方法注入则不需要如此。8q构造方法注入。这种注入方式的优点就是，对象在构造完成之后，即已进入就绪状态，可以 9马上使用。缺点就是，当依赖对象比较多的时候，构造方法的参数列表会比较长。而通过反射构造对象的时候，对相同类型的参数的处理会比较困难，维护和使用上也比较麻烦。而且在Java中，构造方法无法被继承，无法设置默认值。对于非必须的依赖处理，可能需要引入多个构造方法，而参数数量的变动可能造成维护上的不便。10qsetter方法注入。因为方法可以命名，所以setter方法注入在描述性上要比构造方法注入好一些。 11另外，setter方法可以被继承，允许设置默认值，而且有良好的IDE支持。缺点当然就是对象无法在构造完成后马上进入就绪状态。12综上所述，构造方法注入和setter方法注入因为其侵入性较弱，且易于理解和使用，所以是现在使用最多的注入方式；而接口注入因为侵入性较强，近年来已经不流行了。回到开头的代码  由于这里已经写死了，所以当我们添加了一个新的新闻源，比如M4网站的时候，这个对象不能用了，我们要新写一个M4NewsProvider的类，然后新写新闻获取类，然后重新实现。而使用了IoC之后，  我们只要实现一个MarketWin24NewsListener雷就可以，而且FXNewsProvider 可以重用。而且使用了IoC之后，单元测试变得简单，我们只有写一个MockNewsPersister就可以来测试了。</description></item><item><title>[藏]图文并茂详解Eclipse断点</title><link>http://leaver.me/2013/11/16/%E8%97%8F%E5%9B%BE%E6%96%87%E5%B9%B6%E8%8C%82%E8%AF%A6%E8%A7%A3eclipse%E6%96%AD%E7%82%B9/</link><pubDate>Sat, 16 Nov 2013 14:21:11 +0000</pubDate><guid>http://leaver.me/2013/11/16/%E8%97%8F%E5%9B%BE%E6%96%87%E5%B9%B6%E8%8C%82%E8%AF%A6%E8%A7%A3eclipse%E6%96%AD%E7%82%B9/</guid><description>本文转自：http://my.oschina.net/colorleaf/blog/176569
 这个算说的比较清楚的了，虽然简单但是很有用。收藏一下。
 详解Eclipse断点
 大家肯定都用过Eclipse的调试的功能，在调试的过程中自然也无法避免要使用断点(breakpoint)，但不知是否对Eclipse中各类断点都有所了解。本篇图文并茂地介绍了Eclipse中全部类型的断点，及其设置，希望对大家有所帮助。(2011.11.20)
-1. 示例程序 BreakpointDemo是一个臆造的应用程序，只是为了便于讲解Eclipse中各类断点的使用罢了。其代码如下图所示，  BreakpointDemo主要包含两个方法： [1]setValue，该方法根据指定的次数(count)，对成员变量value进行赋值，值的范围为0-9的随机整数。 [2]printValue，该方法会调用setValue()对value进行赋值，并打印出value的值；但，如果value能被3整除，那么就会抛出IllegalArgumentException异常。
-2. Line Breakpoint Line Breakpoin是最简单的Eclipse断点，只要双击某行代码对应的左侧栏，就对该行设置上断点。此处，对第20行代码设置上Line Breakpoint，如下图所示，  可以为Line Breakpoint设置一个条件，那么当程序运行到该断点时，只有满足设定的条件，才会被中断。右键点击第20行的断点，选择&amp;quot;Breakpoint Properties&amp;hellip;&amp;rdquo;  在弹出的属性对话框中，勾选上&amp;quot;Conditional&amp;rdquo;，然后在文本框中输入&amp;quot;count % 2 == 0&amp;rdquo;。  该条件表示，当程序运行到第20行时，只有当count为偶数时，程序才会被中断。细心地话，你会发现该断点的图标发生了改变，多了一个问号。 
-3. Watchpoint Line Breakpoint关注于程序运行的&amp;quot;过程&amp;rdquo;，大家也常把使用这种断点的调试称为单步调试。但有时候，我们对程序的运行过程不太了解，可能也不太关心，不能确定在什么地方设置断点比较合适，而可能比较关注某个关键变量的变化或使用。此时，就可以为该变量设置一种特殊的断点&amp;ndash;Watchpoint。在此示例，我们最关心的就是成员变量value的值，那么就可以为它设置一个Watchpoint，双击第9行代码对应的左侧栏就可以了。  使用在2中所提及的方法，查看该断点的属性，  默认地，当该变量被访问或它的值被修改时，程序都会被中断。但在本示例中，只希望当对value的值进行修改时程序才需要被中断，所以取消对&amp;quot;Access&amp;quot;的勾选。  这时，我们会发现原来的Watchpoin图标也有变化了。 
-4. Method Breakpoint 与关注对某个变量的访问与修改一样，我们也可以关注程序对某个方法的调用情况，即，可以设置Method Breakpoint。在此处，设置针对方法setValue的Method Breakpoint。同理，双击第11行代码对应的左侧栏即可。  仍然要查看该断点的属性。默认地，只勾选了&amp;quot;Entry&amp;rdquo;，而没有勾选&amp;quot;Exit&amp;rdquo;。  这表示，当刚进入该方法(调用开始)时，程序会被中断；而，离开该方法(调用结束)时，程序并不会被中断。在本示例中，需要同时勾选上&amp;quot;Exit&amp;rdquo;。  点击OK之后，可以看到该断点的图标也有所改变。  根据这里的设置，当程序运行到第20行后会在第12行被中断，尽管这里没有显式的断点，但这就是setValue()方法的入口(Entry)。必须注意地是，程序在运行到第16行时不会被中断，尽管它看起来像是setValue()方法的出口(Exit)。实际上，程序会在第17行被中断，这里才是setValue()调用结束的地方。
-5. Exception Breakpoint 如果，我们期望某个特定异常发生时程序能够被中断，以方便查看当时程序所处的状态。通过设置Exception Breakpoint就能达到这一目标。本示例故意在第23行抛出了IllegalArgumentException异常，我们期望程序运行到此处时会被中断。但我们不直接为此行代码设置Line Breakpoint，而是为IllegalArgumentException设置Exception Breakpoint。设置Exception Breakpoint的方法与其它类型断点都不同，它不能通过双击左侧栏的方式在代码编辑器上直接进行设置。点击Breakpoints视图右上角形如Ji的图标，  会弹出如下所示的对话框，  在其中选中IllegalArgumentException，并点击OK，这时一个Exception Breakpoint就设置好了。 
-小结 上述的Eclipse断点，我们在现实工作中肯定都有意或无意地使用过其中的几种，只是不一定十分了解内情罢了。使用好Eclipse的各种断点，可以把很好地帮助我们分析程序，定位问题。</description>
-    </item>
-    
-    <item>
-      <title>Spring松耦合示例</title>
-      <link>http://leaver.me/2013/09/20/spring%E6%9D%BE%E8%80%A6%E5%90%88%E7%A4%BA%E4%BE%8B/</link>
-      <pubDate>Fri, 20 Sep 2013 15:50:46 +0000</pubDate>
-      
-      <guid>http://leaver.me/2013/09/20/spring%E6%9D%BE%E8%80%A6%E5%90%88%E7%A4%BA%E4%BE%8B/</guid>
-      <description>面向对象设计的理念是把整个系统分成一组可重用的组件，然而，当系统变得越大的时候，尤其是在java中，这最大的对象依赖将会紧紧耦合，以至于非常难以管理和修改，而现在，你可以使用Spring框架扮演一个中间模块的角色，方便高效地管理其他组件依赖
+1. 示例程序 BreakpointDemo是一个臆造的应用程序，只是为了便于讲解Eclipse中各类断点的使用罢了。其代码如下图所示， BreakpointDemo主要包含两个方法： [1]setValue，该方法根据指定的次数(count)，对成员变量value进行赋值，值的范围为0-9的随机整数。 [2]printValue，该方法会调用setValue()对value进行赋值，并打印出value的值；但，如果value能被3整除，那么就会抛出IllegalArgumentException异常。
+2. Line Breakpoint Line Breakpoin是最简单的Eclipse断点，只要双击某行代码对应的左侧栏，就对该行设置上断点。此处，对第20行代码设置上Line Breakpoint，如下图所示， 可以为Line Breakpoint设置一个条件，那么当程序运行到该断点时，只有满足设定的条件，才会被中断。右键点击第20行的断点，选择&amp;quot;Breakpoint Properties&amp;hellip;&amp;rdquo; 在弹出的属性对话框中，勾选上&amp;quot;Conditional&amp;rdquo;，然后在文本框中输入&amp;quot;count % 2 == 0&amp;rdquo;。 该条件表示，当程序运行到第20行时，只有当count为偶数时，程序才会被中断。细心地话，你会发现该断点的图标发生了改变，多了一个问号。
+3. Watchpoint Line Breakpoint关注于程序运行的&amp;quot;过程&amp;rdquo;，大家也常把使用这种断点的调试称为单步调试。但有时候，我们对程序的运行过程不太了解，可能也不太关心，不能确定在什么地方设置断点比较合适，而可能比较关注某个关键变量的变化或使用。此时，就可以为该变量设置一种特殊的断点&amp;ndash;Watchpoint。在此示例，我们最关心的就是成员变量value的值，那么就可以为它设置一个Watchpoint，双击第9行代码对应的左侧栏就可以了。 使用在2中所提及的方法，查看该断点的属性， 默认地，当该变量被访问或它的值被修改时，程序都会被中断。但在本示例中，只希望当对value的值进行修改时程序才需要被中断，所以取消对&amp;quot;Access&amp;quot;的勾选。 这时，我们会发现原来的Watchpoin图标也有变化了。
+4. Method Breakpoint 与关注对某个变量的访问与修改一样，我们也可以关注程序对某个方法的调用情况，即，可以设置Method Breakpoint。在此处，设置针对方法setValue的Method Breakpoint。同理，双击第11行代码对应的左侧栏即可。 仍然要查看该断点的属性。默认地，只勾选了&amp;quot;Entry&amp;rdquo;，而没有勾选&amp;quot;Exit&amp;rdquo;。 这表示，当刚进入该方法(调用开始)时，程序会被中断；而，离开该方法(调用结束)时，程序并不会被中断。在本示例中，需要同时勾选上&amp;quot;Exit&amp;rdquo;。 点击OK之后，可以看到该断点的图标也有所改变。 根据这里的设置，当程序运行到第20行后会在第12行被中断，尽管这里没有显式的断点，但这就是setValue()方法的入口(Entry)。必须注意地是，程序在运行到第16行时不会被中断，尽管它看起来像是setValue()方法的出口(Exit)。实际上，程序会在第17行被中断，这里才是setValue()调用结束的地方。
+5. Exception Breakpoint 如果，我们期望某个特定异常发生时程序能够被中断，以方便查看当时程序所处的状态。通过设置Exception Breakpoint就能达到这一目标。本示例故意在第23行抛出了IllegalArgumentException异常，我们期望程序运行到此处时会被中断。但我们不直接为此行代码设置Line Breakpoint，而是为IllegalArgumentException设置Exception Breakpoint。设置Exception Breakpoint的方法与其它类型断点都不同，它不能通过双击左侧栏的方式在代码编辑器上直接进行设置。点击Breakpoints视图右上角形如Ji的图标， 会弹出如下所示的对话框， 在其中选中IllegalArgumentException，并点击OK，这时一个Exception Breakpoint就设置好了。
+小结 上述的Eclipse断点，我们在现实工作中肯定都有意或无意地使用过其中的几种，只是不一定十分了解内情罢了。使用好Eclipse的各种断点，可以把很好地帮助我们分析程序，定位问题。</description></item><item><title>Spring松耦合示例</title><link>http://leaver.me/2013/09/20/spring%E6%9D%BE%E8%80%A6%E5%90%88%E7%A4%BA%E4%BE%8B/</link><pubDate>Fri, 20 Sep 2013 15:50:46 +0000</pubDate><guid>http://leaver.me/2013/09/20/spring%E6%9D%BE%E8%80%A6%E5%90%88%E7%A4%BA%E4%BE%8B/</guid><description>面向对象设计的理念是把整个系统分成一组可重用的组件，然而，当系统变得越大的时候，尤其是在java中，这最大的对象依赖将会紧紧耦合，以至于非常难以管理和修改，而现在，你可以使用Spring框架扮演一个中间模块的角色，方便高效地管理其他组件依赖
 输出生成的例子 看个例子，假设你的项目有一个方法可以输出内容到csv或者json格式，你可能写出这样的代码
 ，然后是实现接口的类
 再写个Json生成的类
@@ -168,16 +68,7 @@ thanks toblue-green-deployment
 然后创建一个Spring bean配置文件，并声明所有的Java对象依赖
 然后通过Spring调用
 以后要改Json格式，直接改一下xml配置文件就行了。能够减少错误
-结论 通过Spring框架的依赖注入，可以优雅的管理对象依赖，更大的灵活性，尤其是对于Java项目非常好用。</description>
-    </item>
-    
-    <item>
-      <title>Maven库依赖机制及添加自定义库</title>
-      <link>http://leaver.me/2013/09/19/maven%E5%BA%93%E4%BE%9D%E8%B5%96%E6%9C%BA%E5%88%B6%E5%8F%8A%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BA%93/</link>
-      <pubDate>Thu, 19 Sep 2013 22:49:42 +0000</pubDate>
-      
-      <guid>http://leaver.me/2013/09/19/maven%E5%BA%93%E4%BE%9D%E8%B5%96%E6%9C%BA%E5%88%B6%E5%8F%8A%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BA%93/</guid>
-      <description>一.Maven库依赖机制 Maven的库依赖机制可以帮助我们自动下载依赖的库文件，并且还能更新版本。。
+结论 通过Spring框架的依赖注入，可以优雅的管理对象依赖，更大的灵活性，尤其是对于Java项目非常好用。</description></item><item><title>Maven库依赖机制及添加自定义库</title><link>http://leaver.me/2013/09/19/maven%E5%BA%93%E4%BE%9D%E8%B5%96%E6%9C%BA%E5%88%B6%E5%8F%8A%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BA%93/</link><pubDate>Thu, 19 Sep 2013 22:49:42 +0000</pubDate><guid>http://leaver.me/2013/09/19/maven%E5%BA%93%E4%BE%9D%E8%B5%96%E6%9C%BA%E5%88%B6%E5%8F%8A%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BA%93/</guid><description>一.Maven库依赖机制 Maven的库依赖机制可以帮助我们自动下载依赖的库文件，并且还能更新版本。。
 考虑一个情境来理解机制的工作原理，假设我们要使用Log4J库作为项目的日志记录。以下是我们要做的
 1.传统的方式 1）访问Log4J网站http://logging.apache.org/log4j/2.x/
 2）下载Log4J的jar包
@@ -199,55 +90,18 @@ Maven坐标咋来的，当然去中央仓库搜索之了，搜索结果清晰的
 1.mvn安装 下载kaptche，解压并且拷贝kaptcha-version.jar到其他任何你喜欢的地方，比如c盘，然后输入如下格式的命令
 这里我这样输入
 这样完成了。kaptcha已经存在本地库了
-2.pom.xml配置一下 这个前面说过了，Maven坐标嘛</description>
-    </item>
-    
-    <item>
-      <title>DMP版本修改工具(C#)</title>
-      <link>http://leaver.me/2013/06/11/dmp%E7%89%88%E6%9C%AC%E4%BF%AE%E6%94%B9%E5%B7%A5%E5%85%B7c/</link>
-      <pubDate>Tue, 11 Jun 2013 16:05:18 +0000</pubDate>
-      
-      <guid>http://leaver.me/2013/06/11/dmp%E7%89%88%E6%9C%AC%E4%BF%AE%E6%94%B9%E5%B7%A5%E5%85%B7c/</guid>
-      <description>最近在使用oracle导入一个dmp文件的时候，由于不知道dmp文件是如何导出的，是使用exp还是expdp导出的，所以纠结了比较长的时间，最后想到是否可以查看dmp文件的一些辅助信息呢，于是有了这个工具。
+2.pom.xml配置一下 这个前面说过了，Maven坐标嘛</description></item><item><title>DMP版本修改工具(C#)</title><link>http://leaver.me/2013/06/11/dmp%E7%89%88%E6%9C%AC%E4%BF%AE%E6%94%B9%E5%B7%A5%E5%85%B7c/</link><pubDate>Tue, 11 Jun 2013 16:05:18 +0000</pubDate><guid>http://leaver.me/2013/06/11/dmp%E7%89%88%E6%9C%AC%E4%BF%AE%E6%94%B9%E5%B7%A5%E5%85%B7c/</guid><description>最近在使用oracle导入一个dmp文件的时候，由于不知道dmp文件是如何导出的，是使用exp还是expdp导出的，所以纠结了比较长的时间，最后想到是否可以查看dmp文件的一些辅助信息呢，于是有了这个工具。
 在使用dmp导入的时候报如下错误
 据说有两个可能，1个是文件本身损坏，另一个是版本问题，多出现在高版本导出的数据向低版本导入。解决方法就是修改一下dmp文件就行了。dmp文件头部大概9个字节处标识了版本号用来头部验证。对于非常大的dmp我们不能直接用文本编辑器打开，因此找找资料，写个工具。本机一个12GB的文件已测试。
-
 工具使用很简单，选择文件，识别出来版本，按格式改成导入端oracle的版本值，然后即可正常导入11G-10G测试成功。
 下载地址：DMP版本修改工具
- </description>
-    </item>
-    
-    <item>
-      <title>C#中的Debug类</title>
-      <link>http://leaver.me/2013/03/01/c#%E4%B8%AD%E7%9A%84debug%E7%B1%BB/</link>
-      <pubDate>Fri, 01 Mar 2013 22:57:22 +0000</pubDate>
-      
-      <guid>http://leaver.me/2013/03/01/c#%E4%B8%AD%E7%9A%84debug%E7%B1%BB/</guid>
-      <description>位于命名空间System.Diagnostics中 1.Debug.Print方法
+ </description></item><item><title>C#中的Debug类</title><link>http://leaver.me/2013/03/01/c#%E4%B8%AD%E7%9A%84debug%E7%B1%BB/</link><pubDate>Fri, 01 Mar 2013 22:57:22 +0000</pubDate><guid>http://leaver.me/2013/03/01/c#%E4%B8%AD%E7%9A%84debug%E7%B1%BB/</guid><description>位于命名空间System.Diagnostics中 1.Debug.Print方法
 2.Debug.WriteLine方法
 3.TraceListener类
 DelimitedListTraceListener创建的时候指定一个文件名，当Flush调用的时候，就被覆写到文件里。
 第一个参数一个bool值，为真则输出。
 5.Debug.Assert方法
-如果表达式为false，则输出。</description>
-    </item>
-    
-    <item>
-      <title>操作系统中的页面置换算法</title>
-      <link>http://leaver.me/2013/01/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95/</link>
-      <pubDate>Wed, 30 Jan 2013 09:18:05 +0000</pubDate>
-      
-      <guid>http://leaver.me/2013/01/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95/</guid>
-      <description>页面调度算法总结；  最好的两种算法是老化算法和工作集时钟算法，分别基于LRU和工作集。具有良好的页面调度性能。</description>
-    </item>
-    
-    <item>
-      <title>C# 基础知识系列文章索引</title>
-      <link>http://leaver.me/2013/01/27/c#-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0%E7%B4%A2%E5%BC%95/</link>
-      <pubDate>Sun, 27 Jan 2013 20:50:08 +0000</pubDate>
-      
-      <guid>http://leaver.me/2013/01/27/c#-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0%E7%B4%A2%E5%BC%95/</guid>
-      <description>清理GR的加星标项目。分享来自博客园 zhili 的C#基础系列文章。
+如果表达式为false，则输出。</description></item><item><title>操作系统中的页面置换算法</title><link>http://leaver.me/2013/01/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95/</link><pubDate>Wed, 30 Jan 2013 09:18:05 +0000</pubDate><guid>http://leaver.me/2013/01/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95/</guid><description>页面调度算法总结； 最好的两种算法是老化算法和工作集时钟算法，分别基于LRU和工作集。具有良好的页面调度性能。</description></item><item><title>C# 基础知识系列文章索引</title><link>http://leaver.me/2013/01/27/c#-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0%E7%B4%A2%E5%BC%95/</link><pubDate>Sun, 27 Jan 2013 20:50:08 +0000</pubDate><guid>http://leaver.me/2013/01/27/c#-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0%E7%B4%A2%E5%BC%95/</guid><description>清理GR的加星标项目。分享来自博客园 zhili 的C#基础系列文章。
 C#基础知识系列终于告了一个段落了, 本系列中主要和大家介绍了C#1.0到C# 4.0中一些重要的特性，刚开始写这个专题的初衷主要是我觉得掌握了C#这些基础知识之后，对于其他任何的一门语言都是差不多的，这样可以提高朋友们对其他语言的掌握，以及可以让大家更加迅速地掌握.NET的新特性， 并且相信这个系列对于找工作的朋友也是很有帮助的，因为很多公司面试都很看重基础知识是否扎实，是否对C#有一个全面的认识和理解，所以很多公司面试都会问到一些C#基础概念的问题，例如，经常面试会问：你是如何理解委托的，如何理解匿名函数等问题。
 然而这个系列中并没有介绍COM互操作性的内容以及.Net 4.5中的一些新特性，所以后面将会对这两个方面的内容进行补充，由于这个系列托的太久了(大概也有3个月吧)，所以就先告一段落的，后面将会带来.NET互操作性系列的介绍。下面就为这个系列文章做一个索引，方便大家收藏和查找。
 C#基础知识系列索引
@@ -272,16 +126,7 @@ C# 3.0
 16. Linq介绍
 C# 4.0
 17. 深入理解动态类型
- 从C#的所有特性可以看出,C#中提出的每个新特性都是建立在原来特性的基础上,并且是对原来特性的一个改进, 做这么多的改进主要是为了方便开发人员更好地使用C#来编写程序,是让我们写更少的代码来实现我们的程序,把一些额外的工作交给编译器去帮我们做,也就是很多人说微软很喜欢搞语法糖的意思(语法糖即让编译器帮我们做一些额外的事情，减少开发人员所考虑的事情，使开发人员放更多的精力放在系统的业务逻辑上面。)，大家从C# 3中提出的特性中可以很好的看出这点(指的是玩语法糖)，C#3中几乎大部分特性都是C#提供的语法糖，从CLR层面来说(指的是增加新的IL指令)，C# 3并没有更新什么，C# 4中提出的动态类型又是建立在表达式树的基础上，包括Linq也是建立在表达式树的基础上，所以每个特性都是层层递进的一个关系。相信C#后面提出的新特性将会更加方便我们开发程序，感觉所有语言的一个统一的思想都是——写更少的代码，却可以做更多的事情。但是我们不能仅仅停住于知道怎么使用它，我们还应该深入研究它的背后的故事，知道新特性是如何实现的和原理。用一句说就是——我们要知其然之气所以然，学习知识应该抱着刨根问底的态度去学习,相信这样的学习方式也可以让大家不感到心虚,写出的程序将会更加自信。</description>
-    </item>
-    
-    <item>
-      <title>C#与.net 程序员面试笔记</title>
-      <link>http://leaver.me/2012/11/28/c#%E4%B8%8E.net-%E7%A8%8B%E5%BA%8F%E5%91%98%E9%9D%A2%E8%AF%95%E7%AC%94%E8%AE%B0/</link>
-      <pubDate>Wed, 28 Nov 2012 07:13:03 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/11/28/c#%E4%B8%8E.net-%E7%A8%8B%E5%BA%8F%E5%91%98%E9%9D%A2%E8%AF%95%E7%AC%94%E8%AE%B0/</guid>
-      <description>这是前几天读的书。书不难。10-13章跳过了。以后再看。
+ 从C#的所有特性可以看出,C#中提出的每个新特性都是建立在原来特性的基础上,并且是对原来特性的一个改进, 做这么多的改进主要是为了方便开发人员更好地使用C#来编写程序,是让我们写更少的代码来实现我们的程序,把一些额外的工作交给编译器去帮我们做,也就是很多人说微软很喜欢搞语法糖的意思(语法糖即让编译器帮我们做一些额外的事情，减少开发人员所考虑的事情，使开发人员放更多的精力放在系统的业务逻辑上面。)，大家从C# 3中提出的特性中可以很好的看出这点(指的是玩语法糖)，C#3中几乎大部分特性都是C#提供的语法糖，从CLR层面来说(指的是增加新的IL指令)，C# 3并没有更新什么，C# 4中提出的动态类型又是建立在表达式树的基础上，包括Linq也是建立在表达式树的基础上，所以每个特性都是层层递进的一个关系。相信C#后面提出的新特性将会更加方便我们开发程序，感觉所有语言的一个统一的思想都是——写更少的代码，却可以做更多的事情。但是我们不能仅仅停住于知道怎么使用它，我们还应该深入研究它的背后的故事，知道新特性是如何实现的和原理。用一句说就是——我们要知其然之气所以然，学习知识应该抱着刨根问底的态度去学习,相信这样的学习方式也可以让大家不感到心虚,写出的程序将会更加自信。</description></item><item><title>C#与.net 程序员面试笔记</title><link>http://leaver.me/2012/11/28/c#%E4%B8%8E.net-%E7%A8%8B%E5%BA%8F%E5%91%98%E9%9D%A2%E8%AF%95%E7%AC%94%E8%AE%B0/</link><pubDate>Wed, 28 Nov 2012 07:13:03 +0000</pubDate><guid>http://leaver.me/2012/11/28/c#%E4%B8%8E.net-%E7%A8%8B%E5%BA%8F%E5%91%98%E9%9D%A2%E8%AF%95%E7%AC%94%E8%AE%B0/</guid><description>这是前几天读的书。书不难。10-13章跳过了。以后再看。
 以前，一个应用程序对应一个进程。并且为该进程指定虚拟内存，这样。进程会消耗很多资源，而且进程之间的通信业比较麻烦
 应用程序域可以理解为很多应用程序域都可以运行在同一个.net 进程中，降低内存消耗。同时不同的域之间隔离。安全有保证。通信也简单。
 程序集是指包含编译好的。面向.net framework的代码的逻辑单元。是完全自我描述性的一个逻辑单元。可以存储在多个文件中。简单来说，程序集就是几个彼此有关联程序文件的集合。程序集会包含程序的元数据。描述了对应代码中定义的方法和类型。
@@ -300,19 +145,9 @@ SOAP是Web Service应用的基础协议。他是一种轻量的简单的。基�
 我是为了找一份长期性的工作。我不喜欢频繁的跳槽我希望在这个利于发展自己的事业。深入学习。向专业人士请教。那。该我想问这个职务是长期的吗？
 不要把公司想像成慈善机构。工作的运作方面应该是尽可能快的实现盈利。树立品牌，赢得客户。我的工作就是完成企业的良性运作。
 如果被问到是否需要考虑看分数。应该说用人单位确实需要全面考量。也要考虑应聘者的工作积极性/服从性。实际经验/对开发的理解诶。这些也许比分数更有价值。
-应届生的优缺点应该是足够的理论知识和专业能力。缺点是工作和社会经验不足。</description>
-    </item>
-    
-    <item>
-      <title>理解并实现原型模式-实现ICloneable接口.理解深浅拷贝</title>
-      <link>http://leaver.me/2012/10/19/%E7%90%86%E8%A7%A3%E5%B9%B6%E5%AE%9E%E7%8E%B0%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E5%AE%9E%E7%8E%B0icloneable%E6%8E%A5%E5%8F%A3.%E7%90%86%E8%A7%A3%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/</link>
-      <pubDate>Fri, 19 Oct 2012 09:27:21 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/10/19/%E7%90%86%E8%A7%A3%E5%B9%B6%E5%AE%9E%E7%8E%B0%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E5%AE%9E%E7%8E%B0icloneable%E6%8E%A5%E5%8F%A3.%E7%90%86%E8%A7%A3%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/</guid>
-      <description>本文用C#实现原型模式,也会讨论深浅拷贝,已经如何在.net中高效实现ICloneable 接口 介绍 有时候我们需要从上下文得到一个对象的拷贝，然后通过一些独立的操作来处理他。原型模式在这种情况下很适用
+应届生的优缺点应该是足够的理论知识和专业能力。缺点是工作和社会经验不足。</description></item><item><title>理解并实现原型模式-实现ICloneable接口.理解深浅拷贝</title><link>http://leaver.me/2012/10/19/%E7%90%86%E8%A7%A3%E5%B9%B6%E5%AE%9E%E7%8E%B0%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E5%AE%9E%E7%8E%B0icloneable%E6%8E%A5%E5%8F%A3.%E7%90%86%E8%A7%A3%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/</link><pubDate>Fri, 19 Oct 2012 09:27:21 +0000</pubDate><guid>http://leaver.me/2012/10/19/%E7%90%86%E8%A7%A3%E5%B9%B6%E5%AE%9E%E7%8E%B0%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E5%AE%9E%E7%8E%B0icloneable%E6%8E%A5%E5%8F%A3.%E7%90%86%E8%A7%A3%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/</guid><description>本文用C#实现原型模式,也会讨论深浅拷贝,已经如何在.net中高效实现ICloneable 接口 介绍 有时候我们需要从上下文得到一个对象的拷贝，然后通过一些独立的操作来处理他。原型模式在这种情况下很适用
 GoF 定义原型模式为用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的对象。 Specify the kind of objects to create using a prototypical instance, and create new objects by copying this prototype.&amp;rdquo;
 看一下类图
-
 主要的参与者有 • Prototype: 抽象类或接口，定义了方法来拷贝自己 • ConcretePrototype: 克隆的具体类. • Client: 需要执行拷贝对象的软件对象 然后实现吧
 使用代码
 为了简化。我以一个著名的偷车游戏作为例子 我们说游戏里有一个注脚。这个主要有着一些定义游戏数据的统计量。保存游戏的时候我们就需要拷贝这个对象，然后序列化到文件中。（仅仅是举个例子，真实的游戏里很少这样做）
@@ -320,34 +155,21 @@ GoF 定义原型模式为用原型实例指定创建对象的种类，并且通�
  接口定义了玩家重要的信息，然后定义了一个Clone方法。然后我们定义一个具体的玩家类CJ。这样我们可以克隆当前对象，然后异步的进行序列化
 这个类就是概念中的ConcretePrototype 。这里为了简化也没有其他一些方法了。
 现在看看客户端软件的写法
-
 理解深浅拷贝
 上面的代码就模拟了原型模式，有一个问题就是我们使用了MemberwiseCopy 方法。而这个方法是创建浅拷贝的。如果对象里包含引用类型，引用类型的地址就会被从前者拷贝到后者。这样。两个就指向了同样的对象。
 为了说明情况。我们让主角类包含更多的，叫做AdditionalDetails
  然后抽象类将会一个AdditionalDetails 对象
  具体类既然使用MemberwiseCopy实现拷贝
  问题来了。两份拷贝会指向同一个AdditionalDetials 对象
-
 画个图。看得清楚些
- 为了避免这种期刊。我们需要在堆上创建引用类型的拷贝，然后对应赋值
+为了避免这种期刊。我们需要在堆上创建引用类型的拷贝，然后对应赋值
  这样就可以了
-
 注意。当执行深拷贝的时候，可能引用类型来包括引用类型，因此好的做法是用反射。并且递归的拷贝。直到没有引用类型，具体可参考另一文
 实现ICloneable接口 ICloneable接口提供了定义拷贝方法的接口。我们可以使用ICloneable 作为概念中的Prototype，我们看一下如果实现ConcretePrototype
  客户端代码如下
-
 Demo下载 [downloadicon href=http://pan.baidu.com/share/link?shareid=86332&amp;amp;uk=1493685990]PrototypeDemo.zip[/downloadicon]
 原文地址：Understanding-and-Implementing-Prototype-Pattern-i
-著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</description>
-    </item>
-    
-    <item>
-      <title>实现IEnumerable接口&amp;理解yield关键字</title>
-      <link>http://leaver.me/2012/10/19/%E5%AE%9E%E7%8E%B0ienumerable%E6%8E%A5%E5%8F%A3%E7%90%86%E8%A7%A3yield%E5%85%B3%E9%94%AE%E5%AD%97/</link>
-      <pubDate>Fri, 19 Oct 2012 07:33:12 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/10/19/%E5%AE%9E%E7%8E%B0ienumerable%E6%8E%A5%E5%8F%A3%E7%90%86%E8%A7%A3yield%E5%85%B3%E9%94%AE%E5%AD%97/</guid>
-      <description>本文讨论题目的内容。然后讨论IEnumerable接口如何使得foreach语句可以使用。之后会展示如果实现自定义的集合类，该集合类实现了IEnumerable接口。Yield关键字和遍历集合后面也讨论。
+著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</description></item><item><title>实现IEnumerable接口&amp;理解yield关键字</title><link>http://leaver.me/2012/10/19/%E5%AE%9E%E7%8E%B0ienumerable%E6%8E%A5%E5%8F%A3%E7%90%86%E8%A7%A3yield%E5%85%B3%E9%94%AE%E5%AD%97/</link><pubDate>Fri, 19 Oct 2012 07:33:12 +0000</pubDate><guid>http://leaver.me/2012/10/19/%E5%AE%9E%E7%8E%B0ienumerable%E6%8E%A5%E5%8F%A3%E7%90%86%E8%A7%A3yield%E5%85%B3%E9%94%AE%E5%AD%97/</guid><description>本文讨论题目的内容。然后讨论IEnumerable接口如何使得foreach语句可以使用。之后会展示如果实现自定义的集合类，该集合类实现了IEnumerable接口。Yield关键字和遍历集合后面也讨论。
 背景
 一使用集合。就发现遍历集合就跟着来了。遍历集合最好的方式是实现迭代器模式-Understanding and Implementing the Iterator Pattern in C# and C++(这篇文章我过几天翻译一下) ，C#提供foreach来以一种优雅的方式遍历
 只要集合实现了IEnumerable 接口就可以用foreach来遍历。
@@ -372,19 +194,10 @@ Arraylist 是一个通用集合类，遍历泛型集合类也可以。因为这
 ** 源代码下载**
 [downloadicon href=http://pan.baidu.com/share/link?shareid=86013&amp;amp;uk=1493685990]EnumerableDemo.7z[/downloadicon]
 原文地址： A-Beginners-Tutorial-on-Implementing-IEnumerable-I
-著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</description>
-    </item>
-    
-    <item>
-      <title>C#制作进度窗体</title>
-      <link>http://leaver.me/2012/10/10/c#%E5%88%B6%E4%BD%9C%E8%BF%9B%E5%BA%A6%E7%AA%97%E4%BD%93/</link>
-      <pubDate>Wed, 10 Oct 2012 09:07:41 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/10/10/c#%E5%88%B6%E4%BD%9C%E8%BF%9B%E5%BA%A6%E7%AA%97%E4%BD%93/</guid>
-      <description>介绍
+著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</description></item><item><title>C#制作进度窗体</title><link>http://leaver.me/2012/10/10/c#%E5%88%B6%E4%BD%9C%E8%BF%9B%E5%BA%A6%E7%AA%97%E4%BD%93/</link><pubDate>Wed, 10 Oct 2012 09:07:41 +0000</pubDate><guid>http://leaver.me/2012/10/10/c#%E5%88%B6%E4%BD%9C%E8%BF%9B%E5%BA%A6%E7%AA%97%E4%BD%93/</guid><description>介绍
 这是我在CodeProject上的第一篇文章。我希望对你有用
 当我开发软件的时候。我通常因为一个很耗时是任务需要完成。而请求让用户等待，并且通过也允许用户取消。不论我做何种操作（比如下载文件。保存大文件等等）。我都需要做下面几件事：
- 通过一个模态对话框来让用户等待操作完成 能让用户看到进度。 能让用户随时取消。 我搜了好久也没找到拿来就能用的窗体控件，也许是我没找到。于是我自己写。。 图1  背景
+通过一个模态对话框来让用户等待操作完成 能让用户看到进度。 能让用户随时取消。 我搜了好久也没找到拿来就能用的窗体控件，也许是我没找到。于是我自己写。。 图1 背景
 BackgroundWorker 类包含了我需要完成任务的所有东西。我只需要给他提供一个对话框。
 使用代码
 ProgressForm 包含了一个BackgroundWorker ，你要做的仅仅就是提供了一个完成工作的方法。
@@ -404,16 +217,7 @@ ProgressForm 包含了一个BackgroundWorker ，你要做的仅仅就是提供�
 Demo下载
 源码和测试下载
 许可 本文，包括源代码和文件在CPOL下授权。
- 原文地址：ProgressForm-A-simple-form-linked-to-a-BackgroundW 著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</description>
-    </item>
-    
-    <item>
-      <title>关于源代码控制的五个误区</title>
-      <link>http://leaver.me/2012/10/04/%E5%85%B3%E4%BA%8E%E6%BA%90%E4%BB%A3%E7%A0%81%E6%8E%A7%E5%88%B6%E7%9A%84%E4%BA%94%E4%B8%AA%E8%AF%AF%E5%8C%BA/</link>
-      <pubDate>Thu, 04 Oct 2012 12:18:57 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/10/04/%E5%85%B3%E4%BA%8E%E6%BA%90%E4%BB%A3%E7%A0%81%E6%8E%A7%E5%88%B6%E7%9A%84%E4%BA%94%E4%B8%AA%E8%AF%AF%E5%8C%BA/</guid>
-      <description>上周，在Red Gate好朋友的帮助下。我发起了一个名为小竞赛赢得优秀的SQL Source Control 5份授权的活动。参加的方式很简单-分享你使用源代码控制过程中，本可以避免的最痛苦的经历
+ 原文地址：ProgressForm-A-simple-form-linked-to-a-BackgroundW 著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</description></item><item><title>关于源代码控制的五个误区</title><link>http://leaver.me/2012/10/04/%E5%85%B3%E4%BA%8E%E6%BA%90%E4%BB%A3%E7%A0%81%E6%8E%A7%E5%88%B6%E7%9A%84%E4%BA%94%E4%B8%AA%E8%AF%AF%E5%8C%BA/</link><pubDate>Thu, 04 Oct 2012 12:18:57 +0000</pubDate><guid>http://leaver.me/2012/10/04/%E5%85%B3%E4%BA%8E%E6%BA%90%E4%BB%A3%E7%A0%81%E6%8E%A7%E5%88%B6%E7%9A%84%E4%BA%94%E4%B8%AA%E8%AF%AF%E5%8C%BA/</guid><description>上周，在Red Gate好朋友的帮助下。我发起了一个名为小竞赛赢得优秀的SQL Source Control 5份授权的活动。参加的方式很简单-分享你使用源代码控制过程中，本可以避免的最痛苦的经历
 许多痛苦的故事都出现了。但是我认为这五个获奖者的故事值得分享，并且我都做了评论，因为我觉得随着时间的流逝，这些故事依然对我们有所启发。那么，开始享受这些故事吧，我希望这些知识中的闪光点能够帮助你以后不会掉进相同的陷阱里。
 给获奖者：希望那些授权可以帮助抚慰你们关于那些已经过去的痛苦记忆。不久我会联系你们关于奖项颁发的相关事宜。
  1.通过Ctrl-Z来进行源代码控制
@@ -444,51 +248,15 @@ Robin Vessey 让我产生了共鸣，因为它真的是伪VCS（Version Control 
  总结
 工作在一个没有源代码控制的环境下是很可怕的。现在就停止吧。伙计们，我们是很优秀，但在在源代码控制下工作是很专业的。并且现在有很多的VCS产品。托管服务，集成工具，真心是没有任何理由不把代码-包括数据库，部署在源代码控制下。
  原文地址:5-ways-to-do-source-control-really
-著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</description>
-    </item>
-    
-    <item>
-      <title>C#删除文件和文件夹到回收站</title>
-      <link>http://leaver.me/2012/09/24/c#%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E5%92%8C%E6%96%87%E4%BB%B6%E5%A4%B9%E5%88%B0%E5%9B%9E%E6%94%B6%E7%AB%99/</link>
-      <pubDate>Mon, 24 Sep 2012 08:04:45 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/09/24/c#%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E5%92%8C%E6%96%87%E4%BB%B6%E5%A4%B9%E5%88%B0%E5%9B%9E%E6%94%B6%E7%AB%99/</guid>
-      <description>如果使用C#代码来删除文件或是文件夹。会将文件和文件夹直接删除，而不是删除到回收站。可以调用Microsoft.VisualBasic.dll提供的方法。
+著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</description></item><item><title>C#删除文件和文件夹到回收站</title><link>http://leaver.me/2012/09/24/c#%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E5%92%8C%E6%96%87%E4%BB%B6%E5%A4%B9%E5%88%B0%E5%9B%9E%E6%94%B6%E7%AB%99/</link><pubDate>Mon, 24 Sep 2012 08:04:45 +0000</pubDate><guid>http://leaver.me/2012/09/24/c#%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E5%92%8C%E6%96%87%E4%BB%B6%E5%A4%B9%E5%88%B0%E5%9B%9E%E6%94%B6%E7%AB%99/</guid><description>如果使用C#代码来删除文件或是文件夹。会将文件和文件夹直接删除，而不是删除到回收站。可以调用Microsoft.VisualBasic.dll提供的方法。
 首先对项目添加名为Microsoft.VisualBasic.dll的引用，然后添加命名空间
 最后示例代码如下：
-很简单。。就不多说了。。</description>
-    </item>
-    
-    <item>
-      <title>WPF毛玻璃效果Demo和一个问题</title>
-      <link>http://leaver.me/2012/09/24/wpf%E6%AF%9B%E7%8E%BB%E7%92%83%E6%95%88%E6%9E%9Cdemo%E5%92%8C%E4%B8%80%E4%B8%AA%E9%97%AE%E9%A2%98/</link>
-      <pubDate>Mon, 24 Sep 2012 08:04:25 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/09/24/wpf%E6%AF%9B%E7%8E%BB%E7%92%83%E6%95%88%E6%9E%9Cdemo%E5%92%8C%E4%B8%80%E4%B8%AA%E9%97%AE%E9%A2%98/</guid>
-      <description>那天看到WPF书上讲的毛玻璃效果，就去找了下效果。。忘了例子是从哪发现得了。。先看下效果，
- 但是这不是重点，作者给出的代码有一个设计时错误。。错误提示为： 无法将类型为“Microsoft.Expression.Platform.WPF.InstanceBuilders.WindowInstance”的对象强制转换为类型“System.Windows.Window”，，
-　中文搜了一下。没有发现有人解决过。目测。。。然后又拿英文搜了下。几经辗转。。终于是解决了。。原文在Unable to cast XAML error。其实就是将原作者这个函数修改如下的</description>
-    </item>
-    
-    <item>
-      <title>WPF主题分享及使用</title>
-      <link>http://leaver.me/2012/09/18/wpf%E4%B8%BB%E9%A2%98%E5%88%86%E4%BA%AB%E5%8F%8A%E4%BD%BF%E7%94%A8/</link>
-      <pubDate>Tue, 18 Sep 2012 09:19:02 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/09/18/wpf%E4%B8%BB%E9%A2%98%E5%88%86%E4%BA%AB%E5%8F%8A%E4%BD%BF%E7%94%A8/</guid>
-      <description>首先是一个很流行的WPF20多种xaml主题合集源码。这个主题系列是非常漂亮的。我找到了源码。但是没有找到官网。 update：感谢月亮云的提醒，官网是：http://wpfthemes.codeplex.com 截两幅图如下：  
+很简单。。就不多说了。。</description></item><item><title>WPF毛玻璃效果Demo和一个问题</title><link>http://leaver.me/2012/09/24/wpf%E6%AF%9B%E7%8E%BB%E7%92%83%E6%95%88%E6%9E%9Cdemo%E5%92%8C%E4%B8%80%E4%B8%AA%E9%97%AE%E9%A2%98/</link><pubDate>Mon, 24 Sep 2012 08:04:25 +0000</pubDate><guid>http://leaver.me/2012/09/24/wpf%E6%AF%9B%E7%8E%BB%E7%92%83%E6%95%88%E6%9E%9Cdemo%E5%92%8C%E4%B8%80%E4%B8%AA%E9%97%AE%E9%A2%98/</guid><description>那天看到WPF书上讲的毛玻璃效果，就去找了下效果。。忘了例子是从哪发现得了。。先看下效果，
+但是这不是重点，作者给出的代码有一个设计时错误。。错误提示为： 无法将类型为“Microsoft.Expression.Platform.WPF.InstanceBuilders.WindowInstance”的对象强制转换为类型“System.Windows.Window”，，
+　中文搜了一下。没有发现有人解决过。目测。。。然后又拿英文搜了下。几经辗转。。终于是解决了。。原文在Unable to cast XAML error。其实就是将原作者这个函数修改如下的</description></item><item><title>WPF主题分享及使用</title><link>http://leaver.me/2012/09/18/wpf%E4%B8%BB%E9%A2%98%E5%88%86%E4%BA%AB%E5%8F%8A%E4%BD%BF%E7%94%A8/</link><pubDate>Tue, 18 Sep 2012 09:19:02 +0000</pubDate><guid>http://leaver.me/2012/09/18/wpf%E4%B8%BB%E9%A2%98%E5%88%86%E4%BA%AB%E5%8F%8A%E4%BD%BF%E7%94%A8/</guid><description>首先是一个很流行的WPF20多种xaml主题合集源码。这个主题系列是非常漂亮的。我找到了源码。但是没有找到官网。 update：感谢月亮云的提醒，官网是：http://wpfthemes.codeplex.com 截两幅图如下：
 使用很简单。一种是将WPF.Theme.dll导入。像demo展示的那样。使用其提供的主题管理类来使用。可以实现任意切换效果。另一种就是直接把源文件的各种theme.xaml提取出来，添加到资源字典就行了。当然还有一些不重要的小细节。相信你对wpf比较了解的话可以搞得定的。。还可以自己学习一下。。
 昨天还看到一个主题，也比较漂亮。Amazing WPF Controls分享一下。如果有什么疑问。欢迎留言讨论。
-下载：WPF20多种xaml主题合集源码</description>
-    </item>
-    
-    <item>
-      <title>C# 委托知识总结</title>
-      <link>http://leaver.me/2012/09/16/c#-%E5%A7%94%E6%89%98%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/</link>
-      <pubDate>Sun, 16 Sep 2012 10:52:01 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/09/16/c#-%E5%A7%94%E6%89%98%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/</guid>
-      <description>如果你足够强大，你就不会把幸福押在别人身上，你会自己创造幸福或者给别人带来幸福。而变得强大的途径就是学习，就是读书，学一切东西，读任何想读的书。 爱你让我变得更强。。 继续读一些专业文章了。不保证都是原创，但是保证每篇技术文章的质量。也会注明来源，标准就是浅显易懂。但不简单。
+下载：WPF20多种xaml主题合集源码</description></item><item><title>C# 委托知识总结</title><link>http://leaver.me/2012/09/16/c#-%E5%A7%94%E6%89%98%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/</link><pubDate>Sun, 16 Sep 2012 10:52:01 +0000</pubDate><guid>http://leaver.me/2012/09/16/c#-%E5%A7%94%E6%89%98%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/</guid><description>如果你足够强大，你就不会把幸福押在别人身上，你会自己创造幸福或者给别人带来幸福。而变得强大的途径就是学习，就是读书，学一切东西，读任何想读的书。 爱你让我变得更强。。 继续读一些专业文章了。不保证都是原创，但是保证每篇技术文章的质量。也会注明来源，标准就是浅显易懂。但不简单。
 原文来自：贺臣感谢原作者的好文章。 1.什么是委托，为什么要使用委托
 我正在埋头苦写程序，突然想喝水，但是又不想自己去掉杯水而打断自己的思路，于是我就想让女朋友去给我倒水。她去给我倒水，首先我得让她知道我想让她干什么，通知她之后我可以继续写自己的程序，而倒水的工作就交给了她。这样的过程就相当于一个委托。
 在程序过程中，当程序正在处理某个事件的时候，我需要另外的程序代码去辅助处理一些事情，于是委托另一个程序模块去处理，而委托就可以达到这种目的，我可以利用委托通知另外的程序模块，该去调用哪个函数方法。委托其实就起到了这样一个作用，将函数签名传递到了另一个函数中。或许这样讲还是有些模糊，看看后面的具体实例。
@@ -500,16 +268,7 @@ Robin Vessey 让我产生了共鸣，因为它真的是伪VCS（Version Control 
 (2).匿名函数 匿名委托例子
 这是一个非常有特色的泛型委托，可能我们用的比较少，但是作用是不能忽视的。 我们看看三个非常具有代表性的泛型委托.现在.NET4.0已经出来了，但是泛型委托.NET2.0就出来了，Linq 大家用的那叫一个甜，
 为啥 函数式编程风格，匿名方法，Lamda表达式表达式使用是如此的魅力。但是大家仔细观察过没有，Linq 中的方法有几个经常出现的参数：
-Func&amp;lt;T, E&amp;gt;：封装一个具有一个参数并返回 E 参数指定的类型值的方法,T 是这个委托封装方法的参数类型，E是方法的返回值类型。当然Func&amp;lt;T, Result&amp;gt; 只是其中的一种情况,这个委托还有其他的几种情况:Func&amp;lt;T&amp;gt; 这个是方法没有参数,返回值类型是T;Func&amp;lt;T1,T2,Result&amp;gt; 这个方法有两个参数,类型分别为T1,T2，返回值是Result,还有Func&amp;lt;T1,T2,T3,Result&amp;gt;，Func&amp;lt;T1,T2,T3,T4,Result&amp;gt; 这几中情况，具体情况就不介绍了.我们还可以通过扩展类型，扩展为更多的参数. Func 委托的使用</description>
-    </item>
-    
-    <item>
-      <title>WCF读书笔记(4)</title>
-      <link>http://leaver.me/2012/09/09/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B04/</link>
-      <pubDate>Sun, 09 Sep 2012 09:06:33 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/09/09/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B04/</guid>
-      <description>三种供客户端和服务端控制通信的契约介绍： 1.服务契约描述了由特定服务端点所公开的操作，每一种操作，通过参数和返回值定义请求和响应消息的格式。 2.数据契约描述了复杂类型如何被串行化为消息的一部分，数据契约是服务契约中优先用来包含复杂类型的方式。 3.消息契约提供对某个soap消息格式的控制，包括支持定制消息标题和数据契约所描述的单个消息体元素。
+Func&amp;lt;T, E&amp;gt;：封装一个具有一个参数并返回 E 参数指定的类型值的方法,T 是这个委托封装方法的参数类型，E是方法的返回值类型。当然Func&amp;lt;T, Result&amp;gt; 只是其中的一种情况,这个委托还有其他的几种情况:Func&amp;lt;T&amp;gt; 这个是方法没有参数,返回值类型是T;Func&amp;lt;T1,T2,Result&amp;gt; 这个方法有两个参数,类型分别为T1,T2，返回值是Result,还有Func&amp;lt;T1,T2,T3,Result&amp;gt;，Func&amp;lt;T1,T2,T3,T4,Result&amp;gt; 这几中情况，具体情况就不介绍了.我们还可以通过扩展类型，扩展为更多的参数. Func 委托的使用</description></item><item><title>WCF读书笔记(4)</title><link>http://leaver.me/2012/09/09/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B04/</link><pubDate>Sun, 09 Sep 2012 09:06:33 +0000</pubDate><guid>http://leaver.me/2012/09/09/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B04/</guid><description>三种供客户端和服务端控制通信的契约介绍： 1.服务契约描述了由特定服务端点所公开的操作，每一种操作，通过参数和返回值定义请求和响应消息的格式。 2.数据契约描述了复杂类型如何被串行化为消息的一部分，数据契约是服务契约中优先用来包含复杂类型的方式。 3.消息契约提供对某个soap消息格式的控制，包括支持定制消息标题和数据契约所描述的单个消息体元素。
 消息参数（Message Parameter） 对于
 若客户端传入的参数为“Hello”，则生成的请求消息体中标记为Hello,而响应返回的消息体则被标记为返回内容,可以通过
 来定制消息中的标签。
@@ -517,16 +276,7 @@ Func&amp;lt;T, E&amp;gt;：封装一个具有一个参数并返回 E 参数指�
 执行上下文（OperationContext） 是System.ServiceModel命名空间的一种类型，他为服务请求提供了对执行上下文的访问，OperationContext.Current为请求在生命周期期间提供了对上下文的访问。
 WCF的实例化模式 实例化控制模式服务对象被分配给请求的方式，一旦服务主机已经建立而且为每个端点创建了信道监听器，对各终端的请求已经由适当的服务对象所执行，则这些对象是基于服务类型的实例化模式的。他们是InstanceContextMode的一个枚举。 1.PerCall 服务对象为每一个对服务的调用所创建。 2.PerSession 对每一个客户端创建一个。默认是这样 3.Single 创建单一的服务对象。并由所有客户端的调用使用。 尽可能使用PerCall，大规模的部署避免PerSession并发。
 WCF的四种会话 应用会话，传输会话，可靠会话，安全会话。
-信道发生器取得SessionId</description>
-    </item>
-    
-    <item>
-      <title>WCF读书笔记(3)</title>
-      <link>http://leaver.me/2012/09/08/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B03/</link>
-      <pubDate>Sat, 08 Sep 2012 08:07:37 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/09/08/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B03/</guid>
-      <description>WCF的四大行为
+信道发生器取得SessionId</description></item><item><title>WCF读书笔记(3)</title><link>http://leaver.me/2012/09/08/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B03/</link><pubDate>Sat, 08 Sep 2012 08:07:37 +0000</pubDate><guid>http://leaver.me/2012/09/08/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B03/</guid><description>WCF的四大行为
 　契约行为（Contract Behavior），操作行为（Operation Behavior），服务行为（Service Behavior），终结点行为（Endpoint Behavior）。
 　如果把WCF看做是消息处理，对象激活与操作执行的管道，那么我们可以通过相应的行为来改变这个管道中某个环节的工作方式。比如加个密啊。什么的。
 单向模式（One-Way）
@@ -541,16 +291,7 @@ WCF的四大契约
 　服务契约（Service Contract），数据契约（Data Contract），消息契约（Message Contract），错误契约（Fault Contract）
 信道：
 　信道是为了便利WCF中客户端和服务的通信来设置的。ServiceHost为每个断点创建一个信道侦听器，侦听器产生通信通道，代理则产生一个信道发生器，发生器产生客户端的信道，两种信道相互兼容并且能有效处理之间的信息。
-　实际上，通信信道是有一个分层的信道栈组成-栈中的每一个信道都在消息处理过程中负责实施一个特定动作，信道栈包含一个传输信道，一个消息编码信道，和任意数量的消息处理信道，绑定则将决定了哪些信道留在信道栈中。当行为穿过信道栈时，消息处理方式将会有所改变。。</description>
-    </item>
-    
-    <item>
-      <title>WCF双工通信示例</title>
-      <link>http://leaver.me/2012/09/07/wcf%E5%8F%8C%E5%B7%A5%E9%80%9A%E4%BF%A1%E7%A4%BA%E4%BE%8B/</link>
-      <pubDate>Fri, 07 Sep 2012 22:22:30 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/09/07/wcf%E5%8F%8C%E5%B7%A5%E9%80%9A%E4%BF%A1%E7%A4%BA%E4%BE%8B/</guid>
-      <description>这两天在看WCF的书籍。就参考书上的代码写了这个例子。不得不说。书上有些错误的地方。。运行明显报错。改了一下。顺利通过。
+　实际上，通信信道是有一个分层的信道栈组成-栈中的每一个信道都在消息处理过程中负责实施一个特定动作，信道栈包含一个传输信道，一个消息编码信道，和任意数量的消息处理信道，绑定则将决定了哪些信道留在信道栈中。当行为穿过信道栈时，消息处理方式将会有所改变。。</description></item><item><title>WCF双工通信示例</title><link>http://leaver.me/2012/09/07/wcf%E5%8F%8C%E5%B7%A5%E9%80%9A%E4%BF%A1%E7%A4%BA%E4%BE%8B/</link><pubDate>Fri, 07 Sep 2012 22:22:30 +0000</pubDate><guid>http://leaver.me/2012/09/07/wcf%E5%8F%8C%E5%B7%A5%E9%80%9A%E4%BF%A1%E7%A4%BA%E4%BE%8B/</guid><description>这两天在看WCF的书籍。就参考书上的代码写了这个例子。不得不说。书上有些错误的地方。。运行明显报错。改了一下。顺利通过。
 　先运行Hosting。然后运行Client。可以看到效果。不过不知道为什么会有如下的一个提示：
 　目标程序集不包含服务类型。可能需要调整此程序集的代码访问安全策略。
 　点击确定后并不影响程序运行。。但是也是个问题。。找了一下解决方法。都没有解决。。可能是我新建契约服务的时候，删掉了默认的IService配置。
@@ -558,16 +299,7 @@ WCF的四大契约
 　暂时先放着吧。
 　运行截图：
 　
-　示例代码下载：Lazy.Duplex</description>
-    </item>
-    
-    <item>
-      <title>WCF读书笔记(2)</title>
-      <link>http://leaver.me/2012/09/06/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B02/</link>
-      <pubDate>Thu, 06 Sep 2012 22:09:48 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/09/06/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B02/</guid>
-      <description>信道形状（Channel Shape）
+　示例代码下载：Lazy.Duplex</description></item><item><title>WCF读书笔记(2)</title><link>http://leaver.me/2012/09/06/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B02/</link><pubDate>Thu, 06 Sep 2012 22:09:48 +0000</pubDate><guid>http://leaver.me/2012/09/06/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B02/</guid><description>信道形状（Channel Shape）
 　用来表述不同的消息交换模式对消息交换双方信道（信息交换的管道）的不同要求，有什么IOutputChannel IReplyChannel IDuplexChannel之类的。。
 　对于IReplyChannel，服务器返回一个RequestContext类型，作为请求和回复之间的一道桥梁，可以获取也可以返回消息。
 会话信道（Session Channel）
@@ -583,16 +315,7 @@ WCF的四大契约
 　解决跨应用程序域对象访问的问题，需要采用一种特别的机制，那就是封送。分为按值封送和按引用封送
 　按值封送实现了跨应用程序域的数据共享
 　按引用封送则实现了跨应用程序域的远程调用。
-　如果一个程序员频繁的使用复制粘贴编程。那就意味着设计需要重构</description>
-    </item>
-    
-    <item>
-      <title>WCF读书笔记(1)</title>
-      <link>http://leaver.me/2012/09/05/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B01/</link>
-      <pubDate>Wed, 05 Sep 2012 19:29:14 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/09/05/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B01/</guid>
-      <description>信道的分类：Transport Channel 信道
+　如果一个程序员频繁的使用复制粘贴编程。那就意味着设计需要重构</description></item><item><title>WCF读书笔记(1)</title><link>http://leaver.me/2012/09/05/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B01/</link><pubDate>Wed, 05 Sep 2012 19:29:14 +0000</pubDate><guid>http://leaver.me/2012/09/05/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B01/</guid><description>信道的分类：Transport Channel 信道
 　1.Message Encording Channel　2.Protocol Channel
 信道管理器（Channel Manager）,信道管理器用于信道栈的创建和生命周期的管理
 　1.ChannelListener　2.ChannelFactory
@@ -608,124 +331,61 @@ WCF服务调用的两种典型方式
 　2.Request/Reply模式
 　使用最多的一种模式，请求期待回复。采用同步通信方式，但也可用于异步通信
 　3.Duplex 双工模式
-　双方可以互发消息，实现服务器回调客户端。订阅/发布是其中一种典型的实例，TCP可以提供原生的双工通信，WCF通过WSDualHttpBinding实现了基于Http的双工通信，实际上是采用两个HTTP通道实现</description>
-    </item>
-    
-    <item>
-      <title>SqlServer 2008开启远程连接</title>
-      <link>http://leaver.me/2012/08/20/sqlserver-2008%E5%BC%80%E5%90%AF%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/</link>
-      <pubDate>Mon, 20 Aug 2012 02:48:22 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/08/20/sqlserver-2008%E5%BC%80%E5%90%AF%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/</guid>
-      <description>对于需要外部访问数据库的操作，需要开启sql server的远程连接。没经验的我等Google之。。大部分操作按照SQL Server 2008 R2如何开启数据库的远程连接来操作
+　双方可以互发消息，实现服务器回调客户端。订阅/发布是其中一种典型的实例，TCP可以提供原生的双工通信，WCF通过WSDualHttpBinding实现了基于Http的双工通信，实际上是采用两个HTTP通道实现</description></item><item><title>SqlServer 2008开启远程连接</title><link>http://leaver.me/2012/08/20/sqlserver-2008%E5%BC%80%E5%90%AF%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/</link><pubDate>Mon, 20 Aug 2012 02:48:22 +0000</pubDate><guid>http://leaver.me/2012/08/20/sqlserver-2008%E5%BC%80%E5%90%AF%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/</guid><description>对于需要外部访问数据库的操作，需要开启sql server的远程连接。没经验的我等Google之。。大部分操作按照SQL Server 2008 R2如何开启数据库的远程连接来操作
 　但是。有一些很小的细节需要注意。我的数据库是Sql Server 2008 Express版。这个是VS自带的。为了管理方便，可以安装SQL Server® 2008 Management Studio Express 安装过程不多说。安装完成后，直接打开
 　
 　服务器名称默认是空的。。“.”好像是不行的，这时候点击右边箭头。更多，本地和远程服务器。在远程服务器里可以找到。点击就可以了。
 　我按照文章改完。sa还是登不上。。然后又试了一些
 　
-　如上图右键sa，属性，常规里设置sa密码。不要太简单。状态里的登录选项设为启用。ok。。我碰上的问题就这几个。</description>
-    </item>
-    
-    <item>
-      <title>未能从程序集“System.ServiceModel 错误</title>
-      <link>http://leaver.me/2012/08/20/%E6%9C%AA%E8%83%BD%E4%BB%8E%E7%A8%8B%E5%BA%8F%E9%9B%86system.servicemodel-%E9%94%99%E8%AF%AF/</link>
-      <pubDate>Mon, 20 Aug 2012 02:36:44 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/08/20/%E6%9C%AA%E8%83%BD%E4%BB%8E%E7%A8%8B%E5%BA%8F%E9%9B%86system.servicemodel-%E9%94%99%E8%AF%AF/</guid>
-      <description>今天在把wcf发布到远程服务器后。出现了这个错误。
+　如上图右键sa，属性，常规里设置sa密码。不要太简单。状态里的登录选项设为启用。ok。。我碰上的问题就这几个。</description></item><item><title>未能从程序集“System.ServiceModel 错误</title><link>http://leaver.me/2012/08/20/%E6%9C%AA%E8%83%BD%E4%BB%8E%E7%A8%8B%E5%BA%8F%E9%9B%86system.servicemodel-%E9%94%99%E8%AF%AF/</link><pubDate>Mon, 20 Aug 2012 02:36:44 +0000</pubDate><guid>http://leaver.me/2012/08/20/%E6%9C%AA%E8%83%BD%E4%BB%8E%E7%A8%8B%E5%BA%8F%E9%9B%86system.servicemodel-%E9%94%99%E8%AF%AF/</guid><description>今天在把wcf发布到远程服务器后。出现了这个错误。
 　确运行报告“未能从程序集“System.ServiceModel, Version=3.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089”中加载类型“System.ServiceModel.Activation.HttpModule”。”。
 　因为远程服务器是临时装的。肯定是少装了什么东西。。果断Google。直接输入下面的命令。安装注册一下asp.net4就可以了。
 　c:\windows\microsoft.net\framework64\v4.0.30319\aspnet_regiis.exe -iru　中间的版本号应该是自己去目录看一看。
-　哦。我的是win server 2008的服务器。如果你也遇到了同样的问题。试试吧。</description>
-    </item>
-    
-    <item>
-      <title>C#中的Array和ArrayList</title>
-      <link>http://leaver.me/2012/07/11/c#%E4%B8%AD%E7%9A%84array%E5%92%8Carraylist/</link>
-      <pubDate>Wed, 11 Jul 2012 12:51:03 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/07/11/c#%E4%B8%AD%E7%9A%84array%E5%92%8Carraylist/</guid>
-      <description>数组是最基础的数据结构。ArrayList可以看作是Array的复杂版本。下面比较两者的异同
-比较：  相同点：  Array和ArrayList均实现了相同的接口，因此具有许多相同的操作方法，例如对自身进行枚举，能够以foreach语句遍历。 Array和ArrayList创建的对象均保存在托管堆中。
- 不同点：   Array只能存储同构对象，当然，声明为Object类型的数组除外，因为任何类型都可以隐式转换成Object类型。ArrayList可以存储异构对象，这是因为本质上ArrayList内部维护着一个object[] items类型的字段，在应用ArrayList时，应该考虑装箱和拆箱所带来的性能损失。一般情况下，Array的性能高于ArrayList。 Array可以是一维的，也可以是多维的，而ArrayList只能是一维的。 Array的容量是固定的。一旦声明，不可更改，而ArrayList容量动态增加，当添加元素超过初始容量时，ArrayList会根据需要重新分配。而且可以通过TrimToSize删除空项来压缩体积。其实，除了Array外，其他集合类都是可以动态增加的。 Array的下限可以设置，而ArrayList下限只能是0. Array只有简单的方法来获取或设置元素值，不能随意增加或删除数组元素，而ArrayList提供了更多的方法来操作元素，可以方便的插入或删除指定位置上的元素。一般可以用ArrayList代替Array. tip：List泛型类对应于ArrayList。    </description>
-    </item>
-    
-    <item>
-      <title>C#中的抽象类和接口</title>
-      <link>http://leaver.me/2012/07/10/c#%E4%B8%AD%E7%9A%84%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3/</link>
-      <pubDate>Tue, 10 Jul 2012 20:25:51 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/07/10/c#%E4%B8%AD%E7%9A%84%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3/</guid>
-      <description>本文同样是笔记整理，手动输入一遍和看书的感觉还是很不一样的。文章非常好，讲的很清楚。
+　哦。我的是win server 2008的服务器。如果你也遇到了同样的问题。试试吧。</description></item><item><title>C#中的Array和ArrayList</title><link>http://leaver.me/2012/07/11/c#%E4%B8%AD%E7%9A%84array%E5%92%8Carraylist/</link><pubDate>Wed, 11 Jul 2012 12:51:03 +0000</pubDate><guid>http://leaver.me/2012/07/11/c#%E4%B8%AD%E7%9A%84array%E5%92%8Carraylist/</guid><description>数组是最基础的数据结构。ArrayList可以看作是Array的复杂版本。下面比较两者的异同
+比较： 相同点： Array和ArrayList均实现了相同的接口，因此具有许多相同的操作方法，例如对自身进行枚举，能够以foreach语句遍历。 Array和ArrayList创建的对象均保存在托管堆中。
+不同点： Array只能存储同构对象，当然，声明为Object类型的数组除外，因为任何类型都可以隐式转换成Object类型。ArrayList可以存储异构对象，这是因为本质上ArrayList内部维护着一个object[] items类型的字段，在应用ArrayList时，应该考虑装箱和拆箱所带来的性能损失。一般情况下，Array的性能高于ArrayList。 Array可以是一维的，也可以是多维的，而ArrayList只能是一维的。 Array的容量是固定的。一旦声明，不可更改，而ArrayList容量动态增加，当添加元素超过初始容量时，ArrayList会根据需要重新分配。而且可以通过TrimToSize删除空项来压缩体积。其实，除了Array外，其他集合类都是可以动态增加的。 Array的下限可以设置，而ArrayList下限只能是0. Array只有简单的方法来获取或设置元素值，不能随意增加或删除数组元素，而ArrayList提供了更多的方法来操作元素，可以方便的插入或删除指定位置上的元素。一般可以用ArrayList代替Array. tip：List泛型类对应于ArrayList。</description></item><item><title>C#中的抽象类和接口</title><link>http://leaver.me/2012/07/10/c#%E4%B8%AD%E7%9A%84%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3/</link><pubDate>Tue, 10 Jul 2012 20:25:51 +0000</pubDate><guid>http://leaver.me/2012/07/10/c#%E4%B8%AD%E7%9A%84%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3/</guid><description>本文同样是笔记整理，手动输入一遍和看书的感觉还是很不一样的。文章非常好，讲的很清楚。
 什么是接口？ 　接口是包含一组虚方法的抽象类型，其中每一种方法都有其名称、参数和返回值。接口方法不能包含任何实现，CLR允许接口可以包含事件、属性、索引器、静态方法、静态字段、静态构造函数以及常数。但是注意：C#中不能包含任何静态成员。一个类可以实现多个接口，当一个类继承某个接口时，它不仅要实现该接口定义的所有方法，还要实现该接口从其他接口中继承的所有方法。
 什么是抽象类？ 　抽象类提供多个派生类共享基类的公共定义，它既可以提供抽象方法，也可以提供非抽象方法。抽象类不能实例化，必须通过继承由派生类实现其抽象方法，因此对抽象类不能使用new关键字，也不能被密封。如果派生类没有实现所有的抽象方法，则该派生类也必须声明为抽象类。另外，实现抽象方法由override方法来实现。
-比较  相同点   都不能被直接实例化，都可以通过继承实现其抽象方法。 都是面向抽象编程的技术基础，实现了诸多的设计模式。   不同点   接口支持多继承；抽象类不能实现多继承。 接口只能定义抽象规则；抽象类既可以定义规则，还可能提供已实现的成员。 接口是一组行为规范；抽象类是一个不完全的类，着重族的概念。 接口可以用于支持回调；抽象类不能实现回调，因为继承不支持。 接口只包含方法、属性、索引器、事件的签名，但不能定义字段和包含实现的方法；抽象类可以定义字段、属性、包含有实现的方法。 接口可以作用于值类型和引用类型；抽象类只能作用于引用类型。例如，Struct就可以继承接口，而不能继承类。   规则与场合   请记住，面向对象思想的一个最重要的原则就是：面向接口编程。 借助接口和抽象类，23个设计模式中的很多思想被巧妙的实现了，精髓就是面向抽象编程，通过封装变化来实现实体之间的关系。 抽象类应主要用于关系密切的对象，而接口最适合为不相关的类提供通用功能。 接口着重于CAN-DO关系类型，而抽象类则偏重于IS-A式的关系； 接口多定义对象的行为；抽象类多定义对象的属性； 接口定义可以使用public、protected、internal 和private修饰符，但是几乎所有的接口都定义为public，另外方法的访问级别不能低于接口的访问级别，否则可能导致编译错误。 “接口不变”，是应该考虑的重要因素。所以，在由接口增加扩展时，应该增加新的接口，而不能更改现有接口。 尽量将接口设计成功能单一的功能块，以.NET Framework为例，IDisposable、IDisposable、IComparable、IEquatable、IEnumerable等都只包含一个公共方法。 接口名称前面的大写字母“I”是一个约定，正如字段名以下划线开头一样，请坚持这些原则。 在接口中，所有的方法都默认为public。 如果预计会出现版本问题，可以创建“抽象类”。而向接口中添加新成员则会强制要求修改所有派生类，并重新编译，所以版本式的问题最好以抽象类来实现。 从抽象类派生的非抽象类必须包括继承的所有抽象方法和抽象访问器的实实现。 对抽象类不能使用new关键字，也不能被密封，原因是抽象类不能被实例化。 在抽象方法声明中不能使用 static 或 virtual 修饰符。 最后还是要勤于键盘，才能深入理解啊。    参考：对抽象编程：接口和抽象类
- </description>
-    </item>
-    
-    <item>
-      <title>降级论</title>
-      <link>http://leaver.me/2012/07/07/%E9%99%8D%E7%BA%A7%E8%AE%BA/</link>
-      <pubDate>Sat, 07 Jul 2012 22:37:11 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/07/07/%E9%99%8D%E7%BA%A7%E8%AE%BA/</guid>
-      <description>相当精彩的一篇文章『降级论』，收藏分享。精彩的部分突出显示了。
+比较 相同点 都不能被直接实例化，都可以通过继承实现其抽象方法。 都是面向抽象编程的技术基础，实现了诸多的设计模式。 不同点 接口支持多继承；抽象类不能实现多继承。 接口只能定义抽象规则；抽象类既可以定义规则，还可能提供已实现的成员。 接口是一组行为规范；抽象类是一个不完全的类，着重族的概念。 接口可以用于支持回调；抽象类不能实现回调，因为继承不支持。 接口只包含方法、属性、索引器、事件的签名，但不能定义字段和包含实现的方法；抽象类可以定义字段、属性、包含有实现的方法。 接口可以作用于值类型和引用类型；抽象类只能作用于引用类型。例如，Struct就可以继承接口，而不能继承类。 规则与场合 请记住，面向对象思想的一个最重要的原则就是：面向接口编程。 借助接口和抽象类，23个设计模式中的很多思想被巧妙的实现了，精髓就是面向抽象编程，通过封装变化来实现实体之间的关系。 抽象类应主要用于关系密切的对象，而接口最适合为不相关的类提供通用功能。 接口着重于CAN-DO关系类型，而抽象类则偏重于IS-A式的关系； 接口多定义对象的行为；抽象类多定义对象的属性； 接口定义可以使用public、protected、internal 和private修饰符，但是几乎所有的接口都定义为public，另外方法的访问级别不能低于接口的访问级别，否则可能导致编译错误。 “接口不变”，是应该考虑的重要因素。所以，在由接口增加扩展时，应该增加新的接口，而不能更改现有接口。 尽量将接口设计成功能单一的功能块，以.NET Framework为例，IDisposable、IDisposable、IComparable、IEquatable、IEnumerable等都只包含一个公共方法。 接口名称前面的大写字母“I”是一个约定，正如字段名以下划线开头一样，请坚持这些原则。 在接口中，所有的方法都默认为public。 如果预计会出现版本问题，可以创建“抽象类”。而向接口中添加新成员则会强制要求修改所有派生类，并重新编译，所以版本式的问题最好以抽象类来实现。 从抽象类派生的非抽象类必须包括继承的所有抽象方法和抽象访问器的实实现。 对抽象类不能使用new关键字，也不能被密封，原因是抽象类不能被实例化。 在抽象方法声明中不能使用 static 或 virtual 修饰符。 最后还是要勤于键盘，才能深入理解啊。 参考：对抽象编程：接口和抽象类
+ </description></item><item><title>降级论</title><link>http://leaver.me/2012/07/07/%E9%99%8D%E7%BA%A7%E8%AE%BA/</link><pubDate>Sat, 07 Jul 2012 22:37:11 +0000</pubDate><guid>http://leaver.me/2012/07/07/%E9%99%8D%E7%BA%A7%E8%AE%BA/</guid><description>相当精彩的一篇文章『降级论』，收藏分享。精彩的部分突出显示了。
 　几乎一年没有写博客了，说没时间那是借口，唯一的原因是，年纪越大越发觉自己肤浅。有些想法还没提笔，就发现很幼稚，就不敢发出来贻笑大方了。这次先给大家说个小故事：
 　从前有三个屌丝，聚在一起做网络，提供免费的网络服务，砸锅卖铁，通宵达旦，除了卖肾啥都做了。3年后终于做到了五百万用户，对于年轻人来说，能把五百万人玩弄于鼓掌之间，已经是很牛逼轰轰的事了，不过用户越多，成本越高，每年服务器、带宽租金、房租水电、广告运营等成本，已经达到了十七八万，屌丝们不得不面对一个终极问题：如何盈利？
 　屌丝们定了三盘沙县水饺，围着一箱子的冰啤酒开始计算：按照最近一月的登陆情况来看，四百万个账号已经不活跃了，真正有商业价值的只有一百万人，如 果开通xx功能，收点高级会员费，让其中1%的人升级为高级会员，每年付30块钱年费，那么每年收入就是100万x1%x30元=30万元！不错嘛， 扣除十七八万的运营成本，还剩毛利润12万，每个屌丝年底能分到4万大洋，如果按照打工者的算法，这三个人每人月薪3333元，木有奖金，木有津贴、木有任何福利，上班还得带自家的电脑。
 　尽管如此，屌丝们还是激动得热泪盈眶：老子有钱啦！老子有钱啦！！！那一夜，人们看到三个发疯的屌丝在屋顶翩翩起舞。
- 韩寒说，中国人民是最有忍耐力的族群，一点好处就感激涕零。他一定不知道，IT创业界里的屌丝，才是这群傻逼中的战斗机。他们可以平静地忍受每年都持续亏钱，而且还能信心十足的对所有人说公司的状态非常好，如果有一天居然收支平衡了，他们会激动的趁夜难眠，比北朝鲜倒掉还开心。
- 　本文开头的三个屌丝，其实是非常幸运的，至少能做到月薪3333元。大部分的屌丝在第一年做到几万用户的时候就会挂掉，原因众多，最主要要的是意志太弱，受不了最初的寂寞；意志稍微坚强点的会在第二年第三年慢慢挂掉，原因主要是资金断裂、团队分裂；能成功熬到第四年还没饿死、还没被口水淹死、还没被肠胃病颈椎病腰肌劳损折磨死的，甚至员工不减反增的，基本上属于神仙级别了。
+韩寒说，中国人民是最有忍耐力的族群，一点好处就感激涕零。他一定不知道，IT创业界里的屌丝，才是这群傻逼中的战斗机。他们可以平静地忍受每年都持续亏钱，而且还能信心十足的对所有人说公司的状态非常好，如果有一天居然收支平衡了，他们会激动的趁夜难眠，比北朝鲜倒掉还开心。
+　本文开头的三个屌丝，其实是非常幸运的，至少能做到月薪3333元。大部分的屌丝在第一年做到几万用户的时候就会挂掉，原因众多，最主要要的是意志太弱，受不了最初的寂寞；意志稍微坚强点的会在第二年第三年慢慢挂掉，原因主要是资金断裂、团队分裂；能成功熬到第四年还没饿死、还没被口水淹死、还没被肠胃病颈椎病腰肌劳损折磨死的，甚至员工不减反增的，基本上属于神仙级别了。
 　我为什么要说三个屌丝的故事呢。首先是因为这是身边每天都在发生的故事，其次是因为感到可惜，
- IT界在我眼里一直是一个无比高级的职业，聚集着全球最聪明、最富有的人类精英。以IT创业界的青年们的智商，他们可以做成任何一件事情，包括改造银行到制造汽车到发射航天飞机 。结果这帮人却整天在蓬头垢面得为3k的月薪而挣扎，太悲催了。
- 　为什么用悲催这个词？ 如果一个人生下来就在山沟沟里，一辈子都没机会去见什么好东西，这不叫悲催，这只叫苦难；
- 而如果一个人生出来有一个奇怪的特异功能：皮肤出来的汗水会凝结成昂贵的水晶，本来只靠出汗就能赚钱，结果这傻逼居然觉得出汗这个行为太低级，做手术把自己的汗腺全给切了，而且丝毫没有意识到他做了什么傻事，这才叫真的悲催。
- 　我们IT界中的很多人，生下来就是有这个出汗成水晶的特异功能的，正是因为这种与众不同，这群人能混入牛逼的大学，整天打网游还能写出像样的毕业论文， 拿到学位，进外企，考CPA，做咨询、做证券分析，研究高分子材料，做电子商务，做云计算。。。一级一级的上升，直到有一天，发现身边的人里，已经没有一个不是CPA，不是咨询师，不是高级研究员了，身边的人全是业界精英，个个都超级强悍。在这个所谓的高级圈子里，自己并没有任何过人之处，只不过是just another analyst而已。在高级圈子里拼的头破血流，最后也只能混到给台湾人整理数据而已。莫然回首，发现当年的血气方刚、年少时的无限梦想，进化成了一身肥胖的赘肉。这个时候，有个旁观者说：“升级到头了，该降级了”
- 当一个社会疯狂鼓吹快节奏的时候，一定需要有人来宣扬慢生活；当全社会跟打了鸡血似的吹捧升级的时候，一定需要有人来说说降级论。
- 　IT青年们喜欢打游戏，喜欢升级。他们的人生也和游戏一样，沉醉于不停的升级中，不仅喜欢升级自己手上的技术，把MySql改成MongoDB，把Apache升级为Nginx，在Mac上装Ubuntu，Ubuntu里再装个虚拟机去跑Mac OS。。。IT青年们也喜欢升级自己的人生，从程序员升级到项目经理，再升级到技术总监或产品总监，再升级到合伙人。。。
+IT界在我眼里一直是一个无比高级的职业，聚集着全球最聪明、最富有的人类精英。以IT创业界的青年们的智商，他们可以做成任何一件事情，包括改造银行到制造汽车到发射航天飞机 。结果这帮人却整天在蓬头垢面得为3k的月薪而挣扎，太悲催了。
+　为什么用悲催这个词？ 如果一个人生下来就在山沟沟里，一辈子都没机会去见什么好东西，这不叫悲催，这只叫苦难；
+而如果一个人生出来有一个奇怪的特异功能：皮肤出来的汗水会凝结成昂贵的水晶，本来只靠出汗就能赚钱，结果这傻逼居然觉得出汗这个行为太低级，做手术把自己的汗腺全给切了，而且丝毫没有意识到他做了什么傻事，这才叫真的悲催。
+　我们IT界中的很多人，生下来就是有这个出汗成水晶的特异功能的，正是因为这种与众不同，这群人能混入牛逼的大学，整天打网游还能写出像样的毕业论文， 拿到学位，进外企，考CPA，做咨询、做证券分析，研究高分子材料，做电子商务，做云计算。。。一级一级的上升，直到有一天，发现身边的人里，已经没有一个不是CPA，不是咨询师，不是高级研究员了，身边的人全是业界精英，个个都超级强悍。在这个所谓的高级圈子里，自己并没有任何过人之处，只不过是just another analyst而已。在高级圈子里拼的头破血流，最后也只能混到给台湾人整理数据而已。莫然回首，发现当年的血气方刚、年少时的无限梦想，进化成了一身肥胖的赘肉。这个时候，有个旁观者说：“升级到头了，该降级了”
+当一个社会疯狂鼓吹快节奏的时候，一定需要有人来宣扬慢生活；当全社会跟打了鸡血似的吹捧升级的时候，一定需要有人来说说降级论。
+　IT青年们喜欢打游戏，喜欢升级。他们的人生也和游戏一样，沉醉于不停的升级中，不仅喜欢升级自己手上的技术，把MySql改成MongoDB，把Apache升级为Nginx，在Mac上装Ubuntu，Ubuntu里再装个虚拟机去跑Mac OS。。。IT青年们也喜欢升级自己的人生，从程序员升级到项目经理，再升级到技术总监或产品总监，再升级到合伙人。。。
 　在不断追求升级的过程中，所面临的一个很大事实是：当一个人从A刚升级到A+级的时候，其实这个人的能力层级依然只是A的层级，还未胜任A+的层级，他必须要到A+的后期，才可以胜任A+。就好像一个高中生，高考完之后，虽然理论上已经属于大学生了，但是他的实际能力依然只是高三毕业的水平，除非他全部pass了大一的期末考试。同样的道理，
- 这个世界上有很多人的身份和称谓，都是在描述“未来的自己”，而不是现在的自己。
- 当你从销售员升级为销售经理的时候，你自我感觉很好：“我现在是销售经理了”，但是这个时候 ，你并未通过公司对你作为销售经理这一年的工作成果的考核，你只是一个“未来可能是合格的销售经理”的前身。如果年终考核你失败了，那么这一年最准确的描述是：一个销售员，占了整整一年销售经理的位子，最后失败了。而且这一年一定会过的很累，因为通过考核的其他销售经理，才是真正胜任这个层级的人，跟一帮真正属于这个圈子的人厮杀，就好像拳击馆里当陪练的小角色，去和泰森比了一年的武，怎么可能不累呢？
+这个世界上有很多人的身份和称谓，都是在描述“未来的自己”，而不是现在的自己。
+当你从销售员升级为销售经理的时候，你自我感觉很好：“我现在是销售经理了”，但是这个时候 ，你并未通过公司对你作为销售经理这一年的工作成果的考核，你只是一个“未来可能是合格的销售经理”的前身。如果年终考核你失败了，那么这一年最准确的描述是：一个销售员，占了整整一年销售经理的位子，最后失败了。而且这一年一定会过的很累，因为通过考核的其他销售经理，才是真正胜任这个层级的人，跟一帮真正属于这个圈子的人厮杀，就好像拳击馆里当陪练的小角色，去和泰森比了一年的武，怎么可能不累呢？
 　当我07年进入互联网行业的时候，就是那个拳击馆里陪练的小角色，我被迫去跟全国各地的泰森比拼，结果累的半死。后来我开始反思最初的目标，为什么要在自己身上挂一个“拳击高手”的招牌，被那么多泰森追着打？ 我把这块招牌卸了，找个完全没练武的人去比拼，不是更容易赢么？于是果断照做，去找了一个没人懂拳击的小乡村，做了纯英文的Tucia.com(需翻墙)，只做国外的业务。在那个地方，作为一个知名武馆的拳击小陪练，我成了村子里拳击技术最高超的人，受人仰慕，还开武馆教人拳击，活的非常滋润，而且在教人拳击的过程中，自己的拳术也比以前提高了很多，发展出一套属于自己的拳法，我虽然进不了泰森们的大圈子，但他们也进不了我的小圈子。
- 关于圈子，有一个很赤裸裸的现实：不会是你进入圈子，只能是圈子进入你。很多人会四处找关系，“帮我介绍给xxx吧，我想进入你们的圈子”，这样的人是永远进不去这个圈子的，因为圈子的天性是，永远追求更高一个层级的人。而我们的大部分人，其实都在以低一级的属性，占着更高一级的位子，徘徊在更高一级的圈子边缘，与更高一级的人竞争，幻想着自己可以升级到那个圈子里去。也许永远进不去，悲催的努力一辈子；也许运气好，某一天真的进入这个圈子了，但那个时候又会有下一个目标，希望进入更高级的圈子，这是一场没有终点的战斗。永远的追求升级，永远的累。
- 　有没有想过降级呢？
+关于圈子，有一个很赤裸裸的现实：不会是你进入圈子，只能是圈子进入你。很多人会四处找关系，“帮我介绍给xxx吧，我想进入你们的圈子”，这样的人是永远进不去这个圈子的，因为圈子的天性是，永远追求更高一个层级的人。而我们的大部分人，其实都在以低一级的属性，占着更高一级的位子，徘徊在更高一级的圈子边缘，与更高一级的人竞争，幻想着自己可以升级到那个圈子里去。也许永远进不去，悲催的努力一辈子；也许运气好，某一天真的进入这个圈子了，但那个时候又会有下一个目标，希望进入更高级的圈子，这是一场没有终点的战斗。永远的追求升级，永远的累。
+　有没有想过降级呢？
 　如果一个来自微软的高级工程师，辞职去一个养猪场做开放平台经理，那么他的到来不仅会让养猪圈感到无比荣幸，更是意味着，利用他在IT界训练出来的高效工作方式和逻辑思维能力，他可以掀起一场养猪行业的革命，使得20年后才会出现的人性、高效、开放、协作、健康的养殖方式提前到达。在这场革命中，他会活的非常有价值。这种价值，在原先的圈子里，是完全体验不到的，因为他此前的所有工作，只是在满身疮痍的windows系统上不停的打补丁，无论打多少都逃不开产品衰落、被人鄙视的命运。
 　很多人的命运，都像是上面那个微软工程师。只需要降级，就能创造更大的价值，也能获得更大的满足。那为什么不呢？为什么要死死抱着那个所谓的“高级职业”不放呢？
 　去年我曾犯贱去趟了移动互联网的浑水，做了个手机app，刚开始的时候感觉很高级，但很快，铺天盖地的竞争对手就出现了，我又发现自己陷入了07年一样的场景：作为一个小小陪练，我他妈的又被一帮泰森们给围住了。当泰森中的战斗机&amp;mdash;微信，变得无比牛逼之后，我就知道，战胜这群泰森是绝对不可能的事情了。于是我再次投靠了“降级论”，把自己从牛逼哄哄的移动互联网行业，降级到了一个被人不齿的低级项目：Tucia Baby。
 　这个项目虽然是传统行业，但是我们基本上是按照互联网产品的思路去做的，除了拍摄需要来店里以外，其他一切，包括营销、预约、客服、后期、选片、取片、客户关系等，所有环节都放在网络上，尤其是微博（@tuciababy官网）。当然，最重要的是，作为一个脑残的果粉，我按照iPhone的做工和品质去要求每一张作品，必须达到我们能力可以做到的最好水准，不计成本的最好水准，才允许送给客户。正式接客不到两个月时间，虽然还远未达到成功，但目前已做到每天都有客户订单，财务上已实现盈利，未来相信一定会比大部分app开发者更光明。（ps:我们没有请工商、税务、城管去吃饭喝酒泡桑拿，也没有塞钱给任何政府机关。
- 当你的产品真的用心做到很好的时候，其实你不需要讨好任何人的。
- ）
+当你的产品真的用心做到很好的时候，其实你不需要讨好任何人的。
+）
 　这个项目让我沉思了很久：07年我曾把一个纯纯的web2.0网站做到了alexa中国区前1000名（如有质疑，请查询2010年附近的tucia.com排名），结果一路亏损，到最后只剩下一个员工；11年我把那个纯纯的app做到苹果官方推荐区免费榜的第一位（点此看截图），那段时间每天四五千iPhone安装量，结果一路烧钱，到最后濒临关闭；而如今，我只需把自己从纯纯的互联网降级下来，做一些看起来有些“低级”的项目，居然就能立即实现收支平衡。
 　除此以外，我还发现一个现象，
- 中国消费者在与奸商们的长期斗争中，已经培养出了一种非常苦B的品质：只要不被坑，他就谢天谢地。如果商家严格做到了承诺的每一件事情，客户就会感动的泪如泉涌。
- 如果商家不仅做到了所有承诺的事情，还很贴心的提供了一些额外的服务（比如我们给每位客户赠送非常好吃的樱桃和昂贵的进口巧克力作为甜点），那么客户就会激动的哭天喊地、奔走相告，推荐给他认识的每一个人。
- 其实这片肮脏的国土，就是上天赐予IT青年们的最好机会。
- 　在一个不会练武的村子里，只要你会打两拳，你就是拳术最厉害的人；在一个没有服务意识、忽视产品质量的土地上，只要你用心做服务，用最高的标准去要求自己，你就会成为这块土地上最出色的商家；在一个没有现代管理意识，不懂网络、不懂微博、不懂用户体验、不懂口碑传播的粗犷社会里，你只需要把之前花在IT产品上的心思的10%拿过来用，就可以秒杀一切天朝对手。
+中国消费者在与奸商们的长期斗争中，已经培养出了一种非常苦B的品质：只要不被坑，他就谢天谢地。如果商家严格做到了承诺的每一件事情，客户就会感动的泪如泉涌。
+如果商家不仅做到了所有承诺的事情，还很贴心的提供了一些额外的服务（比如我们给每位客户赠送非常好吃的樱桃和昂贵的进口巧克力作为甜点），那么客户就会激动的哭天喊地、奔走相告，推荐给他认识的每一个人。
+其实这片肮脏的国土，就是上天赐予IT青年们的最好机会。
+　在一个不会练武的村子里，只要你会打两拳，你就是拳术最厉害的人；在一个没有服务意识、忽视产品质量的土地上，只要你用心做服务，用最高的标准去要求自己，你就会成为这块土地上最出色的商家；在一个没有现代管理意识，不懂网络、不懂微博、不懂用户体验、不懂口碑传播的粗犷社会里，你只需要把之前花在IT产品上的心思的10%拿过来用，就可以秒杀一切天朝对手。
 　所以，
 　IT青年们，当你在为网站的转化率苦苦思索的时候，当你在为app的活跃度辗转反侧的时候，当你在为融资计划苦苦哀求各界大佬引荐的时候，也许犯了一个错误，也许你们的脑子最值得闪光的地方，不是去悲催的IT界当炮灰，而应该是去按摩界、餐饮界、烧烤界、早餐界、理发界、家政界、按摩界、送花界、纺织界、成人用品界、现代化养殖界、有机蔬果界、个人护理界、汽车修理界。。。。与IT界相比，这些行业的确无比低级，他们的老板连qq都会发音成“抠抠”，他们的员工一辈子都没用过Email；跟他们解释什么是SEO，什么是用户体验，什么是数据挖掘，他们会在听你说完之前就开枪自杀掉。正是因为如此，这些行业才是如此的不堪一击。正是因为如此，当智商高达147的IT青年还在为3k薪水拼命、而智商不到50的烧烤店老板正坐在porsche里玩着前面那位青年开发的app的时候，我就忍不住仰望星空。
- 这些原始而纯粹的行业，正在等待IT精英们的降级，如同蒲公英一般的伞兵，在黑夜里从天而降，长驱直入，用最智慧的产品、最优质的服务拯救这些早就该死的行业，屌丝的生命将会绽放出银色的羽翼，无比丰满，无比性感。
- 　最后注意，请珍惜生命，远离我的微博：@meditic</description>
-    </item>
-    
-    <item>
-      <title>CSV批量导入解决</title>
-      <link>http://leaver.me/2012/07/06/csv%E6%89%B9%E9%87%8F%E5%AF%BC%E5%85%A5%E8%A7%A3%E5%86%B3/</link>
-      <pubDate>Fri, 06 Jul 2012 18:28:21 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/07/06/csv%E6%89%B9%E9%87%8F%E5%AF%BC%E5%85%A5%E8%A7%A3%E5%86%B3/</guid>
-      <description>最近的一个事就是那个诡异的CSV导入，后来决定用最笨的方法。就是readline，然后确实是可以正常识别了。思路就是一行行读入，然后构造sql语句，保存为sql文件，然后去批量执行sql文件。其实在codeproject找到了一些类似的工具，都有不如意的地方，但是时间关系还没能自己去定制，这件事完成后，就去完善一下大牛们的工具。
+这些原始而纯粹的行业，正在等待IT精英们的降级，如同蒲公英一般的伞兵，在黑夜里从天而降，长驱直入，用最智慧的产品、最优质的服务拯救这些早就该死的行业，屌丝的生命将会绽放出银色的羽翼，无比丰满，无比性感。
+　最后注意，请珍惜生命，远离我的微博：@meditic</description></item><item><title>CSV批量导入解决</title><link>http://leaver.me/2012/07/06/csv%E6%89%B9%E9%87%8F%E5%AF%BC%E5%85%A5%E8%A7%A3%E5%86%B3/</link><pubDate>Fri, 06 Jul 2012 18:28:21 +0000</pubDate><guid>http://leaver.me/2012/07/06/csv%E6%89%B9%E9%87%8F%E5%AF%BC%E5%85%A5%E8%A7%A3%E5%86%B3/</guid><description>最近的一个事就是那个诡异的CSV导入，后来决定用最笨的方法。就是readline，然后确实是可以正常识别了。思路就是一行行读入，然后构造sql语句，保存为sql文件，然后去批量执行sql文件。其实在codeproject找到了一些类似的工具，都有不如意的地方，但是时间关系还没能自己去定制，这件事完成后，就去完善一下大牛们的工具。
 　因为是多个csv文件，每个文件对应于我们想建的一个表，实际是大约2000个csv文件，每个文件大约4000行数据，构造成对应的sql语句比较简单，需要注意的就是如果sql server表中的字段和关键字重名，那么需要加[]，比如我们有个字段是open，那么实际sql语句中使用的时候，比如
 　简单的读写以后我们构造了2000个sql文件，然后我们需要执行这些sql文件。。必然需要写个代码来批量执行了。。为此，我先用C#生成一个批处理文件，然后来执行
-600M的sql文件执行起来三个多小时。。因为只算一次，所以就不考虑优化了。。鄙视我们吧。</description>
-    </item>
-    
-    <item>
-      <title>《Effective C#》Item 9：区别和认识四个判等函数</title>
-      <link>http://leaver.me/2012/07/05/effective-c#item-9%E5%8C%BA%E5%88%AB%E5%92%8C%E8%AE%A4%E8%AF%86%E5%9B%9B%E4%B8%AA%E5%88%A4%E7%AD%89%E5%87%BD%E6%95%B0/</link>
-      <pubDate>Thu, 05 Jul 2012 22:56:00 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/07/05/effective-c#item-9%E5%8C%BA%E5%88%AB%E5%92%8C%E8%AE%A4%E8%AF%86%E5%9B%9B%E4%B8%AA%E5%88%A4%E7%AD%89%E5%87%BD%E6%95%B0/</guid>
-      <description>.Net有四个判等函数？不少人看到这个标题，会对此感到怀疑。事实上确是如此，.Net提供了ReferenceEquals、静态Equals，具体类型的Equals以及==操作符这四个判等函数。但是这四个函数之间有细微的关系，改变其中一个函数的实现会影响到其他函数的操作结果。
+600M的sql文件执行起来三个多小时。。因为只算一次，所以就不考虑优化了。。鄙视我们吧。</description></item><item><title>《Effective C#》Item 9：区别和认识四个判等函数</title><link>http://leaver.me/2012/07/05/effective-c#item-9%E5%8C%BA%E5%88%AB%E5%92%8C%E8%AE%A4%E8%AF%86%E5%9B%9B%E4%B8%AA%E5%88%A4%E7%AD%89%E5%87%BD%E6%95%B0/</link><pubDate>Thu, 05 Jul 2012 22:56:00 +0000</pubDate><guid>http://leaver.me/2012/07/05/effective-c#item-9%E5%8C%BA%E5%88%AB%E5%92%8C%E8%AE%A4%E8%AF%86%E5%9B%9B%E4%B8%AA%E5%88%A4%E7%AD%89%E5%87%BD%E6%95%B0/</guid><description>.Net有四个判等函数？不少人看到这个标题，会对此感到怀疑。事实上确是如此，.Net提供了ReferenceEquals、静态Equals，具体类型的Equals以及==操作符这四个判等函数。但是这四个函数之间有细微的关系，改变其中一个函数的实现会影响到其他函数的操作结果。
 　首先要说的是Object.ReferenceEquals和Object.Equals这两个静态函数，对于它们俩来说，是不需要进行重写的，因为它们已经完成它们所要得做的操作。
 对于Object.ReferenceEquals这个静态函数，函数形式如下：
 　这个函数就是判断两个引用类型对象是否指向同一个地址。有此说明后，就确定了它的使用范围，即只能对于引用类型操作。那么对于任何值类型数据操作，即使是与自身的判别，都会返回false。这主要因为在调用此函数的时候，值类型数据要进行装箱操作，也就是对于如下的形式来说。
@@ -741,7 +401,7 @@ WCF服务调用的两种典型方式
 　那么对于Object.Equals这个静态方法来说，虽说接受参数的类型也属于引用类型，但是不同于Object.ReferenceEquals函数，对于如下的代码，能得出正确的结果。
  这是因为在此函数中要用到具体类型的两个判等函数，不过就函数本身而言，该做的判断都做了，因此不需要去重载添加复杂的操作。
 为了更好的述说剩下两个函数，先解释一下等价的意义。对于等价的意义，就是自反、对称以及传递。
- 所谓自反，即a == a； 而对称，是a == b，则b == a； 传递是 a == b，b == c，则 a == c； 理解等价的意义后，那么在实现类型的判等函数也要满足这个等价规则。  对于可以重载的两个判等函数，首先来介绍的是类型的Equals函数，其大致形式如下：
+所谓自反，即a == a； 而对称，是a == b，则b == a； 传递是 a == b，b == c，则 a == c； 理解等价的意义后，那么在实现类型的判等函数也要满足这个等价规则。 对于可以重载的两个判等函数，首先来介绍的是类型的Equals函数，其大致形式如下：
  如上增加了一个类型检查，即
 　这部分，这是由于子类对象可以通过as转化成基类对象，从而造成不同类型对象可以进行判等操作，违反了等价关系。
 　除此外对于类型的Equals函数来，其实并没有限制类型非要属于引用类型，对于值类型也是可以重载此函数，但是我并不推荐，主要是Equals函数的参数类型是不可变的，也就是说通过此方法，值类型要经过装箱操作，而这是比较影响效率的。
@@ -759,65 +419,26 @@ Object.Equals
 类型的Equals
 无限制
 类型的==****重载无限制
-来源：http://blog.csdn.net/knight94/article/details/1050901</description>
-    </item>
-    
-    <item>
-      <title>Unable to read file Data_EGCITest解决方法</title>
-      <link>http://leaver.me/2012/07/03/unable-to-read-file-data_egcitest%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</link>
-      <pubDate>Tue, 03 Jul 2012 19:50:19 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/07/03/unable-to-read-file-data_egcitest%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</guid>
-      <description>今天做的是使用matlab进行协整检验，好吧。。听起来似乎很厉害的样子，其实，我也不太清楚协整到底是干嘛呢。不过经管的各位很给力。 想来协整检验matlab是可以做的。所以就去查matlab是不是有这个函数，结果是有的。egcitest，但是具体的参数还是景观的朋友看懂的。
+来源：http://blog.csdn.net/knight94/article/details/1050901</description></item><item><title>Unable to read file Data_EGCITest解决方法</title><link>http://leaver.me/2012/07/03/unable-to-read-file-data_egcitest%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</link><pubDate>Tue, 03 Jul 2012 19:50:19 +0000</pubDate><guid>http://leaver.me/2012/07/03/unable-to-read-file-data_egcitest%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</guid><description>今天做的是使用matlab进行协整检验，好吧。。听起来似乎很厉害的样子，其实，我也不太清楚协整到底是干嘛呢。不过经管的各位很给力。 想来协整检验matlab是可以做的。所以就去查matlab是不是有这个函数，结果是有的。egcitest，但是具体的参数还是景观的朋友看懂的。
 　早上3点多起床，看matlab的书，然后早上看完了。基本上熟悉了matlab的操作。然后就开始写这个。大致的流程和昨天的那篇文章是一致的。但是matlab生成的dll文件在C#里面调用始终会提示这样一个错误。：
 　组合了几个关键字进行搜索，发现了这篇文章，翻译过来很简单。
-　错误提示说的那个Data_EGCITest是一个名为Data_EGCITest.mat的文件，位于$MATLABROOT/toolbox/econ/econ/Data_EGCITest.mat目录下，$MATLABROOT指的是你matlab的安装路径。在你build 工程的时候，在下图中，记得添加这个文件。 
+　错误提示说的那个Data_EGCITest是一个名为Data_EGCITest.mat的文件，位于$MATLABROOT/toolbox/econ/econ/Data_EGCITest.mat目录下，$MATLABROOT指的是你matlab的安装路径。在你build 工程的时候，在下图中，记得添加这个文件。
 　然后build生成的dll文件就可以正常在C#里使用了。
 　中间走了很多弯路。因为我想既然matlab都编译生成了dll，那么dll应该没问题。然后我就把精力放在了C#那边。。结果后来折腾了很长时间，才发现是这边的问题。。坑爹。。
-　协整检验的代码就不发了。和题目没关系。。 参考： http://www.mathworks.cn/help/toolbox/econ/egcitest.html</description>
-    </item>
-    
-    <item>
-      <title>c#温故而知新： 线程篇</title>
-      <link>http://leaver.me/2012/06/24/c#%E6%B8%A9%E6%95%85%E8%80%8C%E7%9F%A5%E6%96%B0-%E7%BA%BF%E7%A8%8B%E7%AF%87/</link>
-      <pubDate>Sun, 24 Jun 2012 10:57:38 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/06/24/c#%E6%B8%A9%E6%95%85%E8%80%8C%E7%9F%A5%E6%96%B0-%E7%BA%BF%E7%A8%8B%E7%AF%87/</guid>
-      <description>上次的C#温故而知新：Stream篇 已经完结了，这次，JimmyZheng 开始更新线程了，转发收藏，持续更新，当然你也可以直接去看JimmyZheng的文章，欢迎学习交流
- c#温故而知新： 线程篇(一)：Thread c#温故而知新： 线程篇(二)：线程池和异步线程  </description>
-    </item>
-    
-    <item>
-      <title>WPF实现不规则窗体</title>
-      <link>http://leaver.me/2012/06/23/wpf%E5%AE%9E%E7%8E%B0%E4%B8%8D%E8%A7%84%E5%88%99%E7%AA%97%E4%BD%93/</link>
-      <pubDate>Sat, 23 Jun 2012 06:22:49 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/06/23/wpf%E5%AE%9E%E7%8E%B0%E4%B8%8D%E8%A7%84%E5%88%99%E7%AA%97%E4%BD%93/</guid>
-      <description>这几天在想C# winform程序界面实在太单一，而我C#实现不规则窗体中也说了，如果用背景这种东西来做的话，效果很差，抗锯齿能力基本为0，所以我当时在博客园提问，然后园友有了很给力的回答，比如WPF来做，或者第三方插件，或者深入底层改写ONPaint函数的，今天没事，恰好看到了一篇文章讲这个的，于是，就做一个简单的Demo出来，华丽的效果有木有，先看效果图
- 在win 7下使用win+Tab切换效果也很华丽。就不演示了。
+　协整检验的代码就不发了。和题目没关系。。 参考： http://www.mathworks.cn/help/toolbox/econ/egcitest.html</description></item><item><title>c#温故而知新： 线程篇</title><link>http://leaver.me/2012/06/24/c#%E6%B8%A9%E6%95%85%E8%80%8C%E7%9F%A5%E6%96%B0-%E7%BA%BF%E7%A8%8B%E7%AF%87/</link><pubDate>Sun, 24 Jun 2012 10:57:38 +0000</pubDate><guid>http://leaver.me/2012/06/24/c#%E6%B8%A9%E6%95%85%E8%80%8C%E7%9F%A5%E6%96%B0-%E7%BA%BF%E7%A8%8B%E7%AF%87/</guid><description>上次的C#温故而知新：Stream篇 已经完结了，这次，JimmyZheng 开始更新线程了，转发收藏，持续更新，当然你也可以直接去看JimmyZheng的文章，欢迎学习交流
+c#温故而知新： 线程篇(一)：Thread c#温故而知新： 线程篇(二)：线程池和异步线程</description></item><item><title>WPF实现不规则窗体</title><link>http://leaver.me/2012/06/23/wpf%E5%AE%9E%E7%8E%B0%E4%B8%8D%E8%A7%84%E5%88%99%E7%AA%97%E4%BD%93/</link><pubDate>Sat, 23 Jun 2012 06:22:49 +0000</pubDate><guid>http://leaver.me/2012/06/23/wpf%E5%AE%9E%E7%8E%B0%E4%B8%8D%E8%A7%84%E5%88%99%E7%AA%97%E4%BD%93/</guid><description>这几天在想C# winform程序界面实在太单一，而我C#实现不规则窗体中也说了，如果用背景这种东西来做的话，效果很差，抗锯齿能力基本为0，所以我当时在博客园提问，然后园友有了很给力的回答，比如WPF来做，或者第三方插件，或者深入底层改写ONPaint函数的，今天没事，恰好看到了一篇文章讲这个的，于是，就做一个简单的Demo出来，华丽的效果有木有，先看效果图
+在win 7下使用win+Tab切换效果也很华丽。就不演示了。
 做起来还算比较简单，首先使用Microsoft Expression Design 4 设计一个界面，破解版什么的太多了，，软件界面和ps挺像，不过功能弱很多，自己操作操作就好了，我说一个问题，就是我当时想画一个空心的圆，也就是一个圆环，ps里大家都知道，直接选区相减就可以了，但是这个死活没找到，基本上最后这个界面所有的地方被找了一遍，猜了猜，才发现了，
 具体操作如下，首先汇出一个圆形，然后在圆里面再绘出一个圆形，这时候选中第二次的这个小圆，点击屏幕右侧的那个箭头会出现高级选项，
-
 然后选择混合模式为橡皮擦，就会擦去这个小圆，于是就只剩下一个圆环了。
-
-画好以后，选择文件-&amp;gt;导出，按如下设置， 
+画好以后，选择文件-&amp;gt;导出，按如下设置，
  会得到一个xaml文件，一会用
 然后新建wpf项目，然后在解决方案资源管理器视图右键点击项目 导入现有项，把上一步的xaml文件导入
 然后需要在app.xaml文件中进行设置，具体在&amp;lt;Application.Resources&amp;gt;标签内添加如下代码，中间那个文件名看情况而定。
 最终代码是：
 其中background那个是固定的，而MouseDown是为了给窗体写可以拖动的函数，函数名为Window_MouseDown你也可以自己制定
 然后对着那个函数名点右键，如下图
-
-导航到事件处理程序，然后在打开的函数里写上</description>
-    </item>
-    
-    <item>
-      <title>GET和POST有什么区别？及为什么网上的多数答案都是错的。</title>
-      <link>http://leaver.me/2012/06/19/get%E5%92%8Cpost%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%E5%8F%8A%E4%B8%BA%E4%BB%80%E4%B9%88%E7%BD%91%E4%B8%8A%E7%9A%84%E5%A4%9A%E6%95%B0%E7%AD%94%E6%A1%88%E9%83%BD%E6%98%AF%E9%94%99%E7%9A%84/</link>
-      <pubDate>Tue, 19 Jun 2012 18:04:40 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/06/19/get%E5%92%8Cpost%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%E5%8F%8A%E4%B8%BA%E4%BB%80%E4%B9%88%E7%BD%91%E4%B8%8A%E7%9A%84%E5%A4%9A%E6%95%B0%E7%AD%94%E6%A1%88%E9%83%BD%E6%98%AF%E9%94%99%E7%9A%84/</guid>
-      <description>今天突然看到很多好的技术文章，转载收藏备用分享。
+导航到事件处理程序，然后在打开的函数里写上</description></item><item><title>GET和POST有什么区别？及为什么网上的多数答案都是错的。</title><link>http://leaver.me/2012/06/19/get%E5%92%8Cpost%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%E5%8F%8A%E4%B8%BA%E4%BB%80%E4%B9%88%E7%BD%91%E4%B8%8A%E7%9A%84%E5%A4%9A%E6%95%B0%E7%AD%94%E6%A1%88%E9%83%BD%E6%98%AF%E9%94%99%E7%9A%84/</link><pubDate>Tue, 19 Jun 2012 18:04:40 +0000</pubDate><guid>http://leaver.me/2012/06/19/get%E5%92%8Cpost%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%E5%8F%8A%E4%B8%BA%E4%BB%80%E4%B9%88%E7%BD%91%E4%B8%8A%E7%9A%84%E5%A4%9A%E6%95%B0%E7%AD%94%E6%A1%88%E9%83%BD%E6%98%AF%E9%94%99%E7%9A%84/</guid><description>今天突然看到很多好的技术文章，转载收藏备用分享。
 如果有人问你，GET和POST，有什么区别？你会如何回答？
 我的经历 前几天有人问我这个问题。我说GET是用于获取数据的，POST，一般用于将数据发给服务器之用。
 这个答案好像并不是他想要的。于是他继续追问有没有别的区别？我说这就是个名字而已，如果服务器支持，他完全可以把GET改个名字叫GET2。他反问道，那就是单纯的名字上的区别喽？我想了想，我觉得如果说再具体的区别，只能去看RFC文档了，还要取决于服务器（指Apache，IIS****）的具体实现。但我不得不承认，我的确没有仔细看过HTTP的RFC文档。于是我说，我对HTTP协议不太熟悉。这个问题也就结束了。
@@ -848,16 +469,7 @@ _ “哼，”我不以为然，“那你怎么不说，_URL__参数都Encode__
 如果一个人一开始就做Web开发，很可能把HTML对HTTP协议的使用方式，当成HTTP协议的唯一的合理使用方式。从而犯了以偏概全的错误。
 可能有人会觉得我钻牛角尖。我只是不喜欢模棱两可，不喜欢边界不清、概念不明，不喜欢“拿来主义”，也不喜欢被其它喜欢钻牛角尖的人奚落得无地自容。
 “知之为知之，不知为不知，是知也。”
-原文链接：http://www.cnblogs.com/nankezhishi/archive/2012/06/09/2542968.html</description>
-    </item>
-    
-    <item>
-      <title>SASS用法指南</title>
-      <link>http://leaver.me/2012/06/19/sass%E7%94%A8%E6%B3%95%E6%8C%87%E5%8D%97/</link>
-      <pubDate>Tue, 19 Jun 2012 17:03:49 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/06/19/sass%E7%94%A8%E6%B3%95%E6%8C%87%E5%8D%97/</guid>
-      <description>作者： 阮一峰
+原文链接：http://www.cnblogs.com/nankezhishi/archive/2012/06/09/2542968.html</description></item><item><title>SASS用法指南</title><link>http://leaver.me/2012/06/19/sass%E7%94%A8%E6%B3%95%E6%8C%87%E5%8D%97/</link><pubDate>Tue, 19 Jun 2012 17:03:49 +0000</pubDate><guid>http://leaver.me/2012/06/19/sass%E7%94%A8%E6%B3%95%E6%8C%87%E5%8D%97/</guid><description>作者： 阮一峰
 日期： 2012年6月19日
 学过CSS的人都知道，它不是一种编程语言。
 你可以用它开发网页样式，但是没法用它编程。也就是说，CSS基本上是设计师的工具，不是程序员的工具。在程序员眼里，CSS是一件很麻烦的东西。它没有变量，也没有条件语句，只是一行行单纯的描述，写起来相当费事。
@@ -873,114 +485,65 @@ SASS是一种CSS的开发工具，提供了许多便利的写法，大大节省�
 2.1 安装
 SASS是Ruby语言写的，但是两者的语法没有关系。不懂Ruby，照样使用。只是必须先安装Ruby，然后再安装SASS。
 假定你已经安装好了Ruby，接着在命令行输入下面的命令：
- gem install sass 然后，就可以使用了。
- 2.2 使用
+gem install sass 然后，就可以使用了。
+2.2 使用
 SASS文件就是普通的文本文件，里面可以直接使用CSS语法。文件后缀名是.scss，意思为Sassy CSS。
 下面的命令，可以在屏幕上显示.scss文件转化的css代码。（假设文件名为test。）
- sass test.scss 如果要将显示结果保存成文件，后面再跟一个.css文件名。 sass test.scss test.css SASS提供四个编译风格的选项：
-  nested：嵌套缩进的css代码，它是默认值。
-  expanded：没有缩进的、扩展的css代码。
-  compact：简洁格式的css代码。
-  compressed：压缩后的css代码。 生产环境当中，一般使用最后一个选项。 sass &amp;ndash;style compressed test.sass test.css SASS的官方网站，提供了一个在线转换器。你可以在那里，试运行下面的各种例子。
-   三、基本用法
+sass test.scss 如果要将显示结果保存成文件，后面再跟一个.css文件名。 sass test.scss test.css SASS提供四个编译风格的选项：
+nested：嵌套缩进的css代码，它是默认值。
+expanded：没有缩进的、扩展的css代码。
+compact：简洁格式的css代码。
+compressed：压缩后的css代码。 生产环境当中，一般使用最后一个选项。 sass &amp;ndash;style compressed test.sass test.css SASS的官方网站，提供了一个在线转换器。你可以在那里，试运行下面的各种例子。
+三、基本用法
 3.1 变量
 SASS允许使用变量，所有变量以$开头。
- $blue : #1875e7;
+$blue : #1875e7;
 div { color : $blue; } 如果变量需要镶嵌在字符串之中，就必须需要写在#{}之中。 $side : left;
 .rounded { border-#{$side}-radius: 5px; } 3.2 计算功能
- SASS允许在代码中使用算式：
- body { margin: (14px/2); top: 50px + 100px; right: $var * 10%; } 3.3 嵌套
- SASS允许选择器嵌套。比如，下面的CSS代码：
- div h1 { color : red; } 可以写成： div { hi { color:red; } } 属性也可以嵌套： p { border-color: red; } 可以写成： p { border: { color: red; } } 注意，border后面必须加上冒号。
- 3.4 注释</description>
-    </item>
-    
-    <item>
-      <title>FreeAnony-代理采集设置工具</title>
-      <link>http://leaver.me/2012/06/17/freeanony-%E4%BB%A3%E7%90%86%E9%87%87%E9%9B%86%E8%AE%BE%E7%BD%AE%E5%B7%A5%E5%85%B7/</link>
-      <pubDate>Sun, 17 Jun 2012 20:10:05 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/06/17/freeanony-%E4%BB%A3%E7%90%86%E9%87%87%E9%9B%86%E8%AE%BE%E7%BD%AE%E5%B7%A5%E5%85%B7/</guid>
-      <description>这个名字确实有点不太好。。因为刚开始我想到这个工具是在今天早上看到一个别人的代理工具的时候，突然想做的，没有好好规化，结果后来代码越写越多。。不过收获很大。
+SASS允许在代码中使用算式：
+body { margin: (14px/2); top: 50px + 100px; right: $var * 10%; } 3.3 嵌套
+SASS允许选择器嵌套。比如，下面的CSS代码：
+div h1 { color : red; } 可以写成： div { hi { color:red; } } 属性也可以嵌套： p { border-color: red; } 可以写成： p { border: { color: red; } } 注意，border后面必须加上冒号。
+3.4 注释</description></item><item><title>FreeAnony-代理采集设置工具</title><link>http://leaver.me/2012/06/17/freeanony-%E4%BB%A3%E7%90%86%E9%87%87%E9%9B%86%E8%AE%BE%E7%BD%AE%E5%B7%A5%E5%85%B7/</link><pubDate>Sun, 17 Jun 2012 20:10:05 +0000</pubDate><guid>http://leaver.me/2012/06/17/freeanony-%E4%BB%A3%E7%90%86%E9%87%87%E9%9B%86%E8%AE%BE%E7%BD%AE%E5%B7%A5%E5%85%B7/</guid><description>这个名字确实有点不太好。。因为刚开始我想到这个工具是在今天早上看到一个别人的代理工具的时候，突然想做的，没有好好规化，结果后来代码越写越多。。不过收获很大。
 先看界面，因为是简单实现一下，所以就不要吐槽界面了。。
-刚开始想的思路就是先去一个经常发布代理IP的网页去采集。然后解析成一条条的信息。然后显示出来。中途遇到几个问题，一个就是在做代理验证的时候，没有用多线程，导致直接界面无响应。另一个就是DataGridView控件要实现对一个数组的绑定，需要的一个实体对象。</description>
-    </item>
-    
-    <item>
-      <title>为什么sizeof(str.substr(0,3).c_str())=8?</title>
-      <link>http://leaver.me/2012/05/21/%E4%B8%BA%E4%BB%80%E4%B9%88sizeofstr.substr03.c_str8/</link>
-      <pubDate>Mon, 21 May 2012 06:59:09 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/05/21/%E4%B8%BA%E4%BB%80%E4%B9%88sizeofstr.substr03.c_str8/</guid>
-      <description>问题： string str = &amp;quot;abcdefgdcb&amp;quot;; cout &amp;amp;lt; &amp;amp;lt; sizeof(str.substr(0,3).c_str()); For some reason, the above string is giving me 8. I assumed c_str() returns a null string, 由于某些原因，上面的这个字符串得到的结果是8，我估计c_str()返回了一个null，
+刚开始想的思路就是先去一个经常发布代理IP的网页去采集。然后解析成一条条的信息。然后显示出来。中途遇到几个问题，一个就是在做代理验证的时候，没有用多线程，导致直接界面无响应。另一个就是DataGridView控件要实现对一个数组的绑定，需要的一个实体对象。</description></item><item><title>为什么sizeof(str.substr(0,3).c_str())=8?</title><link>http://leaver.me/2012/05/21/%E4%B8%BA%E4%BB%80%E4%B9%88sizeofstr.substr03.c_str8/</link><pubDate>Mon, 21 May 2012 06:59:09 +0000</pubDate><guid>http://leaver.me/2012/05/21/%E4%B8%BA%E4%BB%80%E4%B9%88sizeofstr.substr03.c_str8/</guid><description>问题： string str = &amp;quot;abcdefgdcb&amp;quot;; cout &amp;amp;lt; &amp;amp;lt; sizeof(str.substr(0,3).c_str()); For some reason, the above string is giving me 8. I assumed c_str() returns a null string, 由于某些原因，上面的这个字符串得到的结果是8，我估计c_str()返回了一个null，
 and sizeof uses the null to determine the size of the string. 并且sizeof函数使用这个null来定义这个字符串的大小。
-答案： Because sizeof doesn&#39;t give you the length of a string, 因为sizeof给你的不是一个字符串的长度，
+答案： Because sizeof doesn't give you the length of a string, 因为sizeof给你的不是一个字符串的长度，
 it gives you the size of the type (const char * in this case). Try strlen. 他给你的是这个类型的大小（这种情况下的类型是c_str()返回的const char*类型），想要得到正确的结果，试试strlen函数吧。
 On your system, sizeof (const char ) == 8, like any other pointer. 在你的系统上，sizeof(const char)=8,和其他所有的指针类型一样。
 8 is the size of a pointer on your machine (64-bit) 8是在你的64位电脑上一个指针的大小
-There&#39;s your problem. sizeof tells you the size of a variable, 别乱假设，sizeof告诉你一个变量的大小，
+There's your problem. sizeof tells you the size of a variable, 别乱假设，sizeof告诉你一个变量的大小，
 which has nothing to do with the value inside the variable, ever. 他不会进入变量里面对变量做任何改变的。。永远不会。
-问题:http://stackoverflow.com/q/10668764/764869</description>
-    </item>
-    
-    <item>
-      <title>对象数组的Xml序列化和反序列化</title>
-      <link>http://leaver.me/2012/05/18/%E5%AF%B9%E8%B1%A1%E6%95%B0%E7%BB%84%E7%9A%84xml%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</link>
-      <pubDate>Fri, 18 May 2012 09:38:27 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/05/18/%E5%AF%B9%E8%B1%A1%E6%95%B0%E7%BB%84%E7%9A%84xml%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</guid>
-      <description>使用Serialization来进行序列化和反序列化，因此需要引入System.Xml.Serialization；命名空间。
+问题:http://stackoverflow.com/q/10668764/764869</description></item><item><title>对象数组的Xml序列化和反序列化</title><link>http://leaver.me/2012/05/18/%E5%AF%B9%E8%B1%A1%E6%95%B0%E7%BB%84%E7%9A%84xml%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</link><pubDate>Fri, 18 May 2012 09:38:27 +0000</pubDate><guid>http://leaver.me/2012/05/18/%E5%AF%B9%E8%B1%A1%E6%95%B0%E7%BB%84%E7%9A%84xml%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</guid><description>使用Serialization来进行序列化和反序列化，因此需要引入System.Xml.Serialization；命名空间。
 为什么要做序列化和反序列化？ .Net程序执行时，对象都驻留在内存中；内存中的对象如果需要传递给其他系统使用；或者在关机时需要保存下来以便下次再次启动程序使用就需要序列化和反序列化。
 本文的原始例子在参考文中，但是参考文中没有给出反序列化的例子，且xml文件不清晰。于是修改了代码，同时实现对象数组序列化和反序列化。
-参考： http://www.cnblogs.com/yukaizhao/archive/2011/07/22/xml-serialization.html</description>
-    </item>
-    
-    <item>
-      <title>.Net三层架构</title>
-      <link>http://leaver.me/2012/05/05/.net%E4%B8%89%E5%B1%82%E6%9E%B6%E6%9E%84/</link>
-      <pubDate>Sat, 05 May 2012 15:09:37 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/05/05/.net%E4%B8%89%E5%B1%82%E6%9E%B6%E6%9E%84/</guid>
-      <description>本文来源：http://www.cnblogs.com/gaoweipeng/archive/2009/01/18/1377855.html
+参考： http://www.cnblogs.com/yukaizhao/archive/2011/07/22/xml-serialization.html</description></item><item><title>.Net三层架构</title><link>http://leaver.me/2012/05/05/.net%E4%B8%89%E5%B1%82%E6%9E%B6%E6%9E%84/</link><pubDate>Sat, 05 May 2012 15:09:37 +0000</pubDate><guid>http://leaver.me/2012/05/05/.net%E4%B8%89%E5%B1%82%E6%9E%B6%E6%9E%84/</guid><description>本文来源：http://www.cnblogs.com/gaoweipeng/archive/2009/01/18/1377855.html
 老规矩。因为是非常不错的文章。所有有必要收藏下来备用。推荐。
 **三层体系结构的概念
 **
- 用户界面表示层(USL) 业务逻辑层(BLL) 数据访问层(DAL) BLL将USL与DAL隔开了，并且加入了业务规则    各层的作用
-  2：业务逻辑层:主要是针对具体的问题的操作，也可以理解成对数据层的操作,对数据业务逻辑处理，如果说数据层是积木，那逻辑层就是对这些积木的搭建。
-3：表示层:主要表示WEB方式,也可以表示成WINFORM方式,WEB方式也可以表现成:aspx, 如果逻辑层相当强大和完善,无论表现层如何定义和更改,逻辑层都能完善地提供服务。    具体的区分方法
+用户界面表示层(USL) 业务逻辑层(BLL) 数据访问层(DAL) BLL将USL与DAL隔开了，并且加入了业务规则 各层的作用
+2：业务逻辑层:主要是针对具体的问题的操作，也可以理解成对数据层的操作,对数据业务逻辑处理，如果说数据层是积木，那逻辑层就是对这些积木的搭建。
+3：表示层:主要表示WEB方式,也可以表示成WINFORM方式,WEB方式也可以表现成:aspx, 如果逻辑层相当强大和完善,无论表现层如何定义和更改,逻辑层都能完善地提供服务。 具体的区分方法
 1：数据数据访问层:主要看你的数据层里面有没有包含逻辑处理，实际上他的各个函数主要完成各个对数据文件的操作。而不必管其他操作。
 2：业务逻辑层:主要负责对数据层的操作。也就是说把一些数据层的操作进行组合。
 3：表示层:主要对用户的请求接受，以及数据的返回，为客户端提供应用程序的访问。
-    三层结构解释
+三层结构解释
 所谓三层体系结构，是在客户端与数据库之间加入了一个中间层，也叫组件层。这里所说的三层体系，不是指物理上的三层，不是简单地放置三台机器就是三层体系结构，也不仅仅有B/S应用才是三层体系结构，三层是指逻辑上的三层，即使这三个层放置到一台机器上。 三层体系的应用程序将业务规则、数据访问、合法性校验等工作放到了中间层进行处理。通常情况下，客户端不直接与数据库进行交互，而是通过COM/DCOM通讯与中间层建立连接，再经由中间层与数据库进行交换.
 开发人员可以将应用的商业逻辑放在中间层应用服务器上，把应用的业务逻辑与用户界面分开。在保证客户端功能的前提下，为用户提供一个简洁的界面。这意味着如果需要修改应用程序代码，只需要对中间层应用服务器进行修改，而不用修改成千上万的客户端应用程序。从而使开发人员可以专注于应用系统核心业务逻辑的分析、设计和开发，简化了应用系统的开发、更新和升级工作。
-   那么为什么要应用“中间业务层”呢？举些例子: 我们假设有一段登录代码，则可以这样处理Web程序，外观层负责接收前台页面的数据，然后传给中间层，中间层对数据进行处理，比如格式化，防SQL注入等等一些，这样的数据再传给数据访问层然后与数据库进行操作，比如与数据库的用户名和密码匹配等等一些代码。**  **
-     在“数据访问层”中，最好不要出现任何“业务逻辑”！也就是说，要保证“数据访问层”的中的函数功能的原子性！即最小性和不可再分。“数据访问层”只管负责存储或读取数据就可以了。   ASP.NET中的三层结构说明
+那么为什么要应用“中间业务层”呢？举些例子: 我们假设有一段登录代码，则可以这样处理Web程序，外观层负责接收前台页面的数据，然后传给中间层，中间层对数据进行处理，比如格式化，防SQL注入等等一些，这样的数据再传给数据访问层然后与数据库进行操作，比如与数据库的用户名和密码匹配等等一些代码。** **
+在“数据访问层”中，最好不要出现任何“业务逻辑”！也就是说，要保证“数据访问层”的中的函数功能的原子性！即最小性和不可再分。“数据访问层”只管负责存储或读取数据就可以了。 ASP.NET中的三层结构说明
 完善的三层结构的要求是:**修改表现层而不用修改逻辑层,修改逻辑层而不用修改数据层。**否则你的应用是不是多层结构,或者说是层结构的划分和组织上是不是有问题就很难说.不同的应用有不同的理解，这只是一个概念的问题．
-    我们用三层结构主要是使项目结构更清楚，分工更明确，有利于后期的维护和升级。它未必会提升性能，因为当子程序模块未执行结束时，主程序模块只能处于等待状态。这说明将应用程序划分层次，会带来其执行速度上的一些损失。但从团队开发效率角度上来讲却可以感受到大不相同的效果。  需要说明一下，三层结构不是.NET的专利，也不是专门用在数据库上的技术。它是一种更加普适的架构设计理念。
-  对于表的综合查询方法是： 先对主表查询，调用主表所对应的DL。再根据主表的记录分别对每一个子表进行查询。将自表的查询结果添加的主表后，形成一个大的查询集合。 对于表的操作（增删改）： 此时只对主表进行操作，调用主表对应的DL中的操作方法。 RL层是逻辑判断层，主要是对页面上传入的数据进行逻辑判断。RL层之上就是UI
-  如何建立一个三层体系结构解决方案
+我们用三层结构主要是使项目结构更清楚，分工更明确，有利于后期的维护和升级。它未必会提升性能，因为当子程序模块未执行结束时，主程序模块只能处于等待状态。这说明将应用程序划分层次，会带来其执行速度上的一些损失。但从团队开发效率角度上来讲却可以感受到大不相同的效果。 需要说明一下，三层结构不是.NET的专利，也不是专门用在数据库上的技术。它是一种更加普适的架构设计理念。
+对于表的综合查询方法是： 先对主表查询，调用主表所对应的DL。再根据主表的记录分别对每一个子表进行查询。将自表的查询结果添加的主表后，形成一个大的查询集合。 对于表的操作（增删改）： 此时只对主表进行操作，调用主表对应的DL中的操作方法。 RL层是逻辑判断层，主要是对页面上传入的数据进行逻辑判断。RL层之上就是UI
+如何建立一个三层体系结构解决方案
 新建一个空白解决方案。然后： “添加”－“新建项目”－“其他项目”－“企业级模版项目”－“C#生成块”－“数据访问”（数据层，下简称D层） “添加”－“新建项目”－“其他项目”－“企业级模版项目”－“C#生成块”－“业务规则”（业务层，下简称C层） “添加”－“新建项目”－“其他项目”－“企业级模版项目”－“C#生成块”－“Web用户界面”（界面层，下简称U层） 右键点“解决方案”－“项目依赖项”，设置U依赖于D、C，C依赖于D。 对U添加引用D、C，对C添加引用D。 到此为止，一个三层的架子建立起来了。我上面说的很具体很“傻瓜”，知道的人觉得我废话，其实我这段时间很强烈的感觉到非常多的人其实对这个简单的过程完全不了解。虽然不反对建2个“空项目”和1个“Asp net Web应用程序项目”也可以作为3层的框架，而且相当多的人认为其实这些“企业级模板项目”其实就是个空项目，这是一个误区。没错，企业级模板项目你从解决方案资源管理器里看它是个什么也没有的，但是你可以用记事本打开项目文件，看见不同了吧？？有些东西在背后，你是看不见的，不过系统已经做好了。也就是说，如果你在C层里的某个类里“using System Data SqlClineit”，或者使用一个SqlConnection对象，编译时候不会出错，但是会在“任务列表”里生成一些“策略警告”，警告你在C层里不要放应该放在D层的东西（虽然就程序来说没错，但是可读性可维护性就打了折扣）而这种功能，空项目是无法給你的。
-  在新TraceLWord3中，应用了“企业级模板项目”。把原来的LWordTask.cs，并放置到一个单一的项目里，项目名称为：AccessTask。解决方案中又新建了一个名称为：InterService的项目，该项目中包含一个LWordService.cs程序文件，它便是“中间业务层”程序。为了不重复命名，TraceLWord3的网站被放置到了WebUI项目中。更完整的代码，可以在CodePackage/TraceLWord3目录中找到——
-  **面象对象与实际的结合
+在新TraceLWord3中，应用了“企业级模板项目”。把原来的LWordTask.cs，并放置到一个单一的项目里，项目名称为：AccessTask。解决方案中又新建了一个名称为：InterService的项目，该项目中包含一个LWordService.cs程序文件，它便是“中间业务层”程序。为了不重复命名，TraceLWord3的网站被放置到了WebUI项目中。更完整的代码，可以在CodePackage/TraceLWord3目录中找到——
+**面象对象与实际的结合
 **
-      “三层结构”的缺点
-  有些网友在读完这篇文章前作之后，对我提出了一些质疑，这提醒我文章至此还没有提及“三层结构”的缺点。“三层结构”这个词眼似乎一直都很热门，究其原因，或许是这种开发模式应用的比较普遍。但是“三层结构”却并不是百试百灵的“万灵药”，它也存在着缺点。下面就来说说它的缺点……
+“三层结构”的缺点
+有些网友在读完这篇文章前作之后，对我提出了一些质疑，这提醒我文章至此还没有提及“三层结构”的缺点。“三层结构”这个词眼似乎一直都很热门，究其原因，或许是这种开发模式应用的比较普遍。但是“三层结构”却并不是百试百灵的“万灵药”，它也存在着缺点。下面就来说说它的缺点……
 “三层结构”开发模式的一个非常明显的缺点就是其执行速度不够快。当然这个“执行速度”是相对于非分层的应用程序来说的。从文中所给出的时序图来看，也明显的暴露了这一缺点。TraceLWord1和TraceLWord2没有分层，直接调用的ADO.NET所提供的类来获取数据。但是，TraceLWord6确要经过多次调用才能获取到数据。在子程序模块程序没有返回时，主程序模块只能处于等待状态。所以在执行速度上，留言板的版本越高，排名却越靠后。“三层结构”开发模式，不适用于对执行速度要求过于苛刻的系统，例如：在线订票，在线炒股等等……它比较擅长于商业规则容易变化的系统。“三层结构”开发模式，入门难度够高，难于理解和学习。这是对于初学程序设计的人来说的。以这种模式开发出来的软件，代码量通常要稍稍多一些。这往往会令初学者淹没在茫茫的代码之中。望之生畏，对其产生反感，也是可以理解的……
 其实，无论哪一种开发模式或方法，都是有利有弊的。不会存在一种“万用法”可以解决任何问题。所以“三层结构”这个词眼也不会是个例外！是否采用这个模式进行系统开发，要作出比较、权衡之后才可以。切忌滥用!
-    参与资料    MainDoc.rar （《浅谈“三层结构”原理与用意》1.30M) 
-http://www.bincess.cn/Downloads/MainDoc.rar   petshop 4.0的体系结构（只是稍微看了一下，了解一下结构）
-  参考了Duwamish  Web Search  </description>
-    </item>
-    
-    <item>
-      <title>System.Web中不存在类型或命名空间名称UI解决</title>
-      <link>http://leaver.me/2012/04/13/system.web%E4%B8%AD%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%B1%BB%E5%9E%8B%E6%88%96%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E5%90%8D%E7%A7%B0ui%E8%A7%A3%E5%86%B3/</link>
-      <pubDate>Fri, 13 Apr 2012 16:52:29 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/04/13/system.web%E4%B8%AD%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%B1%BB%E5%9E%8B%E6%88%96%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E5%90%8D%E7%A7%B0ui%E8%A7%A3%E5%86%B3/</guid>
-      <description>今天打算用C#写个模拟登录的程序。从类库里找到一个HTMLHelper的类。用来处理html的请求接收等处理。为了让类能够先运行起来，先把该类拖入解决方案，引用就不用添加了，因为该类没写命名空间，可以直接用，我测试其中一个最简单的函数</description>
-    </item>
-    
-  </channel>
-</rss>
+参与资料 MainDoc.rar （《浅谈“三层结构”原理与用意》1.30M)
+http://www.bincess.cn/Downloads/MainDoc.rar  petshop 4.0的体系结构（只是稍微看了一下，了解一下结构）
+参考了Duwamish Web Search</description></item><item><title>System.Web中不存在类型或命名空间名称UI解决</title><link>http://leaver.me/2012/04/13/system.web%E4%B8%AD%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%B1%BB%E5%9E%8B%E6%88%96%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E5%90%8D%E7%A7%B0ui%E8%A7%A3%E5%86%B3/</link><pubDate>Fri, 13 Apr 2012 16:52:29 +0000</pubDate><guid>http://leaver.me/2012/04/13/system.web%E4%B8%AD%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%B1%BB%E5%9E%8B%E6%88%96%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E5%90%8D%E7%A7%B0ui%E8%A7%A3%E5%86%B3/</guid><description>今天打算用C#写个模拟登录的程序。从类库里找到一个HTMLHelper的类。用来处理html的请求接收等处理。为了让类能够先运行起来，先把该类拖入解决方案，引用就不用添加了，因为该类没写命名空间，可以直接用，我测试其中一个最简单的函数</description></item></channel></rss>

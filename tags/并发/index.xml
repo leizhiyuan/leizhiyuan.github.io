@@ -1,23 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>并发 on bystander&#39;s blog</title>
-    <link>http://leaver.me/tags/%E5%B9%B6%E5%8F%91/</link>
-    <description>Recent content in 并发 on bystander&#39;s blog</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh-CN</language>
-    <lastBuildDate>Sun, 22 Nov 2015 16:06:43 +0000</lastBuildDate>
-    
-	<atom:link href="http://leaver.me/tags/%E5%B9%B6%E5%8F%91/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>zookeeper伪集群部署</title>
-      <link>http://leaver.me/2015/11/22/zookeeper%E4%BC%AA%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/</link>
-      <pubDate>Sun, 22 Nov 2015 16:06:43 +0000</pubDate>
-      
-      <guid>http://leaver.me/2015/11/22/zookeeper%E4%BC%AA%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/</guid>
-      <description>zookeeper是用来管理分布式环境的系统主要用来服务发现,配置管理,同步.大致原理是zookeeper 自身集群的每个节点都维护这一个目录树,内容相同,每个节点的数据一致性由zookeeper自身的算法来解决.下篇尝试.zookeeper本篇主要说明如果部署zookeeper的分布式环境.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>并发 on bystander's blog</title><link>http://leaver.me/tags/%E5%B9%B6%E5%8F%91/</link><description>Recent content in 并发 on bystander's blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 22 Nov 2015 16:06:43 +0000</lastBuildDate><atom:link href="http://leaver.me/tags/%E5%B9%B6%E5%8F%91/index.xml" rel="self" type="application/rss+xml"/><item><title>zookeeper伪集群部署</title><link>http://leaver.me/2015/11/22/zookeeper%E4%BC%AA%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/</link><pubDate>Sun, 22 Nov 2015 16:06:43 +0000</pubDate><guid>http://leaver.me/2015/11/22/zookeeper%E4%BC%AA%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/</guid><description>zookeeper是用来管理分布式环境的系统主要用来服务发现,配置管理,同步.大致原理是zookeeper 自身集群的每个节点都维护这一个目录树,内容相同,每个节点的数据一致性由zookeeper自身的算法来解决.下篇尝试.zookeeper本篇主要说明如果部署zookeeper的分布式环境.
 下载 zookeeper由apache在管理,下载地址:http://www.apache.org/dyn/closer.cgi/zookeeper/.下载完成后,随便放个目录好了..
 配置 本次创建3个节点. 1 . 存储目录准备 首先给每个伪节点创建一个目录.用来存储每个节点保存的目录信息.真实的分布式环境将对应在不同的机器上. 这里我在D:\zookeeper,创建三个目录,分别是zk1,zk2,zk3. 然后为每个集群编写一个myid文件,标识集群id
 2 . 启动配置文件 下载完成后,在conf目录会看到由一个zoo_sample.cfg实例配置文件,我们可以以这个为模板.来为分布式环境的每个zookeeper节点配置一个节点的数据目录,端口.其他节点的信息等.
@@ -33,25 +14,12 @@ setlocal call &amp;#34;%~dp0zkEnv.cmd&amp;#34; set ZOOMAIN=org.apache.zookeeper.
 刚启动第一个之后,你会看到有报错,是zookeeper进行选举的时候报错的.因为第一个zk节点.从自己的启动配置里,知道还有两个节点,于是尝试连接.但是连接不上,再启动另外两个.都启动后,报错消失
 然后在D:\zookeeper中可以看到由数据写入. 测试 启动bin目录的zkCli.cmd,自动连接本机的2181端口.也可以自己指定 zkCli.cmd –server 127.0.0.1:2181,127.0.0.1:2182,127.0.0.1:2183 对客户端来说.连接上了一个列表之后,如果一台挂了,并不会影响.系统依旧可以运行.
 然后执行一些简单的操作 显示根目录下、文件： ls / 使用 ls 命令来查看当前 ZooKeeper 中所包含的内容。 显示根目录下、文件： ls2 / 查看当前节点数据并能看到更新次数等数据。 创建文件，并设置初始内容： create /zktest &amp;ldquo;test&amp;rdquo; 创建一个新的 znode节点“ zk ”以及与它关联的字符串。 获取文件内容： get /zktest 确认 znode 是否包含我们所创建的字符串。 修改文件内容： set /zktest &amp;ldquo;zkbak&amp;rdquo; 对 zk 所关联的字符串进行设置。 删除文件： delete /zktest 将刚才创建的 znode 删除。 退出客户端： quit 帮助命令： help
-可以关掉一个服务器,会发现客户端依然正常.可以执行get set等操作.</description>
-    </item>
-    
-    <item>
-      <title>Java可重入锁学习笔记</title>
-      <link>http://leaver.me/2015/11/20/java%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
-      <pubDate>Fri, 20 Nov 2015 20:51:25 +0000</pubDate>
-      
-      <guid>http://leaver.me/2015/11/20/java%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
-      <description>前几天被前辈问到这个可重入锁,结果忘掉了.于是抽空整个了解一下
-目录  什么是可重入锁 为什么要可重入 如何实现可重入锁 有不可重入锁吗 demo代码展示 参考文章  1 . 什么是可重入锁 锁的概念就不用多解释了,当某个线程A已经持有了一个锁,当线程B尝试进入被这个锁保护的代码段的时候.就会被阻塞.而锁的操作粒度是&amp;quot;线程&amp;rdquo;,而不是调用(至于为什么要这样,下面解释).同一个线程再次进入同步代码的时候.可以使用自己已经获取到的锁,这就是可重入锁 java里面内置锁(synchronize)和Lock(ReentrantLock)都是可重入的
+可以关掉一个服务器,会发现客户端依然正常.可以执行get set等操作.</description></item><item><title>Java可重入锁学习笔记</title><link>http://leaver.me/2015/11/20/java%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link><pubDate>Fri, 20 Nov 2015 20:51:25 +0000</pubDate><guid>http://leaver.me/2015/11/20/java%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid><description>前几天被前辈问到这个可重入锁,结果忘掉了.于是抽空整个了解一下
+目录 什么是可重入锁 为什么要可重入 如何实现可重入锁 有不可重入锁吗 demo代码展示 参考文章 1 . 什么是可重入锁 锁的概念就不用多解释了,当某个线程A已经持有了一个锁,当线程B尝试进入被这个锁保护的代码段的时候.就会被阻塞.而锁的操作粒度是&amp;quot;线程&amp;rdquo;,而不是调用(至于为什么要这样,下面解释).同一个线程再次进入同步代码的时候.可以使用自己已经获取到的锁,这就是可重入锁 java里面内置锁(synchronize)和Lock(ReentrantLock)都是可重入的
 2 . 为什么要可重入 如果线程A继续再次获得这个锁呢?比如一个方法是synchronized,递归调用自己,那么第一次已经获得了锁,第二次调用的时候还能进入吗? 直观上当然需要能进入.这就要求必须是可重入的.可重入锁又叫做递归锁,再举个例子.
 public class Widget { public synchronized void doSomething() { ... } } public class LoggingWidget extends Widget { public synchronized void doSomething() { System.out.println(toString() + &amp;#34;: calling doSomething&amp;#34;); super.doSomething();//若内置锁是不可重入的，则发生死锁 } } 这个例子是java并发编程实战中的例 子.synchronized 是父类Widget的内置锁,当执行子 类的方法的时候,先获取了一次Widget的锁,然后在执行super的时候,就要获取一次,如果不可重入,那么就跪了.
 3 . 如何实现可重入锁 为每个锁关联一个获取计数器和一个所有者线程,当计数值为0的时候,这个所就没有被任何线程只有.当线程请求一个未被持有的锁时,JVM将记下锁的持有者,并且将获取计数值置为1,如果同一个线程再次获取这个锁,技术值将递增,退出一次同步代码块,计算值递减,当计数值为0时,这个锁就被释放. ReentrantLock里面有实现
 4 . 有不可重入锁吗 这个还真有.Linux下的pthread_mutex_t锁是默认是非递归的。可以通过设置PTHREAD_MUTEX_RECURSIVE属性，将pthread_mutex_t锁设置为递归锁。如果要自己实现不可重入锁,同可重入锁,这个计数器只能为1.或者0,再次进入的时候,发现已经是1了,就进行阻塞.jdk里面没有默认的实现类.
 5 . demo代码展示 5.1 内置锁的可重入
 public class ReentrantTest { public void method1() { synchronized (ReentrantTest.class) { System.out.println(&amp;#34;方法1获得ReentrantTest的内置锁运行了&amp;#34;); method2(); } } public void method2() { synchronized (ReentrantTest.class) { System.out.println(&amp;#34;方法1里面调用的方法2重入内置锁,也正常运行了&amp;#34;); } } public static void main(String[] args) { new ReentrantTest().method1(); } } 5.2 lock对象的可重入
-import java.util.concurrent.locks.Lock; import java.util.concurrent.locks.ReentrantLock; public class ReentrantLockTest { private Lock lock = new ReentrantLock(); public void method1() { lock.lock(); try { System.out.println(&amp;#34;方法1获得ReentrantLock锁运行了&amp;#34;); method2(); } finally { lock.unlock(); } } public void method2() { lock.lock(); try { System.</description>
-    </item>
-    
-  </channel>
-</rss>
+import java.util.concurrent.locks.Lock; import java.util.concurrent.locks.ReentrantLock; public class ReentrantLockTest { private Lock lock = new ReentrantLock(); public void method1() { lock.lock(); try { System.out.println(&amp;#34;方法1获得ReentrantLock锁运行了&amp;#34;); method2(); } finally { lock.unlock(); } } public void method2() { lock.lock(); try { System.</description></item></channel></rss>

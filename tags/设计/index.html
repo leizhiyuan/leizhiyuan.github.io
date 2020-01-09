@@ -1,190 +1,36 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>设计 | bystander&#39;s blog</title>
-    <meta property="og:title" content="设计 - bystander&#39;s blog">
-    <meta property="og:type" content="article">
-        
-        
-    <meta name="Keywords" content="">
-    <meta name="description" content="设计">
-        
-    <meta name="author" content="bystander">
-    <meta property="og:url" content="http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-
-    <link rel="stylesheet" href='/css/normalize.css'>
-    <link rel="stylesheet" href='/css/style.css'>
-    <link rel="alternate" type="application/rss+xml+xml" href="http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/index.xml" title="bystander's blog" />
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-    
-
-
-    
-    
-</head>
-
-
-<body>
-    <header id="header" class="clearfix">
-    <div class="container">
-        <div class="col-group">
-            <div class="site-name ">
-                
-                    <a id="logo" href="http://leaver.me/">
-                        bystander&#39;s blog
-                    </a>
-                
-                <p class="description">寻找窄门</p>
-            </div>
-            <div>
-                <nav id="nav-menu" class="clearfix">
-                    <a class="" href="http://leaver.me/">首页</a>
-                    
-                    <a  href="http://leaver.me/categories" title="目录">目录</a>
-                    
-                    <a  href="http://leaver.me/about/" title="关于我">关于我</a>
-                    
-                </nav>
-            </div>
-        </div>
-    </div>
-</header>
-
-    <div id="body">
-        <div class="container">
-            <div class="col-group">
-
-                <div class="col-8" id="main">
-                    
-<div class="res-cons">
-    
-    <h3 class="archive-title">
-        包含标签
-        <span class="keyword">设计</span>
-        的文章
-    </h3>
-    
-
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2015/05/10/%E5%85%B3%E4%BA%8E%E9%87%8D%E6%9E%84%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">关于重构和设计模式</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2015年5月10日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            之前在工作写了一个数据库查询的工具.大体背景就是这种工具需要跨不同环境的数据库,开发,测试,性能等.最早简单写了一个版本,在第一次查询时会初始化三个库的连接,保存在map中,然后后续查询直接根据使用者选择的环境类型取出对应的连接构造sql即可.
-随着各个不同系统接入的越来越多,各个平台都保存了自己的连接,导致代码冗余度急剧上升,上周,利用晚上的一点时间读了一下&laquo;重构&raquo;,这本书,深受启发,一个是重构就是要采用小步快走的方式,在测试用例的覆盖下,快速改动,去掉代码中不合理的地方.另一个就是重构需要对业务的当下和未来的变化有一个比较深刻的理解,知道这个系统能做什么,不能做什么.才能更好地做重构.
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><title>设计 | bystander's blog</title><meta property="og:title" content="设计 - bystander's blog"><meta property="og:type" content="article"><meta name=Keywords content><meta name=description content="设计"><meta name=author content="bystander"><meta property="og:url" content="http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/"><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><link rel=stylesheet href=/css/normalize.css><link rel=stylesheet href=/css/style.css><link rel=alternate type=application/rss+xml+xml href=http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/index.xml title="bystander's blog"><script type=text/javascript src=//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js></script></head><body><header id=header class=clearfix><div class=container><div class=col-group><div class=site-name><a id=logo href=http://leaver.me/>bystander's blog</a><p class=description>寻找窄门</p></div><div><nav id=nav-menu class=clearfix><a href=http://leaver.me/>首页</a>
+<a href=http://leaver.me/categories title=目录>目录</a>
+<a href=http://leaver.me/about/ title=关于我>关于我</a></nav></div></div></div></header><div id=body><div class=container><div class=col-group><div class=col-8 id=main><div class=res-cons><h3 class=archive-title>包含标签
+<span class=keyword>设计</span>
+的文章</h3><article class=post><header><h1 class=post-title><a href=http://leaver.me/2015/05/10/%E5%85%B3%E4%BA%8E%E9%87%8D%E6%9E%84%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/>关于重构和设计模式</a></h1></header><date class="post-meta meta-date">2015年5月10日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>之前在工作写了一个数据库查询的工具.大体背景就是这种工具需要跨不同环境的数据库,开发,测试,性能等.最早简单写了一个版本,在第一次查询时会初始化三个库的连接,保存在map中,然后后续查询直接根据使用者选择的环境类型取出对应的连接构造sql即可.
+随着各个不同系统接入的越来越多,各个平台都保存了自己的连接,导致代码冗余度急剧上升,上周,利用晚上的一点时间读了一下&#171;重构&#187;,这本书,深受启发,一个是重构就是要采用小步快走的方式,在测试用例的覆盖下,快速改动,去掉代码中不合理的地方.另一个就是重构需要对业务的当下和未来的变化有一个比较深刻的理解,知道这个系统能做什么,不能做什么.才能更好地做重构.
 于是,根据这个工具的特点,感觉抽象工厂模式比较合适,于是在抽象工厂模式的指导下,对关键部分进行了重构,在增加了几个类之后,代码复杂度开始下降.各个接入系统的代码基本上保持在了几十行内,之前都是几百行,大量冗余代码,只能说自己之前眼光太短浅了.并且,采用了类似单例模式的操作.当查询的时候,先根据当前环境作为key取连接,如果连接被关闭,或者不存在,则初始化,然后放到map中,返回.如果有的话,直接用.这样改动后,第一次查询的时候只需要初始化一个连接,速度极快.也算个好处..
 由此,反思了一下,设计模式之前也看过.但是总觉得各种书上讲的都比较浅显,给出的例子也似乎如作者所说,很符合那个模式,但实际上,在工作中如何识别当下的业务应该是比较难的,需要在业务变动中,不断地重构自己的代码,才能发现,某一种模式似乎特别适合解决这种问题,反之,重构也需要一定的设计模式作为基础,否则对代码的重构会只停留在抽取公共方法.重命名.大类变小类的阶段..
-希望接下来能够抽空把&laquo;敏捷软件开发：原则、模式与实践&raquo;这本书看完.同时能够真的理解这些模式的场合,想起一句话,知道一个技术方案的好,说明你还没有理解这种方法,只有你知道了这个方案的不足,你才真正理解了他,相信很多技术我都没有理解.设计模式也是,希望之后能够理解每种模式的不足,重构这本书也要经常翻翻,能加深对代码的理解.……
-            <p class="readmore"><a href="http://leaver.me/2015/05/10/%E5%85%B3%E4%BA%8E%E9%87%8D%E6%9E%84%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2014/06/30/spring%E6%8F%AD%E7%A7%98%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC%E4%B8%80%E7%AB%A0spring%E6%A1%86%E6%9E%B6%E7%9A%84%E7%94%B1%E6%9D%A5/">《Spring揭秘》读书笔记-第一章Spring框架的由来</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2014年6月30日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            1.框架的由来
+希望接下来能够抽空把&#171;敏捷软件开发：原则、模式与实践&#187;这本书看完.同时能够真的理解这些模式的场合,想起一句话,知道一个技术方案的好,说明你还没有理解这种方法,只有你知道了这个方案的不足,你才真正理解了他,相信很多技术我都没有理解.设计模式也是,希望之后能够理解每种模式的不足,重构这本书也要经常翻翻,能加深对代码的理解.……<p class=readmore><a href=http://leaver.me/2015/05/10/%E5%85%B3%E4%BA%8E%E9%87%8D%E6%9E%84%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2014/06/30/spring%E6%8F%AD%E7%A7%98%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC%E4%B8%80%E7%AB%A0spring%E6%A1%86%E6%9E%B6%E7%9A%84%E7%94%B1%E6%9D%A5/>《Spring揭秘》读书笔记-第一章Spring框架的由来</a></h1></header><date class="post-meta meta-date">2014年6月30日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>1.框架的由来
 倡导J2EE轻量级应用解决方案
 框架总结结构
- 整个Spring架构建立在Core核心模块上，是基础，该模块中，有一个IoC容器的实现，用来以依赖注入的方式管理对象之间的依赖关系。Core中还有一些气筒工具类，比如IO工具类
+整个Spring架构建立在Core核心模块上，是基础，该模块中，有一个IoC容器的实现，用来以依赖注入的方式管理对象之间的依赖关系。Core中还有一些气筒工具类，比如IO工具类
 从图中看到，AOP模块，提供了轻便二强大的AOP框架，一AOP的形式增强POJO的能力，弥补OOP/OOSD的不足，采用Proxy模式，与IoC容器相结合
 继续向上看，在Core和AOP之上，提供了完毕的数据访问和事务管理的抽象，其中，对JDBC API的最佳实践简化了API的使用，还未ORM产品提供了统一的支持，
 为了简化Java EE的服务，比如JNDI，JMS等等，Spring还提供了这些的集成服务，
 最后就是Web模块，提供了一套自己的Web MVC框架，上层模块依赖于下层模块，水平之间的模块彼此基本可以认为独立。
 Spring不仅仅是容器，更是开发任何Java应用的框架，
-Spring 框架之上衍生的产品包括不限于Spring Web Flow,Spring Web Services,Spring Security,Spring Integration，Spring Rich Client 等等等等……
-            <p class="readmore"><a href="http://leaver.me/2014/06/30/spring%E6%8F%AD%E7%A7%98%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC%E4%B8%80%E7%AB%A0spring%E6%A1%86%E6%9E%B6%E7%9A%84%E7%94%B1%E6%9D%A5/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2014/03/03/%E8%97%8F%E8%BF%90%E7%94%A8-boxlayout-%E8%BF%9B%E8%A1%8C-swing-%E6%8E%A7%E4%BB%B6%E5%B8%83%E5%B1%80/">[藏]运用 BoxLayout 进行 Swing 控件布局</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2014年3月3日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F'>文章收藏</a>
-            
-        </div>
-        
-        <div class="post-content">
-            写的非常非常好的一个教程，感谢陈 怡平
+Spring 框架之上衍生的产品包括不限于Spring Web Flow,Spring Web Services,Spring Security,Spring Integration，Spring Rich Client 等等等等……<p class=readmore><a href=http://leaver.me/2014/06/30/spring%E6%8F%AD%E7%A7%98%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC%E4%B8%80%E7%AB%A0spring%E6%A1%86%E6%9E%B6%E7%9A%84%E7%94%B1%E6%9D%A5/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2014/03/03/%E8%97%8F%E8%BF%90%E7%94%A8-boxlayout-%E8%BF%9B%E8%A1%8C-swing-%E6%8E%A7%E4%BB%B6%E5%B8%83%E5%B1%80/>[藏]运用 BoxLayout 进行 Swing 控件布局</a></h1></header><date class="post-meta meta-date">2014年3月3日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F>文章收藏</a></div><div class=post-content>写的非常非常好的一个教程，感谢陈 怡平
 引言 在用户使用 Java Swing 进行用户界面开发过程中，会碰到如何对 Java Swing 的控件进行布局的问题。Swing 的控件放置在容器 (Container) 中，容器就是能够容纳控件或者其它容器的类，容器的具体例子有 Frame、Panel 等等。容器需要定义一个布局管理器来对控件进行布局管理，Swing 当中提供的主要的布局管理器有 FlowLayout、BorderLayout、BoxLayout、GridLayout 和 GridBaglayout, 它们的主要特点如表 1 所示：
 表 1. Swing 中的一些主要布局管理器的比较 BoxLayout 介绍 如前所述，BoxLayout 可以把控件依次进行水平或者垂直排列布局，这是通过参数 X_AXIS、Y_AXIS 来决定的。X_AXIS 表示水平排列，而 Y_AXIS 表示垂直排列。BoxLayout 的构造函数有两个参数，一个参数定义使用该 BoxLayout 的容器，另一个参数是指定 BoxLayout 是采用水平还是垂直排列。下面是一个创建 BoxLayout 实例的例子：
 当 BoxLayout 进行布局时，它将所有控件依次按照控件的优先尺寸按照顺序的进行水平或者垂直放置，假如布局的整个水平或者垂直空间的尺寸不能放下所有控件，那么 BoxLayout 会试图调整各个控件的大小来填充整个布局的水平或者垂直空间。
 BoxLayout 往往和 Box 这个容器结合在一起使用，这么做的理由是，BoxLayout 是把控件以水平或者垂直的方向一个接一个的放置，如果要调整这些控件之间的空间，就会需要使用 Box 容器提供的透明的组件作为填充来填充控件之间的空间，从而达到调整控件之间的间隔空间的目的。Box 容器提供了 4 种透明的组件，分别是 rigid area、strut、glue、filler。Box 容器分别提供了不同的方法来创建这些组件。这四个组件的特点如下：
- Rigid area 是一种用户可以定义水平和垂直尺寸的透明组件； strut 与 rigid area 类似，但是用户只能定义一个方向的尺寸，即水平方向或者垂直方向，不能同时定义水平和垂直尺寸； 当用户将 glue 放在两个控件之间时，它会尽可能的占据两个控件之间的多余空间，从而将两个控件挤到两边； Filler 是 Box 的内部类，它与 rigid area 相似，都可以指定水平或者垂直的尺寸，但是它可以设置最小，最大和优先尺寸。  用 BoxLayout 进行布局 在了解了 BoxLayout 和 Box 容器的基本特点后，我们来看一下 BoxLayout 的优点，首先 BoxLayout 可以进行对控件进行垂直或者水平布局，同时 BoxLayout 使用起来较为简单，然而把它和 Box 容器相结合，就可以进行较为复杂的布局，达到同使用 GridBagLayout 的一样的效果，但是使用起来要简单方便多了。我们用按钮的布局作为例子来看怎样运用 BoxLayout 和 Box 容器进行布局：
-图 1. 应用 BoxLayout 进行按钮布局例子 1 
+Rigid area 是一种用户可以定义水平和垂直尺寸的透明组件； strut 与 rigid area 类似，但是用户只能定义一个方向的尺寸，即水平方向或者垂直方向，不能同时定义水平和垂直尺寸； 当用户将 glue 放在两个控件之间时，它会尽可能的占据两个控件之间的多余空间，从而将两个控件挤到两边； Filler 是 Box 的内部类，它与 rigid area 相似，都可以指定水平或者垂直的尺寸，但是它可以设置最小，最大和优先尺寸。 用 BoxLayout 进行布局 在了解了 BoxLayout 和 Box 容器的基本特点后，我们来看一下 BoxLayout 的优点，首先 BoxLayout 可以进行对控件进行垂直或者水平布局，同时 BoxLayout 使用起来较为简单，然而把它和 Box 容器相结合，就可以进行较为复杂的布局，达到同使用 GridBagLayout 的一样的效果，但是使用起来要简单方便多了。我们用按钮的布局作为例子来看怎样运用 BoxLayout 和 Box 容器进行布局：
+图 1. 应用 BoxLayout 进行按钮布局例子 1
 我们在布局中经常会碰到如图 1 所示要把按钮放在容器的两端，那么我们就可以给容器定义一个 BoxLayout 来布局按钮，我们在按钮 1 和按钮 2 之间放置一个不可见的 glue，如前面所提到的那样，glue 就会尽量挤占掉两个按钮之间的空间，从而将两个按钮放在两端。
-图 2. 应用 BoxLayout 进行按钮布局例子 2 
+图 2. 应用 BoxLayout 进行按钮布局例子 2
 再来看图 2 的例子，我们经常会遇到要将两个按钮放在容器的右边，我们就可以给容器定义一个 BoxLayout, 先放一个不可见的 glue，这个 glue 会挤占左边的空间，从而将两个按钮推到右边，
 在两个按钮之间再放一个 strut，它也是不可见的，它会把两个按钮分隔开。
-BoxLayout 布局实例 在基于前面讨论的基础上，我们现在来看一个具体的运用例子，假设图 3 是我们需要完成的用户界面：……
-            <p class="readmore"><a href="http://leaver.me/2014/03/03/%E8%97%8F%E8%BF%90%E7%94%A8-boxlayout-%E8%BF%9B%E8%A1%8C-swing-%E6%8E%A7%E4%BB%B6%E5%B8%83%E5%B1%80/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2014/03/01/%E8%AF%91%E4%BD%BF%E7%94%A8mockito%E7%AE%80%E5%8D%95mock%E5%85%A5%E9%97%A8/">[译]使用Mockito简单mock入门</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2014年3月1日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91'>我的翻译</a>
-            
-        </div>
-        
-        <div class="post-content">
-            我们在写单元测试的时候，面临的一个挑战就是要测试的内容总是依赖于其他组件，要是我们还得先配置好其他组件，未免有点不如意，那么我们可以使用Mocks来代替那些依赖的组件
+BoxLayout 布局实例 在基于前面讨论的基础上，我们现在来看一个具体的运用例子，假设图 3 是我们需要完成的用户界面：……<p class=readmore><a href=http://leaver.me/2014/03/03/%E8%97%8F%E8%BF%90%E7%94%A8-boxlayout-%E8%BF%9B%E8%A1%8C-swing-%E6%8E%A7%E4%BB%B6%E5%B8%83%E5%B1%80/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2014/03/01/%E8%AF%91%E4%BD%BF%E7%94%A8mockito%E7%AE%80%E5%8D%95mock%E5%85%A5%E9%97%A8/>[译]使用Mockito简单mock入门</a></h1></header><date class="post-meta meta-date">2014年3月1日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91>我的翻译</a></div><div class=post-content>我们在写单元测试的时候，面临的一个挑战就是要测试的内容总是依赖于其他组件，要是我们还得先配置好其他组件，未免有点不如意，那么我们可以使用Mocks来代替那些依赖的组件
 本文问了展示这个过程，我会创建一个DAL，数据访问层，这是一个类，提供了一个通用的api来访问和修改数据仓库的数据，然后，我们要测试这个api，而不用配置连接某个本地的数据库，，或者一个远程的数据库，或者是一个文件系统，反正就是任何放数据的东西，DAL层的好处就是隔离开了数据访问和应用程序代码
 首先使用maven来创建一个工程
 执行之后，本地生成MockitoDemo 文件夹，然后整个工程的目录结构与生成好了。
@@ -201,114 +47,24 @@ DAL层现在还没啥功能，我们要通过TDD来测试，实际中，DAL可�
 2.然后stub,存根。。用mock的数据。这样当对应的方法被调用的时候就返回我mock的数据
 然后，我们执行一下
 mvn test就可以看到结果了
-   很简单。。。没有配置任何实际的数据源。……
-            <p class="readmore"><a href="http://leaver.me/2014/03/01/%E8%AF%91%E4%BD%BF%E7%94%A8mockito%E7%AE%80%E5%8D%95mock%E5%85%A5%E9%97%A8/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/07/17/%E4%BD%BF%E7%94%A8css3%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AD%97%E4%BD%93%E7%BE%8E%E5%8C%96%E6%96%87%E5%AD%97/">使用CSS3的自定义字体美化文字</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年7月17日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            之前看到一些设计师的主题的字体很美，下载下来发现使用了css3的自定义字体，可以用来显示服务器上的字体，非常方便，学习了一下
+   很简单。。。没有配置任何实际的数据源。……<p class=readmore><a href=http://leaver.me/2014/03/01/%E8%AF%91%E4%BD%BF%E7%94%A8mockito%E7%AE%80%E5%8D%95mock%E5%85%A5%E9%97%A8/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/07/17/%E4%BD%BF%E7%94%A8css3%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AD%97%E4%BD%93%E7%BE%8E%E5%8C%96%E6%96%87%E5%AD%97/>使用CSS3的自定义字体美化文字</a></h1></header><date class="post-meta meta-date">2013年7月17日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>之前看到一些设计师的主题的字体很美，下载下来发现使用了css3的自定义字体，可以用来显示服务器上的字体，非常方便，学习了一下
 1.首先得到字体
 这个方法很多，本机的字体，一些国外的免费网站，比如这个：http://www.dafont.com，下载后的字体一般为ttf格式，ttf字体被很多浏览器支持，但是，IE不支持，为了兼容性，需要为IE单独设置字体文件，格式必须为eot，所以我们需要转换字体，使用在线工具，比如http://www.kirsle.net/wizards/ttf2eot.cgi，当然类似的网站有很多，根据个人爱好，随意。
  2.添加内容
 这里，我写一个简单的html文件，内容为
 在没有设置customFont这个类的css之前，字体就是默认的字体了。
  3.设置css样式
-显示效果就是这样的了&hellip;只是用来演示的一个字体。
-
- 因为浏览器是要自动下载这个字体文件的，所以对于英文字体没啥问题，英文字体一般这个字体文件在100k左右，和一张图片比起来，基本算不是问题，但是对于中文字体，包一般在10M-20M左右，这样是不现实的，我的想法是，可以自己制作字体包，这样只需要满足常用的一些汉字就行了，大大减少包的大小，然后去找了一下，发现了http://www.high-logic.com/font-editor/fontcreator.html这个软件，是可以直接编辑字体包的，也可以创建字体包，有空了用来试试.……
-            <p class="readmore"><a href="http://leaver.me/2013/07/17/%E4%BD%BF%E7%94%A8css3%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AD%97%E4%BD%93%E7%BE%8E%E5%8C%96%E6%96%87%E5%AD%97/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/02/21/c#%E5%8F%8D%E5%B0%84%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E6%8F%92%E4%BB%B6%E7%B3%BB%E7%BB%9F/">C#反射实现简单的插件系统</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年2月21日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            如果用过一些优秀的开源或是非开源的应用软件，就会发现这些软件的一个很大的优势就是其开放性，任何有能力的人都可以为其开发不同的插件来增强其的功能。比如著名的foobar2000，Vim和TotalCommander等等。
+显示效果就是这样的了&mldr;只是用来演示的一个字体。
+ 因为浏览器是要自动下载这个字体文件的，所以对于英文字体没啥问题，英文字体一般这个字体文件在100k左右，和一张图片比起来，基本算不是问题，但是对于中文字体，包一般在10M-20M左右，这样是不现实的，我的想法是，可以自己制作字体包，这样只需要满足常用的一些汉字就行了，大大减少包的大小，然后去找了一下，发现了http://www.high-logic.com/font-editor/fontcreator.html这个软件，是可以直接编辑字体包的，也可以创建字体包，有空了用来试试.……<p class=readmore><a href=http://leaver.me/2013/07/17/%E4%BD%BF%E7%94%A8css3%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AD%97%E4%BD%93%E7%BE%8E%E5%8C%96%E6%96%87%E5%AD%97/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/02/21/c#%E5%8F%8D%E5%B0%84%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E6%8F%92%E4%BB%B6%E7%B3%BB%E7%BB%9F/>C#反射实现简单的插件系统</a></h1></header><date class="post-meta meta-date">2013年2月21日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>如果用过一些优秀的开源或是非开源的应用软件，就会发现这些软件的一个很大的优势就是其开放性，任何有能力的人都可以为其开发不同的插件来增强其的功能。比如著名的foobar2000，Vim和TotalCommander等等。
 C#的反射可以用来实现一个简单的插件系统。思路很简单，我们创建一个解决方案，包含三个工程，一个为我们的软件MyApplication，一个为插件接口IPlugin，一个为具体的插件MyPlugin。插件系统的基本思路是我们用一个接口类库,来定义我们软件可以使用的插件必须实现的方法签名。然后我们的软件MyApplication通过引用该IPlugin dll来动态调用，而具体的实现插件MyPlugin则引用该接口来实现具体的方法。这样我们的应用程序就能在不知道具体插件的情况下调用插件了。。
 结构图如下：
-
-关键代码也就是通过对程序集载入。搜索到对应接口的实现类。然后调用即可。……
-            <p class="readmore"><a href="http://leaver.me/2013/02/21/c#%E5%8F%8D%E5%B0%84%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E6%8F%92%E4%BB%B6%E7%B3%BB%E7%BB%9F/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/02/02/%E5%88%A9%E7%94%A8%E5%8F%8D%E5%B0%84%E8%BD%AC%E6%8D%A2%E5%AF%B9%E8%B1%A1list%E5%88%B0csv/">利用反射转换对象list到csv</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年2月2日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            扒自一工程。。可以学习一下.net中反射的简单用法
+关键代码也就是通过对程序集载入。搜索到对应接口的实现类。然后调用即可。……<p class=readmore><a href=http://leaver.me/2013/02/21/c#%E5%8F%8D%E5%B0%84%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E6%8F%92%E4%BB%B6%E7%B3%BB%E7%BB%9F/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/02/02/%E5%88%A9%E7%94%A8%E5%8F%8D%E5%B0%84%E8%BD%AC%E6%8D%A2%E5%AF%B9%E8%B1%A1list%E5%88%B0csv/>利用反射转换对象list到csv</a></h1></header><date class="post-meta meta-date">2013年2月2日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>扒自一工程。。可以学习一下.net中反射的简单用法
  增加这个只是两个预定义的实体框架内的属性。
-使用PropertyInfo 可以获得名字。数据类型。声明类型，反射类型，读写属性等等。也可以设置或获取属性值。……
-            <p class="readmore"><a href="http://leaver.me/2013/02/02/%E5%88%A9%E7%94%A8%E5%8F%8D%E5%B0%84%E8%BD%AC%E6%8D%A2%E5%AF%B9%E8%B1%A1list%E5%88%B0csv/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/01/27/c#-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0%E7%B4%A2%E5%BC%95/">C# 基础知识系列文章索引</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年1月27日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F'>文章收藏</a>
-            
-        </div>
-        
-        <div class="post-content">
-            清理GR的加星标项目。分享来自博客园 zhili 的C#基础系列文章。
+使用PropertyInfo 可以获得名字。数据类型。声明类型，反射类型，读写属性等等。也可以设置或获取属性值。……<p class=readmore><a href=http://leaver.me/2013/02/02/%E5%88%A9%E7%94%A8%E5%8F%8D%E5%B0%84%E8%BD%AC%E6%8D%A2%E5%AF%B9%E8%B1%A1list%E5%88%B0csv/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/01/27/c#-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0%E7%B4%A2%E5%BC%95/>C# 基础知识系列文章索引</a></h1></header><date class="post-meta meta-date">2013年1月27日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F>文章收藏</a></div><div class=post-content>清理GR的加星标项目。分享来自博客园 zhili 的C#基础系列文章。
 C#基础知识系列终于告了一个段落了, 本系列中主要和大家介绍了C#1.0到C# 4.0中一些重要的特性，刚开始写这个专题的初衷主要是我觉得掌握了C#这些基础知识之后，对于其他任何的一门语言都是差不多的，这样可以提高朋友们对其他语言的掌握，以及可以让大家更加迅速地掌握.NET的新特性， 并且相信这个系列对于找工作的朋友也是很有帮助的，因为很多公司面试都很看重基础知识是否扎实，是否对C#有一个全面的认识和理解，所以很多公司面试都会问到一些C#基础概念的问题，例如，经常面试会问：你是如何理解委托的，如何理解匿名函数等问题。
 然而这个系列中并没有介绍COM互操作性的内容以及.Net 4.5中的一些新特性，所以后面将会对这两个方面的内容进行补充，由于这个系列托的太久了(大概也有3个月吧)，所以就先告一段落的，后面将会带来.NET互操作性系列的介绍。下面就为这个系列文章做一个索引，方便大家收藏和查找。
 C#基础知识系列索引
@@ -333,34 +89,12 @@ C# 3.0
 16. Linq介绍
 C# 4.0
 17. 深入理解动态类型
- 从C#的所有特性可以看出,C#中提出的每个新特性都是建立在原来特性的基础上,并且是对原来特性的一个改进, 做这么多的改进主要是为了方便开发人员更好地使用C#来编写程序,是让我们写更少的代码来实现我们的程序,把一些额外的工作交给编译器去帮我们做,也就是很多人说微软很喜欢搞语法糖的意思(语法糖即让编译器帮我们做一些额外的事情，减少开发人员所考虑的事情，使开发人员放更多的精力放在系统的业务逻辑上面。)，大家从C# 3中提出的特性中可以很好的看出这点(指的是玩语法糖)，C#3中几乎大部分特性都是C#提供的语法糖，从CLR层面来说(指的是增加新的IL指令)，C# 3并没有更新什么，C# 4中提出的动态类型又是建立在表达式树的基础上，包括Linq也是建立在表达式树的基础上，所以每个特性都是层层递进的一个关系。相信C#后面提出的新特性将会更加方便我们开发程序，感觉所有语言的一个统一的思想都是——写更少的代码，却可以做更多的事情。但是我们不能仅仅停住于知道怎么使用它，我们还应该深入研究它的背后的故事，知道新特性是如何实现的和原理。用一句说就是——我们要知其然之气所以然，学习知识应该抱着刨根问底的态度去学习,相信这样的学习方式也可以让大家不感到心虚,写出的程序将会更加自信。……
-            <p class="readmore"><a href="http://leaver.me/2013/01/27/c#-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0%E7%B4%A2%E5%BC%95/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/01/23/%E4%B8%8D%E8%A6%81%E5%8F%98%E6%88%90%E4%BD%A0%E8%AE%A8%E5%8E%8C%E7%9A%84%E4%BA%BA%E9%9D%A2%E7%9B%AE%E5%8F%AF%E6%86%8E/">不要变成你讨厌的人，面目可憎</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年1月23日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F'>文章收藏</a>
-            
-        </div>
-        
-        <div class="post-content">
-            本文来自xjp的碎碎念，我很喜欢的一个博主。博客已被伟大的GFW屏蔽。和文章的主题类似，我有时候会在G+上会纠正一些人的谣言，并且给出澄清，可是，往往效果不大。我的态度很简单，你要反对一样东西，请你不要是那样的东西。或用那样的东西去反对。不要为任何主义所迷惑，你要做好一个人。
+ 从C#的所有特性可以看出,C#中提出的每个新特性都是建立在原来特性的基础上,并且是对原来特性的一个改进, 做这么多的改进主要是为了方便开发人员更好地使用C#来编写程序,是让我们写更少的代码来实现我们的程序,把一些额外的工作交给编译器去帮我们做,也就是很多人说微软很喜欢搞语法糖的意思(语法糖即让编译器帮我们做一些额外的事情，减少开发人员所考虑的事情，使开发人员放更多的精力放在系统的业务逻辑上面。)，大家从C# 3中提出的特性中可以很好的看出这点(指的是玩语法糖)，C#3中几乎大部分特性都是C#提供的语法糖，从CLR层面来说(指的是增加新的IL指令)，C# 3并没有更新什么，C# 4中提出的动态类型又是建立在表达式树的基础上，包括Linq也是建立在表达式树的基础上，所以每个特性都是层层递进的一个关系。相信C#后面提出的新特性将会更加方便我们开发程序，感觉所有语言的一个统一的思想都是——写更少的代码，却可以做更多的事情。但是我们不能仅仅停住于知道怎么使用它，我们还应该深入研究它的背后的故事，知道新特性是如何实现的和原理。用一句说就是——我们要知其然之气所以然，学习知识应该抱着刨根问底的态度去学习,相信这样的学习方式也可以让大家不感到心虚,写出的程序将会更加自信。……<p class=readmore><a href=http://leaver.me/2013/01/27/c#-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0%E7%B4%A2%E5%BC%95/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/01/23/%E4%B8%8D%E8%A6%81%E5%8F%98%E6%88%90%E4%BD%A0%E8%AE%A8%E5%8E%8C%E7%9A%84%E4%BA%BA%E9%9D%A2%E7%9B%AE%E5%8F%AF%E6%86%8E/>不要变成你讨厌的人，面目可憎</a></h1></header><date class="post-meta meta-date">2013年1月23日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F>文章收藏</a></div><div class=post-content>本文来自xjp的碎碎念，我很喜欢的一个博主。博客已被伟大的GFW屏蔽。和文章的主题类似，我有时候会在G+上会纠正一些人的谣言，并且给出澄清，可是，往往效果不大。我的态度很简单，你要反对一样东西，请你不要是那样的东西。或用那样的东西去反对。不要为任何主义所迷惑，你要做好一个人。
 今天看到一篇来自《新京报》的报道，称时事评论员@周筱赟爆料称，根据铁道部的两份采购合同显示，推测铁道部12306订票网站实际投入已经超过5亿元，而不是之前曾披露的3.2亿元。
 首先我很赞同周筱赟所做的事情，在国内目前民众获取信息渠道有限的情况下，有这样的热心人士去披露政府部门行政行为中值得讨论的部分，对于整个社会的公正与透明都有极大的推动作用。
 但我注意的是另一群人，他们典型的回复是：
- 1、花5个多亿做成这么垃圾的网站，铁道部公然贪污多少钱？臭不要脸的！二逼的网站和系统归功于傻逼造就！
+1、花5个多亿做成这么垃圾的网站，铁道部公然贪污多少钱？臭不要脸的！二逼的网站和系统归功于傻逼造就！
 2、卧槽，里面有4.5亿是贪污款吧
 3、习总说反腐，最大的蛀虫在这里，敢反否？
 4、3亿建站为什么这些年一直没有工商部去追查12306的贪污问题。你懂我懂大家懂。
@@ -368,380 +102,100 @@ C# 4.0
 6、太极集团是做医药的呀，怎么也搞起软件来了。我想说，有没经验都不要紧，要紧的是有钱。咱就撒都能做！
 7、五亿······· 用了个500的模版 月薪5000水平的制作团队
 8、三億各單位部門宣傳費，一億三公支出，五千萬采購合同草擬費用，四千萬給媒體掩口費, 九百九十萬信息產業部備案費用，最後十萬才是網站制作費用… 這五億基本上都使對了地方，沒有錯啊! 其它的评论都是诸如此类，某一些理性的评论都被深埋其中。
- 我不是铁道部、太极的任何一方，我不能拍着胸脯说这些问题一定不存在，但真正让我恐惧的是，有大量网友没有认真去研究文章的内容与事实，只是单纯下意识地做出了判断，然后开喷。
+我不是铁道部、太极的任何一方，我不能拍着胸脯说这些问题一定不存在，但真正让我恐惧的是，有大量网友没有认真去研究文章的内容与事实，只是单纯下意识地做出了判断，然后开喷。
 我们仔细去看我们讨厌的那些五毛与政府宣传部门，他们的日常做法都是：
- 1、戴帽子
+1、戴帽子
 2、站在道德高度，说正确的废话
 3、自说自话，完全不管别人在说什么
 4、预设立场
 5、我永远是对的，反对我的都是错的
 6、你们站在人民的对立面 然后有一个微博网友在评论里跟我说，他只需要一万元就能够搞定12306的网站外包开发。听到这样的话，我不由地一阵颤抖，如果这话来自一名所谓的业内人士，那我真的不知道应该怎么说了。
- 引用某网友的评论：
- 从专业角度来说，投入不算多，只是透明度不够，民众才疑惑！全国各地还需要再多些大型机房，才能满足高峰期分流排队和并发操作！ 我的看法是，不否认铁道部的开发、架构设计存在一定问题，如果没有实际的大型系统设计经验的团队，可能会造成很多理论与实际脱节问题，事实上今年的12306已经比去年好太多了，他们也在吸取教训。当然，我也赞成他们向互联网公司取经，吸收现有经验。
- 建议大家不要单纯喷，5亿这个数字可能略高，但比起数千万的静态网站好多了，至于具体审计是国家审计局的事情，我支持惩处贪腐。做一个覆盖数千万用户，承受刷票插件5秒一次的并发，服务器、带宽、配套都是成本。而售票数字化几乎是必经之路，铁道部走出这一步是好的，买不到票有基础运力的问题，跟网络售票无关。
-不要一叶障目，买不到票人人都会烦心，诚然铁道部是一个不错的发泄口，但如果只是为了喷而喷。借用我之前的一句话，铁道部如何做你们才满意？……
-            <p class="readmore"><a href="http://leaver.me/2013/01/23/%E4%B8%8D%E8%A6%81%E5%8F%98%E6%88%90%E4%BD%A0%E8%AE%A8%E5%8E%8C%E7%9A%84%E4%BA%BA%E9%9D%A2%E7%9B%AE%E5%8F%AF%E6%86%8E/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/01/21/%E7%A4%BE%E5%B7%A5%E5%AD%97%E5%85%B8%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7/">社工字典生成工具</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年1月21日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            在家无聊写了这个工具，主要是为了防止自己这一直写随笔把本行忘了。。也熟悉一下代码。。暂时不放源代码了。以后改的好一点再发吧。
+引用某网友的评论：
+从专业角度来说，投入不算多，只是透明度不够，民众才疑惑！全国各地还需要再多些大型机房，才能满足高峰期分流排队和并发操作！ 我的看法是，不否认铁道部的开发、架构设计存在一定问题，如果没有实际的大型系统设计经验的团队，可能会造成很多理论与实际脱节问题，事实上今年的12306已经比去年好太多了，他们也在吸取教训。当然，我也赞成他们向互联网公司取经，吸收现有经验。
+建议大家不要单纯喷，5亿这个数字可能略高，但比起数千万的静态网站好多了，至于具体审计是国家审计局的事情，我支持惩处贪腐。做一个覆盖数千万用户，承受刷票插件5秒一次的并发，服务器、带宽、配套都是成本。而售票数字化几乎是必经之路，铁道部走出这一步是好的，买不到票有基础运力的问题，跟网络售票无关。
+不要一叶障目，买不到票人人都会烦心，诚然铁道部是一个不错的发泄口，但如果只是为了喷而喷。借用我之前的一句话，铁道部如何做你们才满意？……<p class=readmore><a href=http://leaver.me/2013/01/23/%E4%B8%8D%E8%A6%81%E5%8F%98%E6%88%90%E4%BD%A0%E8%AE%A8%E5%8E%8C%E7%9A%84%E4%BA%BA%E9%9D%A2%E7%9B%AE%E5%8F%AF%E6%86%8E/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/01/21/%E7%A4%BE%E5%B7%A5%E5%AD%97%E5%85%B8%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7/>社工字典生成工具</a></h1></header><date class="post-meta meta-date">2013年1月21日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>在家无聊写了这个工具，主要是为了防止自己这一直写随笔把本行忘了。。也熟悉一下代码。。暂时不放源代码了。以后改的好一点再发吧。
 作者：bystander
 博客：http://leaver.me
 转载请注明出处！
-
  
 涉及到的东西有：
 1.C#隐藏TabControl的header部分，前面的文章有介绍
-2.获取窗体全部的某一类控件（这个无聊的话抽象出一个通用的方法出来，以后就可以直接用了）……
-            <p class="readmore"><a href="http://leaver.me/2013/01/21/%E7%A4%BE%E5%B7%A5%E5%AD%97%E5%85%B8%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7/">阅读全文</a></p>
-        </div>
-    </article>
-    
-
-    
-
-
-
-<ol class="page-navigator">
-    
-
-    
-    <li  class="current">
-        <a href="http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/">1</a>
-    </li>
-    
-    <li >
-        <a href="http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/page/2/">2</a>
-    </li>
-    
-    <li >
-        <a href="http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/page/3/">3</a>
-    </li>
-    
-    <li >
-        <a href="http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/page/4/">4</a>
-    </li>
-    
-
-    
-    <li class="next">
-        <a href="http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/page/2/">下一页</a>
-    </li>
-    
-</ol>
-
-
-
-</div>
-
-                </div>
-
-                <div id="secondary">
-    <section class="widget">
-        <form id="search" action='http://leaver.me/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
-      
-      <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="http://leaver.me/">
-      <button type="submit" class="submit icon-search"></button>
-</form>
-    </section>
-    
-    <section class="widget">
-        <h3 class="widget-title">最近文章</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2019 年终总结">2019 年终总结</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/" title="深入理解Raft协议">深入理解Raft协议</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/" title="《非暴力沟通》笔记">《非暴力沟通》笔记</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/10/06/wedding-of-friends/" title="Wedding of Friends">Wedding of Friends</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/09/29/principle-note/" title="Principle Note">Principle Note</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/" title="梦见鲸鱼的那一夜">梦见鲸鱼的那一夜</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/08/20/understand-hong-kong-2/" title="Understand Hong Kong 2">Understand Hong Kong 2</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/08/18/understand-hong-kong-part-1/" title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/" title="错过的都是命，得到的才是人生">错过的都是命，得到的才是人生</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/04/06/recently/" title="Recently">Recently</a>
-    </li>
-    
-</ul>
-    </section>
-
-    
-
-    <section class="widget">
-        <h3 class="widget-title">分类</h3>
-<ul class="widget-list">
-    
-    <li><a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记 (186)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/">我的翻译 (57)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/">文章收藏 (53)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录 (3)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记 (4)</a></li>
-    
-</ul>
-    </section>
-
-    <section class="widget">
-        <h3 class="widget-title">标签</h3>
-<div class="tagcloud">
-    
-    <a href="http://leaver.me/tags/android/">android</a>
-    
-    <a href="http://leaver.me/tags/c/">C＃</a>
-    
-    <a href="http://leaver.me/tags/c&#43;&#43;/">C&#43;&#43;</a>
-    
-    <a href="http://leaver.me/tags/java/">java</a>
-    
-    <a href="http://leaver.me/tags/javascript/">javascript</a>
-    
-    <a href="http://leaver.me/tags/linux/">linux</a>
-    
-    <a href="http://leaver.me/tags/mac/">mac</a>
-    
-    <a href="http://leaver.me/tags/matlab/">matlab</a>
-    
-    <a href="http://leaver.me/tags/maven/">maven</a>
-    
-    <a href="http://leaver.me/tags/mysql/">mysql</a>
-    
-    <a href="http://leaver.me/tags/nextgen-gallery/">NextGEN Gallery</a>
-    
-    <a href="http://leaver.me/tags/php/">php</a>
-    
-    <a href="http://leaver.me/tags/python/">python</a>
-    
-    <a href="http://leaver.me/tags/shell/">shell</a>
-    
-    <a href="http://leaver.me/tags/spring/">spring</a>
-    
-    <a href="http://leaver.me/tags/sql/">sql</a>
-    
-    <a href="http://leaver.me/tags/stackoverflow/">stackoverflow</a>
-    
-    <a href="http://leaver.me/tags/wcf/">WCF</a>
-    
-    <a href="http://leaver.me/tags/web/">web</a>
-    
-    <a href="http://leaver.me/tags/windows/">windows</a>
-    
-    <a href="http://leaver.me/tags/wordpress/">wordpress</a>
-    
-    <a href="http://leaver.me/tags/wpf/">WPF</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/">上海</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/">下载</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
-    
-    <a href="http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/">互联网</a>
-    
-    <a href="http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
-    
-    <a href="http://leaver.me/tags/%E5%88%B6%E5%BA%A6/">制度</a>
-    
-    <a href="http://leaver.me/tags/%E5%89%8D%E7%AB%AF/">前端</a>
-    
-    <a href="http://leaver.me/tags/%E5%8E%9F%E5%88%9B/">原创</a>
-    
-    <a href="http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/">大学</a>
-    
-    <a href="http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/">学习</a>
-    
-    <a href="http://leaver.me/tags/%E5%AE%89%E5%85%A8/">安全</a>
-    
-    <a href="http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/">家庭</a>
-    
-    <a href="http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/">工作</a>
-    
-    <a href="http://leaver.me/tags/%E5%B7%A5%E5%85%B7/">工具</a>
-    
-    <a href="http://leaver.me/tags/%E5%B9%B6%E5%8F%91/">并发</a>
-    
-    <a href="http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/">序列化</a>
-    
-    <a href="http://leaver.me/tags/%E5%BC%80%E5%8F%91/">开发</a>
-    
-    <a href="http://leaver.me/tags/%E5%BF%83%E7%90%86/">心理</a>
-    
-    <a href="http://leaver.me/tags/%E6%80%BB%E7%BB%93/">总结</a>
-    
-    <a href="http://leaver.me/tags/%E6%8A%80%E6%9C%AF/">技术</a>
-    
-    <a href="http://leaver.me/tags/%E6%8F%92%E4%BB%B6/">插件</a>
-    
-    <a href="http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-    
-    <a href="http://leaver.me/tags/%E6%94%B6%E8%97%8F/">收藏</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E5%AD%A6/">数学</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">数据挖掘</a>
-    
-    <a href="http://leaver.me/tags/%E6%96%87%E7%AB%A0/">文章</a>
-    
-    <a href="http://leaver.me/tags/%E6%99%BA%E8%83%BD/">智能</a>
-    
-    <a href="http://leaver.me/tags/%E6%9D%82%E6%96%87/">杂文</a>
-    
-    <a href="http://leaver.me/tags/%E6%AD%A6%E6%B1%89/">武汉</a>
-    
-    <a href="http://leaver.me/tags/%E6%B1%87%E7%BC%96/">汇编</a>
-    
-    <a href="http://leaver.me/tags/%E7%88%B1%E6%83%85/">爱情</a>
-    
-    <a href="http://leaver.me/tags/%E7%90%86%E8%AE%BA/">理论</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%9F%E6%B4%BB/">生活</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/">电子书</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%B5%E5%BD%B1/">电影</a>
-    
-    <a href="http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/">社会</a>
-    
-    <a href="http://leaver.me/tags/%E7%A7%91%E6%8A%80/">科技</a>
-    
-    <a href="http://leaver.me/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
-    
-    <a href="http://leaver.me/tags/%E7%AE%97%E6%B3%95/">算法</a>
-    
-    <a href="http://leaver.me/tags/%E7%BC%96%E7%A8%8B/">编程</a>
-    
-    <a href="http://leaver.me/tags/%E7%BC%96%E8%AF%91/">编译</a>
-    
-    <a href="http://leaver.me/tags/%E7%BF%BB%E8%AF%91/">翻译</a>
-    
-    <a href="http://leaver.me/tags/%E8%81%8C%E4%B8%9A/">职业</a>
-    
-    <a href="http://leaver.me/tags/%E8%AE%B0%E5%BD%95/">记录</a>
-    
-    <a href="http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/">设计</a>
-    
-    <a href="http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/">读书</a>
-    
-    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/">软件</a>
-    
-    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</a>
-    
-    <a href="http://leaver.me/tags/%E8%BF%90%E7%BB%B4/">运维</a>
-    
-    <a href="http://leaver.me/tags/%E9%87%91%E8%9E%8D/">金融</a>
-    
-</div>
-    </section>
-
-    
-<section class="widget">
-    <h3 class="widget-title">友情链接</h3>
-    <ul class="widget-list">
-        
-        <li>
-            <a target="_blank" href="https://www.cppfans.org/" title="C&#43;&#43;爱好者博客">C&#43;&#43;爱好者博客</a>
-        </li>
-        
-        <li>
-            <a target="_blank" href="http://www.kailing.pub" title="KL，每天进步一点点">KL，每天进步一点点</a>
-        </li>
-        
-    </ul>
-</section>
-
-
-    <section class="widget">
-        <h3 class="widget-title">其它</h3>
-        <ul class="widget-list">
-            <li><a href="http://leaver.me/index.xml">文章 RSS</a></li>
-        </ul>
-    </section>
-</div>
-            </div>
-        </div>
-    </div>
-    <footer id="footer">
-    <div class="container">
-        &copy; 2020 <a href="http://leaver.me/">bystander&#39;s blog By bystander</a>.
-        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
-        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
-        
-    </div>
-</footer>
-
-
-
-<a id="rocket" href="#top"></a>
-<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-30961201-3', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-
-
-
-
-
-</body>
-
-</html>
+2.获取窗体全部的某一类控件（这个无聊的话抽象出一个通用的方法出来，以后就可以直接用了）……<p class=readmore><a href=http://leaver.me/2013/01/21/%E7%A4%BE%E5%B7%A5%E5%AD%97%E5%85%B8%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7/>阅读全文</a></p></div></article><ol class=page-navigator><li class=current><a href=http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/>1</a></li><li><a href=http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/page/2/>2</a></li><li><a href=http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/page/3/>3</a></li><li><a href=http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/page/4/>4</a></li><li class=next><a href=http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/page/2/>下一页</a></li></ol></div></div><div id=secondary><section class=widget><form id=search action=http://leaver.me/search/ method=get accept-charset=utf-8 target=_blank _lpchecked=1><input type=text name=q maxlength=20 placeholder=Search>
+<input type=hidden name=sitesearch value=http://leaver.me/>
+<button type=submit class="submit icon-search"></button></form></section><section class=widget><h3 class=widget-title>最近文章</h3><ul class=widget-list><li><a href=http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/ title="2019 年终总结">2019 年终总结</a></li><li><a href=http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/ title=深入理解Raft协议>深入理解Raft协议</a></li><li><a href=http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/ title=《非暴力沟通》笔记>《非暴力沟通》笔记</a></li><li><a href=http://leaver.me/2019/10/06/wedding-of-friends/ title="Wedding of Friends">Wedding of Friends</a></li><li><a href=http://leaver.me/2019/09/29/principle-note/ title="Principle Note">Principle Note</a></li><li><a href=http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/ title=梦见鲸鱼的那一夜>梦见鲸鱼的那一夜</a></li><li><a href=http://leaver.me/2019/08/20/understand-hong-kong-2/ title="Understand Hong Kong 2">Understand Hong Kong 2</a></li><li><a href=http://leaver.me/2019/08/18/understand-hong-kong-part-1/ title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a></li><li><a href=http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/ title=错过的都是命，得到的才是人生>错过的都是命，得到的才是人生</a></li><li><a href=http://leaver.me/2019/04/06/recently/ title=Recently>Recently</a></li></ul></section><section class=widget><h3 class=widget-title>分类</h3><ul class=widget-list><li><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/>学习笔记 (186)</a></li><li><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/>我的翻译 (57)</a></li><li><a href=http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/>文章收藏 (53)</a></li><li><a href=http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/>生活记录 (3)</a></li><li><a href=http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/>读书笔记 (4)</a></li></ul></section><section class=widget><h3 class=widget-title>标签</h3><div class=tagcloud><a href=http://leaver.me/tags/android/>android</a>
+<a href=http://leaver.me/tags/c/>C＃</a>
+<a href=http://leaver.me/tags/c++/>C++</a>
+<a href=http://leaver.me/tags/java/>java</a>
+<a href=http://leaver.me/tags/javascript/>javascript</a>
+<a href=http://leaver.me/tags/linux/>linux</a>
+<a href=http://leaver.me/tags/mac/>mac</a>
+<a href=http://leaver.me/tags/matlab/>matlab</a>
+<a href=http://leaver.me/tags/maven/>maven</a>
+<a href=http://leaver.me/tags/mysql/>mysql</a>
+<a href=http://leaver.me/tags/nextgen-gallery/>NextGEN Gallery</a>
+<a href=http://leaver.me/tags/php/>php</a>
+<a href=http://leaver.me/tags/python/>python</a>
+<a href=http://leaver.me/tags/shell/>shell</a>
+<a href=http://leaver.me/tags/spring/>spring</a>
+<a href=http://leaver.me/tags/sql/>sql</a>
+<a href=http://leaver.me/tags/stackoverflow/>stackoverflow</a>
+<a href=http://leaver.me/tags/wcf/>WCF</a>
+<a href=http://leaver.me/tags/web/>web</a>
+<a href=http://leaver.me/tags/windows/>windows</a>
+<a href=http://leaver.me/tags/wordpress/>wordpress</a>
+<a href=http://leaver.me/tags/wpf/>WPF</a>
+<a href=http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/>上海</a>
+<a href=http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/>下载</a>
+<a href=http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/>中间件</a>
+<a href=http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/>互联网</a>
+<a href=http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/>分布式</a>
+<a href=http://leaver.me/tags/%E5%88%B6%E5%BA%A6/>制度</a>
+<a href=http://leaver.me/tags/%E5%89%8D%E7%AB%AF/>前端</a>
+<a href=http://leaver.me/tags/%E5%8E%9F%E5%88%9B/>原创</a>
+<a href=http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/>大学</a>
+<a href=http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/>学习</a>
+<a href=http://leaver.me/tags/%E5%AE%89%E5%85%A8/>安全</a>
+<a href=http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/>家庭</a>
+<a href=http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/>工作</a>
+<a href=http://leaver.me/tags/%E5%B7%A5%E5%85%B7/>工具</a>
+<a href=http://leaver.me/tags/%E5%B9%B6%E5%8F%91/>并发</a>
+<a href=http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/>序列化</a>
+<a href=http://leaver.me/tags/%E5%BC%80%E5%8F%91/>开发</a>
+<a href=http://leaver.me/tags/%E5%BF%83%E7%90%86/>心理</a>
+<a href=http://leaver.me/tags/%E6%80%BB%E7%BB%93/>总结</a>
+<a href=http://leaver.me/tags/%E6%8A%80%E6%9C%AF/>技术</a>
+<a href=http://leaver.me/tags/%E6%8F%92%E4%BB%B6/>插件</a>
+<a href=http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/>操作系统</a>
+<a href=http://leaver.me/tags/%E6%94%B6%E8%97%8F/>收藏</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E5%AD%A6/>数学</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/>数据库</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/>数据挖掘</a>
+<a href=http://leaver.me/tags/%E6%96%87%E7%AB%A0/>文章</a>
+<a href=http://leaver.me/tags/%E6%99%BA%E8%83%BD/>智能</a>
+<a href=http://leaver.me/tags/%E6%9D%82%E6%96%87/>杂文</a>
+<a href=http://leaver.me/tags/%E6%AD%A6%E6%B1%89/>武汉</a>
+<a href=http://leaver.me/tags/%E6%B1%87%E7%BC%96/>汇编</a>
+<a href=http://leaver.me/tags/%E7%88%B1%E6%83%85/>爱情</a>
+<a href=http://leaver.me/tags/%E7%90%86%E8%AE%BA/>理论</a>
+<a href=http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/>生产力</a>
+<a href=http://leaver.me/tags/%E7%94%9F%E6%B4%BB/>生活</a>
+<a href=http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/>电子书</a>
+<a href=http://leaver.me/tags/%E7%94%B5%E5%BD%B1/>电影</a>
+<a href=http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/>社会</a>
+<a href=http://leaver.me/tags/%E7%A7%91%E6%8A%80/>科技</a>
+<a href=http://leaver.me/tags/%E7%AC%94%E8%AE%B0/>笔记</a>
+<a href=http://leaver.me/tags/%E7%AE%97%E6%B3%95/>算法</a>
+<a href=http://leaver.me/tags/%E7%BC%96%E7%A8%8B/>编程</a>
+<a href=http://leaver.me/tags/%E7%BC%96%E8%AF%91/>编译</a>
+<a href=http://leaver.me/tags/%E7%BF%BB%E8%AF%91/>翻译</a>
+<a href=http://leaver.me/tags/%E8%81%8C%E4%B8%9A/>职业</a>
+<a href=http://leaver.me/tags/%E8%AE%B0%E5%BD%95/>记录</a>
+<a href=http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/>设计</a>
+<a href=http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/>读书</a>
+<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/>软件</a>
+<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/>软件测试</a>
+<a href=http://leaver.me/tags/%E8%BF%90%E7%BB%B4/>运维</a>
+<a href=http://leaver.me/tags/%E9%87%91%E8%9E%8D/>金融</a></div></section><section class=widget><h3 class=widget-title>友情链接</h3><ul class=widget-list><li><a target=_blank href=https://www.cppfans.org/ title=C++爱好者博客>C++爱好者博客</a></li><li><a target=_blank href=http://www.kailing.pub title=KL，每天进步一点点>KL，每天进步一点点</a></li></ul></section><section class=widget><h3 class=widget-title>其它</h3><ul class=widget-list><li><a href=http://leaver.me/index.xml>文章 RSS</a></li></ul></section></div></div></div></div><footer id=footer><div class=container>&copy; 2020 <a href=http://leaver.me/>bystander's blog By bystander</a>.
+Powered by <a rel="nofollow noreferer noopener" href=https://gohugo.io target=_blank>Hugo</a>.
+<a href=https://www.flysnow.org/ target=_blank>Theme</a> based on <a href=https://github.com/flysnow-org/maupassant-hugo target=_blank>maupassant</a>.</div></footer><a id=rocket href=#top></a><script type=text/javascript src="/js/totop.js?v=0.0.0" async></script><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-30961201-3','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></body></html>

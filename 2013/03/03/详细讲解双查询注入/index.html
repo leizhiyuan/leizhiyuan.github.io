@@ -1,533 +1,106 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>详细讲解双查询注入 | bystander&#39;s blog</title>
-    <meta property="og:title" content="详细讲解双查询注入 - bystander&#39;s blog">
-    <meta property="og:type" content="article">
-        
-    <meta property="article:published_time" content='2013-03-03T07:53:24&#43;08:00'>
-        
-        
-    <meta property="article:modified_time" content='2013-03-03T07:53:24&#43;08:00'>
-        
-    <meta name="Keywords" content="">
-    <meta name="description" content="详细讲解双查询注入">
-        
-    <meta name="author" content="bystander">
-    <meta property="og:url" content="http://leaver.me/2013/03/03/%E8%AF%A6%E7%BB%86%E8%AE%B2%E8%A7%A3%E5%8F%8C%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5/">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-
-    <link rel="stylesheet" href='/css/normalize.css'>
-    <link rel="stylesheet" href='/css/style.css'>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-    
-
-
-    
-    
-</head>
-
-
-<body>
-    <header id="header" class="clearfix">
-    <div class="container">
-        <div class="col-group">
-            <div class="site-name ">
-                
-                    <a id="logo" href="http://leaver.me/">
-                        bystander&#39;s blog
-                    </a>
-                
-                <p class="description">寻找窄门</p>
-            </div>
-            <div>
-                <nav id="nav-menu" class="clearfix">
-                    <a class="current" href="http://leaver.me/">首页</a>
-                    
-                    <a  href="http://leaver.me/categories" title="目录">目录</a>
-                    
-                    <a  href="http://leaver.me/about/" title="关于我">关于我</a>
-                    
-                </nav>
-            </div>
-        </div>
-    </div>
-</header>
-
-    <div id="body">
-        <div class="container">
-            <div class="col-group">
-
-                <div class="col-8" id="main">
-                    
-<div class="res-cons">
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">详细讲解双查询注入</h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年3月3日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a></span>
-            
-        </div>
-        
-        
-        
-        <div class="post-content">
-            <p>上一篇文章中，<a href="http://leaver.me/archives/2726.html">http://leaver.me/archives/2726.html</a></p>
-<p>我说双查询很难讲清楚，这次就试着讲一下。读了一些原理性的东西。然后尽量通俗的给大家讲清楚。。</p>
-<p>在此之前，我们理解一下子查询，查询的关键字是select，这个大家都知道。子查询可以简单的理解在一个select语句里还有一个select。里面的这个select语句就是子查询。</p>
-<p>看一个简单的例子：</p>
-<!-- raw HTML omitted -->
-<p>真正执行的时候，先从子查询进行。因此执行select database() 这个语句就会把当前的数据库查出来，然后把结果传入到concat函数。这个函数是用来连接的。比如 concat(‘a’,’b’)那结果就是ab了。</p>
-<p>原理：</p>
-<p>双注入查询需要理解四个函数/语句
-1. Rand()  //随机函数
-2. Floor()  //取整函数
-3. Count()  //汇总函数
-4. Group by clause //分组语句</p>
-<p>简单的一句话原理就是有研究人员发现，当在一个聚合函数，比如count函数后面如果使用分组语句就会把查询的一部分以错误的形式显示出来。</p>
-<p>以本地一个名为Security的数据库为例
-首先在bt5下的命令行下输入</p>
-<!-- raw HTML omitted -->
-<p>就会连接上数据库了。
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><title>详细讲解双查询注入 | bystander's blog</title><meta property="og:title" content="详细讲解双查询注入 - bystander's blog"><meta property="og:type" content="article"><meta property="article:published_time" content="2013-03-03T07:53:24+08:00"><meta property="article:modified_time" content="2013-03-03T07:53:24+08:00"><meta name=Keywords content><meta name=description content="详细讲解双查询注入"><meta name=author content="bystander"><meta property="og:url" content="http://leaver.me/2013/03/03/%E8%AF%A6%E7%BB%86%E8%AE%B2%E8%A7%A3%E5%8F%8C%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5/"><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><link rel=stylesheet href=/css/normalize.css><link rel=stylesheet href=/css/style.css><script type=text/javascript src=//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js></script></head><body><header id=header class=clearfix><div class=container><div class=col-group><div class=site-name><a id=logo href=http://leaver.me/>bystander's blog</a><p class=description>寻找窄门</p></div><div><nav id=nav-menu class=clearfix><a class=current href=http://leaver.me/>首页</a>
+<a href=http://leaver.me/categories title=目录>目录</a>
+<a href=http://leaver.me/about/ title=关于我>关于我</a></nav></div></div></div></header><div id=body><div class=container><div class=col-group><div class=col-8 id=main><div class=res-cons><article class=post><header><h1 class=post-title>详细讲解双查询注入</h1></header><date class="post-meta meta-date">2013年3月3日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></span></div><div class=post-content><p>上一篇文章中，<a href=http://leaver.me/archives/2726.html>http://leaver.me/archives/2726.html</a></p><p>我说双查询很难讲清楚，这次就试着讲一下。读了一些原理性的东西。然后尽量通俗的给大家讲清楚。。</p><p>在此之前，我们理解一下子查询，查询的关键字是select，这个大家都知道。子查询可以简单的理解在一个select语句里还有一个select。里面的这个select语句就是子查询。</p><p>看一个简单的例子：</p><p>真正执行的时候，先从子查询进行。因此执行select database() 这个语句就会把当前的数据库查出来，然后把结果传入到concat函数。这个函数是用来连接的。比如 concat(‘a’,’b’)那结果就是ab了。</p><p>原理：</p><p>双注入查询需要理解四个函数/语句
+1. Rand() //随机函数
+2. Floor() //取整函数
+3. Count() //汇总函数
+4. Group by clause //分组语句</p><p>简单的一句话原理就是有研究人员发现，当在一个聚合函数，比如count函数后面如果使用分组语句就会把查询的一部分以错误的形式显示出来。</p><p>以本地一个名为Security的数据库为例
+首先在bt5下的命令行下输入</p><p>就会连接上数据库了。
 然后通过use security； 就可以切换到security数据库了。因为一个服务器上可能有多个数据库嘛。
-<a href="http://leaverimage.b0.upaiyun.com/33517_o.png"><img src="/images/522ac49ec64d3b7735b3dc208564de22477e4aba.png" alt=""></a></p>
-<p>然后我们执行一下前面那个简单的子查询的例子</p>
-<!-- raw HTML omitted -->
-<p>就能显示security，也就是显示了当前数据库的名字了。
-然后我们测试一下concat的用法。输入</p>
-<!-- raw HTML omitted -->
-<p>显然结果就是string1string2了</p>
-<p><a href="http://leaverimage.b0.upaiyun.com/33518_o.png"><img src="/images/a8be70e4ddb999500369b44191c7c188b4ecf651.png" alt=""></a>
-然后我们测试一下rand()这个随机函数是干嘛的</p>
-<!-- raw HTML omitted -->
-<p>我们多执行几次
-<a href="http://leaverimage.b0.upaiyun.com/33519_o.png"><img src="/images/ab02015d63c2fc6d0af98492ae791d58a7665000.png" alt=""></a>
+<a href=http://leaverimage.b0.upaiyun.com/33517_o.png><img src=/images/522ac49ec64d3b7735b3dc208564de22477e4aba.png alt></a></p><p>然后我们执行一下前面那个简单的子查询的例子</p><p>就能显示security，也就是显示了当前数据库的名字了。
+然后我们测试一下concat的用法。输入</p><p>显然结果就是string1string2了</p><p><a href=http://leaverimage.b0.upaiyun.com/33518_o.png><img src=/images/a8be70e4ddb999500369b44191c7c188b4ecf651.png alt></a>
+然后我们测试一下rand()这个随机函数是干嘛的</p><p>我们多执行几次
+<a href=http://leaverimage.b0.upaiyun.com/33519_o.png><img src=/images/ab02015d63c2fc6d0af98492ae791d58a7665000.png alt></a>
 可以看到，这个函数就是返回大于0，小于1之间的数
-然后看看取整函数</p>
-<!-- raw HTML omitted -->
-<p><a href="http://leaverimage.b0.upaiyun.com/33520_o.png"><img src="/images/4477acaba79cf1464c028cab96e32534d81af2e5.png" alt=""></a>
-这个函数就是返回小于等于你输入的数的整数。</p>
-<p>然后我们看看双注入查询中的一个简单组合。大家从我的上一篇文章中应该也看到了有一个子查询是</p>
-<!-- raw HTML omitted -->
-<p>我们从里向外看。rand() 返回大于0小于1的小数，乘以2之后就成了小于0小于2了。然后对结果进行取证。就只能是0或1了。也就是这个查询的结果不是1，就是0
-我们稍微加大一点难度。看这个查询</p>
-<!-- raw HTML omitted -->
-<p>不要怕。先看最里面的SELECT database() 这个就返回数据库名，这里就是security了。然后FLOOR(RAND()*2)这个上面说过了。不是0，就是1.然后把这两个的结果进行concat连接，那么结果不是security0就是security1了。</p>
-<p><a href="http://leaverimage.b0.upaiyun.com/33521_o.png"><img src="/images/f29b4115541e053c2e100bc7a35cdd51aaa9c2e5.png" alt=""></a>
+然后看看取整函数</p><p><a href=http://leaverimage.b0.upaiyun.com/33520_o.png><img src=/images/4477acaba79cf1464c028cab96e32534d81af2e5.png alt></a>
+这个函数就是返回小于等于你输入的数的整数。</p><p>然后我们看看双注入查询中的一个简单组合。大家从我的上一篇文章中应该也看到了有一个子查询是</p><p>我们从里向外看。rand() 返回大于0小于1的小数，乘以2之后就成了小于0小于2了。然后对结果进行取证。就只能是0或1了。也就是这个查询的结果不是1，就是0
+我们稍微加大一点难度。看这个查询</p><p>不要怕。先看最里面的SELECT database() 这个就返回数据库名，这里就是security了。然后FLOOR(RAND()*2)这个上面说过了。不是0，就是1.然后把这两个的结果进行concat连接，那么结果不是security0就是security1了。</p><p><a href=http://leaverimage.b0.upaiyun.com/33521_o.png><img src=/images/f29b4115541e053c2e100bc7a35cdd51aaa9c2e5.png alt></a>
 如果我们把这条语句后面加上from 一个表名。那么一般会返回security0或security1的一个集合。数目是由表本身有几条结果决定的。比如一个管理表里有5个管理员。这个就会返回五条记录，这里users表里有13个用户，所以返回了13条
-<a href="http://leaverimage.b0.upaiyun.com/33522_o.png"><img src="/images/d272e51a8be57b8739ab1c63516af31cd795f6ab.png" alt=""></a>
-如果是从information_schema.schemata里，这个表里包含了mysql的所有数据库名。这里本机有三个数据库。所以会返回三个结果</p>
-<p><a href="http://leaverimage.b0.upaiyun.com/33523_o.png"><img src="/images/8c67270890234e1d851d71c02e44e7511cedcdbd.png" alt=""></a></p>
-<p>现在我们准备加上Group By 语句了。
-我们使用information_schema.tables 或 information_schema.columns者两个表来查询。因为表里面一般数据很多。容易生成很多的随机值，不至于全部是security0，这样就不能查询出结果了。</p>
-<!-- raw HTML omitted -->
-<p>这里我先解释一下。我们把concat((select database()), floor(rand()*2)) 这个结果取了一个别名 a ，然后使用他进行分组。这样相同的security0分到一组，security1分到一组。就剩下两个结果了。
-<a href="http://leaverimage.b0.upaiyun.com/33524_o.png"><img src="/images/c9ad11cc6de49646801b61d3143e1fa9c5d0b0af.png" alt=""></a></p>
-<p>注意。这里的database()可以替换成任何你想查的函数，比如version(), user(), datadir()或者其他的查询。比如查表啊。查列啊。原理都是一样的。</p>
-<p>最后的亮点来了。。
-我们输入这条：注意多了一个聚合函数count(*)</p>
-<!-- raw HTML omitted -->
-<p><a href="http://leaverimage.b0.upaiyun.com/33525_o.png"><img src="/images/03af307809c7bcdfd4f77d3551d39e1d7fa7e515.png" alt=""></a></p>
-<p>报错了</p>
-<!-- raw HTML omitted -->
-<p>重复的键值 可以看到security就是我们的查询结果了
-想要查询版本就这样：</p>
-<!-- raw HTML omitted -->
-<p>看看替换了database()为version()
-<a href="http://leaverimage.b0.upaiyun.com/33527_o.png"><img src="/images/b4e9f38f4533442b15107ce4b92d7d9d370bc934.png" alt=""></a>
-再看一个</p>
-<!-- raw HTML omitted -->
-<p>报错</p>
-<!-- raw HTML omitted -->
-<p>这里的~这个符号只是为了让结果更清晰。</p>
-<p>这里还有一个比较复杂的。叫做派生表。需要使用
-select 1 from (table name); 这样的语法来报错，具体就是</p>
-<!-- raw HTML omitted -->
-<p>来报错。</p>
-<p>大家可以对照我上一篇文章来看。相信讲的还算清楚。</p>
-
-        </div>
-
-        
-
-
-        
-
-<div class="post-archive">
-    <h2>See Also</h2>
-    <ul class="listing">
-        
-        <li><a href="/2013/02/22/%E5%8F%8C%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5/">双查询注入</a></li>
-        
-        <li><a href="/2013/02/02/recon-ng%E5%BC%80%E6%BA%90%E4%BF%A1%E6%81%AF%E6%8E%A2%E6%B5%8B%E6%A1%86%E6%9E%B6/">recon-ng开源信息探测框架</a></li>
-        
-        <li><a href="/2012/09/25/c#-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E7%B3%BB%E5%88%97/">C# 网络编程系列</a></li>
-        
-        <li><a href="/2012/09/19/%E5%95%86%E5%8A%A1%E6%99%BA%E8%83%BD%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-%E8%B0%A2%E9%82%A6%E6%98%8C%E7%AC%AC%E4%B8%80%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">《商务智能与数据挖掘-谢邦昌》第一章读书笔记</a></li>
-        
-        <li><a href="/2013/03/01/c#%E4%B8%AD%E7%9A%84debug%E7%B1%BB/">C#中的Debug类</a></li>
-        
-    </ul>
-</div>
-
-
-        <div class="post-meta meta-tags">
-            
-            <ul class="clearfix">
-                
-                <li><a href='http://leaver.me/tags/mysql'>mysql</a></li>
-                
-                <li><a href='http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91'>互联网</a></li>
-                
-                <li><a href='http://leaver.me/tags/%E5%AD%A6%E4%B9%A0'>学习</a></li>
-                
-                <li><a href='http://leaver.me/tags/%E5%AE%89%E5%85%A8'>安全</a></li>
-                
-            </ul>
-            
-        </div>
-    </article>
-    
-    <div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "leaverme" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
-    
-    
-</div>
-
-                </div>
-
-                <div id="secondary">
-    <section class="widget">
-        <form id="search" action='http://leaver.me/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
-      
-      <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="http://leaver.me/">
-      <button type="submit" class="submit icon-search"></button>
-</form>
-    </section>
-    
-    <section class="widget">
-        <h3 class="widget-title">最近文章</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2019 年终总结">2019 年终总结</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/" title="深入理解Raft协议">深入理解Raft协议</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/" title="《非暴力沟通》笔记">《非暴力沟通》笔记</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/10/06/wedding-of-friends/" title="Wedding of Friends">Wedding of Friends</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/09/29/principle-note/" title="Principle Note">Principle Note</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/" title="梦见鲸鱼的那一夜">梦见鲸鱼的那一夜</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/08/20/understand-hong-kong-2/" title="Understand Hong Kong 2">Understand Hong Kong 2</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/08/18/understand-hong-kong-part-1/" title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/" title="错过的都是命，得到的才是人生">错过的都是命，得到的才是人生</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/04/06/recently/" title="Recently">Recently</a>
-    </li>
-    
-</ul>
-    </section>
-
-    
-
-    <section class="widget">
-        <h3 class="widget-title">分类</h3>
-<ul class="widget-list">
-    
-    <li><a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记 (186)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/">我的翻译 (57)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/">文章收藏 (53)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录 (3)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记 (4)</a></li>
-    
-</ul>
-    </section>
-
-    <section class="widget">
-        <h3 class="widget-title">标签</h3>
-<div class="tagcloud">
-    
-    <a href="http://leaver.me/tags/android/">android</a>
-    
-    <a href="http://leaver.me/tags/c/">C＃</a>
-    
-    <a href="http://leaver.me/tags/c&#43;&#43;/">C&#43;&#43;</a>
-    
-    <a href="http://leaver.me/tags/java/">java</a>
-    
-    <a href="http://leaver.me/tags/javascript/">javascript</a>
-    
-    <a href="http://leaver.me/tags/linux/">linux</a>
-    
-    <a href="http://leaver.me/tags/mac/">mac</a>
-    
-    <a href="http://leaver.me/tags/matlab/">matlab</a>
-    
-    <a href="http://leaver.me/tags/maven/">maven</a>
-    
-    <a href="http://leaver.me/tags/mysql/">mysql</a>
-    
-    <a href="http://leaver.me/tags/nextgen-gallery/">NextGEN Gallery</a>
-    
-    <a href="http://leaver.me/tags/php/">php</a>
-    
-    <a href="http://leaver.me/tags/python/">python</a>
-    
-    <a href="http://leaver.me/tags/shell/">shell</a>
-    
-    <a href="http://leaver.me/tags/spring/">spring</a>
-    
-    <a href="http://leaver.me/tags/sql/">sql</a>
-    
-    <a href="http://leaver.me/tags/stackoverflow/">stackoverflow</a>
-    
-    <a href="http://leaver.me/tags/wcf/">WCF</a>
-    
-    <a href="http://leaver.me/tags/web/">web</a>
-    
-    <a href="http://leaver.me/tags/windows/">windows</a>
-    
-    <a href="http://leaver.me/tags/wordpress/">wordpress</a>
-    
-    <a href="http://leaver.me/tags/wpf/">WPF</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/">上海</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/">下载</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
-    
-    <a href="http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/">互联网</a>
-    
-    <a href="http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
-    
-    <a href="http://leaver.me/tags/%E5%88%B6%E5%BA%A6/">制度</a>
-    
-    <a href="http://leaver.me/tags/%E5%89%8D%E7%AB%AF/">前端</a>
-    
-    <a href="http://leaver.me/tags/%E5%8E%9F%E5%88%9B/">原创</a>
-    
-    <a href="http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/">大学</a>
-    
-    <a href="http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/">学习</a>
-    
-    <a href="http://leaver.me/tags/%E5%AE%89%E5%85%A8/">安全</a>
-    
-    <a href="http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/">家庭</a>
-    
-    <a href="http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/">工作</a>
-    
-    <a href="http://leaver.me/tags/%E5%B7%A5%E5%85%B7/">工具</a>
-    
-    <a href="http://leaver.me/tags/%E5%B9%B6%E5%8F%91/">并发</a>
-    
-    <a href="http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/">序列化</a>
-    
-    <a href="http://leaver.me/tags/%E5%BC%80%E5%8F%91/">开发</a>
-    
-    <a href="http://leaver.me/tags/%E5%BF%83%E7%90%86/">心理</a>
-    
-    <a href="http://leaver.me/tags/%E6%80%BB%E7%BB%93/">总结</a>
-    
-    <a href="http://leaver.me/tags/%E6%8A%80%E6%9C%AF/">技术</a>
-    
-    <a href="http://leaver.me/tags/%E6%8F%92%E4%BB%B6/">插件</a>
-    
-    <a href="http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-    
-    <a href="http://leaver.me/tags/%E6%94%B6%E8%97%8F/">收藏</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E5%AD%A6/">数学</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">数据挖掘</a>
-    
-    <a href="http://leaver.me/tags/%E6%96%87%E7%AB%A0/">文章</a>
-    
-    <a href="http://leaver.me/tags/%E6%99%BA%E8%83%BD/">智能</a>
-    
-    <a href="http://leaver.me/tags/%E6%9D%82%E6%96%87/">杂文</a>
-    
-    <a href="http://leaver.me/tags/%E6%AD%A6%E6%B1%89/">武汉</a>
-    
-    <a href="http://leaver.me/tags/%E6%B1%87%E7%BC%96/">汇编</a>
-    
-    <a href="http://leaver.me/tags/%E7%88%B1%E6%83%85/">爱情</a>
-    
-    <a href="http://leaver.me/tags/%E7%90%86%E8%AE%BA/">理论</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%9F%E6%B4%BB/">生活</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/">电子书</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%B5%E5%BD%B1/">电影</a>
-    
-    <a href="http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/">社会</a>
-    
-    <a href="http://leaver.me/tags/%E7%A7%91%E6%8A%80/">科技</a>
-    
-    <a href="http://leaver.me/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
-    
-    <a href="http://leaver.me/tags/%E7%AE%97%E6%B3%95/">算法</a>
-    
-    <a href="http://leaver.me/tags/%E7%BC%96%E7%A8%8B/">编程</a>
-    
-    <a href="http://leaver.me/tags/%E7%BC%96%E8%AF%91/">编译</a>
-    
-    <a href="http://leaver.me/tags/%E7%BF%BB%E8%AF%91/">翻译</a>
-    
-    <a href="http://leaver.me/tags/%E8%81%8C%E4%B8%9A/">职业</a>
-    
-    <a href="http://leaver.me/tags/%E8%AE%B0%E5%BD%95/">记录</a>
-    
-    <a href="http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/">设计</a>
-    
-    <a href="http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/">读书</a>
-    
-    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/">软件</a>
-    
-    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</a>
-    
-    <a href="http://leaver.me/tags/%E8%BF%90%E7%BB%B4/">运维</a>
-    
-    <a href="http://leaver.me/tags/%E9%87%91%E8%9E%8D/">金融</a>
-    
-</div>
-    </section>
-
-    
-<section class="widget">
-    <h3 class="widget-title">友情链接</h3>
-    <ul class="widget-list">
-        
-        <li>
-            <a target="_blank" href="https://www.cppfans.org/" title="C&#43;&#43;爱好者博客">C&#43;&#43;爱好者博客</a>
-        </li>
-        
-        <li>
-            <a target="_blank" href="http://www.kailing.pub" title="KL，每天进步一点点">KL，每天进步一点点</a>
-        </li>
-        
-    </ul>
-</section>
-
-
-    <section class="widget">
-        <h3 class="widget-title">其它</h3>
-        <ul class="widget-list">
-            <li><a href="http://leaver.me/index.xml">文章 RSS</a></li>
-        </ul>
-    </section>
-</div>
-            </div>
-        </div>
-    </div>
-    <footer id="footer">
-    <div class="container">
-        &copy; 2020 <a href="http://leaver.me/">bystander&#39;s blog By bystander</a>.
-        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
-        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
-        
-    </div>
-</footer>
-
-
-    
-    <script type="text/javascript">
-        window.MathJax = {
-            tex2jax: {
-                inlineMath: [['$', '$']],
-                processEscapes: true
-                }
-            };
-    </script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
-
-
-<a id="rocket" href="#top"></a>
-<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-30961201-3', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-
-
-
-
-
-</body>
-
-</html>
+<a href=http://leaverimage.b0.upaiyun.com/33522_o.png><img src=/images/d272e51a8be57b8739ab1c63516af31cd795f6ab.png alt></a>
+如果是从information_schema.schemata里，这个表里包含了mysql的所有数据库名。这里本机有三个数据库。所以会返回三个结果</p><p><a href=http://leaverimage.b0.upaiyun.com/33523_o.png><img src=/images/8c67270890234e1d851d71c02e44e7511cedcdbd.png alt></a></p><p>现在我们准备加上Group By 语句了。
+我们使用information_schema.tables 或 information_schema.columns者两个表来查询。因为表里面一般数据很多。容易生成很多的随机值，不至于全部是security0，这样就不能查询出结果了。</p><p>这里我先解释一下。我们把concat((select database()), floor(rand()*2)) 这个结果取了一个别名 a ，然后使用他进行分组。这样相同的security0分到一组，security1分到一组。就剩下两个结果了。
+<a href=http://leaverimage.b0.upaiyun.com/33524_o.png><img src=/images/c9ad11cc6de49646801b61d3143e1fa9c5d0b0af.png alt></a></p><p>注意。这里的database()可以替换成任何你想查的函数，比如version(), user(), datadir()或者其他的查询。比如查表啊。查列啊。原理都是一样的。</p><p>最后的亮点来了。。
+我们输入这条：注意多了一个聚合函数count(*)</p><p><a href=http://leaverimage.b0.upaiyun.com/33525_o.png><img src=/images/03af307809c7bcdfd4f77d3551d39e1d7fa7e515.png alt></a></p><p>报错了</p><p>重复的键值 可以看到security就是我们的查询结果了
+想要查询版本就这样：</p><p>看看替换了database()为version()
+<a href=http://leaverimage.b0.upaiyun.com/33527_o.png><img src=/images/b4e9f38f4533442b15107ce4b92d7d9d370bc934.png alt></a>
+再看一个</p><p>报错</p><p>这里的~这个符号只是为了让结果更清晰。</p><p>这里还有一个比较复杂的。叫做派生表。需要使用
+select 1 from (table name); 这样的语法来报错，具体就是</p><p>来报错。</p><p>大家可以对照我上一篇文章来看。相信讲的还算清楚。</p></div><div class=post-archive><h2>See Also</h2><ul class=listing><li><a href=/2013/02/22/%E5%8F%8C%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5/>双查询注入</a></li><li><a href=/2013/02/02/recon-ng%E5%BC%80%E6%BA%90%E4%BF%A1%E6%81%AF%E6%8E%A2%E6%B5%8B%E6%A1%86%E6%9E%B6/>recon-ng开源信息探测框架</a></li><li><a href=/2012/09/25/c#-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E7%B3%BB%E5%88%97/>C# 网络编程系列</a></li><li><a href=/2012/09/19/%E5%95%86%E5%8A%A1%E6%99%BA%E8%83%BD%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98-%E8%B0%A2%E9%82%A6%E6%98%8C%E7%AC%AC%E4%B8%80%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/>《商务智能与数据挖掘-谢邦昌》第一章读书笔记</a></li><li><a href=/2013/03/01/c#%E4%B8%AD%E7%9A%84debug%E7%B1%BB/>C#中的Debug类</a></li></ul></div><div class="post-meta meta-tags"><ul class=clearfix><li><a href=http://leaver.me/tags/mysql>mysql</a></li><li><a href=http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91>互联网</a></li><li><a href=http://leaver.me/tags/%E5%AD%A6%E4%B9%A0>学习</a></li><li><a href=http://leaver.me/tags/%E5%AE%89%E5%85%A8>安全</a></li></ul></div></article><div id=disqus_thread></div><script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return;}
+var d=document,s=d.createElement('script');s.async=true;s.src='//'+"leaverme"+'.disqus.com/embed.js';s.setAttribute('data-timestamp',+new Date());(d.head||d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div></div><div id=secondary><section class=widget><form id=search action=http://leaver.me/search/ method=get accept-charset=utf-8 target=_blank _lpchecked=1><input type=text name=q maxlength=20 placeholder=Search>
+<input type=hidden name=sitesearch value=http://leaver.me/>
+<button type=submit class="submit icon-search"></button></form></section><section class=widget><h3 class=widget-title>最近文章</h3><ul class=widget-list><li><a href=http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/ title="2019 年终总结">2019 年终总结</a></li><li><a href=http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/ title=深入理解Raft协议>深入理解Raft协议</a></li><li><a href=http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/ title=《非暴力沟通》笔记>《非暴力沟通》笔记</a></li><li><a href=http://leaver.me/2019/10/06/wedding-of-friends/ title="Wedding of Friends">Wedding of Friends</a></li><li><a href=http://leaver.me/2019/09/29/principle-note/ title="Principle Note">Principle Note</a></li><li><a href=http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/ title=梦见鲸鱼的那一夜>梦见鲸鱼的那一夜</a></li><li><a href=http://leaver.me/2019/08/20/understand-hong-kong-2/ title="Understand Hong Kong 2">Understand Hong Kong 2</a></li><li><a href=http://leaver.me/2019/08/18/understand-hong-kong-part-1/ title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a></li><li><a href=http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/ title=错过的都是命，得到的才是人生>错过的都是命，得到的才是人生</a></li><li><a href=http://leaver.me/2019/04/06/recently/ title=Recently>Recently</a></li></ul></section><section class=widget><h3 class=widget-title>分类</h3><ul class=widget-list><li><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/>学习笔记 (186)</a></li><li><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/>我的翻译 (57)</a></li><li><a href=http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/>文章收藏 (53)</a></li><li><a href=http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/>生活记录 (3)</a></li><li><a href=http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/>读书笔记 (4)</a></li></ul></section><section class=widget><h3 class=widget-title>标签</h3><div class=tagcloud><a href=http://leaver.me/tags/android/>android</a>
+<a href=http://leaver.me/tags/c/>C＃</a>
+<a href=http://leaver.me/tags/c++/>C++</a>
+<a href=http://leaver.me/tags/java/>java</a>
+<a href=http://leaver.me/tags/javascript/>javascript</a>
+<a href=http://leaver.me/tags/linux/>linux</a>
+<a href=http://leaver.me/tags/mac/>mac</a>
+<a href=http://leaver.me/tags/matlab/>matlab</a>
+<a href=http://leaver.me/tags/maven/>maven</a>
+<a href=http://leaver.me/tags/mysql/>mysql</a>
+<a href=http://leaver.me/tags/nextgen-gallery/>NextGEN Gallery</a>
+<a href=http://leaver.me/tags/php/>php</a>
+<a href=http://leaver.me/tags/python/>python</a>
+<a href=http://leaver.me/tags/shell/>shell</a>
+<a href=http://leaver.me/tags/spring/>spring</a>
+<a href=http://leaver.me/tags/sql/>sql</a>
+<a href=http://leaver.me/tags/stackoverflow/>stackoverflow</a>
+<a href=http://leaver.me/tags/wcf/>WCF</a>
+<a href=http://leaver.me/tags/web/>web</a>
+<a href=http://leaver.me/tags/windows/>windows</a>
+<a href=http://leaver.me/tags/wordpress/>wordpress</a>
+<a href=http://leaver.me/tags/wpf/>WPF</a>
+<a href=http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/>上海</a>
+<a href=http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/>下载</a>
+<a href=http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/>中间件</a>
+<a href=http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/>互联网</a>
+<a href=http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/>分布式</a>
+<a href=http://leaver.me/tags/%E5%88%B6%E5%BA%A6/>制度</a>
+<a href=http://leaver.me/tags/%E5%89%8D%E7%AB%AF/>前端</a>
+<a href=http://leaver.me/tags/%E5%8E%9F%E5%88%9B/>原创</a>
+<a href=http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/>大学</a>
+<a href=http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/>学习</a>
+<a href=http://leaver.me/tags/%E5%AE%89%E5%85%A8/>安全</a>
+<a href=http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/>家庭</a>
+<a href=http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/>工作</a>
+<a href=http://leaver.me/tags/%E5%B7%A5%E5%85%B7/>工具</a>
+<a href=http://leaver.me/tags/%E5%B9%B6%E5%8F%91/>并发</a>
+<a href=http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/>序列化</a>
+<a href=http://leaver.me/tags/%E5%BC%80%E5%8F%91/>开发</a>
+<a href=http://leaver.me/tags/%E5%BF%83%E7%90%86/>心理</a>
+<a href=http://leaver.me/tags/%E6%80%BB%E7%BB%93/>总结</a>
+<a href=http://leaver.me/tags/%E6%8A%80%E6%9C%AF/>技术</a>
+<a href=http://leaver.me/tags/%E6%8F%92%E4%BB%B6/>插件</a>
+<a href=http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/>操作系统</a>
+<a href=http://leaver.me/tags/%E6%94%B6%E8%97%8F/>收藏</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E5%AD%A6/>数学</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/>数据库</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/>数据挖掘</a>
+<a href=http://leaver.me/tags/%E6%96%87%E7%AB%A0/>文章</a>
+<a href=http://leaver.me/tags/%E6%99%BA%E8%83%BD/>智能</a>
+<a href=http://leaver.me/tags/%E6%9D%82%E6%96%87/>杂文</a>
+<a href=http://leaver.me/tags/%E6%AD%A6%E6%B1%89/>武汉</a>
+<a href=http://leaver.me/tags/%E6%B1%87%E7%BC%96/>汇编</a>
+<a href=http://leaver.me/tags/%E7%88%B1%E6%83%85/>爱情</a>
+<a href=http://leaver.me/tags/%E7%90%86%E8%AE%BA/>理论</a>
+<a href=http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/>生产力</a>
+<a href=http://leaver.me/tags/%E7%94%9F%E6%B4%BB/>生活</a>
+<a href=http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/>电子书</a>
+<a href=http://leaver.me/tags/%E7%94%B5%E5%BD%B1/>电影</a>
+<a href=http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/>社会</a>
+<a href=http://leaver.me/tags/%E7%A7%91%E6%8A%80/>科技</a>
+<a href=http://leaver.me/tags/%E7%AC%94%E8%AE%B0/>笔记</a>
+<a href=http://leaver.me/tags/%E7%AE%97%E6%B3%95/>算法</a>
+<a href=http://leaver.me/tags/%E7%BC%96%E7%A8%8B/>编程</a>
+<a href=http://leaver.me/tags/%E7%BC%96%E8%AF%91/>编译</a>
+<a href=http://leaver.me/tags/%E7%BF%BB%E8%AF%91/>翻译</a>
+<a href=http://leaver.me/tags/%E8%81%8C%E4%B8%9A/>职业</a>
+<a href=http://leaver.me/tags/%E8%AE%B0%E5%BD%95/>记录</a>
+<a href=http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/>设计</a>
+<a href=http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/>读书</a>
+<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/>软件</a>
+<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/>软件测试</a>
+<a href=http://leaver.me/tags/%E8%BF%90%E7%BB%B4/>运维</a>
+<a href=http://leaver.me/tags/%E9%87%91%E8%9E%8D/>金融</a></div></section><section class=widget><h3 class=widget-title>友情链接</h3><ul class=widget-list><li><a target=_blank href=https://www.cppfans.org/ title=C++爱好者博客>C++爱好者博客</a></li><li><a target=_blank href=http://www.kailing.pub title=KL，每天进步一点点>KL，每天进步一点点</a></li></ul></section><section class=widget><h3 class=widget-title>其它</h3><ul class=widget-list><li><a href=http://leaver.me/index.xml>文章 RSS</a></li></ul></section></div></div></div></div><footer id=footer><div class=container>&copy; 2020 <a href=http://leaver.me/>bystander's blog By bystander</a>.
+Powered by <a rel="nofollow noreferer noopener" href=https://gohugo.io target=_blank>Hugo</a>.
+<a href=https://www.flysnow.org/ target=_blank>Theme</a> based on <a href=https://github.com/flysnow-org/maupassant-hugo target=_blank>maupassant</a>.</div></footer><script type=text/javascript>window.MathJax={tex2jax:{inlineMath:[['$','$']],processEscapes:true}};</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script><a id=rocket href=#top></a><script type=text/javascript src="/js/totop.js?v=0.0.0" async></script><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-30961201-3','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></body></html>

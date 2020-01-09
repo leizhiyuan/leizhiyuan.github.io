@@ -1,97 +1,9 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>java | bystander&#39;s blog</title>
-    <meta property="og:title" content="java - bystander&#39;s blog">
-    <meta property="og:type" content="article">
-        
-        
-    <meta name="Keywords" content="">
-    <meta name="description" content="java">
-        
-    <meta name="author" content="bystander">
-    <meta property="og:url" content="http://leaver.me/tags/java/">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-
-    <link rel="stylesheet" href='/css/normalize.css'>
-    <link rel="stylesheet" href='/css/style.css'>
-    <link rel="alternate" type="application/rss+xml+xml" href="http://leaver.me/tags/java/index.xml" title="bystander's blog" />
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-    
-
-
-    
-    
-</head>
-
-
-<body>
-    <header id="header" class="clearfix">
-    <div class="container">
-        <div class="col-group">
-            <div class="site-name ">
-                
-                    <a id="logo" href="http://leaver.me/">
-                        bystander&#39;s blog
-                    </a>
-                
-                <p class="description">寻找窄门</p>
-            </div>
-            <div>
-                <nav id="nav-menu" class="clearfix">
-                    <a class="" href="http://leaver.me/">首页</a>
-                    
-                    <a  href="http://leaver.me/categories" title="目录">目录</a>
-                    
-                    <a  href="http://leaver.me/about/" title="关于我">关于我</a>
-                    
-                </nav>
-            </div>
-        </div>
-    </div>
-</header>
-
-    <div id="body">
-        <div class="container">
-            <div class="col-group">
-
-                <div class="col-8" id="main">
-                    
-<div class="res-cons">
-    
-    <h3 class="archive-title">
-        包含标签
-        <span class="keyword">java</span>
-        的文章
-    </h3>
-    
-
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/09/19/maven%E5%AE%9E%E4%BE%8B%E5%85%A5%E9%97%A8-%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90/">Maven实例入门-随机数生成</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年9月19日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91'>我的翻译</a>
-            
-        </div>
-        
-        <div class="post-content">
-            看了很多个例子，发现这个最好，译文中会带有我的一些了理解，有问题欢迎指出。
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><title>java | bystander's blog</title><meta property="og:title" content="java - bystander's blog"><meta property="og:type" content="article"><meta name=Keywords content><meta name=description content="java"><meta name=author content="bystander"><meta property="og:url" content="http://leaver.me/tags/java/"><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><link rel=stylesheet href=/css/normalize.css><link rel=stylesheet href=/css/style.css><link rel=alternate type=application/rss+xml+xml href=http://leaver.me/tags/java/index.xml title="bystander's blog"><script type=text/javascript src=//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js></script></head><body><header id=header class=clearfix><div class=container><div class=col-group><div class=site-name><a id=logo href=http://leaver.me/>bystander's blog</a><p class=description>寻找窄门</p></div><div><nav id=nav-menu class=clearfix><a href=http://leaver.me/>首页</a>
+<a href=http://leaver.me/categories title=目录>目录</a>
+<a href=http://leaver.me/about/ title=关于我>关于我</a></nav></div></div></div></header><div id=body><div class=container><div class=col-group><div class=col-8 id=main><div class=res-cons><h3 class=archive-title>包含标签
+<span class=keyword>java</span>
+的文章</h3><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/09/19/maven%E5%AE%9E%E4%BE%8B%E5%85%A5%E9%97%A8-%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90/>Maven实例入门-随机数生成</a></h1></header><date class="post-meta meta-date">2013年9月19日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91>我的翻译</a></div><div class=post-content>看了很多个例子，发现这个最好，译文中会带有我的一些了理解，有问题欢迎指出。
 0.Maven是什么？ Apache Maven，是一个软件（特别是Java软件）项目管理及自动构建工具，由Apache软件基金会所提供。基于项目对象模型（缩写：POM）概念，Maven利用一个中央信息片断能管理一个项目的构建、报告和文档等步骤。
 可以看到，核心就是项目管理和自动构建了，从例子中将会体会更深。本例创建一个随机数生成程序。
 1.从Maven模板创建项目 Maven的环境变量配置和java类似，直接添加系统变量MAVEN_HOME指向你下载的maven目录，然后将bin目录添加到path环境变量里。
@@ -107,7 +19,6 @@
 首先命令行进入NumberGenerator目录，然后输入
 然后就会生成Eclipse需要的所有项目文件里
 图1.导入eclipse之后的效果
-
 4.更新pom文件 默认的pom文件太简单了。通常我们需要添加编译插件来告诉Maven我们打算使用哪个版本的jdk来编译项目，有时候默认的版本太低了
 我们把source和target改成了1.6.
 然后更新JUnit到4.1.1
@@ -118,35 +29,12 @@
 在项目目录(也就是NumberGenerator目录)的命令行下，输入
 然后就会看到：
 程序开始编译，并且执行了单元测试，然后在target目录下生成了jar包，最后，程序目录结构如下：
-
 7.执行Demo 运行生成的jar文件，还在在NumberGenerator目录下，输入如下命令
 后面的com.mkyong.App就是包名+类名，也就是类的全名了
 8.Demo下载 Maven-NumberGenerator.zip
  基本上一个完整的的示例就做完了，希望你有所收获，后续会更新一些Maven的的东西。欢迎支持。中秋快乐。
-  ……
-            <p class="readmore"><a href="http://leaver.me/2013/09/19/maven%E5%AE%9E%E4%BE%8B%E5%85%A5%E9%97%A8-%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/09/15/%E8%AF%91java%E4%B8%AD%E7%9A%84countdownlatch%E5%92%8Ccyclicbarrier/">[译]Java中的CountDownLatch和CyclicBarrier</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年9月15日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91'>我的翻译</a>
-            
-        </div>
-        
-        <div class="post-content">
-            本文译自官方文档，有细微改动，Java多线程的时候，看了好多文档，还是官方说的最清楚。结合自己的理解，译之。
+  ……<p class=readmore><a href=http://leaver.me/2013/09/19/maven%E5%AE%9E%E4%BE%8B%E5%85%A5%E9%97%A8-%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/09/15/%E8%AF%91java%E4%B8%AD%E7%9A%84countdownlatch%E5%92%8Ccyclicbarrier/>[译]Java中的CountDownLatch和CyclicBarrier</a></h1></header><date class="post-meta meta-date">2013年9月15日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91>我的翻译</a></div><div class=post-content>本文译自官方文档，有细微改动，Java多线程的时候，看了好多文档，还是官方说的最清楚。结合自己的理解，译之。
 CountDownLatch 字面意思就是倒计数闩，后面会讲到，这里的同步允许一个或多个线程等待，，知道其他线程进行的一系列操作完成。而CountDownLatch通过一个参数count（数目）来构造，而await（）则阻塞当前线程，直到countDown()将count减为了0，然后，所有的阻塞线程被释放，也就是那些调用了await方法的线程立即返回，注意，这是一次性的，也就是说count不能被自动重置，如果你想这么做，CyclicBarrier是可以的。
 CountDownLatch用处很多，当用count=1来构造的时候，这就相当于一个开关，所有调用了await方法的线程都在等待，直到有一个线程调用了countDown()，CountDownLatch通过count=N构造的话，就可以使一个线程等待其他N个线程完成操作，或者一个操作被做N次。
 简单的demo：
@@ -158,425 +46,95 @@ CountDownLatch用处很多，当用count=1来构造的时候，这就相当于�
 同时，CyclicBarrier支持一个可选的Runnable参数，当所有的线程都来到barrier前面的时候，程序开始执行runable线程动作，当需要更新所有线程共享的某个状态的时候，该动作非常有用。例子是一个并行分解的例子
 这里每一个worker线程处理矩阵的一行，然后在barrier前面等待，直到所有的行都处理完成，当所有的都完成以后，这里
 改为
-如果一个线程由于中断，失败或者超时过早的离开了barrier，那么所有的线程都会通过BrokenBarrierException引发异常。……
-            <p class="readmore"><a href="http://leaver.me/2013/09/15/%E8%AF%91java%E4%B8%AD%E7%9A%84countdownlatch%E5%92%8Ccyclicbarrier/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/06/29/%E7%AD%89%E7%89%A9%E4%BD%93%E5%A1%AB%E5%85%85%E9%97%AE%E9%A2%98/">等物体填充问题</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年6月29日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            那天在群里，rich大牛提了一个问题，一个直径为10cm的球内最多能够填充直径为1cm的球多少个.
-之前看到过一个类似的简单说明，就像是在一个盒子里装乒乓球，如果装满了，想继续装，如何办？经验告诉我们，摇一摇盒子。。这个问题看上去简单，其实是个NP难问题&hellip;于是，查找了一些资料，比较有意思，分享一下。
- 首先是stetson大学efriedma教授的网页，收集了各类填充（英文是packing）问题的图示，欢迎移步：packing center ，不过这里面恰好没有球体填充（SpherePacking）的问题，然后继续查找，进入了一个可以演示球体填充问题的页面：sphere packing demo 感谢网站作者Hugo Pfoertner，这里作者解出了1-72个球的问题，但是，作者说对于n&gt;10的情况无法证明最优化.不过这个页面的演示太帅了，推荐看看。
-
+如果一个线程由于中断，失败或者超时过早的离开了barrier，那么所有的线程都会通过BrokenBarrierException引发异常。……<p class=readmore><a href=http://leaver.me/2013/09/15/%E8%AF%91java%E4%B8%AD%E7%9A%84countdownlatch%E5%92%8Ccyclicbarrier/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/06/29/%E7%AD%89%E7%89%A9%E4%BD%93%E5%A1%AB%E5%85%85%E9%97%AE%E9%A2%98/>等物体填充问题</a></h1></header><date class="post-meta meta-date">2013年6月29日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>那天在群里，rich大牛提了一个问题，一个直径为10cm的球内最多能够填充直径为1cm的球多少个.
+之前看到过一个类似的简单说明，就像是在一个盒子里装乒乓球，如果装满了，想继续装，如何办？经验告诉我们，摇一摇盒子。。这个问题看上去简单，其实是个NP难问题&mldr;于是，查找了一些资料，比较有意思，分享一下。
+ 首先是stetson大学efriedma教授的网页，收集了各类填充（英文是packing）问题的图示，欢迎移步：packing center ，不过这里面恰好没有球体填充（SpherePacking）的问题，然后继续查找，进入了一个可以演示球体填充问题的页面：sphere packing demo 感谢网站作者Hugo Pfoertner，这里作者解出了1-72个球的问题，但是，作者说对于n>10的情况无法证明最优化.不过这个页面的演示太帅了，推荐看看。
  可以鼠标拖动旋转3D视角。
 然后在数学世界看到了一球体填充问题的证明结果，见：SpherePacking，当然，下面一大堆引用我都没看..看文章里的意思是说这个填充问题填充率已经被证明最大是77.9%，但是这个上限可能还能提高，因为貌似根据这个情况，rich大牛提出的这个问题应该数量在779左右..
- ……
-            <p class="readmore"><a href="http://leaver.me/2013/06/29/%E7%AD%89%E7%89%A9%E4%BD%93%E5%A1%AB%E5%85%85%E9%97%AE%E9%A2%98/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2012/09/17/eclipse%E5%AE%89%E8%A3%85javacc/">Eclipse安装JavaCC</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2012年9月17日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            今年的编译原理课程上机实践是讲这个的。。要求用JavaCC来做一个简单的解释器。今天总算是有点时间找找文档先把这个安装了。安装过程很简单。。
+ ……<p class=readmore><a href=http://leaver.me/2013/06/29/%E7%AD%89%E7%89%A9%E4%BD%93%E5%A1%AB%E5%85%85%E9%97%AE%E9%A2%98/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2012/09/17/eclipse%E5%AE%89%E8%A3%85javacc/>Eclipse安装JavaCC</a></h1></header><date class="post-meta meta-date">2012年9月17日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>今年的编译原理课程上机实践是讲这个的。。要求用JavaCC来做一个简单的解释器。今天总算是有点时间找找文档先把这个安装了。安装过程很简单。。
 　1.希望你已经安装了Eclipse。。。
 　2.去sourceforge该项目主页下载javaCC压缩包
 　3.下载完成后解压到你的Eclipse根目录。会提示覆盖plugins和features。直接覆盖即可。
-　4.测试一下是否成功。具体步骤就是，打开eclipse，新建一个空java项目。然后对着项目点击右键new-&gt;other-&gt;javaCC-&gt;javaCC template file。然后选择命名空间。包名。和文件名就可以了。这个地方的什么的是由你建立的java项目决定的。所以你可以先把java项目设置好，然后直接选就可以了。。
-　5.点击运行。选择java application。控制台输出　Reading from standard input&hellip;　Enter an expression like &ldquo;1+(2+3)*4;&quot;:　完成。。。
-Update:其实吧。这里安装的是JavaCC的插件。但是已经可以进行开发了。可能你需要一个例子来开始。或者你不喜欢eclipse。那么去JavaCC的项目下载你喜欢的即可。我下的是javacc-5.0.zip 里面有例子。可以参考。……
-            <p class="readmore"><a href="http://leaver.me/2012/09/17/eclipse%E5%AE%89%E8%A3%85javacc/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2012/04/12/andorid-%E5%AE%9E%E7%8E%B0%E6%8B%96%E5%8A%A8%E6%BB%91%E5%8A%A8%E6%95%88%E6%9E%9C/">andorid 实现拖动滑动效果</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2012年4月12日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            <p>这个大家都有过体会，就是当你左右拖动的时候，能够做到向左向右翻页。代码我写了很详细的注释。包括xml的注释，所以就不怎么解释了。先测试下代码高亮能用不.我当前用的是<strong>WP-Syntax</strong>插件。将就着还行吧。如果你知道更好的话。不妨给我推荐一下。</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->……
-            <p class="readmore"><a href="http://leaver.me/2012/04/12/andorid-%E5%AE%9E%E7%8E%B0%E6%8B%96%E5%8A%A8%E6%BB%91%E5%8A%A8%E6%95%88%E6%9E%9C/">阅读全文</a></p>
-        </div>
-    </article>
-    
-
-    
-
-
-
-<ol class="page-navigator">
-    
-    <li class="prev">
-        <a href="http://leaver.me/tags/java/page/4/">上一页</a>
-    </li>
-    
-
-    
-    <li >
-        <a href="http://leaver.me/tags/java/">1</a>
-    </li>
-    
-    <li >
-        <a href="http://leaver.me/tags/java/page/2/">2</a>
-    </li>
-    
-    <li >
-        <a href="http://leaver.me/tags/java/page/3/">3</a>
-    </li>
-    
-    <li >
-        <a href="http://leaver.me/tags/java/page/4/">4</a>
-    </li>
-    
-    <li  class="current">
-        <a href="http://leaver.me/tags/java/page/5/">5</a>
-    </li>
-    
-
-    
-</ol>
-
-
-
-</div>
-
-                </div>
-
-                <div id="secondary">
-    <section class="widget">
-        <form id="search" action='http://leaver.me/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
-      
-      <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="http://leaver.me/">
-      <button type="submit" class="submit icon-search"></button>
-</form>
-    </section>
-    
-    <section class="widget">
-        <h3 class="widget-title">最近文章</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2019 年终总结">2019 年终总结</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/" title="深入理解Raft协议">深入理解Raft协议</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/" title="《非暴力沟通》笔记">《非暴力沟通》笔记</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/10/06/wedding-of-friends/" title="Wedding of Friends">Wedding of Friends</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/09/29/principle-note/" title="Principle Note">Principle Note</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/" title="梦见鲸鱼的那一夜">梦见鲸鱼的那一夜</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/08/20/understand-hong-kong-2/" title="Understand Hong Kong 2">Understand Hong Kong 2</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/08/18/understand-hong-kong-part-1/" title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/" title="错过的都是命，得到的才是人生">错过的都是命，得到的才是人生</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/04/06/recently/" title="Recently">Recently</a>
-    </li>
-    
-</ul>
-    </section>
-
-    
-
-    <section class="widget">
-        <h3 class="widget-title">分类</h3>
-<ul class="widget-list">
-    
-    <li><a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记 (186)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/">我的翻译 (57)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/">文章收藏 (53)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录 (3)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记 (4)</a></li>
-    
-</ul>
-    </section>
-
-    <section class="widget">
-        <h3 class="widget-title">标签</h3>
-<div class="tagcloud">
-    
-    <a href="http://leaver.me/tags/android/">android</a>
-    
-    <a href="http://leaver.me/tags/c/">C＃</a>
-    
-    <a href="http://leaver.me/tags/c&#43;&#43;/">C&#43;&#43;</a>
-    
-    <a href="http://leaver.me/tags/java/">java</a>
-    
-    <a href="http://leaver.me/tags/javascript/">javascript</a>
-    
-    <a href="http://leaver.me/tags/linux/">linux</a>
-    
-    <a href="http://leaver.me/tags/mac/">mac</a>
-    
-    <a href="http://leaver.me/tags/matlab/">matlab</a>
-    
-    <a href="http://leaver.me/tags/maven/">maven</a>
-    
-    <a href="http://leaver.me/tags/mysql/">mysql</a>
-    
-    <a href="http://leaver.me/tags/nextgen-gallery/">NextGEN Gallery</a>
-    
-    <a href="http://leaver.me/tags/php/">php</a>
-    
-    <a href="http://leaver.me/tags/python/">python</a>
-    
-    <a href="http://leaver.me/tags/shell/">shell</a>
-    
-    <a href="http://leaver.me/tags/spring/">spring</a>
-    
-    <a href="http://leaver.me/tags/sql/">sql</a>
-    
-    <a href="http://leaver.me/tags/stackoverflow/">stackoverflow</a>
-    
-    <a href="http://leaver.me/tags/wcf/">WCF</a>
-    
-    <a href="http://leaver.me/tags/web/">web</a>
-    
-    <a href="http://leaver.me/tags/windows/">windows</a>
-    
-    <a href="http://leaver.me/tags/wordpress/">wordpress</a>
-    
-    <a href="http://leaver.me/tags/wpf/">WPF</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/">上海</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/">下载</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
-    
-    <a href="http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/">互联网</a>
-    
-    <a href="http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
-    
-    <a href="http://leaver.me/tags/%E5%88%B6%E5%BA%A6/">制度</a>
-    
-    <a href="http://leaver.me/tags/%E5%89%8D%E7%AB%AF/">前端</a>
-    
-    <a href="http://leaver.me/tags/%E5%8E%9F%E5%88%9B/">原创</a>
-    
-    <a href="http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/">大学</a>
-    
-    <a href="http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/">学习</a>
-    
-    <a href="http://leaver.me/tags/%E5%AE%89%E5%85%A8/">安全</a>
-    
-    <a href="http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/">家庭</a>
-    
-    <a href="http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/">工作</a>
-    
-    <a href="http://leaver.me/tags/%E5%B7%A5%E5%85%B7/">工具</a>
-    
-    <a href="http://leaver.me/tags/%E5%B9%B6%E5%8F%91/">并发</a>
-    
-    <a href="http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/">序列化</a>
-    
-    <a href="http://leaver.me/tags/%E5%BC%80%E5%8F%91/">开发</a>
-    
-    <a href="http://leaver.me/tags/%E5%BF%83%E7%90%86/">心理</a>
-    
-    <a href="http://leaver.me/tags/%E6%80%BB%E7%BB%93/">总结</a>
-    
-    <a href="http://leaver.me/tags/%E6%8A%80%E6%9C%AF/">技术</a>
-    
-    <a href="http://leaver.me/tags/%E6%8F%92%E4%BB%B6/">插件</a>
-    
-    <a href="http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-    
-    <a href="http://leaver.me/tags/%E6%94%B6%E8%97%8F/">收藏</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E5%AD%A6/">数学</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">数据挖掘</a>
-    
-    <a href="http://leaver.me/tags/%E6%96%87%E7%AB%A0/">文章</a>
-    
-    <a href="http://leaver.me/tags/%E6%99%BA%E8%83%BD/">智能</a>
-    
-    <a href="http://leaver.me/tags/%E6%9D%82%E6%96%87/">杂文</a>
-    
-    <a href="http://leaver.me/tags/%E6%AD%A6%E6%B1%89/">武汉</a>
-    
-    <a href="http://leaver.me/tags/%E6%B1%87%E7%BC%96/">汇编</a>
-    
-    <a href="http://leaver.me/tags/%E7%88%B1%E6%83%85/">爱情</a>
-    
-    <a href="http://leaver.me/tags/%E7%90%86%E8%AE%BA/">理论</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%9F%E6%B4%BB/">生活</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/">电子书</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%B5%E5%BD%B1/">电影</a>
-    
-    <a href="http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/">社会</a>
-    
-    <a href="http://leaver.me/tags/%E7%A7%91%E6%8A%80/">科技</a>
-    
-    <a href="http://leaver.me/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
-    
-    <a href="http://leaver.me/tags/%E7%AE%97%E6%B3%95/">算法</a>
-    
-    <a href="http://leaver.me/tags/%E7%BC%96%E7%A8%8B/">编程</a>
-    
-    <a href="http://leaver.me/tags/%E7%BC%96%E8%AF%91/">编译</a>
-    
-    <a href="http://leaver.me/tags/%E7%BF%BB%E8%AF%91/">翻译</a>
-    
-    <a href="http://leaver.me/tags/%E8%81%8C%E4%B8%9A/">职业</a>
-    
-    <a href="http://leaver.me/tags/%E8%AE%B0%E5%BD%95/">记录</a>
-    
-    <a href="http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/">设计</a>
-    
-    <a href="http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/">读书</a>
-    
-    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/">软件</a>
-    
-    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</a>
-    
-    <a href="http://leaver.me/tags/%E8%BF%90%E7%BB%B4/">运维</a>
-    
-    <a href="http://leaver.me/tags/%E9%87%91%E8%9E%8D/">金融</a>
-    
-</div>
-    </section>
-
-    
-<section class="widget">
-    <h3 class="widget-title">友情链接</h3>
-    <ul class="widget-list">
-        
-        <li>
-            <a target="_blank" href="https://www.cppfans.org/" title="C&#43;&#43;爱好者博客">C&#43;&#43;爱好者博客</a>
-        </li>
-        
-        <li>
-            <a target="_blank" href="http://www.kailing.pub" title="KL，每天进步一点点">KL，每天进步一点点</a>
-        </li>
-        
-    </ul>
-</section>
-
-
-    <section class="widget">
-        <h3 class="widget-title">其它</h3>
-        <ul class="widget-list">
-            <li><a href="http://leaver.me/index.xml">文章 RSS</a></li>
-        </ul>
-    </section>
-</div>
-            </div>
-        </div>
-    </div>
-    <footer id="footer">
-    <div class="container">
-        &copy; 2020 <a href="http://leaver.me/">bystander&#39;s blog By bystander</a>.
-        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
-        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
-        
-    </div>
-</footer>
-
-
-
-<a id="rocket" href="#top"></a>
-<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-30961201-3', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-
-
-
-
-
-</body>
-
-</html>
+　4.测试一下是否成功。具体步骤就是，打开eclipse，新建一个空java项目。然后对着项目点击右键new->other->javaCC->javaCC template file。然后选择命名空间。包名。和文件名就可以了。这个地方的什么的是由你建立的java项目决定的。所以你可以先把java项目设置好，然后直接选就可以了。。
+　5.点击运行。选择java application。控制台输出　Reading from standard input&mldr;　Enter an expression like &ldquo;1+(2+3)*4;":　完成。。。
+Update:其实吧。这里安装的是JavaCC的插件。但是已经可以进行开发了。可能你需要一个例子来开始。或者你不喜欢eclipse。那么去JavaCC的项目下载你喜欢的即可。我下的是javacc-5.0.zip 里面有例子。可以参考。……<p class=readmore><a href=http://leaver.me/2012/09/17/eclipse%E5%AE%89%E8%A3%85javacc/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2012/04/12/andorid-%E5%AE%9E%E7%8E%B0%E6%8B%96%E5%8A%A8%E6%BB%91%E5%8A%A8%E6%95%88%E6%9E%9C/>andorid 实现拖动滑动效果</a></h1></header><date class="post-meta meta-date">2012年4月12日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content><p>这个大家都有过体会，就是当你左右拖动的时候，能够做到向左向右翻页。代码我写了很详细的注释。包括xml的注释，所以就不怎么解释了。先测试下代码高亮能用不.我当前用的是<strong>WP-Syntax</strong>插件。将就着还行吧。如果你知道更好的话。不妨给我推荐一下。</p>……<p class=readmore><a href=http://leaver.me/2012/04/12/andorid-%E5%AE%9E%E7%8E%B0%E6%8B%96%E5%8A%A8%E6%BB%91%E5%8A%A8%E6%95%88%E6%9E%9C/>阅读全文</a></p></div></article><ol class=page-navigator><li class=prev><a href=http://leaver.me/tags/java/page/4/>上一页</a></li><li><a href=http://leaver.me/tags/java/>1</a></li><li><a href=http://leaver.me/tags/java/page/2/>2</a></li><li><a href=http://leaver.me/tags/java/page/3/>3</a></li><li><a href=http://leaver.me/tags/java/page/4/>4</a></li><li class=current><a href=http://leaver.me/tags/java/page/5/>5</a></li></ol></div></div><div id=secondary><section class=widget><form id=search action=http://leaver.me/search/ method=get accept-charset=utf-8 target=_blank _lpchecked=1><input type=text name=q maxlength=20 placeholder=Search>
+<input type=hidden name=sitesearch value=http://leaver.me/>
+<button type=submit class="submit icon-search"></button></form></section><section class=widget><h3 class=widget-title>最近文章</h3><ul class=widget-list><li><a href=http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/ title="2019 年终总结">2019 年终总结</a></li><li><a href=http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/ title=深入理解Raft协议>深入理解Raft协议</a></li><li><a href=http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/ title=《非暴力沟通》笔记>《非暴力沟通》笔记</a></li><li><a href=http://leaver.me/2019/10/06/wedding-of-friends/ title="Wedding of Friends">Wedding of Friends</a></li><li><a href=http://leaver.me/2019/09/29/principle-note/ title="Principle Note">Principle Note</a></li><li><a href=http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/ title=梦见鲸鱼的那一夜>梦见鲸鱼的那一夜</a></li><li><a href=http://leaver.me/2019/08/20/understand-hong-kong-2/ title="Understand Hong Kong 2">Understand Hong Kong 2</a></li><li><a href=http://leaver.me/2019/08/18/understand-hong-kong-part-1/ title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a></li><li><a href=http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/ title=错过的都是命，得到的才是人生>错过的都是命，得到的才是人生</a></li><li><a href=http://leaver.me/2019/04/06/recently/ title=Recently>Recently</a></li></ul></section><section class=widget><h3 class=widget-title>分类</h3><ul class=widget-list><li><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/>学习笔记 (186)</a></li><li><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/>我的翻译 (57)</a></li><li><a href=http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/>文章收藏 (53)</a></li><li><a href=http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/>生活记录 (3)</a></li><li><a href=http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/>读书笔记 (4)</a></li></ul></section><section class=widget><h3 class=widget-title>标签</h3><div class=tagcloud><a href=http://leaver.me/tags/android/>android</a>
+<a href=http://leaver.me/tags/c/>C＃</a>
+<a href=http://leaver.me/tags/c++/>C++</a>
+<a href=http://leaver.me/tags/java/>java</a>
+<a href=http://leaver.me/tags/javascript/>javascript</a>
+<a href=http://leaver.me/tags/linux/>linux</a>
+<a href=http://leaver.me/tags/mac/>mac</a>
+<a href=http://leaver.me/tags/matlab/>matlab</a>
+<a href=http://leaver.me/tags/maven/>maven</a>
+<a href=http://leaver.me/tags/mysql/>mysql</a>
+<a href=http://leaver.me/tags/nextgen-gallery/>NextGEN Gallery</a>
+<a href=http://leaver.me/tags/php/>php</a>
+<a href=http://leaver.me/tags/python/>python</a>
+<a href=http://leaver.me/tags/shell/>shell</a>
+<a href=http://leaver.me/tags/spring/>spring</a>
+<a href=http://leaver.me/tags/sql/>sql</a>
+<a href=http://leaver.me/tags/stackoverflow/>stackoverflow</a>
+<a href=http://leaver.me/tags/wcf/>WCF</a>
+<a href=http://leaver.me/tags/web/>web</a>
+<a href=http://leaver.me/tags/windows/>windows</a>
+<a href=http://leaver.me/tags/wordpress/>wordpress</a>
+<a href=http://leaver.me/tags/wpf/>WPF</a>
+<a href=http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/>上海</a>
+<a href=http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/>下载</a>
+<a href=http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/>中间件</a>
+<a href=http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/>互联网</a>
+<a href=http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/>分布式</a>
+<a href=http://leaver.me/tags/%E5%88%B6%E5%BA%A6/>制度</a>
+<a href=http://leaver.me/tags/%E5%89%8D%E7%AB%AF/>前端</a>
+<a href=http://leaver.me/tags/%E5%8E%9F%E5%88%9B/>原创</a>
+<a href=http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/>大学</a>
+<a href=http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/>学习</a>
+<a href=http://leaver.me/tags/%E5%AE%89%E5%85%A8/>安全</a>
+<a href=http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/>家庭</a>
+<a href=http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/>工作</a>
+<a href=http://leaver.me/tags/%E5%B7%A5%E5%85%B7/>工具</a>
+<a href=http://leaver.me/tags/%E5%B9%B6%E5%8F%91/>并发</a>
+<a href=http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/>序列化</a>
+<a href=http://leaver.me/tags/%E5%BC%80%E5%8F%91/>开发</a>
+<a href=http://leaver.me/tags/%E5%BF%83%E7%90%86/>心理</a>
+<a href=http://leaver.me/tags/%E6%80%BB%E7%BB%93/>总结</a>
+<a href=http://leaver.me/tags/%E6%8A%80%E6%9C%AF/>技术</a>
+<a href=http://leaver.me/tags/%E6%8F%92%E4%BB%B6/>插件</a>
+<a href=http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/>操作系统</a>
+<a href=http://leaver.me/tags/%E6%94%B6%E8%97%8F/>收藏</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E5%AD%A6/>数学</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/>数据库</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/>数据挖掘</a>
+<a href=http://leaver.me/tags/%E6%96%87%E7%AB%A0/>文章</a>
+<a href=http://leaver.me/tags/%E6%99%BA%E8%83%BD/>智能</a>
+<a href=http://leaver.me/tags/%E6%9D%82%E6%96%87/>杂文</a>
+<a href=http://leaver.me/tags/%E6%AD%A6%E6%B1%89/>武汉</a>
+<a href=http://leaver.me/tags/%E6%B1%87%E7%BC%96/>汇编</a>
+<a href=http://leaver.me/tags/%E7%88%B1%E6%83%85/>爱情</a>
+<a href=http://leaver.me/tags/%E7%90%86%E8%AE%BA/>理论</a>
+<a href=http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/>生产力</a>
+<a href=http://leaver.me/tags/%E7%94%9F%E6%B4%BB/>生活</a>
+<a href=http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/>电子书</a>
+<a href=http://leaver.me/tags/%E7%94%B5%E5%BD%B1/>电影</a>
+<a href=http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/>社会</a>
+<a href=http://leaver.me/tags/%E7%A7%91%E6%8A%80/>科技</a>
+<a href=http://leaver.me/tags/%E7%AC%94%E8%AE%B0/>笔记</a>
+<a href=http://leaver.me/tags/%E7%AE%97%E6%B3%95/>算法</a>
+<a href=http://leaver.me/tags/%E7%BC%96%E7%A8%8B/>编程</a>
+<a href=http://leaver.me/tags/%E7%BC%96%E8%AF%91/>编译</a>
+<a href=http://leaver.me/tags/%E7%BF%BB%E8%AF%91/>翻译</a>
+<a href=http://leaver.me/tags/%E8%81%8C%E4%B8%9A/>职业</a>
+<a href=http://leaver.me/tags/%E8%AE%B0%E5%BD%95/>记录</a>
+<a href=http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/>设计</a>
+<a href=http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/>读书</a>
+<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/>软件</a>
+<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/>软件测试</a>
+<a href=http://leaver.me/tags/%E8%BF%90%E7%BB%B4/>运维</a>
+<a href=http://leaver.me/tags/%E9%87%91%E8%9E%8D/>金融</a></div></section><section class=widget><h3 class=widget-title>友情链接</h3><ul class=widget-list><li><a target=_blank href=https://www.cppfans.org/ title=C++爱好者博客>C++爱好者博客</a></li><li><a target=_blank href=http://www.kailing.pub title=KL，每天进步一点点>KL，每天进步一点点</a></li></ul></section><section class=widget><h3 class=widget-title>其它</h3><ul class=widget-list><li><a href=http://leaver.me/index.xml>文章 RSS</a></li></ul></section></div></div></div></div><footer id=footer><div class=container>&copy; 2020 <a href=http://leaver.me/>bystander's blog By bystander</a>.
+Powered by <a rel="nofollow noreferer noopener" href=https://gohugo.io target=_blank>Hugo</a>.
+<a href=https://www.flysnow.org/ target=_blank>Theme</a> based on <a href=https://github.com/flysnow-org/maupassant-hugo target=_blank>maupassant</a>.</div></footer><a id=rocket href=#top></a><script type=text/javascript src="/js/totop.js?v=0.0.0" async></script><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-30961201-3','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></body></html>

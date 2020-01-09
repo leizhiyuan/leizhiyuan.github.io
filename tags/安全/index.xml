@@ -1,45 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>安全 on bystander&#39;s blog</title>
-    <link>http://leaver.me/tags/%E5%AE%89%E5%85%A8/</link>
-    <description>Recent content in 安全 on bystander&#39;s blog</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh-CN</language>
-    <lastBuildDate>Sun, 29 Jun 2014 06:43:48 +0000</lastBuildDate>
-    
-	<atom:link href="http://leaver.me/tags/%E5%AE%89%E5%85%A8/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>burpsuite抓包https</title>
-      <link>http://leaver.me/2014/06/29/burpsuite%E6%8A%93%E5%8C%85https/</link>
-      <pubDate>Sun, 29 Jun 2014 06:43:48 +0000</pubDate>
-      
-      <guid>http://leaver.me/2014/06/29/burpsuite%E6%8A%93%E5%8C%85https/</guid>
-      <description>最近工作需要，需要burpsuite抓下https的包
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>安全 on bystander's blog</title><link>http://leaver.me/tags/%E5%AE%89%E5%85%A8/</link><description>Recent content in 安全 on bystander's blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 29 Jun 2014 06:43:48 +0000</lastBuildDate><atom:link href="http://leaver.me/tags/%E5%AE%89%E5%85%A8/index.xml" rel="self" type="application/rss+xml"/><item><title>burpsuite抓包https</title><link>http://leaver.me/2014/06/29/burpsuite%E6%8A%93%E5%8C%85https/</link><pubDate>Sun, 29 Jun 2014 06:43:48 +0000</pubDate><guid>http://leaver.me/2014/06/29/burpsuite%E6%8A%93%E5%8C%85https/</guid><description>最近工作需要，需要burpsuite抓下https的包
 burpsuite抓包https的时候，如果是https协议，火狐会不信任证书
  
 这个时候点击我已充分了解可能的风险，然后添加例外，弹出图中的对话框
-
 点击查看，进入证书管理企业免，选择图中的PortSwigger CA根证书，选择导出，保存一下这个证书
-
 然后打开火狐的选项，进入高级-&amp;gt;证书-&amp;gt;查看证书-&amp;gt;证书机构-&amp;gt;导入，选择刚才的证书
-
 ，最后，记住选中信任此CA证书标识的网站，ok
-
 现在再抓包，可以看到https也抓到了。
-
- </description>
-    </item>
-    
-    <item>
-      <title>[藏]隐藏在PNG图像元数据中的新iFrame注入攻击</title>
-      <link>http://leaver.me/2014/02/09/%E8%97%8F%E9%9A%90%E8%97%8F%E5%9C%A8png%E5%9B%BE%E5%83%8F%E5%85%83%E6%95%B0%E6%8D%AE%E4%B8%AD%E7%9A%84%E6%96%B0iframe%E6%B3%A8%E5%85%A5%E6%94%BB%E5%87%BB/</link>
-      <pubDate>Sun, 09 Feb 2014 09:23:12 +0000</pubDate>
-      
-      <guid>http://leaver.me/2014/02/09/%E8%97%8F%E9%9A%90%E8%97%8F%E5%9C%A8png%E5%9B%BE%E5%83%8F%E5%85%83%E6%95%B0%E6%8D%AE%E4%B8%AD%E7%9A%84%E6%96%B0iframe%E6%B3%A8%E5%85%A5%E6%94%BB%E5%87%BB/</guid>
-      <description>这个攻击方式很旧了，但手法相当不错，来自乐嵌网
+ </description></item><item><title>[藏]隐藏在PNG图像元数据中的新iFrame注入攻击</title><link>http://leaver.me/2014/02/09/%E8%97%8F%E9%9A%90%E8%97%8F%E5%9C%A8png%E5%9B%BE%E5%83%8F%E5%85%83%E6%95%B0%E6%8D%AE%E4%B8%AD%E7%9A%84%E6%96%B0iframe%E6%B3%A8%E5%85%A5%E6%94%BB%E5%87%BB/</link><pubDate>Sun, 09 Feb 2014 09:23:12 +0000</pubDate><guid>http://leaver.me/2014/02/09/%E8%97%8F%E9%9A%90%E8%97%8F%E5%9C%A8png%E5%9B%BE%E5%83%8F%E5%85%83%E6%95%B0%E6%8D%AE%E4%B8%AD%E7%9A%84%E6%96%B0iframe%E6%B3%A8%E5%85%A5%E6%94%BB%E5%87%BB/</guid><description>这个攻击方式很旧了，但手法相当不错，来自乐嵌网
 我们一直在努力保持领先的最新趋势，今天我们发现了一个非常有趣的事，这或者是我们之前没有发现，或者是刚发生的。 我们只能说这是新发现的。
  我们都了解的iFrame注入攻击，对吧？
  了解一个iFrame注入
@@ -47,24 +14,19 @@ burpsuite抓包https的时候，如果是https协议，火狐会不信任证书
 我知道这东西很好，然而总是福祸相惜。
 今天的攻击，特别是当我们谈论路过式下载，首选是利用IFRAME标记。 它简单方便，只需简单的属性修改，攻击者可以稳妥的从另一个站点嵌入代码，并通过客户的浏览器不知不觉的加载。
  像这样：
-
  攻击者通常从其他网站嵌入的恶意文件，通常是一个PHP文件或类似的形式。 当然，这并不是唯一的方法，但是是最普遍的。 从检测和修复的角度来看，这往往很容易修复。
  新的iFrame注入法
 然而今天，我们发现一个有趣的iFrame注入类型。
 它的特殊之处不是在iframe标签中嵌入的内容，而是它分发恶意软件的方式。 你会看到，攻击者将威胁隐藏在PNG文件中。
 我几乎可以听到很多你的窃笑，PFF .. 这不是新的…. 但问题是在细节上我的朋友。
  如下，iFrame加载了一个有效的文件，没有什么恶意，一个叫jquery.js的JavaScript文件。这一切看上去都很好。你要细细的找：
-
 起初，很多人会说我们傻。 这些代码很好，没看见什么问题，对不对？ 然后，我们注意到了这个小函数，loadFile（）。 函数本身并不奇怪，但事实上，它是装载一个PNG-var strFile = ‘./dron.png。 你会被它惊讶良久，它才是一个真正的黑手。
  自然，下一步就是好奇的打开dron.png文件。 会有什么可怕的事情发生吗？
  噢，什么都没有，太无聊了，这纯粹是浪费时间。
-
 但是，请等一下，我发现这里有个有趣的小循环。
-
 嗯，这是确实挺奇怪的，这是一个解码循环。 为什么要一个循环的解码PNG文件呢？
  作为一个优秀的研究人员，采取最简单的方式，我可以将它加载到简单的测试页上 并提取图像内容。搞定！
  测试页上加载它之后这，我们获得了strData变量：
-
  看到它在干嘛了吗？
 它做了个iFrame注入，并把它嵌入到PNG的元数据中，像一个新的分配机制。
  有两点需要特别注意了，它使用createElement做了一个iFrame标签**，**然后设置**elm.style.position.left 和 elm.style.position.top **属性的值为-1000px，把iframe放到可视区域之外。这些值都是负值，在浏览器中根本看不到。但是你知道谁能看到吗？只有浏览器和Google能看到。这就是下载驱动和搜索引擎感染（SEP)攻击的小伎俩。
@@ -74,16 +36,7 @@ burpsuite抓包https的时候，如果是https协议，火狐会不信任证书
  记住一点，尽管我们这里谈论的是PNG文件，这些方法和概念也可以应用到其他类型图像中。重要的一点是：留意你的web 服务状态，了解哪些修改和未修改的文件并确保漏洞未被利用。
  通常情况下，一些新的侦查和排障需要一定的时间。 现在我们的 网站恶意软件扫描器能发现它吗 ？ 绝对可以！
  不要笑了，朋友们！
-原文：new-iframe-injections-leverage-png-image-metadata by Peter Gramantik</description>
-    </item>
-    
-    <item>
-      <title>详细讲解双查询注入</title>
-      <link>http://leaver.me/2013/03/03/%E8%AF%A6%E7%BB%86%E8%AE%B2%E8%A7%A3%E5%8F%8C%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5/</link>
-      <pubDate>Sun, 03 Mar 2013 07:53:24 +0000</pubDate>
-      
-      <guid>http://leaver.me/2013/03/03/%E8%AF%A6%E7%BB%86%E8%AE%B2%E8%A7%A3%E5%8F%8C%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5/</guid>
-      <description>上一篇文章中，http://leaver.me/archives/2726.html
+原文：new-iframe-injections-leverage-png-image-metadata by Peter Gramantik</description></item><item><title>详细讲解双查询注入</title><link>http://leaver.me/2013/03/03/%E8%AF%A6%E7%BB%86%E8%AE%B2%E8%A7%A3%E5%8F%8C%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5/</link><pubDate>Sun, 03 Mar 2013 07:53:24 +0000</pubDate><guid>http://leaver.me/2013/03/03/%E8%AF%A6%E7%BB%86%E8%AE%B2%E8%A7%A3%E5%8F%8C%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5/</guid><description>上一篇文章中，http://leaver.me/archives/2726.html
 我说双查询很难讲清楚，这次就试着讲一下。读了一些原理性的东西。然后尽量通俗的给大家讲清楚。。
 在此之前，我们理解一下子查询，查询的关键字是select，这个大家都知道。子查询可以简单的理解在一个select语句里还有一个select。里面的这个select语句就是子查询。
 看一个简单的例子：
@@ -92,40 +45,29 @@ burpsuite抓包https的时候，如果是https协议，火狐会不信任证书
 双注入查询需要理解四个函数/语句 1. Rand() //随机函数 2. Floor() //取整函数 3. Count() //汇总函数 4. Group by clause //分组语句
 简单的一句话原理就是有研究人员发现，当在一个聚合函数，比如count函数后面如果使用分组语句就会把查询的一部分以错误的形式显示出来。
 以本地一个名为Security的数据库为例 首先在bt5下的命令行下输入
-就会连接上数据库了。 然后通过use security； 就可以切换到security数据库了。因为一个服务器上可能有多个数据库嘛。 
+就会连接上数据库了。 然后通过use security； 就可以切换到security数据库了。因为一个服务器上可能有多个数据库嘛。
 然后我们执行一下前面那个简单的子查询的例子
 就能显示security，也就是显示了当前数据库的名字了。 然后我们测试一下concat的用法。输入
 显然结果就是string1string2了
- 然后我们测试一下rand()这个随机函数是干嘛的
-我们多执行几次  可以看到，这个函数就是返回大于0，小于1之间的数 然后看看取整函数
- 这个函数就是返回小于等于你输入的数的整数。
+然后我们测试一下rand()这个随机函数是干嘛的
+我们多执行几次 可以看到，这个函数就是返回大于0，小于1之间的数 然后看看取整函数
+这个函数就是返回小于等于你输入的数的整数。
 然后我们看看双注入查询中的一个简单组合。大家从我的上一篇文章中应该也看到了有一个子查询是
 我们从里向外看。rand() 返回大于0小于1的小数，乘以2之后就成了小于0小于2了。然后对结果进行取证。就只能是0或1了。也就是这个查询的结果不是1，就是0 我们稍微加大一点难度。看这个查询
 不要怕。先看最里面的SELECT database() 这个就返回数据库名，这里就是security了。然后FLOOR(RAND()*2)这个上面说过了。不是0，就是1.然后把这两个的结果进行concat连接，那么结果不是security0就是security1了。
- 如果我们把这条语句后面加上from 一个表名。那么一般会返回security0或security1的一个集合。数目是由表本身有几条结果决定的。比如一个管理表里有5个管理员。这个就会返回五条记录，这里users表里有13个用户，所以返回了13条  如果是从information_schema.schemata里，这个表里包含了mysql的所有数据库名。这里本机有三个数据库。所以会返回三个结果
-
+如果我们把这条语句后面加上from 一个表名。那么一般会返回security0或security1的一个集合。数目是由表本身有几条结果决定的。比如一个管理表里有5个管理员。这个就会返回五条记录，这里users表里有13个用户，所以返回了13条 如果是从information_schema.schemata里，这个表里包含了mysql的所有数据库名。这里本机有三个数据库。所以会返回三个结果
 现在我们准备加上Group By 语句了。 我们使用information_schema.tables 或 information_schema.columns者两个表来查询。因为表里面一般数据很多。容易生成很多的随机值，不至于全部是security0，这样就不能查询出结果了。
-这里我先解释一下。我们把concat((select database()), floor(rand()*2)) 这个结果取了一个别名 a ，然后使用他进行分组。这样相同的security0分到一组，security1分到一组。就剩下两个结果了。 
+这里我先解释一下。我们把concat((select database()), floor(rand()*2)) 这个结果取了一个别名 a ，然后使用他进行分组。这样相同的security0分到一组，security1分到一组。就剩下两个结果了。
 注意。这里的database()可以替换成任何你想查的函数，比如version(), user(), datadir()或者其他的查询。比如查表啊。查列啊。原理都是一样的。
 最后的亮点来了。。 我们输入这条：注意多了一个聚合函数count(*)
-
 报错了
 重复的键值 可以看到security就是我们的查询结果了 想要查询版本就这样：
-看看替换了database()为version()  再看一个
+看看替换了database()为version() 再看一个
 报错
 这里的~这个符号只是为了让结果更清晰。
 这里还有一个比较复杂的。叫做派生表。需要使用 select 1 from (table name); 这样的语法来报错，具体就是
 来报错。
-大家可以对照我上一篇文章来看。相信讲的还算清楚。</description>
-    </item>
-    
-    <item>
-      <title>双查询注入</title>
-      <link>http://leaver.me/2013/02/22/%E5%8F%8C%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5/</link>
-      <pubDate>Fri, 22 Feb 2013 20:57:02 +0000</pubDate>
-      
-      <guid>http://leaver.me/2013/02/22/%E5%8F%8C%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5/</guid>
-      <description>作者：bystander 论坛：法客论坛 这个东西比较难解释。我就不多解释。尽量通过这篇文章大家能够照猫画虎手注即可。想要深入理解的可以去看看mysql数据库的一些知识
+大家可以对照我上一篇文章来看。相信讲的还算清楚。</description></item><item><title>双查询注入</title><link>http://leaver.me/2013/02/22/%E5%8F%8C%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5/</link><pubDate>Fri, 22 Feb 2013 20:57:02 +0000</pubDate><guid>http://leaver.me/2013/02/22/%E5%8F%8C%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5/</guid><description>作者：bystander 论坛：法客论坛 这个东西比较难解释。我就不多解释。尽量通过这篇文章大家能够照猫画虎手注即可。想要深入理解的可以去看看mysql数据库的一些知识
 介绍一下双查询注入，有时候我们通过order by 语句获取到了确定的列数，可是当我们使用union select或union select all查询的时候，
 却会出现一个错误提示，列数不一致。
 而我们使用下面的语句：
@@ -144,16 +86,7 @@ burpsuite抓包https的时候，如果是https协议，火狐会不信任证书
 也就是他们使用tablename.columnname 有个缺点就是一次只能获取一个列的值，要是该表有个1000多列啥的。。一个个就了。。为了更快一些。后来很多人开始使用这个：
 这样一次就能获取多个列的值了，但是还有个bug，因为是直接从mysql的所有表里面找，并且没有指定数据库名，如果mysql有两个数据库有同样的一个表名。那么这样找出来的就不知道到底是哪个了。。就混乱了。。所以。现在我们用这个：
 好处一个是可以一次获取多个列的值，同时使用 database.table, 可以明确我们要找的表了。不要忘了增加LIMIT来获取下一条记录啊
-错误之处还请指正。</description>
-    </item>
-    
-    <item>
-      <title>recon-ng开源信息探测框架</title>
-      <link>http://leaver.me/2013/02/02/recon-ng%E5%BC%80%E6%BA%90%E4%BF%A1%E6%81%AF%E6%8E%A2%E6%B5%8B%E6%A1%86%E6%9E%B6/</link>
-      <pubDate>Sat, 02 Feb 2013 06:52:28 +0000</pubDate>
-      
-      <guid>http://leaver.me/2013/02/02/recon-ng%E5%BC%80%E6%BA%90%E4%BF%A1%E6%81%AF%E6%8E%A2%E6%B5%8B%E6%A1%86%E6%9E%B6/</guid>
-      <description>作者：bystander 博客：http://leaver.me 微博：http://t.qq.com/lazystander 论坛：法客论坛
+错误之处还请指正。</description></item><item><title>recon-ng开源信息探测框架</title><link>http://leaver.me/2013/02/02/recon-ng%E5%BC%80%E6%BA%90%E4%BF%A1%E6%81%AF%E6%8E%A2%E6%B5%8B%E6%A1%86%E6%9E%B6/</link><pubDate>Sat, 02 Feb 2013 06:52:28 +0000</pubDate><guid>http://leaver.me/2013/02/02/recon-ng%E5%BC%80%E6%BA%90%E4%BF%A1%E6%81%AF%E6%8E%A2%E6%B5%8B%E6%A1%86%E6%9E%B6/</guid><description>作者：bystander 博客：http://leaver.me 微博：http://t.qq.com/lazystander 论坛：法客论坛
 首发。转载什么的请注明出处。起码给我留个链接啥的嘛。
 首先介绍一下。这个工具是国外刚刚发布的。主要用来渗透前的信息探测。使用类似Metasploit 主要有 Auxiliary： 这个模块查询主机信息泄漏页。进行hash反查，模糊名称精确，检查某个email是否密码泄漏，域名解析ip等 Contacts： 这个模块探测和某一公司有关的人员的信息，主要包括 LinkedIn 和Jigsaw 这两个模块。得到的信息可以被Auxiliary模块使用，如果和Social Engineer Toolkit(社会工程学工具集，这个工具已经发布了。是开源的。大家可以看看)，一起。效果强大。
 Hosts： 这个用来获取站点子域名。。包括使用baidu。Google bing等。。效果相当强大。 Output： 这个模块用来创建输出报表 Pwnedlist： 这个模块不是得shell的。他可通过 Pwnedlist.com 提供的api，如果这个网站被入侵过。那么可以直接获得其他黑客泄漏的帐号密码。。（需要去 Pwnedlist.com 注册）
@@ -162,29 +95,16 @@ Hosts： 这个用来获取站点子域名。。包括使用baidu。Google bing�
 然后
 首先查看有哪些模块。输入
 图一
-
 我以获取子域名为例，通过我前面的介绍你已经知道了hosts模块里的所有模块基本都是干这事的。我用里面的baidu模块来说明。你也可以使用bing等，，
 输入命令
 图二
-
 刚开始你可能不清楚这个模块的说明。那么继续输入info即可查看模块的详细说明 要开始使用。我们输入
 和Metasploit很像把。可以查看要使用需要的配置。
 图三
-
 看表，会发现有三行。第一行是标题，第二行是域名设置，第三行是输出。这个current value也就是当前值已经为true。所以不用设置。req的意思是是否必须设置。我们输入 baidu.com就是你的目标了。
 就会从百度的结果里提取百度的子域名信息了。要开始。我们输入
 图四
-
-更多希望大家发掘吧。我抛砖。求引玉。</description>
-    </item>
-    
-    <item>
-      <title>SQL注入中的WAF绕过技术</title>
-      <link>http://leaver.me/2013/01/06/sql%E6%B3%A8%E5%85%A5%E4%B8%AD%E7%9A%84waf%E7%BB%95%E8%BF%87%E6%8A%80%E6%9C%AF/</link>
-      <pubDate>Sun, 06 Jan 2013 13:15:37 +0000</pubDate>
-      
-      <guid>http://leaver.me/2013/01/06/sql%E6%B3%A8%E5%85%A5%E4%B8%AD%E7%9A%84waf%E7%BB%95%E8%BF%87%E6%8A%80%E6%9C%AF/</guid>
-      <description>作者：bystander 博客：http://leaver.me 论坛：法克论坛
+更多希望大家发掘吧。我抛砖。求引玉。</description></item><item><title>SQL注入中的WAF绕过技术</title><link>http://leaver.me/2013/01/06/sql%E6%B3%A8%E5%85%A5%E4%B8%AD%E7%9A%84waf%E7%BB%95%E8%BF%87%E6%8A%80%E6%9C%AF/</link><pubDate>Sun, 06 Jan 2013 13:15:37 +0000</pubDate><guid>http://leaver.me/2013/01/06/sql%E6%B3%A8%E5%85%A5%E4%B8%AD%E7%9A%84waf%E7%BB%95%E8%BF%87%E6%8A%80%E6%9C%AF/</guid><description>作者：bystander 博客：http://leaver.me 论坛：法克论坛
 目录
 1.大小写绕过2.简单编码绕过3.注释绕过4.分隔重写绕过5.Http参数污染(HPP)
 6.使用逻辑运算符or /and绕过7.比较操作符替换8.同功能函数替换9.盲注无需or和and
@@ -198,30 +118,12 @@ Hosts： 这个用来获取站点子域名。。包括使用baidu。Google bing�
 6. 使用逻辑运算符 or /and绕过7. 比较操作符替换包括!= 不等于，&amp;lt;&amp;gt;不等于，&amp;lt; 小于，&amp;gt;大于，这些都可以用来替换=来绕过， 比如上一个例子，要判断是不是74，假设=被过滤，那么我们可以判断是不是大于73，是不是小于75，然后就知道是74了。。很多WAF都会忘了这个。
 8. 同功能函数替换Substring()可以用mid(),substr()这些函数来替换，都是用来取字符串的某一位字符的。 Ascii()编码可以用hex(),bin(),也就是16进制和二进制编码替换 Benchmark() 可以用sleep()来替换，这两个使用在基于延时的盲注中，有机会给大家介绍 如果连这些都屏蔽了，还有一种新的方法
 9. 盲注无需or和and比如有这样一个注入点：
-10. 加括号11.缓冲区溢出绕过刚刚写着把这个给忘了。这个是从国外一个博客看到的。</description>
-    </item>
-    
-    <item>
-      <title>一个恶意vbs脚本的简单解码</title>
-      <link>http://leaver.me/2012/11/25/%E4%B8%80%E4%B8%AA%E6%81%B6%E6%84%8Fvbs%E8%84%9A%E6%9C%AC%E7%9A%84%E7%AE%80%E5%8D%95%E8%A7%A3%E7%A0%81/</link>
-      <pubDate>Sun, 25 Nov 2012 09:00:59 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/11/25/%E4%B8%80%E4%B8%AA%E6%81%B6%E6%84%8Fvbs%E8%84%9A%E6%9C%AC%E7%9A%84%E7%AE%80%E5%8D%95%E8%A7%A3%E7%A0%81/</guid>
-      <description>今天把电脑还原到了11月7号。结果eset更新后报C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup这个目录有个zzs.vbs的不受欢迎的程序，当时没什么事，就打开看看。想知道是个什么东西。
+10. 加括号11.缓冲区溢出绕过刚刚写着把这个给忘了。这个是从国外一个博客看到的。</description></item><item><title>一个恶意vbs脚本的简单解码</title><link>http://leaver.me/2012/11/25/%E4%B8%80%E4%B8%AA%E6%81%B6%E6%84%8Fvbs%E8%84%9A%E6%9C%AC%E7%9A%84%E7%AE%80%E5%8D%95%E8%A7%A3%E7%A0%81/</link><pubDate>Sun, 25 Nov 2012 09:00:59 +0000</pubDate><guid>http://leaver.me/2012/11/25/%E4%B8%80%E4%B8%AA%E6%81%B6%E6%84%8Fvbs%E8%84%9A%E6%9C%AC%E7%9A%84%E7%AE%80%E5%8D%95%E8%A7%A3%E7%A0%81/</guid><description>今天把电脑还原到了11月7号。结果eset更新后报C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup这个目录有个zzs.vbs的不受欢迎的程序，当时没什么事，就打开看看。想知道是个什么东西。
 由于eset阻止，我就把文件拖出来。改个后缀。发现代码不长，前半段是ascii码编码的。。
 后半段是
 虽说对vbs不怎么熟，但也知道vbs经常用来写个启动项啊。加个用户啊。之类的。后半句很好懂。就是把ascii码转换成字符串，然后执行。字面意思看看就行了。其实应该可以直接将Execute runner 改为 MsgBox runner就能输出了。但eset不能关闭。所以最后还是选择用C#来写了。
 解码嘛。很简单。VS刚好开着。直接写吧。
-结合后半段。简单读一读，就知道这个先找了一下userinit.exe进程。然后改了注册表并且设置了浏览器首页为999这个什么网站，我打开发现是个导航站。。人家hao123做个导航站赚钱了。。你们要不要这样跟风啊。。</description>
-    </item>
-    
-    <item>
-      <title>分享几个电子书资源站点</title>
-      <link>http://leaver.me/2012/10/18/%E5%88%86%E4%BA%AB%E5%87%A0%E4%B8%AA%E7%94%B5%E5%AD%90%E4%B9%A6%E8%B5%84%E6%BA%90%E7%AB%99%E7%82%B9/</link>
-      <pubDate>Thu, 18 Oct 2012 11:12:01 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/10/18/%E5%88%86%E4%BA%AB%E5%87%A0%E4%B8%AA%E7%94%B5%E5%AD%90%E4%B9%A6%E8%B5%84%E6%BA%90%E7%AB%99%E7%82%B9/</guid>
-      <description>看到书签里有好些电子书的资源站。今天心情不错。遂起了分享的念头。。
+结合后半段。简单读一读，就知道这个先找了一下userinit.exe进程。然后改了注册表并且设置了浏览器首页为999这个什么网站，我打开发现是个导航站。。人家hao123做个导航站赚钱了。。你们要不要这样跟风啊。。</description></item><item><title>分享几个电子书资源站点</title><link>http://leaver.me/2012/10/18/%E5%88%86%E4%BA%AB%E5%87%A0%E4%B8%AA%E7%94%B5%E5%AD%90%E4%B9%A6%E8%B5%84%E6%BA%90%E7%AB%99%E7%82%B9/</link><pubDate>Thu, 18 Oct 2012 11:12:01 +0000</pubDate><guid>http://leaver.me/2012/10/18/%E5%88%86%E4%BA%AB%E5%87%A0%E4%B8%AA%E7%94%B5%E5%AD%90%E4%B9%A6%E8%B5%84%E6%BA%90%E7%AB%99%E7%82%B9/</guid><description>看到书签里有好些电子书的资源站。今天心情不错。遂起了分享的念头。。
 对于计算机相关专业人隆重推荐小书屋
 作者很认真的在分享技术/安全/心理学/技术PPT方面的书籍。算是国内技术书籍比较好的分享站点了。
 如果你没有找到自己喜欢的书。那么试试forfrigg，是一个电子书籍整合站点。使用该网站。不只可以下载kindle书籍。更是能够搜索新浪，doukan等诸多网盘内容。实乃书籍下载必备引擎啊。
@@ -230,20 +132,11 @@ Hosts： 这个用来获取站点子域名。。包括使用baidu。Google bing�
 如果你是大牛。。只喜欢看英文原版的。。那么先去七彩英语看看吧，优秀的英文电子书下载站。从技术到小说应有尽有。界面也漂亮。
 还嫌少？那去国外溜达吧。ebook-downloader 随时欢迎你的光临。全球最大电子书下载平台。。尽情享受阅读的快感吧。。
 update:感谢@Shiyao Yu的推荐-皮皮书屋。很小众。但资源很全。需注册。注册用户每天可下三本。最喜欢小众什么的了。我试着搜了一下计算机的。确实挺全。
-ps:如果你收藏了其他的站点。不妨留言回复。</description>
-    </item>
-    
-    <item>
-      <title>从hash函数到王小云的MD5破解</title>
-      <link>http://leaver.me/2012/05/15/%E4%BB%8Ehash%E5%87%BD%E6%95%B0%E5%88%B0%E7%8E%8B%E5%B0%8F%E4%BA%91%E7%9A%84md5%E7%A0%B4%E8%A7%A3/</link>
-      <pubDate>Tue, 15 May 2012 13:26:14 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/05/15/%E4%BB%8Ehash%E5%87%BD%E6%95%B0%E5%88%B0%E7%8E%8B%E5%B0%8F%E4%BA%91%E7%9A%84md5%E7%A0%B4%E8%A7%A3/</guid>
-      <description>以前一直纳闷不是说md5是不可逆的吗，那王小云怎么能破解呢。看到此文，豁然开朗，所谓的破解只是可以获得一个碰撞，使得两个文件的md5值一样。并不是说给定一个md5，能够得到原文。
+ps:如果你收藏了其他的站点。不妨留言回复。</description></item><item><title>从hash函数到王小云的MD5破解</title><link>http://leaver.me/2012/05/15/%E4%BB%8Ehash%E5%87%BD%E6%95%B0%E5%88%B0%E7%8E%8B%E5%B0%8F%E4%BA%91%E7%9A%84md5%E7%A0%B4%E8%A7%A3/</link><pubDate>Tue, 15 May 2012 13:26:14 +0000</pubDate><guid>http://leaver.me/2012/05/15/%E4%BB%8Ehash%E5%87%BD%E6%95%B0%E5%88%B0%E7%8E%8B%E5%B0%8F%E4%BA%91%E7%9A%84md5%E7%A0%B4%E8%A7%A3/</guid><description>以前一直纳闷不是说md5是不可逆的吗，那王小云怎么能破解呢。看到此文，豁然开朗，所谓的破解只是可以获得一个碰撞，使得两个文件的md5值一样。并不是说给定一个md5，能够得到原文。
 　密码学是理论计算机的一个很大的方向。之前准备先写密码学概论再提在hash函数破解上做出重大贡献的王小云教授的工作，不过前两天王小云获得求是杰出科学家奖以及100万奖金，在媒体上又掀起了一轮宣传狂潮，但是有些报道极端弱智，错误百出，所以我趁机纠正一下，并介绍密码学的一个组成部分——hash函数，以及王小云在这上面的工作。
 　王小云的主要工作是关于hash函数的破解工作。她在2005一个密码学会议上宣布破解了SHA-1，震惊了全世界。所以要介绍和理解她的工作，先看一下hash函数具体是怎么回事。
 　简单的说，hash函数就是把任意长的输入字符串变化成固定长的输出字符串的一种函数。通俗得说，hash函数用来生成信息的摘要。输出字符串的长度称为hash函数的位数。
-　目前应用最为广泛的hash函数是**SHA-1和MD5**，大多是128位和更长。
+　目前应用最为广泛的hash函数是**SHA-1**和**MD5**，大多是128位和更长。
 　hash函数在现实生活中应用十分广泛。很多下载网站都提供下载文件的MD5码校验，可以用来判别文件是否完整。另外，比如在WordPress的数据库，所有密码都是保存的MD5码，这样即使数据库的管理员也无法知道用户的原始密码，避免隐私泄露（很多人在不同地方都是用的同一个密码）。
 　如果两个输入串的hash函数的值一样，则称这两个串是一个碰撞(Collision)。既然是把任意长度的字符串变成固定长度的字符串，所以，必有一个输出串对应无穷多个输入串，碰撞是必然存在的。
 　一个“优良”的hash函数 _f _应当满足以下三个条件：　　1.任意y，找x，使得f(x)=y，非常困难。2.给定x1，找x2，使得f(x1)=f(x2)，非常困难。3.找x1，x2，使得f(x1)=f(x2)，非常困难。　上面的“非常困难”的意思是除了枚举外不可能有别的更快的方法。比如第3条，根据生日定理，要想找到这样的x1，x2，理论上需要大约2^(n/2)的枚举次数。
@@ -253,29 +146,15 @@ ps:如果你收藏了其他的站点。不妨留言回复。</description>
 　但是，说这种破解一点实际意义都没有，那就侮辱了广大密码学家的智商，密码学家不会无缘无故的弄出碰撞这么一个概念来。下面简单的介绍一下在特定情况下，怎么利用给定的碰撞来做坏事(翻译自Attacking Hash Functions)：
 　Caesar给实习生Alice叫写了一封推荐信(letter)。同一天，Alice叫Caesar在推荐信上数字签名，并提供了一份推荐信的电子板。Caesar打开文件，发现和原件一模一样。所以他在文件上签了名。
 　几个月后，Caesar发现他的秘密文件被非法察看。这到底是怎么回事呢？
-
 　　a25f7f0b 29ee0b39 68c86073 8533a4b9
 　事实上，Alice要求Caesar签名的文件letter已经被Alice做了手脚，准确地说，Alice还准备了另外一个文件order，它们的MD5码完全一致。而Caesar的数字签名还依赖于MD5算法，所以Alice用order文件替换Letter文件之后，Caesar的数字签名依然有效。那封order给Alice提供了察看秘密文件的权限。
 　具体的实现方法可见Hash Functions and the Blind Passenger Attack。我在这里简单的解释一下(只是大致思路，具体实现方式，需要对文件结构信息有所了解)：
 　letter文件的内容是： if(x1==x1) show &amp;ldquo;letter&amp;rdquo; else show &amp;ldquo;order&amp;rdquo; order文件的内容是：　if(x2==x1) show &amp;ldquo;letter&amp;rdquo; else show &amp;ldquo;order&amp;rdquo; 其中字符串&amp;quot;letter&amp;quot;和&amp;quot;order&amp;quot;代表两封信实际显示的内容。x1，x2是一个MD5的碰撞。
-　上面的方法，只供参考和学术用途，实际使用所引起的后果概不负责。　参考： １.Attacking Hash Functions by Poisoned Messages &amp;ldquo;The Story of Alice and her Boss&amp;rdquo; ２.Hash function, wikipedia　３.SHA, wikipedia ４.Interview with Yiqun Lisa Yin concerning the attack on SHA-1　　原文来自：http://zhiqiang.org</description>
-    </item>
-    
-    <item>
-      <title>WWWScan GUI版--WebScan</title>
-      <link>http://leaver.me/2012/04/18/wwwscan-gui%E7%89%88-webscan/</link>
-      <pubDate>Wed, 18 Apr 2012 21:56:11 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/04/18/wwwscan-gui%E7%89%88-webscan/</guid>
-      <description>网上一直有个版本是Wscan Gui Beta6，首先感谢作者的无私奉献，写代码不容易啊。但是这个我不知道为什么在我的电脑上总是有一些错误。很多功能虽然加上了，但是其实对我有点多余。毕竟，我只是用这个扫描一下。于是，决定自己用C#做个GUI版，模仿实现一下。
-　然后我看了一下目录结构。如下图所知  貌似作者只是简单写了。然后对应着调用扫描器。我想了下，可以通过修改文件名来实现，因为wwwscan默认只能识别cgi.list，那么我想的是当我选中一种扫描类型后。将对应的字典，比如asp.list改成cgi.list。当然为了保护原文件，复制。。然后调用。这样就不用有这么多exe了。。
+　上面的方法，只供参考和学术用途，实际使用所引起的后果概不负责。　参考： １.Attacking Hash Functions by Poisoned Messages &amp;ldquo;The Story of Alice and her Boss&amp;rdquo; ２.Hash function, wikipedia　３.SHA, wikipedia ４.Interview with Yiqun Lisa Yin concerning the attack on SHA-1　　原文来自：http://zhiqiang.org</description></item><item><title>WWWScan GUI版--WebScan</title><link>http://leaver.me/2012/04/18/wwwscan-gui%E7%89%88-webscan/</link><pubDate>Wed, 18 Apr 2012 21:56:11 +0000</pubDate><guid>http://leaver.me/2012/04/18/wwwscan-gui%E7%89%88-webscan/</guid><description>网上一直有个版本是Wscan Gui Beta6，首先感谢作者的无私奉献，写代码不容易啊。但是这个我不知道为什么在我的电脑上总是有一些错误。很多功能虽然加上了，但是其实对我有点多余。毕竟，我只是用这个扫描一下。于是，决定自己用C#做个GUI版，模仿实现一下。
+　然后我看了一下目录结构。如下图所知 貌似作者只是简单写了。然后对应着调用扫描器。我想了下，可以通过修改文件名来实现，因为wwwscan默认只能识别cgi.list，那么我想的是当我选中一种扫描类型后。将对应的字典，比如asp.list改成cgi.list。当然为了保护原文件，复制。。然后调用。这样就不用有这么多exe了。。
 　第二个我想实现作者的检测网站的脚本类型的功能，想到了两种方法。一种是循环访问index.xxx文件，xxx对asp jsp等，然后判断http状态码，200的话就可以对应判断出来网站脚本了。但是这样测试了一会没成功，还是算了，，然后想了一种猥琐流的方法，就是直接访问首页。然后把源码下载下来，然后搜索&amp;rdquo;.xxx&amp;quot;字符串，找到就行了，，当然这两种方法都是不完善的。。我也没想到什么完美的。。希望有人知道的话留言指教。
-　最后的目录就清爽多了 
+　最后的目录就清爽多了
 　那个4p啊，，就是盲扫描了。。不知道网站脚本的时候采用。。。
-　界面基本完全模仿了作者的UI，进行了略微调整，希望作者不介意。 
+　界面基本完全模仿了作者的UI，进行了略微调整，希望作者不介意。
 　程序需要.net framework 3.5。。win7默认都有。不用担心。xp用户可以下载环境后使用。毕竟是扫描工具，国内那些2b杀软会报毒，不放心的去世界杀毒网自己扫描吧。千万不要用来干坏事，遵守我国相关法律法规。
-[downloadicon href=http://pan.baidu.com/share/link?shareid=83803&amp;amp;uk=1493685990]WebScan下载[/downloadicon]</description>
-    </item>
-    
-  </channel>
-</rss>
+[downloadicon href=http://pan.baidu.com/share/link?shareid=83803&amp;amp;uk=1493685990]WebScan下载[/downloadicon]</description></item></channel></rss>

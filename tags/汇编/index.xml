@@ -1,23 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>汇编 on bystander&#39;s blog</title>
-    <link>http://leaver.me/tags/%E6%B1%87%E7%BC%96/</link>
-    <description>Recent content in 汇编 on bystander&#39;s blog</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh-CN</language>
-    <lastBuildDate>Mon, 24 Sep 2012 08:02:36 +0000</lastBuildDate>
-    
-	<atom:link href="http://leaver.me/tags/%E6%B1%87%E7%BC%96/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>汇编-32位CPU所含有的寄存器</title>
-      <link>http://leaver.me/2012/09/24/%E6%B1%87%E7%BC%96-32%E4%BD%8Dcpu%E6%89%80%E5%90%AB%E6%9C%89%E7%9A%84%E5%AF%84%E5%AD%98%E5%99%A8/</link>
-      <pubDate>Mon, 24 Sep 2012 08:02:36 +0000</pubDate>
-      
-      <guid>http://leaver.me/2012/09/24/%E6%B1%87%E7%BC%96-32%E4%BD%8Dcpu%E6%89%80%E5%90%AB%E6%9C%89%E7%9A%84%E5%AF%84%E5%AD%98%E5%99%A8/</guid>
-      <description>今年的课程有汇编。真为校领导的智商捉鸡。。不过还是要学的。分享一篇来自中文FLEX例子的汇编寄存器的文章。很不错的一篇寄存器详解的文章。文章最后是我找到的一个汇编指令助手。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>汇编 on bystander's blog</title><link>http://leaver.me/tags/%E6%B1%87%E7%BC%96/</link><description>Recent content in 汇编 on bystander's blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 24 Sep 2012 08:02:36 +0000</lastBuildDate><atom:link href="http://leaver.me/tags/%E6%B1%87%E7%BC%96/index.xml" rel="self" type="application/rss+xml"/><item><title>汇编-32位CPU所含有的寄存器</title><link>http://leaver.me/2012/09/24/%E6%B1%87%E7%BC%96-32%E4%BD%8Dcpu%E6%89%80%E5%90%AB%E6%9C%89%E7%9A%84%E5%AF%84%E5%AD%98%E5%99%A8/</link><pubDate>Mon, 24 Sep 2012 08:02:36 +0000</pubDate><guid>http://leaver.me/2012/09/24/%E6%B1%87%E7%BC%96-32%E4%BD%8Dcpu%E6%89%80%E5%90%AB%E6%9C%89%E7%9A%84%E5%AF%84%E5%AD%98%E5%99%A8/</guid><description>今年的课程有汇编。真为校领导的智商捉鸡。。不过还是要学的。分享一篇来自中文FLEX例子的汇编寄存器的文章。很不错的一篇寄存器详解的文章。文章最后是我找到的一个汇编指令助手。
 　4个数据寄存器(EAX、EBX、ECX和EDX)　2个变址和指针寄存器(ESI和EDI) 2个指针寄存器(ESP和EBP) 6个段寄存器(ES、CS、SS、DS、FS和GS) 1个指令指针寄存器(EIP) 1个标志寄存器(EFlags)
 1、数据寄存器 　数据寄存器主要用来保存操作数和运算结果等信息，从而节省读取操作数所需占用总线和访问存储器的时间。32位CPU有4个32位的通用寄存器EAX、EBX、ECX和EDX。对低16位数据的存取，不会影响高16位的数据。这些低16位寄存器分别命名为：AX、BX、CX和DX，它和先前的CPU中的寄存器相一致。
 　4个16位寄存器又可分割成8个独立的8位寄存器(AX：AH-AL、BX：BH-BL、CX：CH-CL、DX：DH-DL)，每个寄存器都有自己的名称，可独立存取。程序员可利用数据寄存器的这种”可分可合”的特性，灵活地处理字/字节的信息。
@@ -60,8 +41,4 @@
 　状态控制标志位是用来控制CPU操作的，它们要通过专门的指令才能使之发生改变。
 　1、追踪标志TF(Trap Flag)
 　当追踪标志TF被置为1时，CPU进入单步执行方式，即每执行一条指令，产生一个单步中断请求。这种方式主要用于程序的调试。指令系统中没有专门的指令来改变标志位TF的值，但程序员可用其它办法来改变其值。
-　2、中断允许标志IF(Interrupt-enable Flag)</description>
-    </item>
-    
-  </channel>
-</rss>
+　2、中断允许标志IF(Interrupt-enable Flag)</description></item></channel></rss>

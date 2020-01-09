@@ -1,88 +1,7 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
-	<meta name="generator" content="Hugo 0.61.0" />
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>bystander&#39;s blog | 寻找窄门</title>
-    <meta property="og:title" content="bystander&#39;s blog | 寻找窄门">
-    <meta property="og:type" content="website">
-    <meta name="Keywords" content="">
-    <meta name="description" content="">
-    <meta property="og:url" content="http://leaver.me/">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-
-    <link rel="stylesheet" href='/css/normalize.css'>
-    <link rel="stylesheet" href='/css/style.css'>
-    <link rel="alternate" type="application/rss+xml+xml" href="http://leaver.me/index.xml" title="bystander's blog" />
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-    
-
-
-    
-    
-</head>
-
-
-<body>
-    <header id="header" class="clearfix">
-    <div class="container">
-        <div class="col-group">
-            <div class="site-name ">
-                
-                    <h1>
-                        <a id="logo" href="http://leaver.me/">
-                            bystander&#39;s blog
-                        </a>
-                    </h1>
-                
-                <p class="description">寻找窄门</p>
-            </div>
-            <div>
-                <nav id="nav-menu" class="clearfix">
-                    <a class="current" href="http://leaver.me/">首页</a>
-                    
-                    <a  href="http://leaver.me/categories" title="目录">目录</a>
-                    
-                    <a  href="http://leaver.me/about/" title="关于我">关于我</a>
-                    
-                </nav>
-            </div>
-        </div>
-    </div>
-</header>
-
-    <div id="body">
-        <div class="container">
-            <div class="col-group">
-
-                <div class="col-8" id="main">
-                    
-<div class="res-cons">
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/02/02/recon-ng%E5%BC%80%E6%BA%90%E4%BF%A1%E6%81%AF%E6%8E%A2%E6%B5%8B%E6%A1%86%E6%9E%B6/" title="recon-ng开源信息探测框架">recon-ng开源信息探测框架</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年2月2日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91'>我的翻译</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            作者：bystander 博客：http://leaver.me 微博：http://t.qq.com/lazystander 论坛：法客论坛
+<!doctype html><html lang=zh-cn><head><meta name=generator content="Hugo 0.62.2"><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><title>bystander's blog | 寻找窄门</title><meta property="og:title" content="bystander's blog | 寻找窄门"><meta property="og:type" content="website"><meta name=Keywords content><meta name=description content><meta property="og:url" content="http://leaver.me/"><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><link rel=stylesheet href=/css/normalize.css><link rel=stylesheet href=/css/style.css><link rel=alternate type=application/rss+xml+xml href=http://leaver.me/index.xml title="bystander's blog"><script type=text/javascript src=//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js></script></head><body><header id=header class=clearfix><div class=container><div class=col-group><div class=site-name><h1><a id=logo href=http://leaver.me/>bystander's blog</a></h1><p class=description>寻找窄门</p></div><div><nav id=nav-menu class=clearfix><a class=current href=http://leaver.me/>首页</a>
+<a href=http://leaver.me/categories title=目录>目录</a>
+<a href=http://leaver.me/about/ title=关于我>关于我</a></nav></div></div></div></header><div id=body><div class=container><div class=col-group><div class=col-8 id=main><div class=res-cons><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/02/02/recon-ng%E5%BC%80%E6%BA%90%E4%BF%A1%E6%81%AF%E6%8E%A2%E6%B5%8B%E6%A1%86%E6%9E%B6/ title=recon-ng开源信息探测框架>recon-ng开源信息探测框架</a></h1></header><date class="post-meta meta-date">2013年2月2日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91>我的翻译</a></span></div><div class=post-content>作者：bystander 博客：http://leaver.me 微博：http://t.qq.com/lazystander 论坛：法客论坛
 首发。转载什么的请注明出处。起码给我留个链接啥的嘛。
 首先介绍一下。这个工具是国外刚刚发布的。主要用来渗透前的信息探测。使用类似Metasploit 主要有 Auxiliary： 这个模块查询主机信息泄漏页。进行hash反查，模糊名称精确，检查某个email是否密码泄漏，域名解析ip等 Contacts： 这个模块探测和某一公司有关的人员的信息，主要包括 LinkedIn 和Jigsaw 这两个模块。得到的信息可以被Auxiliary模块使用，如果和Social Engineer Toolkit(社会工程学工具集，这个工具已经发布了。是开源的。大家可以看看)，一起。效果强大。
 Hosts： 这个用来获取站点子域名。。包括使用baidu。Google bing等。。效果相当强大。 Output： 这个模块用来创建输出报表 Pwnedlist： 这个模块不是得shell的。他可通过 Pwnedlist.com 提供的api，如果这个网站被入侵过。那么可以直接获得其他黑客泄漏的帐号密码。。（需要去 Pwnedlist.com 注册）
@@ -91,43 +10,17 @@ Hosts： 这个用来获取站点子域名。。包括使用baidu。Google bing�
 然后
 首先查看有哪些模块。输入
 图一
-
 我以获取子域名为例，通过我前面的介绍你已经知道了hosts模块里的所有模块基本都是干这事的。我用里面的baidu模块来说明。你也可以使用bing等，，
 输入命令
 图二
-
 刚开始你可能不清楚这个模块的说明。那么继续输入info即可查看模块的详细说明 要开始使用。我们输入
 和Metasploit很像把。可以查看要使用需要的配置。
 图三
-
 看表，会发现有三行。第一行是标题，第二行是域名设置，第三行是输出。这个current value也就是当前值已经为true。所以不用设置。req的意思是是否必须设置。我们输入 baidu.com就是你的目标了。
 就会从百度的结果里提取百度的子域名信息了。要开始。我们输入
 图四
-
-更多希望大家发掘吧。我抛砖。求引玉。……
-        </div>
-        <p class="readmore"><a href="http://leaver.me/2013/02/02/recon-ng%E5%BC%80%E6%BA%90%E4%BF%A1%E6%81%AF%E6%8E%A2%E6%B5%8B%E6%A1%86%E6%9E%B6/">阅读全文</a></p>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/02/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/" title="操作系统中的输入输出">操作系统中的输入输出</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年2月1日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            输入输出 I/O硬件： I/O设备分为两类：块设备和字符设备，块设备吧信息存储在固定大小的块中，每个块有自己的地址，传输以块为单位，每个块都能独立于其他块读写，硬盘，CD-ROM和USB盘都是常见的块设备。字符设备是以字符为单位发送和接收一个字符流，而不考虑任何块结构，字符设备不可寻址，也不寻道，打印机，网络几口，鼠标，以及大多数与磁盘不同的设备都可看作是字符设备。
+更多希望大家发掘吧。我抛砖。求引玉。……</div><p class=readmore><a href=http://leaver.me/2013/02/02/recon-ng%E5%BC%80%E6%BA%90%E4%BF%A1%E6%81%AF%E6%8E%A2%E6%B5%8B%E6%A1%86%E6%9E%B6/>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/02/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/ title=操作系统中的输入输出>操作系统中的输入输出</a></h1></header><date class="post-meta meta-date">2013年2月1日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></span></div><div class=post-content>输入输出 I/O硬件： I/O设备分为两类：块设备和字符设备，块设备吧信息存储在固定大小的块中，每个块有自己的地址，传输以块为单位，每个块都能独立于其他块读写，硬盘，CD-ROM和USB盘都是常见的块设备。字符设备是以字符为单位发送和接收一个字符流，而不考虑任何块结构，字符设备不可寻址，也不寻道，打印机，网络几口，鼠标，以及大多数与磁盘不同的设备都可看作是字符设备。
 I/O设备一般由机械部件和电子部件两部分组成，通常分开处理，实现模块化和通用设计，电子部件称作设备控制器/适配器，在个人计算机上，通常以主板上的芯片的形式出现，或者以插入PCI的印刷电路板的形式出现。控制器卡上通常有一个连接器，通向设备本身的电缆可以插入到这个连接器中， 控制器的任务是吧串行的位流转换成字节块，并进行必要的错误校正工作，字节块通常首先在控制器内部的一个缓冲区中按位进行组装，然后再对校验和进行校验并证明字节块没有错误后再将它复制到主存中。
 每个控制器都有几个寄存器用来和cpu通信，通过写入这些寄存器，操作系统可以命令设备发送数据等等操作。 1.内存映射io 将所有控制寄存器映射到内存空间中，每个寄存器被分配一个唯一的内存地址，并且不会有内存被分配这一地址，这样的系统称为内存映射I/O，通常位于地址空间的顶端。使用内存映射io，设备控制器只是内存中的变量，c语言可以和其他变量一样寻址，这样，I/O设备驱动程序就可以采用c语言编写。 2.DMA 无论CPU是否具有内存映射I/O,他都需要寻址设备控制器以便和他们交换数据，但浪费eficpu时间，所以经常使用直接存储器存储。可独立于cpu访问地址总线。
 没有DMA的时候，首先控制器从磁盘驱动器串行的一位一位的读一个块，直到将整块信息放入控制器的内存缓冲区中，接着，他计算校验和，以保证没有读错误发生，然后控制器产生一个中断，当操作系统开始运行时，它重复地从控制器的缓冲区中一次一个字节/一个字的读取该块的信息，并将其放入内存中。 当有DMA的时候，首先CPU通过设置DMA控制器的寄存器对它进行编程，所以DMA控制器知道将什么数据传送到什么地方，(第1步)DMA控制器还要向磁盘控制器发送一个命令，通知他从磁盘读数据到其内部的缓冲区中，并且对校验和进行检验，如果磁盘控制器中的缓冲区中的数据是有效的的。那么DMA开始 DMA控制器通过在总线上发出一个读请求到磁盘控制器而发起DMA传送（第2步），这一读请求和其他一样，并且磁盘控制器并不关心是来自DMA还是CPU，一般情况下，要写的内存地址在总线的地址线上，所以磁盘控制器从内部缓冲区中读取下一个字的时候，她知道要写的什么地方，写到内存是另一个标准总线周期，（第3步） 当写操作完成时，磁盘控制器在总线上发起一个应答信号到DMA（第4步），于是DMA控制器部增要使用的内存地址，并且步减字节计数，如果字节计数仍然大于0，则从父2-4步。完成后产生中断告诉cpu，操作系统开始工作时，数据已经在内存中了。 中断： 将机器留在一个明确状态的中断称为精确中断，四个特征，1.PC保存在一个已知的地方。2.PC所指向的指令之前的所有指令都已经完全执行。3.PC所指向的指令之后的所有指令都没有执行。4.PC所指向的指令的执行状态是已知的。注意，对于PC所指向的指令以后的指令，并没有禁止他们开始执行，而只是要求在中断发生之前必须撤销他们对寄存器或内存所做的任何修改。 I/O软件： 设计I/O软件时一个关键的点就是设备独立性，意思是我们可以访问任意I/O设备而无需事先指定设备。也就是对于不同的I/O硬件。同一段程序是可以的。
@@ -135,82 +28,16 @@ I/O设备一般由机械部件和电子部件两部分组成，通常分开处�
 **双缓冲：**当第二个缓冲区正在复制用户空间的时候，第一个缓冲区用来接收新的字符。以这样的方法。两个缓冲区轮流使用。称为双缓冲。
 磁盘臂调度算法： 读/写一个磁盘块需要时间：1.寻道时间（将磁盘臂移动到适当的柱面上所需的时间）2.旋转延迟（等待适当扇区旋转到磁头下所需的时间）。3.实际数据传输时间。
 一个磁盘子系统具有如下特性：当一个写命令发给它时，磁盘要么正确地写数据，要么什么也不做，让现有的数据完整无缺的留下，这样的系统称为稳定存储器，并且是在软件中实现的。目标是不惜一切代价保持磁盘的一致性。
-**时钟：**两种。1种是直接接到电源线上。就可以每个电压周期产生一个终端。现在比较少。另一种是由晶体振荡器，计数器和存储寄存器三个构成。当把一块石英晶体适当的切割并且安装到一定的压力之下时就可以产生非常精确的周期性信号。时钟启动时，存储寄存器的值被复制到计数器中，每一个脉冲使计数器-1，直到为0，产生中断。……
-        </div>
-        <p class="readmore"><a href="http://leaver.me/2013/02/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/">阅读全文</a></p>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/01/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/" title="操作系统中的文件系统">操作系统中的文件系统</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年1月31日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            文件系统 进程，地址空间，文件这些抽象概念均是操作系统中的重要概念，如果理解了这三个概念，就迈上了成为一个操作系统专家的道路。 文件系统存放在磁盘上，多数磁盘划分为一个/多个分区，每个分区有一个独立的文件系统，磁盘的0号扇区称为主引导记录，也就是MBR，用来引导计算机，MBR的结尾就是分区表了。该表给出了每个分区的起始和结束地址。表中的一个分区被标记为活动分区。在计算机被引导时，BIOS读入并执行MBR，MBR做的第一件事就是确定活动分区，读入他的第一个块，称为引导块，并执行之，引导块中的程度将装载该分区中的操作系统，为统一起见，每个分区都从一个启动块开始，即使它不含有一个可以启动的操作系统。  文件的实现： 1.连续分配，每个文件作为一连串连续数据存储在磁盘上。实现简单，读操作性能好，一次就可以了。但不足是删除之后不能移动，因为成本太高，使得空块增多。碎片化严重。更诡异的是对于文件编辑软件，实现无法准确预测大小，如果预测错了。。就跪了。 //研究那些具有清晰和简洁概念的老式系统和思想是很重要的，因为他们可能以一种令人吃惊的方式在未来系统中获得应用。
+**时钟：**两种。1种是直接接到电源线上。就可以每个电压周期产生一个终端。现在比较少。另一种是由晶体振荡器，计数器和存储寄存器三个构成。当把一块石英晶体适当的切割并且安装到一定的压力之下时就可以产生非常精确的周期性信号。时钟启动时，存储寄存器的值被复制到计数器中，每一个脉冲使计数器-1，直到为0，产生中断。……</div><p class=readmore><a href=http://leaver.me/2013/02/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/01/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/ title=操作系统中的文件系统>操作系统中的文件系统</a></h1></header><date class="post-meta meta-date">2013年1月31日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></span></div><div class=post-content>文件系统 进程，地址空间，文件这些抽象概念均是操作系统中的重要概念，如果理解了这三个概念，就迈上了成为一个操作系统专家的道路。 文件系统存放在磁盘上，多数磁盘划分为一个/多个分区，每个分区有一个独立的文件系统，磁盘的0号扇区称为主引导记录，也就是MBR，用来引导计算机，MBR的结尾就是分区表了。该表给出了每个分区的起始和结束地址。表中的一个分区被标记为活动分区。在计算机被引导时，BIOS读入并执行MBR，MBR做的第一件事就是确定活动分区，读入他的第一个块，称为引导块，并执行之，引导块中的程度将装载该分区中的操作系统，为统一起见，每个分区都从一个启动块开始，即使它不含有一个可以启动的操作系统。 文件的实现： 1.连续分配，每个文件作为一连串连续数据存储在磁盘上。实现简单，读操作性能好，一次就可以了。但不足是删除之后不能移动，因为成本太高，使得空块增多。碎片化严重。更诡异的是对于文件编辑软件，实现无法准确预测大小，如果预测错了。。就跪了。 //研究那些具有清晰和简洁概念的老式系统和思想是很重要的，因为他们可能以一种令人吃惊的方式在未来系统中获得应用。
 2.链表分配 为每个文件构造磁盘块链表，一个文件分为N个文件块，N个文件块构成一个链表，存储在物理上的多个地方。顺序读取很方便，但随机读取则相当缓慢，由于指针的存在，每个磁盘块存储数据的字节不再是2的整数次幂，导致系统运行效率降低，因为很多程序都是以2的整数次幂来读写磁盘的。
 3.在内存中采用表的链表分配 去除每个文件块在磁盘上的指针字，放入内存的一个表上，就可以解决上一个分配的不足。直观的例子如图。 文件A使用了磁盘块4，7，2，10，12
-内存中这样的表格称为文件分配表，也就是FAT了。主要缺点是对于大磁盘的小块，这种表需要的内存占用太大。。不太适用。 
+内存中这样的表格称为文件分配表，也就是FAT了。主要缺点是对于大磁盘的小块，这种表需要的内存占用太大。。不太适用。
 4.i节点 记录各个文件包含哪些磁盘块的方法是给每个文件赋予一个称为i节点的数据结构,其中类除了文件属性和文件块的磁盘地址.相对于在内存中采用表的方式,这种机制的优势在于只有对应文件打开时,其i节点才进入内存.
 文件系统的一致性检查分为两种:块的一致性检查和文件的一致性检查.构造两张表,一张跟踪块在文件中的出现次数,另一张跟踪该块在空闲表中的出现次数,如果一致,则某一块必然在两个表中1/2中为1,如果某一块没有出现在任何一张表中,则称为块丢失,浪费了磁盘空间.解决方法是让文件系统检验程序把他们加入到空闲表中 如果在空闲表中出现了两次.则重新建议建议空闲表即可. 如果在文件表中出现了两次.则比较麻烦.
-文件系统性能 1.高速缓存,最常用,指的是一系列的块,逻辑上属于磁盘.但实际上被保存在内存上.基本算法是检查全部的读请求,查看在高速缓存中是否有所需要的块,如果存在,就读,否则读入高速缓存在复制到其他地方. 2.块提前读,在需要用到块之前,试图提前将其写入高速缓存,从而提高命中率.比如某个文件有n个块,则请求k块的时候,则同时预读k+1块.只适用于顺序读取的文件,对随机读取文件,则没有效果/反效果. 3.减少磁盘臂运动 把所有可能顺序读取的块放在一起,当然最好是放在同一个柱面上,从而减少磁盘臂的移动次数.……
-        </div>
-        <p class="readmore"><a href="http://leaver.me/2013/01/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/">阅读全文</a></p>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/01/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95/" title="操作系统中的页面置换算法">操作系统中的页面置换算法</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年1月30日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            页面调度算法总结；  最好的两种算法是老化算法和工作集时钟算法，分别基于LRU和工作集。具有良好的页面调度性能。……
-        </div>
-        <p class="readmore"><a href="http://leaver.me/2013/01/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95/">阅读全文</a></p>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/01/27/c#-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0%E7%B4%A2%E5%BC%95/" title="C# 基础知识系列文章索引">C# 基础知识系列文章索引</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年1月27日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F'>文章收藏</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            清理GR的加星标项目。分享来自博客园 zhili 的C#基础系列文章。
+文件系统性能 1.高速缓存,最常用,指的是一系列的块,逻辑上属于磁盘.但实际上被保存在内存上.基本算法是检查全部的读请求,查看在高速缓存中是否有所需要的块,如果存在,就读,否则读入高速缓存在复制到其他地方. 2.块提前读,在需要用到块之前,试图提前将其写入高速缓存,从而提高命中率.比如某个文件有n个块,则请求k块的时候,则同时预读k+1块.只适用于顺序读取的文件,对随机读取文件,则没有效果/反效果. 3.减少磁盘臂运动 把所有可能顺序读取的块放在一起,当然最好是放在同一个柱面上,从而减少磁盘臂的移动次数.……</div><p class=readmore><a href=http://leaver.me/2013/01/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/01/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95/ title=操作系统中的页面置换算法>操作系统中的页面置换算法</a></h1></header><date class="post-meta meta-date">2013年1月30日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></span></div><div class=post-content>页面调度算法总结； 最好的两种算法是老化算法和工作集时钟算法，分别基于LRU和工作集。具有良好的页面调度性能。……</div><p class=readmore><a href=http://leaver.me/2013/01/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95/>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/01/27/c#-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0%E7%B4%A2%E5%BC%95/ title="C# 基础知识系列文章索引">C# 基础知识系列文章索引</a></h1></header><date class="post-meta meta-date">2013年1月27日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F>文章收藏</a></span></div><div class=post-content>清理GR的加星标项目。分享来自博客园 zhili 的C#基础系列文章。
 C#基础知识系列终于告了一个段落了, 本系列中主要和大家介绍了C#1.0到C# 4.0中一些重要的特性，刚开始写这个专题的初衷主要是我觉得掌握了C#这些基础知识之后，对于其他任何的一门语言都是差不多的，这样可以提高朋友们对其他语言的掌握，以及可以让大家更加迅速地掌握.NET的新特性， 并且相信这个系列对于找工作的朋友也是很有帮助的，因为很多公司面试都很看重基础知识是否扎实，是否对C#有一个全面的认识和理解，所以很多公司面试都会问到一些C#基础概念的问题，例如，经常面试会问：你是如何理解委托的，如何理解匿名函数等问题。
 然而这个系列中并没有介绍COM互操作性的内容以及.Net 4.5中的一些新特性，所以后面将会对这两个方面的内容进行补充，由于这个系列托的太久了(大概也有3个月吧)，所以就先告一段落的，后面将会带来.NET互操作性系列的介绍。下面就为这个系列文章做一个索引，方便大家收藏和查找。
 C#基础知识系列索引
@@ -235,30 +62,8 @@ C# 3.0
 16. Linq介绍
 C# 4.0
 17. 深入理解动态类型
- 从C#的所有特性可以看出,C#中提出的每个新特性都是建立在原来特性的基础上,并且是对原来特性的一个改进, 做这么多的改进主要是为了方便开发人员更好地使用C#来编写程序,是让我们写更少的代码来实现我们的程序,把一些额外的工作交给编译器去帮我们做,也就是很多人说微软很喜欢搞语法糖的意思(语法糖即让编译器帮我们做一些额外的事情，减少开发人员所考虑的事情，使开发人员放更多的精力放在系统的业务逻辑上面。)，大家从C# 3中提出的特性中可以很好的看出这点(指的是玩语法糖)，C#3中几乎大部分特性都是C#提供的语法糖，从CLR层面来说(指的是增加新的IL指令)，C# 3并没有更新什么，C# 4中提出的动态类型又是建立在表达式树的基础上，包括Linq也是建立在表达式树的基础上，所以每个特性都是层层递进的一个关系。相信C#后面提出的新特性将会更加方便我们开发程序，感觉所有语言的一个统一的思想都是——写更少的代码，却可以做更多的事情。但是我们不能仅仅停住于知道怎么使用它，我们还应该深入研究它的背后的故事，知道新特性是如何实现的和原理。用一句说就是——我们要知其然之气所以然，学习知识应该抱着刨根问底的态度去学习,相信这样的学习方式也可以让大家不感到心虚,写出的程序将会更加自信。……
-        </div>
-        <p class="readmore"><a href="http://leaver.me/2013/01/27/c#-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0%E7%B4%A2%E5%BC%95/">阅读全文</a></p>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/01/24/%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%B0%83%E5%BA%A6/" title="现代操作系统的调度">现代操作系统的调度</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年1月24日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            这几天在读《现代操作系统》，想起当时学这门课的时候，并没有感觉那么爽，现在通读这本书，知识的过渡性和结构性令我叹服。感受操作系统的魅力吧。
+ 从C#的所有特性可以看出,C#中提出的每个新特性都是建立在原来特性的基础上,并且是对原来特性的一个改进, 做这么多的改进主要是为了方便开发人员更好地使用C#来编写程序,是让我们写更少的代码来实现我们的程序,把一些额外的工作交给编译器去帮我们做,也就是很多人说微软很喜欢搞语法糖的意思(语法糖即让编译器帮我们做一些额外的事情，减少开发人员所考虑的事情，使开发人员放更多的精力放在系统的业务逻辑上面。)，大家从C# 3中提出的特性中可以很好的看出这点(指的是玩语法糖)，C#3中几乎大部分特性都是C#提供的语法糖，从CLR层面来说(指的是增加新的IL指令)，C# 3并没有更新什么，C# 4中提出的动态类型又是建立在表达式树的基础上，包括Linq也是建立在表达式树的基础上，所以每个特性都是层层递进的一个关系。相信C#后面提出的新特性将会更加方便我们开发程序，感觉所有语言的一个统一的思想都是——写更少的代码，却可以做更多的事情。但是我们不能仅仅停住于知道怎么使用它，我们还应该深入研究它的背后的故事，知道新特性是如何实现的和原理。用一句说就是——我们要知其然之气所以然，学习知识应该抱着刨根问底的态度去学习,相信这样的学习方式也可以让大家不感到心虚,写出的程序将会更加自信。……</div><p class=readmore><a href=http://leaver.me/2013/01/27/c#-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0%E7%B4%A2%E5%BC%95/>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/01/24/%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%B0%83%E5%BA%A6/ title=现代操作系统的调度>现代操作系统的调度</a></h1></header><date class="post-meta meta-date">2013年1月24日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></span></div><div class=post-content>这几天在读《现代操作系统》，想起当时学这门课的时候，并没有感觉那么爽，现在通读这本书，知识的过渡性和结构性令我叹服。感受操作系统的魅力吧。
 批处理系统中的调度： 1.先来先服务
 2.最短作业优先 只有在所有的作业都可以同时运行(也即同时到达)的情况下，最短作业优先算法才是最优化的。
 3.最短剩余时间优先-最短作业优先的抢占式版本。调度算法总是选择剩余时间最短的那个进程运行，注意，运行时间必须提前掌握，当一个新的作业到达时，其整个时间同当前进程的剩余时间做比较，如果更少。就运行新进程。可以使新的短作业获得良好的服务。
@@ -270,34 +75,12 @@ C# 4.0
 6.彩票调度 保证调度很难实现，而彩票调度算法是向进程提供各种系统资源的彩票。一旦需要做出一项调度决策时，就随机抽出一张彩票。谁获得谁就上。比如视频服务器，可以为不同的帧速率提供不同的彩票。然后分配cpu
 7.公平分享调度 这个就考虑到了进程的所有者。需要我们定义公平的含义。是保证每个用户只占用的时间相等还是其他了。
 实时系统的调度： 可以分为硬实时和软实时，前者必须满足绝对的截止时间，后者则可以容忍一些。用户级线程系统是不知道的。用户级和内核级的差异主要在性能，用户级需少量的机器指令，而内核级需要很多的。过程。采用轮转和优先级调度更常见一些。
-//操作系统的大神们太强大了。哲学家进餐问题居然可以通过拿起左边叉子以后，检测右边是否可用，如果不可用，则等待一个随机的时间。这种方案是可行的。在极少的情况下不可用。。……
-        </div>
-        <p class="readmore"><a href="http://leaver.me/2013/01/24/%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%B0%83%E5%BA%A6/">阅读全文</a></p>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/01/23/%E4%B8%8D%E8%A6%81%E5%8F%98%E6%88%90%E4%BD%A0%E8%AE%A8%E5%8E%8C%E7%9A%84%E4%BA%BA%E9%9D%A2%E7%9B%AE%E5%8F%AF%E6%86%8E/" title="不要变成你讨厌的人，面目可憎">不要变成你讨厌的人，面目可憎</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年1月23日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F'>文章收藏</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            本文来自xjp的碎碎念，我很喜欢的一个博主。博客已被伟大的GFW屏蔽。和文章的主题类似，我有时候会在G+上会纠正一些人的谣言，并且给出澄清，可是，往往效果不大。我的态度很简单，你要反对一样东西，请你不要是那样的东西。或用那样的东西去反对。不要为任何主义所迷惑，你要做好一个人。
+//操作系统的大神们太强大了。哲学家进餐问题居然可以通过拿起左边叉子以后，检测右边是否可用，如果不可用，则等待一个随机的时间。这种方案是可行的。在极少的情况下不可用。。……</div><p class=readmore><a href=http://leaver.me/2013/01/24/%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%B0%83%E5%BA%A6/>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/01/23/%E4%B8%8D%E8%A6%81%E5%8F%98%E6%88%90%E4%BD%A0%E8%AE%A8%E5%8E%8C%E7%9A%84%E4%BA%BA%E9%9D%A2%E7%9B%AE%E5%8F%AF%E6%86%8E/ title=不要变成你讨厌的人，面目可憎>不要变成你讨厌的人，面目可憎</a></h1></header><date class="post-meta meta-date">2013年1月23日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F>文章收藏</a></span></div><div class=post-content>本文来自xjp的碎碎念，我很喜欢的一个博主。博客已被伟大的GFW屏蔽。和文章的主题类似，我有时候会在G+上会纠正一些人的谣言，并且给出澄清，可是，往往效果不大。我的态度很简单，你要反对一样东西，请你不要是那样的东西。或用那样的东西去反对。不要为任何主义所迷惑，你要做好一个人。
 今天看到一篇来自《新京报》的报道，称时事评论员@周筱赟爆料称，根据铁道部的两份采购合同显示，推测铁道部12306订票网站实际投入已经超过5亿元，而不是之前曾披露的3.2亿元。
 首先我很赞同周筱赟所做的事情，在国内目前民众获取信息渠道有限的情况下，有这样的热心人士去披露政府部门行政行为中值得讨论的部分，对于整个社会的公正与透明都有极大的推动作用。
 但我注意的是另一群人，他们典型的回复是：
- 1、花5个多亿做成这么垃圾的网站，铁道部公然贪污多少钱？臭不要脸的！二逼的网站和系统归功于傻逼造就！
+1、花5个多亿做成这么垃圾的网站，铁道部公然贪污多少钱？臭不要脸的！二逼的网站和系统归功于傻逼造就！
 2、卧槽，里面有4.5亿是贪污款吧
 3、习总说反腐，最大的蛀虫在这里，敢反否？
 4、3亿建站为什么这些年一直没有工商部去追查12306的贪污问题。你懂我懂大家懂。
@@ -305,113 +88,44 @@ C# 4.0
 6、太极集团是做医药的呀，怎么也搞起软件来了。我想说，有没经验都不要紧，要紧的是有钱。咱就撒都能做！
 7、五亿······· 用了个500的模版 月薪5000水平的制作团队
 8、三億各單位部門宣傳費，一億三公支出，五千萬采購合同草擬費用，四千萬給媒體掩口費, 九百九十萬信息產業部備案費用，最後十萬才是網站制作費用… 這五億基本上都使對了地方，沒有錯啊! 其它的评论都是诸如此类，某一些理性的评论都被深埋其中。
- 我不是铁道部、太极的任何一方，我不能拍着胸脯说这些问题一定不存在，但真正让我恐惧的是，有大量网友没有认真去研究文章的内容与事实，只是单纯下意识地做出了判断，然后开喷。
+我不是铁道部、太极的任何一方，我不能拍着胸脯说这些问题一定不存在，但真正让我恐惧的是，有大量网友没有认真去研究文章的内容与事实，只是单纯下意识地做出了判断，然后开喷。
 我们仔细去看我们讨厌的那些五毛与政府宣传部门，他们的日常做法都是：
- 1、戴帽子
+1、戴帽子
 2、站在道德高度，说正确的废话
 3、自说自话，完全不管别人在说什么
 4、预设立场
 5、我永远是对的，反对我的都是错的
 6、你们站在人民的对立面 然后有一个微博网友在评论里跟我说，他只需要一万元就能够搞定12306的网站外包开发。听到这样的话，我不由地一阵颤抖，如果这话来自一名所谓的业内人士，那我真的不知道应该怎么说了。
- 引用某网友的评论：
- 从专业角度来说，投入不算多，只是透明度不够，民众才疑惑！全国各地还需要再多些大型机房，才能满足高峰期分流排队和并发操作！ 我的看法是，不否认铁道部的开发、架构设计存在一定问题，如果没有实际的大型系统设计经验的团队，可能会造成很多理论与实际脱节问题，事实上今年的12306已经比去年好太多了，他们也在吸取教训。当然，我也赞成他们向互联网公司取经，吸收现有经验。
- 建议大家不要单纯喷，5亿这个数字可能略高，但比起数千万的静态网站好多了，至于具体审计是国家审计局的事情，我支持惩处贪腐。做一个覆盖数千万用户，承受刷票插件5秒一次的并发，服务器、带宽、配套都是成本。而售票数字化几乎是必经之路，铁道部走出这一步是好的，买不到票有基础运力的问题，跟网络售票无关。
-不要一叶障目，买不到票人人都会烦心，诚然铁道部是一个不错的发泄口，但如果只是为了喷而喷。借用我之前的一句话，铁道部如何做你们才满意？……
-        </div>
-        <p class="readmore"><a href="http://leaver.me/2013/01/23/%E4%B8%8D%E8%A6%81%E5%8F%98%E6%88%90%E4%BD%A0%E8%AE%A8%E5%8E%8C%E7%9A%84%E4%BA%BA%E9%9D%A2%E7%9B%AE%E5%8F%AF%E6%86%8E/">阅读全文</a></p>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/01/21/%E7%A4%BE%E5%B7%A5%E5%AD%97%E5%85%B8%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7/" title="社工字典生成工具">社工字典生成工具</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年1月21日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            在家无聊写了这个工具，主要是为了防止自己这一直写随笔把本行忘了。。也熟悉一下代码。。暂时不放源代码了。以后改的好一点再发吧。
+引用某网友的评论：
+从专业角度来说，投入不算多，只是透明度不够，民众才疑惑！全国各地还需要再多些大型机房，才能满足高峰期分流排队和并发操作！ 我的看法是，不否认铁道部的开发、架构设计存在一定问题，如果没有实际的大型系统设计经验的团队，可能会造成很多理论与实际脱节问题，事实上今年的12306已经比去年好太多了，他们也在吸取教训。当然，我也赞成他们向互联网公司取经，吸收现有经验。
+建议大家不要单纯喷，5亿这个数字可能略高，但比起数千万的静态网站好多了，至于具体审计是国家审计局的事情，我支持惩处贪腐。做一个覆盖数千万用户，承受刷票插件5秒一次的并发，服务器、带宽、配套都是成本。而售票数字化几乎是必经之路，铁道部走出这一步是好的，买不到票有基础运力的问题，跟网络售票无关。
+不要一叶障目，买不到票人人都会烦心，诚然铁道部是一个不错的发泄口，但如果只是为了喷而喷。借用我之前的一句话，铁道部如何做你们才满意？……</div><p class=readmore><a href=http://leaver.me/2013/01/23/%E4%B8%8D%E8%A6%81%E5%8F%98%E6%88%90%E4%BD%A0%E8%AE%A8%E5%8E%8C%E7%9A%84%E4%BA%BA%E9%9D%A2%E7%9B%AE%E5%8F%AF%E6%86%8E/>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/01/21/%E7%A4%BE%E5%B7%A5%E5%AD%97%E5%85%B8%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7/ title=社工字典生成工具>社工字典生成工具</a></h1></header><date class="post-meta meta-date">2013年1月21日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></span></div><div class=post-content>在家无聊写了这个工具，主要是为了防止自己这一直写随笔把本行忘了。。也熟悉一下代码。。暂时不放源代码了。以后改的好一点再发吧。
 作者：bystander
 博客：http://leaver.me
 转载请注明出处！
-
  
 涉及到的东西有：
 1.C#隐藏TabControl的header部分，前面的文章有介绍
-2.获取窗体全部的某一类控件（这个无聊的话抽象出一个通用的方法出来，以后就可以直接用了）……
-        </div>
-        <p class="readmore"><a href="http://leaver.me/2013/01/21/%E7%A4%BE%E5%B7%A5%E5%AD%97%E5%85%B8%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7/">阅读全文</a></p>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/01/11/c#%E9%9A%90%E8%97%8Ftabcontrol%E6%A0%87%E7%AD%BE%E6%A0%8F/" title="C#隐藏TabControl标签栏">C#隐藏TabControl标签栏</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年1月11日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            今天考过了微软的那个70-562和70-536的考试。然后下午把软件体系结构的作业做了。然后看了一下栈溢出，我博客首页右侧的那个就是我的栈溢出id了。。
+2.获取窗体全部的某一类控件（这个无聊的话抽象出一个通用的方法出来，以后就可以直接用了）……</div><p class=readmore><a href=http://leaver.me/2013/01/21/%E7%A4%BE%E5%B7%A5%E5%AD%97%E5%85%B8%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7/>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/01/11/c#%E9%9A%90%E8%97%8Ftabcontrol%E6%A0%87%E7%AD%BE%E6%A0%8F/ title=C#隐藏TabControl标签栏>C#隐藏TabControl标签栏</a></h1></header><date class="post-meta meta-date">2013年1月11日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></span></div><div class=post-content>今天考过了微软的那个70-562和70-536的考试。然后下午把软件体系结构的作业做了。然后看了一下栈溢出，我博客首页右侧的那个就是我的栈溢出id了。。
 然后就看到了这个问题。这个问题。我曾经遇到过。貌似大家知道比较多的是两种。第一种就是设置大小。
-
 但是这样你注意看的话，左上角有个小的瑕疵。这个没办法的。。还有一种比较低级但还算有效的方法就是在设计的时候将TabControl向上移动。运行以后就会遮住了。
 我当时不过取巧了。好像就用的第二种。。今天看到这个题目的时候，就做了下标记。刚才去看。大牛已经给出答案了。就是自己继承一个TabControl控件。重写
 方法，在方法里拦截系统消息。
-具体用法。就是在你的项目里新建一个类文件。然后把上面的代码拷进去。然后编译一下。就会在工具箱里多出一个TablessControl控件。拖进来即可使用。当然你也可以自定义一个用户控件。都不是事。这个控件设计时标签页可见。运行时由于拦截了信息消息。标签栏就不可见了。堪称完美。。……
-        </div>
-        <p class="readmore"><a href="http://leaver.me/2013/01/11/c#%E9%9A%90%E8%97%8Ftabcontrol%E6%A0%87%E7%AD%BE%E6%A0%8F/">阅读全文</a></p>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/01/06/%E5%9B%BE%E7%9A%84%E9%81%8D%E5%8E%86c/" title="图的遍历(C#)">图的遍历(C#)</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年1月6日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F'>文章收藏</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            讲的非常好的一篇文章。感谢abatei，直接收藏分享之。
+具体用法。就是在你的项目里新建一个类文件。然后把上面的代码拷进去。然后编译一下。就会在工具箱里多出一个TablessControl控件。拖进来即可使用。当然你也可以自定义一个用户控件。都不是事。这个控件设计时标签页可见。运行时由于拦截了信息消息。标签栏就不可见了。堪称完美。。……</div><p class=readmore><a href=http://leaver.me/2013/01/11/c#%E9%9A%90%E8%97%8Ftabcontrol%E6%A0%87%E7%AD%BE%E6%A0%8F/>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/01/06/%E5%9B%BE%E7%9A%84%E9%81%8D%E5%8E%86c/ title=图的遍历(C#)>图的遍历(C#)</a></h1></header><date class="post-meta meta-date">2013年1月6日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F>文章收藏</a></span></div><div class=post-content>讲的非常好的一篇文章。感谢abatei，直接收藏分享之。
 图的存储结构 图的存储结构除了要存储图中各个顶点的本身的信息外，同时还要存储顶点与顶点之间的所有关系（边的信息），因此，图的结构比较复杂，很难以数据元素在存储区中的物理位置来表示元素之间的关系，但也正是由于其任意的特性，故物理表示方法很多。常用的图的存储结构有邻接矩阵、邻接表、十字链表和邻接多重表。
 8.2.1 邻接矩阵表示法 对于一个具有n个顶点的图，可以使用n*n的矩阵（二维数组）来表示它们间的邻接关系。图8.10和图8.11中，矩阵A(i，j)=1表示图中存在一条边(Vi，Vj)，而A(i，j)=0表示图中不存在边(Vi，Vj)。实际编程时，当图为不带权图时，可以在二维数组中存放bool值，A(i，j)=true表示存在边(Vi，Vj)，A(i，j)=false表示不存在边(Vi，Vj)；当图带权值时，则可以直接在二维数组中存放权值，A(i，j)=null表示不存在边(Vi，Vj)。
- 图8.10所示的是无向图的邻接矩阵表示法，可以观察到，矩阵延对角线对称，即A(i，j)= A(j，i)。无向图邻接矩阵的第i行或第i列非零元素的个数其实就是第i个顶点的度。这表示无向图邻接矩阵存在一定的数据冗余。
+图8.10所示的是无向图的邻接矩阵表示法，可以观察到，矩阵延对角线对称，即A(i，j)= A(j，i)。无向图邻接矩阵的第i行或第i列非零元素的个数其实就是第i个顶点的度。这表示无向图邻接矩阵存在一定的数据冗余。
 图8.11所示的是有向图邻接矩阵表示法，矩阵并不延对角线对称，A(i，j)=1表示顶点Vi邻接到顶点Vj；A(j，i)=1则表示顶点Vi邻接自顶点Vj。两者并不象无向图邻接矩阵那样表示相同的意思。有向图邻接矩阵的第i行非零元素的个数其实就是第i个顶点的出度，而第i列非零元素的个数是第i个顶点的入度，即第i个顶点的度是第i行和第i列非零元素个数之和。
 由于存在n个顶点的图需要n2个数组元素进行存储，当图为稀疏图时，使用邻接矩阵存储方法将出现大量零元素，照成极大地空间浪费，这时应该使用邻接表表示法存储图中的数据。
-8.2.2 邻接表表示法 图的邻接矩阵存储方法跟树的孩子链表示法相类似，是一种顺序分配和链式分配相结合的存储结构。邻接表由表头结点和表结点两部分组成，其中图中每个顶点均对应一个存储在数组中的表头结点。如这个表头结点所对应的顶点存在相邻顶点，则把相邻顶点依次存放于表头结点所指向的单向链表中。如图8.12所示，表结点存放的是邻接顶点在数组中的索引。对于无向图来说，使用邻接表进行存储也会出现数据冗余，表头结点A所指链表中存在一个指向C的表结点的同时，表头结点C所指链表也会存在一个指向A的表结点。  有向图的邻接表有出边表和入边表（又称逆邻接表）之分。出边表的表结点存放的是从表头结点出发的有向边所指的尾顶点；入边表的表结点存放的则是指向表头结点的某个头顶点。如图8.13所示，图(b)和(c)分别为有向图(a)的出边表和入边表。  以上所讨论的邻接表所表示的都是不带权的图，如果要表示带权图，可以在表结点中增加一个存放权的字段，其效果如图8.14所示。
-
+8.2.2 邻接表表示法 图的邻接矩阵存储方法跟树的孩子链表示法相类似，是一种顺序分配和链式分配相结合的存储结构。邻接表由表头结点和表结点两部分组成，其中图中每个顶点均对应一个存储在数组中的表头结点。如这个表头结点所对应的顶点存在相邻顶点，则把相邻顶点依次存放于表头结点所指向的单向链表中。如图8.12所示，表结点存放的是邻接顶点在数组中的索引。对于无向图来说，使用邻接表进行存储也会出现数据冗余，表头结点A所指链表中存在一个指向C的表结点的同时，表头结点C所指链表也会存在一个指向A的表结点。 有向图的邻接表有出边表和入边表（又称逆邻接表）之分。出边表的表结点存放的是从表头结点出发的有向边所指的尾顶点；入边表的表结点存放的则是指向表头结点的某个头顶点。如图8.13所示，图(b)和(c)分别为有向图(a)的出边表和入边表。 以上所讨论的邻接表所表示的都是不带权的图，如果要表示带权图，可以在表结点中增加一个存放权的字段，其效果如图8.14所示。
 【注意】：观察图8.14可以发现，当删除存储表头结点的数组中的某一元素，有可能使部分表头结点索引号的改变，从而导致大面积修改表结点的情况发生。可以在表结点中直接存放指向表头结点的指针以解决这个问题（在链表中存放类实例即是存放指针，但必须要保证表头结点是类而不是结构体）。在实际创建邻接表时，甚至可以使用链表代替数组存放表头结点或使用顺序表存代替链表存放表结点。对所学的数据结构知识应当根据实际情况及所使用语言的特点灵活应用，切不可生搬硬套。
 【例8-1 AdjacencyList.cs】图的邻接表存储结构
 l Vertex类中包含了一个visited成员，它的作用是在图遍历时标识当前节点是否被访问过，这一点在稍后会讲到。
 l 邻接点指针域adjvex直接指向某个表头结点，而不是表头结点在数组中的索引。
-AdjacencyList&lt;T&gt;类中使用了一个泛型List代替数组来保存表头结点信息（第5行代码），从而不再考虑数组存储空间不够的情况发生，简化了操作。
+AdjacencyList&lt;T>类中使用了一个泛型List代替数组来保存表头结点信息（第5行代码），从而不再考虑数组存储空间不够的情况发生，简化了操作。
 由于一条无向边的信息需要在边的两个顶点分别存储信息，即添加两个有向边，所以58～78行代码的私有方法AddDirectedEdge()方法用于添加一个有向边。新的邻接点信息即可以添加到链表的头部也可以添加到尾部，添加到链表头部可以简化操作，但考虑到要检查是否添加了重复边，需要遍历整个链表，所以最终把邻接点信息添加到链表尾部。
 【例8-1 Demo8-1.cs】图的邻接表存储结构测试
 B：AD
@@ -422,409 +136,93 @@ D：AB
 图的遍历要比树的遍历复杂得多，由于图的任一顶点都可能和其余顶点相邻接，故在访问了某顶点之后，可能顺着某条边又访问到了已访问过的顶点，因此，在图的遍历过程中，必须记下每个访问过的顶点，以免同一个顶点被访问多次。为此给顶点附设访问标志visited，其初值为false，一旦某个顶点被访问，则其visited标志置为true。
 图的遍历方法有两种：一种是深度优先搜索遍历（Depth-First Search 简称DFS）；另一种是广度优先搜索遍历（Breadth_First Search 简称BFS）。
 8.3.1 深度优先搜索遍历 图的深度优先搜索遍历类似于二叉树的深度优先搜索遍历。其基本思想如下：假定以图中某个顶点Vi为出发点，首先访问出发点，然后选择一个Vi的未访问过的邻接点Vj，以Vj为新的出发点继续进行深度优先搜索，直至图中所有顶点都被访问过。显然，这是一个递归的搜索过程。
-现以图8.15为例说明深度优先搜索过程。假定V1是出发点，首先访问V1。因V1有两个邻接点V2、V3均末被访问过，可以选择V2作为新的出发点，访问V2之后，再找V2的末访问过的邻接点。同V2邻接的有V1、V4和V5，其中V1已被访问过，而V4、V5尚未被访问过，可以选择V4作为新的出发点。重复上述搜索过程，继续依次访问V8、V5。访问V5之后，由于与V5相邻的顶点均已被访问过，搜索退回到V8，访问V8的另一个邻接点V6。接下来依次访问V3和V7，最后得到的的顶点的访问序列为：V1→ V2→ V4→ V8→ V5→ V6→ V3→V7。  下面根据上一节创建的邻接表存储结构添加深度优先搜索遍历代码。
+现以图8.15为例说明深度优先搜索过程。假定V1是出发点，首先访问V1。因V1有两个邻接点V2、V3均末被访问过，可以选择V2作为新的出发点，访问V2之后，再找V2的末访问过的邻接点。同V2邻接的有V1、V4和V5，其中V1已被访问过，而V4、V5尚未被访问过，可以选择V4作为新的出发点。重复上述搜索过程，继续依次访问V8、V5。访问V5之后，由于与V5相邻的顶点均已被访问过，搜索退回到V8，访问V8的另一个邻接点V6。接下来依次访问V3和V7，最后得到的的顶点的访问序列为：V1→ V2→ V4→ V8→ V5→ V6→ V3→V7。 下面根据上一节创建的邻接表存储结构添加深度优先搜索遍历代码。
 【例8-2 DFSTraverse.cs】深度优先搜索遍历
-打开【例8-1 AdjacencyList.cs】，在AdjacencyList&lt;T&gt;类中添加以下代码后，将文件另存为DFSTraverse.cs。
-private void InitVisited() //初始化visited标志 { foreach (Vertex&amp;lt;T&amp;gt; v in items) { v.visited = false; //全部置为false } }&lt;/pre&gt;  V1 V2 V4 V8 V5 V6 V3 V7
+打开【例8-1 AdjacencyList.cs】，在AdjacencyList&lt;T>类中添加以下代码后，将文件另存为DFSTraverse.cs。
+private void InitVisited() //初始化visited标志 { foreach (Vertex&amp;lt;T&amp;gt; v in items) { v.visited = false; //全部置为false } }&lt;/pre> V1 V2 V4 V8 V5 V6 V3 V7
  本例参照图8-15进行设计，运行过程请参照对图8-15所作的分析。
 8.3.2 广度优先搜索遍历 图的广度优先搜索遍历算法是一个分层遍历的过程，和二叉树的广度优先搜索遍历类同。它从图的某一顶点Vi出发，访问此顶点后，依次访问Vi的各个未曾访问过的邻接点，然后分别从这些邻接点出发，直至图中所有已有已被访问的顶点的邻接点都被访问到。对于图8.15所示的无向连通图，若顶点Vi为初始访问的顶点，则广度优先搜索遍历顶点访问顺序是：V1→V2→ V3→ V4→ V5→ V6→ V7→ V8。遍历过程如图8.16的所示。
- 和二叉树的广度优先搜索遍历类似，图的广度优先搜索遍历也需要借助队列来完成，例8.3演示了这个过程。
+和二叉树的广度优先搜索遍历类似，图的广度优先搜索遍历也需要借助队列来完成，例8.3演示了这个过程。
 【例8-3 BFSTraverse.cs】广度优先搜索遍历
-打开【例8-2 DFSTraverse.cs】，在AdjacencyList&lt;T&gt;类中添加以下代码后，将文件另存为BFSTraverse.cs。
+打开【例8-2 DFSTraverse.cs】，在AdjacencyList&lt;T>类中添加以下代码后，将文件另存为BFSTraverse.cs。
  V1 V2 V3 V4 V5 V6 V7 V8
  运行结果请参照图8.16进行分析。
 8.3.3 非连通图的遍历 以上讨论的图的两种遍历方法都是相对于无向连通图的，它们都是从一个顶点出发就能访问到图中的所有顶点。若无向图是非连通图，则只能访问到初始点所在连通分量中的所有顶点，其他连通分量中的顶点是不可能访问到的（如图8.17所示）。为此需要从其他每个连通分量中选择初始点，分别进行遍历，才能够访问到图中的所有顶点，否则不能访问到所有顶点。为此同样需要再选初始点，继续进行遍历，直到图中的所有顶点都被访问过为止。
- 上例的代码只需对DFSTraverse()方法和BFSTraverse()方法稍作修改，便可以遍历非连通图。……
-        </div>
-        <p class="readmore"><a href="http://leaver.me/2013/01/06/%E5%9B%BE%E7%9A%84%E9%81%8D%E5%8E%86c/">阅读全文</a></p>
-    </article>
-    
-    
-
-
-
-<ol class="page-navigator">
-    
-    <li class="prev">
-        <a href="http://leaver.me/page/14/">上一页</a>
-    </li>
-    
-
-    
-
-    
-        
-        
-    
-    
-
-    
-        
-        
-        <li >
-            <a href="http://leaver.me/">1</a>
-        </li>
-        
-    
-        
-        <li>
-            <span>...</span>
-        </li>
-        
-    
-        
-        
-        <li >
-            <a href="http://leaver.me/page/13/">13</a>
-        </li>
-        
-    
-        
-        
-        <li >
-            <a href="http://leaver.me/page/14/">14</a>
-        </li>
-        
-    
-        
-        
-        <li  class="current">
-            <a href="http://leaver.me/page/15/">15</a>
-        </li>
-        
-    
-        
-        
-        <li >
-            <a href="http://leaver.me/page/16/">16</a>
-        </li>
-        
-    
-        
-        
-        <li >
-            <a href="http://leaver.me/page/17/">17</a>
-        </li>
-        
-    
-        
-        <li>
-            <span>...</span>
-        </li>
-        
-    
-        
-        
-        <li >
-            <a href="http://leaver.me/page/32/">32</a>
-        </li>
-        
-    
-
-    
-    
-
-    <li class="next">
-        <a href="http://leaver.me/page/16/">下一页</a>
-    </li>
-    
-</ol>
-
-
-
-
-</div>
-
-                </div>
-
-                <div id="secondary">
-    <section class="widget">
-        <form id="search" action='http://leaver.me/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
-      
-      <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="http://leaver.me/">
-      <button type="submit" class="submit icon-search"></button>
-</form>
-    </section>
-    
-    <section class="widget">
-        <h3 class="widget-title">最近文章</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2019 年终总结">2019 年终总结</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/" title="深入理解Raft协议">深入理解Raft协议</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/" title="《非暴力沟通》笔记">《非暴力沟通》笔记</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/10/06/wedding-of-friends/" title="Wedding of Friends">Wedding of Friends</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/09/29/principle-note/" title="Principle Note">Principle Note</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/" title="梦见鲸鱼的那一夜">梦见鲸鱼的那一夜</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/08/20/understand-hong-kong-2/" title="Understand Hong Kong 2">Understand Hong Kong 2</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/08/18/understand-hong-kong-part-1/" title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/" title="错过的都是命，得到的才是人生">错过的都是命，得到的才是人生</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/04/06/recently/" title="Recently">Recently</a>
-    </li>
-    
-</ul>
-    </section>
-
-    
-
-    <section class="widget">
-        <h3 class="widget-title">分类</h3>
-<ul class="widget-list">
-    
-    <li><a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记 (186)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/">我的翻译 (57)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/">文章收藏 (53)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录 (3)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记 (4)</a></li>
-    
-</ul>
-    </section>
-
-    <section class="widget">
-        <h3 class="widget-title">标签</h3>
-<div class="tagcloud">
-    
-    <a href="http://leaver.me/tags/android/">android</a>
-    
-    <a href="http://leaver.me/tags/c/">C＃</a>
-    
-    <a href="http://leaver.me/tags/c&#43;&#43;/">C&#43;&#43;</a>
-    
-    <a href="http://leaver.me/tags/java/">java</a>
-    
-    <a href="http://leaver.me/tags/javascript/">javascript</a>
-    
-    <a href="http://leaver.me/tags/linux/">linux</a>
-    
-    <a href="http://leaver.me/tags/mac/">mac</a>
-    
-    <a href="http://leaver.me/tags/matlab/">matlab</a>
-    
-    <a href="http://leaver.me/tags/maven/">maven</a>
-    
-    <a href="http://leaver.me/tags/mysql/">mysql</a>
-    
-    <a href="http://leaver.me/tags/nextgen-gallery/">NextGEN Gallery</a>
-    
-    <a href="http://leaver.me/tags/php/">php</a>
-    
-    <a href="http://leaver.me/tags/python/">python</a>
-    
-    <a href="http://leaver.me/tags/shell/">shell</a>
-    
-    <a href="http://leaver.me/tags/spring/">spring</a>
-    
-    <a href="http://leaver.me/tags/sql/">sql</a>
-    
-    <a href="http://leaver.me/tags/stackoverflow/">stackoverflow</a>
-    
-    <a href="http://leaver.me/tags/wcf/">WCF</a>
-    
-    <a href="http://leaver.me/tags/web/">web</a>
-    
-    <a href="http://leaver.me/tags/windows/">windows</a>
-    
-    <a href="http://leaver.me/tags/wordpress/">wordpress</a>
-    
-    <a href="http://leaver.me/tags/wpf/">WPF</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/">上海</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/">下载</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
-    
-    <a href="http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/">互联网</a>
-    
-    <a href="http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
-    
-    <a href="http://leaver.me/tags/%E5%88%B6%E5%BA%A6/">制度</a>
-    
-    <a href="http://leaver.me/tags/%E5%89%8D%E7%AB%AF/">前端</a>
-    
-    <a href="http://leaver.me/tags/%E5%8E%9F%E5%88%9B/">原创</a>
-    
-    <a href="http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/">大学</a>
-    
-    <a href="http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/">学习</a>
-    
-    <a href="http://leaver.me/tags/%E5%AE%89%E5%85%A8/">安全</a>
-    
-    <a href="http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/">家庭</a>
-    
-    <a href="http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/">工作</a>
-    
-    <a href="http://leaver.me/tags/%E5%B7%A5%E5%85%B7/">工具</a>
-    
-    <a href="http://leaver.me/tags/%E5%B9%B6%E5%8F%91/">并发</a>
-    
-    <a href="http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/">序列化</a>
-    
-    <a href="http://leaver.me/tags/%E5%BC%80%E5%8F%91/">开发</a>
-    
-    <a href="http://leaver.me/tags/%E5%BF%83%E7%90%86/">心理</a>
-    
-    <a href="http://leaver.me/tags/%E6%80%BB%E7%BB%93/">总结</a>
-    
-    <a href="http://leaver.me/tags/%E6%8A%80%E6%9C%AF/">技术</a>
-    
-    <a href="http://leaver.me/tags/%E6%8F%92%E4%BB%B6/">插件</a>
-    
-    <a href="http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-    
-    <a href="http://leaver.me/tags/%E6%94%B6%E8%97%8F/">收藏</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E5%AD%A6/">数学</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">数据挖掘</a>
-    
-    <a href="http://leaver.me/tags/%E6%96%87%E7%AB%A0/">文章</a>
-    
-    <a href="http://leaver.me/tags/%E6%99%BA%E8%83%BD/">智能</a>
-    
-    <a href="http://leaver.me/tags/%E6%9D%82%E6%96%87/">杂文</a>
-    
-    <a href="http://leaver.me/tags/%E6%AD%A6%E6%B1%89/">武汉</a>
-    
-    <a href="http://leaver.me/tags/%E6%B1%87%E7%BC%96/">汇编</a>
-    
-    <a href="http://leaver.me/tags/%E7%88%B1%E6%83%85/">爱情</a>
-    
-    <a href="http://leaver.me/tags/%E7%90%86%E8%AE%BA/">理论</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%9F%E6%B4%BB/">生活</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/">电子书</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%B5%E5%BD%B1/">电影</a>
-    
-    <a href="http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/">社会</a>
-    
-    <a href="http://leaver.me/tags/%E7%A7%91%E6%8A%80/">科技</a>
-    
-    <a href="http://leaver.me/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
-    
-    <a href="http://leaver.me/tags/%E7%AE%97%E6%B3%95/">算法</a>
-    
-    <a href="http://leaver.me/tags/%E7%BC%96%E7%A8%8B/">编程</a>
-    
-    <a href="http://leaver.me/tags/%E7%BC%96%E8%AF%91/">编译</a>
-    
-    <a href="http://leaver.me/tags/%E7%BF%BB%E8%AF%91/">翻译</a>
-    
-    <a href="http://leaver.me/tags/%E8%81%8C%E4%B8%9A/">职业</a>
-    
-    <a href="http://leaver.me/tags/%E8%AE%B0%E5%BD%95/">记录</a>
-    
-    <a href="http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/">设计</a>
-    
-    <a href="http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/">读书</a>
-    
-    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/">软件</a>
-    
-    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</a>
-    
-    <a href="http://leaver.me/tags/%E8%BF%90%E7%BB%B4/">运维</a>
-    
-    <a href="http://leaver.me/tags/%E9%87%91%E8%9E%8D/">金融</a>
-    
-</div>
-    </section>
-
-    
-<section class="widget">
-    <h3 class="widget-title">友情链接</h3>
-    <ul class="widget-list">
-        
-        <li>
-            <a target="_blank" href="https://www.cppfans.org/" title="C&#43;&#43;爱好者博客">C&#43;&#43;爱好者博客</a>
-        </li>
-        
-        <li>
-            <a target="_blank" href="http://www.kailing.pub" title="KL，每天进步一点点">KL，每天进步一点点</a>
-        </li>
-        
-    </ul>
-</section>
-
-
-    <section class="widget">
-        <h3 class="widget-title">其它</h3>
-        <ul class="widget-list">
-            <li><a href="http://leaver.me/index.xml">文章 RSS</a></li>
-        </ul>
-    </section>
-</div>
-            </div>
-        </div>
-    </div>
-    <footer id="footer">
-    <div class="container">
-        &copy; 2020 <a href="http://leaver.me/">bystander&#39;s blog By bystander</a>.
-        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
-        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
-        
-    </div>
-</footer>
-
-
-
-<a id="rocket" href="#top"></a>
-<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-30961201-3', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-
-
-
-
-
-</body>
-
-</html>
+上例的代码只需对DFSTraverse()方法和BFSTraverse()方法稍作修改，便可以遍历非连通图。……</div><p class=readmore><a href=http://leaver.me/2013/01/06/%E5%9B%BE%E7%9A%84%E9%81%8D%E5%8E%86c/>阅读全文</a></p></article><ol class=page-navigator><li class=prev><a href=http://leaver.me/page/14/>上一页</a></li><li><a href=http://leaver.me/>1</a></li><li><span>...</span></li><li><a href=http://leaver.me/page/13/>13</a></li><li><a href=http://leaver.me/page/14/>14</a></li><li class=current><a href=http://leaver.me/page/15/>15</a></li><li><a href=http://leaver.me/page/16/>16</a></li><li><a href=http://leaver.me/page/17/>17</a></li><li><span>...</span></li><li><a href=http://leaver.me/page/32/>32</a></li><li class=next><a href=http://leaver.me/page/16/>下一页</a></li></ol></div></div><div id=secondary><section class=widget><form id=search action=http://leaver.me/search/ method=get accept-charset=utf-8 target=_blank _lpchecked=1><input type=text name=q maxlength=20 placeholder=Search>
+<input type=hidden name=sitesearch value=http://leaver.me/>
+<button type=submit class="submit icon-search"></button></form></section><section class=widget><h3 class=widget-title>最近文章</h3><ul class=widget-list><li><a href=http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/ title="2019 年终总结">2019 年终总结</a></li><li><a href=http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/ title=深入理解Raft协议>深入理解Raft协议</a></li><li><a href=http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/ title=《非暴力沟通》笔记>《非暴力沟通》笔记</a></li><li><a href=http://leaver.me/2019/10/06/wedding-of-friends/ title="Wedding of Friends">Wedding of Friends</a></li><li><a href=http://leaver.me/2019/09/29/principle-note/ title="Principle Note">Principle Note</a></li><li><a href=http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/ title=梦见鲸鱼的那一夜>梦见鲸鱼的那一夜</a></li><li><a href=http://leaver.me/2019/08/20/understand-hong-kong-2/ title="Understand Hong Kong 2">Understand Hong Kong 2</a></li><li><a href=http://leaver.me/2019/08/18/understand-hong-kong-part-1/ title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a></li><li><a href=http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/ title=错过的都是命，得到的才是人生>错过的都是命，得到的才是人生</a></li><li><a href=http://leaver.me/2019/04/06/recently/ title=Recently>Recently</a></li></ul></section><section class=widget><h3 class=widget-title>分类</h3><ul class=widget-list><li><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/>学习笔记 (186)</a></li><li><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/>我的翻译 (57)</a></li><li><a href=http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/>文章收藏 (53)</a></li><li><a href=http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/>生活记录 (3)</a></li><li><a href=http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/>读书笔记 (4)</a></li></ul></section><section class=widget><h3 class=widget-title>标签</h3><div class=tagcloud><a href=http://leaver.me/tags/android/>android</a>
+<a href=http://leaver.me/tags/c/>C＃</a>
+<a href=http://leaver.me/tags/c++/>C++</a>
+<a href=http://leaver.me/tags/java/>java</a>
+<a href=http://leaver.me/tags/javascript/>javascript</a>
+<a href=http://leaver.me/tags/linux/>linux</a>
+<a href=http://leaver.me/tags/mac/>mac</a>
+<a href=http://leaver.me/tags/matlab/>matlab</a>
+<a href=http://leaver.me/tags/maven/>maven</a>
+<a href=http://leaver.me/tags/mysql/>mysql</a>
+<a href=http://leaver.me/tags/nextgen-gallery/>NextGEN Gallery</a>
+<a href=http://leaver.me/tags/php/>php</a>
+<a href=http://leaver.me/tags/python/>python</a>
+<a href=http://leaver.me/tags/shell/>shell</a>
+<a href=http://leaver.me/tags/spring/>spring</a>
+<a href=http://leaver.me/tags/sql/>sql</a>
+<a href=http://leaver.me/tags/stackoverflow/>stackoverflow</a>
+<a href=http://leaver.me/tags/wcf/>WCF</a>
+<a href=http://leaver.me/tags/web/>web</a>
+<a href=http://leaver.me/tags/windows/>windows</a>
+<a href=http://leaver.me/tags/wordpress/>wordpress</a>
+<a href=http://leaver.me/tags/wpf/>WPF</a>
+<a href=http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/>上海</a>
+<a href=http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/>下载</a>
+<a href=http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/>中间件</a>
+<a href=http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/>互联网</a>
+<a href=http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/>分布式</a>
+<a href=http://leaver.me/tags/%E5%88%B6%E5%BA%A6/>制度</a>
+<a href=http://leaver.me/tags/%E5%89%8D%E7%AB%AF/>前端</a>
+<a href=http://leaver.me/tags/%E5%8E%9F%E5%88%9B/>原创</a>
+<a href=http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/>大学</a>
+<a href=http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/>学习</a>
+<a href=http://leaver.me/tags/%E5%AE%89%E5%85%A8/>安全</a>
+<a href=http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/>家庭</a>
+<a href=http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/>工作</a>
+<a href=http://leaver.me/tags/%E5%B7%A5%E5%85%B7/>工具</a>
+<a href=http://leaver.me/tags/%E5%B9%B6%E5%8F%91/>并发</a>
+<a href=http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/>序列化</a>
+<a href=http://leaver.me/tags/%E5%BC%80%E5%8F%91/>开发</a>
+<a href=http://leaver.me/tags/%E5%BF%83%E7%90%86/>心理</a>
+<a href=http://leaver.me/tags/%E6%80%BB%E7%BB%93/>总结</a>
+<a href=http://leaver.me/tags/%E6%8A%80%E6%9C%AF/>技术</a>
+<a href=http://leaver.me/tags/%E6%8F%92%E4%BB%B6/>插件</a>
+<a href=http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/>操作系统</a>
+<a href=http://leaver.me/tags/%E6%94%B6%E8%97%8F/>收藏</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E5%AD%A6/>数学</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/>数据库</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/>数据挖掘</a>
+<a href=http://leaver.me/tags/%E6%96%87%E7%AB%A0/>文章</a>
+<a href=http://leaver.me/tags/%E6%99%BA%E8%83%BD/>智能</a>
+<a href=http://leaver.me/tags/%E6%9D%82%E6%96%87/>杂文</a>
+<a href=http://leaver.me/tags/%E6%AD%A6%E6%B1%89/>武汉</a>
+<a href=http://leaver.me/tags/%E6%B1%87%E7%BC%96/>汇编</a>
+<a href=http://leaver.me/tags/%E7%88%B1%E6%83%85/>爱情</a>
+<a href=http://leaver.me/tags/%E7%90%86%E8%AE%BA/>理论</a>
+<a href=http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/>生产力</a>
+<a href=http://leaver.me/tags/%E7%94%9F%E6%B4%BB/>生活</a>
+<a href=http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/>电子书</a>
+<a href=http://leaver.me/tags/%E7%94%B5%E5%BD%B1/>电影</a>
+<a href=http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/>社会</a>
+<a href=http://leaver.me/tags/%E7%A7%91%E6%8A%80/>科技</a>
+<a href=http://leaver.me/tags/%E7%AC%94%E8%AE%B0/>笔记</a>
+<a href=http://leaver.me/tags/%E7%AE%97%E6%B3%95/>算法</a>
+<a href=http://leaver.me/tags/%E7%BC%96%E7%A8%8B/>编程</a>
+<a href=http://leaver.me/tags/%E7%BC%96%E8%AF%91/>编译</a>
+<a href=http://leaver.me/tags/%E7%BF%BB%E8%AF%91/>翻译</a>
+<a href=http://leaver.me/tags/%E8%81%8C%E4%B8%9A/>职业</a>
+<a href=http://leaver.me/tags/%E8%AE%B0%E5%BD%95/>记录</a>
+<a href=http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/>设计</a>
+<a href=http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/>读书</a>
+<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/>软件</a>
+<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/>软件测试</a>
+<a href=http://leaver.me/tags/%E8%BF%90%E7%BB%B4/>运维</a>
+<a href=http://leaver.me/tags/%E9%87%91%E8%9E%8D/>金融</a></div></section><section class=widget><h3 class=widget-title>友情链接</h3><ul class=widget-list><li><a target=_blank href=https://www.cppfans.org/ title=C++爱好者博客>C++爱好者博客</a></li><li><a target=_blank href=http://www.kailing.pub title=KL，每天进步一点点>KL，每天进步一点点</a></li></ul></section><section class=widget><h3 class=widget-title>其它</h3><ul class=widget-list><li><a href=http://leaver.me/index.xml>文章 RSS</a></li></ul></section></div></div></div></div><footer id=footer><div class=container>&copy; 2020 <a href=http://leaver.me/>bystander's blog By bystander</a>.
+Powered by <a rel="nofollow noreferer noopener" href=https://gohugo.io target=_blank>Hugo</a>.
+<a href=https://www.flysnow.org/ target=_blank>Theme</a> based on <a href=https://github.com/flysnow-org/maupassant-hugo target=_blank>maupassant</a>.</div></footer><a id=rocket href=#top></a><script type=text/javascript src="/js/totop.js?v=0.0.0" async></script><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-30961201-3','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></body></html>

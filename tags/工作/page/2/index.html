@@ -1,309 +1,66 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>工作 | bystander&#39;s blog</title>
-    <meta property="og:title" content="工作 - bystander&#39;s blog">
-    <meta property="og:type" content="article">
-        
-        
-    <meta name="Keywords" content="">
-    <meta name="description" content="工作">
-        
-    <meta name="author" content="bystander">
-    <meta property="og:url" content="http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-
-    <link rel="stylesheet" href='/css/normalize.css'>
-    <link rel="stylesheet" href='/css/style.css'>
-    <link rel="alternate" type="application/rss+xml+xml" href="http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/index.xml" title="bystander's blog" />
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-    
-
-
-    
-    
-</head>
-
-
-<body>
-    <header id="header" class="clearfix">
-    <div class="container">
-        <div class="col-group">
-            <div class="site-name ">
-                
-                    <a id="logo" href="http://leaver.me/">
-                        bystander&#39;s blog
-                    </a>
-                
-                <p class="description">寻找窄门</p>
-            </div>
-            <div>
-                <nav id="nav-menu" class="clearfix">
-                    <a class="" href="http://leaver.me/">首页</a>
-                    
-                    <a  href="http://leaver.me/categories" title="目录">目录</a>
-                    
-                    <a  href="http://leaver.me/about/" title="关于我">关于我</a>
-                    
-                </nav>
-            </div>
-        </div>
-    </div>
-</header>
-
-    <div id="body">
-        <div class="container">
-            <div class="col-group">
-
-                <div class="col-8" id="main">
-                    
-<div class="res-cons">
-    
-    <h3 class="archive-title">
-        包含标签
-        <span class="keyword">工作</span>
-        的文章
-    </h3>
-    
-
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2015/06/30/securerandom%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E6%95%B0%E9%9D%9E%E5%B8%B8%E6%85%A2/">SecureRandom第一次生成随机数非常慢</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2015年6月30日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            最近发现某个系统在第一次做操作的时候非常缓慢,逐步定位打印更加详细的日志后,发现问题是使用了SecureRandom 这个类来获取随机种子,这个类第一次初始化的时候setSeed的值,非常缓慢,偶尔出现, 排查的过程就是二分,不断定位具体的代码,最终定位
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><title>工作 | bystander's blog</title><meta property="og:title" content="工作 - bystander's blog"><meta property="og:type" content="article"><meta name=Keywords content><meta name=description content="工作"><meta name=author content="bystander"><meta property="og:url" content="http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/"><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><link rel=stylesheet href=/css/normalize.css><link rel=stylesheet href=/css/style.css><link rel=alternate type=application/rss+xml+xml href=http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/index.xml title="bystander's blog"><script type=text/javascript src=//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js></script></head><body><header id=header class=clearfix><div class=container><div class=col-group><div class=site-name><a id=logo href=http://leaver.me/>bystander's blog</a><p class=description>寻找窄门</p></div><div><nav id=nav-menu class=clearfix><a href=http://leaver.me/>首页</a>
+<a href=http://leaver.me/categories title=目录>目录</a>
+<a href=http://leaver.me/about/ title=关于我>关于我</a></nav></div></div></div></header><div id=body><div class=container><div class=col-group><div class=col-8 id=main><div class=res-cons><h3 class=archive-title>包含标签
+<span class=keyword>工作</span>
+的文章</h3><article class=post><header><h1 class=post-title><a href=http://leaver.me/2015/06/30/securerandom%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E6%95%B0%E9%9D%9E%E5%B8%B8%E6%85%A2/>SecureRandom第一次生成随机数非常慢</a></h1></header><date class="post-meta meta-date">2015年6月30日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>最近发现某个系统在第一次做操作的时候非常缓慢,逐步定位打印更加详细的日志后,发现问题是使用了SecureRandom 这个类来获取随机种子,这个类第一次初始化的时候setSeed的值,非常缓慢,偶尔出现, 排查的过程就是二分,不断定位具体的代码,最终定位
 也就是说根本原因是SecureRandom 这个jre的工具类的问题.具体的bug搜索之后,见
 http://bugs.java.com/view_bug.do?bug_id=6521844
 详细的解释过程: 参考: http://www.websina.com/bugzero/faq/securerandom-slowness.html
- Q: Why the SecureRandom generateSeed is so slow or even hang on Linux OS?
-  A: When you login, it hangs or takes more than a minute to get the response. If your server is on a Linux OS, the culprit here is SecureRandom generateSeed() which uses /dev/random to generate the seed. However, /dev/random is a blocking number generator and if it doesn't have enough random data to provide, it will simply wait until it does, which forces the JVM to wait. Keyboard and mouse input as well as disk activity can generate the randomness or entropy needed. But on a server that lacks such activies, the problem may arise.
- 大意是说当使用SecureRandom 的时候默认使用的/dev/random 文件来生成种子,如果没有足够的种子数据,(这些数据是由键盘,鼠标,磁盘活动等产生的,如果没有这些活动,就没有足够的数据)会一直等待,导致jvm卡住,耗费比较长的时候.由于出现问题的这个环境的确是最近没什么操作,而且复现的操作也是隔个一个晚上,重新做业务才会出现.
+Q: Why the SecureRandom generateSeed is so slow or even hang on Linux OS?
+A: When you login, it hangs or takes more than a minute to get the response. If your server is on a Linux OS, the culprit here is SecureRandom generateSeed() which uses /dev/random to generate the seed. However, /dev/random is a blocking number generator and if it doesn't have enough random data to provide, it will simply wait until it does, which forces the JVM to wait. Keyboard and mouse input as well as disk activity can generate the randomness or entropy needed. But on a server that lacks such activies, the problem may arise.
+大意是说当使用SecureRandom 的时候默认使用的/dev/random 文件来生成种子,如果没有足够的种子数据,(这些数据是由键盘,鼠标,磁盘活动等产生的,如果没有这些活动,就没有足够的数据)会一直等待,导致jvm卡住,耗费比较长的时候.由于出现问题的这个环境的确是最近没什么操作,而且复现的操作也是隔个一个晚上,重新做业务才会出现.
 文中给出了一种解决方案.
- 启动参数添加 -Djava.security.egd=file:/dev/./urandom,验证是可以的. 修改随机数获取方式  这里urandom是啥呢,引用自维基
- /dev/random的一个副本是/dev/urandom（“unlocked”，非阻塞的随机数发生器[4]），它会重复使用熵池中的数据以产生伪随机数据。这表示对/dev/urandom的读取操作不会产生阻塞，但其输出的熵可能小于/dev/random的。它可以作为生成较低强度密码的伪随机数生成器，不建议用于生成高强度长期密码。
- 类似案例: SecureRandom 导致tomcat启动过慢. https://wiki.apache.org/tomcat/HowTo/FasterStartUp#Entropy_Source 从文中看到说java8已经提升了这个性能.但是一般生产环境的java版本是不会改的.……
-            <p class="readmore"><a href="http://leaver.me/2015/06/30/securerandom%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E6%95%B0%E9%9D%9E%E5%B8%B8%E6%85%A2/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2015/05/10/%E5%85%B3%E4%BA%8E%E5%9B%BD%E4%BA%A7%E7%9A%84%E4%B8%80%E4%BA%9B%E6%83%B3%E6%B3%95/">关于国产的一些想法</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2015年5月10日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            最近也没啥特殊的事情,恰好昨晚魅族云服务当机,导致本地所以联系人丢失,路上想给家里打个电话,没法打,最近又入手了国产入门机械键盘雷柏v500,写点啥呢. ##魅族##
+启动参数添加 -Djava.security.egd=file:/dev/./urandom,验证是可以的. 修改随机数获取方式 这里urandom是啥呢,引用自维基
+/dev/random的一个副本是/dev/urandom（“unlocked”，非阻塞的随机数发生器[4]），它会重复使用熵池中的数据以产生伪随机数据。这表示对/dev/urandom的读取操作不会产生阻塞，但其输出的熵可能小于/dev/random的。它可以作为生成较低强度密码的伪随机数生成器，不建议用于生成高强度长期密码。
+类似案例: SecureRandom 导致tomcat启动过慢. https://wiki.apache.org/tomcat/HowTo/FasterStartUp#Entropy_Source 从文中看到说java8已经提升了这个性能.但是一般生产环境的java版本是不会改的.……<p class=readmore><a href=http://leaver.me/2015/06/30/securerandom%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E6%95%B0%E9%9D%9E%E5%B8%B8%E6%85%A2/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2015/05/10/%E5%85%B3%E4%BA%8E%E5%9B%BD%E4%BA%A7%E7%9A%84%E4%B8%80%E4%BA%9B%E6%83%B3%E6%B3%95/>关于国产的一些想法</a></h1></header><date class="post-meta meta-date">2015年5月10日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>最近也没啥特殊的事情,恰好昨晚魅族云服务当机,导致本地所以联系人丢失,路上想给家里打个电话,没法打,最近又入手了国产入门机械键盘雷柏v500,写点啥呢. ##魅族##
 魅族mx4是我去年11月份入手的.且不说魅族搞饥饿营销.先说说我手机从去年到现在遇到的问题.
- 屏幕黄边,刚入手没多久,屏幕左侧出现明显黄边,当时很无语.这质量..不过拿去直接给换了个屏幕,同事的另一台也是,入手后直接屏幕大面积坏点. 通话质量,我买手机主要就是为了打电话,可是魅族这通话质量,打着打着就没声音了,电流声声音很大.尤其微信的时候. 固件更新质量,有问题通过更新是好事,但是魅族的工程师每周编出那么多更新log也是蛮拼的.实际上一点问题没解决.老是改计算器,闹钟,比较著名的就是之前有人提到的滑动变点击,用了好几个月最后悄悄修复了. 安全,之前对魅族的质量还算放心,结果上上周,直接整个出应用中心故障,导致很多用户手机莫名秒开始自动下载软件,自动安装,卸载完成又出现,我当时怀疑是我开了wifi下自动更新,于是关掉了.结果还真是.最后给出个这么说法.   亲爱的魅友们： Flyme应用中心于4月28日晚间服务器发生故障，部分用户出现应用名称与图标混乱，自动更新安装其他应用等情况。在发现故障之后，2个小时之内已经解决，给大家造成不便我们深表歉意。
- 你特么在逗我.你确定是两小时? 5. 云服务,同上,之前很放心的把手机通讯录,联系人之类的都同步到了魅族的云服务上.结果已经出现好几次没法同步,数据本地丢失,找客服说让我再试试.服务器报错你让我再试试.. 6. 诚信,我司的价值观之一诚信,现在看来真的很重要,魅族公司品质极差,之前其总设计师杨颜放狠话,说5月份公测flyme4.5 ,其官微更是转发,说不发发手机,结果,所有人等到5月份,前一天先把公告删了.然后重新发了一封,说不公测.品质极其差.
+屏幕黄边,刚入手没多久,屏幕左侧出现明显黄边,当时很无语.这质量..不过拿去直接给换了个屏幕,同事的另一台也是,入手后直接屏幕大面积坏点. 通话质量,我买手机主要就是为了打电话,可是魅族这通话质量,打着打着就没声音了,电流声声音很大.尤其微信的时候. 固件更新质量,有问题通过更新是好事,但是魅族的工程师每周编出那么多更新log也是蛮拼的.实际上一点问题没解决.老是改计算器,闹钟,比较著名的就是之前有人提到的滑动变点击,用了好几个月最后悄悄修复了. 安全,之前对魅族的质量还算放心,结果上上周,直接整个出应用中心故障,导致很多用户手机莫名秒开始自动下载软件,自动安装,卸载完成又出现,我当时怀疑是我开了wifi下自动更新,于是关掉了.结果还真是.最后给出个这么说法. 亲爱的魅友们： Flyme应用中心于4月28日晚间服务器发生故障，部分用户出现应用名称与图标混乱，自动更新安装其他应用等情况。在发现故障之后，2个小时之内已经解决，给大家造成不便我们深表歉意。
+你特么在逗我.你确定是两小时? 5. 云服务,同上,之前很放心的把手机通讯录,联系人之类的都同步到了魅族的云服务上.结果已经出现好几次没法同步,数据本地丢失,找客服说让我再试试.服务器报错你让我再试试.. 6. 诚信,我司的价值观之一诚信,现在看来真的很重要,魅族公司品质极差,之前其总设计师杨颜放狠话,说5月份公测flyme4.5 ,其官微更是转发,说不发发手机,结果,所有人等到5月份,前一天先把公告删了.然后重新发了一封,说不公测.品质极其差.
 综上,对魅族手机已经彻底失望.一分钱一分货,就别老是贬低别的厂商,一句话评价就是中看不中用.
 ##雷柏v500##
 雷柏v500是我的第一个机械键盘,我是很喜欢80%这种键位的.不喜欢小键盘区域,有了小键盘区域,键盘太大了.于是当时是看好了filco 87圣手,poker2,race2的.最后由于前一个太贵,后两个没有F1,F2这些而告终,毕竟我是要调试程序,写代码的.没有这几个直接的键位那跟咸鱼有什么区别.用了几周下来.简单汇总下
- 便宜,219买的.这价格是真的便宜.而且是80%的键位,雷柏也还是比较出名,之前也买过个鼠标我记得. 手感,和普通薄膜键盘手感差异很大.手感不错,打字的确有快感.但是你说让爱上打字这个还是有难度的.毕竟.班上多了心情不好. 不方便,由于是80%,所以键盘小,但是,相当重,好像是有个钢板.非常重,比我的x1笔记本都重,整个人都不好了.自从带去公司,再也不想带回来了.  综上,整体还是不错的,一分钱一分货,不要夸自己和cherry,flico的距离,差距肯定大大的.但是性价比高.
+便宜,219买的.这价格是真的便宜.而且是80%的键位,雷柏也还是比较出名,之前也买过个鼠标我记得. 手感,和普通薄膜键盘手感差异很大.手感不错,打字的确有快感.但是你说让爱上打字这个还是有难度的.毕竟.班上多了心情不好. 不方便,由于是80%,所以键盘小,但是,相当重,好像是有个钢板.非常重,比我的x1笔记本都重,整个人都不好了.自从带去公司,再也不想带回来了. 综上,整体还是不错的,一分钱一分货,不要夸自己和cherry,flico的距离,差距肯定大大的.但是性价比高.
 ##总结##
-总结就是魅族是个坑爹的公司,雷柏键盘还行吧.……
-            <p class="readmore"><a href="http://leaver.me/2015/05/10/%E5%85%B3%E4%BA%8E%E5%9B%BD%E4%BA%A7%E7%9A%84%E4%B8%80%E4%BA%9B%E6%83%B3%E6%B3%95/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2014/11/07/%E4%B8%80%E9%94%AE%E5%88%87%E6%8D%A2jdk%E7%89%88%E6%9C%AC/">一键切换jdk版本</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2014年11月7日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            工作中有时候会切换jdk版本.有时候需要用个64位的.有时候需要用32位的.频繁手动很不方便,参考了一下,写了一个bat脚本,保存为bat,运行即可切换.同理可以改改,运来切换1.7,1.8这样的版本.
-@echo off :init set JAVA_HOME_32=D:\5.Program\Jdk32Home set JAVA_HOME_64=D:\Software\JdkHome :start echo. echo ============================================= echo jdk版本列表 echo 32 (%JAVA_HOME_32%) echo 64 (%JAVA_HOME_64%) echo ============================================= :select set /p opt=请选择jdk版本： if %opt%==32 ( start /I /WAIT /B wmic ENVIRONMENT where name=&#39;JAVA_HOME&#39; set VariableValue=&#34;%JAVA_HOME_32%&#34; &amp;gt;nul rem reg add &#34;HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment&#34; /v JAVA_HOME /t reg_sz /d &#34;%JAVA_HOME_32%&#34; /f goto success ) if %opt%==64 ( start /I /WAIT /B wmic ENVIRONMENT where name=&#39;JAVA_HOME&#39; set VariableValue=&#34;%JAVA_HOME_64%&#34; &amp;gt;nul rem reg add &#34;HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment&#34; /v JAVA_HOME /t reg_sz /d &#34;%JAVA_HOME_64%&#34; /f goto success ) echo 选择的版本错误,请重新选择！ PAUSE goto start :success echo. echo 设置环境变了成功. ……
-            <p class="readmore"><a href="http://leaver.me/2014/11/07/%E4%B8%80%E9%94%AE%E5%88%87%E6%8D%A2jdk%E7%89%88%E6%9C%AC/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2014/09/21/jenkins%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99/">jenkins相关资料</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2014年9月21日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            jenkins相关资料 jenkins的前身是hudson,是为了做持续集成测试而诞生的框架.
+总结就是魅族是个坑爹的公司,雷柏键盘还行吧.……<p class=readmore><a href=http://leaver.me/2015/05/10/%E5%85%B3%E4%BA%8E%E5%9B%BD%E4%BA%A7%E7%9A%84%E4%B8%80%E4%BA%9B%E6%83%B3%E6%B3%95/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2014/11/07/%E4%B8%80%E9%94%AE%E5%88%87%E6%8D%A2jdk%E7%89%88%E6%9C%AC/>一键切换jdk版本</a></h1></header><date class="post-meta meta-date">2014年11月7日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>工作中有时候会切换jdk版本.有时候需要用个64位的.有时候需要用32位的.频繁手动很不方便,参考了一下,写了一个bat脚本,保存为bat,运行即可切换.同理可以改改,运来切换1.7,1.8这样的版本.
+@echo off :init set JAVA_HOME_32=D:\5.Program\Jdk32Home set JAVA_HOME_64=D:\Software\JdkHome :start echo. echo ============================================= echo jdk版本列表 echo 32 (%JAVA_HOME_32%) echo 64 (%JAVA_HOME_64%) echo ============================================= :select set /p opt=请选择jdk版本： if %opt%==32 ( start /I /WAIT /B wmic ENVIRONMENT where name='JAVA_HOME' set VariableValue="%JAVA_HOME_32%" &amp;gt;nul rem reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v JAVA_HOME /t reg_sz /d "%JAVA_HOME_32%" /f goto success ) if %opt%==64 ( start /I /WAIT /B wmic ENVIRONMENT where name='JAVA_HOME' set VariableValue="%JAVA_HOME_64%" &amp;gt;nul rem reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v JAVA_HOME /t reg_sz /d "%JAVA_HOME_64%" /f goto success ) echo 选择的版本错误,请重新选择！ PAUSE goto start :success echo. echo 设置环境变了成功. ……<p class=readmore><a href=http://leaver.me/2014/11/07/%E4%B8%80%E9%94%AE%E5%88%87%E6%8D%A2jdk%E7%89%88%E6%9C%AC/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2014/09/21/jenkins%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99/>jenkins相关资料</a></h1></header><date class="post-meta meta-date">2014年9月21日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>jenkins相关资料 jenkins的前身是hudson,是为了做持续集成测试而诞生的框架.
 简单说就是把代码流配置上去,然后该框架就能根据设定的时间或其他方式不间断的执行测试用例.并给出报告.这样就可以随时掌控代码质量.支持执行shell命令.支持短信通知等等.
 jenkins,首先从http://jenkins-ci.org/官方下载war包,然后有两种方式可以本地部署,一种直接执行 java -jar hudson.war,然后在本地的8080端口访问就可以了.另一种是我们希望部署在容器上,那么可以部署到tomcat,jetty等等.直接拷贝war包到对应的目录即可.
 部署成功后,可以新建job,然后配置svn流,配置build时间,配置一下build之前的动作,配置一下各种命令,执行完成后通知等等就可以了.
 最近因为有个功能感觉通过开发jenkins插件的方式会更加方便,周末大量读了一些文档,能找到的都是helloworl.摸索了一下,已经写出一个小的demo了,后面改进一下,.就ok了.先简单把这个过程中收集的资料整理一下.基本都看过觉得还不错的,官方文档不给力.下周希望可以写完,然后分享出来.
- jenkins入门文档 The hudson book Writing-first-hudson-plugin Hudson插件开发简介 Hudson插件开发入门体验  插件界面设计设计的各种tag介绍 官方插件开发 UI开发jelly介绍 jenkins入门(itech)  ……
-            <p class="readmore"><a href="http://leaver.me/2014/09/21/jenkins%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2014/09/14/%E8%93%9D%E7%BB%BF%E5%8F%91%E5%B8%83%E7%9A%84%E6%95%B4%E4%B8%AA%E9%83%A8%E7%BD%B2%E8%BF%87%E7%A8%8B/">蓝绿发布的整个部署过程</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2014年9月14日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            一直听说蓝绿发布,不知道是怎么个过程.
+jenkins入门文档 The hudson book Writing-first-hudson-plugin Hudson插件开发简介 Hudson插件开发入门体验 插件界面设计设计的各种tag介绍 官方插件开发 UI开发jelly介绍 jenkins入门(itech) ……<p class=readmore><a href=http://leaver.me/2014/09/21/jenkins%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2014/09/14/%E8%93%9D%E7%BB%BF%E5%8F%91%E5%B8%83%E7%9A%84%E6%95%B4%E4%B8%AA%E9%83%A8%E7%BD%B2%E8%BF%87%E7%A8%8B/>蓝绿发布的整个部署过程</a></h1></header><date class="post-meta meta-date">2014年9月14日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>一直听说蓝绿发布,不知道是怎么个过程.
 thanks toblue-green-deployment
 蓝绿发布的意义 整个发布过程，用户没有感受到任何宕机或者服务重启。
-蓝绿发布的过程 第0步:部署以前的配置 
-第1步: 把绿色集群的状态改为'备用&rsquo;. 从负载均衡的池里把这些地址去掉,这样,绿色的集群就不再回接收到来自用户的请求了.转而进入备用负载均衡的池里. 
-第2步:在绿色集群里部署新的代码,直到应用启动成功 
+蓝绿发布的过程 第0步:部署以前的配置
+第1步: 把绿色集群的状态改为'备用&rsquo;. 从负载均衡的池里把这些地址去掉,这样,绿色的集群就不再回接收到来自用户的请求了.转而进入备用负载均衡的池里.
+第2步:在绿色集群里部署新的代码,直到应用启动成功
 第3步:使用备用负载均衡简单测试一下备用集群的部署情况.理想状态下是全自动的.
-第4步:把绿色备用集群的状态改成存货,于是进入了存活负载均衡的池里 
+第4步:把绿色备用集群的状态改成存货,于是进入了存活负载均衡的池里
 看到 蓝色运行v1版本,绿色运行v2版本,都连接的是相同的数据库.这意味着v2版本也要在老的数据模型上运行.如果数据库有变更,要等到所有的集群升级到新的代码上.
-第5步: 对蓝色集群也进行同样的操作.   最终v2代码完成部署. 
+第5步: 对蓝色集群也进行同样的操作. 最终v2代码完成部署.
 第6步:根据情况.运行数据库迁移
- ……
-            <p class="readmore"><a href="http://leaver.me/2014/09/14/%E8%93%9D%E7%BB%BF%E5%8F%91%E5%B8%83%E7%9A%84%E6%95%B4%E4%B8%AA%E9%83%A8%E7%BD%B2%E8%BF%87%E7%A8%8B/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2014/08/21/%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%BB%99spring-framework%E8%B4%A1%E7%8C%AE%E4%BB%A3%E7%A0%81/">第一次给Spring-Framework贡献代码</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2014年8月21日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            鲁肃说建议去看Spring框架的代码,之前其实我想看来着,不过一看到还要gradlew,换jdk就好麻烦.这次各种折腾把代码fork下来,然后安装gradlew ,然后转换成eclipse支持的,期间升级了eclipse版本和jdk版本到8.否则会有个方法不支持,
+ ……<p class=readmore><a href=http://leaver.me/2014/09/14/%E8%93%9D%E7%BB%BF%E5%8F%91%E5%B8%83%E7%9A%84%E6%95%B4%E4%B8%AA%E9%83%A8%E7%BD%B2%E8%BF%87%E7%A8%8B/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2014/08/21/%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%BB%99spring-framework%E8%B4%A1%E7%8C%AE%E4%BB%A3%E7%A0%81/>第一次给Spring-Framework贡献代码</a></h1></header><date class="post-meta meta-date">2014年8月21日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>鲁肃说建议去看Spring框架的代码,之前其实我想看来着,不过一看到还要gradlew,换jdk就好麻烦.这次各种折腾把代码fork下来,然后安装gradlew ,然后转换成eclipse支持的,期间升级了eclipse版本和jdk版本到8.否则会有个方法不支持,
 流程很简单,先fork一下代码,然后自己改好提交上去,再去Spring框架的pull request请求一下.等大牛合并就行了.
 刚开始看测试用例,我当时看到这个方法调用了一个下线的方法.于是改了一下.提交上去之后,**sbrannen ** 回复说:
- while you're at it, why don't you go ahead fix the related deprecated issues in all of the test classes in spring-jdbc 于是我把spring-jbdc包下面的几个方法调用都改掉了.记得谁说过,任何事情都不是别人的事情,你发现了你就要去做,不要等着别人去做,不会就去学.于是再次修改提交,sbrannen 问我有没有签CLA,这个坑爹的网站挂了.等了几天,昨天终于ok了.今天代码已经合并.
- 截图留念:
-
+while you're at it, why don't you go ahead fix the related deprecated issues in all of the test classes in spring-jdbc 于是我把spring-jbdc包下面的几个方法调用都改掉了.记得谁说过,任何事情都不是别人的事情,你发现了你就要去做,不要等着别人去做,不会就去学.于是再次修改提交,sbrannen 问我有没有签CLA,这个坑爹的网站挂了.等了几天,昨天终于ok了.今天代码已经合并.
+截图留念:
 https://github.com/spring-projects/spring-framework/commits?author=leizhiyuan
-今天要吃两个煎饼果子.……
-            <p class="readmore"><a href="http://leaver.me/2014/08/21/%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%BB%99spring-framework%E8%B4%A1%E7%8C%AE%E4%BB%A3%E7%A0%81/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2014/06/27/8583%E6%8A%A5%E6%96%87%E7%9B%B8%E5%85%B3/">8583报文相关</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2014年6月27日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            以下是我在学习的时候发现的好的资料，都是非常有帮助的。
+今天要吃两个煎饼果子.……<p class=readmore><a href=http://leaver.me/2014/08/21/%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%BB%99spring-framework%E8%B4%A1%E7%8C%AE%E4%BB%A3%E7%A0%81/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2014/06/27/8583%E6%8A%A5%E6%96%87%E7%9B%B8%E5%85%B3/>8583报文相关</a></h1></header><date class="post-meta meta-date">2014年6月27日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>以下是我在学习的时候发现的好的资料，都是非常有帮助的。
 如果你想知道原理，看完下面这篇就会了
 [藏]轻松掌握ISO8583报文协议原理 看了原理之后还想知道怎么来的。手工联系一下
 谈谈8583报文的使用及测试 这篇文章不错
 看完了想写代码了，可以看看这篇文章，基本上不能直接拿来用，但是可以参考实现
-ISO8583报文工具类（组装和解析报文）  看完之后这里还有一些补充
+ISO8583报文工具类（组装和解析报文） 看完之后这里还有一些补充
 ISO-8583协议的简要说明  最后，http://www.jpos.org/这个库基本可以用来做这个事情。
 Jimmy写了一个例子非常好，iso-8583-tutorial-build-and-parse-iso-message-using-jpos-library，至于银联的那个规范搜一下。
- ……
-            <p class="readmore"><a href="http://leaver.me/2014/06/27/8583%E6%8A%A5%E6%96%87%E7%9B%B8%E5%85%B3/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2014/06/27/%E8%97%8F%E8%BD%BB%E6%9D%BE%E6%8E%8C%E6%8F%A1iso8583%E6%8A%A5%E6%96%87%E5%8D%8F%E8%AE%AE%E5%8E%9F%E7%90%86/">[藏]轻松掌握ISO8583报文协议原理</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2014年6月27日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F'>文章收藏</a>
-            
-        </div>
-        
-        <div class="post-content">
-            感谢@lysheng，可惜原文已经删除了，因此全文备份。作者提到的“全面掌握ISO8583报文”和“符合CEN/XFS（即WOSA/XFS）规范的SP编写，这两篇文章我能找到的话也会备份在本博客。我 刚进入金融行业时，就知道了IS08583报文协议，我想可能我还没进入这个行业都已经听过了，可知ISO8583的影响力有多大了。最初刚接触它时，确 实对其中的一些细节概念不是很清晰，对有些地方比较迷惑。鉴于此，我想很多同行也必然会经历同样得阶段，所以我写下本文，以便大家能够少走一些弯路。同 时，我在网上写下我要写“全面掌握ISO8583报文”和“符合CEN/XFS（即WOSA/XFS）规范的SP编写”两篇文章时，很多人都询问我什么时候能够写出来，可知许多人是需要了解这方面的知识的，即使我时间不是很多，也得尽量将这两篇文章写出来，给需要的人提供一些参考。如果单纯的讲IS08583那些字段的定义，我觉得没有什么意思，标准中已经对每个字段解释的非常详细了，如果你觉得理解英文版的ISO8583规范有些 困难，网上也有同行为我们翻译好的中文版ISO8583规范，所以我的目的是达到阅读本文后能够对ISO8583知其然，亦知其所以然，使以前基本没有接 触它的人也能够达到掌握ISO8583报文规范。好了，我们该转入正题了。最开始时，金融系统只有IBM这些大的公司来提供设备，象各种主机与终端等。在各个计算机设备之间，需要交换数据。我们知道数据是通过网络来传送的，而在 网络上传送的数据都是基于0或1这样的二进制数据，如果没有对数据进行编码，则这些数据没有人能够理解，属于没有用的数据。起初的X.25、SDLC以及 现在流行的TCP/IP网络协议都提供底层的通讯编码协议，它们解决了最底层的通讯问题，能够将一串字符从一个地方传送到另一个地方。但是，仅仅传送字符 串是没有太大意义的，怎样来解析字符串代表什么内容是非常重要的，否则传送一些“0123abcd”的字符串也是无用的乱码。
+ ……<p class=readmore><a href=http://leaver.me/2014/06/27/8583%E6%8A%A5%E6%96%87%E7%9B%B8%E5%85%B3/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2014/06/27/%E8%97%8F%E8%BD%BB%E6%9D%BE%E6%8E%8C%E6%8F%A1iso8583%E6%8A%A5%E6%96%87%E5%8D%8F%E8%AE%AE%E5%8E%9F%E7%90%86/>[藏]轻松掌握ISO8583报文协议原理</a></h1></header><date class="post-meta meta-date">2014年6月27日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F>文章收藏</a></div><div class=post-content>感谢@lysheng，可惜原文已经删除了，因此全文备份。作者提到的“全面掌握ISO8583报文”和“符合CEN/XFS（即WOSA/XFS）规范的SP编写，这两篇文章我能找到的话也会备份在本博客。我 刚进入金融行业时，就知道了IS08583报文协议，我想可能我还没进入这个行业都已经听过了，可知ISO8583的影响力有多大了。最初刚接触它时，确 实对其中的一些细节概念不是很清晰，对有些地方比较迷惑。鉴于此，我想很多同行也必然会经历同样得阶段，所以我写下本文，以便大家能够少走一些弯路。同 时，我在网上写下我要写“全面掌握ISO8583报文”和“符合CEN/XFS（即WOSA/XFS）规范的SP编写”两篇文章时，很多人都询问我什么时候能够写出来，可知许多人是需要了解这方面的知识的，即使我时间不是很多，也得尽量将这两篇文章写出来，给需要的人提供一些参考。如果单纯的讲IS08583那些字段的定义，我觉得没有什么意思，标准中已经对每个字段解释的非常详细了，如果你觉得理解英文版的ISO8583规范有些 困难，网上也有同行为我们翻译好的中文版ISO8583规范，所以我的目的是达到阅读本文后能够对ISO8583知其然，亦知其所以然，使以前基本没有接 触它的人也能够达到掌握ISO8583报文规范。好了，我们该转入正题了。最开始时，金融系统只有IBM这些大的公司来提供设备，象各种主机与终端等。在各个计算机设备之间，需要交换数据。我们知道数据是通过网络来传送的，而在 网络上传送的数据都是基于0或1这样的二进制数据，如果没有对数据进行编码，则这些数据没有人能够理解，属于没有用的数据。起初的X.25、SDLC以及 现在流行的TCP/IP网络协议都提供底层的通讯编码协议，它们解决了最底层的通讯问题，能够将一串字符从一个地方传送到另一个地方。但是，仅仅传送字符 串是没有太大意义的，怎样来解析字符串代表什么内容是非常重要的，否则传送一些“0123abcd”的字符串也是无用的乱码。
 让我们随着时光回到几十年前的某个时刻，假设我们被推到历史的舞台上，由我们来设计一个通用报文协议，来解决金融系统之间的报文交换，暂且称该协议叫做 ISO8583协议。此时，技术是在不断的前行，当初IBM一支独秀的局面好像已经不妙了，各种大小不一的公司都进入金融行业以求能有所斩获，呈一片百花 齐放的局面。我们怎样来设计一个报文协议，能够将这些如雨后春笋般出现的所有公司都纳入进来，其实也不是一件很简单的事。
 我们还是先一步步的来考虑吧。金融行业其实涉及到的数据内容并不是成千上万，无法统计，恰恰相反，是比较少的。我们都可以在心底数得过来，象交易类型、帐 号、帐户类型、密码、交易金额、交易手续费、日期时间、商户代码、2磁3磁数据、交易序列号等，把所有能够总结出来的都总结起来不过100个左右的数据。 那我们可以首先简单的设计ISO8583，定义128个字段，将所有能够考虑到的类似上面提到的“帐号”等金融数据类型，按照一个顺序排起来，分别对应 128个字段中的一个字段。每个数据类型占固定的长度，这个顺序和长度我们都事先定义好。这样就简单了，要发送一个报文时，就将128个字段按照顺序接起 来，然后将接起来的整串数据包发送出去。
 任何金融软件收到ISO8583包后，直接按照我们定义的规范解包即可，因为整个报文的128个字段从哪一位到哪一位代表什么，大家都知道，只要知道你的 数据包是ISO8583包即可，我们都已经定义好了。比如第1个字段是“交易类型”，长度为4位，第2个字段位是“帐号”，为19位等等。接收方就可以先 取4位，再取接着的19位，依次类推，直到整个数据包128个字段都解完为止。
@@ -319,30 +76,8 @@ Jimmy写了一个例子非常好，iso-8583-tutorial-build-and-parse-iso-message
 我们这样，对于第2个字段“帐号”，在字段的开头加上“帐号”的长度。比如帐号是0123456789，一共10位，我们变成100123456789， 注意前面多了个10，表示后面的10位为帐号。如果你接触过COM里面的BSTR，应该对这种处理比较熟悉了。接收方收到该字段后，它知道ISO8583 规定第2个字段“帐号”是变长的，所以会先取前面的2位出来，获取其值，此时为长度，然后根据该长度值知道应该拷贝该字段后面哪几位数据，才是真正的帐 号。如果你觉得长度如果只有两位最多只能表示99位长，不太够，我们也定义可以允许前面3位都为长度的变长字段，这样就有999位长，应该够了吧。在规范 里面如果我定义某个字段的属性是“LLVAR”，你注意了，其中的LL表示长度，VAR表示后面的数据，两个LL表示两位长，最大是99，如果是三位就是 “LLLVAR”，最大是999。这样看我们定义的ISO8583规范文档时直接根据这几个字母就理解某个变长字段的意思了。
 该解决的几个问题到这里都解决了，我们来回顾下自己设计的ISO8583规范。其实没有什么，无非是把金融行业可能出现的数据分门别类，排好顺序，接着把 它们连接起来，组成一个报文发送出去而已。其中针对该报文的设计进行了一些优化，引入了bit map位图的概念，也算是一个不错的想法。
 剩下的工作就简单了，我们就直接收集金融行业可能出现的数据字段类型，分成128个字段类型，如果没有到128个这么多就先保留一些下来，另外考虑到有些人有特殊的要求，我们规定可以将128个字段中的几个字段你自己来定义其内容，也算是一种扩展了。
-这样，最后我们就得到了ISO8583规范的那张字段描述表了。想要详细的知道每个字段的含义直接对着表看就可以，比较简单。……
-            <p class="readmore"><a href="http://leaver.me/2014/06/27/%E8%97%8F%E8%BD%BB%E6%9D%BE%E6%8E%8C%E6%8F%A1iso8583%E6%8A%A5%E6%96%87%E5%8D%8F%E8%AE%AE%E5%8E%9F%E7%90%86/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2014/04/26/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/">构建数据库连接的配置方法</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2014年4月26日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            以前我在写数据库连接的时候，都是在文件里写死的，或者一个简单地配置文件，只有一个数据库连接嘛，但是最近写一个测试工具的时候，需要很多数据库，而且有些还有分库规则，于是查找资料，完善了两个类，和xml的定义规则，分享出来。仅供参考，有任何指教请回复。不胜感谢
+这样，最后我们就得到了ISO8583规范的那张字段描述表了。想要详细的知道每个字段的含义直接对着表看就可以，比较简单。……<p class=readmore><a href=http://leaver.me/2014/06/27/%E8%97%8F%E8%BD%BB%E6%9D%BE%E6%8E%8C%E6%8F%A1iso8583%E6%8A%A5%E6%96%87%E5%8D%8F%E8%AE%AE%E5%8E%9F%E7%90%86/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2014/04/26/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/>构建数据库连接的配置方法</a></h1></header><date class="post-meta meta-date">2014年4月26日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>以前我在写数据库连接的时候，都是在文件里写死的，或者一个简单地配置文件，只有一个数据库连接嘛，但是最近写一个测试工具的时候，需要很多数据库，而且有些还有分库规则，于是查找资料，完善了两个类，和xml的定义规则，分享出来。仅供参考，有任何指教请回复。不胜感谢
 首先xml的配置格式定义如下
 然后我们有XmlConfigReader类，用来读取这个配置文件，并且返回对应的jdbcConfig对象。
 这个对象就是一个model类，对应xml的属性
@@ -353,369 +88,86 @@ Jimmy写了一个例子非常好，iso-8583-tutorial-build-and-parse-iso-message
  这里会有一个拼接的操作，比较简单。
 这几个类我打包了。由于我是用了maven做包管理，所以org.dom4j这个包自行下载了。。
 下载地址：http://pan.baidu.com/s/1o617RAy
-   ……
-            <p class="readmore"><a href="http://leaver.me/2014/04/26/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2014/03/29/google%E8%BE%93%E5%85%A5%E6%B3%95%E5%92%8Cjava%E4%B8%8D%E5%85%BC%E5%AE%B9/">Google输入法和Java不兼容</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2014年3月29日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            一直发现自己写的Swing界面无法关闭，症状是点击了界面的关闭按钮后程序会卡住，然后点击无响应最后就挂掉了。
+   ……<p class=readmore><a href=http://leaver.me/2014/04/26/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2014/03/29/google%E8%BE%93%E5%85%A5%E6%B3%95%E5%92%8Cjava%E4%B8%8D%E5%85%BC%E5%AE%B9/>Google输入法和Java不兼容</a></h1></header><date class="post-meta meta-date">2014年3月29日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>一直发现自己写的Swing界面无法关闭，症状是点击了界面的关闭按钮后程序会卡住，然后点击无响应最后就挂掉了。
 最开始以为是自己的资源没释放，但是没理由呀，应该在关闭的时候会自动释放，而且改了代码也没用。
 今天再执行另一个Swing的时候，eclipse报错了
 看问题说是Google拼音输入法冲突，导致访问禁止，在PChunder里卸载掉javaw的Google拼音模块，javaw马上就关闭了，于是修改系统的默认输入法为其他输入法问题解决。
-我了个去，纠结了我好长时间。我说为啥公司电脑和我的电脑都会关不了呢&hellip;……
-            <p class="readmore"><a href="http://leaver.me/2014/03/29/google%E8%BE%93%E5%85%A5%E6%B3%95%E5%92%8Cjava%E4%B8%8D%E5%85%BC%E5%AE%B9/">阅读全文</a></p>
-        </div>
-    </article>
-    
-
-    
-
-
-
-<ol class="page-navigator">
-    
-    <li class="prev">
-        <a href="http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/">上一页</a>
-    </li>
-    
-
-    
-    <li >
-        <a href="http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/">1</a>
-    </li>
-    
-    <li  class="current">
-        <a href="http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/page/2/">2</a>
-    </li>
-    
-    <li >
-        <a href="http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/page/3/">3</a>
-    </li>
-    
-    <li >
-        <a href="http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/page/4/">4</a>
-    </li>
-    
-
-    
-    <li class="next">
-        <a href="http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/page/3/">下一页</a>
-    </li>
-    
-</ol>
-
-
-
-</div>
-
-                </div>
-
-                <div id="secondary">
-    <section class="widget">
-        <form id="search" action='http://leaver.me/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
-      
-      <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="http://leaver.me/">
-      <button type="submit" class="submit icon-search"></button>
-</form>
-    </section>
-    
-    <section class="widget">
-        <h3 class="widget-title">最近文章</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2019 年终总结">2019 年终总结</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/" title="深入理解Raft协议">深入理解Raft协议</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/" title="《非暴力沟通》笔记">《非暴力沟通》笔记</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/10/06/wedding-of-friends/" title="Wedding of Friends">Wedding of Friends</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/09/29/principle-note/" title="Principle Note">Principle Note</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/" title="梦见鲸鱼的那一夜">梦见鲸鱼的那一夜</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/08/20/understand-hong-kong-2/" title="Understand Hong Kong 2">Understand Hong Kong 2</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/08/18/understand-hong-kong-part-1/" title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/" title="错过的都是命，得到的才是人生">错过的都是命，得到的才是人生</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/04/06/recently/" title="Recently">Recently</a>
-    </li>
-    
-</ul>
-    </section>
-
-    
-
-    <section class="widget">
-        <h3 class="widget-title">分类</h3>
-<ul class="widget-list">
-    
-    <li><a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记 (186)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/">我的翻译 (57)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/">文章收藏 (53)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录 (3)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记 (4)</a></li>
-    
-</ul>
-    </section>
-
-    <section class="widget">
-        <h3 class="widget-title">标签</h3>
-<div class="tagcloud">
-    
-    <a href="http://leaver.me/tags/android/">android</a>
-    
-    <a href="http://leaver.me/tags/c/">C＃</a>
-    
-    <a href="http://leaver.me/tags/c&#43;&#43;/">C&#43;&#43;</a>
-    
-    <a href="http://leaver.me/tags/java/">java</a>
-    
-    <a href="http://leaver.me/tags/javascript/">javascript</a>
-    
-    <a href="http://leaver.me/tags/linux/">linux</a>
-    
-    <a href="http://leaver.me/tags/mac/">mac</a>
-    
-    <a href="http://leaver.me/tags/matlab/">matlab</a>
-    
-    <a href="http://leaver.me/tags/maven/">maven</a>
-    
-    <a href="http://leaver.me/tags/mysql/">mysql</a>
-    
-    <a href="http://leaver.me/tags/nextgen-gallery/">NextGEN Gallery</a>
-    
-    <a href="http://leaver.me/tags/php/">php</a>
-    
-    <a href="http://leaver.me/tags/python/">python</a>
-    
-    <a href="http://leaver.me/tags/shell/">shell</a>
-    
-    <a href="http://leaver.me/tags/spring/">spring</a>
-    
-    <a href="http://leaver.me/tags/sql/">sql</a>
-    
-    <a href="http://leaver.me/tags/stackoverflow/">stackoverflow</a>
-    
-    <a href="http://leaver.me/tags/wcf/">WCF</a>
-    
-    <a href="http://leaver.me/tags/web/">web</a>
-    
-    <a href="http://leaver.me/tags/windows/">windows</a>
-    
-    <a href="http://leaver.me/tags/wordpress/">wordpress</a>
-    
-    <a href="http://leaver.me/tags/wpf/">WPF</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/">上海</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/">下载</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
-    
-    <a href="http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/">互联网</a>
-    
-    <a href="http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
-    
-    <a href="http://leaver.me/tags/%E5%88%B6%E5%BA%A6/">制度</a>
-    
-    <a href="http://leaver.me/tags/%E5%89%8D%E7%AB%AF/">前端</a>
-    
-    <a href="http://leaver.me/tags/%E5%8E%9F%E5%88%9B/">原创</a>
-    
-    <a href="http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/">大学</a>
-    
-    <a href="http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/">学习</a>
-    
-    <a href="http://leaver.me/tags/%E5%AE%89%E5%85%A8/">安全</a>
-    
-    <a href="http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/">家庭</a>
-    
-    <a href="http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/">工作</a>
-    
-    <a href="http://leaver.me/tags/%E5%B7%A5%E5%85%B7/">工具</a>
-    
-    <a href="http://leaver.me/tags/%E5%B9%B6%E5%8F%91/">并发</a>
-    
-    <a href="http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/">序列化</a>
-    
-    <a href="http://leaver.me/tags/%E5%BC%80%E5%8F%91/">开发</a>
-    
-    <a href="http://leaver.me/tags/%E5%BF%83%E7%90%86/">心理</a>
-    
-    <a href="http://leaver.me/tags/%E6%80%BB%E7%BB%93/">总结</a>
-    
-    <a href="http://leaver.me/tags/%E6%8A%80%E6%9C%AF/">技术</a>
-    
-    <a href="http://leaver.me/tags/%E6%8F%92%E4%BB%B6/">插件</a>
-    
-    <a href="http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-    
-    <a href="http://leaver.me/tags/%E6%94%B6%E8%97%8F/">收藏</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E5%AD%A6/">数学</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">数据挖掘</a>
-    
-    <a href="http://leaver.me/tags/%E6%96%87%E7%AB%A0/">文章</a>
-    
-    <a href="http://leaver.me/tags/%E6%99%BA%E8%83%BD/">智能</a>
-    
-    <a href="http://leaver.me/tags/%E6%9D%82%E6%96%87/">杂文</a>
-    
-    <a href="http://leaver.me/tags/%E6%AD%A6%E6%B1%89/">武汉</a>
-    
-    <a href="http://leaver.me/tags/%E6%B1%87%E7%BC%96/">汇编</a>
-    
-    <a href="http://leaver.me/tags/%E7%88%B1%E6%83%85/">爱情</a>
-    
-    <a href="http://leaver.me/tags/%E7%90%86%E8%AE%BA/">理论</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%9F%E6%B4%BB/">生活</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/">电子书</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%B5%E5%BD%B1/">电影</a>
-    
-    <a href="http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/">社会</a>
-    
-    <a href="http://leaver.me/tags/%E7%A7%91%E6%8A%80/">科技</a>
-    
-    <a href="http://leaver.me/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
-    
-    <a href="http://leaver.me/tags/%E7%AE%97%E6%B3%95/">算法</a>
-    
-    <a href="http://leaver.me/tags/%E7%BC%96%E7%A8%8B/">编程</a>
-    
-    <a href="http://leaver.me/tags/%E7%BC%96%E8%AF%91/">编译</a>
-    
-    <a href="http://leaver.me/tags/%E7%BF%BB%E8%AF%91/">翻译</a>
-    
-    <a href="http://leaver.me/tags/%E8%81%8C%E4%B8%9A/">职业</a>
-    
-    <a href="http://leaver.me/tags/%E8%AE%B0%E5%BD%95/">记录</a>
-    
-    <a href="http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/">设计</a>
-    
-    <a href="http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/">读书</a>
-    
-    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/">软件</a>
-    
-    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</a>
-    
-    <a href="http://leaver.me/tags/%E8%BF%90%E7%BB%B4/">运维</a>
-    
-    <a href="http://leaver.me/tags/%E9%87%91%E8%9E%8D/">金融</a>
-    
-</div>
-    </section>
-
-    
-<section class="widget">
-    <h3 class="widget-title">友情链接</h3>
-    <ul class="widget-list">
-        
-        <li>
-            <a target="_blank" href="https://www.cppfans.org/" title="C&#43;&#43;爱好者博客">C&#43;&#43;爱好者博客</a>
-        </li>
-        
-        <li>
-            <a target="_blank" href="http://www.kailing.pub" title="KL，每天进步一点点">KL，每天进步一点点</a>
-        </li>
-        
-    </ul>
-</section>
-
-
-    <section class="widget">
-        <h3 class="widget-title">其它</h3>
-        <ul class="widget-list">
-            <li><a href="http://leaver.me/index.xml">文章 RSS</a></li>
-        </ul>
-    </section>
-</div>
-            </div>
-        </div>
-    </div>
-    <footer id="footer">
-    <div class="container">
-        &copy; 2020 <a href="http://leaver.me/">bystander&#39;s blog By bystander</a>.
-        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
-        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
-        
-    </div>
-</footer>
-
-
-
-<a id="rocket" href="#top"></a>
-<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-30961201-3', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-
-
-
-
-
-</body>
-
-</html>
+我了个去，纠结了我好长时间。我说为啥公司电脑和我的电脑都会关不了呢&mldr;……<p class=readmore><a href=http://leaver.me/2014/03/29/google%E8%BE%93%E5%85%A5%E6%B3%95%E5%92%8Cjava%E4%B8%8D%E5%85%BC%E5%AE%B9/>阅读全文</a></p></div></article><ol class=page-navigator><li class=prev><a href=http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/>上一页</a></li><li><a href=http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/>1</a></li><li class=current><a href=http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/page/2/>2</a></li><li><a href=http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/page/3/>3</a></li><li><a href=http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/page/4/>4</a></li><li class=next><a href=http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/page/3/>下一页</a></li></ol></div></div><div id=secondary><section class=widget><form id=search action=http://leaver.me/search/ method=get accept-charset=utf-8 target=_blank _lpchecked=1><input type=text name=q maxlength=20 placeholder=Search>
+<input type=hidden name=sitesearch value=http://leaver.me/>
+<button type=submit class="submit icon-search"></button></form></section><section class=widget><h3 class=widget-title>最近文章</h3><ul class=widget-list><li><a href=http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/ title="2019 年终总结">2019 年终总结</a></li><li><a href=http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/ title=深入理解Raft协议>深入理解Raft协议</a></li><li><a href=http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/ title=《非暴力沟通》笔记>《非暴力沟通》笔记</a></li><li><a href=http://leaver.me/2019/10/06/wedding-of-friends/ title="Wedding of Friends">Wedding of Friends</a></li><li><a href=http://leaver.me/2019/09/29/principle-note/ title="Principle Note">Principle Note</a></li><li><a href=http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/ title=梦见鲸鱼的那一夜>梦见鲸鱼的那一夜</a></li><li><a href=http://leaver.me/2019/08/20/understand-hong-kong-2/ title="Understand Hong Kong 2">Understand Hong Kong 2</a></li><li><a href=http://leaver.me/2019/08/18/understand-hong-kong-part-1/ title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a></li><li><a href=http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/ title=错过的都是命，得到的才是人生>错过的都是命，得到的才是人生</a></li><li><a href=http://leaver.me/2019/04/06/recently/ title=Recently>Recently</a></li></ul></section><section class=widget><h3 class=widget-title>分类</h3><ul class=widget-list><li><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/>学习笔记 (186)</a></li><li><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/>我的翻译 (57)</a></li><li><a href=http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/>文章收藏 (53)</a></li><li><a href=http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/>生活记录 (3)</a></li><li><a href=http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/>读书笔记 (4)</a></li></ul></section><section class=widget><h3 class=widget-title>标签</h3><div class=tagcloud><a href=http://leaver.me/tags/android/>android</a>
+<a href=http://leaver.me/tags/c/>C＃</a>
+<a href=http://leaver.me/tags/c++/>C++</a>
+<a href=http://leaver.me/tags/java/>java</a>
+<a href=http://leaver.me/tags/javascript/>javascript</a>
+<a href=http://leaver.me/tags/linux/>linux</a>
+<a href=http://leaver.me/tags/mac/>mac</a>
+<a href=http://leaver.me/tags/matlab/>matlab</a>
+<a href=http://leaver.me/tags/maven/>maven</a>
+<a href=http://leaver.me/tags/mysql/>mysql</a>
+<a href=http://leaver.me/tags/nextgen-gallery/>NextGEN Gallery</a>
+<a href=http://leaver.me/tags/php/>php</a>
+<a href=http://leaver.me/tags/python/>python</a>
+<a href=http://leaver.me/tags/shell/>shell</a>
+<a href=http://leaver.me/tags/spring/>spring</a>
+<a href=http://leaver.me/tags/sql/>sql</a>
+<a href=http://leaver.me/tags/stackoverflow/>stackoverflow</a>
+<a href=http://leaver.me/tags/wcf/>WCF</a>
+<a href=http://leaver.me/tags/web/>web</a>
+<a href=http://leaver.me/tags/windows/>windows</a>
+<a href=http://leaver.me/tags/wordpress/>wordpress</a>
+<a href=http://leaver.me/tags/wpf/>WPF</a>
+<a href=http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/>上海</a>
+<a href=http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/>下载</a>
+<a href=http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/>中间件</a>
+<a href=http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/>互联网</a>
+<a href=http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/>分布式</a>
+<a href=http://leaver.me/tags/%E5%88%B6%E5%BA%A6/>制度</a>
+<a href=http://leaver.me/tags/%E5%89%8D%E7%AB%AF/>前端</a>
+<a href=http://leaver.me/tags/%E5%8E%9F%E5%88%9B/>原创</a>
+<a href=http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/>大学</a>
+<a href=http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/>学习</a>
+<a href=http://leaver.me/tags/%E5%AE%89%E5%85%A8/>安全</a>
+<a href=http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/>家庭</a>
+<a href=http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/>工作</a>
+<a href=http://leaver.me/tags/%E5%B7%A5%E5%85%B7/>工具</a>
+<a href=http://leaver.me/tags/%E5%B9%B6%E5%8F%91/>并发</a>
+<a href=http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/>序列化</a>
+<a href=http://leaver.me/tags/%E5%BC%80%E5%8F%91/>开发</a>
+<a href=http://leaver.me/tags/%E5%BF%83%E7%90%86/>心理</a>
+<a href=http://leaver.me/tags/%E6%80%BB%E7%BB%93/>总结</a>
+<a href=http://leaver.me/tags/%E6%8A%80%E6%9C%AF/>技术</a>
+<a href=http://leaver.me/tags/%E6%8F%92%E4%BB%B6/>插件</a>
+<a href=http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/>操作系统</a>
+<a href=http://leaver.me/tags/%E6%94%B6%E8%97%8F/>收藏</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E5%AD%A6/>数学</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/>数据库</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/>数据挖掘</a>
+<a href=http://leaver.me/tags/%E6%96%87%E7%AB%A0/>文章</a>
+<a href=http://leaver.me/tags/%E6%99%BA%E8%83%BD/>智能</a>
+<a href=http://leaver.me/tags/%E6%9D%82%E6%96%87/>杂文</a>
+<a href=http://leaver.me/tags/%E6%AD%A6%E6%B1%89/>武汉</a>
+<a href=http://leaver.me/tags/%E6%B1%87%E7%BC%96/>汇编</a>
+<a href=http://leaver.me/tags/%E7%88%B1%E6%83%85/>爱情</a>
+<a href=http://leaver.me/tags/%E7%90%86%E8%AE%BA/>理论</a>
+<a href=http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/>生产力</a>
+<a href=http://leaver.me/tags/%E7%94%9F%E6%B4%BB/>生活</a>
+<a href=http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/>电子书</a>
+<a href=http://leaver.me/tags/%E7%94%B5%E5%BD%B1/>电影</a>
+<a href=http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/>社会</a>
+<a href=http://leaver.me/tags/%E7%A7%91%E6%8A%80/>科技</a>
+<a href=http://leaver.me/tags/%E7%AC%94%E8%AE%B0/>笔记</a>
+<a href=http://leaver.me/tags/%E7%AE%97%E6%B3%95/>算法</a>
+<a href=http://leaver.me/tags/%E7%BC%96%E7%A8%8B/>编程</a>
+<a href=http://leaver.me/tags/%E7%BC%96%E8%AF%91/>编译</a>
+<a href=http://leaver.me/tags/%E7%BF%BB%E8%AF%91/>翻译</a>
+<a href=http://leaver.me/tags/%E8%81%8C%E4%B8%9A/>职业</a>
+<a href=http://leaver.me/tags/%E8%AE%B0%E5%BD%95/>记录</a>
+<a href=http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/>设计</a>
+<a href=http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/>读书</a>
+<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/>软件</a>
+<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/>软件测试</a>
+<a href=http://leaver.me/tags/%E8%BF%90%E7%BB%B4/>运维</a>
+<a href=http://leaver.me/tags/%E9%87%91%E8%9E%8D/>金融</a></div></section><section class=widget><h3 class=widget-title>友情链接</h3><ul class=widget-list><li><a target=_blank href=https://www.cppfans.org/ title=C++爱好者博客>C++爱好者博客</a></li><li><a target=_blank href=http://www.kailing.pub title=KL，每天进步一点点>KL，每天进步一点点</a></li></ul></section><section class=widget><h3 class=widget-title>其它</h3><ul class=widget-list><li><a href=http://leaver.me/index.xml>文章 RSS</a></li></ul></section></div></div></div></div><footer id=footer><div class=container>&copy; 2020 <a href=http://leaver.me/>bystander's blog By bystander</a>.
+Powered by <a rel="nofollow noreferer noopener" href=https://gohugo.io target=_blank>Hugo</a>.
+<a href=https://www.flysnow.org/ target=_blank>Theme</a> based on <a href=https://github.com/flysnow-org/maupassant-hugo target=_blank>maupassant</a>.</div></footer><a id=rocket href=#top></a><script type=text/javascript src="/js/totop.js?v=0.0.0" async></script><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-30961201-3','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></body></html>

@@ -1,358 +1,72 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>开发 | bystander&#39;s blog</title>
-    <meta property="og:title" content="开发 - bystander&#39;s blog">
-    <meta property="og:type" content="article">
-        
-        
-    <meta name="Keywords" content="">
-    <meta name="description" content="开发">
-        
-    <meta name="author" content="bystander">
-    <meta property="og:url" content="http://leaver.me/tags/%E5%BC%80%E5%8F%91/">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-
-    <link rel="stylesheet" href='/css/normalize.css'>
-    <link rel="stylesheet" href='/css/style.css'>
-    <link rel="alternate" type="application/rss+xml+xml" href="http://leaver.me/tags/%E5%BC%80%E5%8F%91/index.xml" title="bystander's blog" />
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-    
-
-
-    
-    
-</head>
-
-
-<body>
-    <header id="header" class="clearfix">
-    <div class="container">
-        <div class="col-group">
-            <div class="site-name ">
-                
-                    <a id="logo" href="http://leaver.me/">
-                        bystander&#39;s blog
-                    </a>
-                
-                <p class="description">寻找窄门</p>
-            </div>
-            <div>
-                <nav id="nav-menu" class="clearfix">
-                    <a class="" href="http://leaver.me/">首页</a>
-                    
-                    <a  href="http://leaver.me/categories" title="目录">目录</a>
-                    
-                    <a  href="http://leaver.me/about/" title="关于我">关于我</a>
-                    
-                </nav>
-            </div>
-        </div>
-    </div>
-</header>
-
-    <div id="body">
-        <div class="container">
-            <div class="col-group">
-
-                <div class="col-8" id="main">
-                    
-<div class="res-cons">
-    
-    <h3 class="archive-title">
-        包含标签
-        <span class="keyword">开发</span>
-        的文章
-    </h3>
-    
-
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2018/05/13/skywalking%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">skywalking插件开发的注意事项</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2018年5月13日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            最近蚂蚁金服中间件开源了 sofa 相关的部分组件,比如 rpc,欢迎大家参与讨论贡献,为 rpc 做链路适配的时候,skywalking 现在快到5.0版本了. 已经不支持 h2暂时,开发过程中了,环境的搭建.以下部分字段不能少.否则外面无法连接 es.
-docker run -d -p 9200:9200 -p 9300:9300 -e &#34;network.host=0.0.0.0&#34; -e &#34;transport.host=0.0.0.0&#34; -e &#34;network.publish_host=0.0.0.0&#34; -e &#34;xpack.security.enabled=false&#34; -e &#34;network.bind_host=0.0.0.0&#34; -e &#34;discovery.type=single-node&#34; docker.elastic.co/elasticsearch/elasticsearch:5.5.0 这条命令会搞定.
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><title>开发 | bystander's blog</title><meta property="og:title" content="开发 - bystander's blog"><meta property="og:type" content="article"><meta name=Keywords content><meta name=description content="开发"><meta name=author content="bystander"><meta property="og:url" content="http://leaver.me/tags/%E5%BC%80%E5%8F%91/"><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><link rel=stylesheet href=/css/normalize.css><link rel=stylesheet href=/css/style.css><link rel=alternate type=application/rss+xml+xml href=http://leaver.me/tags/%E5%BC%80%E5%8F%91/index.xml title="bystander's blog"><script type=text/javascript src=//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js></script></head><body><header id=header class=clearfix><div class=container><div class=col-group><div class=site-name><a id=logo href=http://leaver.me/>bystander's blog</a><p class=description>寻找窄门</p></div><div><nav id=nav-menu class=clearfix><a href=http://leaver.me/>首页</a>
+<a href=http://leaver.me/categories title=目录>目录</a>
+<a href=http://leaver.me/about/ title=关于我>关于我</a></nav></div></div></div></header><div id=body><div class=container><div class=col-group><div class=col-8 id=main><div class=res-cons><h3 class=archive-title>包含标签
+<span class=keyword>开发</span>
+的文章</h3><article class=post><header><h1 class=post-title><a href=http://leaver.me/2018/05/13/skywalking%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/>skywalking插件开发的注意事项</a></h1></header><date class="post-meta meta-date">2018年5月13日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>最近蚂蚁金服中间件开源了 sofa 相关的部分组件,比如 rpc,欢迎大家参与讨论贡献,为 rpc 做链路适配的时候,skywalking 现在快到5.0版本了. 已经不支持 h2暂时,开发过程中了,环境的搭建.以下部分字段不能少.否则外面无法连接 es.
+docker run -d -p 9200:9200 -p 9300:9300 -e "network.host=0.0.0.0" -e "transport.host=0.0.0.0" -e "network.publish_host=0.0.0.0" -e "xpack.security.enabled=false" -e "network.bind_host=0.0.0.0" -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:5.5.0 这条命令会搞定.
 同时 application.yml 文件中
 storage: elasticsearch: cluster_name: docker-cluster cluster_transport_sniffer: false cluster_nodes: localhost:9300 index_shards_number: 2 index_replicas_number: 0 ttl: 70 这一段改一下.
-其他的一些网上已有的文档,可以看看.SkyWalking 源码分析 —— 调试环境搭建……
-            <p class="readmore"><a href="http://leaver.me/2018/05/13/skywalking%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2015/07/04/javosize%E6%96%B0%E4%B8%80%E4%BB%A3java%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/">javOSize:新一代java分析工具</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2015年7月4日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            介绍 最近看到这么个工具-javOSize .官网地址,去官网看了下.发现介绍很有意思,叫做 the missing sugar for your Java cup.(你的咖啡杯中缺少的那颗糖).于是感受一下这颗糖到底甜不甜
+其他的一些网上已有的文档,可以看看.SkyWalking 源码分析 —— 调试环境搭建……<p class=readmore><a href=http://leaver.me/2018/05/13/skywalking%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2015/07/04/javosize%E6%96%B0%E4%B8%80%E4%BB%A3java%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/>javOSize:新一代java分析工具</a></h1></header><date class="post-meta meta-date">2015年7月4日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>介绍 最近看到这么个工具-javOSize .官网地址,去官网看了下.发现介绍很有意思,叫做 the missing sugar for your Java cup.(你的咖啡杯中缺少的那颗糖).于是感受一下这颗糖到底甜不甜
 安装 安装非常简单,从这里下载,其实完成之后就是一个jar包.非常简单,不用配置啥的.
-简单使用 使用方法就是从先附加到一个java进程上,在linux,上我直接执行 ps aux|grep java  就能看到了.不废话,得到java进程的pid之后,运行 java -jar javosize-1.0.9.jar pid pid就是pid的号了. 然后会看到如下图的界面,表示已经附加成功了.先看看都有啥.执行ls.看到有这么几个命令.我比较单纯,刚开始以为是可执行文件.结果丢人了.看了下官方文档,才知道是目录.进入对应的目录.然后执行ls就能看到对应的信息了.ls简直不能再万能..改目录支持的所有命令通过在对应的目录执行help来查看.个人尝试觉得好的功能有.   动态修改类 进入CLASSES目录,然后通过执行 ls|grep xxx  来找到需要修改的类,然后通过vi 就可以直接编辑.编辑完成后,直接保存就会动态替换.文档里说是支持jdk1.7以上,对1.6的支持估计是不行的.没有测试.   无须重启开启jmx 直接挂载之后,执行cd REPOSITORY 然后执行就好了. exec START_JMX_SERVER 6666
-  拦截任意代码 可以动态添加类似Spring中的aop方法.用于打印一些调用日志,排查线上问题.进入INTERCEPTOR目录.然后通过如下的方法给某个类的某个方法添加拦截器. create TickServlet begin mypackage.Hello doGet System.out.println(&quot;Servlet invoked&quot;);
-  检测内存泄漏 进入 REPOSITORY 目录,执行 exec TOP_FAT_STATIC_VARIABLES 5 com.apache.*会取出某个包下面占用大小最大的5个类.会很方便找到.
-  自动检测性能问题 PROBLEMS 目录专业解决这种问题.进入目录后.执行ls命令.会看到这样的场景
-  Concurrency Deadlocked: false Memory High GC (&gt;2%): false   这里目前只检测了死锁和频繁GC.已经很有用了.至于效果还有待观察.
-  无需重启开启GC 日志 和开启jmx一样,进入JMX目录后,执行 exec java.lang:type=Memory.setVerbose(true); 就开启了.
-  更多文档  官方文档  ……
-            <p class="readmore"><a href="http://leaver.me/2015/07/04/javosize%E6%96%B0%E4%B8%80%E4%BB%A3java%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2015/07/02/%E4%BC%91%E5%81%87%E5%81%9C%E4%B8%8B%E6%9D%A5%E5%8F%8D%E6%80%9D/">休假停下来反思</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2015年7月2日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            项目经过一年终于告一段落.于是有了一个短暂的休假.
-早上照例没能睡好觉.很早就醒了.然后又躺了一会,醒来看了会订阅.然后听了一集&laquo; Mr.Robot &raquo;,感觉还行,再对着字幕看了一遍,以后还是有一些地方理解的有问题.以后还是要多对着无字幕版的美剧去看,才能慢慢听懂更多的,比如今天听到个society,讲社交焦虑,听到很熟悉,就是没反应过来.学而不用则殆.
-中午给文哥寄了个快递,顺便点个饭.之前的&quot;手艺&quot;应该也已经忘得差不多了.到杭州之后很少做饭,工作太忙.没办法.当然这只是借口.主要还是我懒吧.
-下午按计划好的去浙江图书馆,从大学出来后,虽然书还是看了一些的.但是也再也没有走入图书馆.之前一直想去上海图书馆,结果一直耽搁,今天去浙江图书馆办了个证,借了几本书,看着里面的人自习的自习,借阅的借阅,想想还是有点熟悉的.遗憾的是书相同的份数有点少.想借的几本书都被人借走了,最终借了个&laquo; 七周七语言 &raquo;,希望能给自己的编程带来不一样的思考角度.读完后争取写个书评和总结,还借了一本摄影相关的,毕竟拍照是服务妹子的技能.还有个&laquo; netty权威指南 &raquo; ,虽然这本书评价好像不高,但是拿来看看还是可以的.
+简单使用 使用方法就是从先附加到一个java进程上,在linux,上我直接执行 ps aux|grep java 就能看到了.不废话,得到java进程的pid之后,运行 java -jar javosize-1.0.9.jar pid pid就是pid的号了. 然后会看到如下图的界面,表示已经附加成功了.先看看都有啥.执行ls.看到有这么几个命令.我比较单纯,刚开始以为是可执行文件.结果丢人了.看了下官方文档,才知道是目录.进入对应的目录.然后执行ls就能看到对应的信息了.ls简直不能再万能..改目录支持的所有命令通过在对应的目录执行help来查看.个人尝试觉得好的功能有. 动态修改类 进入CLASSES目录,然后通过执行 ls|grep xxx 来找到需要修改的类,然后通过vi 就可以直接编辑.编辑完成后,直接保存就会动态替换.文档里说是支持jdk1.7以上,对1.6的支持估计是不行的.没有测试. 无须重启开启jmx 直接挂载之后,执行cd REPOSITORY 然后执行就好了. exec START_JMX_SERVER 6666
+拦截任意代码 可以动态添加类似Spring中的aop方法.用于打印一些调用日志,排查线上问题.进入INTERCEPTOR目录.然后通过如下的方法给某个类的某个方法添加拦截器. create TickServlet begin mypackage.Hello doGet System.out.println("Servlet invoked");
+检测内存泄漏 进入 REPOSITORY 目录,执行 exec TOP_FAT_STATIC_VARIABLES 5 com.apache.*会取出某个包下面占用大小最大的5个类.会很方便找到.
+自动检测性能问题 PROBLEMS 目录专业解决这种问题.进入目录后.执行ls命令.会看到这样的场景
+Concurrency Deadlocked: false Memory High GC (>2%): false 这里目前只检测了死锁和频繁GC.已经很有用了.至于效果还有待观察.
+无需重启开启GC 日志 和开启jmx一样,进入JMX目录后,执行 exec java.lang:type=Memory.setVerbose(true); 就开启了.
+更多文档 官方文档 ……<p class=readmore><a href=http://leaver.me/2015/07/04/javosize%E6%96%B0%E4%B8%80%E4%BB%A3java%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2015/07/02/%E4%BC%91%E5%81%87%E5%81%9C%E4%B8%8B%E6%9D%A5%E5%8F%8D%E6%80%9D/>休假停下来反思</a></h1></header><date class="post-meta meta-date">2015年7月2日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>项目经过一年终于告一段落.于是有了一个短暂的休假.
+早上照例没能睡好觉.很早就醒了.然后又躺了一会,醒来看了会订阅.然后听了一集&#171; Mr.Robot &#187;,感觉还行,再对着字幕看了一遍,以后还是有一些地方理解的有问题.以后还是要多对着无字幕版的美剧去看,才能慢慢听懂更多的,比如今天听到个society,讲社交焦虑,听到很熟悉,就是没反应过来.学而不用则殆.
+中午给文哥寄了个快递,顺便点个饭.之前的"手艺"应该也已经忘得差不多了.到杭州之后很少做饭,工作太忙.没办法.当然这只是借口.主要还是我懒吧.
+下午按计划好的去浙江图书馆,从大学出来后,虽然书还是看了一些的.但是也再也没有走入图书馆.之前一直想去上海图书馆,结果一直耽搁,今天去浙江图书馆办了个证,借了几本书,看着里面的人自习的自习,借阅的借阅,想想还是有点熟悉的.遗憾的是书相同的份数有点少.想借的几本书都被人借走了,最终借了个&#171; 七周七语言 &#187;,希望能给自己的编程带来不一样的思考角度.读完后争取写个书评和总结,还借了一本摄影相关的,毕竟拍照是服务妹子的技能.还有个&#171; netty权威指南 &#187; ,虽然这本书评价好像不高,但是拿来看看还是可以的.
 下午回家.杭州的下午还挺美的.天气凉爽.只是作为工作狗,没有下午出来的机会吧.
 工作忙,不过在一切自动化的指导下,(马克思没有找我),对linux 的shell操作熟悉度急剧上升,希望能写的更好,让更多的过程自动化,也希望有时间停下来想一想.当时为什么选择写代码,为什么选择当前的职业,知道自己做了什么,知道自己是否进步,想起之前看到的一个话,不知真假,
- 只是因为三轮车好学，你就要一辈子骑三轮车吗？ – Douglas Englebart
- 在职业之外,除了高效做好自己的工作外,也要学习更多的技能,英语,锻炼身体,其他编程相关的.不要安于现状.不要重复自己.还是那句话,不要让你的身份限制你的能力.……
-            <p class="readmore"><a href="http://leaver.me/2015/07/02/%E4%BC%91%E5%81%87%E5%81%9C%E4%B8%8B%E6%9D%A5%E5%8F%8D%E6%80%9D/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2015/06/30/securerandom%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E6%95%B0%E9%9D%9E%E5%B8%B8%E6%85%A2/">SecureRandom第一次生成随机数非常慢</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2015年6月30日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            最近发现某个系统在第一次做操作的时候非常缓慢,逐步定位打印更加详细的日志后,发现问题是使用了SecureRandom 这个类来获取随机种子,这个类第一次初始化的时候setSeed的值,非常缓慢,偶尔出现, 排查的过程就是二分,不断定位具体的代码,最终定位
+只是因为三轮车好学，你就要一辈子骑三轮车吗？ – Douglas Englebart
+在职业之外,除了高效做好自己的工作外,也要学习更多的技能,英语,锻炼身体,其他编程相关的.不要安于现状.不要重复自己.还是那句话,不要让你的身份限制你的能力.……<p class=readmore><a href=http://leaver.me/2015/07/02/%E4%BC%91%E5%81%87%E5%81%9C%E4%B8%8B%E6%9D%A5%E5%8F%8D%E6%80%9D/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2015/06/30/securerandom%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E6%95%B0%E9%9D%9E%E5%B8%B8%E6%85%A2/>SecureRandom第一次生成随机数非常慢</a></h1></header><date class="post-meta meta-date">2015年6月30日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>最近发现某个系统在第一次做操作的时候非常缓慢,逐步定位打印更加详细的日志后,发现问题是使用了SecureRandom 这个类来获取随机种子,这个类第一次初始化的时候setSeed的值,非常缓慢,偶尔出现, 排查的过程就是二分,不断定位具体的代码,最终定位
 也就是说根本原因是SecureRandom 这个jre的工具类的问题.具体的bug搜索之后,见
 http://bugs.java.com/view_bug.do?bug_id=6521844
 详细的解释过程: 参考: http://www.websina.com/bugzero/faq/securerandom-slowness.html
- Q: Why the SecureRandom generateSeed is so slow or even hang on Linux OS?
-  A: When you login, it hangs or takes more than a minute to get the response. If your server is on a Linux OS, the culprit here is SecureRandom generateSeed() which uses /dev/random to generate the seed. However, /dev/random is a blocking number generator and if it doesn't have enough random data to provide, it will simply wait until it does, which forces the JVM to wait. Keyboard and mouse input as well as disk activity can generate the randomness or entropy needed. But on a server that lacks such activies, the problem may arise.
- 大意是说当使用SecureRandom 的时候默认使用的/dev/random 文件来生成种子,如果没有足够的种子数据,(这些数据是由键盘,鼠标,磁盘活动等产生的,如果没有这些活动,就没有足够的数据)会一直等待,导致jvm卡住,耗费比较长的时候.由于出现问题的这个环境的确是最近没什么操作,而且复现的操作也是隔个一个晚上,重新做业务才会出现.
+Q: Why the SecureRandom generateSeed is so slow or even hang on Linux OS?
+A: When you login, it hangs or takes more than a minute to get the response. If your server is on a Linux OS, the culprit here is SecureRandom generateSeed() which uses /dev/random to generate the seed. However, /dev/random is a blocking number generator and if it doesn't have enough random data to provide, it will simply wait until it does, which forces the JVM to wait. Keyboard and mouse input as well as disk activity can generate the randomness or entropy needed. But on a server that lacks such activies, the problem may arise.
+大意是说当使用SecureRandom 的时候默认使用的/dev/random 文件来生成种子,如果没有足够的种子数据,(这些数据是由键盘,鼠标,磁盘活动等产生的,如果没有这些活动,就没有足够的数据)会一直等待,导致jvm卡住,耗费比较长的时候.由于出现问题的这个环境的确是最近没什么操作,而且复现的操作也是隔个一个晚上,重新做业务才会出现.
 文中给出了一种解决方案.
- 启动参数添加 -Djava.security.egd=file:/dev/./urandom,验证是可以的. 修改随机数获取方式  这里urandom是啥呢,引用自维基
- /dev/random的一个副本是/dev/urandom（“unlocked”，非阻塞的随机数发生器[4]），它会重复使用熵池中的数据以产生伪随机数据。这表示对/dev/urandom的读取操作不会产生阻塞，但其输出的熵可能小于/dev/random的。它可以作为生成较低强度密码的伪随机数生成器，不建议用于生成高强度长期密码。
- 类似案例: SecureRandom 导致tomcat启动过慢. https://wiki.apache.org/tomcat/HowTo/FasterStartUp#Entropy_Source 从文中看到说java8已经提升了这个性能.但是一般生产环境的java版本是不会改的.……
-            <p class="readmore"><a href="http://leaver.me/2015/06/30/securerandom%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E6%95%B0%E9%9D%9E%E5%B8%B8%E6%85%A2/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2015/05/10/%E5%85%B3%E4%BA%8E%E9%87%8D%E6%9E%84%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">关于重构和设计模式</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2015年5月10日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            之前在工作写了一个数据库查询的工具.大体背景就是这种工具需要跨不同环境的数据库,开发,测试,性能等.最早简单写了一个版本,在第一次查询时会初始化三个库的连接,保存在map中,然后后续查询直接根据使用者选择的环境类型取出对应的连接构造sql即可.
-随着各个不同系统接入的越来越多,各个平台都保存了自己的连接,导致代码冗余度急剧上升,上周,利用晚上的一点时间读了一下&laquo;重构&raquo;,这本书,深受启发,一个是重构就是要采用小步快走的方式,在测试用例的覆盖下,快速改动,去掉代码中不合理的地方.另一个就是重构需要对业务的当下和未来的变化有一个比较深刻的理解,知道这个系统能做什么,不能做什么.才能更好地做重构.
+启动参数添加 -Djava.security.egd=file:/dev/./urandom,验证是可以的. 修改随机数获取方式 这里urandom是啥呢,引用自维基
+/dev/random的一个副本是/dev/urandom（“unlocked”，非阻塞的随机数发生器[4]），它会重复使用熵池中的数据以产生伪随机数据。这表示对/dev/urandom的读取操作不会产生阻塞，但其输出的熵可能小于/dev/random的。它可以作为生成较低强度密码的伪随机数生成器，不建议用于生成高强度长期密码。
+类似案例: SecureRandom 导致tomcat启动过慢. https://wiki.apache.org/tomcat/HowTo/FasterStartUp#Entropy_Source 从文中看到说java8已经提升了这个性能.但是一般生产环境的java版本是不会改的.……<p class=readmore><a href=http://leaver.me/2015/06/30/securerandom%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E6%95%B0%E9%9D%9E%E5%B8%B8%E6%85%A2/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2015/05/10/%E5%85%B3%E4%BA%8E%E9%87%8D%E6%9E%84%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/>关于重构和设计模式</a></h1></header><date class="post-meta meta-date">2015年5月10日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>之前在工作写了一个数据库查询的工具.大体背景就是这种工具需要跨不同环境的数据库,开发,测试,性能等.最早简单写了一个版本,在第一次查询时会初始化三个库的连接,保存在map中,然后后续查询直接根据使用者选择的环境类型取出对应的连接构造sql即可.
+随着各个不同系统接入的越来越多,各个平台都保存了自己的连接,导致代码冗余度急剧上升,上周,利用晚上的一点时间读了一下&#171;重构&#187;,这本书,深受启发,一个是重构就是要采用小步快走的方式,在测试用例的覆盖下,快速改动,去掉代码中不合理的地方.另一个就是重构需要对业务的当下和未来的变化有一个比较深刻的理解,知道这个系统能做什么,不能做什么.才能更好地做重构.
 于是,根据这个工具的特点,感觉抽象工厂模式比较合适,于是在抽象工厂模式的指导下,对关键部分进行了重构,在增加了几个类之后,代码复杂度开始下降.各个接入系统的代码基本上保持在了几十行内,之前都是几百行,大量冗余代码,只能说自己之前眼光太短浅了.并且,采用了类似单例模式的操作.当查询的时候,先根据当前环境作为key取连接,如果连接被关闭,或者不存在,则初始化,然后放到map中,返回.如果有的话,直接用.这样改动后,第一次查询的时候只需要初始化一个连接,速度极快.也算个好处..
 由此,反思了一下,设计模式之前也看过.但是总觉得各种书上讲的都比较浅显,给出的例子也似乎如作者所说,很符合那个模式,但实际上,在工作中如何识别当下的业务应该是比较难的,需要在业务变动中,不断地重构自己的代码,才能发现,某一种模式似乎特别适合解决这种问题,反之,重构也需要一定的设计模式作为基础,否则对代码的重构会只停留在抽取公共方法.重命名.大类变小类的阶段..
-希望接下来能够抽空把&laquo;敏捷软件开发：原则、模式与实践&raquo;这本书看完.同时能够真的理解这些模式的场合,想起一句话,知道一个技术方案的好,说明你还没有理解这种方法,只有你知道了这个方案的不足,你才真正理解了他,相信很多技术我都没有理解.设计模式也是,希望之后能够理解每种模式的不足,重构这本书也要经常翻翻,能加深对代码的理解.……
-            <p class="readmore"><a href="http://leaver.me/2015/05/10/%E5%85%B3%E4%BA%8E%E9%87%8D%E6%9E%84%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2014/11/07/%E4%B8%80%E9%94%AE%E5%88%87%E6%8D%A2jdk%E7%89%88%E6%9C%AC/">一键切换jdk版本</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2014年11月7日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            工作中有时候会切换jdk版本.有时候需要用个64位的.有时候需要用32位的.频繁手动很不方便,参考了一下,写了一个bat脚本,保存为bat,运行即可切换.同理可以改改,运来切换1.7,1.8这样的版本.
-@echo off :init set JAVA_HOME_32=D:\5.Program\Jdk32Home set JAVA_HOME_64=D:\Software\JdkHome :start echo. echo ============================================= echo jdk版本列表 echo 32 (%JAVA_HOME_32%) echo 64 (%JAVA_HOME_64%) echo ============================================= :select set /p opt=请选择jdk版本： if %opt%==32 ( start /I /WAIT /B wmic ENVIRONMENT where name=&#39;JAVA_HOME&#39; set VariableValue=&#34;%JAVA_HOME_32%&#34; &amp;gt;nul rem reg add &#34;HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment&#34; /v JAVA_HOME /t reg_sz /d &#34;%JAVA_HOME_32%&#34; /f goto success ) if %opt%==64 ( start /I /WAIT /B wmic ENVIRONMENT where name=&#39;JAVA_HOME&#39; set VariableValue=&#34;%JAVA_HOME_64%&#34; &amp;gt;nul rem reg add &#34;HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment&#34; /v JAVA_HOME /t reg_sz /d &#34;%JAVA_HOME_64%&#34; /f goto success ) echo 选择的版本错误,请重新选择！ PAUSE goto start :success echo. echo 设置环境变了成功. ……
-            <p class="readmore"><a href="http://leaver.me/2014/11/07/%E4%B8%80%E9%94%AE%E5%88%87%E6%8D%A2jdk%E7%89%88%E6%9C%AC/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2014/09/14/%E8%93%9D%E7%BB%BF%E5%8F%91%E5%B8%83%E7%9A%84%E6%95%B4%E4%B8%AA%E9%83%A8%E7%BD%B2%E8%BF%87%E7%A8%8B/">蓝绿发布的整个部署过程</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2014年9月14日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            一直听说蓝绿发布,不知道是怎么个过程.
+希望接下来能够抽空把&#171;敏捷软件开发：原则、模式与实践&#187;这本书看完.同时能够真的理解这些模式的场合,想起一句话,知道一个技术方案的好,说明你还没有理解这种方法,只有你知道了这个方案的不足,你才真正理解了他,相信很多技术我都没有理解.设计模式也是,希望之后能够理解每种模式的不足,重构这本书也要经常翻翻,能加深对代码的理解.……<p class=readmore><a href=http://leaver.me/2015/05/10/%E5%85%B3%E4%BA%8E%E9%87%8D%E6%9E%84%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2014/11/07/%E4%B8%80%E9%94%AE%E5%88%87%E6%8D%A2jdk%E7%89%88%E6%9C%AC/>一键切换jdk版本</a></h1></header><date class="post-meta meta-date">2014年11月7日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>工作中有时候会切换jdk版本.有时候需要用个64位的.有时候需要用32位的.频繁手动很不方便,参考了一下,写了一个bat脚本,保存为bat,运行即可切换.同理可以改改,运来切换1.7,1.8这样的版本.
+@echo off :init set JAVA_HOME_32=D:\5.Program\Jdk32Home set JAVA_HOME_64=D:\Software\JdkHome :start echo. echo ============================================= echo jdk版本列表 echo 32 (%JAVA_HOME_32%) echo 64 (%JAVA_HOME_64%) echo ============================================= :select set /p opt=请选择jdk版本： if %opt%==32 ( start /I /WAIT /B wmic ENVIRONMENT where name='JAVA_HOME' set VariableValue="%JAVA_HOME_32%" &amp;gt;nul rem reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v JAVA_HOME /t reg_sz /d "%JAVA_HOME_32%" /f goto success ) if %opt%==64 ( start /I /WAIT /B wmic ENVIRONMENT where name='JAVA_HOME' set VariableValue="%JAVA_HOME_64%" &amp;gt;nul rem reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v JAVA_HOME /t reg_sz /d "%JAVA_HOME_64%" /f goto success ) echo 选择的版本错误,请重新选择！ PAUSE goto start :success echo. echo 设置环境变了成功. ……<p class=readmore><a href=http://leaver.me/2014/11/07/%E4%B8%80%E9%94%AE%E5%88%87%E6%8D%A2jdk%E7%89%88%E6%9C%AC/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2014/09/14/%E8%93%9D%E7%BB%BF%E5%8F%91%E5%B8%83%E7%9A%84%E6%95%B4%E4%B8%AA%E9%83%A8%E7%BD%B2%E8%BF%87%E7%A8%8B/>蓝绿发布的整个部署过程</a></h1></header><date class="post-meta meta-date">2014年9月14日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>一直听说蓝绿发布,不知道是怎么个过程.
 thanks toblue-green-deployment
 蓝绿发布的意义 整个发布过程，用户没有感受到任何宕机或者服务重启。
-蓝绿发布的过程 第0步:部署以前的配置 
-第1步: 把绿色集群的状态改为'备用&rsquo;. 从负载均衡的池里把这些地址去掉,这样,绿色的集群就不再回接收到来自用户的请求了.转而进入备用负载均衡的池里. 
-第2步:在绿色集群里部署新的代码,直到应用启动成功 
+蓝绿发布的过程 第0步:部署以前的配置
+第1步: 把绿色集群的状态改为'备用&rsquo;. 从负载均衡的池里把这些地址去掉,这样,绿色的集群就不再回接收到来自用户的请求了.转而进入备用负载均衡的池里.
+第2步:在绿色集群里部署新的代码,直到应用启动成功
 第3步:使用备用负载均衡简单测试一下备用集群的部署情况.理想状态下是全自动的.
-第4步:把绿色备用集群的状态改成存货,于是进入了存活负载均衡的池里 
+第4步:把绿色备用集群的状态改成存货,于是进入了存活负载均衡的池里
 看到 蓝色运行v1版本,绿色运行v2版本,都连接的是相同的数据库.这意味着v2版本也要在老的数据模型上运行.如果数据库有变更,要等到所有的集群升级到新的代码上.
-第5步: 对蓝色集群也进行同样的操作.   最终v2代码完成部署. 
+第5步: 对蓝色集群也进行同样的操作. 最终v2代码完成部署.
 第6步:根据情况.运行数据库迁移
- ……
-            <p class="readmore"><a href="http://leaver.me/2014/09/14/%E8%93%9D%E7%BB%BF%E5%8F%91%E5%B8%83%E7%9A%84%E6%95%B4%E4%B8%AA%E9%83%A8%E7%BD%B2%E8%BF%87%E7%A8%8B/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2014/07/01/spring%E6%8F%AD%E7%A7%98%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC%E4%BA%8C%E7%AB%A0ioc%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">《Spring揭秘》读书笔记-第二章IoC的基本概念</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2014年7月1日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            理念就是让别人为你服务，中文名控制反转，也叫依赖注入DI 假设这个类用来处理新闻，IFXNewsListener 用来获取新闻，IFXNewsPersister 用来把获取的新闻持久化当我们需要获取不同的新闻源，比如道琼斯的新闻时，我们会写一个DowJonesNewsListener类和DowJonesNewsPersister类，然后实例化 如果我们依赖于某个类或服务，最简单而有效的方式就是直接在类的构造函数中新建相应的依赖类。注意看，，我们都是自己主动地去获取依赖的对象！可是回头想想，我们自己每次用到什么依赖对象都要主动地去获取，这是否真的必要？我们最终所要做的，其实就是直接调用依赖对象所提供的某项服务而已能不能我们用的时候自动送过来呢？。现在是用什么，让别人直接送过来就成。所以，简单点儿说，IoC的理念就是，让别人为你服务！在图2-1中，也就是让IoC Service Provider来为你服务！这里，被注入对象就是FXNewsProvider，被依赖于对象IFXNewsListener和IFXNewsPersister 通常情况下，被注入对象会直接依赖于被依赖对象。但是，在IoC的场景中，二者之间通过IoC ServiceProvider来打交道，所有的被注入对象和依赖对象现在由IoC Service Provider统一管理。被注入对象需要什么，直接跟IoC Service Provider招呼一声，后者就会把相应的被依赖对象注入到被注入对象中，从而达到IoC Service Provider为被注入对象服务的目的。IoC Service Provider在这里就是通常的IoC容器所充当的角色。从被注入对象的角度看，与之前直接寻求依赖对象相比，依赖对象的取得方式发生了反转，控制也从被注入对象转到了IoC Service Provider那里这里我们想知道的是？怎么跟IoC Service Provider打招呼在IoC模式中，被注入对象又是通过哪些方式来通知IoC Service Provider为其提供适当服务的呢？三种打招呼的方式，即构造方法注入（constructorinjection）、setter方法注入（setter injection）以及接口注入（interface injection）。构造方法注入：  IoC Service Provider会检查被注入对象的构造方法，取得它所需要的依赖对象列表，进而为其注入相应的对象。setter方法注入  外界就可以通过调用setNewsListener和setNewPersistener方法为FXNewsProvider对象注入所依赖的对象了。接口注入，这个基本不用了。接口注入。从注入方式的使用上来说，接口注入是现在不甚提倡的一种方式，基本处于&quot;退役状态&rdquo;。因为它强制被注入对象实现不必要的接口，带有侵入性。而构造方法注入和setter方法注入则不需要如此。8q构造方法注入。这种注入方式的优点就是，对象在构造完成之后，即已进入就绪状态，可以 9马上使用。缺点就是，当依赖对象比较多的时候，构造方法的参数列表会比较长。而通过反射构造对象的时候，对相同类型的参数的处理会比较困难，维护和使用上也比较麻烦。而且在Java中，构造方法无法被继承，无法设置默认值。对于非必须的依赖处理，可能需要引入多个构造方法，而参数数量的变动可能造成维护上的不便。10qsetter方法注入。因为方法可以命名，所以setter方法注入在描述性上要比构造方法注入好一些。 11另外，setter方法可以被继承，允许设置默认值，而且有良好的IDE支持。缺点当然就是对象无法在构造完成后马上进入就绪状态。12综上所述，构造方法注入和setter方法注入因为其侵入性较弱，且易于理解和使用，所以是现在使用最多的注入方式；而接口注入因为侵入性较强，近年来已经不流行了。回到开头的代码  由于这里已经写死了，所以当我们添加了一个新的新闻源，比如M4网站的时候，这个对象不能用了，我们要新写一个M4NewsProvider的类，然后新写新闻获取类，然后重新实现。而使用了IoC之后，  我们只要实现一个MarketWin24NewsListener雷就可以，而且FXNewsProvider 可以重用。而且使用了IoC之后，单元测试变得简单，我们只有写一个MockNewsPersister就可以来测试了。……
-            <p class="readmore"><a href="http://leaver.me/2014/07/01/spring%E6%8F%AD%E7%A7%98%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC%E4%BA%8C%E7%AB%A0ioc%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/11/16/%E8%97%8F%E5%9B%BE%E6%96%87%E5%B9%B6%E8%8C%82%E8%AF%A6%E8%A7%A3eclipse%E6%96%AD%E7%82%B9/">[藏]图文并茂详解Eclipse断点</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年11月16日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F'>文章收藏</a>
-            
-        </div>
-        
-        <div class="post-content">
-            本文转自：http://my.oschina.net/colorleaf/blog/176569
+ ……<p class=readmore><a href=http://leaver.me/2014/09/14/%E8%93%9D%E7%BB%BF%E5%8F%91%E5%B8%83%E7%9A%84%E6%95%B4%E4%B8%AA%E9%83%A8%E7%BD%B2%E8%BF%87%E7%A8%8B/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2014/07/01/spring%E6%8F%AD%E7%A7%98%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC%E4%BA%8C%E7%AB%A0ioc%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/>《Spring揭秘》读书笔记-第二章IoC的基本概念</a></h1></header><date class="post-meta meta-date">2014年7月1日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>理念就是让别人为你服务，中文名控制反转，也叫依赖注入DI 假设这个类用来处理新闻，IFXNewsListener 用来获取新闻，IFXNewsPersister 用来把获取的新闻持久化当我们需要获取不同的新闻源，比如道琼斯的新闻时，我们会写一个DowJonesNewsListener类和DowJonesNewsPersister类，然后实例化 如果我们依赖于某个类或服务，最简单而有效的方式就是直接在类的构造函数中新建相应的依赖类。注意看，，我们都是自己主动地去获取依赖的对象！可是回头想想，我们自己每次用到什么依赖对象都要主动地去获取，这是否真的必要？我们最终所要做的，其实就是直接调用依赖对象所提供的某项服务而已能不能我们用的时候自动送过来呢？。现在是用什么，让别人直接送过来就成。所以，简单点儿说，IoC的理念就是，让别人为你服务！在图2-1中，也就是让IoC Service Provider来为你服务！这里，被注入对象就是FXNewsProvider，被依赖于对象IFXNewsListener和IFXNewsPersister 通常情况下，被注入对象会直接依赖于被依赖对象。但是，在IoC的场景中，二者之间通过IoC ServiceProvider来打交道，所有的被注入对象和依赖对象现在由IoC Service Provider统一管理。被注入对象需要什么，直接跟IoC Service Provider招呼一声，后者就会把相应的被依赖对象注入到被注入对象中，从而达到IoC Service Provider为被注入对象服务的目的。IoC Service Provider在这里就是通常的IoC容器所充当的角色。从被注入对象的角度看，与之前直接寻求依赖对象相比，依赖对象的取得方式发生了反转，控制也从被注入对象转到了IoC Service Provider那里这里我们想知道的是？怎么跟IoC Service Provider打招呼在IoC模式中，被注入对象又是通过哪些方式来通知IoC Service Provider为其提供适当服务的呢？三种打招呼的方式，即构造方法注入（constructorinjection）、setter方法注入（setter injection）以及接口注入（interface injection）。构造方法注入：  IoC Service Provider会检查被注入对象的构造方法，取得它所需要的依赖对象列表，进而为其注入相应的对象。setter方法注入  外界就可以通过调用setNewsListener和setNewPersistener方法为FXNewsProvider对象注入所依赖的对象了。接口注入，这个基本不用了。接口注入。从注入方式的使用上来说，接口注入是现在不甚提倡的一种方式，基本处于"退役状态&rdquo;。因为它强制被注入对象实现不必要的接口，带有侵入性。而构造方法注入和setter方法注入则不需要如此。8q构造方法注入。这种注入方式的优点就是，对象在构造完成之后，即已进入就绪状态，可以 9马上使用。缺点就是，当依赖对象比较多的时候，构造方法的参数列表会比较长。而通过反射构造对象的时候，对相同类型的参数的处理会比较困难，维护和使用上也比较麻烦。而且在Java中，构造方法无法被继承，无法设置默认值。对于非必须的依赖处理，可能需要引入多个构造方法，而参数数量的变动可能造成维护上的不便。10qsetter方法注入。因为方法可以命名，所以setter方法注入在描述性上要比构造方法注入好一些。 11另外，setter方法可以被继承，允许设置默认值，而且有良好的IDE支持。缺点当然就是对象无法在构造完成后马上进入就绪状态。12综上所述，构造方法注入和setter方法注入因为其侵入性较弱，且易于理解和使用，所以是现在使用最多的注入方式；而接口注入因为侵入性较强，近年来已经不流行了。回到开头的代码  由于这里已经写死了，所以当我们添加了一个新的新闻源，比如M4网站的时候，这个对象不能用了，我们要新写一个M4NewsProvider的类，然后新写新闻获取类，然后重新实现。而使用了IoC之后，  我们只要实现一个MarketWin24NewsListener雷就可以，而且FXNewsProvider 可以重用。而且使用了IoC之后，单元测试变得简单，我们只有写一个MockNewsPersister就可以来测试了。……<p class=readmore><a href=http://leaver.me/2014/07/01/spring%E6%8F%AD%E7%A7%98%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC%E4%BA%8C%E7%AB%A0ioc%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/11/16/%E8%97%8F%E5%9B%BE%E6%96%87%E5%B9%B6%E8%8C%82%E8%AF%A6%E8%A7%A3eclipse%E6%96%AD%E7%82%B9/>[藏]图文并茂详解Eclipse断点</a></h1></header><date class="post-meta meta-date">2013年11月16日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F>文章收藏</a></div><div class=post-content>本文转自：http://my.oschina.net/colorleaf/blog/176569
 这个算说的比较清楚的了，虽然简单但是很有用。收藏一下。
 详解Eclipse断点
 大家肯定都用过Eclipse的调试的功能，在调试的过程中自然也无法避免要使用断点(breakpoint)，但不知是否对Eclipse中各类断点都有所了解。本篇图文并茂地介绍了Eclipse中全部类型的断点，及其设置，希望对大家有所帮助。(2011.11.20)
-1. 示例程序 BreakpointDemo是一个臆造的应用程序，只是为了便于讲解Eclipse中各类断点的使用罢了。其代码如下图所示，  BreakpointDemo主要包含两个方法： [1]setValue，该方法根据指定的次数(count)，对成员变量value进行赋值，值的范围为0-9的随机整数。 [2]printValue，该方法会调用setValue()对value进行赋值，并打印出value的值；但，如果value能被3整除，那么就会抛出IllegalArgumentException异常。
-2. Line Breakpoint Line Breakpoin是最简单的Eclipse断点，只要双击某行代码对应的左侧栏，就对该行设置上断点。此处，对第20行代码设置上Line Breakpoint，如下图所示，  可以为Line Breakpoint设置一个条件，那么当程序运行到该断点时，只有满足设定的条件，才会被中断。右键点击第20行的断点，选择&quot;Breakpoint Properties&hellip;&rdquo;  在弹出的属性对话框中，勾选上&quot;Conditional&rdquo;，然后在文本框中输入&quot;count % 2 == 0&rdquo;。  该条件表示，当程序运行到第20行时，只有当count为偶数时，程序才会被中断。细心地话，你会发现该断点的图标发生了改变，多了一个问号。 
-3. Watchpoint Line Breakpoint关注于程序运行的&quot;过程&rdquo;，大家也常把使用这种断点的调试称为单步调试。但有时候，我们对程序的运行过程不太了解，可能也不太关心，不能确定在什么地方设置断点比较合适，而可能比较关注某个关键变量的变化或使用。此时，就可以为该变量设置一种特殊的断点&ndash;Watchpoint。在此示例，我们最关心的就是成员变量value的值，那么就可以为它设置一个Watchpoint，双击第9行代码对应的左侧栏就可以了。  使用在2中所提及的方法，查看该断点的属性，  默认地，当该变量被访问或它的值被修改时，程序都会被中断。但在本示例中，只希望当对value的值进行修改时程序才需要被中断，所以取消对&quot;Access&quot;的勾选。  这时，我们会发现原来的Watchpoin图标也有变化了。 
-4. Method Breakpoint 与关注对某个变量的访问与修改一样，我们也可以关注程序对某个方法的调用情况，即，可以设置Method Breakpoint。在此处，设置针对方法setValue的Method Breakpoint。同理，双击第11行代码对应的左侧栏即可。  仍然要查看该断点的属性。默认地，只勾选了&quot;Entry&rdquo;，而没有勾选&quot;Exit&rdquo;。  这表示，当刚进入该方法(调用开始)时，程序会被中断；而，离开该方法(调用结束)时，程序并不会被中断。在本示例中，需要同时勾选上&quot;Exit&rdquo;。  点击OK之后，可以看到该断点的图标也有所改变。  根据这里的设置，当程序运行到第20行后会在第12行被中断，尽管这里没有显式的断点，但这就是setValue()方法的入口(Entry)。必须注意地是，程序在运行到第16行时不会被中断，尽管它看起来像是setValue()方法的出口(Exit)。实际上，程序会在第17行被中断，这里才是setValue()调用结束的地方。
-5. Exception Breakpoint 如果，我们期望某个特定异常发生时程序能够被中断，以方便查看当时程序所处的状态。通过设置Exception Breakpoint就能达到这一目标。本示例故意在第23行抛出了IllegalArgumentException异常，我们期望程序运行到此处时会被中断。但我们不直接为此行代码设置Line Breakpoint，而是为IllegalArgumentException设置Exception Breakpoint。设置Exception Breakpoint的方法与其它类型断点都不同，它不能通过双击左侧栏的方式在代码编辑器上直接进行设置。点击Breakpoints视图右上角形如Ji的图标，  会弹出如下所示的对话框，  在其中选中IllegalArgumentException，并点击OK，这时一个Exception Breakpoint就设置好了。 
-小结 上述的Eclipse断点，我们在现实工作中肯定都有意或无意地使用过其中的几种，只是不一定十分了解内情罢了。使用好Eclipse的各种断点，可以把很好地帮助我们分析程序，定位问题。……
-            <p class="readmore"><a href="http://leaver.me/2013/11/16/%E8%97%8F%E5%9B%BE%E6%96%87%E5%B9%B6%E8%8C%82%E8%AF%A6%E8%A7%A3eclipse%E6%96%AD%E7%82%B9/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/09/20/spring%E6%9D%BE%E8%80%A6%E5%90%88%E7%A4%BA%E4%BE%8B/">Spring松耦合示例</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年9月20日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91'>我的翻译</a>
-            
-        </div>
-        
-        <div class="post-content">
-            面向对象设计的理念是把整个系统分成一组可重用的组件，然而，当系统变得越大的时候，尤其是在java中，这最大的对象依赖将会紧紧耦合，以至于非常难以管理和修改，而现在，你可以使用Spring框架扮演一个中间模块的角色，方便高效地管理其他组件依赖
+1. 示例程序 BreakpointDemo是一个臆造的应用程序，只是为了便于讲解Eclipse中各类断点的使用罢了。其代码如下图所示， BreakpointDemo主要包含两个方法： [1]setValue，该方法根据指定的次数(count)，对成员变量value进行赋值，值的范围为0-9的随机整数。 [2]printValue，该方法会调用setValue()对value进行赋值，并打印出value的值；但，如果value能被3整除，那么就会抛出IllegalArgumentException异常。
+2. Line Breakpoint Line Breakpoin是最简单的Eclipse断点，只要双击某行代码对应的左侧栏，就对该行设置上断点。此处，对第20行代码设置上Line Breakpoint，如下图所示， 可以为Line Breakpoint设置一个条件，那么当程序运行到该断点时，只有满足设定的条件，才会被中断。右键点击第20行的断点，选择"Breakpoint Properties&mldr;&rdquo; 在弹出的属性对话框中，勾选上"Conditional&rdquo;，然后在文本框中输入"count % 2 == 0&rdquo;。 该条件表示，当程序运行到第20行时，只有当count为偶数时，程序才会被中断。细心地话，你会发现该断点的图标发生了改变，多了一个问号。
+3. Watchpoint Line Breakpoint关注于程序运行的"过程&rdquo;，大家也常把使用这种断点的调试称为单步调试。但有时候，我们对程序的运行过程不太了解，可能也不太关心，不能确定在什么地方设置断点比较合适，而可能比较关注某个关键变量的变化或使用。此时，就可以为该变量设置一种特殊的断点&ndash;Watchpoint。在此示例，我们最关心的就是成员变量value的值，那么就可以为它设置一个Watchpoint，双击第9行代码对应的左侧栏就可以了。 使用在2中所提及的方法，查看该断点的属性， 默认地，当该变量被访问或它的值被修改时，程序都会被中断。但在本示例中，只希望当对value的值进行修改时程序才需要被中断，所以取消对"Access"的勾选。 这时，我们会发现原来的Watchpoin图标也有变化了。
+4. Method Breakpoint 与关注对某个变量的访问与修改一样，我们也可以关注程序对某个方法的调用情况，即，可以设置Method Breakpoint。在此处，设置针对方法setValue的Method Breakpoint。同理，双击第11行代码对应的左侧栏即可。 仍然要查看该断点的属性。默认地，只勾选了"Entry&rdquo;，而没有勾选"Exit&rdquo;。 这表示，当刚进入该方法(调用开始)时，程序会被中断；而，离开该方法(调用结束)时，程序并不会被中断。在本示例中，需要同时勾选上"Exit&rdquo;。 点击OK之后，可以看到该断点的图标也有所改变。 根据这里的设置，当程序运行到第20行后会在第12行被中断，尽管这里没有显式的断点，但这就是setValue()方法的入口(Entry)。必须注意地是，程序在运行到第16行时不会被中断，尽管它看起来像是setValue()方法的出口(Exit)。实际上，程序会在第17行被中断，这里才是setValue()调用结束的地方。
+5. Exception Breakpoint 如果，我们期望某个特定异常发生时程序能够被中断，以方便查看当时程序所处的状态。通过设置Exception Breakpoint就能达到这一目标。本示例故意在第23行抛出了IllegalArgumentException异常，我们期望程序运行到此处时会被中断。但我们不直接为此行代码设置Line Breakpoint，而是为IllegalArgumentException设置Exception Breakpoint。设置Exception Breakpoint的方法与其它类型断点都不同，它不能通过双击左侧栏的方式在代码编辑器上直接进行设置。点击Breakpoints视图右上角形如Ji的图标， 会弹出如下所示的对话框， 在其中选中IllegalArgumentException，并点击OK，这时一个Exception Breakpoint就设置好了。
+小结 上述的Eclipse断点，我们在现实工作中肯定都有意或无意地使用过其中的几种，只是不一定十分了解内情罢了。使用好Eclipse的各种断点，可以把很好地帮助我们分析程序，定位问题。……<p class=readmore><a href=http://leaver.me/2013/11/16/%E8%97%8F%E5%9B%BE%E6%96%87%E5%B9%B6%E8%8C%82%E8%AF%A6%E8%A7%A3eclipse%E6%96%AD%E7%82%B9/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/09/20/spring%E6%9D%BE%E8%80%A6%E5%90%88%E7%A4%BA%E4%BE%8B/>Spring松耦合示例</a></h1></header><date class="post-meta meta-date">2013年9月20日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91>我的翻译</a></div><div class=post-content>面向对象设计的理念是把整个系统分成一组可重用的组件，然而，当系统变得越大的时候，尤其是在java中，这最大的对象依赖将会紧紧耦合，以至于非常难以管理和修改，而现在，你可以使用Spring框架扮演一个中间模块的角色，方便高效地管理其他组件依赖
 输出生成的例子 看个例子，假设你的项目有一个方法可以输出内容到csv或者json格式，你可能写出这样的代码
 ，然后是实现接口的类
 再写个Json生成的类
@@ -368,342 +82,81 @@ thanks toblue-green-deployment
 然后创建一个Spring bean配置文件，并声明所有的Java对象依赖
 然后通过Spring调用
 以后要改Json格式，直接改一下xml配置文件就行了。能够减少错误
-结论 通过Spring框架的依赖注入，可以优雅的管理对象依赖，更大的灵活性，尤其是对于Java项目非常好用。……
-            <p class="readmore"><a href="http://leaver.me/2013/09/20/spring%E6%9D%BE%E8%80%A6%E5%90%88%E7%A4%BA%E4%BE%8B/">阅读全文</a></p>
-        </div>
-    </article>
-    
-
-    
-
-
-
-<ol class="page-navigator">
-    
-
-    
-    <li  class="current">
-        <a href="http://leaver.me/tags/%E5%BC%80%E5%8F%91/">1</a>
-    </li>
-    
-    <li >
-        <a href="http://leaver.me/tags/%E5%BC%80%E5%8F%91/page/2/">2</a>
-    </li>
-    
-    <li >
-        <a href="http://leaver.me/tags/%E5%BC%80%E5%8F%91/page/3/">3</a>
-    </li>
-    
-    <li >
-        <a href="http://leaver.me/tags/%E5%BC%80%E5%8F%91/page/4/">4</a>
-    </li>
-    
-    <li >
-        <a href="http://leaver.me/tags/%E5%BC%80%E5%8F%91/page/5/">5</a>
-    </li>
-    
-
-    
-    <li class="next">
-        <a href="http://leaver.me/tags/%E5%BC%80%E5%8F%91/page/2/">下一页</a>
-    </li>
-    
-</ol>
-
-
-
-</div>
-
-                </div>
-
-                <div id="secondary">
-    <section class="widget">
-        <form id="search" action='http://leaver.me/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
-      
-      <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="http://leaver.me/">
-      <button type="submit" class="submit icon-search"></button>
-</form>
-    </section>
-    
-    <section class="widget">
-        <h3 class="widget-title">最近文章</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2019 年终总结">2019 年终总结</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/" title="深入理解Raft协议">深入理解Raft协议</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/" title="《非暴力沟通》笔记">《非暴力沟通》笔记</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/10/06/wedding-of-friends/" title="Wedding of Friends">Wedding of Friends</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/09/29/principle-note/" title="Principle Note">Principle Note</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/" title="梦见鲸鱼的那一夜">梦见鲸鱼的那一夜</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/08/20/understand-hong-kong-2/" title="Understand Hong Kong 2">Understand Hong Kong 2</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/08/18/understand-hong-kong-part-1/" title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/" title="错过的都是命，得到的才是人生">错过的都是命，得到的才是人生</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/04/06/recently/" title="Recently">Recently</a>
-    </li>
-    
-</ul>
-    </section>
-
-    
-
-    <section class="widget">
-        <h3 class="widget-title">分类</h3>
-<ul class="widget-list">
-    
-    <li><a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记 (186)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/">我的翻译 (57)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/">文章收藏 (53)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录 (3)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记 (4)</a></li>
-    
-</ul>
-    </section>
-
-    <section class="widget">
-        <h3 class="widget-title">标签</h3>
-<div class="tagcloud">
-    
-    <a href="http://leaver.me/tags/android/">android</a>
-    
-    <a href="http://leaver.me/tags/c/">C＃</a>
-    
-    <a href="http://leaver.me/tags/c&#43;&#43;/">C&#43;&#43;</a>
-    
-    <a href="http://leaver.me/tags/java/">java</a>
-    
-    <a href="http://leaver.me/tags/javascript/">javascript</a>
-    
-    <a href="http://leaver.me/tags/linux/">linux</a>
-    
-    <a href="http://leaver.me/tags/mac/">mac</a>
-    
-    <a href="http://leaver.me/tags/matlab/">matlab</a>
-    
-    <a href="http://leaver.me/tags/maven/">maven</a>
-    
-    <a href="http://leaver.me/tags/mysql/">mysql</a>
-    
-    <a href="http://leaver.me/tags/nextgen-gallery/">NextGEN Gallery</a>
-    
-    <a href="http://leaver.me/tags/php/">php</a>
-    
-    <a href="http://leaver.me/tags/python/">python</a>
-    
-    <a href="http://leaver.me/tags/shell/">shell</a>
-    
-    <a href="http://leaver.me/tags/spring/">spring</a>
-    
-    <a href="http://leaver.me/tags/sql/">sql</a>
-    
-    <a href="http://leaver.me/tags/stackoverflow/">stackoverflow</a>
-    
-    <a href="http://leaver.me/tags/wcf/">WCF</a>
-    
-    <a href="http://leaver.me/tags/web/">web</a>
-    
-    <a href="http://leaver.me/tags/windows/">windows</a>
-    
-    <a href="http://leaver.me/tags/wordpress/">wordpress</a>
-    
-    <a href="http://leaver.me/tags/wpf/">WPF</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/">上海</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/">下载</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
-    
-    <a href="http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/">互联网</a>
-    
-    <a href="http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
-    
-    <a href="http://leaver.me/tags/%E5%88%B6%E5%BA%A6/">制度</a>
-    
-    <a href="http://leaver.me/tags/%E5%89%8D%E7%AB%AF/">前端</a>
-    
-    <a href="http://leaver.me/tags/%E5%8E%9F%E5%88%9B/">原创</a>
-    
-    <a href="http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/">大学</a>
-    
-    <a href="http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/">学习</a>
-    
-    <a href="http://leaver.me/tags/%E5%AE%89%E5%85%A8/">安全</a>
-    
-    <a href="http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/">家庭</a>
-    
-    <a href="http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/">工作</a>
-    
-    <a href="http://leaver.me/tags/%E5%B7%A5%E5%85%B7/">工具</a>
-    
-    <a href="http://leaver.me/tags/%E5%B9%B6%E5%8F%91/">并发</a>
-    
-    <a href="http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/">序列化</a>
-    
-    <a href="http://leaver.me/tags/%E5%BC%80%E5%8F%91/">开发</a>
-    
-    <a href="http://leaver.me/tags/%E5%BF%83%E7%90%86/">心理</a>
-    
-    <a href="http://leaver.me/tags/%E6%80%BB%E7%BB%93/">总结</a>
-    
-    <a href="http://leaver.me/tags/%E6%8A%80%E6%9C%AF/">技术</a>
-    
-    <a href="http://leaver.me/tags/%E6%8F%92%E4%BB%B6/">插件</a>
-    
-    <a href="http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-    
-    <a href="http://leaver.me/tags/%E6%94%B6%E8%97%8F/">收藏</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E5%AD%A6/">数学</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">数据挖掘</a>
-    
-    <a href="http://leaver.me/tags/%E6%96%87%E7%AB%A0/">文章</a>
-    
-    <a href="http://leaver.me/tags/%E6%99%BA%E8%83%BD/">智能</a>
-    
-    <a href="http://leaver.me/tags/%E6%9D%82%E6%96%87/">杂文</a>
-    
-    <a href="http://leaver.me/tags/%E6%AD%A6%E6%B1%89/">武汉</a>
-    
-    <a href="http://leaver.me/tags/%E6%B1%87%E7%BC%96/">汇编</a>
-    
-    <a href="http://leaver.me/tags/%E7%88%B1%E6%83%85/">爱情</a>
-    
-    <a href="http://leaver.me/tags/%E7%90%86%E8%AE%BA/">理论</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%9F%E6%B4%BB/">生活</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/">电子书</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%B5%E5%BD%B1/">电影</a>
-    
-    <a href="http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/">社会</a>
-    
-    <a href="http://leaver.me/tags/%E7%A7%91%E6%8A%80/">科技</a>
-    
-    <a href="http://leaver.me/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
-    
-    <a href="http://leaver.me/tags/%E7%AE%97%E6%B3%95/">算法</a>
-    
-    <a href="http://leaver.me/tags/%E7%BC%96%E7%A8%8B/">编程</a>
-    
-    <a href="http://leaver.me/tags/%E7%BC%96%E8%AF%91/">编译</a>
-    
-    <a href="http://leaver.me/tags/%E7%BF%BB%E8%AF%91/">翻译</a>
-    
-    <a href="http://leaver.me/tags/%E8%81%8C%E4%B8%9A/">职业</a>
-    
-    <a href="http://leaver.me/tags/%E8%AE%B0%E5%BD%95/">记录</a>
-    
-    <a href="http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/">设计</a>
-    
-    <a href="http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/">读书</a>
-    
-    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/">软件</a>
-    
-    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</a>
-    
-    <a href="http://leaver.me/tags/%E8%BF%90%E7%BB%B4/">运维</a>
-    
-    <a href="http://leaver.me/tags/%E9%87%91%E8%9E%8D/">金融</a>
-    
-</div>
-    </section>
-
-    
-<section class="widget">
-    <h3 class="widget-title">友情链接</h3>
-    <ul class="widget-list">
-        
-        <li>
-            <a target="_blank" href="https://www.cppfans.org/" title="C&#43;&#43;爱好者博客">C&#43;&#43;爱好者博客</a>
-        </li>
-        
-        <li>
-            <a target="_blank" href="http://www.kailing.pub" title="KL，每天进步一点点">KL，每天进步一点点</a>
-        </li>
-        
-    </ul>
-</section>
-
-
-    <section class="widget">
-        <h3 class="widget-title">其它</h3>
-        <ul class="widget-list">
-            <li><a href="http://leaver.me/index.xml">文章 RSS</a></li>
-        </ul>
-    </section>
-</div>
-            </div>
-        </div>
-    </div>
-    <footer id="footer">
-    <div class="container">
-        &copy; 2020 <a href="http://leaver.me/">bystander&#39;s blog By bystander</a>.
-        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
-        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
-        
-    </div>
-</footer>
-
-
-
-<a id="rocket" href="#top"></a>
-<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-30961201-3', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-
-
-
-
-
-</body>
-
-</html>
+结论 通过Spring框架的依赖注入，可以优雅的管理对象依赖，更大的灵活性，尤其是对于Java项目非常好用。……<p class=readmore><a href=http://leaver.me/2013/09/20/spring%E6%9D%BE%E8%80%A6%E5%90%88%E7%A4%BA%E4%BE%8B/>阅读全文</a></p></div></article><ol class=page-navigator><li class=current><a href=http://leaver.me/tags/%E5%BC%80%E5%8F%91/>1</a></li><li><a href=http://leaver.me/tags/%E5%BC%80%E5%8F%91/page/2/>2</a></li><li><a href=http://leaver.me/tags/%E5%BC%80%E5%8F%91/page/3/>3</a></li><li><a href=http://leaver.me/tags/%E5%BC%80%E5%8F%91/page/4/>4</a></li><li><a href=http://leaver.me/tags/%E5%BC%80%E5%8F%91/page/5/>5</a></li><li class=next><a href=http://leaver.me/tags/%E5%BC%80%E5%8F%91/page/2/>下一页</a></li></ol></div></div><div id=secondary><section class=widget><form id=search action=http://leaver.me/search/ method=get accept-charset=utf-8 target=_blank _lpchecked=1><input type=text name=q maxlength=20 placeholder=Search>
+<input type=hidden name=sitesearch value=http://leaver.me/>
+<button type=submit class="submit icon-search"></button></form></section><section class=widget><h3 class=widget-title>最近文章</h3><ul class=widget-list><li><a href=http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/ title="2019 年终总结">2019 年终总结</a></li><li><a href=http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/ title=深入理解Raft协议>深入理解Raft协议</a></li><li><a href=http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/ title=《非暴力沟通》笔记>《非暴力沟通》笔记</a></li><li><a href=http://leaver.me/2019/10/06/wedding-of-friends/ title="Wedding of Friends">Wedding of Friends</a></li><li><a href=http://leaver.me/2019/09/29/principle-note/ title="Principle Note">Principle Note</a></li><li><a href=http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/ title=梦见鲸鱼的那一夜>梦见鲸鱼的那一夜</a></li><li><a href=http://leaver.me/2019/08/20/understand-hong-kong-2/ title="Understand Hong Kong 2">Understand Hong Kong 2</a></li><li><a href=http://leaver.me/2019/08/18/understand-hong-kong-part-1/ title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a></li><li><a href=http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/ title=错过的都是命，得到的才是人生>错过的都是命，得到的才是人生</a></li><li><a href=http://leaver.me/2019/04/06/recently/ title=Recently>Recently</a></li></ul></section><section class=widget><h3 class=widget-title>分类</h3><ul class=widget-list><li><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/>学习笔记 (186)</a></li><li><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/>我的翻译 (57)</a></li><li><a href=http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/>文章收藏 (53)</a></li><li><a href=http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/>生活记录 (3)</a></li><li><a href=http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/>读书笔记 (4)</a></li></ul></section><section class=widget><h3 class=widget-title>标签</h3><div class=tagcloud><a href=http://leaver.me/tags/android/>android</a>
+<a href=http://leaver.me/tags/c/>C＃</a>
+<a href=http://leaver.me/tags/c++/>C++</a>
+<a href=http://leaver.me/tags/java/>java</a>
+<a href=http://leaver.me/tags/javascript/>javascript</a>
+<a href=http://leaver.me/tags/linux/>linux</a>
+<a href=http://leaver.me/tags/mac/>mac</a>
+<a href=http://leaver.me/tags/matlab/>matlab</a>
+<a href=http://leaver.me/tags/maven/>maven</a>
+<a href=http://leaver.me/tags/mysql/>mysql</a>
+<a href=http://leaver.me/tags/nextgen-gallery/>NextGEN Gallery</a>
+<a href=http://leaver.me/tags/php/>php</a>
+<a href=http://leaver.me/tags/python/>python</a>
+<a href=http://leaver.me/tags/shell/>shell</a>
+<a href=http://leaver.me/tags/spring/>spring</a>
+<a href=http://leaver.me/tags/sql/>sql</a>
+<a href=http://leaver.me/tags/stackoverflow/>stackoverflow</a>
+<a href=http://leaver.me/tags/wcf/>WCF</a>
+<a href=http://leaver.me/tags/web/>web</a>
+<a href=http://leaver.me/tags/windows/>windows</a>
+<a href=http://leaver.me/tags/wordpress/>wordpress</a>
+<a href=http://leaver.me/tags/wpf/>WPF</a>
+<a href=http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/>上海</a>
+<a href=http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/>下载</a>
+<a href=http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/>中间件</a>
+<a href=http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/>互联网</a>
+<a href=http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/>分布式</a>
+<a href=http://leaver.me/tags/%E5%88%B6%E5%BA%A6/>制度</a>
+<a href=http://leaver.me/tags/%E5%89%8D%E7%AB%AF/>前端</a>
+<a href=http://leaver.me/tags/%E5%8E%9F%E5%88%9B/>原创</a>
+<a href=http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/>大学</a>
+<a href=http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/>学习</a>
+<a href=http://leaver.me/tags/%E5%AE%89%E5%85%A8/>安全</a>
+<a href=http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/>家庭</a>
+<a href=http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/>工作</a>
+<a href=http://leaver.me/tags/%E5%B7%A5%E5%85%B7/>工具</a>
+<a href=http://leaver.me/tags/%E5%B9%B6%E5%8F%91/>并发</a>
+<a href=http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/>序列化</a>
+<a href=http://leaver.me/tags/%E5%BC%80%E5%8F%91/>开发</a>
+<a href=http://leaver.me/tags/%E5%BF%83%E7%90%86/>心理</a>
+<a href=http://leaver.me/tags/%E6%80%BB%E7%BB%93/>总结</a>
+<a href=http://leaver.me/tags/%E6%8A%80%E6%9C%AF/>技术</a>
+<a href=http://leaver.me/tags/%E6%8F%92%E4%BB%B6/>插件</a>
+<a href=http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/>操作系统</a>
+<a href=http://leaver.me/tags/%E6%94%B6%E8%97%8F/>收藏</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E5%AD%A6/>数学</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/>数据库</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/>数据挖掘</a>
+<a href=http://leaver.me/tags/%E6%96%87%E7%AB%A0/>文章</a>
+<a href=http://leaver.me/tags/%E6%99%BA%E8%83%BD/>智能</a>
+<a href=http://leaver.me/tags/%E6%9D%82%E6%96%87/>杂文</a>
+<a href=http://leaver.me/tags/%E6%AD%A6%E6%B1%89/>武汉</a>
+<a href=http://leaver.me/tags/%E6%B1%87%E7%BC%96/>汇编</a>
+<a href=http://leaver.me/tags/%E7%88%B1%E6%83%85/>爱情</a>
+<a href=http://leaver.me/tags/%E7%90%86%E8%AE%BA/>理论</a>
+<a href=http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/>生产力</a>
+<a href=http://leaver.me/tags/%E7%94%9F%E6%B4%BB/>生活</a>
+<a href=http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/>电子书</a>
+<a href=http://leaver.me/tags/%E7%94%B5%E5%BD%B1/>电影</a>
+<a href=http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/>社会</a>
+<a href=http://leaver.me/tags/%E7%A7%91%E6%8A%80/>科技</a>
+<a href=http://leaver.me/tags/%E7%AC%94%E8%AE%B0/>笔记</a>
+<a href=http://leaver.me/tags/%E7%AE%97%E6%B3%95/>算法</a>
+<a href=http://leaver.me/tags/%E7%BC%96%E7%A8%8B/>编程</a>
+<a href=http://leaver.me/tags/%E7%BC%96%E8%AF%91/>编译</a>
+<a href=http://leaver.me/tags/%E7%BF%BB%E8%AF%91/>翻译</a>
+<a href=http://leaver.me/tags/%E8%81%8C%E4%B8%9A/>职业</a>
+<a href=http://leaver.me/tags/%E8%AE%B0%E5%BD%95/>记录</a>
+<a href=http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/>设计</a>
+<a href=http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/>读书</a>
+<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/>软件</a>
+<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/>软件测试</a>
+<a href=http://leaver.me/tags/%E8%BF%90%E7%BB%B4/>运维</a>
+<a href=http://leaver.me/tags/%E9%87%91%E8%9E%8D/>金融</a></div></section><section class=widget><h3 class=widget-title>友情链接</h3><ul class=widget-list><li><a target=_blank href=https://www.cppfans.org/ title=C++爱好者博客>C++爱好者博客</a></li><li><a target=_blank href=http://www.kailing.pub title=KL，每天进步一点点>KL，每天进步一点点</a></li></ul></section><section class=widget><h3 class=widget-title>其它</h3><ul class=widget-list><li><a href=http://leaver.me/index.xml>文章 RSS</a></li></ul></section></div></div></div></div><footer id=footer><div class=container>&copy; 2020 <a href=http://leaver.me/>bystander's blog By bystander</a>.
+Powered by <a rel="nofollow noreferer noopener" href=https://gohugo.io target=_blank>Hugo</a>.
+<a href=https://www.flysnow.org/ target=_blank>Theme</a> based on <a href=https://github.com/flysnow-org/maupassant-hugo target=_blank>maupassant</a>.</div></footer><a id=rocket href=#top></a><script type=text/javascript src="/js/totop.js?v=0.0.0" async></script><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-30961201-3','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></body></html>

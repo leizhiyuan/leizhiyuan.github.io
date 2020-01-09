@@ -1,90 +1,7 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Posts | bystander&#39;s blog</title>
-    <meta property="og:title" content="Posts - bystander&#39;s blog">
-    <meta property="og:type" content="article">
-        
-        
-    <meta name="Keywords" content="">
-    <meta name="description" content="Posts">
-        
-    <meta name="author" content="bystander">
-    <meta property="og:url" content="http://leaver.me/post/">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-
-    <link rel="stylesheet" href='/css/normalize.css'>
-    <link rel="stylesheet" href='/css/style.css'>
-    <link rel="alternate" type="application/rss+xml+xml" href="http://leaver.me/post/index.xml" title="bystander's blog" />
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-    
-
-
-    
-    
-</head>
-
-
-<body>
-    <header id="header" class="clearfix">
-    <div class="container">
-        <div class="col-group">
-            <div class="site-name ">
-                
-                    <a id="logo" href="http://leaver.me/">
-                        bystander&#39;s blog
-                    </a>
-                
-                <p class="description">寻找窄门</p>
-            </div>
-            <div>
-                <nav id="nav-menu" class="clearfix">
-                    <a class="current" href="http://leaver.me/">首页</a>
-                    
-                    <a  href="http://leaver.me/categories" title="目录">目录</a>
-                    
-                    <a  href="http://leaver.me/about/" title="关于我">关于我</a>
-                    
-                </nav>
-            </div>
-        </div>
-    </div>
-</header>
-
-    <div id="body">
-        <div class="container">
-            <div class="col-group">
-
-                <div class="col-8" id="main">
-                    
-<div class="res-cons">
-    
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/01/06/sql%E6%B3%A8%E5%85%A5%E4%B8%AD%E7%9A%84waf%E7%BB%95%E8%BF%87%E6%8A%80%E6%9C%AF/" title="SQL注入中的WAF绕过技术">SQL注入中的WAF绕过技术</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年1月6日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            作者：bystander 博客：http://leaver.me 论坛：法克论坛
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><title>Posts | bystander's blog</title><meta property="og:title" content="Posts - bystander's blog"><meta property="og:type" content="article"><meta name=Keywords content><meta name=description content="Posts"><meta name=author content="bystander"><meta property="og:url" content="http://leaver.me/post/"><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><link rel=stylesheet href=/css/normalize.css><link rel=stylesheet href=/css/style.css><link rel=alternate type=application/rss+xml+xml href=http://leaver.me/post/index.xml title="bystander's blog"><script type=text/javascript src=//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js></script></head><body><header id=header class=clearfix><div class=container><div class=col-group><div class=site-name><a id=logo href=http://leaver.me/>bystander's blog</a><p class=description>寻找窄门</p></div><div><nav id=nav-menu class=clearfix><a class=current href=http://leaver.me/>首页</a>
+<a href=http://leaver.me/categories title=目录>目录</a>
+<a href=http://leaver.me/about/ title=关于我>关于我</a></nav></div></div></div></header><div id=body><div class=container><div class=col-group><div class=col-8 id=main><div class=res-cons><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/01/06/sql%E6%B3%A8%E5%85%A5%E4%B8%AD%E7%9A%84waf%E7%BB%95%E8%BF%87%E6%8A%80%E6%9C%AF/ title=SQL注入中的WAF绕过技术>SQL注入中的WAF绕过技术</a></h1></header><date class="post-meta meta-date">2013年1月6日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></span></div><div class=post-content>作者：bystander 博客：http://leaver.me 论坛：法克论坛
 目录
 1.大小写绕过2.简单编码绕过3.注释绕过4.分隔重写绕过5.Http参数污染(HPP)
 6.使用逻辑运算符or /and绕过7.比较操作符替换8.同功能函数替换9.盲注无需or和and
@@ -95,64 +12,15 @@
 3. 注释绕过这种情况比较少，适用于WAF只是过滤了一次危险的语句，而没有阻断我们的整个查询
 4. 分隔重写绕过还是上面的例子，适用于那种WAF采用了正则表达式的情况，会检测所有的敏感字，而不在乎你写在哪里，有几个就过滤几个。。 我们可以通过注释分开敏感字,这样WAF的正则不起作用了，而带入查询的时候并不影响我们的结果
 再给出一个例子说明用法
-6. 使用逻辑运算符 or /and绕过7. 比较操作符替换包括!= 不等于，&lt;&gt;不等于，&lt; 小于，&gt;大于，这些都可以用来替换=来绕过， 比如上一个例子，要判断是不是74，假设=被过滤，那么我们可以判断是不是大于73，是不是小于75，然后就知道是74了。。很多WAF都会忘了这个。
+6. 使用逻辑运算符 or /and绕过7. 比较操作符替换包括!= 不等于，&lt;>不等于，&lt; 小于，>大于，这些都可以用来替换=来绕过， 比如上一个例子，要判断是不是74，假设=被过滤，那么我们可以判断是不是大于73，是不是小于75，然后就知道是74了。。很多WAF都会忘了这个。
 8. 同功能函数替换Substring()可以用mid(),substr()这些函数来替换，都是用来取字符串的某一位字符的。 Ascii()编码可以用hex(),bin(),也就是16进制和二进制编码替换 Benchmark() 可以用sleep()来替换，这两个使用在基于延时的盲注中，有机会给大家介绍 如果连这些都屏蔽了，还有一种新的方法
 9. 盲注无需or和and比如有这样一个注入点：
-10. 加括号11.缓冲区溢出绕过刚刚写着把这个给忘了。这个是从国外一个博客看到的。……
-        </div>
-        <p class="readmore"><a href="http://leaver.me/2013/01/06/sql%E6%B3%A8%E5%85%A5%E4%B8%AD%E7%9A%84waf%E7%BB%95%E8%BF%87%E6%8A%80%E6%9C%AF/">阅读全文</a></p>
-    </article>
-    
-    
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/01/04/%E8%BF%9C%E7%A8%8B%E7%AE%A1%E7%90%86democ/" title="远程管理Demo(C#)">远程管理Demo(C#)</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年1月4日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            一个C#的通信的例子
-
+10. 加括号11.缓冲区溢出绕过刚刚写着把这个给忘了。这个是从国外一个博客看到的。……</div><p class=readmore><a href=http://leaver.me/2013/01/06/sql%E6%B3%A8%E5%85%A5%E4%B8%AD%E7%9A%84waf%E7%BB%95%E8%BF%87%E6%8A%80%E6%9C%AF/>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/01/04/%E8%BF%9C%E7%A8%8B%E7%AE%A1%E7%90%86democ/ title=远程管理Demo(C#)>远程管理Demo(C#)</a></h1></header><date class="post-meta meta-date">2013年1月4日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></span></div><div class=post-content>一个C#的通信的例子
 1.服务端，服务端通过ip和端口生成客户端之后，点击开始监听后，便开启监听线程持续监听，同时注册断开连接和收到信息的事件。收到来自TcpClient 流中的信息后，解析之，如果是连接信息，就添加到连接列表，这样服务端就可以显示多个客户端了。如果是断开信息，就删掉。如果服务端想要给客户端发消息，就选中该客户，然后填写信息，就会调用连接类的发送方法。
  2.客户端，也就是被控端，被控端通过tcp连接到远端ip，然后发送连接成功状态，随后异步读取。读取到信息后调用解析方式。然后处理。。
-3.服务端如何生成客户端。其实也比较简单。就是写好客户端以后，保存为文本。然后通过CodeDomProvider的相关方法来编译即可。代码如下：……
-        </div>
-        <p class="readmore"><a href="http://leaver.me/2013/01/04/%E8%BF%9C%E7%A8%8B%E7%AE%A1%E7%90%86democ/">阅读全文</a></p>
-    </article>
-    
-    
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2012/12/28/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E5%85%AD%E9%83%A8%E5%88%86/" title="Lambda高手之路第六部分">Lambda高手之路第六部分</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2012年12月28日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91'>我的翻译</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            今天武汉地铁通车了，今天介绍一些新的Lambda设计模式，应该是最后一部分了。
+3.服务端如何生成客户端。其实也比较简单。就是写好客户端以后，保存为文本。然后通过CodeDomProvider的相关方法来编译即可。代码如下：……</div><p class=readmore><a href=http://leaver.me/2013/01/04/%E8%BF%9C%E7%A8%8B%E7%AE%A1%E7%90%86democ/>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2012/12/28/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E5%85%AD%E9%83%A8%E5%88%86/ title=Lambda高手之路第六部分>Lambda高手之路第六部分</a></h1></header><date class="post-meta meta-date">2012年12月28日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91>我的翻译</a></span></div><div class=post-content>今天武汉地铁通车了，今天介绍一些新的Lambda设计模式，应该是最后一部分了。
 本节介绍一些核心有lambda表达式的模式，我不认为他们完全是新的模式，但是至少我还没有看到有人给他们起过名字，我于是决定尝试取个可能好，也可能不好的名字，这样我起码能很容易的给别人描述，有话在先，许多模式相当强大，但是可能会引入潜在的bug，所以小心为上
 复杂的多态
 Lambda表达式也可以被用来创建一些多态（override），而不用使用abstract或者virtual关键字（当然这并不意味着就不能用），考虑如下的代码片段
@@ -169,69 +37,21 @@ Lambda表达式也可以被用来创建一些多态（override），而不用使
 等等，这个模式现在没有优点了。。事实上，这个模式并不特别好写，她还需要多写写代码，但是我们可以使用反射来自动化这个字典的构造，这样我们就会和switch-case一样搞笑了。但是我们的代码更加健壮，并且维护更简单，如果你写switch-case。。你就需要手工添加很多分支语句了。。
 我们看一种可能的实现方法。我通常更倾向于添加一些类型转换，这样就可以方便的使用keys对应的值了。当然，你也可以通过其他方法实现，比如使用一致的方法签名，这里我还是用转换。
 现在看起来好多了，事实上。这个模式节省了我很多时间。这个模式最好的就是：它使你可以写出优雅的插件。通过不同的库扩充功能。为什么。你可以使用该方法来扫描未知的库，这些库符合一些确定的模式。然后包含他们进入你的代码，这样。没有任何问题。其他库的方法就会继承成你的代码里。你所需要做的仅仅如下：
-现在，我们所需要做的就是确定加载的插件，并且添加一些方法来处理这些事事情。最后。可以通过调用LoadPlugin()方法从给定的程序集实例上加载方法。这只是这个模式的一个应用。而我其实还可以做很多。。。比如我们也在JavaScript里面使用。那里可是没有内置的反射的。。……
-        </div>
-        <p class="readmore"><a href="http://leaver.me/2012/12/28/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E5%85%AD%E9%83%A8%E5%88%86/">阅读全文</a></p>
-    </article>
-    
-    
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2012/12/27/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E4%BA%94%E9%83%A8%E5%88%86/" title="Lambda高手之路第五部分">Lambda高手之路第五部分</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2012年12月27日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91'>我的翻译</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            武汉下雪了。。今天介绍Lambda表达式非常有用的情况。。ps:这个高手之路已经翻译了10000多字了。。疼啊。。
+现在，我们所需要做的就是确定加载的插件，并且添加一些方法来处理这些事事情。最后。可以通过调用LoadPlugin()方法从给定的程序集实例上加载方法。这只是这个模式的一个应用。而我其实还可以做很多。。。比如我们也在JavaScript里面使用。那里可是没有内置的反射的。。……</div><p class=readmore><a href=http://leaver.me/2012/12/28/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E5%85%AD%E9%83%A8%E5%88%86/>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2012/12/27/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E4%BA%94%E9%83%A8%E5%88%86/ title=Lambda高手之路第五部分>Lambda高手之路第五部分</a></h1></header><date class="post-meta meta-date">2012年12月27日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91>我的翻译</a></span></div><div class=post-content>武汉下雪了。。今天介绍Lambda表达式非常有用的情况。。ps:这个高手之路已经翻译了10000多字了。。疼啊。。
 一些模式比另一些模式有时候更加合适，真正有用的模式是自定义方法表达式，用爱促使话一些对象的部分，我们考虑下面这种情况。
 我们想要创建一个可以处理多种延迟加载的对象，这意味着即时对象已经被实例化了，我们还没有加载所有请求的资源，一个理由就是防止大量的IO操作。（比如通过网络传输），当我们开始使用数据的时候，我们想要确定数据足够新鲜，现在有一些确定的方法可以做这个。并且最有效的显然是实体框架已经用LINQ解决了延迟加载的问题，Iqueryable仅存储了查询，而没有任何无关的数据。一旦我们请求一个结果。不仅仅构造的查询被执行，同时也被以更高效的方式执行，比如一个在远程数据服务器上的SQL查询。
 在这里，我们仅仅想要看看两种情况的不同点，首先，我们查询，一切就绪，查询应该在已经加载了的数据上进行。
 简单来看，这里我们有两种不他哦你的方法，地一个是我们把数据从数据库里提取出来（也就是Database静态类所做的），然后第二个方法将会过滤从数据库里提取出来的数据。一旦我们将会从我们的第一次查询取得结果，当然我们也可以构造内置的其他方法来重置类的行为，对于工业级的代码，其他的方法也许更加有用。
 另一个例子是初始时间分支，假设我们有一个对象，该对象有个方法叫做Perform(),这个方法可以用来调用一些代码，包含这个方法的对象可以被初始化，初始化有三种方式。
- 通过传递方法来调用 通过传递一些包含这个方法的对象来调用 或者通过传递第一种情况下的序列化以后的信息来调用。  现在我们可以保留所有的三种方式做全局变量。而Perform方法将不得不查看当前的状态（或者是保存在枚举变量里，或者和null进行比较）然后检测被调用的正确的方式，最后调用开始。
+通过传递方法来调用 通过传递一些包含这个方法的对象来调用 或者通过传递第一种情况下的序列化以后的信息来调用。 现在我们可以保留所有的三种方式做全局变量。而Perform方法将不得不查看当前的状态（或者是保存在枚举变量里，或者和null进行比较）然后检测被调用的正确的方式，最后调用开始。
 更好的一种方法是吧Perform()方法写成一个属性，这个属性仅仅允许在类里面进行set，它是一个委托类型，现在我们可以在对应的构造方法里面直接设置这个属性，因此，我们可以不用全局变量，也不用担心这个对象是如何实例化的，这种方法更好。
 看一小段简单的代码。
 即时这个例子看起来如我们所愿被构造了。让阿尔。大多数情况下只使用前两种，但是随着领域特性语言，编译器，日志框架，数据访问层和其他很多情况下，通常有很多方式可以完成，但Lambda表达式也许是最优雅的。
 考虑这种情况，我们可以在函数编程领域体会到即时调用方法表达式的好处，我们可以看到C#中IIFE的一种用法。用的不多。但是我认为真的很好。但不是用在这种情况下。
 我们也可以使用即时调用方法来防止一些确定的非静态的方法被重复调用。这就会出现自定义方法和初始时间分支和IIFE的组合使用了。
-下一节介绍一些新的Lambda设计模式……
-        </div>
-        <p class="readmore"><a href="http://leaver.me/2012/12/27/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E4%BA%94%E9%83%A8%E5%88%86/">阅读全文</a></p>
-    </article>
-    
-    
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2012/12/24/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E5%9B%9B%E9%83%A8%E5%88%86/" title="Lambda高手之路第四部分">Lambda高手之路第四部分</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2012年12月24日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91'>我的翻译</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            首先祝大家平安夜快乐。本篇介绍一些流行的JavaScript模式。为下一篇打基础
+下一节介绍一些新的Lambda设计模式……</div><p class=readmore><a href=http://leaver.me/2012/12/27/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E4%BA%94%E9%83%A8%E5%88%86/>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2012/12/24/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E5%9B%9B%E9%83%A8%E5%88%86/ title=Lambda高手之路第四部分>Lambda高手之路第四部分</a></h1></header><date class="post-meta meta-date">2012年12月24日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91>我的翻译</a></span></div><div class=post-content>首先祝大家平安夜快乐。本篇介绍一些流行的JavaScript模式。为下一篇打基础
 使用/了解JavaScript的一个好处就是函数的高级用法。。在JavaScript里。函数仅仅是对象。他们可以有赋给他们的属性。而在C#中。我们不能做我们可以在JavaScript的全部事情。但是我们仍然可以做些事情。一个原因是JavaScript在函数里给变量以作用域。因此，不得不通过创建函数，大多数情况是匿名的来定位变量。而在C#中。通过使用块，通过花括号来创建作用域
 当然，换种方式来说。C#中，函数也会给变量作用域。通过使用Lambda表达式。我们通过花括号在其里面创建了一个变量。然而。我们也可以局部的创建作用域。
 我们来看看通过使用Lambda表达式可以实现一些在JavaScript里面有用的模式把。
@@ -239,8 +59,8 @@ Lambda表达式也可以被用来创建一些多态（override），而不用使
 这个模式是个老的模式。事实上。回调模式从.net 的第一版就开始使用了。但是是以一种很简单的方式实现的。而现在。通过使用Lambda表达式。闭包，捕获变量等特性能够允许我们写出如下的代码来。
 对于JavaScript程序员会觉得这没什么啊。他们使用这个模式太多了。然而，它非常有用。因为我们可以使用参数作为Ajax相关事件的事件处理器（比如oncompleted，onsuccess），等等。如果你使用LINQ，那么你可能也会用到回调模式的一些东西。举个例子。LINQ的where子句将会在每一次迭代中回调你的查询语句。这只是回调函数的一个例子。在.net的世界里。事件如它名字所暗示的那样。通常是事件处理的首选方法。这有时候很像一个回调。他有两个参数。有一个特殊的关键字和一个类型模式（两个参数分别是sender和arguments，sender通常是object类型。Arguments通常继承自EventArgs） 可以通过+= 和-=给事件添加/删除事件处理程序。
 返回方法 和普通的方法比较。Lambda表达式也可以返回一个方法指针（就是一个委托实例），这意味着我们可以使用Lambda表达式创建/返回一个lambda表达式（或者今年仅是一个已定义好的方法的委托实例），大量的情况下。这个模式也很有用。首先看一下例子。
-代码本应该更短些。我们可以让default如果请求的语言没有找到。只是抛出一个异常即可。不过。这个例子展示了这是一种方法工厂。另一种同等效果的方法是包含一个Hashtable。或者更好的话用Dictionary&lt;K, V&gt;
-即使这看起来似乎有点过度工程化了。但是也许这是方法工厂最好的例子了。毕竟方法简单易扩展，可以被用在很多情况下。这中模式和反射的组合可以是的程序代码更松耦合，更易使用。并且代码更健壮。下图展示了模式的工作流程 
+代码本应该更短些。我们可以让default如果请求的语言没有找到。只是抛出一个异常即可。不过。这个例子展示了这是一种方法工厂。另一种同等效果的方法是包含一个Hashtable。或者更好的话用Dictionary&lt;K, V>
+即使这看起来似乎有点过度工程化了。但是也许这是方法工厂最好的例子了。毕竟方法简单易扩展，可以被用在很多情况下。这中模式和反射的组合可以是的程序代码更松耦合，更易使用。并且代码更健壮。下图展示了模式的工作流程
 自定义方法 自定义方法模式一个JavaScript中普遍的技术。可以用在代码中提高性能和健壮性，这种模式的背后思想是方法被设置为一个属性。于是可以和其他方法非常方便的交换。我们看一下具体的代码
 这段代码做了什么？好吧。第一种情况下，我们得到第一个素数。也就是2.虽然这很显而易见。我们可以体征我们的算法默认来排除掉所有的偶数。这就加速我们的算法。但是我们依然能够得到开始的偶素数2.我们就可以通过调用NextPrime方法来获得素数了。我们就可以在第二部分里有话我们的算了。
 我们已经看到这种写法可以优化性能。我们可能一下这个例子
@@ -265,69 +85,21 @@ Ok了。
 有人也许认为这不是一个巨大的性能提高，但是这仅仅是一个小例子，在一些复杂的代码里，这会节省很多时间，尤其是代码越来越复杂的情况下。
 另外（我认为这是最主要的原因），代码更加容易维护（如果你了解这个模式的话）没有了不必要的控制逻辑，程序员可以更加专注于重要的东西—调用这个自动保存的具体操作
 在JavaScript中，像初始时间分支模式被用在很多性能检测上（比如浏览器检测）不去管浏览器检测实际上是很邪恶的，并且不应该在任何网页上检测用户的浏览器， 性能检测非常有用，通常和这种模式一起组合使用，这也是Jquery用来对Ajax请求检测需要的正确对象的方法。
-下一部分介绍Lambda表达式超级有用的情况，同样圣诞节快乐。……
-        </div>
-        <p class="readmore"><a href="http://leaver.me/2012/12/24/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E5%9B%9B%E9%83%A8%E5%88%86/">阅读全文</a></p>
-    </article>
-    
-    
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2012/12/20/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E4%B8%89%E9%83%A8%E5%88%86/" title="Lambda高手之路第三部分">Lambda高手之路第三部分</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2012年12月20日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91'>我的翻译</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            背后的秘密-MSIL
-通过著名的LINQPad，我们可以更深入的查看MSIL代码而没有任何秘密。下图是一个LINQPad的使用截图 
+下一部分介绍Lambda表达式超级有用的情况，同样圣诞节快乐。……</div><p class=readmore><a href=http://leaver.me/2012/12/24/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E5%9B%9B%E9%83%A8%E5%88%86/>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2012/12/20/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E4%B8%89%E9%83%A8%E5%88%86/ title=Lambda高手之路第三部分>Lambda高手之路第三部分</a></h1></header><date class="post-meta meta-date">2012年12月20日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91>我的翻译</a></span></div><div class=post-content>背后的秘密-MSIL
+通过著名的LINQPad，我们可以更深入的查看MSIL代码而没有任何秘密。下图是一个LINQPad的使用截图
 我们会看三个例子，第一个Lambda表达式如下：
 对应的普通函数是这样的
 生成的MSIL代码片段如下：
 最大的不同是方法的名称用法不同。而不是声明。事实上。声明是完全一样的。编译器在类里面创建了一个新的方法来实现这个方法。这没什么新东西，仅仅是为了我们使用Lambda表达式方便代码编写。从MSIL代码中，我们做了同样的事情。在当前对象里调用了一个方法。
 我们在下图里演示一下编译器所做的修改。在这个图例。我们可以看到编译器把Lambda表达式移动成了一个固定的方法。
- 第二个例子将展示Lambda表达式真正的奇妙之处，在这个例子里。我们既使用了有着全局变量的普通方法也使用了有捕获变量的Lambda表达式。代码如下
+第二个例子将展示Lambda表达式真正的奇妙之处，在这个例子里。我们既使用了有着全局变量的普通方法也使用了有捕获变量的Lambda表达式。代码如下
 没什么不同的似乎。关键是：lambda表达式如何被编译器处理
 和第一个例子一样。机制相同。编译器把lambda表达式移动到一个方法里。但是不同的是，编译器这次还生成了一个类。编译器为我们的lambda表达式生成的方法会放在类里，这就给了捕获的变量一个全局的作用域，通过这样。Lambda表达式可以访问局部变量。因为在MSIL里。它是类实例里面的一个全局变量。
 所有的变量因此就可以在新生成的类的对象里赋值/读取了。这解决了变量之间的引用问题。（其实就是只保留了对该类实例的引用。）编译器也足够智能之会把这些捕获的变量放到类里面。因此，当我们使用Lambda的时候才没有太大的性能问题。无论如何。注意。由于保持了对lambda表达式的引用，因此可能造成内存泄漏。只要方法还在。变量就仍然存活。显而易见。而现在我们知道了原因。
-我们再次用图示来说明。这这种闭包情况下里。不仅仅方法会被移动。捕获的变量也会被移动。所有被移动了的对象会被放到一个新生成的类里。因此一个没有名称的类就隐式的出现了。 
-下一节将是映射流行的JavaScrpit模式。……
-        </div>
-        <p class="readmore"><a href="http://leaver.me/2012/12/20/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E4%B8%89%E9%83%A8%E5%88%86/">阅读全文</a></p>
-    </article>
-    
-    
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2012/12/19/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86/" title="Lambda高手之路第二部分">Lambda高手之路第二部分</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2012年12月19日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91'>我的翻译</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            闭包的影响 为了展示闭包的影响，我们看下面这个例子。
+我们再次用图示来说明。这这种闭包情况下里。不仅仅方法会被移动。捕获的变量也会被移动。所有被移动了的对象会被放到一个新生成的类里。因此一个没有名称的类就隐式的出现了。
+下一节将是映射流行的JavaScrpit模式。……</div><p class=readmore><a href=http://leaver.me/2012/12/20/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E4%B8%89%E9%83%A8%E5%88%86/>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2012/12/19/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86/ title=Lambda高手之路第二部分>Lambda高手之路第二部分</a></h1></header><date class="post-meta meta-date">2012年12月19日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91>我的翻译</a></span></div><div class=post-content>闭包的影响 为了展示闭包的影响，我们看下面这个例子。
 这个问题很怪，我在我的JavaScript课程上经常问我的学生。95%的学生会说。显然按钮0显示0，按钮1显示1，等等。而不足5%的学生学习了闭包之后会明白。所有的按钮都会显示10.
 局部变量i的值改变了。并且等于buttons.Length。也就是10了。想要避免这个诡异的情况也很简单。如下就行了。
 问题解决了，但是index变量是一个值类型，因此保留了“全局”i的一个拷贝
@@ -345,33 +117,8 @@ Lambda表达式的性能 有一个很大的问题：Lambda表达式有多快？�
 如果我们运行这个测试程序。我们会发现Lambda表达式并不总是比普通方法差。我们惊奇的是有时候甚至Lambda表达式更快一些。然而，在有闭包的情况下，，就不对了。这就是说大多数情况下我们可以毫不犹豫的使用lambda表达式。当使用闭包的时候会出现一点点的性能损失，不过还好，下一节会讲述性能损失的几个原因。 下面是测试输出的结果表
 Test Lambda [ms] Normal [ms] 0 45+-1 46+-1 1 44+-1 46+-2 2 49+-3 45+-2 3 48+-2 45+-2
 下图是上表的结果，我们可以看得到普通的方法和Lambda表达式基本上限差不多。当使用Lambda表达式的时候没有太大的性能损失。
-
-第三部分会介绍背后的秘密-MSIL……
-        </div>
-        <p class="readmore"><a href="http://leaver.me/2012/12/19/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86/">阅读全文</a></p>
-    </article>
-    
-    
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2012/12/18/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86/" title="Lambda高手之路第一部分">Lambda高手之路第一部分</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2012年12月18日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            好长时间没发技术文章了，恰好看到一篇非常详细的Lambda文章。一边翻译一边学习。题目好像有点霸气。。
+第三部分会介绍背后的秘密-MSIL……</div><p class=readmore><a href=http://leaver.me/2012/12/19/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86/>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2012/12/18/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86/ title=Lambda高手之路第一部分>Lambda高手之路第一部分</a></h1></header><date class="post-meta meta-date">2012年12月18日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></span></div><div class=post-content>好长时间没发技术文章了，恰好看到一篇非常详细的Lambda文章。一边翻译一边学习。题目好像有点霸气。。
 介绍 Lambda表达式是使代码更加动态，易于扩展并且更加快速（看完本文你就知道原因了）的强有力的工具。也可以用来降低潜在的错误。同时可以利用静态输入和智能提示，就像VS里一样。
  Lambda表达式在.net framework 3.5中提出来。并且在LINQ和ASP.NET MVC内部的一些技术中扮演了相当重要的角色。如果你考虑一下ASP.NET MVC中各类控件的实现。你就发现。奥妙就是他们大多使用了Lambda表达式。和Lambda表达式一起，使用Html扩展方法将会使得在后台创建模型成为可能。
 本文会讲到如下的知识。
@@ -381,41 +128,17 @@ Test Lambda [ms] Normal [ms] 0 45+-1 46+-1 1 44+-1 46+-2 2 49+-3 45+-2 3 48+-2 4
 背景知识-什么是Lambda表达式 在C#1.0中，委托被提出了，它使得传递函数成为可能，一句话就是委托就是强类型的函数指针，但委托比指针更强大。一般传递一个函数需要如下几步。 1. 写一个委托（就像一个类）包含返回类型和参数类型 2. 使用委托作为某一个函数的参数类型，这样，该函数就可以接受和委托描述的有着相同签名的函数了 3. 将一个委托类型的函数传递给委托，创建一个委托实例。
  如果听起来很复杂，确实本来很复杂，但这是必需的。（虽然不是造火箭，但是比你认为的要更多的代码），然而步骤三不是必需的，编译器会为你做他，但是步骤1和2却是必不可少的。
  幸运的是C#2.0出现了泛型，现在我们也可以写泛型类，方法，更重要的是，泛型委托，然而，直到.net framework 3.5的时候。微软意识到实际上只有两种泛型委托（当然有一些不同的重载），会覆盖99%的使用情况：
-1.Action 没有任何输入参数，也没有输出参数。 2.Action&lt;t1,…t16&gt; 需要1-16个参数，没有输出参数。 3.Func&lt;t1….t16,tout&gt;需要0-16个参数，一个输出参数
+1.Action 没有任何输入参数，也没有输出参数。 2.Action&lt;t1,…t16> 需要1-16个参数，没有输出参数。 3.Func&lt;t1….t16,tout>需要0-16个参数，一个输出参数
  Action和其对应的泛型版本（仅仅是一个动作，执行一些事情）返回void的时候。Func则可以返回最后一个参数指定的类型，通过这两个委托类型，我们事实上，大部分情况下。前面提到的三步中的第一部就不用写的。而第二步仍然需要。
  那么如果我们想要运行代码的时候怎么做呢。在C#2.0中问题已经可以解决了。在这个版本里。我们可以创建委托方法，也就是一个匿名方法，然后这个语法一直未能流行起来，一个相当简化的匿名方法的版本类似这样：
 为了提高这种语法，欢迎来到Lambda表达式的国度。首先，这个Lambda名字怎么来的？事实上。来自于数学上的λ演算，更准确的说他是数学中一个正式的系统。用于通过变量绑定和替换来进行表达式计算，所以我们有0-N个输入参数和一个返回值，而在编程中，也可以没有返回值
 我们看一下Lambda表达式的一些例子 从上面的代码段里我们可以学到一些东西
- 如果我们只有一个输入参数，我们可以省略() 如果我们有一个输入参数，并且向返回一个，那么我们可以省略{}和return关键字 我们可以让我们的Lambda表达式异步执行，只要加上async关键字就可以了 Var关键字一般都不可以用，只有在极少的情况下有才可以。 当然我们可以使用像平常那样使用var，如果我们指定了参数类型，这是可选的。因为类型可以从委托的类型中推断出来。而下面的情况都是错误的。请看下面的例子   大部分基本情况我们都知道。但是有些相当cool的东西（这使得他们在很多情况下很有用），我们考虑下面的代码片段
+如果我们只有一个输入参数，我们可以省略() 如果我们有一个输入参数，并且向返回一个，那么我们可以省略{}和return关键字 我们可以让我们的Lambda表达式异步执行，只要加上async关键字就可以了 Var关键字一般都不可以用，只有在极少的情况下有才可以。 当然我们可以使用像平常那样使用var，如果我们指定了参数类型，这是可选的。因为类型可以从委托的类型中推断出来。而下面的情况都是错误的。请看下面的例子  大部分基本情况我们都知道。但是有些相当cool的东西（这使得他们在很多情况下很有用），我们考虑下面的代码片段
  这是可以的。因此你可以使用其他的变量。这比你想象的要更特殊。因为这里出现了捕获变量。这使得出现了一个闭包，考虑下面的情况。
  猜猜看这段代码会发生什么。首先我们创建了一个局部变量。和两个lambda表达式，第一额Lambda表达式展示在其他局部区域里访问局部变量是可以的。这已经很让人难以置信了。这意味着我们想要保护一个变量，但事实上他仍然可以在其他方法里被访问。而不论方法是被定义在内部还是其他类的里。
  而第二个Lambda表达式则模拟了一个Lambda表达式可以修改外部域变量。这意味着我们可以在其他方法里修改我们的局部变量，仅仅需要传一个在对应域里创建好的Lambda表达式就可以了。因此，我认为闭包有点魔幻的色彩了。就像并行编程一样。可能导致未期望的结果。就像在并行编程中的竞争情况。
-为了展示一下未期望的结果。欢迎期待下一篇。。……
-        </div>
-        <p class="readmore"><a href="http://leaver.me/2012/12/18/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86/">阅读全文</a></p>
-    </article>
-    
-    
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2012/12/10/%E4%BB%8E%E7%9B%B8%E4%BA%B2%E5%BB%B6%E4%BC%B8%E5%87%BA%E7%9A%84%E5%A9%9A%E6%81%8B%E6%84%8F%E4%B9%89/" title="从相亲延伸出的婚恋意义">从相亲延伸出的婚恋意义</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2012年12月10日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F'>文章收藏</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            相亲现在挺火的。。
+为了展示一下未期望的结果。欢迎期待下一篇。。……</div><p class=readmore><a href=http://leaver.me/2012/12/18/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86/>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2012/12/10/%E4%BB%8E%E7%9B%B8%E4%BA%B2%E5%BB%B6%E4%BC%B8%E5%87%BA%E7%9A%84%E5%A9%9A%E6%81%8B%E6%84%8F%E4%B9%89/ title=从相亲延伸出的婚恋意义>从相亲延伸出的婚恋意义</a></h1></header><date class="post-meta meta-date">2012年12月10日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F>文章收藏</a></span></div><div class=post-content>相亲现在挺火的。。
 文章来自xiuloveshow
 老妈说：“妈希望你找个家庭条件好点儿的，以后少吃苦，别走老妈的路！”。老爸说：“老爸没别的要求，就希望你找个家庭和睦的，这样的家庭教育出来的子女各方面都不会差到哪儿去，家庭条件爸不是特别看重”。老哥说：”这么大个村儿就你一个单身了，小心被剩下！“。朋友说：”咋总是忙着给别人介绍，赶紧把自己推销出去再说！”我说：我想找个在我不开心的时候，什么都不用做，就静静的呆在我旁边，即使是看着我哭也好。
 三毛说：看得不顺眼的话，千万富翁也不嫁；看得中意，亿万富翁也嫁。张小娴说：你走，我不送你。你来，无论多大风多大雨，我都要去接你。史铁生说：爱情就是在追求喜欢和爱，这二者同时达到便是爱的理想状态，爱就是一种理想。我说：嫁与不嫁，送与不送，喜欢与爱，我只想用我自己的方式去做人生最重要的选择，这种东西没有参数值，用完一次便没有了！
@@ -425,32 +148,8 @@ Test Lambda [ms] Normal [ms] 0 45+-1 46+-1 1 44+-1 46+-2 2 49+-3 45+-2 3 48+-2 4
 如史铁生所说，爱乃一种理想。即为理想凭努力不一定能达到。喜欢一个人和爱一个人是完全不同的两种境界，喜欢一个人，当激情用尽之时，就只有靠着那张印着两个人照片的结婚证来维持彼此的关系，这种关系完全靠法律来维系。爱一个人，当你生老病死，激情褪去之后依然想着跟你白头到老。这些恐怕是一张房产证换不来的细水长流般的幸福。关于物质和精神，关于爱和不爱。物质已经主导了我们的价值取向，我们不再自已。物质可以让人放弃精神随时转变自身角色，爱也会因为物质变得不爱了。
 我已经很久没有听到关于爱的序曲了。物质可以这样轻易的扭曲爱的意义，我们追求的幸福到底为何物？ 当年因物质放弃了最宝贵的东西，最稀有的精神支撑，当你得到了你所有物质的满足，物质填充了你的欲望，你能坦然的对自己说你很幸福？当你开着宝马，驾着良驹，住着豪宅，驱着游艇，是否我们就幸福了？
 我努力学习，认真工作，享受音乐，沉侵阅读，爱好写作，喜欢画画，偶尔给老爸老妈给好朋友煲电话粥！我不依赖任何人，我不向任何人屈服！面对机会我不放弃，面对感情拿得起放得下，面对亲情我感动无疑！喜欢倾听，喜欢跟人交往，喜欢跟老人交谈…。消费过后还有金钱结余，偶尔向文字倾吐心声。继续等待着那个可以说话的人出现。自创的理想也可以很诗意！
-我希望的婚恋观如同我的生活般平静，如果你能走进我的世界，如果你懂我的世界，我们可以无话不谈。但似乎这变成了一种奢侈，我们就是简单的无话可说！你在你的世界游历，我在我的世界漫步，踽踽独行有何不可！……
-        </div>
-        <p class="readmore"><a href="http://leaver.me/2012/12/10/%E4%BB%8E%E7%9B%B8%E4%BA%B2%E5%BB%B6%E4%BC%B8%E5%87%BA%E7%9A%84%E5%A9%9A%E6%81%8B%E6%84%8F%E4%B9%89/">阅读全文</a></p>
-    </article>
-    
-    
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2012/12/08/3%E5%88%86%E9%92%9F%E7%90%86%E8%A7%A3lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="3分钟理解Lambda表达式">3分钟理解Lambda表达式</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2012年12月8日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91'>我的翻译</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            1.什么是Lambda表达式
+我希望的婚恋观如同我的生活般平静，如果你能走进我的世界，如果你懂我的世界，我们可以无话不谈。但似乎这变成了一种奢侈，我们就是简单的无话可说！你在你的世界游历，我在我的世界漫步，踽踽独行有何不可！……</div><p class=readmore><a href=http://leaver.me/2012/12/10/%E4%BB%8E%E7%9B%B8%E4%BA%B2%E5%BB%B6%E4%BC%B8%E5%87%BA%E7%9A%84%E5%A9%9A%E6%81%8B%E6%84%8F%E4%B9%89/>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2012/12/08/3%E5%88%86%E9%92%9F%E7%90%86%E8%A7%A3lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/ title=3分钟理解Lambda表达式>3分钟理解Lambda表达式</a></h1></header><date class="post-meta meta-date">2012年12月8日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91>我的翻译</a></span></div><div class=post-content>1.什么是Lambda表达式
 Lambda表达式是一个匿名方法，通常在LINQ中被用来创建委托
 简单来说。它是一个没有声明，没有访问修饰符，没有返回值。甚至没有名字的方法。
  2.为什么我们需要使用Lambda表达式？或者说为什么我们要写一个没有名字的函数？
@@ -460,403 +159,86 @@ Lambda表达式是一个匿名方法，通常在LINQ中被用来创建委托
 2.当阅读代码的时候。直接就可以看到被调用函数的代码，不用去别的地方。
 Lambda表示应该短些。太复杂了。可读性就下降了
  如果编写Lambda表达式
-Lambda基本的定义是：参数=&gt;执行代码
+Lambda基本的定义是：参数=>执行代码
 举个例子
 n是输入参数 n % 2 == 1 是函数体
 你可以读作：给这个匿名方法传入一个参数n，如果n是奇数就返回true
  使用该Lambda的例子
-ok.基本的Lambda表达式就是这样了。……
-        </div>
-        <p class="readmore"><a href="http://leaver.me/2012/12/08/3%E5%88%86%E9%92%9F%E7%90%86%E8%A7%A3lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/">阅读全文</a></p>
-    </article>
-    
-    
-    
-
-
-
-<ol class="page-navigator">
-    
-    <li class="prev">
-        <a href="http://leaver.me/post/page/15/">上一页</a>
-    </li>
-    
-
-    
-
-    
-        
-        
-    
-    
-
-    
-        
-        
-        <li >
-            <a href="http://leaver.me/post/">1</a>
-        </li>
-        
-    
-        
-        <li>
-            <span>...</span>
-        </li>
-        
-    
-        
-        
-        <li >
-            <a href="http://leaver.me/post/page/14/">14</a>
-        </li>
-        
-    
-        
-        
-        <li >
-            <a href="http://leaver.me/post/page/15/">15</a>
-        </li>
-        
-    
-        
-        
-        <li  class="current">
-            <a href="http://leaver.me/post/page/16/">16</a>
-        </li>
-        
-    
-        
-        
-        <li >
-            <a href="http://leaver.me/post/page/17/">17</a>
-        </li>
-        
-    
-        
-        
-        <li >
-            <a href="http://leaver.me/post/page/18/">18</a>
-        </li>
-        
-    
-        
-        <li>
-            <span>...</span>
-        </li>
-        
-    
-        
-        
-        <li >
-            <a href="http://leaver.me/post/page/32/">32</a>
-        </li>
-        
-    
-
-    
-    
-
-    <li class="next">
-        <a href="http://leaver.me/post/page/17/">下一页</a>
-    </li>
-    
-</ol>
-
-
-
-
-</div>
-
-                </div>
-
-                <div id="secondary">
-    <section class="widget">
-        <form id="search" action='http://leaver.me/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
-      
-      <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="http://leaver.me/">
-      <button type="submit" class="submit icon-search"></button>
-</form>
-    </section>
-    
-    <section class="widget">
-        <h3 class="widget-title">最近文章</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2019 年终总结">2019 年终总结</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/" title="深入理解Raft协议">深入理解Raft协议</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/" title="《非暴力沟通》笔记">《非暴力沟通》笔记</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/10/06/wedding-of-friends/" title="Wedding of Friends">Wedding of Friends</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/09/29/principle-note/" title="Principle Note">Principle Note</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/" title="梦见鲸鱼的那一夜">梦见鲸鱼的那一夜</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/08/20/understand-hong-kong-2/" title="Understand Hong Kong 2">Understand Hong Kong 2</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/08/18/understand-hong-kong-part-1/" title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/" title="错过的都是命，得到的才是人生">错过的都是命，得到的才是人生</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/04/06/recently/" title="Recently">Recently</a>
-    </li>
-    
-</ul>
-    </section>
-
-    
-
-    <section class="widget">
-        <h3 class="widget-title">分类</h3>
-<ul class="widget-list">
-    
-    <li><a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记 (186)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/">我的翻译 (57)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/">文章收藏 (53)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录 (3)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记 (4)</a></li>
-    
-</ul>
-    </section>
-
-    <section class="widget">
-        <h3 class="widget-title">标签</h3>
-<div class="tagcloud">
-    
-    <a href="http://leaver.me/tags/android/">android</a>
-    
-    <a href="http://leaver.me/tags/c/">C＃</a>
-    
-    <a href="http://leaver.me/tags/c&#43;&#43;/">C&#43;&#43;</a>
-    
-    <a href="http://leaver.me/tags/java/">java</a>
-    
-    <a href="http://leaver.me/tags/javascript/">javascript</a>
-    
-    <a href="http://leaver.me/tags/linux/">linux</a>
-    
-    <a href="http://leaver.me/tags/mac/">mac</a>
-    
-    <a href="http://leaver.me/tags/matlab/">matlab</a>
-    
-    <a href="http://leaver.me/tags/maven/">maven</a>
-    
-    <a href="http://leaver.me/tags/mysql/">mysql</a>
-    
-    <a href="http://leaver.me/tags/nextgen-gallery/">NextGEN Gallery</a>
-    
-    <a href="http://leaver.me/tags/php/">php</a>
-    
-    <a href="http://leaver.me/tags/python/">python</a>
-    
-    <a href="http://leaver.me/tags/shell/">shell</a>
-    
-    <a href="http://leaver.me/tags/spring/">spring</a>
-    
-    <a href="http://leaver.me/tags/sql/">sql</a>
-    
-    <a href="http://leaver.me/tags/stackoverflow/">stackoverflow</a>
-    
-    <a href="http://leaver.me/tags/wcf/">WCF</a>
-    
-    <a href="http://leaver.me/tags/web/">web</a>
-    
-    <a href="http://leaver.me/tags/windows/">windows</a>
-    
-    <a href="http://leaver.me/tags/wordpress/">wordpress</a>
-    
-    <a href="http://leaver.me/tags/wpf/">WPF</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/">上海</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/">下载</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
-    
-    <a href="http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/">互联网</a>
-    
-    <a href="http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
-    
-    <a href="http://leaver.me/tags/%E5%88%B6%E5%BA%A6/">制度</a>
-    
-    <a href="http://leaver.me/tags/%E5%89%8D%E7%AB%AF/">前端</a>
-    
-    <a href="http://leaver.me/tags/%E5%8E%9F%E5%88%9B/">原创</a>
-    
-    <a href="http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/">大学</a>
-    
-    <a href="http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/">学习</a>
-    
-    <a href="http://leaver.me/tags/%E5%AE%89%E5%85%A8/">安全</a>
-    
-    <a href="http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/">家庭</a>
-    
-    <a href="http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/">工作</a>
-    
-    <a href="http://leaver.me/tags/%E5%B7%A5%E5%85%B7/">工具</a>
-    
-    <a href="http://leaver.me/tags/%E5%B9%B6%E5%8F%91/">并发</a>
-    
-    <a href="http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/">序列化</a>
-    
-    <a href="http://leaver.me/tags/%E5%BC%80%E5%8F%91/">开发</a>
-    
-    <a href="http://leaver.me/tags/%E5%BF%83%E7%90%86/">心理</a>
-    
-    <a href="http://leaver.me/tags/%E6%80%BB%E7%BB%93/">总结</a>
-    
-    <a href="http://leaver.me/tags/%E6%8A%80%E6%9C%AF/">技术</a>
-    
-    <a href="http://leaver.me/tags/%E6%8F%92%E4%BB%B6/">插件</a>
-    
-    <a href="http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-    
-    <a href="http://leaver.me/tags/%E6%94%B6%E8%97%8F/">收藏</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E5%AD%A6/">数学</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">数据挖掘</a>
-    
-    <a href="http://leaver.me/tags/%E6%96%87%E7%AB%A0/">文章</a>
-    
-    <a href="http://leaver.me/tags/%E6%99%BA%E8%83%BD/">智能</a>
-    
-    <a href="http://leaver.me/tags/%E6%9D%82%E6%96%87/">杂文</a>
-    
-    <a href="http://leaver.me/tags/%E6%AD%A6%E6%B1%89/">武汉</a>
-    
-    <a href="http://leaver.me/tags/%E6%B1%87%E7%BC%96/">汇编</a>
-    
-    <a href="http://leaver.me/tags/%E7%88%B1%E6%83%85/">爱情</a>
-    
-    <a href="http://leaver.me/tags/%E7%90%86%E8%AE%BA/">理论</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%9F%E6%B4%BB/">生活</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/">电子书</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%B5%E5%BD%B1/">电影</a>
-    
-    <a href="http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/">社会</a>
-    
-    <a href="http://leaver.me/tags/%E7%A7%91%E6%8A%80/">科技</a>
-    
-    <a href="http://leaver.me/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
-    
-    <a href="http://leaver.me/tags/%E7%AE%97%E6%B3%95/">算法</a>
-    
-    <a href="http://leaver.me/tags/%E7%BC%96%E7%A8%8B/">编程</a>
-    
-    <a href="http://leaver.me/tags/%E7%BC%96%E8%AF%91/">编译</a>
-    
-    <a href="http://leaver.me/tags/%E7%BF%BB%E8%AF%91/">翻译</a>
-    
-    <a href="http://leaver.me/tags/%E8%81%8C%E4%B8%9A/">职业</a>
-    
-    <a href="http://leaver.me/tags/%E8%AE%B0%E5%BD%95/">记录</a>
-    
-    <a href="http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/">设计</a>
-    
-    <a href="http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/">读书</a>
-    
-    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/">软件</a>
-    
-    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</a>
-    
-    <a href="http://leaver.me/tags/%E8%BF%90%E7%BB%B4/">运维</a>
-    
-    <a href="http://leaver.me/tags/%E9%87%91%E8%9E%8D/">金融</a>
-    
-</div>
-    </section>
-
-    
-<section class="widget">
-    <h3 class="widget-title">友情链接</h3>
-    <ul class="widget-list">
-        
-        <li>
-            <a target="_blank" href="https://www.cppfans.org/" title="C&#43;&#43;爱好者博客">C&#43;&#43;爱好者博客</a>
-        </li>
-        
-        <li>
-            <a target="_blank" href="http://www.kailing.pub" title="KL，每天进步一点点">KL，每天进步一点点</a>
-        </li>
-        
-    </ul>
-</section>
-
-
-    <section class="widget">
-        <h3 class="widget-title">其它</h3>
-        <ul class="widget-list">
-            <li><a href="http://leaver.me/index.xml">文章 RSS</a></li>
-        </ul>
-    </section>
-</div>
-            </div>
-        </div>
-    </div>
-    <footer id="footer">
-    <div class="container">
-        &copy; 2020 <a href="http://leaver.me/">bystander&#39;s blog By bystander</a>.
-        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
-        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
-        
-    </div>
-</footer>
-
-
-
-<a id="rocket" href="#top"></a>
-<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-30961201-3', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-
-
-
-
-
-</body>
-
-</html>
+ok.基本的Lambda表达式就是这样了。……</div><p class=readmore><a href=http://leaver.me/2012/12/08/3%E5%88%86%E9%92%9F%E7%90%86%E8%A7%A3lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/>阅读全文</a></p></article><ol class=page-navigator><li class=prev><a href=http://leaver.me/post/page/15/>上一页</a></li><li><a href=http://leaver.me/post/>1</a></li><li><span>...</span></li><li><a href=http://leaver.me/post/page/14/>14</a></li><li><a href=http://leaver.me/post/page/15/>15</a></li><li class=current><a href=http://leaver.me/post/page/16/>16</a></li><li><a href=http://leaver.me/post/page/17/>17</a></li><li><a href=http://leaver.me/post/page/18/>18</a></li><li><span>...</span></li><li><a href=http://leaver.me/post/page/32/>32</a></li><li class=next><a href=http://leaver.me/post/page/17/>下一页</a></li></ol></div></div><div id=secondary><section class=widget><form id=search action=http://leaver.me/search/ method=get accept-charset=utf-8 target=_blank _lpchecked=1><input type=text name=q maxlength=20 placeholder=Search>
+<input type=hidden name=sitesearch value=http://leaver.me/>
+<button type=submit class="submit icon-search"></button></form></section><section class=widget><h3 class=widget-title>最近文章</h3><ul class=widget-list><li><a href=http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/ title="2019 年终总结">2019 年终总结</a></li><li><a href=http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/ title=深入理解Raft协议>深入理解Raft协议</a></li><li><a href=http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/ title=《非暴力沟通》笔记>《非暴力沟通》笔记</a></li><li><a href=http://leaver.me/2019/10/06/wedding-of-friends/ title="Wedding of Friends">Wedding of Friends</a></li><li><a href=http://leaver.me/2019/09/29/principle-note/ title="Principle Note">Principle Note</a></li><li><a href=http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/ title=梦见鲸鱼的那一夜>梦见鲸鱼的那一夜</a></li><li><a href=http://leaver.me/2019/08/20/understand-hong-kong-2/ title="Understand Hong Kong 2">Understand Hong Kong 2</a></li><li><a href=http://leaver.me/2019/08/18/understand-hong-kong-part-1/ title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a></li><li><a href=http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/ title=错过的都是命，得到的才是人生>错过的都是命，得到的才是人生</a></li><li><a href=http://leaver.me/2019/04/06/recently/ title=Recently>Recently</a></li></ul></section><section class=widget><h3 class=widget-title>分类</h3><ul class=widget-list><li><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/>学习笔记 (186)</a></li><li><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/>我的翻译 (57)</a></li><li><a href=http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/>文章收藏 (53)</a></li><li><a href=http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/>生活记录 (3)</a></li><li><a href=http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/>读书笔记 (4)</a></li></ul></section><section class=widget><h3 class=widget-title>标签</h3><div class=tagcloud><a href=http://leaver.me/tags/android/>android</a>
+<a href=http://leaver.me/tags/c/>C＃</a>
+<a href=http://leaver.me/tags/c++/>C++</a>
+<a href=http://leaver.me/tags/java/>java</a>
+<a href=http://leaver.me/tags/javascript/>javascript</a>
+<a href=http://leaver.me/tags/linux/>linux</a>
+<a href=http://leaver.me/tags/mac/>mac</a>
+<a href=http://leaver.me/tags/matlab/>matlab</a>
+<a href=http://leaver.me/tags/maven/>maven</a>
+<a href=http://leaver.me/tags/mysql/>mysql</a>
+<a href=http://leaver.me/tags/nextgen-gallery/>NextGEN Gallery</a>
+<a href=http://leaver.me/tags/php/>php</a>
+<a href=http://leaver.me/tags/python/>python</a>
+<a href=http://leaver.me/tags/shell/>shell</a>
+<a href=http://leaver.me/tags/spring/>spring</a>
+<a href=http://leaver.me/tags/sql/>sql</a>
+<a href=http://leaver.me/tags/stackoverflow/>stackoverflow</a>
+<a href=http://leaver.me/tags/wcf/>WCF</a>
+<a href=http://leaver.me/tags/web/>web</a>
+<a href=http://leaver.me/tags/windows/>windows</a>
+<a href=http://leaver.me/tags/wordpress/>wordpress</a>
+<a href=http://leaver.me/tags/wpf/>WPF</a>
+<a href=http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/>上海</a>
+<a href=http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/>下载</a>
+<a href=http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/>中间件</a>
+<a href=http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/>互联网</a>
+<a href=http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/>分布式</a>
+<a href=http://leaver.me/tags/%E5%88%B6%E5%BA%A6/>制度</a>
+<a href=http://leaver.me/tags/%E5%89%8D%E7%AB%AF/>前端</a>
+<a href=http://leaver.me/tags/%E5%8E%9F%E5%88%9B/>原创</a>
+<a href=http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/>大学</a>
+<a href=http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/>学习</a>
+<a href=http://leaver.me/tags/%E5%AE%89%E5%85%A8/>安全</a>
+<a href=http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/>家庭</a>
+<a href=http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/>工作</a>
+<a href=http://leaver.me/tags/%E5%B7%A5%E5%85%B7/>工具</a>
+<a href=http://leaver.me/tags/%E5%B9%B6%E5%8F%91/>并发</a>
+<a href=http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/>序列化</a>
+<a href=http://leaver.me/tags/%E5%BC%80%E5%8F%91/>开发</a>
+<a href=http://leaver.me/tags/%E5%BF%83%E7%90%86/>心理</a>
+<a href=http://leaver.me/tags/%E6%80%BB%E7%BB%93/>总结</a>
+<a href=http://leaver.me/tags/%E6%8A%80%E6%9C%AF/>技术</a>
+<a href=http://leaver.me/tags/%E6%8F%92%E4%BB%B6/>插件</a>
+<a href=http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/>操作系统</a>
+<a href=http://leaver.me/tags/%E6%94%B6%E8%97%8F/>收藏</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E5%AD%A6/>数学</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/>数据库</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/>数据挖掘</a>
+<a href=http://leaver.me/tags/%E6%96%87%E7%AB%A0/>文章</a>
+<a href=http://leaver.me/tags/%E6%99%BA%E8%83%BD/>智能</a>
+<a href=http://leaver.me/tags/%E6%9D%82%E6%96%87/>杂文</a>
+<a href=http://leaver.me/tags/%E6%AD%A6%E6%B1%89/>武汉</a>
+<a href=http://leaver.me/tags/%E6%B1%87%E7%BC%96/>汇编</a>
+<a href=http://leaver.me/tags/%E7%88%B1%E6%83%85/>爱情</a>
+<a href=http://leaver.me/tags/%E7%90%86%E8%AE%BA/>理论</a>
+<a href=http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/>生产力</a>
+<a href=http://leaver.me/tags/%E7%94%9F%E6%B4%BB/>生活</a>
+<a href=http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/>电子书</a>
+<a href=http://leaver.me/tags/%E7%94%B5%E5%BD%B1/>电影</a>
+<a href=http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/>社会</a>
+<a href=http://leaver.me/tags/%E7%A7%91%E6%8A%80/>科技</a>
+<a href=http://leaver.me/tags/%E7%AC%94%E8%AE%B0/>笔记</a>
+<a href=http://leaver.me/tags/%E7%AE%97%E6%B3%95/>算法</a>
+<a href=http://leaver.me/tags/%E7%BC%96%E7%A8%8B/>编程</a>
+<a href=http://leaver.me/tags/%E7%BC%96%E8%AF%91/>编译</a>
+<a href=http://leaver.me/tags/%E7%BF%BB%E8%AF%91/>翻译</a>
+<a href=http://leaver.me/tags/%E8%81%8C%E4%B8%9A/>职业</a>
+<a href=http://leaver.me/tags/%E8%AE%B0%E5%BD%95/>记录</a>
+<a href=http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/>设计</a>
+<a href=http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/>读书</a>
+<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/>软件</a>
+<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/>软件测试</a>
+<a href=http://leaver.me/tags/%E8%BF%90%E7%BB%B4/>运维</a>
+<a href=http://leaver.me/tags/%E9%87%91%E8%9E%8D/>金融</a></div></section><section class=widget><h3 class=widget-title>友情链接</h3><ul class=widget-list><li><a target=_blank href=https://www.cppfans.org/ title=C++爱好者博客>C++爱好者博客</a></li><li><a target=_blank href=http://www.kailing.pub title=KL，每天进步一点点>KL，每天进步一点点</a></li></ul></section><section class=widget><h3 class=widget-title>其它</h3><ul class=widget-list><li><a href=http://leaver.me/index.xml>文章 RSS</a></li></ul></section></div></div></div></div><footer id=footer><div class=container>&copy; 2020 <a href=http://leaver.me/>bystander's blog By bystander</a>.
+Powered by <a rel="nofollow noreferer noopener" href=https://gohugo.io target=_blank>Hugo</a>.
+<a href=https://www.flysnow.org/ target=_blank>Theme</a> based on <a href=https://github.com/flysnow-org/maupassant-hugo target=_blank>maupassant</a>.</div></footer><a id=rocket href=#top></a><script type=text/javascript src="/js/totop.js?v=0.0.0" async></script><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-30961201-3','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></body></html>

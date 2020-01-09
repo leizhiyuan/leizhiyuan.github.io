@@ -1,760 +1,152 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>学习笔记 | bystander&#39;s blog</title>
-    <meta property="og:title" content="学习笔记 - bystander&#39;s blog">
-    <meta property="og:type" content="article">
-        
-        
-    <meta name="Keywords" content="">
-    <meta name="description" content="学习笔记">
-        
-    <meta name="author" content="bystander">
-    <meta property="og:url" content="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-
-    <link rel="stylesheet" href='/css/normalize.css'>
-    <link rel="stylesheet" href='/css/style.css'>
-    <link rel="alternate" type="application/rss+xml+xml" href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.xml" title="bystander's blog" />
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-    
-
-
-    
-    
-</head>
-
-
-<body>
-    <header id="header" class="clearfix">
-    <div class="container">
-        <div class="col-group">
-            <div class="site-name ">
-                
-                    <a id="logo" href="http://leaver.me/">
-                        bystander&#39;s blog
-                    </a>
-                
-                <p class="description">寻找窄门</p>
-            </div>
-            <div>
-                <nav id="nav-menu" class="clearfix">
-                    <a class="" href="http://leaver.me/">首页</a>
-                    
-                    <a  href="http://leaver.me/categories" title="目录">目录</a>
-                    
-                    <a  href="http://leaver.me/about/" title="关于我">关于我</a>
-                    
-                </nav>
-            </div>
-        </div>
-    </div>
-</header>
-
-    <div id="body">
-        <div class="container">
-            <div class="col-group">
-
-                <div class="col-8" id="main">
-                    
-<div class="res-cons">
-    
-    <h3 class="archive-title">
-        分类
-        <span class="keyword">学习笔记</span>
-        中的文章
-    </h3>
-    
-
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2012/07/02/c#%E4%B8%AD%E7%9A%84%E9%9D%99%E6%80%81%E4%B8%8E%E9%9D%9E%E9%9D%99%E6%80%81/">C#中的静态与非静态</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2012年7月2日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            为什么要分静态和非静态 在面向对象的世界里，大部分的情况都是实例特征主宰天下，类相当于一个类型模板，而对象则是类特征的拷贝，并且独立于其他对象来操作这些特征，但是在某些情况下，需要某些特征被所有的对象共公有，因此有必要实现一种基于类的特征，而不是基于实例对象的特征机制，这就是静态特征。
-1.静态类和非静态类  一个类如果包含静态成员和静态方法，那么该类就可以定义为静态类，定义方法是在类定义前加上static，比如
-比较：   静态类只能包含静态成员和静态方法，否则会抛出编译错误，而非静态类既可以包含非静态成员和非静态方法，还可以包含静态成员和静态方法。但不能作用于静态只读字段。 静态类不可实例化，非静态类可以实例化，不管是静态类还是非静态类，对静态成员和静态方法的调用都必须通过类来实现访问。 相对于非静态类来说，静态类有一些特点值得应用，比如System.Console这个典型的静态类。 如果一个类只包含静态成员和静态方法，就应该将该类标记为static，并提供私有的构造函数来避免用户实例创建对象，这也是MonoState模式的体现。      2.静态构造函数和实例构造函数  静态构造函数，只能用于初始化类中的静态成员，包括静态字段和静态属性，静态构造函数不能带参数，不能有访问修饰符也不能被手工调用，通过是在.net运行库第一次调用类成员之前执行。其中，实例构造函数中也是可以初始化静态成员的。
-比较   静态构造函数，可以和无参的构造函数共存。虽然参数列表相同，但是二者的执行顺序不同，静态构造函数在运行库加载类时执行，而实例构造函数在实例创建时执行。 静态构造函数，只能对静态成员进行初始化操作，不能作用于非静态成员，而实例构造函数二者都可以，当然如前面所说，对静态只读字段就不可以了。 静态构造函数只被执行一次，而且.net运行库也不知道什么时候会被执行，而实例构造函数可以在多次实例创建时被执行多次。 一个类只能有一个静态构造函数，但是可以有多个实例构造函数。 一般来说，简单的静态成员可以在声明时就进行初始化，而复杂的静态成员则选择在静态构造函数中进行初始化较佳。      3.静态成员和实例成员  静态成员主要包括静态字段和静态属性，静态成员可以实现在类中能够被所有实例对象共享的数据。例如一个缴费登记系统中，消费总额作为所以消费的综合，静态成员来实现就有很好。没有不必要的数据冗余。
-比较   静态成员包括静态字段和静态属性，静态字段一般实现为private，而静态属性一般为public，以体现类的封装原则。 静态成员和类关联，不依赖对象存在，只能由类访问，而不能由对象访问，实例成员和具体的对象关联，只能由对象访问，不能由类访问。 静态成员属于类所有，不论创建多少个实例对象，静态成员在内存中只有一份，实例成员属于对象实例所有，每个都有其对应的内存区域。    4.静态方法和实例方法  类似于静态成员共享数据段，静态方法共享代码段，静态方法以static标识。
-比较   性能上，静态方法和实例方法差别不大，所有方法，不管是静态的还是非静态的，都是在JIT加载类时分配内存，不同的是静态方法以类名引用，而静态方法以对象引用，创建实例时，不会再为类的方法分配内存，所有的实例对象公用一个类的方法代码，因此，静态方法和实例方法的调用，区别仅在于实例方法需要当前对象指针指向该方法，而静态方法可以直接调用，性能上差异微乎其微。 静态方法只能访问静态成员和静态方法，可以间接通过创建实例对象来访问实例成员和实例方法，而实例方法可以直接全部。。 静态方法只能由类来访问，实例方法只能由对象来访问。 静态方法中不能使用this关键字，否则编译错误，而实例方法中可以引用。 静态方法不能被标记为virtual，abstract或是override，静态方法可以被派生类访问，但是不能被覆写。 Main方法是静态的，因此Main方法不能直接访问Main所在类的实例方法和成员。 鉴于线程处理的安全性，应该避免提供改变静态状态的静态方法，因为，如果多线程同时访问该段代码，可能造成线程处理错误，因此，静态状态必须是线程安全的。 静态方法适合系统中边缘性的非业务需要，例如通用的工具类。    ……
-            <p class="readmore"><a href="http://leaver.me/2012/07/02/c#%E4%B8%AD%E7%9A%84%E9%9D%99%E6%80%81%E4%B8%8E%E9%9D%9E%E9%9D%99%E6%80%81/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2012/07/01/c%E4%B8%AD%E7%9A%84is%E5%92%8Cas/">C＃中的is和as</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2012年7月1日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            is和as都是用作类型转换的，类型转换包括显示转换和隐式转换，在.NET中类型转换的基本规则如下：
-基本规则   任何类型都可以安全的转换为其基类类型，可以由隐式转换来完成； 任何类型转换为其派生类型时，必须进行显示转换，转换的规则是：（类型名）对象名； 使用GetType可以取得任何对象的精确类型； 基本类型可以使用Covert类实现类型转换； 除了string以外的其他类型都有Parse方法，用于将字符串类型转换为对应的基本类型； 值类型和引用类型的转换机制称为装箱（boxing）和拆箱（unboxing）。 is和as操作符，是C#中用于类型转换的，提供了对类型兼容性的判断，从而使得类型转换控制在安全的范畴，提供了灵活的类型转换控制。   is的模式如下：   检查对象类型的兼容性，并返回结果，true或者false； 不会抛出异常； 如果对象为null，则返回值永远为false。 使用很简单，用于条件判断中.   举例：
- as的模式如下：   检查对象类型的兼容性，并返回转换结果，如果不兼容就返回null； 不会抛出异常； 如果结果判断为空，则强制执行类型转换将抛出NullReferenceException异常。 as必须和引用类型一起使用   举例：
- 参考：http://www.cnblogs.com/anytao/archive/2007/04/07/must_net_01.html……
-            <p class="readmore"><a href="http://leaver.me/2012/07/01/c%E4%B8%AD%E7%9A%84is%E5%92%8Cas/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2012/06/30/%E5%90%84%E7%A7%8D%E5%86%85%E5%AD%98%E5%8D%A1%E4%BB%8B%E7%BB%8D/">各种内存卡介绍</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2012年6月30日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            闪存卡（Flash Card）是利用闪存（Flash Memory）技术达到存储电子信息的存储器，一般应用在数码相机，掌上电脑，MP3等小型数码产品中作为存储介质，所以样子小巧，有如一张卡片，所以称之为闪存卡。 根据不同的生产厂商和不同的应用，闪存卡大概有Compact Flash（CF卡）、MultiMediaCard（MMC卡）、Secure Digital（SD卡）、Memory Stick（记忆棒）等。
-SD卡  SD卡全称为Secure Digital卡，SD卡标准的面世相对而言比CF要晚，根据MMC为基础所开发的Secure Digital（SD），其改进主要是在增添了版权保护的功能，提高了传输速度和增加了写保护机制等，其主要引脚的定义与MMC卡并没有太大的区别。SD具有较高的兼容性，较小的体积和不错的数据传输速度，成为了当今的时尚数码相机和部分可拍照手机的标准配置。SD接口是当今世界上被采用得最多的闪存卡接口，市面上主流的PDA，数码相机，MP3的闪存卡，烧录卡接口大多为SD卡，也使SD卡取代了CF卡成为了当今最常见得存储卡。如图： 
- MiniSD  MiniSD是SD卡的一大改进，体积只有21.5x20x1.4mm，比普通SD卡足足节省了60%的空间，通过转接卡还能保证MiniSD在正常的SD插槽上的使用。如图： 
- Micro SD(TF卡)  TF卡又称T-Flash卡，也叫Micro SD卡,体积只有11×15×1mm，面积为MiniSD的一半 
- MMC卡  MMC卡全称为Multi Media Card，由SanDisk与Siemens AG/InfineonTechnologies AG所联合开发，且于1997年11月发表，Size：24mm x 32mm x 1.4mm，重量2g。MMC卡的兼容性方面不及SD卡的好，数据传输速度受到硬件的限制，不适合作高速的数据传输。如图： 
- RSMMC  RSMMC是Reduced-Size MMC的缩写，小型化的MMC卡，传说专门为智能手机设置。改良后的产品叫做MMCmobile 
- 什么是CF卡？  CF格式由来已久，被SanDisk公司在1994年首次制造出来。CF卡的全称是Compact Flash，Compact意指“小型的，轻便的”，CF大小为43mm x 36mm x 3.3mm，50 Pins。如图 
- MS卡  Memory Stick，索尼推出的存储产品。貌似是独树一帜，不多介绍。 参考：
- http://www.allmemorycards.com/sd.htm
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><title>学习笔记 | bystander's blog</title><meta property="og:title" content="学习笔记 - bystander's blog"><meta property="og:type" content="article"><meta name=Keywords content><meta name=description content="学习笔记"><meta name=author content="bystander"><meta property="og:url" content="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><link rel=stylesheet href=/css/normalize.css><link rel=stylesheet href=/css/style.css><link rel=alternate type=application/rss+xml+xml href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.xml title="bystander's blog"><script type=text/javascript src=//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js></script></head><body><header id=header class=clearfix><div class=container><div class=col-group><div class=site-name><a id=logo href=http://leaver.me/>bystander's blog</a><p class=description>寻找窄门</p></div><div><nav id=nav-menu class=clearfix><a href=http://leaver.me/>首页</a>
+<a href=http://leaver.me/categories title=目录>目录</a>
+<a href=http://leaver.me/about/ title=关于我>关于我</a></nav></div></div></div></header><div id=body><div class=container><div class=col-group><div class=col-8 id=main><div class=res-cons><h3 class=archive-title>分类
+<span class=keyword>学习笔记</span>
+中的文章</h3><article class=post><header><h1 class=post-title><a href=http://leaver.me/2012/07/02/c#%E4%B8%AD%E7%9A%84%E9%9D%99%E6%80%81%E4%B8%8E%E9%9D%9E%E9%9D%99%E6%80%81/>C#中的静态与非静态</a></h1></header><date class="post-meta meta-date">2012年7月2日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>为什么要分静态和非静态 在面向对象的世界里，大部分的情况都是实例特征主宰天下，类相当于一个类型模板，而对象则是类特征的拷贝，并且独立于其他对象来操作这些特征，但是在某些情况下，需要某些特征被所有的对象共公有，因此有必要实现一种基于类的特征，而不是基于实例对象的特征机制，这就是静态特征。
+1.静态类和非静态类 一个类如果包含静态成员和静态方法，那么该类就可以定义为静态类，定义方法是在类定义前加上static，比如
+比较： 静态类只能包含静态成员和静态方法，否则会抛出编译错误，而非静态类既可以包含非静态成员和非静态方法，还可以包含静态成员和静态方法。但不能作用于静态只读字段。 静态类不可实例化，非静态类可以实例化，不管是静态类还是非静态类，对静态成员和静态方法的调用都必须通过类来实现访问。 相对于非静态类来说，静态类有一些特点值得应用，比如System.Console这个典型的静态类。 如果一个类只包含静态成员和静态方法，就应该将该类标记为static，并提供私有的构造函数来避免用户实例创建对象，这也是MonoState模式的体现。 2.静态构造函数和实例构造函数 静态构造函数，只能用于初始化类中的静态成员，包括静态字段和静态属性，静态构造函数不能带参数，不能有访问修饰符也不能被手工调用，通过是在.net运行库第一次调用类成员之前执行。其中，实例构造函数中也是可以初始化静态成员的。
+比较 静态构造函数，可以和无参的构造函数共存。虽然参数列表相同，但是二者的执行顺序不同，静态构造函数在运行库加载类时执行，而实例构造函数在实例创建时执行。 静态构造函数，只能对静态成员进行初始化操作，不能作用于非静态成员，而实例构造函数二者都可以，当然如前面所说，对静态只读字段就不可以了。 静态构造函数只被执行一次，而且.net运行库也不知道什么时候会被执行，而实例构造函数可以在多次实例创建时被执行多次。 一个类只能有一个静态构造函数，但是可以有多个实例构造函数。 一般来说，简单的静态成员可以在声明时就进行初始化，而复杂的静态成员则选择在静态构造函数中进行初始化较佳。 3.静态成员和实例成员 静态成员主要包括静态字段和静态属性，静态成员可以实现在类中能够被所有实例对象共享的数据。例如一个缴费登记系统中，消费总额作为所以消费的综合，静态成员来实现就有很好。没有不必要的数据冗余。
+比较 静态成员包括静态字段和静态属性，静态字段一般实现为private，而静态属性一般为public，以体现类的封装原则。 静态成员和类关联，不依赖对象存在，只能由类访问，而不能由对象访问，实例成员和具体的对象关联，只能由对象访问，不能由类访问。 静态成员属于类所有，不论创建多少个实例对象，静态成员在内存中只有一份，实例成员属于对象实例所有，每个都有其对应的内存区域。 4.静态方法和实例方法 类似于静态成员共享数据段，静态方法共享代码段，静态方法以static标识。
+比较 性能上，静态方法和实例方法差别不大，所有方法，不管是静态的还是非静态的，都是在JIT加载类时分配内存，不同的是静态方法以类名引用，而静态方法以对象引用，创建实例时，不会再为类的方法分配内存，所有的实例对象公用一个类的方法代码，因此，静态方法和实例方法的调用，区别仅在于实例方法需要当前对象指针指向该方法，而静态方法可以直接调用，性能上差异微乎其微。 静态方法只能访问静态成员和静态方法，可以间接通过创建实例对象来访问实例成员和实例方法，而实例方法可以直接全部。。 静态方法只能由类来访问，实例方法只能由对象来访问。 静态方法中不能使用this关键字，否则编译错误，而实例方法中可以引用。 静态方法不能被标记为virtual，abstract或是override，静态方法可以被派生类访问，但是不能被覆写。 Main方法是静态的，因此Main方法不能直接访问Main所在类的实例方法和成员。 鉴于线程处理的安全性，应该避免提供改变静态状态的静态方法，因为，如果多线程同时访问该段代码，可能造成线程处理错误，因此，静态状态必须是线程安全的。 静态方法适合系统中边缘性的非业务需要，例如通用的工具类。 ……<p class=readmore><a href=http://leaver.me/2012/07/02/c#%E4%B8%AD%E7%9A%84%E9%9D%99%E6%80%81%E4%B8%8E%E9%9D%9E%E9%9D%99%E6%80%81/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2012/07/01/c%E4%B8%AD%E7%9A%84is%E5%92%8Cas/>C＃中的is和as</a></h1></header><date class="post-meta meta-date">2012年7月1日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>is和as都是用作类型转换的，类型转换包括显示转换和隐式转换，在.NET中类型转换的基本规则如下：
+基本规则 任何类型都可以安全的转换为其基类类型，可以由隐式转换来完成； 任何类型转换为其派生类型时，必须进行显示转换，转换的规则是：（类型名）对象名； 使用GetType可以取得任何对象的精确类型； 基本类型可以使用Covert类实现类型转换； 除了string以外的其他类型都有Parse方法，用于将字符串类型转换为对应的基本类型； 值类型和引用类型的转换机制称为装箱（boxing）和拆箱（unboxing）。 is和as操作符，是C#中用于类型转换的，提供了对类型兼容性的判断，从而使得类型转换控制在安全的范畴，提供了灵活的类型转换控制。 is的模式如下： 检查对象类型的兼容性，并返回结果，true或者false； 不会抛出异常； 如果对象为null，则返回值永远为false。 使用很简单，用于条件判断中. 举例：
+ as的模式如下： 检查对象类型的兼容性，并返回转换结果，如果不兼容就返回null； 不会抛出异常； 如果结果判断为空，则强制执行类型转换将抛出NullReferenceException异常。 as必须和引用类型一起使用 举例：
+ 参考：http://www.cnblogs.com/anytao/archive/2007/04/07/must_net_01.html……<p class=readmore><a href=http://leaver.me/2012/07/01/c%E4%B8%AD%E7%9A%84is%E5%92%8Cas/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2012/06/30/%E5%90%84%E7%A7%8D%E5%86%85%E5%AD%98%E5%8D%A1%E4%BB%8B%E7%BB%8D/>各种内存卡介绍</a></h1></header><date class="post-meta meta-date">2012年6月30日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>闪存卡（Flash Card）是利用闪存（Flash Memory）技术达到存储电子信息的存储器，一般应用在数码相机，掌上电脑，MP3等小型数码产品中作为存储介质，所以样子小巧，有如一张卡片，所以称之为闪存卡。 根据不同的生产厂商和不同的应用，闪存卡大概有Compact Flash（CF卡）、MultiMediaCard（MMC卡）、Secure Digital（SD卡）、Memory Stick（记忆棒）等。
+SD卡 SD卡全称为Secure Digital卡，SD卡标准的面世相对而言比CF要晚，根据MMC为基础所开发的Secure Digital（SD），其改进主要是在增添了版权保护的功能，提高了传输速度和增加了写保护机制等，其主要引脚的定义与MMC卡并没有太大的区别。SD具有较高的兼容性，较小的体积和不错的数据传输速度，成为了当今的时尚数码相机和部分可拍照手机的标准配置。SD接口是当今世界上被采用得最多的闪存卡接口，市面上主流的PDA，数码相机，MP3的闪存卡，烧录卡接口大多为SD卡，也使SD卡取代了CF卡成为了当今最常见得存储卡。如图：
+MiniSD MiniSD是SD卡的一大改进，体积只有21.5x20x1.4mm，比普通SD卡足足节省了60%的空间，通过转接卡还能保证MiniSD在正常的SD插槽上的使用。如图：
+Micro SD(TF卡) TF卡又称T-Flash卡，也叫Micro SD卡,体积只有11×15×1mm，面积为MiniSD的一半
+MMC卡 MMC卡全称为Multi Media Card，由SanDisk与Siemens AG/InfineonTechnologies AG所联合开发，且于1997年11月发表，Size：24mm x 32mm x 1.4mm，重量2g。MMC卡的兼容性方面不及SD卡的好，数据传输速度受到硬件的限制，不适合作高速的数据传输。如图：
+RSMMC RSMMC是Reduced-Size MMC的缩写，小型化的MMC卡，传说专门为智能手机设置。改良后的产品叫做MMCmobile
+什么是CF卡？ CF格式由来已久，被SanDisk公司在1994年首次制造出来。CF卡的全称是Compact Flash，Compact意指“小型的，轻便的”，CF大小为43mm x 36mm x 3.3mm，50 Pins。如图
+MS卡 Memory Stick，索尼推出的存储产品。貌似是独树一帜，不多介绍。 参考：
+http://www.allmemorycards.com/sd.htm
 http://baike.baidu.com/view/26952.htm
-http://nds.cngba.com/nds_bd/2007122122100.shtml……
-            <p class="readmore"><a href="http://leaver.me/2012/06/30/%E5%90%84%E7%A7%8D%E5%86%85%E5%AD%98%E5%8D%A1%E4%BB%8B%E7%BB%8D/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2012/06/29/c#%E4%B8%AD%E7%9A%84class%E5%92%8Cstruct/">C#中的Class和Struct</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2012年6月29日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            　什么是class? 　class（类）是面向对象编程的基本概念，是一种自定义数据结构类型，通常包含字段、属性、方法、属性、构造函数、索引器、操作符等。.NET中，所有的类都最终继承自System.Object类，因此是一种引用类型，也就是说，new一个类的实例时，对象保存了该实例实际数据的引用地址，而对象的值保存在托管堆（managed heap）中。
+http://nds.cngba.com/nds_bd/2007122122100.shtml……<p class=readmore><a href=http://leaver.me/2012/06/30/%E5%90%84%E7%A7%8D%E5%86%85%E5%AD%98%E5%8D%A1%E4%BB%8B%E7%BB%8D/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2012/06/29/c#%E4%B8%AD%E7%9A%84class%E5%92%8Cstruct/>C#中的Class和Struct</a></h1></header><date class="post-meta meta-date">2012年6月29日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>　什么是class? 　class（类）是面向对象编程的基本概念，是一种自定义数据结构类型，通常包含字段、属性、方法、属性、构造函数、索引器、操作符等。.NET中，所有的类都最终继承自System.Object类，因此是一种引用类型，也就是说，new一个类的实例时，对象保存了该实例实际数据的引用地址，而对象的值保存在托管堆（managed heap）中。
 什么是struct? 　struct（结构）是一种值类型，用于将一组相关的信息变量组织为一个单一的变量实体 。所有的结构都继承自System.ValueType类，因此是一种值类型，也就是说，struct实例分配在线程的堆栈（stack）上，它本身存储了值，而不包含指向该值的指针。所以在使用struct时，我们可以将其当作int、char这样的基本类型类对待。
 比较： 　相同点：语法类似。
 　不同点：
-  class是引用类型，继承自System.Object类；struct是值类型，继承自System.ValueType类，因此不具多态性。但是注意，System.ValueType是个引用类型。 从职能观点来看，class更多表现为行为；而struct常用于存储数据。 class支持继承，可以继承自类和接口；而struct没有继承性，struct不能从class继承，也不能作为class的基类，但struct支持接口继承 class可以声明无参构造函数，可以声明析构函数；而struct只能声明带参数构造函数，且不能声明析构函数。因此，struct没有自定义的默认无参构造函数，默认无参构造器只是简单地把所有值初始化为它们的0等价值 实例化时，class要使用new关键字；而struct可以不使用new关键字，如果不以new来实例化struct，则其所有的字段将处于未分配状态，直到所有字段完成初始化，否则引用未赋值的字段会导致编译错误。 class可以是抽象类（abstract），可以声明抽象函数；而struct不能为抽象，也不能声明抽象函数。 class可以声明protected成员、virtual成员、sealed成员和override成员；而struct不可以，struct可以重载System.Object的3个虚方法，Equals()、ToString()和GetHashTable()。 class的对象复制分为浅拷贝和深拷贝，必须经过特别的方法来完成复制；而struct创建的对象复制简单，可以直接以等号连接即可。 class实例由垃圾回收机制来保证内存的回收处理；而struct变量使用完后立即自动解除内存分配。 作为参数传递时，class变量是以按址方式传递；而struct变量是以按值方式传递的。   　我们可以简单的理解，class是一个可以动的机器，有行为，有多态，有继承；而struct就是个零件箱，组合了不同结构的零件。其实，class和struct最本质的区别就在于class是引用类型，内存分配于托管堆；而struct是值类型，内存分配于线程的堆栈上。由此差异，导致了上述所有的不同点，虽然在某些方面struct有性能方面的优势，但是在面向对象编程里，基本是class横行的天下。
-　那么，既然class几乎可以完全替代struct来实现所有的功能，那么struct还有存在的必要吗？答案是，至少在以下情况下，鉴于性能上的考虑，我们应该考虑使用struct来代替class：　  实现一个主要用于存储数据的结构时，可以考虑struct。 struct变量占有堆栈的空间，因此只适用于数据量相对小的场合。 结构数组具有更高的效率。 提供某些和非托管代码通信的兼容性。   ……
-            <p class="readmore"><a href="http://leaver.me/2012/06/29/c#%E4%B8%AD%E7%9A%84class%E5%92%8Cstruct/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2012/06/28/c#%E4%B8%AD%E7%9A%84const%E5%92%8Creadonly/">C#中的const和readonly</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2012年6月28日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            　本文来自《你必须知道的.NET》这本书，是我看书过程中的笔记整理。
+class是引用类型，继承自System.Object类；struct是值类型，继承自System.ValueType类，因此不具多态性。但是注意，System.ValueType是个引用类型。 从职能观点来看，class更多表现为行为；而struct常用于存储数据。 class支持继承，可以继承自类和接口；而struct没有继承性，struct不能从class继承，也不能作为class的基类，但struct支持接口继承 class可以声明无参构造函数，可以声明析构函数；而struct只能声明带参数构造函数，且不能声明析构函数。因此，struct没有自定义的默认无参构造函数，默认无参构造器只是简单地把所有值初始化为它们的0等价值 实例化时，class要使用new关键字；而struct可以不使用new关键字，如果不以new来实例化struct，则其所有的字段将处于未分配状态，直到所有字段完成初始化，否则引用未赋值的字段会导致编译错误。 class可以是抽象类（abstract），可以声明抽象函数；而struct不能为抽象，也不能声明抽象函数。 class可以声明protected成员、virtual成员、sealed成员和override成员；而struct不可以，struct可以重载System.Object的3个虚方法，Equals()、ToString()和GetHashTable()。 class的对象复制分为浅拷贝和深拷贝，必须经过特别的方法来完成复制；而struct创建的对象复制简单，可以直接以等号连接即可。 class实例由垃圾回收机制来保证内存的回收处理；而struct变量使用完后立即自动解除内存分配。 作为参数传递时，class变量是以按址方式传递；而struct变量是以按值方式传递的。 　我们可以简单的理解，class是一个可以动的机器，有行为，有多态，有继承；而struct就是个零件箱，组合了不同结构的零件。其实，class和struct最本质的区别就在于class是引用类型，内存分配于托管堆；而struct是值类型，内存分配于线程的堆栈上。由此差异，导致了上述所有的不同点，虽然在某些方面struct有性能方面的优势，但是在面向对象编程里，基本是class横行的天下。
+　那么，既然class几乎可以完全替代struct来实现所有的功能，那么struct还有存在的必要吗？答案是，至少在以下情况下，鉴于性能上的考虑，我们应该考虑使用struct来代替class：　 实现一个主要用于存储数据的结构时，可以考虑struct。 struct变量占有堆栈的空间，因此只适用于数据量相对小的场合。 结构数组具有更高的效率。 提供某些和非托管代码通信的兼容性。 ……<p class=readmore><a href=http://leaver.me/2012/06/29/c#%E4%B8%AD%E7%9A%84class%E5%92%8Cstruct/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2012/06/28/c#%E4%B8%AD%E7%9A%84const%E5%92%8Creadonly/>C#中的const和readonly</a></h1></header><date class="post-meta meta-date">2012年6月28日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>　本文来自《你必须知道的.NET》这本书，是我看书过程中的笔记整理。
 　不变的量是程序设计中的平衡剂，是系统中恒定不变的量，在.NET中提供哦你了两种方式来实现，const和readonly。其中，const是静态常量，readonly是动态常量。
- const，readonly和static readonly定义的常量，一旦初始值指定，（包括在构造函数内指定初始值），将不可更改，可读不可写。 const必须在声明的时候指定初始值，而readonly和static readonly在在声明时可以指定，也可以不指定初始值，同时也可以在构造函数中指定初始值，如果同时在声明时和构造函数中指定了初始值，以构造函数内指定的值为准。 const和static readonly定义的常量是静态的，只能由类型来访问，不能和static同时使用，否则可能出现编译错误，而readonly定义的常量是非静态的，只能由实例对象来访问。可以显式使用static定义静态成员 static readonly常量，如果在构造函数内指定初始值，那么必须是在静态无参构造函数中。不同的构造函数可以为readonly常量实现不同的初始值。 const可以用于定义局部常量和字段常量，而readonly和static readonly不能定义局部变量，只能定义字段常量，实际上，readonly应该被称之为只读字段，因此局限于定义字段，而const才是常量，可以定义字段和局部量。 const常量编译后保存在模块的元数据中，无需在托管堆中分配内存，并且const常量只能是百年机器能够识别的基元类型，比如Int32，string等，而readonly需要分配独立的存储空间，并且可以是任意类型。 const只能应用在值类型和string类型上，其他引用类型常量只能定义为null，否则以new为const引用类型常量赋值，编译器会引发“只能用null对引用类型（字符串除外）的常量进行初始化”错误提示，原因是构造函数初始化是在运行时，而非编译时，readonly只读字段，可以是任意类型，但是对于引用类型字段来说，readonly不能限制对该对象实例成员的访问控制。 总结：尽可能以只读属性来实现对类型读写特性的控制，而不是只读字段，但是在某些情况下，只读字段更简化些。  　const是编译时常量，readonly是运行时常量，const较高效，readonly更灵活，在应用上，推荐以static readonly代替const，以平衡const在灵活性上的不足，同时克服编译器优化const性能时，所带来的程序集引用不一致问题。
-   ……
-            <p class="readmore"><a href="http://leaver.me/2012/06/28/c#%E4%B8%AD%E7%9A%84const%E5%92%8Creadonly/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2012/06/23/wpf%E5%AE%9E%E7%8E%B0%E4%B8%8D%E8%A7%84%E5%88%99%E7%AA%97%E4%BD%93/">WPF实现不规则窗体</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2012年6月23日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            这几天在想C# winform程序界面实在太单一，而我C#实现不规则窗体中也说了，如果用背景这种东西来做的话，效果很差，抗锯齿能力基本为0，所以我当时在博客园提问，然后园友有了很给力的回答，比如WPF来做，或者第三方插件，或者深入底层改写ONPaint函数的，今天没事，恰好看到了一篇文章讲这个的，于是，就做一个简单的Demo出来，华丽的效果有木有，先看效果图
- 在win 7下使用win+Tab切换效果也很华丽。就不演示了。
+const，readonly和static readonly定义的常量，一旦初始值指定，（包括在构造函数内指定初始值），将不可更改，可读不可写。 const必须在声明的时候指定初始值，而readonly和static readonly在在声明时可以指定，也可以不指定初始值，同时也可以在构造函数中指定初始值，如果同时在声明时和构造函数中指定了初始值，以构造函数内指定的值为准。 const和static readonly定义的常量是静态的，只能由类型来访问，不能和static同时使用，否则可能出现编译错误，而readonly定义的常量是非静态的，只能由实例对象来访问。可以显式使用static定义静态成员 static readonly常量，如果在构造函数内指定初始值，那么必须是在静态无参构造函数中。不同的构造函数可以为readonly常量实现不同的初始值。 const可以用于定义局部常量和字段常量，而readonly和static readonly不能定义局部变量，只能定义字段常量，实际上，readonly应该被称之为只读字段，因此局限于定义字段，而const才是常量，可以定义字段和局部量。 const常量编译后保存在模块的元数据中，无需在托管堆中分配内存，并且const常量只能是百年机器能够识别的基元类型，比如Int32，string等，而readonly需要分配独立的存储空间，并且可以是任意类型。 const只能应用在值类型和string类型上，其他引用类型常量只能定义为null，否则以new为const引用类型常量赋值，编译器会引发“只能用null对引用类型（字符串除外）的常量进行初始化”错误提示，原因是构造函数初始化是在运行时，而非编译时，readonly只读字段，可以是任意类型，但是对于引用类型字段来说，readonly不能限制对该对象实例成员的访问控制。 总结：尽可能以只读属性来实现对类型读写特性的控制，而不是只读字段，但是在某些情况下，只读字段更简化些。 　const是编译时常量，readonly是运行时常量，const较高效，readonly更灵活，在应用上，推荐以static readonly代替const，以平衡const在灵活性上的不足，同时克服编译器优化const性能时，所带来的程序集引用不一致问题。
+   ……<p class=readmore><a href=http://leaver.me/2012/06/28/c#%E4%B8%AD%E7%9A%84const%E5%92%8Creadonly/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2012/06/23/wpf%E5%AE%9E%E7%8E%B0%E4%B8%8D%E8%A7%84%E5%88%99%E7%AA%97%E4%BD%93/>WPF实现不规则窗体</a></h1></header><date class="post-meta meta-date">2012年6月23日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>这几天在想C# winform程序界面实在太单一，而我C#实现不规则窗体中也说了，如果用背景这种东西来做的话，效果很差，抗锯齿能力基本为0，所以我当时在博客园提问，然后园友有了很给力的回答，比如WPF来做，或者第三方插件，或者深入底层改写ONPaint函数的，今天没事，恰好看到了一篇文章讲这个的，于是，就做一个简单的Demo出来，华丽的效果有木有，先看效果图
+在win 7下使用win+Tab切换效果也很华丽。就不演示了。
 做起来还算比较简单，首先使用Microsoft Expression Design 4 设计一个界面，破解版什么的太多了，，软件界面和ps挺像，不过功能弱很多，自己操作操作就好了，我说一个问题，就是我当时想画一个空心的圆，也就是一个圆环，ps里大家都知道，直接选区相减就可以了，但是这个死活没找到，基本上最后这个界面所有的地方被找了一遍，猜了猜，才发现了，
 具体操作如下，首先汇出一个圆形，然后在圆里面再绘出一个圆形，这时候选中第二次的这个小圆，点击屏幕右侧的那个箭头会出现高级选项，
-
 然后选择混合模式为橡皮擦，就会擦去这个小圆，于是就只剩下一个圆环了。
-
-画好以后，选择文件-&gt;导出，按如下设置， 
+画好以后，选择文件->导出，按如下设置，
  会得到一个xaml文件，一会用
 然后新建wpf项目，然后在解决方案资源管理器视图右键点击项目 导入现有项，把上一步的xaml文件导入
-然后需要在app.xaml文件中进行设置，具体在&lt;Application.Resources&gt;标签内添加如下代码，中间那个文件名看情况而定。
+然后需要在app.xaml文件中进行设置，具体在&lt;Application.Resources>标签内添加如下代码，中间那个文件名看情况而定。
 最终代码是：
 其中background那个是固定的，而MouseDown是为了给窗体写可以拖动的函数，函数名为Window_MouseDown你也可以自己制定
 然后对着那个函数名点右键，如下图
-
-导航到事件处理程序，然后在打开的函数里写上……
-            <p class="readmore"><a href="http://leaver.me/2012/06/23/wpf%E5%AE%9E%E7%8E%B0%E4%B8%8D%E8%A7%84%E5%88%99%E7%AA%97%E4%BD%93/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2012/06/21/c#winform%E5%AE%9E%E7%8E%B0%E4%B8%8D%E8%A7%84%E5%88%99%E7%AA%97%E4%BD%93/">C#WinForm实现不规则窗体</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2012年6月21日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            这个纯属娱乐，因为其实用的不是太多，因为非主流，非标准的界面不符合用户的体验，不符合可用性功能的某一条HE规则。
+导航到事件处理程序，然后在打开的函数里写上……<p class=readmore><a href=http://leaver.me/2012/06/23/wpf%E5%AE%9E%E7%8E%B0%E4%B8%8D%E8%A7%84%E5%88%99%E7%AA%97%E4%BD%93/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2012/06/21/c#winform%E5%AE%9E%E7%8E%B0%E4%B8%8D%E8%A7%84%E5%88%99%E7%AA%97%E4%BD%93/>C#WinForm实现不规则窗体</a></h1></header><date class="post-meta meta-date">2012年6月21日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>这个纯属娱乐，因为其实用的不是太多，因为非主流，非标准的界面不符合用户的体验，不符合可用性功能的某一条HE规则。
 为了完成这个效果，首先需要自己动手画个你需要的界面出来，界面边缘需要是一种可以很好区别的颜色，比如纯蓝色，因为实现不规则窗体是让C#使边缘颜色透明化来实现的，所以需要唯一识别。因为我用的图是一张灰色的图，我然后圈了一个蓝色的边缘。
 刚开始的图；
-
 然后新建windows应用程序。创建windows窗体并设置窗体基本属性。 （1）将 FormBorderStyle 属性设置为 None。 （2）将窗体的 BackgroundImage 属性设置为先前创建的位图文件。不必将文件添加到项目系统中；这将在指定该文件作为背景图像时自动完成。 （3）将 TransparencyKey 属性设置为位图文件的背景色，本例中为蓝色。（此属性告诉应用程序窗体中的哪些部分需要设置为透明。 ） 上面两个步骤已经完成了不规则窗体自身显示效果的制作。
 有人说在24位色以下的环境中可以显示正常，但在24位色以上时黄色背景不能消失，所以上述不能胜任24位色以上环境。但我看到了一种解决方法，那就是先将背景图片添加到资源文件，然后在窗体构造时为窗体设置背景图片：
   实测是可以的。
 然后就是为窗体添加移动、关闭、最大最小化的事件。代码直接给出 还有其他一些比如关闭按钮的添加，都很简单，直接添加一个button，事件里写，两个选一个。
 我最终的效果是个圆，可以看到，锯齿很明显，我想要效果好的话，那个位图得好好设计。这个只是演示。。所以。。还有一种方法是链接1中提供的，有兴趣的可以试试。
-
 工程源码下载：IrregularForm.7z
 参考：
 http://www.cnblogs.com/KissKnife/archive/2006/10/02/520116.html
-http://allancandy.cnblogs.com/archive/2005/09/01/227814.html……
-            <p class="readmore"><a href="http://leaver.me/2012/06/21/c#winform%E5%AE%9E%E7%8E%B0%E4%B8%8D%E8%A7%84%E5%88%99%E7%AA%97%E4%BD%93/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2012/06/17/freeanony-%E4%BB%A3%E7%90%86%E9%87%87%E9%9B%86%E8%AE%BE%E7%BD%AE%E5%B7%A5%E5%85%B7/">FreeAnony-代理采集设置工具</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2012年6月17日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            这个名字确实有点不太好。。因为刚开始我想到这个工具是在今天早上看到一个别人的代理工具的时候，突然想做的，没有好好规化，结果后来代码越写越多。。不过收获很大。
+http://allancandy.cnblogs.com/archive/2005/09/01/227814.html……<p class=readmore><a href=http://leaver.me/2012/06/21/c#winform%E5%AE%9E%E7%8E%B0%E4%B8%8D%E8%A7%84%E5%88%99%E7%AA%97%E4%BD%93/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2012/06/17/freeanony-%E4%BB%A3%E7%90%86%E9%87%87%E9%9B%86%E8%AE%BE%E7%BD%AE%E5%B7%A5%E5%85%B7/>FreeAnony-代理采集设置工具</a></h1></header><date class="post-meta meta-date">2012年6月17日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>这个名字确实有点不太好。。因为刚开始我想到这个工具是在今天早上看到一个别人的代理工具的时候，突然想做的，没有好好规化，结果后来代码越写越多。。不过收获很大。
 先看界面，因为是简单实现一下，所以就不要吐槽界面了。。
-刚开始想的思路就是先去一个经常发布代理IP的网页去采集。然后解析成一条条的信息。然后显示出来。中途遇到几个问题，一个就是在做代理验证的时候，没有用多线程，导致直接界面无响应。另一个就是DataGridView控件要实现对一个数组的绑定，需要的一个实体对象。……
-            <p class="readmore"><a href="http://leaver.me/2012/06/17/freeanony-%E4%BB%A3%E7%90%86%E9%87%87%E9%9B%86%E8%AE%BE%E7%BD%AE%E5%B7%A5%E5%85%B7/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2012/06/15/gif%E5%8F%8D%E8%BD%AC%E5%B7%A5%E5%85%B7/">gif反转工具</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2012年6月15日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            首先看下效果图：  然后是两张gif的对比  //原本图是正着走的  //处理后是倒着走的
+刚开始想的思路就是先去一个经常发布代理IP的网页去采集。然后解析成一条条的信息。然后显示出来。中途遇到几个问题，一个就是在做代理验证的时候，没有用多线程，导致直接界面无响应。另一个就是DataGridView控件要实现对一个数组的绑定，需要的一个实体对象。……<p class=readmore><a href=http://leaver.me/2012/06/17/freeanony-%E4%BB%A3%E7%90%86%E9%87%87%E9%9B%86%E8%AE%BE%E7%BD%AE%E5%B7%A5%E5%85%B7/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2012/06/15/gif%E5%8F%8D%E8%BD%AC%E5%B7%A5%E5%85%B7/>gif反转工具</a></h1></header><date class="post-meta meta-date">2012年6月15日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>首先看下效果图： 然后是两张gif的对比  //原本图是正着走的  //处理后是倒着走的
 gif是动态的嘛。然后我昨天和一个朋友聊天的时候发了一串相同的gif图，然后看着千篇一律的东西。我想能不能写个程序实现gif的初始状态不同呢。什么意思呢。我们知道，gif是由帧构成的，我想实现的功能是比如一个gif共有十帧，那么我写出来的程序能够生成10个gif文件，分别对应不同的初始状态来进行循环。后来一想，gif帧太多的话，比较慢，而且也不实用，于是决定简化一下，只做一个反转工具，比如一个gif是从左到右播放的，通过这个成功可以生成一个相同的gif图，不过是倒着播放的。
 思路很简单，就是先把gif分解成很多帧，然后对帧进行合并，合并帧之前把帧的位置反转一下就可以了。因为我自己对图像处理的知识不懂，只想到了思路，所以这些功能都要找些资料，然后修改，测试。
-分割帧的代码如下……
-            <p class="readmore"><a href="http://leaver.me/2012/06/15/gif%E5%8F%8D%E8%BD%AC%E5%B7%A5%E5%85%B7/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2012/06/10/mysql-error-1005-cant-create-table-errno-150%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/">MySQL ERROR 1005: Can&#39;t create table  (errno: 150)解决办法</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2012年6月10日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a>
-            
-        </div>
-        
-        <div class="post-content">
-            最近在做数据库大作业，采用mysql建立数据库的时候出现了这个情况，查了一下，解决了。
+分割帧的代码如下……<p class=readmore><a href=http://leaver.me/2012/06/15/gif%E5%8F%8D%E8%BD%AC%E5%B7%A5%E5%85%B7/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2012/06/10/mysql-error-1005-cant-create-table-errno-150%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/>MySQL ERROR 1005: Can't create table (errno: 150)解决办法</a></h1></header><date class="post-meta meta-date">2012年6月10日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>最近在做数据库大作业，采用mysql建立数据库的时候出现了这个情况，查了一下，解决了。
 出现问题的大致可能情况
 1、外键的引用类型不一样，如主键是int外键是char
 2、找不到主表中引用的列
 3、主键和外键的字符编码不一致，也可能存储引擎不一样
 对于第一个问题，检查一下自己的主外键记录数据类型是否一样，改了就行了，对于第二个问题，同样的道理，确定你主表中有对应的列。对于第三个问题
- 括号外面的语句设置了引擎。实战过程中通过。中间的外键设置了delete 和update约束。uid引用了pw_other表中的uid键 记下语法，出现问题的时候就可以用了。……
-            <p class="readmore"><a href="http://leaver.me/2012/06/10/mysql-error-1005-cant-create-table-errno-150%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/">阅读全文</a></p>
-        </div>
-    </article>
-    
-
-    
-
-
-
-<ol class="page-navigator">
-    
-    <li class="prev">
-        <a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/13/">上一页</a>
-    </li>
-    
-
-    
-
-    
-        
-        
-    
-    
-
-    
-        
-        
-        <li >
-            <a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">1</a>
-        </li>
-        
-    
-        
-        <li>
-            <span>...</span>
-        </li>
-        
-    
-        
-        
-        <li >
-            <a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/12/">12</a>
-        </li>
-        
-    
-        
-        
-        <li >
-            <a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/13/">13</a>
-        </li>
-        
-    
-        
-        
-        <li  class="current">
-            <a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/14/">14</a>
-        </li>
-        
-    
-        
-        
-        <li >
-            <a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/15/">15</a>
-        </li>
-        
-    
-        
-        
-        <li >
-            <a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/16/">16</a>
-        </li>
-        
-    
-        
-        <li>
-            <span>...</span>
-        </li>
-        
-    
-        
-        
-        <li >
-            <a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/19/">19</a>
-        </li>
-        
-    
-
-    
-    
-
-    <li class="next">
-        <a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/15/">下一页</a>
-    </li>
-    
-</ol>
-
-
-
-
-</div>
-
-                </div>
-
-                <div id="secondary">
-    <section class="widget">
-        <form id="search" action='http://leaver.me/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
-      
-      <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="http://leaver.me/">
-      <button type="submit" class="submit icon-search"></button>
-</form>
-    </section>
-    
-    <section class="widget">
-        <h3 class="widget-title">最近文章</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2019 年终总结">2019 年终总结</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/" title="深入理解Raft协议">深入理解Raft协议</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/" title="《非暴力沟通》笔记">《非暴力沟通》笔记</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/10/06/wedding-of-friends/" title="Wedding of Friends">Wedding of Friends</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/09/29/principle-note/" title="Principle Note">Principle Note</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/" title="梦见鲸鱼的那一夜">梦见鲸鱼的那一夜</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/08/20/understand-hong-kong-2/" title="Understand Hong Kong 2">Understand Hong Kong 2</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/08/18/understand-hong-kong-part-1/" title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/" title="错过的都是命，得到的才是人生">错过的都是命，得到的才是人生</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/04/06/recently/" title="Recently">Recently</a>
-    </li>
-    
-</ul>
-    </section>
-
-    
-
-    <section class="widget">
-        <h3 class="widget-title">分类</h3>
-<ul class="widget-list">
-    
-    <li><a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记 (186)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/">我的翻译 (57)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/">文章收藏 (53)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录 (3)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记 (4)</a></li>
-    
-</ul>
-    </section>
-
-    <section class="widget">
-        <h3 class="widget-title">标签</h3>
-<div class="tagcloud">
-    
-    <a href="http://leaver.me/tags/android/">android</a>
-    
-    <a href="http://leaver.me/tags/c/">C＃</a>
-    
-    <a href="http://leaver.me/tags/c&#43;&#43;/">C&#43;&#43;</a>
-    
-    <a href="http://leaver.me/tags/java/">java</a>
-    
-    <a href="http://leaver.me/tags/javascript/">javascript</a>
-    
-    <a href="http://leaver.me/tags/linux/">linux</a>
-    
-    <a href="http://leaver.me/tags/mac/">mac</a>
-    
-    <a href="http://leaver.me/tags/matlab/">matlab</a>
-    
-    <a href="http://leaver.me/tags/maven/">maven</a>
-    
-    <a href="http://leaver.me/tags/mysql/">mysql</a>
-    
-    <a href="http://leaver.me/tags/nextgen-gallery/">NextGEN Gallery</a>
-    
-    <a href="http://leaver.me/tags/php/">php</a>
-    
-    <a href="http://leaver.me/tags/python/">python</a>
-    
-    <a href="http://leaver.me/tags/shell/">shell</a>
-    
-    <a href="http://leaver.me/tags/spring/">spring</a>
-    
-    <a href="http://leaver.me/tags/sql/">sql</a>
-    
-    <a href="http://leaver.me/tags/stackoverflow/">stackoverflow</a>
-    
-    <a href="http://leaver.me/tags/wcf/">WCF</a>
-    
-    <a href="http://leaver.me/tags/web/">web</a>
-    
-    <a href="http://leaver.me/tags/windows/">windows</a>
-    
-    <a href="http://leaver.me/tags/wordpress/">wordpress</a>
-    
-    <a href="http://leaver.me/tags/wpf/">WPF</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/">上海</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/">下载</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
-    
-    <a href="http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/">互联网</a>
-    
-    <a href="http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
-    
-    <a href="http://leaver.me/tags/%E5%88%B6%E5%BA%A6/">制度</a>
-    
-    <a href="http://leaver.me/tags/%E5%89%8D%E7%AB%AF/">前端</a>
-    
-    <a href="http://leaver.me/tags/%E5%8E%9F%E5%88%9B/">原创</a>
-    
-    <a href="http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/">大学</a>
-    
-    <a href="http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/">学习</a>
-    
-    <a href="http://leaver.me/tags/%E5%AE%89%E5%85%A8/">安全</a>
-    
-    <a href="http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/">家庭</a>
-    
-    <a href="http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/">工作</a>
-    
-    <a href="http://leaver.me/tags/%E5%B7%A5%E5%85%B7/">工具</a>
-    
-    <a href="http://leaver.me/tags/%E5%B9%B6%E5%8F%91/">并发</a>
-    
-    <a href="http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/">序列化</a>
-    
-    <a href="http://leaver.me/tags/%E5%BC%80%E5%8F%91/">开发</a>
-    
-    <a href="http://leaver.me/tags/%E5%BF%83%E7%90%86/">心理</a>
-    
-    <a href="http://leaver.me/tags/%E6%80%BB%E7%BB%93/">总结</a>
-    
-    <a href="http://leaver.me/tags/%E6%8A%80%E6%9C%AF/">技术</a>
-    
-    <a href="http://leaver.me/tags/%E6%8F%92%E4%BB%B6/">插件</a>
-    
-    <a href="http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-    
-    <a href="http://leaver.me/tags/%E6%94%B6%E8%97%8F/">收藏</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E5%AD%A6/">数学</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">数据挖掘</a>
-    
-    <a href="http://leaver.me/tags/%E6%96%87%E7%AB%A0/">文章</a>
-    
-    <a href="http://leaver.me/tags/%E6%99%BA%E8%83%BD/">智能</a>
-    
-    <a href="http://leaver.me/tags/%E6%9D%82%E6%96%87/">杂文</a>
-    
-    <a href="http://leaver.me/tags/%E6%AD%A6%E6%B1%89/">武汉</a>
-    
-    <a href="http://leaver.me/tags/%E6%B1%87%E7%BC%96/">汇编</a>
-    
-    <a href="http://leaver.me/tags/%E7%88%B1%E6%83%85/">爱情</a>
-    
-    <a href="http://leaver.me/tags/%E7%90%86%E8%AE%BA/">理论</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%9F%E6%B4%BB/">生活</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/">电子书</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%B5%E5%BD%B1/">电影</a>
-    
-    <a href="http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/">社会</a>
-    
-    <a href="http://leaver.me/tags/%E7%A7%91%E6%8A%80/">科技</a>
-    
-    <a href="http://leaver.me/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
-    
-    <a href="http://leaver.me/tags/%E7%AE%97%E6%B3%95/">算法</a>
-    
-    <a href="http://leaver.me/tags/%E7%BC%96%E7%A8%8B/">编程</a>
-    
-    <a href="http://leaver.me/tags/%E7%BC%96%E8%AF%91/">编译</a>
-    
-    <a href="http://leaver.me/tags/%E7%BF%BB%E8%AF%91/">翻译</a>
-    
-    <a href="http://leaver.me/tags/%E8%81%8C%E4%B8%9A/">职业</a>
-    
-    <a href="http://leaver.me/tags/%E8%AE%B0%E5%BD%95/">记录</a>
-    
-    <a href="http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/">设计</a>
-    
-    <a href="http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/">读书</a>
-    
-    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/">软件</a>
-    
-    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</a>
-    
-    <a href="http://leaver.me/tags/%E8%BF%90%E7%BB%B4/">运维</a>
-    
-    <a href="http://leaver.me/tags/%E9%87%91%E8%9E%8D/">金融</a>
-    
-</div>
-    </section>
-
-    
-<section class="widget">
-    <h3 class="widget-title">友情链接</h3>
-    <ul class="widget-list">
-        
-        <li>
-            <a target="_blank" href="https://www.cppfans.org/" title="C&#43;&#43;爱好者博客">C&#43;&#43;爱好者博客</a>
-        </li>
-        
-        <li>
-            <a target="_blank" href="http://www.kailing.pub" title="KL，每天进步一点点">KL，每天进步一点点</a>
-        </li>
-        
-    </ul>
-</section>
-
-
-    <section class="widget">
-        <h3 class="widget-title">其它</h3>
-        <ul class="widget-list">
-            <li><a href="http://leaver.me/index.xml">文章 RSS</a></li>
-        </ul>
-    </section>
-</div>
-            </div>
-        </div>
-    </div>
-    <footer id="footer">
-    <div class="container">
-        &copy; 2020 <a href="http://leaver.me/">bystander&#39;s blog By bystander</a>.
-        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
-        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
-        
-    </div>
-</footer>
-
-
-
-<a id="rocket" href="#top"></a>
-<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-30961201-3', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-
-
-
-
-
-</body>
-
-</html>
+ 括号外面的语句设置了引擎。实战过程中通过。中间的外键设置了delete 和update约束。uid引用了pw_other表中的uid键 记下语法，出现问题的时候就可以用了。……<p class=readmore><a href=http://leaver.me/2012/06/10/mysql-error-1005-cant-create-table-errno-150%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/>阅读全文</a></p></div></article><ol class=page-navigator><li class=prev><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/13/>上一页</a></li><li><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/>1</a></li><li><span>...</span></li><li><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/12/>12</a></li><li><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/13/>13</a></li><li class=current><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/14/>14</a></li><li><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/15/>15</a></li><li><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/16/>16</a></li><li><span>...</span></li><li><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/19/>19</a></li><li class=next><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/15/>下一页</a></li></ol></div></div><div id=secondary><section class=widget><form id=search action=http://leaver.me/search/ method=get accept-charset=utf-8 target=_blank _lpchecked=1><input type=text name=q maxlength=20 placeholder=Search>
+<input type=hidden name=sitesearch value=http://leaver.me/>
+<button type=submit class="submit icon-search"></button></form></section><section class=widget><h3 class=widget-title>最近文章</h3><ul class=widget-list><li><a href=http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/ title="2019 年终总结">2019 年终总结</a></li><li><a href=http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/ title=深入理解Raft协议>深入理解Raft协议</a></li><li><a href=http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/ title=《非暴力沟通》笔记>《非暴力沟通》笔记</a></li><li><a href=http://leaver.me/2019/10/06/wedding-of-friends/ title="Wedding of Friends">Wedding of Friends</a></li><li><a href=http://leaver.me/2019/09/29/principle-note/ title="Principle Note">Principle Note</a></li><li><a href=http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/ title=梦见鲸鱼的那一夜>梦见鲸鱼的那一夜</a></li><li><a href=http://leaver.me/2019/08/20/understand-hong-kong-2/ title="Understand Hong Kong 2">Understand Hong Kong 2</a></li><li><a href=http://leaver.me/2019/08/18/understand-hong-kong-part-1/ title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a></li><li><a href=http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/ title=错过的都是命，得到的才是人生>错过的都是命，得到的才是人生</a></li><li><a href=http://leaver.me/2019/04/06/recently/ title=Recently>Recently</a></li></ul></section><section class=widget><h3 class=widget-title>分类</h3><ul class=widget-list><li><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/>学习笔记 (186)</a></li><li><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/>我的翻译 (57)</a></li><li><a href=http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/>文章收藏 (53)</a></li><li><a href=http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/>生活记录 (3)</a></li><li><a href=http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/>读书笔记 (4)</a></li></ul></section><section class=widget><h3 class=widget-title>标签</h3><div class=tagcloud><a href=http://leaver.me/tags/android/>android</a>
+<a href=http://leaver.me/tags/c/>C＃</a>
+<a href=http://leaver.me/tags/c++/>C++</a>
+<a href=http://leaver.me/tags/java/>java</a>
+<a href=http://leaver.me/tags/javascript/>javascript</a>
+<a href=http://leaver.me/tags/linux/>linux</a>
+<a href=http://leaver.me/tags/mac/>mac</a>
+<a href=http://leaver.me/tags/matlab/>matlab</a>
+<a href=http://leaver.me/tags/maven/>maven</a>
+<a href=http://leaver.me/tags/mysql/>mysql</a>
+<a href=http://leaver.me/tags/nextgen-gallery/>NextGEN Gallery</a>
+<a href=http://leaver.me/tags/php/>php</a>
+<a href=http://leaver.me/tags/python/>python</a>
+<a href=http://leaver.me/tags/shell/>shell</a>
+<a href=http://leaver.me/tags/spring/>spring</a>
+<a href=http://leaver.me/tags/sql/>sql</a>
+<a href=http://leaver.me/tags/stackoverflow/>stackoverflow</a>
+<a href=http://leaver.me/tags/wcf/>WCF</a>
+<a href=http://leaver.me/tags/web/>web</a>
+<a href=http://leaver.me/tags/windows/>windows</a>
+<a href=http://leaver.me/tags/wordpress/>wordpress</a>
+<a href=http://leaver.me/tags/wpf/>WPF</a>
+<a href=http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/>上海</a>
+<a href=http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/>下载</a>
+<a href=http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/>中间件</a>
+<a href=http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/>互联网</a>
+<a href=http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/>分布式</a>
+<a href=http://leaver.me/tags/%E5%88%B6%E5%BA%A6/>制度</a>
+<a href=http://leaver.me/tags/%E5%89%8D%E7%AB%AF/>前端</a>
+<a href=http://leaver.me/tags/%E5%8E%9F%E5%88%9B/>原创</a>
+<a href=http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/>大学</a>
+<a href=http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/>学习</a>
+<a href=http://leaver.me/tags/%E5%AE%89%E5%85%A8/>安全</a>
+<a href=http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/>家庭</a>
+<a href=http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/>工作</a>
+<a href=http://leaver.me/tags/%E5%B7%A5%E5%85%B7/>工具</a>
+<a href=http://leaver.me/tags/%E5%B9%B6%E5%8F%91/>并发</a>
+<a href=http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/>序列化</a>
+<a href=http://leaver.me/tags/%E5%BC%80%E5%8F%91/>开发</a>
+<a href=http://leaver.me/tags/%E5%BF%83%E7%90%86/>心理</a>
+<a href=http://leaver.me/tags/%E6%80%BB%E7%BB%93/>总结</a>
+<a href=http://leaver.me/tags/%E6%8A%80%E6%9C%AF/>技术</a>
+<a href=http://leaver.me/tags/%E6%8F%92%E4%BB%B6/>插件</a>
+<a href=http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/>操作系统</a>
+<a href=http://leaver.me/tags/%E6%94%B6%E8%97%8F/>收藏</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E5%AD%A6/>数学</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/>数据库</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/>数据挖掘</a>
+<a href=http://leaver.me/tags/%E6%96%87%E7%AB%A0/>文章</a>
+<a href=http://leaver.me/tags/%E6%99%BA%E8%83%BD/>智能</a>
+<a href=http://leaver.me/tags/%E6%9D%82%E6%96%87/>杂文</a>
+<a href=http://leaver.me/tags/%E6%AD%A6%E6%B1%89/>武汉</a>
+<a href=http://leaver.me/tags/%E6%B1%87%E7%BC%96/>汇编</a>
+<a href=http://leaver.me/tags/%E7%88%B1%E6%83%85/>爱情</a>
+<a href=http://leaver.me/tags/%E7%90%86%E8%AE%BA/>理论</a>
+<a href=http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/>生产力</a>
+<a href=http://leaver.me/tags/%E7%94%9F%E6%B4%BB/>生活</a>
+<a href=http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/>电子书</a>
+<a href=http://leaver.me/tags/%E7%94%B5%E5%BD%B1/>电影</a>
+<a href=http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/>社会</a>
+<a href=http://leaver.me/tags/%E7%A7%91%E6%8A%80/>科技</a>
+<a href=http://leaver.me/tags/%E7%AC%94%E8%AE%B0/>笔记</a>
+<a href=http://leaver.me/tags/%E7%AE%97%E6%B3%95/>算法</a>
+<a href=http://leaver.me/tags/%E7%BC%96%E7%A8%8B/>编程</a>
+<a href=http://leaver.me/tags/%E7%BC%96%E8%AF%91/>编译</a>
+<a href=http://leaver.me/tags/%E7%BF%BB%E8%AF%91/>翻译</a>
+<a href=http://leaver.me/tags/%E8%81%8C%E4%B8%9A/>职业</a>
+<a href=http://leaver.me/tags/%E8%AE%B0%E5%BD%95/>记录</a>
+<a href=http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/>设计</a>
+<a href=http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/>读书</a>
+<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/>软件</a>
+<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/>软件测试</a>
+<a href=http://leaver.me/tags/%E8%BF%90%E7%BB%B4/>运维</a>
+<a href=http://leaver.me/tags/%E9%87%91%E8%9E%8D/>金融</a></div></section><section class=widget><h3 class=widget-title>友情链接</h3><ul class=widget-list><li><a target=_blank href=https://www.cppfans.org/ title=C++爱好者博客>C++爱好者博客</a></li><li><a target=_blank href=http://www.kailing.pub title=KL，每天进步一点点>KL，每天进步一点点</a></li></ul></section><section class=widget><h3 class=widget-title>其它</h3><ul class=widget-list><li><a href=http://leaver.me/index.xml>文章 RSS</a></li></ul></section></div></div></div></div><footer id=footer><div class=container>&copy; 2020 <a href=http://leaver.me/>bystander's blog By bystander</a>.
+Powered by <a rel="nofollow noreferer noopener" href=https://gohugo.io target=_blank>Hugo</a>.
+<a href=https://www.flysnow.org/ target=_blank>Theme</a> based on <a href=https://github.com/flysnow-org/maupassant-hugo target=_blank>maupassant</a>.</div></footer><a id=rocket href=#top></a><script type=text/javascript src="/js/totop.js?v=0.0.0" async></script><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-30961201-3','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></body></html>

@@ -1,93 +1,12 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
-	<meta name="generator" content="Hugo 0.61.0" />
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>bystander&#39;s blog | 寻找窄门</title>
-    <meta property="og:title" content="bystander&#39;s blog | 寻找窄门">
-    <meta property="og:type" content="website">
-    <meta name="Keywords" content="">
-    <meta name="description" content="">
-    <meta property="og:url" content="http://leaver.me/">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-
-    <link rel="stylesheet" href='/css/normalize.css'>
-    <link rel="stylesheet" href='/css/style.css'>
-    <link rel="alternate" type="application/rss+xml+xml" href="http://leaver.me/index.xml" title="bystander's blog" />
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-    
-
-
-    
-    
-</head>
-
-
-<body>
-    <header id="header" class="clearfix">
-    <div class="container">
-        <div class="col-group">
-            <div class="site-name ">
-                
-                    <h1>
-                        <a id="logo" href="http://leaver.me/">
-                            bystander&#39;s blog
-                        </a>
-                    </h1>
-                
-                <p class="description">寻找窄门</p>
-            </div>
-            <div>
-                <nav id="nav-menu" class="clearfix">
-                    <a class="current" href="http://leaver.me/">首页</a>
-                    
-                    <a  href="http://leaver.me/categories" title="目录">目录</a>
-                    
-                    <a  href="http://leaver.me/about/" title="关于我">关于我</a>
-                    
-                </nav>
-            </div>
-        </div>
-    </div>
-</header>
-
-    <div id="body">
-        <div class="container">
-            <div class="col-group">
-
-                <div class="col-8" id="main">
-                    
-<div class="res-cons">
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2016/12/10/graylog%E6%97%A5%E8%AE%B0%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/" title="graylog日记管理平台使用的那些坑">graylog日记管理平台使用的那些坑</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2016年12月10日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            前言 最近使用 graylog在部署日志平台的时候,踩到很多&quot;坑&rdquo;,记录一下
+<!doctype html><html lang=zh-cn><head><meta name=generator content="Hugo 0.62.2"><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><title>bystander's blog | 寻找窄门</title><meta property="og:title" content="bystander's blog | 寻找窄门"><meta property="og:type" content="website"><meta name=Keywords content><meta name=description content><meta property="og:url" content="http://leaver.me/"><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><link rel=stylesheet href=/css/normalize.css><link rel=stylesheet href=/css/style.css><link rel=alternate type=application/rss+xml+xml href=http://leaver.me/index.xml title="bystander's blog"><script type=text/javascript src=//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js></script></head><body><header id=header class=clearfix><div class=container><div class=col-group><div class=site-name><h1><a id=logo href=http://leaver.me/>bystander's blog</a></h1><p class=description>寻找窄门</p></div><div><nav id=nav-menu class=clearfix><a class=current href=http://leaver.me/>首页</a>
+<a href=http://leaver.me/categories title=目录>目录</a>
+<a href=http://leaver.me/about/ title=关于我>关于我</a></nav></div></div></div></header><div id=body><div class=container><div class=col-group><div class=col-8 id=main><div class=res-cons><article class=post><header><h1 class=post-title><a href=http://leaver.me/2016/12/10/graylog%E6%97%A5%E8%AE%B0%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/ title=graylog日记管理平台使用的那些坑>graylog日记管理平台使用的那些坑</a></h1></header><date class="post-meta meta-date">2016年12月10日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></span></div><div class=post-content>前言 最近使用 graylog在部署日志平台的时候,踩到很多"坑&rdquo;,记录一下
 日志采集(nxlog) 1.客户端不要做太多的正则计算 graylog 最早推荐的 nxlog 采集客户端,现在貌似有了 beats 的采集方式,不过我没了解,nxlog 采集的话,需要配置Snippets,就是定义输入,输出,处理器的地方,这个地方, Input 模块是在客户端计算的.所以,一定不要进行太多的正则计算.否则会严重影响客户端的 cpu 资源.降低应用程序的性能.
 2.开多行一定要慎重 graylog 可以通过配置
-&lt;Extension multiline&gt; Module xm_multiline HeaderLine /^\d{0,2}\/\d{0,2}\/\d{0,4}/ EndLine /^\d{0,2}\/\d{0,2}\/\d{0,4}/ &lt;/Extension&gt; &lt;Input pcc-esolutions-log&gt; Module im_file File &#34;*.log&#34; SavePos TRUE InputType multiline &lt;/Input&gt; 来实现对于类似错误栈这样的信息,将多行采集成一行,但是一定要注意.如果这个正则写错了,或者其他原因,导致,未能正确匹配.会导致 nxlog 客户端占用内存暴涨.原因是为了实现多行采集,会再客户端内存中保存日志内容,直到匹配到行尾.如果未能正确匹配.会一直保存.导致内存泄露.
+&lt;Extension multiline> Module xm_multiline HeaderLine /^\d{0,2}\/\d{0,2}\/\d{0,4}/ EndLine /^\d{0,2}\/\d{0,2}\/\d{0,4}/ &lt;/Extension> &lt;Input pcc-esolutions-log> Module im_file File "*.log" SavePos TRUE InputType multiline &lt;/Input> 来实现对于类似错误栈这样的信息,将多行采集成一行,但是一定要注意.如果这个正则写错了,或者其他原因,导致,未能正确匹配.会导致 nxlog 客户端占用内存暴涨.原因是为了实现多行采集,会再客户端内存中保存日志内容,直到匹配到行尾.如果未能正确匹配.会一直保存.导致内存泄露.
 这时候一般伴随着nxlog 的客户端日志中开始打印: 2016-12-05 18:36:47 ERROR oversized string, limit is 1048576 bytes 这样的信息.表示单条日志超过了1m
-最终有一定几率影响客户端应用,被 oom 所杀.不要问我怎么知道的&hellip;
+最终有一定几率影响客户端应用,被 oom 所杀.不要问我怎么知道的&mldr;
 3 日志就是太大怎么办. 貌似没办法..只能在 Input 配置中.
 Exec if $raw_event $raw_event = substr($raw_event, 0, 1040000); 执行类似的来限制,没有尝试过,参考这里:日志大小超长配置
 服务端处理(graylog) 1.服务端性能不好的情况下也不要做大量正则 日志处理这部分主要是说 graylog 自身的处理,graylog 是 cpu 密集型的,在收到了 nxlog 经过少量计算的日志后, graylog 其实还提供了 extrator 的功能来解析字段,当时我因为部署了很多应用的日志采集,为了生成一个统一的索引字段,我在extrator写了一个正则,对于所有的消息,根据这个正则找到一个字段,来作为 key(保存成 no), 可能一个流水号,这样我就可以根据 no:xxx 来查询所有相关的日志了.
@@ -95,241 +14,65 @@ Exec if $raw_event $raw_event = substr($raw_event, 0, 1040000); 执行类似的�
 参考:Very slow process message
 如果是确定不是 graylog 的问题, output 还是慢,可以尝试修改输出的并发量来解决,改改 graylog 配置中的output_batch_size值.
 2.journal如果太多,可能导致graylog 状态 dead 由于我前面的问题,导致 journal 中保存了太多的日志,这样会导致两个问题,1,启动的时候会尝试吧这些日志全部加载 graylog 服务端的内存中.这时候,如果应用内存不够,直接会启动不了报java 的 oom,
-2016-12-04T12:25:36.543+02:00 ERROR [ServiceManager] Service JournalReader [FAILED] has failed in the RUNNING state. java.lang.OutOfMemoryError: Java heap space at java.……
-        </div>
-        <p class="readmore"><a href="http://leaver.me/2016/12/10/graylog%E6%97%A5%E8%AE%B0%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/">阅读全文</a></p>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2016/11/06/graylog%E4%B8%AD%E7%9A%84mongodb%E9%85%8D%E7%BD%AE/" title="graylog中的mongodb配置">graylog中的mongodb配置</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2016年11月6日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            接手的一个工具平台,发现 graylog 集群使用了单个的 mongodb 作为数据库,于是需要配置一下集群,来防止数据丢失,毕竟很多配置都在里面.
+2016-12-04T12:25:36.543+02:00 ERROR [ServiceManager] Service JournalReader [FAILED] has failed in the RUNNING state. java.lang.OutOfMemoryError: Java heap space at java.……</div><p class=readmore><a href=http://leaver.me/2016/12/10/graylog%E6%97%A5%E8%AE%B0%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2016/11/06/graylog%E4%B8%AD%E7%9A%84mongodb%E9%85%8D%E7%BD%AE/ title=graylog中的mongodb配置>graylog中的mongodb配置</a></h1></header><date class="post-meta meta-date">2016年11月6日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></span></div><div class=post-content>接手的一个工具平台,发现 graylog 集群使用了单个的 mongodb 作为数据库,于是需要配置一下集群,来防止数据丢失,毕竟很多配置都在里面.
 为了以防万一,先备份一下 graylog 的配置. mongodump -h dbhost -d dbname -o dbdirectory
 防止分布式部署的使用搞坏了.之后的恢复可以使用
 mongorestore -h dbhost -d dbname --directoryperdb dbdirectory
 来恢复.相关说明可以参考这里
 之后就可以正式开始了
-  修改集群名字
+修改集群名字
 在/etc/mongod.conf 中,修改这个值.设置集群使用的集群名称是 graylog,几个机器都配置一下.都先不要启动
 replication: replSetName: graylog
-  然后添加集群配置
-  启动其中一台,然后通过mongo 命令连接上数据库,依次执行下面的命令.注意,这里有个坑.添加本机的时候,一定要写对外的域名或者 ip.否则会导致无法选主.
-rs.initiate() rs.add(&#34;&lt;hostname&gt;:27017&#34;) rs.add(&#34;&lt;hostname&gt;:27017&#34;) rs.add(&#34;&lt;hostname&gt;:27017&#34;) rs.conf()  开始启动
+然后添加集群配置
+启动其中一台,然后通过mongo 命令连接上数据库,依次执行下面的命令.注意,这里有个坑.添加本机的时候,一定要写对外的域名或者 ip.否则会导致无法选主.
+rs.initiate() rs.add("&lt;hostname>:27017") rs.add("&lt;hostname>:27017") rs.add("&lt;hostname>:27017") rs.conf() 开始启动
 这里启动就不用说了. service mongod start 启动就好了.
-  配置 graylog 集群连接地址
+配置 graylog 集群连接地址
 在/etc/graylog/server/server.conf 中配置.mongodb_uri = mongodb://host1,host2,host3/graylog
-  后面这个 graylog 就是给 graylog 使用的库名,你可以先创建.
+后面这个 graylog 就是给 graylog 使用的库名,你可以先创建.
 之后mongodb 就开始自行同步了.
 [参考]
 高可用的MongoDB集群
-​……
-        </div>
-        <p class="readmore"><a href="http://leaver.me/2016/11/06/graylog%E4%B8%AD%E7%9A%84mongodb%E9%85%8D%E7%BD%AE/">阅读全文</a></p>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2016/10/30/graylog%E4%B8%AD%E7%9A%84%E5%AD%97%E6%AE%B5%E8%A7%A3%E6%9E%90/" title="graylog中的字段解析">graylog中的字段解析</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2016年10月30日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            关于字段解析 一旦 graylog 用在了一个分布式系统上,那么采集的日志格式多种多样,涉及到通过 rules.drl来解析具体的字段.之前的同学的方案是用drools 来完成的.通过一个统一的界面,来给用户生成一些正则规则这种.然后自己写了个转换器转成 Drools 的文件.更新到 graylog 的服务器上.然后重启gralog 应用完成.
+​……</div><p class=readmore><a href=http://leaver.me/2016/11/06/graylog%E4%B8%AD%E7%9A%84mongodb%E9%85%8D%E7%BD%AE/>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2016/10/30/graylog%E4%B8%AD%E7%9A%84%E5%AD%97%E6%AE%B5%E8%A7%A3%E6%9E%90/ title=graylog中的字段解析>graylog中的字段解析</a></h1></header><date class="post-meta meta-date">2016年10月30日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></span></div><div class=post-content>关于字段解析 一旦 graylog 用在了一个分布式系统上,那么采集的日志格式多种多样,涉及到通过 rules.drl来解析具体的字段.之前的同学的方案是用drools 来完成的.通过一个统一的界面,来给用户生成一些正则规则这种.然后自己写了个转换器转成 Drools 的文件.更新到 graylog 的服务器上.然后重启gralog 应用完成.
 实际上, graylog 2之后的版本提供了rules和 pipeline ,这种不需要重启应用,完成这个解析的动作.但是.注意.这个不完善.所以只支持一些简单的语法,无法实现原有的完全转换.所以放弃.
-在此过程中.这个rules 有一个比较强大的功能,自动解析 key value 对.需要添加,但是,需要你的日志文件格式里的 key value有空格, 也就是要求必须是 key=value 这样,不能紧挨着逗号这样的..比如你的打印日志是 key=value,key2=value2.那么久无法解析了..这个暂时没看到比较好的办法.估计要改代码.如果你恰好符合.那最好了.……
-        </div>
-        <p class="readmore"><a href="http://leaver.me/2016/10/30/graylog%E4%B8%AD%E7%9A%84%E5%AD%97%E6%AE%B5%E8%A7%A3%E6%9E%90/">阅读全文</a></p>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2016/10/05/mac%E6%97%A5%E5%BF%97%E6%89%B9%E9%87%8F%E6%9F%A5%E8%AF%A2%E9%85%8D%E7%BD%AE/" title="mac日志批量查询配置">mac日志批量查询配置</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2016年10月5日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            由于公司线下机器非常多,导致每次查日志变得非常痛苦.线下的trace平台大部分时候还是可用的.但是有时候需要本机来批量查询.方案就是批量分发ssh key,实现免登.然后luit实现编码转换,这个主要是公司的机器编码有差异.历史原因.
+在此过程中.这个rules 有一个比较强大的功能,自动解析 key value 对.需要添加,但是,需要你的日志文件格式里的 key value有空格, 也就是要求必须是 key=value 这样,不能紧挨着逗号这样的..比如你的打印日志是 key=value,key2=value2.那么久无法解析了..这个暂时没看到比较好的办法.估计要改代码.如果你恰好符合.那最好了.……</div><p class=readmore><a href=http://leaver.me/2016/10/30/graylog%E4%B8%AD%E7%9A%84%E5%AD%97%E6%AE%B5%E8%A7%A3%E6%9E%90/>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2016/10/05/mac%E6%97%A5%E5%BF%97%E6%89%B9%E9%87%8F%E6%9F%A5%E8%AF%A2%E9%85%8D%E7%BD%AE/ title=mac日志批量查询配置>mac日志批量查询配置</a></h1></header><date class="post-meta meta-date">2016年10月5日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></span></div><div class=post-content>由于公司线下机器非常多,导致每次查日志变得非常痛苦.线下的trace平台大部分时候还是可用的.但是有时候需要本机来批量查询.方案就是批量分发ssh key,实现免登.然后luit实现编码转换,这个主要是公司的机器编码有差异.历史原因.
 0. 准备 先要安装pssh,expect,ssh-copy-id.
 brew install pssh brew install homebrew/dupes/expect brew install ssh-copy-id 另外安装luit的安装参考这里luit安装
-1. 生成ssh key ,并批量copy 生成ssh key比较简单.ssh-keygen -t rsa -C &quot;your_email@example.com&quot;,直接使用git的ssh key也是可以的.然后保存下面这个脚本为pscopy.sh,
-#!/bin/bash FILE=`cat ~/host.txt` for ip in $FILE;do expect -c &#34;spawn ssh-copy-id $ipexpect { \&#34;*yes/no*\&#34; {send \&#34;yes\r\&#34;;exp_continue} \&#34;*password*\&#34; {send \&#34;pass\r\&#34;;exp_continue} \&#34;*password*\&#34; {send \&#34;pass\r\&#34;;} } &#34; done 然后执行一下sh pscopy.sh,注意,host.txt要保证存在.格式是user@address.一行一个,中间的paas要改成user的密码,这样就会使用指定的用户密码,自动copy ssh key了. 完成上面的步骤之后,ssh user@address 就可以免登了.
-2. 写一个简单的pssh脚本 #!/bin/bash  encoding= key= command= file= usage() { echo &#34;Usage: `basename $0` [-f filename] [-c encoding] [-k keyword]&#34; exit 1 } while getopts :f:c:k: opt do case $opt in c) encoding=$OPTARG ;; :) echo &#34;-$OPTARGneeds an argument&#34; ;; k) key=$OPTARG ;; f) file=$OPTARG ;; *) echo &#34;-$optnot recognized&#34; usage ;; esac done if [ -z &#34;$encoding&#34; ]; then #该脚本必须提供-d选项 encoding=&#34;gbk&#34; fi if [ -z &#34;$file&#34; ]; then #该脚本必须提供-d选项 file=&#34;~/hosts.txt&#34; fi if [ -z &#34;$key&#34; ]; then #该脚本必须提供-d选项 usage fi command=&#34;pssh -h $file-P \&#34;find /home/admin/logs/ -name &#39;*.……
-        </div>
-        <p class="readmore"><a href="http://leaver.me/2016/10/05/mac%E6%97%A5%E5%BF%97%E6%89%B9%E9%87%8F%E6%9F%A5%E8%AF%A2%E9%85%8D%E7%BD%AE/">阅读全文</a></p>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2016/08/14/%E4%BF%AE%E6%94%B9mac%E5%8D%95%E5%BA%94%E7%94%A8%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E7%9A%84%E9%99%90%E5%88%B6/" title="修改mac单应用创建线程的限制">修改mac单应用创建线程的限制</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2016年8月14日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            最近遇到一个问题,公司的 java 服务端应用,启动后,通过 jstack pid |grep nid -c,可以看到大概创建了2044个线程,然后此时应用就会报错,提示无法创建更多线程, jvm 开始抛错. 查看 mac 的内存,发现还是够的.因为一般认为可创建的线程数=(总内存-其他占用的内存)/线程大小,所以内存够的情况下,应该是能创建的.
+1. 生成ssh key ,并批量copy 生成ssh key比较简单.ssh-keygen -t rsa -C "your_email@example.com",直接使用git的ssh key也是可以的.然后保存下面这个脚本为pscopy.sh,
+#!/bin/bash FILE=`cat ~/host.txt` for ip in $FILE;do expect -c "spawn ssh-copy-id $ipexpect { \"*yes/no*\" {send \"yes\r\";exp_continue} \"*password*\" {send \"pass\r\";exp_continue} \"*password*\" {send \"pass\r\";} } " done 然后执行一下sh pscopy.sh,注意,host.txt要保证存在.格式是user@address.一行一个,中间的paas要改成user的密码,这样就会使用指定的用户密码,自动copy ssh key了. 完成上面的步骤之后,ssh user@address 就可以免登了.
+2. 写一个简单的pssh脚本 #!/bin/bash encoding= key= command= file= usage() { echo "Usage: `basename $0` [-f filename] [-c encoding] [-k keyword]" exit 1 } while getopts :f:c:k: opt do case $opt in c) encoding=$OPTARG ;; :) echo "-$OPTARGneeds an argument" ;; k) key=$OPTARG ;; f) file=$OPTARG ;; *) echo "-$optnot recognized" usage ;; esac done if [ -z "$encoding" ]; then #该脚本必须提供-d选项 encoding="gbk" fi if [ -z "$file" ]; then #该脚本必须提供-d选项 file="~/hosts.txt" fi if [ -z "$key" ]; then #该脚本必须提供-d选项 usage fi command="pssh -h $file-P \"find /home/admin/logs/ -name '*.……</div><p class=readmore><a href=http://leaver.me/2016/10/05/mac%E6%97%A5%E5%BF%97%E6%89%B9%E9%87%8F%E6%9F%A5%E8%AF%A2%E9%85%8D%E7%BD%AE/>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2016/08/14/%E4%BF%AE%E6%94%B9mac%E5%8D%95%E5%BA%94%E7%94%A8%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E7%9A%84%E9%99%90%E5%88%B6/ title=修改mac单应用创建线程的限制>修改mac单应用创建线程的限制</a></h1></header><date class="post-meta meta-date">2016年8月14日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></span></div><div class=post-content>最近遇到一个问题,公司的 java 服务端应用,启动后,通过 jstack pid |grep nid -c,可以看到大概创建了2044个线程,然后此时应用就会报错,提示无法创建更多线程, jvm 开始抛错. 查看 mac 的内存,发现还是够的.因为一般认为可创建的线程数=(总内存-其他占用的内存)/线程大小,所以内存够的情况下,应该是能创建的.
 google 一圈,发现mac 对单线程创建的线程是有限制的.理由应该是为了保持系统稳定性.主要有两个参数
 sysctl kern.num_threads 这个可以看一下,说明了系统能够创建的总共的线程,单个应用能够创建的线程是sysctl kern.num_taskthreads,第二个参数就是导致我们创建不出来更多线程的原因, 因为2044+一些 gc 的线程,基本上刚刚达到这个极限.
 那么要么改程序,要么改参数.改程序这是不可能的..因为只有 mac 会有这个问题..该参数尝试通过sudo sysctl -w kern.num_taskthreads=4096,修改,会发现提示是只读属性.google 了一圈,无解.
 最终意外解决..
 参考这里开启性能模式
- nvram boot-args sudo nvram boot-args=&quot;serverperfmode=1 $(nvram boot-args 2&gt;/dev/null | cut -f 2-)&quot; 重启  如果想要恢复的话: sudo nvram boot-args=&quot;$(nvram boot-args 2&gt;/dev/null | sed -e $'s/boot-args\t//;s/serverperfmode=1//')&quot;
-当时各种搜索,加打apple 支持电话.无解.搜索意外看到这个说明,说开启之后,可以支持更多服务应用之类的.猜测应该会改这个值..果然..改完之后,直接重启,这个限制会变成5000..完美解决..理论上,应该通过继续修改这个参数 是可以自定义这个值的.不过还没尝试.……
-        </div>
-        <p class="readmore"><a href="http://leaver.me/2016/08/14/%E4%BF%AE%E6%94%B9mac%E5%8D%95%E5%BA%94%E7%94%A8%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E7%9A%84%E9%99%90%E5%88%B6/">阅读全文</a></p>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2016/08/07/homebrew%E7%BC%93%E6%85%A2%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" title="homebrew缓慢解决方案">homebrew缓慢解决方案</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2016年8月7日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            mac 下使用 homebrew 作为包管理工具是非常好的. brew 用来安装非 gui 界面的程序. cask 用来安装 gui 界面的程序.但是这两个是使用的源在国外.所以你懂得..
+nvram boot-args sudo nvram boot-args="serverperfmode=1 $(nvram boot-args 2>/dev/null | cut -f 2-)" 重启 如果想要恢复的话: sudo nvram boot-args="$(nvram boot-args 2>/dev/null | sed -e $'s/boot-args\t//;s/serverperfmode=1//')"
+当时各种搜索,加打apple 支持电话.无解.搜索意外看到这个说明,说开启之后,可以支持更多服务应用之类的.猜测应该会改这个值..果然..改完之后,直接重启,这个限制会变成5000..完美解决..理论上,应该通过继续修改这个参数 是可以自定义这个值的.不过还没尝试.……</div><p class=readmore><a href=http://leaver.me/2016/08/14/%E4%BF%AE%E6%94%B9mac%E5%8D%95%E5%BA%94%E7%94%A8%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E7%9A%84%E9%99%90%E5%88%B6/>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2016/08/07/homebrew%E7%BC%93%E6%85%A2%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/ title=homebrew缓慢解决方案>homebrew缓慢解决方案</a></h1></header><date class="post-meta meta-date">2016年8月7日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></span></div><div class=post-content>mac 下使用 homebrew 作为包管理工具是非常好的. brew 用来安装非 gui 界面的程序. cask 用来安装 gui 界面的程序.但是这两个是使用的源在国外.所以你懂得..
 1.替换 homebrew 默认源
 cd /usr/local git remote set-url origin git://mirrors.ustc.edu.cn/brew.git 这里注意记一下以前的默认源.防止以后想换回来..
 默认源是 https://github.com/Homebrew/brew
 2.替换homebrew bottles默认源
-echo &#39;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles&#39; &gt;&gt; ~/.bashrc 这里的.bashrc根据自己的情况替换.我是 zsh,就写到.zshrc 文件.……
-        </div>
-        <p class="readmore"><a href="http://leaver.me/2016/08/07/homebrew%E7%BC%93%E6%85%A2%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">阅读全文</a></p>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2016/08/07/mac%E4%BD%BF%E7%94%A8%E5%85%A8%E5%B1%80%E4%BB%A3%E7%90%86/" title="mac使用全局代理">mac使用全局代理</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2016年8月7日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            自从入了 hexo 的坑.这玩意折腾的我不要不要的.各种诡异的问题,不过也顺便搞了搞其他的东西.看了很多相关的代理设置方案.最终沿用 windows 下的策略.最简单高效.
+echo 'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles' >> ~/.bashrc 这里的.bashrc根据自己的情况替换.我是 zsh,就写到.zshrc 文件.……</div><p class=readmore><a href=http://leaver.me/2016/08/07/homebrew%E7%BC%93%E6%85%A2%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2016/08/07/mac%E4%BD%BF%E7%94%A8%E5%85%A8%E5%B1%80%E4%BB%A3%E7%90%86/ title=mac使用全局代理>mac使用全局代理</a></h1></header><date class="post-meta meta-date">2016年8月7日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></span></div><div class=post-content>自从入了 hexo 的坑.这玩意折腾的我不要不要的.各种诡异的问题,不过也顺便搞了搞其他的东西.看了很多相关的代理设置方案.最终沿用 windows 下的策略.最简单高效.
 mac 下的 ss 代理是只能设置浏览器代理的.对于一些不走 http 代理的.比如终端.或者其他软件.那么就需要将 ss 代理指定给其他软件或者终端使用.
 1.有一个 ss 代理 2.安装proxifier,直接 brew cask install proxifier 3.安装好之后,添加Proxies 里面,把 ssh 的信息添加进入 4.添加 Rules, 我为了简单..直接将default 设置成走代理.这样,就啥也不用管了.等 hexo deploy 结束.再关闭proxifier 就行了.
 实际使用中.可以先开全局代理.然后知道哪个程序走了代理.需要走代理.然后单独设置即可.软件很好使用.
-不得不说, wall 越来越令人难受与不安.……
-        </div>
-        <p class="readmore"><a href="http://leaver.me/2016/08/07/mac%E4%BD%BF%E7%94%A8%E5%85%A8%E5%B1%80%E4%BB%A3%E7%90%86/">阅读全文</a></p>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2016/08/06/sourcetree%E8%AE%BE%E7%BD%AE%E4%BD%BF%E7%94%A8svn/" title="sourceTree设置使用svn">sourceTree设置使用svn</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2016年8月6日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            mac 下面不想安装多个 GUI 的 svn 客户端.所以使用 sourceTree 来做.
+不得不说, wall 越来越令人难受与不安.……</div><p class=readmore><a href=http://leaver.me/2016/08/07/mac%E4%BD%BF%E7%94%A8%E5%85%A8%E5%B1%80%E4%BB%A3%E7%90%86/>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2016/08/06/sourcetree%E8%AE%BE%E7%BD%AE%E4%BD%BF%E7%94%A8svn/ title=sourceTree设置使用svn>sourceTree设置使用svn</a></h1></header><date class="post-meta meta-date">2016年8月6日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></span></div><div class=post-content>mac 下面不想安装多个 GUI 的 svn 客户端.所以使用 sourceTree 来做.
 sourceTree 对于 svn 只能从远程 url 拷贝.不能从本地来.所以在 gui 页面进行添加
 但是会发现报错
-Can&#39;t locate SVN/Core.pm in @INC (you may need to install the SVN::Core module) (@INC contains: 网上搜了一下.原因是 Perl 升级后 版本路径不对.于是执行
+Can't locate SVN/Core.pm in @INC (you may need to install the SVN::Core module) (@INC contains: 网上搜了一下.原因是 Perl 升级后 版本路径不对.于是执行
 sudo ln -s /Applications/Xcode.app/Contents/Developer/Library/Perl/5.18/darwin-thread-multi-2level/SVN /System/Library/Perl/Extras/5.18/SVN sudo ln -s /Applications/Xcode.app/Contents/Developer/Library/Perl/5.18/darwin-thread-multi-2level/auto/SVN/ /System/Library/Perl/Extras/5.18/auto/SVN 这里就是创建两个软连接.以便 sourceTree 识别.这里注意.如果你装了 Xcode 的 CommandLineTools, 而不是完整的 Xcode. 那么你的目录是没有这个原始文件的所以需要执行的
 sudo ln -s /Library/Developer/CommandLineTools/Library/Perl/5.18/darwin-thread-multi-2level/SVN /System/Library/Perl/Extras/5.18/SVN sudo ln -s /Library/Developer/CommandLineTools/Library/Perl/5.18/darwin-thread-multi-2level/auto/SVN/ /System/Library/Perl/Extras/5.18/auto/SVN 但是执行的时候还是会报错.因为新版本的 mac系统.已经不允许在 System 目录写文件了.除非关闭安全选项.这就得不偿失了.
 但是从stackexchange说法看.
 mkdir /Library/Perl/5.18/auto sudo ln -s /Library/Developer/CommandLineTools/Library/Perl/5.18/darwin-thread-multi-2level/SVN /Library/Perl/5.18/SVN sudo ln -s /Library/Developer/CommandLineTools/Library/Perl/5.18/darwin-thread-multi-2level/auto/SVN /Library/Perl/5.18/auto/SVN 这个方法也是可以的.就是使用另一个目录作为软连接的目录.测试通过.同理,上面的真实目录根据你装的是 Xcode 还是 CommandLineTools 来替换.记录备用.
-参考:http://apple.stackexchange.com/questions/208300/issue-with-creating-a-symbolic-link-inside-system-folder……
-        </div>
-        <p class="readmore"><a href="http://leaver.me/2016/08/06/sourcetree%E8%AE%BE%E7%BD%AE%E4%BD%BF%E7%94%A8svn/">阅读全文</a></p>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2016/05/31/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%BC%95%E7%94%A8/" title="motan源码阅读-客户端服务引用">motan源码阅读-客户端服务引用</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2016年5月31日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            一旦服务器启动,服务开始提供,并且在配置中心注册了(配置中心可以是本地的地址,也可以是zk,也可以是其他的实现),那么客户端就要开始调用了
+参考:http://apple.stackexchange.com/questions/208300/issue-with-creating-a-symbolic-link-inside-system-folder……</div><p class=readmore><a href=http://leaver.me/2016/08/06/sourcetree%E8%AE%BE%E7%BD%AE%E4%BD%BF%E7%94%A8svn/>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2016/05/31/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%BC%95%E7%94%A8/ title=motan源码阅读-客户端服务引用>motan源码阅读-客户端服务引用</a></h1></header><date class="post-meta meta-date">2016年5月31日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></span></div><div class=post-content>一旦服务器启动,服务开始提供,并且在配置中心注册了(配置中心可以是本地的地址,也可以是zk,也可以是其他的实现),那么客户端就要开始调用了
 点击看大图
 服务引用 RefererConfig.getRef()
 先是获取集群支持(先忽略,主要是配置中心相关的)
@@ -341,30 +84,8 @@ configHandler.refer(interfaceClass, clusters, proxy) 开始获取接口代理
 1.选择一个服务提供方
 1.如果是jvm服务,那么直接从本地的服务map中取出一个调用就行
 2.如果是真正的远程服务,这时候就进入nettyClient部分了
-把请求向netty的Channel中写就行了.服务端会从Channel中取进行处理,然后放回来.这样客户端就拿到结果了……
-        </div>
-        <p class="readmore"><a href="http://leaver.me/2016/05/31/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%BC%95%E7%94%A8/">阅读全文</a></p>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2016/05/30/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%8F%91%E5%B8%83/" title="motan源码阅读-服务的发布">motan源码阅读-服务的发布</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2016年5月30日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0'>学习笔记</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            这一篇继续从这个demo开始,分析一下这个服务是怎么发布出去的.关键的代码从motanDemoService.export();开始.
+把请求向netty的Channel中写就行了.服务端会从Channel中取进行处理,然后放回来.这样客户端就拿到结果了……</div><p class=readmore><a href=http://leaver.me/2016/05/31/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%BC%95%E7%94%A8/>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2016/05/30/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%8F%91%E5%B8%83/ title=motan源码阅读-服务的发布>motan源码阅读-服务的发布</a></h1></header><date class="post-meta meta-date">2016年5月30日</date><div class=post-meta><span>|</span>
+<span class=meta-category><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></span></div><div class=post-content>这一篇继续从这个demo开始,分析一下这个服务是怎么发布出去的.关键的代码从motanDemoService.export();开始.
 一图胜千言.
 点击看大图
 服务发布ServiceConfig.export()
@@ -380,383 +101,81 @@ configHandler.refer(interfaceClass, clusters, proxy) 开始获取接口代理
 2.2.3.2进行导出 导出就是一个服务器打开的过程/server.open();
 2.2.3.2.1进入nettyServer初始化,主要就是添加handler,编码解码.和一个rpc处理的 相当于一个请求过来的时候,先进行解码,然后调用业务处理handler进行处理,处理完成后,进行编码,然后返回给客户端
 服务器启动后,相当于这个服务就发布了
-2.2.4.注册register(registryUrls, serviceUrl) //这一步就是将serviceUrl,向对应的jvm/rpc服务中心注册url,本地注册就是LocalRegistryService类里一个map..zk的.就是向zk写node.等等……
-        </div>
-        <p class="readmore"><a href="http://leaver.me/2016/05/30/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%8F%91%E5%B8%83/">阅读全文</a></p>
-    </article>
-    
-    
-
-
-
-<ol class="page-navigator">
-    
-    <li class="prev">
-        <a href="http://leaver.me/page/2/">上一页</a>
-    </li>
-    
-
-    
-
-    
-        
-    
-    
-
-    
-        
-        
-        <li >
-            <a href="http://leaver.me/">1</a>
-        </li>
-        
-    
-        
-        
-        <li >
-            <a href="http://leaver.me/page/2/">2</a>
-        </li>
-        
-    
-        
-        
-        <li  class="current">
-            <a href="http://leaver.me/page/3/">3</a>
-        </li>
-        
-    
-        
-        
-        <li >
-            <a href="http://leaver.me/page/4/">4</a>
-        </li>
-        
-    
-        
-        
-        <li >
-            <a href="http://leaver.me/page/5/">5</a>
-        </li>
-        
-    
-        
-        <li>
-            <span>...</span>
-        </li>
-        
-    
-        
-        
-        <li >
-            <a href="http://leaver.me/page/32/">32</a>
-        </li>
-        
-    
-
-    
-    
-
-    <li class="next">
-        <a href="http://leaver.me/page/4/">下一页</a>
-    </li>
-    
-</ol>
-
-
-
-
-</div>
-
-                </div>
-
-                <div id="secondary">
-    <section class="widget">
-        <form id="search" action='http://leaver.me/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
-      
-      <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="http://leaver.me/">
-      <button type="submit" class="submit icon-search"></button>
-</form>
-    </section>
-    
-    <section class="widget">
-        <h3 class="widget-title">最近文章</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2019 年终总结">2019 年终总结</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/" title="深入理解Raft协议">深入理解Raft协议</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/" title="《非暴力沟通》笔记">《非暴力沟通》笔记</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/10/06/wedding-of-friends/" title="Wedding of Friends">Wedding of Friends</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/09/29/principle-note/" title="Principle Note">Principle Note</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/" title="梦见鲸鱼的那一夜">梦见鲸鱼的那一夜</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/08/20/understand-hong-kong-2/" title="Understand Hong Kong 2">Understand Hong Kong 2</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/08/18/understand-hong-kong-part-1/" title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/" title="错过的都是命，得到的才是人生">错过的都是命，得到的才是人生</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/04/06/recently/" title="Recently">Recently</a>
-    </li>
-    
-</ul>
-    </section>
-
-    
-
-    <section class="widget">
-        <h3 class="widget-title">分类</h3>
-<ul class="widget-list">
-    
-    <li><a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记 (186)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/">我的翻译 (57)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/">文章收藏 (53)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录 (3)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记 (4)</a></li>
-    
-</ul>
-    </section>
-
-    <section class="widget">
-        <h3 class="widget-title">标签</h3>
-<div class="tagcloud">
-    
-    <a href="http://leaver.me/tags/android/">android</a>
-    
-    <a href="http://leaver.me/tags/c/">C＃</a>
-    
-    <a href="http://leaver.me/tags/c&#43;&#43;/">C&#43;&#43;</a>
-    
-    <a href="http://leaver.me/tags/java/">java</a>
-    
-    <a href="http://leaver.me/tags/javascript/">javascript</a>
-    
-    <a href="http://leaver.me/tags/linux/">linux</a>
-    
-    <a href="http://leaver.me/tags/mac/">mac</a>
-    
-    <a href="http://leaver.me/tags/matlab/">matlab</a>
-    
-    <a href="http://leaver.me/tags/maven/">maven</a>
-    
-    <a href="http://leaver.me/tags/mysql/">mysql</a>
-    
-    <a href="http://leaver.me/tags/nextgen-gallery/">NextGEN Gallery</a>
-    
-    <a href="http://leaver.me/tags/php/">php</a>
-    
-    <a href="http://leaver.me/tags/python/">python</a>
-    
-    <a href="http://leaver.me/tags/shell/">shell</a>
-    
-    <a href="http://leaver.me/tags/spring/">spring</a>
-    
-    <a href="http://leaver.me/tags/sql/">sql</a>
-    
-    <a href="http://leaver.me/tags/stackoverflow/">stackoverflow</a>
-    
-    <a href="http://leaver.me/tags/wcf/">WCF</a>
-    
-    <a href="http://leaver.me/tags/web/">web</a>
-    
-    <a href="http://leaver.me/tags/windows/">windows</a>
-    
-    <a href="http://leaver.me/tags/wordpress/">wordpress</a>
-    
-    <a href="http://leaver.me/tags/wpf/">WPF</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/">上海</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/">下载</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
-    
-    <a href="http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/">互联网</a>
-    
-    <a href="http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
-    
-    <a href="http://leaver.me/tags/%E5%88%B6%E5%BA%A6/">制度</a>
-    
-    <a href="http://leaver.me/tags/%E5%89%8D%E7%AB%AF/">前端</a>
-    
-    <a href="http://leaver.me/tags/%E5%8E%9F%E5%88%9B/">原创</a>
-    
-    <a href="http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/">大学</a>
-    
-    <a href="http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/">学习</a>
-    
-    <a href="http://leaver.me/tags/%E5%AE%89%E5%85%A8/">安全</a>
-    
-    <a href="http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/">家庭</a>
-    
-    <a href="http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/">工作</a>
-    
-    <a href="http://leaver.me/tags/%E5%B7%A5%E5%85%B7/">工具</a>
-    
-    <a href="http://leaver.me/tags/%E5%B9%B6%E5%8F%91/">并发</a>
-    
-    <a href="http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/">序列化</a>
-    
-    <a href="http://leaver.me/tags/%E5%BC%80%E5%8F%91/">开发</a>
-    
-    <a href="http://leaver.me/tags/%E5%BF%83%E7%90%86/">心理</a>
-    
-    <a href="http://leaver.me/tags/%E6%80%BB%E7%BB%93/">总结</a>
-    
-    <a href="http://leaver.me/tags/%E6%8A%80%E6%9C%AF/">技术</a>
-    
-    <a href="http://leaver.me/tags/%E6%8F%92%E4%BB%B6/">插件</a>
-    
-    <a href="http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-    
-    <a href="http://leaver.me/tags/%E6%94%B6%E8%97%8F/">收藏</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E5%AD%A6/">数学</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">数据挖掘</a>
-    
-    <a href="http://leaver.me/tags/%E6%96%87%E7%AB%A0/">文章</a>
-    
-    <a href="http://leaver.me/tags/%E6%99%BA%E8%83%BD/">智能</a>
-    
-    <a href="http://leaver.me/tags/%E6%9D%82%E6%96%87/">杂文</a>
-    
-    <a href="http://leaver.me/tags/%E6%AD%A6%E6%B1%89/">武汉</a>
-    
-    <a href="http://leaver.me/tags/%E6%B1%87%E7%BC%96/">汇编</a>
-    
-    <a href="http://leaver.me/tags/%E7%88%B1%E6%83%85/">爱情</a>
-    
-    <a href="http://leaver.me/tags/%E7%90%86%E8%AE%BA/">理论</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%9F%E6%B4%BB/">生活</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/">电子书</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%B5%E5%BD%B1/">电影</a>
-    
-    <a href="http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/">社会</a>
-    
-    <a href="http://leaver.me/tags/%E7%A7%91%E6%8A%80/">科技</a>
-    
-    <a href="http://leaver.me/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
-    
-    <a href="http://leaver.me/tags/%E7%AE%97%E6%B3%95/">算法</a>
-    
-    <a href="http://leaver.me/tags/%E7%BC%96%E7%A8%8B/">编程</a>
-    
-    <a href="http://leaver.me/tags/%E7%BC%96%E8%AF%91/">编译</a>
-    
-    <a href="http://leaver.me/tags/%E7%BF%BB%E8%AF%91/">翻译</a>
-    
-    <a href="http://leaver.me/tags/%E8%81%8C%E4%B8%9A/">职业</a>
-    
-    <a href="http://leaver.me/tags/%E8%AE%B0%E5%BD%95/">记录</a>
-    
-    <a href="http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/">设计</a>
-    
-    <a href="http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/">读书</a>
-    
-    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/">软件</a>
-    
-    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</a>
-    
-    <a href="http://leaver.me/tags/%E8%BF%90%E7%BB%B4/">运维</a>
-    
-    <a href="http://leaver.me/tags/%E9%87%91%E8%9E%8D/">金融</a>
-    
-</div>
-    </section>
-
-    
-<section class="widget">
-    <h3 class="widget-title">友情链接</h3>
-    <ul class="widget-list">
-        
-        <li>
-            <a target="_blank" href="https://www.cppfans.org/" title="C&#43;&#43;爱好者博客">C&#43;&#43;爱好者博客</a>
-        </li>
-        
-        <li>
-            <a target="_blank" href="http://www.kailing.pub" title="KL，每天进步一点点">KL，每天进步一点点</a>
-        </li>
-        
-    </ul>
-</section>
-
-
-    <section class="widget">
-        <h3 class="widget-title">其它</h3>
-        <ul class="widget-list">
-            <li><a href="http://leaver.me/index.xml">文章 RSS</a></li>
-        </ul>
-    </section>
-</div>
-            </div>
-        </div>
-    </div>
-    <footer id="footer">
-    <div class="container">
-        &copy; 2020 <a href="http://leaver.me/">bystander&#39;s blog By bystander</a>.
-        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
-        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
-        
-    </div>
-</footer>
-
-
-
-<a id="rocket" href="#top"></a>
-<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-30961201-3', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-
-
-
-
-
-</body>
-
-</html>
+2.2.4.注册register(registryUrls, serviceUrl) //这一步就是将serviceUrl,向对应的jvm/rpc服务中心注册url,本地注册就是LocalRegistryService类里一个map..zk的.就是向zk写node.等等……</div><p class=readmore><a href=http://leaver.me/2016/05/30/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%8F%91%E5%B8%83/>阅读全文</a></p></article><ol class=page-navigator><li class=prev><a href=http://leaver.me/page/2/>上一页</a></li><li><a href=http://leaver.me/>1</a></li><li><a href=http://leaver.me/page/2/>2</a></li><li class=current><a href=http://leaver.me/page/3/>3</a></li><li><a href=http://leaver.me/page/4/>4</a></li><li><a href=http://leaver.me/page/5/>5</a></li><li><span>...</span></li><li><a href=http://leaver.me/page/32/>32</a></li><li class=next><a href=http://leaver.me/page/4/>下一页</a></li></ol></div></div><div id=secondary><section class=widget><form id=search action=http://leaver.me/search/ method=get accept-charset=utf-8 target=_blank _lpchecked=1><input type=text name=q maxlength=20 placeholder=Search>
+<input type=hidden name=sitesearch value=http://leaver.me/>
+<button type=submit class="submit icon-search"></button></form></section><section class=widget><h3 class=widget-title>最近文章</h3><ul class=widget-list><li><a href=http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/ title="2019 年终总结">2019 年终总结</a></li><li><a href=http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/ title=深入理解Raft协议>深入理解Raft协议</a></li><li><a href=http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/ title=《非暴力沟通》笔记>《非暴力沟通》笔记</a></li><li><a href=http://leaver.me/2019/10/06/wedding-of-friends/ title="Wedding of Friends">Wedding of Friends</a></li><li><a href=http://leaver.me/2019/09/29/principle-note/ title="Principle Note">Principle Note</a></li><li><a href=http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/ title=梦见鲸鱼的那一夜>梦见鲸鱼的那一夜</a></li><li><a href=http://leaver.me/2019/08/20/understand-hong-kong-2/ title="Understand Hong Kong 2">Understand Hong Kong 2</a></li><li><a href=http://leaver.me/2019/08/18/understand-hong-kong-part-1/ title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a></li><li><a href=http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/ title=错过的都是命，得到的才是人生>错过的都是命，得到的才是人生</a></li><li><a href=http://leaver.me/2019/04/06/recently/ title=Recently>Recently</a></li></ul></section><section class=widget><h3 class=widget-title>分类</h3><ul class=widget-list><li><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/>学习笔记 (186)</a></li><li><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/>我的翻译 (57)</a></li><li><a href=http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/>文章收藏 (53)</a></li><li><a href=http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/>生活记录 (3)</a></li><li><a href=http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/>读书笔记 (4)</a></li></ul></section><section class=widget><h3 class=widget-title>标签</h3><div class=tagcloud><a href=http://leaver.me/tags/android/>android</a>
+<a href=http://leaver.me/tags/c/>C＃</a>
+<a href=http://leaver.me/tags/c++/>C++</a>
+<a href=http://leaver.me/tags/java/>java</a>
+<a href=http://leaver.me/tags/javascript/>javascript</a>
+<a href=http://leaver.me/tags/linux/>linux</a>
+<a href=http://leaver.me/tags/mac/>mac</a>
+<a href=http://leaver.me/tags/matlab/>matlab</a>
+<a href=http://leaver.me/tags/maven/>maven</a>
+<a href=http://leaver.me/tags/mysql/>mysql</a>
+<a href=http://leaver.me/tags/nextgen-gallery/>NextGEN Gallery</a>
+<a href=http://leaver.me/tags/php/>php</a>
+<a href=http://leaver.me/tags/python/>python</a>
+<a href=http://leaver.me/tags/shell/>shell</a>
+<a href=http://leaver.me/tags/spring/>spring</a>
+<a href=http://leaver.me/tags/sql/>sql</a>
+<a href=http://leaver.me/tags/stackoverflow/>stackoverflow</a>
+<a href=http://leaver.me/tags/wcf/>WCF</a>
+<a href=http://leaver.me/tags/web/>web</a>
+<a href=http://leaver.me/tags/windows/>windows</a>
+<a href=http://leaver.me/tags/wordpress/>wordpress</a>
+<a href=http://leaver.me/tags/wpf/>WPF</a>
+<a href=http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/>上海</a>
+<a href=http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/>下载</a>
+<a href=http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/>中间件</a>
+<a href=http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/>互联网</a>
+<a href=http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/>分布式</a>
+<a href=http://leaver.me/tags/%E5%88%B6%E5%BA%A6/>制度</a>
+<a href=http://leaver.me/tags/%E5%89%8D%E7%AB%AF/>前端</a>
+<a href=http://leaver.me/tags/%E5%8E%9F%E5%88%9B/>原创</a>
+<a href=http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/>大学</a>
+<a href=http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/>学习</a>
+<a href=http://leaver.me/tags/%E5%AE%89%E5%85%A8/>安全</a>
+<a href=http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/>家庭</a>
+<a href=http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/>工作</a>
+<a href=http://leaver.me/tags/%E5%B7%A5%E5%85%B7/>工具</a>
+<a href=http://leaver.me/tags/%E5%B9%B6%E5%8F%91/>并发</a>
+<a href=http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/>序列化</a>
+<a href=http://leaver.me/tags/%E5%BC%80%E5%8F%91/>开发</a>
+<a href=http://leaver.me/tags/%E5%BF%83%E7%90%86/>心理</a>
+<a href=http://leaver.me/tags/%E6%80%BB%E7%BB%93/>总结</a>
+<a href=http://leaver.me/tags/%E6%8A%80%E6%9C%AF/>技术</a>
+<a href=http://leaver.me/tags/%E6%8F%92%E4%BB%B6/>插件</a>
+<a href=http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/>操作系统</a>
+<a href=http://leaver.me/tags/%E6%94%B6%E8%97%8F/>收藏</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E5%AD%A6/>数学</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/>数据库</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/>数据挖掘</a>
+<a href=http://leaver.me/tags/%E6%96%87%E7%AB%A0/>文章</a>
+<a href=http://leaver.me/tags/%E6%99%BA%E8%83%BD/>智能</a>
+<a href=http://leaver.me/tags/%E6%9D%82%E6%96%87/>杂文</a>
+<a href=http://leaver.me/tags/%E6%AD%A6%E6%B1%89/>武汉</a>
+<a href=http://leaver.me/tags/%E6%B1%87%E7%BC%96/>汇编</a>
+<a href=http://leaver.me/tags/%E7%88%B1%E6%83%85/>爱情</a>
+<a href=http://leaver.me/tags/%E7%90%86%E8%AE%BA/>理论</a>
+<a href=http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/>生产力</a>
+<a href=http://leaver.me/tags/%E7%94%9F%E6%B4%BB/>生活</a>
+<a href=http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/>电子书</a>
+<a href=http://leaver.me/tags/%E7%94%B5%E5%BD%B1/>电影</a>
+<a href=http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/>社会</a>
+<a href=http://leaver.me/tags/%E7%A7%91%E6%8A%80/>科技</a>
+<a href=http://leaver.me/tags/%E7%AC%94%E8%AE%B0/>笔记</a>
+<a href=http://leaver.me/tags/%E7%AE%97%E6%B3%95/>算法</a>
+<a href=http://leaver.me/tags/%E7%BC%96%E7%A8%8B/>编程</a>
+<a href=http://leaver.me/tags/%E7%BC%96%E8%AF%91/>编译</a>
+<a href=http://leaver.me/tags/%E7%BF%BB%E8%AF%91/>翻译</a>
+<a href=http://leaver.me/tags/%E8%81%8C%E4%B8%9A/>职业</a>
+<a href=http://leaver.me/tags/%E8%AE%B0%E5%BD%95/>记录</a>
+<a href=http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/>设计</a>
+<a href=http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/>读书</a>
+<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/>软件</a>
+<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/>软件测试</a>
+<a href=http://leaver.me/tags/%E8%BF%90%E7%BB%B4/>运维</a>
+<a href=http://leaver.me/tags/%E9%87%91%E8%9E%8D/>金融</a></div></section><section class=widget><h3 class=widget-title>友情链接</h3><ul class=widget-list><li><a target=_blank href=https://www.cppfans.org/ title=C++爱好者博客>C++爱好者博客</a></li><li><a target=_blank href=http://www.kailing.pub title=KL，每天进步一点点>KL，每天进步一点点</a></li></ul></section><section class=widget><h3 class=widget-title>其它</h3><ul class=widget-list><li><a href=http://leaver.me/index.xml>文章 RSS</a></li></ul></section></div></div></div></div><footer id=footer><div class=container>&copy; 2020 <a href=http://leaver.me/>bystander's blog By bystander</a>.
+Powered by <a rel="nofollow noreferer noopener" href=https://gohugo.io target=_blank>Hugo</a>.
+<a href=https://www.flysnow.org/ target=_blank>Theme</a> based on <a href=https://github.com/flysnow-org/maupassant-hugo target=_blank>maupassant</a>.</div></footer><a id=rocket href=#top></a><script type=text/javascript src="/js/totop.js?v=0.0.0" async></script><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-30961201-3','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></body></html>

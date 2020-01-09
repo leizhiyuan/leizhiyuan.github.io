@@ -1,97 +1,9 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>我的翻译 | bystander&#39;s blog</title>
-    <meta property="og:title" content="我的翻译 - bystander&#39;s blog">
-    <meta property="og:type" content="article">
-        
-        
-    <meta name="Keywords" content="">
-    <meta name="description" content="我的翻译">
-        
-    <meta name="author" content="bystander">
-    <meta property="og:url" content="http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-
-    <link rel="stylesheet" href='/css/normalize.css'>
-    <link rel="stylesheet" href='/css/style.css'>
-    <link rel="alternate" type="application/rss+xml+xml" href="http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/index.xml" title="bystander's blog" />
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-    
-
-
-    
-    
-</head>
-
-
-<body>
-    <header id="header" class="clearfix">
-    <div class="container">
-        <div class="col-group">
-            <div class="site-name ">
-                
-                    <a id="logo" href="http://leaver.me/">
-                        bystander&#39;s blog
-                    </a>
-                
-                <p class="description">寻找窄门</p>
-            </div>
-            <div>
-                <nav id="nav-menu" class="clearfix">
-                    <a class="" href="http://leaver.me/">首页</a>
-                    
-                    <a  href="http://leaver.me/categories" title="目录">目录</a>
-                    
-                    <a  href="http://leaver.me/about/" title="关于我">关于我</a>
-                    
-                </nav>
-            </div>
-        </div>
-    </div>
-</header>
-
-    <div id="body">
-        <div class="container">
-            <div class="col-group">
-
-                <div class="col-8" id="main">
-                    
-<div class="res-cons">
-    
-    <h3 class="archive-title">
-        分类
-        <span class="keyword">我的翻译</span>
-        中的文章
-    </h3>
-    
-
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/09/15/%E8%AF%91java%E4%B8%AD%E7%9A%84countdownlatch%E5%92%8Ccyclicbarrier/">[译]Java中的CountDownLatch和CyclicBarrier</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年9月15日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91'>我的翻译</a>
-            
-        </div>
-        
-        <div class="post-content">
-            本文译自官方文档，有细微改动，Java多线程的时候，看了好多文档，还是官方说的最清楚。结合自己的理解，译之。
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><title>我的翻译 | bystander's blog</title><meta property="og:title" content="我的翻译 - bystander's blog"><meta property="og:type" content="article"><meta name=Keywords content><meta name=description content="我的翻译"><meta name=author content="bystander"><meta property="og:url" content="http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/"><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><link rel=stylesheet href=/css/normalize.css><link rel=stylesheet href=/css/style.css><link rel=alternate type=application/rss+xml+xml href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/index.xml title="bystander's blog"><script type=text/javascript src=//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js></script></head><body><header id=header class=clearfix><div class=container><div class=col-group><div class=site-name><a id=logo href=http://leaver.me/>bystander's blog</a><p class=description>寻找窄门</p></div><div><nav id=nav-menu class=clearfix><a href=http://leaver.me/>首页</a>
+<a href=http://leaver.me/categories title=目录>目录</a>
+<a href=http://leaver.me/about/ title=关于我>关于我</a></nav></div></div></div></header><div id=body><div class=container><div class=col-group><div class=col-8 id=main><div class=res-cons><h3 class=archive-title>分类
+<span class=keyword>我的翻译</span>
+中的文章</h3><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/09/15/%E8%AF%91java%E4%B8%AD%E7%9A%84countdownlatch%E5%92%8Ccyclicbarrier/>[译]Java中的CountDownLatch和CyclicBarrier</a></h1></header><date class="post-meta meta-date">2013年9月15日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91>我的翻译</a></div><div class=post-content>本文译自官方文档，有细微改动，Java多线程的时候，看了好多文档，还是官方说的最清楚。结合自己的理解，译之。
 CountDownLatch 字面意思就是倒计数闩，后面会讲到，这里的同步允许一个或多个线程等待，，知道其他线程进行的一系列操作完成。而CountDownLatch通过一个参数count（数目）来构造，而await（）则阻塞当前线程，直到countDown()将count减为了0，然后，所有的阻塞线程被释放，也就是那些调用了await方法的线程立即返回，注意，这是一次性的，也就是说count不能被自动重置，如果你想这么做，CyclicBarrier是可以的。
 CountDownLatch用处很多，当用count=1来构造的时候，这就相当于一个开关，所有调用了await方法的线程都在等待，直到有一个线程调用了countDown()，CountDownLatch通过count=N构造的话，就可以使一个线程等待其他N个线程完成操作，或者一个操作被做N次。
 简单的demo：
@@ -103,35 +15,13 @@ CountDownLatch用处很多，当用count=1来构造的时候，这就相当于�
 同时，CyclicBarrier支持一个可选的Runnable参数，当所有的线程都来到barrier前面的时候，程序开始执行runable线程动作，当需要更新所有线程共享的某个状态的时候，该动作非常有用。例子是一个并行分解的例子
 这里每一个worker线程处理矩阵的一行，然后在barrier前面等待，直到所有的行都处理完成，当所有的都完成以后，这里
 改为
-如果一个线程由于中断，失败或者超时过早的离开了barrier，那么所有的线程都会通过BrokenBarrierException引发异常。……
-            <p class="readmore"><a href="http://leaver.me/2013/09/15/%E8%AF%91java%E4%B8%AD%E7%9A%84countdownlatch%E5%92%8Ccyclicbarrier/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AB%E7%AF%87csv%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/">[译]Unix sed实用教程第八篇–CSV文件操作</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年8月11日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91'>我的翻译</a>
-            
-        </div>
-        
-        <div class="post-content">
-            本文作为sed使用教程的最后一篇，将比较全面的讲解如何操作csv文件，csv文件通过逗号分隔
+如果一个线程由于中断，失败或者超时过早的离开了barrier，那么所有的线程都会通过BrokenBarrierException引发异常。……<p class=readmore><a href=http://leaver.me/2013/09/15/%E8%AF%91java%E4%B8%AD%E7%9A%84countdownlatch%E5%92%8Ccyclicbarrier/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AB%E7%AF%87csv%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/>[译]Unix sed实用教程第八篇–CSV文件操作</a></h1></header><date class="post-meta meta-date">2013年8月11日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91>我的翻译</a></div><div class=post-content>本文作为sed使用教程的最后一篇，将比较全面的讲解如何操作csv文件，csv文件通过逗号分隔
 示例文件如下：
-1.删除第一列s开启替换模式，当^符号在中括号里的时候，就是非的意思，也就是说[^,]匹配了所有不是逗号的一个字符，然后后面的星号表示0个或多个，然后是一个逗号，也就是匹配&quot;xxxx,&ldquo;替换为空
+1.删除第一列s开启替换模式，当^符号在中括号里的时候，就是非的意思，也就是说[^,]匹配了所有不是逗号的一个字符，然后后面的星号表示0个或多个，然后是一个逗号，也就是匹配"xxxx,&ldquo;替换为空
 2.删除除过最后一列的其他所有sed先匹配任意多个字符，然后匹配最后一个“,”这就直接把前面的都匹配完了。替换为空即可。
 3.输出第一列好理解把，先匹配第一列之后的逗号，然后是多个字符，然后替换为空
-4.删除第二列先匹配第一列之后的逗号，然后匹配一个或多个非逗号字符，这样就匹配了第二列的内容，然后再匹配一个逗号，我简化一下，比如该列是1，2，3，4，那么这一个匹配就是&rdquo;,2,&quot;，替换成一个逗号，就是1，3，4了
+4.删除第二列先匹配第一列之后的逗号，然后匹配一个或多个非逗号字符，这样就匹配了第二列的内容，然后再匹配一个逗号，我简化一下，比如该列是1，2，3，4，那么这一个匹配就是&rdquo;,2,"，替换成一个逗号，就是1，3，4了
 5.输出第二列我们可以分析前两个斜线之间的内容
 两个右斜线转移了括号，所以括号不是简单的符号，而是正则里的组的意义，圆括号的作用是对字符进行分组，并保存匹配的文本。这里先匹配非逗号的多个字符，然后一个逗号，然后再匹配第二列，并且第二列的匹配用括号括起来，然后匹配其他列，然后里面用\1来引用这个括号的内容，如果前面有两个括号，就可以使用\1或\2这样，分别表示第一个括号或第二个括号的匹配
 6.输出最后一列是一位数字的行.*匹配了前面的所有字符，然后,匹配了最后一个逗号，sed的贪婪原则。。然后[0-9]匹配一个数字$表示行尾.ok
@@ -142,34 +32,12 @@ N表示读入并合并下一行，然后将两行之间的换行符替换为空�
 8.如果第一列是Ubuntu，就把最后一列替换成99中间的
 匹配“Ubuntu,任意个字符,任意个字符”,也就是将行分成几组，将本行替换成第一组的内容第一组的内容，第二组的内容，但最后的一列被替换成99，就这样。
 9.如果第一列是RedHat就删除第二列也好理解嘛。将要保留的用括号分组，然后用\1和\2分别引用第一组和第二组，然后中间的匹配就被删除了
-10.在末尾插入一列正则首先匹配了整行字符，然后使用&amp;来引用该匹配，然后添加了一个逗号和一个A
+10.在末尾插入一列正则首先匹配了整行字符，然后使用&来引用该匹配，然后添加了一个逗号和一个A
 11.在头部添加一列
-很简单不是么&hellip;
+很简单不是么&mldr;
 比预计的要快，两天翻译完了.体会到了理解原理对学习sed的好处，希望对想学的人有帮助.
-          ……
-            <p class="readmore"><a href="http://leaver.me/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AB%E7%AF%87csv%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%83%E7%AF%87%E8%BE%93%E5%87%BA%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B910-demo/">[译]Unix sed实用教程第七篇–输出文件内容(10 Demo)</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年8月11日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91'>我的翻译</a>
-            
-        </div>
-        
-        <div class="post-content">
-            之前已经学习过选择性打印输出了，本文将通过10个例子全面讲解文件输出的一些方法，主打p命令
+          ……<p class=readmore><a href=http://leaver.me/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AB%E7%AF%87csv%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%83%E7%AF%87%E8%BE%93%E5%87%BA%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B910-demo/>[译]Unix sed实用教程第七篇–输出文件内容(10 Demo)</a></h1></header><date class="post-meta meta-date">2013年8月11日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91>我的翻译</a></div><div class=post-content>之前已经学习过选择性打印输出了，本文将通过10个例子全面讲解文件输出的一些方法，主打p命令
 首先看一下将使用的示例文件
 1.打印文件首行之前讲过了，-n取消默认的全部打印，p表示print，1就是行号了
 2.输出最后一行3.输出不匹配X的那些行也好理解，！表示非，就是说包含X匹配的不打印输出
@@ -183,30 +51,8 @@ N表示读入并合并下一行，然后将两行之间的换行符替换为空�
 9.输出某个范围行内以X结果的那些行这里首先制定了从/Unix/匹配开始到文件尾部的这些行，然后呢，在这些之间的行，如果以X结果，就输出。
 10.输出不包括开始和结尾的那些行这个命令就会只输出/Solaris/和/HPUX/之间的行，不包括他们两个。
 这里要说一下//这个，当匹配了Solaris的时候就进入了花括号，因为这个里面没有提供任何匹配，所以就考虑最后一次匹配模式，也就是相当于是考虑Solaris这一行，他不被打印，当到了HPUX这一匹配，//又代表了HPUX匹配，这一行也不打印。
-Demo完了，你懂了么。……
-            <p class="readmore"><a href="http://leaver.me/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%83%E7%AF%87%E8%BE%93%E5%87%BA%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B910-demo/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AD%E7%AF%87%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/">[译]Unix sed实用教程第六篇–删除文件内容</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年8月10日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91'>我的翻译</a>
-            
-        </div>
-        
-        <div class="post-content">
-            其实，删除和替换是由一些相同的，不过，这里我们单独列出来，通过25个例子穿插讲解sed删除文件的一些方法，使用的示例文件如下：
+Demo完了，你懂了么。……<p class=readmore><a href=http://leaver.me/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%83%E7%AF%87%E8%BE%93%E5%87%BA%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B910-demo/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AD%E7%AF%87%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/>[译]Unix sed实用教程第六篇–删除文件内容</a></h1></header><date class="post-meta meta-date">2013年8月10日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91>我的翻译</a></div><div class=post-content>其实，删除和替换是由一些相同的，不过，这里我们单独列出来，通过25个例子穿插讲解sed删除文件的一些方法，使用的示例文件如下：
 1.删除第一行d就是删除，1就是指第1行，记得哦，这不会影响到源文件，一般，做删除的时候一般要加-i参数，前面说过了
 2.删除指定行，这里删除第3行3.删除最后一行4.删除范围行，这里删除2-4行5.保留指定的行，这里保留2-4行！这个是对前面的2,4来操作，是非的意思，也就是不是2-4行的行，这样除去2-4行，其他的都删除了
 6.删除第一行和最后一行分号隔开两个命令，你懂的，也可以删除第二行和第三行等等. &lsquo;2d;3d&rsquo;
@@ -231,72 +77,28 @@ Demo完了，你懂了么。……
 再理解一下
 24.仅删除匹配Linux的前一行，不删除当前行和23类似，当匹配到Linux的时候，hold space 存储了前一行的内容，所以我们交换一下他们，然后前一行就进入了pattern space，然后一个d，这样就把前一行删掉了。别急，还没完，这样，当前行就被留在hold space了。就无法被输出了
 1h;1!{x;p;} 1h是说，如果将第1行移动到hold space，也就是1h只对第一行操作，而后面的1!{x;p;}是说对于其他的行执行x;p;命令，
-25.删除匹配模式的前后两行有了前面两个例子，自己试试理解一下，有问题留言讨论吧。……
-            <p class="readmore"><a href="http://leaver.me/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AD%E7%AF%87%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%BA%94%E7%AF%87%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E7%BB%AD/">[译]Unix sed实用教程第五篇–替换文件内容续</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年8月10日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91'>我的翻译</a>
-            
-        </div>
-        
-        <div class="post-content">
-            前面已经学习过替换文件内容了，本文我们学习一些更频繁使用的搜索替换操作.
+25.删除匹配模式的前后两行有了前面两个例子，自己试试理解一下，有问题留言讨论吧。……<p class=readmore><a href=http://leaver.me/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AD%E7%AF%87%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%BA%94%E7%AF%87%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E7%BB%AD/>[译]Unix sed实用教程第五篇–替换文件内容续</a></h1></header><date class="post-meta meta-date">2013年8月10日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91>我的翻译</a></div><div class=post-content>前面已经学习过替换文件内容了，本文我们学习一些更频繁使用的搜索替换操作.
 示例文件使用：
 1.替换每行开始的两个字母，这里用XX来替换s代表substitute，前面说过了，^用来匹配行开头，.表示任意一个字符，两个..就是你懂的，
 其实，不要^符号也是可以的，因为默认就是从开头开始匹配，如下也可以实现
 2.删除每行开头的两个字符看到没有，后两个斜线之间没有内容，也就是用空字符来替换开头的两个字符，就实现了删除
 3.要是想删除每行最后的两个字符呢再次强调，$在不同的情况下表示不同的意思，这里匹配行尾，有时候也匹配文件尾部
-4.向每行末尾添加内容这里，先匹配行尾，然后把&rdquo;.Rs&quot;添加到行尾
+4.向每行末尾添加内容这里，先匹配行尾，然后把&rdquo;.Rs"添加到行尾
 5.在每行开头添加空格还记得前面说过的么，sed默认不影响原始文件，要是想更新原始文件，请加-i参数
 6.移除开始的空格^匹配行首，然后是一个空格，然后是*，表示一个或多个空格嘛，然后替换为空字符
 7.移除行首和行尾的空格不要怕，从分号处分开，就是两条命令啦，一个做行首的，一个做行尾的，前面说过的，可以使用-e参数来分开
-8.如何在一个字符串前后添加一些其他字符呢，可以用来字符串转义前两个斜线匹配了所有字符，也就是本行，然后后面两个斜线是替换的内容，注意里面的&amp;符号，之前也说过的，表示匹配到的字符，也就是本行了。所有就这样啦
+8.如何在一个字符串前后添加一些其他字符呢，可以用来字符串转义前两个斜线匹配了所有字符，也就是本行，然后后面两个斜线是替换的内容，注意里面的&符号，之前也说过的，表示匹配到的字符，也就是本行了。所有就这样啦
 9.移除行首和行尾的一个字符（多个你也会的啦）分开看看，你可以的
 10.删除第一个数字之前的所有字符这条命令略复杂，请先回头看一下我们的示例文件，然后我们开始分析这个表达式，地一个^表示匹配行首，然后[^0-9]* 是一个典型的正则，匹配非数字的多个字符，简单说一下[0-9]表示匹配0,1,2,3,4,5,6,7,8,9任意一个字符，前面加个一个^，表示非，也就是不匹配这些数字，然后最后是一个*，表示匹配非数字的连续多个字符，有机会的话我会推荐一个正则系列，或者自己写一篇文章。这里就先这样理解吧。
 那猜猜这个是干嘛的
 是的，你猜对了，删除开头的所有非字母字符。
 11.删除行尾的数字看看前面的你就知道了
 12.通过分隔符得到文件最后一列可能你你预想的不一样，是不是，你可能认为会是第一列被删除，其他的列都在，不对的，sed是很贪心的，当我们指定&rsquo;.*:&lsquo;时，他会一直向后查找，尽量匹配更多，所以，就匹配到最后一个列之前了
-13.转换整行字符为小写\L是sed的一个命令，Lowercase嘛。\L之后的内容被毁转换，而&amp;表示前面匹配道德内容，所以就实现了转换
+13.转换整行字符为小写\L是sed的一个命令，Lowercase嘛。\L之后的内容被毁转换，而&表示前面匹配道德内容，所以就实现了转换
 14.转换大写\U你懂的，Uppercase
-  ……
-            <p class="readmore"><a href="http://leaver.me/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%BA%94%E7%AF%87%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E7%BB%AD/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%9B%9B%E7%AF%87%E9%80%89%E6%8B%A9%E6%80%A7%E6%89%93%E5%8D%B0/">[译]Unix sed实用教程第四篇–选择性打印</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年8月10日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91'>我的翻译</a>
-            
-        </div>
-        
-        <div class="post-content">
-            本文，我们将会学习如何选择性的打印（其实，这里的打印是print，也就是输出到标准输出的意思），用到的示例文件是：
+……<p class=readmore><a href=http://leaver.me/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%BA%94%E7%AF%87%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E7%BB%AD/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%9B%9B%E7%AF%87%E9%80%89%E6%8B%A9%E6%80%A7%E6%89%93%E5%8D%B0/>[译]Unix sed实用教程第四篇–选择性打印</a></h1></header><date class="post-meta meta-date">2013年8月10日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91>我的翻译</a></div><div class=post-content>本文，我们将会学习如何选择性的打印（其实，这里的打印是print，也就是输出到标准输出的意思），用到的示例文件是：
 1.打印所有内容一对单引号，没有任何参数即可
 2.如何打印包含Gmail的那一行.(grep也可以实现这个功能)在斜线里面，我们指定正则匹配模式，p的意思呢，就是print，打印的意思，也就是打印包含Gmail这一行，但是我们看到Gmail打印了两次，为什么，因为sed的默认行为是在解析完一行之后就把他输出出来，也就是对于Gmail这一行，先执行p解析，解析完成后再默认打印一次，就打印了两次，而其他的，没有命令解析，直接读入完成后输出即可。
 如果得到期望的结果呢？
@@ -311,32 +113,10 @@ Demo完了，你懂了么。……
 执行默认打印，到第三行的时候退出
 6.通过模式指定范围，这里我打印从Yahoo到Live之间的行，包括本身不用多解释了
 7.从指定模式到文件尾部，这里是从Redif到文件尾回忆一下$符号吧.少年
-8.从开头到匹配模式相信你懂的&hellip;
+8.从开头到匹配模式相信你懂的&mldr;
 对于数字不需要斜线包围，对于匹配需要斜线.就这样..
-  ……
-            <p class="readmore"><a href="http://leaver.me/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%9B%9B%E7%AF%87%E9%80%89%E6%8B%A9%E6%80%A7%E6%89%93%E5%8D%B0/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%89%E7%AF%87%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/">[译]Unix sed实用教程第三篇–读写文件</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年8月9日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91'>我的翻译</a>
-            
-        </div>
-        
-        <div class="post-content">
-            本文将展示如何将文件内容读入到sed输出，同时包含如何将一个文件的部分内容写入到另一文件
+  ……<p class=readmore><a href=http://leaver.me/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%9B%9B%E7%AF%87%E9%80%89%E6%8B%A9%E6%80%A7%E6%89%93%E5%8D%B0/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%89%E7%AF%87%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/>[译]Unix sed实用教程第三篇–读写文件</a></h1></header><date class="post-meta meta-date">2013年8月9日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91>我的翻译</a></div><div class=post-content>本文将展示如何将文件内容读入到sed输出，同时包含如何将一个文件的部分内容写入到另一文件
 一.文件读取
 假定有两个文件，file1和file2，内容分别如下：
 sed有两个选项用来读写文件
@@ -350,30 +130,8 @@ _**二.文件写入**_使用一个file1文件，内容如下：
 查看file2内容，发现已经写入成功了
 2.从第三行开始全部写入file2就不多解释了
 3.如果是用正则呢？该命令将逐行读入file1，然后判断该行是否匹配apple，如果匹配，则作为起始行，然后继续读入，判断是否匹配mango，如果是，则作为终止行，然后将中间的内容写入到file2
- ……
-            <p class="readmore"><a href="http://leaver.me/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%89%E7%AF%87%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%BA%8C%E7%AF%87%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/">[译]Unix sed实用教程第二篇–替换文件内容</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年8月9日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91'>我的翻译</a>
-            
-        </div>
-        
-        <div class="post-content">
-            上一节中-Unix sed实用教程第一篇–向文件中增加一行 学习了添加文件，本节讲解数据内容替换.
+ ……<p class=readmore><a href=http://leaver.me/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%89%E7%AF%87%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%BA%8C%E7%AF%87%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/>[译]Unix sed实用教程第二篇–替换文件内容</a></h1></header><date class="post-meta meta-date">2013年8月9日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91>我的翻译</a></div><div class=post-content>上一节中-Unix sed实用教程第一篇–向文件中增加一行 学习了添加文件，本节讲解数据内容替换.
 本节将使用sample1.txt文件作为示例，文件内容如下，都是些水果..：
 1.向每一行的开头添加内容，这里我们添加“Fruit：”
 解析：s代表substitution，也就是替换，s之后是要替换/匹配的内容，斜线/用来分隔s以及要替换的原始内容还有要替换的最终内容，而'^'符号是说一个正则，用来匹配每一行的开头，匹配成功后在开头加上'Fruit:'。
@@ -392,35 +150,13 @@ _**二.文件写入**_使用一个file1文件，内容如下：
 8.想替换一个范围行内的数据呢
 逗号隔开，即可
 9.如何替换整行呢？比如用apple is a Fruit替换apple
-这里‘&amp;’符号标识了模式匹配到的内容，而.*匹配了正行，.表示任意字符，*表示一个或多个，也就是匹配了整行,&amp;因此就是整行内容，用来重命名一组文件的时候非常有用.
+这里‘&’符号标识了模式匹配到的内容，而.*匹配了正行，.表示任意字符，*表示一个或多个，也就是匹配了整行,&因此就是整行内容，用来重命名一组文件的时候非常有用.
 10.如何进行多个替换，比如用A替换a，用P替换p
 也就是用分号分开即可。或者也可以通过-e参数来做
 -e 选项就是当需要替换多个的时候来用的。
 另外，要是替换的太多。也可以通过右斜线来分成多行
-相信通过本文实例分析，平时的文件内容替换就很简单了……
-            <p class="readmore"><a href="http://leaver.me/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%BA%8C%E7%AF%87%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%80%E7%AF%87-%E5%90%91%E6%96%87%E4%BB%B6%E4%B8%AD%E5%A2%9E%E5%8A%A0%E4%B8%80%E8%A1%8C/">[译]Unix sed实用教程第一篇--向文件中增加一行</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年8月9日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91'>我的翻译</a>
-            
-        </div>
-        
-        <div class="post-content">
-            Unix sed实用教程第一讲，本系列第一篇，有任何问题欢迎留言讨论。
+相信通过本文实例分析，平时的文件内容替换就很简单了……<p class=readmore><a href=http://leaver.me/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%BA%8C%E7%AF%87%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%80%E7%AF%87-%E5%90%91%E6%96%87%E4%BB%B6%E4%B8%AD%E5%A2%9E%E5%8A%A0%E4%B8%80%E8%A1%8C/>[译]Unix sed实用教程第一篇--向文件中增加一行</a></h1></header><date class="post-meta meta-date">2013年8月9日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91>我的翻译</a></div><div class=post-content>Unix sed实用教程第一讲，本系列第一篇，有任何问题欢迎留言讨论。
 sed 是unix中最重要的编辑器之一，注意，有之一..支持多种编辑任务，本文将实现题目的功能实例
 假定我们有一额文本文件，叫做empFile，包含了员工名字和员工id，如下：
 1.如何通过sed给文件添加标题行-“Employee, EmpId”解释：数字1，是说只对第一行执行操作，i代表在insert（熟悉vim的同学应该知道，i会在当前字符的前面插入，a是在后面插入），因此，1i就表示在将Employee, EmpId插入到第一行之前，
@@ -431,375 +167,84 @@ sed 是unix中最重要的编辑器之一，注意，有之一..支持多种编�
 如果我想在Hilesh这个员工之后插入Bharti员工的信息，我这样做：
 注意看，我们这里已经不再使用数字或者其他表示行号的标识了，我们使用了一个模式（了解过正则表达式的朋友会比较熟悉，可以理解为某种规则- /Hilesh/a 这个命令表示对于每一行读入的内容，如果发现 /Hilesh/这个匹配，在该行之后插入一行，也就是说如果文件里有两行都是Hilesh员工，那么执行完上面的命令，将会附加两行内容，这里可以想想sed的工作模式，对每一行执行命令条件检测，发现匹配，就执行。
 5.如何在指定记录之前插入记录呢，比如，我想在Harshal这条记录之前插入Aparna记录呢？
- ……
-            <p class="readmore"><a href="http://leaver.me/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%80%E7%AF%87-%E5%90%91%E6%96%87%E4%BB%B6%E4%B8%AD%E5%A2%9E%E5%8A%A0%E4%B8%80%E8%A1%8C/">阅读全文</a></p>
-        </div>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="http://leaver.me/2013/05/27/%E8%AF%91%E5%8F%8D%E5%B0%84reflection%E5%92%8C%E5%8A%A8%E6%80%81dynamic/">[译]反射(Reflection)和动态(dynamic)</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2013年5月27日
-        </date>
-        
-        <div class="post-meta meta-category">
-            |
-            
-            <a href='http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91'>我的翻译</a>
-            
-        </div>
-        
-        <div class="post-content">
-            反射  简单用法实例：  // 浏览方法 foreach (MemberInfo objMemberInfo in parameterType.GetMembers()) {Console.WriteLine(objMemberInfo.Name);}
+ ……<p class=readmore><a href=http://leaver.me/2013/08/09/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%80%E7%AF%87-%E5%90%91%E6%96%87%E4%BB%B6%E4%B8%AD%E5%A2%9E%E5%8A%A0%E4%B8%80%E8%A1%8C/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/05/27/%E8%AF%91%E5%8F%8D%E5%B0%84reflection%E5%92%8C%E5%8A%A8%E6%80%81dynamic/>[译]反射(Reflection)和动态(dynamic)</a></h1></header><date class="post-meta meta-date">2013年5月27日</date><div class="post-meta meta-category">|
+<a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91>我的翻译</a></div><div class=post-content>反射  简单用法实例：  // 浏览方法 foreach (MemberInfo objMemberInfo in parameterType.GetMembers()) {Console.WriteLine(objMemberInfo.Name);}
 // 浏览属性. foreach (PropertyInfo objPropertyInfo in parameterType.GetProperties()) {Console.WriteLine(objPropertyInfo.Name);}
-//开始调用 parameterType.InvokeMember(&ldquo;Display&rdquo;,BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.InvokeMethod | BindingFlags.Instance,null, objMyClass, null);实际一点的用处呢：  动态dynamic  简单用法示例：  实际用处：  两者的区别和联系呢 ……
-            <p class="readmore"><a href="http://leaver.me/2013/05/27/%E8%AF%91%E5%8F%8D%E5%B0%84reflection%E5%92%8C%E5%8A%A8%E6%80%81dynamic/">阅读全文</a></p>
-        </div>
-    </article>
-    
-
-    
-
-
-
-<ol class="page-navigator">
-    
-    <li class="prev">
-        <a href="http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/">上一页</a>
-    </li>
-    
-
-    
-    <li >
-        <a href="http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/">1</a>
-    </li>
-    
-    <li  class="current">
-        <a href="http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/page/2/">2</a>
-    </li>
-    
-    <li >
-        <a href="http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/page/3/">3</a>
-    </li>
-    
-    <li >
-        <a href="http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/page/4/">4</a>
-    </li>
-    
-    <li >
-        <a href="http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/page/5/">5</a>
-    </li>
-    
-    <li >
-        <a href="http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/page/6/">6</a>
-    </li>
-    
-
-    
-    <li class="next">
-        <a href="http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/page/3/">下一页</a>
-    </li>
-    
-</ol>
-
-
-
-</div>
-
-                </div>
-
-                <div id="secondary">
-    <section class="widget">
-        <form id="search" action='http://leaver.me/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
-      
-      <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="http://leaver.me/">
-      <button type="submit" class="submit icon-search"></button>
-</form>
-    </section>
-    
-    <section class="widget">
-        <h3 class="widget-title">最近文章</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2019 年终总结">2019 年终总结</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/" title="深入理解Raft协议">深入理解Raft协议</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/" title="《非暴力沟通》笔记">《非暴力沟通》笔记</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/10/06/wedding-of-friends/" title="Wedding of Friends">Wedding of Friends</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/09/29/principle-note/" title="Principle Note">Principle Note</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/" title="梦见鲸鱼的那一夜">梦见鲸鱼的那一夜</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/08/20/understand-hong-kong-2/" title="Understand Hong Kong 2">Understand Hong Kong 2</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/08/18/understand-hong-kong-part-1/" title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/" title="错过的都是命，得到的才是人生">错过的都是命，得到的才是人生</a>
-    </li>
-    
-    <li>
-        <a href="http://leaver.me/2019/04/06/recently/" title="Recently">Recently</a>
-    </li>
-    
-</ul>
-    </section>
-
-    
-
-    <section class="widget">
-        <h3 class="widget-title">分类</h3>
-<ul class="widget-list">
-    
-    <li><a href="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记 (186)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/">我的翻译 (57)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/">文章收藏 (53)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录 (3)</a></li>
-    
-    <li><a href="http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记 (4)</a></li>
-    
-</ul>
-    </section>
-
-    <section class="widget">
-        <h3 class="widget-title">标签</h3>
-<div class="tagcloud">
-    
-    <a href="http://leaver.me/tags/android/">android</a>
-    
-    <a href="http://leaver.me/tags/c/">C＃</a>
-    
-    <a href="http://leaver.me/tags/c&#43;&#43;/">C&#43;&#43;</a>
-    
-    <a href="http://leaver.me/tags/java/">java</a>
-    
-    <a href="http://leaver.me/tags/javascript/">javascript</a>
-    
-    <a href="http://leaver.me/tags/linux/">linux</a>
-    
-    <a href="http://leaver.me/tags/mac/">mac</a>
-    
-    <a href="http://leaver.me/tags/matlab/">matlab</a>
-    
-    <a href="http://leaver.me/tags/maven/">maven</a>
-    
-    <a href="http://leaver.me/tags/mysql/">mysql</a>
-    
-    <a href="http://leaver.me/tags/nextgen-gallery/">NextGEN Gallery</a>
-    
-    <a href="http://leaver.me/tags/php/">php</a>
-    
-    <a href="http://leaver.me/tags/python/">python</a>
-    
-    <a href="http://leaver.me/tags/shell/">shell</a>
-    
-    <a href="http://leaver.me/tags/spring/">spring</a>
-    
-    <a href="http://leaver.me/tags/sql/">sql</a>
-    
-    <a href="http://leaver.me/tags/stackoverflow/">stackoverflow</a>
-    
-    <a href="http://leaver.me/tags/wcf/">WCF</a>
-    
-    <a href="http://leaver.me/tags/web/">web</a>
-    
-    <a href="http://leaver.me/tags/windows/">windows</a>
-    
-    <a href="http://leaver.me/tags/wordpress/">wordpress</a>
-    
-    <a href="http://leaver.me/tags/wpf/">WPF</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/">上海</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/">下载</a>
-    
-    <a href="http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
-    
-    <a href="http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/">互联网</a>
-    
-    <a href="http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
-    
-    <a href="http://leaver.me/tags/%E5%88%B6%E5%BA%A6/">制度</a>
-    
-    <a href="http://leaver.me/tags/%E5%89%8D%E7%AB%AF/">前端</a>
-    
-    <a href="http://leaver.me/tags/%E5%8E%9F%E5%88%9B/">原创</a>
-    
-    <a href="http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/">大学</a>
-    
-    <a href="http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/">学习</a>
-    
-    <a href="http://leaver.me/tags/%E5%AE%89%E5%85%A8/">安全</a>
-    
-    <a href="http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/">家庭</a>
-    
-    <a href="http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/">工作</a>
-    
-    <a href="http://leaver.me/tags/%E5%B7%A5%E5%85%B7/">工具</a>
-    
-    <a href="http://leaver.me/tags/%E5%B9%B6%E5%8F%91/">并发</a>
-    
-    <a href="http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/">序列化</a>
-    
-    <a href="http://leaver.me/tags/%E5%BC%80%E5%8F%91/">开发</a>
-    
-    <a href="http://leaver.me/tags/%E5%BF%83%E7%90%86/">心理</a>
-    
-    <a href="http://leaver.me/tags/%E6%80%BB%E7%BB%93/">总结</a>
-    
-    <a href="http://leaver.me/tags/%E6%8A%80%E6%9C%AF/">技术</a>
-    
-    <a href="http://leaver.me/tags/%E6%8F%92%E4%BB%B6/">插件</a>
-    
-    <a href="http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-    
-    <a href="http://leaver.me/tags/%E6%94%B6%E8%97%8F/">收藏</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E5%AD%A6/">数学</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-    
-    <a href="http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">数据挖掘</a>
-    
-    <a href="http://leaver.me/tags/%E6%96%87%E7%AB%A0/">文章</a>
-    
-    <a href="http://leaver.me/tags/%E6%99%BA%E8%83%BD/">智能</a>
-    
-    <a href="http://leaver.me/tags/%E6%9D%82%E6%96%87/">杂文</a>
-    
-    <a href="http://leaver.me/tags/%E6%AD%A6%E6%B1%89/">武汉</a>
-    
-    <a href="http://leaver.me/tags/%E6%B1%87%E7%BC%96/">汇编</a>
-    
-    <a href="http://leaver.me/tags/%E7%88%B1%E6%83%85/">爱情</a>
-    
-    <a href="http://leaver.me/tags/%E7%90%86%E8%AE%BA/">理论</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%9F%E6%B4%BB/">生活</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/">电子书</a>
-    
-    <a href="http://leaver.me/tags/%E7%94%B5%E5%BD%B1/">电影</a>
-    
-    <a href="http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/">社会</a>
-    
-    <a href="http://leaver.me/tags/%E7%A7%91%E6%8A%80/">科技</a>
-    
-    <a href="http://leaver.me/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
-    
-    <a href="http://leaver.me/tags/%E7%AE%97%E6%B3%95/">算法</a>
-    
-    <a href="http://leaver.me/tags/%E7%BC%96%E7%A8%8B/">编程</a>
-    
-    <a href="http://leaver.me/tags/%E7%BC%96%E8%AF%91/">编译</a>
-    
-    <a href="http://leaver.me/tags/%E7%BF%BB%E8%AF%91/">翻译</a>
-    
-    <a href="http://leaver.me/tags/%E8%81%8C%E4%B8%9A/">职业</a>
-    
-    <a href="http://leaver.me/tags/%E8%AE%B0%E5%BD%95/">记录</a>
-    
-    <a href="http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/">设计</a>
-    
-    <a href="http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/">读书</a>
-    
-    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/">软件</a>
-    
-    <a href="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</a>
-    
-    <a href="http://leaver.me/tags/%E8%BF%90%E7%BB%B4/">运维</a>
-    
-    <a href="http://leaver.me/tags/%E9%87%91%E8%9E%8D/">金融</a>
-    
-</div>
-    </section>
-
-    
-<section class="widget">
-    <h3 class="widget-title">友情链接</h3>
-    <ul class="widget-list">
-        
-        <li>
-            <a target="_blank" href="https://www.cppfans.org/" title="C&#43;&#43;爱好者博客">C&#43;&#43;爱好者博客</a>
-        </li>
-        
-        <li>
-            <a target="_blank" href="http://www.kailing.pub" title="KL，每天进步一点点">KL，每天进步一点点</a>
-        </li>
-        
-    </ul>
-</section>
-
-
-    <section class="widget">
-        <h3 class="widget-title">其它</h3>
-        <ul class="widget-list">
-            <li><a href="http://leaver.me/index.xml">文章 RSS</a></li>
-        </ul>
-    </section>
-</div>
-            </div>
-        </div>
-    </div>
-    <footer id="footer">
-    <div class="container">
-        &copy; 2020 <a href="http://leaver.me/">bystander&#39;s blog By bystander</a>.
-        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
-        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
-        
-    </div>
-</footer>
-
-
-
-<a id="rocket" href="#top"></a>
-<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-30961201-3', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-
-
-
-
-
-</body>
-
-</html>
+//开始调用 parameterType.InvokeMember(&ldquo;Display&rdquo;,BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.InvokeMethod | BindingFlags.Instance,null, objMyClass, null);实际一点的用处呢：  动态dynamic  简单用法示例：  实际用处：  两者的区别和联系呢 ……<p class=readmore><a href=http://leaver.me/2013/05/27/%E8%AF%91%E5%8F%8D%E5%B0%84reflection%E5%92%8C%E5%8A%A8%E6%80%81dynamic/>阅读全文</a></p></div></article><ol class=page-navigator><li class=prev><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/>上一页</a></li><li><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/>1</a></li><li class=current><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/page/2/>2</a></li><li><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/page/3/>3</a></li><li><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/page/4/>4</a></li><li><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/page/5/>5</a></li><li><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/page/6/>6</a></li><li class=next><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/page/3/>下一页</a></li></ol></div></div><div id=secondary><section class=widget><form id=search action=http://leaver.me/search/ method=get accept-charset=utf-8 target=_blank _lpchecked=1><input type=text name=q maxlength=20 placeholder=Search>
+<input type=hidden name=sitesearch value=http://leaver.me/>
+<button type=submit class="submit icon-search"></button></form></section><section class=widget><h3 class=widget-title>最近文章</h3><ul class=widget-list><li><a href=http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/ title="2019 年终总结">2019 年终总结</a></li><li><a href=http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/ title=深入理解Raft协议>深入理解Raft协议</a></li><li><a href=http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/ title=《非暴力沟通》笔记>《非暴力沟通》笔记</a></li><li><a href=http://leaver.me/2019/10/06/wedding-of-friends/ title="Wedding of Friends">Wedding of Friends</a></li><li><a href=http://leaver.me/2019/09/29/principle-note/ title="Principle Note">Principle Note</a></li><li><a href=http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/ title=梦见鲸鱼的那一夜>梦见鲸鱼的那一夜</a></li><li><a href=http://leaver.me/2019/08/20/understand-hong-kong-2/ title="Understand Hong Kong 2">Understand Hong Kong 2</a></li><li><a href=http://leaver.me/2019/08/18/understand-hong-kong-part-1/ title="Understand Hong Kong Part 1">Understand Hong Kong Part 1</a></li><li><a href=http://leaver.me/2019/07/09/%E9%94%99%E8%BF%87%E7%9A%84%E9%83%BD%E6%98%AF%E5%91%BD%E5%BE%97%E5%88%B0%E7%9A%84%E6%89%8D%E6%98%AF%E4%BA%BA%E7%94%9F/ title=错过的都是命，得到的才是人生>错过的都是命，得到的才是人生</a></li><li><a href=http://leaver.me/2019/04/06/recently/ title=Recently>Recently</a></li></ul></section><section class=widget><h3 class=widget-title>分类</h3><ul class=widget-list><li><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/>学习笔记 (186)</a></li><li><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/>我的翻译 (57)</a></li><li><a href=http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/>文章收藏 (53)</a></li><li><a href=http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/>生活记录 (3)</a></li><li><a href=http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/>读书笔记 (4)</a></li></ul></section><section class=widget><h3 class=widget-title>标签</h3><div class=tagcloud><a href=http://leaver.me/tags/android/>android</a>
+<a href=http://leaver.me/tags/c/>C＃</a>
+<a href=http://leaver.me/tags/c++/>C++</a>
+<a href=http://leaver.me/tags/java/>java</a>
+<a href=http://leaver.me/tags/javascript/>javascript</a>
+<a href=http://leaver.me/tags/linux/>linux</a>
+<a href=http://leaver.me/tags/mac/>mac</a>
+<a href=http://leaver.me/tags/matlab/>matlab</a>
+<a href=http://leaver.me/tags/maven/>maven</a>
+<a href=http://leaver.me/tags/mysql/>mysql</a>
+<a href=http://leaver.me/tags/nextgen-gallery/>NextGEN Gallery</a>
+<a href=http://leaver.me/tags/php/>php</a>
+<a href=http://leaver.me/tags/python/>python</a>
+<a href=http://leaver.me/tags/shell/>shell</a>
+<a href=http://leaver.me/tags/spring/>spring</a>
+<a href=http://leaver.me/tags/sql/>sql</a>
+<a href=http://leaver.me/tags/stackoverflow/>stackoverflow</a>
+<a href=http://leaver.me/tags/wcf/>WCF</a>
+<a href=http://leaver.me/tags/web/>web</a>
+<a href=http://leaver.me/tags/windows/>windows</a>
+<a href=http://leaver.me/tags/wordpress/>wordpress</a>
+<a href=http://leaver.me/tags/wpf/>WPF</a>
+<a href=http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/>上海</a>
+<a href=http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/>下载</a>
+<a href=http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/>中间件</a>
+<a href=http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/>互联网</a>
+<a href=http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/>分布式</a>
+<a href=http://leaver.me/tags/%E5%88%B6%E5%BA%A6/>制度</a>
+<a href=http://leaver.me/tags/%E5%89%8D%E7%AB%AF/>前端</a>
+<a href=http://leaver.me/tags/%E5%8E%9F%E5%88%9B/>原创</a>
+<a href=http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/>大学</a>
+<a href=http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/>学习</a>
+<a href=http://leaver.me/tags/%E5%AE%89%E5%85%A8/>安全</a>
+<a href=http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/>家庭</a>
+<a href=http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/>工作</a>
+<a href=http://leaver.me/tags/%E5%B7%A5%E5%85%B7/>工具</a>
+<a href=http://leaver.me/tags/%E5%B9%B6%E5%8F%91/>并发</a>
+<a href=http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/>序列化</a>
+<a href=http://leaver.me/tags/%E5%BC%80%E5%8F%91/>开发</a>
+<a href=http://leaver.me/tags/%E5%BF%83%E7%90%86/>心理</a>
+<a href=http://leaver.me/tags/%E6%80%BB%E7%BB%93/>总结</a>
+<a href=http://leaver.me/tags/%E6%8A%80%E6%9C%AF/>技术</a>
+<a href=http://leaver.me/tags/%E6%8F%92%E4%BB%B6/>插件</a>
+<a href=http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/>操作系统</a>
+<a href=http://leaver.me/tags/%E6%94%B6%E8%97%8F/>收藏</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E5%AD%A6/>数学</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/>数据库</a>
+<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/>数据挖掘</a>
+<a href=http://leaver.me/tags/%E6%96%87%E7%AB%A0/>文章</a>
+<a href=http://leaver.me/tags/%E6%99%BA%E8%83%BD/>智能</a>
+<a href=http://leaver.me/tags/%E6%9D%82%E6%96%87/>杂文</a>
+<a href=http://leaver.me/tags/%E6%AD%A6%E6%B1%89/>武汉</a>
+<a href=http://leaver.me/tags/%E6%B1%87%E7%BC%96/>汇编</a>
+<a href=http://leaver.me/tags/%E7%88%B1%E6%83%85/>爱情</a>
+<a href=http://leaver.me/tags/%E7%90%86%E8%AE%BA/>理论</a>
+<a href=http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/>生产力</a>
+<a href=http://leaver.me/tags/%E7%94%9F%E6%B4%BB/>生活</a>
+<a href=http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/>电子书</a>
+<a href=http://leaver.me/tags/%E7%94%B5%E5%BD%B1/>电影</a>
+<a href=http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/>社会</a>
+<a href=http://leaver.me/tags/%E7%A7%91%E6%8A%80/>科技</a>
+<a href=http://leaver.me/tags/%E7%AC%94%E8%AE%B0/>笔记</a>
+<a href=http://leaver.me/tags/%E7%AE%97%E6%B3%95/>算法</a>
+<a href=http://leaver.me/tags/%E7%BC%96%E7%A8%8B/>编程</a>
+<a href=http://leaver.me/tags/%E7%BC%96%E8%AF%91/>编译</a>
+<a href=http://leaver.me/tags/%E7%BF%BB%E8%AF%91/>翻译</a>
+<a href=http://leaver.me/tags/%E8%81%8C%E4%B8%9A/>职业</a>
+<a href=http://leaver.me/tags/%E8%AE%B0%E5%BD%95/>记录</a>
+<a href=http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/>设计</a>
+<a href=http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/>读书</a>
+<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/>软件</a>
+<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/>软件测试</a>
+<a href=http://leaver.me/tags/%E8%BF%90%E7%BB%B4/>运维</a>
+<a href=http://leaver.me/tags/%E9%87%91%E8%9E%8D/>金融</a></div></section><section class=widget><h3 class=widget-title>友情链接</h3><ul class=widget-list><li><a target=_blank href=https://www.cppfans.org/ title=C++爱好者博客>C++爱好者博客</a></li><li><a target=_blank href=http://www.kailing.pub title=KL，每天进步一点点>KL，每天进步一点点</a></li></ul></section><section class=widget><h3 class=widget-title>其它</h3><ul class=widget-list><li><a href=http://leaver.me/index.xml>文章 RSS</a></li></ul></section></div></div></div></div><footer id=footer><div class=container>&copy; 2020 <a href=http://leaver.me/>bystander's blog By bystander</a>.
+Powered by <a rel="nofollow noreferer noopener" href=https://gohugo.io target=_blank>Hugo</a>.
+<a href=https://www.flysnow.org/ target=_blank>Theme</a> based on <a href=https://github.com/flysnow-org/maupassant-hugo target=_blank>maupassant</a>.</div></footer><a id=rocket href=#top></a><script type=text/javascript src="/js/totop.js?v=0.0.0" async></script><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-30961201-3','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></body></html>
