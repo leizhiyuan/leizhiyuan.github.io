@@ -1,190 +1,21 @@
-<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><title>Posts | bystander's blog</title><meta property="og:title" content="Posts - bystander's blog"><meta property="og:type" content="article"><meta name=Keywords content><meta name=description content="Posts"><meta name=author content="bystander"><meta property="og:url" content="http://leaver.me/post/"><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><link rel=stylesheet href=/css/normalize.css><link rel=stylesheet href=/css/style.css><link rel=alternate type=application/rss+xml+xml href=http://leaver.me/post/index.xml title="bystander's blog"><script type=text/javascript src=//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js></script></head><body><header id=header class=clearfix><div class=container><div class=col-group><div class=site-name><a id=logo href=http://leaver.me/>bystander's blog</a><p class=description>寻找窄门</p></div><div><nav id=nav-menu class=clearfix><a class=current href=http://leaver.me/>首页</a>
-<a href=http://leaver.me/categories title=目录>目录</a>
-<a href=http://leaver.me/about/ title=关于我>关于我</a></nav></div></div></div></header><div id=body><div class=container><div class=col-group><div class=col-8 id=main><div class=res-cons><article class=post><header><h1 class=post-title><a href=http://leaver.me/2012/12/18/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86/ title=Lambda高手之路第一部分>Lambda高手之路第一部分</a></h1></header><date class="post-meta meta-date">2012年12月18日</date><div class=post-meta><span>|</span>
-<span class=meta-category><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></span></div><div class=post-content>好长时间没发技术文章了，恰好看到一篇非常详细的Lambda文章。一边翻译一边学习。题目好像有点霸气。。
-介绍 Lambda表达式是使代码更加动态，易于扩展并且更加快速（看完本文你就知道原因了）的强有力的工具。也可以用来降低潜在的错误。同时可以利用静态输入和智能提示，就像VS里一样。
- Lambda表达式在.net framework 3.5中提出来。并且在LINQ和ASP.NET MVC内部的一些技术中扮演了相当重要的角色。如果你考虑一下ASP.NET MVC中各类控件的实现。你就发现。奥妙就是他们大多使用了Lambda表达式。和Lambda表达式一起，使用Html扩展方法将会使得在后台创建模型成为可能。
-本文会讲到如下的知识。
-1.简短的介绍-Lambda表达式是什么，以及为什么和匿名方法不同（之前我们使用的） 2.走近Lambda表达式的性能-在哪些情况下比起标准方法，Lambda会提高/损失性能 3.深入-Lambda表达式在MSIL代码中是什么样 4.一些来自JS世界的模式映射到C#中 5.那些能够提高性能，并且代码看起来相当舒服的使用Lambda的情况。 6.一些我提出的新模式-当然有可能别人也提出来了。但这是我的思考结果。
- 如果你期望本文是一篇入门教程我可能要让你失望了，除非你真的很优秀并且很聪明，当然我不是这种人，所以我也想提前声明一下：为了读懂这篇文章你可能需要C#的一些高级知识，并且对C#比较了解。
- 你应该期望本文试着解释一些事情给你，也会解释一些有趣的问题，至少对我来说是这样的。最后我会展示一些实际的例子和模式，如我所说，Lambda表达式简化了很多情况。因此写显式的模式很有用。
-背景知识-什么是Lambda表达式 在C#1.0中，委托被提出了，它使得传递函数成为可能，一句话就是委托就是强类型的函数指针，但委托比指针更强大。一般传递一个函数需要如下几步。 1. 写一个委托（就像一个类）包含返回类型和参数类型 2. 使用委托作为某一个函数的参数类型，这样，该函数就可以接受和委托描述的有着相同签名的函数了 3. 将一个委托类型的函数传递给委托，创建一个委托实例。
- 如果听起来很复杂，确实本来很复杂，但这是必需的。（虽然不是造火箭，但是比你认为的要更多的代码），然而步骤三不是必需的，编译器会为你做他，但是步骤1和2却是必不可少的。
- 幸运的是C#2.0出现了泛型，现在我们也可以写泛型类，方法，更重要的是，泛型委托，然而，直到.net framework 3.5的时候。微软意识到实际上只有两种泛型委托（当然有一些不同的重载），会覆盖99%的使用情况：
-1.Action 没有任何输入参数，也没有输出参数。 2.Action&lt;t1,…t16> 需要1-16个参数，没有输出参数。 3.Func&lt;t1….t16,tout>需要0-16个参数，一个输出参数
- Action和其对应的泛型版本（仅仅是一个动作，执行一些事情）返回void的时候。Func则可以返回最后一个参数指定的类型，通过这两个委托类型，我们事实上，大部分情况下。前面提到的三步中的第一部就不用写的。而第二步仍然需要。
- 那么如果我们想要运行代码的时候怎么做呢。在C#2.0中问题已经可以解决了。在这个版本里。我们可以创建委托方法，也就是一个匿名方法，然后这个语法一直未能流行起来，一个相当简化的匿名方法的版本类似这样：
-为了提高这种语法，欢迎来到Lambda表达式的国度。首先，这个Lambda名字怎么来的？事实上。来自于数学上的λ演算，更准确的说他是数学中一个正式的系统。用于通过变量绑定和替换来进行表达式计算，所以我们有0-N个输入参数和一个返回值，而在编程中，也可以没有返回值
-我们看一下Lambda表达式的一些例子 从上面的代码段里我们可以学到一些东西
-如果我们只有一个输入参数，我们可以省略() 如果我们有一个输入参数，并且向返回一个，那么我们可以省略{}和return关键字 我们可以让我们的Lambda表达式异步执行，只要加上async关键字就可以了 Var关键字一般都不可以用，只有在极少的情况下有才可以。 当然我们可以使用像平常那样使用var，如果我们指定了参数类型，这是可选的。因为类型可以从委托的类型中推断出来。而下面的情况都是错误的。请看下面的例子  大部分基本情况我们都知道。但是有些相当cool的东西（这使得他们在很多情况下很有用），我们考虑下面的代码片段
- 这是可以的。因此你可以使用其他的变量。这比你想象的要更特殊。因为这里出现了捕获变量。这使得出现了一个闭包，考虑下面的情况。
- 猜猜看这段代码会发生什么。首先我们创建了一个局部变量。和两个lambda表达式，第一额Lambda表达式展示在其他局部区域里访问局部变量是可以的。这已经很让人难以置信了。这意味着我们想要保护一个变量，但事实上他仍然可以在其他方法里被访问。而不论方法是被定义在内部还是其他类的里。
- 而第二个Lambda表达式则模拟了一个Lambda表达式可以修改外部域变量。这意味着我们可以在其他方法里修改我们的局部变量，仅仅需要传一个在对应域里创建好的Lambda表达式就可以了。因此，我认为闭包有点魔幻的色彩了。就像并行编程一样。可能导致未期望的结果。就像在并行编程中的竞争情况。
-为了展示一下未期望的结果。欢迎期待下一篇。。……</div><p class=readmore><a href=http://leaver.me/2012/12/18/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86/>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2012/12/10/%E4%BB%8E%E7%9B%B8%E4%BA%B2%E5%BB%B6%E4%BC%B8%E5%87%BA%E7%9A%84%E5%A9%9A%E6%81%8B%E6%84%8F%E4%B9%89/ title=从相亲延伸出的婚恋意义>从相亲延伸出的婚恋意义</a></h1></header><date class="post-meta meta-date">2012年12月10日</date><div class=post-meta><span>|</span>
-<span class=meta-category><a href=http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F>文章收藏</a></span></div><div class=post-content>相亲现在挺火的。。
-文章来自xiuloveshow
-老妈说：“妈希望你找个家庭条件好点儿的，以后少吃苦，别走老妈的路！”。老爸说：“老爸没别的要求，就希望你找个家庭和睦的，这样的家庭教育出来的子女各方面都不会差到哪儿去，家庭条件爸不是特别看重”。老哥说：”这么大个村儿就你一个单身了，小心被剩下！“。朋友说：”咋总是忙着给别人介绍，赶紧把自己推销出去再说！”我说：我想找个在我不开心的时候，什么都不用做，就静静的呆在我旁边，即使是看着我哭也好。
-三毛说：看得不顺眼的话，千万富翁也不嫁；看得中意，亿万富翁也嫁。张小娴说：你走，我不送你。你来，无论多大风多大雨，我都要去接你。史铁生说：爱情就是在追求喜欢和爱，这二者同时达到便是爱的理想状态，爱就是一种理想。我说：嫁与不嫁，送与不送，喜欢与爱，我只想用我自己的方式去做人生最重要的选择，这种东西没有参数值，用完一次便没有了！
-之前为凑热闹跟一老乡去相亲，相亲的目标性特别强，大家都冲着结婚去的，他们从来不会凭感觉去判断这个人是否是自己中意的人。对方开口便问月工资多少？家里买房没？而男方像是履行一项任务或是已经习惯了这样一套开场白，还未等女方开口，从爷爷的退休工资开始说到自己的工资水平。这其中我没有听到任何一句关于心理沟通的话题，全是围绕物质展开的激烈对白。我有点儿后悔跟她去了，这让我看到了现代人最“真实”的婚恋观，我有些后怕！
-后来，我问老乡对男方的印象怎么样。她毫无掩饰的说：“家庭条件还可以，人也挺老实，没更好的就成了“”你到底想找个什么样的？”因为我不确定她的方向，作为女性擅有的八卦心态，我还是忍不住问了。“没什么特别的要求，只要有房，工资还可以，父母不要我们负担就好了。至于感情可以慢慢培养的！”她的表情很轻松，像是在述说一件很平常的事。我有些失望，像是在风和日丽的宁静之夏突然袭来的狂风暴雨。
-我想如果是我，我不一定要多大的房，多高的工资。物质和精神两个层面，我永远把精神排第一。两个人每天围绕着柴米油盐酱醋茶，围绕着生活中的琐琐碎碎，内心的苦闷却苦于找不到人述说。彼此不懂对方的世界，不懂爱好为何物，不懂兴趣乃何价，这样的恋爱，这样的婚姻多么的恐怖。我不希望半夜醒来向着电台诉说悲伤，乞求听众收容我的眼泪！
-如史铁生所说，爱乃一种理想。即为理想凭努力不一定能达到。喜欢一个人和爱一个人是完全不同的两种境界，喜欢一个人，当激情用尽之时，就只有靠着那张印着两个人照片的结婚证来维持彼此的关系，这种关系完全靠法律来维系。爱一个人，当你生老病死，激情褪去之后依然想着跟你白头到老。这些恐怕是一张房产证换不来的细水长流般的幸福。关于物质和精神，关于爱和不爱。物质已经主导了我们的价值取向，我们不再自已。物质可以让人放弃精神随时转变自身角色，爱也会因为物质变得不爱了。
-我已经很久没有听到关于爱的序曲了。物质可以这样轻易的扭曲爱的意义，我们追求的幸福到底为何物？ 当年因物质放弃了最宝贵的东西，最稀有的精神支撑，当你得到了你所有物质的满足，物质填充了你的欲望，你能坦然的对自己说你很幸福？当你开着宝马，驾着良驹，住着豪宅，驱着游艇，是否我们就幸福了？
-我努力学习，认真工作，享受音乐，沉侵阅读，爱好写作，喜欢画画，偶尔给老爸老妈给好朋友煲电话粥！我不依赖任何人，我不向任何人屈服！面对机会我不放弃，面对感情拿得起放得下，面对亲情我感动无疑！喜欢倾听，喜欢跟人交往，喜欢跟老人交谈…。消费过后还有金钱结余，偶尔向文字倾吐心声。继续等待着那个可以说话的人出现。自创的理想也可以很诗意！
-我希望的婚恋观如同我的生活般平静，如果你能走进我的世界，如果你懂我的世界，我们可以无话不谈。但似乎这变成了一种奢侈，我们就是简单的无话可说！你在你的世界游历，我在我的世界漫步，踽踽独行有何不可！……</div><p class=readmore><a href=http://leaver.me/2012/12/10/%E4%BB%8E%E7%9B%B8%E4%BA%B2%E5%BB%B6%E4%BC%B8%E5%87%BA%E7%9A%84%E5%A9%9A%E6%81%8B%E6%84%8F%E4%B9%89/>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2012/12/08/3%E5%88%86%E9%92%9F%E7%90%86%E8%A7%A3lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/ title=3分钟理解Lambda表达式>3分钟理解Lambda表达式</a></h1></header><date class="post-meta meta-date">2012年12月8日</date><div class=post-meta><span>|</span>
-<span class=meta-category><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91>我的翻译</a></span></div><div class=post-content>1.什么是Lambda表达式
-Lambda表达式是一个匿名方法，通常在LINQ中被用来创建委托
-简单来说。它是一个没有声明，没有访问修饰符，没有返回值。甚至没有名字的方法。
- 2.为什么我们需要使用Lambda表达式？或者说为什么我们要写一个没有名字的函数？
-为了方便，这种快捷方式允许你在调用的地方直接编写代码，尤其是你想调用的代码只会在这个地方使用一次。并且方法体本身很短。节省了单独写方法中写声明等等的麻烦。。
-好处
-1.代码量减少。不必写方法的名称。返回值和访问修饰符
-2.当阅读代码的时候。直接就可以看到被调用函数的代码，不用去别的地方。
-Lambda表示应该短些。太复杂了。可读性就下降了
- 如果编写Lambda表达式
-Lambda基本的定义是：参数=>执行代码
-举个例子
-n是输入参数 n % 2 == 1 是函数体
-你可以读作：给这个匿名方法传入一个参数n，如果n是奇数就返回true
- 使用该Lambda的例子
-ok.基本的Lambda表达式就是这样了。……</div><p class=readmore><a href=http://leaver.me/2012/12/08/3%E5%88%86%E9%92%9F%E7%90%86%E8%A7%A3lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2012/12/05/%E4%BB%8E%E5%B9%B3%E5%BA%B8%E5%88%B0%E5%B9%B8%E7%A6%8F/ title=从平庸到幸福>从平庸到幸福</a></h1></header><date class="post-meta meta-date">2012年12月5日</date><div class=post-meta><span>|</span>
-<span class=meta-category><a href=http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F>文章收藏</a></span></div><div class=post-content>一篇来自左岸的文章，可以读一读。只是不知道有几人能够认认真真读完。文予有缘人。随意吧。
-作者：文刀
-当一件事情刚开始时，我们总会偏向于好的预期，因为这样我们才会去行动。当事情在不断的进展时，外界的因素（客观条件）总会引起我们主观上的波动，时而信心满满，时而跌入谷底。然而事情总是要有个结果的，在这样一种偏向反复，时好时坏的自我预期中，有些人选择了放弃，有些了继续了坚持。放弃，或许是因为有更明智的选择，又或许已经没戏了。坚持，或许是因为没有了退路，又或许是总体偏向于好的预期。不管怎么样，预期总会无穷的趋于向现实要一个结果。而关于结果是正无穷还是负无穷，我们却无法量化，因为做每一个选择，特别是人生选择时，其机会成本（选择成本）是无法量化的。读三年研与先工作三年是难以在同一个人身上同时进行，是不可逆的单一选择，也就无法真正理性地去决定。而我们之所以能够去决定，大部分取决于我们自己与身边人的偏好。所幸，我们都能也都应该看到，做如此的选择并没有犯下方向上的错误。总体上这条路上，我们的步伐是朝前迈的。我们的学识，我们的视野都在增进，然而，要问我们是否就此告别了平庸，是否走向了幸福与快乐，这却是无关的。
-知识的增长并不意味着个人道德水平的提高或是人个涵养的提升。在物欲横流的社会中，总能听到那么多关于知识分子的道德丑闻与民工的善行。平庸并不是表明人的身份，而是表明个人的如何从众。所以，对于钱权与名利的追求，恰恰是平庸之举。再看看幸福，知识的提高会带来更高的视野，也可能会导致更多的欲求。有限理性的欲求会是生活源源不断的动力，带来的实现会成为幸福的体验。纵然如此，这也只是一时的，更多的幸福并不在于我们要不断去满足，而是要学会去知足，学会去感激，去给予。所以，幸福是一种认知状态，是一种心境。
-再来设想一下，当我们把梦想比作一种财富的实现，我们就会发现。当一阶段内的目标实现了，我们就会寻找下一阶段的目标，然后再去实现它。这样的生活是富有挑战与方向感的，也就是有意义的，这种不断的自在追求本身会是幸福的。如此，追求财富就如梦想一般无可厚非（可能财富就是梦想），但如果我们无法认清财富存在的更多效用，我们就免不了坠入平庸，欲壑难填，我们又何来幸福。一千万在当下社会足以自在一把，然而却已然超出了本身的欲求（理性的），那么就应该拿出钱来做好事，给予会让自己更为幸福，因为我们可以就此看到更多幸福的存在。
-即使把幸福看作是一种认知状态，一种心境，但其也应该是我们毕生的追求。以前，我们生活无忧无虑，饭来张口衣来伸手，但我们都明白，那也只是一时的，是建立在亲人的血汗之上的。如今，我们走出校园，参加工作，就要懂得去承担相应的去给予身边人力所能及的照顾。从接受到享受再到给予最终还是到享受，这一过程就是认知状态的提升，就是对幸福的追求。幸福是学会接受与学会给予的过程。心境是个什么概念，又要如何提升呢？我们都清楚，在现世中不存在世外桃源，田园牧歌也不太现实。那么，我们就要学会把这种不可能变成可能带到生活中，其唯一的途径就是提升我们的心境。而这并不是说，我们要在现实生活中学会自欺欺人，而是把这样一份浪漫主义的情怀赋予到真实中，做到真、性、情。对于生活中的真真假假，我们要学会看到，看透，看淡；对于生活中的点点滴滴，我们要学会感激，感怀，感悟；还有对于他人，对于自己，也要力求做到真与善，从而现实幸福的美感。如此，心境的提高是一个领悟与缓慢提升的过程。幸福是一生的追求。
-当我们意识到追求梦想更深的是在追求幸福时，我们又深深的坚信着幸福是一种心境，那我们何不学会像相信幸福总是存在一样去相信梦想会实现呢，我们又何必多去假定另一种不好的预期存在呢。既然我们已经走在路上了，在正确追求幸福的路上呢，那我们何不去幸福呢 ？相对于冷漠的大众，我深信，时时能感到幸福，时时有梦想，为断去追求幸福的人，注定是个不平庸的人。……</div><p class=readmore><a href=http://leaver.me/2012/12/05/%E4%BB%8E%E5%B9%B3%E5%BA%B8%E5%88%B0%E5%B9%B8%E7%A6%8F/>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2012/12/03/%E6%BA%90%E7%A0%81%E6%89%93%E5%8C%85%E4%B8%8B%E8%BD%BD%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%BC%94%E7%A4%BA%E5%8A%A8%E7%94%BB/ title=[源码]打包下载算法与数据结构演示动画>[源码]打包下载算法与数据结构演示动画</a></h1></header><date class="post-meta meta-date">2012年12月3日</date><div class=post-meta><span>|</span>
-<span class=meta-category><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></span></div><div class=post-content>很早的时候，学习数据结构的时候。收集了一下演示的动画。帮助理解。但是不全。今天在看KMP算法的时候。看到了福州大学的一个精品课程。。81个演示动画呢。。想打包下载收藏。话说福州大学这才是好样的。踏踏实实搞学术。
-第一种方法就是手工了。。嘎嘎。你敢么。一个个下载。。。一个个改名。。
-第二种就是用整站下载的软件了。。但是我看了一下swf的命名。我就知道下载下来意义不大。因为名字不好理解。
-第三种就是自己写个程序吧。。
- 整体思路，首先访问课程页面，解析得到每一章的标题和内容，然后创立章节文件夹，得到每个动画对应的html页面，然后对html页面解析，提取swf地址。然后下载就行了。
-比较疼的地方是那个页面用的是gb2312编码。而解析神器HtmlAgilityPack，不能指定编码。只能想办法绕过了。
- 写完运行。看着如下这个界面。。这个我只是为了让我看到进度。同时后台也在下载。
-我的心是冰凉的。但脖子是僵硬的。。。
- 运行完成后。文件夹和文件自动命名完成是这样的。。……</div><p class=readmore><a href=http://leaver.me/2012/12/03/%E6%BA%90%E7%A0%81%E6%89%93%E5%8C%85%E4%B8%8B%E8%BD%BD%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%BC%94%E7%A4%BA%E5%8A%A8%E7%94%BB/>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2012/11/28/c#%E4%B8%8E.net-%E7%A8%8B%E5%BA%8F%E5%91%98%E9%9D%A2%E8%AF%95%E7%AC%94%E8%AE%B0/ title="C#与.net 程序员面试笔记">C#与.net 程序员面试笔记</a></h1></header><date class="post-meta meta-date">2012年11月28日</date><div class=post-meta><span>|</span>
-<span class=meta-category><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></span></div><div class=post-content>这是前几天读的书。书不难。10-13章跳过了。以后再看。
-以前，一个应用程序对应一个进程。并且为该进程指定虚拟内存，这样。进程会消耗很多资源，而且进程之间的通信业比较麻烦
-应用程序域可以理解为很多应用程序域都可以运行在同一个.net 进程中，降低内存消耗。同时不同的域之间隔离。安全有保证。通信也简单。
-程序集是指包含编译好的。面向.net framework的代码的逻辑单元。是完全自我描述性的一个逻辑单元。可以存储在多个文件中。简单来说，程序集就是几个彼此有关联程序文件的集合。程序集会包含程序的元数据。描述了对应代码中定义的方法和类型。
-装箱和拆箱：装箱转换是将一个值类型显式或隐式的转换成一个object对象。并且把这个对象转换成一个被该值类型应用的的接口类型。装箱后的object对象中的数据位于堆中。一般应该避免这种运算。 CLR将值类型的数据包裹到匿名的托管对象中，并将托管对象的引用放在Object类型的变量中。这个过程称为装箱。一般还是使用泛型来代替多好。
-值类型和引用类型：值类型实例通常分配在线程的栈上。并且不包含指向任何实例数据的指针。引用类型实例分配在托管堆上。变量保存了实例数据的内存引用。引用类型复制的话会导致引用同一个内存地址。
-C#预处理指令是在编译时调用的。预处理指令通知C#编译器要编译哪些代码。并指出如何处理特定的错误和异常。比如用在一些调试的时候。在顶部define一个debug 内部的测试部分写上测试用例。具体示例
-C#中的指针 指针是一个无符号整数。是以当前系统寻址范围为取值范围的整数，CLR支持三种指针类型：受托管指针，非托管指针，非托管函数指针，受托管指针存储在堆上的托管块的引用，一个非托管指针就是传统意义上的指针，要放在unsafe中使用，C#中指针并不继承自Object
-String 是CLR的类型名称。而string是C#的关键字。其实C#编译时。。会增下如下代码： using string=System.String
-Array 到ArrayList的转换 1.使用ArrayList.Adapter(ArrayName) 可以直接得到ArrayList 2.使用遍历逐个添加到ArrayList里。 反向的话直接使用(Array[])ArrayListName.ToArray(typeof(Array));即可
-checked和unchecked语句用于控制整形算术运算和显示转换的溢出检查上下文。checked关键字用于对整型算术运算和转换显式启用溢出检查。因为默认情况下。如果表达式产生的值超过了类型的范围。则常数表达式将会导致编译时错误。而非常数表达式则在运行时计算并将引发异常。
-Asp.Net 中的Request对象主要功能是从客户端得到数据信息。他的属性比较多。比如UserLanguage，TotalBytes，Path，ApplicationPath
-ViewState是其的一个重要特性。用于把生成页面要用的状态值保存到一个隐藏域里。而不是用cookie/内存
-SOAP是Web Service应用的基础协议。他是一种轻量的简单的。基于xml的协议。被设计成在wEb上交换结构化的和固有的信息。 WSDL是一种用于描述web服务和说明如何与Web服务通信的XML语言。WSDL是一种符合XML语法规范的语言。它的设计完全基于Soap协议的实现。当一个WEb Service 服务器期望为使用者提供服务说明时，WSDL语言是最好的选择之一。
- **对企业的一些认识 **
-千万不要说自己未来的打算是做到管理层，首先对管理层的定义不清楚。职务不清楚。所以保险的答案是我会努力钻研技术。使得能够达到业内的专业人士。深刻理解公司和行业
-我是为了找一份长期性的工作。我不喜欢频繁的跳槽我希望在这个利于发展自己的事业。深入学习。向专业人士请教。那。该我想问这个职务是长期的吗？
-不要把公司想像成慈善机构。工作的运作方面应该是尽可能快的实现盈利。树立品牌，赢得客户。我的工作就是完成企业的良性运作。
-如果被问到是否需要考虑看分数。应该说用人单位确实需要全面考量。也要考虑应聘者的工作积极性/服从性。实际经验/对开发的理解诶。这些也许比分数更有价值。
-应届生的优缺点应该是足够的理论知识和专业能力。缺点是工作和社会经验不足。……</div><p class=readmore><a href=http://leaver.me/2012/11/28/c#%E4%B8%8E.net-%E7%A8%8B%E5%BA%8F%E5%91%98%E9%9D%A2%E8%AF%95%E7%AC%94%E8%AE%B0/>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2012/11/25/c#%E6%A8%A1%E6%8B%9F%E6%89%8B%E5%B7%A5%E6%B4%97%E7%89%8C%E9%99%84%E6%B5%8B%E8%AF%95/ title=C#模拟手工洗牌(附测试)>C#模拟手工洗牌(附测试)</a></h1></header><date class="post-meta meta-date">2012年11月25日</date><div class=post-meta><span>|</span>
-<span class=meta-category><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></span></div><div class=post-content>洗牌大家都知道，代码实现最广泛的一种就是产生两个随机数，然后交换这两个随机数为下标的牌，但是这种的洗牌并不能保证同概率，你可以参考本文做一些测试，本文代码没啥可说的。我写出了非常详细的注释
-ps:刚开始写那个随机数的时候，我随便给了个种子2012.。结果你懂的。。意外意外。这个全局的result数组让我很疼，代码有什么可以改进的，欢迎留言指出。不胜感激。
- ……</div><p class=readmore><a href=http://leaver.me/2012/11/25/c#%E6%A8%A1%E6%8B%9F%E6%89%8B%E5%B7%A5%E6%B4%97%E7%89%8C%E9%99%84%E6%B5%8B%E8%AF%95/>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2012/11/25/%E4%B8%80%E4%B8%AA%E6%81%B6%E6%84%8Fvbs%E8%84%9A%E6%9C%AC%E7%9A%84%E7%AE%80%E5%8D%95%E8%A7%A3%E7%A0%81/ title=一个恶意vbs脚本的简单解码>一个恶意vbs脚本的简单解码</a></h1></header><date class="post-meta meta-date">2012年11月25日</date><div class=post-meta><span>|</span>
-<span class=meta-category><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></span></div><div class=post-content>今天把电脑还原到了11月7号。结果eset更新后报C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup这个目录有个zzs.vbs的不受欢迎的程序，当时没什么事，就打开看看。想知道是个什么东西。
-由于eset阻止，我就把文件拖出来。改个后缀。发现代码不长，前半段是ascii码编码的。。
-后半段是
-虽说对vbs不怎么熟，但也知道vbs经常用来写个启动项啊。加个用户啊。之类的。后半句很好懂。就是把ascii码转换成字符串，然后执行。字面意思看看就行了。其实应该可以直接将Execute runner 改为 MsgBox runner就能输出了。但eset不能关闭。所以最后还是选择用C#来写了。
-解码嘛。很简单。VS刚好开着。直接写吧。
-结合后半段。简单读一读，就知道这个先找了一下userinit.exe进程。然后改了注册表并且设置了浏览器首页为999这个什么网站，我打开发现是个导航站。。人家hao123做个导航站赚钱了。。你们要不要这样跟风啊。。……</div><p class=readmore><a href=http://leaver.me/2012/11/25/%E4%B8%80%E4%B8%AA%E6%81%B6%E6%84%8Fvbs%E8%84%9A%E6%9C%AC%E7%9A%84%E7%AE%80%E5%8D%95%E8%A7%A3%E7%A0%81/>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2012/11/23/%E8%8E%B7%E5%8F%96%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%89%88%E6%9C%AC%E4%BF%A1%E6%81%AF/ title=获取操作系统版本信息>获取操作系统版本信息</a></h1></header><date class="post-meta meta-date">2012年11月23日</date><div class=post-meta><span>|</span>
-<span class=meta-category><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91>我的翻译</a></span></div><div class=post-content>坊间流传的代码都有些问题，比如不能正常获取win7以上的版本信息，不能获取诸如专业版，旗舰版等的信息，不能正常获取操作系统位的信息。
-使用代码，写了一个简单的库来实现效果。用法大概如下：
-对比一下坊间的几种不足： 总的来说。最大的问题就是不能正确检测你的操作系统到底是32位还是64位。几种方法大致如下： 1. 使用IntPtr指针的大小 最关键的一句代码是：
-但是事实上，这个返回的不是操作系统的位数，返回的是运行的程序的位数，如果在64位的windows上以32位的模式运行了这个程序，那么就会返回32.
-2. 使用PROCESSOR_ARCHITECTURE 环境变量
-这就是纯粹的误导了，因为和1的情况一样。不能返回处理器的位数而是返回了运行程序的位数，如果在64位的windows上以32位的模式运行了这个程序，那么就会返回32.
-3. 使用PInvoke 和 GetSystemInfo 注意：为了保持文章不要太长。。我没有包括PInvoke API的声明，（译者注：C#的互操作性嘛），但你可能在我提供的源代码里找到。
-老问题，还是会返回运行程序的位数，而不是操作系统/处理器的位数。 4. 使用PInvoke和GetNativeSystemInfo 我看到过有人说上面的都不可信。可以使用GetNativeSystemInfo代替，代码和上面一样，只是把GetSystemInfo换成GetNativeSystemInfo就好。
-结果不一样了。但是。。。这个API返回了处理器本身的位数，而我对操作系统的位数感兴趣。。毕竟64位的处理器上也可以轻松运行32位的操作系统 5. 组合 IntPtr.Size 和 IsWow64Process
-如果IntPtr是64.操作系统必然也是64位，因为你不能在32位的操作系统上运行64位的程序 如果程序在32位模式下运行，代码会检测是否是64位的处理器，而程序在32位模式下运行来判断是32位还是64位。 如果返回的是64，那么操作系统是64位，但是程序以32位的模式运行，如果是32，那么操作系统也是32.
-最后，我在lib里还加入了一些方法。以便区分程序/操作系统/处理器的位数。
-源码下载：
-[downloadicon href=http://pan.baidu.com/share/link?shareid=161028&uk=1493685990]OSVersion.zip[/downloadicon] 译自：http://www.codeproject.com/Articles/73000/Getting-Operating-System-Version-Info-Even-for-Win，有删减。……</div><p class=readmore><a href=http://leaver.me/2012/11/23/%E8%8E%B7%E5%8F%96%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%89%88%E6%9C%AC%E4%BF%A1%E6%81%AF/>阅读全文</a></p></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2012/11/21/%E8%A7%A3%E5%86%B3win8%E6%97%A0%E6%B3%95%E4%B8%8A%E7%BD%91%E7%9A%84%E9%97%AE%E9%A2%98/ title=解决win8无法上网的问题>解决win8无法上网的问题</a></h1></header><date class="post-meta meta-date">2012年11月21日</date><div class=post-meta><span>|</span>
-<span class=meta-category><a href=http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F>文章收藏</a></span></div><div class=post-content>昨天晚上@虎振兴同学装了win8.。结果悲剧了。症状为连接宽带可以连接上。上qq也正常。但是。只要打开网页。就会自动断网。再连接就会提示651错误了。网上大多说是驱动不兼容。但是解决的方法大部分是不对的。下面结合网上的给大家说一说。。
-网卡驱动目测是都是美满公司，也就是Marvell 的Yukon系列网卡驱动的问题。首先下载一个旧版本的驱动（32位下载/64位下载） 然后按下图操作，第一步是打开计算机-管理。。各种姿势只要打开了计算机管理就可以了。 在这里稍微记一下这个名字。Marvell Yukon 88exxxxx PCI-E Fast Ethernet.. 找到网络适配器，右键更新驱动程序。 注意记下兼容的网卡。名字和第二步的差不多的那个，点击从磁盘安装，选择下载后驱动的解压的安装文件，如图 到这一步以后，点击打开，可能会出现一个驱动列表。这是时候选择一个和兼容列表名字一样的。88e这部分不一样。如果找不到，也可以找类似的，比如途中给出的后两位是39.我装的是40也没问题。这个是驱动的历史版本。然后就可以了
-最后。提醒各位童鞋。win8整体还是很不错的。不过呢。对于我来说。metro界面和正常的界面的傻傻分不清楚的模式。令我很是蛋疼。。所以暂时没有考虑换到win8.。。……</div><p class=readmore><a href=http://leaver.me/2012/11/21/%E8%A7%A3%E5%86%B3win8%E6%97%A0%E6%B3%95%E4%B8%8A%E7%BD%91%E7%9A%84%E9%97%AE%E9%A2%98/>阅读全文</a></p></article><ol class=page-navigator><li class=prev><a href=http://leaver.me/post/page/16/>上一页</a></li><li><a href=http://leaver.me/post/>1</a></li><li><span>...</span></li><li><a href=http://leaver.me/post/page/15/>15</a></li><li><a href=http://leaver.me/post/page/16/>16</a></li><li class=current><a href=http://leaver.me/post/page/17/>17</a></li><li><a href=http://leaver.me/post/page/18/>18</a></li><li><a href=http://leaver.me/post/page/19/>19</a></li><li><span>...</span></li><li><a href=http://leaver.me/post/page/32/>32</a></li><li class=next><a href=http://leaver.me/post/page/18/>下一页</a></li></ol></div></div><div id=secondary><section class=widget><form id=search action=http://leaver.me/search/ method=get accept-charset=utf-8 target=_blank _lpchecked=1><input type=text name=q maxlength=20 placeholder=Search>
-<input type=hidden name=sitesearch value=http://leaver.me/>
-<button type=submit class="submit icon-search"></button></form></section><section class=widget><h3 class=widget-title>最近文章</h3><ul class=widget-list><li><a href=http://leaver.me/2020/03/07/%E5%87%A0%E4%B8%AA%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/ title=几个浏览器的使用体验>几个浏览器的使用体验</a></li><li><a href=http://leaver.me/2020/01/10/mysql%E4%B8%AD%E7%9A%84b-%E6%A0%91%E4%BB%8B%E7%BB%8D/ title=Mysql中的B+树介绍>Mysql中的B+树介绍</a></li><li><a href=http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/ title="2019 年终总结">2019 年终总结</a></li><li><a href=http://leaver.me/2020/01/06/%E7%90%86%E8%A7%A3-cap-%E7%90%86%E8%AE%BA/ title="理解 CAP 理论">理解 CAP 理论</a></li><li><a href=http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/ title=深入理解Raft协议>深入理解Raft协议</a></li><li><a href=http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/ title=《非暴力沟通》笔记>《非暴力沟通》笔记</a></li><li><a href=http://leaver.me/2019/10/06/wedding-of-friends/ title="Wedding of Friends">Wedding of Friends</a></li><li><a href=http://leaver.me/2019/09/29/principle-note/ title="Principle Note">Principle Note</a></li><li><a href=http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/ title=梦见鲸鱼的那一夜>梦见鲸鱼的那一夜</a></li><li><a href=http://leaver.me/2019/08/20/understand-hong-kong-2/ title="Understand Hong Kong 2">Understand Hong Kong 2</a></li></ul></section><section class=widget><h3 class=widget-title>分类</h3><ul class=widget-list><li><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/>学习笔记 (188)</a></li><li><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/>我的翻译 (57)</a></li><li><a href=http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/>文章收藏 (53)</a></li><li><a href=http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/>生活记录 (4)</a></li><li><a href=http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/>读书笔记 (4)</a></li></ul></section><section class=widget><h3 class=widget-title>标签</h3><div class=tagcloud><a href=http://leaver.me/tags/algorithm/>algorithm</a>
-<a href=http://leaver.me/tags/android/>android</a>
-<a href=http://leaver.me/tags/c/>C＃</a>
-<a href=http://leaver.me/tags/c++/>C++</a>
-<a href=http://leaver.me/tags/database/>database</a>
-<a href=http://leaver.me/tags/java/>java</a>
-<a href=http://leaver.me/tags/javascript/>javascript</a>
-<a href=http://leaver.me/tags/linux/>linux</a>
-<a href=http://leaver.me/tags/mac/>mac</a>
-<a href=http://leaver.me/tags/matlab/>matlab</a>
-<a href=http://leaver.me/tags/maven/>maven</a>
-<a href=http://leaver.me/tags/mysql/>mysql</a>
-<a href=http://leaver.me/tags/nextgen-gallery/>NextGEN Gallery</a>
-<a href=http://leaver.me/tags/php/>php</a>
-<a href=http://leaver.me/tags/python/>python</a>
-<a href=http://leaver.me/tags/shell/>shell</a>
-<a href=http://leaver.me/tags/spring/>spring</a>
-<a href=http://leaver.me/tags/sql/>sql</a>
-<a href=http://leaver.me/tags/stackoverflow/>stackoverflow</a>
-<a href=http://leaver.me/tags/wcf/>WCF</a>
-<a href=http://leaver.me/tags/web/>web</a>
-<a href=http://leaver.me/tags/windows/>windows</a>
-<a href=http://leaver.me/tags/wordpress/>wordpress</a>
-<a href=http://leaver.me/tags/wpf/>WPF</a>
-<a href=http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/>上海</a>
-<a href=http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/>下载</a>
-<a href=http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/>中间件</a>
-<a href=http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/>互联网</a>
-<a href=http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/>分布式</a>
-<a href=http://leaver.me/tags/%E5%88%B6%E5%BA%A6/>制度</a>
-<a href=http://leaver.me/tags/%E5%89%8D%E7%AB%AF/>前端</a>
-<a href=http://leaver.me/tags/%E5%8E%9F%E5%88%9B/>原创</a>
-<a href=http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/>大学</a>
-<a href=http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/>学习</a>
-<a href=http://leaver.me/tags/%E5%AE%89%E5%85%A8/>安全</a>
-<a href=http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/>家庭</a>
-<a href=http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/>工作</a>
-<a href=http://leaver.me/tags/%E5%B7%A5%E5%85%B7/>工具</a>
-<a href=http://leaver.me/tags/%E5%B9%B6%E5%8F%91/>并发</a>
-<a href=http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/>序列化</a>
-<a href=http://leaver.me/tags/%E5%BC%80%E5%8F%91/>开发</a>
-<a href=http://leaver.me/tags/%E5%BF%83%E7%90%86/>心理</a>
-<a href=http://leaver.me/tags/%E6%80%BB%E7%BB%93/>总结</a>
-<a href=http://leaver.me/tags/%E6%8A%80%E6%9C%AF/>技术</a>
-<a href=http://leaver.me/tags/%E6%8F%92%E4%BB%B6/>插件</a>
-<a href=http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/>操作系统</a>
-<a href=http://leaver.me/tags/%E6%94%B6%E8%97%8F/>收藏</a>
-<a href=http://leaver.me/tags/%E6%95%B0%E5%AD%A6/>数学</a>
-<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/>数据库</a>
-<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/>数据挖掘</a>
-<a href=http://leaver.me/tags/%E6%96%87%E7%AB%A0/>文章</a>
-<a href=http://leaver.me/tags/%E6%99%BA%E8%83%BD/>智能</a>
-<a href=http://leaver.me/tags/%E6%9D%82%E6%96%87/>杂文</a>
-<a href=http://leaver.me/tags/%E6%AD%A6%E6%B1%89/>武汉</a>
-<a href=http://leaver.me/tags/%E6%B1%87%E7%BC%96/>汇编</a>
-<a href=http://leaver.me/tags/%E7%88%B1%E6%83%85/>爱情</a>
-<a href=http://leaver.me/tags/%E7%90%86%E8%AE%BA/>理论</a>
-<a href=http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/>生产力</a>
-<a href=http://leaver.me/tags/%E7%94%9F%E6%B4%BB/>生活</a>
-<a href=http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/>电子书</a>
-<a href=http://leaver.me/tags/%E7%94%B5%E5%BD%B1/>电影</a>
-<a href=http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/>社会</a>
-<a href=http://leaver.me/tags/%E7%A7%91%E6%8A%80/>科技</a>
-<a href=http://leaver.me/tags/%E7%AC%94%E8%AE%B0/>笔记</a>
-<a href=http://leaver.me/tags/%E7%AE%97%E6%B3%95/>算法</a>
-<a href=http://leaver.me/tags/%E7%BC%96%E7%A8%8B/>编程</a>
-<a href=http://leaver.me/tags/%E7%BC%96%E8%AF%91/>编译</a>
-<a href=http://leaver.me/tags/%E7%BF%BB%E8%AF%91/>翻译</a>
-<a href=http://leaver.me/tags/%E8%81%8C%E4%B8%9A/>职业</a>
-<a href=http://leaver.me/tags/%E8%AE%B0%E5%BD%95/>记录</a>
-<a href=http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/>设计</a>
-<a href=http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/>读书</a>
-<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/>软件</a>
-<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/>软件测试</a>
-<a href=http://leaver.me/tags/%E8%BF%90%E7%BB%B4/>运维</a>
-<a href=http://leaver.me/tags/%E9%87%91%E8%9E%8D/>金融</a></div></section><section class=widget><h3 class=widget-title>友情链接</h3><ul class=widget-list><li><a target=_blank href=https://www.cppfans.org/ title=C++爱好者博客>C++爱好者博客</a></li><li><a target=_blank href=http://www.kailing.pub title=KL，每天进步一点点>KL，每天进步一点点</a></li></ul></section><section class=widget><h3 class=widget-title>其它</h3><ul class=widget-list><li><a href=http://leaver.me/index.xml>文章 RSS</a></li></ul></section></div></div></div></div><footer id=footer><div class=container>&copy; 2020 <a href=http://leaver.me/>bystander's blog By bystander</a>.
-Powered by <a rel="nofollow noreferer noopener" href=https://gohugo.io target=_blank>Hugo</a>.
-<a href=https://www.flysnow.org/ target=_blank>Theme</a> based on <a href=https://github.com/flysnow-org/maupassant-hugo target=_blank>maupassant</a>.</div></footer><a id=rocket href=#top></a><script type=text/javascript src="/js/totop.js?v=0.0.0" async></script><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-30961201-3','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></body></html>
+<!doctype html><html lang=zh-cn itemscope itemtype=http://schema.org/WebPage><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><title>归档 - bystander's blog</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta name=MobileOptimized content="width"><meta name=HandheldFriendly content="true"><meta name=applicable-device content="pc,mobile"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=mobile-web-app-capable content="yes"><meta name=author content="bystander"><meta name=description content="寻找窄门"><meta name=generator content="Hugo 0.62.2"><link rel=canonical href=http://leaver.me/post/><link href=/post/index.xml rel=alternate type=application/rss+xml title="bystander's blog"><link rel=icon href=/favicon.ico><link rel=stylesheet href=/sass/jane.min.0995afa14b62cd93e93cfc066b646c4c17a3eddca0e9d52a1d9dcf5d90aaacd3.css integrity="sha256-CZWvoUtizZPpPPwGa2RsTBej7dyg6dUqHZ3PXZCqrNM=" media=screen crossorigin=anonymous><meta property="og:title" content="Posts"><meta property="og:description" content="寻找窄门"><meta property="og:type" content="website"><meta property="og:url" content="http://leaver.me/post/"><meta property="og:updated_time" content="2020-03-07T14:37:40+08:00"><meta itemprop=name content="Posts"><meta itemprop=description content="寻找窄门"><meta name=twitter:card content="summary"><meta name=twitter:title content="Posts"><meta name=twitter:description content="寻找窄门"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-30961201-3','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>bystander's blog</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><li class=mobile-menu-item><a class=menu-item-link href=http://leaver.me/>主页</a></li><li class=mobile-menu-item><a class=menu-item-link href=http://leaver.me/post/>归档</a></li><li class=mobile-menu-item><a class=menu-item-link href=http://leaver.me/tags/>标签</a></li><li class=mobile-menu-item><a class=menu-item-link href=http://leaver.me/categories/>目录</a></li><li class=mobile-menu-item><a class=menu-item-link href=http://leaver.me/about/>关于我</a></li></ul></nav><link rel=stylesheet href=/lib/photoswipe/photoswipe.min.css><link rel=stylesheet href=/lib/photoswipe/default-skin/default-skin.min.css><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header id=header class="header container"><div class=logo-wrapper><a href=/ class=logo>bystander's blog</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=http://leaver.me/>主页</a></li><li class="menu-item active"><a class=menu-item-link href=http://leaver.me/post/>归档</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/tags/>标签</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/categories/>目录</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/about/>关于我</a></li></ul></nav></header><div id=mobile-panel><main id=main class="main bg-llight"><div class=content-wrapper><div id=content class="content container"><section id=archive class=archive><div class=collection-title><h2 class=archive-year>2012</h2></div><div class=archive-post><time datetime=2012-12-18 class=archive-post-time>2012-12-18</time>
+<span class=archive-post-title><a href=/2012/12/18/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86/ class=archive-post-link>Lambda高手之路第一部分</a></span></div><div class=archive-post><time datetime=2012-12-10 class=archive-post-time>2012-12-10</time>
+<span class=archive-post-title><a href=/2012/12/10/%E4%BB%8E%E7%9B%B8%E4%BA%B2%E5%BB%B6%E4%BC%B8%E5%87%BA%E7%9A%84%E5%A9%9A%E6%81%8B%E6%84%8F%E4%B9%89/ class=archive-post-link>从相亲延伸出的婚恋意义</a></span></div><div class=archive-post><time datetime=2012-12-08 class=archive-post-time>2012-12-08</time>
+<span class=archive-post-title><a href=/2012/12/08/3%E5%88%86%E9%92%9F%E7%90%86%E8%A7%A3lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/ class=archive-post-link>3分钟理解Lambda表达式</a></span></div><div class=archive-post><time datetime=2012-12-05 class=archive-post-time>2012-12-05</time>
+<span class=archive-post-title><a href=/2012/12/05/%E4%BB%8E%E5%B9%B3%E5%BA%B8%E5%88%B0%E5%B9%B8%E7%A6%8F/ class=archive-post-link>从平庸到幸福</a></span></div><div class=archive-post><time datetime=2012-12-03 class=archive-post-time>2012-12-03</time>
+<span class=archive-post-title><a href=/2012/12/03/%E6%BA%90%E7%A0%81%E6%89%93%E5%8C%85%E4%B8%8B%E8%BD%BD%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%BC%94%E7%A4%BA%E5%8A%A8%E7%94%BB/ class=archive-post-link>[源码]打包下载算法与数据结构演示动画</a></span></div><div class=archive-post><time datetime=2012-11-28 class=archive-post-time>2012-11-28</time>
+<span class=archive-post-title><a href=/2012/11/28/c#%E4%B8%8E.net-%E7%A8%8B%E5%BA%8F%E5%91%98%E9%9D%A2%E8%AF%95%E7%AC%94%E8%AE%B0/ class=archive-post-link>C#与.net 程序员面试笔记</a></span></div><div class=archive-post><time datetime=2012-11-25 class=archive-post-time>2012-11-25</time>
+<span class=archive-post-title><a href=/2012/11/25/c#%E6%A8%A1%E6%8B%9F%E6%89%8B%E5%B7%A5%E6%B4%97%E7%89%8C%E9%99%84%E6%B5%8B%E8%AF%95/ class=archive-post-link>C#模拟手工洗牌(附测试)</a></span></div><div class=archive-post><time datetime=2012-11-25 class=archive-post-time>2012-11-25</time>
+<span class=archive-post-title><a href=/2012/11/25/%E4%B8%80%E4%B8%AA%E6%81%B6%E6%84%8Fvbs%E8%84%9A%E6%9C%AC%E7%9A%84%E7%AE%80%E5%8D%95%E8%A7%A3%E7%A0%81/ class=archive-post-link>一个恶意vbs脚本的简单解码</a></span></div><div class=archive-post><time datetime=2012-11-23 class=archive-post-time>2012-11-23</time>
+<span class=archive-post-title><a href=/2012/11/23/%E8%8E%B7%E5%8F%96%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%89%88%E6%9C%AC%E4%BF%A1%E6%81%AF/ class=archive-post-link>获取操作系统版本信息</a></span></div><div class=archive-post><time datetime=2012-11-21 class=archive-post-time>2012-11-21</time>
+<span class=archive-post-title><a href=/2012/11/21/%E8%A7%A3%E5%86%B3win8%E6%97%A0%E6%B3%95%E4%B8%8A%E7%BD%91%E7%9A%84%E9%97%AE%E9%A2%98/ class=archive-post-link>解决win8无法上网的问题</a></span></div></section><nav class=pagination><ul><li><a href=/post/>««</a></li><li><a href=/post/page/16/>«</a></li><li><a href=/post/page/11/>11</a></li><li><a href=/post/page/12/>12</a></li><li><a href=/post/page/13/>13</a></li><li><a href=/post/page/14/>14</a></li><li><a href=/post/page/15/>15</a></li><li><a href=/post/page/16/>16</a></li><li class=active><a href=/post/page/17/>17</a></li><li><a href=/post/page/18/>18</a></li><li><a href=/post/page/19/>19</a></li><li><a href=/post/page/20/>20</a></li><li><a href=/post/page/21/>21</a></li><li><a href=/post/page/22/>22</a></li><li><a href=/post/page/23/>23</a></li><li><a href=/post/page/18/>»</a></li><li><a href=/post/page/32/>»»</a></li></ul></nav></div></div></main><footer id=footer class=footer><div class=icon-links><a href=https://github.com/leizhiyuan rel="me noopener" class=iconfont title=github target=_blank><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="36" height="36"><path d="M512 12.672c-282.88.0-512 229.248-512 512 0 226.261333 146.688 418.133333 350.08 485.76 25.6 4.821333 34.986667-11.008 34.986667-24.618667.0-12.16-.426667-44.373333-.64-87.04-142.421333 30.890667-172.458667-68.693333-172.458667-68.693333C188.672 770.986667 155.008 755.2 155.008 755.2c-46.378667-31.744 3.584-31.104 3.584-31.104 51.413333 3.584 78.421333 52.736 78.421333 52.736 45.653333 78.293333 119.850667 55.68 149.12 42.581333 4.608-33.109333 17.792-55.68 32.426667-68.48-113.706667-12.8-233.216-56.832-233.216-253.013333.0-55.893333 19.84-101.546667 52.693333-137.386667-5.76-12.928-23.04-64.981333 4.48-135.509333.0.0 42.88-13.738667 140.8 52.48 40.96-11.392 84.48-17.024 128-17.28 43.52.256 87.04 5.888 128 17.28 97.28-66.218667 140.16-52.48 140.16-52.48 27.52 70.528 10.24 122.581333 5.12 135.509333 32.64 35.84 52.48 81.493333 52.48 137.386667.0 196.693333-119.68 240-233.6 252.586667 17.92 15.36 34.56 46.762667 34.56 94.72.0 68.522667-.64 123.562667-.64 140.202666.0 13.44 8.96 29.44 35.2 24.32C877.44 942.592 1024 750.592 1024 524.672c0-282.752-229.248-512-512-512"/></svg></a><a href=http://leaver.me/index.xml rel="noopener alternate" type=application/rss+xml class=iconfont title=rss target=_blank><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30"><path d="M819.157333 1024C819.157333 574.592 449.408 204.8.0 204.8V0c561.706667.0 1024 462.293333 1024 1024H819.157333zM140.416 743.04a140.8 140.8.0 01140.501333 140.586667A140.928 140.928.0 01140.074667 1024C62.72 1024 0 961.109333.0 883.626667S62.933333 743.082667 140.416 743.04zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352.0 678.784 306.517333 678.784 678.826667z"/></svg></a></div><div class=copyright><span class=power-by>Powered by <a class=hexo-link href=https://gohugo.io>Hugo</a></span>
+<span class=division>|</span>
+<span class=theme-info>Theme - <a class=theme-link href=https://github.com/xianmin/hugo-theme-jane>Jane</a></span>
+<span class=copyright-year>&copy;
+2012 -
+2020
+<span class=heart><i class=iconfont><svg class="icon" viewBox="0 0 1025 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="14" height="14"><path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7.0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1.0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2.0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3.1-42.5-8-83.6-24-122.2z" fill="#8a8a8a"/></svg></i></span><span class=author>bystander</span></span></div></footer><div class=back-to-top id=back-to-top><i class=iconfont><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="35" height="35"><path d="M510.866688 227.694839 95.449397 629.218702h235.761562L329.15309 958.01517h362.40389L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777h894.052392v131.813095H63.840492V63.962777zm0 0"/></svg></i></div></div><script type=text/javascript src=/lib/jquery/jquery-3.2.1.min.js></script><script type=text/javascript src=/lib/slideout/slideout-1.0.1.min.js></script><script type=text/javascript src=/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin=anonymous></script><script type=text/javascript src=/js/load-photoswipe.js></script><script type=text/javascript src=/lib/photoswipe/photoswipe.min.js></script><script type=text/javascript src=/lib/photoswipe/photoswipe-ui-default.min.js></script></body></html>

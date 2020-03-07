@@ -1,181 +1,21 @@
-<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><title>软件 | bystander's blog</title><meta property="og:title" content="软件 - bystander's blog"><meta property="og:type" content="article"><meta name=Keywords content><meta name=description content="软件"><meta name=author content="bystander"><meta property="og:url" content="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/"><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><link rel=stylesheet href=/css/normalize.css><link rel=stylesheet href=/css/style.css><link rel=alternate type=application/rss+xml+xml href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/index.xml title="bystander's blog"><script type=text/javascript src=//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js></script></head><body><header id=header class=clearfix><div class=container><div class=col-group><div class=site-name><a id=logo href=http://leaver.me/>bystander's blog</a><p class=description>寻找窄门</p></div><div><nav id=nav-menu class=clearfix><a href=http://leaver.me/>首页</a>
-<a href=http://leaver.me/categories title=目录>目录</a>
-<a href=http://leaver.me/about/ title=关于我>关于我</a></nav></div></div></div></header><div id=body><div class=container><div class=col-group><div class=col-8 id=main><div class=res-cons><h3 class=archive-title>包含标签
-<span class=keyword>软件</span>
-的文章</h3><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/11/16/%E8%97%8F%E5%9B%BE%E6%96%87%E5%B9%B6%E8%8C%82%E8%AF%A6%E8%A7%A3eclipse%E6%96%AD%E7%82%B9/>[藏]图文并茂详解Eclipse断点</a></h1></header><date class="post-meta meta-date">2013年11月16日</date><div class="post-meta meta-category">|
-<a href=http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F>文章收藏</a></div><div class=post-content>本文转自：http://my.oschina.net/colorleaf/blog/176569
-这个算说的比较清楚的了，虽然简单但是很有用。收藏一下。
-详解Eclipse断点
-大家肯定都用过Eclipse的调试的功能，在调试的过程中自然也无法避免要使用断点(breakpoint)，但不知是否对Eclipse中各类断点都有所了解。本篇图文并茂地介绍了Eclipse中全部类型的断点，及其设置，希望对大家有所帮助。(2011.11.20)
-1. 示例程序 BreakpointDemo是一个臆造的应用程序，只是为了便于讲解Eclipse中各类断点的使用罢了。其代码如下图所示， BreakpointDemo主要包含两个方法： [1]setValue，该方法根据指定的次数(count)，对成员变量value进行赋值，值的范围为0-9的随机整数。 [2]printValue，该方法会调用setValue()对value进行赋值，并打印出value的值；但，如果value能被3整除，那么就会抛出IllegalArgumentException异常。
-2. Line Breakpoint Line Breakpoin是最简单的Eclipse断点，只要双击某行代码对应的左侧栏，就对该行设置上断点。此处，对第20行代码设置上Line Breakpoint，如下图所示， 可以为Line Breakpoint设置一个条件，那么当程序运行到该断点时，只有满足设定的条件，才会被中断。右键点击第20行的断点，选择"Breakpoint Properties&mldr;&rdquo; 在弹出的属性对话框中，勾选上"Conditional&rdquo;，然后在文本框中输入"count % 2 == 0&rdquo;。 该条件表示，当程序运行到第20行时，只有当count为偶数时，程序才会被中断。细心地话，你会发现该断点的图标发生了改变，多了一个问号。
-3. Watchpoint Line Breakpoint关注于程序运行的"过程&rdquo;，大家也常把使用这种断点的调试称为单步调试。但有时候，我们对程序的运行过程不太了解，可能也不太关心，不能确定在什么地方设置断点比较合适，而可能比较关注某个关键变量的变化或使用。此时，就可以为该变量设置一种特殊的断点&ndash;Watchpoint。在此示例，我们最关心的就是成员变量value的值，那么就可以为它设置一个Watchpoint，双击第9行代码对应的左侧栏就可以了。 使用在2中所提及的方法，查看该断点的属性， 默认地，当该变量被访问或它的值被修改时，程序都会被中断。但在本示例中，只希望当对value的值进行修改时程序才需要被中断，所以取消对"Access"的勾选。 这时，我们会发现原来的Watchpoin图标也有变化了。
-4. Method Breakpoint 与关注对某个变量的访问与修改一样，我们也可以关注程序对某个方法的调用情况，即，可以设置Method Breakpoint。在此处，设置针对方法setValue的Method Breakpoint。同理，双击第11行代码对应的左侧栏即可。 仍然要查看该断点的属性。默认地，只勾选了"Entry&rdquo;，而没有勾选"Exit&rdquo;。 这表示，当刚进入该方法(调用开始)时，程序会被中断；而，离开该方法(调用结束)时，程序并不会被中断。在本示例中，需要同时勾选上"Exit&rdquo;。 点击OK之后，可以看到该断点的图标也有所改变。 根据这里的设置，当程序运行到第20行后会在第12行被中断，尽管这里没有显式的断点，但这就是setValue()方法的入口(Entry)。必须注意地是，程序在运行到第16行时不会被中断，尽管它看起来像是setValue()方法的出口(Exit)。实际上，程序会在第17行被中断，这里才是setValue()调用结束的地方。
-5. Exception Breakpoint 如果，我们期望某个特定异常发生时程序能够被中断，以方便查看当时程序所处的状态。通过设置Exception Breakpoint就能达到这一目标。本示例故意在第23行抛出了IllegalArgumentException异常，我们期望程序运行到此处时会被中断。但我们不直接为此行代码设置Line Breakpoint，而是为IllegalArgumentException设置Exception Breakpoint。设置Exception Breakpoint的方法与其它类型断点都不同，它不能通过双击左侧栏的方式在代码编辑器上直接进行设置。点击Breakpoints视图右上角形如Ji的图标， 会弹出如下所示的对话框， 在其中选中IllegalArgumentException，并点击OK，这时一个Exception Breakpoint就设置好了。
-小结 上述的Eclipse断点，我们在现实工作中肯定都有意或无意地使用过其中的几种，只是不一定十分了解内情罢了。使用好Eclipse的各种断点，可以把很好地帮助我们分析程序，定位问题。……<p class=readmore><a href=http://leaver.me/2013/11/16/%E8%97%8F%E5%9B%BE%E6%96%87%E5%B9%B6%E8%8C%82%E8%AF%A6%E8%A7%A3eclipse%E6%96%AD%E7%82%B9/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/09/20/spring3%E5%AE%9E%E4%BE%8B%E5%85%A5%E9%97%A8-hello-world/>Spring3实例入门-Hello World</a></h1></header><date class="post-meta meta-date">2013年9月20日</date><div class="post-meta meta-category">|
-<a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91>我的翻译</a></div><div class=post-content>每次看到hello world,都有一种说不出的赶脚，想起了一个程序员，退休后写毛笔字，取笔研磨铺纸，大笔一挥，写下了“hello world”。
-1.使用Maven生成项目结构 2.转换成Eclipse项目 3.添加Spring3.0 依赖 在pom.xml文件里添加Spring 3.0 依赖，然后依赖会从Maven中央仓库自动下载
-4.Spring bean 写个简单的bean
-5.Spring bean配置文件 创建一个配置文件，在里面声明所有可用的Spring beans
-6.最终的目录结构
- 7.运行 8.输出 9.Demo下载 Spring3-hello-world-example.zip……<p class=readmore><a href=http://leaver.me/2013/09/20/spring3%E5%AE%9E%E4%BE%8B%E5%85%A5%E9%97%A8-hello-world/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/06/25/%E5%A7%94%E6%89%98%E5%92%8C%E4%BA%8B%E4%BB%B6%E7%A4%BA%E4%BE%8B/>委托和事件示例</a></h1></header><date class="post-meta meta-date">2013年6月25日</date><div class="post-meta meta-category">|
-<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>C#中委托和事件的例子比较多，讲得好的非常好，就不瞎凑热闹了，推荐博客园大牛的一篇：
-C# 中的委托和事件 ，如果你已经有了相应的基础，但没写过相关的例子，那我这里提供一个，首先看一下规范
-.Net Framework的编码规范：
-委托类型的名称都应该以EventHandler结束。 委托的原型定义：有一个void返回值，并接受两个输入参数：一个Object 类型，一个 EventArgs类型(或继承自EventArgs)。 事件的命名为 委托去掉 EventHandler之后剩余的部分。 继承自EventArgs的类型应该以EventArgs结尾。 然后描述一下流程： 老板监视时间变动（ComputerOffWorkTime方法），当工作时间满50后，通知员工时间到（OnNotifyOffWork方法，并传递OffWorkEventArgs参数），可以下班了，（OnNotifyOffWork方法内部调用事件NotifyOffWork），正式员工收到通知后，则下班，其他员工则清扫一下办公室
- 然后给出例子：
- ……<p class=readmore><a href=http://leaver.me/2013/06/25/%E5%A7%94%E6%89%98%E5%92%8C%E4%BA%8B%E4%BB%B6%E7%A4%BA%E4%BE%8B/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/06/11/dmp%E7%89%88%E6%9C%AC%E4%BF%AE%E6%94%B9%E5%B7%A5%E5%85%B7c/>DMP版本修改工具(C#)</a></h1></header><date class="post-meta meta-date">2013年6月11日</date><div class="post-meta meta-category">|
-<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>最近在使用oracle导入一个dmp文件的时候，由于不知道dmp文件是如何导出的，是使用exp还是expdp导出的，所以纠结了比较长的时间，最后想到是否可以查看dmp文件的一些辅助信息呢，于是有了这个工具。
-在使用dmp导入的时候报如下错误
-据说有两个可能，1个是文件本身损坏，另一个是版本问题，多出现在高版本导出的数据向低版本导入。解决方法就是修改一下dmp文件就行了。dmp文件头部大概9个字节处标识了版本号用来头部验证。对于非常大的dmp我们不能直接用文本编辑器打开，因此找找资料，写个工具。本机一个12GB的文件已测试。
-工具使用很简单，选择文件，识别出来版本，按格式改成导入端oracle的版本值，然后即可正常导入11G-10G测试成功。
-下载地址：DMP版本修改工具
- ……<p class=readmore><a href=http://leaver.me/2013/06/11/dmp%E7%89%88%E6%9C%AC%E4%BF%AE%E6%94%B9%E5%B7%A5%E5%85%B7c/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/06/02/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B45%E6%9C%885%E6%97%A5%E7%BB%BC%E5%90%88%E7%AE%97%E6%B3%95%E9%A2%98%E8%AF%A6%E8%A7%A3/>阿里巴巴5月5日综合算法题详解</a></h1></header><date class="post-meta meta-date">2013年6月2日</date><div class="post-meta meta-category">|
-<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>之前参加了阿里的笔试和电面，让后天那个敏感的日子去参加现场面，就去看了一下那天笔试的最后一道综合题，看着网上清一色最后一道题不知道从哪转的答案，不忍直视，一看代码就是错的，最直接的就是求中位数连奇偶性都不判断，直接处以2..这，另外当在无法整除的情况下，数据结果错误。
- 这道题的大意是：有一个淘宝商户，在某城市有n个仓库，每个仓库的储货量不同，现在要通过货物运输，将每次仓库的储货量变成一致的，n个仓库之间的运输线路围城一个圈，即1->2->3->4->&mldr;->n->1->&mldr;，货物只能通过连接的仓库运输，设计最小的运送成本（运货量*路程）达到淘宝商户的要求，并写出代码。
-解题思路：
-假设n个仓库的初始储货量分别为warehouse[1],warehouse[2],&mldr;,warehouse[n] 计算平均储货量
-就算出来了最终的结果中，每个仓库应该有的存量 首先，从仓库1向仓库n运送k； 然后，从1到n-1，依次向下运送某一特定值，使得每一个仓库的余量都为average，剩下的问题就是求总代价的最小值了。
-设第0步从1仓库向n仓库（注意因为是圆圈，所以路径长度是1）运出k存量，k可以为负，如果为负数，意味着从n向1运输|k|存量，然后从循环，从（1到n-1）,从i仓库向i+1仓库运输，运输的量需要保证i仓库在运输完毕后等于average
-第0步（从仓库1向仓库n运送k）:花费代价为 |k|， 第1步（确保仓库1的余量为average）：需要花费代价为 也就是从1向2伙从2向1运输 3. 第2步（确保仓库2的余量为average）：代价为
-&mldr; n-1.第n-1步：代价为
-此时，仓库n剩下的货物量：
-刚好也满足，其实这里不用推导，因为平均值是算好的，所以最胡一定是刚好完成的。
-总的代价为：
-不妨令sum[i] = warehouse[1]+warehouse[2]+&mldr;+warehouse[i]-i*average 则，总代价可表示为：|k|+|sum[1]-k|+|sum[2]-k|+&mldr;+|sum[n-1]-k| 这个式子可以看成在水平数轴上寻找一个点k，使得点k到点0,sum[1],sum[2],sum[3],&mldr;,sum[n-1]的距离之和最小，显然k应该取这n个数的中位数。至此问题解决。
-给出详细注释代码：
- 思路借鉴了：http://hi.baidu.com/hujunjiehit/item/54204f01931ee6c49157184c
-错误之处欢迎留言指出..……<p class=readmore><a href=http://leaver.me/2013/06/02/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B45%E6%9C%885%E6%97%A5%E7%BB%BC%E5%90%88%E7%AE%97%E6%B3%95%E9%A2%98%E8%AF%A6%E8%A7%A3/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/05/27/%E8%AF%91%E5%8F%8D%E5%B0%84reflection%E5%92%8C%E5%8A%A8%E6%80%81dynamic/>[译]反射(Reflection)和动态(dynamic)</a></h1></header><date class="post-meta meta-date">2013年5月27日</date><div class="post-meta meta-category">|
-<a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91>我的翻译</a></div><div class=post-content>反射  简单用法实例：  // 浏览方法 foreach (MemberInfo objMemberInfo in parameterType.GetMembers()) {Console.WriteLine(objMemberInfo.Name);}
-// 浏览属性. foreach (PropertyInfo objPropertyInfo in parameterType.GetProperties()) {Console.WriteLine(objPropertyInfo.Name);}
-//开始调用 parameterType.InvokeMember(&ldquo;Display&rdquo;,BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.InvokeMethod | BindingFlags.Instance,null, objMyClass, null);实际一点的用处呢：  动态dynamic  简单用法示例：  实际用处：  两者的区别和联系呢 ……<p class=readmore><a href=http://leaver.me/2013/05/27/%E8%AF%91%E5%8F%8D%E5%B0%84reflection%E5%92%8C%E5%8A%A8%E6%80%81dynamic/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/05/24/%E6%AD%A6%E6%B1%89%E5%A4%A7%E5%AD%A6%E8%AE%BA%E6%96%87%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%E6%A0%BC%E5%BC%8F%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7c/>武汉大学论文参考文献格式生成工具(C#)</a></h1></header><date class="post-meta meta-date">2013年5月24日</date><div class="post-meta meta-category">|
-<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>每次写论文报告什么的，最头疼的就是参考文献的，本来打算写一个论文格式生成工具的，不过，一想起代码量，就有点吓人，所以分而治之，先写参考文献生成工具.
-本工具生成的文献格式符合武汉大学本科生论文的格式要求，因此，放心使用，填写内容都是必填，页码什么的要是不知道就随便填一个..你懂的..有问题请留言反馈。
-程序提供8种参考文献类型，第9种电子文献，没有实现，因为感觉在论文中参考文献要是网址的话很难看.而且用的不多..其实主要还是懒..每种文献类型需要填写的信息都不一样，8种&mldr;8种&mldr;
-使用方法：
-1.在界面右侧选择参考文献类型，然后填写。添加，左侧将会出现
-2.如果填写错误，双击左侧条目，即可删除
-3.完成后导出，即可在本目录生成docx文档
-下载地址：武汉大学论文参考文献格式生成工具
- ……<p class=readmore><a href=http://leaver.me/2013/05/24/%E6%AD%A6%E6%B1%89%E5%A4%A7%E5%AD%A6%E8%AE%BA%E6%96%87%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%E6%A0%BC%E5%BC%8F%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7c/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/05/22/%E5%BC%95%E7%94%A8%E5%92%8C%E6%8C%87%E9%92%88c-/>引用和指针(C++)</a></h1></header><date class="post-meta meta-date">2013年5月22日</date><div class="post-meta meta-category">|
-<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>今天在整理收藏夹的时候，又看到了这两篇非常不错的文章，关于指针和引用的，我就不翻译了，文章很简单，不过把其中我觉得很有意思的两部分结合我的理解希望说的更清楚,假定你读这篇文章之前已经知道指针，但是不是很清楚其中的部分。
-首先是关于指针的一个直观的一个认识.
-上面这段代码，声明了一个指针，和两个整数，指针指向第一个整数，然后输出结果（每个人的输出结果不一样）是：
-这张图是这几个变量的内存分布图，上面一排是内存地址编号，正对我们的是该处的值
-指针pPointer这个变量从最左边0xbff43314这个内存位置开始，占用了四个字节，这个一个指针占四个字节，大家都知道的，这个变量的值是一个地址，也就是他的指向地址。
-pPointer 所指向的地址呢，是一个short int 类型的值所在的位置，在这里就是我们的twoint，twoint在内存中呢，是从0xbff4331a开始的，也就是说，我们的pPointer指向了twoint所在的地址，
-注意，看一下左边四个方块前面的二进制数，转换成16进制就是0xbff4331a了
-因此，取指针所指向的值就是35698了。指针本身的值则是0xbff4331a，指针所在的位置是0xbff43314。
-参考文章：C++ : Understanding pointers
- 另一个呢是关于引用的实现原理
-大家都知道，引用就是别名，比如下面这段代码
-输出结果肯定一目了然，其中的原理想过没
-其实，引用和指针的工作原理类似，引用变量存储了其引用变量的地址，看图
- refNumber这个引用变量在内存中的值就是number这个被引用变量的地址.但和指针不同的是，引用是对一个地址的命名常量，因此，必须在声明引用的时候初始化。并且取值的时候，也不需要像指针一样加*，而是当作一个普通变量，直接用就行了。
-参考文章：Pointers, References and Dynamic Memory Allocation
-  ……<p class=readmore><a href=http://leaver.me/2013/05/22/%E5%BC%95%E7%94%A8%E5%92%8C%E6%8C%87%E9%92%88c-/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/04/17/%E4%B8%80%E9%81%93%E7%AC%94%E8%AF%95%E6%8C%87%E9%92%88%E9%A2%98%E7%9B%AE%E8%AF%A6%E8%A7%A3/>一道笔试指针题目详解</a></h1></header><date class="post-meta meta-date">2013年4月17日</date><div class="post-meta meta-category">|
-<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>看到本题是在搜狗某年的笔试题上,看也没人给出非常详细的讲解,直接给出了答案,我来尝试写一写,
-貌似本题来源自&lt;**The C Puzzle Book> ，**搜狗也只是换了一下字符串，直接看题吧
-&lt;span style="font-family: Georgia, 'Times New Roman', 'Bitstream Charter', Times, serif; font-size: 13px; line-height: 19px;">请写出程序的执行结果....&lt;/span>
-首先从左到右看：
-再看第二行，**cp[]是一个字符，*cp[]就是一个指针，指向该字符，cp[]就是一个指针，指向该指针，而cp就成为了指针数组，内容是指向字符的指针的指针。并且通过c的元素进行了初始化
-第三行，***cpp是一个字符，**cpp指向该字符，*cpp指向该指针，cpp就指向该字符的指针的指针.
-然后我画一张图表示初始的情况看看
-然后对于下面的输出语句，通过操作符优先级使用括号来区分一下：
-这个嘛，就是把cpp后移(注意cpp已经改变了)然后就指向了cp[1]，然后两次取其值即可得到AMAZI
-推导过程如下：
-最后
- cpp还是之前的cp[2]，cpp[-1][-1]相当于*(*(cpp-1)-1),先减1指向了cp[1],取一次值就是c[2]了，然后c[2]-1就成为c[1]了，然后+1之后就是ST了.
-所以，最后输出就是
-AMAZINGBEST
-错误之处还望指正.
-  ……<p class=readmore><a href=http://leaver.me/2013/04/17/%E4%B8%80%E9%81%93%E7%AC%94%E8%AF%95%E6%8C%87%E9%92%88%E9%A2%98%E7%9B%AE%E8%AF%A6%E8%A7%A3/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/04/11/%E6%A8%A1%E6%9D%BF%E6%A0%88%E4%BB%A5%E5%8F%8A%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BCc-%E5%AE%9E%E7%8E%B0/>模板栈以及中缀表达式求值(C++实现)</a></h1></header><date class="post-meta meta-date">2013年4月11日</date><div class="post-meta meta-category">|
-<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>栈直接用链表实现，这个比较简单，不多说，不过C++写程序，IDE的错误检测不是很给力。
-至于给定一个中缀表达式，如何不转换成后缀表达式，直接求值，方法就是使用两个栈，一个操作符栈，一个操作数栈，然后从左到右扫描表达式，我这里中缀表达式计算实现的很简单，不完整，大家可以扩展。栈的实现是我想写的，思路如下：
-1.如何是操作数，压入操作数栈
-2.如果是操作符，压入操作符栈
-3.如果是左括号，直接忽略
-4.如果是有括号，弹出操作符栈栈顶元素，然后弹出操作数栈两个元素，进行操作以后结果压入操作数栈
- 看个图就好了
- 最后给出栈顶实现代码
-然后是main函数代码
-另外，今天是博客建站一周年.加油！……<p class=readmore><a href=http://leaver.me/2013/04/11/%E6%A8%A1%E6%9D%BF%E6%A0%88%E4%BB%A5%E5%8F%8A%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BCc-%E5%AE%9E%E7%8E%B0/>阅读全文</a></p></div></article><ol class=page-navigator><li class=prev><a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/>上一页</a></li><li><a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/>1</a></li><li class=current><a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/page/2/>2</a></li><li><a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/page/3/>3</a></li><li><a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/page/4/>4</a></li><li><a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/page/5/>5</a></li><li><a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/page/6/>6</a></li><li><a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/page/7/>7</a></li><li><a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/page/8/>8</a></li><li><a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/page/9/>9</a></li><li class=next><a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/page/3/>下一页</a></li></ol></div></div><div id=secondary><section class=widget><form id=search action=http://leaver.me/search/ method=get accept-charset=utf-8 target=_blank _lpchecked=1><input type=text name=q maxlength=20 placeholder=Search>
-<input type=hidden name=sitesearch value=http://leaver.me/>
-<button type=submit class="submit icon-search"></button></form></section><section class=widget><h3 class=widget-title>最近文章</h3><ul class=widget-list><li><a href=http://leaver.me/2020/03/07/%E5%87%A0%E4%B8%AA%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/ title=几个浏览器的使用体验>几个浏览器的使用体验</a></li><li><a href=http://leaver.me/2020/01/10/mysql%E4%B8%AD%E7%9A%84b-%E6%A0%91%E4%BB%8B%E7%BB%8D/ title=Mysql中的B+树介绍>Mysql中的B+树介绍</a></li><li><a href=http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/ title="2019 年终总结">2019 年终总结</a></li><li><a href=http://leaver.me/2020/01/06/%E7%90%86%E8%A7%A3-cap-%E7%90%86%E8%AE%BA/ title="理解 CAP 理论">理解 CAP 理论</a></li><li><a href=http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/ title=深入理解Raft协议>深入理解Raft协议</a></li><li><a href=http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/ title=《非暴力沟通》笔记>《非暴力沟通》笔记</a></li><li><a href=http://leaver.me/2019/10/06/wedding-of-friends/ title="Wedding of Friends">Wedding of Friends</a></li><li><a href=http://leaver.me/2019/09/29/principle-note/ title="Principle Note">Principle Note</a></li><li><a href=http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/ title=梦见鲸鱼的那一夜>梦见鲸鱼的那一夜</a></li><li><a href=http://leaver.me/2019/08/20/understand-hong-kong-2/ title="Understand Hong Kong 2">Understand Hong Kong 2</a></li></ul></section><section class=widget><h3 class=widget-title>分类</h3><ul class=widget-list><li><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/>学习笔记 (188)</a></li><li><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/>我的翻译 (57)</a></li><li><a href=http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/>文章收藏 (53)</a></li><li><a href=http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/>生活记录 (4)</a></li><li><a href=http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/>读书笔记 (4)</a></li></ul></section><section class=widget><h3 class=widget-title>标签</h3><div class=tagcloud><a href=http://leaver.me/tags/algorithm/>algorithm</a>
-<a href=http://leaver.me/tags/android/>android</a>
-<a href=http://leaver.me/tags/c/>C＃</a>
-<a href=http://leaver.me/tags/c++/>C++</a>
-<a href=http://leaver.me/tags/database/>database</a>
-<a href=http://leaver.me/tags/java/>java</a>
-<a href=http://leaver.me/tags/javascript/>javascript</a>
-<a href=http://leaver.me/tags/linux/>linux</a>
-<a href=http://leaver.me/tags/mac/>mac</a>
-<a href=http://leaver.me/tags/matlab/>matlab</a>
-<a href=http://leaver.me/tags/maven/>maven</a>
-<a href=http://leaver.me/tags/mysql/>mysql</a>
-<a href=http://leaver.me/tags/nextgen-gallery/>NextGEN Gallery</a>
-<a href=http://leaver.me/tags/php/>php</a>
-<a href=http://leaver.me/tags/python/>python</a>
-<a href=http://leaver.me/tags/shell/>shell</a>
-<a href=http://leaver.me/tags/spring/>spring</a>
-<a href=http://leaver.me/tags/sql/>sql</a>
-<a href=http://leaver.me/tags/stackoverflow/>stackoverflow</a>
-<a href=http://leaver.me/tags/wcf/>WCF</a>
-<a href=http://leaver.me/tags/web/>web</a>
-<a href=http://leaver.me/tags/windows/>windows</a>
-<a href=http://leaver.me/tags/wordpress/>wordpress</a>
-<a href=http://leaver.me/tags/wpf/>WPF</a>
-<a href=http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/>上海</a>
-<a href=http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/>下载</a>
-<a href=http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/>中间件</a>
-<a href=http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/>互联网</a>
-<a href=http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/>分布式</a>
-<a href=http://leaver.me/tags/%E5%88%B6%E5%BA%A6/>制度</a>
-<a href=http://leaver.me/tags/%E5%89%8D%E7%AB%AF/>前端</a>
-<a href=http://leaver.me/tags/%E5%8E%9F%E5%88%9B/>原创</a>
-<a href=http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/>大学</a>
-<a href=http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/>学习</a>
-<a href=http://leaver.me/tags/%E5%AE%89%E5%85%A8/>安全</a>
-<a href=http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/>家庭</a>
-<a href=http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/>工作</a>
-<a href=http://leaver.me/tags/%E5%B7%A5%E5%85%B7/>工具</a>
-<a href=http://leaver.me/tags/%E5%B9%B6%E5%8F%91/>并发</a>
-<a href=http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/>序列化</a>
-<a href=http://leaver.me/tags/%E5%BC%80%E5%8F%91/>开发</a>
-<a href=http://leaver.me/tags/%E5%BF%83%E7%90%86/>心理</a>
-<a href=http://leaver.me/tags/%E6%80%BB%E7%BB%93/>总结</a>
-<a href=http://leaver.me/tags/%E6%8A%80%E6%9C%AF/>技术</a>
-<a href=http://leaver.me/tags/%E6%8F%92%E4%BB%B6/>插件</a>
-<a href=http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/>操作系统</a>
-<a href=http://leaver.me/tags/%E6%94%B6%E8%97%8F/>收藏</a>
-<a href=http://leaver.me/tags/%E6%95%B0%E5%AD%A6/>数学</a>
-<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/>数据库</a>
-<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/>数据挖掘</a>
-<a href=http://leaver.me/tags/%E6%96%87%E7%AB%A0/>文章</a>
-<a href=http://leaver.me/tags/%E6%99%BA%E8%83%BD/>智能</a>
-<a href=http://leaver.me/tags/%E6%9D%82%E6%96%87/>杂文</a>
-<a href=http://leaver.me/tags/%E6%AD%A6%E6%B1%89/>武汉</a>
-<a href=http://leaver.me/tags/%E6%B1%87%E7%BC%96/>汇编</a>
-<a href=http://leaver.me/tags/%E7%88%B1%E6%83%85/>爱情</a>
-<a href=http://leaver.me/tags/%E7%90%86%E8%AE%BA/>理论</a>
-<a href=http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/>生产力</a>
-<a href=http://leaver.me/tags/%E7%94%9F%E6%B4%BB/>生活</a>
-<a href=http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/>电子书</a>
-<a href=http://leaver.me/tags/%E7%94%B5%E5%BD%B1/>电影</a>
-<a href=http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/>社会</a>
-<a href=http://leaver.me/tags/%E7%A7%91%E6%8A%80/>科技</a>
-<a href=http://leaver.me/tags/%E7%AC%94%E8%AE%B0/>笔记</a>
-<a href=http://leaver.me/tags/%E7%AE%97%E6%B3%95/>算法</a>
-<a href=http://leaver.me/tags/%E7%BC%96%E7%A8%8B/>编程</a>
-<a href=http://leaver.me/tags/%E7%BC%96%E8%AF%91/>编译</a>
-<a href=http://leaver.me/tags/%E7%BF%BB%E8%AF%91/>翻译</a>
-<a href=http://leaver.me/tags/%E8%81%8C%E4%B8%9A/>职业</a>
-<a href=http://leaver.me/tags/%E8%AE%B0%E5%BD%95/>记录</a>
-<a href=http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/>设计</a>
-<a href=http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/>读书</a>
-<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/>软件</a>
-<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/>软件测试</a>
-<a href=http://leaver.me/tags/%E8%BF%90%E7%BB%B4/>运维</a>
-<a href=http://leaver.me/tags/%E9%87%91%E8%9E%8D/>金融</a></div></section><section class=widget><h3 class=widget-title>友情链接</h3><ul class=widget-list><li><a target=_blank href=https://www.cppfans.org/ title=C++爱好者博客>C++爱好者博客</a></li><li><a target=_blank href=http://www.kailing.pub title=KL，每天进步一点点>KL，每天进步一点点</a></li></ul></section><section class=widget><h3 class=widget-title>其它</h3><ul class=widget-list><li><a href=http://leaver.me/index.xml>文章 RSS</a></li></ul></section></div></div></div></div><footer id=footer><div class=container>&copy; 2020 <a href=http://leaver.me/>bystander's blog By bystander</a>.
-Powered by <a rel="nofollow noreferer noopener" href=https://gohugo.io target=_blank>Hugo</a>.
-<a href=https://www.flysnow.org/ target=_blank>Theme</a> based on <a href=https://github.com/flysnow-org/maupassant-hugo target=_blank>maupassant</a>.</div></footer><a id=rocket href=#top></a><script type=text/javascript src="/js/totop.js?v=0.0.0" async></script><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-30961201-3','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></body></html>
+<!doctype html><html lang=zh-cn itemscope itemtype=http://schema.org/WebPage><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><title>软件 · bystander's blog</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta name=MobileOptimized content="width"><meta name=HandheldFriendly content="true"><meta name=applicable-device content="pc,mobile"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=mobile-web-app-capable content="yes"><meta name=author content="bystander"><meta name=description content="寻找窄门"><meta name=generator content="Hugo 0.62.2"><link rel=canonical href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/><link href=/tags/%E8%BD%AF%E4%BB%B6/index.xml rel=alternate type=application/rss+xml title="bystander's blog"><link rel=icon href=/favicon.ico><link rel=stylesheet href=/sass/jane.min.0995afa14b62cd93e93cfc066b646c4c17a3eddca0e9d52a1d9dcf5d90aaacd3.css integrity="sha256-CZWvoUtizZPpPPwGa2RsTBej7dyg6dUqHZ3PXZCqrNM=" media=screen crossorigin=anonymous><meta property="og:title" content="软件"><meta property="og:description" content="寻找窄门"><meta property="og:type" content="website"><meta property="og:url" content="http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/"><meta property="og:updated_time" content="2015-09-12T16:40:44+00:00"><meta itemprop=name content="软件"><meta itemprop=description content="寻找窄门"><meta name=twitter:card content="summary"><meta name=twitter:title content="软件"><meta name=twitter:description content="寻找窄门"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-30961201-3','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>bystander's blog</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><li class=mobile-menu-item><a class=menu-item-link href=http://leaver.me/>主页</a></li><li class=mobile-menu-item><a class=menu-item-link href=http://leaver.me/post/>归档</a></li><li class=mobile-menu-item><a class=menu-item-link href=http://leaver.me/tags/>标签</a></li><li class=mobile-menu-item><a class=menu-item-link href=http://leaver.me/categories/>目录</a></li><li class=mobile-menu-item><a class=menu-item-link href=http://leaver.me/about/>关于我</a></li></ul></nav><link rel=stylesheet href=/lib/photoswipe/photoswipe.min.css><link rel=stylesheet href=/lib/photoswipe/default-skin/default-skin.min.css><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header id=header class="header container"><div class=logo-wrapper><a href=/ class=logo>bystander's blog</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=http://leaver.me/>主页</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/post/>归档</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/tags/>标签</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/categories/>目录</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/about/>关于我</a></li></ul></nav></header><div id=mobile-panel><main id=main class="main bg-llight"><div class=content-wrapper><div id=content class="content container"><section id=archive class=archive><div class=archive-post><time datetime=2013-11-16 class=archive-post-time>2013-11-16</time>
+<span class=archive-post-title><a href=/2013/11/16/%E8%97%8F%E5%9B%BE%E6%96%87%E5%B9%B6%E8%8C%82%E8%AF%A6%E8%A7%A3eclipse%E6%96%AD%E7%82%B9/ class=archive-post-link>[藏]图文并茂详解Eclipse断点</a></span></div><div class=archive-post><time datetime=2013-09-20 class=archive-post-time>2013-09-20</time>
+<span class=archive-post-title><a href=/2013/09/20/spring3%E5%AE%9E%E4%BE%8B%E5%85%A5%E9%97%A8-hello-world/ class=archive-post-link>Spring3实例入门-Hello World</a></span></div><div class=archive-post><time datetime=2013-06-25 class=archive-post-time>2013-06-25</time>
+<span class=archive-post-title><a href=/2013/06/25/%E5%A7%94%E6%89%98%E5%92%8C%E4%BA%8B%E4%BB%B6%E7%A4%BA%E4%BE%8B/ class=archive-post-link>委托和事件示例</a></span></div><div class=archive-post><time datetime=2013-06-11 class=archive-post-time>2013-06-11</time>
+<span class=archive-post-title><a href=/2013/06/11/dmp%E7%89%88%E6%9C%AC%E4%BF%AE%E6%94%B9%E5%B7%A5%E5%85%B7c/ class=archive-post-link>DMP版本修改工具(C#)</a></span></div><div class=archive-post><time datetime=2013-06-02 class=archive-post-time>2013-06-02</time>
+<span class=archive-post-title><a href=/2013/06/02/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B45%E6%9C%885%E6%97%A5%E7%BB%BC%E5%90%88%E7%AE%97%E6%B3%95%E9%A2%98%E8%AF%A6%E8%A7%A3/ class=archive-post-link>阿里巴巴5月5日综合算法题详解</a></span></div><div class=archive-post><time datetime=2013-05-27 class=archive-post-time>2013-05-27</time>
+<span class=archive-post-title><a href=/2013/05/27/%E8%AF%91%E5%8F%8D%E5%B0%84reflection%E5%92%8C%E5%8A%A8%E6%80%81dynamic/ class=archive-post-link>[译]反射(Reflection)和动态(dynamic)</a></span></div><div class=archive-post><time datetime=2013-05-24 class=archive-post-time>2013-05-24</time>
+<span class=archive-post-title><a href=/2013/05/24/%E6%AD%A6%E6%B1%89%E5%A4%A7%E5%AD%A6%E8%AE%BA%E6%96%87%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%E6%A0%BC%E5%BC%8F%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7c/ class=archive-post-link>武汉大学论文参考文献格式生成工具(C#)</a></span></div><div class=archive-post><time datetime=2013-05-22 class=archive-post-time>2013-05-22</time>
+<span class=archive-post-title><a href=/2013/05/22/%E5%BC%95%E7%94%A8%E5%92%8C%E6%8C%87%E9%92%88c-/ class=archive-post-link>引用和指针(C++)</a></span></div><div class=archive-post><time datetime=2013-04-17 class=archive-post-time>2013-04-17</time>
+<span class=archive-post-title><a href=/2013/04/17/%E4%B8%80%E9%81%93%E7%AC%94%E8%AF%95%E6%8C%87%E9%92%88%E9%A2%98%E7%9B%AE%E8%AF%A6%E8%A7%A3/ class=archive-post-link>一道笔试指针题目详解</a></span></div><div class=archive-post><time datetime=2013-04-11 class=archive-post-time>2013-04-11</time>
+<span class=archive-post-title><a href=/2013/04/11/%E6%A8%A1%E6%9D%BF%E6%A0%88%E4%BB%A5%E5%8F%8A%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BCc-%E5%AE%9E%E7%8E%B0/ class=archive-post-link>模板栈以及中缀表达式求值(C++实现)</a></span></div></section><nav class=pagination><ul><li><a href=/tags/%E8%BD%AF%E4%BB%B6/>1</a></li><li class=active><a href=/tags/%E8%BD%AF%E4%BB%B6/page/2/>2</a></li><li><a href=/tags/%E8%BD%AF%E4%BB%B6/page/3/>3</a></li><li><a href=/tags/%E8%BD%AF%E4%BB%B6/page/4/>4</a></li><li><a href=/tags/%E8%BD%AF%E4%BB%B6/page/5/>5</a></li><li><a href=/tags/%E8%BD%AF%E4%BB%B6/page/6/>6</a></li><li><a href=/tags/%E8%BD%AF%E4%BB%B6/page/7/>7</a></li><li><a href=/tags/%E8%BD%AF%E4%BB%B6/page/8/>8</a></li><li><a href=/tags/%E8%BD%AF%E4%BB%B6/page/9/>9</a></li></ul></nav></div></div></main><footer id=footer class=footer><div class=icon-links><a href=https://github.com/leizhiyuan rel="me noopener" class=iconfont title=github target=_blank><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="36" height="36"><path d="M512 12.672c-282.88.0-512 229.248-512 512 0 226.261333 146.688 418.133333 350.08 485.76 25.6 4.821333 34.986667-11.008 34.986667-24.618667.0-12.16-.426667-44.373333-.64-87.04-142.421333 30.890667-172.458667-68.693333-172.458667-68.693333C188.672 770.986667 155.008 755.2 155.008 755.2c-46.378667-31.744 3.584-31.104 3.584-31.104 51.413333 3.584 78.421333 52.736 78.421333 52.736 45.653333 78.293333 119.850667 55.68 149.12 42.581333 4.608-33.109333 17.792-55.68 32.426667-68.48-113.706667-12.8-233.216-56.832-233.216-253.013333.0-55.893333 19.84-101.546667 52.693333-137.386667-5.76-12.928-23.04-64.981333 4.48-135.509333.0.0 42.88-13.738667 140.8 52.48 40.96-11.392 84.48-17.024 128-17.28 43.52.256 87.04 5.888 128 17.28 97.28-66.218667 140.16-52.48 140.16-52.48 27.52 70.528 10.24 122.581333 5.12 135.509333 32.64 35.84 52.48 81.493333 52.48 137.386667.0 196.693333-119.68 240-233.6 252.586667 17.92 15.36 34.56 46.762667 34.56 94.72.0 68.522667-.64 123.562667-.64 140.202666.0 13.44 8.96 29.44 35.2 24.32C877.44 942.592 1024 750.592 1024 524.672c0-282.752-229.248-512-512-512"/></svg></a><a href=http://leaver.me/index.xml rel="noopener alternate" type=application/rss+xml class=iconfont title=rss target=_blank><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30"><path d="M819.157333 1024C819.157333 574.592 449.408 204.8.0 204.8V0c561.706667.0 1024 462.293333 1024 1024H819.157333zM140.416 743.04a140.8 140.8.0 01140.501333 140.586667A140.928 140.928.0 01140.074667 1024C62.72 1024 0 961.109333.0 883.626667S62.933333 743.082667 140.416 743.04zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352.0 678.784 306.517333 678.784 678.826667z"/></svg></a></div><div class=copyright><span class=power-by>Powered by <a class=hexo-link href=https://gohugo.io>Hugo</a></span>
+<span class=division>|</span>
+<span class=theme-info>Theme - <a class=theme-link href=https://github.com/xianmin/hugo-theme-jane>Jane</a></span>
+<span class=copyright-year>&copy;
+2012 -
+2020
+<span class=heart><i class=iconfont><svg class="icon" viewBox="0 0 1025 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="14" height="14"><path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7.0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1.0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2.0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3.1-42.5-8-83.6-24-122.2z" fill="#8a8a8a"/></svg></i></span><span class=author>bystander</span></span></div></footer><div class=back-to-top id=back-to-top><i class=iconfont><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="35" height="35"><path d="M510.866688 227.694839 95.449397 629.218702h235.761562L329.15309 958.01517h362.40389L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777h894.052392v131.813095H63.840492V63.962777zm0 0"/></svg></i></div></div><script type=text/javascript src=/lib/jquery/jquery-3.2.1.min.js></script><script type=text/javascript src=/lib/slideout/slideout-1.0.1.min.js></script><script type=text/javascript src=/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin=anonymous></script><script type=text/javascript src=/js/load-photoswipe.js></script><script type=text/javascript src=/lib/photoswipe/photoswipe.min.js></script><script type=text/javascript src=/lib/photoswipe/photoswipe-ui-default.min.js></script></body></html>

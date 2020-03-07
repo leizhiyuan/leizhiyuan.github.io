@@ -1,185 +1,22 @@
-<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><title>学习笔记 | bystander's blog</title><meta property="og:title" content="学习笔记 - bystander's blog"><meta property="og:type" content="article"><meta name=Keywords content><meta name=description content="学习笔记"><meta name=author content="bystander"><meta property="og:url" content="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><link rel=stylesheet href=/css/normalize.css><link rel=stylesheet href=/css/style.css><link rel=alternate type=application/rss+xml+xml href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.xml title="bystander's blog"><script type=text/javascript src=//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js></script></head><body><header id=header class=clearfix><div class=container><div class=col-group><div class=site-name><a id=logo href=http://leaver.me/>bystander's blog</a><p class=description>寻找窄门</p></div><div><nav id=nav-menu class=clearfix><a href=http://leaver.me/>首页</a>
-<a href=http://leaver.me/categories title=目录>目录</a>
-<a href=http://leaver.me/about/ title=关于我>关于我</a></nav></div></div></div></header><div id=body><div class=container><div class=col-group><div class=col-8 id=main><div class=res-cons><h3 class=archive-title>分类
-<span class=keyword>学习笔记</span>
-中的文章</h3><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/04/05/%E5%92%8C-%E6%B5%85%E6%9E%90/>和
-浅析</a></h1></header><date class="post-meta meta-date">2013年4月5日</date><div class="post-meta meta-category">|
-<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>这两个转义字符最初学习C++的时候看到了,当时没多想，后来某一天突然想起来，回车不就是换行吗？这不是多此一举吗？今天又看到，索性查了下相关资料，整理一下，留作记录.
-关于“回车”（carriage return）和“换行”（line feed）这两个概念的来历和区别。
-在计算机还没有出现之前，有一种叫做电传打字机（Teletype Model 33）的玩意，每秒钟可以打10个字符。但是它有一个问题，就是打完一行换行的时候，要用去0.2秒，正好可以打两个字符。要是在这0.2秒里面，又有新的字符传过来，那么这个字符将丢失。
-于是，研制人员想了个办法解决这个问题，就是在每行后面加两个表示结束的字符。一个叫做“回车”，告诉打字机把打印头定位在左边界；另一个叫做“换行”，告诉打字机把纸向下移一行（这句的意思是把纸向上拉，然后打印头就定位到了下一行），可以想象一下，这个打印头只能在一个固定的水平线上左右移动，而不能上下移动，我们通过移动纸来完成打印下一行。
-不明白的我在youtube上找到一个这种打字机的演示视频，为了方便读者观看，我提供一个下载地址。
-后来，计算机发明了，这两个概念也就被般到了计算机上。那时，存储器很贵，一些科学家认为在每行结尾加两个字符太浪费了，加一个就可以。于是，就出现了分歧。
-Unix系统里，每行结尾只有&rdquo;&lt;换行>"，即&rdquo;\n&rdquo;；
-Windows系统里面，每行结尾是&rdquo;&lt;换行>&lt;回车>"，即&rdquo;\n\r&rdquo;；
-Mac系统里，每行结尾是&rdquo;&lt;回车>"，不过mac基于unix，所以换行也应该是可以的。
-一个直接后果是，Unix/Mac系统下的文件在Windows里打开的话，所有文字会变成一行；而Windows里的文件在Unix/Mac下打开的话，在每行的结尾可能会多出一个^M符号。这个如果你在windows下使用vim也会发现这个情况
-用C++来说明
-如：
- 最后只显示 bystander 而 leaver.me 背覆盖了
-\n 是换行，系统会将其替换成回车＋换行 把光标 先移到 行首 然后换到下一行 也就是 下一行的行首拉
-则 显示
-leaver.me
-bystander
-一句话，这看起来是一个历史遗留问题&mldr;&mldr;……<p class=readmore><a href=http://leaver.me/2013/04/05/%E5%92%8C-%E6%B5%85%E6%9E%90/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/03/03/%E8%AF%A6%E7%BB%86%E8%AE%B2%E8%A7%A3%E5%8F%8C%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5/>详细讲解双查询注入</a></h1></header><date class="post-meta meta-date">2013年3月3日</date><div class="post-meta meta-category">|
-<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>上一篇文章中，http://leaver.me/archives/2726.html
-我说双查询很难讲清楚，这次就试着讲一下。读了一些原理性的东西。然后尽量通俗的给大家讲清楚。。
-在此之前，我们理解一下子查询，查询的关键字是select，这个大家都知道。子查询可以简单的理解在一个select语句里还有一个select。里面的这个select语句就是子查询。
-看一个简单的例子：
-真正执行的时候，先从子查询进行。因此执行select database() 这个语句就会把当前的数据库查出来，然后把结果传入到concat函数。这个函数是用来连接的。比如 concat(‘a’,’b’)那结果就是ab了。
-原理：
-双注入查询需要理解四个函数/语句 1. Rand() //随机函数 2. Floor() //取整函数 3. Count() //汇总函数 4. Group by clause //分组语句
-简单的一句话原理就是有研究人员发现，当在一个聚合函数，比如count函数后面如果使用分组语句就会把查询的一部分以错误的形式显示出来。
-以本地一个名为Security的数据库为例 首先在bt5下的命令行下输入
-就会连接上数据库了。 然后通过use security； 就可以切换到security数据库了。因为一个服务器上可能有多个数据库嘛。
-然后我们执行一下前面那个简单的子查询的例子
-就能显示security，也就是显示了当前数据库的名字了。 然后我们测试一下concat的用法。输入
-显然结果就是string1string2了
-然后我们测试一下rand()这个随机函数是干嘛的
-我们多执行几次 可以看到，这个函数就是返回大于0，小于1之间的数 然后看看取整函数
-这个函数就是返回小于等于你输入的数的整数。
-然后我们看看双注入查询中的一个简单组合。大家从我的上一篇文章中应该也看到了有一个子查询是
-我们从里向外看。rand() 返回大于0小于1的小数，乘以2之后就成了小于0小于2了。然后对结果进行取证。就只能是0或1了。也就是这个查询的结果不是1，就是0 我们稍微加大一点难度。看这个查询
-不要怕。先看最里面的SELECT database() 这个就返回数据库名，这里就是security了。然后FLOOR(RAND()*2)这个上面说过了。不是0，就是1.然后把这两个的结果进行concat连接，那么结果不是security0就是security1了。
-如果我们把这条语句后面加上from 一个表名。那么一般会返回security0或security1的一个集合。数目是由表本身有几条结果决定的。比如一个管理表里有5个管理员。这个就会返回五条记录，这里users表里有13个用户，所以返回了13条 如果是从information_schema.schemata里，这个表里包含了mysql的所有数据库名。这里本机有三个数据库。所以会返回三个结果
-现在我们准备加上Group By 语句了。 我们使用information_schema.tables 或 information_schema.columns者两个表来查询。因为表里面一般数据很多。容易生成很多的随机值，不至于全部是security0，这样就不能查询出结果了。
-这里我先解释一下。我们把concat((select database()), floor(rand()*2)) 这个结果取了一个别名 a ，然后使用他进行分组。这样相同的security0分到一组，security1分到一组。就剩下两个结果了。
-注意。这里的database()可以替换成任何你想查的函数，比如version(), user(), datadir()或者其他的查询。比如查表啊。查列啊。原理都是一样的。
-最后的亮点来了。。 我们输入这条：注意多了一个聚合函数count(*)
-报错了
-重复的键值 可以看到security就是我们的查询结果了 想要查询版本就这样：
-看看替换了database()为version() 再看一个
-报错
-这里的~这个符号只是为了让结果更清晰。
-这里还有一个比较复杂的。叫做派生表。需要使用 select 1 from (table name); 这样的语法来报错，具体就是
-来报错。
-大家可以对照我上一篇文章来看。相信讲的还算清楚。……<p class=readmore><a href=http://leaver.me/2013/03/03/%E8%AF%A6%E7%BB%86%E8%AE%B2%E8%A7%A3%E5%8F%8C%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/03/01/c#%E4%B8%AD%E7%9A%84debug%E7%B1%BB/>C#中的Debug类</a></h1></header><date class="post-meta meta-date">2013年3月1日</date><div class="post-meta meta-category">|
-<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>位于命名空间System.Diagnostics中 1.Debug.Print方法
-2.Debug.WriteLine方法
-3.TraceListener类
-DelimitedListTraceListener创建的时候指定一个文件名，当Flush调用的时候，就被覆写到文件里。
-第一个参数一个bool值，为真则输出。
-5.Debug.Assert方法
-如果表达式为false，则输出。……<p class=readmore><a href=http://leaver.me/2013/03/01/c#%E4%B8%AD%E7%9A%84debug%E7%B1%BB/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/02/26/%E6%B6%88%E8%B4%B9%E8%80%85%E8%A1%8C%E4%B8%BA%E5%AD%A6/>消费者行为学</a></h1></header><date class="post-meta meta-date">2013年2月26日</date><div class="post-meta meta-category">|
-<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>今天一直在自习。。中午遇到了初中同桌。。5年没见了吧。聊了一会。被各种叮嘱“一定不要找太娇生惯养的，太粘人的，太无理取闹的。要听我的话，不然受苦的可是你。”哈哈。当时笑喷了。谢谢同桌。好好工作吧。
-　这本书是寒假在家看的一本书。一点点笔记。
-　选择喜爱的网站在很大程度上是一种生活方式的声明，它说明了一个人的兴趣和他想成为哪一类型的人，人们选择一种产品。通常是因为他们喜欢他的个性，觉得和自己比较温和。甚至有些人认为，使用产品后，他所拥有的令人渴望的品质会转移到自己身上。
-　每一年，人们都会购买大量几乎没有任何味道，没有任何营养的食品，这说明现代消费者行为学领域的一个基本前提是，人们购买产品往往并非因为他们能做什么，而是因为他们意味着什么。在其相同的情况下，人们会选择那些具有与其潜在需求一致的形象/个性的品牌。
-　营销者与消费者共处于一种复杂的双向关系中，往往很难判断营销活动是在哪里结束，而“真实世界”又在哪里开始，这种界限的模糊带来一个结果，那就是我们不再确定（或者也不在意）区分虚构世界和现实的界限究竟在哪里。有时候，我们呢愉快地加入到这个幻想中。
-　商业道德是引导市场行为的原则。包括诚实，可信赖，公平，尊重，正义。消费者认为行为道德的公司制造的产品评价较高。
-　品牌是在消费者头脑中设立的账户，也许巨额投入的营销策略只可以提高一个品牌的小小美誉度，而一次不大的产品质量危机则可能会一夜之间让该品牌资产荡然无存。
-　需求是一种基本的生物动机，欲望是社会教给我们的可用以满意需求的一种方式，比如口渴是生物意义上的，而我们被教会用可口可乐而不是（比如）羊奶来满足解渴的需要，因此，需求是本来就已经存在的。营销者只是推荐满足他的方法。营销的一个基本目标就是引起人们认识到需要的存在，而不是创造需求。
-　广告人对于人们的了解还远远未达到操纵他们的程度，新产品的失败率从40-80%，尽管人们认为神奇手段和科学技术在操纵他们，而事实上。只有设法销售优秀产品时才会成功。
-　绿色营销越来越普遍。强迫性消费是指反复的而且常是过度的购物行为，他被当作压力/焦虑/沮丧/无聊的宣泄渠道。和毒品类似。女性观有强迫购物失常的概率是男性的4倍，女性被服装和化妆品吸引，男性则被小配件，工具，枪支等吸引。……<p class=readmore><a href=http://leaver.me/2013/02/26/%E6%B6%88%E8%B4%B9%E8%80%85%E8%A1%8C%E4%B8%BA%E5%AD%A6/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/02/21/c#%E5%8F%8D%E5%B0%84%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E6%8F%92%E4%BB%B6%E7%B3%BB%E7%BB%9F/>C#反射实现简单的插件系统</a></h1></header><date class="post-meta meta-date">2013年2月21日</date><div class="post-meta meta-category">|
-<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>如果用过一些优秀的开源或是非开源的应用软件，就会发现这些软件的一个很大的优势就是其开放性，任何有能力的人都可以为其开发不同的插件来增强其的功能。比如著名的foobar2000，Vim和TotalCommander等等。
-C#的反射可以用来实现一个简单的插件系统。思路很简单，我们创建一个解决方案，包含三个工程，一个为我们的软件MyApplication，一个为插件接口IPlugin，一个为具体的插件MyPlugin。插件系统的基本思路是我们用一个接口类库,来定义我们软件可以使用的插件必须实现的方法签名。然后我们的软件MyApplication通过引用该IPlugin dll来动态调用，而具体的实现插件MyPlugin则引用该接口来实现具体的方法。这样我们的应用程序就能在不知道具体插件的情况下调用插件了。。
-结构图如下：
-关键代码也就是通过对程序集载入。搜索到对应接口的实现类。然后调用即可。……<p class=readmore><a href=http://leaver.me/2013/02/21/c#%E5%8F%8D%E5%B0%84%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E6%8F%92%E4%BB%B6%E7%B3%BB%E7%BB%9F/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/02/02/%E5%88%A9%E7%94%A8%E5%8F%8D%E5%B0%84%E8%BD%AC%E6%8D%A2%E5%AF%B9%E8%B1%A1list%E5%88%B0csv/>利用反射转换对象list到csv</a></h1></header><date class="post-meta meta-date">2013年2月2日</date><div class="post-meta meta-category">|
-<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>扒自一工程。。可以学习一下.net中反射的简单用法
- 增加这个只是两个预定义的实体框架内的属性。
-使用PropertyInfo 可以获得名字。数据类型。声明类型，反射类型，读写属性等等。也可以设置或获取属性值。……<p class=readmore><a href=http://leaver.me/2013/02/02/%E5%88%A9%E7%94%A8%E5%8F%8D%E5%B0%84%E8%BD%AC%E6%8D%A2%E5%AF%B9%E8%B1%A1list%E5%88%B0csv/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/02/02/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%AD%BB%E9%94%81%E5%92%8C%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/>操作系统的死锁和内存管理</a></h1></header><date class="post-meta meta-date">2013年2月2日</date><div class="post-meta meta-category">|
-<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>这部分是最后一部分笔记。《现代操作系统》第三版的笔记就这样了。 死锁； 把需要排他性使用的对象称为资源，资源分为可抢占的和不可抢占的。可抢占资源可以从拥有它的进程中抢占而不会具有任何副作用。存储器就是可抢占的。不可抢占资源是指在不引起相关的计算失败的情况下，无法把它从占有她的进程处抢占过来。比如CD刻录机，如果一个进程开始刻盘，突然分配给CD刻录机到另一进程，就会划坏CD盘。死锁会发生在不可抢占资源中 死锁的规范定义：如果一个进程集合中的每个进程都在等待只能由该进程集合中的其他进程才能引发的事件，那么，该进程集合就是死锁的。
-死锁的四个必要条件 1.互斥条件。每个资源要么已经分配给一个进程，要么就是可用的。 2.占有和等待条件，已经得到了某个资源的进程可以再请求新的资源。 3.不可抢占条件，已经分配给一个进程的资源不可强制性的被抢占，他只能由占有她的进程显式的释放。 4.环路等待条件。死锁发生时，系统中一定有友两个/多个进程组成的一条回路，该环路中的每个进程都在等待着下一个进程所占有的资源。
-死锁处理的四种策略 1.忽略该问题，如果可以忽略。则忽略 2.检测死锁并恢复，让死锁发生，检测他们是否发生，一旦发生。采取行动。 3.仔细对资源进行分配。动态的避免死锁。 4.通过破坏引起的四个必要条件之一。防止死锁发生。
-银行家算法就是对每个请求进行检查。检查如果满足这一请求是否会达到安全状态，或是，那么满足这请求，若否。就推迟这一请求的满足。为了看状态是否安全。类似于银行家投资。看自己是否有足够的资源满足客户。如果可以。就认为投资是可以收回的。接着检查最接近最大限额的一个客户。如果所有投资最终都被收回。则该状态安全。
-通信死锁：两个/以上的进程发送消息通信。A向B发送请求信息，然后阻塞直到B回复。假设请求信息丢失，A将阻塞等待回复。B则阻塞等待一个向其发送命令的请求。则发生死锁。他不能通过对资源排序/安排调度来避免，因此。采用了超时来中断通信死锁。
-活锁：两个进程A和B，A获得1.B获得2.轮询请求对方的。没有进程被阻塞。看起来像是死锁发生了。就叫做活锁。
-内存管理 每个linux进程都有一个地址空间，逻辑上有三段组成：代码。数据和堆栈段。代码段包含了形成程序可执行代码的机器指令。通常是只读的。是由编译器把源码转换成机器码形成的。 数据段包含了所有程序变量。字符串。数字和其他数据的存储。由两部分，初始化数据和未初始化数据。后者即为BSS，符号起始块。加载后被初始化为0.数据段可以修改。可以增加数据段的大小。 第三段是栈段。大多数机器里。从虚拟地址空间的顶部/附近开始。并且向下生长。
-linux内存由三部分组成。前两部分是内核和内存映射，被钉在内存中。页面从不换粗。内存的其他部分，被划分为页框。每个页框都可以包含一个代码。数据或栈页面。
-window如何知道系统配置的细节呢。答案就是windows会挂载一种特殊的文件系统，其为小文件做了优化，到名字空间，也就是注册表。注册表被阻止成了不同的卷，称作储巢。hive。一个叫做system的储巢会在系统启动时。装入内存。这里面包含了驱动什么设备工作。什么软件要初始化。那些变量等等。……<p class=readmore><a href=http://leaver.me/2013/02/02/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%AD%BB%E9%94%81%E5%92%8C%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/02/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/>操作系统中的输入输出</a></h1></header><date class="post-meta meta-date">2013年2月1日</date><div class="post-meta meta-category">|
-<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>输入输出 I/O硬件： I/O设备分为两类：块设备和字符设备，块设备吧信息存储在固定大小的块中，每个块有自己的地址，传输以块为单位，每个块都能独立于其他块读写，硬盘，CD-ROM和USB盘都是常见的块设备。字符设备是以字符为单位发送和接收一个字符流，而不考虑任何块结构，字符设备不可寻址，也不寻道，打印机，网络几口，鼠标，以及大多数与磁盘不同的设备都可看作是字符设备。
-I/O设备一般由机械部件和电子部件两部分组成，通常分开处理，实现模块化和通用设计，电子部件称作设备控制器/适配器，在个人计算机上，通常以主板上的芯片的形式出现，或者以插入PCI的印刷电路板的形式出现。控制器卡上通常有一个连接器，通向设备本身的电缆可以插入到这个连接器中， 控制器的任务是吧串行的位流转换成字节块，并进行必要的错误校正工作，字节块通常首先在控制器内部的一个缓冲区中按位进行组装，然后再对校验和进行校验并证明字节块没有错误后再将它复制到主存中。
-每个控制器都有几个寄存器用来和cpu通信，通过写入这些寄存器，操作系统可以命令设备发送数据等等操作。 1.内存映射io 将所有控制寄存器映射到内存空间中，每个寄存器被分配一个唯一的内存地址，并且不会有内存被分配这一地址，这样的系统称为内存映射I/O，通常位于地址空间的顶端。使用内存映射io，设备控制器只是内存中的变量，c语言可以和其他变量一样寻址，这样，I/O设备驱动程序就可以采用c语言编写。 2.DMA 无论CPU是否具有内存映射I/O,他都需要寻址设备控制器以便和他们交换数据，但浪费eficpu时间，所以经常使用直接存储器存储。可独立于cpu访问地址总线。
-没有DMA的时候，首先控制器从磁盘驱动器串行的一位一位的读一个块，直到将整块信息放入控制器的内存缓冲区中，接着，他计算校验和，以保证没有读错误发生，然后控制器产生一个中断，当操作系统开始运行时，它重复地从控制器的缓冲区中一次一个字节/一个字的读取该块的信息，并将其放入内存中。 当有DMA的时候，首先CPU通过设置DMA控制器的寄存器对它进行编程，所以DMA控制器知道将什么数据传送到什么地方，(第1步)DMA控制器还要向磁盘控制器发送一个命令，通知他从磁盘读数据到其内部的缓冲区中，并且对校验和进行检验，如果磁盘控制器中的缓冲区中的数据是有效的的。那么DMA开始 DMA控制器通过在总线上发出一个读请求到磁盘控制器而发起DMA传送（第2步），这一读请求和其他一样，并且磁盘控制器并不关心是来自DMA还是CPU，一般情况下，要写的内存地址在总线的地址线上，所以磁盘控制器从内部缓冲区中读取下一个字的时候，她知道要写的什么地方，写到内存是另一个标准总线周期，（第3步） 当写操作完成时，磁盘控制器在总线上发起一个应答信号到DMA（第4步），于是DMA控制器部增要使用的内存地址，并且步减字节计数，如果字节计数仍然大于0，则从父2-4步。完成后产生中断告诉cpu，操作系统开始工作时，数据已经在内存中了。 中断： 将机器留在一个明确状态的中断称为精确中断，四个特征，1.PC保存在一个已知的地方。2.PC所指向的指令之前的所有指令都已经完全执行。3.PC所指向的指令之后的所有指令都没有执行。4.PC所指向的指令的执行状态是已知的。注意，对于PC所指向的指令以后的指令，并没有禁止他们开始执行，而只是要求在中断发生之前必须撤销他们对寄存器或内存所做的任何修改。 I/O软件： 设计I/O软件时一个关键的点就是设备独立性，意思是我们可以访问任意I/O设备而无需事先指定设备。也就是对于不同的I/O硬件。同一段程序是可以的。
-具有标准接口的驱动程序的工作方式如下：对于每一种设备类型，例如磁盘和打印机。操作系统定义一组驱动程序必须支持的函数，对于磁盘而言，这些函数自然的包含读和写，除此之外还包含开启和关闭电源，格式化以及其他与磁盘有关的事情。驱动程序通常包含一张表格，这张表格具有针对这些函数指向驱动程序自身的指针。当驱动程序装载时，操作系统记录下这张函数指针表的地址。所以当操作系统需要调用一个函数时，可以通过表格发出间接调用。这张函数指针表定义了驱动程序与操作系统其他部分之间的接口。
-**双缓冲：**当第二个缓冲区正在复制用户空间的时候，第一个缓冲区用来接收新的字符。以这样的方法。两个缓冲区轮流使用。称为双缓冲。
-磁盘臂调度算法： 读/写一个磁盘块需要时间：1.寻道时间（将磁盘臂移动到适当的柱面上所需的时间）2.旋转延迟（等待适当扇区旋转到磁头下所需的时间）。3.实际数据传输时间。
-一个磁盘子系统具有如下特性：当一个写命令发给它时，磁盘要么正确地写数据，要么什么也不做，让现有的数据完整无缺的留下，这样的系统称为稳定存储器，并且是在软件中实现的。目标是不惜一切代价保持磁盘的一致性。
-**时钟：**两种。1种是直接接到电源线上。就可以每个电压周期产生一个终端。现在比较少。另一种是由晶体振荡器，计数器和存储寄存器三个构成。当把一块石英晶体适当的切割并且安装到一定的压力之下时就可以产生非常精确的周期性信号。时钟启动时，存储寄存器的值被复制到计数器中，每一个脉冲使计数器-1，直到为0，产生中断。……<p class=readmore><a href=http://leaver.me/2013/02/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/01/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/>操作系统中的文件系统</a></h1></header><date class="post-meta meta-date">2013年1月31日</date><div class="post-meta meta-category">|
-<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>文件系统 进程，地址空间，文件这些抽象概念均是操作系统中的重要概念，如果理解了这三个概念，就迈上了成为一个操作系统专家的道路。 文件系统存放在磁盘上，多数磁盘划分为一个/多个分区，每个分区有一个独立的文件系统，磁盘的0号扇区称为主引导记录，也就是MBR，用来引导计算机，MBR的结尾就是分区表了。该表给出了每个分区的起始和结束地址。表中的一个分区被标记为活动分区。在计算机被引导时，BIOS读入并执行MBR，MBR做的第一件事就是确定活动分区，读入他的第一个块，称为引导块，并执行之，引导块中的程度将装载该分区中的操作系统，为统一起见，每个分区都从一个启动块开始，即使它不含有一个可以启动的操作系统。 文件的实现： 1.连续分配，每个文件作为一连串连续数据存储在磁盘上。实现简单，读操作性能好，一次就可以了。但不足是删除之后不能移动，因为成本太高，使得空块增多。碎片化严重。更诡异的是对于文件编辑软件，实现无法准确预测大小，如果预测错了。。就跪了。 //研究那些具有清晰和简洁概念的老式系统和思想是很重要的，因为他们可能以一种令人吃惊的方式在未来系统中获得应用。
-2.链表分配 为每个文件构造磁盘块链表，一个文件分为N个文件块，N个文件块构成一个链表，存储在物理上的多个地方。顺序读取很方便，但随机读取则相当缓慢，由于指针的存在，每个磁盘块存储数据的字节不再是2的整数次幂，导致系统运行效率降低，因为很多程序都是以2的整数次幂来读写磁盘的。
-3.在内存中采用表的链表分配 去除每个文件块在磁盘上的指针字，放入内存的一个表上，就可以解决上一个分配的不足。直观的例子如图。 文件A使用了磁盘块4，7，2，10，12
-内存中这样的表格称为文件分配表，也就是FAT了。主要缺点是对于大磁盘的小块，这种表需要的内存占用太大。。不太适用。
-4.i节点 记录各个文件包含哪些磁盘块的方法是给每个文件赋予一个称为i节点的数据结构,其中类除了文件属性和文件块的磁盘地址.相对于在内存中采用表的方式,这种机制的优势在于只有对应文件打开时,其i节点才进入内存.
-文件系统的一致性检查分为两种:块的一致性检查和文件的一致性检查.构造两张表,一张跟踪块在文件中的出现次数,另一张跟踪该块在空闲表中的出现次数,如果一致,则某一块必然在两个表中1/2中为1,如果某一块没有出现在任何一张表中,则称为块丢失,浪费了磁盘空间.解决方法是让文件系统检验程序把他们加入到空闲表中 如果在空闲表中出现了两次.则重新建议建议空闲表即可. 如果在文件表中出现了两次.则比较麻烦.
-文件系统性能 1.高速缓存,最常用,指的是一系列的块,逻辑上属于磁盘.但实际上被保存在内存上.基本算法是检查全部的读请求,查看在高速缓存中是否有所需要的块,如果存在,就读,否则读入高速缓存在复制到其他地方. 2.块提前读,在需要用到块之前,试图提前将其写入高速缓存,从而提高命中率.比如某个文件有n个块,则请求k块的时候,则同时预读k+1块.只适用于顺序读取的文件,对随机读取文件,则没有效果/反效果. 3.减少磁盘臂运动 把所有可能顺序读取的块放在一起,当然最好是放在同一个柱面上,从而减少磁盘臂的移动次数.……<p class=readmore><a href=http://leaver.me/2013/01/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/>阅读全文</a></p></div></article><article class=post><header><h1 class=post-title><a href=http://leaver.me/2013/01/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95/>操作系统中的页面置换算法</a></h1></header><date class="post-meta meta-date">2013年1月30日</date><div class="post-meta meta-category">|
-<a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0>学习笔记</a></div><div class=post-content>页面调度算法总结； 最好的两种算法是老化算法和工作集时钟算法，分别基于LRU和工作集。具有良好的页面调度性能。……<p class=readmore><a href=http://leaver.me/2013/01/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95/>阅读全文</a></p></div></article><ol class=page-navigator><li class=prev><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/8/>上一页</a></li><li><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/>1</a></li><li><span>...</span></li><li><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/7/>7</a></li><li><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/8/>8</a></li><li class=current><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/9/>9</a></li><li><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/10/>10</a></li><li><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/11/>11</a></li><li><span>...</span></li><li><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/19/>19</a></li><li class=next><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/10/>下一页</a></li></ol></div></div><div id=secondary><section class=widget><form id=search action=http://leaver.me/search/ method=get accept-charset=utf-8 target=_blank _lpchecked=1><input type=text name=q maxlength=20 placeholder=Search>
-<input type=hidden name=sitesearch value=http://leaver.me/>
-<button type=submit class="submit icon-search"></button></form></section><section class=widget><h3 class=widget-title>最近文章</h3><ul class=widget-list><li><a href=http://leaver.me/2020/03/07/%E5%87%A0%E4%B8%AA%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/ title=几个浏览器的使用体验>几个浏览器的使用体验</a></li><li><a href=http://leaver.me/2020/01/10/mysql%E4%B8%AD%E7%9A%84b-%E6%A0%91%E4%BB%8B%E7%BB%8D/ title=Mysql中的B+树介绍>Mysql中的B+树介绍</a></li><li><a href=http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/ title="2019 年终总结">2019 年终总结</a></li><li><a href=http://leaver.me/2020/01/06/%E7%90%86%E8%A7%A3-cap-%E7%90%86%E8%AE%BA/ title="理解 CAP 理论">理解 CAP 理论</a></li><li><a href=http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/ title=深入理解Raft协议>深入理解Raft协议</a></li><li><a href=http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/ title=《非暴力沟通》笔记>《非暴力沟通》笔记</a></li><li><a href=http://leaver.me/2019/10/06/wedding-of-friends/ title="Wedding of Friends">Wedding of Friends</a></li><li><a href=http://leaver.me/2019/09/29/principle-note/ title="Principle Note">Principle Note</a></li><li><a href=http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/ title=梦见鲸鱼的那一夜>梦见鲸鱼的那一夜</a></li><li><a href=http://leaver.me/2019/08/20/understand-hong-kong-2/ title="Understand Hong Kong 2">Understand Hong Kong 2</a></li></ul></section><section class=widget><h3 class=widget-title>分类</h3><ul class=widget-list><li><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/>学习笔记 (188)</a></li><li><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/>我的翻译 (57)</a></li><li><a href=http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/>文章收藏 (53)</a></li><li><a href=http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/>生活记录 (4)</a></li><li><a href=http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/>读书笔记 (4)</a></li></ul></section><section class=widget><h3 class=widget-title>标签</h3><div class=tagcloud><a href=http://leaver.me/tags/algorithm/>algorithm</a>
-<a href=http://leaver.me/tags/android/>android</a>
-<a href=http://leaver.me/tags/c/>C＃</a>
-<a href=http://leaver.me/tags/c++/>C++</a>
-<a href=http://leaver.me/tags/database/>database</a>
-<a href=http://leaver.me/tags/java/>java</a>
-<a href=http://leaver.me/tags/javascript/>javascript</a>
-<a href=http://leaver.me/tags/linux/>linux</a>
-<a href=http://leaver.me/tags/mac/>mac</a>
-<a href=http://leaver.me/tags/matlab/>matlab</a>
-<a href=http://leaver.me/tags/maven/>maven</a>
-<a href=http://leaver.me/tags/mysql/>mysql</a>
-<a href=http://leaver.me/tags/nextgen-gallery/>NextGEN Gallery</a>
-<a href=http://leaver.me/tags/php/>php</a>
-<a href=http://leaver.me/tags/python/>python</a>
-<a href=http://leaver.me/tags/shell/>shell</a>
-<a href=http://leaver.me/tags/spring/>spring</a>
-<a href=http://leaver.me/tags/sql/>sql</a>
-<a href=http://leaver.me/tags/stackoverflow/>stackoverflow</a>
-<a href=http://leaver.me/tags/wcf/>WCF</a>
-<a href=http://leaver.me/tags/web/>web</a>
-<a href=http://leaver.me/tags/windows/>windows</a>
-<a href=http://leaver.me/tags/wordpress/>wordpress</a>
-<a href=http://leaver.me/tags/wpf/>WPF</a>
-<a href=http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/>上海</a>
-<a href=http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/>下载</a>
-<a href=http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/>中间件</a>
-<a href=http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/>互联网</a>
-<a href=http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/>分布式</a>
-<a href=http://leaver.me/tags/%E5%88%B6%E5%BA%A6/>制度</a>
-<a href=http://leaver.me/tags/%E5%89%8D%E7%AB%AF/>前端</a>
-<a href=http://leaver.me/tags/%E5%8E%9F%E5%88%9B/>原创</a>
-<a href=http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/>大学</a>
-<a href=http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/>学习</a>
-<a href=http://leaver.me/tags/%E5%AE%89%E5%85%A8/>安全</a>
-<a href=http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/>家庭</a>
-<a href=http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/>工作</a>
-<a href=http://leaver.me/tags/%E5%B7%A5%E5%85%B7/>工具</a>
-<a href=http://leaver.me/tags/%E5%B9%B6%E5%8F%91/>并发</a>
-<a href=http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/>序列化</a>
-<a href=http://leaver.me/tags/%E5%BC%80%E5%8F%91/>开发</a>
-<a href=http://leaver.me/tags/%E5%BF%83%E7%90%86/>心理</a>
-<a href=http://leaver.me/tags/%E6%80%BB%E7%BB%93/>总结</a>
-<a href=http://leaver.me/tags/%E6%8A%80%E6%9C%AF/>技术</a>
-<a href=http://leaver.me/tags/%E6%8F%92%E4%BB%B6/>插件</a>
-<a href=http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/>操作系统</a>
-<a href=http://leaver.me/tags/%E6%94%B6%E8%97%8F/>收藏</a>
-<a href=http://leaver.me/tags/%E6%95%B0%E5%AD%A6/>数学</a>
-<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/>数据库</a>
-<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/>数据挖掘</a>
-<a href=http://leaver.me/tags/%E6%96%87%E7%AB%A0/>文章</a>
-<a href=http://leaver.me/tags/%E6%99%BA%E8%83%BD/>智能</a>
-<a href=http://leaver.me/tags/%E6%9D%82%E6%96%87/>杂文</a>
-<a href=http://leaver.me/tags/%E6%AD%A6%E6%B1%89/>武汉</a>
-<a href=http://leaver.me/tags/%E6%B1%87%E7%BC%96/>汇编</a>
-<a href=http://leaver.me/tags/%E7%88%B1%E6%83%85/>爱情</a>
-<a href=http://leaver.me/tags/%E7%90%86%E8%AE%BA/>理论</a>
-<a href=http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/>生产力</a>
-<a href=http://leaver.me/tags/%E7%94%9F%E6%B4%BB/>生活</a>
-<a href=http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/>电子书</a>
-<a href=http://leaver.me/tags/%E7%94%B5%E5%BD%B1/>电影</a>
-<a href=http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/>社会</a>
-<a href=http://leaver.me/tags/%E7%A7%91%E6%8A%80/>科技</a>
-<a href=http://leaver.me/tags/%E7%AC%94%E8%AE%B0/>笔记</a>
-<a href=http://leaver.me/tags/%E7%AE%97%E6%B3%95/>算法</a>
-<a href=http://leaver.me/tags/%E7%BC%96%E7%A8%8B/>编程</a>
-<a href=http://leaver.me/tags/%E7%BC%96%E8%AF%91/>编译</a>
-<a href=http://leaver.me/tags/%E7%BF%BB%E8%AF%91/>翻译</a>
-<a href=http://leaver.me/tags/%E8%81%8C%E4%B8%9A/>职业</a>
-<a href=http://leaver.me/tags/%E8%AE%B0%E5%BD%95/>记录</a>
-<a href=http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/>设计</a>
-<a href=http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/>读书</a>
-<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/>软件</a>
-<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/>软件测试</a>
-<a href=http://leaver.me/tags/%E8%BF%90%E7%BB%B4/>运维</a>
-<a href=http://leaver.me/tags/%E9%87%91%E8%9E%8D/>金融</a></div></section><section class=widget><h3 class=widget-title>友情链接</h3><ul class=widget-list><li><a target=_blank href=https://www.cppfans.org/ title=C++爱好者博客>C++爱好者博客</a></li><li><a target=_blank href=http://www.kailing.pub title=KL，每天进步一点点>KL，每天进步一点点</a></li></ul></section><section class=widget><h3 class=widget-title>其它</h3><ul class=widget-list><li><a href=http://leaver.me/index.xml>文章 RSS</a></li></ul></section></div></div></div></div><footer id=footer><div class=container>&copy; 2020 <a href=http://leaver.me/>bystander's blog By bystander</a>.
-Powered by <a rel="nofollow noreferer noopener" href=https://gohugo.io target=_blank>Hugo</a>.
-<a href=https://www.flysnow.org/ target=_blank>Theme</a> based on <a href=https://github.com/flysnow-org/maupassant-hugo target=_blank>maupassant</a>.</div></footer><a id=rocket href=#top></a><script type=text/javascript src="/js/totop.js?v=0.0.0" async></script><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-30961201-3','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></body></html>
+<!doctype html><html lang=zh-cn itemscope itemtype=http://schema.org/WebPage><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><title>学习笔记 · bystander's blog</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta name=MobileOptimized content="width"><meta name=HandheldFriendly content="true"><meta name=applicable-device content="pc,mobile"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=mobile-web-app-capable content="yes"><meta name=author content="bystander"><meta name=description content="寻找窄门"><meta name=generator content="Hugo 0.62.2"><link rel=canonical href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/><link href=/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.xml rel=alternate type=application/rss+xml title="bystander's blog"><link rel=icon href=/favicon.ico><link rel=stylesheet href=/sass/jane.min.0995afa14b62cd93e93cfc066b646c4c17a3eddca0e9d52a1d9dcf5d90aaacd3.css integrity="sha256-CZWvoUtizZPpPPwGa2RsTBej7dyg6dUqHZ3PXZCqrNM=" media=screen crossorigin=anonymous><meta property="og:title" content="学习笔记"><meta property="og:description" content="寻找窄门"><meta property="og:type" content="website"><meta property="og:url" content="http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><meta property="og:updated_time" content="2020-01-10T07:55:18+08:00"><meta itemprop=name content="学习笔记"><meta itemprop=description content="寻找窄门"><meta name=twitter:card content="summary"><meta name=twitter:title content="学习笔记"><meta name=twitter:description content="寻找窄门"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-30961201-3','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>bystander's blog</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><li class=mobile-menu-item><a class=menu-item-link href=http://leaver.me/>主页</a></li><li class=mobile-menu-item><a class=menu-item-link href=http://leaver.me/post/>归档</a></li><li class=mobile-menu-item><a class=menu-item-link href=http://leaver.me/tags/>标签</a></li><li class=mobile-menu-item><a class=menu-item-link href=http://leaver.me/categories/>目录</a></li><li class=mobile-menu-item><a class=menu-item-link href=http://leaver.me/about/>关于我</a></li></ul></nav><link rel=stylesheet href=/lib/photoswipe/photoswipe.min.css><link rel=stylesheet href=/lib/photoswipe/default-skin/default-skin.min.css><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header id=header class="header container"><div class=logo-wrapper><a href=/ class=logo>bystander's blog</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=http://leaver.me/>主页</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/post/>归档</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/tags/>标签</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/categories/>目录</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/about/>关于我</a></li></ul></nav></header><div id=mobile-panel><main id=main class="main bg-llight"><div class=content-wrapper><div id=content class="content container"><section id=archive class=archive><div class=archive-post><time datetime=2013-04-05 class=archive-post-time>2013-04-05</time>
+<span class=archive-post-title><a href=/2013/04/05/%E5%92%8C-%E6%B5%85%E6%9E%90/ class=archive-post-link>和
+浅析</a></span></div><div class=archive-post><time datetime=2013-03-03 class=archive-post-time>2013-03-03</time>
+<span class=archive-post-title><a href=/2013/03/03/%E8%AF%A6%E7%BB%86%E8%AE%B2%E8%A7%A3%E5%8F%8C%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5/ class=archive-post-link>详细讲解双查询注入</a></span></div><div class=archive-post><time datetime=2013-03-01 class=archive-post-time>2013-03-01</time>
+<span class=archive-post-title><a href=/2013/03/01/c#%E4%B8%AD%E7%9A%84debug%E7%B1%BB/ class=archive-post-link>C#中的Debug类</a></span></div><div class=archive-post><time datetime=2013-02-26 class=archive-post-time>2013-02-26</time>
+<span class=archive-post-title><a href=/2013/02/26/%E6%B6%88%E8%B4%B9%E8%80%85%E8%A1%8C%E4%B8%BA%E5%AD%A6/ class=archive-post-link>消费者行为学</a></span></div><div class=archive-post><time datetime=2013-02-21 class=archive-post-time>2013-02-21</time>
+<span class=archive-post-title><a href=/2013/02/21/c#%E5%8F%8D%E5%B0%84%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E6%8F%92%E4%BB%B6%E7%B3%BB%E7%BB%9F/ class=archive-post-link>C#反射实现简单的插件系统</a></span></div><div class=archive-post><time datetime=2013-02-02 class=archive-post-time>2013-02-02</time>
+<span class=archive-post-title><a href=/2013/02/02/%E5%88%A9%E7%94%A8%E5%8F%8D%E5%B0%84%E8%BD%AC%E6%8D%A2%E5%AF%B9%E8%B1%A1list%E5%88%B0csv/ class=archive-post-link>利用反射转换对象list到csv</a></span></div><div class=archive-post><time datetime=2013-02-02 class=archive-post-time>2013-02-02</time>
+<span class=archive-post-title><a href=/2013/02/02/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%AD%BB%E9%94%81%E5%92%8C%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/ class=archive-post-link>操作系统的死锁和内存管理</a></span></div><div class=archive-post><time datetime=2013-02-01 class=archive-post-time>2013-02-01</time>
+<span class=archive-post-title><a href=/2013/02/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/ class=archive-post-link>操作系统中的输入输出</a></span></div><div class=archive-post><time datetime=2013-01-31 class=archive-post-time>2013-01-31</time>
+<span class=archive-post-title><a href=/2013/01/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/ class=archive-post-link>操作系统中的文件系统</a></span></div><div class=archive-post><time datetime=2013-01-30 class=archive-post-time>2013-01-30</time>
+<span class=archive-post-title><a href=/2013/01/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95/ class=archive-post-link>操作系统中的页面置换算法</a></span></div></section><nav class=pagination><ul><li><a href=/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/>««</a></li><li><a href=/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/8/>«</a></li><li><a href=/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/3/>3</a></li><li><a href=/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/4/>4</a></li><li><a href=/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/5/>5</a></li><li><a href=/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/6/>6</a></li><li><a href=/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/7/>7</a></li><li><a href=/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/8/>8</a></li><li class=active><a href=/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/9/>9</a></li><li><a href=/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/10/>10</a></li><li><a href=/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/11/>11</a></li><li><a href=/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/12/>12</a></li><li><a href=/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/13/>13</a></li><li><a href=/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/14/>14</a></li><li><a href=/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/15/>15</a></li><li><a href=/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/10/>»</a></li><li><a href=/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/page/19/>»»</a></li></ul></nav></div></div></main><footer id=footer class=footer><div class=icon-links><a href=https://github.com/leizhiyuan rel="me noopener" class=iconfont title=github target=_blank><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="36" height="36"><path d="M512 12.672c-282.88.0-512 229.248-512 512 0 226.261333 146.688 418.133333 350.08 485.76 25.6 4.821333 34.986667-11.008 34.986667-24.618667.0-12.16-.426667-44.373333-.64-87.04-142.421333 30.890667-172.458667-68.693333-172.458667-68.693333C188.672 770.986667 155.008 755.2 155.008 755.2c-46.378667-31.744 3.584-31.104 3.584-31.104 51.413333 3.584 78.421333 52.736 78.421333 52.736 45.653333 78.293333 119.850667 55.68 149.12 42.581333 4.608-33.109333 17.792-55.68 32.426667-68.48-113.706667-12.8-233.216-56.832-233.216-253.013333.0-55.893333 19.84-101.546667 52.693333-137.386667-5.76-12.928-23.04-64.981333 4.48-135.509333.0.0 42.88-13.738667 140.8 52.48 40.96-11.392 84.48-17.024 128-17.28 43.52.256 87.04 5.888 128 17.28 97.28-66.218667 140.16-52.48 140.16-52.48 27.52 70.528 10.24 122.581333 5.12 135.509333 32.64 35.84 52.48 81.493333 52.48 137.386667.0 196.693333-119.68 240-233.6 252.586667 17.92 15.36 34.56 46.762667 34.56 94.72.0 68.522667-.64 123.562667-.64 140.202666.0 13.44 8.96 29.44 35.2 24.32C877.44 942.592 1024 750.592 1024 524.672c0-282.752-229.248-512-512-512"/></svg></a><a href=http://leaver.me/index.xml rel="noopener alternate" type=application/rss+xml class=iconfont title=rss target=_blank><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30"><path d="M819.157333 1024C819.157333 574.592 449.408 204.8.0 204.8V0c561.706667.0 1024 462.293333 1024 1024H819.157333zM140.416 743.04a140.8 140.8.0 01140.501333 140.586667A140.928 140.928.0 01140.074667 1024C62.72 1024 0 961.109333.0 883.626667S62.933333 743.082667 140.416 743.04zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352.0 678.784 306.517333 678.784 678.826667z"/></svg></a></div><div class=copyright><span class=power-by>Powered by <a class=hexo-link href=https://gohugo.io>Hugo</a></span>
+<span class=division>|</span>
+<span class=theme-info>Theme - <a class=theme-link href=https://github.com/xianmin/hugo-theme-jane>Jane</a></span>
+<span class=copyright-year>&copy;
+2012 -
+2020
+<span class=heart><i class=iconfont><svg class="icon" viewBox="0 0 1025 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="14" height="14"><path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7.0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1.0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2.0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3.1-42.5-8-83.6-24-122.2z" fill="#8a8a8a"/></svg></i></span><span class=author>bystander</span></span></div></footer><div class=back-to-top id=back-to-top><i class=iconfont><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="35" height="35"><path d="M510.866688 227.694839 95.449397 629.218702h235.761562L329.15309 958.01517h362.40389L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777h894.052392v131.813095H63.840492V63.962777zm0 0"/></svg></i></div></div><script type=text/javascript src=/lib/jquery/jquery-3.2.1.min.js></script><script type=text/javascript src=/lib/slideout/slideout-1.0.1.min.js></script><script type=text/javascript src=/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin=anonymous></script><script type=text/javascript src=/js/load-photoswipe.js></script><script type=text/javascript src=/lib/photoswipe/photoswipe.min.js></script><script type=text/javascript src=/lib/photoswipe/photoswipe-ui-default.min.js></script></body></html>

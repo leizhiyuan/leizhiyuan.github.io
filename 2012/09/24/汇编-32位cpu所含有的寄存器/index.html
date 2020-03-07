@@ -1,7 +1,181 @@
-<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><title>汇编-32位CPU所含有的寄存器 | bystander's blog</title><meta property="og:title" content="汇编-32位CPU所含有的寄存器 - bystander's blog"><meta property="og:type" content="article"><meta property="article:published_time" content="2012-09-24T08:02:36+08:00"><meta property="article:modified_time" content="2012-09-24T08:02:36+08:00"><meta name=Keywords content><meta name=description content="汇编-32位CPU所含有的寄存器"><meta name=author content="bystander"><meta property="og:url" content="http://leaver.me/2012/09/24/%E6%B1%87%E7%BC%96-32%E4%BD%8Dcpu%E6%89%80%E5%90%AB%E6%9C%89%E7%9A%84%E5%AF%84%E5%AD%98%E5%99%A8/"><link rel="shortcut icon" href=/favicon.ico type=image/x-icon><link rel=stylesheet href=/css/normalize.css><link rel=stylesheet href=/css/style.css><script type=text/javascript src=//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js></script></head><body><header id=header class=clearfix><div class=container><div class=col-group><div class=site-name><a id=logo href=http://leaver.me/>bystander's blog</a><p class=description>寻找窄门</p></div><div><nav id=nav-menu class=clearfix><a class=current href=http://leaver.me/>首页</a>
-<a href=http://leaver.me/categories title=目录>目录</a>
-<a href=http://leaver.me/about/ title=关于我>关于我</a></nav></div></div></div></header><div id=body><div class=container><div class=col-group><div class=col-8 id=main><div class=res-cons><article class=post><header><h1 class=post-title>汇编-32位CPU所含有的寄存器</h1></header><date class="post-meta meta-date">2012年9月24日</date><div class=post-meta><span>|</span>
-<span class=meta-category><a href=http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F>文章收藏</a></span></div><div class=post-content><p>今年的课程有汇编。真为校领导的智商捉鸡。。不过还是要学的。分享一篇来自<a href=http://blog.minidx.com/2007/12/10/233.html>中文FLEX例子</a>的汇编寄存器的文章。很不错的一篇寄存器详解的文章。文章最后是我找到的一个汇编指令助手。</p><p>　　4个数据寄存器(EAX、EBX、ECX和EDX)　　
+<!doctype html><html lang=zh-cn itemscope itemtype=http://schema.org/WebPage><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><title>汇编-32位CPU所含有的寄存器 - bystander's blog</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta name=MobileOptimized content="width"><meta name=HandheldFriendly content="true"><meta name=applicable-device content="pc,mobile"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=mobile-web-app-capable content="yes"><meta name=author content="bystander"><meta name=description content="今年的课程有汇编。真为校领导的智商捉鸡。。不过还是要学的。分享一篇来自中文FLEX例子的汇编寄存器的文章。很不错的一篇寄存器详解的文章。文章最后是我找到的一个汇编指令助手。
+　4个数据寄存器(EAX、EBX、ECX和EDX)　2个变址和指针寄存器(ESI和EDI) 2个指针寄存器(ESP和EBP) 6个段寄存器(ES、CS、SS、DS、FS和GS) 1个指令指针寄存器(EIP) 1个标志寄存器(EFlags)
+1、数据寄存器 　数据寄存器主要用来保存操作数和运算结果等信息，从而节省读取操作数所需占用总线和访问存储器的时间。32位CPU有4个32位的通用寄存器EAX、EBX、ECX和EDX。对低16位数据的存取，不会影响高16位的数据。这些低16位寄存器分别命名为：AX、BX、CX和DX，它和先前的CPU中的寄存器相一致。
+　4个16位寄存器又可分割成8个独立的8位寄存器(AX：AH-AL、BX：BH-BL、CX：CH-CL、DX：DH-DL)，每个寄存器都有自己的名称，可独立存取。程序员可利用数据寄存器的这种”可分可合”的特性，灵活地处理字/字节的信息。
+　寄存器AX和AL通常称为累加器(Accumulator)，用累加器进行的操作可能需要更少时间。累加器可用于乘、 除、输入/输出等操作，它们的使用频率很高； 寄存器BX称为基地址寄存器(Base Register)。它可作为存储器指针来使用； 寄存器CX称为计数寄存器(Count Register)。在循环和字符串操作时，要用它来控制循环次数；在位操作 中，当移多位时，要用CL来指明移位的位数；
+　寄存器DX称为数据寄存器(Data Register)。在进行乘、除运算时，它可作为默认的操作数参与运算，也 可用于存放I/O的端口地址。在16位CPU中，AX、BX、CX和DX不能作为基址和变址寄存器来存放存储单元的地址，但在32位CPU中，其32位寄存器EAX、EBX、ECX和EDX不仅可传送数据、暂存数据保存算术逻辑运算结果，而且也可作为指针寄存器，所以，这些32位寄存器更具有通用性。
+2、变址寄存器 　32位CPU有2个32位通用寄存器ESI和EDI。其低16位对应先前CPU中的SI和DI，对低16位数据的存取，不影响高16位的数据。
+　寄存器ESI、EDI、SI和DI称为变址寄存器(Index Register)，它们主要用于存放存储单元在段内的偏移量，用它们可实现多种存储器操作数的寻址方式，为以不同的地址形式访问存储单元提供方便。变址寄存器不可分割成8位寄存器。作为通用寄存器，也可存储算术逻辑运算的操作数和运算结果。它们可作一般的存储器指针使用。在字符串操作指令的执行过程中，对它们有特定的要求，而且还具有特殊的功能。
+3、指针寄存器 　32位CPU有2个32位通用寄存器EBP和ESP。其低16位对应先前CPU中的SBP和SP，对低16位数据的存取，不影响高16位的数据。
+　寄存器EBP、ESP、BP和SP称为指针寄存器(Pointer Register)，主要用于存放堆栈内存储单元的偏移量，用它们可实现多种存储器操作数的寻址方式，为以不同的地址形式访问存储单元提供方便。指针寄存器不可分割成8位寄存器。作为通用寄存器，也可存储算术逻辑运算的操作数和运算结果。
+　它们主要用于访问堆栈内的存储单元，并且规定：
+　BP为基指针(Base Pointer)寄存器，用它可直接存取堆栈中的数据；
+　SP为堆栈指针(Stack Pointer)寄存器，用它只可访问栈顶。
+4、段寄存器 　段寄存器是根据内存分段的管理模式而设置的。内存单元的物理地址由段寄存器的值和一个偏移量组合而成
+　的，这样可用两个较少位数的值组合成一个可访问较大物理空间的内存地址。
+　CPU内部的段寄存器：
+　CS——代码段寄存器(Code Segment Register)，其值为代码段的段值； DS——数据段寄存器(Data Segment Register)，其值为数据段的段值；　ES——附加段寄存器(Extra Segment Register)，其值为附加数据段的段值； SS——堆栈段寄存器(Stack Segment Register)，其值为堆栈段的段值； FS——附加段寄存器(Extra Segment Register)，其值为附加数据段的段值； GS——附加段寄存器(Extra Segment Register)，其值为附加数据段的段值。
+　在16位CPU系统中，它只有4个段寄存器，所以，程序在任何时刻至多有4个正在使用的段可直接访问；在32位微机系统中，它有6个段寄存器，所以，在此环境下开发的程序最多可同时访问6个段。32位CPU有两个不同的工作方式：实方式和保护方式。在每种方式下，段寄存器的作用是不同的。有关规定简单描述如下：
+　实方式： 前4个段寄存器CS、DS、ES和SS与先前CPU中的所对应的段寄存器的含义完全一致，内存单元的逻辑地址仍为”段值：偏移量”的形式。为访问某内存段内的数据，必须使用该段寄存器和存储单元的偏移量。
+　保护方式： 在此方式下，情况要复杂得多，装入段寄存器的不再是段值，而是称为”选择子”(Selector)的某个值。
+5、指令指针寄存器 　32位CPU把指令指针扩展到32位，并记作EIP，EIP的低16位与先前CPU中的IP作用相同。
+　指令指针EIP、IP(Instruction Pointer)是存放下次将要执行的指令在代码段的偏移量。在具有预取指令功能的系统中，下次要执行的指令通常已被预取到指令队列中，除非发生转移情况。所以，在理解它们的功能时，不考虑存在指令队列的情况。
+　在实方式下，由于每个段的最大范围为64K，所以，EIP中的高16位肯定都为0，此时，相当于只用其低16位的IP来反映程序中指令的执行次序。
+6、标志寄存器 　一、运算结果标志位
+　1、进位标志CF(Carry Flag)
+　进位标志CF主要用来反映运算是否产生进位或借位。如果运算结果的最高位产生了一个进位或借位，那么，其值为1，否则其值为0。使用该标志位的情况有：多字(字节)数的加减运算，无符号数的大小比较运算，移位操作，字(字节)之间移位，专门改变CF值的指令等。
+　2、奇偶标志PF(Parity Flag)
+　奇偶标志PF用于反映运算结果中”1″的个数的奇偶性。如果”1″的个数为偶数，则PF的值为1，否则其值为0。
+　利用PF可进行奇偶校验检查，或产生奇偶校验位。在数据传送过程中，为了提供传送的可靠性，如果采用奇偶校验的方法，就可使用该标志位。
+　3、辅助进位标志AF(Auxiliary Carry Flag)
+　在发生下列情况时，辅助进位标志AF的值被置为1，否则其值为0：
+　(1)、在字操作时，发生低字节向高字节进位或借位时；　(2)、在字节操作时，发生低4位向高4位进位或借位时。
+　对以上6个运算结果标志位，在一般编程情况下，标志位CF、ZF、SF和OF的使用频率较高，而标志位PF和AF的使用频率较低。
+　4、零标志ZF(Zero Flag)
+　零标志ZF用来反映运算结果是否为0。如果运算结果为0，则其值为1，否则其值为0。在判断运算结果是否为0时，可使用此标志位。
+　5、符号标志SF(Sign Flag)
+　符号标志SF用来反映运算结果的符号位，它与运算结果的最高位相同。在微机系统中，有符号数采用补码表示法，所以，SF也就反映运算结果的正负号。运算结果为正数时，SF的值为0，否则其值为1。
+　6、溢出标志OF(Overflow Flag)
+　溢出标志OF用于反映有符号数加减运算所得结果是否溢出。如果运算结果超过当前运算位数所能表示的范围，则称为溢出，OF的值被置为1，否则，OF的值被清为0。”溢出”和”进位”是两个不同含义的概念，不要混淆。如果不太清楚的话，请查阅《计算机组成原理》课程中的有关章节。
+　二、状态控制标志位
+　状态控制标志位是用来控制CPU操作的，它们要通过专门的指令才能使之发生改变。
+　1、追踪标志TF(Trap Flag)
+　当追踪标志TF被置为1时，CPU进入单步执行方式，即每执行一条指令，产生一个单步中断请求。这种方式主要用于程序的调试。指令系统中没有专门的指令来改变标志位TF的值，但程序员可用其它办法来改变其值。
+　2、中断允许标志IF(Interrupt-enable Flag)"><meta name=generator content="Hugo 0.62.2"><link rel=canonical href=http://leaver.me/2012/09/24/%E6%B1%87%E7%BC%96-32%E4%BD%8Dcpu%E6%89%80%E5%90%AB%E6%9C%89%E7%9A%84%E5%AF%84%E5%AD%98%E5%99%A8/><link rel=icon href=/favicon.ico><link rel=stylesheet href=/sass/jane.min.0995afa14b62cd93e93cfc066b646c4c17a3eddca0e9d52a1d9dcf5d90aaacd3.css integrity="sha256-CZWvoUtizZPpPPwGa2RsTBej7dyg6dUqHZ3PXZCqrNM=" media=screen crossorigin=anonymous><meta property="og:title" content="汇编-32位CPU所含有的寄存器"><meta property="og:description" content="今年的课程有汇编。真为校领导的智商捉鸡。。不过还是要学的。分享一篇来自中文FLEX例子的汇编寄存器的文章。很不错的一篇寄存器详解的文章。文章最后是我找到的一个汇编指令助手。
+　4个数据寄存器(EAX、EBX、ECX和EDX)　2个变址和指针寄存器(ESI和EDI) 2个指针寄存器(ESP和EBP) 6个段寄存器(ES、CS、SS、DS、FS和GS) 1个指令指针寄存器(EIP) 1个标志寄存器(EFlags)
+1、数据寄存器 　数据寄存器主要用来保存操作数和运算结果等信息，从而节省读取操作数所需占用总线和访问存储器的时间。32位CPU有4个32位的通用寄存器EAX、EBX、ECX和EDX。对低16位数据的存取，不会影响高16位的数据。这些低16位寄存器分别命名为：AX、BX、CX和DX，它和先前的CPU中的寄存器相一致。
+　4个16位寄存器又可分割成8个独立的8位寄存器(AX：AH-AL、BX：BH-BL、CX：CH-CL、DX：DH-DL)，每个寄存器都有自己的名称，可独立存取。程序员可利用数据寄存器的这种”可分可合”的特性，灵活地处理字/字节的信息。
+　寄存器AX和AL通常称为累加器(Accumulator)，用累加器进行的操作可能需要更少时间。累加器可用于乘、 除、输入/输出等操作，它们的使用频率很高； 寄存器BX称为基地址寄存器(Base Register)。它可作为存储器指针来使用； 寄存器CX称为计数寄存器(Count Register)。在循环和字符串操作时，要用它来控制循环次数；在位操作 中，当移多位时，要用CL来指明移位的位数；
+　寄存器DX称为数据寄存器(Data Register)。在进行乘、除运算时，它可作为默认的操作数参与运算，也 可用于存放I/O的端口地址。在16位CPU中，AX、BX、CX和DX不能作为基址和变址寄存器来存放存储单元的地址，但在32位CPU中，其32位寄存器EAX、EBX、ECX和EDX不仅可传送数据、暂存数据保存算术逻辑运算结果，而且也可作为指针寄存器，所以，这些32位寄存器更具有通用性。
+2、变址寄存器 　32位CPU有2个32位通用寄存器ESI和EDI。其低16位对应先前CPU中的SI和DI，对低16位数据的存取，不影响高16位的数据。
+　寄存器ESI、EDI、SI和DI称为变址寄存器(Index Register)，它们主要用于存放存储单元在段内的偏移量，用它们可实现多种存储器操作数的寻址方式，为以不同的地址形式访问存储单元提供方便。变址寄存器不可分割成8位寄存器。作为通用寄存器，也可存储算术逻辑运算的操作数和运算结果。它们可作一般的存储器指针使用。在字符串操作指令的执行过程中，对它们有特定的要求，而且还具有特殊的功能。
+3、指针寄存器 　32位CPU有2个32位通用寄存器EBP和ESP。其低16位对应先前CPU中的SBP和SP，对低16位数据的存取，不影响高16位的数据。
+　寄存器EBP、ESP、BP和SP称为指针寄存器(Pointer Register)，主要用于存放堆栈内存储单元的偏移量，用它们可实现多种存储器操作数的寻址方式，为以不同的地址形式访问存储单元提供方便。指针寄存器不可分割成8位寄存器。作为通用寄存器，也可存储算术逻辑运算的操作数和运算结果。
+　它们主要用于访问堆栈内的存储单元，并且规定：
+　BP为基指针(Base Pointer)寄存器，用它可直接存取堆栈中的数据；
+　SP为堆栈指针(Stack Pointer)寄存器，用它只可访问栈顶。
+4、段寄存器 　段寄存器是根据内存分段的管理模式而设置的。内存单元的物理地址由段寄存器的值和一个偏移量组合而成
+　的，这样可用两个较少位数的值组合成一个可访问较大物理空间的内存地址。
+　CPU内部的段寄存器：
+　CS——代码段寄存器(Code Segment Register)，其值为代码段的段值； DS——数据段寄存器(Data Segment Register)，其值为数据段的段值；　ES——附加段寄存器(Extra Segment Register)，其值为附加数据段的段值； SS——堆栈段寄存器(Stack Segment Register)，其值为堆栈段的段值； FS——附加段寄存器(Extra Segment Register)，其值为附加数据段的段值； GS——附加段寄存器(Extra Segment Register)，其值为附加数据段的段值。
+　在16位CPU系统中，它只有4个段寄存器，所以，程序在任何时刻至多有4个正在使用的段可直接访问；在32位微机系统中，它有6个段寄存器，所以，在此环境下开发的程序最多可同时访问6个段。32位CPU有两个不同的工作方式：实方式和保护方式。在每种方式下，段寄存器的作用是不同的。有关规定简单描述如下：
+　实方式： 前4个段寄存器CS、DS、ES和SS与先前CPU中的所对应的段寄存器的含义完全一致，内存单元的逻辑地址仍为”段值：偏移量”的形式。为访问某内存段内的数据，必须使用该段寄存器和存储单元的偏移量。
+　保护方式： 在此方式下，情况要复杂得多，装入段寄存器的不再是段值，而是称为”选择子”(Selector)的某个值。
+5、指令指针寄存器 　32位CPU把指令指针扩展到32位，并记作EIP，EIP的低16位与先前CPU中的IP作用相同。
+　指令指针EIP、IP(Instruction Pointer)是存放下次将要执行的指令在代码段的偏移量。在具有预取指令功能的系统中，下次要执行的指令通常已被预取到指令队列中，除非发生转移情况。所以，在理解它们的功能时，不考虑存在指令队列的情况。
+　在实方式下，由于每个段的最大范围为64K，所以，EIP中的高16位肯定都为0，此时，相当于只用其低16位的IP来反映程序中指令的执行次序。
+6、标志寄存器 　一、运算结果标志位
+　1、进位标志CF(Carry Flag)
+　进位标志CF主要用来反映运算是否产生进位或借位。如果运算结果的最高位产生了一个进位或借位，那么，其值为1，否则其值为0。使用该标志位的情况有：多字(字节)数的加减运算，无符号数的大小比较运算，移位操作，字(字节)之间移位，专门改变CF值的指令等。
+　2、奇偶标志PF(Parity Flag)
+　奇偶标志PF用于反映运算结果中”1″的个数的奇偶性。如果”1″的个数为偶数，则PF的值为1，否则其值为0。
+　利用PF可进行奇偶校验检查，或产生奇偶校验位。在数据传送过程中，为了提供传送的可靠性，如果采用奇偶校验的方法，就可使用该标志位。
+　3、辅助进位标志AF(Auxiliary Carry Flag)
+　在发生下列情况时，辅助进位标志AF的值被置为1，否则其值为0：
+　(1)、在字操作时，发生低字节向高字节进位或借位时；　(2)、在字节操作时，发生低4位向高4位进位或借位时。
+　对以上6个运算结果标志位，在一般编程情况下，标志位CF、ZF、SF和OF的使用频率较高，而标志位PF和AF的使用频率较低。
+　4、零标志ZF(Zero Flag)
+　零标志ZF用来反映运算结果是否为0。如果运算结果为0，则其值为1，否则其值为0。在判断运算结果是否为0时，可使用此标志位。
+　5、符号标志SF(Sign Flag)
+　符号标志SF用来反映运算结果的符号位，它与运算结果的最高位相同。在微机系统中，有符号数采用补码表示法，所以，SF也就反映运算结果的正负号。运算结果为正数时，SF的值为0，否则其值为1。
+　6、溢出标志OF(Overflow Flag)
+　溢出标志OF用于反映有符号数加减运算所得结果是否溢出。如果运算结果超过当前运算位数所能表示的范围，则称为溢出，OF的值被置为1，否则，OF的值被清为0。”溢出”和”进位”是两个不同含义的概念，不要混淆。如果不太清楚的话，请查阅《计算机组成原理》课程中的有关章节。
+　二、状态控制标志位
+　状态控制标志位是用来控制CPU操作的，它们要通过专门的指令才能使之发生改变。
+　1、追踪标志TF(Trap Flag)
+　当追踪标志TF被置为1时，CPU进入单步执行方式，即每执行一条指令，产生一个单步中断请求。这种方式主要用于程序的调试。指令系统中没有专门的指令来改变标志位TF的值，但程序员可用其它办法来改变其值。
+　2、中断允许标志IF(Interrupt-enable Flag)"><meta property="og:type" content="article"><meta property="og:url" content="http://leaver.me/2012/09/24/%E6%B1%87%E7%BC%96-32%E4%BD%8Dcpu%E6%89%80%E5%90%AB%E6%9C%89%E7%9A%84%E5%AF%84%E5%AD%98%E5%99%A8/"><meta property="article:published_time" content="2012-09-24T08:02:36+00:00"><meta property="article:modified_time" content="2012-09-24T08:02:36+00:00"><meta itemprop=name content="汇编-32位CPU所含有的寄存器"><meta itemprop=description content="今年的课程有汇编。真为校领导的智商捉鸡。。不过还是要学的。分享一篇来自中文FLEX例子的汇编寄存器的文章。很不错的一篇寄存器详解的文章。文章最后是我找到的一个汇编指令助手。
+　4个数据寄存器(EAX、EBX、ECX和EDX)　2个变址和指针寄存器(ESI和EDI) 2个指针寄存器(ESP和EBP) 6个段寄存器(ES、CS、SS、DS、FS和GS) 1个指令指针寄存器(EIP) 1个标志寄存器(EFlags)
+1、数据寄存器 　数据寄存器主要用来保存操作数和运算结果等信息，从而节省读取操作数所需占用总线和访问存储器的时间。32位CPU有4个32位的通用寄存器EAX、EBX、ECX和EDX。对低16位数据的存取，不会影响高16位的数据。这些低16位寄存器分别命名为：AX、BX、CX和DX，它和先前的CPU中的寄存器相一致。
+　4个16位寄存器又可分割成8个独立的8位寄存器(AX：AH-AL、BX：BH-BL、CX：CH-CL、DX：DH-DL)，每个寄存器都有自己的名称，可独立存取。程序员可利用数据寄存器的这种”可分可合”的特性，灵活地处理字/字节的信息。
+　寄存器AX和AL通常称为累加器(Accumulator)，用累加器进行的操作可能需要更少时间。累加器可用于乘、 除、输入/输出等操作，它们的使用频率很高； 寄存器BX称为基地址寄存器(Base Register)。它可作为存储器指针来使用； 寄存器CX称为计数寄存器(Count Register)。在循环和字符串操作时，要用它来控制循环次数；在位操作 中，当移多位时，要用CL来指明移位的位数；
+　寄存器DX称为数据寄存器(Data Register)。在进行乘、除运算时，它可作为默认的操作数参与运算，也 可用于存放I/O的端口地址。在16位CPU中，AX、BX、CX和DX不能作为基址和变址寄存器来存放存储单元的地址，但在32位CPU中，其32位寄存器EAX、EBX、ECX和EDX不仅可传送数据、暂存数据保存算术逻辑运算结果，而且也可作为指针寄存器，所以，这些32位寄存器更具有通用性。
+2、变址寄存器 　32位CPU有2个32位通用寄存器ESI和EDI。其低16位对应先前CPU中的SI和DI，对低16位数据的存取，不影响高16位的数据。
+　寄存器ESI、EDI、SI和DI称为变址寄存器(Index Register)，它们主要用于存放存储单元在段内的偏移量，用它们可实现多种存储器操作数的寻址方式，为以不同的地址形式访问存储单元提供方便。变址寄存器不可分割成8位寄存器。作为通用寄存器，也可存储算术逻辑运算的操作数和运算结果。它们可作一般的存储器指针使用。在字符串操作指令的执行过程中，对它们有特定的要求，而且还具有特殊的功能。
+3、指针寄存器 　32位CPU有2个32位通用寄存器EBP和ESP。其低16位对应先前CPU中的SBP和SP，对低16位数据的存取，不影响高16位的数据。
+　寄存器EBP、ESP、BP和SP称为指针寄存器(Pointer Register)，主要用于存放堆栈内存储单元的偏移量，用它们可实现多种存储器操作数的寻址方式，为以不同的地址形式访问存储单元提供方便。指针寄存器不可分割成8位寄存器。作为通用寄存器，也可存储算术逻辑运算的操作数和运算结果。
+　它们主要用于访问堆栈内的存储单元，并且规定：
+　BP为基指针(Base Pointer)寄存器，用它可直接存取堆栈中的数据；
+　SP为堆栈指针(Stack Pointer)寄存器，用它只可访问栈顶。
+4、段寄存器 　段寄存器是根据内存分段的管理模式而设置的。内存单元的物理地址由段寄存器的值和一个偏移量组合而成
+　的，这样可用两个较少位数的值组合成一个可访问较大物理空间的内存地址。
+　CPU内部的段寄存器：
+　CS——代码段寄存器(Code Segment Register)，其值为代码段的段值； DS——数据段寄存器(Data Segment Register)，其值为数据段的段值；　ES——附加段寄存器(Extra Segment Register)，其值为附加数据段的段值； SS——堆栈段寄存器(Stack Segment Register)，其值为堆栈段的段值； FS——附加段寄存器(Extra Segment Register)，其值为附加数据段的段值； GS——附加段寄存器(Extra Segment Register)，其值为附加数据段的段值。
+　在16位CPU系统中，它只有4个段寄存器，所以，程序在任何时刻至多有4个正在使用的段可直接访问；在32位微机系统中，它有6个段寄存器，所以，在此环境下开发的程序最多可同时访问6个段。32位CPU有两个不同的工作方式：实方式和保护方式。在每种方式下，段寄存器的作用是不同的。有关规定简单描述如下：
+　实方式： 前4个段寄存器CS、DS、ES和SS与先前CPU中的所对应的段寄存器的含义完全一致，内存单元的逻辑地址仍为”段值：偏移量”的形式。为访问某内存段内的数据，必须使用该段寄存器和存储单元的偏移量。
+　保护方式： 在此方式下，情况要复杂得多，装入段寄存器的不再是段值，而是称为”选择子”(Selector)的某个值。
+5、指令指针寄存器 　32位CPU把指令指针扩展到32位，并记作EIP，EIP的低16位与先前CPU中的IP作用相同。
+　指令指针EIP、IP(Instruction Pointer)是存放下次将要执行的指令在代码段的偏移量。在具有预取指令功能的系统中，下次要执行的指令通常已被预取到指令队列中，除非发生转移情况。所以，在理解它们的功能时，不考虑存在指令队列的情况。
+　在实方式下，由于每个段的最大范围为64K，所以，EIP中的高16位肯定都为0，此时，相当于只用其低16位的IP来反映程序中指令的执行次序。
+6、标志寄存器 　一、运算结果标志位
+　1、进位标志CF(Carry Flag)
+　进位标志CF主要用来反映运算是否产生进位或借位。如果运算结果的最高位产生了一个进位或借位，那么，其值为1，否则其值为0。使用该标志位的情况有：多字(字节)数的加减运算，无符号数的大小比较运算，移位操作，字(字节)之间移位，专门改变CF值的指令等。
+　2、奇偶标志PF(Parity Flag)
+　奇偶标志PF用于反映运算结果中”1″的个数的奇偶性。如果”1″的个数为偶数，则PF的值为1，否则其值为0。
+　利用PF可进行奇偶校验检查，或产生奇偶校验位。在数据传送过程中，为了提供传送的可靠性，如果采用奇偶校验的方法，就可使用该标志位。
+　3、辅助进位标志AF(Auxiliary Carry Flag)
+　在发生下列情况时，辅助进位标志AF的值被置为1，否则其值为0：
+　(1)、在字操作时，发生低字节向高字节进位或借位时；　(2)、在字节操作时，发生低4位向高4位进位或借位时。
+　对以上6个运算结果标志位，在一般编程情况下，标志位CF、ZF、SF和OF的使用频率较高，而标志位PF和AF的使用频率较低。
+　4、零标志ZF(Zero Flag)
+　零标志ZF用来反映运算结果是否为0。如果运算结果为0，则其值为1，否则其值为0。在判断运算结果是否为0时，可使用此标志位。
+　5、符号标志SF(Sign Flag)
+　符号标志SF用来反映运算结果的符号位，它与运算结果的最高位相同。在微机系统中，有符号数采用补码表示法，所以，SF也就反映运算结果的正负号。运算结果为正数时，SF的值为0，否则其值为1。
+　6、溢出标志OF(Overflow Flag)
+　溢出标志OF用于反映有符号数加减运算所得结果是否溢出。如果运算结果超过当前运算位数所能表示的范围，则称为溢出，OF的值被置为1，否则，OF的值被清为0。”溢出”和”进位”是两个不同含义的概念，不要混淆。如果不太清楚的话，请查阅《计算机组成原理》课程中的有关章节。
+　二、状态控制标志位
+　状态控制标志位是用来控制CPU操作的，它们要通过专门的指令才能使之发生改变。
+　1、追踪标志TF(Trap Flag)
+　当追踪标志TF被置为1时，CPU进入单步执行方式，即每执行一条指令，产生一个单步中断请求。这种方式主要用于程序的调试。指令系统中没有专门的指令来改变标志位TF的值，但程序员可用其它办法来改变其值。
+　2、中断允许标志IF(Interrupt-enable Flag)"><meta itemprop=datePublished content="2012-09-24T08:02:36+00:00"><meta itemprop=dateModified content="2012-09-24T08:02:36+00:00"><meta itemprop=wordCount content="122"><meta itemprop=keywords content="大学,操作系统,收藏,汇编,软件,"><meta name=twitter:card content="summary"><meta name=twitter:title content="汇编-32位CPU所含有的寄存器"><meta name=twitter:description content="今年的课程有汇编。真为校领导的智商捉鸡。。不过还是要学的。分享一篇来自中文FLEX例子的汇编寄存器的文章。很不错的一篇寄存器详解的文章。文章最后是我找到的一个汇编指令助手。
+　4个数据寄存器(EAX、EBX、ECX和EDX)　2个变址和指针寄存器(ESI和EDI) 2个指针寄存器(ESP和EBP) 6个段寄存器(ES、CS、SS、DS、FS和GS) 1个指令指针寄存器(EIP) 1个标志寄存器(EFlags)
+1、数据寄存器 　数据寄存器主要用来保存操作数和运算结果等信息，从而节省读取操作数所需占用总线和访问存储器的时间。32位CPU有4个32位的通用寄存器EAX、EBX、ECX和EDX。对低16位数据的存取，不会影响高16位的数据。这些低16位寄存器分别命名为：AX、BX、CX和DX，它和先前的CPU中的寄存器相一致。
+　4个16位寄存器又可分割成8个独立的8位寄存器(AX：AH-AL、BX：BH-BL、CX：CH-CL、DX：DH-DL)，每个寄存器都有自己的名称，可独立存取。程序员可利用数据寄存器的这种”可分可合”的特性，灵活地处理字/字节的信息。
+　寄存器AX和AL通常称为累加器(Accumulator)，用累加器进行的操作可能需要更少时间。累加器可用于乘、 除、输入/输出等操作，它们的使用频率很高； 寄存器BX称为基地址寄存器(Base Register)。它可作为存储器指针来使用； 寄存器CX称为计数寄存器(Count Register)。在循环和字符串操作时，要用它来控制循环次数；在位操作 中，当移多位时，要用CL来指明移位的位数；
+　寄存器DX称为数据寄存器(Data Register)。在进行乘、除运算时，它可作为默认的操作数参与运算，也 可用于存放I/O的端口地址。在16位CPU中，AX、BX、CX和DX不能作为基址和变址寄存器来存放存储单元的地址，但在32位CPU中，其32位寄存器EAX、EBX、ECX和EDX不仅可传送数据、暂存数据保存算术逻辑运算结果，而且也可作为指针寄存器，所以，这些32位寄存器更具有通用性。
+2、变址寄存器 　32位CPU有2个32位通用寄存器ESI和EDI。其低16位对应先前CPU中的SI和DI，对低16位数据的存取，不影响高16位的数据。
+　寄存器ESI、EDI、SI和DI称为变址寄存器(Index Register)，它们主要用于存放存储单元在段内的偏移量，用它们可实现多种存储器操作数的寻址方式，为以不同的地址形式访问存储单元提供方便。变址寄存器不可分割成8位寄存器。作为通用寄存器，也可存储算术逻辑运算的操作数和运算结果。它们可作一般的存储器指针使用。在字符串操作指令的执行过程中，对它们有特定的要求，而且还具有特殊的功能。
+3、指针寄存器 　32位CPU有2个32位通用寄存器EBP和ESP。其低16位对应先前CPU中的SBP和SP，对低16位数据的存取，不影响高16位的数据。
+　寄存器EBP、ESP、BP和SP称为指针寄存器(Pointer Register)，主要用于存放堆栈内存储单元的偏移量，用它们可实现多种存储器操作数的寻址方式，为以不同的地址形式访问存储单元提供方便。指针寄存器不可分割成8位寄存器。作为通用寄存器，也可存储算术逻辑运算的操作数和运算结果。
+　它们主要用于访问堆栈内的存储单元，并且规定：
+　BP为基指针(Base Pointer)寄存器，用它可直接存取堆栈中的数据；
+　SP为堆栈指针(Stack Pointer)寄存器，用它只可访问栈顶。
+4、段寄存器 　段寄存器是根据内存分段的管理模式而设置的。内存单元的物理地址由段寄存器的值和一个偏移量组合而成
+　的，这样可用两个较少位数的值组合成一个可访问较大物理空间的内存地址。
+　CPU内部的段寄存器：
+　CS——代码段寄存器(Code Segment Register)，其值为代码段的段值； DS——数据段寄存器(Data Segment Register)，其值为数据段的段值；　ES——附加段寄存器(Extra Segment Register)，其值为附加数据段的段值； SS——堆栈段寄存器(Stack Segment Register)，其值为堆栈段的段值； FS——附加段寄存器(Extra Segment Register)，其值为附加数据段的段值； GS——附加段寄存器(Extra Segment Register)，其值为附加数据段的段值。
+　在16位CPU系统中，它只有4个段寄存器，所以，程序在任何时刻至多有4个正在使用的段可直接访问；在32位微机系统中，它有6个段寄存器，所以，在此环境下开发的程序最多可同时访问6个段。32位CPU有两个不同的工作方式：实方式和保护方式。在每种方式下，段寄存器的作用是不同的。有关规定简单描述如下：
+　实方式： 前4个段寄存器CS、DS、ES和SS与先前CPU中的所对应的段寄存器的含义完全一致，内存单元的逻辑地址仍为”段值：偏移量”的形式。为访问某内存段内的数据，必须使用该段寄存器和存储单元的偏移量。
+　保护方式： 在此方式下，情况要复杂得多，装入段寄存器的不再是段值，而是称为”选择子”(Selector)的某个值。
+5、指令指针寄存器 　32位CPU把指令指针扩展到32位，并记作EIP，EIP的低16位与先前CPU中的IP作用相同。
+　指令指针EIP、IP(Instruction Pointer)是存放下次将要执行的指令在代码段的偏移量。在具有预取指令功能的系统中，下次要执行的指令通常已被预取到指令队列中，除非发生转移情况。所以，在理解它们的功能时，不考虑存在指令队列的情况。
+　在实方式下，由于每个段的最大范围为64K，所以，EIP中的高16位肯定都为0，此时，相当于只用其低16位的IP来反映程序中指令的执行次序。
+6、标志寄存器 　一、运算结果标志位
+　1、进位标志CF(Carry Flag)
+　进位标志CF主要用来反映运算是否产生进位或借位。如果运算结果的最高位产生了一个进位或借位，那么，其值为1，否则其值为0。使用该标志位的情况有：多字(字节)数的加减运算，无符号数的大小比较运算，移位操作，字(字节)之间移位，专门改变CF值的指令等。
+　2、奇偶标志PF(Parity Flag)
+　奇偶标志PF用于反映运算结果中”1″的个数的奇偶性。如果”1″的个数为偶数，则PF的值为1，否则其值为0。
+　利用PF可进行奇偶校验检查，或产生奇偶校验位。在数据传送过程中，为了提供传送的可靠性，如果采用奇偶校验的方法，就可使用该标志位。
+　3、辅助进位标志AF(Auxiliary Carry Flag)
+　在发生下列情况时，辅助进位标志AF的值被置为1，否则其值为0：
+　(1)、在字操作时，发生低字节向高字节进位或借位时；　(2)、在字节操作时，发生低4位向高4位进位或借位时。
+　对以上6个运算结果标志位，在一般编程情况下，标志位CF、ZF、SF和OF的使用频率较高，而标志位PF和AF的使用频率较低。
+　4、零标志ZF(Zero Flag)
+　零标志ZF用来反映运算结果是否为0。如果运算结果为0，则其值为1，否则其值为0。在判断运算结果是否为0时，可使用此标志位。
+　5、符号标志SF(Sign Flag)
+　符号标志SF用来反映运算结果的符号位，它与运算结果的最高位相同。在微机系统中，有符号数采用补码表示法，所以，SF也就反映运算结果的正负号。运算结果为正数时，SF的值为0，否则其值为1。
+　6、溢出标志OF(Overflow Flag)
+　溢出标志OF用于反映有符号数加减运算所得结果是否溢出。如果运算结果超过当前运算位数所能表示的范围，则称为溢出，OF的值被置为1，否则，OF的值被清为0。”溢出”和”进位”是两个不同含义的概念，不要混淆。如果不太清楚的话，请查阅《计算机组成原理》课程中的有关章节。
+　二、状态控制标志位
+　状态控制标志位是用来控制CPU操作的，它们要通过专门的指令才能使之发生改变。
+　1、追踪标志TF(Trap Flag)
+　当追踪标志TF被置为1时，CPU进入单步执行方式，即每执行一条指令，产生一个单步中断请求。这种方式主要用于程序的调试。指令系统中没有专门的指令来改变标志位TF的值，但程序员可用其它办法来改变其值。
+　2、中断允许标志IF(Interrupt-enable Flag)"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-30961201-3','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>bystander's blog</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><li class=mobile-menu-item><a class=menu-item-link href=http://leaver.me/>主页</a></li><li class=mobile-menu-item><a class=menu-item-link href=http://leaver.me/post/>归档</a></li><li class=mobile-menu-item><a class=menu-item-link href=http://leaver.me/tags/>标签</a></li><li class=mobile-menu-item><a class=menu-item-link href=http://leaver.me/categories/>目录</a></li><li class=mobile-menu-item><a class=menu-item-link href=http://leaver.me/about/>关于我</a></li></ul></nav><link rel=stylesheet href=/lib/photoswipe/photoswipe.min.css><link rel=stylesheet href=/lib/photoswipe/default-skin/default-skin.min.css><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header id=header class="header container"><div class=logo-wrapper><a href=/ class=logo>bystander's blog</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=http://leaver.me/>主页</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/post/>归档</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/tags/>标签</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/categories/>目录</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/about/>关于我</a></li></ul></nav></header><div id=mobile-panel><main id=main class="main bg-llight"><div class=content-wrapper><div id=content class="content container"><article class="post bg-white"><header class=post-header><h1 class=post-title>汇编-32位CPU所含有的寄存器</h1><div class=post-meta><time datetime=2012-09-24 class=post-time>2012-09-24</time><div class=post-category><a href=http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/>文章收藏</a></div><span class=more-meta>约 122 字</span>
+<span class=more-meta>预计阅读 1 分钟</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>文章目录</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><ul><li><a href=#1数据寄存器>1、数据寄存器</a></li><li><a href=#2变址寄存器>2、变址寄存器</a></li><li><a href=#3指针寄存器>3、指针寄存器</a></li><li><a href=#4段寄存器>4、段寄存器</a></li><li><a href=#5指令指针寄存器>5、指令指针寄存器</a></li><li><a href=#6标志寄存器>6、标志寄存器</a></li></ul></li></ul></nav></div></div><div class=post-content><p>今年的课程有汇编。真为校领导的智商捉鸡。。不过还是要学的。分享一篇来自<a href=http://blog.minidx.com/2007/12/10/233.html>中文FLEX例子</a>的汇编寄存器的文章。很不错的一篇寄存器详解的文章。文章最后是我找到的一个汇编指令助手。</p><p>　　4个数据寄存器(EAX、EBX、ECX和EDX)　　
 　　2个变址和指针寄存器(ESI和EDI) 2个指针寄存器(ESP和EBP)
 　　6个段寄存器(ES、CS、SS、DS、FS和GS)
 　　1个指令指针寄存器(EIP) 1个标志寄存器(EFlags)</p><h3 id=1数据寄存器>1、数据寄存器</h3><p>　　数据寄存器主要用来保存操作数和运算结果等信息，从而节省读取操作数所需占用总线和访问存储器的时间。32位CPU有4个32位的通用寄存器EAX、EBX、ECX和EDX。对低16位数据的存取，不会影响高16位的数据。这些低16位寄存器分别命名为：AX、BX、CX和DX，它和先前的CPU中的寄存器相一致。</p><p>　　4个16位寄存器又可分割成8个独立的8位寄存器(AX：AH-AL、BX：BH-BL、CX：CH-CL、DX：DH-DL)，每个寄存器都有自己的名称，可独立存取。程序员可利用数据寄存器的这种”可分可合”的特性，灵活地处理字/字节的信息。</p><p>　　寄存器AX和AL通常称为累加器(Accumulator)，用累加器进行的操作可能需要更少时间。累加器可用于乘、 除、输入/输出等操作，它们的使用频率很高； 寄存器BX称为基地址寄存器(Base Register)。它可作为存储器指针来使用； 寄存器CX称为计数寄存器(Count Register)。在循环和字符串操作时，要用它来控制循环次数；在位操作 中，当移多位时，要用CL来指明移位的位数；</p><p>　　寄存器DX称为数据寄存器(Data Register)。在进行乘、除运算时，它可作为默认的操作数参与运算，也 可用于存放I/O的端口地址。在16位CPU中，AX、BX、CX和DX不能作为基址和变址寄存器来存放存储单元的地址，但在32位CPU中，其32位寄存器EAX、EBX、ECX和EDX不仅可传送数据、暂存数据保存算术逻辑运算结果，而且也可作为指针寄存器，所以，这些32位寄存器更具有通用性。</p><h3 id=2变址寄存器>2、变址寄存器</h3><p>　　32位CPU有2个32位通用寄存器ESI和EDI。其低16位对应先前CPU中的SI和DI，对低16位数据的存取，不影响高16位的数据。</p><p>　　寄存器ESI、EDI、SI和DI称为变址寄存器(Index Register)，它们主要用于存放存储单元在段内的偏移量，用它们可实现多种存储器操作数的寻址方式，为以不同的地址形式访问存储单元提供方便。变址寄存器不可分割成8位寄存器。作为通用寄存器，也可存储算术逻辑运算的操作数和运算结果。它们可作一般的存储器指针使用。在字符串操作指令的执行过程中，对它们有特定的要求，而且还具有特殊的功能。</p><h3 id=3指针寄存器>3、指针寄存器</h3><p>　　32位CPU有2个32位通用寄存器EBP和ESP。其低16位对应先前CPU中的SBP和SP，对低16位数据的存取，不影响高16位的数据。</p><p>　　寄存器EBP、ESP、BP和SP称为指针寄存器(Pointer Register)，主要用于存放堆栈内存储单元的偏移量，用它们可实现多种存储器操作数的寻址方式，为以不同的地址形式访问存储单元提供方便。指针寄存器不可分割成8位寄存器。作为通用寄存器，也可存储算术逻辑运算的操作数和运算结果。</p><p>　　它们主要用于访问堆栈内的存储单元，并且规定：</p><p>　　BP为基指针(Base Pointer)寄存器，用它可直接存取堆栈中的数据；</p><p>　　SP为堆栈指针(Stack Pointer)寄存器，用它只可访问栈顶。</p><h3 id=4段寄存器>4、段寄存器</h3><p>　　段寄存器是根据内存分段的管理模式而设置的。内存单元的物理地址由段寄存器的值和一个偏移量组合而成</p><p>　　的，这样可用两个较少位数的值组合成一个可访问较大物理空间的内存地址。</p><p>　　CPU内部的段寄存器：</p><p>　　CS——代码段寄存器(Code Segment Register)，其值为代码段的段值；
@@ -12,84 +186,19 @@
 　　GS——附加段寄存器(Extra Segment Register)，其值为附加数据段的段值。</p><p>　　在16位CPU系统中，它只有4个段寄存器，所以，程序在任何时刻至多有4个正在使用的段可直接访问；在32位微机系统中，它有6个段寄存器，所以，在此环境下开发的程序最多可同时访问6个段。32位CPU有两个不同的工作方式：实方式和保护方式。在每种方式下，段寄存器的作用是不同的。有关规定简单描述如下：</p><p>　　实方式： 前4个段寄存器CS、DS、ES和SS与先前CPU中的所对应的段寄存器的含义完全一致，内存单元的逻辑地址仍为”段值：偏移量”的形式。为访问某内存段内的数据，必须使用该段寄存器和存储单元的偏移量。</p><p>　　保护方式： 在此方式下，情况要复杂得多，装入段寄存器的不再是段值，而是称为”选择子”(Selector)的某个值。</p><h3 id=5指令指针寄存器>5、指令指针寄存器</h3><p>　　32位CPU把指令指针扩展到32位，并记作EIP，EIP的低16位与先前CPU中的IP作用相同。</p><p>　　指令指针EIP、IP(Instruction Pointer)是存放下次将要执行的指令在代码段的偏移量。在具有预取指令功能的系统中，下次要执行的指令通常已被预取到指令队列中，除非发生转移情况。所以，在理解它们的功能时，不考虑存在指令队列的情况。</p><p>　　在实方式下，由于每个段的最大范围为64K，所以，EIP中的高16位肯定都为0，此时，相当于只用其低16位的IP来反映程序中指令的执行次序。</p><h3 id=6标志寄存器>6、标志寄存器</h3><p>　　一、运算结果标志位</p><p>　　1、进位标志CF(Carry Flag)</p><p>　　进位标志CF主要用来反映运算是否产生进位或借位。如果运算结果的最高位产生了一个进位或借位，那么，其值为1，否则其值为0。使用该标志位的情况有：多字(字节)数的加减运算，无符号数的大小比较运算，移位操作，字(字节)之间移位，专门改变CF值的指令等。</p><p>　　2、奇偶标志PF(Parity Flag)</p><p>　　奇偶标志PF用于反映运算结果中”1″的个数的奇偶性。如果”1″的个数为偶数，则PF的值为1，否则其值为0。</p><p>　　利用PF可进行奇偶校验检查，或产生奇偶校验位。在数据传送过程中，为了提供传送的可靠性，如果采用奇偶校验的方法，就可使用该标志位。</p><p>　　3、辅助进位标志AF(Auxiliary Carry Flag)</p><p>　　在发生下列情况时，辅助进位标志AF的值被置为1，否则其值为0：</p><p>　　(1)、在字操作时，发生低字节向高字节进位或借位时；　　
 　　(2)、在字节操作时，发生低4位向高4位进位或借位时。</p><p>　　对以上6个运算结果标志位，在一般编程情况下，标志位CF、ZF、SF和OF的使用频率较高，而标志位PF和AF的使用频率较低。</p><p>　　4、零标志ZF(Zero Flag)</p><p>　　零标志ZF用来反映运算结果是否为0。如果运算结果为0，则其值为1，否则其值为0。在判断运算结果是否为0时，可使用此标志位。</p><p>　　5、符号标志SF(Sign Flag)</p><p>　　符号标志SF用来反映运算结果的符号位，它与运算结果的最高位相同。在微机系统中，有符号数采用补码表示法，所以，SF也就反映运算结果的正负号。运算结果为正数时，SF的值为0，否则其值为1。</p><p>　　6、溢出标志OF(Overflow Flag)</p><p>　　溢出标志OF用于反映有符号数加减运算所得结果是否溢出。如果运算结果超过当前运算位数所能表示的范围，则称为溢出，OF的值被置为1，否则，OF的值被清为0。”溢出”和”进位”是两个不同含义的概念，不要混淆。如果不太清楚的话，请查阅《计算机组成原理》课程中的有关章节。</p><p>　　二、状态控制标志位</p><p>　　状态控制标志位是用来控制CPU操作的，它们要通过专门的指令才能使之发生改变。</p><p>　　1、追踪标志TF(Trap Flag)</p><p>　　当追踪标志TF被置为1时，CPU进入单步执行方式，即每执行一条指令，产生一个单步中断请求。这种方式主要用于程序的调试。指令系统中没有专门的指令来改变标志位TF的值，但程序员可用其它办法来改变其值。</p><p>　　2、中断允许标志IF(Interrupt-enable Flag)</p><p>　　中断允许标志IF是用来决定CPU是否响应CPU外部的可屏蔽中断发出的中断请求。但不管该标志为何值，CPU都必须响应CPU外部的不可屏蔽中断所发出的中断请求，以及CPU内部产生的中断请求。具体规定如下：</p><p>　　(1)、当IF=1时，CPU可以响应CPU外部的可屏蔽中断发出的中断请求；
 　　(2)、当IF=0时，CPU不响应CPU外部的可屏蔽中断发出的中断请求。</p><p>　　CPU的指令系统中也有专门的指令来改变标志位IF的值。</p><p>　　3、方向标志DF(Direction Flag)</p><p>　　方向标志DF用来决定在串操作指令执行时有关指针寄存器发生调整的方向。具体规定在第5.2.11节——字符串操作指令——中给出。在微机的指令系统中，还提供了专门的指令来改变标志位DF的值。</p><p>　　三、32位标志寄存器增加的标志位</p><p>　　1、I/O特权标志IOPL(I/O Privilege Level)</p><p>　　I/O特权标志用两位二进制位来表示，也称为I/O特权级字段。该字段指定了要求执行I/O指令的特权级。如果当前的特权级别在数值上小于等于IOPL的值，那么，该I/O指令可执行，否则将发生一个保护异常。</p><p>　　2、嵌套任务标志NT(Nested Task)</p><p>　　嵌套任务标志NT用来控制中断返回指令IRET的执行。具体规定如下：</p><p>　　(1)、当NT=0，用堆栈中保存的值恢复EFLAGS、CS和EIP，执行常规的中断返回操作；
-　　(2)、当NT=1，通过任务转换实现中断返回。</p><p>　　3、重启动标志RF(Restart Flag)</p><p>　　重启动标志RF用来控制是否接受调试故障。规定：RF=0时，表示”接受”调试故障，否则拒绝之。在成功执行完一条指令后，处理机把RF置为0，当接受到一个非调试故障时，处理机就把它置为1。</p><p>　　4、虚拟8086方式标志VM(Virtual 8086 Mode)</p><p>　　如果该标志的值为1，则表示处理机处于虚拟的8086方式下的工作状态，否则，处理机处于一般保护方式下的工作状态。</p><p>下载：<a href="http://pan.baidu.com/share/link?shareid=61312&uk=1493685990">汇编指令助手</a></p></div><div class=post-archive><h2>See Also</h2><ul class=listing><li><a href=/2012/09/22/html%E8%A7%A3%E6%9E%90%E5%B7%A5%E5%85%B7-htmlagilitypack/>Html解析工具-HtmlAgilityPack</a></li><li><a href=/2012/09/17/eclipse%E5%AE%89%E8%A3%85javacc/>Eclipse安装JavaCC</a></li><li><a href=/2012/09/07/wcf%E5%8F%8C%E5%B7%A5%E9%80%9A%E4%BF%A1%E7%A4%BA%E4%BE%8B/>WCF双工通信示例</a></li><li><a href=/2012/09/06/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B02/>WCF读书笔记(2)</a></li><li><a href=/2012/09/04/%E4%BD%BF%E7%94%A8microsoft-web-deploy%E6%8A%80%E6%9C%AF%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/>使用Microsoft Web Deploy技术自动部署</a></li></ul></div><div class="post-meta meta-tags"><ul class=clearfix><li><a href=http://leaver.me/tags/%E5%A4%A7%E5%AD%A6>大学</a></li><li><a href=http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F>操作系统</a></li><li><a href=http://leaver.me/tags/%E6%94%B6%E8%97%8F>收藏</a></li><li><a href=http://leaver.me/tags/%E6%B1%87%E7%BC%96>汇编</a></li><li><a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6>软件</a></li></ul></div></article><div id=disqus_thread></div><script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return;}
-var d=document,s=d.createElement('script');s.async=true;s.src='//'+"leaverme"+'.disqus.com/embed.js';s.setAttribute('data-timestamp',+new Date());(d.head||d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div></div><div id=secondary><section class=widget><form id=search action=http://leaver.me/search/ method=get accept-charset=utf-8 target=_blank _lpchecked=1><input type=text name=q maxlength=20 placeholder=Search>
-<input type=hidden name=sitesearch value=http://leaver.me/>
-<button type=submit class="submit icon-search"></button></form></section><section class=widget><h3 class=widget-title>最近文章</h3><ul class=widget-list><li><a href=http://leaver.me/2020/03/07/%E5%87%A0%E4%B8%AA%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/ title=几个浏览器的使用体验>几个浏览器的使用体验</a></li><li><a href=http://leaver.me/2020/01/10/mysql%E4%B8%AD%E7%9A%84b-%E6%A0%91%E4%BB%8B%E7%BB%8D/ title=Mysql中的B+树介绍>Mysql中的B+树介绍</a></li><li><a href=http://leaver.me/2020/01/08/2019-%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/ title="2019 年终总结">2019 年终总结</a></li><li><a href=http://leaver.me/2020/01/06/%E7%90%86%E8%A7%A3-cap-%E7%90%86%E8%AE%BA/ title="理解 CAP 理论">理解 CAP 理论</a></li><li><a href=http://leaver.me/2019/12/30/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3raft%E5%8D%8F%E8%AE%AE/ title=深入理解Raft协议>深入理解Raft协议</a></li><li><a href=http://leaver.me/2019/10/27/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A%E7%AC%94%E8%AE%B0/ title=《非暴力沟通》笔记>《非暴力沟通》笔记</a></li><li><a href=http://leaver.me/2019/10/06/wedding-of-friends/ title="Wedding of Friends">Wedding of Friends</a></li><li><a href=http://leaver.me/2019/09/29/principle-note/ title="Principle Note">Principle Note</a></li><li><a href=http://leaver.me/2019/09/14/%E6%A2%A6%E8%A7%81%E9%B2%B8%E9%B1%BC%E7%9A%84%E9%82%A3%E4%B8%80%E5%A4%9C/ title=梦见鲸鱼的那一夜>梦见鲸鱼的那一夜</a></li><li><a href=http://leaver.me/2019/08/20/understand-hong-kong-2/ title="Understand Hong Kong 2">Understand Hong Kong 2</a></li></ul></section><section class=widget><h3 class=widget-title>分类</h3><ul class=widget-list><li><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/>学习笔记 (188)</a></li><li><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/>我的翻译 (57)</a></li><li><a href=http://leaver.me/categories/%E6%96%87%E7%AB%A0%E6%94%B6%E8%97%8F/>文章收藏 (53)</a></li><li><a href=http://leaver.me/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/>生活记录 (4)</a></li><li><a href=http://leaver.me/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/>读书笔记 (4)</a></li></ul></section><section class=widget><h3 class=widget-title>标签</h3><div class=tagcloud><a href=http://leaver.me/tags/algorithm/>algorithm</a>
-<a href=http://leaver.me/tags/android/>android</a>
-<a href=http://leaver.me/tags/c/>C＃</a>
-<a href=http://leaver.me/tags/c++/>C++</a>
-<a href=http://leaver.me/tags/database/>database</a>
-<a href=http://leaver.me/tags/java/>java</a>
-<a href=http://leaver.me/tags/javascript/>javascript</a>
-<a href=http://leaver.me/tags/linux/>linux</a>
-<a href=http://leaver.me/tags/mac/>mac</a>
-<a href=http://leaver.me/tags/matlab/>matlab</a>
-<a href=http://leaver.me/tags/maven/>maven</a>
-<a href=http://leaver.me/tags/mysql/>mysql</a>
-<a href=http://leaver.me/tags/nextgen-gallery/>NextGEN Gallery</a>
-<a href=http://leaver.me/tags/php/>php</a>
-<a href=http://leaver.me/tags/python/>python</a>
-<a href=http://leaver.me/tags/shell/>shell</a>
-<a href=http://leaver.me/tags/spring/>spring</a>
-<a href=http://leaver.me/tags/sql/>sql</a>
-<a href=http://leaver.me/tags/stackoverflow/>stackoverflow</a>
-<a href=http://leaver.me/tags/wcf/>WCF</a>
-<a href=http://leaver.me/tags/web/>web</a>
-<a href=http://leaver.me/tags/windows/>windows</a>
-<a href=http://leaver.me/tags/wordpress/>wordpress</a>
-<a href=http://leaver.me/tags/wpf/>WPF</a>
-<a href=http://leaver.me/tags/%E4%B8%8A%E6%B5%B7/>上海</a>
-<a href=http://leaver.me/tags/%E4%B8%8B%E8%BD%BD/>下载</a>
-<a href=http://leaver.me/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/>中间件</a>
-<a href=http://leaver.me/tags/%E4%BA%92%E8%81%94%E7%BD%91/>互联网</a>
-<a href=http://leaver.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F/>分布式</a>
-<a href=http://leaver.me/tags/%E5%88%B6%E5%BA%A6/>制度</a>
-<a href=http://leaver.me/tags/%E5%89%8D%E7%AB%AF/>前端</a>
-<a href=http://leaver.me/tags/%E5%8E%9F%E5%88%9B/>原创</a>
-<a href=http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/>大学</a>
-<a href=http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/>学习</a>
-<a href=http://leaver.me/tags/%E5%AE%89%E5%85%A8/>安全</a>
-<a href=http://leaver.me/tags/%E5%AE%B6%E5%BA%AD/>家庭</a>
-<a href=http://leaver.me/tags/%E5%B7%A5%E4%BD%9C/>工作</a>
-<a href=http://leaver.me/tags/%E5%B7%A5%E5%85%B7/>工具</a>
-<a href=http://leaver.me/tags/%E5%B9%B6%E5%8F%91/>并发</a>
-<a href=http://leaver.me/tags/%E5%BA%8F%E5%88%97%E5%8C%96/>序列化</a>
-<a href=http://leaver.me/tags/%E5%BC%80%E5%8F%91/>开发</a>
-<a href=http://leaver.me/tags/%E5%BF%83%E7%90%86/>心理</a>
-<a href=http://leaver.me/tags/%E6%80%BB%E7%BB%93/>总结</a>
-<a href=http://leaver.me/tags/%E6%8A%80%E6%9C%AF/>技术</a>
-<a href=http://leaver.me/tags/%E6%8F%92%E4%BB%B6/>插件</a>
+　　(2)、当NT=1，通过任务转换实现中断返回。</p><p>　　3、重启动标志RF(Restart Flag)</p><p>　　重启动标志RF用来控制是否接受调试故障。规定：RF=0时，表示”接受”调试故障，否则拒绝之。在成功执行完一条指令后，处理机把RF置为0，当接受到一个非调试故障时，处理机就把它置为1。</p><p>　　4、虚拟8086方式标志VM(Virtual 8086 Mode)</p><p>　　如果该标志的值为1，则表示处理机处于虚拟的8086方式下的工作状态，否则，处理机处于一般保护方式下的工作状态。</p><p>下载：<a href="http://pan.baidu.com/share/link?shareid=61312&uk=1493685990">汇编指令助手</a></p></div><footer class=post-footer><div class=post-tags><a href=http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/>大学</a>
 <a href=http://leaver.me/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/>操作系统</a>
 <a href=http://leaver.me/tags/%E6%94%B6%E8%97%8F/>收藏</a>
-<a href=http://leaver.me/tags/%E6%95%B0%E5%AD%A6/>数学</a>
-<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/>数据库</a>
-<a href=http://leaver.me/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/>数据挖掘</a>
-<a href=http://leaver.me/tags/%E6%96%87%E7%AB%A0/>文章</a>
-<a href=http://leaver.me/tags/%E6%99%BA%E8%83%BD/>智能</a>
-<a href=http://leaver.me/tags/%E6%9D%82%E6%96%87/>杂文</a>
-<a href=http://leaver.me/tags/%E6%AD%A6%E6%B1%89/>武汉</a>
 <a href=http://leaver.me/tags/%E6%B1%87%E7%BC%96/>汇编</a>
-<a href=http://leaver.me/tags/%E7%88%B1%E6%83%85/>爱情</a>
-<a href=http://leaver.me/tags/%E7%90%86%E8%AE%BA/>理论</a>
-<a href=http://leaver.me/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/>生产力</a>
-<a href=http://leaver.me/tags/%E7%94%9F%E6%B4%BB/>生活</a>
-<a href=http://leaver.me/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/>电子书</a>
-<a href=http://leaver.me/tags/%E7%94%B5%E5%BD%B1/>电影</a>
-<a href=http://leaver.me/tags/%E7%A4%BE%E4%BC%9A/>社会</a>
-<a href=http://leaver.me/tags/%E7%A7%91%E6%8A%80/>科技</a>
-<a href=http://leaver.me/tags/%E7%AC%94%E8%AE%B0/>笔记</a>
-<a href=http://leaver.me/tags/%E7%AE%97%E6%B3%95/>算法</a>
-<a href=http://leaver.me/tags/%E7%BC%96%E7%A8%8B/>编程</a>
-<a href=http://leaver.me/tags/%E7%BC%96%E8%AF%91/>编译</a>
-<a href=http://leaver.me/tags/%E7%BF%BB%E8%AF%91/>翻译</a>
-<a href=http://leaver.me/tags/%E8%81%8C%E4%B8%9A/>职业</a>
-<a href=http://leaver.me/tags/%E8%AE%B0%E5%BD%95/>记录</a>
-<a href=http://leaver.me/tags/%E8%AE%BE%E8%AE%A1/>设计</a>
-<a href=http://leaver.me/tags/%E8%AF%BB%E4%B9%A6/>读书</a>
-<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/>软件</a>
-<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/>软件测试</a>
-<a href=http://leaver.me/tags/%E8%BF%90%E7%BB%B4/>运维</a>
-<a href=http://leaver.me/tags/%E9%87%91%E8%9E%8D/>金融</a></div></section><section class=widget><h3 class=widget-title>友情链接</h3><ul class=widget-list><li><a target=_blank href=https://www.cppfans.org/ title=C++爱好者博客>C++爱好者博客</a></li><li><a target=_blank href=http://www.kailing.pub title=KL，每天进步一点点>KL，每天进步一点点</a></li></ul></section><section class=widget><h3 class=widget-title>其它</h3><ul class=widget-list><li><a href=http://leaver.me/index.xml>文章 RSS</a></li></ul></section></div></div></div></div><footer id=footer><div class=container>&copy; 2020 <a href=http://leaver.me/>bystander's blog By bystander</a>.
-Powered by <a rel="nofollow noreferer noopener" href=https://gohugo.io target=_blank>Hugo</a>.
-<a href=https://www.flysnow.org/ target=_blank>Theme</a> based on <a href=https://github.com/flysnow-org/maupassant-hugo target=_blank>maupassant</a>.</div></footer><script type=text/javascript>window.MathJax={tex2jax:{inlineMath:[['$','$']],processEscapes:true}};</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script><a id=rocket href=#top></a><script type=text/javascript src="/js/totop.js?v=0.0.0" async></script><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-30961201-3','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></body></html>
+<a href=http://leaver.me/tags/%E8%BD%AF%E4%BB%B6/>软件</a></div><nav class=post-nav><a class=prev href=/2012/09/24/%E4%B8%80%E4%B8%AA%E5%8F%AF%E5%AE%9A%E5%88%B6%E7%9A%84wpf%E4%BB%BB%E5%8A%A1%E5%AF%B9%E8%AF%9D%E6%A1%86/><i class=iconfont><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18"><path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417l277.93508-310.326815c11.338233-12.190647 11.035334-32.285311-.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"/></svg></i><span class="prev-text nav-default">一个可定制的WPF任务对话框</span>
+<span class="prev-text nav-mobile">上一篇</span></a>
+<a class=next href=/2012/09/22/html%E8%A7%A3%E6%9E%90%E5%B7%A5%E5%85%B7-htmlagilitypack/><span class="next-text nav-default">Html解析工具-HtmlAgilityPack</span>
+<span class="prev-text nav-mobile">下一篇</span>
+<i class=iconfont><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18"><path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"/></svg></i></a></nav></footer></article><div class=disqus-comment><div class=disqus-button id=load_disqus onclick=load_disqus()>显示 Disqus 评论</div><div id=disqus_thread></div><script type=text/javascript>var disqus_config=function(){this.page.url="http://leaver.me/2012/09/24/%E6%B1%87%E7%BC%96-32%E4%BD%8Dcpu%E6%89%80%E5%90%AB%E6%9C%89%E7%9A%84%E5%AF%84%E5%AD%98%E5%99%A8/";};function load_disqus(){if(window.location.hostname==='localhost')return;var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;var disqus_shortname='leaverme';dsq.src='//'+disqus_shortname+'.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);$('#load_disqus').remove();};</script><noscript>Please enable JavaScript to view the
+<a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></div></div></div></main><footer id=footer class=footer><div class=icon-links><a href=https://github.com/leizhiyuan rel="me noopener" class=iconfont title=github target=_blank><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="36" height="36"><path d="M512 12.672c-282.88.0-512 229.248-512 512 0 226.261333 146.688 418.133333 350.08 485.76 25.6 4.821333 34.986667-11.008 34.986667-24.618667.0-12.16-.426667-44.373333-.64-87.04-142.421333 30.890667-172.458667-68.693333-172.458667-68.693333C188.672 770.986667 155.008 755.2 155.008 755.2c-46.378667-31.744 3.584-31.104 3.584-31.104 51.413333 3.584 78.421333 52.736 78.421333 52.736 45.653333 78.293333 119.850667 55.68 149.12 42.581333 4.608-33.109333 17.792-55.68 32.426667-68.48-113.706667-12.8-233.216-56.832-233.216-253.013333.0-55.893333 19.84-101.546667 52.693333-137.386667-5.76-12.928-23.04-64.981333 4.48-135.509333.0.0 42.88-13.738667 140.8 52.48 40.96-11.392 84.48-17.024 128-17.28 43.52.256 87.04 5.888 128 17.28 97.28-66.218667 140.16-52.48 140.16-52.48 27.52 70.528 10.24 122.581333 5.12 135.509333 32.64 35.84 52.48 81.493333 52.48 137.386667.0 196.693333-119.68 240-233.6 252.586667 17.92 15.36 34.56 46.762667 34.56 94.72.0 68.522667-.64 123.562667-.64 140.202666.0 13.44 8.96 29.44 35.2 24.32C877.44 942.592 1024 750.592 1024 524.672c0-282.752-229.248-512-512-512"/></svg></a><a href=http://leaver.me/index.xml rel="noopener alternate" type=application/rss+xml class=iconfont title=rss target=_blank><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30"><path d="M819.157333 1024C819.157333 574.592 449.408 204.8.0 204.8V0c561.706667.0 1024 462.293333 1024 1024H819.157333zM140.416 743.04a140.8 140.8.0 01140.501333 140.586667A140.928 140.928.0 01140.074667 1024C62.72 1024 0 961.109333.0 883.626667S62.933333 743.082667 140.416 743.04zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352.0 678.784 306.517333 678.784 678.826667z"/></svg></a></div><div class=copyright><span class=power-by>Powered by <a class=hexo-link href=https://gohugo.io>Hugo</a></span>
+<span class=division>|</span>
+<span class=theme-info>Theme - <a class=theme-link href=https://github.com/xianmin/hugo-theme-jane>Jane</a></span>
+<span class=copyright-year>&copy;
+2012 -
+2020
+<span class=heart><i class=iconfont><svg class="icon" viewBox="0 0 1025 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="14" height="14"><path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7.0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1.0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2.0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3.1-42.5-8-83.6-24-122.2z" fill="#8a8a8a"/></svg></i></span><span class=author>bystander</span></span></div></footer><div class=back-to-top id=back-to-top><i class=iconfont><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="35" height="35"><path d="M510.866688 227.694839 95.449397 629.218702h235.761562L329.15309 958.01517h362.40389L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777h894.052392v131.813095H63.840492V63.962777zm0 0"/></svg></i></div></div><script type=text/javascript src=/lib/jquery/jquery-3.2.1.min.js></script><script type=text/javascript src=/lib/slideout/slideout-1.0.1.min.js></script><script type=text/javascript src=/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin=anonymous></script><script type=text/javascript src=/js/load-photoswipe.js></script><script type=text/javascript src=/lib/photoswipe/photoswipe.min.js></script><script type=text/javascript src=/lib/photoswipe/photoswipe-ui-default.min.js></script></body></html>
