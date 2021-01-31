@@ -13,7 +13,7 @@ Concurrency Deadlocked: false Memory High GC (&amp;gt;2%): false 这里目前只
 更多文档 官方文档</description></item><item><title>休假停下来反思</title><link>http://leaver.me/2015/07/02/%E4%BC%91%E5%81%87%E5%81%9C%E4%B8%8B%E6%9D%A5%E5%8F%8D%E6%80%9D/</link><pubDate>Thu, 02 Jul 2015 21:20:19 +0000</pubDate><guid>http://leaver.me/2015/07/02/%E4%BC%91%E5%81%87%E5%81%9C%E4%B8%8B%E6%9D%A5%E5%8F%8D%E6%80%9D/</guid><description>项目经过一年终于告一段落.于是有了一个短暂的休假.
 早上照例没能睡好觉.很早就醒了.然后又躺了一会,醒来看了会订阅.然后听了一集&amp;laquo; Mr.Robot &amp;raquo;,感觉还行,再对着字幕看了一遍,以后还是有一些地方理解的有问题.以后还是要多对着无字幕版的美剧去看,才能慢慢听懂更多的,比如今天听到个society,讲社交焦虑,听到很熟悉,就是没反应过来.学而不用则殆.
 中午给文哥寄了个快递,顺便点个饭.之前的&amp;quot;手艺&amp;quot;应该也已经忘得差不多了.到杭州之后很少做饭,工作太忙.没办法.当然这只是借口.主要还是我懒吧.
-下午按计划好的去浙江图书馆,从大学出来后,虽然书还是看了一些的.但是也再也没有走入图书馆.之前一直想去上海图书馆,结果一直耽搁,今天去浙江图书馆办了个证,借了几本书,看着里面的人自习的自习,借阅的借阅,想想还是有点熟悉的.遗憾的是书相同的份数有点少.想借的几本书都被人借走了,最终借了个&amp;laquo; 七周七语言 &amp;raquo;,希望能给自己的编程带来不一样的思考角度.读完后争取写个书评和总结,还借了一本摄影相关的,毕竟拍照是服务妹子的技能.还有个&amp;laquo; netty权威指南 &amp;raquo; ,虽然这本书评价好像不高,但是拿来看看还是可以的.
+下午按计划好的去浙江图书馆,从大学出来后,虽然书还是看了一些的.但是也再也没有走入图书馆.之前一直想去上海图书馆,结果一直耽搁,今天去浙江图书馆办了个证,借了几本书,看着里面的人自习的自习,借阅的借阅,想想还是有点熟悉的.遗憾的是书相同的份数有点少.想借的几本书都被人借走了,最终借了个**&amp;laquo; 七周七语言 &amp;raquo;**,希望能给自己的编程带来不一样的思考角度.读完后争取写个书评和总结,还借了一本摄影相关的,毕竟拍照是服务妹子的技能.还有个**&amp;laquo; netty权威指南 &amp;raquo;** ,虽然这本书评价好像不高,但是拿来看看还是可以的.
 下午回家.杭州的下午还挺美的.天气凉爽.只是作为工作狗,没有下午出来的机会吧.
 工作忙,不过在一切自动化的指导下,(马克思没有找我),对linux 的shell操作熟悉度急剧上升,希望能写的更好,让更多的过程自动化,也希望有时间停下来想一想.当时为什么选择写代码,为什么选择当前的职业,知道自己做了什么,知道自己是否进步,想起之前看到的一个话,不知真假,
 只是因为三轮车好学，你就要一辈子骑三轮车吗？ – Douglas Englebart
@@ -22,7 +22,7 @@ Concurrency Deadlocked: false Memory High GC (&amp;gt;2%): false 这里目前只
 http://bugs.java.com/view_bug.do?bug_id=6521844
 详细的解释过程: 参考: http://www.websina.com/bugzero/faq/securerandom-slowness.html
 Q: Why the SecureRandom generateSeed is so slow or even hang on Linux OS?
-A: When you login, it hangs or takes more than a minute to get the response. If your server is on a Linux OS, the culprit here is SecureRandom generateSeed() which uses /dev/random to generate the seed. However, /dev/random is a blocking number generator and if it doesn't have enough random data to provide, it will simply wait until it does, which forces the JVM to wait. Keyboard and mouse input as well as disk activity can generate the randomness or entropy needed. But on a server that lacks such activies, the problem may arise.
+A: When you login, it hangs or takes more than a minute to get the response. If your server is on a Linux OS, the culprit here is SecureRandom generateSeed() which uses /dev/random to generate the seed. However, /dev/random is a blocking number generator and if it doesn&amp;rsquo;t have enough random data to provide, it will simply wait until it does, which forces the JVM to wait. Keyboard and mouse input as well as disk activity can generate the randomness or entropy needed. But on a server that lacks such activies, the problem may arise.
 大意是说当使用SecureRandom 的时候默认使用的/dev/random 文件来生成种子,如果没有足够的种子数据,(这些数据是由键盘,鼠标,磁盘活动等产生的,如果没有这些活动,就没有足够的数据)会一直等待,导致jvm卡住,耗费比较长的时候.由于出现问题的这个环境的确是最近没什么操作,而且复现的操作也是隔个一个晚上,重新做业务才会出现.
 文中给出了一种解决方案.
 启动参数添加 -Djava.security.egd=file:/dev/./urandom,验证是可以的. 修改随机数获取方式 这里urandom是啥呢,引用自维基
@@ -36,21 +36,21 @@ A: When you login, it hangs or takes more than a minute to get the response. If 
 thanks toblue-green-deployment
 蓝绿发布的意义 整个发布过程，用户没有感受到任何宕机或者服务重启。
 蓝绿发布的过程 第0步:部署以前的配置
-第1步: 把绿色集群的状态改为'备用&amp;rsquo;. 从负载均衡的池里把这些地址去掉,这样,绿色的集群就不再回接收到来自用户的请求了.转而进入备用负载均衡的池里.
+第1步: 把绿色集群的状态改为&amp;rsquo;备用'. 从负载均衡的池里把这些地址去掉,这样,绿色的集群就不再回接收到来自用户的请求了.转而进入备用负载均衡的池里.
 第2步:在绿色集群里部署新的代码,直到应用启动成功
 第3步:使用备用负载均衡简单测试一下备用集群的部署情况.理想状态下是全自动的.
 第4步:把绿色备用集群的状态改成存货,于是进入了存活负载均衡的池里
 看到 蓝色运行v1版本,绿色运行v2版本,都连接的是相同的数据库.这意味着v2版本也要在老的数据模型上运行.如果数据库有变更,要等到所有的集群升级到新的代码上.
 第5步: 对蓝色集群也进行同样的操作. 最终v2代码完成部署.
 第6步:根据情况.运行数据库迁移
- </description></item><item><title>《Spring揭秘》读书笔记-第二章IoC的基本概念</title><link>http://leaver.me/2014/07/01/spring%E6%8F%AD%E7%A7%98%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC%E4%BA%8C%E7%AB%A0ioc%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</link><pubDate>Tue, 01 Jul 2014 18:54:17 +0000</pubDate><guid>http://leaver.me/2014/07/01/spring%E6%8F%AD%E7%A7%98%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC%E4%BA%8C%E7%AB%A0ioc%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</guid><description>理念就是让别人为你服务，中文名控制反转，也叫依赖注入DI 假设这个类用来处理新闻，IFXNewsListener 用来获取新闻，IFXNewsPersister 用来把获取的新闻持久化当我们需要获取不同的新闻源，比如道琼斯的新闻时，我们会写一个DowJonesNewsListener类和DowJonesNewsPersister类，然后实例化 如果我们依赖于某个类或服务，最简单而有效的方式就是直接在类的构造函数中新建相应的依赖类。注意看，，我们都是自己主动地去获取依赖的对象！可是回头想想，我们自己每次用到什么依赖对象都要主动地去获取，这是否真的必要？我们最终所要做的，其实就是直接调用依赖对象所提供的某项服务而已能不能我们用的时候自动送过来呢？。现在是用什么，让别人直接送过来就成。所以，简单点儿说，IoC的理念就是，让别人为你服务！在图2-1中，也就是让IoC Service Provider来为你服务！这里，被注入对象就是FXNewsProvider，被依赖于对象IFXNewsListener和IFXNewsPersister 通常情况下，被注入对象会直接依赖于被依赖对象。但是，在IoC的场景中，二者之间通过IoC ServiceProvider来打交道，所有的被注入对象和依赖对象现在由IoC Service Provider统一管理。被注入对象需要什么，直接跟IoC Service Provider招呼一声，后者就会把相应的被依赖对象注入到被注入对象中，从而达到IoC Service Provider为被注入对象服务的目的。IoC Service Provider在这里就是通常的IoC容器所充当的角色。从被注入对象的角度看，与之前直接寻求依赖对象相比，依赖对象的取得方式发生了反转，控制也从被注入对象转到了IoC Service Provider那里这里我们想知道的是？怎么跟IoC Service Provider打招呼在IoC模式中，被注入对象又是通过哪些方式来通知IoC Service Provider为其提供适当服务的呢？三种打招呼的方式，即构造方法注入（constructorinjection）、setter方法注入（setter injection）以及接口注入（interface injection）。构造方法注入：  IoC Service Provider会检查被注入对象的构造方法，取得它所需要的依赖对象列表，进而为其注入相应的对象。setter方法注入  外界就可以通过调用setNewsListener和setNewPersistener方法为FXNewsProvider对象注入所依赖的对象了。接口注入，这个基本不用了。接口注入。从注入方式的使用上来说，接口注入是现在不甚提倡的一种方式，基本处于&amp;quot;退役状态&amp;rdquo;。因为它强制被注入对象实现不必要的接口，带有侵入性。而构造方法注入和setter方法注入则不需要如此。8q构造方法注入。这种注入方式的优点就是，对象在构造完成之后，即已进入就绪状态，可以 9马上使用。缺点就是，当依赖对象比较多的时候，构造方法的参数列表会比较长。而通过反射构造对象的时候，对相同类型的参数的处理会比较困难，维护和使用上也比较麻烦。而且在Java中，构造方法无法被继承，无法设置默认值。对于非必须的依赖处理，可能需要引入多个构造方法，而参数数量的变动可能造成维护上的不便。10qsetter方法注入。因为方法可以命名，所以setter方法注入在描述性上要比构造方法注入好一些。 11另外，setter方法可以被继承，允许设置默认值，而且有良好的IDE支持。缺点当然就是对象无法在构造完成后马上进入就绪状态。12综上所述，构造方法注入和setter方法注入因为其侵入性较弱，且易于理解和使用，所以是现在使用最多的注入方式；而接口注入因为侵入性较强，近年来已经不流行了。回到开头的代码  由于这里已经写死了，所以当我们添加了一个新的新闻源，比如M4网站的时候，这个对象不能用了，我们要新写一个M4NewsProvider的类，然后新写新闻获取类，然后重新实现。而使用了IoC之后，  我们只要实现一个MarketWin24NewsListener雷就可以，而且FXNewsProvider 可以重用。而且使用了IoC之后，单元测试变得简单，我们只有写一个MockNewsPersister就可以来测试了。</description></item><item><title>[藏]图文并茂详解Eclipse断点</title><link>http://leaver.me/2013/11/16/%E8%97%8F%E5%9B%BE%E6%96%87%E5%B9%B6%E8%8C%82%E8%AF%A6%E8%A7%A3eclipse%E6%96%AD%E7%82%B9/</link><pubDate>Sat, 16 Nov 2013 14:21:11 +0000</pubDate><guid>http://leaver.me/2013/11/16/%E8%97%8F%E5%9B%BE%E6%96%87%E5%B9%B6%E8%8C%82%E8%AF%A6%E8%A7%A3eclipse%E6%96%AD%E7%82%B9/</guid><description>本文转自：http://my.oschina.net/colorleaf/blog/176569
+ </description></item><item><title>《Spring揭秘》读书笔记-第二章IoC的基本概念</title><link>http://leaver.me/2014/07/01/spring%E6%8F%AD%E7%A7%98%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC%E4%BA%8C%E7%AB%A0ioc%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</link><pubDate>Tue, 01 Jul 2014 18:54:17 +0000</pubDate><guid>http://leaver.me/2014/07/01/spring%E6%8F%AD%E7%A7%98%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC%E4%BA%8C%E7%AB%A0ioc%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</guid><description>理念就是让别人为你服务，中文名控制反转，也叫依赖注入DI 假设这个类用来处理新闻，IFXNewsListener 用来获取新闻，IFXNewsPersister 用来把获取的新闻持久化当我们需要获取不同的新闻源，比如道琼斯的新闻时，我们会写一个DowJonesNewsListener类和DowJonesNewsPersister类，然后实例化 如果我们依赖于某个类或服务，最简单而有效的方式就是直接在类的构造函数中新建相应的依赖类。注意看，，我们都是自己主动地去获取依赖的对象！可是回头想想，我们自己每次用到什么依赖对象都要主动地去获取，这是否真的必要？我们最终所要做的，其实就是直接调用依赖对象所提供的某项服务而已能不能我们用的时候自动送过来呢？。现在是用什么，让别人直接送过来就成。所以，简单点儿说，IoC的理念就是，让别人为你服务！在图2-1中，也就是让IoC Service Provider来为你服务！这里，被注入对象就是FXNewsProvider，被依赖于对象IFXNewsListener和IFXNewsPersister 通常情况下，被注入对象会直接依赖于被依赖对象。但是，在IoC的场景中，二者之间通过IoC ServiceProvider来打交道，所有的被注入对象和依赖对象现在由IoC Service Provider统一管理。被注入对象需要什么，直接跟IoC Service Provider招呼一声，后者就会把相应的被依赖对象注入到被注入对象中，从而达到IoC Service Provider为被注入对象服务的目的。IoC Service Provider在这里就是通常的IoC容器所充当的角色。从被注入对象的角度看，与之前直接寻求依赖对象相比，依赖对象的取得方式发生了反转，控制也从被注入对象转到了IoC Service Provider那里这里我们想知道的是？怎么跟IoC Service Provider打招呼在IoC模式中，被注入对象又是通过哪些方式来通知IoC Service Provider为其提供适当服务的呢？三种打招呼的方式，即构造方法注入（constructorinjection）、setter方法注入（setter injection）以及接口注入（interface injection）。构造方法注入：  IoC Service Provider会检查被注入对象的构造方法，取得它所需要的依赖对象列表，进而为其注入相应的对象。setter方法注入  外界就可以通过调用setNewsListener和setNewPersistener方法为FXNewsProvider对象注入所依赖的对象了。接口注入，这个基本不用了。接口注入。从注入方式的使用上来说，接口注入是现在不甚提倡的一种方式，基本处于&amp;quot;退役状态&amp;quot;。因为它强制被注入对象实现不必要的接口，带有侵入性。而构造方法注入和setter方法注入则不需要如此。8q构造方法注入。这种注入方式的优点就是，对象在构造完成之后，即已进入就绪状态，可以 9马上使用。缺点就是，当依赖对象比较多的时候，构造方法的参数列表会比较长。而通过反射构造对象的时候，对相同类型的参数的处理会比较困难，维护和使用上也比较麻烦。而且在Java中，构造方法无法被继承，无法设置默认值。对于非必须的依赖处理，可能需要引入多个构造方法，而参数数量的变动可能造成维护上的不便。10qsetter方法注入。因为方法可以命名，所以setter方法注入在描述性上要比构造方法注入好一些。 11另外，setter方法可以被继承，允许设置默认值，而且有良好的IDE支持。缺点当然就是对象无法在构造完成后马上进入就绪状态。12综上所述，构造方法注入和setter方法注入因为其侵入性较弱，且易于理解和使用，所以是现在使用最多的注入方式；而接口注入因为侵入性较强，近年来已经不流行了。回到开头的代码  由于这里已经写死了，所以当我们添加了一个新的新闻源，比如M4网站的时候，这个对象不能用了，我们要新写一个M4NewsProvider的类，然后新写新闻获取类，然后重新实现。而使用了IoC之后，  我们只要实现一个MarketWin24NewsListener雷就可以，而且FXNewsProvider 可以重用。而且使用了IoC之后，单元测试变得简单，我们只有写一个MockNewsPersister就可以来测试了。</description></item><item><title>[藏]图文并茂详解Eclipse断点</title><link>http://leaver.me/2013/11/16/%E8%97%8F%E5%9B%BE%E6%96%87%E5%B9%B6%E8%8C%82%E8%AF%A6%E8%A7%A3eclipse%E6%96%AD%E7%82%B9/</link><pubDate>Sat, 16 Nov 2013 14:21:11 +0000</pubDate><guid>http://leaver.me/2013/11/16/%E8%97%8F%E5%9B%BE%E6%96%87%E5%B9%B6%E8%8C%82%E8%AF%A6%E8%A7%A3eclipse%E6%96%AD%E7%82%B9/</guid><description>本文转自：http://my.oschina.net/colorleaf/blog/176569
 这个算说的比较清楚的了，虽然简单但是很有用。收藏一下。
 详解Eclipse断点
 大家肯定都用过Eclipse的调试的功能，在调试的过程中自然也无法避免要使用断点(breakpoint)，但不知是否对Eclipse中各类断点都有所了解。本篇图文并茂地介绍了Eclipse中全部类型的断点，及其设置，希望对大家有所帮助。(2011.11.20)
 1. 示例程序 BreakpointDemo是一个臆造的应用程序，只是为了便于讲解Eclipse中各类断点的使用罢了。其代码如下图所示， BreakpointDemo主要包含两个方法： [1]setValue，该方法根据指定的次数(count)，对成员变量value进行赋值，值的范围为0-9的随机整数。 [2]printValue，该方法会调用setValue()对value进行赋值，并打印出value的值；但，如果value能被3整除，那么就会抛出IllegalArgumentException异常。
-2. Line Breakpoint Line Breakpoin是最简单的Eclipse断点，只要双击某行代码对应的左侧栏，就对该行设置上断点。此处，对第20行代码设置上Line Breakpoint，如下图所示， 可以为Line Breakpoint设置一个条件，那么当程序运行到该断点时，只有满足设定的条件，才会被中断。右键点击第20行的断点，选择&amp;quot;Breakpoint Properties&amp;hellip;&amp;rdquo; 在弹出的属性对话框中，勾选上&amp;quot;Conditional&amp;rdquo;，然后在文本框中输入&amp;quot;count % 2 == 0&amp;rdquo;。 该条件表示，当程序运行到第20行时，只有当count为偶数时，程序才会被中断。细心地话，你会发现该断点的图标发生了改变，多了一个问号。
-3. Watchpoint Line Breakpoint关注于程序运行的&amp;quot;过程&amp;rdquo;，大家也常把使用这种断点的调试称为单步调试。但有时候，我们对程序的运行过程不太了解，可能也不太关心，不能确定在什么地方设置断点比较合适，而可能比较关注某个关键变量的变化或使用。此时，就可以为该变量设置一种特殊的断点&amp;ndash;Watchpoint。在此示例，我们最关心的就是成员变量value的值，那么就可以为它设置一个Watchpoint，双击第9行代码对应的左侧栏就可以了。 使用在2中所提及的方法，查看该断点的属性， 默认地，当该变量被访问或它的值被修改时，程序都会被中断。但在本示例中，只希望当对value的值进行修改时程序才需要被中断，所以取消对&amp;quot;Access&amp;quot;的勾选。 这时，我们会发现原来的Watchpoin图标也有变化了。
-4. Method Breakpoint 与关注对某个变量的访问与修改一样，我们也可以关注程序对某个方法的调用情况，即，可以设置Method Breakpoint。在此处，设置针对方法setValue的Method Breakpoint。同理，双击第11行代码对应的左侧栏即可。 仍然要查看该断点的属性。默认地，只勾选了&amp;quot;Entry&amp;rdquo;，而没有勾选&amp;quot;Exit&amp;rdquo;。 这表示，当刚进入该方法(调用开始)时，程序会被中断；而，离开该方法(调用结束)时，程序并不会被中断。在本示例中，需要同时勾选上&amp;quot;Exit&amp;rdquo;。 点击OK之后，可以看到该断点的图标也有所改变。 根据这里的设置，当程序运行到第20行后会在第12行被中断，尽管这里没有显式的断点，但这就是setValue()方法的入口(Entry)。必须注意地是，程序在运行到第16行时不会被中断，尽管它看起来像是setValue()方法的出口(Exit)。实际上，程序会在第17行被中断，这里才是setValue()调用结束的地方。
+2. Line Breakpoint Line Breakpoin是最简单的Eclipse断点，只要双击某行代码对应的左侧栏，就对该行设置上断点。此处，对第20行代码设置上Line Breakpoint，如下图所示， 可以为Line Breakpoint设置一个条件，那么当程序运行到该断点时，只有满足设定的条件，才会被中断。右键点击第20行的断点，选择&amp;quot;Breakpoint Properties&amp;hellip;&amp;quot; 在弹出的属性对话框中，勾选上&amp;quot;Conditional&amp;quot;，然后在文本框中输入&amp;quot;count % 2 == 0&amp;quot;。 该条件表示，当程序运行到第20行时，只有当count为偶数时，程序才会被中断。细心地话，你会发现该断点的图标发生了改变，多了一个问号。
+3. Watchpoint Line Breakpoint关注于程序运行的&amp;quot;过程&amp;quot;，大家也常把使用这种断点的调试称为单步调试。但有时候，我们对程序的运行过程不太了解，可能也不太关心，不能确定在什么地方设置断点比较合适，而可能比较关注某个关键变量的变化或使用。此时，就可以为该变量设置一种特殊的断点&amp;ndash;Watchpoint。在此示例，我们最关心的就是成员变量value的值，那么就可以为它设置一个Watchpoint，双击第9行代码对应的左侧栏就可以了。 使用在2中所提及的方法，查看该断点的属性， 默认地，当该变量被访问或它的值被修改时，程序都会被中断。但在本示例中，只希望当对value的值进行修改时程序才需要被中断，所以取消对&amp;quot;Access&amp;quot;的勾选。 这时，我们会发现原来的Watchpoin图标也有变化了。
+4. Method Breakpoint 与关注对某个变量的访问与修改一样，我们也可以关注程序对某个方法的调用情况，即，可以设置Method Breakpoint。在此处，设置针对方法setValue的Method Breakpoint。同理，双击第11行代码对应的左侧栏即可。 仍然要查看该断点的属性。默认地，只勾选了&amp;quot;Entry&amp;quot;，而没有勾选&amp;quot;Exit&amp;quot;。 这表示，当刚进入该方法(调用开始)时，程序会被中断；而，离开该方法(调用结束)时，程序并不会被中断。在本示例中，需要同时勾选上&amp;quot;Exit&amp;quot;。 点击OK之后，可以看到该断点的图标也有所改变。 根据这里的设置，当程序运行到第20行后会在第12行被中断，尽管这里没有显式的断点，但这就是setValue()方法的入口(Entry)。必须注意地是，程序在运行到第16行时不会被中断，尽管它看起来像是setValue()方法的出口(Exit)。实际上，程序会在第17行被中断，这里才是setValue()调用结束的地方。
 5. Exception Breakpoint 如果，我们期望某个特定异常发生时程序能够被中断，以方便查看当时程序所处的状态。通过设置Exception Breakpoint就能达到这一目标。本示例故意在第23行抛出了IllegalArgumentException异常，我们期望程序运行到此处时会被中断。但我们不直接为此行代码设置Line Breakpoint，而是为IllegalArgumentException设置Exception Breakpoint。设置Exception Breakpoint的方法与其它类型断点都不同，它不能通过双击左侧栏的方式在代码编辑器上直接进行设置。点击Breakpoints视图右上角形如Ji的图标， 会弹出如下所示的对话框， 在其中选中IllegalArgumentException，并点击OK，这时一个Exception Breakpoint就设置好了。
 小结 上述的Eclipse断点，我们在现实工作中肯定都有意或无意地使用过其中的几种，只是不一定十分了解内情罢了。使用好Eclipse的各种断点，可以把很好地帮助我们分析程序，定位问题。</description></item><item><title>Spring松耦合示例</title><link>http://leaver.me/2013/09/20/spring%E6%9D%BE%E8%80%A6%E5%90%88%E7%A4%BA%E4%BE%8B/</link><pubDate>Fri, 20 Sep 2013 15:50:46 +0000</pubDate><guid>http://leaver.me/2013/09/20/spring%E6%9D%BE%E8%80%A6%E5%90%88%E7%A4%BA%E4%BE%8B/</guid><description>面向对象设计的理念是把整个系统分成一组可重用的组件，然而，当系统变得越大的时候，尤其是在java中，这最大的对象依赖将会紧紧耦合，以至于非常难以管理和修改，而现在，你可以使用Spring框架扮演一个中间模块的角色，方便高效地管理其他组件依赖
 输出生成的例子 看个例子，假设你的项目有一个方法可以输出内容到csv或者json格式，你可能写出这样的代码
@@ -99,6 +99,7 @@ Maven坐标咋来的，当然去中央仓库搜索之了，搜索结果清晰的
 2.Debug.WriteLine方法
 3.TraceListener类
 DelimitedListTraceListener创建的时候指定一个文件名，当Flush调用的时候，就被覆写到文件里。
+4.Debug.Write和WriteIf以及WriteLineIf方法
 第一个参数一个bool值，为真则输出。
 5.Debug.Assert方法
 如果表达式为false，则输出。</description></item><item><title>操作系统中的页面置换算法</title><link>http://leaver.me/2013/01/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95/</link><pubDate>Wed, 30 Jan 2013 09:18:05 +0000</pubDate><guid>http://leaver.me/2013/01/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95/</guid><description>页面调度算法总结； 最好的两种算法是老化算法和工作集时钟算法，分别基于LRU和工作集。具有良好的页面调度性能。</description></item><item><title>C# 基础知识系列文章索引</title><link>http://leaver.me/2013/01/27/c#-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0%E7%B4%A2%E5%BC%95/</link><pubDate>Sun, 27 Jan 2013 20:50:08 +0000</pubDate><guid>http://leaver.me/2013/01/27/c#-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0%E7%B4%A2%E5%BC%95/</guid><description>清理GR的加星标项目。分享来自博客园 zhili 的C#基础系列文章。
@@ -146,7 +147,7 @@ SOAP是Web Service应用的基础协议。他是一种轻量的简单的。基�
 不要把公司想像成慈善机构。工作的运作方面应该是尽可能快的实现盈利。树立品牌，赢得客户。我的工作就是完成企业的良性运作。
 如果被问到是否需要考虑看分数。应该说用人单位确实需要全面考量。也要考虑应聘者的工作积极性/服从性。实际经验/对开发的理解诶。这些也许比分数更有价值。
 应届生的优缺点应该是足够的理论知识和专业能力。缺点是工作和社会经验不足。</description></item><item><title>理解并实现原型模式-实现ICloneable接口.理解深浅拷贝</title><link>http://leaver.me/2012/10/19/%E7%90%86%E8%A7%A3%E5%B9%B6%E5%AE%9E%E7%8E%B0%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E5%AE%9E%E7%8E%B0icloneable%E6%8E%A5%E5%8F%A3.%E7%90%86%E8%A7%A3%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/</link><pubDate>Fri, 19 Oct 2012 09:27:21 +0000</pubDate><guid>http://leaver.me/2012/10/19/%E7%90%86%E8%A7%A3%E5%B9%B6%E5%AE%9E%E7%8E%B0%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E5%AE%9E%E7%8E%B0icloneable%E6%8E%A5%E5%8F%A3.%E7%90%86%E8%A7%A3%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/</guid><description>本文用C#实现原型模式,也会讨论深浅拷贝,已经如何在.net中高效实现ICloneable 接口 介绍 有时候我们需要从上下文得到一个对象的拷贝，然后通过一些独立的操作来处理他。原型模式在这种情况下很适用
-GoF 定义原型模式为用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的对象。 Specify the kind of objects to create using a prototypical instance, and create new objects by copying this prototype.&amp;rdquo;
+GoF 定义原型模式为用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的对象。 Specify the kind of objects to create using a prototypical instance, and create new objects by copying this prototype.&amp;quot;
 看一下类图
 主要的参与者有 • Prototype: 抽象类或接口，定义了方法来拷贝自己 • ConcretePrototype: 克隆的具体类. • Client: 需要执行拷贝对象的软件对象 然后实现吧
 使用代码
@@ -253,7 +254,9 @@ Robin Vessey 让我产生了共鸣，因为它真的是伪VCS（Version Control 
 最后示例代码如下：
 很简单。。就不多说了。。</description></item><item><title>WPF毛玻璃效果Demo和一个问题</title><link>http://leaver.me/2012/09/24/wpf%E6%AF%9B%E7%8E%BB%E7%92%83%E6%95%88%E6%9E%9Cdemo%E5%92%8C%E4%B8%80%E4%B8%AA%E9%97%AE%E9%A2%98/</link><pubDate>Mon, 24 Sep 2012 08:04:25 +0000</pubDate><guid>http://leaver.me/2012/09/24/wpf%E6%AF%9B%E7%8E%BB%E7%92%83%E6%95%88%E6%9E%9Cdemo%E5%92%8C%E4%B8%80%E4%B8%AA%E9%97%AE%E9%A2%98/</guid><description>那天看到WPF书上讲的毛玻璃效果，就去找了下效果。。忘了例子是从哪发现得了。。先看下效果，
 但是这不是重点，作者给出的代码有一个设计时错误。。错误提示为： 无法将类型为“Microsoft.Expression.Platform.WPF.InstanceBuilders.WindowInstance”的对象强制转换为类型“System.Windows.Window”，，
-　中文搜了一下。没有发现有人解决过。目测。。。然后又拿英文搜了下。几经辗转。。终于是解决了。。原文在Unable to cast XAML error。其实就是将原作者这个函数修改如下的</description></item><item><title>WPF主题分享及使用</title><link>http://leaver.me/2012/09/18/wpf%E4%B8%BB%E9%A2%98%E5%88%86%E4%BA%AB%E5%8F%8A%E4%BD%BF%E7%94%A8/</link><pubDate>Tue, 18 Sep 2012 09:19:02 +0000</pubDate><guid>http://leaver.me/2012/09/18/wpf%E4%B8%BB%E9%A2%98%E5%88%86%E4%BA%AB%E5%8F%8A%E4%BD%BF%E7%94%A8/</guid><description>首先是一个很流行的WPF20多种xaml主题合集源码。这个主题系列是非常漂亮的。我找到了源码。但是没有找到官网。 update：感谢月亮云的提醒，官网是：http://wpfthemes.codeplex.com 截两幅图如下：
+　中文搜了一下。没有发现有人解决过。目测。。。然后又拿英文搜了下。几经辗转。。终于是解决了。。原文在Unable to cast XAML error。其实就是将原作者这个函数修改如下的
+　也就是验证了一下转换是否成功。
+下载：修改后的RGSamples</description></item><item><title>WPF主题分享及使用</title><link>http://leaver.me/2012/09/18/wpf%E4%B8%BB%E9%A2%98%E5%88%86%E4%BA%AB%E5%8F%8A%E4%BD%BF%E7%94%A8/</link><pubDate>Tue, 18 Sep 2012 09:19:02 +0000</pubDate><guid>http://leaver.me/2012/09/18/wpf%E4%B8%BB%E9%A2%98%E5%88%86%E4%BA%AB%E5%8F%8A%E4%BD%BF%E7%94%A8/</guid><description>首先是一个很流行的WPF20多种xaml主题合集源码。这个主题系列是非常漂亮的。我找到了源码。但是没有找到官网。 update：感谢月亮云的提醒，官网是：http://wpfthemes.codeplex.com 截两幅图如下：
 使用很简单。一种是将WPF.Theme.dll导入。像demo展示的那样。使用其提供的主题管理类来使用。可以实现任意切换效果。另一种就是直接把源文件的各种theme.xaml提取出来，添加到资源字典就行了。当然还有一些不重要的小细节。相信你对wpf比较了解的话可以搞得定的。。还可以自己学习一下。。
 昨天还看到一个主题，也比较漂亮。Amazing WPF Controls分享一下。如果有什么疑问。欢迎留言讨论。
 下载：WPF20多种xaml主题合集源码</description></item><item><title>C# 委托知识总结</title><link>http://leaver.me/2012/09/16/c#-%E5%A7%94%E6%89%98%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/</link><pubDate>Sun, 16 Sep 2012 10:52:01 +0000</pubDate><guid>http://leaver.me/2012/09/16/c#-%E5%A7%94%E6%89%98%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/</guid><description>如果你足够强大，你就不会把幸福押在别人身上，你会自己创造幸福或者给别人带来幸福。而变得强大的途径就是学习，就是读书，学一切东西，读任何想读的书。 爱你让我变得更强。。 继续读一些专业文章了。不保证都是原创，但是保证每篇技术文章的质量。也会注明来源，标准就是浅显易懂。但不简单。
@@ -264,11 +267,37 @@ Robin Vessey 让我产生了共鸣，因为它真的是伪VCS（Version Control 
 上面是定义两个委托的例子，其实很简单。声明一个委托使用delegate关键字，上面分别是定义的带返回值的委托和不带返回值的委托，
 两个委托都有传递参数，当然也可以不传递参数。其实委托也是一个类，委托派生为System.MulticastDelegate,而System.MulticastDelegate
 又继承System.Delegate,如果你知道这个也就明白委托其实是一个特殊的类。 委托的简单实用例子
+输出结果 上面使用最普通的一种方式来定义了一个委托的使用，这个例子虽然很简单，但是能够很形象的描述委托的使用。
+3.委托的三种形式
+(1).推断 推断委托例子
 在委托定义的例子中我们看到委托的使用方法是在委托实例化的时候指定的[new DelegateName(FunctionName)],这里可能表述不是太但是代码应该看得白了。 而委托的推断，并没有new 委托这个步骤，而是直接将Function 指定给委托。
 (2).匿名函数 匿名委托例子
+至于匿名委托，给人的感觉更为直接了，都不用显示的指定方法名，因为根本没有方法，而是指定的匿名方法。匿名方法在.NET 中提高了
+代码的可读性和优雅性。对于更多操作较少的方法直接写为匿名函数，这样会大大提高代码的可读性。这里有两个值得注意的地方: 第一,不能使用
+跳转语句跳转到该匿名方法外,第二 不能使用ref,out修饰的参数
+(3).多播委托 多播委托例子
+还是上面的那个实例，我不尽想让女朋友去给我掉杯水，还让她帮我将程序设计图稿拿过来。这个时候做的就不是一件事了，而是多件。
+程序中也有很多这种情况，于是我们需要多播委托，在一个委托上指定多个执行方法，这是在程序中可以行的。上面提到了，委托直接继承于
+System.MulticastDelegate，正是因为这个类可以实现多播委托。如果调用多播委托，就可以按顺序连续调用多个方法。为此，委托的签名就必须返回void；否则，就只能得到委托调用的最后一个方法的结果。所以在上面的这段代码中是得不到结果的
+ 4.事件
+使用C#编程，无论是WinForm,WebForm 给人很难忘得就是它的控件，而他们的控件库使用方式都是使用使用事件驱动模式，而事件驱动模式却少不了委托。话不多说，看代码能够更清好的理解事件和委托之间的联系. 事件的使用
+ 上面的代码中我们定义了一个委托,然后定义了一个类EventSource，这个类中声明了一个事件。定义一个事件使用event 关键字,定义一
+个event必须指定这个event传递消息的委托,在触发事件之前必需订阅事件，我们使用+= new 语法来订阅一个事件,也就相当于实例化一个事件。
+当我们触发事件的时候，就会调用相应的方法去处理。
+5. 泛型委托
+委托是类型安全的引用,泛型委托就和我们常用的泛型类一样，这个类在使用的时候才能确定类型.通过泛型委托，我们可以在委托传递参数
+之后知道它的类型.在.NET中有一个很典型的泛型委托：
 这是一个非常有特色的泛型委托，可能我们用的比较少，但是作用是不能忽视的。 我们看看三个非常具有代表性的泛型委托.现在.NET4.0已经出来了，但是泛型委托.NET2.0就出来了，Linq 大家用的那叫一个甜，
 为啥 函数式编程风格，匿名方法，Lamda表达式表达式使用是如此的魅力。但是大家仔细观察过没有，Linq 中的方法有几个经常出现的参数：
-Func&amp;lt;T, E&amp;gt;：封装一个具有一个参数并返回 E 参数指定的类型值的方法,T 是这个委托封装方法的参数类型，E是方法的返回值类型。当然Func&amp;lt;T, Result&amp;gt; 只是其中的一种情况,这个委托还有其他的几种情况:Func&amp;lt;T&amp;gt; 这个是方法没有参数,返回值类型是T;Func&amp;lt;T1,T2,Result&amp;gt; 这个方法有两个参数,类型分别为T1,T2，返回值是Result,还有Func&amp;lt;T1,T2,T3,Result&amp;gt;，Func&amp;lt;T1,T2,T3,T4,Result&amp;gt; 这几中情况，具体情况就不介绍了.我们还可以通过扩展类型，扩展为更多的参数. Func 委托的使用</description></item><item><title>WCF读书笔记(4)</title><link>http://leaver.me/2012/09/09/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B04/</link><pubDate>Sun, 09 Sep 2012 09:06:33 +0000</pubDate><guid>http://leaver.me/2012/09/09/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B04/</guid><description>三种供客户端和服务端控制通信的契约介绍： 1.服务契约描述了由特定服务端点所公开的操作，每一种操作，通过参数和返回值定义请求和响应消息的格式。 2.数据契约描述了复杂类型如何被串行化为消息的一部分，数据契约是服务契约中优先用来包含复杂类型的方式。 3.消息契约提供对某个soap消息格式的控制，包括支持定制消息标题和数据契约所描述的单个消息体元素。
+Func&amp;lt;T, E&amp;gt;：封装一个具有一个参数并返回 E 参数指定的类型值的方法,T 是这个委托封装方法的参数类型，E是方法的返回值类型。当然Func&amp;lt;T, Result&amp;gt; 只是其中的一种情况,这个委托还有其他的几种情况:Func&amp;lt;T&amp;gt; 这个是方法没有参数,返回值类型是T;Func&amp;lt;T1,T2,Result&amp;gt; 这个方法有两个参数,类型分别为T1,T2，返回值是Result,还有Func&amp;lt;T1,T2,T3,Result&amp;gt;，Func&amp;lt;T1,T2,T3,T4,Result&amp;gt; 这几中情况，具体情况就不介绍了.我们还可以通过扩展类型，扩展为更多的参数. Func 委托的使用
+Action&amp;lt;T&amp;gt;:封装一个方法，该方法只采用一个参数并且不返回值,包括Action&amp;lt;T&amp;gt;,Action&amp;lt;T1,T2&amp;gt;,Action&amp;lt;T1,T2,T3&amp;gt;,Action&amp;lt;T1,T2,T3,T4&amp;gt; 这几种情况,也可以通过扩展方法去扩展参数的个数 。 Action 委托使用例子
+ Predicate&amp;lt;T&amp;gt;:表示定义一组条件并确定指定对象是否符合这些条件的方法。该委托返回的是一个bool类型的值,如果比较满足条件
+返回true,否则返回false.其实上面的Func 委托可以包含这个委托.不过这个委托和上面的两个不一样，它只有一种类型 Predicate 委托使用例子public void TestPredicate() { TEventSource eventSource = new TEventSource(); Predicatepredicate = eventSource.IsRigth; Console.WriteLine(predicate(0)); }
+public bool IsRigth(int value) { if (value == 0) { return true; } else { return false; } }&amp;lt;/pre&amp;gt; 6.异步委托
+投票技术: 委托其实相当于一个线程,使用投票技术是使用异步委托的一种实现方式.Delegate类提供了方法BeginInvoke()，可以传送委托类型定义的输入参数，其返回类型为IAsyncResult。IAsyncResult的IsCompleted属性可以判断委托任务是否完成 异步委托投票技术
+等待句柄:等待句柄是使用AsyncWaitHandle属性访问，返回一个WaitHandle类型的对象，它可以等待委托线程完成其任务。在这个参数中可以设置最大的等待时间。 异步委托等待句柄
+异步回调:这个方式和投票技术有点类似，不过在投票方式中BeginInvoke()方法第三个参数指定了一个方法签名,而这个方法参数接收IAsyncResult 类型的参数。 异步委托回调函数
+ </description></item><item><title>WCF读书笔记(4)</title><link>http://leaver.me/2012/09/09/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B04/</link><pubDate>Sun, 09 Sep 2012 09:06:33 +0000</pubDate><guid>http://leaver.me/2012/09/09/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B04/</guid><description>三种供客户端和服务端控制通信的契约介绍： 1.服务契约描述了由特定服务端点所公开的操作，每一种操作，通过参数和返回值定义请求和响应消息的格式。 2.数据契约描述了复杂类型如何被串行化为消息的一部分，数据契约是服务契约中优先用来包含复杂类型的方式。 3.消息契约提供对某个soap消息格式的控制，包括支持定制消息标题和数据契约所描述的单个消息体元素。
 消息参数（Message Parameter） 对于
 若客户端传入的参数为“Hello”，则生成的请求消息体中标记为Hello,而响应返回的消息体则被标记为返回内容,可以通过
 来定制消息中的标签。
@@ -385,6 +414,7 @@ IT界在我眼里一直是一个无比高级的职业，聚集着全球最聪明
 　最后注意，请珍惜生命，远离我的微博：@meditic</description></item><item><title>CSV批量导入解决</title><link>http://leaver.me/2012/07/06/csv%E6%89%B9%E9%87%8F%E5%AF%BC%E5%85%A5%E8%A7%A3%E5%86%B3/</link><pubDate>Fri, 06 Jul 2012 18:28:21 +0000</pubDate><guid>http://leaver.me/2012/07/06/csv%E6%89%B9%E9%87%8F%E5%AF%BC%E5%85%A5%E8%A7%A3%E5%86%B3/</guid><description>最近的一个事就是那个诡异的CSV导入，后来决定用最笨的方法。就是readline，然后确实是可以正常识别了。思路就是一行行读入，然后构造sql语句，保存为sql文件，然后去批量执行sql文件。其实在codeproject找到了一些类似的工具，都有不如意的地方，但是时间关系还没能自己去定制，这件事完成后，就去完善一下大牛们的工具。
 　因为是多个csv文件，每个文件对应于我们想建的一个表，实际是大约2000个csv文件，每个文件大约4000行数据，构造成对应的sql语句比较简单，需要注意的就是如果sql server表中的字段和关键字重名，那么需要加[]，比如我们有个字段是open，那么实际sql语句中使用的时候，比如
 　简单的读写以后我们构造了2000个sql文件，然后我们需要执行这些sql文件。。必然需要写个代码来批量执行了。。为此，我先用C#生成一个批处理文件，然后来执行
+　简单封装了一下，输入参数是文件夹。里面包含我们的所有sql文件。输出为一个批处理文件。。后来。执行下生成的bat文件就可以了。。
 600M的sql文件执行起来三个多小时。。因为只算一次，所以就不考虑优化了。。鄙视我们吧。</description></item><item><title>《Effective C#》Item 9：区别和认识四个判等函数</title><link>http://leaver.me/2012/07/05/effective-c#item-9%E5%8C%BA%E5%88%AB%E5%92%8C%E8%AE%A4%E8%AF%86%E5%9B%9B%E4%B8%AA%E5%88%A4%E7%AD%89%E5%87%BD%E6%95%B0/</link><pubDate>Thu, 05 Jul 2012 22:56:00 +0000</pubDate><guid>http://leaver.me/2012/07/05/effective-c#item-9%E5%8C%BA%E5%88%AB%E5%92%8C%E8%AE%A4%E8%AF%86%E5%9B%9B%E4%B8%AA%E5%88%A4%E7%AD%89%E5%87%BD%E6%95%B0/</guid><description>.Net有四个判等函数？不少人看到这个标题，会对此感到怀疑。事实上确是如此，.Net提供了ReferenceEquals、静态Equals，具体类型的Equals以及==操作符这四个判等函数。但是这四个函数之间有细微的关系，改变其中一个函数的实现会影响到其他函数的操作结果。
 　首先要说的是Object.ReferenceEquals和Object.Equals这两个静态函数，对于它们俩来说，是不需要进行重写的，因为它们已经完成它们所要得做的操作。
 对于Object.ReferenceEquals这个静态函数，函数形式如下：
@@ -418,7 +448,7 @@ Object.Equals
 无限制
 类型的Equals
 无限制
-类型的==****重载无限制
+**类型的==**重载无限制
 来源：http://blog.csdn.net/knight94/article/details/1050901</description></item><item><title>Unable to read file Data_EGCITest解决方法</title><link>http://leaver.me/2012/07/03/unable-to-read-file-data_egcitest%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</link><pubDate>Tue, 03 Jul 2012 19:50:19 +0000</pubDate><guid>http://leaver.me/2012/07/03/unable-to-read-file-data_egcitest%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</guid><description>今天做的是使用matlab进行协整检验，好吧。。听起来似乎很厉害的样子，其实，我也不太清楚协整到底是干嘛呢。不过经管的各位很给力。 想来协整检验matlab是可以做的。所以就去查matlab是不是有这个函数，结果是有的。egcitest，但是具体的参数还是景观的朋友看懂的。
 　早上3点多起床，看matlab的书，然后早上看完了。基本上熟悉了matlab的操作。然后就开始写这个。大致的流程和昨天的那篇文章是一致的。但是matlab生成的dll文件在C#里面调用始终会提示这样一个错误。：
 　组合了几个关键字进行搜索，发现了这篇文章，翻译过来很简单。
@@ -435,10 +465,18 @@ c#温故而知新： 线程篇(一)：Thread c#温故而知新： 线程篇(二)
  会得到一个xaml文件，一会用
 然后新建wpf项目，然后在解决方案资源管理器视图右键点击项目 导入现有项，把上一步的xaml文件导入
 然后需要在app.xaml文件中进行设置，具体在&amp;lt;Application.Resources&amp;gt;标签内添加如下代码，中间那个文件名看情况而定。
+ 然后打开“MainWindow.xaml”文件的设计视图，点击窗体边缘以选中窗体，在属性面板中更改AllowsTransparency及WindowStyle属性。 AllowsTransparency 指示窗体是否支持透明。选中 WindowStyle指示窗体边框样式，设为 None 为无边框。
+然后呢在 MainWindow.xaml文件中添加如下代码，
 最终代码是：
 其中background那个是固定的，而MouseDown是为了给窗体写可以拖动的函数，函数名为Window_MouseDown你也可以自己制定
 然后对着那个函数名点右键，如下图
-导航到事件处理程序，然后在打开的函数里写上</description></item><item><title>GET和POST有什么区别？及为什么网上的多数答案都是错的。</title><link>http://leaver.me/2012/06/19/get%E5%92%8Cpost%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%E5%8F%8A%E4%B8%BA%E4%BB%80%E4%B9%88%E7%BD%91%E4%B8%8A%E7%9A%84%E5%A4%9A%E6%95%B0%E7%AD%94%E6%A1%88%E9%83%BD%E6%98%AF%E9%94%99%E7%9A%84/</link><pubDate>Tue, 19 Jun 2012 18:04:40 +0000</pubDate><guid>http://leaver.me/2012/06/19/get%E5%92%8Cpost%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%E5%8F%8A%E4%B8%BA%E4%BB%80%E4%B9%88%E7%BD%91%E4%B8%8A%E7%9A%84%E5%A4%9A%E6%95%B0%E7%AD%94%E6%A1%88%E9%83%BD%E6%98%AF%E9%94%99%E7%9A%84/</guid><description>今天突然看到很多好的技术文章，转载收藏备用分享。
+导航到事件处理程序，然后在打开的函数里写上
+拖动功能就实现了。
+至于添加关闭按钮的，我就不写了，很简单，代码里都有。可以参考源文件。
+工程源码下载：WPFDemo
+参考：
+http://www.cnblogs.com/SkyD/archive/2008/07/13/1242044.html
+http://www.cnblogs.com/yinyao/archive/2011/05/23/2054056.html</description></item><item><title>GET和POST有什么区别？及为什么网上的多数答案都是错的。</title><link>http://leaver.me/2012/06/19/get%E5%92%8Cpost%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%E5%8F%8A%E4%B8%BA%E4%BB%80%E4%B9%88%E7%BD%91%E4%B8%8A%E7%9A%84%E5%A4%9A%E6%95%B0%E7%AD%94%E6%A1%88%E9%83%BD%E6%98%AF%E9%94%99%E7%9A%84/</link><pubDate>Tue, 19 Jun 2012 18:04:40 +0000</pubDate><guid>http://leaver.me/2012/06/19/get%E5%92%8Cpost%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%E5%8F%8A%E4%B8%BA%E4%BB%80%E4%B9%88%E7%BD%91%E4%B8%8A%E7%9A%84%E5%A4%9A%E6%95%B0%E7%AD%94%E6%A1%88%E9%83%BD%E6%98%AF%E9%94%99%E7%9A%84/</guid><description>今天突然看到很多好的技术文章，转载收藏备用分享。
 如果有人问你，GET和POST，有什么区别？你会如何回答？
 我的经历 前几天有人问我这个问题。我说GET是用于获取数据的，POST，一般用于将数据发给服务器之用。
 这个答案好像并不是他想要的。于是他继续追问有没有别的区别？我说这就是个名字而已，如果服务器支持，他完全可以把GET改个名字叫GET2。他反问道，那就是单纯的名字上的区别喽？我想了想，我觉得如果说再具体的区别，只能去看RFC文档了，还要取决于服务器（指Apache，IIS****）的具体实现。但我不得不承认，我的确没有仔细看过HTTP的RFC文档。于是我说，我对HTTP协议不太熟悉。这个问题也就结束了。
@@ -506,13 +544,24 @@ SASS允许选择器嵌套。比如，下面的CSS代码：
 div h1 { color : red; } 可以写成： div { hi { color:red; } } 属性也可以嵌套： p { border-color: red; } 可以写成： p { border: { color: red; } } 注意，border后面必须加上冒号。
 3.4 注释</description></item><item><title>FreeAnony-代理采集设置工具</title><link>http://leaver.me/2012/06/17/freeanony-%E4%BB%A3%E7%90%86%E9%87%87%E9%9B%86%E8%AE%BE%E7%BD%AE%E5%B7%A5%E5%85%B7/</link><pubDate>Sun, 17 Jun 2012 20:10:05 +0000</pubDate><guid>http://leaver.me/2012/06/17/freeanony-%E4%BB%A3%E7%90%86%E9%87%87%E9%9B%86%E8%AE%BE%E7%BD%AE%E5%B7%A5%E5%85%B7/</guid><description>这个名字确实有点不太好。。因为刚开始我想到这个工具是在今天早上看到一个别人的代理工具的时候，突然想做的，没有好好规化，结果后来代码越写越多。。不过收获很大。
 先看界面，因为是简单实现一下，所以就不要吐槽界面了。。
-刚开始想的思路就是先去一个经常发布代理IP的网页去采集。然后解析成一条条的信息。然后显示出来。中途遇到几个问题，一个就是在做代理验证的时候，没有用多线程，导致直接界面无响应。另一个就是DataGridView控件要实现对一个数组的绑定，需要的一个实体对象。</description></item><item><title>为什么sizeof(str.substr(0,3).c_str())=8?</title><link>http://leaver.me/2012/05/21/%E4%B8%BA%E4%BB%80%E4%B9%88sizeofstr.substr03.c_str8/</link><pubDate>Mon, 21 May 2012 06:59:09 +0000</pubDate><guid>http://leaver.me/2012/05/21/%E4%B8%BA%E4%BB%80%E4%B9%88sizeofstr.substr03.c_str8/</guid><description>问题： string str = &amp;quot;abcdefgdcb&amp;quot;; cout &amp;amp;lt; &amp;amp;lt; sizeof(str.substr(0,3).c_str()); For some reason, the above string is giving me 8. I assumed c_str() returns a null string, 由于某些原因，上面的这个字符串得到的结果是8，我估计c_str()返回了一个null，
+刚开始想的思路就是先去一个经常发布代理IP的网页去采集。然后解析成一条条的信息。然后显示出来。中途遇到几个问题，一个就是在做代理验证的时候，没有用多线程，导致直接界面无响应。另一个就是DataGridView控件要实现对一个数组的绑定，需要的一个实体对象。
+这部分就是先得到网页源码，然后通过IndexOf和LastIndexOf定位到ip组的位置。这是通过分析源码来确定参数的。最后通过 标签分割成字符数组。数组元素类似于112.25.12.37:80@HTTP;江苏省 移动，然后就是继续分割成一部分，构造了一个IPEntity的数组。在按钮中绑定到DataGridView中即可 IPEntity类的定义如下：这里面设置了一个status属性，用于后面代理验证的时候进行标记。
+然后是验证ip可用性的部分。这部分主要的代码是验证DataGridView中的ip地址可用性
+但是实际运行后就知道，会出现界面无响应。因为长时间的网络访问。为此，在按钮的单击事件中，使用简单的线程后台来操作
+然后其实就没什么了。至于后面的设置iE代理不过就是对注册表的操作了
+不好的地方希望大家指正。因为只是一个简单的原型。完成我想的功能。所以不必过分苛求。关键的代码就是上面的了。 项目源码下载：FreeAnony 参考： http://blog.csdn.net/cisso/article/details/4467188
+http://www.blogjava.net/aoneany/articles/281344.html
+http://www.cnblogs.com/server-you/archive/2006/09/20/509342.html
+http://topic.csdn.net/u/20090514/01/82749a36-ffef-4da5-a607-260dccbad84b.html
+http://www.haogongju.net/art/1485280
+http://developer.51cto.com/art/200903/115200.htm
+http://qianshao.blog.51cto.com/935360/201782</description></item><item><title>为什么sizeof(str.substr(0,3).c_str())=8?</title><link>http://leaver.me/2012/05/21/%E4%B8%BA%E4%BB%80%E4%B9%88sizeofstr.substr03.c_str8/</link><pubDate>Mon, 21 May 2012 06:59:09 +0000</pubDate><guid>http://leaver.me/2012/05/21/%E4%B8%BA%E4%BB%80%E4%B9%88sizeofstr.substr03.c_str8/</guid><description>问题： string str = &amp;quot;abcdefgdcb&amp;quot;; cout &amp;amp;lt; &amp;amp;lt; sizeof(str.substr(0,3).c_str()); For some reason, the above string is giving me 8. I assumed c_str() returns a null string, 由于某些原因，上面的这个字符串得到的结果是8，我估计c_str()返回了一个null，
 and sizeof uses the null to determine the size of the string. 并且sizeof函数使用这个null来定义这个字符串的大小。
-答案： Because sizeof doesn't give you the length of a string, 因为sizeof给你的不是一个字符串的长度，
+答案： Because sizeof doesn&amp;rsquo;t give you the length of a string, 因为sizeof给你的不是一个字符串的长度，
 it gives you the size of the type (const char * in this case). Try strlen. 他给你的是这个类型的大小（这种情况下的类型是c_str()返回的const char*类型），想要得到正确的结果，试试strlen函数吧。
 On your system, sizeof (const char ) == 8, like any other pointer. 在你的系统上，sizeof(const char)=8,和其他所有的指针类型一样。
 8 is the size of a pointer on your machine (64-bit) 8是在你的64位电脑上一个指针的大小
-There's your problem. sizeof tells you the size of a variable, 别乱假设，sizeof告诉你一个变量的大小，
+There&amp;rsquo;s your problem. sizeof tells you the size of a variable, 别乱假设，sizeof告诉你一个变量的大小，
 which has nothing to do with the value inside the variable, ever. 他不会进入变量里面对变量做任何改变的。。永远不会。
 问题:http://stackoverflow.com/q/10668764/764869</description></item><item><title>对象数组的Xml序列化和反序列化</title><link>http://leaver.me/2012/05/18/%E5%AF%B9%E8%B1%A1%E6%95%B0%E7%BB%84%E7%9A%84xml%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</link><pubDate>Fri, 18 May 2012 09:38:27 +0000</pubDate><guid>http://leaver.me/2012/05/18/%E5%AF%B9%E8%B1%A1%E6%95%B0%E7%BB%84%E7%9A%84xml%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</guid><description>使用Serialization来进行序列化和反序列化，因此需要引入System.Xml.Serialization；命名空间。
 为什么要做序列化和反序列化？ .Net程序执行时，对象都驻留在内存中；内存中的对象如果需要传递给其他系统使用；或者在关机时需要保存下来以便下次再次启动程序使用就需要序列化和反序列化。
@@ -546,4 +595,14 @@ which has nothing to do with the value inside the variable, ever. 他不会进�
 其实，无论哪一种开发模式或方法，都是有利有弊的。不会存在一种“万用法”可以解决任何问题。所以“三层结构”这个词眼也不会是个例外！是否采用这个模式进行系统开发，要作出比较、权衡之后才可以。切忌滥用!
 参与资料 MainDoc.rar （《浅谈“三层结构”原理与用意》1.30M)
 http://www.bincess.cn/Downloads/MainDoc.rar  petshop 4.0的体系结构（只是稍微看了一下，了解一下结构）
-参考了Duwamish Web Search</description></item><item><title>System.Web中不存在类型或命名空间名称UI解决</title><link>http://leaver.me/2012/04/13/system.web%E4%B8%AD%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%B1%BB%E5%9E%8B%E6%88%96%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E5%90%8D%E7%A7%B0ui%E8%A7%A3%E5%86%B3/</link><pubDate>Fri, 13 Apr 2012 16:52:29 +0000</pubDate><guid>http://leaver.me/2012/04/13/system.web%E4%B8%AD%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%B1%BB%E5%9E%8B%E6%88%96%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E5%90%8D%E7%A7%B0ui%E8%A7%A3%E5%86%B3/</guid><description>今天打算用C#写个模拟登录的程序。从类库里找到一个HTMLHelper的类。用来处理html的请求接收等处理。为了让类能够先运行起来，先把该类拖入解决方案，引用就不用添加了，因为该类没写命名空间，可以直接用，我测试其中一个最简单的函数</description></item></channel></rss>
+参考了Duwamish Web Search</description></item><item><title>System.Web中不存在类型或命名空间名称UI解决</title><link>http://leaver.me/2012/04/13/system.web%E4%B8%AD%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%B1%BB%E5%9E%8B%E6%88%96%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E5%90%8D%E7%A7%B0ui%E8%A7%A3%E5%86%B3/</link><pubDate>Fri, 13 Apr 2012 16:52:29 +0000</pubDate><guid>http://leaver.me/2012/04/13/system.web%E4%B8%AD%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%B1%BB%E5%9E%8B%E6%88%96%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E5%90%8D%E7%A7%B0ui%E8%A7%A3%E5%86%B3/</guid><description>今天打算用C#写个模拟登录的程序。从类库里找到一个HTMLHelper的类。用来处理html的请求接收等处理。为了让类能够先运行起来，先把该类拖入解决方案，引用就不用添加了，因为该类没写命名空间，可以直接用，我测试其中一个最简单的函数
+获取我网站的首页源代码。到TextBox控件 编译，运行。出现如题错误。
+命名空间“System.Web”中不存在类型或命名空间名称“UI”。是否缺少程序集引用? E:\project\C#\GTest\GTest\HTMLHelper.cs 直接对着错误点右键，复制。然后删掉后面的路径。使关键字包括前面几个就行了，到Google中搜索。大部分人给的说明都是 原因是缺少System.web的引用，只要右键单击项目，添加引用就行了！ 那咱就添加呗 对着工程点击引用-&amp;gt;添加引用
+悲剧发生了。。
+根本就没有该dll文件。。泪奔了。。于是Google之。。发现没有一个讲清楚的。都是夸夸其谈。。没有任何实质性方案。于是换英语搜。 关键字：Cannot add System.Web.dll reference 第一个是stackoverflow，大名鼎鼎的栈溢出啊。。进去看看。
+For people that cant find &amp;ldquo;System.Web&amp;rdquo; at .Net References, this might be the answer:
+&amp;ldquo;you need to right-click the project -&amp;gt; properties -&amp;gt; then change the &amp;ldquo;Target framework&amp;rdquo; which will probably be &amp;ldquo;.NET Framework 4 Client Profile&amp;rdquo; to just &amp;ldquo;.NET Framework 4&amp;rdquo;.
+The answer was given by Tinister (thanks) as a reply to a previuos post. But I thought it was a little bit hidden at his original post. So i put it here to make it easer to be seen. Hope it helps. 大牛的我就不翻译了，很简单。项目-&amp;gt;项目属性-&amp;gt;目标框架 改成.net framework 4
+这个步骤完成后，重复前面的添加引用的步骤就会发现已经有了System.Web引用了 编译运行。一切ok
+如果你遇到了这样的问题也可以试试吧。
+转自请注明：http://leaver.me/archives/177.html</description></item></channel></rss>

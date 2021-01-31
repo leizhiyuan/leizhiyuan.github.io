@@ -26,11 +26,11 @@
 　开始拿个例题来说明，定义没例题看起来看难了。
 　例题：对于下列文法，S→aS|bS|a，构造该文法的LR(0)项目集规范族
 　思路就是利用闭包函数CLOSURE和转换函数GO来构造。通过计算函数CLOSURE和GO得到文法的LR(0)项目集规范族，而GO函数则把LR(0)项目集规范族连成一个识别该文法所产生的活前缀的DFA。DFA大家都知道，有穷自动机。
-　(1)将文法G(S)拓广为G(S’)也就是该文法的增广文法，目的是使语法分析器知道何时应该停止并接受该串，也就是说当使用S&amp;rsquo;-&amp;gt;S进行规约的时候，就结束。
+　(1)将文法G(S)拓广为G(S’)也就是该文法的增广文法，目的是使语法分析器知道何时应该停止并接受该串，也就是说当使用S'-&amp;gt;S进行规约的时候，就结束。
 　(0)S’→S (1)S→aS　(2)S→bS　(3)S→a
 　构造该文法的LR(0)项目集规范族，I就是产生式，至于I0 I1就是往下递增就可以了。没什么特别的意思。：
-　I0=CLOSURE({S&amp;rsquo; →•S})={S’ →•S, S→•aS, S→•bS, S→•a}
-　//第一条是固定的，都是求S&amp;rsquo; →•S的闭包。而因为右侧的S又可以推导出后面三个，所以后面三个式子是属于该闭包的。在闭包的规则中可以看出，若A→α·Bβ属于CLOSURE(I)，此时S&amp;rsquo; →•S属于闭包，S相当于规则中的B,则每一形如B→·γ的项目也属于CLOSURE(I),此处相当于S-&amp;gt;后面的三个推导式。加上.就可以了
+　I0=CLOSURE({S' →•S})={S’ →•S, S→•aS, S→•bS, S→•a}
+　//第一条是固定的，都是求S' →•S的闭包。而因为右侧的S又可以推导出后面三个，所以后面三个式子是属于该闭包的。在闭包的规则中可以看出，若A→α·Bβ属于CLOSURE(I)，此时S' →•S属于闭包，S相当于规则中的B,则每一形如B→·γ的项目也属于CLOSURE(I),此处相当于S-&amp;gt;后面的三个推导式。加上.就可以了
 　I1=GO( I0 , a)=CLOSURE({S→a•S , S→a•})={S→a•S , S→a• , S→•aS, S→•bS, S→•a }
 　//第二条你可能已经看出来了，其实就是把转换函数GO反过来用，在GO函数中，X为一文法符号，J＝{任何形如A→αX·β的项目| A→α·Xβ属于I}。也就是在I0中，找到右侧包含a的项目，然后将.右移一位来求他们的闭包函数，此处，I0中包含.a的项目为 S→•aS和 S→•a，.右移一位变成S→a•S , S→a•，求闭包函数的规则和上面那条是一样的，继续找推导式右边可以推导出来的式子就可以了，此处，右边同样是S可以推导出三个式子，前面加上.就可以了。
 　I2=GO(I0 , b)=CLOSURE({S→b•S })={ S→b•S, S→•aS, S→•bS, S→•a }
@@ -39,7 +39,7 @@
 　//第四条因为右侧包含.S的只有一项。必须是.S。所以只有一个，右移后求闭包即可。因为S是右侧的第一位，所以不用再向下推导了，规则是：A→α·Bβ属于CLOSURE(I)，此处是S’ →S•，则B→·γ的项目也属于CLOSURE(I)，此处S相当于规则中的α，无B。。。。
 　因为GO(I1, a)=CLOSURE({S→a•S , S→a•})=I1，
 　//第五条同理，在I1中找有右侧有.a的项目，右移一位。进行求闭包，发现和I1求闭包的变量是一样的。所以结果必然也和I1是一样的。
-　GO(I1, b)=CLOSURE(S→b•S)=I2."><meta name=generator content="Hugo 0.62.2"><link rel=canonical href=http://leaver.me/2012/05/12/lr0%E9%A1%B9%E7%9B%AE%E9%9B%86%E8%A7%84%E8%8C%83%E6%97%8F%E7%9A%84%E6%9E%84%E9%80%A0/><link rel=icon href=/favicon.ico><link rel=stylesheet href=/sass/jane.min.0995afa14b62cd93e93cfc066b646c4c17a3eddca0e9d52a1d9dcf5d90aaacd3.css integrity="sha256-CZWvoUtizZPpPPwGa2RsTBej7dyg6dUqHZ3PXZCqrNM=" media=screen crossorigin=anonymous><meta property="og:title" content="LR(0)项目集规范族的构造"><meta property="og:description" content="此文略长。我也没想到这写起来这么多，但对构造过程绝对清楚，一步步慢慢看吧。
+　GO(I1, b)=CLOSURE(S→b•S)=I2."><meta name=generator content="Hugo 0.79.1"><link rel=canonical href=http://leaver.me/2012/05/12/lr0%E9%A1%B9%E7%9B%AE%E9%9B%86%E8%A7%84%E8%8C%83%E6%97%8F%E7%9A%84%E6%9E%84%E9%80%A0/><link rel=icon href=/favicon.ico><link rel=stylesheet href=/sass/jane.min.fa3d941d1d0e0ddc985804227feabffea55c89883eb0af34e0532a7ae9135151.css integrity="sha256-+j2UHR0ODdyYWAQif+q//qVciYg+sK804FMqeukTUVE=" media=screen crossorigin=anonymous><meta property="og:title" content="LR(0)项目集规范族的构造"><meta property="og:description" content="此文略长。我也没想到这写起来这么多，但对构造过程绝对清楚，一步步慢慢看吧。
 　LR的第一个L和LL的第一个L含义相同，即从左到右扫描句子 ，第二个R表示Right most最右推导。
 　在通常的描述中，后面还有一个括号里面的数字如，LR(0)、LR(1)这样，括号里面的数字表示用于决策所需的后续token分词数。
 　首先看一下LR分析器的模型图
@@ -67,11 +67,11 @@
 　开始拿个例题来说明，定义没例题看起来看难了。
 　例题：对于下列文法，S→aS|bS|a，构造该文法的LR(0)项目集规范族
 　思路就是利用闭包函数CLOSURE和转换函数GO来构造。通过计算函数CLOSURE和GO得到文法的LR(0)项目集规范族，而GO函数则把LR(0)项目集规范族连成一个识别该文法所产生的活前缀的DFA。DFA大家都知道，有穷自动机。
-　(1)将文法G(S)拓广为G(S’)也就是该文法的增广文法，目的是使语法分析器知道何时应该停止并接受该串，也就是说当使用S&rsquo;->S进行规约的时候，就结束。
+　(1)将文法G(S)拓广为G(S’)也就是该文法的增广文法，目的是使语法分析器知道何时应该停止并接受该串，也就是说当使用S'->S进行规约的时候，就结束。
 　(0)S’→S (1)S→aS　(2)S→bS　(3)S→a
 　构造该文法的LR(0)项目集规范族，I就是产生式，至于I0 I1就是往下递增就可以了。没什么特别的意思。：
-　I0=CLOSURE({S&rsquo; →•S})={S’ →•S, S→•aS, S→•bS, S→•a}
-　//第一条是固定的，都是求S&rsquo; →•S的闭包。而因为右侧的S又可以推导出后面三个，所以后面三个式子是属于该闭包的。在闭包的规则中可以看出，若A→α·Bβ属于CLOSURE(I)，此时S&rsquo; →•S属于闭包，S相当于规则中的B,则每一形如B→·γ的项目也属于CLOSURE(I),此处相当于S->后面的三个推导式。加上.就可以了
+　I0=CLOSURE({S' →•S})={S’ →•S, S→•aS, S→•bS, S→•a}
+　//第一条是固定的，都是求S' →•S的闭包。而因为右侧的S又可以推导出后面三个，所以后面三个式子是属于该闭包的。在闭包的规则中可以看出，若A→α·Bβ属于CLOSURE(I)，此时S' →•S属于闭包，S相当于规则中的B,则每一形如B→·γ的项目也属于CLOSURE(I),此处相当于S->后面的三个推导式。加上.就可以了
 　I1=GO( I0 , a)=CLOSURE({S→a•S , S→a•})={S→a•S , S→a• , S→•aS, S→•bS, S→•a }
 　//第二条你可能已经看出来了，其实就是把转换函数GO反过来用，在GO函数中，X为一文法符号，J＝{任何形如A→αX·β的项目| A→α·Xβ属于I}。也就是在I0中，找到右侧包含a的项目，然后将.右移一位来求他们的闭包函数，此处，I0中包含.a的项目为 S→•aS和 S→•a，.右移一位变成S→a•S , S→a•，求闭包函数的规则和上面那条是一样的，继续找推导式右边可以推导出来的式子就可以了，此处，右边同样是S可以推导出三个式子，前面加上.就可以了。
 　I2=GO(I0 , b)=CLOSURE({S→b•S })={ S→b•S, S→•aS, S→•bS, S→•a }
@@ -108,11 +108,11 @@
 　开始拿个例题来说明，定义没例题看起来看难了。
 　例题：对于下列文法，S→aS|bS|a，构造该文法的LR(0)项目集规范族
 　思路就是利用闭包函数CLOSURE和转换函数GO来构造。通过计算函数CLOSURE和GO得到文法的LR(0)项目集规范族，而GO函数则把LR(0)项目集规范族连成一个识别该文法所产生的活前缀的DFA。DFA大家都知道，有穷自动机。
-　(1)将文法G(S)拓广为G(S’)也就是该文法的增广文法，目的是使语法分析器知道何时应该停止并接受该串，也就是说当使用S&rsquo;->S进行规约的时候，就结束。
+　(1)将文法G(S)拓广为G(S’)也就是该文法的增广文法，目的是使语法分析器知道何时应该停止并接受该串，也就是说当使用S'->S进行规约的时候，就结束。
 　(0)S’→S (1)S→aS　(2)S→bS　(3)S→a
 　构造该文法的LR(0)项目集规范族，I就是产生式，至于I0 I1就是往下递增就可以了。没什么特别的意思。：
-　I0=CLOSURE({S&rsquo; →•S})={S’ →•S, S→•aS, S→•bS, S→•a}
-　//第一条是固定的，都是求S&rsquo; →•S的闭包。而因为右侧的S又可以推导出后面三个，所以后面三个式子是属于该闭包的。在闭包的规则中可以看出，若A→α·Bβ属于CLOSURE(I)，此时S&rsquo; →•S属于闭包，S相当于规则中的B,则每一形如B→·γ的项目也属于CLOSURE(I),此处相当于S->后面的三个推导式。加上.就可以了
+　I0=CLOSURE({S' →•S})={S’ →•S, S→•aS, S→•bS, S→•a}
+　//第一条是固定的，都是求S' →•S的闭包。而因为右侧的S又可以推导出后面三个，所以后面三个式子是属于该闭包的。在闭包的规则中可以看出，若A→α·Bβ属于CLOSURE(I)，此时S' →•S属于闭包，S相当于规则中的B,则每一形如B→·γ的项目也属于CLOSURE(I),此处相当于S->后面的三个推导式。加上.就可以了
 　I1=GO( I0 , a)=CLOSURE({S→a•S , S→a•})={S→a•S , S→a• , S→•aS, S→•bS, S→•a }
 　//第二条你可能已经看出来了，其实就是把转换函数GO反过来用，在GO函数中，X为一文法符号，J＝{任何形如A→αX·β的项目| A→α·Xβ属于I}。也就是在I0中，找到右侧包含a的项目，然后将.右移一位来求他们的闭包函数，此处，I0中包含.a的项目为 S→•aS和 S→•a，.右移一位变成S→a•S , S→a•，求闭包函数的规则和上面那条是一样的，继续找推导式右边可以推导出来的式子就可以了，此处，右边同样是S可以推导出三个式子，前面加上.就可以了。
 　I2=GO(I0 , b)=CLOSURE({S→b•S })={ S→b•S, S→•aS, S→•bS, S→•a }
@@ -149,11 +149,11 @@
 　开始拿个例题来说明，定义没例题看起来看难了。
 　例题：对于下列文法，S→aS|bS|a，构造该文法的LR(0)项目集规范族
 　思路就是利用闭包函数CLOSURE和转换函数GO来构造。通过计算函数CLOSURE和GO得到文法的LR(0)项目集规范族，而GO函数则把LR(0)项目集规范族连成一个识别该文法所产生的活前缀的DFA。DFA大家都知道，有穷自动机。
-　(1)将文法G(S)拓广为G(S’)也就是该文法的增广文法，目的是使语法分析器知道何时应该停止并接受该串，也就是说当使用S&rsquo;->S进行规约的时候，就结束。
+　(1)将文法G(S)拓广为G(S’)也就是该文法的增广文法，目的是使语法分析器知道何时应该停止并接受该串，也就是说当使用S'->S进行规约的时候，就结束。
 　(0)S’→S (1)S→aS　(2)S→bS　(3)S→a
 　构造该文法的LR(0)项目集规范族，I就是产生式，至于I0 I1就是往下递增就可以了。没什么特别的意思。：
-　I0=CLOSURE({S&rsquo; →•S})={S’ →•S, S→•aS, S→•bS, S→•a}
-　//第一条是固定的，都是求S&rsquo; →•S的闭包。而因为右侧的S又可以推导出后面三个，所以后面三个式子是属于该闭包的。在闭包的规则中可以看出，若A→α·Bβ属于CLOSURE(I)，此时S&rsquo; →•S属于闭包，S相当于规则中的B,则每一形如B→·γ的项目也属于CLOSURE(I),此处相当于S->后面的三个推导式。加上.就可以了
+　I0=CLOSURE({S' →•S})={S’ →•S, S→•aS, S→•bS, S→•a}
+　//第一条是固定的，都是求S' →•S的闭包。而因为右侧的S又可以推导出后面三个，所以后面三个式子是属于该闭包的。在闭包的规则中可以看出，若A→α·Bβ属于CLOSURE(I)，此时S' →•S属于闭包，S相当于规则中的B,则每一形如B→·γ的项目也属于CLOSURE(I),此处相当于S->后面的三个推导式。加上.就可以了
 　I1=GO( I0 , a)=CLOSURE({S→a•S , S→a•})={S→a•S , S→a• , S→•aS, S→•bS, S→•a }
 　//第二条你可能已经看出来了，其实就是把转换函数GO反过来用，在GO函数中，X为一文法符号，J＝{任何形如A→αX·β的项目| A→α·Xβ属于I}。也就是在I0中，找到右侧包含a的项目，然后将.右移一位来求他们的闭包函数，此处，I0中包含.a的项目为 S→•aS和 S→•a，.右移一位变成S→a•S , S→a•，求闭包函数的规则和上面那条是一样的，继续找推导式右边可以推导出来的式子就可以了，此处，右边同样是S可以推导出三个式子，前面加上.就可以了。
 　I2=GO(I0 , b)=CLOSURE({S→b•S })={ S→b•S, S→•aS, S→•bS, S→•a }
@@ -169,10 +169,10 @@
 <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header id=header class="header container"><div class=logo-wrapper><a href=/ class=logo>bystander's blog</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=http://leaver.me/>主页</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/post/>归档</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/tags/>标签</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/categories/>目录</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/about/>关于我</a></li></ul></nav></header><div id=mobile-panel><main id=main class="main bg-llight"><div class=content-wrapper><div id=content class="content container"><article class="post bg-white"><header class=post-header><h1 class=post-title>LR(0)项目集规范族的构造</h1><div class=post-meta><time datetime=2012-05-12 class=post-time>2012-05-12</time><div class=post-category><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/>学习笔记</a></div><span class=more-meta>约 127 字</span>
 <span class=more-meta>预计阅读 1 分钟</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>文章目录</h2><div class=post-toc-content><nav id=TableOfContents></nav></div></div><div class=post-content><p>　　此文略长。我也没想到这写起来这么多，但对构造过程绝对清楚，一步步慢慢看吧。</p><p>　　LR的第一个L和LL的第一个L含义相同，即从左到右扫描句子 ，第二个R表示Right most最右推导。</p><p>　　在通常的描述中，后面还有一个括号里面的数字如，LR(0)、LR(1)这样，括号里面的数字表示用于决策所需的后续token分词数。</p><p>　　首先看一下LR分析器的模型图</p><p>　　<a href=http://leaverimage.b0.upaiyun.com/21392_o.jpg><img src=/images/ alt title=LR模型></a></p><p>　　可惜看出，LR分析器最关键的部分就是 LR分析表了，而LR分析表的构建是由已构造出的LR(0)项目集规范族来进行构造的。LR分析法貌似是不要求掌握的，而且这部分比我想象的还要复杂，今天看了好多。才勉强搞清楚这个项目集规范族的构造，但是用来锻炼思维确实不错啊。</p><p>　　项目集，那么字面上看就是项目的集合了，项目是什么呢。这个也确实不好说，书上是说在文法G中每个产生式的右部适当位置添加一个圆点构成LR(0)项目，举个例子吧。</p><p>　　比如对于</p><p>　　A->xyz</p><p>　　这条产生式可以构造的LR(0)项目就有4个</p><p>　　A->.xyz    A->x.yz    A->xy.z     A->xyz.</p><p>　　这样很清楚了吧，就是用.分割。这个分割产生的四个项目在进行真正的语法分析的时候对应不同的操作，比如规约还是移位。这里不讨论。重点是项目集规范族的构造，</p><p>　　在知道了LR(0)项目后，可以来看看项目集规范族的定义，</p><p>　　对于构成识别一个文法活前缀的DFA项目集(状态)的全体我们称之为这个文法的LR(0)项目集规范族。至于什么是活前缀呢，定义如下</p><p>　　对于任一文法G[S]，若S’经过任意次推导得到αAω，继续经过一次推导得到![]}/images/6b23dd171a1f672514a2dbb29175df032a1f63d4.gif)αβω，若γ<img src=/images/ alt>是αβ的前缀，则称γ是G的一个活前缀。</p><p>　　现在知道了LR(0)项目，了解了活前缀，和项目集规范族的定义，还须引入LR(0)项目集的闭包函数CLOSURE和状态转换函数GO两个概念，先给出数学上的定义，如果你觉得麻烦可以跳过，后面会给出一道例题。</p><p>　　① 闭包函数CLOSURE(I)的定义如下：</p><p>　　a）I的项目均在CLOSURE(I)中。</p><p>　　b）若A→α·Bβ属于CLOSURE(I)，则每一形如B→·γ的项目也属于CLOSURE(I)。</p><p>　　c）重复b)直到不出现新的项目为止。即CLOSURE(I)不再扩大。</p><p>　　② 转换函数GO(I，X)的定义：</p><p>　　GO(I，X)＝CLOSURE(J)</p><p>　　其中：I为包含某一项目的状态，就是前面我们说的那四个了。，X为一文法符号，X∈(VN∪VT)，J＝{任何形如A→αX·β的项目| A→α·Xβ属于I}。</p><p>　　这样就可以使用闭包函数和转换函数构造文法G′的LR(0)项目集规范族，其步骤如下：</p><p>　　 a）置项目S′→·S为初态集的核，然后对核求闭包，CLOSURE({S′→·S}）得到初态的项目集。
 　　 b）对初态集或其它所构造的项目集应用转换函数GO(I，X)=CLOSURE(J)，求出新状态J的项目集。
-　　 c）重复b）直到不出现新的项目为止。</p><p>　　开始拿个例题来说明，定义没例题看起来看难了。</p><p>　　<strong><em>例题：对于下列文法，S→aS|bS|a，构造该文法的LR(0)项目集规范族</em></strong></p><p>　　思路就是利用闭包函数CLOSURE和转换函数GO来构造。通过计算函数CLOSURE和GO得到文法的LR(0)项目集规范族，而GO函数则把LR(0)项目集规范族连成一个识别该文法所产生的活前缀的DFA。DFA大家都知道，有穷自动机。</p><p>　　(1)将文法G(S)拓广为G(S’)也就是该文法的增广文法，目的是使语法分析器知道何时应该停止并接受该串，也就是说当使用S&rsquo;->S进行规约的时候，就结束。</p><p>　　(0)S’→S
+　　 c）重复b）直到不出现新的项目为止。</p><p>　　开始拿个例题来说明，定义没例题看起来看难了。</p><p>　　<strong><em>例题：对于下列文法，S→aS|bS|a，构造该文法的LR(0)项目集规范族</em></strong></p><p>　　思路就是利用闭包函数CLOSURE和转换函数GO来构造。通过计算函数CLOSURE和GO得到文法的LR(0)项目集规范族，而GO函数则把LR(0)项目集规范族连成一个识别该文法所产生的活前缀的DFA。DFA大家都知道，有穷自动机。</p><p>　　(1)将文法G(S)拓广为G(S’)也就是该文法的增广文法，目的是使语法分析器知道何时应该停止并接受该串，也就是说当使用S'->S进行规约的时候，就结束。</p><p>　　(0)S’→S
 　　(1)S→aS　　
 　　(2)S→bS　　
-　　(3)S→a</p><p>　　构造该文法的LR(0)项目集规范族，I就是产生式，至于I0 I1就是往下递增就可以了。没什么特别的意思。：</p><p>　　I0=CLOSURE({S&rsquo; →•S})={S’ →•S, S→•aS, S→•bS, S→•a}</p><p>　　//第一条是固定的，都是求S&rsquo; →•S的闭包。而因为右侧的S又可以推导出后面三个，所以后面三个式子是属于该闭包的。在闭包的规则中可以看出，若A→α·Bβ属于CLOSURE(I)，此时S&rsquo; →•S属于闭包，S相当于规则中的B,则每一形如B→·γ的项目也属于CLOSURE(I),此处相当于S->后面的三个推导式。加上.就可以了</p><p>　　I1=GO( I0 , a)=CLOSURE({S→a•S , S→a•})={S→a•S , S→a• , S→•aS, S→•bS, S→•a }</p><p>　　//第二条你可能已经看出来了，其实就是把转换函数GO反过来用，在GO函数中，X为一文法符号，J＝{任何形如A→αX·β的项目| A→α·Xβ属于I}。也就是在I0中，找到右侧包含a的项目，然后将.右移一位来求他们的闭包函数，此处，I0中包含.a的项目为 S→•aS和 S→•a，.右移一位变成S→a•S , S→a•，求闭包函数的规则和上面那条是一样的，继续找推导式右边可以推导出来的式子就可以了，此处，右边同样是S可以推导出三个式子，前面加上.就可以了。</p><p>　　I2=GO(I0 , b)=CLOSURE({S→b•S })={ S→b•S, S→•aS, S→•bS, S→•a }</p><p>　　//第三条仿照第二条进行推导，先在I0中找有.b的，然后右移一位，然后推导式右侧的S继续用题目给出的推导，然后前面加上.</p><p>　　I3=GO(I0 , S)=CLOSURE({S’ →S•})={ S’ →S•}</p><p>　　//第四条因为右侧包含.S的只有一项。必须是.S。所以只有一个，右移后求闭包即可。因为S是右侧的第一位，所以不用再向下推导了，规则是：A→α·Bβ属于CLOSURE(I)，此处是S’ →S•，则B→·γ的项目也属于CLOSURE(I)，此处S相当于规则中的α，无B。。。。</p><p>　　因为GO(I1, a)=CLOSURE({S→a•S , S→a•})=I1，</p><p>　　//第五条同理，在I1中找有右侧有.a的项目，右移一位。进行求闭包，发现和I1求闭包的变量是一样的。所以结果必然也和I1是一样的。</p><p>　　GO(I1, b)=CLOSURE(S→b•S)=I2.</p><p>　　//第六条没有新的I产生。</p><p>　　I4=GO(I1, S)=CLOSURE({S→aS•})={S→aS•}</p><p>　　//这第七条在I1找右侧包含.S的项目，只有S→a•S，右移后求闭包，同第四条，无B，所以直接如此。</p><p>　　GO(I2, a)= CLOSURE({S→a•S , S→a•})=I1</p><p>　　GO(I2, b)=CLOSURE({S→b•S})=I2</p><p>　　I5=GO(I2, S)=CLOSURE({S→bS•})={S→bS•}</p><p>　　此时应该继续求GO(I3, a)，GO(I3, b)和，GO(I3, S)，但显然I3中没有.a,没有.b也没有.S，所以不用多此一举了，</p><p>　　继续求GO(I4, a)，GO(I4, b)和，GO(I4, S)，显然同上，也没有。所以也不用求了，</p><p>　　继续求GO(I5, a)，GO(I5, b)和，GO(I5, S),理由同上，没有任何必要了</p><p>　　最终，项目集I0，I1，I2，I3，I4和I5构成了该文法的LR(0)项目集规范族。</p><p>　　编译原理真是博大精深啊。就一个简单的三个推导式就得这么多步骤才构造了一个规范族，还要利用规范族来构造LR分析表，这。。手工果断不是事啊。今天看了几个小时才完全弄清楚LR(0)项目集规范族的构造。例题的步骤是我自己写的。这篇文章写了2个小时。。太费脑子了。。慢慢再写产生活前缀的DFA和LR分析表吧。</p><p>　　参考：</p><p>　　<a href=http://metc.gdut.edu.cn/compile/nandian/n-7.htm>http://metc.gdut.edu.cn/compile/nandian/n-7.htm</a></p></div><footer class=post-footer><div class=post-tags><a href=http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/>大学</a>
+　　(3)S→a</p><p>　　构造该文法的LR(0)项目集规范族，I就是产生式，至于I0 I1就是往下递增就可以了。没什么特别的意思。：</p><p>　　I0=CLOSURE({S' →•S})={S’ →•S, S→•aS, S→•bS, S→•a}</p><p>　　//第一条是固定的，都是求S' →•S的闭包。而因为右侧的S又可以推导出后面三个，所以后面三个式子是属于该闭包的。在闭包的规则中可以看出，若A→α·Bβ属于CLOSURE(I)，此时S' →•S属于闭包，S相当于规则中的B,则每一形如B→·γ的项目也属于CLOSURE(I),此处相当于S->后面的三个推导式。加上.就可以了</p><p>　　I1=GO( I0 , a)=CLOSURE({S→a•S , S→a•})={S→a•S , S→a• , S→•aS, S→•bS, S→•a }</p><p>　　//第二条你可能已经看出来了，其实就是把转换函数GO反过来用，在GO函数中，X为一文法符号，J＝{任何形如A→αX·β的项目| A→α·Xβ属于I}。也就是在I0中，找到右侧包含a的项目，然后将.右移一位来求他们的闭包函数，此处，I0中包含.a的项目为 S→•aS和 S→•a，.右移一位变成S→a•S , S→a•，求闭包函数的规则和上面那条是一样的，继续找推导式右边可以推导出来的式子就可以了，此处，右边同样是S可以推导出三个式子，前面加上.就可以了。</p><p>　　I2=GO(I0 , b)=CLOSURE({S→b•S })={ S→b•S, S→•aS, S→•bS, S→•a }</p><p>　　//第三条仿照第二条进行推导，先在I0中找有.b的，然后右移一位，然后推导式右侧的S继续用题目给出的推导，然后前面加上.</p><p>　　I3=GO(I0 , S)=CLOSURE({S’ →S•})={ S’ →S•}</p><p>　　//第四条因为右侧包含.S的只有一项。必须是.S。所以只有一个，右移后求闭包即可。因为S是右侧的第一位，所以不用再向下推导了，规则是：A→α·Bβ属于CLOSURE(I)，此处是S’ →S•，则B→·γ的项目也属于CLOSURE(I)，此处S相当于规则中的α，无B。。。。</p><p>　　因为GO(I1, a)=CLOSURE({S→a•S , S→a•})=I1，</p><p>　　//第五条同理，在I1中找有右侧有.a的项目，右移一位。进行求闭包，发现和I1求闭包的变量是一样的。所以结果必然也和I1是一样的。</p><p>　　GO(I1, b)=CLOSURE(S→b•S)=I2.</p><p>　　//第六条没有新的I产生。</p><p>　　I4=GO(I1, S)=CLOSURE({S→aS•})={S→aS•}</p><p>　　//这第七条在I1找右侧包含.S的项目，只有S→a•S，右移后求闭包，同第四条，无B，所以直接如此。</p><p>　　GO(I2, a)= CLOSURE({S→a•S , S→a•})=I1</p><p>　　GO(I2, b)=CLOSURE({S→b•S})=I2</p><p>　　I5=GO(I2, S)=CLOSURE({S→bS•})={S→bS•}</p><p>　　此时应该继续求GO(I3, a)，GO(I3, b)和，GO(I3, S)，但显然I3中没有.a,没有.b也没有.S，所以不用多此一举了，</p><p>　　继续求GO(I4, a)，GO(I4, b)和，GO(I4, S)，显然同上，也没有。所以也不用求了，</p><p>　　继续求GO(I5, a)，GO(I5, b)和，GO(I5, S),理由同上，没有任何必要了</p><p>　　最终，项目集I0，I1，I2，I3，I4和I5构成了该文法的LR(0)项目集规范族。</p><p>　　编译原理真是博大精深啊。就一个简单的三个推导式就得这么多步骤才构造了一个规范族，还要利用规范族来构造LR分析表，这。。手工果断不是事啊。今天看了几个小时才完全弄清楚LR(0)项目集规范族的构造。例题的步骤是我自己写的。这篇文章写了2个小时。。太费脑子了。。慢慢再写产生活前缀的DFA和LR分析表吧。</p><p>　　参考：</p><p>　　<a href=http://metc.gdut.edu.cn/compile/nandian/n-7.htm>http://metc.gdut.edu.cn/compile/nandian/n-7.htm</a></p></div><footer class=post-footer><div class=post-tags><a href=http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/>大学</a>
 <a href=http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/>学习</a>
 <a href=http://leaver.me/tags/%E6%80%BB%E7%BB%93/>总结</a>
 <a href=http://leaver.me/tags/%E7%AC%94%E8%AE%B0/>笔记</a>
@@ -188,5 +188,5 @@
 <span class=theme-info>Theme - <a class=theme-link href=https://github.com/xianmin/hugo-theme-jane>Jane</a></span>
 <span class=copyright-year>&copy;
 2012 -
-2020
+2021
 <span class=heart><i class=iconfont><svg class="icon" viewBox="0 0 1025 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="14" height="14"><path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7.0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1.0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2.0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3.1-42.5-8-83.6-24-122.2z" fill="#8a8a8a"/></svg></i></span><span class=author>bystander</span></span></div></footer><div class=back-to-top id=back-to-top><i class=iconfont><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="35" height="35"><path d="M510.866688 227.694839 95.449397 629.218702h235.761562L329.15309 958.01517h362.40389L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777h894.052392v131.813095H63.840492V63.962777zm0 0"/></svg></i></div></div><script type=text/javascript src=/lib/jquery/jquery-3.2.1.min.js></script><script type=text/javascript src=/lib/slideout/slideout-1.0.1.min.js></script><script type=text/javascript src=/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin=anonymous></script><script type=text/javascript src=/js/load-photoswipe.js></script><script type=text/javascript src=/lib/photoswipe/photoswipe.min.js></script><script type=text/javascript src=/lib/photoswipe/photoswipe-ui-default.min.js></script></body></html>

@@ -9,11 +9,19 @@
  会得到一个xaml文件，一会用
 然后新建wpf项目，然后在解决方案资源管理器视图右键点击项目 导入现有项，把上一步的xaml文件导入
 然后需要在app.xaml文件中进行设置，具体在&amp;lt;Application.Resources&amp;gt;标签内添加如下代码，中间那个文件名看情况而定。
+ 然后打开“MainWindow.xaml”文件的设计视图，点击窗体边缘以选中窗体，在属性面板中更改AllowsTransparency及WindowStyle属性。 AllowsTransparency 指示窗体是否支持透明。选中 WindowStyle指示窗体边框样式，设为 None 为无边框。
+然后呢在 MainWindow.xaml文件中添加如下代码，
 最终代码是：
 其中background那个是固定的，而MouseDown是为了给窗体写可以拖动的函数，函数名为Window_MouseDown你也可以自己制定
 然后对着那个函数名点右键，如下图
 
-导航到事件处理程序，然后在打开的函数里写上"><meta name=generator content="Hugo 0.62.2"><link rel=canonical href=http://leaver.me/2012/06/23/wpf%E5%AE%9E%E7%8E%B0%E4%B8%8D%E8%A7%84%E5%88%99%E7%AA%97%E4%BD%93/><link rel=icon href=/favicon.ico><link rel=stylesheet href=/sass/jane.min.0995afa14b62cd93e93cfc066b646c4c17a3eddca0e9d52a1d9dcf5d90aaacd3.css integrity="sha256-CZWvoUtizZPpPPwGa2RsTBej7dyg6dUqHZ3PXZCqrNM=" media=screen crossorigin=anonymous><meta property="og:title" content="WPF实现不规则窗体"><meta property="og:description" content="这几天在想C# winform程序界面实在太单一，而我C#实现不规则窗体中也说了，如果用背景这种东西来做的话，效果很差，抗锯齿能力基本为0，所以我当时在博客园提问，然后园友有了很给力的回答，比如WPF来做，或者第三方插件，或者深入底层改写ONPaint函数的，今天没事，恰好看到了一篇文章讲这个的，于是，就做一个简单的Demo出来，华丽的效果有木有，先看效果图
+导航到事件处理程序，然后在打开的函数里写上
+拖动功能就实现了。
+至于添加关闭按钮的，我就不写了，很简单，代码里都有。可以参考源文件。
+工程源码下载：WPFDemo
+参考：
+http://www.cnblogs.com/SkyD/archive/2008/07/13/1242044.html
+http://www.cnblogs.com/yinyao/archive/2011/05/23/2054056.html"><meta name=generator content="Hugo 0.79.1"><link rel=canonical href=http://leaver.me/2012/06/23/wpf%E5%AE%9E%E7%8E%B0%E4%B8%8D%E8%A7%84%E5%88%99%E7%AA%97%E4%BD%93/><link rel=icon href=/favicon.ico><link rel=stylesheet href=/sass/jane.min.fa3d941d1d0e0ddc985804227feabffea55c89883eb0af34e0532a7ae9135151.css integrity="sha256-+j2UHR0ODdyYWAQif+q//qVciYg+sK804FMqeukTUVE=" media=screen crossorigin=anonymous><meta property="og:title" content="WPF实现不规则窗体"><meta property="og:description" content="这几天在想C# winform程序界面实在太单一，而我C#实现不规则窗体中也说了，如果用背景这种东西来做的话，效果很差，抗锯齿能力基本为0，所以我当时在博客园提问，然后园友有了很给力的回答，比如WPF来做，或者第三方插件，或者深入底层改写ONPaint函数的，今天没事，恰好看到了一篇文章讲这个的，于是，就做一个简单的Demo出来，华丽的效果有木有，先看效果图
  在win 7下使用win+Tab切换效果也很华丽。就不演示了。
 做起来还算比较简单，首先使用Microsoft Expression Design 4 设计一个界面，破解版什么的太多了，，软件界面和ps挺像，不过功能弱很多，自己操作操作就好了，我说一个问题，就是我当时想画一个空心的圆，也就是一个圆环，ps里大家都知道，直接选区相减就可以了，但是这个死活没找到，基本上最后这个界面所有的地方被找了一遍，猜了猜，才发现了，
 具体操作如下，首先汇出一个圆形，然后在圆里面再绘出一个圆形，这时候选中第二次的这个小圆，点击屏幕右侧的那个箭头会出现高级选项，
@@ -24,11 +32,19 @@
  会得到一个xaml文件，一会用
 然后新建wpf项目，然后在解决方案资源管理器视图右键点击项目 导入现有项，把上一步的xaml文件导入
 然后需要在app.xaml文件中进行设置，具体在<Application.Resources>标签内添加如下代码，中间那个文件名看情况而定。
+ 然后打开“MainWindow.xaml”文件的设计视图，点击窗体边缘以选中窗体，在属性面板中更改AllowsTransparency及WindowStyle属性。 AllowsTransparency 指示窗体是否支持透明。选中 WindowStyle指示窗体边框样式，设为 None 为无边框。
+然后呢在 MainWindow.xaml文件中添加如下代码，
 最终代码是：
 其中background那个是固定的，而MouseDown是为了给窗体写可以拖动的函数，函数名为Window_MouseDown你也可以自己制定
 然后对着那个函数名点右键，如下图
 
-导航到事件处理程序，然后在打开的函数里写上"><meta property="og:type" content="article"><meta property="og:url" content="http://leaver.me/2012/06/23/wpf%E5%AE%9E%E7%8E%B0%E4%B8%8D%E8%A7%84%E5%88%99%E7%AA%97%E4%BD%93/"><meta property="article:published_time" content="2012-06-23T06:22:49+00:00"><meta property="article:modified_time" content="2012-06-23T06:22:49+00:00"><meta itemprop=name content="WPF实现不规则窗体"><meta itemprop=description content="这几天在想C# winform程序界面实在太单一，而我C#实现不规则窗体中也说了，如果用背景这种东西来做的话，效果很差，抗锯齿能力基本为0，所以我当时在博客园提问，然后园友有了很给力的回答，比如WPF来做，或者第三方插件，或者深入底层改写ONPaint函数的，今天没事，恰好看到了一篇文章讲这个的，于是，就做一个简单的Demo出来，华丽的效果有木有，先看效果图
+导航到事件处理程序，然后在打开的函数里写上
+拖动功能就实现了。
+至于添加关闭按钮的，我就不写了，很简单，代码里都有。可以参考源文件。
+工程源码下载：WPFDemo
+参考：
+http://www.cnblogs.com/SkyD/archive/2008/07/13/1242044.html
+http://www.cnblogs.com/yinyao/archive/2011/05/23/2054056.html"><meta property="og:type" content="article"><meta property="og:url" content="http://leaver.me/2012/06/23/wpf%E5%AE%9E%E7%8E%B0%E4%B8%8D%E8%A7%84%E5%88%99%E7%AA%97%E4%BD%93/"><meta property="article:published_time" content="2012-06-23T06:22:49+00:00"><meta property="article:modified_time" content="2012-06-23T06:22:49+00:00"><meta itemprop=name content="WPF实现不规则窗体"><meta itemprop=description content="这几天在想C# winform程序界面实在太单一，而我C#实现不规则窗体中也说了，如果用背景这种东西来做的话，效果很差，抗锯齿能力基本为0，所以我当时在博客园提问，然后园友有了很给力的回答，比如WPF来做，或者第三方插件，或者深入底层改写ONPaint函数的，今天没事，恰好看到了一篇文章讲这个的，于是，就做一个简单的Demo出来，华丽的效果有木有，先看效果图
  在win 7下使用win+Tab切换效果也很华丽。就不演示了。
 做起来还算比较简单，首先使用Microsoft Expression Design 4 设计一个界面，破解版什么的太多了，，软件界面和ps挺像，不过功能弱很多，自己操作操作就好了，我说一个问题，就是我当时想画一个空心的圆，也就是一个圆环，ps里大家都知道，直接选区相减就可以了，但是这个死活没找到，基本上最后这个界面所有的地方被找了一遍，猜了猜，才发现了，
 具体操作如下，首先汇出一个圆形，然后在圆里面再绘出一个圆形，这时候选中第二次的这个小圆，点击屏幕右侧的那个箭头会出现高级选项，
@@ -39,11 +55,19 @@
  会得到一个xaml文件，一会用
 然后新建wpf项目，然后在解决方案资源管理器视图右键点击项目 导入现有项，把上一步的xaml文件导入
 然后需要在app.xaml文件中进行设置，具体在<Application.Resources>标签内添加如下代码，中间那个文件名看情况而定。
+ 然后打开“MainWindow.xaml”文件的设计视图，点击窗体边缘以选中窗体，在属性面板中更改AllowsTransparency及WindowStyle属性。 AllowsTransparency 指示窗体是否支持透明。选中 WindowStyle指示窗体边框样式，设为 None 为无边框。
+然后呢在 MainWindow.xaml文件中添加如下代码，
 最终代码是：
 其中background那个是固定的，而MouseDown是为了给窗体写可以拖动的函数，函数名为Window_MouseDown你也可以自己制定
 然后对着那个函数名点右键，如下图
 
-导航到事件处理程序，然后在打开的函数里写上"><meta itemprop=datePublished content="2012-06-23T06:22:49+00:00"><meta itemprop=dateModified content="2012-06-23T06:22:49+00:00"><meta itemprop=wordCount content="20"><meta itemprop=keywords content="学习,开发,总结,编程,软件,"><meta name=twitter:card content="summary"><meta name=twitter:title content="WPF实现不规则窗体"><meta name=twitter:description content="这几天在想C# winform程序界面实在太单一，而我C#实现不规则窗体中也说了，如果用背景这种东西来做的话，效果很差，抗锯齿能力基本为0，所以我当时在博客园提问，然后园友有了很给力的回答，比如WPF来做，或者第三方插件，或者深入底层改写ONPaint函数的，今天没事，恰好看到了一篇文章讲这个的，于是，就做一个简单的Demo出来，华丽的效果有木有，先看效果图
+导航到事件处理程序，然后在打开的函数里写上
+拖动功能就实现了。
+至于添加关闭按钮的，我就不写了，很简单，代码里都有。可以参考源文件。
+工程源码下载：WPFDemo
+参考：
+http://www.cnblogs.com/SkyD/archive/2008/07/13/1242044.html
+http://www.cnblogs.com/yinyao/archive/2011/05/23/2054056.html"><meta itemprop=datePublished content="2012-06-23T06:22:49+00:00"><meta itemprop=dateModified content="2012-06-23T06:22:49+00:00"><meta itemprop=wordCount content="34"><meta itemprop=keywords content="学习,开发,总结,编程,软件,"><meta name=twitter:card content="summary"><meta name=twitter:title content="WPF实现不规则窗体"><meta name=twitter:description content="这几天在想C# winform程序界面实在太单一，而我C#实现不规则窗体中也说了，如果用背景这种东西来做的话，效果很差，抗锯齿能力基本为0，所以我当时在博客园提问，然后园友有了很给力的回答，比如WPF来做，或者第三方插件，或者深入底层改写ONPaint函数的，今天没事，恰好看到了一篇文章讲这个的，于是，就做一个简单的Demo出来，华丽的效果有木有，先看效果图
  在win 7下使用win+Tab切换效果也很华丽。就不演示了。
 做起来还算比较简单，首先使用Microsoft Expression Design 4 设计一个界面，破解版什么的太多了，，软件界面和ps挺像，不过功能弱很多，自己操作操作就好了，我说一个问题，就是我当时想画一个空心的圆，也就是一个圆环，ps里大家都知道，直接选区相减就可以了，但是这个死活没找到，基本上最后这个界面所有的地方被找了一遍，猜了猜，才发现了，
 具体操作如下，首先汇出一个圆形，然后在圆里面再绘出一个圆形，这时候选中第二次的这个小圆，点击屏幕右侧的那个箭头会出现高级选项，
@@ -54,18 +78,28 @@
  会得到一个xaml文件，一会用
 然后新建wpf项目，然后在解决方案资源管理器视图右键点击项目 导入现有项，把上一步的xaml文件导入
 然后需要在app.xaml文件中进行设置，具体在<Application.Resources>标签内添加如下代码，中间那个文件名看情况而定。
+ 然后打开“MainWindow.xaml”文件的设计视图，点击窗体边缘以选中窗体，在属性面板中更改AllowsTransparency及WindowStyle属性。 AllowsTransparency 指示窗体是否支持透明。选中 WindowStyle指示窗体边框样式，设为 None 为无边框。
+然后呢在 MainWindow.xaml文件中添加如下代码，
 最终代码是：
 其中background那个是固定的，而MouseDown是为了给窗体写可以拖动的函数，函数名为Window_MouseDown你也可以自己制定
 然后对着那个函数名点右键，如下图
 
-导航到事件处理程序，然后在打开的函数里写上"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-30961201-3','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>bystander's blog</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><li class=mobile-menu-item><a class=menu-item-link href=http://leaver.me/>主页</a></li><li class=mobile-menu-item><a class=menu-item-link href=http://leaver.me/post/>归档</a></li><li class=mobile-menu-item><a class=menu-item-link href=http://leaver.me/tags/>标签</a></li><li class=mobile-menu-item><a class=menu-item-link href=http://leaver.me/categories/>目录</a></li><li class=mobile-menu-item><a class=menu-item-link href=http://leaver.me/about/>关于我</a></li></ul></nav><link rel=stylesheet href=/lib/photoswipe/photoswipe.min.css><link rel=stylesheet href=/lib/photoswipe/default-skin/default-skin.min.css><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+导航到事件处理程序，然后在打开的函数里写上
+拖动功能就实现了。
+至于添加关闭按钮的，我就不写了，很简单，代码里都有。可以参考源文件。
+工程源码下载：WPFDemo
+参考：
+http://www.cnblogs.com/SkyD/archive/2008/07/13/1242044.html
+http://www.cnblogs.com/yinyao/archive/2011/05/23/2054056.html"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-30961201-3','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>bystander's blog</a></div><div class=mobile-navbar-icon><span></span><span></span><span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><li class=mobile-menu-item><a class=menu-item-link href=http://leaver.me/>主页</a></li><li class=mobile-menu-item><a class=menu-item-link href=http://leaver.me/post/>归档</a></li><li class=mobile-menu-item><a class=menu-item-link href=http://leaver.me/tags/>标签</a></li><li class=mobile-menu-item><a class=menu-item-link href=http://leaver.me/categories/>目录</a></li><li class=mobile-menu-item><a class=menu-item-link href=http://leaver.me/about/>关于我</a></li></ul></nav><link rel=stylesheet href=/lib/photoswipe/photoswipe.min.css><link rel=stylesheet href=/lib/photoswipe/default-skin/default-skin.min.css><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 <button class="pswp__button pswp__button--share" title=Share></button>
 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
 <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
-<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header id=header class="header container"><div class=logo-wrapper><a href=/ class=logo>bystander's blog</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=http://leaver.me/>主页</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/post/>归档</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/tags/>标签</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/categories/>目录</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/about/>关于我</a></li></ul></nav></header><div id=mobile-panel><main id=main class="main bg-llight"><div class=content-wrapper><div id=content class="content container"><article class="post bg-white"><header class=post-header><h1 class=post-title>WPF实现不规则窗体</h1><div class=post-meta><time datetime=2012-06-23 class=post-time>2012-06-23</time><div class=post-category><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/>学习笔记</a></div><span class=more-meta>约 20 字</span>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header id=header class="header container"><div class=logo-wrapper><a href=/ class=logo>bystander's blog</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=http://leaver.me/>主页</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/post/>归档</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/tags/>标签</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/categories/>目录</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/about/>关于我</a></li></ul></nav></header><div id=mobile-panel><main id=main class="main bg-llight"><div class=content-wrapper><div id=content class="content container"><article class="post bg-white"><header class=post-header><h1 class=post-title>WPF实现不规则窗体</h1><div class=post-meta><time datetime=2012-06-23 class=post-time>2012-06-23</time><div class=post-category><a href=http://leaver.me/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/>学习笔记</a></div><span class=more-meta>约 34 字</span>
 <span class=more-meta>预计阅读 1 分钟</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>文章目录</h2><div class=post-toc-content><nav id=TableOfContents></nav></div></div><div class=post-content><p>这几天在想C# winform程序界面实在太单一，而我<a href=http://leaver.me/archives/990.html>C#实现不规则窗体</a>中也说了，如果用背景这种东西来做的话，效果很差，抗锯齿能力基本为0，所以我当时在博客园提问，然后园友有了很给力的回答，比如WPF来做，或者第三方插件，或者深入底层改写ONPaint函数的，今天没事，恰好看到了一篇文章讲这个的，于是，就做一个简单的Demo出来，华丽的效果有木有，先看效果图</p><p><a href=http://leaverimage.b0.upaiyun.com/23622_o.jpg><img src=/images/ba031241897a97ce5f76970d0787694511d3960a.jpg alt title=效果></a>
 在win 7下使用win+Tab切换效果也很华丽。就不演示了。</p><p>做起来还算比较简单，首先使用Microsoft Expression Design 4 设计一个界面，破解版什么的太多了，，软件界面和ps挺像，不过功能弱很多，自己操作操作就好了，我说一个问题，就是我当时想画一个空心的圆，也就是一个圆环，ps里大家都知道，直接选区相减就可以了，但是这个死活没找到，基本上最后这个界面所有的地方被找了一遍，猜了猜，才发现了，</p><p>具体操作如下，首先汇出一个圆形，然后在圆里面再绘出一个圆形，这时候选中第二次的这个小圆，点击屏幕右侧的那个箭头会出现高级选项，</p><p><a href=http://leaverimage.b0.upaiyun.com/23623_o.jpg><img src=/images/7bb961d46945780dd51bf752d4109eb6dfec9583.jpg alt title=高级></a></p><p>然后选择混合模式为橡皮擦，就会擦去这个小圆，于是就只剩下一个圆环了。</p><p><a href=http://leaverimage.b0.upaiyun.com/23624_o.jpg><img src=/images/47a442eae19c0450c9de4ef532d026c4608439f1.jpg alt title=橡皮擦></a></p><p>画好以后，选择文件->导出，按如下设置，
-<a href=http://leaverimage.b0.upaiyun.com/23625_o.jpg><img src=/images/5a4dc13cbe7e3ade5841d175eace74870fd42395.jpg alt title=导出></a></p><p> </p><p>会得到一个xaml文件，一会用</p><p>然后新建wpf项目，然后在解决方案资源管理器视图右键点击项目 导入现有项，把上一步的xaml文件导入</p><p>然后需要在app.xaml文件中进行设置，具体在&lt;Application.Resources>标签内添加如下代码，中间那个文件名看情况而定。</p><p>最终代码是：</p><p>其中background那个是固定的，而MouseDown是为了给窗体写可以拖动的函数，函数名为Window_MouseDown你也可以自己制定</p><p>然后对着那个函数名点右键，如下图</p><p><a href=http://leaverimage.b0.upaiyun.com/23626_o.jpg><img src=/images/2bda8545e86b4ffc4155d5c63505252bb57506bf.jpg alt title=导航></a></p><p>导航到事件处理程序，然后在打开的函数里写上</p></div><footer class=post-footer><div class=post-tags><a href=http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/>学习</a>
+<a href=http://leaverimage.b0.upaiyun.com/23625_o.jpg><img src=/images/5a4dc13cbe7e3ade5841d175eace74870fd42395.jpg alt title=导出></a></p><p> </p><p>会得到一个xaml文件，一会用</p><p>然后新建wpf项目，然后在解决方案资源管理器视图右键点击项目 导入现有项，把上一步的xaml文件导入</p><p>然后需要在app.xaml文件中进行设置，具体在&lt;Application.Resources>标签内添加如下代码，中间那个文件名看情况而定。</p><p> </p><p>然后打开“MainWindow.xaml”文件的设计视图，点击窗体边缘以选中窗体，在属性面板中更改AllowsTransparency及WindowStyle属性。
+AllowsTransparency 指示窗体是否支持透明。选中
+WindowStyle指示窗体边框样式，设为 None 为无边框。</p><p>然后呢在 MainWindow.xaml文件中添加如下代码，</p><p>最终代码是：</p><p>其中background那个是固定的，而MouseDown是为了给窗体写可以拖动的函数，函数名为Window_MouseDown你也可以自己制定</p><p>然后对着那个函数名点右键，如下图</p><p><a href=http://leaverimage.b0.upaiyun.com/23626_o.jpg><img src=/images/2bda8545e86b4ffc4155d5c63505252bb57506bf.jpg alt title=导航></a></p><p>导航到事件处理程序，然后在打开的函数里写上</p><p>拖动功能就实现了。</p><p>至于添加关闭按钮的，我就不写了，很简单，代码里都有。可以参考源文件。</p><p>工程源码下载：<a href=http://115.com/file/c2aq7abt#WpfDemo.7z>WPFDemo</a></p><p>参考：</p><p><a href=http://www.cnblogs.com/SkyD/archive/2008/07/13/1242044.html>http://www.cnblogs.com/SkyD/archive/2008/07/13/1242044.html</a></p><p><a href=http://www.cnblogs.com/yinyao/archive/2011/05/23/2054056.html>http://www.cnblogs.com/yinyao/archive/2011/05/23/2054056.html</a></p></div><footer class=post-footer><div class=post-tags><a href=http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/>学习</a>
 <a href=http://leaver.me/tags/%E5%BC%80%E5%8F%91/>开发</a>
 <a href=http://leaver.me/tags/%E6%80%BB%E7%BB%93/>总结</a>
 <a href=http://leaver.me/tags/%E7%BC%96%E7%A8%8B/>编程</a>
@@ -79,5 +113,5 @@
 <span class=theme-info>Theme - <a class=theme-link href=https://github.com/xianmin/hugo-theme-jane>Jane</a></span>
 <span class=copyright-year>&copy;
 2012 -
-2020
+2021
 <span class=heart><i class=iconfont><svg class="icon" viewBox="0 0 1025 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="14" height="14"><path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7.0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1.0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2.0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3.1-42.5-8-83.6-24-122.2z" fill="#8a8a8a"/></svg></i></span><span class=author>bystander</span></span></div></footer><div class=back-to-top id=back-to-top><i class=iconfont><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="35" height="35"><path d="M510.866688 227.694839 95.449397 629.218702h235.761562L329.15309 958.01517h362.40389L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777h894.052392v131.813095H63.840492V63.962777zm0 0"/></svg></i></div></div><script type=text/javascript src=/lib/jquery/jquery-3.2.1.min.js></script><script type=text/javascript src=/lib/slideout/slideout-1.0.1.min.js></script><script type=text/javascript src=/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin=anonymous></script><script type=text/javascript src=/js/load-photoswipe.js></script><script type=text/javascript src=/lib/photoswipe/photoswipe.min.js></script><script type=text/javascript src=/lib/photoswipe/photoswipe-ui-default.min.js></script></body></html>

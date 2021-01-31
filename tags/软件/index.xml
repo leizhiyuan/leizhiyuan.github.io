@@ -32,7 +32,7 @@ jenkins入门文档 The hudson book Writing-first-hudson-plugin Hudson插件开�
 thanks toblue-green-deployment
 蓝绿发布的意义 整个发布过程，用户没有感受到任何宕机或者服务重启。
 蓝绿发布的过程 第0步:部署以前的配置
-第1步: 把绿色集群的状态改为'备用&amp;rsquo;. 从负载均衡的池里把这些地址去掉,这样,绿色的集群就不再回接收到来自用户的请求了.转而进入备用负载均衡的池里.
+第1步: 把绿色集群的状态改为&amp;rsquo;备用'. 从负载均衡的池里把这些地址去掉,这样,绿色的集群就不再回接收到来自用户的请求了.转而进入备用负载均衡的池里.
 第2步:在绿色集群里部署新的代码,直到应用启动成功
 第3步:使用备用负载均衡简单测试一下备用集群的部署情况.理想状态下是全自动的.
 第4步:把绿色备用集群的状态改成存货,于是进入了存活负载均衡的池里
@@ -42,7 +42,7 @@ thanks toblue-green-deployment
  </description></item><item><title>第一次给Spring-Framework贡献代码</title><link>http://leaver.me/2014/08/21/%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%BB%99spring-framework%E8%B4%A1%E7%8C%AE%E4%BB%A3%E7%A0%81/</link><pubDate>Thu, 21 Aug 2014 07:46:26 +0000</pubDate><guid>http://leaver.me/2014/08/21/%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%BB%99spring-framework%E8%B4%A1%E7%8C%AE%E4%BB%A3%E7%A0%81/</guid><description>鲁肃说建议去看Spring框架的代码,之前其实我想看来着,不过一看到还要gradlew,换jdk就好麻烦.这次各种折腾把代码fork下来,然后安装gradlew ,然后转换成eclipse支持的,期间升级了eclipse版本和jdk版本到8.否则会有个方法不支持,
 流程很简单,先fork一下代码,然后自己改好提交上去,再去Spring框架的pull request请求一下.等大牛合并就行了.
 刚开始看测试用例,我当时看到这个方法调用了一个下线的方法.于是改了一下.提交上去之后,**sbrannen ** 回复说:
-while you're at it, why don't you go ahead fix the related deprecated issues in all of the test classes in spring-jdbc 于是我把spring-jbdc包下面的几个方法调用都改掉了.记得谁说过,任何事情都不是别人的事情,你发现了你就要去做,不要等着别人去做,不会就去学.于是再次修改提交,sbrannen 问我有没有签CLA,这个坑爹的网站挂了.等了几天,昨天终于ok了.今天代码已经合并.
+while you&amp;rsquo;re at it, why don&amp;rsquo;t you go ahead fix the related deprecated issues in all of the test classes in spring-jdbc 于是我把spring-jbdc包下面的几个方法调用都改掉了.记得谁说过,任何事情都不是别人的事情,你发现了你就要去做,不要等着别人去做,不会就去学.于是再次修改提交,sbrannen 问我有没有签CLA,这个坑爹的网站挂了.等了几天,昨天终于ok了.今天代码已经合并.
 截图留念:
 https://github.com/spring-projects/spring-framework/commits?author=leizhiyuan
 今天要吃两个煎饼果子.</description></item><item><title>《Spring揭秘》读书笔记-第一章Spring框架的由来</title><link>http://leaver.me/2014/06/30/spring%E6%8F%AD%E7%A7%98%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC%E4%B8%80%E7%AB%A0spring%E6%A1%86%E6%9E%B6%E7%9A%84%E7%94%B1%E6%9D%A5/</link><pubDate>Mon, 30 Jun 2014 20:40:40 +0000</pubDate><guid>http://leaver.me/2014/06/30/spring%E6%8F%AD%E7%A7%98%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC%E4%B8%80%E7%AB%A0spring%E6%A1%86%E6%9E%B6%E7%9A%84%E7%94%B1%E6%9D%A5/</guid><description>1.框架的由来
@@ -86,9 +86,9 @@ Spring 框架之上衍生的产品包括不限于Spring Web Flow,Spring Web Serv
 详解Eclipse断点
 大家肯定都用过Eclipse的调试的功能，在调试的过程中自然也无法避免要使用断点(breakpoint)，但不知是否对Eclipse中各类断点都有所了解。本篇图文并茂地介绍了Eclipse中全部类型的断点，及其设置，希望对大家有所帮助。(2011.11.20)
 1. 示例程序 BreakpointDemo是一个臆造的应用程序，只是为了便于讲解Eclipse中各类断点的使用罢了。其代码如下图所示， BreakpointDemo主要包含两个方法： [1]setValue，该方法根据指定的次数(count)，对成员变量value进行赋值，值的范围为0-9的随机整数。 [2]printValue，该方法会调用setValue()对value进行赋值，并打印出value的值；但，如果value能被3整除，那么就会抛出IllegalArgumentException异常。
-2. Line Breakpoint Line Breakpoin是最简单的Eclipse断点，只要双击某行代码对应的左侧栏，就对该行设置上断点。此处，对第20行代码设置上Line Breakpoint，如下图所示， 可以为Line Breakpoint设置一个条件，那么当程序运行到该断点时，只有满足设定的条件，才会被中断。右键点击第20行的断点，选择&amp;quot;Breakpoint Properties&amp;hellip;&amp;rdquo; 在弹出的属性对话框中，勾选上&amp;quot;Conditional&amp;rdquo;，然后在文本框中输入&amp;quot;count % 2 == 0&amp;rdquo;。 该条件表示，当程序运行到第20行时，只有当count为偶数时，程序才会被中断。细心地话，你会发现该断点的图标发生了改变，多了一个问号。
-3. Watchpoint Line Breakpoint关注于程序运行的&amp;quot;过程&amp;rdquo;，大家也常把使用这种断点的调试称为单步调试。但有时候，我们对程序的运行过程不太了解，可能也不太关心，不能确定在什么地方设置断点比较合适，而可能比较关注某个关键变量的变化或使用。此时，就可以为该变量设置一种特殊的断点&amp;ndash;Watchpoint。在此示例，我们最关心的就是成员变量value的值，那么就可以为它设置一个Watchpoint，双击第9行代码对应的左侧栏就可以了。 使用在2中所提及的方法，查看该断点的属性， 默认地，当该变量被访问或它的值被修改时，程序都会被中断。但在本示例中，只希望当对value的值进行修改时程序才需要被中断，所以取消对&amp;quot;Access&amp;quot;的勾选。 这时，我们会发现原来的Watchpoin图标也有变化了。
-4. Method Breakpoint 与关注对某个变量的访问与修改一样，我们也可以关注程序对某个方法的调用情况，即，可以设置Method Breakpoint。在此处，设置针对方法setValue的Method Breakpoint。同理，双击第11行代码对应的左侧栏即可。 仍然要查看该断点的属性。默认地，只勾选了&amp;quot;Entry&amp;rdquo;，而没有勾选&amp;quot;Exit&amp;rdquo;。 这表示，当刚进入该方法(调用开始)时，程序会被中断；而，离开该方法(调用结束)时，程序并不会被中断。在本示例中，需要同时勾选上&amp;quot;Exit&amp;rdquo;。 点击OK之后，可以看到该断点的图标也有所改变。 根据这里的设置，当程序运行到第20行后会在第12行被中断，尽管这里没有显式的断点，但这就是setValue()方法的入口(Entry)。必须注意地是，程序在运行到第16行时不会被中断，尽管它看起来像是setValue()方法的出口(Exit)。实际上，程序会在第17行被中断，这里才是setValue()调用结束的地方。
+2. Line Breakpoint Line Breakpoin是最简单的Eclipse断点，只要双击某行代码对应的左侧栏，就对该行设置上断点。此处，对第20行代码设置上Line Breakpoint，如下图所示， 可以为Line Breakpoint设置一个条件，那么当程序运行到该断点时，只有满足设定的条件，才会被中断。右键点击第20行的断点，选择&amp;quot;Breakpoint Properties&amp;hellip;&amp;quot; 在弹出的属性对话框中，勾选上&amp;quot;Conditional&amp;quot;，然后在文本框中输入&amp;quot;count % 2 == 0&amp;quot;。 该条件表示，当程序运行到第20行时，只有当count为偶数时，程序才会被中断。细心地话，你会发现该断点的图标发生了改变，多了一个问号。
+3. Watchpoint Line Breakpoint关注于程序运行的&amp;quot;过程&amp;quot;，大家也常把使用这种断点的调试称为单步调试。但有时候，我们对程序的运行过程不太了解，可能也不太关心，不能确定在什么地方设置断点比较合适，而可能比较关注某个关键变量的变化或使用。此时，就可以为该变量设置一种特殊的断点&amp;ndash;Watchpoint。在此示例，我们最关心的就是成员变量value的值，那么就可以为它设置一个Watchpoint，双击第9行代码对应的左侧栏就可以了。 使用在2中所提及的方法，查看该断点的属性， 默认地，当该变量被访问或它的值被修改时，程序都会被中断。但在本示例中，只希望当对value的值进行修改时程序才需要被中断，所以取消对&amp;quot;Access&amp;quot;的勾选。 这时，我们会发现原来的Watchpoin图标也有变化了。
+4. Method Breakpoint 与关注对某个变量的访问与修改一样，我们也可以关注程序对某个方法的调用情况，即，可以设置Method Breakpoint。在此处，设置针对方法setValue的Method Breakpoint。同理，双击第11行代码对应的左侧栏即可。 仍然要查看该断点的属性。默认地，只勾选了&amp;quot;Entry&amp;quot;，而没有勾选&amp;quot;Exit&amp;quot;。 这表示，当刚进入该方法(调用开始)时，程序会被中断；而，离开该方法(调用结束)时，程序并不会被中断。在本示例中，需要同时勾选上&amp;quot;Exit&amp;quot;。 点击OK之后，可以看到该断点的图标也有所改变。 根据这里的设置，当程序运行到第20行后会在第12行被中断，尽管这里没有显式的断点，但这就是setValue()方法的入口(Entry)。必须注意地是，程序在运行到第16行时不会被中断，尽管它看起来像是setValue()方法的出口(Exit)。实际上，程序会在第17行被中断，这里才是setValue()调用结束的地方。
 5. Exception Breakpoint 如果，我们期望某个特定异常发生时程序能够被中断，以方便查看当时程序所处的状态。通过设置Exception Breakpoint就能达到这一目标。本示例故意在第23行抛出了IllegalArgumentException异常，我们期望程序运行到此处时会被中断。但我们不直接为此行代码设置Line Breakpoint，而是为IllegalArgumentException设置Exception Breakpoint。设置Exception Breakpoint的方法与其它类型断点都不同，它不能通过双击左侧栏的方式在代码编辑器上直接进行设置。点击Breakpoints视图右上角形如Ji的图标， 会弹出如下所示的对话框， 在其中选中IllegalArgumentException，并点击OK，这时一个Exception Breakpoint就设置好了。
 小结 上述的Eclipse断点，我们在现实工作中肯定都有意或无意地使用过其中的几种，只是不一定十分了解内情罢了。使用好Eclipse的各种断点，可以把很好地帮助我们分析程序，定位问题。</description></item><item><title>Spring3实例入门-Hello World</title><link>http://leaver.me/2013/09/20/spring3%E5%AE%9E%E4%BE%8B%E5%85%A5%E9%97%A8-hello-world/</link><pubDate>Fri, 20 Sep 2013 13:14:39 +0000</pubDate><guid>http://leaver.me/2013/09/20/spring3%E5%AE%9E%E4%BE%8B%E5%85%A5%E9%97%A8-hello-world/</guid><description>每次看到hello world,都有一种说不出的赶脚，想起了一个程序员，退休后写毛笔字，取笔研磨铺纸，大笔一挥，写下了“hello world”。
 1.使用Maven生成项目结构 2.转换成Eclipse项目 3.添加Spring3.0 依赖 在pom.xml文件里添加Spring 3.0 依赖，然后依赖会从Maven中央仓库自动下载
@@ -148,6 +148,7 @@ pPointer 所指向的地址呢，是一个short int 类型的值所在的位置�
 貌似本题来源自&amp;lt;**The C Puzzle Book&amp;gt; ，**搜狗也只是换了一下字符串，直接看题吧
 &amp;lt;span style=&amp;quot;font-family: Georgia, 'Times New Roman', 'Bitstream Charter', Times, serif; font-size: 13px; line-height: 19px;&amp;quot;&amp;gt;请写出程序的执行结果....&amp;lt;/span&amp;gt;
 首先从左到右看：
+*c[] 是一个字符，因此，c[]是指向该字符，c就是一个数组（数组的内容为指向字符的指针），c已经被初始化了.
 再看第二行，**cp[]是一个字符，*cp[]就是一个指针，指向该字符，cp[]就是一个指针，指向该指针，而cp就成为了指针数组，内容是指向字符的指针的指针。并且通过c的元素进行了初始化
 第三行，***cpp是一个字符，**cpp指向该字符，*cpp指向该指针，cpp就指向该字符的指针的指针.
 然后我画一张图表示初始的情况看看
@@ -171,7 +172,9 @@ AMAZINGBEST
 另外，今天是博客建站一周年.加油！</description></item><item><title>C#反射实现简单的插件系统</title><link>http://leaver.me/2013/02/21/c#%E5%8F%8D%E5%B0%84%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E6%8F%92%E4%BB%B6%E7%B3%BB%E7%BB%9F/</link><pubDate>Thu, 21 Feb 2013 08:28:27 +0000</pubDate><guid>http://leaver.me/2013/02/21/c#%E5%8F%8D%E5%B0%84%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E6%8F%92%E4%BB%B6%E7%B3%BB%E7%BB%9F/</guid><description>如果用过一些优秀的开源或是非开源的应用软件，就会发现这些软件的一个很大的优势就是其开放性，任何有能力的人都可以为其开发不同的插件来增强其的功能。比如著名的foobar2000，Vim和TotalCommander等等。
 C#的反射可以用来实现一个简单的插件系统。思路很简单，我们创建一个解决方案，包含三个工程，一个为我们的软件MyApplication，一个为插件接口IPlugin，一个为具体的插件MyPlugin。插件系统的基本思路是我们用一个接口类库,来定义我们软件可以使用的插件必须实现的方法签名。然后我们的软件MyApplication通过引用该IPlugin dll来动态调用，而具体的实现插件MyPlugin则引用该接口来实现具体的方法。这样我们的应用程序就能在不知道具体插件的情况下调用插件了。。
 结构图如下：
-关键代码也就是通过对程序集载入。搜索到对应接口的实现类。然后调用即可。</description></item><item><title>利用反射转换对象list到csv</title><link>http://leaver.me/2013/02/02/%E5%88%A9%E7%94%A8%E5%8F%8D%E5%B0%84%E8%BD%AC%E6%8D%A2%E5%AF%B9%E8%B1%A1list%E5%88%B0csv/</link><pubDate>Sat, 02 Feb 2013 07:39:11 +0000</pubDate><guid>http://leaver.me/2013/02/02/%E5%88%A9%E7%94%A8%E5%8F%8D%E5%B0%84%E8%BD%AC%E6%8D%A2%E5%AF%B9%E8%B1%A1list%E5%88%B0csv/</guid><description>扒自一工程。。可以学习一下.net中反射的简单用法
+关键代码也就是通过对程序集载入。搜索到对应接口的实现类。然后调用即可。
+运行结果：
+源码下载：PluginSystem.zip</description></item><item><title>利用反射转换对象list到csv</title><link>http://leaver.me/2013/02/02/%E5%88%A9%E7%94%A8%E5%8F%8D%E5%B0%84%E8%BD%AC%E6%8D%A2%E5%AF%B9%E8%B1%A1list%E5%88%B0csv/</link><pubDate>Sat, 02 Feb 2013 07:39:11 +0000</pubDate><guid>http://leaver.me/2013/02/02/%E5%88%A9%E7%94%A8%E5%8F%8D%E5%B0%84%E8%BD%AC%E6%8D%A2%E5%AF%B9%E8%B1%A1list%E5%88%B0csv/</guid><description>扒自一工程。。可以学习一下.net中反射的简单用法
  增加这个只是两个预定义的实体框架内的属性。
 使用PropertyInfo 可以获得名字。数据类型。声明类型，反射类型，读写属性等等。也可以设置或获取属性值。</description></item><item><title>recon-ng开源信息探测框架</title><link>http://leaver.me/2013/02/02/recon-ng%E5%BC%80%E6%BA%90%E4%BF%A1%E6%81%AF%E6%8E%A2%E6%B5%8B%E6%A1%86%E6%9E%B6/</link><pubDate>Sat, 02 Feb 2013 06:52:28 +0000</pubDate><guid>http://leaver.me/2013/02/02/recon-ng%E5%BC%80%E6%BA%90%E4%BF%A1%E6%81%AF%E6%8E%A2%E6%B5%8B%E6%A1%86%E6%9E%B6/</guid><description>作者：bystander 博客：http://leaver.me 微博：http://t.qq.com/lazystander 论坛：法客论坛
 首发。转载什么的请注明出处。起码给我留个链接啥的嘛。
@@ -235,7 +238,13 @@ C# 4.0
  
 涉及到的东西有：
 1.C#隐藏TabControl的header部分，前面的文章有介绍
-2.获取窗体全部的某一类控件（这个无聊的话抽象出一个通用的方法出来，以后就可以直接用了）</description></item><item><title>C#隐藏TabControl标签栏</title><link>http://leaver.me/2013/01/11/c#%E9%9A%90%E8%97%8Ftabcontrol%E6%A0%87%E7%AD%BE%E6%A0%8F/</link><pubDate>Fri, 11 Jan 2013 21:31:52 +0000</pubDate><guid>http://leaver.me/2013/01/11/c#%E9%9A%90%E8%97%8Ftabcontrol%E6%A0%87%E7%AD%BE%E6%A0%8F/</guid><description>今天考过了微软的那个70-562和70-536的考试。然后下午把软件体系结构的作业做了。然后看了一下栈溢出，我博客首页右侧的那个就是我的栈溢出id了。。
+2.获取窗体全部的某一类控件（这个无聊的话抽象出一个通用的方法出来，以后就可以直接用了）
+ 3.文件操作
+4.字符串操作
+反正很简单，主要就是写的时候思路要清晰。知道大部分使用密码的规则。处理一下生日格式。否则后面很麻烦。。相应的验证也比较少。界面依然毫无美感。。
+总结：
+现在发现在控件命名上越来越顺利了。自我感觉良好。后面慢慢的要开始尝试使用学到的一些新的技术点。。
+下载：社工字典生成工具</description></item><item><title>C#隐藏TabControl标签栏</title><link>http://leaver.me/2013/01/11/c#%E9%9A%90%E8%97%8Ftabcontrol%E6%A0%87%E7%AD%BE%E6%A0%8F/</link><pubDate>Fri, 11 Jan 2013 21:31:52 +0000</pubDate><guid>http://leaver.me/2013/01/11/c#%E9%9A%90%E8%97%8Ftabcontrol%E6%A0%87%E7%AD%BE%E6%A0%8F/</guid><description>今天考过了微软的那个70-562和70-536的考试。然后下午把软件体系结构的作业做了。然后看了一下栈溢出，我博客首页右侧的那个就是我的栈溢出id了。。
 然后就看到了这个问题。这个问题。我曾经遇到过。貌似大家知道比较多的是两种。第一种就是设置大小。
 但是这样你注意看的话，左上角有个小的瑕疵。这个没办法的。。还有一种比较低级但还算有效的方法就是在设计的时候将TabControl向上移动。运行以后就会遮住了。
 我当时不过取巧了。好像就用的第二种。。今天看到这个题目的时候，就做了下标记。刚才去看。大牛已经给出答案了。就是自己继承一个TabControl控件。重写
@@ -291,7 +300,8 @@ private void InitVisited() //初始化visited标志 { foreach (Vertex&amp;amp;lt
 10. 加括号11.缓冲区溢出绕过刚刚写着把这个给忘了。这个是从国外一个博客看到的。</description></item><item><title>远程管理Demo(C#)</title><link>http://leaver.me/2013/01/04/%E8%BF%9C%E7%A8%8B%E7%AE%A1%E7%90%86democ/</link><pubDate>Fri, 04 Jan 2013 15:18:06 +0000</pubDate><guid>http://leaver.me/2013/01/04/%E8%BF%9C%E7%A8%8B%E7%AE%A1%E7%90%86democ/</guid><description>一个C#的通信的例子
 1.服务端，服务端通过ip和端口生成客户端之后，点击开始监听后，便开启监听线程持续监听，同时注册断开连接和收到信息的事件。收到来自TcpClient 流中的信息后，解析之，如果是连接信息，就添加到连接列表，这样服务端就可以显示多个客户端了。如果是断开信息，就删掉。如果服务端想要给客户端发消息，就选中该客户，然后填写信息，就会调用连接类的发送方法。
  2.客户端，也就是被控端，被控端通过tcp连接到远端ip，然后发送连接成功状态，随后异步读取。读取到信息后调用解析方式。然后处理。。
-3.服务端如何生成客户端。其实也比较简单。就是写好客户端以后，保存为文本。然后通过CodeDomProvider的相关方法来编译即可。代码如下：</description></item><item><title>Lambda高手之路第五部分</title><link>http://leaver.me/2012/12/27/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E4%BA%94%E9%83%A8%E5%88%86/</link><pubDate>Thu, 27 Dec 2012 09:15:29 +0000</pubDate><guid>http://leaver.me/2012/12/27/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E4%BA%94%E9%83%A8%E5%88%86/</guid><description>武汉下雪了。。今天介绍Lambda表达式非常有用的情况。。ps:这个高手之路已经翻译了10000多字了。。疼啊。。
+3.服务端如何生成客户端。其实也比较简单。就是写好客户端以后，保存为文本。然后通过CodeDomProvider的相关方法来编译即可。代码如下：
+源码下载：CSharp RAT Example.zip</description></item><item><title>Lambda高手之路第五部分</title><link>http://leaver.me/2012/12/27/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E4%BA%94%E9%83%A8%E5%88%86/</link><pubDate>Thu, 27 Dec 2012 09:15:29 +0000</pubDate><guid>http://leaver.me/2012/12/27/lambda%E9%AB%98%E6%89%8B%E4%B9%8B%E8%B7%AF%E7%AC%AC%E4%BA%94%E9%83%A8%E5%88%86/</guid><description>武汉下雪了。。今天介绍Lambda表达式非常有用的情况。。ps:这个高手之路已经翻译了10000多字了。。疼啊。。
 一些模式比另一些模式有时候更加合适，真正有用的模式是自定义方法表达式，用爱促使话一些对象的部分，我们考虑下面这种情况。
 我们想要创建一个可以处理多种延迟加载的对象，这意味着即时对象已经被实例化了，我们还没有加载所有请求的资源，一个理由就是防止大量的IO操作。（比如通过网络传输），当我们开始使用数据的时候，我们想要确定数据足够新鲜，现在有一些确定的方法可以做这个。并且最有效的显然是实体框架已经用LINQ解决了延迟加载的问题，Iqueryable仅存储了查询，而没有任何无关的数据。一旦我们请求一个结果。不仅仅构造的查询被执行，同时也被以更高效的方式执行，比如一个在远程数据服务器上的SQL查询。
 在这里，我们仅仅想要看看两种情况的不同点，首先，我们查询，一切就绪，查询应该在已经加载了的数据上进行。
@@ -351,7 +361,7 @@ IMessageService 接口在两个类中都实现了。我们可以提供不同的�
 背景 有时候我们需要做很多任务，而做这些任务的算法可能不同，这样可以设计成策略模式，这样。执行该任务的基本的一些代码就是一样的。但程序可可以动态的切换来执行任务的不同部分了。
 现在，真实的情况是有些算法，从实现层面山看，有可能有一些步骤是不一样的，这种情况下。我们可以使用继承来完成。
 当有个算法，而这个算法的一部分却多样的时候。使用模板模式就很好。GoF定义模板模式为：
-&amp;ldquo;Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm's structure.&amp;quot;.
+&amp;ldquo;Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm&amp;rsquo;s structure.&amp;rdquo;.
 定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。模板模式使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。
 在上面的类图中： AbstractClass：包含两种方法。第一种就是算法的每一步。另一种就是模板方法。模板方法就是那些可以被用在所有独立方法中。并且提供了算法执行的一个骨架 ConcreteClass：这个类重写了抽象类中每一步的方法，包含对这些步骤的个性化实现。
 使用代码 看一个简单的例子。假想我们有一个类用来读取数据。并且能够为信息管理系统到处数据。
@@ -371,7 +381,19 @@ ReadData和FormatData 的实现不会变。唯一可变的部分就是ExportData
 为了改变TabControl的显示效果。我们使用模板机制，我们把模板写进一个资源字典里。这样就可以重用了。添加一个资源字典的步骤如下
 右键点击工程-添加-资源字典
 然后在资源字典里添加一些代码。
+ 这样就添加了一个有一个grid元素的名为OfficeTabControl的控件模板 . Grid 被分成两列，一列是标签页，一列是页内容。左边的列包含一个灰色背景和亮灰色的边缘线，然后一个StackPanel，IsItemsHost属性被设置为true，
+这样标签项被会放在这个栈面板里。第二列是ContentPresenter 这会放置标签页内容。然后让我们前面的TabControl使用新模板。设置Template 属性。
+ 在这之前，先把资源字典加到窗体的Reesouce里。然后再设置。然后运行软件。效果会有一些不一样。
+然后要修改左侧单个标签的显示效果。通过改变模板来实现。给模板添加如下的代码
+  然后再运行
+VisualState很有意思。我们可以放在Grid里。然后设置正常状态和鼠标悬停的状态。
+为了添加鼠标悬停效果，我们添加两个Borders元素。一个右边缘是灰线，另一个用在背景上。亮蓝色放在上下边缘
  之后，我们为VisualState创建故事板，一个是正常状态。会使得hoverShape的透明度为0.另一个是鼠标悬停的状态。透明度会变成1
+ 之后效果如下
+然后添加选中项的样式，在hoverShape 下面再添加一个Border，名字是buttonShape。通过这个我们给被选中项的上下边缘添加2个像素的黑蓝色边缘，
+在 Expression Blend中打开, 使用钢笔工具绘制个你想要的路径形状即可。然后把生成的xaml代码拷些过来。
+也可以直接用我的代码。。不顾我说过要怎么做了。
+最终看起来应该是这样的。
  当你运行的时候你会发现没什么变化。我们还要定义被选中标签的VisualState
 当添加如下代码的时候 添加一个VisualState组。也就是 SelectionStates ，然后给选中/为选中的状态添加行为/故事板。.这里通过修改透明度来实现一些效果
  现在再运行会发现效果更好了
@@ -439,7 +461,7 @@ Demo下载
 3.1.1折射层
 第二层模拟了光从上到下的折射。被放在反射层之前是因为，要达到反光玻璃的效果，反射层必须在按钮的中间某处有一个硬边缘。这一层实际上是另一个椭圆。但是这次。我们使用一个径向渐变（白色-透明）的填充。来模拟光的折射。渐变开始于第一层底部的中央。结束于上面的中间。然而。为了降低折射光的强度。渐变还是开始于椭圆的底部再下一点为好。可以从图上和代码里清晰的看到。
  3.1.2反射层
-第三层是光的反射层。是最难的部分。问题是反射效果不能使用任何标准的形状来画。因此。使用路径（Path）来画反射区域。当时。手工画也是可以的。但老实说。手工画图实在没什么可享受的（除非你是一个艺术家，或者有一个数位板），无论如何。我现在MS Blend中华好一个椭圆并转换成一个路径，然后我使用贝塞尔曲线点调整得到平滑的路径，你可以添加渐变到一个复杂的Path对象上。就像你对其他与定义的图形，比如椭圆，矩形所做的一样。为了得到光泽反射。我额每年需要一个透明-白色的径向渐变填充，从路径的底部开始（也就是按钮的中间某处），结束在顶部。我想如果我是一个艺术家。我会让渐变更准一点。可是我不是。因此。就这样。因为我们要把我们的按钮放在一个Grid里。所有我们设置VerticalAlignment=&amp;quot;Top&amp;rdquo; 这样反射区域在按钮的中间的结束了。
+第三层是光的反射层。是最难的部分。问题是反射效果不能使用任何标准的形状来画。因此。使用路径（Path）来画反射区域。当时。手工画也是可以的。但老实说。手工画图实在没什么可享受的（除非你是一个艺术家，或者有一个数位板），无论如何。我现在MS Blend中华好一个椭圆并转换成一个路径，然后我使用贝塞尔曲线点调整得到平滑的路径，你可以添加渐变到一个复杂的Path对象上。就像你对其他与定义的图形，比如椭圆，矩形所做的一样。为了得到光泽反射。我额每年需要一个透明-白色的径向渐变填充，从路径的底部开始（也就是按钮的中间某处），结束在顶部。我想如果我是一个艺术家。我会让渐变更准一点。可是我不是。因此。就这样。因为我们要把我们的按钮放在一个Grid里。所有我们设置VerticalAlignment=&amp;ldquo;Top&amp;rdquo; 这样反射区域在按钮的中间的结束了。
 图三
  最后。我添加一个ContentPresenter 到按钮中间。经验告诉我，内容区域再向下一个像素会使得按钮看起来更漂亮。因此，在这里我用了margin属性（注意。因为内容区域在Grid的中间（Center）。所以2个像素的top实际上是向下移动了一个像素 ）
 好了。最后在Blend中看起来大概是这样
@@ -623,6 +645,7 @@ Demo下载 ListView LayOut
 背景 存储图片到数据库里面是一个很有效的想法。很多人在一些场合都会这样做。的确，这是一个很好的想法。在图片很小的情况下，或者图片不是太多。在这两种情况下，当你需要图片的时候，你会实时去加载它们。而当你不需要的时候如果从数据库里加载图片会浪费很多带宽。并使得你的程序有一些慢。
 但问题是这种方法也很容易发生错误。&amp;ndash;尤其是你使用字符串连接，然后组合到你的SQL语句里面—并且这个错误只有当你打算使用存储的信息的时候才会发生。然后，看起来似乎是你的读取代码写错了&amp;mdash;不可能—它是正常的。我在其他地方都可以的。。
 从数据库里加载图片 重数据库里读取一张图片然后转换成图片显示是很简单的。
+但是-如果data因为一些原因不是有效的图片，那么这一行
 将会抛出一个异常—无效的参数
 只有当你真正看了从数据库里返回到data里的数据-而不是简单的瞄了一眼调试器，你才能注意到是什么原因。。
 它看起来不像是错的，所以它可能就是你想要的。-虽然21字节是一个很大的线索：你的图片可能只有21字节长？那图片可真小。。
@@ -635,7 +658,11 @@ Demo下载 ListView LayOut
 存储并不会有什么问题—但是事实上只是把Image的类型名保存了。而你傻傻的以为是图片数据本身。
 这还不是唯一的一个不让你直接连接字符串构造SQL语句的原因，如果你想知道其他原因。 使用Google 搜索Bobby Tables，&amp;mdash;这不是闹着玩的。。
 好了。其实把代码写正确也不难，虽然可能得多花一些时间。但是，它可以帮助提高代码的可读性和可靠性。而你要做的就是使用一个参数化的查询。
-首先，把图片转换到一个字节数组里。</description></item><item><title>JavaCC入门教程及相关资源</title><link>http://leaver.me/2012/09/27/javacc%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%8F%8A%E7%9B%B8%E5%85%B3%E8%B5%84%E6%BA%90/</link><pubDate>Thu, 27 Sep 2012 15:55:32 +0000</pubDate><guid>http://leaver.me/2012/09/27/javacc%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%8F%8A%E7%9B%B8%E5%85%B3%E8%B5%84%E6%BA%90/</guid><description>今天下午翻译了一篇简单的文章后。就去看JavaCC的东西了。。然后就找到了一篇入门教程
+首先，把图片转换到一个字节数组里。
+然后在SqlCommand对象里使用这些字节
+结束之前 不。。你不能取回那些你已经错误的存在数据库的信息。。所以。。全部删掉把。然后重新存一遍。
+许可 本文包括代码和源文件，在CPOL下授权
+ 原文地址：Why-do-I-get-a-Parameter-is-not-valid-exception-wh 著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</description></item><item><title>JavaCC入门教程及相关资源</title><link>http://leaver.me/2012/09/27/javacc%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%8F%8A%E7%9B%B8%E5%85%B3%E8%B5%84%E6%BA%90/</link><pubDate>Thu, 27 Sep 2012 15:55:32 +0000</pubDate><guid>http://leaver.me/2012/09/27/javacc%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%8F%8A%E7%9B%B8%E5%85%B3%E8%B5%84%E6%BA%90/</guid><description>今天下午翻译了一篇简单的文章后。就去看JavaCC的东西了。。然后就找到了一篇入门教程
 然后之前我是找到了一篇翻译过来的的某熊的战略储备基地
 从头到尾读了一遍英文的。感觉还是英文的写的要好一些。建议对照着翻译看英文。JavaCC也就那么回事。。
 同时在在这目测百慕大群岛的什么工程与应用科学学院找到了一些其他的文档。其中一篇是JavaCC-FAQ很好。基本上有关JavaCC的问题都有解释。
@@ -731,8 +758,9 @@ Update:其实吧。这里安装的是JavaCC的插件。但是已经可以进行�
 　5. 部署其它杂七杂八的依赖项（事件日志，GAC库，COM对象等等）。
 　手工执行上面的步骤又累又慢又危险（因为手工部署总是容易出错）。使用自动化流程，可以让你在一台服务器上快速维护和部署应用程序，减少出错的几率，并极大加快你在应用程序上的改动放到作业服务器上的周期。
 　去原文看看吧。使用Microsoft Web Deploy技术自动部署</description></item><item><title>WPF实现控件拖动效果</title><link>http://leaver.me/2012/07/27/wpf%E5%AE%9E%E7%8E%B0%E6%8E%A7%E4%BB%B6%E6%8B%96%E5%8A%A8%E6%95%88%E6%9E%9C/</link><pubDate>Fri, 27 Jul 2012 07:18:40 +0000</pubDate><guid>http://leaver.me/2012/07/27/wpf%E5%AE%9E%E7%8E%B0%E6%8E%A7%E4%BB%B6%E6%8B%96%E5%8A%A8%E6%95%88%E6%9E%9C/</guid><description>首先很简单，当然是去添加两个控件了，这里我添加了两个控件，都是label，然后我想实现的是将label1拖动到label2上的时候，label1的内容会被复制到label2上。
-需要注意的代码是label1中的MouseDown事件。和label2中的AllowDrop =&amp;quot;True&amp;rdquo; Drop=&amp;quot;tagert_drop&amp;rdquo;
-然后对应的处理事件</description></item><item><title>DevExpress DXperience Universal 12.1.5 破解补丁</title><link>http://leaver.me/2012/07/21/devexpress-dxperience-universal-12.1.5-%E7%A0%B4%E8%A7%A3%E8%A1%A5%E4%B8%81/</link><pubDate>Sat, 21 Jul 2012 12:08:08 +0000</pubDate><guid>http://leaver.me/2012/07/21/devexpress-dxperience-universal-12.1.5-%E7%A0%B4%E8%A7%A3%E8%A1%A5%E4%B8%81/</guid><description>因为要用到wpf开发软件，而作为一个审美能力和制作美的能力完全不匹配的人。。需要有一个基本的主题框架来作为基础进行开发。。于是我找了找。。刚开始找的是http://www.telerik.com/这个商业库，不过这个用的不太顺手，于是还是试试DevExpress，，果断很不错，找到了破解补丁。 给一个官方的Demo示例图： 安装文件：DXperience-12.1.5安装包
+需要注意的代码是label1中的MouseDown事件。和label2中的AllowDrop =&amp;ldquo;True&amp;rdquo; Drop=&amp;ldquo;tagert_drop&amp;rdquo;
+然后对应的处理事件
+其他的效果可以仿照这个来做。比如拖动以后的效果可以DragDropEffects来设置。。</description></item><item><title>DevExpress DXperience Universal 12.1.5 破解补丁</title><link>http://leaver.me/2012/07/21/devexpress-dxperience-universal-12.1.5-%E7%A0%B4%E8%A7%A3%E8%A1%A5%E4%B8%81/</link><pubDate>Sat, 21 Jul 2012 12:08:08 +0000</pubDate><guid>http://leaver.me/2012/07/21/devexpress-dxperience-universal-12.1.5-%E7%A0%B4%E8%A7%A3%E8%A1%A5%E4%B8%81/</guid><description>因为要用到wpf开发软件，而作为一个审美能力和制作美的能力完全不匹配的人。。需要有一个基本的主题框架来作为基础进行开发。。于是我找了找。。刚开始找的是http://www.telerik.com/这个商业库，不过这个用的不太顺手，于是还是试试DevExpress，，果断很不错，找到了破解补丁。 给一个官方的Demo示例图： 安装文件：DXperience-12.1.5安装包
 帮助文档：DXperience 12.1.5 Universal 帮助文档：
 破解补丁：DevExpress.Registration.Setup.v12.1.5.E3.msi</description></item><item><title>C# 线程优秀文章汇总</title><link>http://leaver.me/2012/07/11/c#-%E7%BA%BF%E7%A8%8B%E4%BC%98%E7%A7%80%E6%96%87%E7%AB%A0%E6%B1%87%E6%80%BB/</link><pubDate>Wed, 11 Jul 2012 14:04:07 +0000</pubDate><guid>http://leaver.me/2012/07/11/c#-%E7%BA%BF%E7%A8%8B%E4%BC%98%E7%A7%80%E6%96%87%E7%AB%A0%E6%B1%87%E6%80%BB/</guid><description>最近在看线程的东西，整理一些文档以便学习。分享。
 刚刚 C#多线程学习(一) 多线程的相关概念 C#多线程学习(二) 如何操纵一个线程 C#多线程学习(三) 生产者和消费者 C#多线程学习(四) 多线程的自动管理(线程池) C#多线程学习(五) 多线程的自动管理(定时器) C#多线程学习(六) 互斥对象 C# 实现多线程的同步方法详解 JimmyZheng C# 温故而知新： 线程篇(一) Thread C# 温故而知新： 线程篇(二) 线程池和异步线程 zhoufoxcn C#多线程编程（1）：线程的启动 多线程编程(2)：线程的同步 多线程编程(3)：线程池ThreadPool 多线程编程(4)：多线程与UI操作 一个简单的C#多线程间同步的例子 老赵 浅谈线程池（上）：线程池的作用及CLR线程池 浅谈线程池（中）：独立线程池的作用及IO线程池 浅谈线程池（下）：相关试验及注意事项 bloodish C# Tip &amp;ndash; 如何优雅的控制线程状态 Autumoon 白话多线程</description></item><item><title>C#中的Array和ArrayList</title><link>http://leaver.me/2012/07/11/c#%E4%B8%AD%E7%9A%84array%E5%92%8Carraylist/</link><pubDate>Wed, 11 Jul 2012 12:51:03 +0000</pubDate><guid>http://leaver.me/2012/07/11/c#%E4%B8%AD%E7%9A%84array%E5%92%8Carraylist/</guid><description>数组是最基础的数据结构。ArrayList可以看作是Array的复杂版本。下面比较两者的异同
@@ -742,7 +770,7 @@ Update:其实吧。这里安装的是JavaCC的插件。但是已经可以进行�
 什么是抽象类？ 　抽象类提供多个派生类共享基类的公共定义，它既可以提供抽象方法，也可以提供非抽象方法。抽象类不能实例化，必须通过继承由派生类实现其抽象方法，因此对抽象类不能使用new关键字，也不能被密封。如果派生类没有实现所有的抽象方法，则该派生类也必须声明为抽象类。另外，实现抽象方法由override方法来实现。
 比较 相同点 都不能被直接实例化，都可以通过继承实现其抽象方法。 都是面向抽象编程的技术基础，实现了诸多的设计模式。 不同点 接口支持多继承；抽象类不能实现多继承。 接口只能定义抽象规则；抽象类既可以定义规则，还可能提供已实现的成员。 接口是一组行为规范；抽象类是一个不完全的类，着重族的概念。 接口可以用于支持回调；抽象类不能实现回调，因为继承不支持。 接口只包含方法、属性、索引器、事件的签名，但不能定义字段和包含实现的方法；抽象类可以定义字段、属性、包含有实现的方法。 接口可以作用于值类型和引用类型；抽象类只能作用于引用类型。例如，Struct就可以继承接口，而不能继承类。 规则与场合 请记住，面向对象思想的一个最重要的原则就是：面向接口编程。 借助接口和抽象类，23个设计模式中的很多思想被巧妙的实现了，精髓就是面向抽象编程，通过封装变化来实现实体之间的关系。 抽象类应主要用于关系密切的对象，而接口最适合为不相关的类提供通用功能。 接口着重于CAN-DO关系类型，而抽象类则偏重于IS-A式的关系； 接口多定义对象的行为；抽象类多定义对象的属性； 接口定义可以使用public、protected、internal 和private修饰符，但是几乎所有的接口都定义为public，另外方法的访问级别不能低于接口的访问级别，否则可能导致编译错误。 “接口不变”，是应该考虑的重要因素。所以，在由接口增加扩展时，应该增加新的接口，而不能更改现有接口。 尽量将接口设计成功能单一的功能块，以.NET Framework为例，IDisposable、IDisposable、IComparable、IEquatable、IEnumerable等都只包含一个公共方法。 接口名称前面的大写字母“I”是一个约定，正如字段名以下划线开头一样，请坚持这些原则。 在接口中，所有的方法都默认为public。 如果预计会出现版本问题，可以创建“抽象类”。而向接口中添加新成员则会强制要求修改所有派生类，并重新编译，所以版本式的问题最好以抽象类来实现。 从抽象类派生的非抽象类必须包括继承的所有抽象方法和抽象访问器的实实现。 对抽象类不能使用new关键字，也不能被密封，原因是抽象类不能被实例化。 在抽象方法声明中不能使用 static 或 virtual 修饰符。 最后还是要勤于键盘，才能深入理解啊。 参考：对抽象编程：接口和抽象类
  </description></item><item><title>C#中的字符串驻留</title><link>http://leaver.me/2012/07/08/c#%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%A9%BB%E7%95%99/</link><pubDate>Sun, 08 Jul 2012 20:57:11 +0000</pubDate><guid>http://leaver.me/2012/07/08/c#%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%A9%BB%E7%95%99/</guid><description>字符串string可以理解为char[]，他是一个引用类型。
-字符串创建 操作上类似于int，char等类型，直接进行赋值，string str=&amp;quot;bystander&amp;rdquo;;虽然string 是个类，但是如果你天真的使用
+字符串创建 操作上类似于int，char等类型，直接进行赋值，string str=&amp;ldquo;bystander&amp;rdquo;;虽然string 是个类，但是如果你天真的使用
 来构造，会导致一个编译错误。因为System.String只提供了数个接受Char*，Char[]类型参数的构造函数。 所以只能像下面这样使用，
 看出来了吧，很麻烦的。所以一般还是使用第一种。
 字符串恒定性 恒定性(Immutability)，是指字符串一经创建，就不可改变，这是String最为重要的特性之一。具体来说，就是字符串一旦创建，就会在托管堆上分配一块连续的内存空间，我们对其的任何改变都不会影响到原有的String对象，而是重新创建的新的String对象。类似Insert，Substring，ToUpper都只是创建出了新的临时的字符串，会成为下次垃圾回收的目标。 好处：
@@ -750,9 +778,9 @@ Update:其实吧。这里安装的是JavaCC的插件。但是已经可以进行�
 通过下面这个例子来说明：
 猜猜答案是什么。。 正确答案是：True，False，True 为什么不是我们通常认为的那样呢。这就是因为字符串驻留了
 缘起 String类型的特性恒定性，对字符串的任何操作都只会创建新的字符串，这会导致性能下降，而String又用的很频繁，为此，CLR使用字符串驻留来解决这一问题。为此，CLR内部维护一个哈希表，来管理其创建的大部分string对象。其中Key为string本身，Value为分配给对应的string的内存地址。
-细节 　CLR初始化时，创建一个空的哈希表，当JIT编译方法的时候，会首先在哈希表中查找每一个字符串常量，显然找不到任何&amp;quot;bystander&amp;quot;变量，因此会在托管堆中创建一个新的string对系那个strA，并更新哈希表，Key被赋值为&amp;quot;bystander&amp;rdquo;,Value被赋值为strA的引用.也就是Value内保留了&amp;quot;bystander&amp;quot;在托管堆中的引用地址.
+细节 　CLR初始化时，创建一个空的哈希表，当JIT编译方法的时候，会首先在哈希表中查找每一个字符串常量，显然找不到任何&amp;quot;bystander&amp;quot;变量，因此会在托管堆中创建一个新的string对系那个strA，并更新哈希表，Key被赋值为&amp;quot;bystander&amp;quot;,Value被赋值为strA的引用.也就是Value内保留了&amp;quot;bystander&amp;quot;在托管堆中的引用地址.
 　接着,JIT根据&amp;quot;bystander&amp;quot;查找哈希表,结果找到了,所以JIT不做操作,只把找到的key对应的Value值赋给了strB对象.因此,第一个输出为true,引用相等.
-　同样,JIT向哈希表中添加了Key为&amp;quot;by&amp;rdquo;,Value为托管堆上&amp;quot;by&amp;quot;的地址.返回strC对象.但是注意,strD不同,JIT不检测,因为strD他是动态生成的.这样的字符串不会被添加到哈希表中进行维护,而是在托管堆中直接分配,所以第二个Console输出False.
+　同样,JIT向哈希表中添加了Key为&amp;quot;by&amp;quot;,Value为托管堆上&amp;quot;by&amp;quot;的地址.返回strC对象.但是注意,strD不同,JIT不检测,因为strD他是动态生成的.这样的字符串不会被添加到哈希表中进行维护,而是在托管堆中直接分配,所以第二个Console输出False.
 　对于第三个,我们首先看看Intern方法和IsInterned方法,对于动态生成的字符串,因为没有添加到CLR维护的哈希表,所以字符串驻留机制对其失效,但是可以手工开启,来实现高效的比较字符串相等.
 　两者的机制都是去哈希表中查找是否存在str字符串,找到的话也都返回对str的引用,不同的是当哈希表中没有str的话,IsInterned返回null,而Intern将把这个字符串添加到哈希表,并返回引用.注意,IsInterned返回非null并不代表两个字符串引用了相同的地址. 所以
 就很好理解了.</description></item><item><title>降级论</title><link>http://leaver.me/2012/07/07/%E9%99%8D%E7%BA%A7%E8%AE%BA/</link><pubDate>Sat, 07 Jul 2012 22:37:11 +0000</pubDate><guid>http://leaver.me/2012/07/07/%E9%99%8D%E7%BA%A7%E8%AE%BA/</guid><description>相当精彩的一篇文章『降级论』，收藏分享。精彩的部分突出显示了。
@@ -791,8 +819,11 @@ IT界在我眼里一直是一个无比高级的职业，聚集着全球最聪明
 　IT青年们，当你在为网站的转化率苦苦思索的时候，当你在为app的活跃度辗转反侧的时候，当你在为融资计划苦苦哀求各界大佬引荐的时候，也许犯了一个错误，也许你们的脑子最值得闪光的地方，不是去悲催的IT界当炮灰，而应该是去按摩界、餐饮界、烧烤界、早餐界、理发界、家政界、按摩界、送花界、纺织界、成人用品界、现代化养殖界、有机蔬果界、个人护理界、汽车修理界。。。。与IT界相比，这些行业的确无比低级，他们的老板连qq都会发音成“抠抠”，他们的员工一辈子都没用过Email；跟他们解释什么是SEO，什么是用户体验，什么是数据挖掘，他们会在听你说完之前就开枪自杀掉。正是因为如此，这些行业才是如此的不堪一击。正是因为如此，当智商高达147的IT青年还在为3k薪水拼命、而智商不到50的烧烤店老板正坐在porsche里玩着前面那位青年开发的app的时候，我就忍不住仰望星空。
 这些原始而纯粹的行业，正在等待IT精英们的降级，如同蒲公英一般的伞兵，在黑夜里从天而降，长驱直入，用最智慧的产品、最优质的服务拯救这些早就该死的行业，屌丝的生命将会绽放出银色的羽翼，无比丰满，无比性感。
 　最后注意，请珍惜生命，远离我的微博：@meditic</description></item><item><title>C#中XML和二进制的序列化</title><link>http://leaver.me/2012/07/07/c#%E4%B8%ADxml%E5%92%8C%E4%BA%8C%E8%BF%9B%E5%88%B6%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96/</link><pubDate>Sat, 07 Jul 2012 18:30:23 +0000</pubDate><guid>http://leaver.me/2012/07/07/c#%E4%B8%ADxml%E5%92%8C%E4%BA%8C%E8%BF%9B%E5%88%B6%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96/</guid><description>看书的时候，看到的。然后感觉书上的写的不清楚，于是自己写了一下。还真的有问题。 要进行序列化和反序列化，首先要定义一个可以序列化的类，方法是在类的声明前加上特性 [Serializable] 定义了一个简单的用户类，需要注意的是私有字段是不能序列化的，只有公有字段和公有属性才可以。如下
+注意，书上有个例子没有给出默认的构造函数，实际测试时如果没有默认构造函数，是不能执行xml序列化的。注意。
+然后就导入需要的命名空间。 需要导入
 分贝对应文件操作，二进制序列化和xml序列化
-为了方便，我封装了四个静态函数，用于实现序列化和反序列化。</description></item><item><title>C#调用MatLab实现N阶幻方</title><link>http://leaver.me/2012/07/02/c#%E8%B0%83%E7%94%A8matlab%E5%AE%9E%E7%8E%B0n%E9%98%B6%E5%B9%BB%E6%96%B9/</link><pubDate>Mon, 02 Jul 2012 18:39:43 +0000</pubDate><guid>http://leaver.me/2012/07/02/c#%E8%B0%83%E7%94%A8matlab%E5%AE%9E%E7%8E%B0n%E9%98%B6%E5%B9%BB%E6%96%B9/</guid><description>MatLab的计算能力太强大了。最近需要通过C#来调用MatLab来进行一些计算，可是MatLab没用过。安装文件在我硬盘里躺了整整一年。
+为了方便，我封装了四个静态函数，用于实现序列化和反序列化。
+代码比较简单。 最后是一个简单的测试。</description></item><item><title>C#调用MatLab实现N阶幻方</title><link>http://leaver.me/2012/07/02/c#%E8%B0%83%E7%94%A8matlab%E5%AE%9E%E7%8E%B0n%E9%98%B6%E5%B9%BB%E6%96%B9/</link><pubDate>Mon, 02 Jul 2012 18:39:43 +0000</pubDate><guid>http://leaver.me/2012/07/02/c#%E8%B0%83%E7%94%A8matlab%E5%AE%9E%E7%8E%B0n%E9%98%B6%E5%B9%BB%E6%96%B9/</guid><description>MatLab的计算能力太强大了。最近需要通过C#来调用MatLab来进行一些计算，可是MatLab没用过。安装文件在我硬盘里躺了整整一年。
 　我们希望的是由外部程序调用MatLab函数。所以。希望可以完全脱离MATLAB环境，实现软件的快速开发。为此需要先介绍一下MCR。
 MCR简介 　MCR的全称是MATLAB Compiler Runtime，即MATLAB编译器运行时。是一个由MATLAB共享类库构成的执行引擎，他能够使MATLAB文件在没有MATLAB的机器上运行。这一点和.NET Framework相对于.NET程序一样，即为程序的运行提供了底层支持。当发布程序的时候，需要将MCR也打包进来，这样没有MATLAB的机器上也能执行，MCR随MATLAB软件一同发布，可以在MATLAB中输入命令“mcr”或者“mcrinstaller”获取其保存路径：
 　根据上面的运行结果，可知该文件的完整路径是：
@@ -805,6 +836,7 @@ MATLAB端的工作 　以我这个功能为例。打开MatLab，然后File-&amp;
 　创建一个test方法。该方法在C#调用的时候要用到，接受一个参数，然后输出一个幻方。保存关闭m文件，然后回到上图，双击test.prj也就是工程文件。 来到图4 点击Add Class，就是向test.dll的程序集中添加类。我添加了一个类叫做Func1.这个类用来在C#中创建一个对象，然后调用test（n）这个函数，然后出现Add Files，点击打开浏览框，把刚才写好的test.m选上。就可以了 最后看窗口右上角，，点击那个build图标就ok，等个几分钟，就会在目录里生成test.dll文件了。图5
 VS端的代码 　现在，打开vs，创建C#工程，添加两个引用，分别是MWArray.dll和test.dll，添加引用的方法就是在解决方案资源管理器中，的引用上，点击，然后添加引用-&amp;gt;浏览-&amp;gt;找到这两个dll，为了方便，我一般会把这两个dll复制到我的C#工程目录里，然后添加引用，如前面所说，MWArray.dll里有两个命名空间，我们使用using语句都添加上。也包括生成的test.dll
 　然后设计C#界面，很简单的拖一个界面，图6 然后单击事件代码：
+　看到test有两个参数，第一个参数是指返回结果书，我们只需要一个就好了。所以为1，后面那个是阶数了。运行结果如图7：
 　注意程序在初始化自定义类Func1时会花费较多时间，大约持续2~3秒钟，程序如同假死一般，但第二次点击按钮反应却很快. 参考： http://www.360doc.com/content/12/0530/10/9587654_214689438.shtml</description></item><item><title>C#中的静态与非静态</title><link>http://leaver.me/2012/07/02/c#%E4%B8%AD%E7%9A%84%E9%9D%99%E6%80%81%E4%B8%8E%E9%9D%9E%E9%9D%99%E6%80%81/</link><pubDate>Mon, 02 Jul 2012 05:30:02 +0000</pubDate><guid>http://leaver.me/2012/07/02/c#%E4%B8%AD%E7%9A%84%E9%9D%99%E6%80%81%E4%B8%8E%E9%9D%9E%E9%9D%99%E6%80%81/</guid><description>为什么要分静态和非静态 在面向对象的世界里，大部分的情况都是实例特征主宰天下，类相当于一个类型模板，而对象则是类特征的拷贝，并且独立于其他对象来操作这些特征，但是在某些情况下，需要某些特征被所有的对象共公有，因此有必要实现一种基于类的特征，而不是基于实例对象的特征机制，这就是静态特征。
 1.静态类和非静态类 一个类如果包含静态成员和静态方法，那么该类就可以定义为静态类，定义方法是在类定义前加上static，比如
 比较： 静态类只能包含静态成员和静态方法，否则会抛出编译错误，而非静态类既可以包含非静态成员和非静态方法，还可以包含静态成员和静态方法。但不能作用于静态只读字段。 静态类不可实例化，非静态类可以实例化，不管是静态类还是非静态类，对静态成员和静态方法的调用都必须通过类来实现访问。 相对于非静态类来说，静态类有一些特点值得应用，比如System.Console这个典型的静态类。 如果一个类只包含静态成员和静态方法，就应该将该类标记为static，并提供私有的构造函数来避免用户实例创建对象，这也是MonoState模式的体现。 2.静态构造函数和实例构造函数 静态构造函数，只能用于初始化类中的静态成员，包括静态字段和静态属性，静态构造函数不能带参数，不能有访问修饰符也不能被手工调用，通过是在.net运行库第一次调用类成员之前执行。其中，实例构造函数中也是可以初始化静态成员的。
@@ -828,10 +860,18 @@ c#温故而知新： 线程篇(一)：Thread c#温故而知新： 线程篇(二)
  会得到一个xaml文件，一会用
 然后新建wpf项目，然后在解决方案资源管理器视图右键点击项目 导入现有项，把上一步的xaml文件导入
 然后需要在app.xaml文件中进行设置，具体在&amp;lt;Application.Resources&amp;gt;标签内添加如下代码，中间那个文件名看情况而定。
+ 然后打开“MainWindow.xaml”文件的设计视图，点击窗体边缘以选中窗体，在属性面板中更改AllowsTransparency及WindowStyle属性。 AllowsTransparency 指示窗体是否支持透明。选中 WindowStyle指示窗体边框样式，设为 None 为无边框。
+然后呢在 MainWindow.xaml文件中添加如下代码，
 最终代码是：
 其中background那个是固定的，而MouseDown是为了给窗体写可以拖动的函数，函数名为Window_MouseDown你也可以自己制定
 然后对着那个函数名点右键，如下图
-导航到事件处理程序，然后在打开的函数里写上</description></item><item><title>C#WinForm实现不规则窗体</title><link>http://leaver.me/2012/06/21/c#winform%E5%AE%9E%E7%8E%B0%E4%B8%8D%E8%A7%84%E5%88%99%E7%AA%97%E4%BD%93/</link><pubDate>Thu, 21 Jun 2012 09:26:34 +0000</pubDate><guid>http://leaver.me/2012/06/21/c#winform%E5%AE%9E%E7%8E%B0%E4%B8%8D%E8%A7%84%E5%88%99%E7%AA%97%E4%BD%93/</guid><description>这个纯属娱乐，因为其实用的不是太多，因为非主流，非标准的界面不符合用户的体验，不符合可用性功能的某一条HE规则。
+导航到事件处理程序，然后在打开的函数里写上
+拖动功能就实现了。
+至于添加关闭按钮的，我就不写了，很简单，代码里都有。可以参考源文件。
+工程源码下载：WPFDemo
+参考：
+http://www.cnblogs.com/SkyD/archive/2008/07/13/1242044.html
+http://www.cnblogs.com/yinyao/archive/2011/05/23/2054056.html</description></item><item><title>C#WinForm实现不规则窗体</title><link>http://leaver.me/2012/06/21/c#winform%E5%AE%9E%E7%8E%B0%E4%B8%8D%E8%A7%84%E5%88%99%E7%AA%97%E4%BD%93/</link><pubDate>Thu, 21 Jun 2012 09:26:34 +0000</pubDate><guid>http://leaver.me/2012/06/21/c#winform%E5%AE%9E%E7%8E%B0%E4%B8%8D%E8%A7%84%E5%88%99%E7%AA%97%E4%BD%93/</guid><description>这个纯属娱乐，因为其实用的不是太多，因为非主流，非标准的界面不符合用户的体验，不符合可用性功能的某一条HE规则。
 为了完成这个效果，首先需要自己动手画个你需要的界面出来，界面边缘需要是一种可以很好区别的颜色，比如纯蓝色，因为实现不规则窗体是让C#使边缘颜色透明化来实现的，所以需要唯一识别。因为我用的图是一张灰色的图，我然后圈了一个蓝色的边缘。
 刚开始的图；
 然后新建windows应用程序。创建windows窗体并设置窗体基本属性。 （1）将 FormBorderStyle 属性设置为 None。 （2）将窗体的 BackgroundImage 属性设置为先前创建的位图文件。不必将文件添加到项目系统中；这将在指定该文件作为背景图像时自动完成。 （3）将 TransparencyKey 属性设置为位图文件的背景色，本例中为蓝色。（此属性告诉应用程序窗体中的哪些部分需要设置为透明。 ） 上面两个步骤已经完成了不规则窗体自身显示效果的制作。
@@ -875,10 +915,27 @@ _ “哼，”我不以为然，“那你怎么不说，_URL__参数都Encode__
 “知之为知之，不知为不知，是知也。”
 原文链接：http://www.cnblogs.com/nankezhishi/archive/2012/06/09/2542968.html</description></item><item><title>FreeAnony-代理采集设置工具</title><link>http://leaver.me/2012/06/17/freeanony-%E4%BB%A3%E7%90%86%E9%87%87%E9%9B%86%E8%AE%BE%E7%BD%AE%E5%B7%A5%E5%85%B7/</link><pubDate>Sun, 17 Jun 2012 20:10:05 +0000</pubDate><guid>http://leaver.me/2012/06/17/freeanony-%E4%BB%A3%E7%90%86%E9%87%87%E9%9B%86%E8%AE%BE%E7%BD%AE%E5%B7%A5%E5%85%B7/</guid><description>这个名字确实有点不太好。。因为刚开始我想到这个工具是在今天早上看到一个别人的代理工具的时候，突然想做的，没有好好规化，结果后来代码越写越多。。不过收获很大。
 先看界面，因为是简单实现一下，所以就不要吐槽界面了。。
-刚开始想的思路就是先去一个经常发布代理IP的网页去采集。然后解析成一条条的信息。然后显示出来。中途遇到几个问题，一个就是在做代理验证的时候，没有用多线程，导致直接界面无响应。另一个就是DataGridView控件要实现对一个数组的绑定，需要的一个实体对象。</description></item><item><title>gif反转工具</title><link>http://leaver.me/2012/06/15/gif%E5%8F%8D%E8%BD%AC%E5%B7%A5%E5%85%B7/</link><pubDate>Fri, 15 Jun 2012 17:33:29 +0000</pubDate><guid>http://leaver.me/2012/06/15/gif%E5%8F%8D%E8%BD%AC%E5%B7%A5%E5%85%B7/</guid><description>首先看下效果图： 然后是两张gif的对比  //原本图是正着走的  //处理后是倒着走的
+刚开始想的思路就是先去一个经常发布代理IP的网页去采集。然后解析成一条条的信息。然后显示出来。中途遇到几个问题，一个就是在做代理验证的时候，没有用多线程，导致直接界面无响应。另一个就是DataGridView控件要实现对一个数组的绑定，需要的一个实体对象。
+这部分就是先得到网页源码，然后通过IndexOf和LastIndexOf定位到ip组的位置。这是通过分析源码来确定参数的。最后通过 标签分割成字符数组。数组元素类似于112.25.12.37:80@HTTP;江苏省 移动，然后就是继续分割成一部分，构造了一个IPEntity的数组。在按钮中绑定到DataGridView中即可 IPEntity类的定义如下：这里面设置了一个status属性，用于后面代理验证的时候进行标记。
+然后是验证ip可用性的部分。这部分主要的代码是验证DataGridView中的ip地址可用性
+但是实际运行后就知道，会出现界面无响应。因为长时间的网络访问。为此，在按钮的单击事件中，使用简单的线程后台来操作
+然后其实就没什么了。至于后面的设置iE代理不过就是对注册表的操作了
+不好的地方希望大家指正。因为只是一个简单的原型。完成我想的功能。所以不必过分苛求。关键的代码就是上面的了。 项目源码下载：FreeAnony 参考： http://blog.csdn.net/cisso/article/details/4467188
+http://www.blogjava.net/aoneany/articles/281344.html
+http://www.cnblogs.com/server-you/archive/2006/09/20/509342.html
+http://topic.csdn.net/u/20090514/01/82749a36-ffef-4da5-a607-260dccbad84b.html
+http://www.haogongju.net/art/1485280
+http://developer.51cto.com/art/200903/115200.htm
+http://qianshao.blog.51cto.com/935360/201782</description></item><item><title>gif反转工具</title><link>http://leaver.me/2012/06/15/gif%E5%8F%8D%E8%BD%AC%E5%B7%A5%E5%85%B7/</link><pubDate>Fri, 15 Jun 2012 17:33:29 +0000</pubDate><guid>http://leaver.me/2012/06/15/gif%E5%8F%8D%E8%BD%AC%E5%B7%A5%E5%85%B7/</guid><description>首先看下效果图： 然后是两张gif的对比  //原本图是正着走的  //处理后是倒着走的
 gif是动态的嘛。然后我昨天和一个朋友聊天的时候发了一串相同的gif图，然后看着千篇一律的东西。我想能不能写个程序实现gif的初始状态不同呢。什么意思呢。我们知道，gif是由帧构成的，我想实现的功能是比如一个gif共有十帧，那么我写出来的程序能够生成10个gif文件，分别对应不同的初始状态来进行循环。后来一想，gif帧太多的话，比较慢，而且也不实用，于是决定简化一下，只做一个反转工具，比如一个gif是从左到右播放的，通过这个成功可以生成一个相同的gif图，不过是倒着播放的。
 思路很简单，就是先把gif分解成很多帧，然后对帧进行合并，合并帧之前把帧的位置反转一下就可以了。因为我自己对图像处理的知识不懂，只想到了思路，所以这些功能都要找些资料，然后修改，测试。
-分割帧的代码如下</description></item><item><title>MySQL ERROR 1005: Can't create table (errno: 150)解决办法</title><link>http://leaver.me/2012/06/10/mysql-error-1005-cant-create-table-errno-150%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</link><pubDate>Sun, 10 Jun 2012 20:02:31 +0000</pubDate><guid>http://leaver.me/2012/06/10/mysql-error-1005-cant-create-table-errno-150%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</guid><description>最近在做数据库大作业，采用mysql建立数据库的时候出现了这个情况，查了一下，解决了。
+分割帧的代码如下
+可以看到，返回了一个包含所有生成的帧地址的list列表。然后就是使用gifList作为参数来合并了。
+这里面使用了AnimatedGifEncoder这个类，这是Gif.Components.dll动态连接库里的类（此库开源，文末给出地址），是我在codeProject上找到的。首先我把gifList反转，然后合并保存到同目录。中间生成的帧为了方便我保存到了temp目录。
+本来这个库里是分割gif的功能的。但是我实际测试后发现效果非常差，图片黑条泛滥，根本没法看。所以还是使用上面那段代码，相关代码我依然保存在工程里，有兴趣可以自己测试。
+明天四级考试，求人品。。
+项目源码:gif反转工具
+参考： C#图片处理：获取GIF 动画图片中的各个帧 NGif, Animated GIF Encoder for .NET</description></item><item><title>MySQL ERROR 1005: Can't create table (errno: 150)解决办法</title><link>http://leaver.me/2012/06/10/mysql-error-1005-cant-create-table-errno-150%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</link><pubDate>Sun, 10 Jun 2012 20:02:31 +0000</pubDate><guid>http://leaver.me/2012/06/10/mysql-error-1005-cant-create-table-errno-150%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</guid><description>最近在做数据库大作业，采用mysql建立数据库的时候出现了这个情况，查了一下，解决了。
 出现问题的大致可能情况
 1、外键的引用类型不一样，如主键是int外键是char
 2、找不到主表中引用的列
@@ -895,7 +952,7 @@ gif是动态的嘛。然后我昨天和一个朋友聊天的时候发了一串�
 1.Many Usability Aspects Identified in HE are Confirmed in Think-Aloud Usability Tests 许多可用性方面的问题可以在HE中识别。然后在Think Aloud测试中被确认。
 2.When HE Predictions are not Confirmed by Think-Aloud Usability Tests 当HE预测了问题但是Think Aloud中，并没有发现。这种情况下。请相信Think Aloud测试。因为用户是王道。数据比预测更准确。
 3.&amp;ldquo;False Alarms&amp;rdquo; vs. True Problems 假警告vs真问题，这个举个例子，在对话框中，有三个按钮。OK ，Apply和Cancel ，虽然HE规则预测了这个迷惑性。但是进行Think Aloud测试的时候，并没有这个问题，原因是用户就没想过这个事，他只按ok，但这并不能避免问题，或者说似乎这个问题并不是个问题，还有一种情况，比如HE规则中的文档帮助的问题，可能用户在测试的时候就没打开文档。这就需要HE来评估了。所以，这种情况下，还是应该好好分析一下HE给出的评估来改进系统。
-4.Think-Aloud Usability Tests Can Show Things HEs Can't Show Think Aloud测试可以展示HE没有发现的问题。
+4.Think-Aloud Usability Tests Can Show Things HEs Can&amp;rsquo;t Show Think Aloud测试可以展示HE没有发现的问题。
 HE规则因为是建立在早期草稿原型上的。并不是真实情况，他只是在早期给出设计上的问题，他不能预测真实系统的问题，比如程序运行速度非常慢，以至于用户难以忍受。这就需要Think Aloud才能发现了。
  基本上SSD4就讲了这么些东西了。四篇文章四点写到7点。。基本上算是写完了。工科男求安慰。。</description></item><item><title>对象数组的Xml序列化和反序列化</title><link>http://leaver.me/2012/05/18/%E5%AF%B9%E8%B1%A1%E6%95%B0%E7%BB%84%E7%9A%84xml%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</link><pubDate>Fri, 18 May 2012 09:38:27 +0000</pubDate><guid>http://leaver.me/2012/05/18/%E5%AF%B9%E8%B1%A1%E6%95%B0%E7%BB%84%E7%9A%84xml%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</guid><description>使用Serialization来进行序列化和反序列化，因此需要引入System.Xml.Serialization；命名空间。
 为什么要做序列化和反序列化？ .Net程序执行时，对象都驻留在内存中；内存中的对象如果需要传递给其他系统使用；或者在关机时需要保存下来以便下次再次启动程序使用就需要序列化和反序列化。
@@ -905,7 +962,7 @@ HE规则因为是建立在早期草稿原型上的。并不是真实情况，他
 　　Windows Registry Editor Version 5.00
 　;修改Windows系统软件默认安装路径
 　[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion]
-　&amp;ldquo;ProgramFilesDir&amp;quot;=&amp;quot;D:\Program Files&amp;rdquo;
+　&amp;ldquo;ProgramFilesDir&amp;rdquo;=&amp;ldquo;D:\Program Files&amp;rdquo;
 　效果如下图，安装程序已经默认到D盘了
 update:已知后遗症，我在这样实践了以后，发现vs2010的.net framework 4将会丢失。也就是说就不能新建.net framework 4项目了，具体不明，可能是我当初把VS一部分安装到D盘的缘故，应该可以通过重新安装vs解决，如果你不想折腾。把注册表改回去就可以了。</description></item><item><title>LR(0)项目集规范族的构造</title><link>http://leaver.me/2012/05/12/lr0%E9%A1%B9%E7%9B%AE%E9%9B%86%E8%A7%84%E8%8C%83%E6%97%8F%E7%9A%84%E6%9E%84%E9%80%A0/</link><pubDate>Sat, 12 May 2012 10:38:38 +0000</pubDate><guid>http://leaver.me/2012/05/12/lr0%E9%A1%B9%E7%9B%AE%E9%9B%86%E8%A7%84%E8%8C%83%E6%97%8F%E7%9A%84%E6%9E%84%E9%80%A0/</guid><description>此文略长。我也没想到这写起来这么多，但对构造过程绝对清楚，一步步慢慢看吧。
 　LR的第一个L和LL的第一个L含义相同，即从左到右扫描句子 ，第二个R表示Right most最右推导。
@@ -935,11 +992,11 @@ update:已知后遗症，我在这样实践了以后，发现vs2010的.net frame
 　开始拿个例题来说明，定义没例题看起来看难了。
 　例题：对于下列文法，S→aS|bS|a，构造该文法的LR(0)项目集规范族
 　思路就是利用闭包函数CLOSURE和转换函数GO来构造。通过计算函数CLOSURE和GO得到文法的LR(0)项目集规范族，而GO函数则把LR(0)项目集规范族连成一个识别该文法所产生的活前缀的DFA。DFA大家都知道，有穷自动机。
-　(1)将文法G(S)拓广为G(S’)也就是该文法的增广文法，目的是使语法分析器知道何时应该停止并接受该串，也就是说当使用S&amp;rsquo;-&amp;gt;S进行规约的时候，就结束。
+　(1)将文法G(S)拓广为G(S’)也就是该文法的增广文法，目的是使语法分析器知道何时应该停止并接受该串，也就是说当使用S'-&amp;gt;S进行规约的时候，就结束。
 　(0)S’→S (1)S→aS　(2)S→bS　(3)S→a
 　构造该文法的LR(0)项目集规范族，I就是产生式，至于I0 I1就是往下递增就可以了。没什么特别的意思。：
-　I0=CLOSURE({S&amp;rsquo; →•S})={S’ →•S, S→•aS, S→•bS, S→•a}
-　//第一条是固定的，都是求S&amp;rsquo; →•S的闭包。而因为右侧的S又可以推导出后面三个，所以后面三个式子是属于该闭包的。在闭包的规则中可以看出，若A→α·Bβ属于CLOSURE(I)，此时S&amp;rsquo; →•S属于闭包，S相当于规则中的B,则每一形如B→·γ的项目也属于CLOSURE(I),此处相当于S-&amp;gt;后面的三个推导式。加上.就可以了
+　I0=CLOSURE({S' →•S})={S’ →•S, S→•aS, S→•bS, S→•a}
+　//第一条是固定的，都是求S' →•S的闭包。而因为右侧的S又可以推导出后面三个，所以后面三个式子是属于该闭包的。在闭包的规则中可以看出，若A→α·Bβ属于CLOSURE(I)，此时S' →•S属于闭包，S相当于规则中的B,则每一形如B→·γ的项目也属于CLOSURE(I),此处相当于S-&amp;gt;后面的三个推导式。加上.就可以了
 　I1=GO( I0 , a)=CLOSURE({S→a•S , S→a•})={S→a•S , S→a• , S→•aS, S→•bS, S→•a }
 　//第二条你可能已经看出来了，其实就是把转换函数GO反过来用，在GO函数中，X为一文法符号，J＝{任何形如A→αX·β的项目| A→α·Xβ属于I}。也就是在I0中，找到右侧包含a的项目，然后将.右移一位来求他们的闭包函数，此处，I0中包含.a的项目为 S→•aS和 S→•a，.右移一位变成S→a•S , S→a•，求闭包函数的规则和上面那条是一样的，继续找推导式右边可以推导出来的式子就可以了，此处，右边同样是S可以推导出三个式子，前面加上.就可以了。
 　I2=GO(I0 , b)=CLOSURE({S→b•S })={ S→b•S, S→•aS, S→•bS, S→•a }
@@ -985,7 +1042,7 @@ http://www.bincess.cn/Downloads/MainDoc.rar  petshop 4.0的体系结构（只�
 　用管理员账号登陆，再打开 c:\windows\system32\logfiles 如果看到 wmi文件夹，在wmi文件夹上点右键，点 获取管理员权限 ,后重启即可修复。
 　附上Win7下添加右键获取管理员权限的方法：
 在Win7下经常要用到管理员权限,为了方便可以添加一个右键菜单,方法如下: 新建一个“记事本”文件，复制以下内容：
-复制好后选文件-另存为,保存类型选&amp;quot;所有文件&amp;rdquo;,文件扩展名为reg 然后运行即可。
+复制好后选文件-另存为,保存类型选&amp;quot;所有文件&amp;quot;,文件扩展名为reg 然后运行即可。
 Win7下取消右键获取管理员权限方法：
 同样的保存上面内容为reg格式文件即可。</description></item><item><title>一位程序员工作10年总结的13个忠告</title><link>http://leaver.me/2012/04/11/%E4%B8%80%E4%BD%8D%E7%A8%8B%E5%BA%8F%E5%91%98%E5%B7%A5%E4%BD%9C10%E5%B9%B4%E6%80%BB%E7%BB%93%E7%9A%8413%E4%B8%AA%E5%BF%A0%E5%91%8A/</link><pubDate>Wed, 11 Apr 2012 11:43:46 +0000</pubDate><guid>http://leaver.me/2012/04/11/%E4%B8%80%E4%BD%8D%E7%A8%8B%E5%BA%8F%E5%91%98%E5%B7%A5%E4%BD%9C10%E5%B9%B4%E6%80%BB%E7%BB%93%E7%9A%8413%E4%B8%AA%E5%BF%A0%E5%91%8A/</guid><description>&lt;p>展望未来，总结过去10年的程序员生涯，给程序员小弟弟小妹妹们的一些总结性忠告&lt;/p>
 &lt;p>&lt;a href="http://leaverimage.b0.upaiyun.com/20328_o.jpg">&lt;img src="http://leaver.me/images/0879e53683bb292802a314bbdb3753660658501b.jpg" alt="">&lt;/a>

@@ -85,6 +85,8 @@ org.apache.http.entity包
 4.json-lib的一个问题
 在maven里添加了json-lib的依赖后，启动报错
 missing net.sf.json-lib，但实际上这个我的确是加载进来了。去了SO，才知道，还需要知道classifier 依赖，把jdk的版本添加上就行。这个应该是我当时添加的时候没有去maven中央库填写造成的
+5.maven生成可执行jar包
+写好的工具要打包，需要在pom文件，（我用mave来管理）里添加如下的配置
 然后在工程目录执行
 就会在target目录生成jar包啦</description></item><item><title>《软件测试》一点笔记</title><link>http://leaver.me/2013/07/26/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E4%B8%80%E7%82%B9%E7%AC%94%E8%AE%B0/</link><pubDate>Fri, 26 Jul 2013 08:24:54 +0000</pubDate><guid>http://leaver.me/2013/07/26/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E4%B8%80%E7%82%B9%E7%AC%94%E8%AE%B0/</guid><description>这两天在读《软件测试》，书不厚，也就300页，有些观念还是挺诧异的，比如软件功能超出产品说明书也算作软件缺陷&amp;hellip;想想也能明白，只是猛然看到还是很惊异..简单记录一下读书过程中一些重要的笔记.留作备份.
 软件缺陷：</description></item><item><title>[已失效]Csdn免积分下载器</title><link>http://leaver.me/2013/05/01/%E5%B7%B2%E5%A4%B1%E6%95%88csdn%E5%85%8D%E7%A7%AF%E5%88%86%E4%B8%8B%E8%BD%BD%E5%99%A8/</link><pubDate>Wed, 01 May 2013 20:39:52 +0000</pubDate><guid>http://leaver.me/2013/05/01/%E5%B7%B2%E5%A4%B1%E6%95%88csdn%E5%85%8D%E7%A7%AF%E5%88%86%E4%B8%8B%E8%BD%BD%E5%99%A8/</guid><description>作者：bystander
@@ -136,7 +138,7 @@ missing net.sf.json-lib，但实际上这个我的确是加载进来了。去了
 获取表名 回正题，我们继续使用双查询来获取数据库的表:
 注意语句中的table_schema=0xHEX 这里的hex用你要查询的数据库进行hex编码后替换即可。 同样的，这里可以要修改LIMIT后面的值来得到第二个第三个第四个表。
 获取列名 然后我们来获取列名:
-和上一句很像，注意这一句&amp;quot;And table_name=0xHEXEDTABLENAME&amp;rdquo; 还是一样的。后面的部分是要查询的表名的hex值，同时，通过增加后面的LIMIT值来获取更多的列名。下面是大家最感兴趣的地方。。从列里面取值。
+和上一句很像，注意这一句&amp;quot;And table_name=0xHEXEDTABLENAME&amp;quot; 还是一样的。后面的部分是要查询的表名的hex值，同时，通过增加后面的LIMIT值来获取更多的列名。下面是大家最感兴趣的地方。。从列里面取值。
 获取列值 一些人使用：
 也就是他们使用tablename.columnname 有个缺点就是一次只能获取一个列的值，要是该表有个1000多列啥的。。一个个就了。。为了更快一些。后来很多人开始使用这个：
 这样一次就能获取多个列的值了，但是还有个bug，因为是直接从mysql的所有表里面找，并且没有指定数据库名，如果mysql有两个数据库有同样的一个表名。那么这样找出来的就不知道到底是哪个了。。就混乱了。。所以。现在我们用这个：

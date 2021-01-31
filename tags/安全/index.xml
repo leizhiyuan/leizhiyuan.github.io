@@ -81,7 +81,7 @@ burpsuite抓包https的时候，如果是https协议，火狐会不信任证书
 获取表名 回正题，我们继续使用双查询来获取数据库的表:
 注意语句中的table_schema=0xHEX 这里的hex用你要查询的数据库进行hex编码后替换即可。 同样的，这里可以要修改LIMIT后面的值来得到第二个第三个第四个表。
 获取列名 然后我们来获取列名:
-和上一句很像，注意这一句&amp;quot;And table_name=0xHEXEDTABLENAME&amp;rdquo; 还是一样的。后面的部分是要查询的表名的hex值，同时，通过增加后面的LIMIT值来获取更多的列名。下面是大家最感兴趣的地方。。从列里面取值。
+和上一句很像，注意这一句&amp;quot;And table_name=0xHEXEDTABLENAME&amp;quot; 还是一样的。后面的部分是要查询的表名的hex值，同时，通过增加后面的LIMIT值来获取更多的列名。下面是大家最感兴趣的地方。。从列里面取值。
 获取列值 一些人使用：
 也就是他们使用tablename.columnname 有个缺点就是一次只能获取一个列的值，要是该表有个1000多列啥的。。一个个就了。。为了更快一些。后来很多人开始使用这个：
 这样一次就能获取多个列的值了，但是还有个bug，因为是直接从mysql的所有表里面找，并且没有指定数据库名，如果mysql有两个数据库有同样的一个表名。那么这样找出来的就不知道到底是哪个了。。就混乱了。。所以。现在我们用这个：
@@ -123,6 +123,7 @@ Hosts： 这个用来获取站点子域名。。包括使用baidu。Google bing�
 后半段是
 虽说对vbs不怎么熟，但也知道vbs经常用来写个启动项啊。加个用户啊。之类的。后半句很好懂。就是把ascii码转换成字符串，然后执行。字面意思看看就行了。其实应该可以直接将Execute runner 改为 MsgBox runner就能输出了。但eset不能关闭。所以最后还是选择用C#来写了。
 解码嘛。很简单。VS刚好开着。直接写吧。
+运行后输出
 结合后半段。简单读一读，就知道这个先找了一下userinit.exe进程。然后改了注册表并且设置了浏览器首页为999这个什么网站，我打开发现是个导航站。。人家hao123做个导航站赚钱了。。你们要不要这样跟风啊。。</description></item><item><title>分享几个电子书资源站点</title><link>http://leaver.me/2012/10/18/%E5%88%86%E4%BA%AB%E5%87%A0%E4%B8%AA%E7%94%B5%E5%AD%90%E4%B9%A6%E8%B5%84%E6%BA%90%E7%AB%99%E7%82%B9/</link><pubDate>Thu, 18 Oct 2012 11:12:01 +0000</pubDate><guid>http://leaver.me/2012/10/18/%E5%88%86%E4%BA%AB%E5%87%A0%E4%B8%AA%E7%94%B5%E5%AD%90%E4%B9%A6%E8%B5%84%E6%BA%90%E7%AB%99%E7%82%B9/</guid><description>看到书签里有好些电子书的资源站。今天心情不错。遂起了分享的念头。。
 对于计算机相关专业人隆重推荐小书屋
 作者很认真的在分享技术/安全/心理学/技术PPT方面的书籍。算是国内技术书籍比较好的分享站点了。
@@ -152,7 +153,7 @@ ps:如果你收藏了其他的站点。不妨留言回复。</description></item
 　letter文件的内容是： if(x1==x1) show &amp;ldquo;letter&amp;rdquo; else show &amp;ldquo;order&amp;rdquo; order文件的内容是：　if(x2==x1) show &amp;ldquo;letter&amp;rdquo; else show &amp;ldquo;order&amp;rdquo; 其中字符串&amp;quot;letter&amp;quot;和&amp;quot;order&amp;quot;代表两封信实际显示的内容。x1，x2是一个MD5的碰撞。
 　上面的方法，只供参考和学术用途，实际使用所引起的后果概不负责。　参考： １.Attacking Hash Functions by Poisoned Messages &amp;ldquo;The Story of Alice and her Boss&amp;rdquo; ２.Hash function, wikipedia　３.SHA, wikipedia ４.Interview with Yiqun Lisa Yin concerning the attack on SHA-1　　原文来自：http://zhiqiang.org</description></item><item><title>WWWScan GUI版--WebScan</title><link>http://leaver.me/2012/04/18/wwwscan-gui%E7%89%88-webscan/</link><pubDate>Wed, 18 Apr 2012 21:56:11 +0000</pubDate><guid>http://leaver.me/2012/04/18/wwwscan-gui%E7%89%88-webscan/</guid><description>网上一直有个版本是Wscan Gui Beta6，首先感谢作者的无私奉献，写代码不容易啊。但是这个我不知道为什么在我的电脑上总是有一些错误。很多功能虽然加上了，但是其实对我有点多余。毕竟，我只是用这个扫描一下。于是，决定自己用C#做个GUI版，模仿实现一下。
 　然后我看了一下目录结构。如下图所知 貌似作者只是简单写了。然后对应着调用扫描器。我想了下，可以通过修改文件名来实现，因为wwwscan默认只能识别cgi.list，那么我想的是当我选中一种扫描类型后。将对应的字典，比如asp.list改成cgi.list。当然为了保护原文件，复制。。然后调用。这样就不用有这么多exe了。。
-　第二个我想实现作者的检测网站的脚本类型的功能，想到了两种方法。一种是循环访问index.xxx文件，xxx对asp jsp等，然后判断http状态码，200的话就可以对应判断出来网站脚本了。但是这样测试了一会没成功，还是算了，，然后想了一种猥琐流的方法，就是直接访问首页。然后把源码下载下来，然后搜索&amp;rdquo;.xxx&amp;quot;字符串，找到就行了，，当然这两种方法都是不完善的。。我也没想到什么完美的。。希望有人知道的话留言指教。
+　第二个我想实现作者的检测网站的脚本类型的功能，想到了两种方法。一种是循环访问index.xxx文件，xxx对asp jsp等，然后判断http状态码，200的话就可以对应判断出来网站脚本了。但是这样测试了一会没成功，还是算了，，然后想了一种猥琐流的方法，就是直接访问首页。然后把源码下载下来，然后搜索&amp;quot;.xxx&amp;quot;字符串，找到就行了，，当然这两种方法都是不完善的。。我也没想到什么完美的。。希望有人知道的话留言指教。
 　最后的目录就清爽多了
 　那个4p啊，，就是盲扫描了。。不知道网站脚本的时候采用。。。
 　界面基本完全模仿了作者的UI，进行了略微调整，希望作者不介意。

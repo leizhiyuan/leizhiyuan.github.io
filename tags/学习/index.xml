@@ -2,7 +2,7 @@
 0. 准备 先要安装pssh,expect,ssh-copy-id.
 brew install pssh brew install homebrew/dupes/expect brew install ssh-copy-id 另外安装luit的安装参考这里luit安装
 1. 生成ssh key ,并批量copy 生成ssh key比较简单.ssh-keygen -t rsa -C &amp;quot;your_email@example.com&amp;quot;,直接使用git的ssh key也是可以的.然后保存下面这个脚本为pscopy.sh,
-#!/bin/bash FILE=`cat ~/host.txt` for ip in $FILE;do expect -c &amp;#34;spawn ssh-copy-id $ipexpect { \&amp;#34;*yes/no*\&amp;#34; {send \&amp;#34;yes\r\&amp;#34;;exp_continue} \&amp;#34;*password*\&amp;#34; {send \&amp;#34;pass\r\&amp;#34;;exp_continue} \&amp;#34;*password*\&amp;#34; {send \&amp;#34;pass\r\&amp;#34;;} } &amp;#34; done 然后执行一下sh pscopy.sh,注意,host.txt要保证存在.格式是user@address.一行一个,中间的paas要改成user的密码,这样就会使用指定的用户密码,自动copy ssh key了. 完成上面的步骤之后,ssh user@address 就可以免登了.
+#!/bin/bash FILE=`cat ~/host.txt` for ip in $FILE;do expect -c &amp;#34; spawn ssh-copy-id $ipexpect { \&amp;#34;*yes/no*\&amp;#34; {send \&amp;#34;yes\r\&amp;#34;;exp_continue} \&amp;#34;*password*\&amp;#34; {send \&amp;#34;pass\r\&amp;#34;;exp_continue} \&amp;#34;*password*\&amp;#34; {send \&amp;#34;pass\r\&amp;#34;;} } &amp;#34; done 然后执行一下sh pscopy.sh,注意,host.txt要保证存在.格式是user@address.一行一个,中间的paas要改成user的密码,这样就会使用指定的用户密码,自动copy ssh key了. 完成上面的步骤之后,ssh user@address 就可以免登了.
 2. 写一个简单的pssh脚本 #!/bin/bash encoding= key= command= file= usage() { echo &amp;#34;Usage: `basename $0` [-f filename] [-c encoding] [-k keyword]&amp;#34; exit 1 } while getopts :f:c:k: opt do case $opt in c) encoding=$OPTARG ;; :) echo &amp;#34;-$OPTARGneeds an argument&amp;#34; ;; k) key=$OPTARG ;; f) file=$OPTARG ;; *) echo &amp;#34;-$optnot recognized&amp;#34; usage ;; esac done if [ -z &amp;#34;$encoding&amp;#34; ]; then #该脚本必须提供-d选项 encoding=&amp;#34;gbk&amp;#34; fi if [ -z &amp;#34;$file&amp;#34; ]; then #该脚本必须提供-d选项 file=&amp;#34;~/hosts.txt&amp;#34; fi if [ -z &amp;#34;$key&amp;#34; ]; then #该脚本必须提供-d选项 usage fi command=&amp;#34;pssh -h $file-P \&amp;#34;find /home/admin/logs/ -name &amp;#39;*.</description></item><item><title>motan源码阅读-客户端服务引用</title><link>http://leaver.me/2016/05/31/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%BC%95%E7%94%A8/</link><pubDate>Tue, 31 May 2016 20:00:45 +0000</pubDate><guid>http://leaver.me/2016/05/31/motan%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB-%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%BC%95%E7%94%A8/</guid><description>一旦服务器启动,服务开始提供,并且在配置中心注册了(配置中心可以是本地的地址,也可以是zk,也可以是其他的实现),那么客户端就要开始调用了
 点击看大图
 服务引用 RefererConfig.getRef()
@@ -104,7 +104,7 @@ setlocal call &amp;#34;%~dp0zkEnv.cmd&amp;#34; set ZOOMAIN=org.apache.zookeeper.
 然后在D:\zookeeper中可以看到由数据写入. 测试 启动bin目录的zkCli.cmd,自动连接本机的2181端口.也可以自己指定 zkCli.cmd –server 127.0.0.1:2181,127.0.0.1:2182,127.0.0.1:2183 对客户端来说.连接上了一个列表之后,如果一台挂了,并不会影响.系统依旧可以运行.
 然后执行一些简单的操作 显示根目录下、文件： ls / 使用 ls 命令来查看当前 ZooKeeper 中所包含的内容。 显示根目录下、文件： ls2 / 查看当前节点数据并能看到更新次数等数据。 创建文件，并设置初始内容： create /zktest &amp;ldquo;test&amp;rdquo; 创建一个新的 znode节点“ zk ”以及与它关联的字符串。 获取文件内容： get /zktest 确认 znode 是否包含我们所创建的字符串。 修改文件内容： set /zktest &amp;ldquo;zkbak&amp;rdquo; 对 zk 所关联的字符串进行设置。 删除文件： delete /zktest 将刚才创建的 znode 删除。 退出客户端： quit 帮助命令： help
 可以关掉一个服务器,会发现客户端依然正常.可以执行get set等操作.</description></item><item><title>Java可重入锁学习笔记</title><link>http://leaver.me/2015/11/20/java%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link><pubDate>Fri, 20 Nov 2015 20:51:25 +0000</pubDate><guid>http://leaver.me/2015/11/20/java%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid><description>前几天被前辈问到这个可重入锁,结果忘掉了.于是抽空整个了解一下
-目录 什么是可重入锁 为什么要可重入 如何实现可重入锁 有不可重入锁吗 demo代码展示 参考文章 1 . 什么是可重入锁 锁的概念就不用多解释了,当某个线程A已经持有了一个锁,当线程B尝试进入被这个锁保护的代码段的时候.就会被阻塞.而锁的操作粒度是&amp;quot;线程&amp;rdquo;,而不是调用(至于为什么要这样,下面解释).同一个线程再次进入同步代码的时候.可以使用自己已经获取到的锁,这就是可重入锁 java里面内置锁(synchronize)和Lock(ReentrantLock)都是可重入的
+目录 什么是可重入锁 为什么要可重入 如何实现可重入锁 有不可重入锁吗 demo代码展示 参考文章 1 . 什么是可重入锁 锁的概念就不用多解释了,当某个线程A已经持有了一个锁,当线程B尝试进入被这个锁保护的代码段的时候.就会被阻塞.而锁的操作粒度是&amp;quot;线程&amp;quot;,而不是调用(至于为什么要这样,下面解释).同一个线程再次进入同步代码的时候.可以使用自己已经获取到的锁,这就是可重入锁 java里面内置锁(synchronize)和Lock(ReentrantLock)都是可重入的
 2 . 为什么要可重入 如果线程A继续再次获得这个锁呢?比如一个方法是synchronized,递归调用自己,那么第一次已经获得了锁,第二次调用的时候还能进入吗? 直观上当然需要能进入.这就要求必须是可重入的.可重入锁又叫做递归锁,再举个例子.
 public class Widget { public synchronized void doSomething() { ... } } public class LoggingWidget extends Widget { public synchronized void doSomething() { System.out.println(toString() + &amp;#34;: calling doSomething&amp;#34;); super.doSomething();//若内置锁是不可重入的，则发生死锁 } } 这个例子是java并发编程实战中的例 子.synchronized 是父类Widget的内置锁,当执行子 类的方法的时候,先获取了一次Widget的锁,然后在执行super的时候,就要获取一次,如果不可重入,那么就跪了.
 3 . 如何实现可重入锁 为每个锁关联一个获取计数器和一个所有者线程,当计数值为0的时候,这个所就没有被任何线程只有.当线程请求一个未被持有的锁时,JVM将记下锁的持有者,并且将获取计数值置为1,如果同一个线程再次获取这个锁,技术值将递增,退出一次同步代码块,计算值递减,当计数值为0时,这个锁就被释放. ReentrantLock里面有实现
@@ -352,6 +352,8 @@ CountDownLatch用处很多，当用count=1来构造的时候，这就相当于�
  CyclicBarrier 字面意思回环栅栏。这里的同步是允许一系列的线程互相等待直到大家都来到一个barrier前面，当程序中有互相等待的情况的时候，非常有用，叫做回环是因为当所有等待线程都被释放以后，cyclicBarrier可以被重用
 同时，CyclicBarrier支持一个可选的Runnable参数，当所有的线程都来到barrier前面的时候，程序开始执行runable线程动作，当需要更新所有线程共享的某个状态的时候，该动作非常有用。例子是一个并行分解的例子
 这里每一个worker线程处理矩阵的一行，然后在barrier前面等待，直到所有的行都处理完成，当所有的都完成以后，这里
+的Runnable参数执行来合并这些行，一旦有了正确的结果waitUntilDown（）就返回true，然后所有的线程终止。
+如果barrier执行的这个动作没有对那些等待的线程做出回应，以使的这些线程做一些别的操作，我们可以这么写，将
 改为
 如果一个线程由于中断，失败或者超时过早的离开了barrier，那么所有的线程都会通过BrokenBarrierException引发异常。</description></item><item><title>使用CSS3的自定义字体美化文字</title><link>http://leaver.me/2013/07/17/%E4%BD%BF%E7%94%A8css3%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AD%97%E4%BD%93%E7%BE%8E%E5%8C%96%E6%96%87%E5%AD%97/</link><pubDate>Wed, 17 Jul 2013 14:45:45 +0000</pubDate><guid>http://leaver.me/2013/07/17/%E4%BD%BF%E7%94%A8css3%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AD%97%E4%BD%93%E7%BE%8E%E5%8C%96%E6%96%87%E5%AD%97/</guid><description>之前看到一些设计师的主题的字体很美，下载下来发现使用了css3的自定义字体，可以用来显示服务器上的字体，非常方便，学习了一下
 1.首先得到字体
@@ -406,6 +408,7 @@ A B
 貌似本题来源自&amp;lt;**The C Puzzle Book&amp;gt; ，**搜狗也只是换了一下字符串，直接看题吧
 &amp;lt;span style=&amp;quot;font-family: Georgia, 'Times New Roman', 'Bitstream Charter', Times, serif; font-size: 13px; line-height: 19px;&amp;quot;&amp;gt;请写出程序的执行结果....&amp;lt;/span&amp;gt;
 首先从左到右看：
+*c[] 是一个字符，因此，c[]是指向该字符，c就是一个数组（数组的内容为指向字符的指针），c已经被初始化了.
 再看第二行，**cp[]是一个字符，*cp[]就是一个指针，指向该字符，cp[]就是一个指针，指向该指针，而cp就成为了指针数组，内容是指向字符的指针的指针。并且通过c的元素进行了初始化
 第三行，***cpp是一个字符，**cpp指向该字符，*cpp指向该指针，cpp就指向该字符的指针的指针.
 然后我画一张图表示初始的情况看看
@@ -442,9 +445,9 @@ QuickUnion的实现
 于是，研制人员想了个办法解决这个问题，就是在每行后面加两个表示结束的字符。一个叫做“回车”，告诉打字机把打印头定位在左边界；另一个叫做“换行”，告诉打字机把纸向下移一行（这句的意思是把纸向上拉，然后打印头就定位到了下一行），可以想象一下，这个打印头只能在一个固定的水平线上左右移动，而不能上下移动，我们通过移动纸来完成打印下一行。
 不明白的我在youtube上找到一个这种打字机的演示视频，为了方便读者观看，我提供一个下载地址。
 后来，计算机发明了，这两个概念也就被般到了计算机上。那时，存储器很贵，一些科学家认为在每行结尾加两个字符太浪费了，加一个就可以。于是，就出现了分歧。
-Unix系统里，每行结尾只有&amp;rdquo;&amp;lt;换行&amp;gt;&amp;quot;，即&amp;rdquo;\n&amp;rdquo;；
-Windows系统里面，每行结尾是&amp;rdquo;&amp;lt;换行&amp;gt;&amp;lt;回车&amp;gt;&amp;quot;，即&amp;rdquo;\n\r&amp;rdquo;；
-Mac系统里，每行结尾是&amp;rdquo;&amp;lt;回车&amp;gt;&amp;quot;，不过mac基于unix，所以换行也应该是可以的。
+Unix系统里，每行结尾只有&amp;quot;&amp;lt;换行&amp;gt;&amp;quot;，即&amp;quot;\n&amp;quot;；
+Windows系统里面，每行结尾是&amp;quot;&amp;lt;换行&amp;gt;&amp;lt;回车&amp;gt;&amp;quot;，即&amp;quot;\n\r&amp;quot;；
+Mac系统里，每行结尾是&amp;quot;&amp;lt;回车&amp;gt;&amp;quot;，不过mac基于unix，所以换行也应该是可以的。
 一个直接后果是，Unix/Mac系统下的文件在Windows里打开的话，所有文字会变成一行；而Windows里的文件在Unix/Mac下打开的话，在每行的结尾可能会多出一个^M符号。这个如果你在windows下使用vim也会发现这个情况
 用C++来说明
 如：
@@ -497,6 +500,7 @@ Rudolf Bayer 和 Ed McCreight 于1972年，在Boeing Research Labs 工作时发�
 2.Debug.WriteLine方法
 3.TraceListener类
 DelimitedListTraceListener创建的时候指定一个文件名，当Flush调用的时候，就被覆写到文件里。
+4.Debug.Write和WriteIf以及WriteLineIf方法
 第一个参数一个bool值，为真则输出。
 5.Debug.Assert方法
 如果表达式为false，则输出。</description></item><item><title>双查询注入</title><link>http://leaver.me/2013/02/22/%E5%8F%8C%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5/</link><pubDate>Fri, 22 Feb 2013 20:57:02 +0000</pubDate><guid>http://leaver.me/2013/02/22/%E5%8F%8C%E6%9F%A5%E8%AF%A2%E6%B3%A8%E5%85%A5/</guid><description>作者：bystander 论坛：法客论坛 这个东西比较难解释。我就不多解释。尽量通过这篇文章大家能够照猫画虎手注即可。想要深入理解的可以去看看mysql数据库的一些知识
@@ -513,7 +517,7 @@ DelimitedListTraceListener创建的时候指定一个文件名，当Flush调用�
 获取表名 回正题，我们继续使用双查询来获取数据库的表:
 注意语句中的table_schema=0xHEX 这里的hex用你要查询的数据库进行hex编码后替换即可。 同样的，这里可以要修改LIMIT后面的值来得到第二个第三个第四个表。
 获取列名 然后我们来获取列名:
-和上一句很像，注意这一句&amp;quot;And table_name=0xHEXEDTABLENAME&amp;rdquo; 还是一样的。后面的部分是要查询的表名的hex值，同时，通过增加后面的LIMIT值来获取更多的列名。下面是大家最感兴趣的地方。。从列里面取值。
+和上一句很像，注意这一句&amp;quot;And table_name=0xHEXEDTABLENAME&amp;quot; 还是一样的。后面的部分是要查询的表名的hex值，同时，通过增加后面的LIMIT值来获取更多的列名。下面是大家最感兴趣的地方。。从列里面取值。
 获取列值 一些人使用：
 也就是他们使用tablename.columnname 有个缺点就是一次只能获取一个列的值，要是该表有个1000多列啥的。。一个个就了。。为了更快一些。后来很多人开始使用这个：
 这样一次就能获取多个列的值了，但是还有个bug，因为是直接从mysql的所有表里面找，并且没有指定数据库名，如果mysql有两个数据库有同样的一个表名。那么这样找出来的就不知道到底是哪个了。。就混乱了。。所以。现在我们用这个：
@@ -692,6 +696,8 @@ Ok了。
 第三种就是自己写个程序吧。。
  整体思路，首先访问课程页面，解析得到每一章的标题和内容，然后创立章节文件夹，得到每个动画对应的html页面，然后对html页面解析，提取swf地址。然后下载就行了。
 比较疼的地方是那个页面用的是gb2312编码。而解析神器HtmlAgilityPack，不能指定编码。只能想办法绕过了。
+绕过方法就是先使用内置类得到内存流。然后从内存中加载。
+然后呢。涉及的技术就是xpath了。参考着xpath的文档。搞定了不少。中间还有一个地方就是我没注意看。这个页面有两个文件是一样名字。。调试了几次才发现。。
  写完运行。看着如下这个界面。。这个我只是为了让我看到进度。同时后台也在下载。
 我的心是冰凉的。但脖子是僵硬的。。。
  运行完成后。文件夹和文件自动命名完成是这样的。。</description></item><item><title>C#模拟手工洗牌(附测试)</title><link>http://leaver.me/2012/11/25/c#%E6%A8%A1%E6%8B%9F%E6%89%8B%E5%B7%A5%E6%B4%97%E7%89%8C%E9%99%84%E6%B5%8B%E8%AF%95/</link><pubDate>Sun, 25 Nov 2012 09:24:20 +0000</pubDate><guid>http://leaver.me/2012/11/25/c#%E6%A8%A1%E6%8B%9F%E6%89%8B%E5%B7%A5%E6%B4%97%E7%89%8C%E9%99%84%E6%B5%8B%E8%AF%95/</guid><description>洗牌大家都知道，代码实现最广泛的一种就是产生两个随机数，然后交换这两个随机数为下标的牌，但是这种的洗牌并不能保证同概率，你可以参考本文做一些测试，本文代码没啥可说的。我写出了非常详细的注释
@@ -803,7 +809,7 @@ Demo下载
 3.1.1折射层
 第二层模拟了光从上到下的折射。被放在反射层之前是因为，要达到反光玻璃的效果，反射层必须在按钮的中间某处有一个硬边缘。这一层实际上是另一个椭圆。但是这次。我们使用一个径向渐变（白色-透明）的填充。来模拟光的折射。渐变开始于第一层底部的中央。结束于上面的中间。然而。为了降低折射光的强度。渐变还是开始于椭圆的底部再下一点为好。可以从图上和代码里清晰的看到。
  3.1.2反射层
-第三层是光的反射层。是最难的部分。问题是反射效果不能使用任何标准的形状来画。因此。使用路径（Path）来画反射区域。当时。手工画也是可以的。但老实说。手工画图实在没什么可享受的（除非你是一个艺术家，或者有一个数位板），无论如何。我现在MS Blend中华好一个椭圆并转换成一个路径，然后我使用贝塞尔曲线点调整得到平滑的路径，你可以添加渐变到一个复杂的Path对象上。就像你对其他与定义的图形，比如椭圆，矩形所做的一样。为了得到光泽反射。我额每年需要一个透明-白色的径向渐变填充，从路径的底部开始（也就是按钮的中间某处），结束在顶部。我想如果我是一个艺术家。我会让渐变更准一点。可是我不是。因此。就这样。因为我们要把我们的按钮放在一个Grid里。所有我们设置VerticalAlignment=&amp;quot;Top&amp;rdquo; 这样反射区域在按钮的中间的结束了。
+第三层是光的反射层。是最难的部分。问题是反射效果不能使用任何标准的形状来画。因此。使用路径（Path）来画反射区域。当时。手工画也是可以的。但老实说。手工画图实在没什么可享受的（除非你是一个艺术家，或者有一个数位板），无论如何。我现在MS Blend中华好一个椭圆并转换成一个路径，然后我使用贝塞尔曲线点调整得到平滑的路径，你可以添加渐变到一个复杂的Path对象上。就像你对其他与定义的图形，比如椭圆，矩形所做的一样。为了得到光泽反射。我额每年需要一个透明-白色的径向渐变填充，从路径的底部开始（也就是按钮的中间某处），结束在顶部。我想如果我是一个艺术家。我会让渐变更准一点。可是我不是。因此。就这样。因为我们要把我们的按钮放在一个Grid里。所有我们设置VerticalAlignment=&amp;ldquo;Top&amp;rdquo; 这样反射区域在按钮的中间的结束了。
 图三
  最后。我添加一个ContentPresenter 到按钮中间。经验告诉我，内容区域再向下一个像素会使得按钮看起来更漂亮。因此，在这里我用了margin属性（注意。因为内容区域在Grid的中间（Center）。所以2个像素的top实际上是向下移动了一个像素 ）
 好了。最后在Blend中看起来大概是这样
@@ -1023,10 +1029,10 @@ AvalonDock是一个组合的布局模型，很多的控件都在视图上显示�
 从下面这个截图中我们可以理解AvalonDock组件
 DockingManager 这是AvalonDock中的核心控件，它将包含的窗格排序，处理飞出的窗格，还有浮动的窗口。在上面这个图中，DockingManager 对象包含了所有空间（WPF控件），从顶部的工具栏到底部的状态栏都算。同时。DockingManager 也可以处理保存和恢复布局。
 LayoutPanel 这个面板用来管理在一个方向上的子窗口（通过Orientation属性来选择方向），并且在它们之间添加了一个大小调节控件，在一个Orientation属性是Horizontal（水平）的LayoutPanel 上，排列了三个窗格。一个LayoutAnchorablePane在左，一个LayoutDocumentPane在中间。一个LayoutDockablePane在右边。
-LayoutDockablePane 这个布局元素包含一个LayoutAnchorable对象的集合。通过它用来管理想TabControl这样的控件，在上面的截图中，LayoutDockablePanes是在左边的'Strumenti&amp;rsquo; 和 &amp;lsquo;Progetti&amp;rsquo; (工具和项目) 和在右边的'Classi&amp;rsquo; 和 &amp;lsquo;Proprieta&amp;rsquo;&amp;rsquo; (类视图和属性视图)的容器，一个LayoutDockablePane可以自动隐藏，就像'Errori&amp;rsquo;(错误)和'Lista Azioni&amp;rsquo;(操作列表) and &amp;lsquo;Uscita&amp;rsquo;(输出)。并且LayoutDockablePane可以被拖动到DockingManager上，成为一个浮动窗口或者附着到它的父控件DockingManager的边缘上。
+LayoutDockablePane 这个布局元素包含一个LayoutAnchorable对象的集合。通过它用来管理想TabControl这样的控件，在上面的截图中，LayoutDockablePanes是在左边的&amp;rsquo;Strumenti' 和 &amp;lsquo;Progetti&amp;rsquo; (工具和项目) 和在右边的&amp;rsquo;Classi' 和 &amp;lsquo;Proprieta&amp;rsquo;' (类视图和属性视图)的容器，一个LayoutDockablePane可以自动隐藏，就像&amp;rsquo;Errori'(错误)和&amp;rsquo;Lista Azioni'(操作列表) and &amp;lsquo;Uscita&amp;rsquo;(输出)。并且LayoutDockablePane可以被拖动到DockingManager上，成为一个浮动窗口或者附着到它的父控件DockingManager的边缘上。
 LayoutDocumentPane 通常包含文档（DocumentContent类型）的一种窗格，但是其实也可以包含像上面提到的工具视图和类视图这样的DockableContents。在一个文档里。LayoutDocumentPane 被放置在ResizingPanel（水平方向）里。ResizingPanel则是上卖弄提到的在两个DockablePane中间的区域。注意。文档窗格是不能被移动的。
 LayoutAnchorable 一个停靠内容，是软件控件的容器，总是被包含在一个窗格里（LayoutAnchorablePane或是LayoutDocumentPane），在截图里。LayoutAnchorable是一类对象（包含一个SharpDevelop对象），工具对象，但是错误窗口（它处于自动隐藏状态，被好办在一个自动隐藏窗格里）不是。LayoutAnchorable就像它名字所暗示的那样。可以被从他的容器窗格里拖走。然后重新放置在一个存在的窗格里。或者是放置在父DockingManager的边缘，或者是放置在一个浮动窗口里（LayoutAnchorableFloatingWindow）。
-LayoutDocument 是一个仅可以被寄宿到LayoutDocumentPane的内容。它是一个特殊的内容，因为不能被停靠到边缘。仅能被放置到LayoutDocumentPane里。或者浮动在一个LayoutDocumentFloatingWindow窗口里。在途中，DocumentContent对象是program.cs&amp;rsquo; 或 &amp;lsquo;MainForm.cs&amp;rsquo; 文件视图
+LayoutDocument 是一个仅可以被寄宿到LayoutDocumentPane的内容。它是一个特殊的内容，因为不能被停靠到边缘。仅能被放置到LayoutDocumentPane里。或者浮动在一个LayoutDocumentFloatingWindow窗口里。在途中，DocumentContent对象是program.cs' 或 &amp;lsquo;MainForm.cs&amp;rsquo; 文件视图
 **LayoutFloatingWindow **，是一个包含内容的窗口，当被拖动到一个DockingManager上面的时候，LayoutFloatingWindow（LayoutAnchorableFloatingWindow和LayoutDocumentFloatingWindow继承自他）集成在Window，总是包含一个窗格（LayoutAnchorablePane或是LayoutDocumentPane），窗格包含更多的内容（LayoutAnchorable或LayoutDocument），当用户对一个内容或是DockablePane执行拖拽，或者直接手工使用代码调用LayoutContent.Float()方法 LayoutFloatingWindow就被直接从DockingManager创建出来了。
 LayoutPane 一个基类，LayoutDockablePane和LayoutDocumentPane继承自它。它为他们提供了一些共有的属性和方法。
 LayoutContent 是LayoutAnchorable 和LayoutAnchorable类的父类。提供了共有的属性和方法。
@@ -1046,13 +1052,14 @@ Hidden是一个Anchorable（停靠）对象的集合。默认情况下，当用�
 专题一：网络协议简介 专题二：HTTP协议详解 专题三：自定义Web服务器 专题四：自定义Web浏览器 专题五：TCP编程 专题六：UDP编程 专题七：UDP编程补充——UDP广播程序的实现 专题八：P2P编程 专题九：实现类似QQ的即时通信程序 专题十：实现简单的邮件收发器</description></item><item><title>一个可定制的WPF任务对话框</title><link>http://leaver.me/2012/09/24/%E4%B8%80%E4%B8%AA%E5%8F%AF%E5%AE%9A%E5%88%B6%E7%9A%84wpf%E4%BB%BB%E5%8A%A1%E5%AF%B9%E8%AF%9D%E6%A1%86/</link><pubDate>Mon, 24 Sep 2012 08:03:17 +0000</pubDate><guid>http://leaver.me/2012/09/24/%E4%B8%80%E4%B8%AA%E5%8F%AF%E5%AE%9A%E5%88%B6%E7%9A%84wpf%E4%BB%BB%E5%8A%A1%E5%AF%B9%E8%AF%9D%E6%A1%86/</guid><description>今天实在看WPF揭秘的时候看到TaskDialog这个控件的。然后就去找了一下开源的代码。在codeproject上发现了这个，非常给力。。另外codeproject改版后很漂亮哦。
 介绍： 这是用WPF实现Vista上TaskDialog效果的代码。
 Messagbox消息框 通过调用重写的静态Show方法。TaskDialog就会表现的像一个Messagebox。他有四个文本类型的属性：Header（头部）, Content（内容）, Detail（更多）, 和 Footer（底部），其实Detail是一个折叠的区域， 而Header和Footer还有一个icon属性（HeaderIcon和FooterIcon），除此之外，Header还有Background（背景）和Foreground（前景）属性
+定制TaskDialog 使用静态的Show方法。Header, Content, Detail, 和Footer 就限制了只能传递字符串作为值了。 为了定义这个对话框，你先创建TaskDialog类的一个对象，然后分别设置一下各个属性，最后调用Show方法就可以了
 TaskDialog控件派生自HeaderedContentControl类，因为从HeaderedContentControl类可以获得Header和Content属性，TaskDialog仅仅是添加了Detail和Footer属性，这些属性是Object类型，并且有他们自己的template（模板）属性HeaderTemplate, ContentTemplate, DetailTemplate, 和 FooterTemplate)，TaskDialog类对于文本内容有着缺省的数据模板，当然你也可以用那四个模板来替换，这样你就可以以你喜欢的任何方式来格式化文本了。下面这个图展示了通过斜体和下划线来格式化文本。
 图2
 因为Header，Content，Detail和Footer是object类型，因此不再受到只能是文本的限制了，你可以防止你喜欢的任何类型到TaskDialog，下面这个例子中的TaskDialog是不是很像UAC的提示呢。这里Content属性是一个UserControl类型，放置了一个图片和一些文本还有两个CommandButtons（都是普通的按钮。。不过添加了一些定制的样式，再加了Header属性）
 图三
 一个模拟vista的文件拷贝窗口的TaskDialog。。
 图四
-额外的一些有意思的属性 下面是TaskDialog暴露的属性列表（按字母表排序） Button1Text: string类型，当TaskDialogButton属性被设置为Custom的时候，用来设置按钮的文字 Button2Text: 同上 Button3Text: 同上 DefaultResult: TaskDialogResult类型. 设置缺省的按钮 IsButton1Enabled: bool类型. 获取或设置按钮的Enabled状态 IsButton2Enabled: 同上 IsButton3Enabled: 同上 IsCloseButtonEnabled: bool类型. 获取或设置窗口关闭按钮的Enabled状态 (缺省为false) IsExpanded: bool类型，获取或是设置Detail部分的可见性。 IsModal: bool类型，获取或是设置对话框是不是模态的 ShowInTaskBar: bool类型，获取或是设置对话框是不是显示在任务栏中 SystemSound: TaskDialogSound类型. 设置当对话框显示的时候播放的声音 TaskDialogButton: TaskDialogButton类型. 显示在对话框上的按钮可以是None, Ok, OkCancel, YesNo, YesNoCancel, or Custom (查看上面提到的按钮设置) title: string类型，对话框的标题 ToggleButtonTexts: TaskDialogToggleButtonTexts提供了两个属性来设置toggle按钮的这个属性，当toggle 按钮折叠或是展开的时候 (缺省是'Show Details&amp;rsquo; 和'Hide Details&amp;rsquo;). TopMost: 设置对话框是否置顶
+额外的一些有意思的属性 下面是TaskDialog暴露的属性列表（按字母表排序） Button1Text: string类型，当TaskDialogButton属性被设置为Custom的时候，用来设置按钮的文字 Button2Text: 同上 Button3Text: 同上 DefaultResult: TaskDialogResult类型. 设置缺省的按钮 IsButton1Enabled: bool类型. 获取或设置按钮的Enabled状态 IsButton2Enabled: 同上 IsButton3Enabled: 同上 IsCloseButtonEnabled: bool类型. 获取或设置窗口关闭按钮的Enabled状态 (缺省为false) IsExpanded: bool类型，获取或是设置Detail部分的可见性。 IsModal: bool类型，获取或是设置对话框是不是模态的 ShowInTaskBar: bool类型，获取或是设置对话框是不是显示在任务栏中 SystemSound: TaskDialogSound类型. 设置当对话框显示的时候播放的声音 TaskDialogButton: TaskDialogButton类型. 显示在对话框上的按钮可以是None, Ok, OkCancel, YesNo, YesNoCancel, or Custom (查看上面提到的按钮设置) title: string类型，对话框的标题 ToggleButtonTexts: TaskDialogToggleButtonTexts提供了两个属性来设置toggle按钮的这个属性，当toggle 按钮折叠或是展开的时候 (缺省是&amp;rsquo;Show Details' 和&amp;rsquo;Hide Details'). TopMost: 设置对话框是否置顶
 Demo 下载TaskDialog例子，查看Window1.xaml中按钮的单击事件，来看TaskDialog是如何被创建的。。
 版权：本文，包括源代码和文件，在CPOL下授权。
 原文地址：A-Customizable-WPF-TaskDialog
@@ -1139,11 +1146,37 @@ Update:其实吧。这里安装的是JavaCC的插件。但是已经可以进行�
 上面是定义两个委托的例子，其实很简单。声明一个委托使用delegate关键字，上面分别是定义的带返回值的委托和不带返回值的委托，
 两个委托都有传递参数，当然也可以不传递参数。其实委托也是一个类，委托派生为System.MulticastDelegate,而System.MulticastDelegate
 又继承System.Delegate,如果你知道这个也就明白委托其实是一个特殊的类。 委托的简单实用例子
+输出结果 上面使用最普通的一种方式来定义了一个委托的使用，这个例子虽然很简单，但是能够很形象的描述委托的使用。
+3.委托的三种形式
+(1).推断 推断委托例子
 在委托定义的例子中我们看到委托的使用方法是在委托实例化的时候指定的[new DelegateName(FunctionName)],这里可能表述不是太但是代码应该看得白了。 而委托的推断，并没有new 委托这个步骤，而是直接将Function 指定给委托。
 (2).匿名函数 匿名委托例子
+至于匿名委托，给人的感觉更为直接了，都不用显示的指定方法名，因为根本没有方法，而是指定的匿名方法。匿名方法在.NET 中提高了
+代码的可读性和优雅性。对于更多操作较少的方法直接写为匿名函数，这样会大大提高代码的可读性。这里有两个值得注意的地方: 第一,不能使用
+跳转语句跳转到该匿名方法外,第二 不能使用ref,out修饰的参数
+(3).多播委托 多播委托例子
+还是上面的那个实例，我不尽想让女朋友去给我掉杯水，还让她帮我将程序设计图稿拿过来。这个时候做的就不是一件事了，而是多件。
+程序中也有很多这种情况，于是我们需要多播委托，在一个委托上指定多个执行方法，这是在程序中可以行的。上面提到了，委托直接继承于
+System.MulticastDelegate，正是因为这个类可以实现多播委托。如果调用多播委托，就可以按顺序连续调用多个方法。为此，委托的签名就必须返回void；否则，就只能得到委托调用的最后一个方法的结果。所以在上面的这段代码中是得不到结果的
+ 4.事件
+使用C#编程，无论是WinForm,WebForm 给人很难忘得就是它的控件，而他们的控件库使用方式都是使用使用事件驱动模式，而事件驱动模式却少不了委托。话不多说，看代码能够更清好的理解事件和委托之间的联系. 事件的使用
+ 上面的代码中我们定义了一个委托,然后定义了一个类EventSource，这个类中声明了一个事件。定义一个事件使用event 关键字,定义一
+个event必须指定这个event传递消息的委托,在触发事件之前必需订阅事件，我们使用+= new 语法来订阅一个事件,也就相当于实例化一个事件。
+当我们触发事件的时候，就会调用相应的方法去处理。
+5. 泛型委托
+委托是类型安全的引用,泛型委托就和我们常用的泛型类一样，这个类在使用的时候才能确定类型.通过泛型委托，我们可以在委托传递参数
+之后知道它的类型.在.NET中有一个很典型的泛型委托：
 这是一个非常有特色的泛型委托，可能我们用的比较少，但是作用是不能忽视的。 我们看看三个非常具有代表性的泛型委托.现在.NET4.0已经出来了，但是泛型委托.NET2.0就出来了，Linq 大家用的那叫一个甜，
 为啥 函数式编程风格，匿名方法，Lamda表达式表达式使用是如此的魅力。但是大家仔细观察过没有，Linq 中的方法有几个经常出现的参数：
-Func&amp;lt;T, E&amp;gt;：封装一个具有一个参数并返回 E 参数指定的类型值的方法,T 是这个委托封装方法的参数类型，E是方法的返回值类型。当然Func&amp;lt;T, Result&amp;gt; 只是其中的一种情况,这个委托还有其他的几种情况:Func&amp;lt;T&amp;gt; 这个是方法没有参数,返回值类型是T;Func&amp;lt;T1,T2,Result&amp;gt; 这个方法有两个参数,类型分别为T1,T2，返回值是Result,还有Func&amp;lt;T1,T2,T3,Result&amp;gt;，Func&amp;lt;T1,T2,T3,T4,Result&amp;gt; 这几中情况，具体情况就不介绍了.我们还可以通过扩展类型，扩展为更多的参数. Func 委托的使用</description></item><item><title>WCF读书笔记(4)</title><link>http://leaver.me/2012/09/09/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B04/</link><pubDate>Sun, 09 Sep 2012 09:06:33 +0000</pubDate><guid>http://leaver.me/2012/09/09/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B04/</guid><description>三种供客户端和服务端控制通信的契约介绍： 1.服务契约描述了由特定服务端点所公开的操作，每一种操作，通过参数和返回值定义请求和响应消息的格式。 2.数据契约描述了复杂类型如何被串行化为消息的一部分，数据契约是服务契约中优先用来包含复杂类型的方式。 3.消息契约提供对某个soap消息格式的控制，包括支持定制消息标题和数据契约所描述的单个消息体元素。
+Func&amp;lt;T, E&amp;gt;：封装一个具有一个参数并返回 E 参数指定的类型值的方法,T 是这个委托封装方法的参数类型，E是方法的返回值类型。当然Func&amp;lt;T, Result&amp;gt; 只是其中的一种情况,这个委托还有其他的几种情况:Func&amp;lt;T&amp;gt; 这个是方法没有参数,返回值类型是T;Func&amp;lt;T1,T2,Result&amp;gt; 这个方法有两个参数,类型分别为T1,T2，返回值是Result,还有Func&amp;lt;T1,T2,T3,Result&amp;gt;，Func&amp;lt;T1,T2,T3,T4,Result&amp;gt; 这几中情况，具体情况就不介绍了.我们还可以通过扩展类型，扩展为更多的参数. Func 委托的使用
+Action&amp;lt;T&amp;gt;:封装一个方法，该方法只采用一个参数并且不返回值,包括Action&amp;lt;T&amp;gt;,Action&amp;lt;T1,T2&amp;gt;,Action&amp;lt;T1,T2,T3&amp;gt;,Action&amp;lt;T1,T2,T3,T4&amp;gt; 这几种情况,也可以通过扩展方法去扩展参数的个数 。 Action 委托使用例子
+ Predicate&amp;lt;T&amp;gt;:表示定义一组条件并确定指定对象是否符合这些条件的方法。该委托返回的是一个bool类型的值,如果比较满足条件
+返回true,否则返回false.其实上面的Func 委托可以包含这个委托.不过这个委托和上面的两个不一样，它只有一种类型 Predicate 委托使用例子public void TestPredicate() { TEventSource eventSource = new TEventSource(); Predicatepredicate = eventSource.IsRigth; Console.WriteLine(predicate(0)); }
+public bool IsRigth(int value) { if (value == 0) { return true; } else { return false; } }&amp;lt;/pre&amp;gt; 6.异步委托
+投票技术: 委托其实相当于一个线程,使用投票技术是使用异步委托的一种实现方式.Delegate类提供了方法BeginInvoke()，可以传送委托类型定义的输入参数，其返回类型为IAsyncResult。IAsyncResult的IsCompleted属性可以判断委托任务是否完成 异步委托投票技术
+等待句柄:等待句柄是使用AsyncWaitHandle属性访问，返回一个WaitHandle类型的对象，它可以等待委托线程完成其任务。在这个参数中可以设置最大的等待时间。 异步委托等待句柄
+异步回调:这个方式和投票技术有点类似，不过在投票方式中BeginInvoke()方法第三个参数指定了一个方法签名,而这个方法参数接收IAsyncResult 类型的参数。 异步委托回调函数
+ </description></item><item><title>WCF读书笔记(4)</title><link>http://leaver.me/2012/09/09/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B04/</link><pubDate>Sun, 09 Sep 2012 09:06:33 +0000</pubDate><guid>http://leaver.me/2012/09/09/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B04/</guid><description>三种供客户端和服务端控制通信的契约介绍： 1.服务契约描述了由特定服务端点所公开的操作，每一种操作，通过参数和返回值定义请求和响应消息的格式。 2.数据契约描述了复杂类型如何被串行化为消息的一部分，数据契约是服务契约中优先用来包含复杂类型的方式。 3.消息契约提供对某个soap消息格式的控制，包括支持定制消息标题和数据契约所描述的单个消息体元素。
 消息参数（Message Parameter） 对于
 若客户端传入的参数为“Hello”，则生成的请求消息体中标记为Hello,而响应返回的消息体则被标记为返回内容,可以通过
 来定制消息中的标签。
@@ -1224,7 +1257,7 @@ WCF服务调用的两种典型方式
 　Q3: What are the biggest challenges your team are facing right now?
 　如果面试官开始谈论一些具体的技术问题，这很好；如果他的回答是项目时间紧迫，或者需要更多的资金，那你就要小心一点了，公司管理上面可能有问题。
 问题四：什么新技术（编程语言）是你们未来希望采用的？
-　Q4: What technologies/languages would you like to see your team adapt to that aren't currently being utilised?
+　Q4: What technologies/languages would you like to see your team adapt to that aren&amp;rsquo;t currently being utilised?
 　如果你申请的是技术职位，面试官恰巧又是技术负责人，那么这个问题将会非常合适。你会对公司的技术路线有所了解和准备，一旦入职，就能更好地适应公司的需要。
 问题五：在业务方面，有没有什么地方是你们不满意的，未来想要改进的？
 　Q5: Few companies, if any, are 100% satisfied with the way their business is operating. If you could simply flick a switch to fix it, what one thing would you change?
@@ -1251,7 +1284,7 @@ WCF服务调用的两种典型方式
 　后来 HR 跟我说，她帮忙问过 Google Maps，可惜对方说不要专才只要通才。又过了几个星期，HR 发现 IME 需要专门做前端的人，于是帮我再约了一轮面试。这轮面试是在 Google 办公室做的，但实际上是视频会议，因为面试官在美国。（不确定面试官是在美国出差，还是美籍华人。）面试过程跟电话面试类似，用 Google Docs 写代码，比电话面试要好的是说话时能够见到人。
 　这一轮面试结束后，我的材料再次进入 Google 的北京招聘委员会。HR 说这次专门找了对前端有经验的人来审阅我的材料，结果顺利通过了。接着 HR 问我要了一大堆的补充材料，包括高考成绩和 GPA（连同成绩单），还包括当前薪酬和竞争对手的 offer（我当时有 Yahoo 的 offer），甚至包括过去的获奖和晋升经历。所有这些材料都会发往 Google 美国总部审阅，具体流程 HR 没有细说，但看 Don Dodge 的文章可以了解一些。最后我被 Google 美国总部给拒绝了，然后 HR 还是一如既往地及时沟通，并且安慰了我几句。</description></item><item><title>北外英语专业超全面翻译笔记PDF下载</title><link>http://leaver.me/2012/08/05/%E5%8C%97%E5%A4%96%E8%8B%B1%E8%AF%AD%E4%B8%93%E4%B8%9A%E8%B6%85%E5%85%A8%E9%9D%A2%E7%BF%BB%E8%AF%91%E7%AC%94%E8%AE%B0pdf%E4%B8%8B%E8%BD%BD/</link><pubDate>Sun, 05 Aug 2012 18:34:08 +0000</pubDate><guid>http://leaver.me/2012/08/05/%E5%8C%97%E5%A4%96%E8%8B%B1%E8%AF%AD%E4%B8%93%E4%B8%9A%E8%B6%85%E5%85%A8%E9%9D%A2%E7%BF%BB%E8%AF%91%E7%AC%94%E8%AE%B0pdf%E4%B8%8B%E8%BD%BD/</guid><description>今天在网上看到的。就自己制作了一下pdf版本。方便大家。现在比较纠结的是没有一个好网盘。115竟然需要登录才能下载了。。刚才试了下。。更可怕的是，，只有绑定了手机才能分享。霖枫叔疯了么。。
 那还是将就着用华为的吧。其实我也不喜欢华为的。。
-下载地址：北外英语专业超全面翻译笔记</description></item><item><title>未能加载文件或程序集“App_Web_xxxx”</title><link>http://leaver.me/2012/07/14/%E6%9C%AA%E8%83%BD%E5%8A%A0%E8%BD%BD%E6%96%87%E4%BB%B6%E6%88%96%E7%A8%8B%E5%BA%8F%E9%9B%86app_web_xxxx/</link><pubDate>Sat, 14 Jul 2012 23:18:13 +0000</pubDate><guid>http://leaver.me/2012/07/14/%E6%9C%AA%E8%83%BD%E5%8A%A0%E8%BD%BD%E6%96%87%E4%BB%B6%E6%88%96%E7%A8%8B%E5%BA%8F%E9%9B%86app_web_xxxx/</guid><description>今天在用WCF写服务的时候，服务一直连不上，直接查看svc文件，发现如下错误 未能加载文件或程序集“&amp;lsquo;App_Web_****, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null&amp;rdquo;,****是一个随机字符串。
+下载地址：北外英语专业超全面翻译笔记</description></item><item><title>未能加载文件或程序集“App_Web_xxxx”</title><link>http://leaver.me/2012/07/14/%E6%9C%AA%E8%83%BD%E5%8A%A0%E8%BD%BD%E6%96%87%E4%BB%B6%E6%88%96%E7%A8%8B%E5%BA%8F%E9%9B%86app_web_xxxx/</link><pubDate>Sat, 14 Jul 2012 23:18:13 +0000</pubDate><guid>http://leaver.me/2012/07/14/%E6%9C%AA%E8%83%BD%E5%8A%A0%E8%BD%BD%E6%96%87%E4%BB%B6%E6%88%96%E7%A8%8B%E5%BA%8F%E9%9B%86app_web_xxxx/</guid><description>今天在用WCF写服务的时候，服务一直连不上，直接查看svc文件，发现如下错误 未能加载文件或程序集“&amp;lsquo;App_Web_****, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null&amp;quot;,****是一个随机字符串。
 解决方法中：
 　在web.config里配置成这样子：
 　就好了。中午和下午一直在搞javascript连接WCF的demo，总算是晚上搞定了，，还是老样子，，最大的体会就是很多东西就是看着简单，写起来会有各种各样的问题，比如这次，即使照着微软的官方文档来，也会有错误。动手才是王道，不管做什么。这几天忙完了，写篇文章出来。
@@ -1279,23 +1312,31 @@ const，readonly和static readonly定义的常量，一旦初始值指定，（�
  会得到一个xaml文件，一会用
 然后新建wpf项目，然后在解决方案资源管理器视图右键点击项目 导入现有项，把上一步的xaml文件导入
 然后需要在app.xaml文件中进行设置，具体在&amp;lt;Application.Resources&amp;gt;标签内添加如下代码，中间那个文件名看情况而定。
+ 然后打开“MainWindow.xaml”文件的设计视图，点击窗体边缘以选中窗体，在属性面板中更改AllowsTransparency及WindowStyle属性。 AllowsTransparency 指示窗体是否支持透明。选中 WindowStyle指示窗体边框样式，设为 None 为无边框。
+然后呢在 MainWindow.xaml文件中添加如下代码，
 最终代码是：
 其中background那个是固定的，而MouseDown是为了给窗体写可以拖动的函数，函数名为Window_MouseDown你也可以自己制定
 然后对着那个函数名点右键，如下图
-导航到事件处理程序，然后在打开的函数里写上</description></item><item><title>U盘或硬盘装满资料后，质量会增加吗？</title><link>http://leaver.me/2012/06/22/u%E7%9B%98%E6%88%96%E7%A1%AC%E7%9B%98%E8%A3%85%E6%BB%A1%E8%B5%84%E6%96%99%E5%90%8E%E8%B4%A8%E9%87%8F%E4%BC%9A%E5%A2%9E%E5%8A%A0%E5%90%97/</link><pubDate>Fri, 22 Jun 2012 14:11:49 +0000</pubDate><guid>http://leaver.me/2012/06/22/u%E7%9B%98%E6%88%96%E7%A1%AC%E7%9B%98%E8%A3%85%E6%BB%A1%E8%B5%84%E6%96%99%E5%90%8E%E8%B4%A8%E9%87%8F%E4%BC%9A%E5%A2%9E%E5%8A%A0%E5%90%97/</guid><description>科普文，以前看到过，今天又想起来了，所以拿来和大家分享，感谢原作者的努力。
+导航到事件处理程序，然后在打开的函数里写上
+拖动功能就实现了。
+至于添加关闭按钮的，我就不写了，很简单，代码里都有。可以参考源文件。
+工程源码下载：WPFDemo
+参考：
+http://www.cnblogs.com/SkyD/archive/2008/07/13/1242044.html
+http://www.cnblogs.com/yinyao/archive/2011/05/23/2054056.html</description></item><item><title>U盘或硬盘装满资料后，质量会增加吗？</title><link>http://leaver.me/2012/06/22/u%E7%9B%98%E6%88%96%E7%A1%AC%E7%9B%98%E8%A3%85%E6%BB%A1%E8%B5%84%E6%96%99%E5%90%8E%E8%B4%A8%E9%87%8F%E4%BC%9A%E5%A2%9E%E5%8A%A0%E5%90%97/</link><pubDate>Fri, 22 Jun 2012 14:11:49 +0000</pubDate><guid>http://leaver.me/2012/06/22/u%E7%9B%98%E6%88%96%E7%A1%AC%E7%9B%98%E8%A3%85%E6%BB%A1%E8%B5%84%E6%96%99%E5%90%8E%E8%B4%A8%E9%87%8F%E4%BC%9A%E5%A2%9E%E5%8A%A0%E5%90%97/</guid><description>科普文，以前看到过，今天又想起来了，所以拿来和大家分享，感谢原作者的努力。
 　U盘或硬盘装满资料后，质量会增加吗？
 　要回答这个问题，先让我们看看U盘和硬盘的存储原理。
 　U盘又称为闪存(Flash Memory)，其存储介质为flash，简单地说，flash是用浮栅来存储数据的，浮栅就是可以存储电荷的电荷势阱，向flash写入数据的过程就是向这个电荷势阱注入电荷的过程。
-　至于硬盘，如今使用较多的是固态硬盘，其存储介质多为DRAM，简单来说，DRAM是用电容来存取数据的，电容可以充放电，可以储能，有电荷的时候是&amp;quot;1&amp;rdquo;，无电荷的时候是&amp;quot;0&amp;rdquo;。
+　至于硬盘，如今使用较多的是固态硬盘，其存储介质多为DRAM，简单来说，DRAM是用电容来存取数据的，电容可以充放电，可以储能，有电荷的时候是&amp;quot;1&amp;quot;，无电荷的时候是&amp;quot;0&amp;quot;。
 　回到开头的问题，通过上面的分析可以发现，U盘或硬盘装满资料前后，改变的是数字讯号记录的内容，也就是说多了许多电子。
 　电子的质量约为9.10938188E-31 kg，所以说，U盘或硬盘装满资料后，质量是会增加的，只不过增加的量非常的少。
 　同样，我们可以思考这样的问题，每比特的数据有多重？
 　众所周知，计算机使用一串串二进制的&amp;quot;1&amp;quot;和&amp;quot;0&amp;quot;表示所有种类的信息———电子邮件、文档、视频、网页，一切的一切。
-　我们拿普通电脑的存储器来说，其存储机制就是刚刚提到的DRAM，电容充电后代表&amp;quot;1&amp;rdquo;，没充电就代表&amp;quot;0&amp;rdquo;。比特&amp;quot;0&amp;quot;的数据是没有电子的，也就是没有质量的，而比特&amp;quot;1&amp;quot;的数据是有质量的，虽然轻得微不足道。
+　我们拿普通电脑的存储器来说，其存储机制就是刚刚提到的DRAM，电容充电后代表&amp;quot;1&amp;quot;，没充电就代表&amp;quot;0&amp;quot;。比特&amp;quot;0&amp;quot;的数据是没有电子的，也就是没有质量的，而比特&amp;quot;1&amp;quot;的数据是有质量的，虽然轻得微不足道。
 　具体是多少，需要考虑存储器的电容器，估计的值是每个电容器只需要4万个电子就能充满，4万个电子的质量就是3.6E-26 kg，也就是说，比特&amp;quot;1&amp;quot;的数据质量是3.6E-26 kg。
 　最后，让我们计算一下全球互联网信息总重量！
 　要想得出这个结果，我们需要的数据是互联网上流动的信息总量，这可以从克利福德·霍利迪的著作《互联网发展2006》中找到答案：这个总流量就是……大得令人吃惊的40P字节，即4E16字节———4后面跟着16个0。
-　并不是所有的比特都是&amp;quot;1&amp;rdquo;，要不然网络的内容也太无趣了，平均大约有一半的比特是&amp;quot;1&amp;rdquo;，另一半是&amp;quot;0&amp;rdquo;，也就是有20P的比特&amp;quot;1&amp;rdquo;，套用我们计算的比特&amp;quot;1&amp;quot;数据重量时的公式，于是得到了总数7.2E-9 kg。
+　并不是所有的比特都是&amp;quot;1&amp;quot;，要不然网络的内容也太无趣了，平均大约有一半的比特是&amp;quot;1&amp;quot;，另一半是&amp;quot;0&amp;quot;，也就是有20P的比特&amp;quot;1&amp;quot;，套用我们计算的比特&amp;quot;1&amp;quot;数据重量时的公式，于是得到了总数7.2E-9 kg。
 　在遭罪地写了这么多字之后，我们终于得出了结论：互联网的重量全部加起来大约只有1盎司(1盎司约等于28克)的五百万分之一。
 　原文:http://www.cnblogs.com/jyaray/archive/2010/12/09/1901610.html</description></item><item><title>C#WinForm实现不规则窗体</title><link>http://leaver.me/2012/06/21/c#winform%E5%AE%9E%E7%8E%B0%E4%B8%8D%E8%A7%84%E5%88%99%E7%AA%97%E4%BD%93/</link><pubDate>Thu, 21 Jun 2012 09:26:34 +0000</pubDate><guid>http://leaver.me/2012/06/21/c#winform%E5%AE%9E%E7%8E%B0%E4%B8%8D%E8%A7%84%E5%88%99%E7%AA%97%E4%BD%93/</guid><description>这个纯属娱乐，因为其实用的不是太多，因为非主流，非标准的界面不符合用户的体验，不符合可用性功能的某一条HE规则。
 为了完成这个效果，首先需要自己动手画个你需要的界面出来，界面边缘需要是一种可以很好区别的颜色，比如纯蓝色，因为实现不规则窗体是让C#使边缘颜色透明化来实现的，所以需要唯一识别。因为我用的图是一张灰色的图，我然后圈了一个蓝色的边缘。
@@ -1346,7 +1387,13 @@ div h1 { color : red; } 可以写成： div { hi { color:red; } } 属性也可�
 3.4 注释</description></item><item><title>gif反转工具</title><link>http://leaver.me/2012/06/15/gif%E5%8F%8D%E8%BD%AC%E5%B7%A5%E5%85%B7/</link><pubDate>Fri, 15 Jun 2012 17:33:29 +0000</pubDate><guid>http://leaver.me/2012/06/15/gif%E5%8F%8D%E8%BD%AC%E5%B7%A5%E5%85%B7/</guid><description>首先看下效果图： 然后是两张gif的对比  //原本图是正着走的  //处理后是倒着走的
 gif是动态的嘛。然后我昨天和一个朋友聊天的时候发了一串相同的gif图，然后看着千篇一律的东西。我想能不能写个程序实现gif的初始状态不同呢。什么意思呢。我们知道，gif是由帧构成的，我想实现的功能是比如一个gif共有十帧，那么我写出来的程序能够生成10个gif文件，分别对应不同的初始状态来进行循环。后来一想，gif帧太多的话，比较慢，而且也不实用，于是决定简化一下，只做一个反转工具，比如一个gif是从左到右播放的，通过这个成功可以生成一个相同的gif图，不过是倒着播放的。
 思路很简单，就是先把gif分解成很多帧，然后对帧进行合并，合并帧之前把帧的位置反转一下就可以了。因为我自己对图像处理的知识不懂，只想到了思路，所以这些功能都要找些资料，然后修改，测试。
-分割帧的代码如下</description></item><item><title>属性文法</title><link>http://leaver.me/2012/06/08/%E5%B1%9E%E6%80%A7%E6%96%87%E6%B3%95/</link><pubDate>Fri, 08 Jun 2012 21:31:13 +0000</pubDate><guid>http://leaver.me/2012/06/08/%E5%B1%9E%E6%80%A7%E6%96%87%E6%B3%95/</guid><description>　我们知道，许多编译程序采用属性文法和语法制导翻译方法对语义处理工作进行比较规范和抽象的描述。
+分割帧的代码如下
+可以看到，返回了一个包含所有生成的帧地址的list列表。然后就是使用gifList作为参数来合并了。
+这里面使用了AnimatedGifEncoder这个类，这是Gif.Components.dll动态连接库里的类（此库开源，文末给出地址），是我在codeProject上找到的。首先我把gifList反转，然后合并保存到同目录。中间生成的帧为了方便我保存到了temp目录。
+本来这个库里是分割gif的功能的。但是我实际测试后发现效果非常差，图片黑条泛滥，根本没法看。所以还是使用上面那段代码，相关代码我依然保存在工程里，有兴趣可以自己测试。
+明天四级考试，求人品。。
+项目源码:gif反转工具
+参考： C#图片处理：获取GIF 动画图片中的各个帧 NGif, Animated GIF Encoder for .NET</description></item><item><title>属性文法</title><link>http://leaver.me/2012/06/08/%E5%B1%9E%E6%80%A7%E6%96%87%E6%B3%95/</link><pubDate>Fri, 08 Jun 2012 21:31:13 +0000</pubDate><guid>http://leaver.me/2012/06/08/%E5%B1%9E%E6%80%A7%E6%96%87%E6%B3%95/</guid><description>　我们知道，许多编译程序采用属性文法和语法制导翻译方法对语义处理工作进行比较规范和抽象的描述。
 　而一个属性文法包含一个上下文无关文法和一系列文法规则，语义规则是指：对于文法的每个产生式都配备了一组属性的计算规则
 　语义规则附在文法的每个产生式上，而语法制导翻译是指在语法分析过程中，完成附加在所使用的产生式上的语义规则描述的动作。
 　·语法制导：基于语法分析中用到的文法产生式
@@ -1391,13 +1438,13 @@ gif是动态的嘛。然后我昨天和一个朋友聊天的时候发了一串�
 1.Many Usability Aspects Identified in HE are Confirmed in Think-Aloud Usability Tests 许多可用性方面的问题可以在HE中识别。然后在Think Aloud测试中被确认。
 2.When HE Predictions are not Confirmed by Think-Aloud Usability Tests 当HE预测了问题但是Think Aloud中，并没有发现。这种情况下。请相信Think Aloud测试。因为用户是王道。数据比预测更准确。
 3.&amp;ldquo;False Alarms&amp;rdquo; vs. True Problems 假警告vs真问题，这个举个例子，在对话框中，有三个按钮。OK ，Apply和Cancel ，虽然HE规则预测了这个迷惑性。但是进行Think Aloud测试的时候，并没有这个问题，原因是用户就没想过这个事，他只按ok，但这并不能避免问题，或者说似乎这个问题并不是个问题，还有一种情况，比如HE规则中的文档帮助的问题，可能用户在测试的时候就没打开文档。这就需要HE来评估了。所以，这种情况下，还是应该好好分析一下HE给出的评估来改进系统。
-4.Think-Aloud Usability Tests Can Show Things HEs Can't Show Think Aloud测试可以展示HE没有发现的问题。
+4.Think-Aloud Usability Tests Can Show Things HEs Can&amp;rsquo;t Show Think Aloud测试可以展示HE没有发现的问题。
 HE规则因为是建立在早期草稿原型上的。并不是真实情况，他只是在早期给出设计上的问题，他不能预测真实系统的问题，比如程序运行速度非常慢，以至于用户难以忍受。这就需要Think Aloud才能发现了。
  基本上SSD4就讲了这么些东西了。四篇文章四点写到7点。。基本上算是写完了。工科男求安慰。。</description></item><item><title>UAR报告的简单说明</title><link>http://leaver.me/2012/05/29/uar%E6%8A%A5%E5%91%8A%E7%9A%84%E7%AE%80%E5%8D%95%E8%AF%B4%E6%98%8E/</link><pubDate>Tue, 29 May 2012 08:15:43 +0000</pubDate><guid>http://leaver.me/2012/05/29/uar%E6%8A%A5%E5%91%8A%E7%9A%84%E7%AE%80%E5%8D%95%E8%AF%B4%E6%98%8E/</guid><description>UAR报告由以下几个部分构成。就这个例子简单说一下。 Example UAR — Time Zone ListBox Is Not Good //标题 UAR Identifier //问题编号，从1开始，每个问题都这样的格式来说明，就构成了UAR报告 HE18—Problem //后面这个problem表示有问题，也可以是Good，表示这部分很好。没问题。
 Succinct description: //简短的描述 Time Zone pull-down ListBox provides too much irrelevant information.
 Evidence for the aspect: //违反了哪条规则，共有十条规则。 Heuristic: Aesthetics and minimalist design
 **Interface aspect: **
-The pull-down ListBox has 50 lines of information—in very small font. There are many competing items of information to visually search, the vast majority of which are irrelevant to any one user's particular task of finding a single desired time zone
+The pull-down ListBox has 50 lines of information—in very small font. There are many competing items of information to visually search, the vast majority of which are irrelevant to any one user&amp;rsquo;s particular task of finding a single desired time zone
  The presentation of this structured information violates the aesthetics and minimalist design heuristic because the structure is not preserved visually from item to item. For example, the words are not always lined up vertically; see the entries for:
 [GMT -01:00] Azores, Cape Verdi Is.[GMT] Greenwich Mean Time; Dublin, Edinburgh, London, Lisbon[GMT] Monrovia, Casablanca[GMT +01:00] Berlin, Stockholm, Rome, Bern, Brussels, ViennaExplanation of the aspect: //详细解释，说明问题 There are about 30 distinct time zones in the world (one for each of the regular 24 hours, plus several others either with offsets that include an additional half hour or that follow daylight savings time differently than neighboring zones).</description></item><item><title>10条可用性准则（Heuristics）</title><link>http://leaver.me/2012/05/29/10%E6%9D%A1%E5%8F%AF%E7%94%A8%E6%80%A7%E5%87%86%E5%88%99heuristics/</link><pubDate>Tue, 29 May 2012 06:52:48 +0000</pubDate><guid>http://leaver.me/2012/05/29/10%E6%9D%A1%E5%8F%AF%E7%94%A8%E6%80%A7%E5%87%86%E5%88%99heuristics/</guid><description>SSD4第二单元其实就讲了这么一点东西，包括一点VB的控件常识
 可用性测试（Usability testing），是一项通过用户的使用来评估产品的技术，由于它反应了用户的真实使用经验，所以可以视为一种不可或缺的可用性检验过程[1]。也就是说，可用性测试是指让用户使用产品（服务）的设计原型或者成品，通过观察，记录和分析用户的行为和感受，以改善产品（服务）可用性的一系列方法。它适用于产品（服务）前期设计开发，中期改进和后期维护完善的各个阶段，是用户中心设计的思想的重要体现。
@@ -1406,7 +1453,7 @@ The pull-down ListBox has 50 lines of information—in very small font. There ar
 The system should always keep users informed about what is going on, through appropriate feedback within reasonable time.
 系统应该始终在合理的时间以适当的反馈信息让用户知道系统正在做什么。
 2.Match between system and the real world——系统和现实世界之间的吻合
-The system should speak the users&amp;rsquo; language, with words, phrases and concepts familiar to the user, rather than system-oriented terms. Follow real-world conventions, making information appear in a natural and logical order.
+The system should speak the users' language, with words, phrases and concepts familiar to the user, rather than system-oriented terms. Follow real-world conventions, making information appear in a natural and logical order.
 系统应该用用户熟悉的词，短语和概念来说用户的语言，而不是用面向系统的术语。遵循现实世界中的惯例，让信息以自然的合乎逻辑的次序展现在用户面前。
 3.User control and freedom——用户控制和自由
 Users often choose system functions by mistake and will need a clearly marked &amp;ldquo;emergency exit&amp;rdquo; to leave the unwanted state without having to go through an extended dialogue. Support undo and redo.
@@ -1417,7 +1464,7 @@ Users should not have to wonder whether different words, situations, or actions 
 　　Windows Registry Editor Version 5.00
 　;修改Windows系统软件默认安装路径
 　[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion]
-　&amp;ldquo;ProgramFilesDir&amp;quot;=&amp;quot;D:\Program Files&amp;rdquo;
+　&amp;ldquo;ProgramFilesDir&amp;rdquo;=&amp;ldquo;D:\Program Files&amp;rdquo;
 　效果如下图，安装程序已经默认到D盘了
 update:已知后遗症，我在这样实践了以后，发现vs2010的.net framework 4将会丢失。也就是说就不能新建.net framework 4项目了，具体不明，可能是我当初把VS一部分安装到D盘的缘故，应该可以通过重新安装vs解决，如果你不想折腾。把注册表改回去就可以了。</description></item><item><title>一个简单实例的LR分析过程</title><link>http://leaver.me/2012/05/14/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E5%AE%9E%E4%BE%8B%E7%9A%84lr%E5%88%86%E6%9E%90%E8%BF%87%E7%A8%8B/</link><pubDate>Mon, 14 May 2012 11:38:49 +0000</pubDate><guid>http://leaver.me/2012/05/14/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E5%AE%9E%E4%BE%8B%E7%9A%84lr%E5%88%86%E6%9E%90%E8%BF%87%E7%A8%8B/</guid><description>经过前面两篇文章。已经讲清楚了LR语法分析中最重要的分析表的构造过程。先补充一个小问题，就是LR(0)项目的分类
 　根据圆点所在的位置和圆点后是终结符还是非终结符或为空把项目分为以下几种：
@@ -1435,7 +1482,7 @@ update:已知后遗症，我在这样实践了以后，发现vs2010的.net frame
 　Si:移进，把i移入到状态栈，把a移入到文法符号栈。其中i，j表示状态号。
 　ri:归约，用第i个产生式归约，同时状态栈与符号栈退出相应个符号，并把GOTO表相应状态和第i个产生式的左部非终结符入栈。
 　文法中有A→β的产生式，若β的长度为r(即|β|=r)，则从状态栈和文法符号栈中自栈顶向下去掉r个符号，即栈指针P减去r。并把A移入文法符号栈内，Sj=GOTO[Si，A]移进状态栈，其中Si为修改指针后的栈顶状态。
-　当归约到文法符号栈中只剩文法的开始符号S时，并且输入符号串已结束即当前输入符是&amp;rsquo;#'，则为分析成功。
+　当归约到文法符号栈中只剩文法的开始符号S时，并且输入符号串已结束即当前输入符是'#'，则为分析成功。
 　然后使用我们将要使用的辅助表来分析吧，为了简单。我还是直接给出答案。然后分析一下典型的情况。
 　
 　第一步，符号栈中是#，输入符号串就是给定的要分析的串，状态栈因为从0开始，所以状态栈直接填0，大家都知道，LR分析是从左到右扫描的。所以心里想着一根指针p，p首先指向输入串的a，然后我们查分析表的（0，a）,0就是状态0，a就是指针的当前字符。分析表中的（0，a）是s2，填入第一步的action，并且动作列填入移进，根据规则，将2入状态栈，a入符号栈，
@@ -1470,11 +1517,11 @@ update:已知后遗症，我在这样实践了以后，发现vs2010的.net frame
 　开始拿个例题来说明，定义没例题看起来看难了。
 　例题：对于下列文法，S→aS|bS|a，构造该文法的LR(0)项目集规范族
 　思路就是利用闭包函数CLOSURE和转换函数GO来构造。通过计算函数CLOSURE和GO得到文法的LR(0)项目集规范族，而GO函数则把LR(0)项目集规范族连成一个识别该文法所产生的活前缀的DFA。DFA大家都知道，有穷自动机。
-　(1)将文法G(S)拓广为G(S’)也就是该文法的增广文法，目的是使语法分析器知道何时应该停止并接受该串，也就是说当使用S&amp;rsquo;-&amp;gt;S进行规约的时候，就结束。
+　(1)将文法G(S)拓广为G(S’)也就是该文法的增广文法，目的是使语法分析器知道何时应该停止并接受该串，也就是说当使用S'-&amp;gt;S进行规约的时候，就结束。
 　(0)S’→S (1)S→aS　(2)S→bS　(3)S→a
 　构造该文法的LR(0)项目集规范族，I就是产生式，至于I0 I1就是往下递增就可以了。没什么特别的意思。：
-　I0=CLOSURE({S&amp;rsquo; →•S})={S’ →•S, S→•aS, S→•bS, S→•a}
-　//第一条是固定的，都是求S&amp;rsquo; →•S的闭包。而因为右侧的S又可以推导出后面三个，所以后面三个式子是属于该闭包的。在闭包的规则中可以看出，若A→α·Bβ属于CLOSURE(I)，此时S&amp;rsquo; →•S属于闭包，S相当于规则中的B,则每一形如B→·γ的项目也属于CLOSURE(I),此处相当于S-&amp;gt;后面的三个推导式。加上.就可以了
+　I0=CLOSURE({S' →•S})={S’ →•S, S→•aS, S→•bS, S→•a}
+　//第一条是固定的，都是求S' →•S的闭包。而因为右侧的S又可以推导出后面三个，所以后面三个式子是属于该闭包的。在闭包的规则中可以看出，若A→α·Bβ属于CLOSURE(I)，此时S' →•S属于闭包，S相当于规则中的B,则每一形如B→·γ的项目也属于CLOSURE(I),此处相当于S-&amp;gt;后面的三个推导式。加上.就可以了
 　I1=GO( I0 , a)=CLOSURE({S→a•S , S→a•})={S→a•S , S→a• , S→•aS, S→•bS, S→•a }
 　//第二条你可能已经看出来了，其实就是把转换函数GO反过来用，在GO函数中，X为一文法符号，J＝{任何形如A→αX·β的项目| A→α·Xβ属于I}。也就是在I0中，找到右侧包含a的项目，然后将.右移一位来求他们的闭包函数，此处，I0中包含.a的项目为 S→•aS和 S→•a，.右移一位变成S→a•S , S→a•，求闭包函数的规则和上面那条是一样的，继续找推导式右边可以推导出来的式子就可以了，此处，右边同样是S可以推导出三个式子，前面加上.就可以了。
 　I2=GO(I0 , b)=CLOSURE({S→b•S })={ S→b•S, S→•aS, S→•bS, S→•a }
@@ -1569,7 +1616,7 @@ http://www.bincess.cn/Downloads/MainDoc.rar  petshop 4.0的体系结构（只�
 　A知道自己发送邮件给了B1、B2，并且抄送给了C1、C2，密送给了D1、D2。这相当于废话。。自己肯定知道自己给谁发了。　B1知道这封是A发送给B1、B2的邮件，并且抄送给了C1、C2、但不知道密送给了D1、D2。To的人能看到抄送，看不到密送　C1知道这封是A发送给B1、B2的邮件，并且抄送给了C1、C2，但不知道密送给了D1、D2。抄送的人看不到密送。　D1知道这封是A发送给B1、B2的邮件，并且抄送给了C1、C2，而且密送给了自己，但不知道密送给了D2。 密送的人权限比较大，可以看到最多的情况，但依然看不到密送
 　具体的用法呢，一句话就是：一般抄送和密送是为了备份，知会，或者监督跟踪的作用。
 　我先举个例子。有些个朋友过节什么的喜欢群发邮件。或是一些什么网页之类的。有这个心是好的。可是。对于收到的人来说，一看到是群发的。直接可能都删掉了。所以此时可以使用密送功能。对应于上面说的最后一种情况。具体使用时在To里写上自己的地址，这样邮件会发给自己。密送栏里写上其他人的邮件，这样就同时密送给其他人，并且每个人都会只看到发给自己。起码有看下去的心情。
-　邮件在工作中用的非常多，美国人总结的中国人典型特征中有一条，“即使面对面坐着，也不直接交谈而要使用邮件。”而这在很多外企之中是非常流行的文化，和总部打交道，邮件往往是最快捷和便宜的方式，&amp;rdquo;
+　邮件在工作中用的非常多，美国人总结的中国人典型特征中有一条，“即使面对面坐着，也不直接交谈而要使用邮件。”而这在很多外企之中是非常流行的文化，和总部打交道，邮件往往是最快捷和便宜的方式，&amp;quot;
 　说到抄送，简直是所有邮件灾难故事最有力的协助者。同事之间常有抄送行为，有时是为了工作方便，同事A同时将一封邮件抄送给B和C，只能说明他们之间需要互相协作完成一件事情，但如果A将邮件发送给了B，却抄送给了B的老板C，那意味就深远了，通常有可能的情况是，A和B在合作的过程中发生了一些不愉快，告知老板的目的只是为了给对方一些震慑，这一招在各大公司当中都屡试不爽，而且往往成为一件悬而不决的事情得到解决的最快速手段。
 　抄送更多时候只是手段，而不是最终目的。看到一个某人A与其他部门同事B合作时发生的插曲，在某次急需同事B提供某文件支持时，B不慌不忙地一直以各种借口拖延工作，A忍无可忍，发了一封紧急邮件，同时抄送了B部门的领导和自己的领导，在这样一封邮件下，B在十分钟之内就将所需文件以附件形式传了过来，并回复了原邮件中的所有人。
 　如果你看了觉得真麻烦。其实。最有效的交流就是面对面，但是在职场中这是最有效地证明你自己干过什么的工具，一旦出了什么问题，最容易发现在哪个环节出现了问题，该由谁承担什么样的责任。如果遇到打官司这样的严重情况，邮件甚至能够作为呈堂证供。

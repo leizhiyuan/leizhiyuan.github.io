@@ -87,6 +87,7 @@ bystander:本文回答了你刷社交网络的内在因素.希望读到的人不
 貌似本题来源自&amp;lt;**The C Puzzle Book&amp;gt; ，**搜狗也只是换了一下字符串，直接看题吧
 &amp;lt;span style=&amp;quot;font-family: Georgia, 'Times New Roman', 'Bitstream Charter', Times, serif; font-size: 13px; line-height: 19px;&amp;quot;&amp;gt;请写出程序的执行结果....&amp;lt;/span&amp;gt;
 首先从左到右看：
+*c[] 是一个字符，因此，c[]是指向该字符，c就是一个数组（数组的内容为指向字符的指针），c已经被初始化了.
 再看第二行，**cp[]是一个字符，*cp[]就是一个指针，指向该字符，cp[]就是一个指针，指向该指针，而cp就成为了指针数组，内容是指向字符的指针的指针。并且通过c的元素进行了初始化
 第三行，***cpp是一个字符，**cpp指向该字符，*cpp指向该指针，cpp就指向该字符的指针的指针.
 然后我画一张图表示初始的情况看看
@@ -123,9 +124,9 @@ QuickUnion的实现
 于是，研制人员想了个办法解决这个问题，就是在每行后面加两个表示结束的字符。一个叫做“回车”，告诉打字机把打印头定位在左边界；另一个叫做“换行”，告诉打字机把纸向下移一行（这句的意思是把纸向上拉，然后打印头就定位到了下一行），可以想象一下，这个打印头只能在一个固定的水平线上左右移动，而不能上下移动，我们通过移动纸来完成打印下一行。
 不明白的我在youtube上找到一个这种打字机的演示视频，为了方便读者观看，我提供一个下载地址。
 后来，计算机发明了，这两个概念也就被般到了计算机上。那时，存储器很贵，一些科学家认为在每行结尾加两个字符太浪费了，加一个就可以。于是，就出现了分歧。
-Unix系统里，每行结尾只有&amp;rdquo;&amp;lt;换行&amp;gt;&amp;quot;，即&amp;rdquo;\n&amp;rdquo;；
-Windows系统里面，每行结尾是&amp;rdquo;&amp;lt;换行&amp;gt;&amp;lt;回车&amp;gt;&amp;quot;，即&amp;rdquo;\n\r&amp;rdquo;；
-Mac系统里，每行结尾是&amp;rdquo;&amp;lt;回车&amp;gt;&amp;quot;，不过mac基于unix，所以换行也应该是可以的。
+Unix系统里，每行结尾只有&amp;quot;&amp;lt;换行&amp;gt;&amp;quot;，即&amp;quot;\n&amp;quot;；
+Windows系统里面，每行结尾是&amp;quot;&amp;lt;换行&amp;gt;&amp;lt;回车&amp;gt;&amp;quot;，即&amp;quot;\n\r&amp;quot;；
+Mac系统里，每行结尾是&amp;quot;&amp;lt;回车&amp;gt;&amp;quot;，不过mac基于unix，所以换行也应该是可以的。
 一个直接后果是，Unix/Mac系统下的文件在Windows里打开的话，所有文字会变成一行；而Windows里的文件在Unix/Mac下打开的话，在每行的结尾可能会多出一个^M符号。这个如果你在windows下使用vim也会发现这个情况
 用C++来说明
 如：
@@ -143,6 +144,7 @@ bystander
 2.Debug.WriteLine方法
 3.TraceListener类
 DelimitedListTraceListener创建的时候指定一个文件名，当Flush调用的时候，就被覆写到文件里。
+4.Debug.Write和WriteIf以及WriteLineIf方法
 第一个参数一个bool值，为真则输出。
 5.Debug.Assert方法
 如果表达式为false，则输出。</description></item><item><title>消费者行为学</title><link>http://leaver.me/2013/02/26/%E6%B6%88%E8%B4%B9%E8%80%85%E8%A1%8C%E4%B8%BA%E5%AD%A6/</link><pubDate>Tue, 26 Feb 2013 21:33:12 +0000</pubDate><guid>http://leaver.me/2013/02/26/%E6%B6%88%E8%B4%B9%E8%80%85%E8%A1%8C%E4%B8%BA%E5%AD%A6/</guid><description>今天一直在自习。。中午遇到了初中同桌。。5年没见了吧。聊了一会。被各种叮嘱“一定不要找太娇生惯养的，太粘人的，太无理取闹的。要听我的话，不然受苦的可是你。”哈哈。当时笑喷了。谢谢同桌。好好工作吧。
@@ -224,7 +226,13 @@ C# 4.0
  
 涉及到的东西有：
 1.C#隐藏TabControl的header部分，前面的文章有介绍
-2.获取窗体全部的某一类控件（这个无聊的话抽象出一个通用的方法出来，以后就可以直接用了）</description></item><item><title>C#隐藏TabControl标签栏</title><link>http://leaver.me/2013/01/11/c#%E9%9A%90%E8%97%8Ftabcontrol%E6%A0%87%E7%AD%BE%E6%A0%8F/</link><pubDate>Fri, 11 Jan 2013 21:31:52 +0000</pubDate><guid>http://leaver.me/2013/01/11/c#%E9%9A%90%E8%97%8Ftabcontrol%E6%A0%87%E7%AD%BE%E6%A0%8F/</guid><description>今天考过了微软的那个70-562和70-536的考试。然后下午把软件体系结构的作业做了。然后看了一下栈溢出，我博客首页右侧的那个就是我的栈溢出id了。。
+2.获取窗体全部的某一类控件（这个无聊的话抽象出一个通用的方法出来，以后就可以直接用了）
+ 3.文件操作
+4.字符串操作
+反正很简单，主要就是写的时候思路要清晰。知道大部分使用密码的规则。处理一下生日格式。否则后面很麻烦。。相应的验证也比较少。界面依然毫无美感。。
+总结：
+现在发现在控件命名上越来越顺利了。自我感觉良好。后面慢慢的要开始尝试使用学到的一些新的技术点。。
+下载：社工字典生成工具</description></item><item><title>C#隐藏TabControl标签栏</title><link>http://leaver.me/2013/01/11/c#%E9%9A%90%E8%97%8Ftabcontrol%E6%A0%87%E7%AD%BE%E6%A0%8F/</link><pubDate>Fri, 11 Jan 2013 21:31:52 +0000</pubDate><guid>http://leaver.me/2013/01/11/c#%E9%9A%90%E8%97%8Ftabcontrol%E6%A0%87%E7%AD%BE%E6%A0%8F/</guid><description>今天考过了微软的那个70-562和70-536的考试。然后下午把软件体系结构的作业做了。然后看了一下栈溢出，我博客首页右侧的那个就是我的栈溢出id了。。
 然后就看到了这个问题。这个问题。我曾经遇到过。貌似大家知道比较多的是两种。第一种就是设置大小。
 但是这样你注意看的话，左上角有个小的瑕疵。这个没办法的。。还有一种比较低级但还算有效的方法就是在设计的时候将TabControl向上移动。运行以后就会遮住了。
 我当时不过取巧了。好像就用的第二种。。今天看到这个题目的时候，就做了下标记。刚才去看。大牛已经给出答案了。就是自己继承一个TabControl控件。重写
@@ -318,6 +326,8 @@ Test Lambda [ms] Normal [ms] 0 45+-1 46+-1 1 44+-1 46+-2 2 49+-3 45+-2 3 48+-2 4
 第三种就是自己写个程序吧。。
  整体思路，首先访问课程页面，解析得到每一章的标题和内容，然后创立章节文件夹，得到每个动画对应的html页面，然后对html页面解析，提取swf地址。然后下载就行了。
 比较疼的地方是那个页面用的是gb2312编码。而解析神器HtmlAgilityPack，不能指定编码。只能想办法绕过了。
+绕过方法就是先使用内置类得到内存流。然后从内存中加载。
+然后呢。涉及的技术就是xpath了。参考着xpath的文档。搞定了不少。中间还有一个地方就是我没注意看。这个页面有两个文件是一样名字。。调试了几次才发现。。
  写完运行。看着如下这个界面。。这个我只是为了让我看到进度。同时后台也在下载。
 我的心是冰凉的。但脖子是僵硬的。。。
  运行完成后。文件夹和文件自动命名完成是这样的。。</description></item><item><title>C#与.net 程序员面试笔记</title><link>http://leaver.me/2012/11/28/c#%E4%B8%8E.net-%E7%A8%8B%E5%BA%8F%E5%91%98%E9%9D%A2%E8%AF%95%E7%AC%94%E8%AE%B0/</link><pubDate>Wed, 28 Nov 2012 07:13:03 +0000</pubDate><guid>http://leaver.me/2012/11/28/c#%E4%B8%8E.net-%E7%A8%8B%E5%BA%8F%E5%91%98%E9%9D%A2%E8%AF%95%E7%AC%94%E8%AE%B0/</guid><description>这是前几天读的书。书不难。10-13章跳过了。以后再看。
@@ -353,7 +363,7 @@ Rethrow
 背景 有时候我们需要做很多任务，而做这些任务的算法可能不同，这样可以设计成策略模式，这样。执行该任务的基本的一些代码就是一样的。但程序可可以动态的切换来执行任务的不同部分了。
 现在，真实的情况是有些算法，从实现层面山看，有可能有一些步骤是不一样的，这种情况下。我们可以使用继承来完成。
 当有个算法，而这个算法的一部分却多样的时候。使用模板模式就很好。GoF定义模板模式为：
-&amp;ldquo;Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm's structure.&amp;quot;.
+&amp;ldquo;Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm&amp;rsquo;s structure.&amp;rdquo;.
 定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。模板模式使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。
 在上面的类图中： AbstractClass：包含两种方法。第一种就是算法的每一步。另一种就是模板方法。模板方法就是那些可以被用在所有独立方法中。并且提供了算法执行的一个骨架 ConcreteClass：这个类重写了抽象类中每一步的方法，包含对这些步骤的个性化实现。
 使用代码 看一个简单的例子。假想我们有一个类用来读取数据。并且能够为信息管理系统到处数据。
@@ -410,7 +420,7 @@ ReadData和FormatData 的实现不会变。唯一可变的部分就是ExportData
 命令，然后会让你输入keystore密码，
 输入：android，之后，会出现指纹认证MD5，如下：
 &amp;lt;3&amp;gt;去官方生成真正的api key 访问 Sign Up for the Android Maps API 输入那串值，同意条款，确定后要求用Google帐号登录。然后会拿到一个key。ok</description></item><item><title>理解并实现原型模式-实现ICloneable接口.理解深浅拷贝</title><link>http://leaver.me/2012/10/19/%E7%90%86%E8%A7%A3%E5%B9%B6%E5%AE%9E%E7%8E%B0%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E5%AE%9E%E7%8E%B0icloneable%E6%8E%A5%E5%8F%A3.%E7%90%86%E8%A7%A3%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/</link><pubDate>Fri, 19 Oct 2012 09:27:21 +0000</pubDate><guid>http://leaver.me/2012/10/19/%E7%90%86%E8%A7%A3%E5%B9%B6%E5%AE%9E%E7%8E%B0%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E5%AE%9E%E7%8E%B0icloneable%E6%8E%A5%E5%8F%A3.%E7%90%86%E8%A7%A3%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/</guid><description>本文用C#实现原型模式,也会讨论深浅拷贝,已经如何在.net中高效实现ICloneable 接口 介绍 有时候我们需要从上下文得到一个对象的拷贝，然后通过一些独立的操作来处理他。原型模式在这种情况下很适用
-GoF 定义原型模式为用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的对象。 Specify the kind of objects to create using a prototypical instance, and create new objects by copying this prototype.&amp;rdquo;
+GoF 定义原型模式为用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的对象。 Specify the kind of objects to create using a prototypical instance, and create new objects by copying this prototype.&amp;quot;
 看一下类图
 主要的参与者有 • Prototype: 抽象类或接口，定义了方法来拷贝自己 • ConcretePrototype: 克隆的具体类. • Client: 需要执行拷贝对象的软件对象 然后实现吧
 使用代码
@@ -473,7 +483,19 @@ ps:如果你收藏了其他的站点。不妨留言回复。</description></item
 为了改变TabControl的显示效果。我们使用模板机制，我们把模板写进一个资源字典里。这样就可以重用了。添加一个资源字典的步骤如下
 右键点击工程-添加-资源字典
 然后在资源字典里添加一些代码。
+ 这样就添加了一个有一个grid元素的名为OfficeTabControl的控件模板 . Grid 被分成两列，一列是标签页，一列是页内容。左边的列包含一个灰色背景和亮灰色的边缘线，然后一个StackPanel，IsItemsHost属性被设置为true，
+这样标签项被会放在这个栈面板里。第二列是ContentPresenter 这会放置标签页内容。然后让我们前面的TabControl使用新模板。设置Template 属性。
+ 在这之前，先把资源字典加到窗体的Reesouce里。然后再设置。然后运行软件。效果会有一些不一样。
+然后要修改左侧单个标签的显示效果。通过改变模板来实现。给模板添加如下的代码
+  然后再运行
+VisualState很有意思。我们可以放在Grid里。然后设置正常状态和鼠标悬停的状态。
+为了添加鼠标悬停效果，我们添加两个Borders元素。一个右边缘是灰线，另一个用在背景上。亮蓝色放在上下边缘
  之后，我们为VisualState创建故事板，一个是正常状态。会使得hoverShape的透明度为0.另一个是鼠标悬停的状态。透明度会变成1
+ 之后效果如下
+然后添加选中项的样式，在hoverShape 下面再添加一个Border，名字是buttonShape。通过这个我们给被选中项的上下边缘添加2个像素的黑蓝色边缘，
+在 Expression Blend中打开, 使用钢笔工具绘制个你想要的路径形状即可。然后把生成的xaml代码拷些过来。
+也可以直接用我的代码。。不顾我说过要怎么做了。
+最终看起来应该是这样的。
  当你运行的时候你会发现没什么变化。我们还要定义被选中标签的VisualState
 当添加如下代码的时候 添加一个VisualState组。也就是 SelectionStates ，然后给选中/为选中的状态添加行为/故事板。.这里通过修改透明度来实现一些效果
  现在再运行会发现效果更好了
@@ -556,7 +578,7 @@ Demo下载
 3.1.1折射层
 第二层模拟了光从上到下的折射。被放在反射层之前是因为，要达到反光玻璃的效果，反射层必须在按钮的中间某处有一个硬边缘。这一层实际上是另一个椭圆。但是这次。我们使用一个径向渐变（白色-透明）的填充。来模拟光的折射。渐变开始于第一层底部的中央。结束于上面的中间。然而。为了降低折射光的强度。渐变还是开始于椭圆的底部再下一点为好。可以从图上和代码里清晰的看到。
  3.1.2反射层
-第三层是光的反射层。是最难的部分。问题是反射效果不能使用任何标准的形状来画。因此。使用路径（Path）来画反射区域。当时。手工画也是可以的。但老实说。手工画图实在没什么可享受的（除非你是一个艺术家，或者有一个数位板），无论如何。我现在MS Blend中华好一个椭圆并转换成一个路径，然后我使用贝塞尔曲线点调整得到平滑的路径，你可以添加渐变到一个复杂的Path对象上。就像你对其他与定义的图形，比如椭圆，矩形所做的一样。为了得到光泽反射。我额每年需要一个透明-白色的径向渐变填充，从路径的底部开始（也就是按钮的中间某处），结束在顶部。我想如果我是一个艺术家。我会让渐变更准一点。可是我不是。因此。就这样。因为我们要把我们的按钮放在一个Grid里。所有我们设置VerticalAlignment=&amp;quot;Top&amp;rdquo; 这样反射区域在按钮的中间的结束了。
+第三层是光的反射层。是最难的部分。问题是反射效果不能使用任何标准的形状来画。因此。使用路径（Path）来画反射区域。当时。手工画也是可以的。但老实说。手工画图实在没什么可享受的（除非你是一个艺术家，或者有一个数位板），无论如何。我现在MS Blend中华好一个椭圆并转换成一个路径，然后我使用贝塞尔曲线点调整得到平滑的路径，你可以添加渐变到一个复杂的Path对象上。就像你对其他与定义的图形，比如椭圆，矩形所做的一样。为了得到光泽反射。我额每年需要一个透明-白色的径向渐变填充，从路径的底部开始（也就是按钮的中间某处），结束在顶部。我想如果我是一个艺术家。我会让渐变更准一点。可是我不是。因此。就这样。因为我们要把我们的按钮放在一个Grid里。所有我们设置VerticalAlignment=&amp;ldquo;Top&amp;rdquo; 这样反射区域在按钮的中间的结束了。
 图三
  最后。我添加一个ContentPresenter 到按钮中间。经验告诉我，内容区域再向下一个像素会使得按钮看起来更漂亮。因此，在这里我用了margin属性（注意。因为内容区域在Grid的中间（Center）。所以2个像素的top实际上是向下移动了一个像素 ）
 好了。最后在Blend中看起来大概是这样
@@ -860,6 +882,7 @@ Demo下载 ListView LayOut
 背景 存储图片到数据库里面是一个很有效的想法。很多人在一些场合都会这样做。的确，这是一个很好的想法。在图片很小的情况下，或者图片不是太多。在这两种情况下，当你需要图片的时候，你会实时去加载它们。而当你不需要的时候如果从数据库里加载图片会浪费很多带宽。并使得你的程序有一些慢。
 但问题是这种方法也很容易发生错误。&amp;ndash;尤其是你使用字符串连接，然后组合到你的SQL语句里面—并且这个错误只有当你打算使用存储的信息的时候才会发生。然后，看起来似乎是你的读取代码写错了&amp;mdash;不可能—它是正常的。我在其他地方都可以的。。
 从数据库里加载图片 重数据库里读取一张图片然后转换成图片显示是很简单的。
+但是-如果data因为一些原因不是有效的图片，那么这一行
 将会抛出一个异常—无效的参数
 只有当你真正看了从数据库里返回到data里的数据-而不是简单的瞄了一眼调试器，你才能注意到是什么原因。。
 它看起来不像是错的，所以它可能就是你想要的。-虽然21字节是一个很大的线索：你的图片可能只有21字节长？那图片可真小。。
@@ -872,7 +895,11 @@ Demo下载 ListView LayOut
 存储并不会有什么问题—但是事实上只是把Image的类型名保存了。而你傻傻的以为是图片数据本身。
 这还不是唯一的一个不让你直接连接字符串构造SQL语句的原因，如果你想知道其他原因。 使用Google 搜索Bobby Tables，&amp;mdash;这不是闹着玩的。。
 好了。其实把代码写正确也不难，虽然可能得多花一些时间。但是，它可以帮助提高代码的可读性和可靠性。而你要做的就是使用一个参数化的查询。
-首先，把图片转换到一个字节数组里。</description></item><item><title>JavaCC入门教程及相关资源</title><link>http://leaver.me/2012/09/27/javacc%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%8F%8A%E7%9B%B8%E5%85%B3%E8%B5%84%E6%BA%90/</link><pubDate>Thu, 27 Sep 2012 15:55:32 +0000</pubDate><guid>http://leaver.me/2012/09/27/javacc%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%8F%8A%E7%9B%B8%E5%85%B3%E8%B5%84%E6%BA%90/</guid><description>今天下午翻译了一篇简单的文章后。就去看JavaCC的东西了。。然后就找到了一篇入门教程
+首先，把图片转换到一个字节数组里。
+然后在SqlCommand对象里使用这些字节
+结束之前 不。。你不能取回那些你已经错误的存在数据库的信息。。所以。。全部删掉把。然后重新存一遍。
+许可 本文包括代码和源文件，在CPOL下授权
+ 原文地址：Why-do-I-get-a-Parameter-is-not-valid-exception-wh 著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</description></item><item><title>JavaCC入门教程及相关资源</title><link>http://leaver.me/2012/09/27/javacc%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%8F%8A%E7%9B%B8%E5%85%B3%E8%B5%84%E6%BA%90/</link><pubDate>Thu, 27 Sep 2012 15:55:32 +0000</pubDate><guid>http://leaver.me/2012/09/27/javacc%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E5%8F%8A%E7%9B%B8%E5%85%B3%E8%B5%84%E6%BA%90/</guid><description>今天下午翻译了一篇简单的文章后。就去看JavaCC的东西了。。然后就找到了一篇入门教程
 然后之前我是找到了一篇翻译过来的的某熊的战略储备基地
 从头到尾读了一遍英文的。感觉还是英文的写的要好一些。建议对照着翻译看英文。JavaCC也就那么回事。。
 同时在在这目测百慕大群岛的什么工程与应用科学学院找到了一些其他的文档。其中一篇是JavaCC-FAQ很好。基本上有关JavaCC的问题都有解释。
@@ -902,10 +929,10 @@ AvalonDock是一个组合的布局模型，很多的控件都在视图上显示�
 从下面这个截图中我们可以理解AvalonDock组件
 DockingManager 这是AvalonDock中的核心控件，它将包含的窗格排序，处理飞出的窗格，还有浮动的窗口。在上面这个图中，DockingManager 对象包含了所有空间（WPF控件），从顶部的工具栏到底部的状态栏都算。同时。DockingManager 也可以处理保存和恢复布局。
 LayoutPanel 这个面板用来管理在一个方向上的子窗口（通过Orientation属性来选择方向），并且在它们之间添加了一个大小调节控件，在一个Orientation属性是Horizontal（水平）的LayoutPanel 上，排列了三个窗格。一个LayoutAnchorablePane在左，一个LayoutDocumentPane在中间。一个LayoutDockablePane在右边。
-LayoutDockablePane 这个布局元素包含一个LayoutAnchorable对象的集合。通过它用来管理想TabControl这样的控件，在上面的截图中，LayoutDockablePanes是在左边的'Strumenti&amp;rsquo; 和 &amp;lsquo;Progetti&amp;rsquo; (工具和项目) 和在右边的'Classi&amp;rsquo; 和 &amp;lsquo;Proprieta&amp;rsquo;&amp;rsquo; (类视图和属性视图)的容器，一个LayoutDockablePane可以自动隐藏，就像'Errori&amp;rsquo;(错误)和'Lista Azioni&amp;rsquo;(操作列表) and &amp;lsquo;Uscita&amp;rsquo;(输出)。并且LayoutDockablePane可以被拖动到DockingManager上，成为一个浮动窗口或者附着到它的父控件DockingManager的边缘上。
+LayoutDockablePane 这个布局元素包含一个LayoutAnchorable对象的集合。通过它用来管理想TabControl这样的控件，在上面的截图中，LayoutDockablePanes是在左边的&amp;rsquo;Strumenti' 和 &amp;lsquo;Progetti&amp;rsquo; (工具和项目) 和在右边的&amp;rsquo;Classi' 和 &amp;lsquo;Proprieta&amp;rsquo;' (类视图和属性视图)的容器，一个LayoutDockablePane可以自动隐藏，就像&amp;rsquo;Errori'(错误)和&amp;rsquo;Lista Azioni'(操作列表) and &amp;lsquo;Uscita&amp;rsquo;(输出)。并且LayoutDockablePane可以被拖动到DockingManager上，成为一个浮动窗口或者附着到它的父控件DockingManager的边缘上。
 LayoutDocumentPane 通常包含文档（DocumentContent类型）的一种窗格，但是其实也可以包含像上面提到的工具视图和类视图这样的DockableContents。在一个文档里。LayoutDocumentPane 被放置在ResizingPanel（水平方向）里。ResizingPanel则是上卖弄提到的在两个DockablePane中间的区域。注意。文档窗格是不能被移动的。
 LayoutAnchorable 一个停靠内容，是软件控件的容器，总是被包含在一个窗格里（LayoutAnchorablePane或是LayoutDocumentPane），在截图里。LayoutAnchorable是一类对象（包含一个SharpDevelop对象），工具对象，但是错误窗口（它处于自动隐藏状态，被好办在一个自动隐藏窗格里）不是。LayoutAnchorable就像它名字所暗示的那样。可以被从他的容器窗格里拖走。然后重新放置在一个存在的窗格里。或者是放置在父DockingManager的边缘，或者是放置在一个浮动窗口里（LayoutAnchorableFloatingWindow）。
-LayoutDocument 是一个仅可以被寄宿到LayoutDocumentPane的内容。它是一个特殊的内容，因为不能被停靠到边缘。仅能被放置到LayoutDocumentPane里。或者浮动在一个LayoutDocumentFloatingWindow窗口里。在途中，DocumentContent对象是program.cs&amp;rsquo; 或 &amp;lsquo;MainForm.cs&amp;rsquo; 文件视图
+LayoutDocument 是一个仅可以被寄宿到LayoutDocumentPane的内容。它是一个特殊的内容，因为不能被停靠到边缘。仅能被放置到LayoutDocumentPane里。或者浮动在一个LayoutDocumentFloatingWindow窗口里。在途中，DocumentContent对象是program.cs' 或 &amp;lsquo;MainForm.cs&amp;rsquo; 文件视图
 **LayoutFloatingWindow **，是一个包含内容的窗口，当被拖动到一个DockingManager上面的时候，LayoutFloatingWindow（LayoutAnchorableFloatingWindow和LayoutDocumentFloatingWindow继承自他）集成在Window，总是包含一个窗格（LayoutAnchorablePane或是LayoutDocumentPane），窗格包含更多的内容（LayoutAnchorable或LayoutDocument），当用户对一个内容或是DockablePane执行拖拽，或者直接手工使用代码调用LayoutContent.Float()方法 LayoutFloatingWindow就被直接从DockingManager创建出来了。
 LayoutPane 一个基类，LayoutDockablePane和LayoutDocumentPane继承自它。它为他们提供了一些共有的属性和方法。
 LayoutContent 是LayoutAnchorable 和LayoutAnchorable类的父类。提供了共有的属性和方法。
@@ -940,7 +967,9 @@ YouTubeDownloader Class(youtube下载类)
 许可 本文，包括源代码和文件，在CPOL下授权。
 原文地址：Visual-Studio-Add-in-Troubleshooting-Error-Number 著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</description></item><item><title>WPF毛玻璃效果Demo和一个问题</title><link>http://leaver.me/2012/09/24/wpf%E6%AF%9B%E7%8E%BB%E7%92%83%E6%95%88%E6%9E%9Cdemo%E5%92%8C%E4%B8%80%E4%B8%AA%E9%97%AE%E9%A2%98/</link><pubDate>Mon, 24 Sep 2012 08:04:25 +0000</pubDate><guid>http://leaver.me/2012/09/24/wpf%E6%AF%9B%E7%8E%BB%E7%92%83%E6%95%88%E6%9E%9Cdemo%E5%92%8C%E4%B8%80%E4%B8%AA%E9%97%AE%E9%A2%98/</guid><description>那天看到WPF书上讲的毛玻璃效果，就去找了下效果。。忘了例子是从哪发现得了。。先看下效果，
 但是这不是重点，作者给出的代码有一个设计时错误。。错误提示为： 无法将类型为“Microsoft.Expression.Platform.WPF.InstanceBuilders.WindowInstance”的对象强制转换为类型“System.Windows.Window”，，
-　中文搜了一下。没有发现有人解决过。目测。。。然后又拿英文搜了下。几经辗转。。终于是解决了。。原文在Unable to cast XAML error。其实就是将原作者这个函数修改如下的</description></item><item><title>.net显示网络连接状态图标</title><link>http://leaver.me/2012/09/24/.net%E6%98%BE%E7%A4%BA%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E7%8A%B6%E6%80%81%E5%9B%BE%E6%A0%87/</link><pubDate>Mon, 24 Sep 2012 08:04:02 +0000</pubDate><guid>http://leaver.me/2012/09/24/.net%E6%98%BE%E7%A4%BA%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E7%8A%B6%E6%80%81%E5%9B%BE%E6%A0%87/</guid><description>效果图：
+　中文搜了一下。没有发现有人解决过。目测。。。然后又拿英文搜了下。几经辗转。。终于是解决了。。原文在Unable to cast XAML error。其实就是将原作者这个函数修改如下的
+　也就是验证了一下转换是否成功。
+下载：修改后的RGSamples</description></item><item><title>.net显示网络连接状态图标</title><link>http://leaver.me/2012/09/24/.net%E6%98%BE%E7%A4%BA%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E7%8A%B6%E6%80%81%E5%9B%BE%E6%A0%87/</link><pubDate>Mon, 24 Sep 2012 08:04:02 +0000</pubDate><guid>http://leaver.me/2012/09/24/.net%E6%98%BE%E7%A4%BA%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E7%8A%B6%E6%80%81%E5%9B%BE%E6%A0%87/</guid><description>效果图：
 介绍 　越来越多的软件要通过连接互联网来执行一些业务层的业务操作，比如调用web services服务，获取数据等等。 通常你可能希望知道当前你的网络连接是不是真的连上了，当然有很多种方法可以做到，比如，你可以查看System.Net 命名空间中的NetworkInterface 的状态，但是有这以太网连接并不表示你的连接真的可以用。 本文将会展示一种方法，该方法在程序的状态栏StatusStrip 显示一个简单的图标来指示是不是真的连接到了互联网。
 使用代码 　最简单的我们会想到使用一个Timer来进行http-get请求来判断一个特定的网页是否可用。
 　当然这种方法下，我们最应该考虑的就是请求不能阻塞UI线程，因此，我将使用一个BackgroundWorker 对象来进行get请求，BackgroundWorker 对象声明了DoWork方法。该方法定义了一个事件句柄，该句柄传递一个DoWorkEventArgs 类来将事件的处理结果返回到UI线程，因此，你不必与任何的UI元素进行交互，因为它运行在一个独立的线程里。
@@ -1118,7 +1147,7 @@ WCF服务调用的两种典型方式
 　Q3: What are the biggest challenges your team are facing right now?
 　如果面试官开始谈论一些具体的技术问题，这很好；如果他的回答是项目时间紧迫，或者需要更多的资金，那你就要小心一点了，公司管理上面可能有问题。
 问题四：什么新技术（编程语言）是你们未来希望采用的？
-　Q4: What technologies/languages would you like to see your team adapt to that aren't currently being utilised?
+　Q4: What technologies/languages would you like to see your team adapt to that aren&amp;rsquo;t currently being utilised?
 　如果你申请的是技术职位，面试官恰巧又是技术负责人，那么这个问题将会非常合适。你会对公司的技术路线有所了解和准备，一旦入职，就能更好地适应公司的需要。
 问题五：在业务方面，有没有什么地方是你们不满意的，未来想要改进的？
 　Q5: Few companies, if any, are 100% satisfied with the way their business is operating. If you could simply flick a switch to fix it, what one thing would you change?
@@ -1158,8 +1187,9 @@ WCF服务调用的两种典型方式
 不知什么原因，第一种方法我没有调用成功。第二种调用成功。欢迎讨论。</description></item><item><title>北外英语专业超全面翻译笔记PDF下载</title><link>http://leaver.me/2012/08/05/%E5%8C%97%E5%A4%96%E8%8B%B1%E8%AF%AD%E4%B8%93%E4%B8%9A%E8%B6%85%E5%85%A8%E9%9D%A2%E7%BF%BB%E8%AF%91%E7%AC%94%E8%AE%B0pdf%E4%B8%8B%E8%BD%BD/</link><pubDate>Sun, 05 Aug 2012 18:34:08 +0000</pubDate><guid>http://leaver.me/2012/08/05/%E5%8C%97%E5%A4%96%E8%8B%B1%E8%AF%AD%E4%B8%93%E4%B8%9A%E8%B6%85%E5%85%A8%E9%9D%A2%E7%BF%BB%E8%AF%91%E7%AC%94%E8%AE%B0pdf%E4%B8%8B%E8%BD%BD/</guid><description>今天在网上看到的。就自己制作了一下pdf版本。方便大家。现在比较纠结的是没有一个好网盘。115竟然需要登录才能下载了。。刚才试了下。。更可怕的是，，只有绑定了手机才能分享。霖枫叔疯了么。。
 那还是将就着用华为的吧。其实我也不喜欢华为的。。
 下载地址：北外英语专业超全面翻译笔记</description></item><item><title>WPF实现控件拖动效果</title><link>http://leaver.me/2012/07/27/wpf%E5%AE%9E%E7%8E%B0%E6%8E%A7%E4%BB%B6%E6%8B%96%E5%8A%A8%E6%95%88%E6%9E%9C/</link><pubDate>Fri, 27 Jul 2012 07:18:40 +0000</pubDate><guid>http://leaver.me/2012/07/27/wpf%E5%AE%9E%E7%8E%B0%E6%8E%A7%E4%BB%B6%E6%8B%96%E5%8A%A8%E6%95%88%E6%9E%9C/</guid><description>首先很简单，当然是去添加两个控件了，这里我添加了两个控件，都是label，然后我想实现的是将label1拖动到label2上的时候，label1的内容会被复制到label2上。
-需要注意的代码是label1中的MouseDown事件。和label2中的AllowDrop =&amp;quot;True&amp;rdquo; Drop=&amp;quot;tagert_drop&amp;rdquo;
-然后对应的处理事件</description></item><item><title>未能加载文件或程序集“App_Web_xxxx”</title><link>http://leaver.me/2012/07/14/%E6%9C%AA%E8%83%BD%E5%8A%A0%E8%BD%BD%E6%96%87%E4%BB%B6%E6%88%96%E7%A8%8B%E5%BA%8F%E9%9B%86app_web_xxxx/</link><pubDate>Sat, 14 Jul 2012 23:18:13 +0000</pubDate><guid>http://leaver.me/2012/07/14/%E6%9C%AA%E8%83%BD%E5%8A%A0%E8%BD%BD%E6%96%87%E4%BB%B6%E6%88%96%E7%A8%8B%E5%BA%8F%E9%9B%86app_web_xxxx/</guid><description>今天在用WCF写服务的时候，服务一直连不上，直接查看svc文件，发现如下错误 未能加载文件或程序集“&amp;lsquo;App_Web_****, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null&amp;rdquo;,****是一个随机字符串。
+需要注意的代码是label1中的MouseDown事件。和label2中的AllowDrop =&amp;ldquo;True&amp;rdquo; Drop=&amp;ldquo;tagert_drop&amp;rdquo;
+然后对应的处理事件
+其他的效果可以仿照这个来做。比如拖动以后的效果可以DragDropEffects来设置。。</description></item><item><title>未能加载文件或程序集“App_Web_xxxx”</title><link>http://leaver.me/2012/07/14/%E6%9C%AA%E8%83%BD%E5%8A%A0%E8%BD%BD%E6%96%87%E4%BB%B6%E6%88%96%E7%A8%8B%E5%BA%8F%E9%9B%86app_web_xxxx/</link><pubDate>Sat, 14 Jul 2012 23:18:13 +0000</pubDate><guid>http://leaver.me/2012/07/14/%E6%9C%AA%E8%83%BD%E5%8A%A0%E8%BD%BD%E6%96%87%E4%BB%B6%E6%88%96%E7%A8%8B%E5%BA%8F%E9%9B%86app_web_xxxx/</guid><description>今天在用WCF写服务的时候，服务一直连不上，直接查看svc文件，发现如下错误 未能加载文件或程序集“&amp;lsquo;App_Web_****, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null&amp;quot;,****是一个随机字符串。
 解决方法中：
 　在web.config里配置成这样子：
 　就好了。中午和下午一直在搞javascript连接WCF的demo，总算是晚上搞定了，，还是老样子，，最大的体会就是很多东西就是看着简单，写起来会有各种各样的问题，比如这次，即使照着微软的官方文档来，也会有错误。动手才是王道，不管做什么。这几天忙完了，写篇文章出来。
@@ -1169,7 +1199,7 @@ WCF服务调用的两种典型方式
 什么是抽象类？ 　抽象类提供多个派生类共享基类的公共定义，它既可以提供抽象方法，也可以提供非抽象方法。抽象类不能实例化，必须通过继承由派生类实现其抽象方法，因此对抽象类不能使用new关键字，也不能被密封。如果派生类没有实现所有的抽象方法，则该派生类也必须声明为抽象类。另外，实现抽象方法由override方法来实现。
 比较 相同点 都不能被直接实例化，都可以通过继承实现其抽象方法。 都是面向抽象编程的技术基础，实现了诸多的设计模式。 不同点 接口支持多继承；抽象类不能实现多继承。 接口只能定义抽象规则；抽象类既可以定义规则，还可能提供已实现的成员。 接口是一组行为规范；抽象类是一个不完全的类，着重族的概念。 接口可以用于支持回调；抽象类不能实现回调，因为继承不支持。 接口只包含方法、属性、索引器、事件的签名，但不能定义字段和包含实现的方法；抽象类可以定义字段、属性、包含有实现的方法。 接口可以作用于值类型和引用类型；抽象类只能作用于引用类型。例如，Struct就可以继承接口，而不能继承类。 规则与场合 请记住，面向对象思想的一个最重要的原则就是：面向接口编程。 借助接口和抽象类，23个设计模式中的很多思想被巧妙的实现了，精髓就是面向抽象编程，通过封装变化来实现实体之间的关系。 抽象类应主要用于关系密切的对象，而接口最适合为不相关的类提供通用功能。 接口着重于CAN-DO关系类型，而抽象类则偏重于IS-A式的关系； 接口多定义对象的行为；抽象类多定义对象的属性； 接口定义可以使用public、protected、internal 和private修饰符，但是几乎所有的接口都定义为public，另外方法的访问级别不能低于接口的访问级别，否则可能导致编译错误。 “接口不变”，是应该考虑的重要因素。所以，在由接口增加扩展时，应该增加新的接口，而不能更改现有接口。 尽量将接口设计成功能单一的功能块，以.NET Framework为例，IDisposable、IDisposable、IComparable、IEquatable、IEnumerable等都只包含一个公共方法。 接口名称前面的大写字母“I”是一个约定，正如字段名以下划线开头一样，请坚持这些原则。 在接口中，所有的方法都默认为public。 如果预计会出现版本问题，可以创建“抽象类”。而向接口中添加新成员则会强制要求修改所有派生类，并重新编译，所以版本式的问题最好以抽象类来实现。 从抽象类派生的非抽象类必须包括继承的所有抽象方法和抽象访问器的实实现。 对抽象类不能使用new关键字，也不能被密封，原因是抽象类不能被实例化。 在抽象方法声明中不能使用 static 或 virtual 修饰符。 最后还是要勤于键盘，才能深入理解啊。 参考：对抽象编程：接口和抽象类
  </description></item><item><title>C#中的字符串驻留</title><link>http://leaver.me/2012/07/08/c#%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%A9%BB%E7%95%99/</link><pubDate>Sun, 08 Jul 2012 20:57:11 +0000</pubDate><guid>http://leaver.me/2012/07/08/c#%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%A9%BB%E7%95%99/</guid><description>字符串string可以理解为char[]，他是一个引用类型。
-字符串创建 操作上类似于int，char等类型，直接进行赋值，string str=&amp;quot;bystander&amp;rdquo;;虽然string 是个类，但是如果你天真的使用
+字符串创建 操作上类似于int，char等类型，直接进行赋值，string str=&amp;ldquo;bystander&amp;rdquo;;虽然string 是个类，但是如果你天真的使用
 来构造，会导致一个编译错误。因为System.String只提供了数个接受Char*，Char[]类型参数的构造函数。 所以只能像下面这样使用，
 看出来了吧，很麻烦的。所以一般还是使用第一种。
 字符串恒定性 恒定性(Immutability)，是指字符串一经创建，就不可改变，这是String最为重要的特性之一。具体来说，就是字符串一旦创建，就会在托管堆上分配一块连续的内存空间，我们对其的任何改变都不会影响到原有的String对象，而是重新创建的新的String对象。类似Insert，Substring，ToUpper都只是创建出了新的临时的字符串，会成为下次垃圾回收的目标。 好处：
@@ -1177,14 +1207,17 @@ WCF服务调用的两种典型方式
 通过下面这个例子来说明：
 猜猜答案是什么。。 正确答案是：True，False，True 为什么不是我们通常认为的那样呢。这就是因为字符串驻留了
 缘起 String类型的特性恒定性，对字符串的任何操作都只会创建新的字符串，这会导致性能下降，而String又用的很频繁，为此，CLR使用字符串驻留来解决这一问题。为此，CLR内部维护一个哈希表，来管理其创建的大部分string对象。其中Key为string本身，Value为分配给对应的string的内存地址。
-细节 　CLR初始化时，创建一个空的哈希表，当JIT编译方法的时候，会首先在哈希表中查找每一个字符串常量，显然找不到任何&amp;quot;bystander&amp;quot;变量，因此会在托管堆中创建一个新的string对系那个strA，并更新哈希表，Key被赋值为&amp;quot;bystander&amp;rdquo;,Value被赋值为strA的引用.也就是Value内保留了&amp;quot;bystander&amp;quot;在托管堆中的引用地址.
+细节 　CLR初始化时，创建一个空的哈希表，当JIT编译方法的时候，会首先在哈希表中查找每一个字符串常量，显然找不到任何&amp;quot;bystander&amp;quot;变量，因此会在托管堆中创建一个新的string对系那个strA，并更新哈希表，Key被赋值为&amp;quot;bystander&amp;quot;,Value被赋值为strA的引用.也就是Value内保留了&amp;quot;bystander&amp;quot;在托管堆中的引用地址.
 　接着,JIT根据&amp;quot;bystander&amp;quot;查找哈希表,结果找到了,所以JIT不做操作,只把找到的key对应的Value值赋给了strB对象.因此,第一个输出为true,引用相等.
-　同样,JIT向哈希表中添加了Key为&amp;quot;by&amp;rdquo;,Value为托管堆上&amp;quot;by&amp;quot;的地址.返回strC对象.但是注意,strD不同,JIT不检测,因为strD他是动态生成的.这样的字符串不会被添加到哈希表中进行维护,而是在托管堆中直接分配,所以第二个Console输出False.
+　同样,JIT向哈希表中添加了Key为&amp;quot;by&amp;quot;,Value为托管堆上&amp;quot;by&amp;quot;的地址.返回strC对象.但是注意,strD不同,JIT不检测,因为strD他是动态生成的.这样的字符串不会被添加到哈希表中进行维护,而是在托管堆中直接分配,所以第二个Console输出False.
 　对于第三个,我们首先看看Intern方法和IsInterned方法,对于动态生成的字符串,因为没有添加到CLR维护的哈希表,所以字符串驻留机制对其失效,但是可以手工开启,来实现高效的比较字符串相等.
 　两者的机制都是去哈希表中查找是否存在str字符串,找到的话也都返回对str的引用,不同的是当哈希表中没有str的话,IsInterned返回null,而Intern将把这个字符串添加到哈希表,并返回引用.注意,IsInterned返回非null并不代表两个字符串引用了相同的地址. 所以
 就很好理解了.</description></item><item><title>C#中XML和二进制的序列化</title><link>http://leaver.me/2012/07/07/c#%E4%B8%ADxml%E5%92%8C%E4%BA%8C%E8%BF%9B%E5%88%B6%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96/</link><pubDate>Sat, 07 Jul 2012 18:30:23 +0000</pubDate><guid>http://leaver.me/2012/07/07/c#%E4%B8%ADxml%E5%92%8C%E4%BA%8C%E8%BF%9B%E5%88%B6%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96/</guid><description>看书的时候，看到的。然后感觉书上的写的不清楚，于是自己写了一下。还真的有问题。 要进行序列化和反序列化，首先要定义一个可以序列化的类，方法是在类的声明前加上特性 [Serializable] 定义了一个简单的用户类，需要注意的是私有字段是不能序列化的，只有公有字段和公有属性才可以。如下
+注意，书上有个例子没有给出默认的构造函数，实际测试时如果没有默认构造函数，是不能执行xml序列化的。注意。
+然后就导入需要的命名空间。 需要导入
 分贝对应文件操作，二进制序列化和xml序列化
-为了方便，我封装了四个静态函数，用于实现序列化和反序列化。</description></item><item><title>Unable to read file Data_EGCITest解决方法</title><link>http://leaver.me/2012/07/03/unable-to-read-file-data_egcitest%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</link><pubDate>Tue, 03 Jul 2012 19:50:19 +0000</pubDate><guid>http://leaver.me/2012/07/03/unable-to-read-file-data_egcitest%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</guid><description>今天做的是使用matlab进行协整检验，好吧。。听起来似乎很厉害的样子，其实，我也不太清楚协整到底是干嘛呢。不过经管的各位很给力。 想来协整检验matlab是可以做的。所以就去查matlab是不是有这个函数，结果是有的。egcitest，但是具体的参数还是景观的朋友看懂的。
+为了方便，我封装了四个静态函数，用于实现序列化和反序列化。
+代码比较简单。 最后是一个简单的测试。</description></item><item><title>Unable to read file Data_EGCITest解决方法</title><link>http://leaver.me/2012/07/03/unable-to-read-file-data_egcitest%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</link><pubDate>Tue, 03 Jul 2012 19:50:19 +0000</pubDate><guid>http://leaver.me/2012/07/03/unable-to-read-file-data_egcitest%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</guid><description>今天做的是使用matlab进行协整检验，好吧。。听起来似乎很厉害的样子，其实，我也不太清楚协整到底是干嘛呢。不过经管的各位很给力。 想来协整检验matlab是可以做的。所以就去查matlab是不是有这个函数，结果是有的。egcitest，但是具体的参数还是景观的朋友看懂的。
 　早上3点多起床，看matlab的书，然后早上看完了。基本上熟悉了matlab的操作。然后就开始写这个。大致的流程和昨天的那篇文章是一致的。但是matlab生成的dll文件在C#里面调用始终会提示这样一个错误。：
 　组合了几个关键字进行搜索，发现了这篇文章，翻译过来很简单。
 　错误提示说的那个Data_EGCITest是一个名为Data_EGCITest.mat的文件，位于$MATLABROOT/toolbox/econ/econ/Data_EGCITest.mat目录下，$MATLABROOT指的是你matlab的安装路径。在你build 工程的时候，在下图中，记得添加这个文件。
@@ -1203,6 +1236,7 @@ MATLAB端的工作 　以我这个功能为例。打开MatLab，然后File-&amp;
 　创建一个test方法。该方法在C#调用的时候要用到，接受一个参数，然后输出一个幻方。保存关闭m文件，然后回到上图，双击test.prj也就是工程文件。 来到图4 点击Add Class，就是向test.dll的程序集中添加类。我添加了一个类叫做Func1.这个类用来在C#中创建一个对象，然后调用test（n）这个函数，然后出现Add Files，点击打开浏览框，把刚才写好的test.m选上。就可以了 最后看窗口右上角，，点击那个build图标就ok，等个几分钟，就会在目录里生成test.dll文件了。图5
 VS端的代码 　现在，打开vs，创建C#工程，添加两个引用，分别是MWArray.dll和test.dll，添加引用的方法就是在解决方案资源管理器中，的引用上，点击，然后添加引用-&amp;gt;浏览-&amp;gt;找到这两个dll，为了方便，我一般会把这两个dll复制到我的C#工程目录里，然后添加引用，如前面所说，MWArray.dll里有两个命名空间，我们使用using语句都添加上。也包括生成的test.dll
 　然后设计C#界面，很简单的拖一个界面，图6 然后单击事件代码：
+　看到test有两个参数，第一个参数是指返回结果书，我们只需要一个就好了。所以为1，后面那个是阶数了。运行结果如图7：
 　注意程序在初始化自定义类Func1时会花费较多时间，大约持续2~3秒钟，程序如同假死一般，但第二次点击按钮反应却很快. 参考： http://www.360doc.com/content/12/0530/10/9587654_214689438.shtml</description></item><item><title>C＃中的is和as</title><link>http://leaver.me/2012/07/01/c%E4%B8%AD%E7%9A%84is%E5%92%8Cas/</link><pubDate>Sun, 01 Jul 2012 05:52:09 +0000</pubDate><guid>http://leaver.me/2012/07/01/c%E4%B8%AD%E7%9A%84is%E5%92%8Cas/</guid><description>is和as都是用作类型转换的，类型转换包括显示转换和隐式转换，在.NET中类型转换的基本规则如下：
 基本规则 任何类型都可以安全的转换为其基类类型，可以由隐式转换来完成； 任何类型转换为其派生类型时，必须进行显示转换，转换的规则是：（类型名）对象名； 使用GetType可以取得任何对象的精确类型； 基本类型可以使用Covert类实现类型转换； 除了string以外的其他类型都有Parse方法，用于将字符串类型转换为对应的基本类型； 值类型和引用类型的转换机制称为装箱（boxing）和拆箱（unboxing）。 is和as操作符，是C#中用于类型转换的，提供了对类型兼容性的判断，从而使得类型转换控制在安全的范畴，提供了灵活的类型转换控制。 is的模式如下： 检查对象类型的兼容性，并返回结果，true或者false； 不会抛出异常； 如果对象为null，则返回值永远为false。 使用很简单，用于条件判断中. 举例：
  as的模式如下： 检查对象类型的兼容性，并返回转换结果，如果不兼容就返回null； 不会抛出异常； 如果结果判断为空，则强制执行类型转换将抛出NullReferenceException异常。 as必须和引用类型一起使用 举例：
@@ -1249,7 +1283,18 @@ const，readonly和static readonly定义的常量，一旦初始值指定，（�
 http://www.cnblogs.com/KissKnife/archive/2006/10/02/520116.html
 http://allancandy.cnblogs.com/archive/2005/09/01/227814.html</description></item><item><title>FreeAnony-代理采集设置工具</title><link>http://leaver.me/2012/06/17/freeanony-%E4%BB%A3%E7%90%86%E9%87%87%E9%9B%86%E8%AE%BE%E7%BD%AE%E5%B7%A5%E5%85%B7/</link><pubDate>Sun, 17 Jun 2012 20:10:05 +0000</pubDate><guid>http://leaver.me/2012/06/17/freeanony-%E4%BB%A3%E7%90%86%E9%87%87%E9%9B%86%E8%AE%BE%E7%BD%AE%E5%B7%A5%E5%85%B7/</guid><description>这个名字确实有点不太好。。因为刚开始我想到这个工具是在今天早上看到一个别人的代理工具的时候，突然想做的，没有好好规化，结果后来代码越写越多。。不过收获很大。
 先看界面，因为是简单实现一下，所以就不要吐槽界面了。。
-刚开始想的思路就是先去一个经常发布代理IP的网页去采集。然后解析成一条条的信息。然后显示出来。中途遇到几个问题，一个就是在做代理验证的时候，没有用多线程，导致直接界面无响应。另一个就是DataGridView控件要实现对一个数组的绑定，需要的一个实体对象。</description></item><item><title>属性文法</title><link>http://leaver.me/2012/06/08/%E5%B1%9E%E6%80%A7%E6%96%87%E6%B3%95/</link><pubDate>Fri, 08 Jun 2012 21:31:13 +0000</pubDate><guid>http://leaver.me/2012/06/08/%E5%B1%9E%E6%80%A7%E6%96%87%E6%B3%95/</guid><description>　我们知道，许多编译程序采用属性文法和语法制导翻译方法对语义处理工作进行比较规范和抽象的描述。
+刚开始想的思路就是先去一个经常发布代理IP的网页去采集。然后解析成一条条的信息。然后显示出来。中途遇到几个问题，一个就是在做代理验证的时候，没有用多线程，导致直接界面无响应。另一个就是DataGridView控件要实现对一个数组的绑定，需要的一个实体对象。
+这部分就是先得到网页源码，然后通过IndexOf和LastIndexOf定位到ip组的位置。这是通过分析源码来确定参数的。最后通过 标签分割成字符数组。数组元素类似于112.25.12.37:80@HTTP;江苏省 移动，然后就是继续分割成一部分，构造了一个IPEntity的数组。在按钮中绑定到DataGridView中即可 IPEntity类的定义如下：这里面设置了一个status属性，用于后面代理验证的时候进行标记。
+然后是验证ip可用性的部分。这部分主要的代码是验证DataGridView中的ip地址可用性
+但是实际运行后就知道，会出现界面无响应。因为长时间的网络访问。为此，在按钮的单击事件中，使用简单的线程后台来操作
+然后其实就没什么了。至于后面的设置iE代理不过就是对注册表的操作了
+不好的地方希望大家指正。因为只是一个简单的原型。完成我想的功能。所以不必过分苛求。关键的代码就是上面的了。 项目源码下载：FreeAnony 参考： http://blog.csdn.net/cisso/article/details/4467188
+http://www.blogjava.net/aoneany/articles/281344.html
+http://www.cnblogs.com/server-you/archive/2006/09/20/509342.html
+http://topic.csdn.net/u/20090514/01/82749a36-ffef-4da5-a607-260dccbad84b.html
+http://www.haogongju.net/art/1485280
+http://developer.51cto.com/art/200903/115200.htm
+http://qianshao.blog.51cto.com/935360/201782</description></item><item><title>属性文法</title><link>http://leaver.me/2012/06/08/%E5%B1%9E%E6%80%A7%E6%96%87%E6%B3%95/</link><pubDate>Fri, 08 Jun 2012 21:31:13 +0000</pubDate><guid>http://leaver.me/2012/06/08/%E5%B1%9E%E6%80%A7%E6%96%87%E6%B3%95/</guid><description>　我们知道，许多编译程序采用属性文法和语法制导翻译方法对语义处理工作进行比较规范和抽象的描述。
 　而一个属性文法包含一个上下文无关文法和一系列文法规则，语义规则是指：对于文法的每个产生式都配备了一组属性的计算规则
 　语义规则附在文法的每个产生式上，而语法制导翻译是指在语法分析过程中，完成附加在所使用的产生式上的语义规则描述的动作。
 　·语法制导：基于语法分析中用到的文法产生式
@@ -1294,15 +1339,15 @@ http://allancandy.cnblogs.com/archive/2005/09/01/227814.html</description></item
 1.Many Usability Aspects Identified in HE are Confirmed in Think-Aloud Usability Tests 许多可用性方面的问题可以在HE中识别。然后在Think Aloud测试中被确认。
 2.When HE Predictions are not Confirmed by Think-Aloud Usability Tests 当HE预测了问题但是Think Aloud中，并没有发现。这种情况下。请相信Think Aloud测试。因为用户是王道。数据比预测更准确。
 3.&amp;ldquo;False Alarms&amp;rdquo; vs. True Problems 假警告vs真问题，这个举个例子，在对话框中，有三个按钮。OK ，Apply和Cancel ，虽然HE规则预测了这个迷惑性。但是进行Think Aloud测试的时候，并没有这个问题，原因是用户就没想过这个事，他只按ok，但这并不能避免问题，或者说似乎这个问题并不是个问题，还有一种情况，比如HE规则中的文档帮助的问题，可能用户在测试的时候就没打开文档。这就需要HE来评估了。所以，这种情况下，还是应该好好分析一下HE给出的评估来改进系统。
-4.Think-Aloud Usability Tests Can Show Things HEs Can't Show Think Aloud测试可以展示HE没有发现的问题。
+4.Think-Aloud Usability Tests Can Show Things HEs Can&amp;rsquo;t Show Think Aloud测试可以展示HE没有发现的问题。
 HE规则因为是建立在早期草稿原型上的。并不是真实情况，他只是在早期给出设计上的问题，他不能预测真实系统的问题，比如程序运行速度非常慢，以至于用户难以忍受。这就需要Think Aloud才能发现了。
  基本上SSD4就讲了这么些东西了。四篇文章四点写到7点。。基本上算是写完了。工科男求安慰。。</description></item><item><title>Think-Aloud 可用性测试介绍</title><link>http://leaver.me/2012/05/29/think-aloud-%E5%8F%AF%E7%94%A8%E6%80%A7%E6%B5%8B%E8%AF%95%E4%BB%8B%E7%BB%8D/</link><pubDate>Tue, 29 May 2012 09:10:22 +0000</pubDate><guid>http://leaver.me/2012/05/29/think-aloud-%E5%8F%AF%E7%94%A8%E6%80%A7%E6%B5%8B%E8%AF%95%E4%BB%8B%E7%BB%8D/</guid><description>中文是指出声思考：出声思考。可用性测试中常用也很有用的一个数据收集方法，来改善产品。要求被测试者把在测试过程中即时的把自己的想法大声说出来。比如，你说我不知道干什么，这个好像有点问题，等等。然后有人来记录。
 SSD4给出的具体步骤翻译添加解释如下：
-Define the study's framework, 定义该测试报告的框架。比如系统准备解决什么问题，适合什么类型的用户，希望评估首次使用还是其他什么，希望最终的目标是什么，比如希望90%的用户可以初次顺利使用。 Choose what to observe, 选择打算观察测试者的什么行为，比如用户如何打开，先干了什么 Prepare for the think-aloud usability test, 为测试做准备，比如模拟真实情景，写个流程。开个会，招募实验人员。 Introduce the participants to the observation procedure, 给实验人员介绍步骤。抚慰一下他们的情绪。告诉他们目的，并且希望他们think aloud。 Conduct the observation, 进行观察 Analyze the observation, 分析观察结果 。 Find possible redesigns, 找到可能需要进行重新设计的地方 Write a report. 写个总结报告出来。完成 这不也就这样嘛。</description></item><item><title>UAR报告的简单说明</title><link>http://leaver.me/2012/05/29/uar%E6%8A%A5%E5%91%8A%E7%9A%84%E7%AE%80%E5%8D%95%E8%AF%B4%E6%98%8E/</link><pubDate>Tue, 29 May 2012 08:15:43 +0000</pubDate><guid>http://leaver.me/2012/05/29/uar%E6%8A%A5%E5%91%8A%E7%9A%84%E7%AE%80%E5%8D%95%E8%AF%B4%E6%98%8E/</guid><description>UAR报告由以下几个部分构成。就这个例子简单说一下。 Example UAR — Time Zone ListBox Is Not Good //标题 UAR Identifier //问题编号，从1开始，每个问题都这样的格式来说明，就构成了UAR报告 HE18—Problem //后面这个problem表示有问题，也可以是Good，表示这部分很好。没问题。
+Define the study&amp;rsquo;s framework, 定义该测试报告的框架。比如系统准备解决什么问题，适合什么类型的用户，希望评估首次使用还是其他什么，希望最终的目标是什么，比如希望90%的用户可以初次顺利使用。 Choose what to observe, 选择打算观察测试者的什么行为，比如用户如何打开，先干了什么 Prepare for the think-aloud usability test, 为测试做准备，比如模拟真实情景，写个流程。开个会，招募实验人员。 Introduce the participants to the observation procedure, 给实验人员介绍步骤。抚慰一下他们的情绪。告诉他们目的，并且希望他们think aloud。 Conduct the observation, 进行观察 Analyze the observation, 分析观察结果 。 Find possible redesigns, 找到可能需要进行重新设计的地方 Write a report. 写个总结报告出来。完成 这不也就这样嘛。</description></item><item><title>UAR报告的简单说明</title><link>http://leaver.me/2012/05/29/uar%E6%8A%A5%E5%91%8A%E7%9A%84%E7%AE%80%E5%8D%95%E8%AF%B4%E6%98%8E/</link><pubDate>Tue, 29 May 2012 08:15:43 +0000</pubDate><guid>http://leaver.me/2012/05/29/uar%E6%8A%A5%E5%91%8A%E7%9A%84%E7%AE%80%E5%8D%95%E8%AF%B4%E6%98%8E/</guid><description>UAR报告由以下几个部分构成。就这个例子简单说一下。 Example UAR — Time Zone ListBox Is Not Good //标题 UAR Identifier //问题编号，从1开始，每个问题都这样的格式来说明，就构成了UAR报告 HE18—Problem //后面这个problem表示有问题，也可以是Good，表示这部分很好。没问题。
 Succinct description: //简短的描述 Time Zone pull-down ListBox provides too much irrelevant information.
 Evidence for the aspect: //违反了哪条规则，共有十条规则。 Heuristic: Aesthetics and minimalist design
 **Interface aspect: **
-The pull-down ListBox has 50 lines of information—in very small font. There are many competing items of information to visually search, the vast majority of which are irrelevant to any one user's particular task of finding a single desired time zone
+The pull-down ListBox has 50 lines of information—in very small font. There are many competing items of information to visually search, the vast majority of which are irrelevant to any one user&amp;rsquo;s particular task of finding a single desired time zone
  The presentation of this structured information violates the aesthetics and minimalist design heuristic because the structure is not preserved visually from item to item. For example, the words are not always lined up vertically; see the entries for:
 [GMT -01:00] Azores, Cape Verdi Is.[GMT] Greenwich Mean Time; Dublin, Edinburgh, London, Lisbon[GMT] Monrovia, Casablanca[GMT +01:00] Berlin, Stockholm, Rome, Bern, Brussels, ViennaExplanation of the aspect: //详细解释，说明问题 There are about 30 distinct time zones in the world (one for each of the regular 24 hours, plus several others either with offsets that include an additional half hour or that follow daylight savings time differently than neighboring zones).</description></item><item><title>10条可用性准则（Heuristics）</title><link>http://leaver.me/2012/05/29/10%E6%9D%A1%E5%8F%AF%E7%94%A8%E6%80%A7%E5%87%86%E5%88%99heuristics/</link><pubDate>Tue, 29 May 2012 06:52:48 +0000</pubDate><guid>http://leaver.me/2012/05/29/10%E6%9D%A1%E5%8F%AF%E7%94%A8%E6%80%A7%E5%87%86%E5%88%99heuristics/</guid><description>SSD4第二单元其实就讲了这么一点东西，包括一点VB的控件常识
 可用性测试（Usability testing），是一项通过用户的使用来评估产品的技术，由于它反应了用户的真实使用经验，所以可以视为一种不可或缺的可用性检验过程[1]。也就是说，可用性测试是指让用户使用产品（服务）的设计原型或者成品，通过观察，记录和分析用户的行为和感受，以改善产品（服务）可用性的一系列方法。它适用于产品（服务）前期设计开发，中期改进和后期维护完善的各个阶段，是用户中心设计的思想的重要体现。
@@ -1311,7 +1356,7 @@ The pull-down ListBox has 50 lines of information—in very small font. There ar
 The system should always keep users informed about what is going on, through appropriate feedback within reasonable time.
 系统应该始终在合理的时间以适当的反馈信息让用户知道系统正在做什么。
 2.Match between system and the real world——系统和现实世界之间的吻合
-The system should speak the users&amp;rsquo; language, with words, phrases and concepts familiar to the user, rather than system-oriented terms. Follow real-world conventions, making information appear in a natural and logical order.
+The system should speak the users' language, with words, phrases and concepts familiar to the user, rather than system-oriented terms. Follow real-world conventions, making information appear in a natural and logical order.
 系统应该用用户熟悉的词，短语和概念来说用户的语言，而不是用面向系统的术语。遵循现实世界中的惯例，让信息以自然的合乎逻辑的次序展现在用户面前。
 3.User control and freedom——用户控制和自由
 Users often choose system functions by mistake and will need a clearly marked &amp;ldquo;emergency exit&amp;rdquo; to leave the unwanted state without having to go through an extended dialogue. Support undo and redo.
@@ -1320,12 +1365,12 @@ Users often choose system functions by mistake and will need a clearly marked &a
 Users should not have to wonder whether different words, situations, or actions mean the same thing.</description></item><item><title>快速排序算法</title><link>http://leaver.me/2012/05/19/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</link><pubDate>Sat, 19 May 2012 09:04:40 +0000</pubDate><guid>http://leaver.me/2012/05/19/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</guid><description/></item><item><title>LR(0)和SLR分析表的构造</title><link>http://leaver.me/2012/05/13/lr0%E5%92%8Cslr%E5%88%86%E6%9E%90%E8%A1%A8%E7%9A%84%E6%9E%84%E9%80%A0/</link><pubDate>Sun, 13 May 2012 10:45:13 +0000</pubDate><guid>http://leaver.me/2012/05/13/lr0%E5%92%8Cslr%E5%88%86%E6%9E%90%E8%A1%A8%E7%9A%84%E6%9E%84%E9%80%A0/</guid><description>上篇文章中，我已经说到了，LR(0)分析表是LR(0)分析器的重要组成部分，它是总控程序分析动作的依据，他是由LR(0)项目集规范族来进行构造的。他的结构主要有两个部分ACTION 和GOTO
 　先看看指导原则，可以直接跳过，看例题的时候可以返回来对照参考。
 　假设已构造出LR(0)项目集规范族为：C={I0,I1, … , In}，其中Ik为项目集的名字，k为状态名，令包含S′→·S项目的集合Ik的下标k为分析器的初始状态。那么分析表的ACTION表和GOTO表构造步骤为：
-　① 若项目A→α·aβ属于Ik且转换函数GO(Ik,a)= Ij，当a为终结符时则置ACTION[k,a]为Sj。　② 若项目A→α· 属于Ik，则对任何终结符a 和&amp;rsquo;#&amp;lsquo;号置ACTION[k,a]和ACTION[k,#]为&amp;quot;rj&amp;rdquo;，j为在文法G′中某产生式A→α的序号。 ③ 若GO(Ik,A)＝Ij，则置GOTO[k,A]为&amp;quot;j&amp;rdquo;，其中A为非终结符。　④ 若项目S′→S·属于Ik，则置ACTION[k,#]为&amp;quot;acc&amp;rdquo;，表示接受。 ⑤ 凡不能用上述方法填入的分析表的元素，均应填上&amp;quot;报错标志&amp;rdquo;。为了表的清晰我们仅用空白表示错误标志。
+　① 若项目A→α·aβ属于Ik且转换函数GO(Ik,a)= Ij，当a为终结符时则置ACTION[k,a]为Sj。　② 若项目A→α· 属于Ik，则对任何终结符a 和'#&amp;lsquo;号置ACTION[k,a]和ACTION[k,#]为&amp;quot;rj&amp;quot;，j为在文法G′中某产生式A→α的序号。 ③ 若GO(Ik,A)＝Ij，则置GOTO[k,A]为&amp;quot;j&amp;quot;，其中A为非终结符。　④ 若项目S′→S·属于Ik，则置ACTION[k,#]为&amp;quot;acc&amp;quot;，表示接受。 ⑤ 凡不能用上述方法填入的分析表的元素，均应填上&amp;quot;报错标志&amp;quot;。为了表的清晰我们仅用空白表示错误标志。
 　上篇文章的例题是这样的：LR（0）项目集规范簇也已经算出来了，共有6个I，从I0-I5，最终构造的LR(0)的分析表共7行，包括标题行，也就是ACTION和GOTO，然后是状态行，状态行和ACTION的交处分割成三列，分别是终结符号，和#终结符。也就是分割多少列取决于终结符的数目，GOTO列是非终结符，分割多少列也取决于非终结符的数目。，然后就是具体的6个状态了，画出表的结构后，如下，先不用管表的内容怎么写。
 　
 　然后对照构造原则来填写表，这时你会发现要一个个从那么多的GO函数和I项目组中找对应的式子实在太难了，看不清楚，这时候，我们用GO函数把LR(0)项目集规范族连成一个识别该文法所产生的活前缀的DFA，有点像流程图了，首先把各个I项目画出来，然后需要把他们的关系表示出来，关系由GO函数确定，比如I5=GO(I2, S)，则在I2和I5之间画一个箭头，由I2指向I5，线上写上S，由括号里的第二个值确定，此题构造的DFA如下图，很简单吧。
 　
-　然后我们正式开始吧。第一条指导规则说到， 若项目A→α·aβ属于Ik且转换函数GO(Ik,a)= Ij，当a为终结符时则置ACTION[k,a]为Sj，我们先考察对于I0，发现S-&amp;gt;·aS属于I0，且GO(I0,a)=I1,所有我们ACTION[0,a]置为S1.同理S-&amp;gt;·bS属于I0，GO(I0,b)=I2，所以ACTION[0,b]置为S2。　再来看第二条规则，若项目A→α· 属于Ik，则对任何终结符a 和&amp;rsquo;#&amp;lsquo;号置ACTION[k,a]和ACTION[k,#]为&amp;quot;rj&amp;rdquo;，j为在文法G′中某产生式A→α的序号，也就是说这里的j可不是I项目的标号，而是增广文法
+　然后我们正式开始吧。第一条指导规则说到， 若项目A→α·aβ属于Ik且转换函数GO(Ik,a)= Ij，当a为终结符时则置ACTION[k,a]为Sj，我们先考察对于I0，发现S-&amp;gt;·aS属于I0，且GO(I0,a)=I1,所有我们ACTION[0,a]置为S1.同理S-&amp;gt;·bS属于I0，GO(I0,b)=I2，所以ACTION[0,b]置为S2。　再来看第二条规则，若项目A→α· 属于Ik，则对任何终结符a 和&amp;rsquo;#&amp;lsquo;号置ACTION[k,a]和ACTION[k,#]为&amp;quot;rj&amp;quot;，j为在文法G′中某产生式A→α的序号，也就是说这里的j可不是I项目的标号，而是增广文法
 　(0)S’→S　(1)S→aS　(2)S→bS (3)S→a
 　的标号，从0-3啦。我们考察I1，发现S→·aS属于I1，且GO(I1,a)=I1，所以应该置1和a的交的格子为S1，但是此时运用第二条规则会发现S-&amp;gt;a·也属于I1，则又应该置ACTION[1,a]为=r3，ACTION[1,#]为r3，这样就发生了冲突。这是因为大多数文法不能满足LR(0)文法的条件，对于此冲突，我们不能确定看到S-&amp;gt;a的时候是规约还是移进，有些文法是可以直接构造的，为此，此处不能够早LR(0)分析表了，我们构造经过改进后得到了一种新的SLR(1)文法，并没有什么太大差别，主要就是解决冲突。
 　解决冲突的指导原则如下：
@@ -1334,8 +1379,8 @@ Users should not have to wonder whether different words, situations, or actions 
 　即存在移进-归约冲突和归约-归约冲突
 　* 如果FOLLOW（A）∩ FOLLOW（B）∩ {b} =ф，则可以如下来解决冲突（假设当前符号是 a ）：　1、若 a = b，则移进 2、若 a∈ FOLLOW（A），则用产生式 A → γ归约　3、若 a∈ FOLLOW（B），则用产生式 B → δ归约　4、否则，报错
 　此处的冲突发生时，当前符号是a，并且此时项目集中无B推导式，且指导规则中的b在此处其实是S-&amp;gt;.aS中的a，所以计算Follow(S)∩ {a} ，发现为空，所以可以解决冲突，因为此时，当前符号是a，此处规则中的b也是a，所以，移进，也就是置ACTION[1,a]为=S1，运用分析表的ACTION表和GOTO表构造步骤的第一步，而不是置为r3，所以冲突解决。
-　然后再看构造步骤中的第三步，若GO(Ik,A)＝Ij，则置GOTO[k,A]为&amp;quot;j&amp;rdquo;，其中A为非终结符。此题中，只有S为非终结符，看DFA中的I0，发现GO(I0,S)＝I3，所以置GOTO[0,S]为3，ok
-　第四个步骤，若项目S′→S·属于Ik，则置ACTION[k,#]为&amp;quot;acc&amp;rdquo;，很简单，DFA中，I3符合，所以置ACTION[3,#]为&amp;quot;acc&amp;rdquo;。到此解释完了
+　然后再看构造步骤中的第三步，若GO(Ik,A)＝Ij，则置GOTO[k,A]为&amp;quot;j&amp;quot;，其中A为非终结符。此题中，只有S为非终结符，看DFA中的I0，发现GO(I0,S)＝I3，所以置GOTO[0,S]为3，ok
+　第四个步骤，若项目S′→S·属于Ik，则置ACTION[k,#]为&amp;quot;acc&amp;quot;，很简单，DFA中，I3符合，所以置ACTION[3,#]为&amp;quot;acc&amp;quot;。到此解释完了
 　反复运用，直到填完表。
 　完成后的表如图一所示。太复杂了。脑子烧糊了都，下篇有机会的话介绍如何使用来进行分析。其实剩下的部分不怎么难了。应该可以看得懂了
 　参考：
@@ -1368,11 +1413,11 @@ Users should not have to wonder whether different words, situations, or actions 
 　开始拿个例题来说明，定义没例题看起来看难了。
 　例题：对于下列文法，S→aS|bS|a，构造该文法的LR(0)项目集规范族
 　思路就是利用闭包函数CLOSURE和转换函数GO来构造。通过计算函数CLOSURE和GO得到文法的LR(0)项目集规范族，而GO函数则把LR(0)项目集规范族连成一个识别该文法所产生的活前缀的DFA。DFA大家都知道，有穷自动机。
-　(1)将文法G(S)拓广为G(S’)也就是该文法的增广文法，目的是使语法分析器知道何时应该停止并接受该串，也就是说当使用S&amp;rsquo;-&amp;gt;S进行规约的时候，就结束。
+　(1)将文法G(S)拓广为G(S’)也就是该文法的增广文法，目的是使语法分析器知道何时应该停止并接受该串，也就是说当使用S'-&amp;gt;S进行规约的时候，就结束。
 　(0)S’→S (1)S→aS　(2)S→bS　(3)S→a
 　构造该文法的LR(0)项目集规范族，I就是产生式，至于I0 I1就是往下递增就可以了。没什么特别的意思。：
-　I0=CLOSURE({S&amp;rsquo; →•S})={S’ →•S, S→•aS, S→•bS, S→•a}
-　//第一条是固定的，都是求S&amp;rsquo; →•S的闭包。而因为右侧的S又可以推导出后面三个，所以后面三个式子是属于该闭包的。在闭包的规则中可以看出，若A→α·Bβ属于CLOSURE(I)，此时S&amp;rsquo; →•S属于闭包，S相当于规则中的B,则每一形如B→·γ的项目也属于CLOSURE(I),此处相当于S-&amp;gt;后面的三个推导式。加上.就可以了
+　I0=CLOSURE({S' →•S})={S’ →•S, S→•aS, S→•bS, S→•a}
+　//第一条是固定的，都是求S' →•S的闭包。而因为右侧的S又可以推导出后面三个，所以后面三个式子是属于该闭包的。在闭包的规则中可以看出，若A→α·Bβ属于CLOSURE(I)，此时S' →•S属于闭包，S相当于规则中的B,则每一形如B→·γ的项目也属于CLOSURE(I),此处相当于S-&amp;gt;后面的三个推导式。加上.就可以了
 　I1=GO( I0 , a)=CLOSURE({S→a•S , S→a•})={S→a•S , S→a• , S→•aS, S→•bS, S→•a }
 　//第二条你可能已经看出来了，其实就是把转换函数GO反过来用，在GO函数中，X为一文法符号，J＝{任何形如A→αX·β的项目| A→α·Xβ属于I}。也就是在I0中，找到右侧包含a的项目，然后将.右移一位来求他们的闭包函数，此处，I0中包含.a的项目为 S→•aS和 S→•a，.右移一位变成S→a•S , S→a•，求闭包函数的规则和上面那条是一样的，继续找推导式右边可以推导出来的式子就可以了，此处，右边同样是S可以推导出三个式子，前面加上.就可以了。
 　I2=GO(I0 , b)=CLOSURE({S→b•S })={ S→b•S, S→•aS, S→•bS, S→•a }
@@ -1468,7 +1513,7 @@ Users should not have to wonder whether different words, situations, or actions 
 　A知道自己发送邮件给了B1、B2，并且抄送给了C1、C2，密送给了D1、D2。这相当于废话。。自己肯定知道自己给谁发了。　B1知道这封是A发送给B1、B2的邮件，并且抄送给了C1、C2、但不知道密送给了D1、D2。To的人能看到抄送，看不到密送　C1知道这封是A发送给B1、B2的邮件，并且抄送给了C1、C2，但不知道密送给了D1、D2。抄送的人看不到密送。　D1知道这封是A发送给B1、B2的邮件，并且抄送给了C1、C2，而且密送给了自己，但不知道密送给了D2。 密送的人权限比较大，可以看到最多的情况，但依然看不到密送
 　具体的用法呢，一句话就是：一般抄送和密送是为了备份，知会，或者监督跟踪的作用。
 　我先举个例子。有些个朋友过节什么的喜欢群发邮件。或是一些什么网页之类的。有这个心是好的。可是。对于收到的人来说，一看到是群发的。直接可能都删掉了。所以此时可以使用密送功能。对应于上面说的最后一种情况。具体使用时在To里写上自己的地址，这样邮件会发给自己。密送栏里写上其他人的邮件，这样就同时密送给其他人，并且每个人都会只看到发给自己。起码有看下去的心情。
-　邮件在工作中用的非常多，美国人总结的中国人典型特征中有一条，“即使面对面坐着，也不直接交谈而要使用邮件。”而这在很多外企之中是非常流行的文化，和总部打交道，邮件往往是最快捷和便宜的方式，&amp;rdquo;
+　邮件在工作中用的非常多，美国人总结的中国人典型特征中有一条，“即使面对面坐着，也不直接交谈而要使用邮件。”而这在很多外企之中是非常流行的文化，和总部打交道，邮件往往是最快捷和便宜的方式，&amp;quot;
 　说到抄送，简直是所有邮件灾难故事最有力的协助者。同事之间常有抄送行为，有时是为了工作方便，同事A同时将一封邮件抄送给B和C，只能说明他们之间需要互相协作完成一件事情，但如果A将邮件发送给了B，却抄送给了B的老板C，那意味就深远了，通常有可能的情况是，A和B在合作的过程中发生了一些不愉快，告知老板的目的只是为了给对方一些震慑，这一招在各大公司当中都屡试不爽，而且往往成为一件悬而不决的事情得到解决的最快速手段。
 　抄送更多时候只是手段，而不是最终目的。看到一个某人A与其他部门同事B合作时发生的插曲，在某次急需同事B提供某文件支持时，B不慌不忙地一直以各种借口拖延工作，A忍无可忍，发了一封紧急邮件，同时抄送了B部门的领导和自己的领导，在这样一封邮件下，B在十分钟之内就将所需文件以附件形式传了过来，并回复了原邮件中的所有人。
 　如果你看了觉得真麻烦。其实。最有效的交流就是面对面，但是在职场中这是最有效地证明你自己干过什么的工具，一旦出了什么问题，最容易发现在哪个环节出现了问题，该由谁承担什么样的责任。如果遇到打官司这样的严重情况，邮件甚至能够作为呈堂证供。

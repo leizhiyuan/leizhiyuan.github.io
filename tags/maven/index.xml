@@ -94,7 +94,14 @@ http://search.maven.org/#browse
 看起来是这样的
  注意啊，虽然这个是新的中央仓库，但有时候还是会从_“**http://repo1.maven.org/maven/**_这个旧仓库下载东西，不过不要紧，理解就行了
 三.远程仓库(Remote Respository) 在Maven中，当你在pom.xml中生命的依赖既不在本地库，也不在中央库的时候，就会报错。
-1.例子 org.jvnet.localizer这个包仅在java.net的仓库里有(以前是，现在中央仓库也有了。但理解就行)</description></item><item><title>Maven安装教程</title><link>http://leaver.me/2013/09/19/maven%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/</link><pubDate>Thu, 19 Sep 2013 21:15:09 +0000</pubDate><guid>http://leaver.me/2013/09/19/maven%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/</guid><description>Maven不需要作为服务组件安装到windows上，仅仅需要下载，解压，然后配置一下环境变量就行了
+1.例子 org.jvnet.localizer这个包仅在java.net的仓库里有(以前是，现在中央仓库也有了。但理解就行)
+当我们build的时候，会失败，并输出未找到错误信息
+2.声明java.net仓库 为了告诉Maven从远程仓库里获取依赖，我们需要声明一个远程仓库，在pom.xml里这样写
+这样，Maven搜索依赖的顺序就是：
+1）搜索本地仓库，没有找到，就去第2步，否则退出
+2）搜索中央仓库，没有找到，就去第3步，否则退出
+3）去java.net远程仓库获取，没有找到，就报错，否则退出
+补充：JBoss也有个远程仓库，可以如下配置：</description></item><item><title>Maven安装教程</title><link>http://leaver.me/2013/09/19/maven%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/</link><pubDate>Thu, 19 Sep 2013 21:15:09 +0000</pubDate><guid>http://leaver.me/2013/09/19/maven%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/</guid><description>Maven不需要作为服务组件安装到windows上，仅仅需要下载，解压，然后配置一下环境变量就行了
 1.JDK和JAVA_HOME 确保JDK已经安装，同时JAVA_HOME变量已经添加到了windows环境变量里，指向jdk目录
  2.下载Maven 去Maven主页,选个版本，点击下载
 3.解压 解压下载的zip文件，重命名，比如我放到D盘的Maven目录

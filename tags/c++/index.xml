@@ -57,6 +57,7 @@ A B
 貌似本题来源自&amp;lt;**The C Puzzle Book&amp;gt; ，**搜狗也只是换了一下字符串，直接看题吧
 &amp;lt;span style=&amp;quot;font-family: Georgia, 'Times New Roman', 'Bitstream Charter', Times, serif; font-size: 13px; line-height: 19px;&amp;quot;&amp;gt;请写出程序的执行结果....&amp;lt;/span&amp;gt;
 首先从左到右看：
+*c[] 是一个字符，因此，c[]是指向该字符，c就是一个数组（数组的内容为指向字符的指针），c已经被初始化了.
 再看第二行，**cp[]是一个字符，*cp[]就是一个指针，指向该字符，cp[]就是一个指针，指向该指针，而cp就成为了指针数组，内容是指向字符的指针的指针。并且通过c的元素进行了初始化
 第三行，***cpp是一个字符，**cpp指向该字符，*cpp指向该指针，cpp就指向该字符的指针的指针.
 然后我画一张图表示初始的情况看看
@@ -93,9 +94,9 @@ QuickUnion的实现
 于是，研制人员想了个办法解决这个问题，就是在每行后面加两个表示结束的字符。一个叫做“回车”，告诉打字机把打印头定位在左边界；另一个叫做“换行”，告诉打字机把纸向下移一行（这句的意思是把纸向上拉，然后打印头就定位到了下一行），可以想象一下，这个打印头只能在一个固定的水平线上左右移动，而不能上下移动，我们通过移动纸来完成打印下一行。
 不明白的我在youtube上找到一个这种打字机的演示视频，为了方便读者观看，我提供一个下载地址。
 后来，计算机发明了，这两个概念也就被般到了计算机上。那时，存储器很贵，一些科学家认为在每行结尾加两个字符太浪费了，加一个就可以。于是，就出现了分歧。
-Unix系统里，每行结尾只有&amp;rdquo;&amp;lt;换行&amp;gt;&amp;quot;，即&amp;rdquo;\n&amp;rdquo;；
-Windows系统里面，每行结尾是&amp;rdquo;&amp;lt;换行&amp;gt;&amp;lt;回车&amp;gt;&amp;quot;，即&amp;rdquo;\n\r&amp;rdquo;；
-Mac系统里，每行结尾是&amp;rdquo;&amp;lt;回车&amp;gt;&amp;quot;，不过mac基于unix，所以换行也应该是可以的。
+Unix系统里，每行结尾只有&amp;quot;&amp;lt;换行&amp;gt;&amp;quot;，即&amp;quot;\n&amp;quot;；
+Windows系统里面，每行结尾是&amp;quot;&amp;lt;换行&amp;gt;&amp;lt;回车&amp;gt;&amp;quot;，即&amp;quot;\n\r&amp;quot;；
+Mac系统里，每行结尾是&amp;quot;&amp;lt;回车&amp;gt;&amp;quot;，不过mac基于unix，所以换行也应该是可以的。
 一个直接后果是，Unix/Mac系统下的文件在Windows里打开的话，所有文字会变成一行；而Windows里的文件在Unix/Mac下打开的话，在每行的结尾可能会多出一个^M符号。这个如果你在windows下使用vim也会发现这个情况
 用C++来说明
 如：

@@ -13,7 +13,7 @@
 8. 同功能函数替换Substring()可以用mid(),substr()这些函数来替换，都是用来取字符串的某一位字符的。 Ascii()编码可以用hex(),bin(),也就是16进制和二进制编码替换 Benchmark() 可以用sleep()来替换，这两个使用在基于延时的盲注中，有机会给大家介绍 如果连这些都屏蔽了，还有一种新的方法
 9. 盲注无需or和and比如有这样一个注入点：
 10. 加括号11.缓冲区溢出绕过刚刚写着把这个给忘了。这个是从国外一个博客看到的。</description></item><item><title>php的一些知识点</title><link>http://leaver.me/2012/04/17/php%E7%9A%84%E4%B8%80%E4%BA%9B%E7%9F%A5%E8%AF%86%E7%82%B9/</link><pubDate>Tue, 17 Apr 2012 17:37:18 +0000</pubDate><guid>http://leaver.me/2012/04/17/php%E7%9A%84%E4%B8%80%E4%BA%9B%E7%9F%A5%E8%AF%86%E7%82%B9/</guid><description>一.php中单双引号的区别
-&amp;quot;&amp;rdquo; 双引号里面的字段会经过编译器解释，然后再当作HTML代码输出。 '&amp;rsquo; 单引号里面的不进行解释，直接输出。 从字面意思上就可以看出，单引号比双引号要快了。单引号支持'和\的转义，但其他一些转义字符就必须是在双引号里了。 例如： 二.require和include的区别 在于，出现错误时，require是error,也就是说脚本会停止执行，而include是warning。也就说说代码会继续执行，另外，无论require的位置如何。即使是放在一个if代码块里面。他也会将指定文件包含进来。。即使该if部分不执行。顺带说下include 和include_once。其实类似于c里面的ifdef。。就是只包含一次。不重复包含。
+&amp;quot;&amp;quot; 双引号里面的字段会经过编译器解释，然后再当作HTML代码输出。 '' 单引号里面的不进行解释，直接输出。 从字面意思上就可以看出，单引号比双引号要快了。单引号支持'和\的转义，但其他一些转义字符就必须是在双引号里了。 例如： 二.require和include的区别 在于，出现错误时，require是error,也就是说脚本会停止执行，而include是warning。也就说说代码会继续执行，另外，无论require的位置如何。即使是放在一个if代码块里面。他也会将指定文件包含进来。。即使该if部分不执行。顺带说下include 和include_once。其实类似于c里面的ifdef。。就是只包含一次。不重复包含。
 三。php类 php类的构造函数命名为_construct.析构函数为_destruct，需要调用父类的构造函数时，使用parent::_construct()来调用
 四。pear包 PEAR是&amp;quot;PHP Extension and Application Repository&amp;quot;的缩写，也就是一个PHP扩展和应用的管理工具， 具体可参考：http://www.berlinix.com/php_pear.html
 五。PDO PDO(PHP Data Objects)扩展为PHP访问数据库定义了一个轻量级的、一致性的接口，它提供了一个数据访问抽象层，这样，无论使用什么数据库，都可以通过一致的函数执行查询和获取数据。PDO随PHP5.1发行，在PHP5.0的PECL扩展中也可以使用。其实就是一个访问数据库的一个类，连数据库的时候实例一个。调用方法就这样。前提是这个装好了。 linux下具体可以参考：LINUX下手动安装PDO_MYSQL window下和例子（例子也可以在linux下使用）参考此文：PHP5中PDO的简单使用

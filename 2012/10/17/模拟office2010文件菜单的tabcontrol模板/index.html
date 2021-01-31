@@ -5,7 +5,23 @@
 为了改变TabControl的显示效果。我们使用模板机制，我们把模板写进一个资源字典里。这样就可以重用了。添加一个资源字典的步骤如下
 右键点击工程-添加-资源字典
 然后在资源字典里添加一些代码。
+ 这样就添加了一个有一个grid元素的名为OfficeTabControl的控件模板 . Grid 被分成两列，一列是标签页，一列是页内容。左边的列包含一个灰色背景和亮灰色的边缘线，然后一个StackPanel，IsItemsHost属性被设置为true，
+这样标签项被会放在这个栈面板里。第二列是ContentPresenter 这会放置标签页内容。然后让我们前面的TabControl使用新模板。设置Template 属性。
+ 在这之前，先把资源字典加到窗体的Reesouce里。然后再设置。然后运行软件。效果会有一些不一样。
+
+然后要修改左侧单个标签的显示效果。通过改变模板来实现。给模板添加如下的代码
+  然后再运行
+
+VisualState很有意思。我们可以放在Grid里。然后设置正常状态和鼠标悬停的状态。
+为了添加鼠标悬停效果，我们添加两个Borders元素。一个右边缘是灰线，另一个用在背景上。亮蓝色放在上下边缘
  之后，我们为VisualState创建故事板，一个是正常状态。会使得hoverShape的透明度为0.另一个是鼠标悬停的状态。透明度会变成1
+ 之后效果如下
+
+然后添加选中项的样式，在hoverShape 下面再添加一个Border，名字是buttonShape。通过这个我们给被选中项的上下边缘添加2个像素的黑蓝色边缘，
+在 Expression Blend中打开, 使用钢笔工具绘制个你想要的路径形状即可。然后把生成的xaml代码拷些过来。
+
+也可以直接用我的代码。。不顾我说过要怎么做了。
+最终看起来应该是这样的。
  当你运行的时候你会发现没什么变化。我们还要定义被选中标签的VisualState
 当添加如下代码的时候 添加一个VisualState组。也就是 SelectionStates ，然后给选中/为选中的状态添加行为/故事板。.这里通过修改透明度来实现一些效果
  现在再运行会发现效果更好了
@@ -16,14 +32,30 @@
 源代码地址： [downloadicon href=http://pan.baidu.com/share/link?shareid=85332&amp;amp;uk=1493685990]OfficeTab.7z[/downloadicon]
 许可
 本文包括源代码和文件在CPOL下授权
-著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！"><meta name=generator content="Hugo 0.62.2"><link rel=canonical href=http://leaver.me/2012/10/17/%E6%A8%A1%E6%8B%9Foffice2010%E6%96%87%E4%BB%B6%E8%8F%9C%E5%8D%95%E7%9A%84tabcontrol%E6%A8%A1%E6%9D%BF/><link rel=icon href=/favicon.ico><link rel=stylesheet href=/sass/jane.min.0995afa14b62cd93e93cfc066b646c4c17a3eddca0e9d52a1d9dcf5d90aaacd3.css integrity="sha256-CZWvoUtizZPpPPwGa2RsTBej7dyg6dUqHZ3PXZCqrNM=" media=screen crossorigin=anonymous><meta property="og:title" content="模拟Office2010文件菜单的TabControl模板"><meta property="og:description" content="这是Office2010中的文件菜单点开后的效果。本文我将以强大的WPF来实现类似的效果。希望你能有所收获。而不是只拷贝/粘贴代码而已。
+著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！"><meta name=generator content="Hugo 0.79.1"><link rel=canonical href=http://leaver.me/2012/10/17/%E6%A8%A1%E6%8B%9Foffice2010%E6%96%87%E4%BB%B6%E8%8F%9C%E5%8D%95%E7%9A%84tabcontrol%E6%A8%A1%E6%9D%BF/><link rel=icon href=/favicon.ico><link rel=stylesheet href=/sass/jane.min.fa3d941d1d0e0ddc985804227feabffea55c89883eb0af34e0532a7ae9135151.css integrity="sha256-+j2UHR0ODdyYWAQif+q//qVciYg+sK804FMqeukTUVE=" media=screen crossorigin=anonymous><meta property="og:title" content="模拟Office2010文件菜单的TabControl模板"><meta property="og:description" content="这是Office2010中的文件菜单点开后的效果。本文我将以强大的WPF来实现类似的效果。希望你能有所收获。而不是只拷贝/粘贴代码而已。
  开始之前。先把TabControl找个地方放着。
  然后会大概是这个效果
 
 为了改变TabControl的显示效果。我们使用模板机制，我们把模板写进一个资源字典里。这样就可以重用了。添加一个资源字典的步骤如下
 右键点击工程-添加-资源字典
 然后在资源字典里添加一些代码。
+ 这样就添加了一个有一个grid元素的名为OfficeTabControl的控件模板 . Grid 被分成两列，一列是标签页，一列是页内容。左边的列包含一个灰色背景和亮灰色的边缘线，然后一个StackPanel，IsItemsHost属性被设置为true，
+这样标签项被会放在这个栈面板里。第二列是ContentPresenter 这会放置标签页内容。然后让我们前面的TabControl使用新模板。设置Template 属性。
+ 在这之前，先把资源字典加到窗体的Reesouce里。然后再设置。然后运行软件。效果会有一些不一样。
+
+然后要修改左侧单个标签的显示效果。通过改变模板来实现。给模板添加如下的代码
+  然后再运行
+
+VisualState很有意思。我们可以放在Grid里。然后设置正常状态和鼠标悬停的状态。
+为了添加鼠标悬停效果，我们添加两个Borders元素。一个右边缘是灰线，另一个用在背景上。亮蓝色放在上下边缘
  之后，我们为VisualState创建故事板，一个是正常状态。会使得hoverShape的透明度为0.另一个是鼠标悬停的状态。透明度会变成1
+ 之后效果如下
+
+然后添加选中项的样式，在hoverShape 下面再添加一个Border，名字是buttonShape。通过这个我们给被选中项的上下边缘添加2个像素的黑蓝色边缘，
+在 Expression Blend中打开, 使用钢笔工具绘制个你想要的路径形状即可。然后把生成的xaml代码拷些过来。
+
+也可以直接用我的代码。。不顾我说过要怎么做了。
+最终看起来应该是这样的。
  当你运行的时候你会发现没什么变化。我们还要定义被选中标签的VisualState
 当添加如下代码的时候 添加一个VisualState组。也就是 SelectionStates ，然后给选中/为选中的状态添加行为/故事板。.这里通过修改透明度来实现一些效果
  现在再运行会发现效果更好了
@@ -41,7 +73,23 @@
 为了改变TabControl的显示效果。我们使用模板机制，我们把模板写进一个资源字典里。这样就可以重用了。添加一个资源字典的步骤如下
 右键点击工程-添加-资源字典
 然后在资源字典里添加一些代码。
+ 这样就添加了一个有一个grid元素的名为OfficeTabControl的控件模板 . Grid 被分成两列，一列是标签页，一列是页内容。左边的列包含一个灰色背景和亮灰色的边缘线，然后一个StackPanel，IsItemsHost属性被设置为true，
+这样标签项被会放在这个栈面板里。第二列是ContentPresenter 这会放置标签页内容。然后让我们前面的TabControl使用新模板。设置Template 属性。
+ 在这之前，先把资源字典加到窗体的Reesouce里。然后再设置。然后运行软件。效果会有一些不一样。
+
+然后要修改左侧单个标签的显示效果。通过改变模板来实现。给模板添加如下的代码
+  然后再运行
+
+VisualState很有意思。我们可以放在Grid里。然后设置正常状态和鼠标悬停的状态。
+为了添加鼠标悬停效果，我们添加两个Borders元素。一个右边缘是灰线，另一个用在背景上。亮蓝色放在上下边缘
  之后，我们为VisualState创建故事板，一个是正常状态。会使得hoverShape的透明度为0.另一个是鼠标悬停的状态。透明度会变成1
+ 之后效果如下
+
+然后添加选中项的样式，在hoverShape 下面再添加一个Border，名字是buttonShape。通过这个我们给被选中项的上下边缘添加2个像素的黑蓝色边缘，
+在 Expression Blend中打开, 使用钢笔工具绘制个你想要的路径形状即可。然后把生成的xaml代码拷些过来。
+
+也可以直接用我的代码。。不顾我说过要怎么做了。
+最终看起来应该是这样的。
  当你运行的时候你会发现没什么变化。我们还要定义被选中标签的VisualState
 当添加如下代码的时候 添加一个VisualState组。也就是 SelectionStates ，然后给选中/为选中的状态添加行为/故事板。.这里通过修改透明度来实现一些效果
  现在再运行会发现效果更好了
@@ -52,14 +100,30 @@
 源代码地址： [downloadicon href=http://pan.baidu.com/share/link?shareid=85332&uk=1493685990]OfficeTab.7z[/downloadicon]
 许可
 本文包括源代码和文件在CPOL下授权
-著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！"><meta itemprop=datePublished content="2012-10-17T10:00:24+00:00"><meta itemprop=dateModified content="2012-10-17T10:00:24+00:00"><meta itemprop=wordCount content="22"><meta itemprop=keywords content="C＃,WPF,大学,总结,翻译,软件,"><meta name=twitter:card content="summary"><meta name=twitter:title content="模拟Office2010文件菜单的TabControl模板"><meta name=twitter:description content="这是Office2010中的文件菜单点开后的效果。本文我将以强大的WPF来实现类似的效果。希望你能有所收获。而不是只拷贝/粘贴代码而已。
+著作权声明：本文由http://leaver.me 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！"><meta itemprop=datePublished content="2012-10-17T10:00:24+00:00"><meta itemprop=dateModified content="2012-10-17T10:00:24+00:00"><meta itemprop=wordCount content="43"><meta itemprop=keywords content="C＃,WPF,大学,总结,翻译,软件,"><meta name=twitter:card content="summary"><meta name=twitter:title content="模拟Office2010文件菜单的TabControl模板"><meta name=twitter:description content="这是Office2010中的文件菜单点开后的效果。本文我将以强大的WPF来实现类似的效果。希望你能有所收获。而不是只拷贝/粘贴代码而已。
  开始之前。先把TabControl找个地方放着。
  然后会大概是这个效果
 
 为了改变TabControl的显示效果。我们使用模板机制，我们把模板写进一个资源字典里。这样就可以重用了。添加一个资源字典的步骤如下
 右键点击工程-添加-资源字典
 然后在资源字典里添加一些代码。
+ 这样就添加了一个有一个grid元素的名为OfficeTabControl的控件模板 . Grid 被分成两列，一列是标签页，一列是页内容。左边的列包含一个灰色背景和亮灰色的边缘线，然后一个StackPanel，IsItemsHost属性被设置为true，
+这样标签项被会放在这个栈面板里。第二列是ContentPresenter 这会放置标签页内容。然后让我们前面的TabControl使用新模板。设置Template 属性。
+ 在这之前，先把资源字典加到窗体的Reesouce里。然后再设置。然后运行软件。效果会有一些不一样。
+
+然后要修改左侧单个标签的显示效果。通过改变模板来实现。给模板添加如下的代码
+  然后再运行
+
+VisualState很有意思。我们可以放在Grid里。然后设置正常状态和鼠标悬停的状态。
+为了添加鼠标悬停效果，我们添加两个Borders元素。一个右边缘是灰线，另一个用在背景上。亮蓝色放在上下边缘
  之后，我们为VisualState创建故事板，一个是正常状态。会使得hoverShape的透明度为0.另一个是鼠标悬停的状态。透明度会变成1
+ 之后效果如下
+
+然后添加选中项的样式，在hoverShape 下面再添加一个Border，名字是buttonShape。通过这个我们给被选中项的上下边缘添加2个像素的黑蓝色边缘，
+在 Expression Blend中打开, 使用钢笔工具绘制个你想要的路径形状即可。然后把生成的xaml代码拷些过来。
+
+也可以直接用我的代码。。不顾我说过要怎么做了。
+最终看起来应该是这样的。
  当你运行的时候你会发现没什么变化。我们还要定义被选中标签的VisualState
 当添加如下代码的时候 添加一个VisualState组。也就是 SelectionStates ，然后给选中/为选中的状态添加行为/故事板。.这里通过修改透明度来实现一些效果
  现在再运行会发现效果更好了
@@ -74,8 +138,8 @@
 <button class="pswp__button pswp__button--share" title=Share></button>
 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
 <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
-<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header id=header class="header container"><div class=logo-wrapper><a href=/ class=logo>bystander's blog</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=http://leaver.me/>主页</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/post/>归档</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/tags/>标签</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/categories/>目录</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/about/>关于我</a></li></ul></nav></header><div id=mobile-panel><main id=main class="main bg-llight"><div class=content-wrapper><div id=content class="content container"><article class="post bg-white"><header class=post-header><h1 class=post-title>模拟Office2010文件菜单的TabControl模板</h1><div class=post-meta><time datetime=2012-10-17 class=post-time>2012-10-17</time><div class=post-category><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/>我的翻译</a></div><span class=more-meta>约 22 字</span>
-<span class=more-meta>预计阅读 1 分钟</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>文章目录</h2><div class=post-toc-content><nav id=TableOfContents></nav></div></div><div class=post-content><p><a href=http://leaverimage.b0.upaiyun.com/28185_o.png><img src=/images/2ad13c7f6efeae2f1463e231f11d164126743c47.png alt title=1></a></p><p>这是Office2010中的文件菜单点开后的效果。本文我将以强大的WPF来实现类似的效果。希望你能有所收获。而不是只拷贝/粘贴代码而已。</p><p> </p><p>开始之前。先把TabControl找个地方放着。</p><p> </p><p>然后会大概是这个效果</p><p><a href=http://leaverimage.b0.upaiyun.com/28186_o.png><img src=/images/797a20d8d2f0489af03c4d57e307fcf0c14657be.png alt title=2></a></p><p>为了改变TabControl的显示效果。我们使用模板机制，我们把模板写进一个资源字典里。这样就可以重用了。添加一个资源字典的步骤如下</p><p>右键点击工程-添加-资源字典</p><p>然后在资源字典里添加一些代码。</p><p> </p><p>之后，我们为VisualState创建故事板，一个是正常状态。会使得hoverShape的透明度为0.另一个是鼠标悬停的状态。透明度会变成1</p><p> </p><p>当你运行的时候你会发现没什么变化。我们还要定义被选中标签的VisualState</p><p>当添加如下代码的时候 添加一个VisualState组。也就是 SelectionStates ，然后给选中/为选中的状态添加行为/故事板。.这里通过修改透明度来实现一些效果</p><p> </p><p>现在再运行会发现效果更好了</p><p><a href=http://leaverimage.b0.upaiyun.com/28191_o.png><img src=/images/3b46642c7ed968464713adc3e60749fa05066b65.png alt title=7></a></p><p> </p><p>还有个小问题，就是那个陷进入的小三角形的背景颜色依然还在。通过在下面添加一个白色的形状。，并且对故事板的选中和为选中状态改变一下透明度就可以了。</p><p> </p><p>最终效果如下:</p><p><a href=http://leaverimage.b0.upaiyun.com/28192_o.png><img src=/images/c540f5dfc7dbed9ae6def8f6d7d461a85be83f89.png alt title=8></a></p><p>源代码地址：
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header id=header class="header container"><div class=logo-wrapper><a href=/ class=logo>bystander's blog</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=http://leaver.me/>主页</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/post/>归档</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/tags/>标签</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/categories/>目录</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/about/>关于我</a></li></ul></nav></header><div id=mobile-panel><main id=main class="main bg-llight"><div class=content-wrapper><div id=content class="content container"><article class="post bg-white"><header class=post-header><h1 class=post-title>模拟Office2010文件菜单的TabControl模板</h1><div class=post-meta><time datetime=2012-10-17 class=post-time>2012-10-17</time><div class=post-category><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/>我的翻译</a></div><span class=more-meta>约 43 字</span>
+<span class=more-meta>预计阅读 1 分钟</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>文章目录</h2><div class=post-toc-content><nav id=TableOfContents></nav></div></div><div class=post-content><p><a href=http://leaverimage.b0.upaiyun.com/28185_o.png><img src=/images/2ad13c7f6efeae2f1463e231f11d164126743c47.png alt title=1></a></p><p>这是Office2010中的文件菜单点开后的效果。本文我将以强大的WPF来实现类似的效果。希望你能有所收获。而不是只拷贝/粘贴代码而已。</p><p> </p><p>开始之前。先把TabControl找个地方放着。</p><p> </p><p>然后会大概是这个效果</p><p><a href=http://leaverimage.b0.upaiyun.com/28186_o.png><img src=/images/797a20d8d2f0489af03c4d57e307fcf0c14657be.png alt title=2></a></p><p>为了改变TabControl的显示效果。我们使用模板机制，我们把模板写进一个资源字典里。这样就可以重用了。添加一个资源字典的步骤如下</p><p>右键点击工程-添加-资源字典</p><p>然后在资源字典里添加一些代码。</p><p> </p><p>这样就添加了一个有一个grid元素的名为OfficeTabControl的控件模板 . Grid 被分成两列，一列是标签页，一列是页内容。左边的列包含一个灰色背景和亮灰色的边缘线，然后一个StackPanel，IsItemsHost属性被设置为true，</p><p>这样标签项被会放在这个栈面板里。第二列是ContentPresenter 这会放置标签页内容。然后让我们前面的TabControl使用新模板。设置Template 属性。</p><p> </p><p>在这之前，先把资源字典加到窗体的Reesouce里。然后再设置。然后运行软件。效果会有一些不一样。</p><p><a href=http://leaverimage.b0.upaiyun.com/28187_o.png><img src=/images/2ba7dae0ace3d2aba71967d816315b1b953d139b.png alt title=3></a></p><p>然后要修改左侧单个标签的显示效果。通过改变模板来实现。给模板添加如下的代码</p><p> </p><p> </p><p>然后再运行</p><p><a href=http://leaverimage.b0.upaiyun.com/28188_o.png><img src=/images/ded32740b808794d30171ba7b82b5b1c6c89a6c3.png alt title=4></a></p><p>VisualState很有意思。我们可以放在Grid里。然后设置正常状态和鼠标悬停的状态。</p><p>为了添加鼠标悬停效果，我们添加两个Borders元素。一个右边缘是灰线，另一个用在背景上。亮蓝色放在上下边缘</p><p> </p><p>之后，我们为VisualState创建故事板，一个是正常状态。会使得hoverShape的透明度为0.另一个是鼠标悬停的状态。透明度会变成1</p><p> </p><p>之后效果如下</p><p><a href=http://leaverimage.b0.upaiyun.com/28193_o.png><img src=/images/c3260420be7f836a117fde4fbf6f35cc91728bc9.png alt title=5></a></p><p>然后添加选中项的样式，在hoverShape 下面再添加一个Border，名字是buttonShape。通过这个我们给被选中项的上下边缘添加2个像素的黑蓝色边缘，</p><p>在 Expression Blend中打开, 使用钢笔工具绘制个你想要的路径形状即可。然后把生成的xaml代码拷些过来。</p><p><a href=http://leaverimage.b0.upaiyun.com/28190_o.png><img src=/images/5caf76900ae64f75e8ca5f6985109cf145b1127f.png alt title=6></a></p><p>也可以直接用我的代码。。不顾我说过要怎么做了。</p><p>最终看起来应该是这样的。</p><p> </p><p>当你运行的时候你会发现没什么变化。我们还要定义被选中标签的VisualState</p><p>当添加如下代码的时候 添加一个VisualState组。也就是 SelectionStates ，然后给选中/为选中的状态添加行为/故事板。.这里通过修改透明度来实现一些效果</p><p> </p><p>现在再运行会发现效果更好了</p><p><a href=http://leaverimage.b0.upaiyun.com/28191_o.png><img src=/images/3b46642c7ed968464713adc3e60749fa05066b65.png alt title=7></a></p><p> </p><p>还有个小问题，就是那个陷进入的小三角形的背景颜色依然还在。通过在下面添加一个白色的形状。，并且对故事板的选中和为选中状态改变一下透明度就可以了。</p><p> </p><p>最终效果如下:</p><p><a href=http://leaverimage.b0.upaiyun.com/28192_o.png><img src=/images/c540f5dfc7dbed9ae6def8f6d7d461a85be83f89.png alt title=8></a></p><p>源代码地址：
 [downloadicon href=http://pan.baidu.com/share/link?shareid=85332&uk=1493685990]OfficeTab.7z[/downloadicon]</p><p>许可</p><p>本文包括源代码和文件在CPOL下授权</p><p>著作权声明：本文由<a href=http://leaver.me/>http://leaver.me</a> 翻译，欢迎转载分享。请尊重作者劳动，转载时保留该声明和作者博客链接，谢谢！</p></div><footer class=post-footer><div class=post-tags><a href=http://leaver.me/tags/c/>C＃</a>
 <a href=http://leaver.me/tags/wpf/>WPF</a>
 <a href=http://leaver.me/tags/%E5%A4%A7%E5%AD%A6/>大学</a>
@@ -91,5 +155,5 @@
 <span class=theme-info>Theme - <a class=theme-link href=https://github.com/xianmin/hugo-theme-jane>Jane</a></span>
 <span class=copyright-year>&copy;
 2012 -
-2020
+2021
 <span class=heart><i class=iconfont><svg class="icon" viewBox="0 0 1025 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="14" height="14"><path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7.0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1.0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2.0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3.1-42.5-8-83.6-24-122.2z" fill="#8a8a8a"/></svg></i></span><span class=author>bystander</span></span></div></footer><div class=back-to-top id=back-to-top><i class=iconfont><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="35" height="35"><path d="M510.866688 227.694839 95.449397 629.218702h235.761562L329.15309 958.01517h362.40389L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777h894.052392v131.813095H63.840492V63.962777zm0 0"/></svg></i></div></div><script type=text/javascript src=/lib/jquery/jquery-3.2.1.min.js></script><script type=text/javascript src=/lib/slideout/slideout-1.0.1.min.js></script><script type=text/javascript src=/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin=anonymous></script><script type=text/javascript src=/js/load-photoswipe.js></script><script type=text/javascript src=/lib/photoswipe/photoswipe.min.js></script><script type=text/javascript src=/lib/photoswipe/photoswipe-ui-default.min.js></script></body></html>

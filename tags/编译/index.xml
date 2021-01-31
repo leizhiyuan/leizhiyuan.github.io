@@ -85,7 +85,7 @@ MSVC configuration Configure msvc (default version, searched for in standard loc
 　Si:移进，把i移入到状态栈，把a移入到文法符号栈。其中i，j表示状态号。
 　ri:归约，用第i个产生式归约，同时状态栈与符号栈退出相应个符号，并把GOTO表相应状态和第i个产生式的左部非终结符入栈。
 　文法中有A→β的产生式，若β的长度为r(即|β|=r)，则从状态栈和文法符号栈中自栈顶向下去掉r个符号，即栈指针P减去r。并把A移入文法符号栈内，Sj=GOTO[Si，A]移进状态栈，其中Si为修改指针后的栈顶状态。
-　当归约到文法符号栈中只剩文法的开始符号S时，并且输入符号串已结束即当前输入符是&amp;rsquo;#'，则为分析成功。
+　当归约到文法符号栈中只剩文法的开始符号S时，并且输入符号串已结束即当前输入符是'#'，则为分析成功。
 　然后使用我们将要使用的辅助表来分析吧，为了简单。我还是直接给出答案。然后分析一下典型的情况。
 　
 　第一步，符号栈中是#，输入符号串就是给定的要分析的串，状态栈因为从0开始，所以状态栈直接填0，大家都知道，LR分析是从左到右扫描的。所以心里想着一根指针p，p首先指向输入串的a，然后我们查分析表的（0，a）,0就是状态0，a就是指针的当前字符。分析表中的（0，a）是s2，填入第一步的action，并且动作列填入移进，根据规则，将2入状态栈，a入符号栈，
@@ -95,12 +95,12 @@ MSVC configuration Configure msvc (default version, searched for in standard loc
 参考： http://leaver.me/archives/574.html http://leaver.me/archives/548.html</description></item><item><title>LR(0)和SLR分析表的构造</title><link>http://leaver.me/2012/05/13/lr0%E5%92%8Cslr%E5%88%86%E6%9E%90%E8%A1%A8%E7%9A%84%E6%9E%84%E9%80%A0/</link><pubDate>Sun, 13 May 2012 10:45:13 +0000</pubDate><guid>http://leaver.me/2012/05/13/lr0%E5%92%8Cslr%E5%88%86%E6%9E%90%E8%A1%A8%E7%9A%84%E6%9E%84%E9%80%A0/</guid><description>上篇文章中，我已经说到了，LR(0)分析表是LR(0)分析器的重要组成部分，它是总控程序分析动作的依据，他是由LR(0)项目集规范族来进行构造的。他的结构主要有两个部分ACTION 和GOTO
 　先看看指导原则，可以直接跳过，看例题的时候可以返回来对照参考。
 　假设已构造出LR(0)项目集规范族为：C={I0,I1, … , In}，其中Ik为项目集的名字，k为状态名，令包含S′→·S项目的集合Ik的下标k为分析器的初始状态。那么分析表的ACTION表和GOTO表构造步骤为：
-　① 若项目A→α·aβ属于Ik且转换函数GO(Ik,a)= Ij，当a为终结符时则置ACTION[k,a]为Sj。　② 若项目A→α· 属于Ik，则对任何终结符a 和&amp;rsquo;#&amp;lsquo;号置ACTION[k,a]和ACTION[k,#]为&amp;quot;rj&amp;rdquo;，j为在文法G′中某产生式A→α的序号。 ③ 若GO(Ik,A)＝Ij，则置GOTO[k,A]为&amp;quot;j&amp;rdquo;，其中A为非终结符。　④ 若项目S′→S·属于Ik，则置ACTION[k,#]为&amp;quot;acc&amp;rdquo;，表示接受。 ⑤ 凡不能用上述方法填入的分析表的元素，均应填上&amp;quot;报错标志&amp;rdquo;。为了表的清晰我们仅用空白表示错误标志。
+　① 若项目A→α·aβ属于Ik且转换函数GO(Ik,a)= Ij，当a为终结符时则置ACTION[k,a]为Sj。　② 若项目A→α· 属于Ik，则对任何终结符a 和'#&amp;lsquo;号置ACTION[k,a]和ACTION[k,#]为&amp;quot;rj&amp;quot;，j为在文法G′中某产生式A→α的序号。 ③ 若GO(Ik,A)＝Ij，则置GOTO[k,A]为&amp;quot;j&amp;quot;，其中A为非终结符。　④ 若项目S′→S·属于Ik，则置ACTION[k,#]为&amp;quot;acc&amp;quot;，表示接受。 ⑤ 凡不能用上述方法填入的分析表的元素，均应填上&amp;quot;报错标志&amp;quot;。为了表的清晰我们仅用空白表示错误标志。
 　上篇文章的例题是这样的：LR（0）项目集规范簇也已经算出来了，共有6个I，从I0-I5，最终构造的LR(0)的分析表共7行，包括标题行，也就是ACTION和GOTO，然后是状态行，状态行和ACTION的交处分割成三列，分别是终结符号，和#终结符。也就是分割多少列取决于终结符的数目，GOTO列是非终结符，分割多少列也取决于非终结符的数目。，然后就是具体的6个状态了，画出表的结构后，如下，先不用管表的内容怎么写。
 　
 　然后对照构造原则来填写表，这时你会发现要一个个从那么多的GO函数和I项目组中找对应的式子实在太难了，看不清楚，这时候，我们用GO函数把LR(0)项目集规范族连成一个识别该文法所产生的活前缀的DFA，有点像流程图了，首先把各个I项目画出来，然后需要把他们的关系表示出来，关系由GO函数确定，比如I5=GO(I2, S)，则在I2和I5之间画一个箭头，由I2指向I5，线上写上S，由括号里的第二个值确定，此题构造的DFA如下图，很简单吧。
 　
-　然后我们正式开始吧。第一条指导规则说到， 若项目A→α·aβ属于Ik且转换函数GO(Ik,a)= Ij，当a为终结符时则置ACTION[k,a]为Sj，我们先考察对于I0，发现S-&amp;gt;·aS属于I0，且GO(I0,a)=I1,所有我们ACTION[0,a]置为S1.同理S-&amp;gt;·bS属于I0，GO(I0,b)=I2，所以ACTION[0,b]置为S2。　再来看第二条规则，若项目A→α· 属于Ik，则对任何终结符a 和&amp;rsquo;#&amp;lsquo;号置ACTION[k,a]和ACTION[k,#]为&amp;quot;rj&amp;rdquo;，j为在文法G′中某产生式A→α的序号，也就是说这里的j可不是I项目的标号，而是增广文法
+　然后我们正式开始吧。第一条指导规则说到， 若项目A→α·aβ属于Ik且转换函数GO(Ik,a)= Ij，当a为终结符时则置ACTION[k,a]为Sj，我们先考察对于I0，发现S-&amp;gt;·aS属于I0，且GO(I0,a)=I1,所有我们ACTION[0,a]置为S1.同理S-&amp;gt;·bS属于I0，GO(I0,b)=I2，所以ACTION[0,b]置为S2。　再来看第二条规则，若项目A→α· 属于Ik，则对任何终结符a 和&amp;rsquo;#&amp;lsquo;号置ACTION[k,a]和ACTION[k,#]为&amp;quot;rj&amp;quot;，j为在文法G′中某产生式A→α的序号，也就是说这里的j可不是I项目的标号，而是增广文法
 　(0)S’→S　(1)S→aS　(2)S→bS (3)S→a
 　的标号，从0-3啦。我们考察I1，发现S→·aS属于I1，且GO(I1,a)=I1，所以应该置1和a的交的格子为S1，但是此时运用第二条规则会发现S-&amp;gt;a·也属于I1，则又应该置ACTION[1,a]为=r3，ACTION[1,#]为r3，这样就发生了冲突。这是因为大多数文法不能满足LR(0)文法的条件，对于此冲突，我们不能确定看到S-&amp;gt;a的时候是规约还是移进，有些文法是可以直接构造的，为此，此处不能够早LR(0)分析表了，我们构造经过改进后得到了一种新的SLR(1)文法，并没有什么太大差别，主要就是解决冲突。
 　解决冲突的指导原则如下：
@@ -109,8 +109,8 @@ MSVC configuration Configure msvc (default version, searched for in standard loc
 　即存在移进-归约冲突和归约-归约冲突
 　* 如果FOLLOW（A）∩ FOLLOW（B）∩ {b} =ф，则可以如下来解决冲突（假设当前符号是 a ）：　1、若 a = b，则移进 2、若 a∈ FOLLOW（A），则用产生式 A → γ归约　3、若 a∈ FOLLOW（B），则用产生式 B → δ归约　4、否则，报错
 　此处的冲突发生时，当前符号是a，并且此时项目集中无B推导式，且指导规则中的b在此处其实是S-&amp;gt;.aS中的a，所以计算Follow(S)∩ {a} ，发现为空，所以可以解决冲突，因为此时，当前符号是a，此处规则中的b也是a，所以，移进，也就是置ACTION[1,a]为=S1，运用分析表的ACTION表和GOTO表构造步骤的第一步，而不是置为r3，所以冲突解决。
-　然后再看构造步骤中的第三步，若GO(Ik,A)＝Ij，则置GOTO[k,A]为&amp;quot;j&amp;rdquo;，其中A为非终结符。此题中，只有S为非终结符，看DFA中的I0，发现GO(I0,S)＝I3，所以置GOTO[0,S]为3，ok
-　第四个步骤，若项目S′→S·属于Ik，则置ACTION[k,#]为&amp;quot;acc&amp;rdquo;，很简单，DFA中，I3符合，所以置ACTION[3,#]为&amp;quot;acc&amp;rdquo;。到此解释完了
+　然后再看构造步骤中的第三步，若GO(Ik,A)＝Ij，则置GOTO[k,A]为&amp;quot;j&amp;quot;，其中A为非终结符。此题中，只有S为非终结符，看DFA中的I0，发现GO(I0,S)＝I3，所以置GOTO[0,S]为3，ok
+　第四个步骤，若项目S′→S·属于Ik，则置ACTION[k,#]为&amp;quot;acc&amp;quot;，很简单，DFA中，I3符合，所以置ACTION[3,#]为&amp;quot;acc&amp;quot;。到此解释完了
 　反复运用，直到填完表。
 　完成后的表如图一所示。太复杂了。脑子烧糊了都，下篇有机会的话介绍如何使用来进行分析。其实剩下的部分不怎么难了。应该可以看得懂了
 　参考：
@@ -143,11 +143,11 @@ MSVC configuration Configure msvc (default version, searched for in standard loc
 　开始拿个例题来说明，定义没例题看起来看难了。
 　例题：对于下列文法，S→aS|bS|a，构造该文法的LR(0)项目集规范族
 　思路就是利用闭包函数CLOSURE和转换函数GO来构造。通过计算函数CLOSURE和GO得到文法的LR(0)项目集规范族，而GO函数则把LR(0)项目集规范族连成一个识别该文法所产生的活前缀的DFA。DFA大家都知道，有穷自动机。
-　(1)将文法G(S)拓广为G(S’)也就是该文法的增广文法，目的是使语法分析器知道何时应该停止并接受该串，也就是说当使用S&amp;rsquo;-&amp;gt;S进行规约的时候，就结束。
+　(1)将文法G(S)拓广为G(S’)也就是该文法的增广文法，目的是使语法分析器知道何时应该停止并接受该串，也就是说当使用S'-&amp;gt;S进行规约的时候，就结束。
 　(0)S’→S (1)S→aS　(2)S→bS　(3)S→a
 　构造该文法的LR(0)项目集规范族，I就是产生式，至于I0 I1就是往下递增就可以了。没什么特别的意思。：
-　I0=CLOSURE({S&amp;rsquo; →•S})={S’ →•S, S→•aS, S→•bS, S→•a}
-　//第一条是固定的，都是求S&amp;rsquo; →•S的闭包。而因为右侧的S又可以推导出后面三个，所以后面三个式子是属于该闭包的。在闭包的规则中可以看出，若A→α·Bβ属于CLOSURE(I)，此时S&amp;rsquo; →•S属于闭包，S相当于规则中的B,则每一形如B→·γ的项目也属于CLOSURE(I),此处相当于S-&amp;gt;后面的三个推导式。加上.就可以了
+　I0=CLOSURE({S' →•S})={S’ →•S, S→•aS, S→•bS, S→•a}
+　//第一条是固定的，都是求S' →•S的闭包。而因为右侧的S又可以推导出后面三个，所以后面三个式子是属于该闭包的。在闭包的规则中可以看出，若A→α·Bβ属于CLOSURE(I)，此时S' →•S属于闭包，S相当于规则中的B,则每一形如B→·γ的项目也属于CLOSURE(I),此处相当于S-&amp;gt;后面的三个推导式。加上.就可以了
 　I1=GO( I0 , a)=CLOSURE({S→a•S , S→a•})={S→a•S , S→a• , S→•aS, S→•bS, S→•a }
 　//第二条你可能已经看出来了，其实就是把转换函数GO反过来用，在GO函数中，X为一文法符号，J＝{任何形如A→αX·β的项目| A→α·Xβ属于I}。也就是在I0中，找到右侧包含a的项目，然后将.右移一位来求他们的闭包函数，此处，I0中包含.a的项目为 S→•aS和 S→•a，.右移一位变成S→a•S , S→a•，求闭包函数的规则和上面那条是一样的，继续找推导式右边可以推导出来的式子就可以了，此处，右边同样是S可以推导出三个式子，前面加上.就可以了。
 　I2=GO(I0 , b)=CLOSURE({S→b•S })={ S→b•S, S→•aS, S→•bS, S→•a }

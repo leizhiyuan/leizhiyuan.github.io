@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>原创 on bystander's blog</title><link>http://leaver.me/tags/%E5%8E%9F%E5%88%9B/</link><description>Recent content in 原创 on bystander's blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 21 Feb 2013 08:28:27 +0000</lastBuildDate><atom:link href="http://leaver.me/tags/%E5%8E%9F%E5%88%9B/index.xml" rel="self" type="application/rss+xml"/><item><title>C#反射实现简单的插件系统</title><link>http://leaver.me/2013/02/21/c#%E5%8F%8D%E5%B0%84%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E6%8F%92%E4%BB%B6%E7%B3%BB%E7%BB%9F/</link><pubDate>Thu, 21 Feb 2013 08:28:27 +0000</pubDate><guid>http://leaver.me/2013/02/21/c#%E5%8F%8D%E5%B0%84%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E6%8F%92%E4%BB%B6%E7%B3%BB%E7%BB%9F/</guid><description>如果用过一些优秀的开源或是非开源的应用软件，就会发现这些软件的一个很大的优势就是其开放性，任何有能力的人都可以为其开发不同的插件来增强其的功能。比如著名的foobar2000，Vim和TotalCommander等等。
 C#的反射可以用来实现一个简单的插件系统。思路很简单，我们创建一个解决方案，包含三个工程，一个为我们的软件MyApplication，一个为插件接口IPlugin，一个为具体的插件MyPlugin。插件系统的基本思路是我们用一个接口类库,来定义我们软件可以使用的插件必须实现的方法签名。然后我们的软件MyApplication通过引用该IPlugin dll来动态调用，而具体的实现插件MyPlugin则引用该接口来实现具体的方法。这样我们的应用程序就能在不知道具体插件的情况下调用插件了。。
 结构图如下：
-关键代码也就是通过对程序集载入。搜索到对应接口的实现类。然后调用即可。</description></item><item><title>Android开发获取Map API Key</title><link>http://leaver.me/2012/10/21/android%E5%BC%80%E5%8F%91%E8%8E%B7%E5%8F%96map-api-key/</link><pubDate>Sun, 21 Oct 2012 11:01:14 +0000</pubDate><guid>http://leaver.me/2012/10/21/android%E5%BC%80%E5%8F%91%E8%8E%B7%E5%8F%96map-api-key/</guid><description>地图应用使用com.google.android.maps这个包。通过MapView控件使用。但是之前需要申请一个用于开发的API Key，这个key会和当前的计算机用户绑定。然后通过这个key去官方申请就可以拿到一个开发用的api key了 &amp;lt;1&amp;gt;首先找到用户的debug.keystore文件，可以再”运行“里面搜debug.keystore；如：c:\users\Administrator.android\debug.keystore
+关键代码也就是通过对程序集载入。搜索到对应接口的实现类。然后调用即可。
+运行结果：
+源码下载：PluginSystem.zip</description></item><item><title>Android开发获取Map API Key</title><link>http://leaver.me/2012/10/21/android%E5%BC%80%E5%8F%91%E8%8E%B7%E5%8F%96map-api-key/</link><pubDate>Sun, 21 Oct 2012 11:01:14 +0000</pubDate><guid>http://leaver.me/2012/10/21/android%E5%BC%80%E5%8F%91%E8%8E%B7%E5%8F%96map-api-key/</guid><description>地图应用使用com.google.android.maps这个包。通过MapView控件使用。但是之前需要申请一个用于开发的API Key，这个key会和当前的计算机用户绑定。然后通过这个key去官方申请就可以拿到一个开发用的api key了 &amp;lt;1&amp;gt;首先找到用户的debug.keystore文件，可以再”运行“里面搜debug.keystore；如：c:\users\Administrator.android\debug.keystore
 &amp;lt;2&amp;gt;接下来获取MD5指纹，网上很多说的有误。貌似新版默认是出现sha1加密的。通过添加-v 参数会显示所有。
 首先运行cmd,在dos界面里，输入
 命令，然后会让你输入keystore密码，
 输入：android，之后，会出现指纹认证MD5，如下：
 &amp;lt;3&amp;gt;去官方生成真正的api key 访问 Sign Up for the Android Maps API 输入那串值，同意条款，确定后要求用Google帐号登录。然后会拿到一个key。ok</description></item><item><title>WPF毛玻璃效果Demo和一个问题</title><link>http://leaver.me/2012/09/24/wpf%E6%AF%9B%E7%8E%BB%E7%92%83%E6%95%88%E6%9E%9Cdemo%E5%92%8C%E4%B8%80%E4%B8%AA%E9%97%AE%E9%A2%98/</link><pubDate>Mon, 24 Sep 2012 08:04:25 +0000</pubDate><guid>http://leaver.me/2012/09/24/wpf%E6%AF%9B%E7%8E%BB%E7%92%83%E6%95%88%E6%9E%9Cdemo%E5%92%8C%E4%B8%80%E4%B8%AA%E9%97%AE%E9%A2%98/</guid><description>那天看到WPF书上讲的毛玻璃效果，就去找了下效果。。忘了例子是从哪发现得了。。先看下效果，
 但是这不是重点，作者给出的代码有一个设计时错误。。错误提示为： 无法将类型为“Microsoft.Expression.Platform.WPF.InstanceBuilders.WindowInstance”的对象强制转换为类型“System.Windows.Window”，，
-　中文搜了一下。没有发现有人解决过。目测。。。然后又拿英文搜了下。几经辗转。。终于是解决了。。原文在Unable to cast XAML error。其实就是将原作者这个函数修改如下的</description></item><item><title>.net显示网络连接状态图标</title><link>http://leaver.me/2012/09/24/.net%E6%98%BE%E7%A4%BA%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E7%8A%B6%E6%80%81%E5%9B%BE%E6%A0%87/</link><pubDate>Mon, 24 Sep 2012 08:04:02 +0000</pubDate><guid>http://leaver.me/2012/09/24/.net%E6%98%BE%E7%A4%BA%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E7%8A%B6%E6%80%81%E5%9B%BE%E6%A0%87/</guid><description>效果图：
+　中文搜了一下。没有发现有人解决过。目测。。。然后又拿英文搜了下。几经辗转。。终于是解决了。。原文在Unable to cast XAML error。其实就是将原作者这个函数修改如下的
+　也就是验证了一下转换是否成功。
+下载：修改后的RGSamples</description></item><item><title>.net显示网络连接状态图标</title><link>http://leaver.me/2012/09/24/.net%E6%98%BE%E7%A4%BA%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E7%8A%B6%E6%80%81%E5%9B%BE%E6%A0%87/</link><pubDate>Mon, 24 Sep 2012 08:04:02 +0000</pubDate><guid>http://leaver.me/2012/09/24/.net%E6%98%BE%E7%A4%BA%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E7%8A%B6%E6%80%81%E5%9B%BE%E6%A0%87/</guid><description>效果图：
 介绍 　越来越多的软件要通过连接互联网来执行一些业务层的业务操作，比如调用web services服务，获取数据等等。 通常你可能希望知道当前你的网络连接是不是真的连上了，当然有很多种方法可以做到，比如，你可以查看System.Net 命名空间中的NetworkInterface 的状态，但是有这以太网连接并不表示你的连接真的可以用。 本文将会展示一种方法，该方法在程序的状态栏StatusStrip 显示一个简单的图标来指示是不是真的连接到了互联网。
 使用代码 　最简单的我们会想到使用一个Timer来进行http-get请求来判断一个特定的网页是否可用。
 　当然这种方法下，我们最应该考虑的就是请求不能阻塞UI线程，因此，我将使用一个BackgroundWorker 对象来进行get请求，BackgroundWorker 对象声明了DoWork方法。该方法定义了一个事件句柄，该句柄传递一个DoWorkEventArgs 类来将事件的处理结果返回到UI线程，因此，你不必与任何的UI元素进行交互，因为它运行在一个独立的线程里。
@@ -37,14 +41,17 @@ WCF的四大契约
 　服务契约（Service Contract），数据契约（Data Contract），消息契约（Message Contract），错误契约（Fault Contract）
 信道：
 　信道是为了便利WCF中客户端和服务的通信来设置的。ServiceHost为每个断点创建一个信道侦听器，侦听器产生通信通道，代理则产生一个信道发生器，发生器产生客户端的信道，两种信道相互兼容并且能有效处理之间的信息。
-　实际上，通信信道是有一个分层的信道栈组成-栈中的每一个信道都在消息处理过程中负责实施一个特定动作，信道栈包含一个传输信道，一个消息编码信道，和任意数量的消息处理信道，绑定则将决定了哪些信道留在信道栈中。当行为穿过信道栈时，消息处理方式将会有所改变。。</description></item><item><title>未能加载文件或程序集“App_Web_xxxx”</title><link>http://leaver.me/2012/07/14/%E6%9C%AA%E8%83%BD%E5%8A%A0%E8%BD%BD%E6%96%87%E4%BB%B6%E6%88%96%E7%A8%8B%E5%BA%8F%E9%9B%86app_web_xxxx/</link><pubDate>Sat, 14 Jul 2012 23:18:13 +0000</pubDate><guid>http://leaver.me/2012/07/14/%E6%9C%AA%E8%83%BD%E5%8A%A0%E8%BD%BD%E6%96%87%E4%BB%B6%E6%88%96%E7%A8%8B%E5%BA%8F%E9%9B%86app_web_xxxx/</guid><description>今天在用WCF写服务的时候，服务一直连不上，直接查看svc文件，发现如下错误 未能加载文件或程序集“&amp;lsquo;App_Web_****, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null&amp;rdquo;,****是一个随机字符串。
+　实际上，通信信道是有一个分层的信道栈组成-栈中的每一个信道都在消息处理过程中负责实施一个特定动作，信道栈包含一个传输信道，一个消息编码信道，和任意数量的消息处理信道，绑定则将决定了哪些信道留在信道栈中。当行为穿过信道栈时，消息处理方式将会有所改变。。</description></item><item><title>未能加载文件或程序集“App_Web_xxxx”</title><link>http://leaver.me/2012/07/14/%E6%9C%AA%E8%83%BD%E5%8A%A0%E8%BD%BD%E6%96%87%E4%BB%B6%E6%88%96%E7%A8%8B%E5%BA%8F%E9%9B%86app_web_xxxx/</link><pubDate>Sat, 14 Jul 2012 23:18:13 +0000</pubDate><guid>http://leaver.me/2012/07/14/%E6%9C%AA%E8%83%BD%E5%8A%A0%E8%BD%BD%E6%96%87%E4%BB%B6%E6%88%96%E7%A8%8B%E5%BA%8F%E9%9B%86app_web_xxxx/</guid><description>今天在用WCF写服务的时候，服务一直连不上，直接查看svc文件，发现如下错误 未能加载文件或程序集“&amp;lsquo;App_Web_****, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null&amp;quot;,****是一个随机字符串。
 解决方法中：
 　在web.config里配置成这样子：
 　就好了。中午和下午一直在搞javascript连接WCF的demo，总算是晚上搞定了，，还是老样子，，最大的体会就是很多东西就是看着简单，写起来会有各种各样的问题，比如这次，即使照着微软的官方文档来，也会有错误。动手才是王道，不管做什么。这几天忙完了，写篇文章出来。
 　最后分享一下微软官方的WCF与Ajax开发实践系列课程，我只能说WCF这东西没有哪一本书比微软官方的技术培训讲的更好了，非常建议学习。
 　武汉最近下雨了，天气挺凉爽，过几天准备回家吧。。</description></item><item><title>C#中XML和二进制的序列化</title><link>http://leaver.me/2012/07/07/c#%E4%B8%ADxml%E5%92%8C%E4%BA%8C%E8%BF%9B%E5%88%B6%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96/</link><pubDate>Sat, 07 Jul 2012 18:30:23 +0000</pubDate><guid>http://leaver.me/2012/07/07/c#%E4%B8%ADxml%E5%92%8C%E4%BA%8C%E8%BF%9B%E5%88%B6%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96/</guid><description>看书的时候，看到的。然后感觉书上的写的不清楚，于是自己写了一下。还真的有问题。 要进行序列化和反序列化，首先要定义一个可以序列化的类，方法是在类的声明前加上特性 [Serializable] 定义了一个简单的用户类，需要注意的是私有字段是不能序列化的，只有公有字段和公有属性才可以。如下
+注意，书上有个例子没有给出默认的构造函数，实际测试时如果没有默认构造函数，是不能执行xml序列化的。注意。
+然后就导入需要的命名空间。 需要导入
 分贝对应文件操作，二进制序列化和xml序列化
-为了方便，我封装了四个静态函数，用于实现序列化和反序列化。</description></item><item><title>C#WinForm实现不规则窗体</title><link>http://leaver.me/2012/06/21/c#winform%E5%AE%9E%E7%8E%B0%E4%B8%8D%E8%A7%84%E5%88%99%E7%AA%97%E4%BD%93/</link><pubDate>Thu, 21 Jun 2012 09:26:34 +0000</pubDate><guid>http://leaver.me/2012/06/21/c#winform%E5%AE%9E%E7%8E%B0%E4%B8%8D%E8%A7%84%E5%88%99%E7%AA%97%E4%BD%93/</guid><description>这个纯属娱乐，因为其实用的不是太多，因为非主流，非标准的界面不符合用户的体验，不符合可用性功能的某一条HE规则。
+为了方便，我封装了四个静态函数，用于实现序列化和反序列化。
+代码比较简单。 最后是一个简单的测试。</description></item><item><title>C#WinForm实现不规则窗体</title><link>http://leaver.me/2012/06/21/c#winform%E5%AE%9E%E7%8E%B0%E4%B8%8D%E8%A7%84%E5%88%99%E7%AA%97%E4%BD%93/</link><pubDate>Thu, 21 Jun 2012 09:26:34 +0000</pubDate><guid>http://leaver.me/2012/06/21/c#winform%E5%AE%9E%E7%8E%B0%E4%B8%8D%E8%A7%84%E5%88%99%E7%AA%97%E4%BD%93/</guid><description>这个纯属娱乐，因为其实用的不是太多，因为非主流，非标准的界面不符合用户的体验，不符合可用性功能的某一条HE规则。
 为了完成这个效果，首先需要自己动手画个你需要的界面出来，界面边缘需要是一种可以很好区别的颜色，比如纯蓝色，因为实现不规则窗体是让C#使边缘颜色透明化来实现的，所以需要唯一识别。因为我用的图是一张灰色的图，我然后圈了一个蓝色的边缘。
 刚开始的图；
 然后新建windows应用程序。创建windows窗体并设置窗体基本属性。 （1）将 FormBorderStyle 属性设置为 None。 （2）将窗体的 BackgroundImage 属性设置为先前创建的位图文件。不必将文件添加到项目系统中；这将在指定该文件作为背景图像时自动完成。 （3）将 TransparencyKey 属性设置为位图文件的背景色，本例中为蓝色。（此属性告诉应用程序窗体中的哪些部分需要设置为透明。 ） 上面两个步骤已经完成了不规则窗体自身显示效果的制作。
@@ -57,10 +64,27 @@ WCF的四大契约
 http://www.cnblogs.com/KissKnife/archive/2006/10/02/520116.html
 http://allancandy.cnblogs.com/archive/2005/09/01/227814.html</description></item><item><title>FreeAnony-代理采集设置工具</title><link>http://leaver.me/2012/06/17/freeanony-%E4%BB%A3%E7%90%86%E9%87%87%E9%9B%86%E8%AE%BE%E7%BD%AE%E5%B7%A5%E5%85%B7/</link><pubDate>Sun, 17 Jun 2012 20:10:05 +0000</pubDate><guid>http://leaver.me/2012/06/17/freeanony-%E4%BB%A3%E7%90%86%E9%87%87%E9%9B%86%E8%AE%BE%E7%BD%AE%E5%B7%A5%E5%85%B7/</guid><description>这个名字确实有点不太好。。因为刚开始我想到这个工具是在今天早上看到一个别人的代理工具的时候，突然想做的，没有好好规化，结果后来代码越写越多。。不过收获很大。
 先看界面，因为是简单实现一下，所以就不要吐槽界面了。。
-刚开始想的思路就是先去一个经常发布代理IP的网页去采集。然后解析成一条条的信息。然后显示出来。中途遇到几个问题，一个就是在做代理验证的时候，没有用多线程，导致直接界面无响应。另一个就是DataGridView控件要实现对一个数组的绑定，需要的一个实体对象。</description></item><item><title>gif反转工具</title><link>http://leaver.me/2012/06/15/gif%E5%8F%8D%E8%BD%AC%E5%B7%A5%E5%85%B7/</link><pubDate>Fri, 15 Jun 2012 17:33:29 +0000</pubDate><guid>http://leaver.me/2012/06/15/gif%E5%8F%8D%E8%BD%AC%E5%B7%A5%E5%85%B7/</guid><description>首先看下效果图： 然后是两张gif的对比  //原本图是正着走的  //处理后是倒着走的
+刚开始想的思路就是先去一个经常发布代理IP的网页去采集。然后解析成一条条的信息。然后显示出来。中途遇到几个问题，一个就是在做代理验证的时候，没有用多线程，导致直接界面无响应。另一个就是DataGridView控件要实现对一个数组的绑定，需要的一个实体对象。
+这部分就是先得到网页源码，然后通过IndexOf和LastIndexOf定位到ip组的位置。这是通过分析源码来确定参数的。最后通过 标签分割成字符数组。数组元素类似于112.25.12.37:80@HTTP;江苏省 移动，然后就是继续分割成一部分，构造了一个IPEntity的数组。在按钮中绑定到DataGridView中即可 IPEntity类的定义如下：这里面设置了一个status属性，用于后面代理验证的时候进行标记。
+然后是验证ip可用性的部分。这部分主要的代码是验证DataGridView中的ip地址可用性
+但是实际运行后就知道，会出现界面无响应。因为长时间的网络访问。为此，在按钮的单击事件中，使用简单的线程后台来操作
+然后其实就没什么了。至于后面的设置iE代理不过就是对注册表的操作了
+不好的地方希望大家指正。因为只是一个简单的原型。完成我想的功能。所以不必过分苛求。关键的代码就是上面的了。 项目源码下载：FreeAnony 参考： http://blog.csdn.net/cisso/article/details/4467188
+http://www.blogjava.net/aoneany/articles/281344.html
+http://www.cnblogs.com/server-you/archive/2006/09/20/509342.html
+http://topic.csdn.net/u/20090514/01/82749a36-ffef-4da5-a607-260dccbad84b.html
+http://www.haogongju.net/art/1485280
+http://developer.51cto.com/art/200903/115200.htm
+http://qianshao.blog.51cto.com/935360/201782</description></item><item><title>gif反转工具</title><link>http://leaver.me/2012/06/15/gif%E5%8F%8D%E8%BD%AC%E5%B7%A5%E5%85%B7/</link><pubDate>Fri, 15 Jun 2012 17:33:29 +0000</pubDate><guid>http://leaver.me/2012/06/15/gif%E5%8F%8D%E8%BD%AC%E5%B7%A5%E5%85%B7/</guid><description>首先看下效果图： 然后是两张gif的对比  //原本图是正着走的  //处理后是倒着走的
 gif是动态的嘛。然后我昨天和一个朋友聊天的时候发了一串相同的gif图，然后看着千篇一律的东西。我想能不能写个程序实现gif的初始状态不同呢。什么意思呢。我们知道，gif是由帧构成的，我想实现的功能是比如一个gif共有十帧，那么我写出来的程序能够生成10个gif文件，分别对应不同的初始状态来进行循环。后来一想，gif帧太多的话，比较慢，而且也不实用，于是决定简化一下，只做一个反转工具，比如一个gif是从左到右播放的，通过这个成功可以生成一个相同的gif图，不过是倒着播放的。
 思路很简单，就是先把gif分解成很多帧，然后对帧进行合并，合并帧之前把帧的位置反转一下就可以了。因为我自己对图像处理的知识不懂，只想到了思路，所以这些功能都要找些资料，然后修改，测试。
-分割帧的代码如下</description></item><item><title>VS2010 编译安装boost库</title><link>http://leaver.me/2012/05/24/vs2010-%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85boost%E5%BA%93/</link><pubDate>Thu, 24 May 2012 11:39:55 +0000</pubDate><guid>http://leaver.me/2012/05/24/vs2010-%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85boost%E5%BA%93/</guid><description>实践是最好的办法。。学习C++，想试试线程，然后打算用boost库，结果boost库编译差点吓到我。。没看到比较完整的安装教程。。一直耽搁。今天动手。完成了。方法记录如下： 1.下载boost 从boost官网( http://www.boost.org )上下载最新的boost版本，现在最新是1.49版本，解压到自定义目录(我解压到了D:/program files,最终的目录结构是D:\Program Files\boost_1_49_0)
+分割帧的代码如下
+可以看到，返回了一个包含所有生成的帧地址的list列表。然后就是使用gifList作为参数来合并了。
+这里面使用了AnimatedGifEncoder这个类，这是Gif.Components.dll动态连接库里的类（此库开源，文末给出地址），是我在codeProject上找到的。首先我把gifList反转，然后合并保存到同目录。中间生成的帧为了方便我保存到了temp目录。
+本来这个库里是分割gif的功能的。但是我实际测试后发现效果非常差，图片黑条泛滥，根本没法看。所以还是使用上面那段代码，相关代码我依然保存在工程里，有兴趣可以自己测试。
+明天四级考试，求人品。。
+项目源码:gif反转工具
+参考： C#图片处理：获取GIF 动画图片中的各个帧 NGif, Animated GIF Encoder for .NET</description></item><item><title>VS2010 编译安装boost库</title><link>http://leaver.me/2012/05/24/vs2010-%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85boost%E5%BA%93/</link><pubDate>Thu, 24 May 2012 11:39:55 +0000</pubDate><guid>http://leaver.me/2012/05/24/vs2010-%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85boost%E5%BA%93/</guid><description>实践是最好的办法。。学习C++，想试试线程，然后打算用boost库，结果boost库编译差点吓到我。。没看到比较完整的安装教程。。一直耽搁。今天动手。完成了。方法记录如下： 1.下载boost 从boost官网( http://www.boost.org )上下载最新的boost版本，现在最新是1.49版本，解压到自定义目录(我解压到了D:/program files,最终的目录结构是D:\Program Files\boost_1_49_0)
 2.编译安装
 在D:\Program Files\boost_1_49_0的目录下，有一个bootstrap.bat文件，直接双击运行。就会在同目录生成b2.exe；bjam.exe两个文件。
 3.设定编译环境 修改user-config.jam (D:\Program Files\boost_1_49_0\tools\build\v2\user-config.jam) 的MSVC configuration
@@ -75,17 +99,17 @@ MSVC configuration Configure msvc (default version, searched for in standard loc
  参考： http://www.cppfans.org/1317.html http://www.cnblogs.com/ComputerG/archive/2011/03/10/1979730.html http://www.cppblog.com/shaker/archive/2011/11/30/33583.html</description></item><item><title>c &amp; c++中sizeof返回值不同?</title><link>http://leaver.me/2012/05/22/c-c-%E4%B8%ADsizeof%E8%BF%94%E5%9B%9E%E5%80%BC%E4%B8%8D%E5%90%8C/</link><pubDate>Tue, 22 May 2012 11:28:27 +0000</pubDate><guid>http://leaver.me/2012/05/22/c-c-%E4%B8%ADsizeof%E8%BF%94%E5%9B%9E%E5%80%BC%E4%B8%8D%E5%90%8C/</guid><description>问题: A character array is defined globally and a structure with same name is defined within a function. 一个字符数组被定义为全局变量，一个相同名字的结构体被定义在一个函数内部。
 Why sizeof operator returns different values for c &amp;amp; c++ ? 为什么sizeof操作符对于C和C++返回了不同的值呢？
 答案： Because in C++, the struct you defined is named S, while in C, 因为在C++中，你定义的结构体的名称是S，而在C中，
-it's named struct S (which is why you often see typedef struct used in C code). 他叫做struct S（这也是为什么我们可以经常看到typedef struct 被用在C代码中）。
+it&amp;rsquo;s named struct S (which is why you often see typedef struct used in C code). 他叫做struct S（这也是为什么我们可以经常看到typedef struct 被用在C代码中）。
 In C, to refer to the struct type, you need to say struct S. Therefore, sizeof(S) refers to the array. 在C中，引用一个结构类型的时候，你必须说struct S，因此，sizeof（S）调用的是数组S。
 In C++, struct is unnecessary. So the local S hides the global S. 在C++中，struct这个字不是必需的，所以局部变量S隐藏了全局变量S。
 If you were to change the code to the following, you would get the expected results: 如果你把代码改成下面的样子，你就能得到你期望的结果了。
 原文:http://stackoverflow.com/q/10670261/764869</description></item><item><title>为什么sizeof(str.substr(0,3).c_str())=8?</title><link>http://leaver.me/2012/05/21/%E4%B8%BA%E4%BB%80%E4%B9%88sizeofstr.substr03.c_str8/</link><pubDate>Mon, 21 May 2012 06:59:09 +0000</pubDate><guid>http://leaver.me/2012/05/21/%E4%B8%BA%E4%BB%80%E4%B9%88sizeofstr.substr03.c_str8/</guid><description>问题： string str = &amp;quot;abcdefgdcb&amp;quot;; cout &amp;amp;lt; &amp;amp;lt; sizeof(str.substr(0,3).c_str()); For some reason, the above string is giving me 8. I assumed c_str() returns a null string, 由于某些原因，上面的这个字符串得到的结果是8，我估计c_str()返回了一个null，
 and sizeof uses the null to determine the size of the string. 并且sizeof函数使用这个null来定义这个字符串的大小。
-答案： Because sizeof doesn't give you the length of a string, 因为sizeof给你的不是一个字符串的长度，
+答案： Because sizeof doesn&amp;rsquo;t give you the length of a string, 因为sizeof给你的不是一个字符串的长度，
 it gives you the size of the type (const char * in this case). Try strlen. 他给你的是这个类型的大小（这种情况下的类型是c_str()返回的const char*类型），想要得到正确的结果，试试strlen函数吧。
 On your system, sizeof (const char ) == 8, like any other pointer. 在你的系统上，sizeof(const char)=8,和其他所有的指针类型一样。
 8 is the size of a pointer on your machine (64-bit) 8是在你的64位电脑上一个指针的大小
-There's your problem. sizeof tells you the size of a variable, 别乱假设，sizeof告诉你一个变量的大小，
+There&amp;rsquo;s your problem. sizeof tells you the size of a variable, 别乱假设，sizeof告诉你一个变量的大小，
 which has nothing to do with the value inside the variable, ever. 他不会进入变量里面对变量做任何改变的。。永远不会。
 问题:http://stackoverflow.com/q/10668764/764869</description></item><item><title>对象数组的Xml序列化和反序列化</title><link>http://leaver.me/2012/05/18/%E5%AF%B9%E8%B1%A1%E6%95%B0%E7%BB%84%E7%9A%84xml%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</link><pubDate>Fri, 18 May 2012 09:38:27 +0000</pubDate><guid>http://leaver.me/2012/05/18/%E5%AF%B9%E8%B1%A1%E6%95%B0%E7%BB%84%E7%9A%84xml%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</guid><description>使用Serialization来进行序列化和反序列化，因此需要引入System.Xml.Serialization；命名空间。
 为什么要做序列化和反序列化？ .Net程序执行时，对象都驻留在内存中；内存中的对象如果需要传递给其他系统使用；或者在关机时需要保存下来以便下次再次启动程序使用就需要序列化和反序列化。
@@ -143,7 +167,7 @@ which has nothing to do with the value inside the variable, ever. 他不会进�
 　例如：想要9*6，如果按6按错按成5了， 按C就是从头来过， 这时就要重新按9了， 但是如果你按CE的话， 就只要输入6就行了， 不必输入前面的了。
 　我个人感觉M存储器就相当于一个草稿。吧计算中的一些临时值存储起来，就不用手记了。我记得我那时候有时候算值还得先把一些临时值写在纸上，后面重新输入。没文化真可怕。</description></item><item><title>WWWScan GUI版--WebScan</title><link>http://leaver.me/2012/04/18/wwwscan-gui%E7%89%88-webscan/</link><pubDate>Wed, 18 Apr 2012 21:56:11 +0000</pubDate><guid>http://leaver.me/2012/04/18/wwwscan-gui%E7%89%88-webscan/</guid><description>网上一直有个版本是Wscan Gui Beta6，首先感谢作者的无私奉献，写代码不容易啊。但是这个我不知道为什么在我的电脑上总是有一些错误。很多功能虽然加上了，但是其实对我有点多余。毕竟，我只是用这个扫描一下。于是，决定自己用C#做个GUI版，模仿实现一下。
 　然后我看了一下目录结构。如下图所知 貌似作者只是简单写了。然后对应着调用扫描器。我想了下，可以通过修改文件名来实现，因为wwwscan默认只能识别cgi.list，那么我想的是当我选中一种扫描类型后。将对应的字典，比如asp.list改成cgi.list。当然为了保护原文件，复制。。然后调用。这样就不用有这么多exe了。。
-　第二个我想实现作者的检测网站的脚本类型的功能，想到了两种方法。一种是循环访问index.xxx文件，xxx对asp jsp等，然后判断http状态码，200的话就可以对应判断出来网站脚本了。但是这样测试了一会没成功，还是算了，，然后想了一种猥琐流的方法，就是直接访问首页。然后把源码下载下来，然后搜索&amp;rdquo;.xxx&amp;quot;字符串，找到就行了，，当然这两种方法都是不完善的。。我也没想到什么完美的。。希望有人知道的话留言指教。
+　第二个我想实现作者的检测网站的脚本类型的功能，想到了两种方法。一种是循环访问index.xxx文件，xxx对asp jsp等，然后判断http状态码，200的话就可以对应判断出来网站脚本了。但是这样测试了一会没成功，还是算了，，然后想了一种猥琐流的方法，就是直接访问首页。然后把源码下载下来，然后搜索&amp;quot;.xxx&amp;quot;字符串，找到就行了，，当然这两种方法都是不完善的。。我也没想到什么完美的。。希望有人知道的话留言指教。
 　最后的目录就清爽多了
 　那个4p啊，，就是盲扫描了。。不知道网站脚本的时候采用。。。
 　界面基本完全模仿了作者的UI，进行了略微调整，希望作者不介意。

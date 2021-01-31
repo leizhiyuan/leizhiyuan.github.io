@@ -17,7 +17,7 @@ Unix sed实用教程开篇 [译]Unix sed实用教程第一篇–向文件中增�
 背景 有时候我们需要做很多任务，而做这些任务的算法可能不同，这样可以设计成策略模式，这样。执行该任务的基本的一些代码就是一样的。但程序可可以动态的切换来执行任务的不同部分了。
 现在，真实的情况是有些算法，从实现层面山看，有可能有一些步骤是不一样的，这种情况下。我们可以使用继承来完成。
 当有个算法，而这个算法的一部分却多样的时候。使用模板模式就很好。GoF定义模板模式为：
-&amp;ldquo;Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm's structure.&amp;quot;.
+&amp;ldquo;Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm&amp;rsquo;s structure.&amp;rdquo;.
 定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。模板模式使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。
 在上面的类图中： AbstractClass：包含两种方法。第一种就是算法的每一步。另一种就是模板方法。模板方法就是那些可以被用在所有独立方法中。并且提供了算法执行的一个骨架 ConcreteClass：这个类重写了抽象类中每一步的方法，包含对这些步骤的个性化实现。
 使用代码 看一个简单的例子。假想我们有一个类用来读取数据。并且能够为信息管理系统到处数据。
@@ -72,7 +72,7 @@ ReadData和FormatData 的实现不会变。唯一可变的部分就是ExportData
 世间值得追求的东西很多，但惟有爱情，是必须真心相爱才可以尝到它的滋味的。而其他的东西，你得到它的途径其实有很多，并不一定非要通过和一个人结婚才可以得到。既然这样，你为什么要给自己的爱设定那么高的门槛？我担心的不是你对爱的要求太高，我是担心迈得进你门槛的人，恰恰都是与爱无关的人。因为真爱是不需要门槛的，而且也不屑于门槛。爱是两情相悦，你情我愿，又不是在自由市场挑西红柿，非要找性能价格，比最合理的。
 　恋人之间最爱问的一句话，大概就是“你爱我什么？”从来没有人会说我爱你的钱，你的财富，你所能给我提供的生活，为什么？因为我们都知道那太煞风景。至今为止，我听到的最动人的答案是一句英文：“I LOVE YOU NOT BECAUSE OF WHO YOU ARE，BUT BECAUSE OF WHO I AM WHEN I AM WITH YOU.”我不知道如何把它翻译得浪漫多情，但是我想即使是直截了当的翻译，那其中的真情也足以动人：我爱你，并不是因为你是谁，而是因为和你在一起时，我才是最真实的我。
 [text]PS:私自觉得那句英文应该翻译为：我爱你，不是因为你是谁，而是因为我在你面前可以是谁。[/text]</description></item><item><title>理解并实现原型模式-实现ICloneable接口.理解深浅拷贝</title><link>http://leaver.me/2012/10/19/%E7%90%86%E8%A7%A3%E5%B9%B6%E5%AE%9E%E7%8E%B0%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E5%AE%9E%E7%8E%B0icloneable%E6%8E%A5%E5%8F%A3.%E7%90%86%E8%A7%A3%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/</link><pubDate>Fri, 19 Oct 2012 09:27:21 +0000</pubDate><guid>http://leaver.me/2012/10/19/%E7%90%86%E8%A7%A3%E5%B9%B6%E5%AE%9E%E7%8E%B0%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E5%AE%9E%E7%8E%B0icloneable%E6%8E%A5%E5%8F%A3.%E7%90%86%E8%A7%A3%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/</guid><description>本文用C#实现原型模式,也会讨论深浅拷贝,已经如何在.net中高效实现ICloneable 接口 介绍 有时候我们需要从上下文得到一个对象的拷贝，然后通过一些独立的操作来处理他。原型模式在这种情况下很适用
-GoF 定义原型模式为用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的对象。 Specify the kind of objects to create using a prototypical instance, and create new objects by copying this prototype.&amp;rdquo;
+GoF 定义原型模式为用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的对象。 Specify the kind of objects to create using a prototypical instance, and create new objects by copying this prototype.&amp;quot;
 看一下类图
 主要的参与者有 • Prototype: 抽象类或接口，定义了方法来拷贝自己 • ConcretePrototype: 克隆的具体类. • Client: 需要执行拷贝对象的软件对象 然后实现吧
 使用代码
