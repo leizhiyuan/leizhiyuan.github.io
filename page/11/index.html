@@ -2,7 +2,55 @@
 <button class="pswp__button pswp__button--share" title=Share></button>
 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
 <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
-<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header id=header class="header container"><div class=logo-wrapper><a href=/ class=logo>bystander's blog</a></div><nav class=site-navbar><ul id=menu class=menu><li class="menu-item active"><a class=menu-item-link href=http://leaver.me/>主页</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/post/>归档</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/tags/>标签</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/categories/>目录</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/about/>关于我</a></li></ul></nav></header><div id=mobile-panel><main id=main class="main bg-llight"><div class=content-wrapper><div id=content class="content container"><section id=posts class=posts><article class="post bg-white"><header class=post-header><h1 class=post-title><a class=post-link href=/2013/09/19/maven%E5%BA%93%E4%BE%9D%E8%B5%96%E6%9C%BA%E5%88%B6%E5%8F%8A%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BA%93/>Maven库依赖机制及添加自定义库</a></h1><div class=post-meta><time datetime=2013-09-19 class=post-time>2013-09-19</time><div class=post-category><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/>我的翻译</a></div><span class=more-meta>约 30 字</span>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><header id=header class="header container"><div class=logo-wrapper><a href=/ class=logo>bystander's blog</a></div><nav class=site-navbar><ul id=menu class=menu><li class="menu-item active"><a class=menu-item-link href=http://leaver.me/>主页</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/post/>归档</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/tags/>标签</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/categories/>目录</a></li><li class=menu-item><a class=menu-item-link href=http://leaver.me/about/>关于我</a></li></ul></nav></header><div id=mobile-panel><main id=main class="main bg-llight"><div class=content-wrapper><div id=content class="content container"><section id=posts class=posts><article class="post bg-white"><header class=post-header><h1 class=post-title><a class=post-link href=/2013/09/20/%E4%BD%BF%E7%94%A8maven%E5%88%9B%E5%BB%BAweb%E9%A1%B9%E7%9B%AE/>使用Maven创建Web项目</a></h1><div class=post-meta><time datetime=2013-09-20 class=post-time>2013-09-20</time><div class=post-category><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/>我的翻译</a></div><span class=more-meta>约 62 字</span>
+<span class=more-meta>预计阅读 1 分钟</span></div></header><div class=post-content><div class=post-summary>本文通过Maven完成一个简单的Web项目（注意，Spring配置不是重点，看看就行）
+1.从Maven模板创建Web应用程序 命令格式如下：
+这就告诉Maven从**maven-archetype-webapp **这个模板来创建
+友情提示：是不是太难记了..好吧，直接输入
+根据向导来创建把。。
+比如我这样写：
+就创建了一个包名为com.mkyong,类名为CounterWebApp的项目了
+2.Maven的Web程序目录结构 标准的web.xml部署描述文件生成了
+对结构有疑问的去这里
+生成的pom.xml文件如下
+没啥疑问的。web.xml文件则如下：
+index.jsp内容是：
+3.转换以支持Eclipse 为了使Maven的web项目支持Eclipse，在命令行下，cd到CounterWebApp目录下，然后输入这个命令
+-Dwtpversion=2.0参数是必需的，这个参数指明了是web项目，然后导入到eclipse里就行了。从导入的工程ico可以看出是个web项目
+图一
+不要迷惑，如果我们只输入
+会转换成java项目，而不是web项目的。
+好了，现在项目已经准备好部署了，eclipse里的tomcat server插件装好，然后启动项目
+图二
+可以通过_http://localhost:8080/CounterWebApp/_地址来访问
+4.更新pom文件 为了使Maven项目支持Spring MVC框架，我们需要修改pom.xml文件
+1.添加编译插件指定jdk6来编译
+2.添加Spring框架依赖
+3.升级JUnit到4.1.1
+5.Spring MVC 松耦合 创建Spring MVC控制器类，有两个方法，打印信息
+然后，创建Spring配置文件，定义视图解析器
+然后更新一下web.xml文件，通过Spring的监听器ContextLoaderListener把Spring框架集成进去
+然移动index.jsp到WEB-INF目录里，以防用户直接访问他，同时我们编辑，增加${message}变量，也就是controller控制器传过来的值到页面
+最终的页面结构是：
+图三
+6.Eclipse+Tomcat 为了通过Eclipse的Tomcat插件开始/调试项目，需要再执行一次下面的命令，使得所有的依赖附加完成
+在没执行以前，项目依赖是空的
+图四
+执行完以后，就都有了
+图五
+重要！许多人就是没有第二次执行这个命令导致无法开始/调试，如果有问题，右击你的项目属性，看看依赖是否为空
+7.Maven打包 web项目打包成war。放在target目录
+进入项目目录，执行一下就可以了
+然后把target目录的CountWebApp.war文件拷贝，并部署到你的web容器里就行了
+8.Demo演示 打开_http://localhost:8080/CounterWebApp/welcome_
+可以看到
+图六
+我们传个参数进去
+http://localhost:8080/CounterWebApp/welcome/mkyong
+就可以看到效果了
+图七
+9.Demo下载
+CounterWebApp.zip</div><div class=read-more><a href=/2013/09/20/%E4%BD%BF%E7%94%A8maven%E5%88%9B%E5%BB%BAweb%E9%A1%B9%E7%9B%AE/ class=read-more-link>阅读全文</a></div></div></article><article class="post bg-white"><header class=post-header><h1 class=post-title><a class=post-link href=/2013/09/19/maven%E5%BA%93%E4%BE%9D%E8%B5%96%E6%9C%BA%E5%88%B6%E5%8F%8A%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BA%93/>Maven库依赖机制及添加自定义库</a></h1><div class=post-meta><time datetime=2013-09-19 class=post-time>2013-09-19</time><div class=post-category><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/>我的翻译</a></div><span class=more-meta>约 30 字</span>
 <span class=more-meta>预计阅读 1 分钟</span></div></header><div class=post-content><div class=post-summary>一.Maven库依赖机制 Maven的库依赖机制可以帮助我们自动下载依赖的库文件，并且还能更新版本。。
 考虑一个情境来理解机制的工作原理，假设我们要使用Log4J库作为项目的日志记录。以下是我们要做的
 1.传统的方式 1）访问Log4J网站http://logging.apache.org/log4j/2.x/
@@ -142,33 +190,7 @@ N表示读入并合并下一行，然后将两行之间的换行符替换为空�
 9.输出某个范围行内以X结果的那些行这里首先制定了从/Unix/匹配开始到文件尾部的这些行，然后呢，在这些之间的行，如果以X结果，就输出。
 10.输出不包括开始和结尾的那些行这个命令就会只输出/Solaris/和/HPUX/之间的行，不包括他们两个。
 这里要说一下//这个，当匹配了Solaris的时候就进入了花括号，因为这个里面没有提供任何匹配，所以就考虑最后一次匹配模式，也就是相当于是考虑Solaris这一行，他不被打印，当到了HPUX这一匹配，//又代表了HPUX匹配，这一行也不打印。
-Demo完了，你懂了么。</div><div class=read-more><a href=/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%83%E7%AF%87%E8%BE%93%E5%87%BA%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B910-demo/ class=read-more-link>阅读全文</a></div></div></article><article class="post bg-white"><header class=post-header><h1 class=post-title><a class=post-link href=/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AD%E7%AF%87%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/>[译]Unix sed实用教程第六篇–删除文件内容</a></h1><div class=post-meta><time datetime=2013-08-10 class=post-time>2013-08-10</time><div class=post-category><a href=http://leaver.me/categories/%E6%88%91%E7%9A%84%E7%BF%BB%E8%AF%91/>我的翻译</a></div><span class=more-meta>约 51 字</span>
-<span class=more-meta>预计阅读 1 分钟</span></div></header><div class=post-content><div class=post-summary>其实，删除和替换是由一些相同的，不过，这里我们单独列出来，通过25个例子穿插讲解sed删除文件的一些方法，使用的示例文件如下：
-1.删除第一行d就是删除，1就是指第1行，记得哦，这不会影响到源文件，一般，做删除的时候一般要加-i参数，前面说过了
-2.删除指定行，这里删除第3行3.删除最后一行4.删除范围行，这里删除2-4行5.保留指定的行，这里保留2-4行！这个是对前面的2,4来操作，是非的意思，也就是不是2-4行的行，这样除去2-4行，其他的都删除了
-6.删除第一行和最后一行分号隔开两个命令，你懂的，也可以删除第二行和第三行等等. &lsquo;2d;3d&rsquo;
-7.删除以指定字符开头的行这里就把以L开头的Linux这一行删除了
-8.删除以指定字符结尾的行这里就删除了，可以看到AIX没有删除，unix区分大小写你懂的
-9.忽略大小写，都删除[xX]匹配x或X，所以就成功了嘛
-10.删除文件中的空行^匹配开头，$匹配结果，中间啥都没有，这样就匹配了空行，但是注意哦，如果某一行全是空格，这个命令是不会删除这一行的。
-11.删除空行或是仅仅包含空格的行如果你看我前面的文章，这个就不用我说了吧，0个或多个空格就是匹配了所有的空行了
-12.删除完全是大写字母的行[A-Z]就匹配了26个大写字母的任意一个
-13.删除包含Unix匹配的行14.删除不包含Unix的行15.删除包含Unix或Linux匹配的行这里要说的是|，这个本来是表示or，或的意思，但是在终端下，为了防止被认为是管道，所以要用\来转义
-16.删除从第一行到满足匹配的行可以通过行号到模式，模式到行号等等组合来匹配
-17.删除从Linux匹配到末尾的行18.如果最后一行匹配AIX就删除，否则就不删除$匹配了最后一行，也可以是行号，比如1，后面的大括号里就是条件和处理方式了，这样就在sed里实现了if条件了，再看一遍这个例子，熟悉一下这个规则
-19.所处最后一行如果满足两个匹配20.如果1-4行满足Solaris匹配就删除21.删除包含Unix匹配的行，同时删除下一行N命令将下一行读入pattern space，什么。你忘了，看开篇去，这个命令就删除了两行
-22.删除包含Unix的下一行作者这里没有说清楚，我讲一下，N读入了下一行，然后这时候pattern space里就相当于两行并作了一行，中间有一个换行符，所以pattern space里现在就是：
-然后通过s命令匹配了\nLinux，并且替换为空，就ok了哦。
-23.删除包含Linux模式的行，也包含上一行少年，不要怕，我们一步步来
-首先，要知道，为了删除某一匹配的前一行，我们需要将文件的每一行放入到hold space里，一旦发现匹配，我们就开始删除连个缓冲区的内容，其中pattern space存储了当前行，hold space 存储了前一行
-而x;p;这是啥呢，这两个命令是对每一行都会执行的，x表示exchange，即是交换hold space 和pattern space中的内容，p则是print，打印pattern space中的内容，因此，每次当前行被存入hold space，然后打印出了前一行的内容
-当/Linux/匹配之后，我们使用s/.//来清空当前行，也就是pattern space为空了，当前行相当于被删了，然后使用x和hold space来交换，这样，就导致hold space为空了，然后使用d来删除pattern space的内容（此时pattern space里是交换过来的前一行的内容），因此，匹配Linnx的当前行和前一行都被删除了，
-然后呢${x;p;}表示如果最后一行还在hold space里，就把他换出来，打印出来。
-而后面的管道之后的命令呢，是吧第一部分sed命令之后产生的空行给删掉。
-再理解一下
-24.仅删除匹配Linux的前一行，不删除当前行和23类似，当匹配到Linux的时候，hold space 存储了前一行的内容，所以我们交换一下他们，然后前一行就进入了pattern space，然后一个d，这样就把前一行删掉了。别急，还没完，这样，当前行就被留在hold space了。就无法被输出了
-1h;1!{x;p;} 1h是说，如果将第1行移动到hold space，也就是1h只对第一行操作，而后面的1!{x;p;}是说对于其他的行执行x;p;命令，
-25.删除匹配模式的前后两行有了前面两个例子，自己试试理解一下，有问题留言讨论吧。</div><div class=read-more><a href=/2013/08/10/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E5%85%AD%E7%AF%87%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/ class=read-more-link>阅读全文</a></div></div></article></section><nav class=pagination><ul><li><a href=/>««</a></li><li><a href=/page/10/>«</a></li><li><a href=/page/5/>5</a></li><li><a href=/page/6/>6</a></li><li><a href=/page/7/>7</a></li><li><a href=/page/8/>8</a></li><li><a href=/page/9/>9</a></li><li><a href=/page/10/>10</a></li><li class=active><a href=/page/11/>11</a></li><li><a href=/page/12/>12</a></li><li><a href=/page/13/>13</a></li><li><a href=/page/14/>14</a></li><li><a href=/page/15/>15</a></li><li><a href=/page/16/>16</a></li><li><a href=/page/17/>17</a></li><li><a href=/page/12/>»</a></li><li><a href=/page/33/>»»</a></li></ul></nav></div></div></main><footer id=footer class=footer><div class=icon-links><a href=https://github.com/leizhiyuan rel="me noopener" class=iconfont title=github target=_blank><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="36" height="36"><path d="M512 12.672c-282.88.0-512 229.248-512 512 0 226.261333 146.688 418.133333 350.08 485.76 25.6 4.821333 34.986667-11.008 34.986667-24.618667.0-12.16-.426667-44.373333-.64-87.04-142.421333 30.890667-172.458667-68.693333-172.458667-68.693333C188.672 770.986667 155.008 755.2 155.008 755.2c-46.378667-31.744 3.584-31.104 3.584-31.104 51.413333 3.584 78.421333 52.736 78.421333 52.736 45.653333 78.293333 119.850667 55.68 149.12 42.581333 4.608-33.109333 17.792-55.68 32.426667-68.48-113.706667-12.8-233.216-56.832-233.216-253.013333.0-55.893333 19.84-101.546667 52.693333-137.386667-5.76-12.928-23.04-64.981333 4.48-135.509333.0.0 42.88-13.738667 140.8 52.48 40.96-11.392 84.48-17.024 128-17.28 43.52.256 87.04 5.888 128 17.28 97.28-66.218667 140.16-52.48 140.16-52.48 27.52 70.528 10.24 122.581333 5.12 135.509333 32.64 35.84 52.48 81.493333 52.48 137.386667.0 196.693333-119.68 240-233.6 252.586667 17.92 15.36 34.56 46.762667 34.56 94.72.0 68.522667-.64 123.562667-.64 140.202666.0 13.44 8.96 29.44 35.2 24.32C877.44 942.592 1024 750.592 1024 524.672c0-282.752-229.248-512-512-512"/></svg></a><a href=http://leaver.me/index.xml rel="noopener alternate" type=application/rss+xml class=iconfont title=rss target=_blank><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30"><path d="M819.157333 1024C819.157333 574.592 449.408 204.8.0 204.8V0c561.706667.0 1024 462.293333 1024 1024H819.157333zM140.416 743.04a140.8 140.8.0 01140.501333 140.586667A140.928 140.928.0 01140.074667 1024C62.72 1024 0 961.109333.0 883.626667S62.933333 743.082667 140.416 743.04zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352.0 678.784 306.517333 678.784 678.826667z"/></svg></a></div><div class=copyright><span class=power-by>Powered by <a class=hexo-link href=https://gohugo.io>Hugo</a></span>
+Demo完了，你懂了么。</div><div class=read-more><a href=/2013/08/11/%E8%AF%91unix-sed%E5%AE%9E%E7%94%A8%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%83%E7%AF%87%E8%BE%93%E5%87%BA%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B910-demo/ class=read-more-link>阅读全文</a></div></div></article></section><nav class=pagination><ul><li><a href=/>««</a></li><li><a href=/page/10/>«</a></li><li><a href=/page/5/>5</a></li><li><a href=/page/6/>6</a></li><li><a href=/page/7/>7</a></li><li><a href=/page/8/>8</a></li><li><a href=/page/9/>9</a></li><li><a href=/page/10/>10</a></li><li class=active><a href=/page/11/>11</a></li><li><a href=/page/12/>12</a></li><li><a href=/page/13/>13</a></li><li><a href=/page/14/>14</a></li><li><a href=/page/15/>15</a></li><li><a href=/page/16/>16</a></li><li><a href=/page/17/>17</a></li><li><a href=/page/12/>»</a></li><li><a href=/page/33/>»»</a></li></ul></nav></div></div></main><footer id=footer class=footer><div class=icon-links><a href=https://github.com/leizhiyuan rel="me noopener" class=iconfont title=github target=_blank><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="36" height="36"><path d="M512 12.672c-282.88.0-512 229.248-512 512 0 226.261333 146.688 418.133333 350.08 485.76 25.6 4.821333 34.986667-11.008 34.986667-24.618667.0-12.16-.426667-44.373333-.64-87.04-142.421333 30.890667-172.458667-68.693333-172.458667-68.693333C188.672 770.986667 155.008 755.2 155.008 755.2c-46.378667-31.744 3.584-31.104 3.584-31.104 51.413333 3.584 78.421333 52.736 78.421333 52.736 45.653333 78.293333 119.850667 55.68 149.12 42.581333 4.608-33.109333 17.792-55.68 32.426667-68.48-113.706667-12.8-233.216-56.832-233.216-253.013333.0-55.893333 19.84-101.546667 52.693333-137.386667-5.76-12.928-23.04-64.981333 4.48-135.509333.0.0 42.88-13.738667 140.8 52.48 40.96-11.392 84.48-17.024 128-17.28 43.52.256 87.04 5.888 128 17.28 97.28-66.218667 140.16-52.48 140.16-52.48 27.52 70.528 10.24 122.581333 5.12 135.509333 32.64 35.84 52.48 81.493333 52.48 137.386667.0 196.693333-119.68 240-233.6 252.586667 17.92 15.36 34.56 46.762667 34.56 94.72.0 68.522667-.64 123.562667-.64 140.202666.0 13.44 8.96 29.44 35.2 24.32C877.44 942.592 1024 750.592 1024 524.672c0-282.752-229.248-512-512-512"/></svg></a><a href=http://leaver.me/index.xml rel="noopener alternate" type=application/rss+xml class=iconfont title=rss target=_blank><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30"><path d="M819.157333 1024C819.157333 574.592 449.408 204.8.0 204.8V0c561.706667.0 1024 462.293333 1024 1024H819.157333zM140.416 743.04a140.8 140.8.0 01140.501333 140.586667A140.928 140.928.0 01140.074667 1024C62.72 1024 0 961.109333.0 883.626667S62.933333 743.082667 140.416 743.04zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352.0 678.784 306.517333 678.784 678.826667z"/></svg></a></div><div class=copyright><span class=power-by>Powered by <a class=hexo-link href=https://gohugo.io>Hugo</a></span>
 <span class=division>|</span>
 <span class=theme-info>Theme - <a class=theme-link href=https://github.com/xianmin/hugo-theme-jane>Jane</a></span>
 <span class=copyright-year>&copy;
