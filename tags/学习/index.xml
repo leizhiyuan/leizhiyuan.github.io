@@ -1,4 +1,17 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>学习 on bystander's blog</title><link>http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/</link><description>Recent content in 学习 on bystander's blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 05 Oct 2016 10:13:05 +0000</lastBuildDate><atom:link href="http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml"/><item><title>mac日志批量查询配置</title><link>http://leaver.me/2016/10/05/mac%E6%97%A5%E5%BF%97%E6%89%B9%E9%87%8F%E6%9F%A5%E8%AF%A2%E9%85%8D%E7%BD%AE/</link><pubDate>Wed, 05 Oct 2016 10:13:05 +0000</pubDate><guid>http://leaver.me/2016/10/05/mac%E6%97%A5%E5%BF%97%E6%89%B9%E9%87%8F%E6%9F%A5%E8%AF%A2%E9%85%8D%E7%BD%AE/</guid><description>由于公司线下机器非常多,导致每次查日志变得非常痛苦.线下的trace平台大部分时候还是可用的.但是有时候需要本机来批量查询.方案就是批量分发ssh key,实现免登.然后luit实现编码转换,这个主要是公司的机器编码有差异.历史原因.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>学习 on bystander's blog</title><link>http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/</link><description>Recent content in 学习 on bystander's blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 03 Jul 2021 11:07:23 +0000</lastBuildDate><atom:link href="http://leaver.me/tags/%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml"/><item><title>监控系统概要</title><link>http://leaver.me/2021/07/03/%E7%9B%91%E6%8E%A7%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%A6%81/</link><pubDate>Sat, 03 Jul 2021 11:07:23 +0000</pubDate><guid>http://leaver.me/2021/07/03/%E7%9B%91%E6%8E%A7%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%A6%81/</guid><description>监控系统 三剑客 metrics monitor alert
+监控什么 主机级别 CPU Memory Disk space Processes
+应用程序 Error and success rates Service failures and restarts Performance and latency of responses Resource usage
+网络相关 Connectivity Error rates and packet loss Latency Bandwidth utilization
+服务池资源 Pooled resource usage Scaling adjustment indicators Degraded instances
+外部依赖的度量 Service status and availability Success and error rates Run rate and operational costs Resource exhaustion
+如何采集Metrics 黄金指标 延迟 延迟可以知道一个任务需要多久
+流量 知道系统的繁忙程度
+错误 错误的分类和管理
+饱和 资源的利用率
+可以说，任何的组件都可以通过这四个指标进行监控
+组件说明 服务器组件 To measure CPU, the following measurements might be appropriate:
+Latency: Average or maximum delay in CPU scheduler Traffic: CPU utilization Errors: Processor specific error events, faulted CPUs Saturation: Run queue length
+应用程序与服务 Latency: The time to complete requests Traffic: Number of requests per second served Errors: Application errors that occur when processing client requests or accessing resources Saturation: The percentage or amount of resources currently being used</description></item><item><title>mac日志批量查询配置</title><link>http://leaver.me/2016/10/05/mac%E6%97%A5%E5%BF%97%E6%89%B9%E9%87%8F%E6%9F%A5%E8%AF%A2%E9%85%8D%E7%BD%AE/</link><pubDate>Wed, 05 Oct 2016 10:13:05 +0000</pubDate><guid>http://leaver.me/2016/10/05/mac%E6%97%A5%E5%BF%97%E6%89%B9%E9%87%8F%E6%9F%A5%E8%AF%A2%E9%85%8D%E7%BD%AE/</guid><description>由于公司线下机器非常多,导致每次查日志变得非常痛苦.线下的trace平台大部分时候还是可用的.但是有时候需要本机来批量查询.方案就是批量分发ssh key,实现免登.然后luit实现编码转换,这个主要是公司的机器编码有差异.历史原因.
 0. 准备 先要安装pssh,expect,ssh-copy-id.
 brew install pssh brew install homebrew/dupes/expect brew install ssh-copy-id 另外安装luit的安装参考这里luit安装
 1. 生成ssh key ,并批量copy 生成ssh key比较简单.ssh-keygen -t rsa -C &amp;quot;your_email@example.com&amp;quot;,直接使用git的ssh key也是可以的.然后保存下面这个脚本为pscopy.sh,
