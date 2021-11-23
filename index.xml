@@ -1217,7 +1217,9 @@ Unexpected header files:
 &lt;h2 id="20200710">2020.07.10&lt;/h2>
 &lt;p>转岗到搜索推荐及广告技术部,开始做搜索推荐相关的业务和技术研发,开启新的挑战.&lt;/p>
 &lt;h2 id="20210101">2021.01.01&lt;/h2>
-&lt;p>所有过往,皆为序章;所有将来,皆是可盼.&lt;/p></description></item><item><title>skywalking插件开发的注意事项</title><link>http://leaver.me/2018/05/13/skywalking%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</link><pubDate>Sun, 13 May 2018 12:34:32 +0000</pubDate><guid>http://leaver.me/2018/05/13/skywalking%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</guid><description>&lt;p>最近蚂蚁金服中间件开源了 sofa 相关的部分组件,比如 &lt;a href="https://github.com/alipay/sofa-rpc">rpc&lt;/a>,欢迎大家参与讨论贡献,为 rpc 做链路适配的时候,skywalking 现在快到5.0版本了. 已经不支持 h2暂时,开发过程中了,环境的搭建.以下部分字段不能少.否则外面无法连接 es.&lt;/p>
+&lt;p>所有过往,皆为序章;所有将来,皆是可盼.&lt;/p>
+&lt;h2 id="20211122">2021.11.22&lt;/h2>
+&lt;p>离开了7年的蚂蚁，重新回到中间件，做基础技术。&lt;/p></description></item><item><title>skywalking插件开发的注意事项</title><link>http://leaver.me/2018/05/13/skywalking%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</link><pubDate>Sun, 13 May 2018 12:34:32 +0000</pubDate><guid>http://leaver.me/2018/05/13/skywalking%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</guid><description>&lt;p>最近蚂蚁金服中间件开源了 sofa 相关的部分组件,比如 &lt;a href="https://github.com/alipay/sofa-rpc">rpc&lt;/a>,欢迎大家参与讨论贡献,为 rpc 做链路适配的时候,skywalking 现在快到5.0版本了. 已经不支持 h2暂时,开发过程中了,环境的搭建.以下部分字段不能少.否则外面无法连接 es.&lt;/p>
 &lt;div class="highlight">&lt;pre class="chroma">&lt;code class="language-fallback" data-lang="fallback">docker run -d -p 9200:9200 -p 9300:9300 -e &amp;#34;network.host=0.0.0.0&amp;#34; -e &amp;#34;transport.host=0.0.0.0&amp;#34; -e &amp;#34;network.publish_host=0.0.0.0&amp;#34; -e &amp;#34;xpack.security.enabled=false&amp;#34; -e &amp;#34;network.bind_host=0.0.0.0&amp;#34; -e &amp;#34;discovery.type=single-node&amp;#34; docker.elastic.co/elasticsearch/elasticsearch:5.5.0
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>这条命令会搞定.&lt;/p>
 &lt;p>同时 application.yml 文件中&lt;/p>
