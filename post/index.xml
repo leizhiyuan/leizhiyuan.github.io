@@ -3,6 +3,7 @@
 &lt;li>锻炼身体&lt;/li>
 &lt;li>rust学习&lt;/li>
 &lt;li>面食精进&lt;/li>
+&lt;li>多参与github，实践&lt;/li>
 &lt;/ol></description></item><item><title>Oneplus_9p 折腾记录</title><link>http://leaver.me/2022/02/27/oneplus_9p-%E6%8A%98%E8%85%BE%E8%AE%B0%E5%BD%95/</link><pubDate>Sun, 27 Feb 2022 21:11:37 +0800</pubDate><guid>http://leaver.me/2022/02/27/oneplus_9p-%E6%8A%98%E8%85%BE%E8%AE%B0%E5%BD%95/</guid><description>2021 年 4 月买了一台一加9Pro手机,在此过程中,在 ColorOS,OxygenOS 之间反复横跳.一会解决垃圾 Oppo,自动的都是什么垃圾,一会 OxygenOS 又不收到系统推送.Oppo 做事情太糙了,Oxygen 里面各种垃圾自带应用.只是没打开而已.
 在此过程中,还通过 adb 卸载过内置软件
 ./adb shell pm uninstall -k --user 0 com.heytap.pictorial ./adb shell pm uninstall -k --user 0 com.coloros.securepay ./adb shell pm uninstall -k --user 0 com.coloros.codebook ./adb shell pm uninstall -k --user 0 com.sohu.inputmethod.sogouoem #搜狗 ./adb shell pm uninstall -k --user 0 com.finshell.wallet 不过这种可能会导致有些地方按钮是无效的.甚至似乎还影响了 Google 的备份.
