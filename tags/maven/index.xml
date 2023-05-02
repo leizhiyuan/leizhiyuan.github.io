@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>maven on bystander's blog</title><link>http://leaver.me/tags/maven/</link><description>Recent content in maven on bystander's blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 26 Apr 2014 16:56:41 +0000</lastBuildDate><atom:link href="http://leaver.me/tags/maven/index.xml" rel="self" type="application/rss+xml"/><item><title>构建数据库连接的配置方法</title><link>http://leaver.me/2014/04/26/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/</link><pubDate>Sat, 26 Apr 2014 16:56:41 +0000</pubDate><guid>http://leaver.me/2014/04/26/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/</guid><description>以前我在写数据库连接的时候，都是在文件里写死的，或者一个简单地配置文件，只有一个数据库连接嘛，但是最近写一个测试工具的时候，需要很多数据库，而且有些还有分库规则，于是查找资料，完善了两个类，和xml的定义规则，分享出来。仅供参考，有任何指教请回复。不胜感谢
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>maven on bystander's blog</title><link>http://blog.leaver.me/tags/maven/</link><description>Recent content in maven on bystander's blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 26 Apr 2014 16:56:41 +0000</lastBuildDate><atom:link href="http://blog.leaver.me/tags/maven/index.xml" rel="self" type="application/rss+xml"/><item><title>构建数据库连接的配置方法</title><link>http://blog.leaver.me/2014/04/26/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/</link><pubDate>Sat, 26 Apr 2014 16:56:41 +0000</pubDate><guid>http://blog.leaver.me/2014/04/26/%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/</guid><description>以前我在写数据库连接的时候，都是在文件里写死的，或者一个简单地配置文件，只有一个数据库连接嘛，但是最近写一个测试工具的时候，需要很多数据库，而且有些还有分库规则，于是查找资料，完善了两个类，和xml的定义规则，分享出来。仅供参考，有任何指教请回复。不胜感谢
 首先xml的配置格式定义如下
 然后我们有XmlConfigReader类，用来读取这个配置文件，并且返回对应的jdbcConfig对象。
 这个对象就是一个model类，对应xml的属性
@@ -9,12 +9,12 @@
  这里会有一个拼接的操作，比较简单。
 这几个类我打包了。由于我是用了maven做包管理，所以org.dom4j这个包自行下载了。。
 下载地址：http://pan.baidu.com/s/1o617RAy
-   </description></item><item><title>Spring3实例入门-Hello World</title><link>http://leaver.me/2013/09/20/spring3%E5%AE%9E%E4%BE%8B%E5%85%A5%E9%97%A8-hello-world/</link><pubDate>Fri, 20 Sep 2013 13:14:39 +0000</pubDate><guid>http://leaver.me/2013/09/20/spring3%E5%AE%9E%E4%BE%8B%E5%85%A5%E9%97%A8-hello-world/</guid><description>每次看到hello world,都有一种说不出的赶脚，想起了一个程序员，退休后写毛笔字，取笔研磨铺纸，大笔一挥，写下了“hello world”。
+   </description></item><item><title>Spring3实例入门-Hello World</title><link>http://blog.leaver.me/2013/09/20/spring3%E5%AE%9E%E4%BE%8B%E5%85%A5%E9%97%A8-hello-world/</link><pubDate>Fri, 20 Sep 2013 13:14:39 +0000</pubDate><guid>http://blog.leaver.me/2013/09/20/spring3%E5%AE%9E%E4%BE%8B%E5%85%A5%E9%97%A8-hello-world/</guid><description>每次看到hello world,都有一种说不出的赶脚，想起了一个程序员，退休后写毛笔字，取笔研磨铺纸，大笔一挥，写下了“hello world”。
 1.使用Maven生成项目结构 2.转换成Eclipse项目 3.添加Spring3.0 依赖 在pom.xml文件里添加Spring 3.0 依赖，然后依赖会从Maven中央仓库自动下载
 4.Spring bean 写个简单的bean
 5.Spring bean配置文件 创建一个配置文件，在里面声明所有可用的Spring beans
 6.最终的目录结构
- 7.运行 8.输出 9.Demo下载 Spring3-hello-world-example.zip</description></item><item><title>使用Maven创建Web项目</title><link>http://leaver.me/2013/09/20/%E4%BD%BF%E7%94%A8maven%E5%88%9B%E5%BB%BAweb%E9%A1%B9%E7%9B%AE/</link><pubDate>Fri, 20 Sep 2013 08:44:11 +0000</pubDate><guid>http://leaver.me/2013/09/20/%E4%BD%BF%E7%94%A8maven%E5%88%9B%E5%BB%BAweb%E9%A1%B9%E7%9B%AE/</guid><description>本文通过Maven完成一个简单的Web项目（注意，Spring配置不是重点，看看就行）
+ 7.运行 8.输出 9.Demo下载 Spring3-hello-world-example.zip</description></item><item><title>使用Maven创建Web项目</title><link>http://blog.leaver.me/2013/09/20/%E4%BD%BF%E7%94%A8maven%E5%88%9B%E5%BB%BAweb%E9%A1%B9%E7%9B%AE/</link><pubDate>Fri, 20 Sep 2013 08:44:11 +0000</pubDate><guid>http://blog.leaver.me/2013/09/20/%E4%BD%BF%E7%94%A8maven%E5%88%9B%E5%BB%BAweb%E9%A1%B9%E7%9B%AE/</guid><description>本文通过Maven完成一个简单的Web项目（注意，Spring配置不是重点，看看就行）
 1.从Maven模板创建Web应用程序 命令格式如下：
 这就告诉Maven从**maven-archetype-webapp **这个模板来创建
 友情提示：是不是太难记了..好吧，直接输入
@@ -61,7 +61,7 @@ http://localhost:8080/CounterWebApp/welcome/mkyong
 就可以看到效果了
 图七
 9.Demo下载
-CounterWebApp.zip</description></item><item><title>Maven库依赖机制及添加自定义库</title><link>http://leaver.me/2013/09/19/maven%E5%BA%93%E4%BE%9D%E8%B5%96%E6%9C%BA%E5%88%B6%E5%8F%8A%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BA%93/</link><pubDate>Thu, 19 Sep 2013 22:49:42 +0000</pubDate><guid>http://leaver.me/2013/09/19/maven%E5%BA%93%E4%BE%9D%E8%B5%96%E6%9C%BA%E5%88%B6%E5%8F%8A%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BA%93/</guid><description>一.Maven库依赖机制 Maven的库依赖机制可以帮助我们自动下载依赖的库文件，并且还能更新版本。。
+CounterWebApp.zip</description></item><item><title>Maven库依赖机制及添加自定义库</title><link>http://blog.leaver.me/2013/09/19/maven%E5%BA%93%E4%BE%9D%E8%B5%96%E6%9C%BA%E5%88%B6%E5%8F%8A%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BA%93/</link><pubDate>Thu, 19 Sep 2013 22:49:42 +0000</pubDate><guid>http://blog.leaver.me/2013/09/19/maven%E5%BA%93%E4%BE%9D%E8%B5%96%E6%9C%BA%E5%88%B6%E5%8F%8A%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BA%93/</guid><description>一.Maven库依赖机制 Maven的库依赖机制可以帮助我们自动下载依赖的库文件，并且还能更新版本。。
 考虑一个情境来理解机制的工作原理，假设我们要使用Log4J库作为项目的日志记录。以下是我们要做的
 1.传统的方式 1）访问Log4J网站http://logging.apache.org/log4j/2.x/
 2）下载Log4J的jar包
@@ -83,7 +83,7 @@ Maven坐标咋来的，当然去中央仓库搜索之了，搜索结果清晰的
 1.mvn安装 下载kaptche，解压并且拷贝kaptcha-version.jar到其他任何你喜欢的地方，比如c盘，然后输入如下格式的命令
 这里我这样输入
 这样完成了。kaptcha已经存在本地库了
-2.pom.xml配置一下 这个前面说过了，Maven坐标嘛</description></item><item><title>Maven仓库详解</title><link>http://leaver.me/2013/09/19/maven%E4%BB%93%E5%BA%93%E8%AF%A6%E8%A7%A3/</link><pubDate>Thu, 19 Sep 2013 22:05:10 +0000</pubDate><guid>http://leaver.me/2013/09/19/maven%E4%BB%93%E5%BA%93%E8%AF%A6%E8%A7%A3/</guid><description>本文由我翻译合并了多篇文章，整理成一篇。
+2.pom.xml配置一下 这个前面说过了，Maven坐标嘛</description></item><item><title>Maven仓库详解</title><link>http://blog.leaver.me/2013/09/19/maven%E4%BB%93%E5%BA%93%E8%AF%A6%E8%A7%A3/</link><pubDate>Thu, 19 Sep 2013 22:05:10 +0000</pubDate><guid>http://blog.leaver.me/2013/09/19/maven%E4%BB%93%E5%BA%93%E8%AF%A6%E8%A7%A3/</guid><description>本文由我翻译合并了多篇文章，整理成一篇。
 一.本地仓库(Local Repository) 本地仓库就是一个本机的目录，这个目录被用来存储我们项目的所有依赖（插件的jar包还有一些其他的文件），简单的说，当你build一个Maven项目的时候，所有的依赖文件都会放在本地仓库里，仓库供所有项目都可以使用
 默认情况下，本地仓库在.m2目录，windows下的话就是你的用户名目录下的.m2目录
 1.更新本地仓库目录 找到你的MAVEN_HOME目录下的conf/setting.xml文件，更新localRepository节点
@@ -101,7 +101,7 @@ http://search.maven.org/#browse
 1）搜索本地仓库，没有找到，就去第2步，否则退出
 2）搜索中央仓库，没有找到，就去第3步，否则退出
 3）去java.net远程仓库获取，没有找到，就报错，否则退出
-补充：JBoss也有个远程仓库，可以如下配置：</description></item><item><title>Maven安装教程</title><link>http://leaver.me/2013/09/19/maven%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/</link><pubDate>Thu, 19 Sep 2013 21:15:09 +0000</pubDate><guid>http://leaver.me/2013/09/19/maven%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/</guid><description>Maven不需要作为服务组件安装到windows上，仅仅需要下载，解压，然后配置一下环境变量就行了
+补充：JBoss也有个远程仓库，可以如下配置：</description></item><item><title>Maven安装教程</title><link>http://blog.leaver.me/2013/09/19/maven%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/</link><pubDate>Thu, 19 Sep 2013 21:15:09 +0000</pubDate><guid>http://blog.leaver.me/2013/09/19/maven%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/</guid><description>Maven不需要作为服务组件安装到windows上，仅仅需要下载，解压，然后配置一下环境变量就行了
 1.JDK和JAVA_HOME 确保JDK已经安装，同时JAVA_HOME变量已经添加到了windows环境变量里，指向jdk目录
  2.下载Maven 去Maven主页,选个版本，点击下载
 3.解压 解压下载的zip文件，重命名，比如我放到D盘的Maven目录

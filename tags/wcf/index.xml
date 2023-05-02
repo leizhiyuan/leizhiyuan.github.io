@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>WCF on bystander's blog</title><link>http://leaver.me/tags/wcf/</link><description>Recent content in WCF on bystander's blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 09 Sep 2012 19:28:44 +0000</lastBuildDate><atom:link href="http://leaver.me/tags/wcf/index.xml" rel="self" type="application/rss+xml"/><item><title>通过Windows应用进行服务寄宿示例代码</title><link>http://leaver.me/2012/09/09/%E9%80%9A%E8%BF%87windows%E5%BA%94%E7%94%A8%E8%BF%9B%E8%A1%8C%E6%9C%8D%E5%8A%A1%E5%AF%84%E5%AE%BF%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81/</link><pubDate>Sun, 09 Sep 2012 19:28:44 +0000</pubDate><guid>http://leaver.me/2012/09/09/%E9%80%9A%E8%BF%87windows%E5%BA%94%E7%94%A8%E8%BF%9B%E8%A1%8C%E6%9C%8D%E5%8A%A1%E5%AF%84%E5%AE%BF%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81/</guid><description>此程序部分源码来自《WCF技术剖析》。。但是。这本书上讲的非常不清楚。有些很小的地方没讲。。导致出现很多问题。。。比如ListView需要先添加列。默认的config需要删除。等等。。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>WCF on bystander's blog</title><link>http://blog.leaver.me/tags/wcf/</link><description>Recent content in WCF on bystander's blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 09 Sep 2012 19:28:44 +0000</lastBuildDate><atom:link href="http://blog.leaver.me/tags/wcf/index.xml" rel="self" type="application/rss+xml"/><item><title>通过Windows应用进行服务寄宿示例代码</title><link>http://blog.leaver.me/2012/09/09/%E9%80%9A%E8%BF%87windows%E5%BA%94%E7%94%A8%E8%BF%9B%E8%A1%8C%E6%9C%8D%E5%8A%A1%E5%AF%84%E5%AE%BF%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81/</link><pubDate>Sun, 09 Sep 2012 19:28:44 +0000</pubDate><guid>http://blog.leaver.me/2012/09/09/%E9%80%9A%E8%BF%87windows%E5%BA%94%E7%94%A8%E8%BF%9B%E8%A1%8C%E6%9C%8D%E5%8A%A1%E5%AF%84%E5%AE%BF%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81/</guid><description>此程序部分源码来自《WCF技术剖析》。。但是。这本书上讲的非常不清楚。有些很小的地方没讲。。导致出现很多问题。。。比如ListView需要先添加列。默认的config需要删除。等等。。
 最终是成功了。
-源码下载：Lazy.FormDemo</description></item><item><title>WCF读书笔记(4)</title><link>http://leaver.me/2012/09/09/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B04/</link><pubDate>Sun, 09 Sep 2012 09:06:33 +0000</pubDate><guid>http://leaver.me/2012/09/09/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B04/</guid><description>三种供客户端和服务端控制通信的契约介绍： 1.服务契约描述了由特定服务端点所公开的操作，每一种操作，通过参数和返回值定义请求和响应消息的格式。 2.数据契约描述了复杂类型如何被串行化为消息的一部分，数据契约是服务契约中优先用来包含复杂类型的方式。 3.消息契约提供对某个soap消息格式的控制，包括支持定制消息标题和数据契约所描述的单个消息体元素。
+源码下载：Lazy.FormDemo</description></item><item><title>WCF读书笔记(4)</title><link>http://blog.leaver.me/2012/09/09/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B04/</link><pubDate>Sun, 09 Sep 2012 09:06:33 +0000</pubDate><guid>http://blog.leaver.me/2012/09/09/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B04/</guid><description>三种供客户端和服务端控制通信的契约介绍： 1.服务契约描述了由特定服务端点所公开的操作，每一种操作，通过参数和返回值定义请求和响应消息的格式。 2.数据契约描述了复杂类型如何被串行化为消息的一部分，数据契约是服务契约中优先用来包含复杂类型的方式。 3.消息契约提供对某个soap消息格式的控制，包括支持定制消息标题和数据契约所描述的单个消息体元素。
 消息参数（Message Parameter） 对于
 若客户端传入的参数为“Hello”，则生成的请求消息体中标记为Hello,而响应返回的消息体则被标记为返回内容,可以通过
 来定制消息中的标签。
@@ -8,7 +8,7 @@
 执行上下文（OperationContext） 是System.ServiceModel命名空间的一种类型，他为服务请求提供了对执行上下文的访问，OperationContext.Current为请求在生命周期期间提供了对上下文的访问。
 WCF的实例化模式 实例化控制模式服务对象被分配给请求的方式，一旦服务主机已经建立而且为每个端点创建了信道监听器，对各终端的请求已经由适当的服务对象所执行，则这些对象是基于服务类型的实例化模式的。他们是InstanceContextMode的一个枚举。 1.PerCall 服务对象为每一个对服务的调用所创建。 2.PerSession 对每一个客户端创建一个。默认是这样 3.Single 创建单一的服务对象。并由所有客户端的调用使用。 尽可能使用PerCall，大规模的部署避免PerSession并发。
 WCF的四种会话 应用会话，传输会话，可靠会话，安全会话。
-信道发生器取得SessionId</description></item><item><title>WCF读书笔记(3)</title><link>http://leaver.me/2012/09/08/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B03/</link><pubDate>Sat, 08 Sep 2012 08:07:37 +0000</pubDate><guid>http://leaver.me/2012/09/08/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B03/</guid><description>WCF的四大行为
+信道发生器取得SessionId</description></item><item><title>WCF读书笔记(3)</title><link>http://blog.leaver.me/2012/09/08/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B03/</link><pubDate>Sat, 08 Sep 2012 08:07:37 +0000</pubDate><guid>http://blog.leaver.me/2012/09/08/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B03/</guid><description>WCF的四大行为
 　契约行为（Contract Behavior），操作行为（Operation Behavior），服务行为（Service Behavior），终结点行为（Endpoint Behavior）。
 　如果把WCF看做是消息处理，对象激活与操作执行的管道，那么我们可以通过相应的行为来改变这个管道中某个环节的工作方式。比如加个密啊。什么的。
 单向模式（One-Way）
@@ -23,7 +23,7 @@ WCF的四大契约
 　服务契约（Service Contract），数据契约（Data Contract），消息契约（Message Contract），错误契约（Fault Contract）
 信道：
 　信道是为了便利WCF中客户端和服务的通信来设置的。ServiceHost为每个断点创建一个信道侦听器，侦听器产生通信通道，代理则产生一个信道发生器，发生器产生客户端的信道，两种信道相互兼容并且能有效处理之间的信息。
-　实际上，通信信道是有一个分层的信道栈组成-栈中的每一个信道都在消息处理过程中负责实施一个特定动作，信道栈包含一个传输信道，一个消息编码信道，和任意数量的消息处理信道，绑定则将决定了哪些信道留在信道栈中。当行为穿过信道栈时，消息处理方式将会有所改变。。</description></item><item><title>WCF双工通信示例</title><link>http://leaver.me/2012/09/07/wcf%E5%8F%8C%E5%B7%A5%E9%80%9A%E4%BF%A1%E7%A4%BA%E4%BE%8B/</link><pubDate>Fri, 07 Sep 2012 22:22:30 +0000</pubDate><guid>http://leaver.me/2012/09/07/wcf%E5%8F%8C%E5%B7%A5%E9%80%9A%E4%BF%A1%E7%A4%BA%E4%BE%8B/</guid><description>这两天在看WCF的书籍。就参考书上的代码写了这个例子。不得不说。书上有些错误的地方。。运行明显报错。改了一下。顺利通过。
+　实际上，通信信道是有一个分层的信道栈组成-栈中的每一个信道都在消息处理过程中负责实施一个特定动作，信道栈包含一个传输信道，一个消息编码信道，和任意数量的消息处理信道，绑定则将决定了哪些信道留在信道栈中。当行为穿过信道栈时，消息处理方式将会有所改变。。</description></item><item><title>WCF双工通信示例</title><link>http://blog.leaver.me/2012/09/07/wcf%E5%8F%8C%E5%B7%A5%E9%80%9A%E4%BF%A1%E7%A4%BA%E4%BE%8B/</link><pubDate>Fri, 07 Sep 2012 22:22:30 +0000</pubDate><guid>http://blog.leaver.me/2012/09/07/wcf%E5%8F%8C%E5%B7%A5%E9%80%9A%E4%BF%A1%E7%A4%BA%E4%BE%8B/</guid><description>这两天在看WCF的书籍。就参考书上的代码写了这个例子。不得不说。书上有些错误的地方。。运行明显报错。改了一下。顺利通过。
 　先运行Hosting。然后运行Client。可以看到效果。不过不知道为什么会有如下的一个提示：
 　目标程序集不包含服务类型。可能需要调整此程序集的代码访问安全策略。
 　点击确定后并不影响程序运行。。但是也是个问题。。找了一下解决方法。都没有解决。。可能是我新建契约服务的时候，删掉了默认的IService配置。
@@ -31,7 +31,7 @@ WCF的四大契约
 　暂时先放着吧。
 　运行截图：
 　
-　示例代码下载：Lazy.Duplex</description></item><item><title>WCF读书笔记(2)</title><link>http://leaver.me/2012/09/06/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B02/</link><pubDate>Thu, 06 Sep 2012 22:09:48 +0000</pubDate><guid>http://leaver.me/2012/09/06/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B02/</guid><description>信道形状（Channel Shape）
+　示例代码下载：Lazy.Duplex</description></item><item><title>WCF读书笔记(2)</title><link>http://blog.leaver.me/2012/09/06/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B02/</link><pubDate>Thu, 06 Sep 2012 22:09:48 +0000</pubDate><guid>http://blog.leaver.me/2012/09/06/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B02/</guid><description>信道形状（Channel Shape）
 　用来表述不同的消息交换模式对消息交换双方信道（信息交换的管道）的不同要求，有什么IOutputChannel IReplyChannel IDuplexChannel之类的。。
 　对于IReplyChannel，服务器返回一个RequestContext类型，作为请求和回复之间的一道桥梁，可以获取也可以返回消息。
 会话信道（Session Channel）
@@ -47,7 +47,7 @@ WCF的四大契约
 　解决跨应用程序域对象访问的问题，需要采用一种特别的机制，那就是封送。分为按值封送和按引用封送
 　按值封送实现了跨应用程序域的数据共享
 　按引用封送则实现了跨应用程序域的远程调用。
-　如果一个程序员频繁的使用复制粘贴编程。那就意味着设计需要重构</description></item><item><title>WCF读书笔记(1)</title><link>http://leaver.me/2012/09/05/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B01/</link><pubDate>Wed, 05 Sep 2012 19:29:14 +0000</pubDate><guid>http://leaver.me/2012/09/05/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B01/</guid><description>信道的分类：Transport Channel 信道
+　如果一个程序员频繁的使用复制粘贴编程。那就意味着设计需要重构</description></item><item><title>WCF读书笔记(1)</title><link>http://blog.leaver.me/2012/09/05/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B01/</link><pubDate>Wed, 05 Sep 2012 19:29:14 +0000</pubDate><guid>http://blog.leaver.me/2012/09/05/wcf%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B01/</guid><description>信道的分类：Transport Channel 信道
 　1.Message Encording Channel　2.Protocol Channel
 信道管理器（Channel Manager）,信道管理器用于信道栈的创建和生命周期的管理
 　1.ChannelListener　2.ChannelFactory
@@ -63,7 +63,7 @@ WCF服务调用的两种典型方式
 　2.Request/Reply模式
 　使用最多的一种模式，请求期待回复。采用同步通信方式，但也可用于异步通信
 　3.Duplex 双工模式
-　双方可以互发消息，实现服务器回调客户端。订阅/发布是其中一种典型的实例，TCP可以提供原生的双工通信，WCF通过WSDualHttpBinding实现了基于Http的双工通信，实际上是采用两个HTTP通道实现</description></item><item><title>使用Microsoft Web Deploy技术自动部署</title><link>http://leaver.me/2012/09/04/%E4%BD%BF%E7%94%A8microsoft-web-deploy%E6%8A%80%E6%9C%AF%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/</link><pubDate>Tue, 04 Sep 2012 14:03:18 +0000</pubDate><guid>http://leaver.me/2012/09/04/%E4%BD%BF%E7%94%A8microsoft-web-deploy%E6%8A%80%E6%9C%AF%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/</guid><description>在前段时间使用WCF的时候。部署到服务器上一直不得要领。出现各种问题。最终搞定。原文图很多，我给个摘要，大家还是原文看。因为原文写于2010年。自动部署工具已经更新至第3版。所以有些按钮得好好找找。不过相信对大家都不是难事。
+　双方可以互发消息，实现服务器回调客户端。订阅/发布是其中一种典型的实例，TCP可以提供原生的双工通信，WCF通过WSDualHttpBinding实现了基于Http的双工通信，实际上是采用两个HTTP通道实现</description></item><item><title>使用Microsoft Web Deploy技术自动部署</title><link>http://blog.leaver.me/2012/09/04/%E4%BD%BF%E7%94%A8microsoft-web-deploy%E6%8A%80%E6%9C%AF%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/</link><pubDate>Tue, 04 Sep 2012 14:03:18 +0000</pubDate><guid>http://blog.leaver.me/2012/09/04/%E4%BD%BF%E7%94%A8microsoft-web-deploy%E6%8A%80%E6%9C%AF%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/</guid><description>在前段时间使用WCF的时候。部署到服务器上一直不得要领。出现各种问题。最终搞定。原文图很多，我给个摘要，大家还是原文看。因为原文写于2010年。自动部署工具已经更新至第3版。所以有些按钮得好好找找。不过相信对大家都不是难事。
 　本篇文章将提供一个循序渐进的教程，教你如何在一台Web服务期上安装和启用Web Deploy。接着我们演示如何使用Visual Studio通过Web Deploy直接（将文件）发布到服务器上，以及如何使用Visual Studio创建自动部署你的应用程序的安装包。
 　Web Deploy—为什么你会喜欢它
 　部署一个Web应用程序或站点包含好几个步骤。您通常需要：
